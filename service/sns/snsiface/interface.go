@@ -146,6 +146,9 @@ type SNSAPI interface {
 	ListPhoneNumbersOptedOutWithContext(aws.Context, *sns.ListPhoneNumbersOptedOutInput, ...request.Option) (*sns.ListPhoneNumbersOptedOutOutput, error)
 	ListPhoneNumbersOptedOutRequest(*sns.ListPhoneNumbersOptedOutInput) (*request.Request, *sns.ListPhoneNumbersOptedOutOutput)
 
+	ListPhoneNumbersOptedOutPages(*sns.ListPhoneNumbersOptedOutInput, func(*sns.ListPhoneNumbersOptedOutOutput, bool) bool) error
+	ListPhoneNumbersOptedOutPagesWithContext(aws.Context, *sns.ListPhoneNumbersOptedOutInput, func(*sns.ListPhoneNumbersOptedOutOutput, bool) bool, ...request.Option) error
+
 	ListPlatformApplications(*sns.ListPlatformApplicationsInput) (*sns.ListPlatformApplicationsOutput, error)
 	ListPlatformApplicationsWithContext(aws.Context, *sns.ListPlatformApplicationsInput, ...request.Option) (*sns.ListPlatformApplicationsOutput, error)
 	ListPlatformApplicationsRequest(*sns.ListPlatformApplicationsInput) (*request.Request, *sns.ListPlatformApplicationsOutput)

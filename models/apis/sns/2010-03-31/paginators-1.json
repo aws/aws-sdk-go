@@ -11,6 +11,11 @@
       "output_token": "NextToken",
       "result_key": "PhoneNumbers"
     },
+    "ListPhoneNumbersOptedOut": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "result_key": "phoneNumbers"
+    },
     "ListPlatformApplications": {
       "input_token": "NextToken",
       "output_token": "NextToken",

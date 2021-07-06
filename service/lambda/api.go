@@ -58,11 +58,11 @@ func (c *Lambda) AddLayerVersionPermissionRequest(input *AddLayerVersionPermissi
 
 // AddLayerVersionPermission API operation for AWS Lambda.
 //
-// Adds permissions to the resource-based policy of a version of an AWS Lambda
-// layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// Adds permissions to the resource-based policy of a version of an Lambda layer
+// (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 // Use this action to grant layer usage permission to other accounts. You can
-// grant permission to a single account, all AWS accounts, or all accounts in
-// an organization.
+// grant permission to a single account, all accounts in an organization, or
+// all Amazon Web Services accounts.
 //
 // To revoke permission, call RemoveLayerVersionPermission with the statement
 // ID that you specified when you added it.
@@ -76,7 +76,7 @@ func (c *Lambda) AddLayerVersionPermissionRequest(input *AddLayerVersionPermissi
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -164,19 +164,19 @@ func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *request.R
 
 // AddPermission API operation for AWS Lambda.
 //
-// Grants an AWS service or another account permission to use a function. You
-// can apply the policy at the function level, or specify a qualifier to restrict
-// access to a single version or alias. If you use a qualifier, the invoker
-// must use the full Amazon Resource Name (ARN) of that version or alias to
-// invoke the function.
+// Grants an Amazon Web Services service or another account permission to use
+// a function. You can apply the policy at the function level, or specify a
+// qualifier to restrict access to a single version or alias. If you use a qualifier,
+// the invoker must use the full Amazon Resource Name (ARN) of that version
+// or alias to invoke the function.
 //
 // To grant permission to another account, specify the account ID as the Principal.
-// For AWS services, the principal is a domain-style identifier defined by the
-// service, like s3.amazonaws.com or sns.amazonaws.com. For AWS services, you
-// can also specify the ARN of the associated resource as the SourceArn. If
-// you grant permission to a service principal without specifying the source,
-// other accounts could potentially configure resources in their account to
-// invoke your Lambda function.
+// For Amazon Web Services services, the principal is a domain-style identifier
+// defined by the service, like s3.amazonaws.com or sns.amazonaws.com. For Amazon
+// Web Services services, you can also specify the ARN of the associated resource
+// as the SourceArn. If you grant permission to a service principal without
+// specifying the source, other accounts could potentially configure resources
+// in their account to invoke your Lambda function.
 //
 // This action adds a statement to a resource-based permissions policy for the
 // function. For more information about function policies, see Lambda Function
@@ -191,7 +191,7 @@ func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -296,7 +296,7 @@ func (c *Lambda) CreateAliasRequest(input *CreateAliasInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -389,7 +389,7 @@ func (c *Lambda) CreateCodeSigningConfigRequest(input *CreateCodeSigningConfigIn
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -460,22 +460,24 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 
 // CreateEventSourceMapping API operation for AWS Lambda.
 //
-// Creates a mapping between an event source and an AWS Lambda function. Lambda
+// Creates a mapping between an event source and an Lambda function. Lambda
 // reads items from the event source and triggers the function.
 //
-// For details about each event source type, see the following topics.
+// For details about each event source type, see the following topics. In particular,
+// each of the topics describes the required and optional parameters for the
+// specific event source.
 //
-//    * Using AWS Lambda with Amazon DynamoDB (https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html)
+//    * Configuring a Dynamo DB stream as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping)
 //
-//    * Using AWS Lambda with Amazon Kinesis (https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html)
+//    * Configuring a Kinesis stream as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping)
 //
-//    * Using AWS Lambda with Amazon SQS (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html)
+//    * Configuring an SQS queue as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource)
 //
-//    * Using AWS Lambda with Amazon MQ (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html)
+//    * Configuring an MQ broker as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping)
 //
-//    * Using AWS Lambda with Amazon MSK (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
+//    * Configuring MSK as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-msk.html)
 //
-//    * Using AWS Lambda with Self-Managed Apache Kafka (https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html)
+//    * Configuring Self-Managed Apache Kafka as an event source (https://docs.aws.amazon.com/lambda/latest/dg/kafka-smaa.html)
 //
 // The following error handling options are only available for stream sources
 // (DynamoDB and Kinesis):
@@ -505,7 +507,7 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -590,8 +592,19 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // and an execution role (https://docs.aws.amazon.com/lambda/latest/dg/intro-permission-model.html#lambda-intro-execution-role).
 // The deployment package is a .zip file archive or container image that contains
 // your function code. The execution role grants the function permission to
-// use AWS services, such as Amazon CloudWatch Logs for log streaming and AWS
-// X-Ray for request tracing.
+// use Amazon Web Services services, such as Amazon CloudWatch Logs for log
+// streaming and X-Ray for request tracing.
+//
+// You set the package type to Image if the deployment package is a container
+// image (https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html).
+// For a container image, the code property must include the URI of a container
+// image in the Amazon ECR registry. You do not need to specify the handler
+// and runtime properties.
+//
+// You set the package type to Zip if the deployment package is a .zip file
+// archive (https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip).
+// For a .zip file archive, the code property specifies the location of the
+// .zip file. You must also specify the handler and runtime properties.
 //
 // When you create a function, Lambda provisions an instance of the function
 // and its supporting resources. If your function connects to a VPC, this process
@@ -621,14 +634,14 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // publisher. The code-signing configuration includes set set of signing profiles,
 // which define the trusted publishers for this function.
 //
-// If another account or an AWS service invokes your function, use AddPermission
-// to grant permission by creating a resource-based IAM policy. You can grant
-// permissions at the function level, on a version, or on an alias.
+// If another account or an Amazon Web Services service invokes your function,
+// use AddPermission to grant permission by creating a resource-based IAM policy.
+// You can grant permissions at the function level, on a version, or on an alias.
 //
 // To invoke your function directly, use Invoke. To invoke your function in
-// response to events in other AWS services, create an event source mapping
-// (CreateEventSourceMapping), or configure a function trigger in the other
-// service. For more information, see Invoking Functions (https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html).
+// response to events in other Amazon Web Services services, create an event
+// source mapping (CreateEventSourceMapping), or configure a function trigger
+// in the other service. For more information, see Invoking Functions (https://docs.aws.amazon.com/lambda/latest/dg/lambda-invocation.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -639,7 +652,7 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -746,7 +759,7 @@ func (c *Lambda) DeleteAliasRequest(input *DeleteAliasInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -836,7 +849,7 @@ func (c *Lambda) DeleteCodeSigningConfigRequest(input *DeleteCodeSigningConfigIn
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -928,7 +941,7 @@ func (c *Lambda) DeleteEventSourceMappingRequest(input *DeleteEventSourceMapping
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -1015,8 +1028,9 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *request
 // Qualifier parameter. Otherwise, all versions and aliases are deleted.
 //
 // To delete Lambda event source mappings that invoke a function, use DeleteEventSourceMapping.
-// For AWS services and resources that invoke your function directly, delete
-// the trigger in the service where you originally configured it.
+// For Amazon Web Services services and resources that invoke your function
+// directly, delete the trigger in the service where you originally configured
+// it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1027,7 +1041,7 @@ func (c *Lambda) DeleteFunctionRequest(input *DeleteFunctionInput) (req *request
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -1128,7 +1142,7 @@ func (c *Lambda) DeleteFunctionCodeSigningConfigRequest(input *DeleteFunctionCod
 //   The resource specified in the request does not exist.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * TooManyRequestsException
 //   The request throughput limit was exceeded.
@@ -1214,7 +1228,7 @@ func (c *Lambda) DeleteFunctionConcurrencyRequest(input *DeleteFunctionConcurren
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -1309,7 +1323,7 @@ func (c *Lambda) DeleteFunctionEventInvokeConfigRequest(input *DeleteFunctionEve
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -1387,7 +1401,7 @@ func (c *Lambda) DeleteLayerVersionRequest(input *DeleteLayerVersionInput) (req 
 
 // DeleteLayerVersion API operation for AWS Lambda.
 //
-// Deletes a version of an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// Deletes a version of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 // Deleted versions can no longer be viewed or added to functions. To avoid
 // breaking functions, a copy of the version remains in Lambda until no functions
 // refer to it.
@@ -1401,7 +1415,7 @@ func (c *Lambda) DeleteLayerVersionRequest(input *DeleteLayerVersionInput) (req 
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * TooManyRequestsException
 //   The request throughput limit was exceeded.
@@ -1496,7 +1510,7 @@ func (c *Lambda) DeleteProvisionedConcurrencyConfigRequest(input *DeleteProvisio
 //   The request throughput limit was exceeded.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteProvisionedConcurrencyConfig
 func (c *Lambda) DeleteProvisionedConcurrencyConfig(input *DeleteProvisionedConcurrencyConfigInput) (*DeleteProvisionedConcurrencyConfigOutput, error) {
@@ -1565,7 +1579,7 @@ func (c *Lambda) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req 
 // GetAccountSettings API operation for AWS Lambda.
 //
 // Retrieves details about your account's limits (https://docs.aws.amazon.com/lambda/latest/dg/limits.html)
-// and usage in an AWS Region.
+// and usage in an Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1579,7 +1593,7 @@ func (c *Lambda) GetAccountSettingsRequest(input *GetAccountSettingsInput) (req 
 //   The request throughput limit was exceeded.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetAccountSettings
 func (c *Lambda) GetAccountSettings(input *GetAccountSettingsInput) (*GetAccountSettingsOutput, error) {
@@ -1658,7 +1672,7 @@ func (c *Lambda) GetAliasRequest(input *GetAliasInput) (req *request.Request, ou
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -1746,7 +1760,7 @@ func (c *Lambda) GetCodeSigningConfigRequest(input *GetCodeSigningConfigInput) (
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -1832,7 +1846,7 @@ func (c *Lambda) GetEventSourceMappingRequest(input *GetEventSourceMappingInput)
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -1922,7 +1936,7 @@ func (c *Lambda) GetFunctionRequest(input *GetFunctionInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -2016,7 +2030,7 @@ func (c *Lambda) GetFunctionCodeSigningConfigRequest(input *GetFunctionCodeSigni
 //   The resource specified in the request does not exist.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * TooManyRequestsException
 //   The request throughput limit was exceeded.
@@ -2108,7 +2122,7 @@ func (c *Lambda) GetFunctionConcurrencyRequest(input *GetFunctionConcurrencyInpu
 //   The request throughput limit was exceeded.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/GetFunctionConcurrency
 func (c *Lambda) GetFunctionConcurrency(input *GetFunctionConcurrencyInput) (*GetFunctionConcurrencyOutput, error) {
@@ -2192,7 +2206,7 @@ func (c *Lambda) GetFunctionConfigurationRequest(input *GetFunctionConfiguration
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -2283,7 +2297,7 @@ func (c *Lambda) GetFunctionEventInvokeConfigRequest(input *GetFunctionEventInvo
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -2360,7 +2374,7 @@ func (c *Lambda) GetLayerVersionRequest(input *GetLayerVersionInput) (req *reque
 
 // GetLayerVersion API operation for AWS Lambda.
 //
-// Returns information about a version of an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html),
+// Returns information about a version of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html),
 // with a link to download the layer archive that's valid for 10 minutes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2372,7 +2386,7 @@ func (c *Lambda) GetLayerVersionRequest(input *GetLayerVersionInput) (req *reque
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -2449,7 +2463,7 @@ func (c *Lambda) GetLayerVersionByArnRequest(input *GetLayerVersionByArnInput) (
 
 // GetLayerVersionByArn API operation for AWS Lambda.
 //
-// Returns information about a version of an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html),
+// Returns information about a version of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html),
 // with a link to download the layer archive that's valid for 10 minutes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2461,7 +2475,7 @@ func (c *Lambda) GetLayerVersionByArnRequest(input *GetLayerVersionByArnInput) (
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -2538,7 +2552,7 @@ func (c *Lambda) GetLayerVersionPolicyRequest(input *GetLayerVersionPolicyInput)
 
 // GetLayerVersionPolicy API operation for AWS Lambda.
 //
-// Returns the permission policy for a version of an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// Returns the permission policy for a version of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 // For more information, see AddLayerVersionPermission.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2550,7 +2564,7 @@ func (c *Lambda) GetLayerVersionPolicyRequest(input *GetLayerVersionPolicyInput)
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -2639,7 +2653,7 @@ func (c *Lambda) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, 
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -2737,7 +2751,7 @@ func (c *Lambda) GetProvisionedConcurrencyConfigRequest(input *GetProvisionedCon
 //   The request throughput limit was exceeded.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ProvisionedConcurrencyConfigNotFoundException
 //   The specified configuration does not exist.
@@ -2856,7 +2870,7 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -2878,17 +2892,17 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //   One of the parameters in the request is invalid.
 //
 //   * EC2UnexpectedException
-//   AWS Lambda received an unexpected EC2 client exception while setting up for
-//   the Lambda function.
+//   Lambda received an unexpected EC2 client exception while setting up for the
+//   Lambda function.
 //
 //   * SubnetIPAddressLimitReachedException
-//   AWS Lambda was not able to set up VPC access for the Lambda function because
+//   Lambda was not able to set up VPC access for the Lambda function because
 //   one or more configured subnets has no available IP addresses.
 //
 //   * ENILimitReachedException
-//   AWS Lambda was not able to create an elastic network interface in the VPC,
-//   specified as part of Lambda function configuration, because the limit for
-//   network interfaces has been reached.
+//   Lambda was not able to create an elastic network interface in the VPC, specified
+//   as part of Lambda function configuration, because the limit for network interfaces
+//   has been reached.
 //
 //   * EFSMountConnectivityException
 //   The function couldn't make a network connection to the configured file system.
@@ -2905,7 +2919,7 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //   An error occured when reading from or writing to a connected file system.
 //
 //   * EC2ThrottledException
-//   AWS Lambda was throttled by Amazon EC2 during Lambda function initialization
+//   Lambda was throttled by Amazon EC2 during Lambda function initialization
 //   using the execution role provided for the Lambda function.
 //
 //   * EC2AccessDeniedException
@@ -2919,7 +2933,7 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //   invalid.
 //
 //   * InvalidZipFileException
-//   AWS Lambda could not unzip the deployment package.
+//   Lambda could not unzip the deployment package.
 //
 //   * KMSDisabledException
 //   Lambda was unable to decrypt the environment variables because the KMS key
@@ -3032,7 +3046,7 @@ func (c *Lambda) InvokeAsyncRequest(input *InvokeAsyncInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -3134,7 +3148,7 @@ func (c *Lambda) ListAliasesRequest(input *ListAliasesInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -3282,7 +3296,7 @@ func (c *Lambda) ListCodeSigningConfigsRequest(input *ListCodeSigningConfigsInpu
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -3423,7 +3437,7 @@ func (c *Lambda) ListEventSourceMappingsRequest(input *ListEventSourceMappingsIn
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -3580,7 +3594,7 @@ func (c *Lambda) ListFunctionEventInvokeConfigsRequest(input *ListFunctionEventI
 //   The request throughput limit was exceeded.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListFunctionEventInvokeConfigs
 func (c *Lambda) ListFunctionEventInvokeConfigs(input *ListFunctionEventInvokeConfigsInput) (*ListFunctionEventInvokeConfigsOutput, error) {
@@ -3726,7 +3740,7 @@ func (c *Lambda) ListFunctionsRequest(input *ListFunctionsInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * TooManyRequestsException
 //   The request throughput limit was exceeded.
@@ -3871,7 +3885,7 @@ func (c *Lambda) ListFunctionsByCodeSigningConfigRequest(input *ListFunctionsByC
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -4003,7 +4017,7 @@ func (c *Lambda) ListLayerVersionsRequest(input *ListLayerVersionsInput) (req *r
 
 // ListLayerVersions API operation for AWS Lambda.
 //
-// Lists the versions of an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// Lists the versions of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 // Versions that have been deleted aren't listed. Specify a runtime identifier
 // (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) to list
 // only versions that indicate that they're compatible with that runtime.
@@ -4017,7 +4031,7 @@ func (c *Lambda) ListLayerVersionsRequest(input *ListLayerVersionsInput) (req *r
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -4152,7 +4166,7 @@ func (c *Lambda) ListLayersRequest(input *ListLayersInput) (req *request.Request
 
 // ListLayers API operation for AWS Lambda.
 //
-// Lists AWS Lambda layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
+// Lists Lambda layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
 // and shows information about the latest version of each. Specify a runtime
 // identifier (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)
 // to list only layers that indicate that they're compatible with that runtime.
@@ -4166,7 +4180,7 @@ func (c *Lambda) ListLayersRequest(input *ListLayersInput) (req *request.Request
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -4318,7 +4332,7 @@ func (c *Lambda) ListProvisionedConcurrencyConfigsRequest(input *ListProvisioned
 //   The request throughput limit was exceeded.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/ListProvisionedConcurrencyConfigs
 func (c *Lambda) ListProvisionedConcurrencyConfigs(input *ListProvisionedConcurrencyConfigsInput) (*ListProvisionedConcurrencyConfigsOutput, error) {
@@ -4450,7 +4464,7 @@ func (c *Lambda) ListTagsRequest(input *ListTagsInput) (req *request.Request, ou
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -4546,7 +4560,7 @@ func (c *Lambda) ListVersionsByFunctionRequest(input *ListVersionsByFunctionInpu
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -4675,7 +4689,7 @@ func (c *Lambda) PublishLayerVersionRequest(input *PublishLayerVersionInput) (re
 
 // PublishLayerVersion API operation for AWS Lambda.
 //
-// Creates an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
+// Creates an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
 // from a ZIP archive. Each time you call PublishLayerVersion with the same
 // layer name, a new version is created.
 //
@@ -4690,7 +4704,7 @@ func (c *Lambda) PublishLayerVersionRequest(input *PublishLayerVersionInput) (re
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -4774,8 +4788,8 @@ func (c *Lambda) PublishVersionRequest(input *PublishVersionInput) (req *request
 // from the current code and configuration of a function. Use versions to create
 // a snapshot of your function code and configuration that doesn't change.
 //
-// AWS Lambda doesn't publish a version if the function's configuration and
-// code haven't changed since the last version. Use UpdateFunctionCode or UpdateFunctionConfiguration
+// Lambda doesn't publish a version if the function's configuration and code
+// haven't changed since the last version. Use UpdateFunctionCode or UpdateFunctionConfiguration
 // to update the function before publishing a version.
 //
 // Clients can invoke versions directly or with an alias. To create an alias,
@@ -4790,7 +4804,7 @@ func (c *Lambda) PublishVersionRequest(input *PublishVersionInput) (req *request
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -4891,7 +4905,7 @@ func (c *Lambda) PutFunctionCodeSigningConfigRequest(input *PutFunctionCodeSigni
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -4998,7 +5012,7 @@ func (c *Lambda) PutFunctionConcurrencyRequest(input *PutFunctionConcurrencyInpu
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -5105,7 +5119,7 @@ func (c *Lambda) PutFunctionEventInvokeConfigRequest(input *PutFunctionEventInvo
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -5205,7 +5219,7 @@ func (c *Lambda) PutProvisionedConcurrencyConfigRequest(input *PutProvisionedCon
 //   The request throughput limit was exceeded.
 //
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PutProvisionedConcurrencyConfig
 func (c *Lambda) PutProvisionedConcurrencyConfig(input *PutProvisionedConcurrencyConfigInput) (*PutProvisionedConcurrencyConfigOutput, error) {
@@ -5274,7 +5288,7 @@ func (c *Lambda) RemoveLayerVersionPermissionRequest(input *RemoveLayerVersionPe
 
 // RemoveLayerVersionPermission API operation for AWS Lambda.
 //
-// Removes a statement from the permissions policy for a version of an AWS Lambda
+// Removes a statement from the permissions policy for a version of an Lambda
 // layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 // For more information, see AddLayerVersionPermission.
 //
@@ -5287,7 +5301,7 @@ func (c *Lambda) RemoveLayerVersionPermissionRequest(input *RemoveLayerVersionPe
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -5370,8 +5384,8 @@ func (c *Lambda) RemovePermissionRequest(input *RemovePermissionInput) (req *req
 
 // RemovePermission API operation for AWS Lambda.
 //
-// Revokes function-use permission from an AWS service or another account. You
-// can get the ID of the statement from the output of GetPolicy.
+// Revokes function-use permission from an Amazon Web Services service or another
+// account. You can get the ID of the statement from the output of GetPolicy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5382,7 +5396,7 @@ func (c *Lambda) RemovePermissionRequest(input *RemovePermissionInput) (req *req
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -5477,7 +5491,7 @@ func (c *Lambda) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -5570,7 +5584,7 @@ func (c *Lambda) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -5661,7 +5675,7 @@ func (c *Lambda) UpdateAliasRequest(input *UpdateAliasInput) (req *request.Reque
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -5758,7 +5772,7 @@ func (c *Lambda) UpdateCodeSigningConfigRequest(input *UpdateCodeSigningConfigIn
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * InvalidParameterValueException
 //   One of the parameters in the request is invalid.
@@ -5832,7 +5846,7 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 
 // UpdateEventSourceMapping API operation for AWS Lambda.
 //
-// Updates an event source mapping. You can change the function that AWS Lambda
+// Updates an event source mapping. You can change the function that Lambda
 // invokes, or pause invocation and resume later from the same location.
 //
 // The following error handling options are only available for stream sources
@@ -5863,7 +5877,7 @@ func (c *Lambda) UpdateEventSourceMappingRequest(input *UpdateEventSourceMapping
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -5968,7 +5982,7 @@ func (c *Lambda) UpdateFunctionCodeRequest(input *UpdateFunctionCodeInput) (req 
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -6083,7 +6097,7 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 // version, only the unpublished version.
 //
 // To configure function concurrency, use PutFunctionConcurrency. To grant invoke
-// permissions to an account or AWS service, use AddPermission.
+// permissions to an account or Amazon Web Services service, use AddPermission.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6094,7 +6108,7 @@ func (c *Lambda) UpdateFunctionConfigurationRequest(input *UpdateFunctionConfigu
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -6205,7 +6219,7 @@ func (c *Lambda) UpdateFunctionEventInvokeConfigRequest(input *UpdateFunctionEve
 //
 // Returned Error Types:
 //   * ServiceException
-//   The AWS Lambda service encountered an internal error.
+//   The Lambda service encountered an internal error.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request does not exist.
@@ -6247,8 +6261,8 @@ type AccountLimit struct {
 	// extracted.
 	CodeSizeUnzipped *int64 `type:"long"`
 
-	// The maximum size of a deployment package when it's uploaded directly to AWS
-	// Lambda. Use Amazon S3 for larger files.
+	// The maximum size of a deployment package when it's uploaded directly to Lambda.
+	// Use Amazon S3 for larger files.
 	CodeSizeZipped *int64 `type:"long"`
 
 	// The maximum number of simultaneous function executions.
@@ -6354,7 +6368,10 @@ type AddLayerVersionPermissionInput struct {
 	// organization.
 	OrganizationId *string `type:"string"`
 
-	// An account ID, or * to grant permission to all AWS accounts.
+	// An account ID, or * to grant layer usage permission to all accounts in an
+	// organization, or all Amazon Web Services accounts (if organizationId is not
+	// specified). For the last case, make sure that you really do want all Amazon
+	// Web Services accounts to have usage permission to this layer.
 	//
 	// Principal is a required field
 	Principal *string `type:"string" required:"true"`
@@ -6519,9 +6536,9 @@ type AddPermissionInput struct {
 	// FunctionName is a required field
 	FunctionName *string `location:"uri" locationName:"FunctionName" min:"1" type:"string" required:"true"`
 
-	// The AWS service or account that invokes the function. If you specify a service,
-	// use SourceArn or SourceAccount to limit who can invoke the function through
-	// that service.
+	// The Amazon Web Services service or account that invokes the function. If
+	// you specify a service, use SourceArn or SourceAccount to limit who can invoke
+	// the function through that service.
 	//
 	// Principal is a required field
 	Principal *string `type:"string" required:"true"`
@@ -6541,8 +6558,9 @@ type AddPermissionInput struct {
 	// by another account.
 	SourceAccount *string `type:"string"`
 
-	// For AWS services, the ARN of the AWS resource that invokes the function.
-	// For example, an Amazon S3 bucket or Amazon SNS topic.
+	// For Amazon Web Services services, the ARN of the Amazon Web Services resource
+	// that invokes the function. For example, an Amazon S3 bucket or Amazon SNS
+	// topic.
 	SourceArn *string `type:"string"`
 
 	// A statement identifier that differentiates the statement from others in the
@@ -6808,7 +6826,7 @@ func (s *AllowedPublishers) SetSigningProfileVersionArns(v []*string) *AllowedPu
 	return s
 }
 
-// Details about a Code signing configuration.
+// Details about a Code signing configuration (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html).
 type CodeSigningConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -6947,8 +6965,8 @@ func (s *CodeSigningConfigNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Code signing configuration policies specifies the validation failure action
-// for signature mismatch or expiry.
+// Code signing configuration policies (https://docs.aws.amazon.com/lambda/latest/dg/configuration-codesigning.html#config-codesigning-policies)
+// specify the validation failure action for signature mismatch or expiry.
 type CodeSigningPolicies struct {
 	_ struct{} `type:"structure"`
 
@@ -7305,10 +7323,11 @@ type CreateEventSourceMappingInput struct {
 	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
-	// (Streams) If the function returns an error, split the batch in two and retry.
+	// (Streams only) If the function returns an error, split the batch in two and
+	// retry.
 	BisectBatchOnFunctionError *bool `type:"boolean"`
 
-	// (Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded
+	// (Streams only) An Amazon SQS queue or Amazon SNS topic destination for discarded
 	// records.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
@@ -7345,24 +7364,24 @@ type CreateEventSourceMappingInput struct {
 	// FunctionName is a required field
 	FunctionName *string `min:"1" type:"string" required:"true"`
 
-	// (Streams) A list of current response type enums applied to the event source
-	// mapping.
+	// (Streams only) A list of current response type enums applied to the event
+	// source mapping.
 	FunctionResponseTypes []*string `type:"list"`
 
 	// (Streams and SQS standard queues) The maximum amount of time to gather records
 	// before invoking the function, in seconds.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
-	// (Streams) Discard records older than the specified age. The default value
-	// is infinite (-1).
+	// (Streams only) Discard records older than the specified age. The default
+	// value is infinite (-1).
 	MaximumRecordAgeInSeconds *int64 `type:"integer"`
 
-	// (Streams) Discard records after the specified number of retries. The default
-	// value is infinite (-1). When set to infinite (-1), failed records will be
-	// retried until the record expires.
+	// (Streams only) Discard records after the specified number of retries. The
+	// default value is infinite (-1). When set to infinite (-1), failed records
+	// will be retried until the record expires.
 	MaximumRetryAttempts *int64 `type:"integer"`
 
-	// (Streams) The number of batches to process from each shard concurrently.
+	// (Streams only) The number of batches to process from each shard concurrently.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
 
 	// (MQ) The name of the Amazon MQ broker destination queue to consume.
@@ -7386,8 +7405,8 @@ type CreateEventSourceMappingInput struct {
 	// The name of the Kafka topic.
 	Topics []*string `min:"1" type:"list"`
 
-	// (Streams) The duration in seconds of a processing window. The range is between
-	// 1 second up to 900 seconds.
+	// (Streams only) The duration in seconds of a processing window. The range
+	// is between 1 second up to 900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 }
 
@@ -7607,13 +7626,13 @@ type CreateFunctionInput struct {
 	// Programming Model (https://docs.aws.amazon.com/lambda/latest/dg/programming-model-v2.html).
 	Handler *string `type:"string"`
 
-	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html)
+	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html#configuration-images-settings)
 	// that override the values in the container image Dockerfile.
 	ImageConfig *ImageConfig `type:"structure"`
 
-	// The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt
-	// your function's environment variables. If it's not provided, AWS Lambda uses
-	// a default service key.
+	// The ARN of the Amazon Web Services Key Management Service (KMS) key that's
+	// used to encrypt your function's environment variables. If it's not provided,
+	// Lambda uses a default service key.
 	KMSKeyArn *string `type:"string"`
 
 	// A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
@@ -7621,9 +7640,9 @@ type CreateFunctionInput struct {
 	// ARN, including the version.
 	Layers []*string `type:"list"`
 
-	// The amount of memory available to the function at runtime. Increasing the
-	// function's memory also increases its CPU allocation. The default value is
-	// 128 MB. The value can be any multiple of 1 MB.
+	// The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html)
+	// at runtime. Increasing the function memory also increases its CPU allocation.
+	// The default value is 128 MB. The value can be any multiple of 1 MB.
 	MemorySize *int64 `min:"128" type:"integer"`
 
 	// The type of deployment package. Set to Image for container image and set
@@ -7646,17 +7665,18 @@ type CreateFunctionInput struct {
 	Tags map[string]*string `type:"map"`
 
 	// The amount of time that Lambda allows a function to run before stopping it.
-	// The default is 3 seconds. The maximum allowed value is 900 seconds.
+	// The default is 3 seconds. The maximum allowed value is 900 seconds. For additional
+	// information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// Set Mode to Active to sample and trace a subset of incoming requests with
-	// AWS X-Ray.
+	// X-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).
 	TracingConfig *TracingConfig `type:"structure"`
 
-	// For network connectivity to AWS resources in a VPC, specify a list of security
-	// groups and subnets in the VPC. When you connect a function to a VPC, it can
-	// only access resources and the internet through that VPC. For more information,
-	// see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
+	// For network connectivity to Amazon Web Services resources in a VPC, specify
+	// a list of security groups and subnets in the VPC. When you connect a function
+	// to a VPC, it can only access resources and the internet through that VPC.
+	// For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
@@ -8572,7 +8592,7 @@ func (s *EC2AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS Lambda was throttled by Amazon EC2 during Lambda function initialization
+// Lambda was throttled by Amazon EC2 during Lambda function initialization
 // using the execution role provided for the Lambda function.
 type EC2ThrottledException struct {
 	_            struct{}                  `type:"structure"`
@@ -8631,8 +8651,8 @@ func (s *EC2ThrottledException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS Lambda received an unexpected EC2 client exception while setting up for
-// the Lambda function.
+// Lambda received an unexpected EC2 client exception while setting up for the
+// Lambda function.
 type EC2UnexpectedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8926,9 +8946,9 @@ func (s *EFSMountTimeoutException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS Lambda was not able to create an elastic network interface in the VPC,
-// specified as part of Lambda function configuration, because the limit for
-// network interfaces has been reached.
+// Lambda was not able to create an elastic network interface in the VPC, specified
+// as part of Lambda function configuration, because the limit for network interfaces
+// has been reached.
 type ENILimitReachedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8986,11 +9006,15 @@ func (s *ENILimitReachedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A function's environment variable settings.
+// A function's environment variable settings. You can use environment variables
+// to adjust your function's behavior without updating code. An environment
+// variable is a pair of strings that are stored in a function's version-specific
+// configuration.
 type Environment struct {
 	_ struct{} `type:"structure"`
 
-	// Environment variable key-value pairs.
+	// Environment variable key-value pairs. For more information, see Using Lambda
+	// environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
 	Variables map[string]*string `type:"map" sensitive:"true"`
 }
 
@@ -9078,19 +9102,19 @@ func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentRes
 	return s
 }
 
-// A mapping between an AWS resource and an AWS Lambda function. See CreateEventSourceMapping
-// for details.
+// A mapping between an Amazon Web Services resource and an Lambda function.
+// See CreateEventSourceMapping for details.
 type EventSourceMappingConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of items to retrieve in a single batch.
 	BatchSize *int64 `min:"1" type:"integer"`
 
-	// (Streams) If the function returns an error, split the batch in two and retry.
-	// The default value is false.
+	// (Streams only) If the function returns an error, split the batch in two and
+	// retry. The default value is false.
 	BisectBatchOnFunctionError *bool `type:"boolean"`
 
-	// (Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded
+	// (Streams only) An Amazon SQS queue or Amazon SNS topic destination for discarded
 	// records.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
@@ -9100,31 +9124,32 @@ type EventSourceMappingConfiguration struct {
 	// The ARN of the Lambda function.
 	FunctionArn *string `type:"string"`
 
-	// (Streams) A list of current response type enums applied to the event source
-	// mapping.
+	// (Streams only) A list of current response type enums applied to the event
+	// source mapping.
 	FunctionResponseTypes []*string `type:"list"`
 
 	// The date that the event source mapping was last updated, or its state changed.
 	LastModified *time.Time `type:"timestamp"`
 
-	// The result of the last AWS Lambda invocation of your Lambda function.
+	// The result of the last Lambda invocation of your Lambda function.
 	LastProcessingResult *string `type:"string"`
 
 	// (Streams and SQS standard queues) The maximum amount of time to gather records
 	// before invoking the function, in seconds. The default value is zero.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
-	// (Streams) Discard records older than the specified age. The default value
-	// is infinite (-1). When set to infinite (-1), failed records are retried until
-	// the record expires.
+	// (Streams only) Discard records older than the specified age. The default
+	// value is -1, which sets the maximum age to infinite. When the value is set
+	// to infinite, Lambda never discards old records.
 	MaximumRecordAgeInSeconds *int64 `type:"integer"`
 
-	// (Streams) Discard records after the specified number of retries. The default
-	// value is infinite (-1). When set to infinite (-1), failed records are retried
-	// until the record expires.
+	// (Streams only) Discard records after the specified number of retries. The
+	// default value is -1, which sets the maximum number of retries to infinite.
+	// When MaximumRetryAttempts is infinite, Lambda retries failed records until
+	// the record expires in the event source.
 	MaximumRetryAttempts *int64 `type:"integer"`
 
-	// (Streams) The number of batches to process from each shard concurrently.
+	// (Streams only) The number of batches to process from each shard concurrently.
 	// The default value is 1.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
 
@@ -9157,8 +9182,8 @@ type EventSourceMappingConfiguration struct {
 	// The name of the Kafka topic.
 	Topics []*string `min:"1" type:"list"`
 
-	// (Streams) The duration in seconds of a processing window. The range is between
-	// 1 second up to 900 seconds.
+	// (Streams only) The duration in seconds of a processing window. The range
+	// is between 1 second up to 900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 
 	// The identifier of the event source mapping.
@@ -9308,7 +9333,7 @@ func (s *EventSourceMappingConfiguration) SetUUID(v string) *EventSourceMappingC
 }
 
 // Details about the connection between a Lambda function and an Amazon EFS
-// file system.
+// file system (https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html).
 type FileSystemConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -9368,11 +9393,12 @@ func (s *FileSystemConfig) SetLocalMountPath(v string) *FileSystemConfig {
 type FunctionCode struct {
 	_ struct{} `type:"structure"`
 
-	// URI of a container image in the Amazon ECR registry.
+	// URI of a container image (https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html)
+	// in the Amazon ECR registry.
 	ImageUri *string `type:"string"`
 
-	// An Amazon S3 bucket in the same AWS Region as your function. The bucket can
-	// be in a different AWS account.
+	// An Amazon S3 bucket in the same Amazon Web Services Region as your function.
+	// The bucket can be in a different Amazon Web Services account.
 	S3Bucket *string `min:"3" type:"string"`
 
 	// The Amazon S3 key of the deployment package.
@@ -9381,8 +9407,8 @@ type FunctionCode struct {
 	// For versioned objects, the version of the deployment package object to use.
 	S3ObjectVersion *string `min:"1" type:"string"`
 
-	// The base64-encoded contents of the deployment package. AWS SDK and AWS CLI
-	// clients handle the encoding for you.
+	// The base64-encoded contents of the deployment package. Amazon Web Services
+	// SDK and Amazon Web Services CLI clients handle the encoding for you.
 	//
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
 	ZipFile []byte `type:"blob" sensitive:"true"`
@@ -9514,10 +9540,10 @@ type FunctionConfiguration struct {
 	// The function's description.
 	Description *string `type:"string"`
 
-	// The function's environment variables.
+	// The function's environment variables (https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
 	Environment *EnvironmentResponse `type:"structure"`
 
-	// Connection settings for an Amazon EFS file system.
+	// Connection settings for an Amazon EFS file system (https://docs.aws.amazon.com/lambda/latest/dg/configuration-filesystem.html).
 	FileSystemConfigs []*FileSystemConfig `type:"list"`
 
 	// The function's Amazon Resource Name (ARN).
@@ -9593,7 +9619,7 @@ type FunctionConfiguration struct {
 	// stopping it.
 	Timeout *int64 `min:"1" type:"integer"`
 
-	// The function's AWS X-Ray tracing configuration.
+	// The function's X-Ray tracing configuration.
 	TracingConfig *TracingConfigResponse `type:"structure"`
 
 	// The version of the Lambda function.
@@ -11637,7 +11663,7 @@ func (s *InvalidSubnetIDException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS Lambda could not unzip the deployment package.
+// Lambda could not unzip the deployment package.
 type InvalidZipFileException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12202,7 +12228,7 @@ func (s *KMSNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// An Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 type Layer struct {
 	_ struct{} `type:"structure"`
 
@@ -12253,7 +12279,7 @@ func (s *Layer) SetSigningProfileVersionArn(v string) *Layer {
 	return s
 }
 
-// A ZIP archive that contains the contents of an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// A ZIP archive that contains the contents of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 // You can specify either an Amazon S3 location, or upload a layer archive directly.
 type LayerVersionContentInput struct {
 	_ struct{} `type:"structure"`
@@ -12267,8 +12293,8 @@ type LayerVersionContentInput struct {
 	// For versioned objects, the version of the layer archive object to use.
 	S3ObjectVersion *string `min:"1" type:"string"`
 
-	// The base64-encoded contents of the layer archive. AWS SDK and AWS CLI clients
-	// handle the encoding for you.
+	// The base64-encoded contents of the layer archive. Amazon Web Services SDK
+	// and Amazon Web Services CLI clients handle the encoding for you.
 	//
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
 	ZipFile []byte `type:"blob" sensitive:"true"`
@@ -12327,7 +12353,7 @@ func (s *LayerVersionContentInput) SetZipFile(v []byte) *LayerVersionContentInpu
 	return s
 }
 
-// Details about a version of an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// Details about a version of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 type LayerVersionContentOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12387,7 +12413,7 @@ func (s *LayerVersionContentOutput) SetSigningProfileVersionArn(v string) *Layer
 	return s
 }
 
-// Details about a version of an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// Details about a version of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 type LayerVersionsListItem struct {
 	_ struct{} `type:"structure"`
 
@@ -12456,7 +12482,7 @@ func (s *LayerVersionsListItem) SetVersion(v int64) *LayerVersionsListItem {
 	return s
 }
 
-// Details about an AWS Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
+// Details about an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 type LayersListItem struct {
 	_ struct{} `type:"structure"`
 
@@ -13025,7 +13051,7 @@ type ListFunctionsInput struct {
 	// the next page of results.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
-	// For Lambda@Edge functions, the AWS Region of the master function. For example,
+	// For Lambda@Edge functions, the Region of the master function. For example,
 	// us-east-1 filters the list of functions to only include Lambda@Edge functions
 	// replicated from a master function in US East (N. Virginia). If specified,
 	// you must set FunctionVersion to ALL.
@@ -13499,7 +13525,9 @@ type ListVersionsByFunctionInput struct {
 	// the next page of results.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
-	// The maximum number of versions to return.
+	// The maximum number of versions to return. Note that ListVersionsByFunction
+	// returns a maximum of 50 items in each response, even if you set the number
+	// higher.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 }
 
@@ -15229,7 +15257,7 @@ func (s *SelfManagedEventSource) SetEndpoints(v map[string][]*string) *SelfManag
 	return s
 }
 
-// The AWS Lambda service encountered an internal error.
+// The Lambda service encountered an internal error.
 type ServiceException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15309,6 +15337,9 @@ type SourceAccessConfiguration struct {
 	//
 	//    * SASL_SCRAM_512_AUTH - The Secrets Manager ARN of your secret key used
 	//    for SASL SCRAM-512 authentication of your Self-Managed Apache Kafka brokers.
+	//
+	//    * VIRTUAL_HOST - The name of the virtual host in your RabbitMQ broker.
+	//    Lambda will use this host as the event source.
 	Type *string `type:"string" enum:"SourceAccessType"`
 
 	// The value for your chosen configuration in Type. For example: "URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName".
@@ -15350,7 +15381,7 @@ func (s *SourceAccessConfiguration) SetURI(v string) *SourceAccessConfiguration 
 	return s
 }
 
-// AWS Lambda was not able to set up VPC access for the Lambda function because
+// Lambda was not able to set up VPC access for the Lambda function because
 // one or more configured subnets has no available IP addresses.
 type SubnetIPAddressLimitReachedException struct {
 	_            struct{}                  `type:"structure"`
@@ -15541,8 +15572,9 @@ func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The function's AWS X-Ray tracing configuration. To sample and record incoming
-// requests, set Mode to Active.
+// The function's X-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html)
+// tracing configuration. To sample and record incoming requests, set Mode to
+// Active.
 type TracingConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -15566,7 +15598,7 @@ func (s *TracingConfig) SetMode(v string) *TracingConfig {
 	return s
 }
 
-// The function's AWS X-Ray tracing configuration.
+// The function's X-Ray tracing configuration.
 type TracingConfigResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -15943,10 +15975,11 @@ type UpdateEventSourceMappingInput struct {
 	//    * Self-Managed Apache Kafka - Default 100. Max 10,000.
 	BatchSize *int64 `min:"1" type:"integer"`
 
-	// (Streams) If the function returns an error, split the batch in two and retry.
+	// (Streams only) If the function returns an error, split the batch in two and
+	// retry.
 	BisectBatchOnFunctionError *bool `type:"boolean"`
 
-	// (Streams) An Amazon SQS queue or Amazon SNS topic destination for discarded
+	// (Streams only) An Amazon SQS queue or Amazon SNS topic destination for discarded
 	// records.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
@@ -15970,32 +16003,32 @@ type UpdateEventSourceMappingInput struct {
 	// function name, it's limited to 64 characters in length.
 	FunctionName *string `min:"1" type:"string"`
 
-	// (Streams) A list of current response type enums applied to the event source
-	// mapping.
+	// (Streams only) A list of current response type enums applied to the event
+	// source mapping.
 	FunctionResponseTypes []*string `type:"list"`
 
 	// (Streams and SQS standard queues) The maximum amount of time to gather records
 	// before invoking the function, in seconds.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
-	// (Streams) Discard records older than the specified age. The default value
-	// is infinite (-1).
+	// (Streams only) Discard records older than the specified age. The default
+	// value is infinite (-1).
 	MaximumRecordAgeInSeconds *int64 `type:"integer"`
 
-	// (Streams) Discard records after the specified number of retries. The default
-	// value is infinite (-1). When set to infinite (-1), failed records will be
-	// retried until the record expires.
+	// (Streams only) Discard records after the specified number of retries. The
+	// default value is infinite (-1). When set to infinite (-1), failed records
+	// will be retried until the record expires.
 	MaximumRetryAttempts *int64 `type:"integer"`
 
-	// (Streams) The number of batches to process from each shard concurrently.
+	// (Streams only) The number of batches to process from each shard concurrently.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
 
 	// An array of the authentication protocol, or the VPC components to secure
 	// your event source.
 	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
-	// (Streams) The duration in seconds of a processing window. The range is between
-	// 1 second up to 900 seconds.
+	// (Streams only) The duration in seconds of a processing window. The range
+	// is between 1 second up to 900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 
 	// The identifier of the event source mapping.
@@ -16168,8 +16201,8 @@ type UpdateFunctionCodeInput struct {
 	// last read it.
 	RevisionId *string `type:"string"`
 
-	// An Amazon S3 bucket in the same AWS Region as your function. The bucket can
-	// be in a different AWS account.
+	// An Amazon S3 bucket in the same Amazon Web Services Region as your function.
+	// The bucket can be in a different Amazon Web Services account.
 	S3Bucket *string `min:"3" type:"string"`
 
 	// The Amazon S3 key of the deployment package.
@@ -16178,8 +16211,8 @@ type UpdateFunctionCodeInput struct {
 	// For versioned objects, the version of the deployment package object to use.
 	S3ObjectVersion *string `min:"1" type:"string"`
 
-	// The base64-encoded contents of the deployment package. AWS SDK and AWS CLI
-	// clients handle the encoding for you.
+	// The base64-encoded contents of the deployment package. Amazon Web Services
+	// SDK and Amazon Web Services CLI clients handle the encoding for you.
 	//
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
 	ZipFile []byte `type:"blob" sensitive:"true"`
@@ -16317,9 +16350,9 @@ type UpdateFunctionConfigurationInput struct {
 	// that override the values in the container image Dockerfile.
 	ImageConfig *ImageConfig `type:"structure"`
 
-	// The ARN of the AWS Key Management Service (AWS KMS) key that's used to encrypt
-	// your function's environment variables. If it's not provided, AWS Lambda uses
-	// a default service key.
+	// The ARN of the Amazon Web Services Key Management Service (KMS) key that's
+	// used to encrypt your function's environment variables. If it's not provided,
+	// Lambda uses a default service key.
 	KMSKeyArn *string `type:"string"`
 
 	// A list of function layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
@@ -16327,9 +16360,9 @@ type UpdateFunctionConfigurationInput struct {
 	// ARN, including the version.
 	Layers []*string `type:"list"`
 
-	// The amount of memory available to the function at runtime. Increasing the
-	// function's memory also increases its CPU allocation. The default value is
-	// 128 MB. The value can be any multiple of 1 MB.
+	// The amount of memory available to the function (https://docs.aws.amazon.com/lambda/latest/dg/configuration-memory.html)
+	// at runtime. Increasing the function memory also increases its CPU allocation.
+	// The default value is 128 MB. The value can be any multiple of 1 MB.
 	MemorySize *int64 `min:"128" type:"integer"`
 
 	// Only update the function if the revision ID matches the ID that's specified.
@@ -16344,17 +16377,18 @@ type UpdateFunctionConfigurationInput struct {
 	Runtime *string `type:"string" enum:"Runtime"`
 
 	// The amount of time that Lambda allows a function to run before stopping it.
-	// The default is 3 seconds. The maximum allowed value is 900 seconds.
+	// The default is 3 seconds. The maximum allowed value is 900 seconds. For additional
+	// information, see Lambda execution environment (https://docs.aws.amazon.com/lambda/latest/dg/runtimes-context.html).
 	Timeout *int64 `min:"1" type:"integer"`
 
 	// Set Mode to Active to sample and trace a subset of incoming requests with
-	// AWS X-Ray.
+	// X-Ray (https://docs.aws.amazon.com/lambda/latest/dg/services-xray.html).
 	TracingConfig *TracingConfig `type:"structure"`
 
-	// For network connectivity to AWS resources in a VPC, specify a list of security
-	// groups and subnets in the VPC. When you connect a function to a VPC, it can
-	// only access resources and the internet through that VPC. For more information,
-	// see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
+	// For network connectivity to Amazon Web Services resources in a VPC, specify
+	// a list of security groups and subnets in the VPC. When you connect a function
+	// to a VPC, it can only access resources and the internet through that VPC.
+	// For more information, see VPC Settings (https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html).
 	VpcConfig *VpcConfig `type:"structure"`
 }
 
@@ -17077,6 +17111,9 @@ const (
 
 	// SourceAccessTypeSaslScram256Auth is a SourceAccessType enum value
 	SourceAccessTypeSaslScram256Auth = "SASL_SCRAM_256_AUTH"
+
+	// SourceAccessTypeVirtualHost is a SourceAccessType enum value
+	SourceAccessTypeVirtualHost = "VIRTUAL_HOST"
 )
 
 // SourceAccessType_Values returns all elements of the SourceAccessType enum
@@ -17087,6 +17124,7 @@ func SourceAccessType_Values() []string {
 		SourceAccessTypeVpcSecurityGroup,
 		SourceAccessTypeSaslScram512Auth,
 		SourceAccessTypeSaslScram256Auth,
+		SourceAccessTypeVirtualHost,
 	}
 }
 

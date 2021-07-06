@@ -5,11 +5,11 @@
 //
 // Overview
 //
-// This is the AWS Lambda API Reference. The AWS Lambda Developer Guide provides
-// additional information. For the service overview, see What is AWS Lambda
-// (https://docs.aws.amazon.com/lambda/latest/dg/welcome.html), and for information
-// about how the service works, see AWS Lambda: How it Works (https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html)
-// in the AWS Lambda Developer Guide.
+// This is the Lambda API Reference. The Lambda Developer Guide provides additional
+// information. For the service overview, see What is Lambda (https://docs.aws.amazon.com/lambda/latest/dg/welcome.html),
+// and for information about how the service works, see Lambda: How it Works
+// (https://docs.aws.amazon.com/lambda/latest/dg/lambda-introduction.html) in
+// the Lambda Developer Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31 for more information on this service.
 //

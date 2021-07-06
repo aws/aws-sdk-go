@@ -1685,7 +1685,8 @@ func (c *Macie2) DescribeOrganizationConfigurationRequest(input *DescribeOrganiz
 
 // DescribeOrganizationConfiguration API operation for Amazon Macie 2.
 //
-// Retrieves the Amazon Macie configuration settings for an AWS organization.
+// Retrieves the Amazon Macie configuration settings for an Amazon Web Services
+// organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1896,7 +1897,7 @@ func (c *Macie2) DisableOrganizationAdminAccountRequest(input *DisableOrganizati
 // DisableOrganizationAdminAccount API operation for Amazon Macie 2.
 //
 // Disables an account as the delegated Amazon Macie administrator account for
-// an AWS organization.
+// an Amazon Web Services organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2425,7 +2426,7 @@ func (c *Macie2) EnableOrganizationAdminAccountRequest(input *EnableOrganization
 // EnableOrganizationAdminAccount API operation for Amazon Macie 2.
 //
 // Designates an account as the delegated Amazon Macie administrator account
-// for an AWS organization.
+// for an Amazon Web Services organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3259,7 +3260,7 @@ func (c *Macie2) GetFindingsPublicationConfigurationRequest(input *GetFindingsPu
 
 // GetFindingsPublicationConfiguration API operation for Amazon Macie 2.
 //
-// Retrieves the configuration settings for publishing findings to AWS Security
+// Retrieves the configuration settings for publishing findings to Security
 // Hub.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5033,7 +5034,7 @@ func (c *Macie2) ListOrganizationAdminAccountsRequest(input *ListOrganizationAdm
 // ListOrganizationAdminAccounts API operation for Amazon Macie 2.
 //
 // Retrieves information about the delegated Amazon Macie administrator account
-// for an AWS organization.
+// for an Amazon Web Services organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5370,8 +5371,7 @@ func (c *Macie2) PutFindingsPublicationConfigurationRequest(input *PutFindingsPu
 
 // PutFindingsPublicationConfiguration API operation for Amazon Macie 2.
 //
-// Updates the configuration settings for publishing findings to AWS Security
-// Hub.
+// Updates the configuration settings for publishing findings to Security Hub.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5481,8 +5481,8 @@ func (c *Macie2) SearchResourcesRequest(input *SearchResourcesInput) (req *reque
 
 // SearchResources API operation for Amazon Macie 2.
 //
-// Retrieves (queries) statistical data and other information about AWS resources
-// that Amazon Macie monitors and analyzes.
+// Retrieves (queries) statistical data and other information about Amazon Web
+// Services resources that Amazon Macie monitors and analyzes.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6316,7 +6316,8 @@ func (c *Macie2) UpdateOrganizationConfigurationRequest(input *UpdateOrganizatio
 
 // UpdateOrganizationConfiguration API operation for Amazon Macie 2.
 //
-// Updates the Amazon Macie configuration settings for an AWS organization.
+// Updates the Amazon Macie configuration settings for an Amazon Web Services
+// organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6377,11 +6378,11 @@ func (c *Macie2) UpdateOrganizationConfigurationWithContext(ctx aws.Context, inp
 }
 
 // Specifies an Amazon Macie membership invitation to accept. In the request,
-// you have to specify the ID for the AWS account that sent the invitation.
-// Otherwise, a validation error occurs. To specify this ID, we recommend that
-// you use the administratorAccountId property instead of the masterAccount
-// property. The masterAccount property has been deprecated and is retained
-// only for backward compatibility.
+// you have to specify the ID for the Amazon Web Services account that sent
+// the invitation. Otherwise, a validation error occurs. To specify this ID,
+// we recommend that you use the administratorAccountId property instead of
+// the masterAccount property. The masterAccount property has been deprecated
+// and is retained only for backward compatibility.
 type AcceptInvitationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6537,7 +6538,7 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies details for an account to associate with an Amazon Macie administrator
+// Specifies the details of an account to associate with an Amazon Macie administrator
 // account.
 type AccountDetail struct {
 	_ struct{} `type:"structure"`
@@ -6617,14 +6618,14 @@ func (s *AccountLevelPermissions) SetBlockPublicAccess(v *BlockPublicAccess) *Ac
 }
 
 // Provides information about the delegated Amazon Macie administrator account
-// for an AWS organization.
+// for an Amazon Web Services organization.
 type AdminAccount struct {
 	_ struct{} `type:"structure"`
 
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The current status of an account as the delegated Amazon Macie administrator
-	// account for an AWS organization. Possible values are:
+	// account for an Amazon Web Services organization. Possible values are:
 	Status *string `locationName:"status" type:"string" enum:"AdminStatus"`
 }
 
@@ -6700,8 +6701,7 @@ func (s *ApiCallDetails) SetLastSeen(v time.Time) *ApiCallDetails {
 
 // Provides information about an identity that performed an action on an affected
 // resource by using temporary security credentials. The credentials were obtained
-// using the AssumeRole operation of the AWS Security Token Service (AWS STS)
-// API.
+// using the AssumeRole operation of the Security Token Service (STS) API.
 type AssumedRole struct {
 	_ struct{} `type:"structure"`
 
@@ -6758,9 +6758,9 @@ func (s *AssumedRole) SetSessionContext(v *SessionContext) *AssumedRole {
 	return s
 }
 
-// Provides information about an AWS account and entity that performed an action
-// on an affected resource. The action was performed using the credentials for
-// an AWS account other than your own account.
+// Provides information about an Amazon Web Services account and entity that
+// performed an action on an affected resource. The action was performed using
+// the credentials for an Amazon Web Services account other than your own account.
 type AwsAccount struct {
 	_ struct{} `type:"structure"`
 
@@ -6791,8 +6791,8 @@ func (s *AwsAccount) SetPrincipalId(v string) *AwsAccount {
 	return s
 }
 
-// Provides information about an AWS service that performed an action on an
-// affected resource.
+// Provides information about an Amazon Web Service that performed an action
+// on an affected resource.
 type AwsService struct {
 	_ struct{} `type:"structure"`
 
@@ -7083,7 +7083,7 @@ func (s *BucketCountByEncryptionType) SetUnknown(v int64) *BucketCountByEncrypti
 }
 
 // Provides information about the number of S3 buckets that are or aren't shared
-// with other AWS accounts.
+// with other Amazon Web Services accounts.
 type BucketCountBySharedAccessType struct {
 	_ struct{} `type:"structure"`
 
@@ -7331,8 +7331,8 @@ type BucketMetadata struct {
 	Region *string `locationName:"region" type:"string"`
 
 	// Provides information about settings that define whether one or more objects
-	// in an S3 bucket are replicated to S3 buckets for other AWS accounts and,
-	// if so, which accounts.
+	// in an S3 bucket are replicated to S3 buckets for other Amazon Web Services
+	// accounts and, if so, which accounts.
 	ReplicationDetails *ReplicationDetails `locationName:"replicationDetails" type:"structure"`
 
 	// Provides information about the default server-side encryption settings for
@@ -8467,12 +8467,12 @@ func (s *CreateInvitationsOutput) SetUnprocessedAccounts(v []*UnprocessedAccount
 	return s
 }
 
-// Specifies an AWS account to associate with an Amazon Macie administrator
-// account.
+// Specifies an Amazon Web Services account to associate with an Amazon Macie
+// administrator account.
 type CreateMemberInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies details for an account to associate with an Amazon Macie administrator
+	// Specifies the details of an account to associate with an Amazon Macie administrator
 	// account.
 	//
 	// Account is a required field
@@ -9526,7 +9526,7 @@ func (s DescribeOrganizationConfigurationInput) GoString() string {
 }
 
 // Provides information about the Amazon Macie configuration settings for an
-// AWS organization.
+// Amazon Web Services organization.
 type DescribeOrganizationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -9776,8 +9776,8 @@ type EnableMacieInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
-	// for an account. This includes publishing updates to AWS Security Hub and
-	// Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information,
+	// for an account. This includes publishing updates to Security Hub and Amazon
+	// EventBridge (formerly called Amazon CloudWatch Events). For more information,
 	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
 	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
@@ -9829,8 +9829,9 @@ func (s EnableMacieOutput) GoString() string {
 }
 
 // Specifies an account to designate as a delegated Amazon Macie administrator
-// account for an AWS organization. To submit this request, you must be a user
-// of the management account for the AWS organization.
+// account for an Amazon Web Services organization. To submit this request,
+// you must be a user of the management account for the Amazon Web Services
+// organization.
 type EnableOrganizationAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9891,8 +9892,8 @@ func (s EnableOrganizationAdminAccountOutput) GoString() string {
 
 // Provides information about an identity that performed an action on an affected
 // resource by using temporary security credentials. The credentials were obtained
-// using the GetFederationToken operation of the AWS Security Token Service
-// (AWS STS) API.
+// using the GetFederationToken operation of the Security Token Service (STS)
+// API.
 type FederatedUser struct {
 	_ struct{} `type:"structure"`
 
@@ -10412,7 +10413,7 @@ type GetBucketStatisticsOutput struct {
 	BucketCountByObjectEncryptionRequirement *BucketCountPolicyAllowsUnencryptedObjectUploads `locationName:"bucketCountByObjectEncryptionRequirement" type:"structure"`
 
 	// Provides information about the number of S3 buckets that are or aren't shared
-	// with other AWS accounts.
+	// with other Amazon Web Services accounts.
 	BucketCountBySharedAccessType *BucketCountBySharedAccessType `locationName:"bucketCountBySharedAccessType" type:"structure"`
 
 	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
@@ -11020,12 +11021,12 @@ func (s GetFindingsPublicationConfigurationInput) GoString() string {
 }
 
 // Provides information about the current configuration settings for publishing
-// findings to AWS Security Hub automatically.
+// findings to Security Hub automatically.
 type GetFindingsPublicationConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies configuration settings that determine which findings are published
-	// to AWS Security Hub automatically. For information about how Macie publishes
+	// to Security Hub automatically. For information about how Macie publishes
 	// findings to Security Hub, see Amazon Macie integration with Security Hub
 	// (https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html)
 	// in the Amazon Macie User Guide.
@@ -11108,8 +11109,8 @@ type GetMacieSessionOutput struct {
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" timestampFormat:"iso8601"`
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
-	// for an account. This includes publishing updates to AWS Security Hub and
-	// Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information,
+	// for an account. This includes publishing updates to Security Hub and Amazon
+	// EventBridge (formerly called Amazon CloudWatch Events). For more information,
 	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
 	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
@@ -11526,8 +11527,8 @@ func (s *GroupCount) SetGroupKey(v string) *GroupCount {
 	return s
 }
 
-// Provides information about an AWS Identity and Access Management (IAM) user
-// who performed an action on an affected resource.
+// Provides information about an Identity and Access Management (IAM) user who
+// performed an action on an affected resource.
 type IamUser struct {
 	_ struct{} `type:"structure"`
 
@@ -12807,7 +12808,7 @@ func (s *ListOrganizationAdminAccountsInput) SetNextToken(v string) *ListOrganiz
 }
 
 // Provides information about the delegated Amazon Macie administrator accounts
-// for an AWS organization.
+// for an Amazon Web Services organization.
 type ListOrganizationAdminAccountsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -13027,8 +13028,8 @@ func (s *MatchingBucket) SetUnclassifiableObjectSizeInBytes(v *ObjectLevelStatis
 	return s
 }
 
-// Provides statistical data and other information about an AWS resource that
-// Amazon Macie monitors and analyzes.
+// Provides statistical data and other information about an Amazon Web Services
+// resource that Amazon Macie monitors and analyzes.
 type MatchingResource struct {
 	_ struct{} `type:"structure"`
 
@@ -13280,22 +13281,14 @@ type Occurrences struct {
 	// workbook, CSV file, or TSV file.
 	Cells []*Cell `locationName:"cells" type:"list"`
 
-	// Provides details about the location of occurrences of sensitive data in an
-	// Adobe Portable Document Format file, Microsoft Word document, or non-binary
-	// text file.
 	LineRanges []*Range `locationName:"lineRanges" type:"list"`
 
-	// Provides details about the location of occurrences of sensitive data in an
-	// Adobe Portable Document Format file, Microsoft Word document, or non-binary
-	// text file.
 	OffsetRanges []*Range `locationName:"offsetRanges" type:"list"`
 
 	// Specifies the location of occurrences of sensitive data in an Adobe Portable
 	// Document Format file.
 	Pages []*Page `locationName:"pages" type:"list"`
 
-	// Specifies the location of occurrences of sensitive data in an Apache Parquet
-	// file.
 	Records []*Record `locationName:"records" type:"list"`
 }
 
@@ -13344,12 +13337,12 @@ func (s *Occurrences) SetRecords(v []*Record) *Occurrences {
 type Page struct {
 	_ struct{} `type:"structure"`
 
-	// Provides details about the location of an occurrence of sensitive data in
-	// a Microsoft Word document or non-binary text file.
+	// Specifies the location of an occurrence of sensitive data in a non-binary
+	// text file, such as an HTML, TXT, or XML file.
 	LineRange *Range `locationName:"lineRange" type:"structure"`
 
-	// Provides details about the location of an occurrence of sensitive data in
-	// a Microsoft Word document or non-binary text file.
+	// Specifies the location of an occurrence of sensitive data in a non-binary
+	// text file, such as an HTML, TXT, or XML file.
 	OffsetRange *Range `locationName:"offsetRange" type:"structure"`
 
 	PageNumber *int64 `locationName:"pageNumber" type:"long"`
@@ -13493,15 +13486,15 @@ func (s *PutClassificationExportConfigurationOutput) SetConfiguration(v *Classif
 	return s
 }
 
-// Specifies configuration settings for publishing findings to AWS Security
-// Hub automatically.
+// Specifies configuration settings for publishing findings to Security Hub
+// automatically.
 type PutFindingsPublicationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
 	// Specifies configuration settings that determine which findings are published
-	// to AWS Security Hub automatically. For information about how Macie publishes
+	// to Security Hub automatically. For information about how Macie publishes
 	// findings to Security Hub, see Amazon Macie integration with Security Hub
 	// (https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html)
 	// in the Amazon Macie User Guide.
@@ -13559,8 +13552,8 @@ func (s PutFindingsPublicationConfigurationOutput) GoString() string {
 	return s.String()
 }
 
-// Provides details about the location of an occurrence of sensitive data in
-// a Microsoft Word document or non-binary text file.
+// Specifies the location of an occurrence of sensitive data in a non-binary
+// text file, such as an HTML, TXT, or XML file.
 type Range struct {
 	_ struct{} `type:"structure"`
 
@@ -13600,7 +13593,7 @@ func (s *Range) SetStartColumn(v int64) *Range {
 }
 
 // Specifies the location of an occurrence of sensitive data in an Apache Avro
-// object container or Apache Parquet file.
+// object container, Apache Parquet file, JSON file, or JSON Lines file.
 type Record struct {
 	_ struct{} `type:"structure"`
 
@@ -13632,8 +13625,8 @@ func (s *Record) SetRecordIndex(v int64) *Record {
 }
 
 // Provides information about settings that define whether one or more objects
-// in an S3 bucket are replicated to S3 buckets for other AWS accounts and,
-// if so, which accounts.
+// in an S3 bucket are replicated to S3 buckets for other Amazon Web Services
+// accounts and, if so, which accounts.
 type ReplicationDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -13733,10 +13726,10 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ResourcesAffected struct {
 	_ struct{} `type:"structure"`
 
-	// Provides information about an S3 bucket that a finding applies to.
+	// Provides information about the S3 bucket that a finding applies to.
 	S3Bucket *S3Bucket `locationName:"s3Bucket" type:"structure"`
 
-	// Provides information about an S3 object that a finding applies to.
+	// Provides information about the S3 object that a finding applies to.
 	S3Object *S3Object `locationName:"s3Object" type:"structure"`
 }
 
@@ -13762,7 +13755,7 @@ func (s *ResourcesAffected) SetS3Object(v *S3Object) *ResourcesAffected {
 	return s
 }
 
-// Provides information about an S3 bucket that a finding applies to.
+// Provides information about the S3 bucket that a finding applies to.
 type S3Bucket struct {
 	_ struct{} `type:"structure"`
 
@@ -13886,8 +13879,8 @@ func (s *S3BucketCriteriaForJob) SetIncludes(v *CriteriaBlockForJob) *S3BucketCr
 	return s
 }
 
-// Specifies an AWS account that owns S3 buckets for a classification job to
-// analyze, and one or more specific buckets to analyze for that account.
+// Specifies an Amazon Web Services account that owns S3 buckets for a classification
+// job to analyze, and one or more specific buckets to analyze for that account.
 type S3BucketDefinitionForJob struct {
 	_ struct{} `type:"structure"`
 
@@ -14095,7 +14088,7 @@ func (s *S3JobDefinition) SetScoping(v *Scoping) *S3JobDefinition {
 	return s
 }
 
-// Provides information about an S3 object that a finding applies to.
+// Provides information about the S3 object that a finding applies to.
 type S3Object struct {
 	_ struct{} `type:"structure"`
 
@@ -14256,11 +14249,11 @@ type SearchResourcesBucketCriteria struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies property- and tag-based conditions that define filter criteria
-	// for including or excluding AWS resources from the query results.
+	// for including or excluding Amazon Web Services resources from the query results.
 	Excludes *SearchResourcesCriteriaBlock `locationName:"excludes" type:"structure"`
 
 	// Specifies property- and tag-based conditions that define filter criteria
-	// for including or excluding AWS resources from the query results.
+	// for including or excluding Amazon Web Services resources from the query results.
 	Includes *SearchResourcesCriteriaBlock `locationName:"includes" type:"structure"`
 }
 
@@ -14287,16 +14280,16 @@ func (s *SearchResourcesBucketCriteria) SetIncludes(v *SearchResourcesCriteriaBl
 }
 
 // Specifies a property- or tag-based filter condition for including or excluding
-// AWS resources from the query results.
+// Amazon Web Services resources from the query results.
 type SearchResourcesCriteria struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies a property-based filter condition that determines which AWS resources
-	// are included or excluded from the query results.
+	// Specifies a property-based filter condition that determines which Amazon
+	// Web Services resources are included or excluded from the query results.
 	SimpleCriterion *SearchResourcesSimpleCriterion `locationName:"simpleCriterion" type:"structure"`
 
-	// Specifies a tag-based filter condition that determines which AWS resources
-	// are included or excluded from the query results.
+	// Specifies a tag-based filter condition that determines which Amazon Web Services
+	// resources are included or excluded from the query results.
 	TagCriterion *SearchResourcesTagCriterion `locationName:"tagCriterion" type:"structure"`
 }
 
@@ -14323,7 +14316,7 @@ func (s *SearchResourcesCriteria) SetTagCriterion(v *SearchResourcesTagCriterion
 }
 
 // Specifies property- and tag-based conditions that define filter criteria
-// for including or excluding AWS resources from the query results.
+// for including or excluding Amazon Web Services resources from the query results.
 type SearchResourcesCriteriaBlock struct {
 	_ struct{} `type:"structure"`
 
@@ -14347,8 +14340,8 @@ func (s *SearchResourcesCriteriaBlock) SetAnd(v []*SearchResourcesCriteria) *Sea
 }
 
 // Specifies criteria for filtering, sorting, and paginating the results of
-// a query for statistical data and other information about AWS resources that
-// Amazon Macie monitors and analyzes.
+// a query for statistical data and other information about Amazon Web Services
+// resources that Amazon Macie monitors and analyzes.
 type SearchResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14362,7 +14355,7 @@ type SearchResourcesInput struct {
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// Specifies criteria for sorting the results of a query for information about
-	// AWS resources that Amazon Macie monitors and analyzes.
+	// Amazon Web Services resources that Amazon Macie monitors and analyzes.
 	SortCriteria *SearchResourcesSortCriteria `locationName:"sortCriteria" type:"structure"`
 }
 
@@ -14401,7 +14394,8 @@ func (s *SearchResourcesInput) SetSortCriteria(v *SearchResourcesSortCriteria) *
 }
 
 // Provides the results of a query that retrieved statistical data and other
-// information about AWS resources that Amazon Macie monitors and analyzes.
+// information about Amazon Web Services resources that Amazon Macie monitors
+// and analyzes.
 type SearchResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -14432,8 +14426,8 @@ func (s *SearchResourcesOutput) SetNextToken(v string) *SearchResourcesOutput {
 	return s
 }
 
-// Specifies a property-based filter condition that determines which AWS resources
-// are included or excluded from the query results.
+// Specifies a property-based filter condition that determines which Amazon
+// Web Services resources are included or excluded from the query results.
 type SearchResourcesSimpleCriterion struct {
 	_ struct{} `type:"structure"`
 
@@ -14477,7 +14471,7 @@ func (s *SearchResourcesSimpleCriterion) SetValues(v []*string) *SearchResources
 }
 
 // Specifies criteria for sorting the results of a query for information about
-// AWS resources that Amazon Macie monitors and analyzes.
+// Amazon Web Services resources that Amazon Macie monitors and analyzes.
 type SearchResourcesSortCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -14509,8 +14503,8 @@ func (s *SearchResourcesSortCriteria) SetOrderBy(v string) *SearchResourcesSortC
 	return s
 }
 
-// Specifies a tag-based filter condition that determines which AWS resources
-// are included or excluded from the query results.
+// Specifies a tag-based filter condition that determines which Amazon Web Services
+// resources are included or excluded from the query results.
 type SearchResourcesTagCriterion struct {
 	_ struct{} `type:"structure"`
 
@@ -14578,7 +14572,7 @@ func (s *SearchResourcesTagCriterionPair) SetValue(v string) *SearchResourcesTag
 }
 
 // Specifies configuration settings that determine which findings are published
-// to AWS Security Hub automatically. For information about how Macie publishes
+// to Security Hub automatically. For information about how Macie publishes
 // findings to Security Hub, see Amazon Macie integration with Security Hub
 // (https://docs.aws.amazon.com/macie/latest/user/securityhub-integration.html)
 // in the Amazon Macie User Guide.
@@ -15794,8 +15788,8 @@ type UpdateMacieSessionInput struct {
 	_ struct{} `type:"structure"`
 
 	// The frequency with which Amazon Macie publishes updates to policy findings
-	// for an account. This includes publishing updates to AWS Security Hub and
-	// Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information,
+	// for an account. This includes publishing updates to Security Hub and Amazon
+	// EventBridge (formerly called Amazon CloudWatch Events). For more information,
 	// see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
 	// in the Amazon Macie User Guide. Valid values are:
 	FindingPublishingFrequency *string `locationName:"findingPublishingFrequency" type:"string" enum:"FindingPublishingFrequency"`
@@ -15909,7 +15903,7 @@ func (s UpdateMemberSessionOutput) GoString() string {
 }
 
 // Specifies whether to enable Amazon Macie automatically for accounts that
-// are added to an AWS organization.
+// are added to an Amazon Web Services organization.
 type UpdateOrganizationConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16183,32 +16177,31 @@ type UserIdentity struct {
 
 	// Provides information about an identity that performed an action on an affected
 	// resource by using temporary security credentials. The credentials were obtained
-	// using the AssumeRole operation of the AWS Security Token Service (AWS STS)
-	// API.
+	// using the AssumeRole operation of the Security Token Service (STS) API.
 	AssumedRole *AssumedRole `locationName:"assumedRole" type:"structure"`
 
-	// Provides information about an AWS account and entity that performed an action
-	// on an affected resource. The action was performed using the credentials for
-	// an AWS account other than your own account.
+	// Provides information about an Amazon Web Services account and entity that
+	// performed an action on an affected resource. The action was performed using
+	// the credentials for an Amazon Web Services account other than your own account.
 	AwsAccount *AwsAccount `locationName:"awsAccount" type:"structure"`
 
-	// Provides information about an AWS service that performed an action on an
-	// affected resource.
+	// Provides information about an Amazon Web Service that performed an action
+	// on an affected resource.
 	AwsService *AwsService `locationName:"awsService" type:"structure"`
 
 	// Provides information about an identity that performed an action on an affected
 	// resource by using temporary security credentials. The credentials were obtained
-	// using the GetFederationToken operation of the AWS Security Token Service
-	// (AWS STS) API.
+	// using the GetFederationToken operation of the Security Token Service (STS)
+	// API.
 	FederatedUser *FederatedUser `locationName:"federatedUser" type:"structure"`
 
-	// Provides information about an AWS Identity and Access Management (IAM) user
-	// who performed an action on an affected resource.
+	// Provides information about an Identity and Access Management (IAM) user who
+	// performed an action on an affected resource.
 	IamUser *IamUser `locationName:"iamUser" type:"structure"`
 
-	// Provides information about an AWS account and entity that performed an action
-	// on an affected resource. The action was performed using the credentials for
-	// your AWS account.
+	// Provides information about an Amazon Web Services account and entity that
+	// performed an action on an affected resource. The action was performed using
+	// the credentials for your Amazon Web Services account.
 	Root *UserIdentityRoot `locationName:"root" type:"structure"`
 
 	// The type of entity that performed the action on the affected resource. Possible
@@ -16268,9 +16261,9 @@ func (s *UserIdentity) SetType(v string) *UserIdentity {
 	return s
 }
 
-// Provides information about an AWS account and entity that performed an action
-// on an affected resource. The action was performed using the credentials for
-// your AWS account.
+// Provides information about an Amazon Web Services account and entity that
+// performed an action on an affected resource. The action was performed using
+// the credentials for your Amazon Web Services account.
 type UserIdentityRoot struct {
 	_ struct{} `type:"structure"`
 
@@ -16435,7 +16428,7 @@ func (s *WeeklySchedule) SetDayOfWeek(v string) *WeeklySchedule {
 }
 
 // The current status of an account as the delegated Amazon Macie administrator
-// account for an AWS organization. Possible values are:
+// account for an Amazon Web Services organization. Possible values are:
 const (
 	// AdminStatusEnabled is a AdminStatus enum value
 	AdminStatusEnabled = "ENABLED"
@@ -16617,8 +16610,8 @@ func FindingCategory_Values() []string {
 }
 
 // The frequency with which Amazon Macie publishes updates to policy findings
-// for an account. This includes publishing updates to AWS Security Hub and
-// Amazon EventBridge (formerly called Amazon CloudWatch Events). For more information,
+// for an account. This includes publishing updates to Security Hub and Amazon
+// EventBridge (formerly called Amazon CloudWatch Events). For more information,
 // see Monitoring and processing findings (https://docs.aws.amazon.com/macie/latest/user/findings-monitor.html)
 // in the Amazon Macie User Guide. Valid values are:
 const (

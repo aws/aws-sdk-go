@@ -3609,7 +3609,7 @@ func (c *Imagebuilder) ListImagePackagesRequest(input *ListImagePackagesInput) (
 // ListImagePackages API operation for EC2 Image Builder.
 //
 // List the Packages that are associated with an Image Build Version, as determined
-// by AWS Systems Manager Inventory at build time.
+// by Amazon EC2 Systems Manager Inventory at build time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5625,23 +5625,80 @@ func (c *Imagebuilder) UpdateInfrastructureConfigurationWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
-// Details of an EC2 AMI.
+// In addition to your infrastruction configuration, these settings provide
+// an extra layer of control over your build instances. For instances where
+// Image Builder installs the SSM agent, you can choose whether to keep it for
+// the AMI that you create. You can also specify commands to run on launch for
+// all of your build instances.
+type AdditionalInstanceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Contains settings for the SSM agent on your build instance.
+	SystemsManagerAgent *SystemsManagerAgent `locationName:"systemsManagerAgent" type:"structure"`
+
+	// Use this property to provide commands or a command script to run when you
+	// launch your build instance.
+	//
+	// The userDataOverride property replaces any commands that Image Builder might
+	// have added to ensure that SSM is installed on your Linux build instance.
+	// If you override the user data, make sure that you add commands to install
+	// SSM, if it is not pre-installed on your source image.
+	UserDataOverride *string `locationName:"userDataOverride" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s AdditionalInstanceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AdditionalInstanceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AdditionalInstanceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AdditionalInstanceConfiguration"}
+	if s.UserDataOverride != nil && len(*s.UserDataOverride) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserDataOverride", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSystemsManagerAgent sets the SystemsManagerAgent field's value.
+func (s *AdditionalInstanceConfiguration) SetSystemsManagerAgent(v *SystemsManagerAgent) *AdditionalInstanceConfiguration {
+	s.SystemsManagerAgent = v
+	return s
+}
+
+// SetUserDataOverride sets the UserDataOverride field's value.
+func (s *AdditionalInstanceConfiguration) SetUserDataOverride(v string) *AdditionalInstanceConfiguration {
+	s.UserDataOverride = &v
+	return s
+}
+
+// Details of an Amazon EC2 AMI.
 type Ami struct {
 	_ struct{} `type:"structure"`
 
 	// The account ID of the owner of the AMI.
 	AccountId *string `locationName:"accountId" min:"1" type:"string"`
 
-	// The description of the EC2 AMI. Minimum and maximum length are in characters.
+	// The description of the Amazon EC2 AMI. Minimum and maximum length are in
+	// characters.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The AMI ID of the EC2 AMI.
+	// The AMI ID of the Amazon EC2 AMI.
 	Image *string `locationName:"image" min:"1" type:"string"`
 
-	// The name of the EC2 AMI.
+	// The name of the Amazon EC2 AMI.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The AWS Region of the EC2 AMI.
+	// The Region of the Amazon EC2 AMI.
 	Region *string `locationName:"region" min:"1" type:"string"`
 
 	// Image state shows the image status and the reason for that status.
@@ -5708,8 +5765,8 @@ type AmiDistributionConfiguration struct {
 	// The KMS key identifier used to encrypt the distributed image.
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
 
-	// Launch permissions can be used to configure which AWS accounts can use the
-	// AMI to launch instances.
+	// Launch permissions can be used to configure which accounts can use the AMI
+	// to launch instances.
 	LaunchPermission *LaunchPermissionConfiguration `locationName:"launchPermission" type:"structure"`
 
 	// The name of the distribution configuration.
@@ -6031,6 +6088,10 @@ type Component struct {
 	// The owner of the component.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
+	// Contains parameter details for each of the parameters that are defined for
+	// the component.
+	Parameters []*ComponentParameterDetail `locationName:"parameters" type:"list"`
+
 	// The platform of the component.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
@@ -6114,6 +6175,12 @@ func (s *Component) SetOwner(v string) *Component {
 	return s
 }
 
+// SetParameters sets the Parameters field's value.
+func (s *Component) SetParameters(v []*ComponentParameterDetail) *Component {
+	s.Parameters = v
+	return s
+}
+
 // SetPlatform sets the Platform field's value.
 func (s *Component) SetPlatform(v string) *Component {
 	s.Platform = &v
@@ -6152,6 +6219,10 @@ type ComponentConfiguration struct {
 	//
 	// ComponentArn is a required field
 	ComponentArn *string `locationName:"componentArn" type:"string" required:"true"`
+
+	// A group of parameter settings that are used to configure the component for
+	// a specific recipe.
+	Parameters []*ComponentParameter `locationName:"parameters" min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -6170,6 +6241,19 @@ func (s *ComponentConfiguration) Validate() error {
 	if s.ComponentArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ComponentArn"))
 	}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6180,6 +6264,125 @@ func (s *ComponentConfiguration) Validate() error {
 // SetComponentArn sets the ComponentArn field's value.
 func (s *ComponentConfiguration) SetComponentArn(v string) *ComponentConfiguration {
 	s.ComponentArn = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *ComponentConfiguration) SetParameters(v []*ComponentParameter) *ComponentConfiguration {
+	s.Parameters = v
+	return s
+}
+
+// Contains a key/value pair that sets the named component parameter.
+type ComponentParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the component parameter to set.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Sets the value for the named component parameter.
+	//
+	// Value is a required field
+	Value []*string `locationName:"value" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ComponentParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComponentParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ComponentParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ComponentParameter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ComponentParameter) SetName(v string) *ComponentParameter {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *ComponentParameter) SetValue(v []*string) *ComponentParameter {
+	s.Value = v
+	return s
+}
+
+// Defines a parameter that is used to provide configuration details for the
+// component.
+type ComponentParameterDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The default value of this parameter if no input is provided.
+	DefaultValue []*string `locationName:"defaultValue" type:"list"`
+
+	// Describes this parameter.
+	Description *string `locationName:"description" min:"1" type:"string"`
+
+	// The name of this input parameter.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The type of input this parameter provides. The currently supported value
+	// is "string".
+	//
+	// Type is a required field
+	Type *string `locationName:"type" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ComponentParameterDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ComponentParameterDetail) GoString() string {
+	return s.String()
+}
+
+// SetDefaultValue sets the DefaultValue field's value.
+func (s *ComponentParameterDetail) SetDefaultValue(v []*string) *ComponentParameterDetail {
+	s.DefaultValue = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ComponentParameterDetail) SetDescription(v string) *ComponentParameterDetail {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ComponentParameterDetail) SetName(v string) *ComponentParameterDetail {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ComponentParameterDetail) SetType(v string) *ComponentParameterDetail {
+	s.Type = &v
 	return s
 }
 
@@ -6806,10 +7009,10 @@ type CreateComponentInput struct {
 	// The tags of the component.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// The uri of the component. Must be an S3 URL and the requester must have permission
-	// to access the S3 bucket. If you use S3, you can specify component content
-	// up to your service quota. Either data or uri can be used to specify the data
-	// within the component.
+	// The uri of the component. Must be an Amazon S3 URL and the requester must
+	// have permission to access the Amazon S3 bucket. If you use Amazon S3, you
+	// can specify component content up to your service quota. Either data or uri
+	// can be used to specify the data within the component.
 	Uri *string `locationName:"uri" type:"string"`
 }
 
@@ -6993,7 +7196,8 @@ type CreateContainerRecipeInput struct {
 	// The Dockerfile template used to build your image as an inline data blob.
 	DockerfileTemplateData *string `locationName:"dockerfileTemplateData" min:"1" type:"string"`
 
-	// The S3 URI for the Dockerfile that will be used to build your container image.
+	// The Amazon S3 URI for the Dockerfile that will be used to build your container
+	// image.
 	DockerfileTemplateUri *string `locationName:"dockerfileTemplateUri" type:"string"`
 
 	// Specifies the operating system version for the source image.
@@ -7772,6 +7976,9 @@ func (s *CreateImagePipelineOutput) SetRequestId(v string) *CreateImagePipelineO
 type CreateImageRecipeInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specify additional settings and launch scripts for your build instances.
+	AdditionalInstanceConfiguration *AdditionalInstanceConfiguration `locationName:"additionalInstanceConfiguration" type:"structure"`
+
 	// The block device mappings of the image recipe.
 	BlockDeviceMappings []*InstanceBlockDeviceMapping `locationName:"blockDeviceMappings" type:"list"`
 
@@ -7810,7 +8017,7 @@ type CreateImageRecipeInput struct {
 	// The tags of the image recipe.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
-	// The working directory to be used during build and test workflows.
+	// The working directory used during build and test workflows.
 	WorkingDirectory *string `locationName:"workingDirectory" min:"1" type:"string"`
 }
 
@@ -7857,6 +8064,11 @@ func (s *CreateImageRecipeInput) Validate() error {
 	if s.WorkingDirectory != nil && len(*s.WorkingDirectory) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkingDirectory", 1))
 	}
+	if s.AdditionalInstanceConfiguration != nil {
+		if err := s.AdditionalInstanceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AdditionalInstanceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.BlockDeviceMappings != nil {
 		for i, v := range s.BlockDeviceMappings {
 			if v == nil {
@@ -7882,6 +8094,12 @@ func (s *CreateImageRecipeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAdditionalInstanceConfiguration sets the AdditionalInstanceConfiguration field's value.
+func (s *CreateImageRecipeInput) SetAdditionalInstanceConfiguration(v *AdditionalInstanceConfiguration) *CreateImageRecipeInput {
+	s.AdditionalInstanceConfiguration = v
+	return s
 }
 
 // SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
@@ -7990,7 +8208,7 @@ type CreateInfrastructureConfigurationInput struct {
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The instance profile to associate with the instance used to customize your
-	// EC2 AMI.
+	// Amazon EC2 AMI.
 	//
 	// InstanceProfileName is a required field
 	InstanceProfileName *string `locationName:"instanceProfileName" min:"1" type:"string" required:"true"`
@@ -8016,13 +8234,14 @@ type CreateInfrastructureConfigurationInput struct {
 	ResourceTags map[string]*string `locationName:"resourceTags" min:"1" type:"map"`
 
 	// The security group IDs to associate with the instance used to customize your
-	// EC2 AMI.
+	// Amazon EC2 AMI.
 	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
 
 	// The SNS topic on which to send image build events.
 	SnsTopicArn *string `locationName:"snsTopicArn" type:"string"`
 
-	// The subnet ID in which to place the instance used to customize your EC2 AMI.
+	// The subnet ID in which to place the instance used to customize your Amazon
+	// EC2 AMI.
 	SubnetId *string `locationName:"subnetId" min:"1" type:"string"`
 
 	// The tags of the infrastructure configuration.
@@ -10405,6 +10624,12 @@ func (s *ImagePipeline) SetTags(v map[string]*string) *ImagePipeline {
 type ImageRecipe struct {
 	_ struct{} `type:"structure"`
 
+	// Before you create a new AMI, Image Builder launches temporary Amazon EC2
+	// instances to build and test your image configuration. Instance configuration
+	// adds a layer of control over those instances. You can define settings and
+	// add scripts to run when an instance is launched from your AMI.
+	AdditionalInstanceConfiguration *AdditionalInstanceConfiguration `locationName:"additionalInstanceConfiguration" type:"structure"`
+
 	// The Amazon Resource Name (ARN) of the image recipe.
 	Arn *string `locationName:"arn" type:"string"`
 
@@ -10454,6 +10679,12 @@ func (s ImageRecipe) String() string {
 // GoString returns the string representation
 func (s ImageRecipe) GoString() string {
 	return s.String()
+}
+
+// SetAdditionalInstanceConfiguration sets the AdditionalInstanceConfiguration field's value.
+func (s *ImageRecipe) SetAdditionalInstanceConfiguration(v *AdditionalInstanceConfiguration) *ImageRecipe {
+	s.AdditionalInstanceConfiguration = v
+	return s
 }
 
 // SetArn sets the Arn field's value.
@@ -10946,10 +11177,10 @@ type ImportComponentInput struct {
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"ComponentType"`
 
-	// The uri of the component. Must be an S3 URL and the requester must have permission
-	// to access the S3 bucket. If you use S3, you can specify component content
-	// up to your service quota. Either data or uri can be used to specify the data
-	// within the component.
+	// The uri of the component. Must be an Amazon S3 URL and the requester must
+	// have permission to access the Amazon S3 bucket. If you use Amazon S3, you
+	// can specify component content up to your service quota. Either data or uri
+	// can be used to specify the data within the component.
 	Uri *string `locationName:"uri" type:"string"`
 }
 
@@ -11141,7 +11372,7 @@ type InfrastructureConfiguration struct {
 	// The instance types of the infrastructure configuration.
 	InstanceTypes []*string `locationName:"instanceTypes" type:"list"`
 
-	// The EC2 key pair of the infrastructure configuration.
+	// The Amazon EC2 key pair of the infrastructure configuration.
 	KeyPair *string `locationName:"keyPair" min:"1" type:"string"`
 
 	// The logging configuration of the infrastructure configuration.
@@ -11269,7 +11500,7 @@ func (s *InfrastructureConfiguration) SetTerminateInstanceOnFailure(v bool) *Inf
 	return s
 }
 
-// The infrastructure used when building EC2 AMIs.
+// The infrastructure used when building Amazon EC2 AMIs.
 type InfrastructureConfigurationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -11836,10 +12067,10 @@ func (s *InvalidVersionNumberException) RequestID() string {
 }
 
 // Describes the configuration for a launch permission. The launch permission
-// modification request is sent to the EC2 ModifyImageAttribute (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html)
+// modification request is sent to the Amazon EC2 ModifyImageAttribute (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html)
 // API on behalf of the user for each Region they have selected to distribute
 // the AMI. To make an AMI public, set the launch permission authorized accounts
-// to all. See the examples for making an AMI public at EC2 ModifyImageAttribute
+// to all. See the examples for making an AMI public at Amazon EC2 ModifyImageAttribute
 // (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html).
 type LaunchPermissionConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -11847,7 +12078,7 @@ type LaunchPermissionConfiguration struct {
 	// The name of the group.
 	UserGroups []*string `locationName:"userGroups" type:"list"`
 
-	// The AWS account ID.
+	// The account ID.
 	UserIds []*string `locationName:"userIds" min:"1" type:"list"`
 }
 
@@ -11886,20 +12117,20 @@ func (s *LaunchPermissionConfiguration) SetUserIds(v []*string) *LaunchPermissio
 	return s
 }
 
-// Identifies an EC2 launch template to use for a specific account.
+// Identifies an Amazon EC2 launch template to use for a specific account.
 type LaunchTemplateConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The account ID that this configuration applies to.
 	AccountId *string `locationName:"accountId" type:"string"`
 
-	// Identifies the EC2 launch template to use.
+	// Identifies the Amazon EC2 launch template to use.
 	//
 	// LaunchTemplateId is a required field
 	LaunchTemplateId *string `locationName:"launchTemplateId" type:"string" required:"true"`
 
-	// Set the specified EC2 launch template as the default launch template for
-	// the specified account.
+	// Set the specified Amazon EC2 launch template as the default launch template
+	// for the specified account.
 	SetDefaultVersion *bool `locationName:"setDefaultVersion" type:"boolean"`
 }
 
@@ -13398,7 +13629,7 @@ func (s *Logging) SetS3Logs(v *S3Logs) *Logging {
 type OutputResources struct {
 	_ struct{} `type:"structure"`
 
-	// The EC2 AMIs created by this image.
+	// The Amazon EC2 AMIs created by this image.
 	Amis []*Ami `locationName:"amis" type:"list"`
 
 	// Container images that the pipeline has generated and stored in the output
@@ -14393,6 +14624,33 @@ func (s *StartImagePipelineExecutionOutput) SetRequestId(v string) *StartImagePi
 	return s
 }
 
+// Contains settings for the SSM agent on your build instance.
+type SystemsManagerAgent struct {
+	_ struct{} `type:"structure"`
+
+	// This property defaults to true. If Image Builder installs the SSM agent on
+	// a build instance, it removes the agent before creating a snapshot for the
+	// AMI. To ensure that the AMI you create includes the SSM agent, set this property
+	// to false.
+	UninstallAfterBuild *bool `locationName:"uninstallAfterBuild" type:"boolean"`
+}
+
+// String returns the string representation
+func (s SystemsManagerAgent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SystemsManagerAgent) GoString() string {
+	return s.String()
+}
+
+// SetUninstallAfterBuild sets the UninstallAfterBuild field's value.
+func (s *SystemsManagerAgent) SetUninstallAfterBuild(v bool) *SystemsManagerAgent {
+	s.UninstallAfterBuild = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14936,7 +15194,7 @@ type UpdateInfrastructureConfigurationInput struct {
 	InfrastructureConfigurationArn *string `locationName:"infrastructureConfigurationArn" type:"string" required:"true"`
 
 	// The instance profile to associate with the instance used to customize your
-	// EC2 AMI.
+	// Amazon EC2 AMI.
 	//
 	// InstanceProfileName is a required field
 	InstanceProfileName *string `locationName:"instanceProfileName" min:"1" type:"string" required:"true"`
@@ -14957,13 +15215,14 @@ type UpdateInfrastructureConfigurationInput struct {
 	ResourceTags map[string]*string `locationName:"resourceTags" min:"1" type:"map"`
 
 	// The security group IDs to associate with the instance used to customize your
-	// EC2 AMI.
+	// Amazon EC2 AMI.
 	SecurityGroupIds []*string `locationName:"securityGroupIds" type:"list"`
 
 	// The SNS topic on which to send image build events.
 	SnsTopicArn *string `locationName:"snsTopicArn" type:"string"`
 
-	// The subnet ID to place the instance used to customize your EC2 AMI in.
+	// The subnet ID to place the instance used to customize your Amazon EC2 AMI
+	// in.
 	SubnetId *string `locationName:"subnetId" min:"1" type:"string"`
 
 	// The terminate instance on failure setting of the infrastructure configuration.
