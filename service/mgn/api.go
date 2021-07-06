@@ -164,6 +164,9 @@ func (c *Mgn) CreateReplicationConfigurationTemplateRequest(input *CreateReplica
 //   * ValidationException
 //   Validate exception.
 //
+//   * AccessDeniedException
+//   Operating denied due to a file permission or access check error.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/CreateReplicationConfigurationTemplate
 func (c *Mgn) CreateReplicationConfigurationTemplate(input *CreateReplicationConfigurationTemplateInput) (*CreateReplicationConfigurationTemplateOutput, error) {
 	req, out := c.CreateReplicationConfigurationTemplateRequest(input)
@@ -2332,6 +2335,9 @@ func (c *Mgn) UpdateReplicationConfigurationRequest(input *UpdateReplicationConf
 //   * ValidationException
 //   Validate exception.
 //
+//   * AccessDeniedException
+//   Operating denied due to a file permission or access check error.
+//
 //   * ConflictException
 //   The request could not be completed due to a conflict with the current state
 //   of the target resource.
@@ -2420,6 +2426,9 @@ func (c *Mgn) UpdateReplicationConfigurationTemplateRequest(input *UpdateReplica
 //
 //   * ValidationException
 //   Validate exception.
+//
+//   * AccessDeniedException
+//   Operating denied due to a file permission or access check error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/mgn-2020-02-26/UpdateReplicationConfigurationTemplate
 func (c *Mgn) UpdateReplicationConfigurationTemplate(input *UpdateReplicationConfigurationTemplateInput) (*UpdateReplicationConfigurationTemplateOutput, error) {
@@ -8079,9 +8088,6 @@ func ReplicationConfigurationDefaultLargeStagingDiskType_Values() []string {
 }
 
 const (
-	// ReplicationConfigurationEbsEncryptionNone is a ReplicationConfigurationEbsEncryption enum value
-	ReplicationConfigurationEbsEncryptionNone = "NONE"
-
 	// ReplicationConfigurationEbsEncryptionDefault is a ReplicationConfigurationEbsEncryption enum value
 	ReplicationConfigurationEbsEncryptionDefault = "DEFAULT"
 
@@ -8092,7 +8098,6 @@ const (
 // ReplicationConfigurationEbsEncryption_Values returns all elements of the ReplicationConfigurationEbsEncryption enum
 func ReplicationConfigurationEbsEncryption_Values() []string {
 	return []string{
-		ReplicationConfigurationEbsEncryptionNone,
 		ReplicationConfigurationEbsEncryptionDefault,
 		ReplicationConfigurationEbsEncryptionCustom,
 	}

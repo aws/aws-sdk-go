@@ -1,3 +1,20 @@
+Release v1.39.1 (2021-07-06)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service API
+* `service/imagebuilder`: Updates service API and documentation
+* `service/lambda`: Updates service API, documentation, and examples
+  * Added support for AmazonMQRabbitMQ as an event source. Added support for VIRTUAL_HOST as SourceAccessType for streams event source mappings.
+* `service/macie2`: Updates service documentation
+* `service/mgn`: Updates service API
+* `service/sns`: Updates service documentation and paginators
+  * Documentation updates for Amazon SNS.
+
+### SDK Enhancements
+* Update golang.org/x/net dependency [#3991](https://github.com/aws/aws-sdk-go/pull/3991)
+    * Updates the SDK's dependency on golang.org/x/net module dependency.
+
 Release v1.39.0 (2021-07-02)
 ===
 

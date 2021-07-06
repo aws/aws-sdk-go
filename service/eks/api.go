@@ -10249,6 +10249,9 @@ const (
 
 	// AddonIssueCodeAdmissionRequestDenied is a AddonIssueCode enum value
 	AddonIssueCodeAdmissionRequestDenied = "AdmissionRequestDenied"
+
+	// AddonIssueCodeUnsupportedAddonModification is a AddonIssueCode enum value
+	AddonIssueCodeUnsupportedAddonModification = "UnsupportedAddonModification"
 )
 
 // AddonIssueCode_Values returns all elements of the AddonIssueCode enum
@@ -10260,6 +10263,7 @@ func AddonIssueCode_Values() []string {
 		AddonIssueCodeInsufficientNumberOfReplicas,
 		AddonIssueCodeConfigurationConflict,
 		AddonIssueCodeAdmissionRequestDenied,
+		AddonIssueCodeUnsupportedAddonModification,
 	}
 }
 
@@ -10408,6 +10412,9 @@ const (
 
 	// ErrorCodeAdmissionRequestDenied is a ErrorCode enum value
 	ErrorCodeAdmissionRequestDenied = "AdmissionRequestDenied"
+
+	// ErrorCodeUnsupportedAddonModification is a ErrorCode enum value
+	ErrorCodeUnsupportedAddonModification = "UnsupportedAddonModification"
 )
 
 // ErrorCode_Values returns all elements of the ErrorCode enum
@@ -10428,6 +10435,7 @@ func ErrorCode_Values() []string {
 		ErrorCodeInsufficientNumberOfReplicas,
 		ErrorCodeConfigurationConflict,
 		ErrorCodeAdmissionRequestDenied,
+		ErrorCodeUnsupportedAddonModification,
 	}
 }
 

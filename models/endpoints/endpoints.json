@@ -747,6 +747,7 @@
           "ap-southeast-2" : { },
           "eu-central-1" : { },
           "eu-west-1" : { },
+          "eu-west-2" : { },
           "fips" : {
             "credentialScope" : {
               "region" : "us-west-2"
@@ -4616,6 +4617,12 @@
               "region" : "eu-west-2"
             },
             "hostname" : "oidc.eu-west-2.amazonaws.com"
+          },
+          "eu-west-3" : {
+            "credentialScope" : {
+              "region" : "eu-west-3"
+            },
+            "hostname" : "oidc.eu-west-3.amazonaws.com"
           },
           "us-east-1" : {
             "credentialScope" : {

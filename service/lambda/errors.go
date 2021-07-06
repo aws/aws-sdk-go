@@ -37,15 +37,15 @@ const (
 	// ErrCodeEC2ThrottledException for service response error code
 	// "EC2ThrottledException".
 	//
-	// AWS Lambda was throttled by Amazon EC2 during Lambda function initialization
+	// Lambda was throttled by Amazon EC2 during Lambda function initialization
 	// using the execution role provided for the Lambda function.
 	ErrCodeEC2ThrottledException = "EC2ThrottledException"
 
 	// ErrCodeEC2UnexpectedException for service response error code
 	// "EC2UnexpectedException".
 	//
-	// AWS Lambda received an unexpected EC2 client exception while setting up for
-	// the Lambda function.
+	// Lambda received an unexpected EC2 client exception while setting up for the
+	// Lambda function.
 	ErrCodeEC2UnexpectedException = "EC2UnexpectedException"
 
 	// ErrCodeEFSIOException for service response error code
@@ -77,9 +77,9 @@ const (
 	// ErrCodeENILimitReachedException for service response error code
 	// "ENILimitReachedException".
 	//
-	// AWS Lambda was not able to create an elastic network interface in the VPC,
-	// specified as part of Lambda function configuration, because the limit for
-	// network interfaces has been reached.
+	// Lambda was not able to create an elastic network interface in the VPC, specified
+	// as part of Lambda function configuration, because the limit for network interfaces
+	// has been reached.
 	ErrCodeENILimitReachedException = "ENILimitReachedException"
 
 	// ErrCodeInvalidCodeSignatureException for service response error code
@@ -123,7 +123,7 @@ const (
 	// ErrCodeInvalidZipFileException for service response error code
 	// "InvalidZipFileException".
 	//
-	// AWS Lambda could not unzip the deployment package.
+	// Lambda could not unzip the deployment package.
 	ErrCodeInvalidZipFileException = "InvalidZipFileException"
 
 	// ErrCodeKMSAccessDeniedException for service response error code
@@ -211,13 +211,13 @@ const (
 	// ErrCodeServiceException for service response error code
 	// "ServiceException".
 	//
-	// The AWS Lambda service encountered an internal error.
+	// The Lambda service encountered an internal error.
 	ErrCodeServiceException = "ServiceException"
 
 	// ErrCodeSubnetIPAddressLimitReachedException for service response error code
 	// "SubnetIPAddressLimitReachedException".
 	//
-	// AWS Lambda was not able to set up VPC access for the Lambda function because
+	// Lambda was not able to set up VPC access for the Lambda function because
 	// one or more configured subnets has no available IP addresses.
 	ErrCodeSubnetIPAddressLimitReachedException = "SubnetIPAddressLimitReachedException"
 
