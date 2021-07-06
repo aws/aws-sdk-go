@@ -8,15 +8,16 @@ provider: "aws"
 
 connection_types:
   aws:
-    aws_access_key_id:
-      field_type: "string"
-      required: true
-      placeholder: "AWS access key ID"
-      input_type: "text"
-      pattern: ""
-      vaues: []
-    aws_secret_access_key:
-      field_type: "string"
-      required: true
-      placeholder: "AWS secret access key"
-      input_type: "password"
+    fields:
+      aws_access_key_id:
+        field_type: "string"
+        required: true
+        placeholder: "AWS access key ID"
+        input_type: "text"
+        pattern: ""
+        vaues: []
+      aws_secret_access_key:
+        field_type: "string"
+        required: true
+        placeholder: "AWS secret access key"
+        input_type: "password"
