@@ -24,6 +24,7 @@
     "CreateChannelBan": "<p>Permanently bans a member from a channel. Moderators can't add banned members to a channel. To undo a ban, you first have to <code>DeleteChannelBan</code>, and then <code>CreateChannelMembership</code>. Bans are cleaned up when you delete users or channels.</p> <p>If you ban a user who is already part of a channel, that user is automatically kicked from the channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "CreateChannelMembership": "<p>Adds a user to a channel. The <code>InvitedBy</code> response field is derived from the request header. A channel member can:</p> <ul> <li> <p>List messages</p> </li> <li> <p>Send messages</p> </li> <li> <p>Receive messages</p> </li> <li> <p>Edit their own messages</p> </li> <li> <p>Leave the channel</p> </li> </ul> <p>Privacy settings impact this action as follows:</p> <ul> <li> <p>Public Channels: You do not need to be a member to list messages, but you must be a member to send messages.</p> </li> <li> <p>Private Channels: You must be a member to list or send messages.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "CreateChannelModerator": "<p>Creates a new <code>ChannelModerator</code>. A channel moderator can:</p> <ul> <li> <p>Add and remove other members of the channel.</p> </li> <li> <p>Add and remove other moderators of the channel.</p> </li> <li> <p>Add and remove user bans for the channel.</p> </li> <li> <p>Redact messages in the channel.</p> </li> <li> <p>List messages in the channel.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateMediaCapturePipeline": "<p>Creates a media capture pipeline.</p>",
     "CreateMeeting": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region with no initial attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> . For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
     "CreateMeetingDialOut": "<p>Uses the join token and call metadata in a meeting request (From number, To number, and so forth) to initiate an outbound call to a public switched telephone network (PSTN) and join them into a Chime meeting. Also ensures that the From number belongs to the customer.</p> <p>To play welcome audio or implement an interactive voice response (IVR), use the <code>CreateSipMediaApplicationCall</code> action with the corresponding SIP media application ID.</p>",
     "CreateMeetingWithAttendees": "<p> Creates a new Amazon Chime SDK meeting in the specified media Region, with attendees. For more information about specifying media Regions, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/chime-sdk-meetings-regions.html\">Amazon Chime SDK Media Regions</a> in the <i>Amazon Chime Developer Guide</i> . For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
@@ -49,6 +50,7 @@
     "DeleteChannelMessage": "<p>Deletes a channel message. Only admins can perform this action. Deletion makes messages inaccessible immediately. A background process deletes any revisions created by <code>UpdateChannelMessage</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DeleteChannelModerator": "<p>Deletes a channel moderator.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "DeleteEventsConfiguration": "<p>Deletes the events configuration that allows a bot to receive outgoing events.</p>",
+    "DeleteMediaCapturePipeline": "<p>Deletes the media capture pipeline.</p>",
     "DeleteMeeting": "<p>Deletes the specified Amazon Chime SDK meeting. The operation deletes all attendees, disconnects all clients, and prevents new clients from joining the meeting. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "DeletePhoneNumber": "<p>Moves the specified phone number into the <b>Deletion queue</b>. A phone number must be disassociated from any users or Amazon Chime Voice Connectors before it can be deleted.</p> <p>Deleted phone numbers remain in the <b>Deletion queue</b> for 7 days before they are deleted permanently.</p>",
     "DeleteProxySession": "<p>Deletes the specified proxy session from the specified Amazon Chime Voice Connector.</p>",
@@ -86,6 +88,7 @@
     "GetChannelMessage": "<p>Gets the full details of a channel message.</p> <note> <p>The x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "GetEventsConfiguration": "<p>Gets details for an events configuration that allows a bot to receive outgoing events, such as an HTTPS endpoint or Lambda function ARN.</p>",
     "GetGlobalSettings": "<p>Retrieves global settings for the administrator's AWS account, such as Amazon Chime Business Calling and Amazon Chime Voice Connector settings.</p>",
+    "GetMediaCapturePipeline": "<p>Gets an existing media capture pipeline.</p>",
     "GetMeeting": "<p> Gets the Amazon Chime SDK meeting details for the specified meeting ID. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i> . </p>",
     "GetMessagingSessionEndpoint": "<p>The details of the endpoint for the messaging session.</p>",
     "GetPhoneNumber": "<p>Retrieves details for the specified phone number ID, such as associations, capabilities, and product type.</p>",
@@ -123,6 +126,7 @@
     "ListChannelModerators": "<p>Lists all the moderators for a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p>Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account.</p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
     "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListMediaCapturePipelines": "<p>Returns a list of media capture pipelines.</p>",
     "ListMeetingTags": "<p>Lists the tags applied to an Amazon Chime SDK meeting resource.</p>",
     "ListMeetings": "<p> Lists up to 100 active Amazon Chime SDK meetings. For more information about the Amazon Chime SDK, see <a href=\"https://docs.aws.amazon.com/chime/latest/dg/meetings-sdk.html\">Using the Amazon Chime SDK</a> in the <i>Amazon Chime Developer Guide</i>.</p>",
     "ListPhoneNumberOrders": "<p>Lists the phone number orders for the administrator's Amazon Chime account.</p>",
@@ -344,7 +348,11 @@
       "base": null,
       "refs": {
         "AppInstanceStreamingConfiguration$ResourceArn": "<p>The resource ARN.</p>",
+        "CreateMediaCapturePipelineRequest$SourceArn": "<p>ARN of the source from which the media artifacts are captured.</p>",
+        "CreateMediaCapturePipelineRequest$SinkArn": "<p>The ARN of the sink type.</p>",
         "ListTagsForResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
+        "MediaCapturePipeline$SourceArn": "<p>ARN of the source from which the media artifacts will be saved.</p>",
+        "MediaCapturePipeline$SinkArn": "<p>ARN of the destination to which the media artifacts are saved.</p>",
         "MeetingNotificationConfiguration$SnsTopicArn": "<p>The SNS topic ARN.</p>",
         "MeetingNotificationConfiguration$SqsQueueArn": "<p>The SQS queue ARN.</p>",
         "TagResourceRequest$ResourceARN": "<p>The resource ARN.</p>",
@@ -927,6 +935,7 @@
         "CreateAppInstanceRequest$ClientRequestToken": "<p>The <code>ClientRequestToken</code> of the <code>AppInstance</code>.</p>",
         "CreateAppInstanceUserRequest$ClientRequestToken": "<p>The token assigned to the user requesting an <code>AppInstance</code>.</p>",
         "CreateChannelRequest$ClientRequestToken": "<p>The client token for the request. An <code>Idempotency</code> token.</p>",
+        "CreateMediaCapturePipelineRequest$ClientRequestToken": "<p>The token assigned to the client making the pipeline request.</p>",
         "CreateMeetingRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
         "CreateMeetingWithAttendeesRequest$ClientRequestToken": "<p>The unique identifier for the client request. Use a different token for different meetings.</p>",
         "CreateRoomRequest$ClientRequestToken": "<p>The idempotency token for the request.</p>",
@@ -1086,6 +1095,16 @@
       }
     },
     "CreateChannelResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMediaCapturePipelineRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateMediaCapturePipelineResponse": {
       "base": null,
       "refs": {
       }
@@ -1317,6 +1336,11 @@
       }
     },
     "DeleteEventsConfigurationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteMediaCapturePipelineRequest": {
       "base": null,
       "refs": {
       }
@@ -1739,6 +1763,16 @@
       "refs": {
       }
     },
+    "GetMediaCapturePipelineRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMediaCapturePipelineResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetMeetingRequest": {
       "base": null,
       "refs": {
@@ -1964,15 +1998,18 @@
         "CreateMeetingDialOutResponse$TransactionId": "<p>Unique ID that tracks API calls.</p>",
         "DeleteAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "DeleteAttendeeRequest$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
+        "DeleteMediaCapturePipelineRequest$MediaPipelineId": "<p>The ID of the media capture pipeline being deleted. </p>",
         "DeleteMeetingRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "GetAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "GetAttendeeRequest$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
+        "GetMediaCapturePipelineRequest$MediaPipelineId": "<p>The ID of the pipeline that you want to get.</p>",
         "GetMeetingRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "GetPhoneNumberOrderRequest$PhoneNumberOrderId": "<p>The ID for the phone number order.</p>",
         "ListAttendeeTagsRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "ListAttendeeTagsRequest$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
         "ListAttendeesRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "ListMeetingTagsRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
+        "MediaCapturePipeline$MediaPipelineId": "<p>The ID of a media capture pipeline.</p>",
         "Meeting$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "PhoneNumberOrder$PhoneNumberOrderId": "<p>The phone number order ID.</p>",
         "SipMediaApplicationCall$TransactionId": "<p>The transaction ID of a call.</p>",
@@ -2053,6 +2090,8 @@
         "Bot$UpdatedTimestamp": "<p>The updated bot timestamp, in ISO 8601 format.</p>",
         "GetPhoneNumberSettingsResponse$CallingNameUpdatedTimestamp": "<p>The updated outbound calling name timestamp, in ISO 8601 format.</p>",
         "GetRetentionSettingsResponse$InitiateDeletionTimestamp": "<p>The timestamp representing the time at which the specified items are permanently deleted, in ISO 8601 format.</p>",
+        "MediaCapturePipeline$CreatedTimestamp": "<p>The time at which the capture pipeline was created, in ISO 8601 format.</p>",
+        "MediaCapturePipeline$UpdatedTimestamp": "<p>The time at which the capture pipeline was updated, in ISO 8601 format.</p>",
         "PhoneNumber$CreatedTimestamp": "<p>The phone number creation timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$UpdatedTimestamp": "<p>The updated phone number timestamp, in ISO 8601 format.</p>",
         "PhoneNumber$DeletionTimestamp": "<p>The deleted phone number timestamp, in ISO 8601 format.</p>",
@@ -2243,6 +2282,16 @@
       "refs": {
       }
     },
+    "ListMediaCapturePipelinesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListMediaCapturePipelinesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListMeetingTagsRequest": {
       "base": null,
       "refs": {
@@ -2424,6 +2473,40 @@
         "ListChannelModeratorsRequest$MaxResults": "<p>The maximum number of moderators that you want returned.</p>",
         "ListChannelsModeratedByAppInstanceUserRequest$MaxResults": "<p>The maximum number of channels in the request.</p>",
         "ListChannelsRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>"
+      }
+    },
+    "MediaCapturePipeline": {
+      "base": "<p>A media capture pipeline object. A string consisting of an ID, source type, a source ARN, a sink type, and a sink ARN.</p>",
+      "refs": {
+        "CreateMediaCapturePipelineResponse$MediaCapturePipeline": "<p>A media capture pipeline object, the ID, source type, source ARN, sink type, and sink ARN of a media capture pipeline object.</p>",
+        "GetMediaCapturePipelineResponse$MediaCapturePipeline": "<p>The media capture pipeline object.</p>",
+        "MediaCapturePipelineList$member": null
+      }
+    },
+    "MediaCapturePipelineList": {
+      "base": null,
+      "refs": {
+        "ListMediaCapturePipelinesResponse$MediaCapturePipelines": "<p>The media capture pipeline objects in the list.</p>"
+      }
+    },
+    "MediaPipelineSinkType": {
+      "base": null,
+      "refs": {
+        "CreateMediaCapturePipelineRequest$SinkType": "<p>Destination type to which the media artifacts are saved. You must use an S3 bucket. </p>",
+        "MediaCapturePipeline$SinkType": "<p>Destination type to which the media artifacts are saved. You must use an S3 Bucket.</p>"
+      }
+    },
+    "MediaPipelineSourceType": {
+      "base": null,
+      "refs": {
+        "CreateMediaCapturePipelineRequest$SourceType": "<p>Source type from which the media artifacts will be captured. A Chime SDK Meeting is the only supported source.</p>",
+        "MediaCapturePipeline$SourceType": "<p>Source type from which media artifacts are saved. You must use <code>ChimeMeeting</code>.</p>"
+      }
+    },
+    "MediaPipelineStatus": {
+      "base": null,
+      "refs": {
+        "MediaCapturePipeline$Status": "<p>The status of the media capture pipeline.</p>"
       }
     },
     "MediaPlacement": {
@@ -3268,6 +3351,7 @@
       "refs": {
         "ListAttendeesRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListBotsRequest$MaxResults": "<p>The maximum number of results to return in a single call. The default is 10.</p>",
+        "ListMediaCapturePipelinesRequest$MaxResults": "<p>The maximum number of results to return in a single call. Valid Range: 1 - 99.</p>",
         "ListMeetingsRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListPhoneNumberOrdersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
         "ListPhoneNumbersRequest$MaxResults": "<p>The maximum number of results to return in a single call.</p>",
@@ -3586,6 +3670,8 @@
         "ListAttendeesResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListBotsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListBotsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "ListMediaCapturePipelinesRequest$NextToken": "<p>The token used to retrieve the next page of results.</p>",
+        "ListMediaCapturePipelinesResponse$NextToken": "<p>The token used to retrieve the next page of results. </p>",
         "ListMeetingsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListMeetingsResponse$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "ListPhoneNumberOrdersRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",

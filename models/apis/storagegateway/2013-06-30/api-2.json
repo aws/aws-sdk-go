@@ -1318,7 +1318,8 @@
         "LocationARN":{"shape":"FileSystemLocationARN"},
         "Tags":{"shape":"Tags"},
         "AuditDestinationARN":{"shape":"AuditDestinationARN"},
-        "CacheAttributes":{"shape":"CacheAttributes"}
+        "CacheAttributes":{"shape":"CacheAttributes"},
+        "EndpointNetworkConfiguration":{"shape":"EndpointNetworkConfiguration"}
       }
     },
     "AssociateFileSystemOutput":{
@@ -1591,7 +1592,9 @@
         "Tags":{"shape":"Tags"},
         "FileShareName":{"shape":"FileShareName"},
         "CacheAttributes":{"shape":"CacheAttributes"},
-        "NotificationPolicy":{"shape":"NotificationPolicy"}
+        "NotificationPolicy":{"shape":"NotificationPolicy"},
+        "VPCEndpointDNSName":{"shape":"DNSHostName"},
+        "BucketRegion":{"shape":"RegionId"}
       }
     },
     "CreateNFSFileShareOutput":{
@@ -1631,7 +1634,10 @@
         "Tags":{"shape":"Tags"},
         "FileShareName":{"shape":"FileShareName"},
         "CacheAttributes":{"shape":"CacheAttributes"},
-        "NotificationPolicy":{"shape":"NotificationPolicy"}
+        "NotificationPolicy":{"shape":"NotificationPolicy"},
+        "VPCEndpointDNSName":{"shape":"DNSHostName"},
+        "BucketRegion":{"shape":"RegionId"},
+        "OplocksEnabled":{"shape":"Boolean"}
       }
     },
     "CreateSMBFileShareOutput":{
@@ -1781,6 +1787,12 @@
       }
     },
     "CreatedDate":{"type":"timestamp"},
+    "DNSHostName":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^(([a-zA-Z0-9\\-]*[a-zA-Z0-9])\\.)*([A-Za-z0-9\\-]*[A-Za-z0-9])$"
+    },
     "DayOfMonth":{
       "type":"integer",
       "max":28,
@@ -2077,7 +2089,9 @@
         "HostEnvironment":{"shape":"HostEnvironment"},
         "EndpointType":{"shape":"EndpointType"},
         "SoftwareUpdatesEndDate":{"shape":"SoftwareUpdatesEndDate"},
-        "DeprecationDate":{"shape":"DeprecationDate"}
+        "DeprecationDate":{"shape":"DeprecationDate"},
+        "GatewayCapacity":{"shape":"GatewayCapacity"},
+        "SupportedGatewayCapacities":{"shape":"SupportedGatewayCapacities"}
       }
     },
     "DescribeMaintenanceStartTimeInput":{
@@ -2396,6 +2410,12 @@
     "DoubleObject":{"type":"double"},
     "Ec2InstanceId":{"type":"string"},
     "Ec2InstanceRegion":{"type":"string"},
+    "EndpointNetworkConfiguration":{
+      "type":"structure",
+      "members":{
+        "IpAddresses":{"shape":"IpAddressList"}
+      }
+    },
     "EndpointType":{
       "type":"string",
       "max":8,
@@ -2546,7 +2566,8 @@
         "AuditDestinationARN":{"shape":"AuditDestinationARN"},
         "GatewayARN":{"shape":"GatewayARN"},
         "Tags":{"shape":"Tags"},
-        "CacheAttributes":{"shape":"CacheAttributes"}
+        "CacheAttributes":{"shape":"CacheAttributes"},
+        "EndpointNetworkConfiguration":{"shape":"EndpointNetworkConfiguration"}
       }
     },
     "FileSystemAssociationInfoList":{
@@ -2591,6 +2612,14 @@
       "type":"string",
       "max":500,
       "min":50
+    },
+    "GatewayCapacity":{
+      "type":"string",
+      "enum":[
+        "Small",
+        "Medium",
+        "Large"
+      ]
     },
     "GatewayId":{
       "type":"string",
@@ -2668,6 +2697,12 @@
       "max":23,
       "min":0
     },
+    "IPV4Address":{
+      "type":"string",
+      "max":15,
+      "min":7,
+      "pattern":"^((25[0-5]|(2[0-4]|1[0-9]|[1-9]|)[0-9])(\\.(?!$)|$)){4}"
+    },
     "IPV4AddressCIDR":{
       "type":"string",
       "pattern":"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])(\\/([0-9]|[1-2][0-9]|3[0-2]))?$"
@@ -2696,6 +2731,12 @@
         "error":{"shape":"StorageGatewayError"}
       },
       "exception":true
+    },
+    "IpAddressList":{
+      "type":"list",
+      "member":{"shape":"IPV4Address"},
+      "max":1,
+      "min":0
     },
     "IqnName":{
       "type":"string",
@@ -2965,7 +3006,9 @@
         "Tags":{"shape":"Tags"},
         "FileShareName":{"shape":"FileShareName"},
         "CacheAttributes":{"shape":"CacheAttributes"},
-        "NotificationPolicy":{"shape":"NotificationPolicy"}
+        "NotificationPolicy":{"shape":"NotificationPolicy"},
+        "VPCEndpointDNSName":{"shape":"DNSHostName"},
+        "BucketRegion":{"shape":"RegionId"}
       }
     },
     "NFSFileShareInfoList":{
@@ -3236,7 +3279,10 @@
         "Tags":{"shape":"Tags"},
         "FileShareName":{"shape":"FileShareName"},
         "CacheAttributes":{"shape":"CacheAttributes"},
-        "NotificationPolicy":{"shape":"NotificationPolicy"}
+        "NotificationPolicy":{"shape":"NotificationPolicy"},
+        "VPCEndpointDNSName":{"shape":"DNSHostName"},
+        "BucketRegion":{"shape":"RegionId"},
+        "OplocksEnabled":{"shape":"Boolean"}
       }
     },
     "SMBFileShareInfoList":{
@@ -3393,6 +3439,10 @@
     "StorediSCSIVolumes":{
       "type":"list",
       "member":{"shape":"StorediSCSIVolume"}
+    },
+    "SupportedGatewayCapacities":{
+      "type":"list",
+      "member":{"shape":"GatewayCapacity"}
     },
     "Tag":{
       "type":"structure",
@@ -3647,7 +3697,8 @@
         "GatewayARN":{"shape":"GatewayARN"},
         "GatewayName":{"shape":"GatewayName"},
         "GatewayTimezone":{"shape":"GatewayTimezone"},
-        "CloudWatchLogGroupARN":{"shape":"CloudWatchLogGroupARN"}
+        "CloudWatchLogGroupARN":{"shape":"CloudWatchLogGroupARN"},
+        "GatewayCapacity":{"shape":"GatewayCapacity"}
       }
     },
     "UpdateGatewayInformationOutput":{
@@ -3738,7 +3789,8 @@
         "CaseSensitivity":{"shape":"CaseSensitivity"},
         "FileShareName":{"shape":"FileShareName"},
         "CacheAttributes":{"shape":"CacheAttributes"},
-        "NotificationPolicy":{"shape":"NotificationPolicy"}
+        "NotificationPolicy":{"shape":"NotificationPolicy"},
+        "OplocksEnabled":{"shape":"Boolean"}
       }
     },
     "UpdateSMBFileShareOutput":{

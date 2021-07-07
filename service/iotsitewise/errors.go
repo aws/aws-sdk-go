@@ -18,7 +18,7 @@ const (
 	// ErrCodeInternalFailureException for service response error code
 	// "InternalFailureException".
 	//
-	// AWS IoT SiteWise can't process your request right now. Try again later.
+	// IoT SiteWise can't process your request right now. Try again later.
 	ErrCodeInternalFailureException = "InternalFailureException"
 
 	// ErrCodeInvalidRequestException for service response error code
@@ -36,7 +36,7 @@ const (
 	// to create more than the allowed number of properties for an asset model.
 	//
 	// For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeResourceAlreadyExistsException for service response error code
@@ -61,11 +61,11 @@ const (
 	// "ThrottlingException".
 	//
 	// Your request exceeded a rate limit. For example, you might have exceeded
-	// the number of AWS IoT SiteWise assets that can be created per second, the
-	// allowed number of messages per second, and so on.
+	// the number of IoT SiteWise assets that can be created per second, the allowed
+	// number of messages per second, and so on.
 	//
 	// For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeTooManyTagsException for service response error code
@@ -73,7 +73,7 @@ const (
 	//
 	// You've reached the limit for the number of tags allowed for a resource. For
 	// more information, see Tag naming limits and requirements (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html#tag-conventions)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	ErrCodeTooManyTagsException = "TooManyTagsException"
 
 	// ErrCodeUnauthorizedException for service response error code

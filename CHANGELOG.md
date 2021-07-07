@@ -1,3 +1,23 @@
+Release v1.39.2 (2021-07-07)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API, documentation, and paginators
+  * Releasing new APIs for AWS Chime MediaCapturePipeline
+* `service/cloudfront`: Updates service API and documentation
+  * Amazon CloudFront now provides two new APIs, ListConflictingAliases and AssociateAlias, that help locate and move Alternate Domain Names (CNAMEs) if you encounter the CNAMEAlreadyExists error code.
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This release adds resource ids and tagging support for VPC security group rules.
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/iotsitewise`: Updates service API and documentation
+* `service/mq`: Updates service API and documentation
+  * adds support for modifying the maintenance window for brokers.
+* `service/storagegateway`: Updates service API and documentation
+  * Adding support for oplocks for SMB file shares,  S3 Access Point and S3 Private Link for all file shares and IP address support for file system associations
+* `service/sts`: Updates service documentation
+  * Documentation updates for AWS Security Token Service.
+
 Release v1.39.1 (2021-07-06)
 ===
 

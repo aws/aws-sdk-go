@@ -1,596 +1,598 @@
 {
   "version" : "2.0",
-  "service" : "Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers in the cloud. A message broker allows software applications and components to communicate using various programming languages, operating systems, and formal messaging protocols.",
+  "service" : "<p>Amazon MQ is a managed message broker service for Apache ActiveMQ and RabbitMQ that makes it easy to set up and operate message brokers in the cloud. A message broker allows software applications and components to communicate using various programming languages, operating systems, and formal messaging protocols.</p>",
   "operations" : {
-    "CreateBroker" : "Creates a broker. Note: This API is asynchronous.",
-    "CreateConfiguration" : "Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).",
-    "CreateTags" : "Add a tag to a resource.",
-    "CreateUser" : "Creates an ActiveMQ user.",
-    "DeleteBroker" : "Deletes a broker. Note: This API is asynchronous.",
-    "DeleteTags" : "Removes a tag from a resource.",
-    "DeleteUser" : "Deletes an ActiveMQ user.",
-    "DescribeBroker" : "Returns information about the specified broker.",
-    "DescribeBrokerEngineTypes" : "Describe available engine types and versions.",
-    "DescribeBrokerInstanceOptions" : "Describe available broker instance options.",
-    "DescribeConfiguration" : "Returns information about the specified configuration.",
-    "DescribeConfigurationRevision" : "Returns the specified configuration revision for the specified configuration.",
-    "DescribeUser" : "Returns information about an ActiveMQ user.",
-    "ListBrokers" : "Returns a list of all brokers.",
-    "ListConfigurationRevisions" : "Returns a list of all revisions for the specified configuration.",
-    "ListConfigurations" : "Returns a list of all configurations.",
-    "ListTags" : "Lists tags for a resource.",
-    "ListUsers" : "Returns a list of all ActiveMQ users.",
-    "RebootBroker" : "Reboots a broker. Note: This API is asynchronous.",
-    "UpdateBroker" : "Adds a pending configuration change to a broker.",
-    "UpdateConfiguration" : "Updates the specified configuration.",
-    "UpdateUser" : "Updates the information for an ActiveMQ user."
+    "CreateBroker" : "<p>Creates a broker. Note: This API is asynchronous.</p> <p>To create a broker, you must either use the AmazonMQFullAccess IAM policy or include the following EC2 permissions in your IAM policy.</p> <ul><li><p>ec2:CreateNetworkInterface</p> <p>This permission is required to allow Amazon MQ to create an elastic network interface (ENI) on behalf of your account.</p></li> <li><p>ec2:CreateNetworkInterfacePermission</p> <p>This permission is required to attach the ENI to the broker instance.</p></li> <li><p>ec2:DeleteNetworkInterface</p></li> <li><p>ec2:DeleteNetworkInterfacePermission</p></li> <li><p>ec2:DetachNetworkInterface</p></li> <li><p>ec2:DescribeInternetGateways</p></li> <li><p>ec2:DescribeNetworkInterfaces</p></li> <li><p>ec2:DescribeNetworkInterfacePermissions</p></li> <li><p>ec2:DescribeRouteTables</p></li> <li><p>ec2:DescribeSecurityGroups</p></li> <li><p>ec2:DescribeSubnets</p></li> <li><p>ec2:DescribeVpcs</p></li></ul> <p>For more information, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/amazon-mq-setting-up.html#create-iam-user\">Create an IAM User and Get Your AWS Credentials</a> and <a href=\"https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/connecting-to-amazon-mq.html#never-modify-delete-elastic-network-interface\">Never Modify or Delete the Amazon MQ Elastic Network Interface</a> in the <i>Amazon MQ Developer Guide</i>.</p>",
+    "CreateConfiguration" : "<p>Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).</p>",
+    "CreateTags" : "<p>Add a tag to a resource.</p>",
+    "CreateUser" : "<p>Creates an ActiveMQ user.</p>",
+    "DeleteBroker" : "<p>Deletes a broker. Note: This API is asynchronous.</p>",
+    "DeleteTags" : "<p>Removes a tag from a resource.</p>",
+    "DeleteUser" : "<p>Deletes an ActiveMQ user.</p>",
+    "DescribeBroker" : "<p>Returns information about the specified broker.</p>",
+    "DescribeBrokerEngineTypes" : "<p>Describe available engine types and versions.</p>",
+    "DescribeBrokerInstanceOptions" : "<p>Describe available broker instance options.</p>",
+    "DescribeConfiguration" : "<p>Returns information about the specified configuration.</p>",
+    "DescribeConfigurationRevision" : "<p>Returns the specified configuration revision for the specified configuration.</p>",
+    "DescribeUser" : "<p>Returns information about an ActiveMQ user.</p>",
+    "ListBrokers" : "<p>Returns a list of all brokers.</p>",
+    "ListConfigurationRevisions" : "<p>Returns a list of all revisions for the specified configuration.</p>",
+    "ListConfigurations" : "<p>Returns a list of all configurations.</p>",
+    "ListTags" : "<p>Lists tags for a resource.</p>",
+    "ListUsers" : "<p>Returns a list of all ActiveMQ users.</p>",
+    "RebootBroker" : "<p>Reboots a broker. Note: This API is asynchronous.</p>",
+    "UpdateBroker" : "<p>Adds a pending configuration change to a broker.</p>",
+    "UpdateConfiguration" : "<p>Updates the specified configuration.</p>",
+    "UpdateUser" : "<p>Updates the information for an ActiveMQ user.</p>"
   },
   "shapes" : {
     "AuthenticationStrategy" : {
-      "base" : "The authentication strategy used to secure the broker.",
+      "base" : "<p>Optional. The authentication strategy used to secure the broker. The default is SIMPLE.</p>",
       "refs" : {
-        "Configuration$AuthenticationStrategy" : "The authentication strategy associated with the configuration.",
-        "CreateBrokerInput$AuthenticationStrategy" : "The authentication strategy used to secure the broker.",
-        "CreateConfigurationInput$AuthenticationStrategy" : "The authentication strategy associated with the configuration.",
-        "CreateConfigurationOutput$AuthenticationStrategy" : "The authentication strategy associated with the configuration.",
-        "DescribeBrokerOutput$AuthenticationStrategy" : "The authentication strategy used to secure the broker.",
-        "DescribeBrokerOutput$PendingAuthenticationStrategy" : "The authentication strategy that will be applied when the broker is rebooted.",
-        "UpdateBrokerInput$AuthenticationStrategy" : "The authentication strategy used to secure the broker.",
-        "UpdateBrokerOutput$AuthenticationStrategy" : "The authentication strategy used to secure the broker."
+        "Configuration$AuthenticationStrategy" : "<p>Optional. The authentication strategy associated with the configuration. The default is SIMPLE.</p>",
+        "CreateBrokerInput$AuthenticationStrategy" : "<p>Optional. The authentication strategy used to secure the broker. The default is SIMPLE.</p>",
+        "CreateConfigurationInput$AuthenticationStrategy" : "<p>Optional. The authentication strategy associated with the configuration. The default is SIMPLE.</p>",
+        "CreateConfigurationOutput$AuthenticationStrategy" : "<p>Optional. The authentication strategy associated with the configuration. The default is SIMPLE.</p>",
+        "DescribeBrokerOutput$AuthenticationStrategy" : "<p>The authentication strategy used to secure the broker. The default is SIMPLE.</p>",
+        "DescribeBrokerOutput$PendingAuthenticationStrategy" : "<p>The authentication strategy that will be applied when the broker is rebooted. The default is SIMPLE.</p>",
+        "UpdateBrokerInput$AuthenticationStrategy" : "<p>Optional. The authentication strategy used to secure the broker. The default is SIMPLE.</p>",
+        "UpdateBrokerOutput$AuthenticationStrategy" : "<p>Optional. The authentication strategy used to secure the broker. The default is SIMPLE.</p>"
       }
     },
     "AvailabilityZone" : {
-      "base" : "Name of the availability zone.",
+      "base" : "<p>Name of the availability zone.</p>",
       "refs" : {
         "__listOfAvailabilityZone$member" : null
       }
     },
     "BadRequestException" : {
-      "base" : "Returns information about an error.",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "BrokerEngineType" : {
-      "base" : "Types of broker engines.",
+      "base" : "<p>Types of broker engines.</p>",
       "refs" : {
         "__listOfBrokerEngineType$member" : null
       }
     },
     "BrokerEngineTypeOutput" : {
-      "base" : "Returns a list of broker engine type.",
+      "base" : "<p>Returns a list of broker engine type.</p>",
       "refs" : { }
     },
     "BrokerInstance" : {
-      "base" : "Returns information about all brokers.",
+      "base" : "<p>Returns information about all brokers.</p>",
       "refs" : {
         "__listOfBrokerInstance$member" : null
       }
     },
     "BrokerInstanceOption" : {
-      "base" : "Option for host instance type.",
+      "base" : "<p>Option for host instance type.</p>",
       "refs" : {
         "__listOfBrokerInstanceOption$member" : null
       }
     },
     "BrokerInstanceOptionsOutput" : {
-      "base" : "Returns a list of broker instance options.",
+      "base" : "<p>Returns a list of broker instance options.</p>",
       "refs" : { }
     },
     "BrokerState" : {
-      "base" : "The status of the broker.",
+      "base" : "<p>The broker's status.</p>",
       "refs" : {
-        "BrokerSummary$BrokerState" : "The status of the broker.",
-        "DescribeBrokerOutput$BrokerState" : "The status of the broker."
+        "BrokerSummary$BrokerState" : "<p>The broker's status.</p>",
+        "DescribeBrokerOutput$BrokerState" : "<p>The broker's status.</p>"
       }
     },
     "BrokerStorageType" : {
-      "base" : "The storage type of the broker. <important>EFS is currently not Supported for RabbitMQ engine type.</important>",
+      "base" : "<p>The broker's storage type.</p> <important><p>EFS is not supported for RabbitMQ engine type.</p></important>",
       "refs" : {
-        "BrokerInstanceOption$StorageType" : "The broker's storage type.",
-        "CreateBrokerInput$StorageType" : "The broker's storage type.",
-        "DescribeBrokerOutput$StorageType" : "The broker's storage type."
+        "BrokerInstanceOption$StorageType" : "<p>The broker's storage type.</p>",
+        "CreateBrokerInput$StorageType" : "<p>The broker's storage type.</p>",
+        "DescribeBrokerOutput$StorageType" : "<p>The broker's storage type.</p>"
       }
     },
     "BrokerSummary" : {
-      "base" : "The Amazon Resource Name (ARN) of the broker.",
+      "base" : "<p>Returns information about all brokers.</p>",
       "refs" : {
         "__listOfBrokerSummary$member" : null
       }
     },
     "ChangeType" : {
-      "base" : "The type of change pending for the ActiveMQ user.",
+      "base" : "<p>The type of change pending for the ActiveMQ user.</p>",
       "refs" : {
-        "UserPendingChanges$PendingChange" : "Required. The type of change pending for the ActiveMQ user.",
-        "UserSummary$PendingChange" : "The type of change pending for the broker user."
+        "UserPendingChanges$PendingChange" : "<p>Required. The type of change pending for the ActiveMQ user.</p>",
+        "UserSummary$PendingChange" : "<p>The type of change pending for the broker user.</p>"
       }
     },
     "Configuration" : {
-      "base" : "Returns information about all configurations.",
+      "base" : "<p>Returns information about all configurations.</p>",
       "refs" : {
         "__listOfConfiguration$member" : null
       }
     },
     "ConfigurationId" : {
-      "base" : "A list of information about the configuration. <important>Does not apply to RabbitMQ brokers.</important>",
+      "base" : "<p>A list of information about the configuration.</p> <important><p>Does not apply to RabbitMQ brokers.</p></important>",
       "refs" : {
-        "Configurations$Current" : "The current configuration of the broker.",
-        "Configurations$Pending" : "The pending configuration of the broker.",
-        "CreateBrokerInput$Configuration" : "A list of information about the configuration.",
-        "UpdateBrokerInput$Configuration" : "A list of information about the configuration.",
-        "UpdateBrokerOutput$Configuration" : "The ID of the updated configuration.",
+        "Configurations$Current" : "<p>The broker's current configuration.</p>",
+        "Configurations$Pending" : "<p>The broker's pending configuration.</p>",
+        "CreateBrokerInput$Configuration" : "<p>A list of information about the configuration.</p>",
+        "UpdateBrokerInput$Configuration" : "<p>A list of information about the configuration.</p>",
+        "UpdateBrokerOutput$Configuration" : "<p>The ID of the updated configuration.</p>",
         "__listOfConfigurationId$member" : null
       }
     },
     "ConfigurationRevision" : {
-      "base" : "Returns information about the specified configuration revision.",
+      "base" : "<p>Returns information about the specified configuration revision.</p>",
       "refs" : {
-        "Configuration$LatestRevision" : "Required. The latest revision of the configuration.",
-        "CreateConfigurationOutput$LatestRevision" : "The latest revision of the configuration.",
-        "UpdateConfigurationOutput$LatestRevision" : "The latest revision of the configuration.",
+        "Configuration$LatestRevision" : "<p>Required. The latest revision of the configuration.</p>",
+        "CreateConfigurationOutput$LatestRevision" : "<p>The latest revision of the configuration.</p>",
+        "UpdateConfigurationOutput$LatestRevision" : "<p>The latest revision of the configuration.</p>",
         "__listOfConfigurationRevision$member" : null
       }
     },
     "Configurations" : {
-      "base" : "Broker configuration information",
+      "base" : "<p>Broker configuration information</p>",
       "refs" : {
-        "DescribeBrokerOutput$Configurations" : "The list of all revisions for the specified configuration."
+        "DescribeBrokerOutput$Configurations" : "<p>The list of all revisions for the specified configuration.</p>"
       }
     },
     "ConflictException" : {
-      "base" : "Returns information about an error.",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "CreateBrokerInput" : {
-      "base" : "Required. The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
+      "base" : "<p>Creates a broker.</p>",
       "refs" : { }
     },
     "CreateBrokerOutput" : {
-      "base" : "Returns information about the created broker.",
+      "base" : "<p>Returns information about the created broker.</p>",
       "refs" : { }
     },
     "CreateConfigurationInput" : {
-      "base" : "Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).",
+      "base" : "<p>Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).</p>",
       "refs" : { }
     },
     "CreateConfigurationOutput" : {
-      "base" : "Returns information about the created configuration.",
+      "base" : "<p>Returns information about the created configuration.</p>",
       "refs" : { }
     },
     "CreateUserInput" : {
-      "base" : "Creates a new ActiveMQ user.",
+      "base" : "<p>Creates a new ActiveMQ user.</p>",
       "refs" : { }
     },
     "DayOfWeek" : {
       "base" : null,
       "refs" : {
-        "WeeklyStartTime$DayOfWeek" : "Required. The day of the week."
+        "WeeklyStartTime$DayOfWeek" : "<p>Required. The day of the week.</p>"
       }
     },
     "DeleteBrokerOutput" : {
-      "base" : "Returns information about the deleted broker.",
+      "base" : "<p>Returns information about the deleted broker.</p>",
       "refs" : { }
     },
     "DeploymentMode" : {
-      "base" : "The deployment mode of the broker.",
+      "base" : "<p>The broker's deployment mode.</p>",
       "refs" : {
-        "BrokerSummary$DeploymentMode" : "Required. The deployment mode of the broker.",
-        "CreateBrokerInput$DeploymentMode" : "Required. The deployment mode of the broker.",
-        "DescribeBrokerOutput$DeploymentMode" : "Required. The deployment mode of the broker.",
+        "BrokerSummary$DeploymentMode" : "<p>The broker's deployment mode.</p>",
+        "CreateBrokerInput$DeploymentMode" : "<p>Required. The broker's deployment mode.</p>",
+        "DescribeBrokerOutput$DeploymentMode" : "<p>The broker's deployment mode.</p>",
         "__listOfDeploymentMode$member" : null
       }
     },
     "DescribeBrokerOutput" : {
-      "base" : "The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
+      "base" : "<p>Returns information about the specified broker.</p>",
       "refs" : { }
     },
     "DescribeConfigurationRevisionOutput" : {
-      "base" : "Returns the specified configuration revision for the specified configuration.",
+      "base" : "<p>Returns the specified configuration revision for the specified configuration.</p>",
       "refs" : { }
     },
     "DescribeUserOutput" : {
-      "base" : "Returns information about an ActiveMQ user.",
+      "base" : "<p>Returns information about an ActiveMQ user.</p>",
       "refs" : { }
     },
     "EncryptionOptions" : {
-      "base" : "Encryption options for the broker.",
+      "base" : "<important><p>Does not apply to RabbitMQ brokers.</p></important> <p>Encryption options for the broker.</p>",
       "refs" : {
-        "CreateBrokerInput$EncryptionOptions" : "Encryption options for the broker.",
-        "DescribeBrokerOutput$EncryptionOptions" : "Encryption options for the broker."
+        "CreateBrokerInput$EncryptionOptions" : "<p>Encryption options for the broker. Does not apply to RabbitMQ brokers.</p>",
+        "DescribeBrokerOutput$EncryptionOptions" : "<p>Encryption options for the broker. Does not apply to RabbitMQ brokers.</p>"
       }
     },
     "EngineType" : {
-      "base" : "The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and RabbitMQ.",
+      "base" : "<p>The type of broker engine. Amazon MQ supports ActiveMQ and RabbitMQ.</p>",
       "refs" : {
-        "BrokerEngineType$EngineType" : "The type of broker engine.",
-        "BrokerInstanceOption$EngineType" : "The type of broker engine.",
-        "BrokerSummary$EngineType" : "Required. The type of broker engine.",
-        "Configuration$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.",
-        "CreateBrokerInput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.",
-        "CreateConfigurationInput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.",
-        "DescribeBrokerOutput$EngineType" : "Required. The type of broker engine. Note: Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ."
+        "BrokerEngineType$EngineType" : "<p>The broker's engine type.</p>",
+        "BrokerInstanceOption$EngineType" : "<p>The broker's engine type.</p>",
+        "BrokerSummary$EngineType" : "<p>The type of broker engine.</p>",
+        "Configuration$EngineType" : "<p>Required. The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.</p>",
+        "CreateBrokerInput$EngineType" : "<p>Required. The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.</p>",
+        "CreateConfigurationInput$EngineType" : "<p>Required. The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.</p>",
+        "DescribeBrokerOutput$EngineType" : "<p>The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ and RABBITMQ.</p>"
       }
     },
     "EngineVersion" : {
-      "base" : "Id of the engine version.",
+      "base" : "<p>Id of the engine version.</p>",
       "refs" : {
         "__listOfEngineVersion$member" : null
       }
     },
     "Error" : {
-      "base" : "Returns information about an error.",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "ForbiddenException" : {
-      "base" : "Returns information about an error.",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "InternalServerErrorException" : {
-      "base" : "Returns information about an error.",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "LdapServerMetadataInput" : {
-      "base" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker. <important>Currently not supported for RabbitMQ engine type.</important>",
+      "base" : "<p>Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker.</p> <important><p>Does not apply to RabbitMQ brokers.</p></important>",
       "refs" : {
-        "CreateBrokerInput$LdapServerMetadata" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker.",
-        "UpdateBrokerInput$LdapServerMetadata" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker."
+        "CreateBrokerInput$LdapServerMetadata" : "<p>Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker. Does not apply to RabbitMQ brokers.</p>",
+        "UpdateBrokerInput$LdapServerMetadata" : "<p>Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker. Does not apply to RabbitMQ brokers.</p>"
       }
     },
     "LdapServerMetadataOutput" : {
-      "base" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker.",
+      "base" : "<p>Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker.</p>",
       "refs" : {
-        "DescribeBrokerOutput$LdapServerMetadata" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker.",
-        "DescribeBrokerOutput$PendingLdapServerMetadata" : "The metadata of the LDAP server that will be used to authenticate and authorize connections to the broker once it is rebooted.",
-        "UpdateBrokerOutput$LdapServerMetadata" : "The metadata of the LDAP server used to authenticate and authorize connections to the broker."
+        "DescribeBrokerOutput$LdapServerMetadata" : "<p>The metadata of the LDAP server used to authenticate and authorize connections to the broker.</p>",
+        "DescribeBrokerOutput$PendingLdapServerMetadata" : "<p>The metadata of the LDAP server that will be used to authenticate and authorize connections to the broker after it is rebooted.</p>",
+        "UpdateBrokerOutput$LdapServerMetadata" : "<p>Optional. The metadata of the LDAP server used to authenticate and authorize connections to the broker. Does not apply to RabbitMQ brokers.</p>"
       }
     },
     "ListBrokersOutput" : {
-      "base" : "A list of information about all brokers.",
+      "base" : null,
       "refs" : { }
     },
     "ListConfigurationRevisionsOutput" : {
-      "base" : "Returns a list of all revisions for the specified configuration.",
+      "base" : "<p>Returns a list of all revisions for the specified configuration.</p>",
       "refs" : { }
     },
     "ListConfigurationsOutput" : {
-      "base" : "Returns a list of all configurations.",
+      "base" : "<p>Returns a list of all configurations.</p>",
       "refs" : { }
     },
     "ListUsersOutput" : {
-      "base" : "Returns a list of all ActiveMQ users.",
+      "base" : "<p>Returns a list of all ActiveMQ users.</p>",
       "refs" : { }
     },
     "Logs" : {
-      "base" : "The list of information about logs to be enabled for the specified broker.",
+      "base" : "<p>The list of information about logs to be enabled for the specified broker.</p>",
       "refs" : {
-        "CreateBrokerInput$Logs" : "Enables Amazon CloudWatch logging for brokers.",
-        "UpdateBrokerInput$Logs" : "Enables Amazon CloudWatch logging for brokers.",
-        "UpdateBrokerOutput$Logs" : "The list of information about logs to be enabled for the specified broker."
+        "CreateBrokerInput$Logs" : "<p>Enables Amazon CloudWatch logging for brokers.</p>",
+        "UpdateBrokerInput$Logs" : "<p>Enables Amazon CloudWatch logging for brokers.</p>",
+        "UpdateBrokerOutput$Logs" : "<p>The list of information about logs to be enabled for the specified broker.</p>"
       }
     },
     "LogsSummary" : {
-      "base" : "The list of information about logs currently enabled and pending to be deployed for the specified broker.",
+      "base" : "<p>The list of information about logs currently enabled and pending to be deployed for the specified broker.</p>",
       "refs" : {
-        "DescribeBrokerOutput$Logs" : "The list of information about logs currently enabled and pending to be deployed for the specified broker."
+        "DescribeBrokerOutput$Logs" : "<p>The list of information about logs currently enabled and pending to be deployed for the specified broker.</p>"
       }
     },
     "NotFoundException" : {
-      "base" : "Returns information about an error.",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "PendingLogs" : {
-      "base" : "The list of information about logs to be enabled for the specified broker.",
+      "base" : "<p>The list of information about logs to be enabled for the specified broker.</p>",
       "refs" : {
-        "LogsSummary$Pending" : "The list of information about logs pending to be deployed for the specified broker."
+        "LogsSummary$Pending" : "<p>The list of information about logs pending to be deployed for the specified broker.</p>"
       }
     },
     "SanitizationWarning" : {
-      "base" : "Returns information about the XML element or attribute that was sanitized in the configuration.",
+      "base" : "<p>Returns information about the XML element or attribute that was sanitized in the configuration.</p>",
       "refs" : {
         "__listOfSanitizationWarning$member" : null
       }
     },
     "SanitizationWarningReason" : {
-      "base" : "The reason for which the XML elements or attributes were sanitized.",
+      "base" : "<p>The reason for which the XML elements or attributes were sanitized.</p>",
       "refs" : {
-        "SanitizationWarning$Reason" : "Required. The reason for which the XML elements or attributes were sanitized."
+        "SanitizationWarning$Reason" : "<p>Required. The reason for which the XML elements or attributes were sanitized.</p>"
       }
     },
     "Tags" : {
-      "base" : "A map of the key-value pairs for the resource tag.",
+      "base" : "<p>A map of the key-value pairs for the resource tag.</p>",
       "refs" : { }
     },
     "UnauthorizedException" : {
-      "base" : "Returns information about an error.",
+      "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
     "UpdateBrokerInput" : {
-      "base" : "Updates the broker using the specified properties.",
+      "base" : "<p>Updates the broker using the specified properties.</p>",
       "refs" : { }
     },
     "UpdateBrokerOutput" : {
-      "base" : "Returns information about the updated broker.",
+      "base" : "<p>Returns information about the updated broker.</p>",
       "refs" : { }
     },
     "UpdateConfigurationInput" : {
-      "base" : "Updates the specified configuration.",
+      "base" : "<p>Updates the specified configuration.</p>",
       "refs" : { }
     },
     "UpdateConfigurationOutput" : {
-      "base" : "Returns information about the updated configuration.",
+      "base" : "<p>Returns information about the updated configuration.</p>",
       "refs" : { }
     },
     "UpdateUserInput" : {
-      "base" : "Updates the information for an ActiveMQ user.",
+      "base" : "<p>Updates the information for an ActiveMQ user.</p>",
       "refs" : { }
     },
     "User" : {
-      "base" : "A user associated with the broker.",
+      "base" : "<p>A user associated with the broker. For RabbitMQ brokers, one and only one administrative user is accepted and created when a broker is first provisioned. All subsequent broker users are created by making RabbitMQ API calls directly to brokers or via the RabbitMQ web console.</p>",
       "refs" : {
         "__listOfUser$member" : null
       }
     },
     "UserPendingChanges" : {
-      "base" : "Returns information about the status of the changes pending for the ActiveMQ user.",
+      "base" : "<p>Returns information about the status of the changes pending for the ActiveMQ user.</p>",
       "refs" : {
-        "DescribeUserOutput$Pending" : "The status of the changes pending for the ActiveMQ user."
+        "DescribeUserOutput$Pending" : "<p>The status of the changes pending for the ActiveMQ user.</p>"
       }
     },
     "UserSummary" : {
-      "base" : "Returns a list of all broker users.",
+      "base" : "<p>Returns a list of all broker users. Does not apply to RabbitMQ brokers.</p>",
       "refs" : {
         "__listOfUserSummary$member" : null
       }
     },
     "WeeklyStartTime" : {
-      "base" : "The scheduled time period relative to UTC during which Amazon MQ begins to apply pending updates or patches to the broker.",
+      "base" : "<p>The scheduled time period relative to UTC during which Amazon MQ begins to apply pending updates or patches to the broker.</p>",
       "refs" : {
-        "CreateBrokerInput$MaintenanceWindowStartTime" : "The parameters that determine the WeeklyStartTime.",
-        "DescribeBrokerOutput$MaintenanceWindowStartTime" : "The parameters that determine the WeeklyStartTime."
+        "CreateBrokerInput$MaintenanceWindowStartTime" : "<p>The parameters that determine the WeeklyStartTime.</p>",
+        "DescribeBrokerOutput$MaintenanceWindowStartTime" : "<p>The parameters that determine the WeeklyStartTime.</p>",
+        "UpdateBrokerInput$MaintenanceWindowStartTime" : "<p>The parameters that determine the WeeklyStartTime.</p>",
+        "UpdateBrokerOutput$MaintenanceWindowStartTime" : "<p>The parameters that determine the WeeklyStartTime.</p>"
       }
     },
     "__boolean" : {
       "base" : null,
       "refs" : {
-        "CreateBrokerInput$AutoMinorVersionUpgrade" : "Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
-        "CreateBrokerInput$PubliclyAccessible" : "Required. Enables connections from applications outside of the VPC that hosts the broker's subnets.",
-        "CreateUserInput$ConsoleAccess" : "Enables access to the ActiveMQ Web Console for the ActiveMQ user.",
-        "DescribeBrokerOutput$AutoMinorVersionUpgrade" : "Required. Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
-        "DescribeBrokerOutput$PubliclyAccessible" : "Required. Enables connections from applications outside of the VPC that hosts the broker's subnets.",
-        "DescribeUserOutput$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user.",
-        "EncryptionOptions$UseAwsOwnedKey" : "Enables the use of an AWS owned CMK using AWS Key Management Service (KMS).",
-        "LdapServerMetadataInput$RoleSearchSubtree" : "The directory search scope for the role. If set to true, scope is to search the entire sub-tree.",
-        "LdapServerMetadataInput$UserSearchSubtree" : "The directory search scope for the user. If set to true, scope is to search the entire sub-tree.",
-        "LdapServerMetadataOutput$RoleSearchSubtree" : "The directory search scope for the role. If set to true, scope is to search the entire sub-tree.",
-        "LdapServerMetadataOutput$UserSearchSubtree" : "The directory search scope for the user. If set to true, scope is to search the entire sub-tree.",
-        "Logs$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged. Does not apply to RabbitMQ brokers.",
-        "Logs$General" : "Enables general logging.",
-        "LogsSummary$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.",
-        "LogsSummary$General" : "Enables general logging.",
-        "PendingLogs$Audit" : "Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.",
-        "PendingLogs$General" : "Enables general logging.",
-        "UpdateBrokerInput$AutoMinorVersionUpgrade" : "Enables automatic upgrades to new minor versions for brokers, as Apache releases the versions. The automatic upgrades occur during the maintenance window of the broker or after a manual broker reboot.",
-        "UpdateBrokerOutput$AutoMinorVersionUpgrade" : "The new value of automatic upgrades to new minor version for brokers.",
-        "UpdateUserInput$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user.",
-        "User$ConsoleAccess" : "Enables access to the ActiveMQ Web Console for the ActiveMQ user (Does not apply to RabbitMQ brokers).",
-        "UserPendingChanges$ConsoleAccess" : "Enables access to the the ActiveMQ Web Console for the ActiveMQ user."
+        "CreateBrokerInput$AutoMinorVersionUpgrade" : "<p>Enables automatic upgrades to new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot. Set to true by default, if no value is specified.</p>",
+        "CreateBrokerInput$PubliclyAccessible" : "<p>Enables connections from applications outside of the VPC that hosts the broker's subnets. Set to false by default, if no value is provided.</p>",
+        "CreateUserInput$ConsoleAccess" : "<p>Enables access to the ActiveMQ Web Console for the ActiveMQ user.</p>",
+        "DescribeBrokerOutput$AutoMinorVersionUpgrade" : "<p>Enables automatic upgrades to new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot.</p>",
+        "DescribeBrokerOutput$PubliclyAccessible" : "<p>Enables connections from applications outside of the VPC that hosts the broker's subnets.</p>",
+        "DescribeUserOutput$ConsoleAccess" : "<p>Enables access to the the ActiveMQ Web Console for the ActiveMQ user.</p>",
+        "EncryptionOptions$UseAwsOwnedKey" : "<p>Enables the use of an AWS owned CMK using AWS Key Management Service (KMS). Set to true by default, if no value is provided, for example, for RabbitMQ brokers.</p>",
+        "LdapServerMetadataInput$RoleSearchSubtree" : "<p>The directory search scope for the role. If set to true, scope is to search the entire subtree.</p>",
+        "LdapServerMetadataInput$UserSearchSubtree" : "<p>The directory search scope for the user. If set to true, scope is to search the entire subtree.</p>",
+        "LdapServerMetadataOutput$RoleSearchSubtree" : "<p>The directory search scope for the role. If set to true, scope is to search the entire subtree.</p>",
+        "LdapServerMetadataOutput$UserSearchSubtree" : "<p>The directory search scope for the user. If set to true, scope is to search the entire subtree.</p>",
+        "Logs$Audit" : "<p>Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged. Does not apply to RabbitMQ brokers.</p>",
+        "Logs$General" : "<p>Enables general logging.</p>",
+        "LogsSummary$Audit" : "<p>Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.</p>",
+        "LogsSummary$General" : "<p>Enables general logging.</p>",
+        "PendingLogs$Audit" : "<p>Enables audit logging. Every user management action made using JMX or the ActiveMQ Web Console is logged.</p>",
+        "PendingLogs$General" : "<p>Enables general logging.</p>",
+        "UpdateBrokerInput$AutoMinorVersionUpgrade" : "<p>Enables automatic upgrades to new minor versions for brokers, as new versions are released and supported by Amazon MQ. Automatic upgrades occur during the scheduled maintenance window of the broker or after a manual broker reboot.</p>",
+        "UpdateBrokerOutput$AutoMinorVersionUpgrade" : "<p>The new boolean value that specifies whether broker engines automatically upgrade to new minor versions as new versions are released and supported by Amazon MQ.</p>",
+        "UpdateUserInput$ConsoleAccess" : "<p>Enables access to the the ActiveMQ Web Console for the ActiveMQ user.</p>",
+        "User$ConsoleAccess" : "<p>Enables access to the ActiveMQ Web Console for the ActiveMQ user. Does not apply to RabbitMQ brokers.</p>",
+        "UserPendingChanges$ConsoleAccess" : "<p>Enables access to the the ActiveMQ Web Console for the ActiveMQ user.</p>"
       }
     },
     "__integer" : {
       "base" : null,
       "refs" : {
-        "ConfigurationId$Revision" : "The revision number of the configuration.",
-        "ConfigurationRevision$Revision" : "Required. The revision number of the configuration.",
-        "ListConfigurationRevisionsOutput$MaxResults" : "The maximum number of configuration revisions that can be returned per page (20 by default). This value must be an integer from 5 to 100.",
-        "ListConfigurationsOutput$MaxResults" : "The maximum number of configurations that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100."
+        "ConfigurationId$Revision" : "<p>The revision number of the configuration.</p>",
+        "ConfigurationRevision$Revision" : "<p>Required. The revision number of the configuration.</p>",
+        "ListConfigurationRevisionsOutput$MaxResults" : "<p>The maximum number of configuration revisions that can be returned per page (20 by default). This value must be an integer from 5 to 100.</p>",
+        "ListConfigurationsOutput$MaxResults" : "<p>The maximum number of configurations that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.</p>"
       }
     },
     "__integerMin5Max100" : {
       "base" : null,
       "refs" : {
-        "BrokerEngineTypeOutput$MaxResults" : "Required. The maximum number of engine types that can be returned per page (20 by default). This value must be an integer from 5 to 100.",
-        "BrokerInstanceOptionsOutput$MaxResults" : "Required. The maximum number of instance options that can be returned per page (20 by default). This value must be an integer from 5 to 100.",
-        "ListUsersOutput$MaxResults" : "Required. The maximum number of ActiveMQ users that can be returned per page (20 by default). This value must be an integer from 5 to 100."
+        "BrokerEngineTypeOutput$MaxResults" : "<p>Required. The maximum number of engine types that can be returned per page (20 by default). This value must be an integer from 5 to 100.</p>",
+        "BrokerInstanceOptionsOutput$MaxResults" : "<p>Required. The maximum number of instance options that can be returned per page (20 by default). This value must be an integer from 5 to 100.</p>",
+        "ListUsersOutput$MaxResults" : "<p>Required. The maximum number of ActiveMQ users that can be returned per page (20 by default). This value must be an integer from 5 to 100.</p>"
       }
     },
     "__listOfAvailabilityZone" : {
       "base" : null,
       "refs" : {
-        "BrokerInstanceOption$AvailabilityZones" : "The list of available az."
+        "BrokerInstanceOption$AvailabilityZones" : "<p>The list of available az.</p>"
       }
     },
     "__listOfBrokerEngineType" : {
       "base" : null,
       "refs" : {
-        "BrokerEngineTypeOutput$BrokerEngineTypes" : "List of available engine types and versions."
+        "BrokerEngineTypeOutput$BrokerEngineTypes" : "<p>List of available engine types and versions.</p>"
       }
     },
     "__listOfBrokerInstance" : {
       "base" : null,
       "refs" : {
-        "DescribeBrokerOutput$BrokerInstances" : "A list of information about allocated brokers."
+        "DescribeBrokerOutput$BrokerInstances" : "<p>A list of information about allocated brokers.</p>"
       }
     },
     "__listOfBrokerInstanceOption" : {
       "base" : null,
       "refs" : {
-        "BrokerInstanceOptionsOutput$BrokerInstanceOptions" : "List of available broker instance options."
+        "BrokerInstanceOptionsOutput$BrokerInstanceOptions" : "<p>List of available broker instance options.</p>"
       }
     },
     "__listOfBrokerSummary" : {
       "base" : null,
       "refs" : {
-        "ListBrokersOutput$BrokerSummaries" : "A list of information about all brokers."
+        "ListBrokersOutput$BrokerSummaries" : "<p>A list of information about all brokers.</p>"
       }
     },
     "__listOfConfiguration" : {
       "base" : null,
       "refs" : {
-        "ListConfigurationsOutput$Configurations" : "The list of all revisions for the specified configuration."
+        "ListConfigurationsOutput$Configurations" : "<p>The list of all revisions for the specified configuration.</p>"
       }
     },
     "__listOfConfigurationId" : {
       "base" : null,
       "refs" : {
-        "Configurations$History" : "The history of configurations applied to the broker."
+        "Configurations$History" : "<p>The history of configurations applied to the broker.</p>"
       }
     },
     "__listOfConfigurationRevision" : {
       "base" : null,
       "refs" : {
-        "ListConfigurationRevisionsOutput$Revisions" : "The list of all revisions for the specified configuration."
+        "ListConfigurationRevisionsOutput$Revisions" : "<p>The list of all revisions for the specified configuration.</p>"
       }
     },
     "__listOfDeploymentMode" : {
       "base" : null,
       "refs" : {
-        "BrokerInstanceOption$SupportedDeploymentModes" : "The list of supported deployment modes."
+        "BrokerInstanceOption$SupportedDeploymentModes" : "<p>The list of supported deployment modes.</p>"
       }
     },
     "__listOfEngineVersion" : {
       "base" : null,
       "refs" : {
-        "BrokerEngineType$EngineVersions" : "The list of engine versions."
+        "BrokerEngineType$EngineVersions" : "<p>The list of engine versions.</p>"
       }
     },
     "__listOfSanitizationWarning" : {
       "base" : null,
       "refs" : {
-        "UpdateConfigurationOutput$Warnings" : "The list of the first 20 warnings about the configuration XML elements or attributes that were sanitized."
+        "UpdateConfigurationOutput$Warnings" : "<p>The list of the first 20 warnings about the configuration XML elements or attributes that were sanitized.</p>"
       }
     },
     "__listOfUser" : {
       "base" : null,
       "refs" : {
-        "CreateBrokerInput$Users" : "Required. The list of broker users (persons or applications) who can access queues and topics. For RabbitMQ brokers, one and only one administrative user is accepted and created when a broker is first provisioned. All subsequent broker users are created by making RabbitMQ API calls directly to brokers or via the RabbitMQ Web Console. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
+        "CreateBrokerInput$Users" : "<p>Required. The list of broker users (persons or applications) who can access queues and topics. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.</p> <important><title>Amazon MQ for RabbitMQ</title> <p>When you create an Amazon MQ for RabbitMQ broker, one and only one administrative user is accepted and created when a broker is first provisioned. All subsequent broker users are created by making RabbitMQ API calls directly to brokers or via the RabbitMQ web console.</p></important>"
       }
     },
     "__listOfUserSummary" : {
       "base" : null,
       "refs" : {
-        "DescribeBrokerOutput$Users" : "The list of all broker usernames for the specified broker.",
-        "ListUsersOutput$Users" : "Required. The list of all ActiveMQ usernames for the specified broker."
+        "DescribeBrokerOutput$Users" : "<p>The list of all broker usernames for the specified broker.</p>",
+        "ListUsersOutput$Users" : "<p>Required. The list of all ActiveMQ usernames for the specified broker. Does not apply to RabbitMQ brokers.</p>"
       }
     },
     "__listOf__string" : {
       "base" : null,
       "refs" : {
-        "BrokerInstance$Endpoints" : "The broker's wire-level protocol endpoints.",
-        "BrokerInstanceOption$SupportedEngineVersions" : "The list of supported engine versions.",
-        "CreateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
-        "CreateBrokerInput$SubnetIds" : "The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment (ACTIVEMQ) requires two subnets. A CLUSTER_MULTI_AZ deployment (RABBITMQ) has no subnet requirements when deployed with public accessibility, deployment without public accessibility requires at least one subnet.",
-        "CreateUserInput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "DescribeBrokerOutput$PendingSecurityGroups" : "The list of pending security groups to authorize connections to brokers.",
-        "DescribeBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
-        "DescribeBrokerOutput$SubnetIds" : "The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ deployment (ACTIVEMQ) requires two subnets. A CLUSTER_MULTI_AZ deployment (RABBITMQ) has no subnet requirements when deployed with public accessibility, deployment without public accessibility requires at least one subnet.",
-        "DescribeUserOutput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "LdapServerMetadataInput$Hosts" : "Fully qualified domain name of the LDAP server. Optional failover server.",
-        "LdapServerMetadataOutput$Hosts" : "Fully qualified domain name of the LDAP server. Optional failover server.",
-        "UpdateBrokerInput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
-        "UpdateBrokerOutput$SecurityGroups" : "The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.",
-        "UpdateUserInput$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "User$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "UserPendingChanges$Groups" : "The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long."
+        "BrokerInstance$Endpoints" : "<p>The broker's wire-level protocol endpoints.</p>",
+        "BrokerInstanceOption$SupportedEngineVersions" : "<p>The list of supported engine versions.</p>",
+        "CreateBrokerInput$SecurityGroups" : "<p>The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.</p>",
+        "CreateBrokerInput$SubnetIds" : "<p>The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. If you specify more than one subnet, the subnets must be in different Availability Zones. Amazon MQ will not be able to create VPC endpoints for your broker with multiple subnets in the same Availability Zone. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ Amazon MQ for ActiveMQ deployment requires two subnets. A CLUSTER_MULTI_AZ Amazon MQ for RabbitMQ deployment has no subnet requirements when deployed with public accessibility. Deployment without public accessibility requires at least one subnet.</p> <important><p>If you specify subnets in a <a href=\"https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html\">shared VPC</a> for a RabbitMQ broker, the associated VPC to which the specified subnets belong must be owned by your AWS account. Amazon MQ will not be able to create VPC endpoints in VPCs that are not owned by your AWS account.</p></important>",
+        "CreateUserInput$Groups" : "<p>The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.</p>",
+        "DescribeBrokerOutput$PendingSecurityGroups" : "<p>The list of pending security groups to authorize connections to brokers.</p>",
+        "DescribeBrokerOutput$SecurityGroups" : "<p>The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.</p>",
+        "DescribeBrokerOutput$SubnetIds" : "<p>The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones.</p>",
+        "DescribeUserOutput$Groups" : "<p>The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.</p>",
+        "LdapServerMetadataInput$Hosts" : "<p>Specifies the location of the LDAP server such as AWS Directory Service for Microsoft Active Directory . Optional failover server.</p>",
+        "LdapServerMetadataOutput$Hosts" : "<p>Specifies the location of the LDAP server such as AWS Directory Service for Microsoft Active Directory . Optional failover server.</p>",
+        "UpdateBrokerInput$SecurityGroups" : "<p>The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.</p>",
+        "UpdateBrokerOutput$SecurityGroups" : "<p>The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.</p>",
+        "UpdateUserInput$Groups" : "<p>The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.</p>",
+        "User$Groups" : "<p>The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long. Does not apply to RabbitMQ brokers.</p>",
+        "UserPendingChanges$Groups" : "<p>The list of groups (20 maximum) to which the ActiveMQ user belongs. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.</p>"
       }
     },
     "__mapOf__string" : {
       "base" : null,
       "refs" : {
-        "Configuration$Tags" : "The list of all tags associated with this configuration.",
-        "CreateBrokerInput$Tags" : "Create tags when creating the broker.",
-        "CreateConfigurationInput$Tags" : "Create tags when creating the configuration.",
-        "DescribeBrokerOutput$Tags" : "The list of all tags associated with this broker.",
-        "Tags$Tags" : "The key-value pair for the resource tag."
+        "Configuration$Tags" : "<p>The list of all tags associated with this configuration.</p>",
+        "CreateBrokerInput$Tags" : "<p>Create tags when creating the broker.</p>",
+        "CreateConfigurationInput$Tags" : "<p>Create tags when creating the configuration.</p>",
+        "DescribeBrokerOutput$Tags" : "<p>The list of all tags associated with this broker.</p>",
+        "Tags$Tags" : "<p>The key-value pair for the resource tag.</p>"
       }
     },
     "__string" : {
       "base" : null,
       "refs" : {
-        "AvailabilityZone$Name" : "Id for the availability zone.",
-        "BrokerEngineTypeOutput$NextToken" : "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-        "BrokerInstance$ConsoleURL" : "The URL of the broker's Web Console.",
-        "BrokerInstance$IpAddress" : "The IP address of the Elastic Network Interface (ENI) attached to the broker. Does not apply to RabbitMQ brokers",
-        "BrokerInstanceOption$HostInstanceType" : "The type of broker instance.",
-        "BrokerInstanceOptionsOutput$NextToken" : "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-        "BrokerSummary$BrokerArn" : "The Amazon Resource Name (ARN) of the broker.",
-        "BrokerSummary$BrokerId" : "The unique ID that Amazon MQ generates for the broker.",
-        "BrokerSummary$BrokerName" : "The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters.",
-        "BrokerSummary$HostInstanceType" : "The broker's instance type.",
-        "Configuration$Arn" : "Required. The ARN of the configuration.",
-        "Configuration$Description" : "Required. The description of the configuration.",
-        "Configuration$EngineVersion" : "Required. The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
-        "Configuration$Id" : "Required. The unique ID that Amazon MQ generates for the configuration.",
-        "Configuration$Name" : "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.",
-        "ConfigurationId$Id" : "Required. The unique ID that Amazon MQ generates for the configuration.",
-        "ConfigurationRevision$Description" : "The description of the configuration revision.",
-        "CreateBrokerInput$BrokerName" : "Required. The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters.",
-        "CreateBrokerInput$CreatorRequestId" : "The unique ID that the requester receives for the created broker. Amazon MQ passes your ID with the API action. Note: We recommend using a Universally Unique Identifier (UUID) for the creatorRequestId. You may omit the creatorRequestId if your application doesn't require idempotency.",
-        "CreateBrokerInput$EngineVersion" : "Required. The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
-        "CreateBrokerInput$HostInstanceType" : "Required. The broker's instance type.",
-        "CreateBrokerOutput$BrokerArn" : "The Amazon Resource Name (ARN) of the broker.",
-        "CreateBrokerOutput$BrokerId" : "The unique ID that Amazon MQ generates for the broker.",
-        "CreateConfigurationInput$EngineVersion" : "Required. The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
-        "CreateConfigurationInput$Name" : "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.",
-        "CreateConfigurationOutput$Arn" : "Required. The Amazon Resource Name (ARN) of the configuration.",
-        "CreateConfigurationOutput$Id" : "Required. The unique ID that Amazon MQ generates for the configuration.",
-        "CreateConfigurationOutput$Name" : "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.",
-        "CreateUserInput$Password" : "Required. The password of the user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas.",
-        "DeleteBrokerOutput$BrokerId" : "The unique ID that Amazon MQ generates for the broker.",
-        "DescribeBrokerOutput$BrokerArn" : "The Amazon Resource Name (ARN) of the broker.",
-        "DescribeBrokerOutput$BrokerId" : "The unique ID that Amazon MQ generates for the broker.",
-        "DescribeBrokerOutput$BrokerName" : "The name of the broker. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain whitespaces, brackets, wildcard characters, or special characters.",
-        "DescribeBrokerOutput$EngineVersion" : "The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
-        "DescribeBrokerOutput$HostInstanceType" : "The broker's instance type.",
-        "DescribeBrokerOutput$PendingEngineVersion" : "The version of the broker engine to upgrade to. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
-        "DescribeBrokerOutput$PendingHostInstanceType" : "The host instance type of the broker to upgrade to. For a list of supported instance types, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types",
-        "DescribeConfigurationRevisionOutput$ConfigurationId" : "Required. The unique ID that Amazon MQ generates for the configuration.",
-        "DescribeConfigurationRevisionOutput$Data" : "Required. The base64-encoded XML configuration.",
-        "DescribeConfigurationRevisionOutput$Description" : "The description of the configuration.",
-        "DescribeUserOutput$BrokerId" : "Required. The unique ID that Amazon MQ generates for the broker.",
-        "DescribeUserOutput$Username" : "Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "EncryptionOptions$KmsKeyId" : "The symmetric customer master key (CMK) to use for the AWS Key Management Service (KMS). This key is used to encrypt your data at rest. If not provided, Amazon MQ will use a default CMK to encrypt your data.",
-        "EngineVersion$Name" : "Id for the version.",
-        "Error$ErrorAttribute" : "The attribute which caused the error.",
-        "Error$Message" : "The explanation of the error.",
-        "LdapServerMetadataInput$RoleBase" : "Fully qualified name of the directory to search for a user’s groups.",
-        "LdapServerMetadataInput$RoleName" : "Specifies the LDAP attribute that identifies the group name attribute in the object returned from the group membership query.",
-        "LdapServerMetadataInput$RoleSearchMatching" : "The search criteria for groups.",
-        "LdapServerMetadataInput$ServiceAccountPassword" : "Service account password.",
-        "LdapServerMetadataInput$ServiceAccountUsername" : "Service account username.",
-        "LdapServerMetadataInput$UserBase" : "Fully qualified name of the directory where you want to search for users.",
-        "LdapServerMetadataInput$UserRoleName" : "Specifies the name of the LDAP attribute for the user group membership.",
-        "LdapServerMetadataInput$UserSearchMatching" : "The search criteria for users.",
-        "LdapServerMetadataOutput$RoleBase" : "Fully qualified name of the directory to search for a user’s groups.",
-        "LdapServerMetadataOutput$RoleName" : "Specifies the LDAP attribute that identifies the group name attribute in the object returned from the group membership query.",
-        "LdapServerMetadataOutput$RoleSearchMatching" : "The search criteria for groups.",
-        "LdapServerMetadataOutput$ServiceAccountUsername" : "Service account username.",
-        "LdapServerMetadataOutput$UserBase" : "Fully qualified name of the directory where you want to search for users.",
-        "LdapServerMetadataOutput$UserRoleName" : "Specifies the name of the LDAP attribute for the user group membership.",
-        "LdapServerMetadataOutput$UserSearchMatching" : "The search criteria for users.",
-        "ListBrokersOutput$NextToken" : "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-        "ListConfigurationRevisionsOutput$ConfigurationId" : "The unique ID that Amazon MQ generates for the configuration.",
-        "ListConfigurationRevisionsOutput$NextToken" : "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-        "ListConfigurationsOutput$NextToken" : "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-        "ListUsersOutput$BrokerId" : "Required. The unique ID that Amazon MQ generates for the broker.",
-        "ListUsersOutput$NextToken" : "The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.",
-        "LogsSummary$AuditLogGroup" : "The location of the CloudWatch Logs log group where audit logs are sent.",
-        "LogsSummary$GeneralLogGroup" : "The location of the CloudWatch Logs log group where general logs are sent.",
-        "SanitizationWarning$AttributeName" : "The name of the XML attribute that has been sanitized.",
-        "SanitizationWarning$ElementName" : "The name of the XML element that has been sanitized.",
-        "UpdateBrokerInput$EngineVersion" : "The version of the broker engine. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
-        "UpdateBrokerInput$HostInstanceType" : "The host instance type of the broker to upgrade to. For a list of supported instance types, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types",
-        "UpdateBrokerOutput$BrokerId" : "Required. The unique ID that Amazon MQ generates for the broker.",
-        "UpdateBrokerOutput$EngineVersion" : "The version of the broker engine to upgrade to. For a list of supported engine versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html",
-        "UpdateBrokerOutput$HostInstanceType" : "The host instance type of the broker to upgrade to. For a list of supported instance types, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide//broker.html#broker-instance-types",
-        "UpdateConfigurationInput$Data" : "Required. The base64-encoded XML configuration.",
-        "UpdateConfigurationInput$Description" : "The description of the configuration.",
-        "UpdateConfigurationOutput$Arn" : "Required. The Amazon Resource Name (ARN) of the configuration.",
-        "UpdateConfigurationOutput$Id" : "Required. The unique ID that Amazon MQ generates for the configuration.",
-        "UpdateConfigurationOutput$Name" : "Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.",
-        "UpdateUserInput$Password" : "The password of the user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas.",
-        "User$Password" : "Required. The password of the broker user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas.",
-        "User$Username" : "Required. The username of the broker user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "UserSummary$Username" : "Required. The username of the broker user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.",
-        "WeeklyStartTime$TimeOfDay" : "Required. The time, in 24-hour format.",
-        "WeeklyStartTime$TimeZone" : "The time zone, UTC by default, in either the Country/City format, or the UTC offset format.",
+        "AvailabilityZone$Name" : "<p>Id for the availability zone.</p>",
+        "BrokerEngineTypeOutput$NextToken" : "<p>The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.</p>",
+        "BrokerInstance$ConsoleURL" : "<p>The brokers web console URL.</p>",
+        "BrokerInstance$IpAddress" : "<p>The IP address of the Elastic Network Interface (ENI) attached to the broker. Does not apply to RabbitMQ brokers.</p>",
+        "BrokerInstanceOption$HostInstanceType" : "<p>The broker's instance type.</p>",
+        "BrokerInstanceOptionsOutput$NextToken" : "<p>The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.</p>",
+        "BrokerSummary$BrokerArn" : "<p>The broker's Amazon Resource Name (ARN).</p>",
+        "BrokerSummary$BrokerId" : "<p>The unique ID that Amazon MQ generates for the broker.</p>",
+        "BrokerSummary$BrokerName" : "<p>The broker's name. This value is unique in your AWS account, 1-50 characters long, and containing only letters, numbers, dashes, and underscores, and must not contain white spaces, brackets, wildcard characters, or special characters.</p>",
+        "BrokerSummary$HostInstanceType" : "<p>The broker's instance type.</p>",
+        "Configuration$Arn" : "<p>Required. The ARN of the configuration.</p>",
+        "Configuration$Description" : "<p>Required. The description of the configuration.</p>",
+        "Configuration$EngineVersion" : "<p>Required. The broker engine's version. For a list of supported engine versions, see, <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html\">Supported engines</a>.</p>",
+        "Configuration$Id" : "<p>Required. The unique ID that Amazon MQ generates for the configuration.</p>",
+        "Configuration$Name" : "<p>Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.</p>",
+        "ConfigurationId$Id" : "<p>Required. The unique ID that Amazon MQ generates for the configuration.</p>",
+        "ConfigurationRevision$Description" : "<p>The description of the configuration revision.</p>",
+        "CreateBrokerInput$BrokerName" : "<p>Required. The broker's name. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain white spaces, brackets, wildcard characters, or special characters.</p>",
+        "CreateBrokerInput$CreatorRequestId" : "<p>The unique ID that the requester receives for the created broker. Amazon MQ passes your ID with the API action. Note: We recommend using a Universally Unique Identifier (UUID) for the creatorRequestId. You may omit the creatorRequestId if your application doesn't require idempotency.</p>",
+        "CreateBrokerInput$EngineVersion" : "<p>Required. The broker engine's version. For a list of supported engine versions, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html\">Supported engines</a>.</p>",
+        "CreateBrokerInput$HostInstanceType" : "<p>Required. The broker's instance type.</p>",
+        "CreateBrokerOutput$BrokerArn" : "<p>The broker's Amazon Resource Name (ARN).</p>",
+        "CreateBrokerOutput$BrokerId" : "<p>The unique ID that Amazon MQ generates for the broker.</p>",
+        "CreateConfigurationInput$EngineVersion" : "<p>Required. The broker engine's version. For a list of supported engine versions, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html\">Supported engines</a>.</p>",
+        "CreateConfigurationInput$Name" : "<p>Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.</p>",
+        "CreateConfigurationOutput$Arn" : "<p>Required. The Amazon Resource Name (ARN) of the configuration.</p>",
+        "CreateConfigurationOutput$Id" : "<p>Required. The unique ID that Amazon MQ generates for the configuration.</p>",
+        "CreateConfigurationOutput$Name" : "<p>Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.</p>",
+        "CreateUserInput$Password" : "<p>Required. The password of the user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas, colons, or equal signs (,:=).</p>",
+        "DeleteBrokerOutput$BrokerId" : "<p>The unique ID that Amazon MQ generates for the broker.</p>",
+        "DescribeBrokerOutput$BrokerArn" : "<p>The broker's Amazon Resource Name (ARN).</p>",
+        "DescribeBrokerOutput$BrokerId" : "<p>The unique ID that Amazon MQ generates for the broker.</p>",
+        "DescribeBrokerOutput$BrokerName" : "<p>The broker's name. This value must be unique in your AWS account, 1-50 characters long, must contain only letters, numbers, dashes, and underscores, and must not contain white spaces, brackets, wildcard characters, or special characters.</p>",
+        "DescribeBrokerOutput$EngineVersion" : "<p>The broker engine's version. For a list of supported engine versions, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html\">Supported engines</a>.</p>",
+        "DescribeBrokerOutput$HostInstanceType" : "<p>The broker's instance type.</p>",
+        "DescribeBrokerOutput$PendingEngineVersion" : "<p>The broker engine version to upgrade to. For a list of supported engine versions, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html\">Supported engines</a>.</p>",
+        "DescribeBrokerOutput$PendingHostInstanceType" : "<p>The broker's host instance type to upgrade to. For a list of supported instance types, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker.html#broker-instance-types\">Broker instance types</a>.</p>",
+        "DescribeConfigurationRevisionOutput$ConfigurationId" : "<p>Required. The unique ID that Amazon MQ generates for the configuration.</p>",
+        "DescribeConfigurationRevisionOutput$Data" : "<p>Required. The base64-encoded XML configuration.</p>",
+        "DescribeConfigurationRevisionOutput$Description" : "<p>The description of the configuration.</p>",
+        "DescribeUserOutput$BrokerId" : "<p>Required. The unique ID that Amazon MQ generates for the broker.</p>",
+        "DescribeUserOutput$Username" : "<p>Required. The username of the ActiveMQ user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.</p>",
+        "EncryptionOptions$KmsKeyId" : "<p>The customer master key (CMK) to use for the AWS Key Management Service (KMS). This key is used to encrypt your data at rest. If not provided, Amazon MQ will use a default CMK to encrypt your data.</p>",
+        "EngineVersion$Name" : "<p>Id for the version.</p>",
+        "Error$ErrorAttribute" : "<p>The attribute which caused the error.</p>",
+        "Error$Message" : "<p>The explanation of the error.</p>",
+        "LdapServerMetadataInput$RoleBase" : "<p>The distinguished name of the node in the directory information tree (DIT) to search for roles or groups. For example, ou=group, ou=corp, dc=corp,\n                  dc=example, dc=com.</p>",
+        "LdapServerMetadataInput$RoleName" : "<p>Specifies the LDAP attribute that identifies the group name attribute in the object returned from the group membership query.</p>",
+        "LdapServerMetadataInput$RoleSearchMatching" : "<p>The LDAP search filter used to find roles within the roleBase. The distinguished name of the user matched by userSearchMatching is substituted into the {0} placeholder in the search filter. The client's username is substituted into the {1} placeholder. For example, if you set this option to (member=uid={1})for the user janedoe, the search filter becomes (member=uid=janedoe) after string substitution. It matches all role entries that have a member attribute equal to uid=janedoe under the subtree selected by the roleBase.</p>",
+        "LdapServerMetadataInput$ServiceAccountPassword" : "<p>Service account password. A service account is an account in your LDAP server that has access to initiate a connection. For example, cn=admin,dc=corp, dc=example,\n                  dc=com.</p>",
+        "LdapServerMetadataInput$ServiceAccountUsername" : "<p>Service account username. A service account is an account in your LDAP server that has access to initiate a connection. For example, cn=admin,dc=corp, dc=example,\n                  dc=com.</p>",
+        "LdapServerMetadataInput$UserBase" : "<p>Select a particular subtree of the directory information tree (DIT) to search for user entries. The subtree is specified by a DN, which specifies the base node of the subtree. For example, by setting this option to ou=Users,ou=corp, dc=corp,\n                  dc=example, dc=com, the search for user entries is restricted to the subtree beneath ou=Users, ou=corp, dc=corp, dc=example, dc=com.</p>",
+        "LdapServerMetadataInput$UserRoleName" : "<p>Specifies the name of the LDAP attribute for the user group membership.</p>",
+        "LdapServerMetadataInput$UserSearchMatching" : "<p>The LDAP search filter used to find users within the userBase. The client's username is substituted into the {0} placeholder in the search filter. For example, if this option is set to (uid={0}) and the received username is janedoe, the search filter becomes (uid=janedoe) after string substitution. It will result in matching an entry like uid=janedoe, ou=Users,ou=corp, dc=corp, dc=example,\n                  dc=com.</p>",
+        "LdapServerMetadataOutput$RoleBase" : "<p>The distinguished name of the node in the directory information tree (DIT) to search for roles or groups. For example, ou=group, ou=corp, dc=corp,\n                  dc=example, dc=com.</p>",
+        "LdapServerMetadataOutput$RoleName" : "<p>Specifies the LDAP attribute that identifies the group name attribute in the object returned from the group membership query.</p>",
+        "LdapServerMetadataOutput$RoleSearchMatching" : "<p>The LDAP search filter used to find roles within the roleBase. The distinguished name of the user matched by userSearchMatching is substituted into the {0} placeholder in the search filter. The client's username is substituted into the {1} placeholder. For example, if you set this option to (member=uid={1})for the user janedoe, the search filter becomes (member=uid=janedoe) after string substitution. It matches all role entries that have a member attribute equal to uid=janedoe under the subtree selected by the roleBase.</p>",
+        "LdapServerMetadataOutput$ServiceAccountUsername" : "<p>Service account username. A service account is an account in your LDAP server that has access to initiate a connection. For example, cn=admin,dc=corp, dc=example,\n                  dc=com.</p>",
+        "LdapServerMetadataOutput$UserBase" : "<p>Select a particular subtree of the directory information tree (DIT) to search for user entries. The subtree is specified by a DN, which specifies the base node of the subtree. For example, by setting this option to ou=Users,ou=corp, dc=corp,\n                  dc=example, dc=com, the search for user entries is restricted to the subtree beneath ou=Users, ou=corp, dc=corp, dc=example, dc=com.</p>",
+        "LdapServerMetadataOutput$UserRoleName" : "<p>Specifies the name of the LDAP attribute for the user group membership.</p>",
+        "LdapServerMetadataOutput$UserSearchMatching" : "<p>The LDAP search filter used to find users within the userBase. The client's username is substituted into the {0} placeholder in the search filter. For example, if this option is set to (uid={0}) and the received username is janedoe, the search filter becomes (uid=janedoe) after string substitution. It will result in matching an entry like uid=janedoe, ou=Users,ou=corp, dc=corp, dc=example,\n               dc=com.</p>",
+        "ListBrokersOutput$NextToken" : "<p>The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.</p>",
+        "ListConfigurationRevisionsOutput$ConfigurationId" : "<p>The unique ID that Amazon MQ generates for the configuration.</p>",
+        "ListConfigurationRevisionsOutput$NextToken" : "<p>The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.</p>",
+        "ListConfigurationsOutput$NextToken" : "<p>The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.</p>",
+        "ListUsersOutput$BrokerId" : "<p>Required. The unique ID that Amazon MQ generates for the broker.</p>",
+        "ListUsersOutput$NextToken" : "<p>The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.</p>",
+        "LogsSummary$AuditLogGroup" : "<p>The location of the CloudWatch Logs log group where audit logs are sent.</p>",
+        "LogsSummary$GeneralLogGroup" : "<p>The location of the CloudWatch Logs log group where general logs are sent.</p>",
+        "SanitizationWarning$AttributeName" : "<p>The name of the XML attribute that has been sanitized.</p>",
+        "SanitizationWarning$ElementName" : "<p>The name of the XML element that has been sanitized.</p>",
+        "UpdateBrokerInput$EngineVersion" : "<p>The broker engine version. For a list of supported engine versions, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html\">Supported engines</a>.</p>",
+        "UpdateBrokerInput$HostInstanceType" : "<p>The broker's host instance type to upgrade to. For a list of supported instance types, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker.html#broker-instance-types\">Broker instance types</a>.</p>",
+        "UpdateBrokerOutput$BrokerId" : "<p>Required. The unique ID that Amazon MQ generates for the broker.</p>",
+        "UpdateBrokerOutput$EngineVersion" : "<p>The broker engine version to upgrade to. For a list of supported engine versions, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html\">Supported engines</a>.</p>",
+        "UpdateBrokerOutput$HostInstanceType" : "<p>The broker's host instance type to upgrade to. For a list of supported instance types, see <a href=\"https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker.html#broker-instance-types\">Broker instance types</a>.</p>",
+        "UpdateConfigurationInput$Data" : "<p>Required. The base64-encoded XML configuration.</p>",
+        "UpdateConfigurationInput$Description" : "<p>The description of the configuration.</p>",
+        "UpdateConfigurationOutput$Arn" : "<p>Required. The Amazon Resource Name (ARN) of the configuration.</p>",
+        "UpdateConfigurationOutput$Id" : "<p>Required. The unique ID that Amazon MQ generates for the configuration.</p>",
+        "UpdateConfigurationOutput$Name" : "<p>Required. The name of the configuration. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 1-150 characters long.</p>",
+        "UpdateUserInput$Password" : "<p>The password of the user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas, colons, or equal signs (,:=).</p>",
+        "User$Password" : "<p>Required. The password of the user. This value must be at least 12 characters long, must contain at least 4 unique characters, and must not contain commas, colons, or equal signs (,:=).</p>",
+        "User$Username" : "<p>important><title>Amazon MQ for ActiveMQ</title> <para>For ActiveMQ brokers, this value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.</p>/important> <important><title>Amazon MQ for RabbitMQ</title> <p>For RabbitMQ brokers, this value can contain only alphanumeric characters, dashes, periods, underscores (- . _). This value must not contain a tilde (~) character. Amazon MQ prohibts using guest as a valid usename. This value must be 2-100 characters long.</p></important></para>",
+        "UserSummary$Username" : "<p>Required. The username of the broker user. This value can contain only alphanumeric characters, dashes, periods, underscores, and tildes (- . _ ~). This value must be 2-100 characters long.</p>",
+        "WeeklyStartTime$TimeOfDay" : "<p>Required. The time, in 24-hour format.</p>",
+        "WeeklyStartTime$TimeZone" : "<p>The time zone, UTC by default, in either the Country/City format, or the UTC offset format.</p>",
         "__listOf__string$member" : null,
         "__mapOf__string$member" : null
       }
@@ -598,13 +600,13 @@
     "__timestampIso8601" : {
       "base" : null,
       "refs" : {
-        "BrokerSummary$Created" : "The time when the broker was created.",
-        "Configuration$Created" : "Required. The date and time of the configuration revision.",
-        "ConfigurationRevision$Created" : "Required. The date and time of the configuration revision.",
-        "CreateConfigurationOutput$Created" : "Required. The date and time of the configuration.",
-        "DescribeBrokerOutput$Created" : "The time when the broker was created.",
-        "DescribeConfigurationRevisionOutput$Created" : "Required. The date and time of the configuration.",
-        "UpdateConfigurationOutput$Created" : "Required. The date and time of the configuration."
+        "BrokerSummary$Created" : "<p>The time when the broker was created.</p>",
+        "Configuration$Created" : "<p>Required. The date and time of the configuration revision.</p>",
+        "ConfigurationRevision$Created" : "<p>Required. The date and time of the configuration revision.</p>",
+        "CreateConfigurationOutput$Created" : "<p>Required. The date and time of the configuration.</p>",
+        "DescribeBrokerOutput$Created" : "<p>The time when the broker was created.</p>",
+        "DescribeConfigurationRevisionOutput$Created" : "<p>Required. The date and time of the configuration.</p>",
+        "UpdateConfigurationOutput$Created" : "<p>Required. The date and time of the configuration.</p>"
       }
     }
   }

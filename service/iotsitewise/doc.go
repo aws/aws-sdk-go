@@ -3,12 +3,12 @@
 // Package iotsitewise provides the client and types for making API
 // requests to AWS IoT SiteWise.
 //
-// Welcome to the AWS IoT SiteWise API Reference. AWS IoT SiteWise is an AWS
-// service that connects Industrial Internet of Things (IIoT) (https://en.wikipedia.org/wiki/Internet_of_things#Industrial_applications)
-// devices to the power of the AWS Cloud. For more information, see the AWS
-// IoT SiteWise User Guide (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/).
-// For information about AWS IoT SiteWise quotas, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-// in the AWS IoT SiteWise User Guide.
+// Welcome to the IoT SiteWise API Reference. IoT SiteWise is an Amazon Web
+// Services service that connects Industrial Internet of Things (IIoT) (https://en.wikipedia.org/wiki/Internet_of_things#Industrial_applications)
+// devices to the power of the Amazon Web Services Cloud. For more information,
+// see the IoT SiteWise User Guide (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/).
+// For information about IoT SiteWise quotas, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+// in the IoT SiteWise User Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02 for more information on this service.
 //

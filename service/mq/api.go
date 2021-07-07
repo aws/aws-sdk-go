@@ -59,6 +59,40 @@ func (c *MQ) CreateBrokerRequest(input *CreateBrokerRequest) (req *request.Reque
 //
 // Creates a broker. Note: This API is asynchronous.
 //
+// To create a broker, you must either use the AmazonMQFullAccess IAM policy
+// or include the following EC2 permissions in your IAM policy.
+//
+//    * ec2:CreateNetworkInterface This permission is required to allow Amazon
+//    MQ to create an elastic network interface (ENI) on behalf of your account.
+//
+//    * ec2:CreateNetworkInterfacePermission This permission is required to
+//    attach the ENI to the broker instance.
+//
+//    * ec2:DeleteNetworkInterface
+//
+//    * ec2:DeleteNetworkInterfacePermission
+//
+//    * ec2:DetachNetworkInterface
+//
+//    * ec2:DescribeInternetGateways
+//
+//    * ec2:DescribeNetworkInterfaces
+//
+//    * ec2:DescribeNetworkInterfacePermissions
+//
+//    * ec2:DescribeRouteTables
+//
+//    * ec2:DescribeSecurityGroups
+//
+//    * ec2:DescribeSubnets
+//
+//    * ec2:DescribeVpcs
+//
+// For more information, see Create an IAM User and Get Your AWS Credentials
+// (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/amazon-mq-setting-up.html#create-iam-user)
+// and Never Modify or Delete the Amazon MQ Elastic Network Interface (https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/connecting-to-amazon-mq.html#never-modify-delete-elastic-network-interface)
+// in the Amazon MQ Developer Guide.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2103,7 +2137,7 @@ func (s *BadRequestException) RequestID() string {
 type BrokerEngineType struct {
 	_ struct{} `type:"structure"`
 
-	// The type of broker engine.
+	// The broker's engine type.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
 	// The list of engine versions.
@@ -2136,14 +2170,14 @@ func (s *BrokerEngineType) SetEngineVersions(v []*EngineVersion) *BrokerEngineTy
 type BrokerInstance struct {
 	_ struct{} `type:"structure"`
 
-	// The URL of the broker's Web Console.
+	// The brokers web console URL.
 	ConsoleURL *string `locationName:"consoleURL" type:"string"`
 
 	// The broker's wire-level protocol endpoints.
 	Endpoints []*string `locationName:"endpoints" type:"list"`
 
 	// The IP address of the Elastic Network Interface (ENI) attached to the broker.
-	// Does not apply to RabbitMQ brokers
+	// Does not apply to RabbitMQ brokers.
 	IpAddress *string `locationName:"ipAddress" type:"string"`
 }
 
@@ -2182,10 +2216,10 @@ type BrokerInstanceOption struct {
 	// The list of available az.
 	AvailabilityZones []*AvailabilityZone `locationName:"availabilityZones" type:"list"`
 
-	// The type of broker engine.
+	// The broker's engine type.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
-	// The type of broker instance.
+	// The broker's instance type.
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
 
 	// The broker's storage type.
@@ -2244,33 +2278,37 @@ func (s *BrokerInstanceOption) SetSupportedEngineVersions(v []*string) *BrokerIn
 	return s
 }
 
-// The Amazon Resource Name (ARN) of the broker.
+// Returns information about all brokers.
 type BrokerSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the broker.
+	// The broker's Amazon Resource Name (ARN).
 	BrokerArn *string `locationName:"brokerArn" type:"string"`
 
 	// The unique ID that Amazon MQ generates for the broker.
 	BrokerId *string `locationName:"brokerId" type:"string"`
 
-	// The name of the broker. This value must be unique in your AWS account, 1-50
-	// characters long, must contain only letters, numbers, dashes, and underscores,
-	// and must not contain whitespaces, brackets, wildcard characters, or special
+	// The broker's name. This value is unique in your AWS account, 1-50 characters
+	// long, and containing only letters, numbers, dashes, and underscores, and
+	// must not contain white spaces, brackets, wildcard characters, or special
 	// characters.
 	BrokerName *string `locationName:"brokerName" type:"string"`
 
-	// The status of the broker.
+	// The broker's status.
 	BrokerState *string `locationName:"brokerState" type:"string" enum:"BrokerState"`
 
 	// The time when the broker was created.
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601"`
 
-	// Required. The deployment mode of the broker.
-	DeploymentMode *string `locationName:"deploymentMode" type:"string" enum:"DeploymentMode"`
+	// The broker's deployment mode.
+	//
+	// DeploymentMode is a required field
+	DeploymentMode *string `locationName:"deploymentMode" type:"string" required:"true" enum:"DeploymentMode"`
 
-	// Required. The type of broker engine.
-	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
+	// The type of broker engine.
+	//
+	// EngineType is a required field
+	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
 	// The broker's instance type.
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
@@ -2339,35 +2377,54 @@ type Configuration struct {
 	_ struct{} `type:"structure"`
 
 	// Required. The ARN of the configuration.
-	Arn *string `locationName:"arn" type:"string"`
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
 
-	// The authentication strategy associated with the configuration.
-	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
+	// Optional. The authentication strategy associated with the configuration.
+	// The default is SIMPLE.
+	//
+	// AuthenticationStrategy is a required field
+	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" required:"true" enum:"AuthenticationStrategy"`
 
 	// Required. The date and time of the configuration revision.
-	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601"`
+	//
+	// Created is a required field
+	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// Required. The description of the configuration.
-	Description *string `locationName:"description" type:"string"`
+	//
+	// Description is a required field
+	Description *string `locationName:"description" type:"string" required:"true"`
 
-	// Required. The type of broker engine. Note: Currently, Amazon MQ supports
-	// ACTIVEMQ and RABBITMQ.
-	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
+	// Required. The type of broker engine. Currently, Amazon MQ supports ACTIVEMQ
+	// and RABBITMQ.
+	//
+	// EngineType is a required field
+	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
-	// Required. The version of the broker engine. For a list of supported engine
-	// versions, see https://docs.aws.amazon.com/amazon-mq/latest/developer-guide/broker-engine.html
-	EngineVersion *string `locationName:"engineVersion" type:"string"`
+	// Required. The broker engine's version. For a list of supported engine versions,
+	// see, Supported engines (https://docs.aws.amazon.com//amazon-mq/latest/developer-guide/broker-engine.html).
+	//
+	// EngineVersion is a required field
+	EngineVersion *string `locationName:"engineVersion" type:"string" required:"true"`
 
 	// Required. The unique ID that Amazon MQ generates for the configuration.
-	Id *string `locationName:"id" type:"string"`
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// Required. The latest revision of the configuration.
-	LatestRevision *ConfigurationRevision `locationName:"latestRevision" type:"structure"`
+	//
+	// LatestRevision is a required field
+	LatestRevision *ConfigurationRevision `locationName:"latestRevision" type:"structure" required:"true"`
 
 	// Required. The name of the configuration. This value can contain only alphanumeric
 	// characters, dashes, periods, underscores, and tildes (- . _ ~). This value
 	// must be 1-150 characters long.
-	Name *string `locationName:"name" type:"string"`
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
 
 	// The list of all tags associated with this configuration.
 	Tags map[string]*string `locationName:"tags" type:"map"`
@@ -2443,13 +2500,16 @@ func (s *Configuration) SetTags(v map[string]*string) *Configuration {
 	return s
 }
 
-// A list of information about the configuration. Does not apply to RabbitMQ
-// brokers.
+// A list of information about the configuration.
+//
+// Does not apply to RabbitMQ brokers.
 type ConfigurationId struct {
 	_ struct{} `type:"structure"`
 
 	// Required. The unique ID that Amazon MQ generates for the configuration.
-	Id *string `locationName:"id" type:"string"`
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
 
 	// The revision number of the configuration.
 	Revision *int64 `locationName:"revision" type:"integer"`
@@ -2463,6 +2523,19 @@ func (s ConfigurationId) String() string {
 // GoString returns the string representation
 func (s ConfigurationId) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfigurationId) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfigurationId"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetId sets the Id field's value.
@@ -2482,13 +2555,17 @@ type ConfigurationRevision struct {
 	_ struct{} `type:"structure"`
 
 	// Required. The date and time of the configuration revision.
-	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601"`
+	//
+	// Created is a required field
+	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601" required:"true"`
 
 	// The description of the configuration revision.
 	Description *string `locationName:"description" type:"string"`
 
 	// Required. The revision number of the configuration.
-	Revision *int64 `locationName:"revision" type:"integer"`
+	//
+	// Revision is a required field
+	Revision *int64 `locationName:"revision" type:"integer" required:"true"`
 }
 
 // String returns the string representation
@@ -2523,13 +2600,13 @@ func (s *ConfigurationRevision) SetRevision(v int64) *ConfigurationRevision {
 type Configurations struct {
 	_ struct{} `type:"structure"`
 
-	// The current configuration of the broker.
+	// The broker's current configuration.
 	Current *ConfigurationId `locationName:"current" type:"structure"`
 
 	// The history of configurations applied to the broker.
 	History []*ConfigurationId `locationName:"history" type:"list"`
 
-	// The pending configuration of the broker.
+	// The broker's pending configuration.
 	Pending *ConfigurationId `locationName:"pending" type:"structure"`
 }
 
@@ -2622,35 +2699,48 @@ func (s *ConflictException) RequestID() string {
 type CreateBrokerRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The authentication strategy used to secure the broker.
+	// Optional. The authentication strategy used to secure the broker. The default
+	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
-	AutoMinorVersionUpgrade *bool `locationName:"autoMinorVersionUpgrade" type:"boolean"`
+	// AutoMinorVersionUpgrade is a required field
+	AutoMinorVersionUpgrade *bool `locationName:"autoMinorVersionUpgrade" type:"boolean" required:"true"`
 
-	BrokerName *string `locationName:"brokerName" type:"string"`
+	// BrokerName is a required field
+	BrokerName *string `locationName:"brokerName" type:"string" required:"true"`
 
-	// A list of information about the configuration. Does not apply to RabbitMQ
-	// brokers.
+	// A list of information about the configuration.
+	//
+	// Does not apply to RabbitMQ brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
 
 	CreatorRequestId *string `locationName:"creatorRequestId" type:"string" idempotencyToken:"true"`
 
-	// The deployment mode of the broker.
-	DeploymentMode *string `locationName:"deploymentMode" type:"string" enum:"DeploymentMode"`
+	// The broker's deployment mode.
+	//
+	// DeploymentMode is a required field
+	DeploymentMode *string `locationName:"deploymentMode" type:"string" required:"true" enum:"DeploymentMode"`
 
+	// Does not apply to RabbitMQ brokers.
+	//
 	// Encryption options for the broker.
 	EncryptionOptions *EncryptionOptions `locationName:"encryptionOptions" type:"structure"`
 
-	// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
-	// RabbitMQ.
-	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
+	// The type of broker engine. Amazon MQ supports ActiveMQ and RabbitMQ.
+	//
+	// EngineType is a required field
+	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
-	EngineVersion *string `locationName:"engineVersion" type:"string"`
+	// EngineVersion is a required field
+	EngineVersion *string `locationName:"engineVersion" type:"string" required:"true"`
 
-	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
+	// HostInstanceType is a required field
+	HostInstanceType *string `locationName:"hostInstanceType" type:"string" required:"true"`
 
-	// The metadata of the LDAP server used to authenticate and authorize connections
-	// to the broker. Currently not supported for RabbitMQ engine type.
+	// Optional. The metadata of the LDAP server used to authenticate and authorize
+	// connections to the broker.
+	//
+	// Does not apply to RabbitMQ brokers.
 	LdapServerMetadata *LdapServerMetadataInput `locationName:"ldapServerMetadata" type:"structure"`
 
 	// The list of information about logs to be enabled for the specified broker.
@@ -2660,19 +2750,22 @@ type CreateBrokerRequest struct {
 	// apply pending updates or patches to the broker.
 	MaintenanceWindowStartTime *WeeklyStartTime `locationName:"maintenanceWindowStartTime" type:"structure"`
 
-	PubliclyAccessible *bool `locationName:"publiclyAccessible" type:"boolean"`
+	// PubliclyAccessible is a required field
+	PubliclyAccessible *bool `locationName:"publiclyAccessible" type:"boolean" required:"true"`
 
 	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
 
-	// The storage type of the broker. EFS is currently not Supported for RabbitMQ
-	// engine type.
+	// The broker's storage type.
+	//
+	// EFS is not supported for RabbitMQ engine type.
 	StorageType *string `locationName:"storageType" type:"string" enum:"BrokerStorageType"`
 
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
-	Users []*User `locationName:"users" type:"list"`
+	// Users is a required field
+	Users []*User `locationName:"users" type:"list" required:"true"`
 }
 
 // String returns the string representation
@@ -2688,9 +2781,58 @@ func (s CreateBrokerRequest) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateBrokerRequest) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateBrokerRequest"}
+	if s.AutoMinorVersionUpgrade == nil {
+		invalidParams.Add(request.NewErrParamRequired("AutoMinorVersionUpgrade"))
+	}
+	if s.BrokerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BrokerName"))
+	}
+	if s.DeploymentMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentMode"))
+	}
+	if s.EngineType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineType"))
+	}
+	if s.EngineVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineVersion"))
+	}
+	if s.HostInstanceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("HostInstanceType"))
+	}
+	if s.PubliclyAccessible == nil {
+		invalidParams.Add(request.NewErrParamRequired("PubliclyAccessible"))
+	}
+	if s.Users == nil {
+		invalidParams.Add(request.NewErrParamRequired("Users"))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.EncryptionOptions != nil {
 		if err := s.EncryptionOptions.Validate(); err != nil {
 			invalidParams.AddNested("EncryptionOptions", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LdapServerMetadata != nil {
+		if err := s.LdapServerMetadata.Validate(); err != nil {
+			invalidParams.AddNested("LdapServerMetadata", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MaintenanceWindowStartTime != nil {
+		if err := s.MaintenanceWindowStartTime.Validate(); err != nil {
+			invalidParams.AddNested("MaintenanceWindowStartTime", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Users != nil {
+		for i, v := range s.Users {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Users", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -2847,16 +2989,20 @@ func (s *CreateBrokerResponse) SetBrokerId(v string) *CreateBrokerResponse {
 type CreateConfigurationRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The authentication strategy used to secure the broker.
+	// Optional. The authentication strategy used to secure the broker. The default
+	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
-	// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
-	// RabbitMQ.
-	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
+	// The type of broker engine. Amazon MQ supports ActiveMQ and RabbitMQ.
+	//
+	// EngineType is a required field
+	EngineType *string `locationName:"engineType" type:"string" required:"true" enum:"EngineType"`
 
-	EngineVersion *string `locationName:"engineVersion" type:"string"`
+	// EngineVersion is a required field
+	EngineVersion *string `locationName:"engineVersion" type:"string" required:"true"`
 
-	Name *string `locationName:"name" type:"string"`
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true"`
 
 	Tags map[string]*string `locationName:"tags" type:"map"`
 }
@@ -2869,6 +3015,25 @@ func (s CreateConfigurationRequest) String() string {
 // GoString returns the string representation
 func (s CreateConfigurationRequest) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateConfigurationRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateConfigurationRequest"}
+	if s.EngineType == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineType"))
+	}
+	if s.EngineVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("EngineVersion"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetAuthenticationStrategy sets the AuthenticationStrategy field's value.
@@ -2906,7 +3071,8 @@ type CreateConfigurationResponse struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The authentication strategy used to secure the broker.
+	// Optional. The authentication strategy used to secure the broker. The default
+	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601"`
@@ -3050,7 +3216,8 @@ type CreateUserRequest struct {
 
 	Groups []*string `locationName:"groups" type:"list"`
 
-	Password *string `locationName:"password" type:"string"`
+	// Password is a required field
+	Password *string `locationName:"password" type:"string" required:"true"`
 
 	// Username is a required field
 	Username *string `location:"uri" locationName:"username" type:"string" required:"true"`
@@ -3074,6 +3241,9 @@ func (s *CreateUserRequest) Validate() error {
 	}
 	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
+	}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
 	}
 	if s.Username == nil {
 		invalidParams.Add(request.NewErrParamRequired("Username"))
@@ -3548,7 +3718,8 @@ func (s *DescribeBrokerInstanceOptionsOutput) SetNextToken(v string) *DescribeBr
 type DescribeBrokerResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The authentication strategy used to secure the broker.
+	// Optional. The authentication strategy used to secure the broker. The default
+	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
 	AutoMinorVersionUpgrade *bool `locationName:"autoMinorVersionUpgrade" type:"boolean"`
@@ -3561,7 +3732,7 @@ type DescribeBrokerResponse struct {
 
 	BrokerName *string `locationName:"brokerName" type:"string"`
 
-	// The status of the broker.
+	// The broker's status.
 	BrokerState *string `locationName:"brokerState" type:"string" enum:"BrokerState"`
 
 	// Broker configuration information
@@ -3569,22 +3740,23 @@ type DescribeBrokerResponse struct {
 
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601"`
 
-	// The deployment mode of the broker.
+	// The broker's deployment mode.
 	DeploymentMode *string `locationName:"deploymentMode" type:"string" enum:"DeploymentMode"`
 
+	// Does not apply to RabbitMQ brokers.
+	//
 	// Encryption options for the broker.
 	EncryptionOptions *EncryptionOptions `locationName:"encryptionOptions" type:"structure"`
 
-	// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
-	// RabbitMQ.
+	// The type of broker engine. Amazon MQ supports ActiveMQ and RabbitMQ.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
 
-	// The metadata of the LDAP server used to authenticate and authorize connections
-	// to the broker.
+	// Optional. The metadata of the LDAP server used to authenticate and authorize
+	// connections to the broker.
 	LdapServerMetadata *LdapServerMetadataOutput `locationName:"ldapServerMetadata" type:"structure"`
 
 	// The list of information about logs currently enabled and pending to be deployed
@@ -3595,15 +3767,16 @@ type DescribeBrokerResponse struct {
 	// apply pending updates or patches to the broker.
 	MaintenanceWindowStartTime *WeeklyStartTime `locationName:"maintenanceWindowStartTime" type:"structure"`
 
-	// The authentication strategy used to secure the broker.
+	// Optional. The authentication strategy used to secure the broker. The default
+	// is SIMPLE.
 	PendingAuthenticationStrategy *string `locationName:"pendingAuthenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
 	PendingEngineVersion *string `locationName:"pendingEngineVersion" type:"string"`
 
 	PendingHostInstanceType *string `locationName:"pendingHostInstanceType" type:"string"`
 
-	// The metadata of the LDAP server used to authenticate and authorize connections
-	// to the broker.
+	// Optional. The metadata of the LDAP server used to authenticate and authorize
+	// connections to the broker.
 	PendingLdapServerMetadata *LdapServerMetadataOutput `locationName:"pendingLdapServerMetadata" type:"structure"`
 
 	PendingSecurityGroups []*string `locationName:"pendingSecurityGroups" type:"list"`
@@ -3612,8 +3785,9 @@ type DescribeBrokerResponse struct {
 
 	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
 
-	// The storage type of the broker. EFS is currently not Supported for RabbitMQ
-	// engine type.
+	// The broker's storage type.
+	//
+	// EFS is not supported for RabbitMQ engine type.
 	StorageType *string `locationName:"storageType" type:"string" enum:"BrokerStorageType"`
 
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
@@ -3845,15 +4019,15 @@ type DescribeConfigurationOutput struct {
 
 	Arn *string `locationName:"arn" type:"string"`
 
-	// The authentication strategy used to secure the broker.
+	// Optional. The authentication strategy used to secure the broker. The default
+	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
 	Created *time.Time `locationName:"created" type:"timestamp" timestampFormat:"iso8601"`
 
 	Description *string `locationName:"description" type:"string"`
 
-	// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
-	// RabbitMQ.
+	// The type of broker engine. Amazon MQ supports ActiveMQ and RabbitMQ.
 	EngineType *string `locationName:"engineType" type:"string" enum:"EngineType"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
@@ -4148,16 +4322,20 @@ func (s *DescribeUserResponse) SetUsername(v string) *DescribeUserResponse {
 	return s
 }
 
+// Does not apply to RabbitMQ brokers.
+//
 // Encryption options for the broker.
 type EncryptionOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The symmetric customer master key (CMK) to use for the AWS Key Management
-	// Service (KMS). This key is used to encrypt your data at rest. If not provided,
-	// Amazon MQ will use a default CMK to encrypt your data.
+	// The customer master key (CMK) to use for the AWS Key Management Service (KMS).
+	// This key is used to encrypt your data at rest. If not provided, Amazon MQ
+	// will use a default CMK to encrypt your data.
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// Enables the use of an AWS owned CMK using AWS Key Management Service (KMS).
+	// Set to true by default, if no value is provided, for example, for RabbitMQ
+	// brokers.
 	//
 	// UseAwsOwnedKey is a required field
 	UseAwsOwnedKey *bool `locationName:"useAwsOwnedKey" type:"boolean" required:"true"`
@@ -4338,45 +4516,83 @@ func (s *InternalServerErrorException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The metadata of the LDAP server used to authenticate and authorize connections
-// to the broker. Currently not supported for RabbitMQ engine type.
+// Optional. The metadata of the LDAP server used to authenticate and authorize
+// connections to the broker.
+//
+// Does not apply to RabbitMQ brokers.
 type LdapServerMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// Fully qualified domain name of the LDAP server. Optional failover server.
-	Hosts []*string `locationName:"hosts" type:"list"`
+	// Specifies the location of the LDAP server such as AWS Directory Service for
+	// Microsoft Active Directory . Optional failover server.
+	//
+	// Hosts is a required field
+	Hosts []*string `locationName:"hosts" type:"list" required:"true"`
 
-	// Fully qualified name of the directory to search for a user’s groups.
-	RoleBase *string `locationName:"roleBase" type:"string"`
+	// The distinguished name of the node in the directory information tree (DIT)
+	// to search for roles or groups. For example, ou=group, ou=corp, dc=corp, dc=example,
+	// dc=com.
+	//
+	// RoleBase is a required field
+	RoleBase *string `locationName:"roleBase" type:"string" required:"true"`
 
 	// Specifies the LDAP attribute that identifies the group name attribute in
 	// the object returned from the group membership query.
 	RoleName *string `locationName:"roleName" type:"string"`
 
-	// The search criteria for groups.
-	RoleSearchMatching *string `locationName:"roleSearchMatching" type:"string"`
+	// The LDAP search filter used to find roles within the roleBase. The distinguished
+	// name of the user matched by userSearchMatching is substituted into the {0}
+	// placeholder in the search filter. The client's username is substituted into
+	// the {1} placeholder. For example, if you set this option to (member=uid={1})for
+	// the user janedoe, the search filter becomes (member=uid=janedoe) after string
+	// substitution. It matches all role entries that have a member attribute equal
+	// to uid=janedoe under the subtree selected by the roleBase.
+	//
+	// RoleSearchMatching is a required field
+	RoleSearchMatching *string `locationName:"roleSearchMatching" type:"string" required:"true"`
 
 	// The directory search scope for the role. If set to true, scope is to search
-	// the entire sub-tree.
+	// the entire subtree.
 	RoleSearchSubtree *bool `locationName:"roleSearchSubtree" type:"boolean"`
 
-	// Service account password.
-	ServiceAccountPassword *string `locationName:"serviceAccountPassword" type:"string"`
+	// Service account password. A service account is an account in your LDAP server
+	// that has access to initiate a connection. For example, cn=admin,dc=corp,
+	// dc=example, dc=com.
+	//
+	// ServiceAccountPassword is a required field
+	ServiceAccountPassword *string `locationName:"serviceAccountPassword" type:"string" required:"true"`
 
-	// Service account username.
-	ServiceAccountUsername *string `locationName:"serviceAccountUsername" type:"string"`
+	// Service account username. A service account is an account in your LDAP server
+	// that has access to initiate a connection. For example, cn=admin,dc=corp,
+	// dc=example, dc=com.
+	//
+	// ServiceAccountUsername is a required field
+	ServiceAccountUsername *string `locationName:"serviceAccountUsername" type:"string" required:"true"`
 
-	// Fully qualified name of the directory where you want to search for users.
-	UserBase *string `locationName:"userBase" type:"string"`
+	// Select a particular subtree of the directory information tree (DIT) to search
+	// for user entries. The subtree is specified by a DN, which specifies the base
+	// node of the subtree. For example, by setting this option to ou=Users,ou=corp,
+	// dc=corp, dc=example, dc=com, the search for user entries is restricted to
+	// the subtree beneath ou=Users, ou=corp, dc=corp, dc=example, dc=com.
+	//
+	// UserBase is a required field
+	UserBase *string `locationName:"userBase" type:"string" required:"true"`
 
 	// Specifies the name of the LDAP attribute for the user group membership.
 	UserRoleName *string `locationName:"userRoleName" type:"string"`
 
-	// The search criteria for users.
-	UserSearchMatching *string `locationName:"userSearchMatching" type:"string"`
+	// The LDAP search filter used to find users within the userBase. The client's
+	// username is substituted into the {0} placeholder in the search filter. For
+	// example, if this option is set to (uid={0}) and the received username is
+	// janedoe, the search filter becomes (uid=janedoe) after string substitution.
+	// It will result in matching an entry like uid=janedoe, ou=Users,ou=corp, dc=corp,
+	// dc=example, dc=com.
+	//
+	// UserSearchMatching is a required field
+	UserSearchMatching *string `locationName:"userSearchMatching" type:"string" required:"true"`
 
 	// The directory search scope for the user. If set to true, scope is to search
-	// the entire sub-tree.
+	// the entire subtree.
 	UserSearchSubtree *bool `locationName:"userSearchSubtree" type:"boolean"`
 }
 
@@ -4388,6 +4604,37 @@ func (s LdapServerMetadataInput) String() string {
 // GoString returns the string representation
 func (s LdapServerMetadataInput) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LdapServerMetadataInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LdapServerMetadataInput"}
+	if s.Hosts == nil {
+		invalidParams.Add(request.NewErrParamRequired("Hosts"))
+	}
+	if s.RoleBase == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleBase"))
+	}
+	if s.RoleSearchMatching == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleSearchMatching"))
+	}
+	if s.ServiceAccountPassword == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceAccountPassword"))
+	}
+	if s.ServiceAccountUsername == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServiceAccountUsername"))
+	}
+	if s.UserBase == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserBase"))
+	}
+	if s.UserSearchMatching == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserSearchMatching"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetHosts sets the Hosts field's value.
@@ -4456,42 +4703,74 @@ func (s *LdapServerMetadataInput) SetUserSearchSubtree(v bool) *LdapServerMetada
 	return s
 }
 
-// The metadata of the LDAP server used to authenticate and authorize connections
-// to the broker.
+// Optional. The metadata of the LDAP server used to authenticate and authorize
+// connections to the broker.
 type LdapServerMetadataOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Fully qualified domain name of the LDAP server. Optional failover server.
-	Hosts []*string `locationName:"hosts" type:"list"`
+	// Specifies the location of the LDAP server such as AWS Directory Service for
+	// Microsoft Active Directory . Optional failover server.
+	//
+	// Hosts is a required field
+	Hosts []*string `locationName:"hosts" type:"list" required:"true"`
 
-	// Fully qualified name of the directory to search for a user’s groups.
-	RoleBase *string `locationName:"roleBase" type:"string"`
+	// The distinguished name of the node in the directory information tree (DIT)
+	// to search for roles or groups. For example, ou=group, ou=corp, dc=corp, dc=example,
+	// dc=com.
+	//
+	// RoleBase is a required field
+	RoleBase *string `locationName:"roleBase" type:"string" required:"true"`
 
 	// Specifies the LDAP attribute that identifies the group name attribute in
 	// the object returned from the group membership query.
 	RoleName *string `locationName:"roleName" type:"string"`
 
-	// The search criteria for groups.
-	RoleSearchMatching *string `locationName:"roleSearchMatching" type:"string"`
+	// The LDAP search filter used to find roles within the roleBase. The distinguished
+	// name of the user matched by userSearchMatching is substituted into the {0}
+	// placeholder in the search filter. The client's username is substituted into
+	// the {1} placeholder. For example, if you set this option to (member=uid={1})for
+	// the user janedoe, the search filter becomes (member=uid=janedoe) after string
+	// substitution. It matches all role entries that have a member attribute equal
+	// to uid=janedoe under the subtree selected by the roleBase.
+	//
+	// RoleSearchMatching is a required field
+	RoleSearchMatching *string `locationName:"roleSearchMatching" type:"string" required:"true"`
 
 	// The directory search scope for the role. If set to true, scope is to search
-	// the entire sub-tree.
+	// the entire subtree.
 	RoleSearchSubtree *bool `locationName:"roleSearchSubtree" type:"boolean"`
 
-	// Service account username.
-	ServiceAccountUsername *string `locationName:"serviceAccountUsername" type:"string"`
+	// Service account username. A service account is an account in your LDAP server
+	// that has access to initiate a connection. For example, cn=admin,dc=corp,
+	// dc=example, dc=com.
+	//
+	// ServiceAccountUsername is a required field
+	ServiceAccountUsername *string `locationName:"serviceAccountUsername" type:"string" required:"true"`
 
-	// Fully qualified name of the directory where you want to search for users.
-	UserBase *string `locationName:"userBase" type:"string"`
+	// Select a particular subtree of the directory information tree (DIT) to search
+	// for user entries. The subtree is specified by a DN, which specifies the base
+	// node of the subtree. For example, by setting this option to ou=Users,ou=corp,
+	// dc=corp, dc=example, dc=com, the search for user entries is restricted to
+	// the subtree beneath ou=Users, ou=corp, dc=corp, dc=example, dc=com.
+	//
+	// UserBase is a required field
+	UserBase *string `locationName:"userBase" type:"string" required:"true"`
 
 	// Specifies the name of the LDAP attribute for the user group membership.
 	UserRoleName *string `locationName:"userRoleName" type:"string"`
 
-	// The search criteria for users.
-	UserSearchMatching *string `locationName:"userSearchMatching" type:"string"`
+	// The LDAP search filter used to find users within the userBase. The client's
+	// username is substituted into the {0} placeholder in the search filter. For
+	// example, if this option is set to (uid={0}) and the received username is
+	// janedoe, the search filter becomes (uid=janedoe) after string substitution.
+	// It will result in matching an entry like uid=janedoe, ou=Users,ou=corp, dc=corp,
+	// dc=example, dc=com.
+	//
+	// UserSearchMatching is a required field
+	UserSearchMatching *string `locationName:"userSearchMatching" type:"string" required:"true"`
 
 	// The directory search scope for the user. If set to true, scope is to search
-	// the entire sub-tree.
+	// the entire subtree.
 	UserSearchSubtree *bool `locationName:"userSearchSubtree" type:"boolean"`
 }
 
@@ -5035,10 +5314,14 @@ type LogsSummary struct {
 	AuditLogGroup *string `locationName:"auditLogGroup" type:"string"`
 
 	// Enables general logging.
-	General *bool `locationName:"general" type:"boolean"`
+	//
+	// General is a required field
+	General *bool `locationName:"general" type:"boolean" required:"true"`
 
 	// The location of the CloudWatch Logs log group where general logs are sent.
-	GeneralLogGroup *string `locationName:"generalLogGroup" type:"string"`
+	//
+	// GeneralLogGroup is a required field
+	GeneralLogGroup *string `locationName:"generalLogGroup" type:"string" required:"true"`
 
 	// The list of information about logs pending to be deployed for the specified
 	// broker.
@@ -5242,7 +5525,9 @@ type SanitizationWarning struct {
 	ElementName *string `locationName:"elementName" type:"string"`
 
 	// Required. The reason for which the XML elements or attributes were sanitized.
-	Reason *string `locationName:"reason" type:"string" enum:"SanitizationWarningReason"`
+	//
+	// Reason is a required field
+	Reason *string `locationName:"reason" type:"string" required:"true" enum:"SanitizationWarningReason"`
 }
 
 // String returns the string representation
@@ -5334,7 +5619,8 @@ func (s *UnauthorizedException) RequestID() string {
 type UpdateBrokerRequest struct {
 	_ struct{} `type:"structure"`
 
-	// The authentication strategy used to secure the broker.
+	// Optional. The authentication strategy used to secure the broker. The default
+	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
 	AutoMinorVersionUpgrade *bool `locationName:"autoMinorVersionUpgrade" type:"boolean"`
@@ -5342,20 +5628,27 @@ type UpdateBrokerRequest struct {
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
 
-	// A list of information about the configuration. Does not apply to RabbitMQ
-	// brokers.
+	// A list of information about the configuration.
+	//
+	// Does not apply to RabbitMQ brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
 
-	// The metadata of the LDAP server used to authenticate and authorize connections
-	// to the broker. Currently not supported for RabbitMQ engine type.
+	// Optional. The metadata of the LDAP server used to authenticate and authorize
+	// connections to the broker.
+	//
+	// Does not apply to RabbitMQ brokers.
 	LdapServerMetadata *LdapServerMetadataInput `locationName:"ldapServerMetadata" type:"structure"`
 
 	// The list of information about logs to be enabled for the specified broker.
 	Logs *Logs `locationName:"logs" type:"structure"`
+
+	// The scheduled time period relative to UTC during which Amazon MQ begins to
+	// apply pending updates or patches to the broker.
+	MaintenanceWindowStartTime *WeeklyStartTime `locationName:"maintenanceWindowStartTime" type:"structure"`
 
 	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
 }
@@ -5378,6 +5671,21 @@ func (s *UpdateBrokerRequest) Validate() error {
 	}
 	if s.BrokerId != nil && len(*s.BrokerId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("BrokerId", 1))
+	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.LdapServerMetadata != nil {
+		if err := s.LdapServerMetadata.Validate(); err != nil {
+			invalidParams.AddNested("LdapServerMetadata", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MaintenanceWindowStartTime != nil {
+		if err := s.MaintenanceWindowStartTime.Validate(); err != nil {
+			invalidParams.AddNested("MaintenanceWindowStartTime", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5434,6 +5742,12 @@ func (s *UpdateBrokerRequest) SetLogs(v *Logs) *UpdateBrokerRequest {
 	return s
 }
 
+// SetMaintenanceWindowStartTime sets the MaintenanceWindowStartTime field's value.
+func (s *UpdateBrokerRequest) SetMaintenanceWindowStartTime(v *WeeklyStartTime) *UpdateBrokerRequest {
+	s.MaintenanceWindowStartTime = v
+	return s
+}
+
 // SetSecurityGroups sets the SecurityGroups field's value.
 func (s *UpdateBrokerRequest) SetSecurityGroups(v []*string) *UpdateBrokerRequest {
 	s.SecurityGroups = v
@@ -5443,27 +5757,33 @@ func (s *UpdateBrokerRequest) SetSecurityGroups(v []*string) *UpdateBrokerReques
 type UpdateBrokerResponse struct {
 	_ struct{} `type:"structure"`
 
-	// The authentication strategy used to secure the broker.
+	// Optional. The authentication strategy used to secure the broker. The default
+	// is SIMPLE.
 	AuthenticationStrategy *string `locationName:"authenticationStrategy" type:"string" enum:"AuthenticationStrategy"`
 
 	AutoMinorVersionUpgrade *bool `locationName:"autoMinorVersionUpgrade" type:"boolean"`
 
 	BrokerId *string `locationName:"brokerId" type:"string"`
 
-	// A list of information about the configuration. Does not apply to RabbitMQ
-	// brokers.
+	// A list of information about the configuration.
+	//
+	// Does not apply to RabbitMQ brokers.
 	Configuration *ConfigurationId `locationName:"configuration" type:"structure"`
 
 	EngineVersion *string `locationName:"engineVersion" type:"string"`
 
 	HostInstanceType *string `locationName:"hostInstanceType" type:"string"`
 
-	// The metadata of the LDAP server used to authenticate and authorize connections
-	// to the broker.
+	// Optional. The metadata of the LDAP server used to authenticate and authorize
+	// connections to the broker.
 	LdapServerMetadata *LdapServerMetadataOutput `locationName:"ldapServerMetadata" type:"structure"`
 
 	// The list of information about logs to be enabled for the specified broker.
 	Logs *Logs `locationName:"logs" type:"structure"`
+
+	// The scheduled time period relative to UTC during which Amazon MQ begins to
+	// apply pending updates or patches to the broker.
+	MaintenanceWindowStartTime *WeeklyStartTime `locationName:"maintenanceWindowStartTime" type:"structure"`
 
 	SecurityGroups []*string `locationName:"securityGroups" type:"list"`
 }
@@ -5526,6 +5846,12 @@ func (s *UpdateBrokerResponse) SetLogs(v *Logs) *UpdateBrokerResponse {
 	return s
 }
 
+// SetMaintenanceWindowStartTime sets the MaintenanceWindowStartTime field's value.
+func (s *UpdateBrokerResponse) SetMaintenanceWindowStartTime(v *WeeklyStartTime) *UpdateBrokerResponse {
+	s.MaintenanceWindowStartTime = v
+	return s
+}
+
 // SetSecurityGroups sets the SecurityGroups field's value.
 func (s *UpdateBrokerResponse) SetSecurityGroups(v []*string) *UpdateBrokerResponse {
 	s.SecurityGroups = v
@@ -5538,7 +5864,8 @@ type UpdateConfigurationRequest struct {
 	// ConfigurationId is a required field
 	ConfigurationId *string `location:"uri" locationName:"configuration-id" type:"string" required:"true"`
 
-	Data *string `locationName:"data" type:"string"`
+	// Data is a required field
+	Data *string `locationName:"data" type:"string" required:"true"`
 
 	Description *string `locationName:"description" type:"string"`
 }
@@ -5561,6 +5888,9 @@ func (s *UpdateConfigurationRequest) Validate() error {
 	}
 	if s.ConfigurationId != nil && len(*s.ConfigurationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ConfigurationId", 1))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5742,28 +6072,41 @@ func (s *UpdateUserRequest) SetUsername(v string) *UpdateUserRequest {
 	return s
 }
 
-// A user associated with the broker.
+// A user associated with the broker. For RabbitMQ brokers, one and only one
+// administrative user is accepted and created when a broker is first provisioned.
+// All subsequent broker users are created by making RabbitMQ API calls directly
+// to brokers or via the RabbitMQ web console.
 type User struct {
 	_ struct{} `type:"structure"`
 
-	// Enables access to the ActiveMQ Web Console for the ActiveMQ user (Does not
-	// apply to RabbitMQ brokers).
+	// Enables access to the ActiveMQ Web Console for the ActiveMQ user. Does not
+	// apply to RabbitMQ brokers.
 	ConsoleAccess *bool `locationName:"consoleAccess" type:"boolean"`
 
 	// The list of groups (20 maximum) to which the ActiveMQ user belongs. This
 	// value can contain only alphanumeric characters, dashes, periods, underscores,
-	// and tildes (- . _ ~). This value must be 2-100 characters long.
+	// and tildes (- . _ ~). This value must be 2-100 characters long. Does not
+	// apply to RabbitMQ brokers.
 	Groups []*string `locationName:"groups" type:"list"`
 
-	// Required. The password of the broker user. This value must be at least 12
-	// characters long, must contain at least 4 unique characters, and must not
-	// contain commas.
-	Password *string `locationName:"password" type:"string"`
+	// Required. The password of the user. This value must be at least 12 characters
+	// long, must contain at least 4 unique characters, and must not contain commas,
+	// colons, or equal signs (,:=).
+	//
+	// Password is a required field
+	Password *string `locationName:"password" type:"string" required:"true"`
 
-	// Required. The username of the broker user. This value can contain only alphanumeric
-	// characters, dashes, periods, underscores, and tildes (- . _ ~). This value
+	// important>Amazon MQ for ActiveMQ For ActiveMQ brokers, this value can contain
+	// only alphanumeric characters, dashes, periods, underscores, and tildes (-
+	// . _ ~). This value must be 2-100 characters long./important> Amazon MQ for
+	// RabbitMQ
+	// For RabbitMQ brokers, this value can contain only alphanumeric characters,
+	// dashes, periods, underscores (- . _). This value must not contain a tilde
+	// (~) character. Amazon MQ prohibts using guest as a valid usename. This value
 	// must be 2-100 characters long.
-	Username *string `locationName:"username" type:"string"`
+	//
+	// Username is a required field
+	Username *string `locationName:"username" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -5774,6 +6117,22 @@ func (s User) String() string {
 // GoString returns the string representation
 func (s User) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *User) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "User"}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetConsoleAccess sets the ConsoleAccess field's value.
@@ -5814,7 +6173,9 @@ type UserPendingChanges struct {
 	Groups []*string `locationName:"groups" type:"list"`
 
 	// Required. The type of change pending for the ActiveMQ user.
-	PendingChange *string `locationName:"pendingChange" type:"string" enum:"ChangeType"`
+	//
+	// PendingChange is a required field
+	PendingChange *string `locationName:"pendingChange" type:"string" required:"true" enum:"ChangeType"`
 }
 
 // String returns the string representation
@@ -5845,7 +6206,7 @@ func (s *UserPendingChanges) SetPendingChange(v string) *UserPendingChanges {
 	return s
 }
 
-// Returns a list of all broker users.
+// Returns a list of all broker users. Does not apply to RabbitMQ brokers.
 type UserSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5855,7 +6216,9 @@ type UserSummary struct {
 	// Required. The username of the broker user. This value can contain only alphanumeric
 	// characters, dashes, periods, underscores, and tildes (- . _ ~). This value
 	// must be 2-100 characters long.
-	Username *string `locationName:"username" type:"string"`
+	//
+	// Username is a required field
+	Username *string `locationName:"username" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -5886,10 +6249,14 @@ type WeeklyStartTime struct {
 	_ struct{} `type:"structure"`
 
 	// Required. The day of the week.
-	DayOfWeek *string `locationName:"dayOfWeek" type:"string" enum:"DayOfWeek"`
+	//
+	// DayOfWeek is a required field
+	DayOfWeek *string `locationName:"dayOfWeek" type:"string" required:"true" enum:"DayOfWeek"`
 
 	// Required. The time, in 24-hour format.
-	TimeOfDay *string `locationName:"timeOfDay" type:"string"`
+	//
+	// TimeOfDay is a required field
+	TimeOfDay *string `locationName:"timeOfDay" type:"string" required:"true"`
 
 	// The time zone, UTC by default, in either the Country/City format, or the
 	// UTC offset format.
@@ -5904,6 +6271,22 @@ func (s WeeklyStartTime) String() string {
 // GoString returns the string representation
 func (s WeeklyStartTime) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WeeklyStartTime) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WeeklyStartTime"}
+	if s.DayOfWeek == nil {
+		invalidParams.Add(request.NewErrParamRequired("DayOfWeek"))
+	}
+	if s.TimeOfDay == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeOfDay"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetDayOfWeek sets the DayOfWeek field's value.
@@ -5924,7 +6307,8 @@ func (s *WeeklyStartTime) SetTimeZone(v string) *WeeklyStartTime {
 	return s
 }
 
-// The authentication strategy used to secure the broker.
+// Optional. The authentication strategy used to secure the broker. The default
+// is SIMPLE.
 const (
 	// AuthenticationStrategySimple is a AuthenticationStrategy enum value
 	AuthenticationStrategySimple = "SIMPLE"
@@ -5941,7 +6325,7 @@ func AuthenticationStrategy_Values() []string {
 	}
 }
 
-// The status of the broker.
+// The broker's status.
 const (
 	// BrokerStateCreationInProgress is a BrokerState enum value
 	BrokerStateCreationInProgress = "CREATION_IN_PROGRESS"
@@ -5970,8 +6354,9 @@ func BrokerState_Values() []string {
 	}
 }
 
-// The storage type of the broker. EFS is currently not Supported for RabbitMQ
-// engine type.
+// The broker's storage type.
+//
+// EFS is not supported for RabbitMQ engine type.
 const (
 	// BrokerStorageTypeEbs is a BrokerStorageType enum value
 	BrokerStorageTypeEbs = "EBS"
@@ -6045,7 +6430,7 @@ func DayOfWeek_Values() []string {
 	}
 }
 
-// The deployment mode of the broker.
+// The broker's deployment mode.
 const (
 	// DeploymentModeSingleInstance is a DeploymentMode enum value
 	DeploymentModeSingleInstance = "SINGLE_INSTANCE"
@@ -6066,8 +6451,7 @@ func DeploymentMode_Values() []string {
 	}
 }
 
-// The type of broker engine. Note: Currently, Amazon MQ supports ActiveMQ and
-// RabbitMQ.
+// The type of broker engine. Amazon MQ supports ActiveMQ and RabbitMQ.
 const (
 	// EngineTypeActivemq is a EngineType enum value
 	EngineTypeActivemq = "ACTIVEMQ"
