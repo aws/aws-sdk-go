@@ -148,6 +148,10 @@ type ChimeAPI interface {
 	CreateChannelModeratorWithContext(aws.Context, *chime.CreateChannelModeratorInput, ...request.Option) (*chime.CreateChannelModeratorOutput, error)
 	CreateChannelModeratorRequest(*chime.CreateChannelModeratorInput) (*request.Request, *chime.CreateChannelModeratorOutput)
 
+	CreateMediaCapturePipeline(*chime.CreateMediaCapturePipelineInput) (*chime.CreateMediaCapturePipelineOutput, error)
+	CreateMediaCapturePipelineWithContext(aws.Context, *chime.CreateMediaCapturePipelineInput, ...request.Option) (*chime.CreateMediaCapturePipelineOutput, error)
+	CreateMediaCapturePipelineRequest(*chime.CreateMediaCapturePipelineInput) (*request.Request, *chime.CreateMediaCapturePipelineOutput)
+
 	CreateMeeting(*chime.CreateMeetingInput) (*chime.CreateMeetingOutput, error)
 	CreateMeetingWithContext(aws.Context, *chime.CreateMeetingInput, ...request.Option) (*chime.CreateMeetingOutput, error)
 	CreateMeetingRequest(*chime.CreateMeetingInput) (*request.Request, *chime.CreateMeetingOutput)
@@ -247,6 +251,10 @@ type ChimeAPI interface {
 	DeleteEventsConfiguration(*chime.DeleteEventsConfigurationInput) (*chime.DeleteEventsConfigurationOutput, error)
 	DeleteEventsConfigurationWithContext(aws.Context, *chime.DeleteEventsConfigurationInput, ...request.Option) (*chime.DeleteEventsConfigurationOutput, error)
 	DeleteEventsConfigurationRequest(*chime.DeleteEventsConfigurationInput) (*request.Request, *chime.DeleteEventsConfigurationOutput)
+
+	DeleteMediaCapturePipeline(*chime.DeleteMediaCapturePipelineInput) (*chime.DeleteMediaCapturePipelineOutput, error)
+	DeleteMediaCapturePipelineWithContext(aws.Context, *chime.DeleteMediaCapturePipelineInput, ...request.Option) (*chime.DeleteMediaCapturePipelineOutput, error)
+	DeleteMediaCapturePipelineRequest(*chime.DeleteMediaCapturePipelineInput) (*request.Request, *chime.DeleteMediaCapturePipelineOutput)
 
 	DeleteMeeting(*chime.DeleteMeetingInput) (*chime.DeleteMeetingOutput, error)
 	DeleteMeetingWithContext(aws.Context, *chime.DeleteMeetingInput, ...request.Option) (*chime.DeleteMeetingOutput, error)
@@ -395,6 +403,10 @@ type ChimeAPI interface {
 	GetGlobalSettings(*chime.GetGlobalSettingsInput) (*chime.GetGlobalSettingsOutput, error)
 	GetGlobalSettingsWithContext(aws.Context, *chime.GetGlobalSettingsInput, ...request.Option) (*chime.GetGlobalSettingsOutput, error)
 	GetGlobalSettingsRequest(*chime.GetGlobalSettingsInput) (*request.Request, *chime.GetGlobalSettingsOutput)
+
+	GetMediaCapturePipeline(*chime.GetMediaCapturePipelineInput) (*chime.GetMediaCapturePipelineOutput, error)
+	GetMediaCapturePipelineWithContext(aws.Context, *chime.GetMediaCapturePipelineInput, ...request.Option) (*chime.GetMediaCapturePipelineOutput, error)
+	GetMediaCapturePipelineRequest(*chime.GetMediaCapturePipelineInput) (*request.Request, *chime.GetMediaCapturePipelineOutput)
 
 	GetMeeting(*chime.GetMeetingInput) (*chime.GetMeetingOutput, error)
 	GetMeetingWithContext(aws.Context, *chime.GetMeetingInput, ...request.Option) (*chime.GetMeetingOutput, error)
@@ -582,6 +594,13 @@ type ChimeAPI interface {
 
 	ListChannelsModeratedByAppInstanceUserPages(*chime.ListChannelsModeratedByAppInstanceUserInput, func(*chime.ListChannelsModeratedByAppInstanceUserOutput, bool) bool) error
 	ListChannelsModeratedByAppInstanceUserPagesWithContext(aws.Context, *chime.ListChannelsModeratedByAppInstanceUserInput, func(*chime.ListChannelsModeratedByAppInstanceUserOutput, bool) bool, ...request.Option) error
+
+	ListMediaCapturePipelines(*chime.ListMediaCapturePipelinesInput) (*chime.ListMediaCapturePipelinesOutput, error)
+	ListMediaCapturePipelinesWithContext(aws.Context, *chime.ListMediaCapturePipelinesInput, ...request.Option) (*chime.ListMediaCapturePipelinesOutput, error)
+	ListMediaCapturePipelinesRequest(*chime.ListMediaCapturePipelinesInput) (*request.Request, *chime.ListMediaCapturePipelinesOutput)
+
+	ListMediaCapturePipelinesPages(*chime.ListMediaCapturePipelinesInput, func(*chime.ListMediaCapturePipelinesOutput, bool) bool) error
+	ListMediaCapturePipelinesPagesWithContext(aws.Context, *chime.ListMediaCapturePipelinesInput, func(*chime.ListMediaCapturePipelinesOutput, bool) bool, ...request.Option) error
 
 	ListMeetingTags(*chime.ListMeetingTagsInput) (*chime.ListMeetingTagsOutput, error)
 	ListMeetingTagsWithContext(aws.Context, *chime.ListMeetingTagsInput, ...request.Option) (*chime.ListMeetingTagsOutput, error)

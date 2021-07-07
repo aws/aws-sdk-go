@@ -12,6 +12,22 @@
     "uid":"cloudfront-2020-05-31"
   },
   "operations":{
+    "AssociateAlias":{
+      "name":"AssociateAlias2020_05_31",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/2020-05-31/distribution/{TargetDistributionId}/associate-alias",
+        "responseCode":200
+      },
+      "input":{"shape":"AssociateAliasRequest"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"NoSuchDistribution"},
+        {"shape":"TooManyDistributionCNAMEs"},
+        {"shape":"IllegalUpdate"},
+        {"shape":"AccessDenied"}
+      ]
+    },
     "CreateCachePolicy":{
       "name":"CreateCachePolicy2020_05_31",
       "http":{
@@ -245,7 +261,8 @@
         {"shape":"TooManyFunctions"},
         {"shape":"FunctionAlreadyExists"},
         {"shape":"FunctionSizeLimitExceeded"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "CreateInvalidation":{
@@ -494,7 +511,8 @@
         {"shape":"InvalidIfMatchVersion"},
         {"shape":"NoSuchFunctionExists"},
         {"shape":"FunctionInUse"},
-        {"shape":"PreconditionFailed"}
+        {"shape":"PreconditionFailed"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "DeleteKeyGroup":{
@@ -603,7 +621,8 @@
       "input":{"shape":"DescribeFunctionRequest"},
       "output":{"shape":"DescribeFunctionResult"},
       "errors":[
-        {"shape":"NoSuchFunctionExists"}
+        {"shape":"NoSuchFunctionExists"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "GetCachePolicy":{
@@ -745,7 +764,8 @@
       "input":{"shape":"GetFunctionRequest"},
       "output":{"shape":"GetFunctionResult"},
       "errors":[
-        {"shape":"NoSuchFunctionExists"}
+        {"shape":"NoSuchFunctionExists"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "GetInvalidation":{
@@ -922,6 +942,20 @@
         {"shape":"InvalidArgument"}
       ]
     },
+    "ListConflictingAliases":{
+      "name":"ListConflictingAliases2020_05_31",
+      "http":{
+        "method":"GET",
+        "requestUri":"/2020-05-31/conflicting-alias",
+        "responseCode":200
+      },
+      "input":{"shape":"ListConflictingAliasesRequest"},
+      "output":{"shape":"ListConflictingAliasesResult"},
+      "errors":[
+        {"shape":"InvalidArgument"},
+        {"shape":"NoSuchDistribution"}
+      ]
+    },
     "ListDistributions":{
       "name":"ListDistributions2020_05_31",
       "http":{
@@ -1037,7 +1071,8 @@
       "input":{"shape":"ListFunctionsRequest"},
       "output":{"shape":"ListFunctionsResult"},
       "errors":[
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "ListInvalidations":{
@@ -1145,7 +1180,8 @@
         {"shape":"InvalidArgument"},
         {"shape":"InvalidIfMatchVersion"},
         {"shape":"NoSuchFunctionExists"},
-        {"shape":"PreconditionFailed"}
+        {"shape":"PreconditionFailed"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "TagResource":{
@@ -1179,7 +1215,8 @@
         {"shape":"InvalidArgument"},
         {"shape":"InvalidIfMatchVersion"},
         {"shape":"NoSuchFunctionExists"},
-        {"shape":"TestFunctionFailed"}
+        {"shape":"TestFunctionFailed"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "UntagResource":{
@@ -1368,7 +1405,8 @@
         {"shape":"InvalidIfMatchVersion"},
         {"shape":"NoSuchFunctionExists"},
         {"shape":"PreconditionFailed"},
-        {"shape":"FunctionSizeLimitExceeded"}
+        {"shape":"FunctionSizeLimitExceeded"},
+        {"shape":"UnsupportedOperation"}
       ]
     },
     "UpdateKeyGroup":{
@@ -1543,6 +1581,25 @@
         "Quantity":{"shape":"integer"},
         "Items":{"shape":"MethodsList"},
         "CachedMethods":{"shape":"CachedMethods"}
+      }
+    },
+    "AssociateAliasRequest":{
+      "type":"structure",
+      "required":[
+        "TargetDistributionId",
+        "Alias"
+      ],
+      "members":{
+        "TargetDistributionId":{
+          "shape":"string",
+          "location":"uri",
+          "locationName":"TargetDistributionId"
+        },
+        "Alias":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Alias"
+        }
       }
     },
     "AwsAccountNumberList":{
@@ -1860,6 +1917,30 @@
     "CommentType":{
       "type":"string",
       "sensitive":true
+    },
+    "ConflictingAlias":{
+      "type":"structure",
+      "members":{
+        "Alias":{"shape":"string"},
+        "DistributionId":{"shape":"string"},
+        "AccountId":{"shape":"string"}
+      }
+    },
+    "ConflictingAliases":{
+      "type":"list",
+      "member":{
+        "shape":"ConflictingAlias",
+        "locationName":"ConflictingAlias"
+      }
+    },
+    "ConflictingAliasesList":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"string"},
+        "MaxItems":{"shape":"integer"},
+        "Quantity":{"shape":"integer"},
+        "Items":{"shape":"ConflictingAliases"}
+      }
     },
     "ContentTypeProfile":{
       "type":"structure",
@@ -4241,6 +4322,42 @@
       },
       "payload":"CloudFrontOriginAccessIdentityList"
     },
+    "ListConflictingAliasesRequest":{
+      "type":"structure",
+      "required":[
+        "DistributionId",
+        "Alias"
+      ],
+      "members":{
+        "DistributionId":{
+          "shape":"distributionIdString",
+          "location":"querystring",
+          "locationName":"DistributionId"
+        },
+        "Alias":{
+          "shape":"aliasString",
+          "location":"querystring",
+          "locationName":"Alias"
+        },
+        "Marker":{
+          "shape":"string",
+          "location":"querystring",
+          "locationName":"Marker"
+        },
+        "MaxItems":{
+          "shape":"listConflictingAliasesMaxItemsInteger",
+          "location":"querystring",
+          "locationName":"MaxItems"
+        }
+      }
+    },
+    "ListConflictingAliasesResult":{
+      "type":"structure",
+      "members":{
+        "ConflictingAliasesList":{"shape":"ConflictingAliasesList"}
+      },
+      "payload":"ConflictingAliasesList"
+    },
     "ListDistributionsByCachePolicyIdRequest":{
       "type":"structure",
       "required":["CachePolicyId"],
@@ -6559,8 +6676,20 @@
         "redirect-to-https"
       ]
     },
+    "aliasString":{
+      "type":"string",
+      "max":253
+    },
     "boolean":{"type":"boolean"},
+    "distributionIdString":{
+      "type":"string",
+      "max":25
+    },
     "integer":{"type":"integer"},
+    "listConflictingAliasesMaxItemsInteger":{
+      "type":"integer",
+      "max":100
+    },
     "long":{"type":"long"},
     "string":{"type":"string"},
     "timestamp":{"type":"timestamp"}

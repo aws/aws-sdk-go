@@ -63,7 +63,7 @@ func (c *IoTSiteWise) AssociateAssetsRequest(input *AssociateAssetsInput) (req *
 // Associates a child asset with the given parent asset through a hierarchy
 // defined in the parent asset's model. For more information, see Associating
 // assets (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/add-associated-assets.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -81,7 +81,7 @@ func (c *IoTSiteWise) AssociateAssetsRequest(input *AssociateAssetsInput) (req *
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -89,15 +89,15 @@ func (c *IoTSiteWise) AssociateAssetsRequest(input *AssociateAssetsInput) (req *
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -171,7 +171,7 @@ func (c *IoTSiteWise) BatchAssociateProjectAssetsRequest(input *BatchAssociatePr
 
 // BatchAssociateProjectAssets API operation for AWS IoT SiteWise.
 //
-// Associates a group (batch) of assets with an AWS IoT SiteWise Monitor project.
+// Associates a group (batch) of assets with an IoT SiteWise Monitor project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -189,15 +189,15 @@ func (c *IoTSiteWise) BatchAssociateProjectAssetsRequest(input *BatchAssociatePr
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -205,7 +205,7 @@ func (c *IoTSiteWise) BatchAssociateProjectAssetsRequest(input *BatchAssociatePr
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/BatchAssociateProjectAssets
 func (c *IoTSiteWise) BatchAssociateProjectAssets(input *BatchAssociateProjectAssetsInput) (*BatchAssociateProjectAssetsOutput, error) {
@@ -275,8 +275,7 @@ func (c *IoTSiteWise) BatchDisassociateProjectAssetsRequest(input *BatchDisassoc
 
 // BatchDisassociateProjectAssets API operation for AWS IoT SiteWise.
 //
-// Disassociates a group (batch) of assets from an AWS IoT SiteWise Monitor
-// project.
+// Disassociates a group (batch) of assets from an IoT SiteWise Monitor project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -294,15 +293,15 @@ func (c *IoTSiteWise) BatchDisassociateProjectAssetsRequest(input *BatchDisassoc
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/BatchDisassociateProjectAssets
 func (c *IoTSiteWise) BatchDisassociateProjectAssets(input *BatchDisassociateProjectAssetsInput) (*BatchDisassociateProjectAssetsOutput, error) {
@@ -372,10 +371,10 @@ func (c *IoTSiteWise) BatchPutAssetPropertyValueRequest(input *BatchPutAssetProp
 
 // BatchPutAssetPropertyValue API operation for AWS IoT SiteWise.
 //
-// Sends a list of asset property values to AWS IoT SiteWise. Each value is
-// a timestamp-quality-value (TQV) data point. For more information, see Ingesting
-// data using the API (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ingest-api.html)
-// in the AWS IoT SiteWise User Guide.
+// Sends a list of asset property values to IoT SiteWise. Each value is a timestamp-quality-value
+// (TQV) data point. For more information, see Ingesting data using the API
+// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/ingest-api.html)
+// in the IoT SiteWise User Guide.
 //
 // To identify an asset property, you must specify one of the following:
 //
@@ -384,21 +383,18 @@ func (c *IoTSiteWise) BatchPutAssetPropertyValueRequest(input *BatchPutAssetProp
 //    * A propertyAlias, which is a data stream alias (for example, /company/windfarm/3/turbine/7/temperature).
 //    To define an asset property's alias, see UpdateAssetProperty (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html).
 //
-// With respect to Unix epoch time, AWS IoT SiteWise accepts only TQVs that
-// have a timestamp of no more than 7 days in the past and no more than 10 minutes
-// in the future. AWS IoT SiteWise rejects timestamps outside of the inclusive
-// range of [-7 days, +10 minutes] and returns a TimestampOutOfRangeException
-// error.
+// With respect to Unix epoch time, IoT SiteWise accepts only TQVs that have
+// a timestamp of no more than 7 days in the past and no more than 10 minutes
+// in the future. IoT SiteWise rejects timestamps outside of the inclusive range
+// of [-7 days, +10 minutes] and returns a TimestampOutOfRangeException error.
 //
-// For each asset property, AWS IoT SiteWise overwrites TQVs with duplicate
-// timestamps unless the newer TQV has a different quality. For example, if
-// you store a TQV {T1, GOOD, V1}, then storing {T1, GOOD, V2} replaces the
-// existing TQV.
+// For each asset property, IoT SiteWise overwrites TQVs with duplicate timestamps
+// unless the newer TQV has a different quality. For example, if you store a
+// TQV {T1, GOOD, V1}, then storing {T1, GOOD, V2} replaces the existing TQV.
 //
-// AWS IoT SiteWise authorizes access to each BatchPutAssetPropertyValue entry
-// individually. For more information, see BatchPutAssetPropertyValue authorization
-// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-batchputassetpropertyvalue-action)
-// in the AWS IoT SiteWise User Guide.
+// IoT SiteWise authorizes access to each BatchPutAssetPropertyValue entry individually.
+// For more information, see BatchPutAssetPropertyValue authorization (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/security_iam_service-with-iam.html#security_iam_service-with-iam-id-based-policies-batchputassetpropertyvalue-action)
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -416,15 +412,15 @@ func (c *IoTSiteWise) BatchPutAssetPropertyValueRequest(input *BatchPutAssetProp
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -432,7 +428,7 @@ func (c *IoTSiteWise) BatchPutAssetPropertyValueRequest(input *BatchPutAssetProp
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ServiceUnavailableException
 //   The requested service is unavailable.
@@ -509,9 +505,9 @@ func (c *IoTSiteWise) CreateAccessPolicyRequest(input *CreateAccessPolicyInput) 
 
 // CreateAccessPolicy API operation for AWS IoT SiteWise.
 //
-// Creates an access policy that grants the specified identity (AWS SSO user,
-// AWS SSO group, or IAM user) access to the specified AWS IoT SiteWise Monitor
-// portal or project resource.
+// Creates an access policy that grants the specified identity (Amazon Web Services
+// SSO user, Amazon Web Services SSO group, or IAM user) access to the specified
+// IoT SiteWise Monitor portal or project resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -529,15 +525,15 @@ func (c *IoTSiteWise) CreateAccessPolicyRequest(input *CreateAccessPolicyInput) 
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -545,7 +541,7 @@ func (c *IoTSiteWise) CreateAccessPolicyRequest(input *CreateAccessPolicyInput) 
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreateAccessPolicy
 func (c *IoTSiteWise) CreateAccessPolicy(input *CreateAccessPolicyInput) (*CreateAccessPolicyOutput, error) {
@@ -617,7 +613,7 @@ func (c *IoTSiteWise) CreateAssetRequest(input *CreateAssetInput) (req *request.
 //
 // Creates an asset from an existing asset model. For more information, see
 // Creating assets (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-assets.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -638,15 +634,15 @@ func (c *IoTSiteWise) CreateAssetRequest(input *CreateAssetInput) (req *request.
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -654,7 +650,7 @@ func (c *IoTSiteWise) CreateAssetRequest(input *CreateAssetInput) (req *request.
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -733,7 +729,7 @@ func (c *IoTSiteWise) CreateAssetModelRequest(input *CreateAssetModelInput) (req
 // assets of the same type that have standardized definitions. Each asset created
 // from a model inherits the asset model's property and hierarchy definitions.
 // For more information, see Defining asset models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/define-models.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -754,15 +750,15 @@ func (c *IoTSiteWise) CreateAssetModelRequest(input *CreateAssetModelInput) (req
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -770,7 +766,7 @@ func (c *IoTSiteWise) CreateAssetModelRequest(input *CreateAssetModelInput) (req
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -844,7 +840,7 @@ func (c *IoTSiteWise) CreateDashboardRequest(input *CreateDashboardInput) (req *
 
 // CreateDashboard API operation for AWS IoT SiteWise.
 //
-// Creates a dashboard in an AWS IoT SiteWise Monitor project.
+// Creates a dashboard in an IoT SiteWise Monitor project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -862,15 +858,15 @@ func (c *IoTSiteWise) CreateDashboardRequest(input *CreateDashboardInput) (req *
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -878,7 +874,7 @@ func (c *IoTSiteWise) CreateDashboardRequest(input *CreateDashboardInput) (req *
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreateDashboard
 func (c *IoTSiteWise) CreateDashboard(input *CreateDashboardInput) (*CreateDashboardOutput, error) {
@@ -949,9 +945,9 @@ func (c *IoTSiteWise) CreateGatewayRequest(input *CreateGatewayInput) (req *requ
 // CreateGateway API operation for AWS IoT SiteWise.
 //
 // Creates a gateway, which is a virtual or edge device that delivers industrial
-// data streams from local servers to AWS IoT SiteWise. For more information,
-// see Ingesting data using a gateway (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html)
-// in the AWS IoT SiteWise User Guide.
+// data streams from local servers to IoT SiteWise. For more information, see
+// Ingesting data using a gateway (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html)
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -969,15 +965,15 @@ func (c *IoTSiteWise) CreateGatewayRequest(input *CreateGatewayInput) (req *requ
 //   The resource already exists.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -985,7 +981,7 @@ func (c *IoTSiteWise) CreateGatewayRequest(input *CreateGatewayInput) (req *requ
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreateGateway
 func (c *IoTSiteWise) CreateGateway(input *CreateGatewayInput) (*CreateGatewayOutput, error) {
@@ -1055,14 +1051,14 @@ func (c *IoTSiteWise) CreatePortalRequest(input *CreatePortalInput) (req *reques
 
 // CreatePortal API operation for AWS IoT SiteWise.
 //
-// Creates a portal, which can contain projects and dashboards. AWS IoT SiteWise
-// Monitor uses AWS SSO or IAM to authenticate portal users and manage user
-// permissions.
+// Creates a portal, which can contain projects and dashboards. IoT SiteWise
+// Monitor uses Amazon Web Services SSO or IAM to authenticate portal users
+// and manage user permissions.
 //
 // Before you can sign in to a new portal, you must add at least one identity
 // to that portal. For more information, see Adding or removing portal administrators
 // (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/administer-portals.html#portal-change-admins)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1080,15 +1076,15 @@ func (c *IoTSiteWise) CreatePortalRequest(input *CreatePortalInput) (req *reques
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -1096,7 +1092,7 @@ func (c *IoTSiteWise) CreatePortalRequest(input *CreatePortalInput) (req *reques
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreatePortal
 func (c *IoTSiteWise) CreatePortal(input *CreatePortalInput) (*CreatePortalOutput, error) {
@@ -1184,15 +1180,15 @@ func (c *IoTSiteWise) CreateProjectRequest(input *CreateProjectInput) (req *requ
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -1200,7 +1196,7 @@ func (c *IoTSiteWise) CreateProjectRequest(input *CreateProjectInput) (req *requ
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/CreateProject
 func (c *IoTSiteWise) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
@@ -1272,8 +1268,8 @@ func (c *IoTSiteWise) DeleteAccessPolicyRequest(input *DeleteAccessPolicyInput) 
 // DeleteAccessPolicy API operation for AWS IoT SiteWise.
 //
 // Deletes an access policy that grants the specified identity access to the
-// specified AWS IoT SiteWise Monitor resource. You can use this operation to
-// revoke access to an AWS IoT SiteWise Monitor resource.
+// specified IoT SiteWise Monitor resource. You can use this operation to revoke
+// access to an IoT SiteWise Monitor resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1291,15 +1287,15 @@ func (c *IoTSiteWise) DeleteAccessPolicyRequest(input *DeleteAccessPolicyInput) 
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DeleteAccessPolicy
 func (c *IoTSiteWise) DeleteAccessPolicy(input *DeleteAccessPolicyInput) (*DeleteAccessPolicyOutput, error) {
@@ -1371,7 +1367,7 @@ func (c *IoTSiteWise) DeleteAssetRequest(input *DeleteAssetInput) (req *request.
 //
 // Deletes an asset. This action can't be undone. For more information, see
 // Deleting assets and models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // You can't delete an asset that's associated to another asset. For more information,
 // see DisassociateAssets (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DisassociateAssets.html).
@@ -1392,15 +1388,15 @@ func (c *IoTSiteWise) DeleteAssetRequest(input *DeleteAssetInput) (req *request.
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -1479,7 +1475,7 @@ func (c *IoTSiteWise) DeleteAssetModelRequest(input *DeleteAssetModelInput) (req
 // you can't delete an asset model if a parent asset model exists that contains
 // a property formula expression that depends on the asset model that you want
 // to delete. For more information, see Deleting assets and models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/delete-assets-and-models.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1497,15 +1493,15 @@ func (c *IoTSiteWise) DeleteAssetModelRequest(input *DeleteAssetModelInput) (req
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -1580,7 +1576,7 @@ func (c *IoTSiteWise) DeleteDashboardRequest(input *DeleteDashboardInput) (req *
 
 // DeleteDashboard API operation for AWS IoT SiteWise.
 //
-// Deletes a dashboard from AWS IoT SiteWise Monitor.
+// Deletes a dashboard from IoT SiteWise Monitor.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1598,15 +1594,15 @@ func (c *IoTSiteWise) DeleteDashboardRequest(input *DeleteDashboardInput) (req *
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DeleteDashboard
 func (c *IoTSiteWise) DeleteDashboard(input *DeleteDashboardInput) (*DeleteDashboardOutput, error) {
@@ -1677,8 +1673,8 @@ func (c *IoTSiteWise) DeleteGatewayRequest(input *DeleteGatewayInput) (req *requ
 
 // DeleteGateway API operation for AWS IoT SiteWise.
 //
-// Deletes a gateway from AWS IoT SiteWise. When you delete a gateway, some
-// of the gateway's files remain in your gateway's file system.
+// Deletes a gateway from IoT SiteWise. When you delete a gateway, some of the
+// gateway's files remain in your gateway's file system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1696,15 +1692,15 @@ func (c *IoTSiteWise) DeleteGatewayRequest(input *DeleteGatewayInput) (req *requ
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DeleteGateway
 func (c *IoTSiteWise) DeleteGateway(input *DeleteGatewayInput) (*DeleteGatewayOutput, error) {
@@ -1774,7 +1770,7 @@ func (c *IoTSiteWise) DeletePortalRequest(input *DeletePortalInput) (req *reques
 
 // DeletePortal API operation for AWS IoT SiteWise.
 //
-// Deletes a portal from AWS IoT SiteWise Monitor.
+// Deletes a portal from IoT SiteWise Monitor.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1792,15 +1788,15 @@ func (c *IoTSiteWise) DeletePortalRequest(input *DeletePortalInput) (req *reques
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -1875,7 +1871,7 @@ func (c *IoTSiteWise) DeleteProjectRequest(input *DeleteProjectInput) (req *requ
 
 // DeleteProject API operation for AWS IoT SiteWise.
 //
-// Deletes a project from AWS IoT SiteWise Monitor.
+// Deletes a project from IoT SiteWise Monitor.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1893,15 +1889,15 @@ func (c *IoTSiteWise) DeleteProjectRequest(input *DeleteProjectInput) (req *requ
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DeleteProject
 func (c *IoTSiteWise) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutput, error) {
@@ -1971,8 +1967,8 @@ func (c *IoTSiteWise) DescribeAccessPolicyRequest(input *DescribeAccessPolicyInp
 
 // DescribeAccessPolicy API operation for AWS IoT SiteWise.
 //
-// Describes an access policy, which specifies an identity's access to an AWS
-// IoT SiteWise Monitor portal or project.
+// Describes an access policy, which specifies an identity's access to an IoT
+// SiteWise Monitor portal or project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1990,15 +1986,15 @@ func (c *IoTSiteWise) DescribeAccessPolicyRequest(input *DescribeAccessPolicyInp
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeAccessPolicy
 func (c *IoTSiteWise) DescribeAccessPolicy(input *DescribeAccessPolicyInput) (*DescribeAccessPolicyOutput, error) {
@@ -2086,15 +2082,15 @@ func (c *IoTSiteWise) DescribeAssetRequest(input *DescribeAssetInput) (req *requ
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeAsset
 func (c *IoTSiteWise) DescribeAsset(input *DescribeAssetInput) (*DescribeAssetOutput, error) {
@@ -2182,15 +2178,15 @@ func (c *IoTSiteWise) DescribeAssetModelRequest(input *DescribeAssetModelInput) 
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeAssetModel
 func (c *IoTSiteWise) DescribeAssetModel(input *DescribeAssetModelInput) (*DescribeAssetModelOutput, error) {
@@ -2286,15 +2282,15 @@ func (c *IoTSiteWise) DescribeAssetPropertyRequest(input *DescribeAssetPropertyI
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeAssetProperty
 func (c *IoTSiteWise) DescribeAssetProperty(input *DescribeAssetPropertyInput) (*DescribeAssetPropertyOutput, error) {
@@ -2382,15 +2378,15 @@ func (c *IoTSiteWise) DescribeDashboardRequest(input *DescribeDashboardInput) (r
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeDashboard
 func (c *IoTSiteWise) DescribeDashboard(input *DescribeDashboardInput) (*DescribeDashboardOutput, error) {
@@ -2459,9 +2455,9 @@ func (c *IoTSiteWise) DescribeDefaultEncryptionConfigurationRequest(input *Descr
 // DescribeDefaultEncryptionConfiguration API operation for AWS IoT SiteWise.
 //
 // Retrieves information about the default encryption configuration for the
-// AWS account in the default or specified region. For more information, see
-// Key management (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html)
-// in the AWS IoT SiteWise User Guide.
+// Amazon Web Services account in the default or specified Region. For more
+// information, see Key management (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html)
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2476,15 +2472,15 @@ func (c *IoTSiteWise) DescribeDefaultEncryptionConfigurationRequest(input *Descr
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeDefaultEncryptionConfiguration
 func (c *IoTSiteWise) DescribeDefaultEncryptionConfiguration(input *DescribeDefaultEncryptionConfigurationInput) (*DescribeDefaultEncryptionConfigurationOutput, error) {
@@ -2572,15 +2568,15 @@ func (c *IoTSiteWise) DescribeGatewayRequest(input *DescribeGatewayInput) (req *
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeGateway
 func (c *IoTSiteWise) DescribeGateway(input *DescribeGatewayInput) (*DescribeGatewayOutput, error) {
@@ -2653,8 +2649,8 @@ func (c *IoTSiteWise) DescribeGatewayCapabilityConfigurationRequest(input *Descr
 // Retrieves information about a gateway capability configuration. Each gateway
 // capability defines data sources for a gateway. A capability configuration
 // can contain multiple data source configurations. If you define OPC-UA sources
-// for a gateway in the AWS IoT SiteWise console, all of your OPC-UA sources
-// are stored in one capability configuration. To list all capability configurations
+// for a gateway in the IoT SiteWise console, all of your OPC-UA sources are
+// stored in one capability configuration. To list all capability configurations
 // for a gateway, use DescribeGateway (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeGateway.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2673,15 +2669,15 @@ func (c *IoTSiteWise) DescribeGatewayCapabilityConfigurationRequest(input *Descr
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeGatewayCapabilityConfiguration
 func (c *IoTSiteWise) DescribeGatewayCapabilityConfiguration(input *DescribeGatewayCapabilityConfigurationInput) (*DescribeGatewayCapabilityConfigurationOutput, error) {
@@ -2751,7 +2747,7 @@ func (c *IoTSiteWise) DescribeLoggingOptionsRequest(input *DescribeLoggingOption
 
 // DescribeLoggingOptions API operation for AWS IoT SiteWise.
 //
-// Retrieves the current AWS IoT SiteWise logging options.
+// Retrieves the current IoT SiteWise logging options.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2767,14 +2763,14 @@ func (c *IoTSiteWise) DescribeLoggingOptionsRequest(input *DescribeLoggingOption
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ResourceNotFoundException
 //   The requested resource can't be found.
@@ -2865,15 +2861,15 @@ func (c *IoTSiteWise) DescribePortalRequest(input *DescribePortalInput) (req *re
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribePortal
 func (c *IoTSiteWise) DescribePortal(input *DescribePortalInput) (*DescribePortalOutput, error) {
@@ -2961,15 +2957,15 @@ func (c *IoTSiteWise) DescribeProjectRequest(input *DescribeProjectInput) (req *
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeProject
 func (c *IoTSiteWise) DescribeProject(input *DescribeProjectInput) (*DescribeProjectOutput, error) {
@@ -2988,6 +2984,112 @@ func (c *IoTSiteWise) DescribeProject(input *DescribeProjectInput) (*DescribePro
 // for more information on using Contexts.
 func (c *IoTSiteWise) DescribeProjectWithContext(ctx aws.Context, input *DescribeProjectInput, opts ...request.Option) (*DescribeProjectOutput, error) {
 	req, out := c.DescribeProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeStorageConfiguration = "DescribeStorageConfiguration"
+
+// DescribeStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStorageConfiguration for more information on using the DescribeStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeStorageConfigurationRequest method.
+//    req, resp := client.DescribeStorageConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeStorageConfiguration
+func (c *IoTSiteWise) DescribeStorageConfigurationRequest(input *DescribeStorageConfigurationInput) (req *request.Request, output *DescribeStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStorageConfiguration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/configuration/account/storage",
+	}
+
+	if input == nil {
+		input = &DescribeStorageConfigurationInput{}
+	}
+
+	output = &DescribeStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeStorageConfiguration API operation for AWS IoT SiteWise.
+//
+// Retrieves information about the storage configuration for IoT SiteWise.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation DescribeStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * LimitExceededException
+//   You've reached the limit for a resource. For example, this can occur if you're
+//   trying to associate more than the allowed number of child assets or attempting
+//   to create more than the allowed number of properties for an asset model.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ConflictingOperationException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/DescribeStorageConfiguration
+func (c *IoTSiteWise) DescribeStorageConfiguration(input *DescribeStorageConfigurationInput) (*DescribeStorageConfigurationOutput, error) {
+	req, out := c.DescribeStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStorageConfigurationWithContext is the same as DescribeStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) DescribeStorageConfigurationWithContext(ctx aws.Context, input *DescribeStorageConfigurationInput, opts ...request.Option) (*DescribeStorageConfigurationOutput, error) {
+	req, out := c.DescribeStorageConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3059,15 +3161,15 @@ func (c *IoTSiteWise) DisassociateAssetsRequest(input *DisassociateAssetsInput) 
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -3149,7 +3251,7 @@ func (c *IoTSiteWise) GetAssetPropertyAggregatesRequest(input *GetAssetPropertyA
 //
 // Gets aggregated values for an asset property. For more information, see Querying
 // aggregates (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#aggregates)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // To identify an asset property, you must specify one of the following:
 //
@@ -3174,15 +3276,15 @@ func (c *IoTSiteWise) GetAssetPropertyAggregatesRequest(input *GetAssetPropertyA
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ServiceUnavailableException
 //   The requested service is unavailable.
@@ -3309,7 +3411,7 @@ func (c *IoTSiteWise) GetAssetPropertyValueRequest(input *GetAssetPropertyValueI
 //
 // Gets an asset property's current value. For more information, see Querying
 // current values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#current-values)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // To identify an asset property, you must specify one of the following:
 //
@@ -3334,15 +3436,15 @@ func (c *IoTSiteWise) GetAssetPropertyValueRequest(input *GetAssetPropertyValueI
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ServiceUnavailableException
 //   The requested service is unavailable.
@@ -3423,7 +3525,7 @@ func (c *IoTSiteWise) GetAssetPropertyValueHistoryRequest(input *GetAssetPropert
 //
 // Gets the history of an asset property's values. For more information, see
 // Querying historical values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#historical-values)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // To identify an asset property, you must specify one of the following:
 //
@@ -3448,15 +3550,15 @@ func (c *IoTSiteWise) GetAssetPropertyValueHistoryRequest(input *GetAssetPropert
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ServiceUnavailableException
 //   The requested service is unavailable.
@@ -3592,8 +3694,6 @@ func (c *IoTSiteWise) GetInterpolatedAssetPropertyValuesRequest(input *GetInterp
 // the interpolated temperature values for a wind turbine every 24 hours over
 // a duration of 7 days.
 //
-// This API isn't available in China (Beijing).
-//
 // To identify an asset property, you must specify one of the following:
 //
 //    * The assetId and propertyId of an asset property.
@@ -3617,15 +3717,15 @@ func (c *IoTSiteWise) GetInterpolatedAssetPropertyValuesRequest(input *GetInterp
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ServiceUnavailableException
 //   The requested service is unavailable.
@@ -3756,9 +3856,9 @@ func (c *IoTSiteWise) ListAccessPoliciesRequest(input *ListAccessPoliciesInput) 
 
 // ListAccessPolicies API operation for AWS IoT SiteWise.
 //
-// Retrieves a paginated list of access policies for an identity (an AWS SSO
-// user, an AWS SSO group, or an IAM user) or an AWS IoT SiteWise Monitor resource
-// (a portal or project).
+// Retrieves a paginated list of access policies for an identity (an Amazon
+// Web Services SSO user, an Amazon Web Services SSO group, or an IAM user)
+// or an IoT SiteWise Monitor resource (a portal or project).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3773,15 +3873,15 @@ func (c *IoTSiteWise) ListAccessPoliciesRequest(input *ListAccessPoliciesInput) 
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAccessPolicies
 func (c *IoTSiteWise) ListAccessPolicies(input *ListAccessPoliciesInput) (*ListAccessPoliciesOutput, error) {
@@ -3924,15 +4024,15 @@ func (c *IoTSiteWise) ListAssetModelsRequest(input *ListAssetModelsInput) (req *
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAssetModels
 func (c *IoTSiteWise) ListAssetModels(input *ListAssetModelsInput) (*ListAssetModelsOutput, error) {
@@ -4077,18 +4177,18 @@ func (c *IoTSiteWise) ListAssetRelationshipsRequest(input *ListAssetRelationship
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ResourceNotFoundException
 //   The requested resource can't be found.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAssetRelationships
 func (c *IoTSiteWise) ListAssetRelationships(input *ListAssetRelationshipsInput) (*ListAssetRelationshipsOutput, error) {
@@ -4242,18 +4342,18 @@ func (c *IoTSiteWise) ListAssetsRequest(input *ListAssetsInput) (req *request.Re
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ResourceNotFoundException
 //   The requested resource can't be found.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAssets
 func (c *IoTSiteWise) ListAssets(input *ListAssetsInput) (*ListAssetsOutput, error) {
@@ -4403,18 +4503,18 @@ func (c *IoTSiteWise) ListAssociatedAssetsRequest(input *ListAssociatedAssetsInp
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ResourceNotFoundException
 //   The requested resource can't be found.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListAssociatedAssets
 func (c *IoTSiteWise) ListAssociatedAssets(input *ListAssociatedAssetsInput) (*ListAssociatedAssetsOutput, error) {
@@ -4542,8 +4642,7 @@ func (c *IoTSiteWise) ListDashboardsRequest(input *ListDashboardsInput) (req *re
 
 // ListDashboards API operation for AWS IoT SiteWise.
 //
-// Retrieves a paginated list of dashboards for an AWS IoT SiteWise Monitor
-// project.
+// Retrieves a paginated list of dashboards for an IoT SiteWise Monitor project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4558,15 +4657,15 @@ func (c *IoTSiteWise) ListDashboardsRequest(input *ListDashboardsInput) (req *re
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListDashboards
 func (c *IoTSiteWise) ListDashboards(input *ListDashboardsInput) (*ListDashboardsOutput, error) {
@@ -4709,15 +4808,15 @@ func (c *IoTSiteWise) ListGatewaysRequest(input *ListGatewaysInput) (req *reques
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListGateways
 func (c *IoTSiteWise) ListGateways(input *ListGatewaysInput) (*ListGatewaysOutput, error) {
@@ -4845,7 +4944,7 @@ func (c *IoTSiteWise) ListPortalsRequest(input *ListPortalsInput) (req *request.
 
 // ListPortals API operation for AWS IoT SiteWise.
 //
-// Retrieves a paginated list of AWS IoT SiteWise Monitor portals.
+// Retrieves a paginated list of IoT SiteWise Monitor portals.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4860,15 +4959,15 @@ func (c *IoTSiteWise) ListPortalsRequest(input *ListPortalsInput) (req *request.
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListPortals
 func (c *IoTSiteWise) ListPortals(input *ListPortalsInput) (*ListPortalsOutput, error) {
@@ -4996,8 +5095,8 @@ func (c *IoTSiteWise) ListProjectAssetsRequest(input *ListProjectAssetsInput) (r
 
 // ListProjectAssets API operation for AWS IoT SiteWise.
 //
-// Retrieves a paginated list of assets associated with an AWS IoT SiteWise
-// Monitor project.
+// Retrieves a paginated list of assets associated with an IoT SiteWise Monitor
+// project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5012,15 +5111,15 @@ func (c *IoTSiteWise) ListProjectAssetsRequest(input *ListProjectAssetsInput) (r
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListProjectAssets
 func (c *IoTSiteWise) ListProjectAssets(input *ListProjectAssetsInput) (*ListProjectAssetsOutput, error) {
@@ -5148,7 +5247,7 @@ func (c *IoTSiteWise) ListProjectsRequest(input *ListProjectsInput) (req *reques
 
 // ListProjects API operation for AWS IoT SiteWise.
 //
-// Retrieves a paginated list of projects for an AWS IoT SiteWise Monitor portal.
+// Retrieves a paginated list of projects for an IoT SiteWise Monitor portal.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5163,15 +5262,15 @@ func (c *IoTSiteWise) ListProjectsRequest(input *ListProjectsInput) (req *reques
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/ListProjects
 func (c *IoTSiteWise) ListProjects(input *ListProjectsInput) (*ListProjectsOutput, error) {
@@ -5291,7 +5390,7 @@ func (c *IoTSiteWise) ListTagsForResourceRequest(input *ListTagsForResourceInput
 
 // ListTagsForResource API operation for AWS IoT SiteWise.
 //
-// Retrieves the list of tags for an AWS IoT SiteWise resource.
+// Retrieves the list of tags for an IoT SiteWise resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5306,15 +5405,15 @@ func (c *IoTSiteWise) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ResourceNotFoundException
 //   The requested resource can't be found.
@@ -5329,7 +5428,7 @@ func (c *IoTSiteWise) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * UnauthorizedException
 //   You are not authorized.
@@ -5400,9 +5499,9 @@ func (c *IoTSiteWise) PutDefaultEncryptionConfigurationRequest(input *PutDefault
 
 // PutDefaultEncryptionConfiguration API operation for AWS IoT SiteWise.
 //
-// Sets the default encryption configuration for the AWS account. For more information,
-// see Key management (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html)
-// in the AWS IoT SiteWise User Guide.
+// Sets the default encryption configuration for the Amazon Web Services account.
+// For more information, see Key management (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html)
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5417,15 +5516,15 @@ func (c *IoTSiteWise) PutDefaultEncryptionConfigurationRequest(input *PutDefault
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -5433,7 +5532,7 @@ func (c *IoTSiteWise) PutDefaultEncryptionConfigurationRequest(input *PutDefault
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -5508,7 +5607,7 @@ func (c *IoTSiteWise) PutLoggingOptionsRequest(input *PutLoggingOptionsInput) (r
 
 // PutLoggingOptions API operation for AWS IoT SiteWise.
 //
-// Sets logging options for AWS IoT SiteWise.
+// Sets logging options for IoT SiteWise.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5524,14 +5623,14 @@ func (c *IoTSiteWise) PutLoggingOptionsRequest(input *PutLoggingOptionsInput) (r
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -5557,6 +5656,115 @@ func (c *IoTSiteWise) PutLoggingOptions(input *PutLoggingOptionsInput) (*PutLogg
 // for more information on using Contexts.
 func (c *IoTSiteWise) PutLoggingOptionsWithContext(ctx aws.Context, input *PutLoggingOptionsInput, opts ...request.Option) (*PutLoggingOptionsOutput, error) {
 	req, out := c.PutLoggingOptionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutStorageConfiguration = "PutStorageConfiguration"
+
+// PutStorageConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutStorageConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutStorageConfiguration for more information on using the PutStorageConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutStorageConfigurationRequest method.
+//    req, resp := client.PutStorageConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/PutStorageConfiguration
+func (c *IoTSiteWise) PutStorageConfigurationRequest(input *PutStorageConfigurationInput) (req *request.Request, output *PutStorageConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutStorageConfiguration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/configuration/account/storage",
+	}
+
+	if input == nil {
+		input = &PutStorageConfigurationInput{}
+	}
+
+	output = &PutStorageConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutStorageConfiguration API operation for AWS IoT SiteWise.
+//
+// Configures storage settings for IoT SiteWise.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT SiteWise's
+// API operation PutStorageConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request isn't valid. This can occur if your request contains malformed
+//   JSON or unsupported characters. Check your request and try again.
+//
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * ResourceNotFoundException
+//   The requested resource can't be found.
+//
+//   * InternalFailureException
+//   IoT SiteWise can't process your request right now. Try again later.
+//
+//   * ThrottlingException
+//   Your request exceeded a rate limit. For example, you might have exceeded
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * LimitExceededException
+//   You've reached the limit for a resource. For example, this can occur if you're
+//   trying to associate more than the allowed number of child assets or attempting
+//   to create more than the allowed number of properties for an asset model.
+//
+//   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
+//   in the IoT SiteWise User Guide.
+//
+//   * ConflictingOperationException
+//   Your request has conflicting operations. This can occur if you're trying
+//   to perform more than one operation on the same resource at the same time.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/PutStorageConfiguration
+func (c *IoTSiteWise) PutStorageConfiguration(input *PutStorageConfigurationInput) (*PutStorageConfigurationOutput, error) {
+	req, out := c.PutStorageConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutStorageConfigurationWithContext is the same as PutStorageConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutStorageConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTSiteWise) PutStorageConfigurationWithContext(ctx aws.Context, input *PutStorageConfigurationInput, opts ...request.Option) (*PutStorageConfigurationOutput, error) {
+	req, out := c.PutStorageConfigurationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5607,8 +5815,8 @@ func (c *IoTSiteWise) TagResourceRequest(input *TagResourceInput) (req *request.
 
 // TagResource API operation for AWS IoT SiteWise.
 //
-// Adds tags to an AWS IoT SiteWise resource. If a tag already exists for the
-// resource, this operation updates the tag's value.
+// Adds tags to an IoT SiteWise resource. If a tag already exists for the resource,
+// this operation updates the tag's value.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5623,15 +5831,15 @@ func (c *IoTSiteWise) TagResourceRequest(input *TagResourceInput) (req *request.
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ResourceNotFoundException
 //   The requested resource can't be found.
@@ -5646,7 +5854,7 @@ func (c *IoTSiteWise) TagResourceRequest(input *TagResourceInput) (req *request.
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * UnauthorizedException
 //   You are not authorized.
@@ -5654,7 +5862,7 @@ func (c *IoTSiteWise) TagResourceRequest(input *TagResourceInput) (req *request.
 //   * TooManyTagsException
 //   You've reached the limit for the number of tags allowed for a resource. For
 //   more information, see Tag naming limits and requirements (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html#tag-conventions)
-//   in the AWS General Reference.
+//   in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/TagResource
 func (c *IoTSiteWise) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -5723,7 +5931,7 @@ func (c *IoTSiteWise) UntagResourceRequest(input *UntagResourceInput) (req *requ
 
 // UntagResource API operation for AWS IoT SiteWise.
 //
-// Removes a tag from an AWS IoT SiteWise resource.
+// Removes a tag from an IoT SiteWise resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5738,15 +5946,15 @@ func (c *IoTSiteWise) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //   JSON or unsupported characters. Check your request and try again.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ResourceNotFoundException
 //   The requested resource can't be found.
@@ -5761,7 +5969,7 @@ func (c *IoTSiteWise) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * UnauthorizedException
 //   You are not authorized.
@@ -5836,7 +6044,7 @@ func (c *IoTSiteWise) UpdateAccessPolicyRequest(input *UpdateAccessPolicyInput) 
 // UpdateAccessPolicy API operation for AWS IoT SiteWise.
 //
 // Updates an existing access policy that specifies an identity's access to
-// an AWS IoT SiteWise Monitor portal or project resource.
+// an IoT SiteWise Monitor portal or project resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5854,15 +6062,15 @@ func (c *IoTSiteWise) UpdateAccessPolicyRequest(input *UpdateAccessPolicyInput) 
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/UpdateAccessPolicy
 func (c *IoTSiteWise) UpdateAccessPolicy(input *UpdateAccessPolicyInput) (*UpdateAccessPolicyOutput, error) {
@@ -5934,7 +6142,7 @@ func (c *IoTSiteWise) UpdateAssetRequest(input *UpdateAssetInput) (req *request.
 //
 // Updates an asset's name. For more information, see Updating assets and models
 // (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5955,15 +6163,15 @@ func (c *IoTSiteWise) UpdateAssetRequest(input *UpdateAssetInput) (req *request.
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -6041,17 +6249,17 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 // Each asset created from the model inherits the updated asset model's property
 // and hierarchy definitions. For more information, see Updating assets and
 // models (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-assets-and-models.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 //
 // This operation overwrites the existing model with the provided model. To
 // avoid deleting your asset model's properties or hierarchies, you must include
 // their IDs and definitions in the updated asset model payload. For more information,
 // see DescribeAssetModel (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeAssetModel.html).
 //
-// If you remove a property from an asset model, AWS IoT SiteWise deletes all
-// previous data for that property. If you remove a hierarchy definition from
-// an asset model, AWS IoT SiteWise disassociates every asset associated with
-// that hierarchy. You can't change the type or data type of an existing property.
+// If you remove a property from an asset model, IoT SiteWise deletes all previous
+// data for that property. If you remove a hierarchy definition from an asset
+// model, IoT SiteWise disassociates every asset associated with that hierarchy.
+// You can't change the type or data type of an existing property.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6072,7 +6280,7 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -6080,15 +6288,15 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -6186,15 +6394,15 @@ func (c *IoTSiteWise) UpdateAssetPropertyRequest(input *UpdateAssetPropertyInput
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -6269,7 +6477,7 @@ func (c *IoTSiteWise) UpdateDashboardRequest(input *UpdateDashboardInput) (req *
 
 // UpdateDashboard API operation for AWS IoT SiteWise.
 //
-// Updates an AWS IoT SiteWise Monitor dashboard.
+// Updates an IoT SiteWise Monitor dashboard.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6287,15 +6495,15 @@ func (c *IoTSiteWise) UpdateDashboardRequest(input *UpdateDashboardInput) (req *
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/UpdateDashboard
 func (c *IoTSiteWise) UpdateDashboard(input *UpdateDashboardInput) (*UpdateDashboardOutput, error) {
@@ -6388,15 +6596,15 @@ func (c *IoTSiteWise) UpdateGatewayRequest(input *UpdateGatewayInput) (req *requ
 //   to perform more than one operation on the same resource at the same time.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/UpdateGateway
 func (c *IoTSiteWise) UpdateGateway(input *UpdateGatewayInput) (*UpdateGatewayOutput, error) {
@@ -6469,8 +6677,8 @@ func (c *IoTSiteWise) UpdateGatewayCapabilityConfigurationRequest(input *UpdateG
 // Updates a gateway capability configuration or defines a new capability configuration.
 // Each gateway capability defines data sources for a gateway. A capability
 // configuration can contain multiple data source configurations. If you define
-// OPC-UA sources for a gateway in the AWS IoT SiteWise console, all of your
-// OPC-UA sources are stored in one capability configuration. To list all capability
+// OPC-UA sources for a gateway in the IoT SiteWise console, all of your OPC-UA
+// sources are stored in one capability configuration. To list all capability
 // configurations for a gateway, use DescribeGateway (https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_DescribeGateway.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6493,15 +6701,15 @@ func (c *IoTSiteWise) UpdateGatewayCapabilityConfigurationRequest(input *UpdateG
 //   to perform more than one operation on the same resource at the same time.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * LimitExceededException
 //   You've reached the limit for a resource. For example, this can occur if you're
@@ -6509,7 +6717,7 @@ func (c *IoTSiteWise) UpdateGatewayCapabilityConfigurationRequest(input *UpdateG
 //   to create more than the allowed number of properties for an asset model.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/UpdateGatewayCapabilityConfiguration
 func (c *IoTSiteWise) UpdateGatewayCapabilityConfiguration(input *UpdateGatewayCapabilityConfigurationInput) (*UpdateGatewayCapabilityConfigurationOutput, error) {
@@ -6579,7 +6787,7 @@ func (c *IoTSiteWise) UpdatePortalRequest(input *UpdatePortalInput) (req *reques
 
 // UpdatePortal API operation for AWS IoT SiteWise.
 //
-// Updates an AWS IoT SiteWise Monitor portal.
+// Updates an IoT SiteWise Monitor portal.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6597,15 +6805,15 @@ func (c *IoTSiteWise) UpdatePortalRequest(input *UpdatePortalInput) (req *reques
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 //   * ConflictingOperationException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -6680,7 +6888,7 @@ func (c *IoTSiteWise) UpdateProjectRequest(input *UpdateProjectInput) (req *requ
 
 // UpdateProject API operation for AWS IoT SiteWise.
 //
-// Updates an AWS IoT SiteWise Monitor project.
+// Updates an IoT SiteWise Monitor project.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6698,15 +6906,15 @@ func (c *IoTSiteWise) UpdateProjectRequest(input *UpdateProjectInput) (req *requ
 //   The requested resource can't be found.
 //
 //   * InternalFailureException
-//   AWS IoT SiteWise can't process your request right now. Try again later.
+//   IoT SiteWise can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a rate limit. For example, you might have exceeded
-//   the number of AWS IoT SiteWise assets that can be created per second, the
-//   allowed number of messages per second, and so on.
+//   the number of IoT SiteWise assets that can be created per second, the allowed
+//   number of messages per second, and so on.
 //
 //   For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-//   in the AWS IoT SiteWise User Guide.
+//   in the IoT SiteWise User Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/iotsitewise-2019-12-02/UpdateProject
 func (c *IoTSiteWise) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
@@ -6730,8 +6938,8 @@ func (c *IoTSiteWise) UpdateProjectWithContext(ctx aws.Context, input *UpdatePro
 	return out, req.Send()
 }
 
-// Contains an access policy that defines an identity's access to an AWS IoT
-// SiteWise Monitor resource.
+// Contains an access policy that defines an identity's access to an IoT SiteWise
+// Monitor resource.
 type AccessPolicySummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6743,7 +6951,8 @@ type AccessPolicySummary struct {
 	// Id is a required field
 	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
 
-	// The identity (an AWS SSO user, an AWS SSO group, or an IAM user).
+	// The identity (an Amazon Web Services SSO user, an Amazon Web Services SSO
+	// group, or an IAM user).
 	//
 	// Identity is a required field
 	Identity *Identity `locationName:"identity" type:"structure" required:"true"`
@@ -6757,7 +6966,7 @@ type AccessPolicySummary struct {
 	// Permission is a required field
 	Permission *string `locationName:"permission" type:"string" required:"true" enum:"Permission"`
 
-	// The AWS IoT SiteWise Monitor resource (a portal or project).
+	// The IoT SiteWise Monitor resource (a portal or project).
 	//
 	// Resource is a required field
 	Resource *Resource `locationName:"resource" type:"structure" required:"true"`
@@ -6925,24 +7134,25 @@ func (s *Aggregates) SetSum(v float64) *Aggregates {
 	return s
 }
 
-// Contains the configuration information of an alarm created in an AWS IoT
-// SiteWise Monitor portal. You can use the alarm to monitor an asset property
-// and get notified when the asset property value is outside a specified range.
-// For more information, see .
+// Contains the configuration information of an alarm created in an IoT SiteWise
+// Monitor portal. You can use the alarm to monitor an asset property and get
+// notified when the asset property value is outside a specified range. For
+// more information, see Monitoring with alarms (https://docs.aws.amazon.com/iot-sitewise/latest/appguide/monitor-alarms.html)
+// in the IoT SiteWise Application Guide.
 type Alarms struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the IAM role that allows the alarm to perform actions and access AWS resources,
-	// including AWS IoT Events.
+	// of the IAM role that allows the alarm to perform actions and access Amazon
+	// Web Services resources and services, such as IoT Events.
 	//
 	// AlarmRoleArn is a required field
 	AlarmRoleArn *string `locationName:"alarmRoleArn" min:"1" type:"string" required:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the AWS Lambda function that manages alarm notifications. For more information,
-	// see Managing alarm notifications (https://docs.aws.amazon.com/) in the AWS
-	// IoT Events Developer Guide.
+	// of the Lambda function that manages alarm notifications. For more information,
+	// see Managing alarm notifications (https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html)
+	// in the IoT Events Developer Guide.
 	NotificationLambdaArn *string `locationName:"notificationLambdaArn" min:"1" type:"string"`
 }
 
@@ -7713,7 +7923,7 @@ func (s *AssetModelPropertyDefinition) SetUnit(v string) *AssetModelPropertyDefi
 
 // Contains current status information for an asset model. For more information,
 // see Asset and model states (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 type AssetModelStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -7770,7 +7980,7 @@ type AssetModelSummary struct {
 	// Description is a required field
 	Description *string `locationName:"description" min:"1" type:"string" required:"true"`
 
-	// The ID of the asset model (used with AWS IoT SiteWise APIs).
+	// The ID of the asset model (used with IoT SiteWise APIs).
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"36" type:"string" required:"true"`
@@ -7847,11 +8057,10 @@ func (s *AssetModelSummary) SetStatus(v *AssetModelStatus) *AssetModelSummary {
 type AssetProperty struct {
 	_ struct{} `type:"structure"`
 
-	// The property alias that identifies the property, such as an OPC-UA server
-	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping industrial data streams to asset properties
-	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
-	// in the AWS IoT SiteWise User Guide.
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
 	Alias *string `locationName:"alias" min:"1" type:"string"`
 
 	// The data type of the asset property.
@@ -8044,7 +8253,7 @@ func (s *AssetRelationshipSummary) SetRelationshipType(v string) *AssetRelations
 
 // Contains information about the current status of an asset. For more information,
 // see Asset and model states (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-and-model-states.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 type AssetStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -8207,7 +8416,7 @@ type AssociateAssetsInput struct {
 	// The ID of a hierarchy in the parent asset's model. Hierarchies allow different
 	// groupings of assets to be formed that all come from the same asset model.
 	// For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// HierarchyId is a required field
 	HierarchyId *string `locationName:"hierarchyId" min:"36" type:"string" required:"true"`
@@ -8401,7 +8610,7 @@ func (s *AssociatedAssetsSummary) SetStatus(v *AssetStatus) *AssociatedAssetsSum
 
 // Contains an asset attribute property. For more information, see Attributes
 // (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#attributes)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 type Attribute struct {
 	_ struct{} `type:"structure"`
 
@@ -8409,7 +8618,7 @@ type Attribute struct {
 	// you create from the asset model contain this attribute value. You can update
 	// an attribute's value after you create an asset. For more information, see
 	// Updating attribute values (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/update-attribute-values.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	DefaultValue *string `locationName:"defaultValue" min:"1" type:"string"`
 }
 
@@ -8842,7 +9051,7 @@ func (s *CompositeModelProperty) SetType(v string) *CompositeModelProperty {
 	return s
 }
 
-// Contains the details of an AWS IoT SiteWise configuration error.
+// Contains the details of an IoT SiteWise configuration error.
 type ConfigurationErrorDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -8984,8 +9193,8 @@ func (s *ConflictingOperationException) RequestID() string {
 type CreateAccessPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity for this access policy. Choose an AWS SSO user, an AWS SSO group,
-	// or an IAM user.
+	// The identity for this access policy. Choose an Amazon Web Services SSO user,
+	// an Amazon Web Services SSO group, or an IAM user.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -8996,8 +9205,8 @@ type CreateAccessPolicyInput struct {
 	// AccessPolicyPermission is a required field
 	AccessPolicyPermission *string `locationName:"accessPolicyPermission" type:"string" required:"true" enum:"Permission"`
 
-	// The AWS IoT SiteWise Monitor resource for this access policy. Choose either
-	// a portal or a project.
+	// The IoT SiteWise Monitor resource for this access policy. Choose either a
+	// portal or a project.
 	//
 	// AccessPolicyResource is a required field
 	AccessPolicyResource *Resource `locationName:"accessPolicyResource" type:"structure" required:"true"`
@@ -9008,8 +9217,8 @@ type CreateAccessPolicyInput struct {
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
 	// A list of key-value pairs that contain metadata for the access policy. For
-	// more information, see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// more information, see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -9146,8 +9355,8 @@ type CreateAssetInput struct {
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
 	// A list of key-value pairs that contain metadata for the asset. For more information,
-	// see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -9228,11 +9437,11 @@ type CreateAssetModelInput struct {
 	// The hierarchy definitions of the asset model. Each hierarchy specifies an
 	// asset model whose assets can be children of any other assets created from
 	// this asset model. For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// You can specify up to 10 hierarchies per asset model. For more information,
 	// see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	AssetModelHierarchies []*AssetModelHierarchyDefinition `locationName:"assetModelHierarchies" type:"list"`
 
 	// A unique, friendly name for the asset model.
@@ -9242,11 +9451,11 @@ type CreateAssetModelInput struct {
 
 	// The property definitions of the asset model. For more information, see Asset
 	// properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// You can specify up to 200 properties per asset model. For more information,
 	// see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	AssetModelProperties []*AssetModelPropertyDefinition `locationName:"assetModelProperties" type:"list"`
 
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
@@ -9255,8 +9464,8 @@ type CreateAssetModelInput struct {
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
 	// A list of key-value pairs that contain metadata for the asset model. For
-	// more information, see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// more information, see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -9378,8 +9587,8 @@ type CreateAssetModelOutput struct {
 	// AssetModelArn is a required field
 	AssetModelArn *string `locationName:"assetModelArn" min:"1" type:"string" required:"true"`
 
-	// The ID of the asset model. You can use this ID when you call other AWS IoT
-	// SiteWise APIs.
+	// The ID of the asset model. You can use this ID when you call other IoT SiteWise
+	// APIs.
 	//
 	// AssetModelId is a required field
 	AssetModelId *string `locationName:"assetModelId" min:"36" type:"string" required:"true"`
@@ -9430,8 +9639,8 @@ type CreateAssetOutput struct {
 	// AssetArn is a required field
 	AssetArn *string `locationName:"assetArn" min:"1" type:"string" required:"true"`
 
-	// The ID of the asset. This ID uniquely identifies the asset within AWS IoT
-	// SiteWise and can be used with other AWS IoT SiteWise APIs.
+	// The ID of the asset. This ID uniquely identifies the asset within IoT SiteWise
+	// and can be used with other IoT SiteWise APIs.
 	//
 	// AssetId is a required field
 	AssetId *string `locationName:"assetId" min:"36" type:"string" required:"true"`
@@ -9481,7 +9690,7 @@ type CreateDashboardInput struct {
 
 	// The dashboard definition specified in a JSON literal. For detailed information,
 	// see Creating dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// DashboardDefinition is a required field
 	DashboardDefinition *string `locationName:"dashboardDefinition" type:"string" required:"true"`
@@ -9500,8 +9709,8 @@ type CreateDashboardInput struct {
 	ProjectId *string `locationName:"projectId" min:"36" type:"string" required:"true"`
 
 	// A list of key-value pairs that contain metadata for the dashboard. For more
-	// information, see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// information, see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -9638,8 +9847,8 @@ type CreateGatewayInput struct {
 	GatewayPlatform *GatewayPlatform `locationName:"gatewayPlatform" type:"structure" required:"true"`
 
 	// A list of key-value pairs that contain metadata for the gateway. For more
-	// information, see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// information, see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -9709,8 +9918,8 @@ type CreateGatewayOutput struct {
 	// GatewayArn is a required field
 	GatewayArn *string `locationName:"gatewayArn" min:"1" type:"string" required:"true"`
 
-	// The ID of the gateway device. You can use this ID when you call other AWS
-	// IoT SiteWise APIs.
+	// The ID of the gateway device. You can use this ID when you call other IoT
+	// SiteWise APIs.
 	//
 	// GatewayId is a required field
 	GatewayId *string `locationName:"gatewayId" min:"36" type:"string" required:"true"`
@@ -9741,10 +9950,11 @@ func (s *CreateGatewayOutput) SetGatewayId(v string) *CreateGatewayOutput {
 type CreatePortalInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the configuration information of an alarm created in an AWS IoT
-	// SiteWise Monitor portal. You can use the alarm to monitor an asset property
-	// and get notified when the asset property value is outside a specified range.
-	// For more information, see .
+	// Contains the configuration information of an alarm created in an IoT SiteWise
+	// Monitor portal. You can use the alarm to monitor an asset property and get
+	// notified when the asset property value is outside a specified range. For
+	// more information, see Monitoring with alarms (https://docs.aws.amazon.com/iot-sitewise/latest/appguide/monitor-alarms.html)
+	// in the IoT SiteWise Application Guide.
 	Alarms *Alarms `locationName:"alarms" type:"structure"`
 
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
@@ -9754,30 +9964,31 @@ type CreatePortalInput struct {
 
 	// The email address that sends alarm notifications.
 	//
-	// If you use the AWS IoT Events managed AWS Lambda function to manage your
-	// emails, you must verify the sender email address in Amazon SES (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html).
+	// If you use the IoT Events managed Lambda function (https://docs.aws.amazon.com/iotevents/latest/developerguide/lambda-support.html)
+	// to manage your emails, you must verify the sender email address in Amazon
+	// SES (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/verify-email-addresses.html).
 	NotificationSenderEmail *string `locationName:"notificationSenderEmail" min:"1" type:"string"`
 
 	// The service to use to authenticate users to the portal. Choose from the following
 	// options:
 	//
-	//    * SSO – The portal uses AWS Single Sign-On to authenticate users and
-	//    manage user permissions. Before you can create a portal that uses AWS
-	//    SSO, you must enable AWS SSO. For more information, see Enabling AWS SSO
-	//    (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso)
-	//    in the AWS IoT SiteWise User Guide. This option is only available in AWS
-	//    Regions other than the China Regions.
+	//    * SSO – The portal uses Amazon Web Services Single Sign On to authenticate
+	//    users and manage user permissions. Before you can create a portal that
+	//    uses Amazon Web Services SSO, you must enable Amazon Web Services SSO.
+	//    For more information, see Enabling Amazon Web Services SSO (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-get-started.html#mon-gs-sso)
+	//    in the IoT SiteWise User Guide. This option is only available in Amazon
+	//    Web Services Regions other than the China Regions.
 	//
-	//    * IAM – The portal uses AWS Identity and Access Management (IAM) to
-	//    authenticate users and manage user permissions. This option is only available
-	//    in the China Regions.
+	//    * IAM – The portal uses Identity and Access Management to authenticate
+	//    users and manage user permissions. This option is only available in the
+	//    China Regions.
 	//
 	// You can't change this value after you create a portal.
 	//
 	// Default: SSO
 	PortalAuthMode *string `locationName:"portalAuthMode" type:"string" enum:"AuthMode"`
 
-	// The AWS administrator's contact email address.
+	// The Amazon Web Services administrator's contact email address.
 	//
 	// PortalContactEmail is a required field
 	PortalContactEmail *string `locationName:"portalContactEmail" min:"1" type:"string" required:"true"`
@@ -9795,17 +10006,17 @@ type CreatePortalInput struct {
 	PortalName *string `locationName:"portalName" min:"1" type:"string" required:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of a service role that allows the portal's users to access your AWS IoT SiteWise
+	// of a service role that allows the portal's users to access your IoT SiteWise
 	// resources on your behalf. For more information, see Using service roles for
-	// AWS IoT SiteWise Monitor (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html)
-	// in the AWS IoT SiteWise User Guide.
+	// IoT SiteWise Monitor (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html)
+	// in the IoT SiteWise User Guide.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
 
 	// A list of key-value pairs that contain metadata for the portal. For more
-	// information, see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// information, see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -9945,10 +10156,10 @@ type CreatePortalOutput struct {
 	// PortalId is a required field
 	PortalId *string `locationName:"portalId" min:"36" type:"string" required:"true"`
 
-	// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
-	// access portals that use AWS SSO for authentication. For portals that use
-	// IAM for authentication, you must use the AWS IoT SiteWise console to get
-	// a URL that you can use to access the portal.
+	// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
+	// portals that use Amazon Web Services SSO for authentication. For portals
+	// that use IAM for authentication, you must use the IoT SiteWise console to
+	// get a URL that you can use to access the portal.
 	//
 	// PortalStartUrl is a required field
 	PortalStartUrl *string `locationName:"portalStartUrl" min:"1" type:"string" required:"true"`
@@ -9959,7 +10170,8 @@ type CreatePortalOutput struct {
 	// PortalStatus is a required field
 	PortalStatus *PortalStatus `locationName:"portalStatus" type:"structure" required:"true"`
 
-	// The associated AWS SSO application ID, if the portal uses AWS SSO.
+	// The associated Amazon Web Services SSO application ID, if the portal uses
+	// Amazon Web Services SSO.
 	//
 	// SsoApplicationId is a required field
 	SsoApplicationId *string `locationName:"ssoApplicationId" min:"1" type:"string" required:"true"`
@@ -10027,8 +10239,8 @@ type CreateProjectInput struct {
 	ProjectName *string `locationName:"projectName" min:"1" type:"string" required:"true"`
 
 	// A list of key-value pairs that contain metadata for the project. For more
-	// information, see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// information, see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -10139,6 +10351,70 @@ func (s *CreateProjectOutput) SetProjectArn(v string) *CreateProjectOutput {
 // SetProjectId sets the ProjectId field's value.
 func (s *CreateProjectOutput) SetProjectId(v string) *CreateProjectOutput {
 	s.ProjectId = &v
+	return s
+}
+
+// Contains information about a customer managed Amazon S3 bucket.
+type CustomerManagedS3Storage struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the Identity and Access Management role that allows IoT SiteWise to send
+	// data to Amazon S3.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
+
+	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// of the Amazon S3 object. For more information about how to find the ARN for
+	// an Amazon S3 object, see Amazon S3 resources (https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-arn-format.html)
+	// in the Amazon Simple Storage Service User Guide.
+	//
+	// S3ResourceArn is a required field
+	S3ResourceArn *string `locationName:"s3ResourceArn" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CustomerManagedS3Storage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomerManagedS3Storage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomerManagedS3Storage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomerManagedS3Storage"}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+	if s.S3ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3ResourceArn"))
+	}
+	if s.S3ResourceArn != nil && len(*s.S3ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("S3ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *CustomerManagedS3Storage) SetRoleArn(v string) *CustomerManagedS3Storage {
+	s.RoleArn = &v
+	return s
+}
+
+// SetS3ResourceArn sets the S3ResourceArn field's value.
+func (s *CustomerManagedS3Storage) SetS3ResourceArn(v string) *CustomerManagedS3Storage {
+	s.S3ResourceArn = &v
 	return s
 }
 
@@ -10773,8 +11049,8 @@ type DescribeAccessPolicyOutput struct {
 	// AccessPolicyId is a required field
 	AccessPolicyId *string `locationName:"accessPolicyId" min:"36" type:"string" required:"true"`
 
-	// The identity (AWS SSO user, AWS SSO group, or IAM user) to which this access
-	// policy applies.
+	// The identity (Amazon Web Services SSO user, Amazon Web Services SSO group,
+	// or IAM user) to which this access policy applies.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -10790,7 +11066,7 @@ type DescribeAccessPolicyOutput struct {
 	// AccessPolicyPermission is a required field
 	AccessPolicyPermission *string `locationName:"accessPolicyPermission" type:"string" required:"true" enum:"Permission"`
 
-	// The AWS IoT SiteWise Monitor resource (portal or project) to which this access
+	// The IoT SiteWise Monitor resource (portal or project) to which this access
 	// policy provides access.
 	//
 	// AccessPolicyResource is a required field
@@ -11379,7 +11655,7 @@ type DescribeDashboardOutput struct {
 
 	// The dashboard's definition JSON literal. For detailed information, see Creating
 	// dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// DashboardDefinition is a required field
 	DashboardDefinition *string `locationName:"dashboardDefinition" type:"string" required:"true"`
@@ -11494,8 +11770,8 @@ type DescribeDefaultEncryptionConfigurationOutput struct {
 	// EncryptionType is a required field
 	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
 
-	// The key ARN of the customer managed customer master key (CMK) used for AWS
-	// KMS encryption if you use KMS_BASED_ENCRYPTION.
+	// The key ARN of the customer managed customer master key (CMK) used for KMS
+	// encryption if you use KMS_BASED_ENCRYPTION.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 }
 
@@ -11531,9 +11807,9 @@ type DescribeGatewayCapabilityConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The namespace of the capability configuration. For example, if you configure
-	// OPC-UA sources from the AWS IoT SiteWise console, your OPC-UA capability
-	// configuration has the namespace iotsitewise:opcuacollector:version, where
-	// version is a number such as 1.
+	// OPC-UA sources from the IoT SiteWise console, your OPC-UA capability configuration
+	// has the namespace iotsitewise:opcuacollector:version, where version is a
+	// number such as 1.
 	//
 	// CapabilityNamespace is a required field
 	CapabilityNamespace *string `location:"uri" locationName:"capabilityNamespace" min:"1" type:"string" required:"true"`
@@ -11593,7 +11869,7 @@ type DescribeGatewayCapabilityConfigurationOutput struct {
 
 	// The JSON document that defines the gateway capability's configuration. For
 	// more information, see Configuring data sources (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/configure-sources.html#configure-source-cli)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// CapabilityConfiguration is a required field
 	CapabilityConfiguration *string `locationName:"capabilityConfiguration" min:"1" type:"string" required:"true"`
@@ -11874,7 +12150,7 @@ func (s *DescribePortalInput) SetPortalId(v string) *DescribePortalInput {
 type DescribePortalOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the configuration information of an alarm created in a AWS IoT SiteWise
+	// Contains the configuration information of an alarm created in an IoT SiteWise
 	// Monitor portal.
 	Alarms *Alarms `locationName:"alarms" type:"structure"`
 
@@ -11892,14 +12168,14 @@ type DescribePortalOutput struct {
 	// The service to use to authenticate users to the portal.
 	PortalAuthMode *string `locationName:"portalAuthMode" type:"string" enum:"AuthMode"`
 
-	// The AWS SSO application generated client ID (used with AWS SSO APIs). AWS
-	// IoT SiteWise includes portalClientId for only portals that use AWS SSO to
-	// authenticate users.
+	// The Amazon Web Services SSO application generated client ID (used with Amazon
+	// Web Services SSO APIs). IoT SiteWise includes portalClientId for only portals
+	// that use Amazon Web Services SSO to authenticate users.
 	//
 	// PortalClientId is a required field
 	PortalClientId *string `locationName:"portalClientId" min:"1" type:"string" required:"true"`
 
-	// The AWS administrator's contact email address.
+	// The Amazon Web Services administrator's contact email address.
 	//
 	// PortalContactEmail is a required field
 	PortalContactEmail *string `locationName:"portalContactEmail" min:"1" type:"string" required:"true"`
@@ -11930,10 +12206,10 @@ type DescribePortalOutput struct {
 	// PortalName is a required field
 	PortalName *string `locationName:"portalName" min:"1" type:"string" required:"true"`
 
-	// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
-	// access portals that use AWS SSO for authentication. For portals that use
-	// IAM for authentication, you must use the AWS IoT SiteWise console to get
-	// a URL that you can use to access the portal.
+	// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
+	// portals that use Amazon Web Services SSO for authentication. For portals
+	// that use IAM for authentication, you must use the IoT SiteWise console to
+	// get a URL that you can use to access the portal.
 	//
 	// PortalStartUrl is a required field
 	PortalStartUrl *string `locationName:"portalStartUrl" min:"1" type:"string" required:"true"`
@@ -11944,10 +12220,10 @@ type DescribePortalOutput struct {
 	PortalStatus *PortalStatus `locationName:"portalStatus" type:"structure" required:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the service role that allows the portal's users to access your AWS IoT
-	// SiteWise resources on your behalf. For more information, see Using service
-	// roles for AWS IoT SiteWise Monitor (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html)
-	// in the AWS IoT SiteWise User Guide.
+	// of the service role that allows the portal's users to access your IoT SiteWise
+	// resources on your behalf. For more information, see Using service roles for
+	// IoT SiteWise Monitor (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html)
+	// in the IoT SiteWise User Guide.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 }
 
@@ -12184,6 +12460,82 @@ func (s *DescribeProjectOutput) SetProjectName(v string) *DescribeProjectOutput 
 	return s
 }
 
+type DescribeStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+type DescribeStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains current status information for the configuration.
+	//
+	// ConfigurationStatus is a required field
+	ConfigurationStatus *ConfigurationStatus `locationName:"configurationStatus" type:"structure" required:"true"`
+
+	// The date the storage configuration was last updated, in Unix epoch time.
+	LastUpdateDate *time.Time `locationName:"lastUpdateDate" type:"timestamp"`
+
+	// Contains information about the storage destination.
+	MultiLayerStorage *MultiLayerStorage `locationName:"multiLayerStorage" type:"structure"`
+
+	// The type of storage that you specified for your data. The storage type can
+	// be one of the following values:
+	//
+	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise replicates your data into
+	//    a service managed database.
+	//
+	//    * MULTI_LAYER_STORAGE – IoT SiteWise replicates your data into a service
+	//    managed database and saves a copy of your raw data and metadata in an
+	//    Amazon S3 object that you specified.
+	//
+	// StorageType is a required field
+	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
+}
+
+// String returns the string representation
+func (s DescribeStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationStatus sets the ConfigurationStatus field's value.
+func (s *DescribeStorageConfigurationOutput) SetConfigurationStatus(v *ConfigurationStatus) *DescribeStorageConfigurationOutput {
+	s.ConfigurationStatus = v
+	return s
+}
+
+// SetLastUpdateDate sets the LastUpdateDate field's value.
+func (s *DescribeStorageConfigurationOutput) SetLastUpdateDate(v time.Time) *DescribeStorageConfigurationOutput {
+	s.LastUpdateDate = &v
+	return s
+}
+
+// SetMultiLayerStorage sets the MultiLayerStorage field's value.
+func (s *DescribeStorageConfigurationOutput) SetMultiLayerStorage(v *MultiLayerStorage) *DescribeStorageConfigurationOutput {
+	s.MultiLayerStorage = v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *DescribeStorageConfigurationOutput) SetStorageType(v string) *DescribeStorageConfigurationOutput {
+	s.StorageType = &v
+	return s
+}
+
 type DisassociateAssetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12206,7 +12558,7 @@ type DisassociateAssetsInput struct {
 	// groupings of assets to be formed that all come from the same asset model.
 	// You can use the hierarchy ID to identify the correct asset to disassociate.
 	// For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// HierarchyId is a required field
 	HierarchyId *string `locationName:"hierarchyId" min:"36" type:"string" required:"true"`
@@ -12291,7 +12643,7 @@ func (s DisassociateAssetsOutput) GoString() string {
 	return s.String()
 }
 
-// Contains the details of an AWS IoT SiteWise error.
+// Contains the details of an IoT SiteWise error.
 type ErrorDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -12394,9 +12746,9 @@ type GatewayCapabilitySummary struct {
 	_ struct{} `type:"structure"`
 
 	// The namespace of the capability configuration. For example, if you configure
-	// OPC-UA sources from the AWS IoT SiteWise console, your OPC-UA capability
-	// configuration has the namespace iotsitewise:opcuacollector:version, where
-	// version is a number such as 1.
+	// OPC-UA sources from the IoT SiteWise console, your OPC-UA capability configuration
+	// has the namespace iotsitewise:opcuacollector:version, where version is a
+	// number such as 1.
 	//
 	// CapabilityNamespace is a required field
 	CapabilityNamespace *string `locationName:"capabilityNamespace" min:"1" type:"string" required:"true"`
@@ -12440,7 +12792,7 @@ func (s *GatewayCapabilitySummary) SetCapabilitySyncStatus(v string) *GatewayCap
 type GatewayPlatform struct {
 	_ struct{} `type:"structure"`
 
-	// A gateway that runs on AWS IoT Greengrass.
+	// A gateway that runs on IoT Greengrass.
 	//
 	// Greengrass is a required field
 	Greengrass *Greengrass `locationName:"greengrass" type:"structure" required:"true"`
@@ -12568,7 +12920,7 @@ type GetAssetPropertyAggregatesInput struct {
 	// EndDate is a required field
 	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp" required:"true"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 100
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -12576,11 +12928,10 @@ type GetAssetPropertyAggregatesInput struct {
 	// The token to be used for the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The property alias that identifies the property, such as an OPC-UA server
-	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping industrial data streams to asset properties
-	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
-	// in the AWS IoT SiteWise User Guide.
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
 	PropertyAlias *string `location:"querystring" locationName:"propertyAlias" min:"1" type:"string"`
 
 	// The ID of the asset property.
@@ -12773,7 +13124,7 @@ type GetAssetPropertyValueHistoryInput struct {
 	// in seconds in Unix epoch time.
 	EndDate *time.Time `location:"querystring" locationName:"endDate" type:"timestamp"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 100
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -12781,11 +13132,10 @@ type GetAssetPropertyValueHistoryInput struct {
 	// The token to be used for the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The property alias that identifies the property, such as an OPC-UA server
-	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping industrial data streams to asset properties
-	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
-	// in the AWS IoT SiteWise User Guide.
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
 	PropertyAlias *string `location:"querystring" locationName:"propertyAlias" min:"1" type:"string"`
 
 	// The ID of the asset property.
@@ -12937,11 +13287,10 @@ type GetAssetPropertyValueInput struct {
 	// The ID of the asset.
 	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
 
-	// The property alias that identifies the property, such as an OPC-UA server
-	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping industrial data streams to asset properties
-	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
-	// in the AWS IoT SiteWise User Guide.
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
 	PropertyAlias *string `location:"querystring" locationName:"propertyAlias" min:"1" type:"string"`
 
 	// The ID of the asset property.
@@ -13039,18 +13388,17 @@ type GetInterpolatedAssetPropertyValuesInput struct {
 	// IntervalInSeconds is a required field
 	IntervalInSeconds *int64 `location:"querystring" locationName:"intervalInSeconds" min:"1" type:"long" required:"true"`
 
-	// The maximum number of results to be returned per paginated request. If not
+	// The maximum number of results to return for each paginated request. If not
 	// specified, the default value is 10.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The property alias that identifies the property, such as an OPC-UA server
-	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping industrial data streams to asset properties
-	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
-	// in the AWS IoT SiteWise User Guide.
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
 	PropertyAlias *string `location:"querystring" locationName:"propertyAlias" min:"1" type:"string"`
 
 	// The ID of the asset property.
@@ -13248,12 +13596,12 @@ func (s *GetInterpolatedAssetPropertyValuesOutput) SetNextToken(v string) *GetIn
 	return s
 }
 
-// Contains details for a gateway that runs on AWS IoT Greengrass. To create
-// a gateway that runs on AWS IoT Greengrass, you must add the IoT SiteWise
-// connector to a Greengrass group and deploy it. Your Greengrass group must
-// also have permissions to upload data to AWS IoT SiteWise. For more information,
-// see Ingesting data using a gateway (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html)
-// in the AWS IoT SiteWise User Guide.
+// Contains details for a gateway that runs on IoT Greengrass. To create a gateway
+// that runs on IoT Greengrass, you must add the IoT SiteWise connector to a
+// Greengrass group and deploy it. Your Greengrass group must also have permissions
+// to upload data to IoT SiteWise. For more information, see Ingesting data
+// using a gateway (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html)
+// in the IoT SiteWise User Guide.
 type Greengrass struct {
 	_ struct{} `type:"structure"`
 
@@ -13261,7 +13609,7 @@ type Greengrass struct {
 	// of the Greengrass group. For more information about how to find a group's
 	// ARN, see ListGroups (https://docs.aws.amazon.com/greengrass/latest/apireference/listgroups-get.html)
 	// and GetGroup (https://docs.aws.amazon.com/greengrass/latest/apireference/getgroup-get.html)
-	// in the AWS IoT Greengrass API Reference.
+	// in the IoT Greengrass API Reference.
 	//
 	// GroupArn is a required field
 	GroupArn *string `locationName:"groupArn" min:"1" type:"string" required:"true"`
@@ -13303,7 +13651,7 @@ func (s *Greengrass) SetGroupArn(v string) *Greengrass {
 type GroupIdentity struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS SSO ID of the group.
+	// The Amazon Web Services SSO ID of the group.
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
@@ -13341,8 +13689,8 @@ func (s *GroupIdentity) SetId(v string) *GroupIdentity {
 	return s
 }
 
-// Contains information about an AWS Identity and Access Management (IAM) role.
-// For more information, see IAM roles (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
+// Contains information about an Identity and Access Management role. For more
+// information, see IAM roles (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)
 // in the IAM User Guide.
 type IAMRoleIdentity struct {
 	_ struct{} `type:"structure"`
@@ -13386,7 +13734,7 @@ func (s *IAMRoleIdentity) SetArn(v string) *IAMRoleIdentity {
 	return s
 }
 
-// Contains information about an AWS Identity and Access Management (IAM) user.
+// Contains information about an Identity and Access Management user.
 type IAMUserIdentity struct {
 	_ struct{} `type:"structure"`
 
@@ -13433,15 +13781,16 @@ func (s *IAMUserIdentity) SetArn(v string) *IAMUserIdentity {
 	return s
 }
 
-// Contains an identity that can access an AWS IoT SiteWise Monitor resource.
+// Contains an identity that can access an IoT SiteWise Monitor resource.
 //
-// Currently, you can't use AWS APIs to retrieve AWS SSO identity IDs. You can
-// find the AWS SSO identity IDs in the URL of user and group pages in the AWS
-// SSO console (https://console.aws.amazon.com/singlesignon).
+// Currently, you can't use Amazon Web Services APIs to retrieve Amazon Web
+// Services SSO identity IDs. You can find the Amazon Web Services SSO identity
+// IDs in the URL of user and group pages in the Amazon Web Services SSO console
+// (https://console.aws.amazon.com/singlesignon).
 type Identity struct {
 	_ struct{} `type:"structure"`
 
-	// An AWS SSO group identity.
+	// An Amazon Web Services SSO group identity.
 	Group *GroupIdentity `locationName:"group" type:"structure"`
 
 	// An IAM role identity.
@@ -13450,7 +13799,7 @@ type Identity struct {
 	// An IAM user identity.
 	IamUser *IAMUserIdentity `locationName:"iamUser" type:"structure"`
 
-	// An AWS SSO user identity.
+	// An Amazon Web Services SSO user identity.
 	User *UserIdentity `locationName:"user" type:"structure"`
 }
 
@@ -13633,8 +13982,7 @@ func (s *ImageFile) SetType(v string) *ImageFile {
 	return s
 }
 
-// Contains an image that is uploaded to AWS IoT SiteWise and available at a
-// URL.
+// Contains an image that is uploaded to IoT SiteWise and available at a URL.
 type ImageLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -13672,7 +14020,7 @@ func (s *ImageLocation) SetUrl(v string) *ImageLocation {
 	return s
 }
 
-// AWS IoT SiteWise can't process your request right now. Try again later.
+// IoT SiteWise can't process your request right now. Try again later.
 type InternalFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13827,7 +14175,7 @@ func (s *InvalidRequestException) RequestID() string {
 // to create more than the allowed number of properties for an asset model.
 //
 // For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13895,11 +14243,11 @@ type ListAccessPoliciesInput struct {
 	// GROUP for identityType.
 	IdentityId *string `location:"querystring" locationName:"identityId" min:"1" type:"string"`
 
-	// The type of identity (AWS SSO user, AWS SSO group, or IAM user). This parameter
-	// is required if you specify identityId.
+	// The type of identity (Amazon Web Services SSO user, Amazon Web Services SSO
+	// group, or IAM user). This parameter is required if you specify identityId.
 	IdentityType *string `location:"querystring" locationName:"identityType" type:"string" enum:"IdentityType"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -14030,7 +14378,7 @@ func (s *ListAccessPoliciesOutput) SetNextToken(v string) *ListAccessPoliciesOut
 type ListAssetModelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -14120,7 +14468,7 @@ type ListAssetRelationshipsInput struct {
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"assetId" min:"36" type:"string" required:"true"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The token to be used for the next set of paginated results.
@@ -14250,7 +14598,7 @@ type ListAssetsInput struct {
 	// Default: ALL
 	Filter *string `location:"querystring" locationName:"filter" type:"string" enum:"ListAssetsFilter"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -14361,10 +14709,10 @@ type ListAssociatedAssetsInput struct {
 	// operations. This parameter is required if you choose CHILD for traversalDirection.
 	//
 	// For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	HierarchyId *string `location:"querystring" locationName:"hierarchyId" min:"36" type:"string"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -14486,7 +14834,7 @@ func (s *ListAssociatedAssetsOutput) SetNextToken(v string) *ListAssociatedAsset
 type ListDashboardsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -14588,7 +14936,7 @@ func (s *ListDashboardsOutput) SetNextToken(v string) *ListDashboardsOutput {
 type ListGatewaysInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -14673,7 +15021,7 @@ func (s *ListGatewaysOutput) SetNextToken(v string) *ListGatewaysOutput {
 type ListPortalsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -14756,7 +15104,7 @@ func (s *ListPortalsOutput) SetPortalSummaries(v []*PortalSummary) *ListPortalsO
 type ListProjectAssetsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -14858,7 +15206,7 @@ func (s *ListProjectAssetsOutput) SetNextToken(v string) *ListProjectAssetsOutpu
 type ListProjectsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of results to be returned per paginated request.
+	// The maximum number of results to return for each paginated request.
 	//
 	// Default: 50
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -15003,8 +15351,8 @@ type ListTagsForResourceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// information, see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -15028,7 +15376,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 type LoggingOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS IoT SiteWise logging verbosity level.
+	// The IoT SiteWise logging verbosity level.
 	//
 	// Level is a required field
 	Level *string `locationName:"level" type:"string" required:"true" enum:"LoggingLevel"`
@@ -15065,7 +15413,7 @@ func (s *LoggingOptions) SetLevel(v string) *LoggingOptions {
 
 // Contains an asset measurement property. For more information, see Measurements
 // (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#measurements)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 type Measurement struct {
 	_ struct{} `type:"structure"`
 }
@@ -15092,7 +15440,7 @@ func (s Measurement) GoString() string {
 // DOUBLE.
 //
 // For more information, see Metrics (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#metrics)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 type Metric struct {
 	_ struct{} `type:"structure"`
 
@@ -15101,7 +15449,7 @@ type Metric struct {
 	// 10 functions per expression.
 	//
 	// For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// Expression is a required field
 	Expression *string `locationName:"expression" min:"1" type:"string" required:"true"`
@@ -15111,8 +15459,8 @@ type Metric struct {
 	// Variables is a required field
 	Variables []*ExpressionVariable `locationName:"variables" type:"list" required:"true"`
 
-	// The window (time interval) over which AWS IoT SiteWise computes the metric's
-	// aggregation expression. AWS IoT SiteWise computes one data point per window.
+	// The window (time interval) over which IoT SiteWise computes the metric's
+	// aggregation expression. IoT SiteWise computes one data point per window.
 	//
 	// Window is a required field
 	Window *MetricWindow `locationName:"window" type:"structure" required:"true"`
@@ -15223,7 +15571,7 @@ func (s *MetricWindow) SetTumbling(v *TumblingWindow) *MetricWindow {
 	return s
 }
 
-// Contains AWS IoT SiteWise Monitor error details.
+// Contains IoT SiteWise Monitor error details.
 type MonitorErrorDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -15256,7 +15604,51 @@ func (s *MonitorErrorDetails) SetMessage(v string) *MonitorErrorDetails {
 	return s
 }
 
-// Identifies an AWS IoT SiteWise Monitor portal.
+// Contains information about the storage destination.
+type MultiLayerStorage struct {
+	_ struct{} `type:"structure"`
+
+	// Contains information about a customer managed Amazon S3 bucket.
+	//
+	// CustomerManagedS3Storage is a required field
+	CustomerManagedS3Storage *CustomerManagedS3Storage `locationName:"customerManagedS3Storage" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s MultiLayerStorage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MultiLayerStorage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MultiLayerStorage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MultiLayerStorage"}
+	if s.CustomerManagedS3Storage == nil {
+		invalidParams.Add(request.NewErrParamRequired("CustomerManagedS3Storage"))
+	}
+	if s.CustomerManagedS3Storage != nil {
+		if err := s.CustomerManagedS3Storage.Validate(); err != nil {
+			invalidParams.AddNested("CustomerManagedS3Storage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCustomerManagedS3Storage sets the CustomerManagedS3Storage field's value.
+func (s *MultiLayerStorage) SetCustomerManagedS3Storage(v *CustomerManagedS3Storage) *MultiLayerStorage {
+	s.CustomerManagedS3Storage = v
+	return s
+}
+
+// Identifies an IoT SiteWise Monitor portal.
 type PortalResource struct {
 	_ struct{} `type:"structure"`
 
@@ -15357,16 +15749,16 @@ type PortalSummary struct {
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the service role that allows the portal's users to access your AWS IoT
-	// SiteWise resources on your behalf. For more information, see Using service
-	// roles for AWS IoT SiteWise Monitor (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html)
-	// in the AWS IoT SiteWise User Guide.
+	// of the service role that allows the portal's users to access your IoT SiteWise
+	// resources on your behalf. For more information, see Using service roles for
+	// IoT SiteWise Monitor (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html)
+	// in the IoT SiteWise User Guide.
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string"`
 
-	// The URL for the AWS IoT SiteWise Monitor portal. You can use this URL to
-	// access portals that use AWS SSO for authentication. For portals that use
-	// IAM for authentication, you must use the AWS IoT SiteWise console to get
-	// a URL that you can use to access the portal.
+	// The URL for the IoT SiteWise Monitor portal. You can use this URL to access
+	// portals that use Amazon Web Services SSO for authentication. For portals
+	// that use IAM for authentication, you must use the IoT SiteWise console to
+	// get a URL that you can use to access the portal.
 	//
 	// StartUrl is a required field
 	StartUrl *string `locationName:"startUrl" min:"1" type:"string" required:"true"`
@@ -15435,7 +15827,7 @@ func (s *PortalSummary) SetStatus(v *PortalStatus) *PortalSummary {
 	return s
 }
 
-// Identifies a specific AWS IoT SiteWise Monitor project.
+// Identifies a specific IoT SiteWise Monitor project.
 type ProjectResource struct {
 	_ struct{} `type:"structure"`
 
@@ -15545,11 +15937,10 @@ func (s *ProjectSummary) SetName(v string) *ProjectSummary {
 type Property struct {
 	_ struct{} `type:"structure"`
 
-	// The property alias that identifies the property, such as an OPC-UA server
-	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping industrial data streams to asset properties
-	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
-	// in the AWS IoT SiteWise User Guide.
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
 	Alias *string `locationName:"alias" min:"1" type:"string"`
 
 	// The property data type.
@@ -15631,10 +16022,9 @@ func (s *Property) SetUnit(v string) *Property {
 }
 
 // Contains asset property value notification information. When the notification
-// state is enabled, AWS IoT SiteWise publishes property value updates to a
-// unique MQTT topic. For more information, see Interacting with other services
-// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
-// in the AWS IoT SiteWise User Guide.
+// state is enabled, IoT SiteWise publishes property value updates to a unique
+// MQTT topic. For more information, see Interacting with other services (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
+// in the IoT SiteWise User Guide.
 type PropertyNotification struct {
 	_ struct{} `type:"structure"`
 
@@ -15643,8 +16033,7 @@ type PropertyNotification struct {
 	// State is a required field
 	State *string `locationName:"state" type:"string" required:"true" enum:"PropertyNotificationState"`
 
-	// The MQTT topic to which AWS IoT SiteWise publishes property value update
-	// notifications.
+	// The MQTT topic to which IoT SiteWise publishes property value update notifications.
 	//
 	// Topic is a required field
 	Topic *string `locationName:"topic" type:"string" required:"true"`
@@ -15773,11 +16162,10 @@ type PutAssetPropertyValueEntry struct {
 	// EntryId is a required field
 	EntryId *string `locationName:"entryId" min:"1" type:"string" required:"true"`
 
-	// The property alias that identifies the property, such as an OPC-UA server
-	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping industrial data streams to asset properties
-	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
-	// in the AWS IoT SiteWise User Guide.
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
 	PropertyAlias *string `locationName:"propertyAlias" min:"1" type:"string"`
 
 	// The ID of the asset property for this entry.
@@ -15876,8 +16264,8 @@ type PutDefaultEncryptionConfigurationInput struct {
 	// EncryptionType is a required field
 	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
 
-	// The Key ID of the customer managed customer master key (CMK) used for AWS
-	// KMS encryption. This is required if you use KMS_BASED_ENCRYPTION.
+	// The Key ID of the customer managed customer master key (CMK) used for KMS
+	// encryption. This is required if you use KMS_BASED_ENCRYPTION.
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
 }
 
@@ -15933,7 +16321,7 @@ type PutDefaultEncryptionConfigurationOutput struct {
 	// EncryptionType is a required field
 	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
 
-	// The Key ARN of the AWS KMS CMK used for AWS KMS encryption if you use KMS_BASED_ENCRYPTION.
+	// The Key ARN of the KMS CMK used for KMS encryption if you use KMS_BASED_ENCRYPTION.
 	KmsKeyArn *string `locationName:"kmsKeyArn" min:"1" type:"string"`
 }
 
@@ -16022,7 +16410,121 @@ func (s PutLoggingOptionsOutput) GoString() string {
 	return s.String()
 }
 
-// Contains an AWS IoT SiteWise Monitor resource ID for a portal or project.
+type PutStorageConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies a storage destination. If you specified MULTI_LAYER_STORAGE for
+	// the storage type, you must specify a MultiLayerStorage object.
+	MultiLayerStorage *MultiLayerStorage `locationName:"multiLayerStorage" type:"structure"`
+
+	// The type of storage that you specified for your data. The storage type can
+	// be one of the following values:
+	//
+	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise replicates your data into
+	//    a service managed database.
+	//
+	//    * MULTI_LAYER_STORAGE – IoT SiteWise replicates your data into a service
+	//    managed database and saves a copy of your raw data and metadata in an
+	//    Amazon S3 object that you specified.
+	//
+	// StorageType is a required field
+	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
+}
+
+// String returns the string representation
+func (s PutStorageConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutStorageConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutStorageConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutStorageConfigurationInput"}
+	if s.StorageType == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageType"))
+	}
+	if s.MultiLayerStorage != nil {
+		if err := s.MultiLayerStorage.Validate(); err != nil {
+			invalidParams.AddNested("MultiLayerStorage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMultiLayerStorage sets the MultiLayerStorage field's value.
+func (s *PutStorageConfigurationInput) SetMultiLayerStorage(v *MultiLayerStorage) *PutStorageConfigurationInput {
+	s.MultiLayerStorage = v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *PutStorageConfigurationInput) SetStorageType(v string) *PutStorageConfigurationInput {
+	s.StorageType = &v
+	return s
+}
+
+type PutStorageConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Contains current status information for the configuration.
+	//
+	// ConfigurationStatus is a required field
+	ConfigurationStatus *ConfigurationStatus `locationName:"configurationStatus" type:"structure" required:"true"`
+
+	// Contains information about the storage destination.
+	MultiLayerStorage *MultiLayerStorage `locationName:"multiLayerStorage" type:"structure"`
+
+	// The type of storage that you specified for your data. The storage type can
+	// be one of the following values:
+	//
+	//    * SITEWISE_DEFAULT_STORAGE – IoT SiteWise replicates your data into
+	//    a service managed database.
+	//
+	//    * MULTI_LAYER_STORAGE – IoT SiteWise replicates your data into a service
+	//    managed database and saves a copy of your raw data and metadata in an
+	//    Amazon S3 object that you specified.
+	//
+	// StorageType is a required field
+	StorageType *string `locationName:"storageType" type:"string" required:"true" enum:"StorageType"`
+}
+
+// String returns the string representation
+func (s PutStorageConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutStorageConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetConfigurationStatus sets the ConfigurationStatus field's value.
+func (s *PutStorageConfigurationOutput) SetConfigurationStatus(v *ConfigurationStatus) *PutStorageConfigurationOutput {
+	s.ConfigurationStatus = v
+	return s
+}
+
+// SetMultiLayerStorage sets the MultiLayerStorage field's value.
+func (s *PutStorageConfigurationOutput) SetMultiLayerStorage(v *MultiLayerStorage) *PutStorageConfigurationOutput {
+	s.MultiLayerStorage = v
+	return s
+}
+
+// SetStorageType sets the StorageType field's value.
+func (s *PutStorageConfigurationOutput) SetStorageType(v string) *PutStorageConfigurationOutput {
+	s.StorageType = &v
+	return s
+}
+
+// Contains an IoT SiteWise Monitor resource ID for a portal or project.
 type Resource struct {
 	_ struct{} `type:"structure"`
 
@@ -16263,8 +16765,8 @@ type TagResourceInput struct {
 	ResourceArn *string `location:"querystring" locationName:"resourceArn" min:"1" type:"string" required:"true"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
-	// information, see Tagging your AWS IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
-	// in the AWS IoT SiteWise User Guide.
+	// information, see Tagging your IoT SiteWise resources (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/tag-resources.html)
+	// in the IoT SiteWise User Guide.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
@@ -16329,11 +16831,11 @@ func (s TagResourceOutput) GoString() string {
 }
 
 // Your request exceeded a rate limit. For example, you might have exceeded
-// the number of AWS IoT SiteWise assets that can be created per second, the
-// allowed number of messages per second, and so on.
+// the number of IoT SiteWise assets that can be created per second, the allowed
+// number of messages per second, and so on.
 //
 // For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -16443,7 +16945,7 @@ func (s *TimeInNanos) SetTimeInSeconds(v int64) *TimeInNanos {
 
 // You've reached the limit for the number of tags allowed for a resource. For
 // more information, see Tag naming limits and requirements (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html#tag-conventions)
-// in the AWS General Reference.
+// in the Amazon Web Services General Reference.
 type TooManyTagsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -16510,7 +17012,7 @@ func (s *TooManyTagsException) RequestID() string {
 // data types of INTEGER or DOUBLE.
 //
 // For more information, see Transforms (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#transforms)
-// in the AWS IoT SiteWise User Guide.
+// in the IoT SiteWise User Guide.
 type Transform struct {
 	_ struct{} `type:"structure"`
 
@@ -16519,7 +17021,7 @@ type Transform struct {
 	// per expression.
 	//
 	// For more information, see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// Expression is a required field
 	Expression *string `locationName:"expression" min:"1" type:"string" required:"true"`
@@ -16588,14 +17090,14 @@ type TumblingWindow struct {
 	_ struct{} `type:"structure"`
 
 	// The time interval for the tumbling window. Note that w represents weeks,
-	// d represents days, h represents hours, and m represents minutes. AWS IoT
-	// SiteWise computes the 1w interval the end of Sunday at midnight each week
-	// (UTC), the 1d interval at the end of each day at midnight (UTC), the 1h interval
-	// at the end of each hour, and so on.
+	// d represents days, h represents hours, and m represents minutes. IoT SiteWise
+	// computes the 1w interval the end of Sunday at midnight each week (UTC), the
+	// 1d interval at the end of each day at midnight (UTC), the 1h interval at
+	// the end of each hour, and so on.
 	//
-	// When AWS IoT SiteWise aggregates data points for metric computations, the
-	// start of each interval is exclusive and the end of each interval is inclusive.
-	// AWS IoT SiteWise places the computed data point at the end of the interval.
+	// When IoT SiteWise aggregates data points for metric computations, the start
+	// of each interval is exclusive and the end of each interval is inclusive.
+	// IoT SiteWise places the computed data point at the end of the interval.
 	//
 	// Interval is a required field
 	Interval *string `locationName:"interval" min:"2" type:"string" required:"true"`
@@ -16767,8 +17269,8 @@ type UpdateAccessPolicyInput struct {
 	// AccessPolicyId is a required field
 	AccessPolicyId *string `location:"uri" locationName:"accessPolicyId" min:"36" type:"string" required:"true"`
 
-	// The identity for this access policy. Choose an AWS SSO user, an AWS SSO group,
-	// or an IAM user.
+	// The identity for this access policy. Choose an Amazon Web Services SSO user,
+	// an Amazon Web Services SSO group, or an IAM user.
 	//
 	// AccessPolicyIdentity is a required field
 	AccessPolicyIdentity *Identity `locationName:"accessPolicyIdentity" type:"structure" required:"true"`
@@ -16779,8 +17281,8 @@ type UpdateAccessPolicyInput struct {
 	// AccessPolicyPermission is a required field
 	AccessPolicyPermission *string `locationName:"accessPolicyPermission" type:"string" required:"true" enum:"Permission"`
 
-	// The AWS IoT SiteWise Monitor resource for this access policy. Choose either
-	// a portal or a project.
+	// The IoT SiteWise Monitor resource for this access policy. Choose either a
+	// portal or a project.
 	//
 	// AccessPolicyResource is a required field
 	AccessPolicyResource *Resource `locationName:"accessPolicyResource" type:"structure" required:"true"`
@@ -16970,11 +17472,11 @@ type UpdateAssetModelInput struct {
 	// The updated hierarchy definitions of the asset model. Each hierarchy specifies
 	// an asset model whose assets can be children of any other assets created from
 	// this asset model. For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// You can specify up to 10 hierarchies per asset model. For more information,
 	// see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	AssetModelHierarchies []*AssetModelHierarchy `locationName:"assetModelHierarchies" type:"list"`
 
 	// The ID of the asset model to update.
@@ -16989,11 +17491,11 @@ type UpdateAssetModelInput struct {
 
 	// The updated property definitions of the asset model. For more information,
 	// see Asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// You can specify up to 200 properties per asset model. For more information,
 	// see Quotas (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/quotas.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	AssetModelProperties []*AssetModelProperty `locationName:"assetModelProperties" type:"list"`
 
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
@@ -17177,11 +17679,10 @@ type UpdateAssetPropertyInput struct {
 	// is required.
 	ClientToken *string `locationName:"clientToken" min:"36" type:"string" idempotencyToken:"true"`
 
-	// The property alias that identifies the property, such as an OPC-UA server
-	// data stream path (for example, /company/windfarm/3/turbine/7/temperature).
-	// For more information, see Mapping industrial data streams to asset properties
-	// (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
-	// in the AWS IoT SiteWise User Guide.
+	// The alias that identifies the property, such as an OPC-UA server data stream
+	// path (for example, /company/windfarm/3/turbine/7/temperature). For more information,
+	// see Mapping industrial data streams to asset properties (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/connect-data-streams.html)
+	// in the IoT SiteWise User Guide.
 	//
 	// If you omit this parameter, the alias is removed from the property.
 	PropertyAlias *string `locationName:"propertyAlias" min:"1" type:"string"`
@@ -17192,10 +17693,10 @@ type UpdateAssetPropertyInput struct {
 	PropertyId *string `location:"uri" locationName:"propertyId" min:"36" type:"string" required:"true"`
 
 	// The MQTT notification state (enabled or disabled) for this asset property.
-	// When the notification state is enabled, AWS IoT SiteWise publishes property
-	// value updates to a unique MQTT topic. For more information, see Interacting
-	// with other services (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
-	// in the AWS IoT SiteWise User Guide.
+	// When the notification state is enabled, IoT SiteWise publishes property value
+	// updates to a unique MQTT topic. For more information, see Interacting with
+	// other services (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/interact-with-other-services.html)
+	// in the IoT SiteWise User Guide.
 	//
 	// If you omit this parameter, the notification state is set to DISABLED.
 	PropertyNotificationState *string `locationName:"propertyNotificationState" type:"string" enum:"PropertyNotificationState"`
@@ -17293,7 +17794,7 @@ type UpdateDashboardInput struct {
 
 	// The new dashboard definition, as specified in a JSON literal. For detailed
 	// information, see Creating dashboards (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/create-dashboards-using-aws-cli.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// DashboardDefinition is a required field
 	DashboardDefinition *string `locationName:"dashboardDefinition" type:"string" required:"true"`
@@ -17402,14 +17903,14 @@ type UpdateGatewayCapabilityConfigurationInput struct {
 
 	// The JSON document that defines the configuration for the gateway capability.
 	// For more information, see Configuring data sources (CLI) (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/configure-sources.html#configure-source-cli)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	//
 	// CapabilityConfiguration is a required field
 	CapabilityConfiguration *string `locationName:"capabilityConfiguration" min:"1" type:"string" required:"true"`
 
 	// The namespace of the gateway capability configuration to be updated. For
-	// example, if you configure OPC-UA sources from the AWS IoT SiteWise console,
-	// your OPC-UA capability configuration has the namespace iotsitewise:opcuacollector:version,
+	// example, if you configure OPC-UA sources from the IoT SiteWise console, your
+	// OPC-UA capability configuration has the namespace iotsitewise:opcuacollector:version,
 	// where version is a number such as 1.
 	//
 	// CapabilityNamespace is a required field
@@ -17598,10 +18099,11 @@ func (s UpdateGatewayOutput) GoString() string {
 type UpdatePortalInput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains the configuration information of an alarm created in an AWS IoT
-	// SiteWise Monitor portal. You can use the alarm to monitor an asset property
-	// and get notified when the asset property value is outside a specified range.
-	// For more information, see .
+	// Contains the configuration information of an alarm created in an IoT SiteWise
+	// Monitor portal. You can use the alarm to monitor an asset property and get
+	// notified when the asset property value is outside a specified range. For
+	// more information, see Monitoring with alarms (https://docs.aws.amazon.com/iot-sitewise/latest/appguide/monitor-alarms.html)
+	// in the IoT SiteWise Application Guide.
 	Alarms *Alarms `locationName:"alarms" type:"structure"`
 
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
@@ -17612,7 +18114,7 @@ type UpdatePortalInput struct {
 	// The email address that sends alarm notifications.
 	NotificationSenderEmail *string `locationName:"notificationSenderEmail" min:"1" type:"string"`
 
-	// The AWS administrator's contact email address.
+	// The Amazon Web Services administrator's contact email address.
 	//
 	// PortalContactEmail is a required field
 	PortalContactEmail *string `locationName:"portalContactEmail" min:"1" type:"string" required:"true"`
@@ -17639,10 +18141,10 @@ type UpdatePortalInput struct {
 	PortalName *string `locationName:"portalName" min:"1" type:"string" required:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of a service role that allows the portal's users to access your AWS IoT SiteWise
+	// of a service role that allows the portal's users to access your IoT SiteWise
 	// resources on your behalf. For more information, see Using service roles for
-	// AWS IoT SiteWise Monitor (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html)
-	// in the AWS IoT SiteWise User Guide.
+	// IoT SiteWise Monitor (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/monitor-service-role.html)
+	// in the IoT SiteWise User Guide.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"1" type:"string" required:"true"`
@@ -17893,7 +18395,7 @@ func (s UpdateProjectOutput) GoString() string {
 type UserIdentity struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS SSO ID of the user.
+	// The Amazon Web Services SSO ID of the user.
 	//
 	// Id is a required field
 	Id *string `locationName:"id" min:"1" type:"string" required:"true"`
@@ -17942,7 +18444,7 @@ type VariableValue struct {
 	// hierarchies using the same model and therefore the same propertyId. For example,
 	// you might have separately grouped assets that come from the same asset model.
 	// For more information, see Asset hierarchies (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-hierarchies.html)
-	// in the AWS IoT SiteWise User Guide.
+	// in the IoT SiteWise User Guide.
 	HierarchyId *string `locationName:"hierarchyId" min:"1" type:"string"`
 
 	// The ID of the property to use as the variable. You can use the property name
@@ -18501,6 +19003,22 @@ func ResourceType_Values() []string {
 	return []string{
 		ResourceTypePortal,
 		ResourceTypeProject,
+	}
+}
+
+const (
+	// StorageTypeSitewiseDefaultStorage is a StorageType enum value
+	StorageTypeSitewiseDefaultStorage = "SITEWISE_DEFAULT_STORAGE"
+
+	// StorageTypeMultiLayerStorage is a StorageType enum value
+	StorageTypeMultiLayerStorage = "MULTI_LAYER_STORAGE"
+)
+
+// StorageType_Values returns all elements of the StorageType enum
+func StorageType_Values() []string {
+	return []string{
+		StorageTypeSitewiseDefaultStorage,
+		StorageTypeMultiLayerStorage,
 	}
 }
 

@@ -13,6 +13,111 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restxml"
 )
 
+const opAssociateAlias = "AssociateAlias2020_05_31"
+
+// AssociateAliasRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateAlias operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateAlias for more information on using the AssociateAlias
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateAliasRequest method.
+//    req, resp := client.AssociateAliasRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/AssociateAlias
+func (c *CloudFront) AssociateAliasRequest(input *AssociateAliasInput) (req *request.Request, output *AssociateAliasOutput) {
+	op := &request.Operation{
+		Name:       opAssociateAlias,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2020-05-31/distribution/{TargetDistributionId}/associate-alias",
+	}
+
+	if input == nil {
+		input = &AssociateAliasInput{}
+	}
+
+	output = &AssociateAliasOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restxml.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// AssociateAlias API operation for Amazon CloudFront.
+//
+// Associates an alias (also known as a CNAME or an alternate domain name) with
+// a CloudFront distribution.
+//
+// With this operation you can move an alias that’s already in use on a CloudFront
+// distribution to a different distribution in one step. This prevents the downtime
+// that could occur if you first remove the alias from one distribution and
+// then separately add the alias to another distribution.
+//
+// To use this operation to associate an alias with a distribution, you provide
+// the alias and the ID of the target distribution for the alias. For more information,
+// including how to set up the target distribution, prerequisites that you must
+// complete, and other restrictions, see Moving an alternate domain name to
+// a different distribution (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html#alternate-domain-names-move)
+// in the Amazon CloudFront Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation AssociateAlias for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeNoSuchDistribution "NoSuchDistribution"
+//   The specified distribution does not exist.
+//
+//   * ErrCodeTooManyDistributionCNAMEs "TooManyDistributionCNAMEs"
+//   Your request contains more CNAMEs than are allowed per distribution.
+//
+//   * ErrCodeIllegalUpdate "IllegalUpdate"
+//   The update contains modifications that are not allowed.
+//
+//   * ErrCodeAccessDenied "AccessDenied"
+//   Access denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/AssociateAlias
+func (c *CloudFront) AssociateAlias(input *AssociateAliasInput) (*AssociateAliasOutput, error) {
+	req, out := c.AssociateAliasRequest(input)
+	return out, req.Send()
+}
+
+// AssociateAliasWithContext is the same as AssociateAlias with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateAlias for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) AssociateAliasWithContext(ctx aws.Context, input *AssociateAliasInput, opts ...request.Option) (*AssociateAliasOutput, error) {
+	req, out := c.AssociateAliasRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateCachePolicy = "CreateCachePolicy2020_05_31"
 
 // CreateCachePolicyRequest generates a "aws/request.Request" representing the
@@ -103,8 +208,8 @@ func (c *CloudFront) CreateCachePolicyRequest(input *CreateCachePolicyInput) (re
 //   To modify an existing cache policy, use UpdateCachePolicy.
 //
 //   * ErrCodeTooManyCachePolicies "TooManyCachePolicies"
-//   You have reached the maximum number of cache policies for this AWS account.
-//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   You have reached the maximum number of cache policies for this account. For
+//   more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeTooManyHeadersInCachePolicy "TooManyHeadersInCachePolicy"
@@ -422,8 +527,8 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //
 //   * ErrCodeInvalidWebACLId "InvalidWebACLId"
 //   A web ACL ID specified is not valid. To specify a web ACL created using the
-//   latest version of AWS WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
-//   To specify a web ACL created using AWS WAF Classic, use the ACL ID, for example
+//   latest version of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
+//   To specify a web ACL created using WAF Classic, use the ACL ID, for example
 //   473e64fd-f30b-4765-81a0-62ad96dd167a.
 //
 //   * ErrCodeTooManyOriginCustomHeaders "TooManyOriginCustomHeaders"
@@ -437,18 +542,18 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //
 //   * ErrCodeTooManyDistributionsWithLambdaAssociations "TooManyDistributionsWithLambdaAssociations"
 //   Processing your request would cause the maximum number of distributions with
-//   Lambda function associations per owner to be exceeded.
+//   Lambda@Edge function associations per owner to be exceeded.
 //
 //   * ErrCodeTooManyDistributionsWithSingleFunctionARN "TooManyDistributionsWithSingleFunctionARN"
 //   The maximum number of distributions have been associated with the specified
-//   Lambda function.
+//   Lambda@Edge function.
 //
 //   * ErrCodeTooManyLambdaFunctionAssociations "TooManyLambdaFunctionAssociations"
-//   Your request contains more Lambda function associations than are allowed
+//   Your request contains more Lambda@Edge function associations than are allowed
 //   per distribution.
 //
 //   * ErrCodeInvalidLambdaFunctionAssociation "InvalidLambdaFunctionAssociation"
-//   The specified Lambda function association is invalid.
+//   The specified Lambda@Edge function association is invalid.
 //
 //   * ErrCodeTooManyDistributionsWithFunctionAssociations "TooManyDistributionsWithFunctionAssociations"
 //   You have reached the maximum number of distributions that are associated
@@ -513,7 +618,7 @@ func (c *CloudFront) CreateDistributionRequest(input *CreateDistributionInput) (
 //   The real-time log configuration does not exist.
 //
 //   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
-//   The specified real-time log configuration belongs to a different AWS account.
+//   The specified real-time log configuration belongs to a different account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistribution
 func (c *CloudFront) CreateDistribution(input *CreateDistributionInput) (*CreateDistributionOutput, error) {
@@ -702,8 +807,8 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //
 //   * ErrCodeInvalidWebACLId "InvalidWebACLId"
 //   A web ACL ID specified is not valid. To specify a web ACL created using the
-//   latest version of AWS WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
-//   To specify a web ACL created using AWS WAF Classic, use the ACL ID, for example
+//   latest version of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
+//   To specify a web ACL created using WAF Classic, use the ACL ID, for example
 //   473e64fd-f30b-4765-81a0-62ad96dd167a.
 //
 //   * ErrCodeTooManyOriginCustomHeaders "TooManyOriginCustomHeaders"
@@ -720,18 +825,18 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //
 //   * ErrCodeTooManyDistributionsWithLambdaAssociations "TooManyDistributionsWithLambdaAssociations"
 //   Processing your request would cause the maximum number of distributions with
-//   Lambda function associations per owner to be exceeded.
+//   Lambda@Edge function associations per owner to be exceeded.
 //
 //   * ErrCodeTooManyDistributionsWithSingleFunctionARN "TooManyDistributionsWithSingleFunctionARN"
 //   The maximum number of distributions have been associated with the specified
-//   Lambda function.
+//   Lambda@Edge function.
 //
 //   * ErrCodeTooManyLambdaFunctionAssociations "TooManyLambdaFunctionAssociations"
-//   Your request contains more Lambda function associations than are allowed
+//   Your request contains more Lambda@Edge function associations than are allowed
 //   per distribution.
 //
 //   * ErrCodeInvalidLambdaFunctionAssociation "InvalidLambdaFunctionAssociation"
-//   The specified Lambda function association is invalid.
+//   The specified Lambda@Edge function association is invalid.
 //
 //   * ErrCodeTooManyDistributionsWithFunctionAssociations "TooManyDistributionsWithFunctionAssociations"
 //   You have reached the maximum number of distributions that are associated
@@ -796,7 +901,7 @@ func (c *CloudFront) CreateDistributionWithTagsRequest(input *CreateDistribution
 //   The real-time log configuration does not exist.
 //
 //   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
-//   The specified real-time log configuration belongs to a different AWS account.
+//   The specified real-time log configuration belongs to a different account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateDistributionWithTags
 func (c *CloudFront) CreateDistributionWithTags(input *CreateDistributionWithTagsInput) (*CreateDistributionWithTagsOutput, error) {
@@ -1092,13 +1197,13 @@ func (c *CloudFront) CreateFunctionRequest(input *CreateFunctionInput) (req *req
 //
 // Returned Error Codes:
 //   * ErrCodeTooManyFunctions "TooManyFunctions"
-//   You have reached the maximum number of CloudFront functions for this AWS
-//   account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   You have reached the maximum number of CloudFront functions for this account.
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeFunctionAlreadyExists "FunctionAlreadyExists"
-//   A function with the same name already exists in this AWS account. To create
-//   a function, you must provide a unique name. To update an existing function,
+//   A function with the same name already exists in this account. To create a
+//   function, you must provide a unique name. To update an existing function,
 //   use UpdateFunction.
 //
 //   * ErrCodeFunctionSizeLimitExceeded "FunctionSizeLimitExceeded"
@@ -1107,6 +1212,9 @@ func (c *CloudFront) CreateFunctionRequest(input *CreateFunctionInput) (req *req
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   An argument is invalid.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/CreateFunction
 func (c *CloudFront) CreateFunction(input *CreateFunctionInput) (*CreateFunctionOutput, error) {
@@ -1302,8 +1410,8 @@ func (c *CloudFront) CreateKeyGroupRequest(input *CreateKeyGroupInput) (req *req
 //   To modify an existing key group, use UpdateKeyGroup.
 //
 //   * ErrCodeTooManyKeyGroups "TooManyKeyGroups"
-//   You have reached the maximum number of key groups for this AWS account. For
-//   more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   You have reached the maximum number of key groups for this account. For more
+//   information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeTooManyPublicKeysInKeyGroup "TooManyPublicKeysInKeyGroup"
@@ -1516,8 +1624,8 @@ func (c *CloudFront) CreateOriginRequestPolicyRequest(input *CreateOriginRequest
 //   a unique name. To modify an existing origin request policy, use UpdateOriginRequestPolicy.
 //
 //   * ErrCodeTooManyOriginRequestPolicies "TooManyOriginRequestPolicies"
-//   You have reached the maximum number of origin request policies for this AWS
-//   account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   You have reached the maximum number of origin request policies for this account.
+//   For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeTooManyHeadersInOriginRequestPolicy "TooManyHeadersInOriginRequestPolicy"
@@ -1713,7 +1821,7 @@ func (c *CloudFront) CreateRealtimeLogConfigRequest(input *CreateRealtimeLogConf
 //
 //   * ErrCodeTooManyRealtimeLogConfigs "TooManyRealtimeLogConfigs"
 //   You have reached the maximum number of real-time log configurations for this
-//   AWS account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
+//   account. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
 //
 //   * ErrCodeInvalidArgument "InvalidArgument"
@@ -2531,6 +2639,9 @@ func (c *CloudFront) DeleteFunctionRequest(input *DeleteFunctionInput) (req *req
 //   * ErrCodePreconditionFailed "PreconditionFailed"
 //   The precondition in one or more of the request fields evaluated to false.
 //
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DeleteFunction
 func (c *CloudFront) DeleteFunction(input *DeleteFunctionInput) (*DeleteFunctionOutput, error) {
 	req, out := c.DeleteFunctionRequest(input)
@@ -3220,6 +3331,9 @@ func (c *CloudFront) DescribeFunctionRequest(input *DescribeFunctionInput) (req 
 // Returned Error Codes:
 //   * ErrCodeNoSuchFunctionExists "NoSuchFunctionExists"
 //   The function does not exist.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/DescribeFunction
 func (c *CloudFront) DescribeFunction(input *DescribeFunctionInput) (*DescribeFunctionOutput, error) {
@@ -4139,6 +4253,9 @@ func (c *CloudFront) GetFunctionRequest(input *GetFunctionInput) (req *request.R
 // Returned Error Codes:
 //   * ErrCodeNoSuchFunctionExists "NoSuchFunctionExists"
 //   The function does not exist.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/GetFunction
 func (c *CloudFront) GetFunction(input *GetFunctionInput) (*GetFunctionOutput, error) {
@@ -5150,7 +5267,7 @@ func (c *CloudFront) ListCachePoliciesRequest(input *ListCachePoliciesInput) (re
 // Gets a list of cache policies.
 //
 // You can optionally apply a filter to return only the managed policies created
-// by AWS, or only the custom policies created in your AWS account.
+// by Amazon Web Services, or only the custom policies created in your account.
 //
 // You can optionally specify the maximum number of items to receive in the
 // response. If the total number of items in the list exceeds the maximum that
@@ -5332,6 +5449,114 @@ func (c *CloudFront) ListCloudFrontOriginAccessIdentitiesPagesWithContext(ctx aw
 	}
 
 	return p.Err()
+}
+
+const opListConflictingAliases = "ListConflictingAliases2020_05_31"
+
+// ListConflictingAliasesRequest generates a "aws/request.Request" representing the
+// client's request for the ListConflictingAliases operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListConflictingAliases for more information on using the ListConflictingAliases
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListConflictingAliasesRequest method.
+//    req, resp := client.ListConflictingAliasesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListConflictingAliases
+func (c *CloudFront) ListConflictingAliasesRequest(input *ListConflictingAliasesInput) (req *request.Request, output *ListConflictingAliasesOutput) {
+	op := &request.Operation{
+		Name:       opListConflictingAliases,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2020-05-31/conflicting-alias",
+	}
+
+	if input == nil {
+		input = &ListConflictingAliasesInput{}
+	}
+
+	output = &ListConflictingAliasesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListConflictingAliases API operation for Amazon CloudFront.
+//
+// Gets a list of aliases (also called CNAMEs or alternate domain names) that
+// conflict or overlap with the provided alias, and the associated CloudFront
+// distributions and Amazon Web Services accounts for each conflicting alias.
+// In the returned list, the distribution and account IDs are partially hidden,
+// which allows you to identify the distributions and accounts that you own,
+// but helps to protect the information of ones that you don’t own.
+//
+// Use this operation to find aliases that are in use in CloudFront that conflict
+// or overlap with the provided alias. For example, if you provide www.example.com
+// as input, the returned list can include www.example.com and the overlapping
+// wildcard alternate domain name (*.example.com), if they exist. If you provide
+// *.example.com as input, the returned list can include *.example.com and any
+// alternate domain names covered by that wildcard (for example, www.example.com,
+// test.example.com, dev.example.com, and so on), if they exist.
+//
+// To list conflicting aliases, you provide the alias to search and the ID of
+// a distribution in your account that has an attached SSL/TLS certificate that
+// includes the provided alias. For more information, including how to set up
+// the distribution and certificate, see Moving an alternate domain name to
+// a different distribution (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/CNAMEs.html#alternate-domain-names-move)
+// in the Amazon CloudFront Developer Guide.
+//
+// You can optionally specify the maximum number of items to receive in the
+// response. If the total number of items in the list exceeds the maximum that
+// you specify, or the default maximum, the response is paginated. To get the
+// next page of items, send a subsequent request that specifies the NextMarker
+// value from the current response as the Marker value in the subsequent request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon CloudFront's
+// API operation ListConflictingAliases for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidArgument "InvalidArgument"
+//   An argument is invalid.
+//
+//   * ErrCodeNoSuchDistribution "NoSuchDistribution"
+//   The specified distribution does not exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListConflictingAliases
+func (c *CloudFront) ListConflictingAliases(input *ListConflictingAliasesInput) (*ListConflictingAliasesOutput, error) {
+	req, out := c.ListConflictingAliasesRequest(input)
+	return out, req.Send()
+}
+
+// ListConflictingAliasesWithContext is the same as ListConflictingAliases with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListConflictingAliases for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *CloudFront) ListConflictingAliasesWithContext(ctx aws.Context, input *ListConflictingAliasesInput, opts ...request.Option) (*ListConflictingAliasesOutput, error) {
+	req, out := c.ListConflictingAliasesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListDistributions = "ListDistributions2020_05_31"
@@ -5879,7 +6104,7 @@ func (c *CloudFront) ListDistributionsByWebACLIdRequest(input *ListDistributions
 
 // ListDistributionsByWebACLId API operation for Amazon CloudFront.
 //
-// List the distributions that are associated with a specified AWS WAF web ACL.
+// List the distributions that are associated with a specified WAF web ACL.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5894,8 +6119,8 @@ func (c *CloudFront) ListDistributionsByWebACLIdRequest(input *ListDistributions
 //
 //   * ErrCodeInvalidWebACLId "InvalidWebACLId"
 //   A web ACL ID specified is not valid. To specify a web ACL created using the
-//   latest version of AWS WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
-//   To specify a web ACL created using AWS WAF Classic, use the ACL ID, for example
+//   latest version of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
+//   To specify a web ACL created using WAF Classic, use the ACL ID, for example
 //   473e64fd-f30b-4765-81a0-62ad96dd167a.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListDistributionsByWebACLId
@@ -6124,7 +6349,7 @@ func (c *CloudFront) ListFunctionsRequest(input *ListFunctionsInput) (req *reque
 
 // ListFunctions API operation for Amazon CloudFront.
 //
-// Gets a list of all CloudFront functions in your AWS account.
+// Gets a list of all CloudFront functions in your account.
 //
 // You can optionally apply a filter to return only the functions that are in
 // the specified stage, either DEVELOPMENT or LIVE.
@@ -6145,6 +6370,9 @@ func (c *CloudFront) ListFunctionsRequest(input *ListFunctionsInput) (req *reque
 // Returned Error Codes:
 //   * ErrCodeInvalidArgument "InvalidArgument"
 //   An argument is invalid.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/ListFunctions
 func (c *CloudFront) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput, error) {
@@ -6443,7 +6671,7 @@ func (c *CloudFront) ListOriginRequestPoliciesRequest(input *ListOriginRequestPo
 // Gets a list of origin request policies.
 //
 // You can optionally apply a filter to return only the managed policies created
-// by AWS, or only the custom policies created in your AWS account.
+// by Amazon Web Services, or only the custom policies created in your account.
 //
 // You can optionally specify the maximum number of items to receive in the
 // response. If the total number of items in the list exceeds the maximum that
@@ -6960,6 +7188,9 @@ func (c *CloudFront) PublishFunctionRequest(input *PublishFunctionInput) (req *r
 //   * ErrCodePreconditionFailed "PreconditionFailed"
 //   The precondition in one or more of the request fields evaluated to false.
 //
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/PublishFunction
 func (c *CloudFront) PublishFunction(input *PublishFunctionInput) (*PublishFunctionOutput, error) {
 	req, out := c.PublishFunctionRequest(input)
@@ -7148,6 +7379,9 @@ func (c *CloudFront) TestFunctionRequest(input *TestFunctionInput) (req *request
 //
 //   * ErrCodeTestFunctionFailed "TestFunctionFailed"
 //   The CloudFront function failed.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/TestFunction
 func (c *CloudFront) TestFunction(input *TestFunctionInput) (*TestFunctionOutput, error) {
@@ -7713,8 +7947,8 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //
 //   * ErrCodeInvalidWebACLId "InvalidWebACLId"
 //   A web ACL ID specified is not valid. To specify a web ACL created using the
-//   latest version of AWS WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
-//   To specify a web ACL created using AWS WAF Classic, use the ACL ID, for example
+//   latest version of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
+//   To specify a web ACL created using WAF Classic, use the ACL ID, for example
 //   473e64fd-f30b-4765-81a0-62ad96dd167a.
 //
 //   * ErrCodeTooManyOriginCustomHeaders "TooManyOriginCustomHeaders"
@@ -7728,18 +7962,18 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //
 //   * ErrCodeTooManyDistributionsWithLambdaAssociations "TooManyDistributionsWithLambdaAssociations"
 //   Processing your request would cause the maximum number of distributions with
-//   Lambda function associations per owner to be exceeded.
+//   Lambda@Edge function associations per owner to be exceeded.
 //
 //   * ErrCodeTooManyDistributionsWithSingleFunctionARN "TooManyDistributionsWithSingleFunctionARN"
 //   The maximum number of distributions have been associated with the specified
-//   Lambda function.
+//   Lambda@Edge function.
 //
 //   * ErrCodeTooManyLambdaFunctionAssociations "TooManyLambdaFunctionAssociations"
-//   Your request contains more Lambda function associations than are allowed
+//   Your request contains more Lambda@Edge function associations than are allowed
 //   per distribution.
 //
 //   * ErrCodeInvalidLambdaFunctionAssociation "InvalidLambdaFunctionAssociation"
-//   The specified Lambda function association is invalid.
+//   The specified Lambda@Edge function association is invalid.
 //
 //   * ErrCodeTooManyDistributionsWithFunctionAssociations "TooManyDistributionsWithFunctionAssociations"
 //   You have reached the maximum number of distributions that are associated
@@ -7804,7 +8038,7 @@ func (c *CloudFront) UpdateDistributionRequest(input *UpdateDistributionInput) (
 //   The real-time log configuration does not exist.
 //
 //   * ErrCodeRealtimeLogConfigOwnerMismatch "RealtimeLogConfigOwnerMismatch"
-//   The specified real-time log configuration belongs to a different AWS account.
+//   The specified real-time log configuration belongs to a different account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateDistribution
 func (c *CloudFront) UpdateDistribution(input *UpdateDistributionInput) (*UpdateDistributionOutput, error) {
@@ -8129,6 +8363,9 @@ func (c *CloudFront) UpdateFunctionRequest(input *UpdateFunctionInput) (req *req
 //   * ErrCodeFunctionSizeLimitExceeded "FunctionSizeLimitExceeded"
 //   The function is too large. For more information, see Quotas (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cloudfront-limits.html)
 //   (formerly known as limits) in the Amazon CloudFront Developer Guide.
+//
+//   * ErrCodeUnsupportedOperation "UnsupportedOperation"
+//   This operation is not supported in this region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/cloudfront-2020-05-31/UpdateFunction
 func (c *CloudFront) UpdateFunction(input *UpdateFunctionInput) (*UpdateFunctionOutput, error) {
@@ -8755,25 +8992,24 @@ func (s *ActiveTrustedKeyGroups) SetQuantity(v int64) *ActiveTrustedKeyGroups {
 	return s
 }
 
-// A list of AWS accounts and the active CloudFront key pairs in each account
-// that CloudFront can use to verify the signatures of signed URLs and signed
-// cookies.
+// A list of accounts and the active CloudFront key pairs in each account that
+// CloudFront can use to verify the signatures of signed URLs and signed cookies.
 type ActiveTrustedSigners struct {
 	_ struct{} `type:"structure"`
 
-	// This field is true if any of the AWS accounts in the list have active CloudFront
+	// This field is true if any of the accounts in the list have active CloudFront
 	// key pairs that CloudFront can use to verify the signatures of signed URLs
 	// and signed cookies. If not, this field is false.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// A list of AWS accounts and the identifiers of active CloudFront key pairs
-	// in each account that CloudFront can use to verify the signatures of signed
-	// URLs and signed cookies.
+	// A list of accounts and the identifiers of active CloudFront key pairs in
+	// each account that CloudFront can use to verify the signatures of signed URLs
+	// and signed cookies.
 	Items []*Signer `locationNameList:"Signer" type:"list"`
 
-	// The number of AWS accounts in the list.
+	// The number of accounts in the list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -8807,16 +9043,16 @@ func (s *ActiveTrustedSigners) SetQuantity(v int64) *ActiveTrustedSigners {
 	return s
 }
 
-// AWS services in China customers must file for an Internet Content Provider
-// (ICP) recordal if they want to serve content publicly on an alternate domain
-// name, also known as a CNAME, that they've added to CloudFront. AliasICPRecordal
-// provides the ICP recordal status for CNAMEs associated with distributions.
-// The status is returned in the CloudFront response; you can't configure it
-// yourself.
+// Amazon Web Services services in China customers must file for an Internet
+// Content Provider (ICP) recordal if they want to serve content publicly on
+// an alternate domain name, also known as a CNAME, that they've added to CloudFront.
+// AliasICPRecordal provides the ICP recordal status for CNAMEs associated with
+// distributions. The status is returned in the CloudFront response; you can't
+// configure it yourself.
 //
 // For more information about ICP recordals, see Signup, Accounts, and Credentials
 // (https://docs.amazonaws.cn/en_us/aws/latest/userguide/accounts-and-credentials.html)
-// in Getting Started with AWS services in China.
+// in Getting Started with Amazon Web Services services in China.
 type AliasICPRecordal struct {
 	_ struct{} `type:"structure"`
 
@@ -9011,6 +9247,75 @@ func (s *AllowedMethods) SetQuantity(v int64) *AllowedMethods {
 	return s
 }
 
+type AssociateAliasInput struct {
+	_ struct{} `locationName:"AssociateAliasRequest" type:"structure"`
+
+	// The alias (also known as a CNAME) to add to the target distribution.
+	//
+	// Alias is a required field
+	Alias *string `location:"querystring" locationName:"Alias" type:"string" required:"true"`
+
+	// The ID of the distribution that you’re associating the alias with.
+	//
+	// TargetDistributionId is a required field
+	TargetDistributionId *string `location:"uri" locationName:"TargetDistributionId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateAliasInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateAliasInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateAliasInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateAliasInput"}
+	if s.Alias == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alias"))
+	}
+	if s.TargetDistributionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("TargetDistributionId"))
+	}
+	if s.TargetDistributionId != nil && len(*s.TargetDistributionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TargetDistributionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlias sets the Alias field's value.
+func (s *AssociateAliasInput) SetAlias(v string) *AssociateAliasInput {
+	s.Alias = &v
+	return s
+}
+
+// SetTargetDistributionId sets the TargetDistributionId field's value.
+func (s *AssociateAliasInput) SetTargetDistributionId(v string) *AssociateAliasInput {
+	s.TargetDistributionId = &v
+	return s
+}
+
+type AssociateAliasOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s AssociateAliasOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateAliasOutput) GoString() string {
+	return s.String()
+}
+
 // A complex type that describes how CloudFront processes requests.
 //
 // You must create at least as many cache behaviors (including the default cache
@@ -9123,8 +9428,8 @@ type CacheBehavior struct {
 	// with a cache behavior.
 	FunctionAssociations *FunctionAssociations `type:"structure"`
 
-	// A complex type that contains zero or more Lambda function associations for
-	// a cache behavior.
+	// A complex type that contains zero or more Lambda@Edge function associations
+	// for a cache behavior.
 	LambdaFunctionAssociations *LambdaFunctionAssociations `type:"structure"`
 
 	// This field is deprecated. We recommend that you use the MaxTTL field in a
@@ -9223,15 +9528,15 @@ type CacheBehavior struct {
 	//
 	// We recommend using TrustedKeyGroups instead of TrustedSigners.
 	//
-	// A list of AWS account IDs whose public keys CloudFront can use to validate
-	// signed URLs or signed cookies.
+	// A list of account IDs whose public keys CloudFront can use to validate signed
+	// URLs or signed cookies.
 	//
 	// When a cache behavior contains trusted signers, CloudFront requires signed
 	// URLs or signed cookies for all requests that match the cache behavior. The
 	// URLs or cookies must be signed with the private key of a CloudFront key pair
-	// in the trusted signer’s AWS account. The signed URL or cookie contains
-	// information about which public key CloudFront should use to verify the signature.
-	// For more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// in the trusted signer’s account. The signed URL or cookie contains information
+	// about which public key CloudFront should use to verify the signature. For
+	// more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
 	TrustedSigners *TrustedSigners `type:"structure"`
 
@@ -9977,8 +10282,8 @@ type CachePolicySummary struct {
 	// CachePolicy is a required field
 	CachePolicy *CachePolicy `type:"structure" required:"true"`
 
-	// The type of cache policy, either managed (created by AWS) or custom (created
-	// in this AWS account).
+	// The type of cache policy, either managed (created by Amazon Web Services)
+	// or custom (created in this account).
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"CachePolicyType"`
@@ -10067,6 +10372,112 @@ func (s *CachedMethods) SetItems(v []*string) *CachedMethods {
 
 // SetQuantity sets the Quantity field's value.
 func (s *CachedMethods) SetQuantity(v int64) *CachedMethods {
+	s.Quantity = &v
+	return s
+}
+
+// An alias (also called a CNAME) and the CloudFront distribution and Amazon
+// Web Services account ID that it’s associated with. The distribution and
+// account IDs are partially hidden, which allows you to identify the distributions
+// and accounts that you own, but helps to protect the information of ones that
+// you don’t own.
+type ConflictingAlias struct {
+	_ struct{} `type:"structure"`
+
+	// The (partially hidden) ID of the Amazon Web Services account that owns the
+	// distribution that’s associated with the alias.
+	AccountId *string `type:"string"`
+
+	// An alias (also called a CNAME).
+	Alias *string `type:"string"`
+
+	// The (partially hidden) ID of the CloudFront distribution associated with
+	// the alias.
+	DistributionId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictingAlias) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictingAlias) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ConflictingAlias) SetAccountId(v string) *ConflictingAlias {
+	s.AccountId = &v
+	return s
+}
+
+// SetAlias sets the Alias field's value.
+func (s *ConflictingAlias) SetAlias(v string) *ConflictingAlias {
+	s.Alias = &v
+	return s
+}
+
+// SetDistributionId sets the DistributionId field's value.
+func (s *ConflictingAlias) SetDistributionId(v string) *ConflictingAlias {
+	s.DistributionId = &v
+	return s
+}
+
+// A list of aliases (also called CNAMEs) and the CloudFront distributions and
+// Amazon Web Services accounts that they are associated with. In the list,
+// the distribution and account IDs are partially hidden, which allows you to
+// identify the distributions and accounts that you own, but helps to protect
+// the information of ones that you don’t own.
+type ConflictingAliasesList struct {
+	_ struct{} `type:"structure"`
+
+	// Contains the conflicting aliases in the list.
+	Items []*ConflictingAlias `locationNameList:"ConflictingAlias" type:"list"`
+
+	// The maximum number of conflicting aliases requested.
+	MaxItems *int64 `type:"integer"`
+
+	// If there are more items in the list than are in this response, this element
+	// is present. It contains the value that you should use in the Marker field
+	// of a subsequent request to continue listing conflicting aliases where you
+	// left off.
+	NextMarker *string `type:"string"`
+
+	// The number of conflicting aliases returned in the response.
+	Quantity *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s ConflictingAliasesList) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictingAliasesList) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ConflictingAliasesList) SetItems(v []*ConflictingAlias) *ConflictingAliasesList {
+	s.Items = v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ConflictingAliasesList) SetMaxItems(v int64) *ConflictingAliasesList {
+	s.MaxItems = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ConflictingAliasesList) SetNextMarker(v string) *ConflictingAliasesList {
+	s.NextMarker = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *ConflictingAliasesList) SetQuantity(v int64) *ConflictingAliasesList {
 	s.Quantity = &v
 	return s
 }
@@ -10358,7 +10769,7 @@ type CookiePreference struct {
 	//
 	// For the current limit on the number of cookie names that you can whitelist
 	// for each cache behavior, see CloudFront Limits (https://docs.aws.amazon.com/general/latest/gr/xrefaws_service_limits.html#limits_cloudfront)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	WhitelistedNames *CookieNames `type:"structure"`
 }
 
@@ -12236,8 +12647,8 @@ type DefaultCacheBehavior struct {
 	// with a cache behavior.
 	FunctionAssociations *FunctionAssociations `type:"structure"`
 
-	// A complex type that contains zero or more Lambda function associations for
-	// a cache behavior.
+	// A complex type that contains zero or more Lambda@Edge function associations
+	// for a cache behavior.
 	LambdaFunctionAssociations *LambdaFunctionAssociations `type:"structure"`
 
 	// This field is deprecated. We recommend that you use the MaxTTL field in a
@@ -12317,13 +12728,13 @@ type DefaultCacheBehavior struct {
 	//
 	// We recommend using TrustedKeyGroups instead of TrustedSigners.
 	//
-	// A list of AWS account IDs whose public keys CloudFront can use to validate
-	// signed URLs or signed cookies.
+	// A list of account IDs whose public keys CloudFront can use to validate signed
+	// URLs or signed cookies.
 	//
 	// When a cache behavior contains trusted signers, CloudFront requires signed
 	// URLs or signed cookies for all requests that match the cache behavior. The
 	// URLs or cookies must be signed with the private key of a CloudFront key pair
-	// in a trusted signer’s AWS account. The signed URL or cookie contains information
+	// in a trusted signer’s account. The signed URL or cookie contains information
 	// about which public key CloudFront should use to verify the signature. For
 	// more information, see Serving private content (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
@@ -13403,7 +13814,7 @@ type Distribution struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (Amazon Resource Name) for the distribution. For example: arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your AWS account ID.
+	// where 123456789012 is your account ID.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
@@ -13420,19 +13831,20 @@ type Distribution struct {
 	//
 	// CloudFront automatically adds this field to the response if you’ve configured
 	// a cache behavior in this distribution to serve private content using trusted
-	// signers. This field contains a list of AWS account IDs and the active CloudFront
+	// signers. This field contains a list of account IDs and the active CloudFront
 	// key pairs in each account that CloudFront can use to verify the signatures
 	// of signed URLs or signed cookies.
 	ActiveTrustedSigners *ActiveTrustedSigners `type:"structure"`
 
-	// AWS services in China customers must file for an Internet Content Provider
-	// (ICP) recordal if they want to serve content publicly on an alternate domain
-	// name, also known as a CNAME, that they've added to CloudFront. AliasICPRecordal
-	// provides the ICP recordal status for CNAMEs associated with distributions.
+	// Amazon Web Services services in China customers must file for an Internet
+	// Content Provider (ICP) recordal if they want to serve content publicly on
+	// an alternate domain name, also known as a CNAME, that they've added to CloudFront.
+	// AliasICPRecordal provides the ICP recordal status for CNAMEs associated with
+	// distributions.
 	//
 	// For more information about ICP recordals, see Signup, Accounts, and Credentials
 	// (https://docs.amazonaws.cn/en_us/aws/latest/userguide/accounts-and-credentials.html)
-	// in Getting Started with AWS services in China.
+	// in Getting Started with Amazon Web Services services in China.
 	AliasICPRecordals []*AliasICPRecordal `locationNameList:"AliasICPRecordal" type:"list"`
 
 	// The current configuration information for the distribution. Send a GET request
@@ -13644,9 +14056,10 @@ type DistributionConfig struct {
 	// For more information, see Creating a Signed URL Using a Custom Policy (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-custom-policy.html)
 	// in the Amazon CloudFront Developer Guide.
 	//
-	// If you're using an Amazon Route 53 alias resource record set to route traffic
-	// to your CloudFront distribution, you need to create a second alias resource
-	// record set when both of the following are true:
+	// If you're using an Route 53 Amazon Web Services Integration alias resource
+	// record set to route traffic to your CloudFront distribution, you need to
+	// create a second alias resource record set when both of the following are
+	// true:
 	//
 	//    * You enable IPv6 for the distribution
 	//
@@ -13654,12 +14067,12 @@ type DistributionConfig struct {
 	//
 	// For more information, see Routing Traffic to an Amazon CloudFront Web Distribution
 	// by Using Your Domain Name (https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/routing-to-cloudfront-distribution.html)
-	// in the Amazon Route 53 Developer Guide.
+	// in the Route 53 Amazon Web Services Integration Developer Guide.
 	//
-	// If you created a CNAME resource record set, either with Amazon Route 53 or
-	// with another DNS service, you don't need to make any changes. A CNAME record
-	// will route traffic to your distribution regardless of the IP address format
-	// of the viewer request.
+	// If you created a CNAME resource record set, either with Route 53 Amazon Web
+	// Services Integration or with another DNS service, you don't need to make
+	// any changes. A CNAME record will route traffic to your distribution regardless
+	// of the IP address format of the viewer request.
 	IsIPV6Enabled *bool `type:"boolean"`
 
 	// A complex type that controls whether access logs are written for the distribution.
@@ -13701,20 +14114,20 @@ type DistributionConfig struct {
 	// for communicating with viewers.
 	ViewerCertificate *ViewerCertificate `type:"structure"`
 
-	// A unique identifier that specifies the AWS WAF web ACL, if any, to associate
+	// A unique identifier that specifies the WAF web ACL, if any, to associate
 	// with this distribution. To specify a web ACL created using the latest version
-	// of AWS WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
-	// To specify a web ACL created using AWS WAF Classic, use the ACL ID, for example
+	// of WAF, use the ACL ARN, for example arn:aws:wafv2:us-east-1:123456789012:global/webacl/ExampleWebACL/473e64fd-f30b-4765-81a0-62ad96dd167a.
+	// To specify a web ACL created using WAF Classic, use the ACL ID, for example
 	// 473e64fd-f30b-4765-81a0-62ad96dd167a.
 	//
-	// AWS WAF is a web application firewall that lets you monitor the HTTP and
-	// HTTPS requests that are forwarded to CloudFront, and lets you control access
-	// to your content. Based on conditions that you specify, such as the IP addresses
+	// WAF is a web application firewall that lets you monitor the HTTP and HTTPS
+	// requests that are forwarded to CloudFront, and lets you control access to
+	// your content. Based on conditions that you specify, such as the IP addresses
 	// that requests originate from or the values of query strings, CloudFront responds
 	// to requests either with the requested content or with an HTTP 403 status
 	// code (Forbidden). You can also configure CloudFront to return a custom error
-	// page when a request is blocked. For more information about AWS WAF, see the
-	// AWS WAF Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html).
+	// page when a request is blocked. For more information about WAF, see the WAF
+	// Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/what-is-aws-waf.html).
 	WebACLId *string `type:"string"`
 }
 
@@ -14052,7 +14465,7 @@ type DistributionList struct {
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// A complex type that contains one DistributionSummary element for each distribution
-	// that was created by the current AWS account.
+	// that was created by the current account.
 	Items []*DistributionSummary `locationNameList:"DistributionSummary" type:"list"`
 
 	// The value you provided for the Marker request parameter.
@@ -14070,7 +14483,7 @@ type DistributionList struct {
 	// where they left off.
 	NextMarker *string `type:"string"`
 
-	// The number of distributions that were created by the current AWS account.
+	// The number of distributions that were created by the current account.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -14127,19 +14540,20 @@ type DistributionSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (Amazon Resource Name) for the distribution. For example: arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your AWS account ID.
+	// where 123456789012 is your account ID.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
 
-	// AWS services in China customers must file for an Internet Content Provider
-	// (ICP) recordal if they want to serve content publicly on an alternate domain
-	// name, also known as a CNAME, that they've added to CloudFront. AliasICPRecordal
-	// provides the ICP recordal status for CNAMEs associated with distributions.
+	// Amazon Web Services services in China customers must file for an Internet
+	// Content Provider (ICP) recordal if they want to serve content publicly on
+	// an alternate domain name, also known as a CNAME, that they've added to CloudFront.
+	// AliasICPRecordal provides the ICP recordal status for CNAMEs associated with
+	// distributions.
 	//
 	// For more information about ICP recordals, see Signup, Accounts, and Credentials
 	// (https://docs.amazonaws.cn/en_us/aws/latest/userguide/accounts-and-credentials.html)
-	// in Getting Started with AWS services in China.
+	// in Getting Started with Amazon Web Services services in China.
 	AliasICPRecordals []*AliasICPRecordal `locationNameList:"AliasICPRecordal" type:"list"`
 
 	// A complex type that contains information about CNAMEs (alternate domain names),
@@ -17594,7 +18008,7 @@ type InvalidationList struct {
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// A complex type that contains one InvalidationSummary element for each invalidation
-	// batch created by the current AWS account.
+	// batch created by the current account.
 	Items []*InvalidationSummary `locationNameList:"InvalidationSummary" type:"list"`
 
 	// The value that you provided for the Marker request parameter.
@@ -17612,7 +18026,7 @@ type InvalidationList struct {
 	// batches where they left off.
 	NextMarker *string `type:"string"`
 
-	// The number of invalidation batches that were created by the current AWS account.
+	// The number of invalidation batches that were created by the current account.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -17986,7 +18400,7 @@ func (s *KeyPairIds) SetQuantity(v int64) *KeyPairIds {
 type KinesisStreamConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS Identity and Access Management (IAM)
+	// The Amazon Resource Name (ARN) of an Identity and Access Management (IAM)
 	// role that CloudFront can use to send real-time log data to your Kinesis data
 	// stream.
 	//
@@ -18042,12 +18456,12 @@ func (s *KinesisStreamConfig) SetStreamARN(v string) *KinesisStreamConfig {
 	return s
 }
 
-// A complex type that contains a Lambda function association.
+// A complex type that contains a Lambda@Edge function association.
 type LambdaFunctionAssociation struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the event type that triggers a Lambda function invocation. You
-	// can specify the following values:
+	// Specifies the event type that triggers a Lambda@Edge function invocation.
+	// You can specify the following values:
 	//
 	//    * viewer-request: The function executes when CloudFront receives a request
 	//    from a viewer and before it checks to see whether the requested object
@@ -18069,14 +18483,14 @@ type LambdaFunctionAssociation struct {
 	// EventType is a required field
 	EventType *string `type:"string" required:"true" enum:"EventType"`
 
-	// A flag that allows a Lambda function to have read access to the body content.
-	// For more information, see Accessing the Request Body by Choosing the Include
-	// Body Option (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-include-body-access.html)
+	// A flag that allows a Lambda@Edge function to have read access to the body
+	// content. For more information, see Accessing the Request Body by Choosing
+	// the Include Body Option (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/lambda-include-body-access.html)
 	// in the Amazon CloudFront Developer Guide.
 	IncludeBody *bool `type:"boolean"`
 
-	// The ARN of the Lambda function. You must specify the ARN of a function version;
-	// you can't specify a Lambda alias or $LATEST.
+	// The ARN of the Lambda@Edge function. You must specify the ARN of a function
+	// version; you can't specify an alias or $LATEST.
 	//
 	// LambdaFunctionARN is a required field
 	LambdaFunctionARN *string `type:"string" required:"true"`
@@ -18126,17 +18540,17 @@ func (s *LambdaFunctionAssociation) SetLambdaFunctionARN(v string) *LambdaFuncti
 	return s
 }
 
-// A complex type that specifies a list of Lambda functions associations for
-// a cache behavior.
+// A complex type that specifies a list of Lambda@Edge functions associations
+// for a cache behavior.
 //
-// If you want to invoke one or more Lambda functions triggered by requests
+// If you want to invoke one or more Lambda@Edge functions triggered by requests
 // that match the PathPattern of the cache behavior, specify the applicable
 // values for Quantity and Items. Note that there can be up to 4 LambdaFunctionAssociation
 // items in this list (one for each possible value of EventType) and each EventType
-// can be associated with the Lambda function only once.
+// can be associated with only one function.
 //
-// If you don't want to invoke any Lambda functions for the requests that match
-// PathPattern, specify 0 for Quantity and omit Items.
+// If you don't want to invoke any Lambda@Edge functions for the requests that
+// match PathPattern, specify 0 for Quantity and omit Items.
 type LambdaFunctionAssociations struct {
 	_ struct{} `type:"structure"`
 
@@ -18144,7 +18558,7 @@ type LambdaFunctionAssociations struct {
 	// this cache behavior. If Quantity is 0, you can omit Items.
 	Items []*LambdaFunctionAssociation `locationNameList:"LambdaFunctionAssociation" type:"list"`
 
-	// The number of Lambda function associations for this cache behavior.
+	// The number of Lambda@Edge function associations for this cache behavior.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -18210,9 +18624,10 @@ type ListCachePoliciesInput struct {
 	// A filter to return only the specified kinds of cache policies. Valid values
 	// are:
 	//
-	//    * managed – Returns only the managed policies created by AWS.
+	//    * managed – Returns only the managed policies created by Amazon Web
+	//    Services.
 	//
-	//    * custom – Returns only the custom policies created in your AWS account.
+	//    * custom – Returns only the custom policies created in your account.
 	Type *string `location:"querystring" locationName:"Type" type:"string" enum:"CachePolicyType"`
 }
 
@@ -18325,6 +18740,104 @@ func (s ListCloudFrontOriginAccessIdentitiesOutput) GoString() string {
 // SetCloudFrontOriginAccessIdentityList sets the CloudFrontOriginAccessIdentityList field's value.
 func (s *ListCloudFrontOriginAccessIdentitiesOutput) SetCloudFrontOriginAccessIdentityList(v *OriginAccessIdentityList) *ListCloudFrontOriginAccessIdentitiesOutput {
 	s.CloudFrontOriginAccessIdentityList = v
+	return s
+}
+
+type ListConflictingAliasesInput struct {
+	_ struct{} `locationName:"ListConflictingAliasesRequest" type:"structure"`
+
+	// The alias (also called a CNAME) to search for conflicting aliases.
+	//
+	// Alias is a required field
+	Alias *string `location:"querystring" locationName:"Alias" type:"string" required:"true"`
+
+	// The ID of a distribution in your account that has an attached SSL/TLS certificate
+	// that includes the provided alias.
+	//
+	// DistributionId is a required field
+	DistributionId *string `location:"querystring" locationName:"DistributionId" type:"string" required:"true"`
+
+	// Use this field when paginating results to indicate where to begin in the
+	// list of conflicting aliases. The response includes conflicting aliases in
+	// the list that occur after the marker. To get the next page of the list, set
+	// this field’s value to the value of NextMarker from the current page’s
+	// response.
+	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
+
+	// The maximum number of conflicting aliases that you want in the response.
+	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
+}
+
+// String returns the string representation
+func (s ListConflictingAliasesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConflictingAliasesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListConflictingAliasesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListConflictingAliasesInput"}
+	if s.Alias == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alias"))
+	}
+	if s.DistributionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DistributionId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlias sets the Alias field's value.
+func (s *ListConflictingAliasesInput) SetAlias(v string) *ListConflictingAliasesInput {
+	s.Alias = &v
+	return s
+}
+
+// SetDistributionId sets the DistributionId field's value.
+func (s *ListConflictingAliasesInput) SetDistributionId(v string) *ListConflictingAliasesInput {
+	s.DistributionId = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *ListConflictingAliasesInput) SetMarker(v string) *ListConflictingAliasesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxItems sets the MaxItems field's value.
+func (s *ListConflictingAliasesInput) SetMaxItems(v int64) *ListConflictingAliasesInput {
+	s.MaxItems = &v
+	return s
+}
+
+type ListConflictingAliasesOutput struct {
+	_ struct{} `type:"structure" payload:"ConflictingAliasesList"`
+
+	// A list of conflicting aliases.
+	ConflictingAliasesList *ConflictingAliasesList `type:"structure"`
+}
+
+// String returns the string representation
+func (s ListConflictingAliasesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListConflictingAliasesOutput) GoString() string {
+	return s.String()
+}
+
+// SetConflictingAliasesList sets the ConflictingAliasesList field's value.
+func (s *ListConflictingAliasesOutput) SetConflictingAliasesList(v *ConflictingAliasesList) *ListConflictingAliasesOutput {
+	s.ConflictingAliasesList = v
 	return s
 }
 
@@ -18663,8 +19176,8 @@ func (s *ListDistributionsByRealtimeLogConfigOutput) SetDistributionList(v *Dist
 	return s
 }
 
-// The request to list distributions that are associated with a specified AWS
-// WAF web ACL.
+// The request to list distributions that are associated with a specified WAF
+// web ACL.
 type ListDistributionsByWebACLIdInput struct {
 	_ struct{} `locationName:"ListDistributionsByWebACLIdRequest" type:"structure"`
 
@@ -18679,7 +19192,7 @@ type ListDistributionsByWebACLIdInput struct {
 	// the response body. The maximum and default values are both 100.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" type:"integer"`
 
-	// The ID of the AWS WAF web ACL that you want to list the associated distributions.
+	// The ID of the WAF web ACL that you want to list the associated distributions.
 	// If you specify "null" for the ID, the request returns a list of the distributions
 	// that aren't associated with a web ACL.
 	//
@@ -18732,7 +19245,7 @@ func (s *ListDistributionsByWebACLIdInput) SetWebACLId(v string) *ListDistributi
 }
 
 // The response to a request to list the distributions that are associated with
-// a specified AWS WAF web ACL.
+// a specified WAF web ACL.
 type ListDistributionsByWebACLIdOutput struct {
 	_ struct{} `type:"structure" payload:"DistributionList"`
 
@@ -19172,9 +19685,10 @@ type ListOriginRequestPoliciesInput struct {
 	// A filter to return only the specified kinds of origin request policies. Valid
 	// values are:
 	//
-	//    * managed – Returns only the managed policies created by AWS.
+	//    * managed – Returns only the managed policies created by Amazon Web
+	//    Services.
 	//
-	//    * custom – Returns only the custom policies created in your AWS account.
+	//    * custom – Returns only the custom policies created in your account.
 	Type *string `location:"querystring" locationName:"Type" type:"string" enum:"OriginRequestPolicyType"`
 }
 
@@ -19932,7 +20446,7 @@ type OriginAccessIdentityList struct {
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// A complex type that contains one CloudFrontOriginAccessIdentitySummary element
-	// for each origin access identity that was created by the current AWS account.
+	// for each origin access identity that was created by the current account.
 	Items []*OriginAccessIdentitySummary `locationNameList:"CloudFrontOriginAccessIdentitySummary" type:"list"`
 
 	// Use this when paginating results to indicate where to begin in your list
@@ -19955,7 +20469,7 @@ type OriginAccessIdentityList struct {
 	NextMarker *string `type:"string"`
 
 	// The number of CloudFront origin access identities that were created by the
-	// current AWS account.
+	// current account.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -20873,8 +21387,8 @@ type OriginRequestPolicySummary struct {
 	// OriginRequestPolicy is a required field
 	OriginRequestPolicy *OriginRequestPolicy `type:"structure" required:"true"`
 
-	// The type of origin request policy, either managed (created by AWS) or custom
-	// (created in this AWS account).
+	// The type of origin request policy, either managed (created by Amazon Web
+	// Services) or custom (created in this account).
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"OriginRequestPolicyType"`
@@ -20920,16 +21434,16 @@ type OriginShield struct {
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// The AWS Region for Origin Shield.
+	// The Region for Origin Shield.
 	//
-	// Specify the AWS Region that has the lowest latency to your origin. To specify
+	// Specify the Region that has the lowest latency to your origin. To specify
 	// a region, use the region code, not the region name. For example, specify
 	// the US East (Ohio) region as us-east-2.
 	//
-	// When you enable CloudFront Origin Shield, you must specify the AWS Region
-	// for Origin Shield. For the list of AWS Regions that you can specify, and
-	// for help choosing the best Region for your origin, see Choosing the AWS Region
-	// for Origin Shield (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region)
+	// When you enable CloudFront Origin Shield, you must specify the Region for
+	// Origin Shield. For the list of Regions that you can specify, and for help
+	// choosing the best Region for your origin, see Choosing the Region for Origin
+	// Shield (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/origin-shield.html#choose-origin-shield-region)
 	// in the Amazon CloudFront Developer Guide.
 	OriginShieldRegion *string `min:"1" type:"string"`
 }
@@ -22302,15 +22816,14 @@ func (s *S3OriginConfig) SetOriginAccessIdentity(v string) *S3OriginConfig {
 	return s
 }
 
-// A list of AWS accounts and the active CloudFront key pairs in each account
-// that CloudFront can use to verify the signatures of signed URLs and signed
-// cookies.
+// A list of accounts and the active CloudFront key pairs in each account that
+// CloudFront can use to verify the signatures of signed URLs and signed cookies.
 type Signer struct {
 	_ struct{} `type:"structure"`
 
-	// An AWS account number that contains active CloudFront key pairs that CloudFront
+	// An account number that contains active CloudFront key pairs that CloudFront
 	// can use to verify the signatures of signed URLs and signed cookies. If the
-	// AWS account that owns the key pairs is the same account that owns the CloudFront
+	// account that owns the key pairs is the same account that owns the CloudFront
 	// distribution, the value of this field is self.
 	AwsAccountNumber *string `type:"string"`
 
@@ -22404,20 +22917,20 @@ type StreamingDistribution struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN (Amazon Resource Name) for the distribution. For example: arn:aws:cloudfront::123456789012:distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your AWS account ID.
+	// where 123456789012 is your account ID.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
 
-	// A complex type that lists the AWS accounts, if any, that you included in
-	// the TrustedSigners complex type for this distribution. These are the accounts
+	// A complex type that lists the accounts, if any, that you included in the
+	// TrustedSigners complex type for this distribution. These are the accounts
 	// that you want to allow to create signed URLs for private content.
 	//
-	// The Signer complex type lists the AWS account number of the trusted signer
-	// or self if the signer is the AWS account that created the distribution. The
-	// Signer element also includes the IDs of any active CloudFront key pairs that
-	// are associated with the trusted signer's AWS account. If no KeyPairId element
-	// appears for a Signer, that signer can't create signed URLs.
+	// The Signer complex type lists the account number of the trusted signer or
+	// self if the signer is the account that created the distribution. The Signer
+	// element also includes the IDs of any active CloudFront key pairs that are
+	// associated with the trusted signer's account. If no KeyPairId element appears
+	// for a Signer, that signer can't create signed URLs.
 	//
 	// For more information, see Serving Private Content through CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
@@ -22549,11 +23062,11 @@ type StreamingDistributionConfig struct {
 	// S3Origin is a required field
 	S3Origin *S3Origin `type:"structure" required:"true"`
 
-	// A complex type that specifies any AWS accounts that you want to permit to
-	// create signed URLs for private content. If you want the distribution to use
-	// signed URLs, include this element; if you want the distribution to use public
-	// URLs, remove this element. For more information, see Serving Private Content
-	// through CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
+	// A complex type that specifies any accounts that you want to permit to create
+	// signed URLs for private content. If you want the distribution to use signed
+	// URLs, include this element; if you want the distribution to use public URLs,
+	// remove this element. For more information, see Serving Private Content through
+	// CloudFront (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/PrivateContent.html)
 	// in the Amazon CloudFront Developer Guide.
 	//
 	// TrustedSigners is a required field
@@ -22740,7 +23253,7 @@ type StreamingDistributionList struct {
 	IsTruncated *bool `type:"boolean" required:"true"`
 
 	// A complex type that contains one StreamingDistributionSummary element for
-	// each distribution that was created by the current AWS account.
+	// each distribution that was created by the current account.
 	Items []*StreamingDistributionSummary `locationNameList:"StreamingDistributionSummary" type:"list"`
 
 	// The value you provided for the Marker request parameter.
@@ -22758,8 +23271,7 @@ type StreamingDistributionList struct {
 	// where they left off.
 	NextMarker *string `type:"string"`
 
-	// The number of streaming distributions that were created by the current AWS
-	// account.
+	// The number of streaming distributions that were created by the current account.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -22817,7 +23329,7 @@ type StreamingDistributionSummary struct {
 
 	// The ARN (Amazon Resource Name) for the streaming distribution. For example:
 	// arn:aws:cloudfront::123456789012:streaming-distribution/EDFDVBD632BHDS5,
-	// where 123456789012 is your AWS account ID.
+	// where 123456789012 is your account ID.
 	//
 	// ARN is a required field
 	ARN *string `type:"string" required:"true"`
@@ -22872,8 +23384,8 @@ type StreamingDistributionSummary struct {
 	// Status is a required field
 	Status *string `type:"string" required:"true"`
 
-	// A complex type that specifies the AWS accounts, if any, that you want to
-	// allow to create signed URLs for private content. If you want to require signed
+	// A complex type that specifies the accounts, if any, that you want to allow
+	// to create signed URLs for private content. If you want to require signed
 	// URLs in requests for objects in the target origin that match the PathPattern
 	// for this cache behavior, specify true for Enabled, and specify the applicable
 	// values for Quantity and Items.If you don't want to require signed URLs in
@@ -23478,22 +23990,22 @@ func (s *TrustedKeyGroups) SetQuantity(v int64) *TrustedKeyGroups {
 	return s
 }
 
-// A list of AWS accounts whose public keys CloudFront can use to verify the
-// signatures of signed URLs and signed cookies.
+// A list of accounts whose public keys CloudFront can use to verify the signatures
+// of signed URLs and signed cookies.
 type TrustedSigners struct {
 	_ struct{} `type:"structure"`
 
-	// This field is true if any of the AWS accounts have public keys that CloudFront
+	// This field is true if any of the accounts have public keys that CloudFront
 	// can use to verify the signatures of signed URLs and signed cookies. If not,
 	// this field is false.
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 
-	// A list of AWS account identifiers.
+	// A list of account identifiers.
 	Items []*string `locationNameList:"AwsAccountNumber" type:"list"`
 
-	// The number of AWS accounts in the list.
+	// The number of accounts in the list.
 	//
 	// Quantity is a required field
 	Quantity *int64 `type:"integer" required:"true"`
@@ -24803,9 +25315,8 @@ func (s *UpdateStreamingDistributionOutput) SetStreamingDistribution(v *Streamin
 //    (https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/distribution-web-values-specify.html#DownloadDistValues-security-policy)
 //    in the Amazon CloudFront Developer Guide.
 //
-//    * The location of the SSL/TLS certificate, AWS Certificate Manager (ACM)
-//    (https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html) (recommended)
-//    or AWS Identity and Access Management (AWS IAM) (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html).
+//    * The location of the SSL/TLS certificate, Certificate Manager (ACM) (https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html)
+//    (recommended) or Identity and Access Management (IAM) (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html).
 //    You specify the location by setting a value in one of the following fields
 //    (not both): ACMCertificateArn IAMCertificateId
 //
@@ -24821,7 +25332,7 @@ type ViewerCertificate struct {
 	_ struct{} `type:"structure"`
 
 	// If the distribution uses Aliases (alternate domain names or CNAMEs) and the
-	// SSL/TLS certificate is stored in AWS Certificate Manager (ACM) (https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html),
+	// SSL/TLS certificate is stored in Certificate Manager (ACM) (https://docs.aws.amazon.com/acm/latest/userguide/acm-overview.html),
 	// provide the Amazon Resource Name (ARN) of the ACM certificate. CloudFront
 	// only supports ACM certificates in the US East (N. Virginia) Region (us-east-1).
 	//
@@ -24866,8 +25377,7 @@ type ViewerCertificate struct {
 	CloudFrontDefaultCertificate *bool `type:"boolean"`
 
 	// If the distribution uses Aliases (alternate domain names or CNAMEs) and the
-	// SSL/TLS certificate is stored in AWS Identity and Access Management (AWS
-	// IAM) (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html),
+	// SSL/TLS certificate is stored in Identity and Access Management (IAM) (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_server-certs.html),
 	// provide the ID of the IAM certificate.
 	//
 	// If you specify an IAM certificate ID, you must also specify values for MinimumProtocolVersion
@@ -24912,7 +25422,7 @@ type ViewerCertificate struct {
 	//    * static-ip - Do not specify this value unless your distribution has been
 	//    enabled for this feature by the CloudFront team. If you have a use case
 	//    that requires static IP addresses for a distribution, contact CloudFront
-	//    through the AWS Support Center (https://console.aws.amazon.com/support/home).
+	//    through the Amazon Web Services Support Center (https://console.aws.amazon.com/support/home).
 	//
 	// If the distribution uses the CloudFront domain name such as d111111abcdef8.cloudfront.net,
 	// don’t set a value for this field.

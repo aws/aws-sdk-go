@@ -176,6 +176,10 @@ type IoTSiteWiseAPI interface {
 	DescribeProjectWithContext(aws.Context, *iotsitewise.DescribeProjectInput, ...request.Option) (*iotsitewise.DescribeProjectOutput, error)
 	DescribeProjectRequest(*iotsitewise.DescribeProjectInput) (*request.Request, *iotsitewise.DescribeProjectOutput)
 
+	DescribeStorageConfiguration(*iotsitewise.DescribeStorageConfigurationInput) (*iotsitewise.DescribeStorageConfigurationOutput, error)
+	DescribeStorageConfigurationWithContext(aws.Context, *iotsitewise.DescribeStorageConfigurationInput, ...request.Option) (*iotsitewise.DescribeStorageConfigurationOutput, error)
+	DescribeStorageConfigurationRequest(*iotsitewise.DescribeStorageConfigurationInput) (*request.Request, *iotsitewise.DescribeStorageConfigurationOutput)
+
 	DisassociateAssets(*iotsitewise.DisassociateAssetsInput) (*iotsitewise.DisassociateAssetsOutput, error)
 	DisassociateAssetsWithContext(aws.Context, *iotsitewise.DisassociateAssetsInput, ...request.Option) (*iotsitewise.DisassociateAssetsOutput, error)
 	DisassociateAssetsRequest(*iotsitewise.DisassociateAssetsInput) (*request.Request, *iotsitewise.DisassociateAssetsOutput)
@@ -286,6 +290,10 @@ type IoTSiteWiseAPI interface {
 	PutLoggingOptions(*iotsitewise.PutLoggingOptionsInput) (*iotsitewise.PutLoggingOptionsOutput, error)
 	PutLoggingOptionsWithContext(aws.Context, *iotsitewise.PutLoggingOptionsInput, ...request.Option) (*iotsitewise.PutLoggingOptionsOutput, error)
 	PutLoggingOptionsRequest(*iotsitewise.PutLoggingOptionsInput) (*request.Request, *iotsitewise.PutLoggingOptionsOutput)
+
+	PutStorageConfiguration(*iotsitewise.PutStorageConfigurationInput) (*iotsitewise.PutStorageConfigurationOutput, error)
+	PutStorageConfigurationWithContext(aws.Context, *iotsitewise.PutStorageConfigurationInput, ...request.Option) (*iotsitewise.PutStorageConfigurationOutput, error)
+	PutStorageConfigurationRequest(*iotsitewise.PutStorageConfigurationInput) (*request.Request, *iotsitewise.PutStorageConfigurationOutput)
 
 	TagResource(*iotsitewise.TagResourceInput) (*iotsitewise.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *iotsitewise.TagResourceInput, ...request.Option) (*iotsitewise.TagResourceOutput, error)

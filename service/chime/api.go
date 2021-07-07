@@ -2314,6 +2314,103 @@ func (c *Chime) CreateChannelModeratorWithContext(ctx aws.Context, input *Create
 	return out, req.Send()
 }
 
+const opCreateMediaCapturePipeline = "CreateMediaCapturePipeline"
+
+// CreateMediaCapturePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMediaCapturePipeline operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMediaCapturePipeline for more information on using the CreateMediaCapturePipeline
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMediaCapturePipelineRequest method.
+//    req, resp := client.CreateMediaCapturePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMediaCapturePipeline
+func (c *Chime) CreateMediaCapturePipelineRequest(input *CreateMediaCapturePipelineInput) (req *request.Request, output *CreateMediaCapturePipelineOutput) {
+	op := &request.Operation{
+		Name:       opCreateMediaCapturePipeline,
+		HTTPMethod: "POST",
+		HTTPPath:   "/media-capture-pipelines",
+	}
+
+	if input == nil {
+		input = &CreateMediaCapturePipelineInput{}
+	}
+
+	output = &CreateMediaCapturePipelineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateMediaCapturePipeline API operation for Amazon Chime.
+//
+// Creates a media capture pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation CreateMediaCapturePipeline for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/CreateMediaCapturePipeline
+func (c *Chime) CreateMediaCapturePipeline(input *CreateMediaCapturePipelineInput) (*CreateMediaCapturePipelineOutput, error) {
+	req, out := c.CreateMediaCapturePipelineRequest(input)
+	return out, req.Send()
+}
+
+// CreateMediaCapturePipelineWithContext is the same as CreateMediaCapturePipeline with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMediaCapturePipeline for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) CreateMediaCapturePipelineWithContext(ctx aws.Context, input *CreateMediaCapturePipelineInput, opts ...request.Option) (*CreateMediaCapturePipelineOutput, error) {
+	req, out := c.CreateMediaCapturePipelineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateMeeting = "CreateMeeting"
 
 // CreateMeetingRequest generates a "aws/request.Request" representing the
@@ -4856,6 +4953,104 @@ func (c *Chime) DeleteEventsConfiguration(input *DeleteEventsConfigurationInput)
 // for more information on using Contexts.
 func (c *Chime) DeleteEventsConfigurationWithContext(ctx aws.Context, input *DeleteEventsConfigurationInput, opts ...request.Option) (*DeleteEventsConfigurationOutput, error) {
 	req, out := c.DeleteEventsConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteMediaCapturePipeline = "DeleteMediaCapturePipeline"
+
+// DeleteMediaCapturePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMediaCapturePipeline operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMediaCapturePipeline for more information on using the DeleteMediaCapturePipeline
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMediaCapturePipelineRequest method.
+//    req, resp := client.DeleteMediaCapturePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteMediaCapturePipeline
+func (c *Chime) DeleteMediaCapturePipelineRequest(input *DeleteMediaCapturePipelineInput) (req *request.Request, output *DeleteMediaCapturePipelineOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMediaCapturePipeline,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/media-capture-pipelines/{mediaPipelineId}",
+	}
+
+	if input == nil {
+		input = &DeleteMediaCapturePipelineInput{}
+	}
+
+	output = &DeleteMediaCapturePipelineOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMediaCapturePipeline API operation for Amazon Chime.
+//
+// Deletes the media capture pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation DeleteMediaCapturePipeline for usage and error information.
+//
+// Returned Error Types:
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/DeleteMediaCapturePipeline
+func (c *Chime) DeleteMediaCapturePipeline(input *DeleteMediaCapturePipelineInput) (*DeleteMediaCapturePipelineOutput, error) {
+	req, out := c.DeleteMediaCapturePipelineRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMediaCapturePipelineWithContext is the same as DeleteMediaCapturePipeline with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMediaCapturePipeline for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) DeleteMediaCapturePipelineWithContext(ctx aws.Context, input *DeleteMediaCapturePipelineInput, opts ...request.Option) (*DeleteMediaCapturePipelineOutput, error) {
+	req, out := c.DeleteMediaCapturePipelineRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8538,6 +8733,103 @@ func (c *Chime) GetGlobalSettings(input *GetGlobalSettingsInput) (*GetGlobalSett
 // for more information on using Contexts.
 func (c *Chime) GetGlobalSettingsWithContext(ctx aws.Context, input *GetGlobalSettingsInput, opts ...request.Option) (*GetGlobalSettingsOutput, error) {
 	req, out := c.GetGlobalSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMediaCapturePipeline = "GetMediaCapturePipeline"
+
+// GetMediaCapturePipelineRequest generates a "aws/request.Request" representing the
+// client's request for the GetMediaCapturePipeline operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMediaCapturePipeline for more information on using the GetMediaCapturePipeline
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMediaCapturePipelineRequest method.
+//    req, resp := client.GetMediaCapturePipelineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetMediaCapturePipeline
+func (c *Chime) GetMediaCapturePipelineRequest(input *GetMediaCapturePipelineInput) (req *request.Request, output *GetMediaCapturePipelineOutput) {
+	op := &request.Operation{
+		Name:       opGetMediaCapturePipeline,
+		HTTPMethod: "GET",
+		HTTPPath:   "/media-capture-pipelines/{mediaPipelineId}",
+	}
+
+	if input == nil {
+		input = &GetMediaCapturePipelineInput{}
+	}
+
+	output = &GetMediaCapturePipelineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMediaCapturePipeline API operation for Amazon Chime.
+//
+// Gets an existing media capture pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation GetMediaCapturePipeline for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/GetMediaCapturePipeline
+func (c *Chime) GetMediaCapturePipeline(input *GetMediaCapturePipelineInput) (*GetMediaCapturePipelineOutput, error) {
+	req, out := c.GetMediaCapturePipelineRequest(input)
+	return out, req.Send()
+}
+
+// GetMediaCapturePipelineWithContext is the same as GetMediaCapturePipeline with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMediaCapturePipeline for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) GetMediaCapturePipelineWithContext(ctx aws.Context, input *GetMediaCapturePipelineInput, opts ...request.Option) (*GetMediaCapturePipelineOutput, error) {
+	req, out := c.GetMediaCapturePipelineRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -12936,6 +13228,158 @@ func (c *Chime) ListChannelsModeratedByAppInstanceUserPagesWithContext(ctx aws.C
 
 	for p.Next() {
 		if !fn(p.Page().(*ListChannelsModeratedByAppInstanceUserOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMediaCapturePipelines = "ListMediaCapturePipelines"
+
+// ListMediaCapturePipelinesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMediaCapturePipelines operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMediaCapturePipelines for more information on using the ListMediaCapturePipelines
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMediaCapturePipelinesRequest method.
+//    req, resp := client.ListMediaCapturePipelinesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListMediaCapturePipelines
+func (c *Chime) ListMediaCapturePipelinesRequest(input *ListMediaCapturePipelinesInput) (req *request.Request, output *ListMediaCapturePipelinesOutput) {
+	op := &request.Operation{
+		Name:       opListMediaCapturePipelines,
+		HTTPMethod: "GET",
+		HTTPPath:   "/media-capture-pipelines",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMediaCapturePipelinesInput{}
+	}
+
+	output = &ListMediaCapturePipelinesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMediaCapturePipelines API operation for Amazon Chime.
+//
+// Returns a list of media capture pipelines.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation ListMediaCapturePipelines for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/ListMediaCapturePipelines
+func (c *Chime) ListMediaCapturePipelines(input *ListMediaCapturePipelinesInput) (*ListMediaCapturePipelinesOutput, error) {
+	req, out := c.ListMediaCapturePipelinesRequest(input)
+	return out, req.Send()
+}
+
+// ListMediaCapturePipelinesWithContext is the same as ListMediaCapturePipelines with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMediaCapturePipelines for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListMediaCapturePipelinesWithContext(ctx aws.Context, input *ListMediaCapturePipelinesInput, opts ...request.Option) (*ListMediaCapturePipelinesOutput, error) {
+	req, out := c.ListMediaCapturePipelinesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMediaCapturePipelinesPages iterates over the pages of a ListMediaCapturePipelines operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMediaCapturePipelines method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMediaCapturePipelines operation.
+//    pageNum := 0
+//    err := client.ListMediaCapturePipelinesPages(params,
+//        func(page *chime.ListMediaCapturePipelinesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Chime) ListMediaCapturePipelinesPages(input *ListMediaCapturePipelinesInput, fn func(*ListMediaCapturePipelinesOutput, bool) bool) error {
+	return c.ListMediaCapturePipelinesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMediaCapturePipelinesPagesWithContext same as ListMediaCapturePipelinesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) ListMediaCapturePipelinesPagesWithContext(ctx aws.Context, input *ListMediaCapturePipelinesInput, fn func(*ListMediaCapturePipelinesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMediaCapturePipelinesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMediaCapturePipelinesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMediaCapturePipelinesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -23867,6 +24311,130 @@ func (s *CreateChannelOutput) SetChannelArn(v string) *CreateChannelOutput {
 	return s
 }
 
+type CreateMediaCapturePipelineInput struct {
+	_ struct{} `type:"structure"`
+
+	// The token assigned to the client making the pipeline request.
+	ClientRequestToken *string `min:"2" type:"string" idempotencyToken:"true" sensitive:"true"`
+
+	// The ARN of the sink type.
+	//
+	// SinkArn is a required field
+	SinkArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Destination type to which the media artifacts are saved. You must use an
+	// S3 bucket.
+	//
+	// SinkType is a required field
+	SinkType *string `type:"string" required:"true" enum:"MediaPipelineSinkType"`
+
+	// ARN of the source from which the media artifacts are captured.
+	//
+	// SourceArn is a required field
+	SourceArn *string `min:"1" type:"string" required:"true" sensitive:"true"`
+
+	// Source type from which the media artifacts will be captured. A Chime SDK
+	// Meeting is the only supported source.
+	//
+	// SourceType is a required field
+	SourceType *string `type:"string" required:"true" enum:"MediaPipelineSourceType"`
+}
+
+// String returns the string representation
+func (s CreateMediaCapturePipelineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMediaCapturePipelineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMediaCapturePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMediaCapturePipelineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 2))
+	}
+	if s.SinkArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SinkArn"))
+	}
+	if s.SinkArn != nil && len(*s.SinkArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SinkArn", 1))
+	}
+	if s.SinkType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SinkType"))
+	}
+	if s.SourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceArn"))
+	}
+	if s.SourceArn != nil && len(*s.SourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceArn", 1))
+	}
+	if s.SourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateMediaCapturePipelineInput) SetClientRequestToken(v string) *CreateMediaCapturePipelineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetSinkArn sets the SinkArn field's value.
+func (s *CreateMediaCapturePipelineInput) SetSinkArn(v string) *CreateMediaCapturePipelineInput {
+	s.SinkArn = &v
+	return s
+}
+
+// SetSinkType sets the SinkType field's value.
+func (s *CreateMediaCapturePipelineInput) SetSinkType(v string) *CreateMediaCapturePipelineInput {
+	s.SinkType = &v
+	return s
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *CreateMediaCapturePipelineInput) SetSourceArn(v string) *CreateMediaCapturePipelineInput {
+	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *CreateMediaCapturePipelineInput) SetSourceType(v string) *CreateMediaCapturePipelineInput {
+	s.SourceType = &v
+	return s
+}
+
+type CreateMediaCapturePipelineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A media capture pipeline object, the ID, source type, source ARN, sink type,
+	// and sink ARN of a media capture pipeline object.
+	MediaCapturePipeline *MediaCapturePipeline `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateMediaCapturePipelineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMediaCapturePipelineOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaCapturePipeline sets the MediaCapturePipeline field's value.
+func (s *CreateMediaCapturePipelineOutput) SetMediaCapturePipeline(v *MediaCapturePipeline) *CreateMediaCapturePipelineOutput {
+	s.MediaCapturePipeline = v
+	return s
+}
+
 type CreateMeetingDialOutInput struct {
 	_ struct{} `type:"structure"`
 
@@ -26233,6 +26801,61 @@ func (s DeleteEventsConfigurationOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteEventsConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteMediaCapturePipelineInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the media capture pipeline being deleted.
+	//
+	// MediaPipelineId is a required field
+	MediaPipelineId *string `location:"uri" locationName:"mediaPipelineId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteMediaCapturePipelineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMediaCapturePipelineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMediaCapturePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMediaCapturePipelineInput"}
+	if s.MediaPipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaPipelineId"))
+	}
+	if s.MediaPipelineId != nil && len(*s.MediaPipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaPipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *DeleteMediaCapturePipelineInput) SetMediaPipelineId(v string) *DeleteMediaCapturePipelineInput {
+	s.MediaPipelineId = &v
+	return s
+}
+
+type DeleteMediaCapturePipelineOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteMediaCapturePipelineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMediaCapturePipelineOutput) GoString() string {
 	return s.String()
 }
 
@@ -29045,6 +29668,70 @@ func (s *GetGlobalSettingsOutput) SetBusinessCalling(v *BusinessCallingSettings)
 // SetVoiceConnector sets the VoiceConnector field's value.
 func (s *GetGlobalSettingsOutput) SetVoiceConnector(v *VoiceConnectorSettings) *GetGlobalSettingsOutput {
 	s.VoiceConnector = v
+	return s
+}
+
+type GetMediaCapturePipelineInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the pipeline that you want to get.
+	//
+	// MediaPipelineId is a required field
+	MediaPipelineId *string `location:"uri" locationName:"mediaPipelineId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMediaCapturePipelineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMediaCapturePipelineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMediaCapturePipelineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMediaCapturePipelineInput"}
+	if s.MediaPipelineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MediaPipelineId"))
+	}
+	if s.MediaPipelineId != nil && len(*s.MediaPipelineId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MediaPipelineId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *GetMediaCapturePipelineInput) SetMediaPipelineId(v string) *GetMediaCapturePipelineInput {
+	s.MediaPipelineId = &v
+	return s
+}
+
+type GetMediaCapturePipelineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The media capture pipeline object.
+	MediaCapturePipeline *MediaCapturePipeline `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMediaCapturePipelineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMediaCapturePipelineOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaCapturePipeline sets the MediaCapturePipeline field's value.
+func (s *GetMediaCapturePipelineOutput) SetMediaCapturePipeline(v *MediaCapturePipeline) *GetMediaCapturePipelineOutput {
+	s.MediaCapturePipeline = v
 	return s
 }
 
@@ -32142,6 +32829,84 @@ func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 	return s
 }
 
+type ListMediaCapturePipelinesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in a single call. Valid Range: 1
+	// - 99.
+	MaxResults *int64 `location:"querystring" locationName:"max-results" min:"1" type:"integer"`
+
+	// The token used to retrieve the next page of results.
+	NextToken *string `location:"querystring" locationName:"next-token" type:"string"`
+}
+
+// String returns the string representation
+func (s ListMediaCapturePipelinesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMediaCapturePipelinesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMediaCapturePipelinesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMediaCapturePipelinesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMediaCapturePipelinesInput) SetMaxResults(v int64) *ListMediaCapturePipelinesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMediaCapturePipelinesInput) SetNextToken(v string) *ListMediaCapturePipelinesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListMediaCapturePipelinesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The media capture pipeline objects in the list.
+	MediaCapturePipelines []*MediaCapturePipeline `type:"list"`
+
+	// The token used to retrieve the next page of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListMediaCapturePipelinesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMediaCapturePipelinesOutput) GoString() string {
+	return s.String()
+}
+
+// SetMediaCapturePipelines sets the MediaCapturePipelines field's value.
+func (s *ListMediaCapturePipelinesOutput) SetMediaCapturePipelines(v []*MediaCapturePipeline) *ListMediaCapturePipelinesOutput {
+	s.MediaCapturePipelines = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMediaCapturePipelinesOutput) SetNextToken(v string) *ListMediaCapturePipelinesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListMeetingTagsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -33504,6 +34269,95 @@ func (s LogoutUserOutput) String() string {
 // GoString returns the string representation
 func (s LogoutUserOutput) GoString() string {
 	return s.String()
+}
+
+// A media capture pipeline object. A string consisting of an ID, source type,
+// a source ARN, a sink type, and a sink ARN.
+type MediaCapturePipeline struct {
+	_ struct{} `type:"structure"`
+
+	// The time at which the capture pipeline was created, in ISO 8601 format.
+	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	// The ID of a media capture pipeline.
+	MediaPipelineId *string `type:"string"`
+
+	// ARN of the destination to which the media artifacts are saved.
+	SinkArn *string `min:"1" type:"string" sensitive:"true"`
+
+	// Destination type to which the media artifacts are saved. You must use an
+	// S3 Bucket.
+	SinkType *string `type:"string" enum:"MediaPipelineSinkType"`
+
+	// ARN of the source from which the media artifacts will be saved.
+	SourceArn *string `min:"1" type:"string" sensitive:"true"`
+
+	// Source type from which media artifacts are saved. You must use ChimeMeeting.
+	SourceType *string `type:"string" enum:"MediaPipelineSourceType"`
+
+	// The status of the media capture pipeline.
+	Status *string `type:"string" enum:"MediaPipelineStatus"`
+
+	// The time at which the capture pipeline was updated, in ISO 8601 format.
+	UpdatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation
+func (s MediaCapturePipeline) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MediaCapturePipeline) GoString() string {
+	return s.String()
+}
+
+// SetCreatedTimestamp sets the CreatedTimestamp field's value.
+func (s *MediaCapturePipeline) SetCreatedTimestamp(v time.Time) *MediaCapturePipeline {
+	s.CreatedTimestamp = &v
+	return s
+}
+
+// SetMediaPipelineId sets the MediaPipelineId field's value.
+func (s *MediaCapturePipeline) SetMediaPipelineId(v string) *MediaCapturePipeline {
+	s.MediaPipelineId = &v
+	return s
+}
+
+// SetSinkArn sets the SinkArn field's value.
+func (s *MediaCapturePipeline) SetSinkArn(v string) *MediaCapturePipeline {
+	s.SinkArn = &v
+	return s
+}
+
+// SetSinkType sets the SinkType field's value.
+func (s *MediaCapturePipeline) SetSinkType(v string) *MediaCapturePipeline {
+	s.SinkType = &v
+	return s
+}
+
+// SetSourceArn sets the SourceArn field's value.
+func (s *MediaCapturePipeline) SetSourceArn(v string) *MediaCapturePipeline {
+	s.SourceArn = &v
+	return s
+}
+
+// SetSourceType sets the SourceType field's value.
+func (s *MediaCapturePipeline) SetSourceType(v string) *MediaCapturePipeline {
+	s.SourceType = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MediaCapturePipeline) SetStatus(v string) *MediaCapturePipeline {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedTimestamp sets the UpdatedTimestamp field's value.
+func (s *MediaCapturePipeline) SetUpdatedTimestamp(v time.Time) *MediaCapturePipeline {
+	s.UpdatedTimestamp = &v
+	return s
 }
 
 // A set of endpoints used by clients to connect to the media service group
@@ -41098,6 +41952,58 @@ func License_Values() []string {
 		LicensePlus,
 		LicensePro,
 		LicenseProTrial,
+	}
+}
+
+const (
+	// MediaPipelineSinkTypeS3bucket is a MediaPipelineSinkType enum value
+	MediaPipelineSinkTypeS3bucket = "S3Bucket"
+)
+
+// MediaPipelineSinkType_Values returns all elements of the MediaPipelineSinkType enum
+func MediaPipelineSinkType_Values() []string {
+	return []string{
+		MediaPipelineSinkTypeS3bucket,
+	}
+}
+
+const (
+	// MediaPipelineSourceTypeChimeSdkMeeting is a MediaPipelineSourceType enum value
+	MediaPipelineSourceTypeChimeSdkMeeting = "ChimeSdkMeeting"
+)
+
+// MediaPipelineSourceType_Values returns all elements of the MediaPipelineSourceType enum
+func MediaPipelineSourceType_Values() []string {
+	return []string{
+		MediaPipelineSourceTypeChimeSdkMeeting,
+	}
+}
+
+const (
+	// MediaPipelineStatusInitializing is a MediaPipelineStatus enum value
+	MediaPipelineStatusInitializing = "Initializing"
+
+	// MediaPipelineStatusInProgress is a MediaPipelineStatus enum value
+	MediaPipelineStatusInProgress = "InProgress"
+
+	// MediaPipelineStatusFailed is a MediaPipelineStatus enum value
+	MediaPipelineStatusFailed = "Failed"
+
+	// MediaPipelineStatusStopping is a MediaPipelineStatus enum value
+	MediaPipelineStatusStopping = "Stopping"
+
+	// MediaPipelineStatusStopped is a MediaPipelineStatus enum value
+	MediaPipelineStatusStopped = "Stopped"
+)
+
+// MediaPipelineStatus_Values returns all elements of the MediaPipelineStatus enum
+func MediaPipelineStatus_Values() []string {
+	return []string{
+		MediaPipelineStatusInitializing,
+		MediaPipelineStatusInProgress,
+		MediaPipelineStatusFailed,
+		MediaPipelineStatusStopping,
+		MediaPipelineStatusStopped,
 	}
 }
 

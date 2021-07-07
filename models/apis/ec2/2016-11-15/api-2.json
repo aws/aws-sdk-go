@@ -277,7 +277,8 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"AuthorizeSecurityGroupEgressRequest"}
+      "input":{"shape":"AuthorizeSecurityGroupEgressRequest"},
+      "output":{"shape":"AuthorizeSecurityGroupEgressResult"}
     },
     "AuthorizeSecurityGroupIngress":{
       "name":"AuthorizeSecurityGroupIngress",
@@ -285,7 +286,8 @@
         "method":"POST",
         "requestUri":"/"
       },
-      "input":{"shape":"AuthorizeSecurityGroupIngressRequest"}
+      "input":{"shape":"AuthorizeSecurityGroupIngressRequest"},
+      "output":{"shape":"AuthorizeSecurityGroupIngressResult"}
     },
     "BundleInstance":{
       "name":"BundleInstance",
@@ -2196,6 +2198,15 @@
       "input":{"shape":"DescribeSecurityGroupReferencesRequest"},
       "output":{"shape":"DescribeSecurityGroupReferencesResult"}
     },
+    "DescribeSecurityGroupRules":{
+      "name":"DescribeSecurityGroupRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeSecurityGroupRulesRequest"},
+      "output":{"shape":"DescribeSecurityGroupRulesResult"}
+    },
     "DescribeSecurityGroups":{
       "name":"DescribeSecurityGroups",
       "http":{
@@ -3343,6 +3354,15 @@
       },
       "input":{"shape":"ModifyReservedInstancesRequest"},
       "output":{"shape":"ModifyReservedInstancesResult"}
+    },
+    "ModifySecurityGroupRules":{
+      "name":"ModifySecurityGroupRules",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifySecurityGroupRulesRequest"},
+      "output":{"shape":"ModifySecurityGroupRulesResult"}
     },
     "ModifySnapshotAttribute":{
       "name":"ModifySnapshotAttribute",
@@ -5547,6 +5567,10 @@
           "shape":"IpPermissionList",
           "locationName":"ipPermissions"
         },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
         "CidrIp":{
           "shape":"String",
           "locationName":"cidrIp"
@@ -5573,6 +5597,19 @@
         }
       }
     },
+    "AuthorizeSecurityGroupEgressResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        },
+        "SecurityGroupRules":{
+          "shape":"SecurityGroupRuleList",
+          "locationName":"securityGroupRuleSet"
+        }
+      }
+    },
     "AuthorizeSecurityGroupIngressRequest":{
       "type":"structure",
       "members":{
@@ -5588,6 +5625,23 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
+        },
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
+      }
+    },
+    "AuthorizeSecurityGroupIngressResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        },
+        "SecurityGroupRules":{
+          "shape":"SecurityGroupRuleList",
+          "locationName":"securityGroupRuleSet"
         }
       }
     },
@@ -13261,6 +13315,40 @@
         "SecurityGroupReferenceSet":{
           "shape":"SecurityGroupReferences",
           "locationName":"securityGroupReferenceSet"
+        }
+      }
+    },
+    "DescribeSecurityGroupRulesMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":5
+    },
+    "DescribeSecurityGroupRulesRequest":{
+      "type":"structure",
+      "members":{
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "SecurityGroupRuleIds":{
+          "shape":"SecurityGroupRuleIdList",
+          "locationName":"SecurityGroupRuleId"
+        },
+        "DryRun":{"shape":"Boolean"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeSecurityGroupRulesMaxResults"}
+      }
+    },
+    "DescribeSecurityGroupRulesResult":{
+      "type":"structure",
+      "members":{
+        "SecurityGroupRules":{
+          "shape":"SecurityGroupRuleList",
+          "locationName":"securityGroupRuleSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -23276,6 +23364,30 @@
         }
       }
     },
+    "ModifySecurityGroupRulesRequest":{
+      "type":"structure",
+      "required":[
+        "GroupId",
+        "SecurityGroupRules"
+      ],
+      "members":{
+        "GroupId":{"shape":"SecurityGroupId"},
+        "SecurityGroupRules":{
+          "shape":"SecurityGroupRuleUpdateList",
+          "locationName":"SecurityGroupRule"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "ModifySecurityGroupRulesResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
+    },
     "ModifySnapshotAttributeRequest":{
       "type":"structure",
       "required":["SnapshotId"],
@@ -26081,6 +26193,31 @@
         "locationName":"item"
       }
     },
+    "ReferencedSecurityGroup":{
+      "type":"structure",
+      "members":{
+        "GroupId":{
+          "shape":"String",
+          "locationName":"groupId"
+        },
+        "PeeringStatus":{
+          "shape":"String",
+          "locationName":"peeringStatus"
+        },
+        "UserId":{
+          "shape":"String",
+          "locationName":"userId"
+        },
+        "VpcId":{
+          "shape":"String",
+          "locationName":"vpcId"
+        },
+        "VpcPeeringConnectionId":{
+          "shape":"String",
+          "locationName":"vpcPeeringConnectionId"
+        }
+      }
+    },
     "Region":{
       "type":"structure",
       "members":{
@@ -27592,6 +27729,7 @@
         "reserved-instances",
         "route-table",
         "security-group",
+        "security-group-rule",
         "snapshot",
         "spot-fleet-request",
         "spot-instances-request",
@@ -27845,6 +27983,10 @@
           "shape":"IpPermissionList",
           "locationName":"ipPermissions"
         },
+        "SecurityGroupRuleIds":{
+          "shape":"SecurityGroupRuleIdList",
+          "locationName":"SecurityGroupRuleId"
+        },
         "CidrIp":{
           "shape":"String",
           "locationName":"cidrIp"
@@ -27899,6 +28041,10 @@
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
+        },
+        "SecurityGroupRuleIds":{
+          "shape":"SecurityGroupRuleIdList",
+          "locationName":"SecurityGroupRuleId"
         }
       }
     },
@@ -28789,6 +28935,119 @@
       "type":"list",
       "member":{
         "shape":"SecurityGroupReference",
+        "locationName":"item"
+      }
+    },
+    "SecurityGroupRule":{
+      "type":"structure",
+      "members":{
+        "SecurityGroupRuleId":{
+          "shape":"SecurityGroupRuleId",
+          "locationName":"securityGroupRuleId"
+        },
+        "GroupId":{
+          "shape":"SecurityGroupId",
+          "locationName":"groupId"
+        },
+        "GroupOwnerId":{
+          "shape":"String",
+          "locationName":"groupOwnerId"
+        },
+        "IsEgress":{
+          "shape":"Boolean",
+          "locationName":"isEgress"
+        },
+        "IpProtocol":{
+          "shape":"String",
+          "locationName":"ipProtocol"
+        },
+        "FromPort":{
+          "shape":"Integer",
+          "locationName":"fromPort"
+        },
+        "ToPort":{
+          "shape":"Integer",
+          "locationName":"toPort"
+        },
+        "CidrIpv4":{
+          "shape":"String",
+          "locationName":"cidrIpv4"
+        },
+        "CidrIpv6":{
+          "shape":"String",
+          "locationName":"cidrIpv6"
+        },
+        "PrefixListId":{
+          "shape":"PrefixListResourceId",
+          "locationName":"prefixListId"
+        },
+        "ReferencedGroupInfo":{
+          "shape":"ReferencedSecurityGroup",
+          "locationName":"referencedGroupInfo"
+        },
+        "Description":{
+          "shape":"String",
+          "locationName":"description"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "SecurityGroupRuleDescription":{
+      "type":"structure",
+      "members":{
+        "SecurityGroupRuleId":{"shape":"String"},
+        "Description":{"shape":"String"}
+      }
+    },
+    "SecurityGroupRuleDescriptionList":{
+      "type":"list",
+      "member":{
+        "shape":"SecurityGroupRuleDescription",
+        "locationName":"item"
+      }
+    },
+    "SecurityGroupRuleId":{"type":"string"},
+    "SecurityGroupRuleIdList":{
+      "type":"list",
+      "member":{
+        "shape":"String",
+        "locationName":"item"
+      }
+    },
+    "SecurityGroupRuleList":{
+      "type":"list",
+      "member":{
+        "shape":"SecurityGroupRule",
+        "locationName":"item"
+      }
+    },
+    "SecurityGroupRuleRequest":{
+      "type":"structure",
+      "members":{
+        "IpProtocol":{"shape":"String"},
+        "FromPort":{"shape":"Integer"},
+        "ToPort":{"shape":"Integer"},
+        "CidrIpv4":{"shape":"String"},
+        "CidrIpv6":{"shape":"String"},
+        "PrefixListId":{"shape":"PrefixListResourceId"},
+        "ReferencedGroupId":{"shape":"SecurityGroupId"},
+        "Description":{"shape":"String"}
+      }
+    },
+    "SecurityGroupRuleUpdate":{
+      "type":"structure",
+      "members":{
+        "SecurityGroupRuleId":{"shape":"SecurityGroupRuleId"},
+        "SecurityGroupRule":{"shape":"SecurityGroupRuleRequest"}
+      }
+    },
+    "SecurityGroupRuleUpdateList":{
+      "type":"list",
+      "member":{
+        "shape":"SecurityGroupRuleUpdate",
         "locationName":"item"
       }
     },
@@ -32381,12 +32640,15 @@
     },
     "UpdateSecurityGroupRuleDescriptionsEgressRequest":{
       "type":"structure",
-      "required":["IpPermissions"],
       "members":{
         "DryRun":{"shape":"Boolean"},
         "GroupId":{"shape":"SecurityGroupId"},
         "GroupName":{"shape":"SecurityGroupName"},
-        "IpPermissions":{"shape":"IpPermissionList"}
+        "IpPermissions":{"shape":"IpPermissionList"},
+        "SecurityGroupRuleDescriptions":{
+          "shape":"SecurityGroupRuleDescriptionList",
+          "locationName":"SecurityGroupRuleDescription"
+        }
       }
     },
     "UpdateSecurityGroupRuleDescriptionsEgressResult":{
@@ -32400,12 +32662,15 @@
     },
     "UpdateSecurityGroupRuleDescriptionsIngressRequest":{
       "type":"structure",
-      "required":["IpPermissions"],
       "members":{
         "DryRun":{"shape":"Boolean"},
         "GroupId":{"shape":"SecurityGroupId"},
         "GroupName":{"shape":"SecurityGroupName"},
-        "IpPermissions":{"shape":"IpPermissionList"}
+        "IpPermissions":{"shape":"IpPermissionList"},
+        "SecurityGroupRuleDescriptions":{
+          "shape":"SecurityGroupRuleDescriptionList",
+          "locationName":"SecurityGroupRuleDescription"
+        }
       }
     },
     "UpdateSecurityGroupRuleDescriptionsIngressResult":{
