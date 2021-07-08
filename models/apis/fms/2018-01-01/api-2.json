@@ -24,7 +24,8 @@
         {"shape":"InvalidOperationException"},
         {"shape":"InvalidInputException"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"InternalErrorException"}
+        {"shape":"InternalErrorException"},
+        {"shape":"LimitExceededException"}
       ]
     },
     "DeleteAppsList":{
@@ -404,6 +405,13 @@
         "DELETED"
       ]
     },
+    "ActionTarget":{
+      "type":"structure",
+      "members":{
+        "ResourceId":{"shape":"ResourceId"},
+        "Description":{"shape":"LengthBoundedString"}
+      }
+    },
     "App":{
       "type":"structure",
       "required":[
@@ -566,6 +574,14 @@
         "AWSVPC"
       ]
     },
+    "DestinationType":{
+      "type":"string",
+      "enum":[
+        "IPV4",
+        "IPV6",
+        "PREFIX_LIST"
+      ]
+    },
     "DetailedInfo":{
       "type":"string",
       "max":1024,
@@ -611,6 +627,84 @@
         "UnavailablePriorities":{"shape":"DnsRuleGroupPriorities"}
       }
     },
+    "EC2AssociateRouteTableAction":{
+      "type":"structure",
+      "required":["RouteTableId"],
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "RouteTableId":{"shape":"ActionTarget"},
+        "SubnetId":{"shape":"ActionTarget"},
+        "GatewayId":{"shape":"ActionTarget"}
+      }
+    },
+    "EC2CopyRouteTableAction":{
+      "type":"structure",
+      "required":[
+        "VpcId",
+        "RouteTableId"
+      ],
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "VpcId":{"shape":"ActionTarget"},
+        "RouteTableId":{"shape":"ActionTarget"}
+      }
+    },
+    "EC2CreateRouteAction":{
+      "type":"structure",
+      "required":["RouteTableId"],
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "DestinationCidrBlock":{"shape":"CIDR"},
+        "DestinationPrefixListId":{"shape":"ResourceId"},
+        "DestinationIpv6CidrBlock":{"shape":"CIDR"},
+        "VpcEndpointId":{"shape":"ActionTarget"},
+        "GatewayId":{"shape":"ActionTarget"},
+        "RouteTableId":{"shape":"ActionTarget"}
+      }
+    },
+    "EC2CreateRouteTableAction":{
+      "type":"structure",
+      "required":["VpcId"],
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "VpcId":{"shape":"ActionTarget"}
+      }
+    },
+    "EC2DeleteRouteAction":{
+      "type":"structure",
+      "required":["RouteTableId"],
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "DestinationCidrBlock":{"shape":"CIDR"},
+        "DestinationPrefixListId":{"shape":"ResourceId"},
+        "DestinationIpv6CidrBlock":{"shape":"CIDR"},
+        "RouteTableId":{"shape":"ActionTarget"}
+      }
+    },
+    "EC2ReplaceRouteAction":{
+      "type":"structure",
+      "required":["RouteTableId"],
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "DestinationCidrBlock":{"shape":"CIDR"},
+        "DestinationPrefixListId":{"shape":"ResourceId"},
+        "DestinationIpv6CidrBlock":{"shape":"CIDR"},
+        "GatewayId":{"shape":"ActionTarget"},
+        "RouteTableId":{"shape":"ActionTarget"}
+      }
+    },
+    "EC2ReplaceRouteTableAssociationAction":{
+      "type":"structure",
+      "required":[
+        "AssociationId",
+        "RouteTableId"
+      ],
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "AssociationId":{"shape":"ActionTarget"},
+        "RouteTableId":{"shape":"ActionTarget"}
+      }
+    },
     "ErrorMessage":{"type":"string"},
     "EvaluationResult":{
       "type":"structure",
@@ -623,6 +717,21 @@
     "EvaluationResults":{
       "type":"list",
       "member":{"shape":"EvaluationResult"}
+    },
+    "ExpectedRoute":{
+      "type":"structure",
+      "members":{
+        "IpV4Cidr":{"shape":"CIDR"},
+        "PrefixListId":{"shape":"CIDR"},
+        "IpV6Cidr":{"shape":"CIDR"},
+        "ContributingSubnets":{"shape":"ResourceIdList"},
+        "AllowedTargets":{"shape":"LengthBoundedStringList"},
+        "RouteTableId":{"shape":"ResourceId"}
+      }
+    },
+    "ExpectedRoutes":{
+      "type":"list",
+      "member":{"shape":"ExpectedRoute"}
     },
     "GetAdminAccountRequest":{
       "type":"structure",
@@ -794,6 +903,10 @@
       "max":1024,
       "min":0
     },
+    "LengthBoundedStringList":{
+      "type":"list",
+      "member":{"shape":"LengthBoundedString"}
+    },
     "LimitExceededException":{
       "type":"structure",
       "members":{
@@ -916,6 +1029,56 @@
       "type":"list",
       "member":{"shape":"NetworkFirewallAction"}
     },
+    "NetworkFirewallBlackHoleRouteDetectedViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "RouteTableId":{"shape":"ResourceId"},
+        "VpcId":{"shape":"ResourceId"},
+        "ViolatingRoutes":{"shape":"Routes"}
+      }
+    },
+    "NetworkFirewallInternetTrafficNotInspectedViolation":{
+      "type":"structure",
+      "members":{
+        "SubnetId":{"shape":"ResourceId"},
+        "SubnetAvailabilityZone":{"shape":"LengthBoundedString"},
+        "RouteTableId":{"shape":"ResourceId"},
+        "ViolatingRoutes":{"shape":"Routes"},
+        "IsRouteTableUsedInDifferentAZ":{"shape":"Boolean"},
+        "CurrentFirewallSubnetRouteTable":{"shape":"ResourceId"},
+        "ExpectedFirewallEndpoint":{"shape":"ResourceId"},
+        "FirewallSubnetId":{"shape":"ResourceId"},
+        "ExpectedFirewallSubnetRoutes":{"shape":"ExpectedRoutes"},
+        "ActualFirewallSubnetRoutes":{"shape":"Routes"},
+        "InternetGatewayId":{"shape":"ResourceId"},
+        "CurrentInternetGatewayRouteTable":{"shape":"ResourceId"},
+        "ExpectedInternetGatewayRoutes":{"shape":"ExpectedRoutes"},
+        "ActualInternetGatewayRoutes":{"shape":"Routes"},
+        "VpcId":{"shape":"ResourceId"}
+      }
+    },
+    "NetworkFirewallInvalidRouteConfigurationViolation":{
+      "type":"structure",
+      "members":{
+        "AffectedSubnets":{"shape":"ResourceIdList"},
+        "RouteTableId":{"shape":"ResourceId"},
+        "IsRouteTableUsedInDifferentAZ":{"shape":"Boolean"},
+        "ViolatingRoute":{"shape":"Route"},
+        "CurrentFirewallSubnetRouteTable":{"shape":"ResourceId"},
+        "ExpectedFirewallEndpoint":{"shape":"ResourceId"},
+        "ActualFirewallEndpoint":{"shape":"ResourceId"},
+        "ExpectedFirewallSubnetId":{"shape":"ResourceId"},
+        "ActualFirewallSubnetId":{"shape":"ResourceId"},
+        "ExpectedFirewallSubnetRoutes":{"shape":"ExpectedRoutes"},
+        "ActualFirewallSubnetRoutes":{"shape":"Routes"},
+        "InternetGatewayId":{"shape":"ResourceId"},
+        "CurrentInternetGatewayRouteTable":{"shape":"ResourceId"},
+        "ExpectedInternetGatewayRoutes":{"shape":"ExpectedRoutes"},
+        "ActualInternetGatewayRoutes":{"shape":"Routes"},
+        "VpcId":{"shape":"ResourceId"}
+      }
+    },
     "NetworkFirewallMissingExpectedRTViolation":{
       "type":"structure",
       "members":{
@@ -924,6 +1087,14 @@
         "AvailabilityZone":{"shape":"LengthBoundedString"},
         "CurrentRouteTable":{"shape":"ResourceId"},
         "ExpectedRouteTable":{"shape":"ResourceId"}
+      }
+    },
+    "NetworkFirewallMissingExpectedRoutesViolation":{
+      "type":"structure",
+      "members":{
+        "ViolationTarget":{"shape":"ViolationTarget"},
+        "ExpectedRoutes":{"shape":"ExpectedRoutes"},
+        "VpcId":{"shape":"ResourceId"}
       }
     },
     "NetworkFirewallMissingFirewallViolation":{
@@ -967,6 +1138,29 @@
       "max":128,
       "min":1,
       "pattern":"^[a-zA-Z0-9-]+$"
+    },
+    "NetworkFirewallUnexpectedFirewallRoutesViolation":{
+      "type":"structure",
+      "members":{
+        "FirewallSubnetId":{"shape":"ResourceId"},
+        "ViolatingRoutes":{"shape":"Routes"},
+        "RouteTableId":{"shape":"ResourceId"},
+        "FirewallEndpoint":{"shape":"ResourceId"},
+        "VpcId":{"shape":"ResourceId"}
+      }
+    },
+    "NetworkFirewallUnexpectedGatewayRoutesViolation":{
+      "type":"structure",
+      "members":{
+        "GatewayId":{"shape":"ResourceId"},
+        "ViolatingRoutes":{"shape":"Routes"},
+        "RouteTableId":{"shape":"ResourceId"},
+        "VpcId":{"shape":"ResourceId"}
+      }
+    },
+    "OrderedRemediationActions":{
+      "type":"list",
+      "member":{"shape":"RemediationActionWithOrder"}
     },
     "PaginationMaxResults":{
       "type":"integer",
@@ -1074,6 +1268,26 @@
       "max":1024,
       "min":1,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "PossibleRemediationAction":{
+      "type":"structure",
+      "required":["OrderedRemediationActions"],
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "OrderedRemediationActions":{"shape":"OrderedRemediationActions"},
+        "IsDefaultAction":{"shape":"Boolean"}
+      }
+    },
+    "PossibleRemediationActionList":{
+      "type":"list",
+      "member":{"shape":"PossibleRemediationAction"}
+    },
+    "PossibleRemediationActions":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "Actions":{"shape":"PossibleRemediationActionList"}
+      }
     },
     "PreviousAppsList":{
       "type":"map",
@@ -1188,6 +1402,19 @@
       }
     },
     "ReferenceRule":{"type":"string"},
+    "RemediationAction":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"LengthBoundedString"},
+        "EC2CreateRouteAction":{"shape":"EC2CreateRouteAction"},
+        "EC2ReplaceRouteAction":{"shape":"EC2ReplaceRouteAction"},
+        "EC2DeleteRouteAction":{"shape":"EC2DeleteRouteAction"},
+        "EC2CopyRouteTableAction":{"shape":"EC2CopyRouteTableAction"},
+        "EC2ReplaceRouteTableAssociationAction":{"shape":"EC2ReplaceRouteTableAssociationAction"},
+        "EC2AssociateRouteTableAction":{"shape":"EC2AssociateRouteTableAction"},
+        "EC2CreateRouteTableAction":{"shape":"EC2CreateRouteTableAction"}
+      }
+    },
     "RemediationActionDescription":{
       "type":"string",
       "max":1024,
@@ -1200,6 +1427,13 @@
         "REMOVE",
         "MODIFY"
       ]
+    },
+    "RemediationActionWithOrder":{
+      "type":"structure",
+      "members":{
+        "RemediationAction":{"shape":"RemediationAction"},
+        "Order":{"shape":"BasicInteger"}
+      }
     },
     "ResourceArn":{
       "type":"string",
@@ -1279,14 +1513,34 @@
         "NetworkFirewallMissingSubnetViolation":{"shape":"NetworkFirewallMissingSubnetViolation"},
         "NetworkFirewallMissingExpectedRTViolation":{"shape":"NetworkFirewallMissingExpectedRTViolation"},
         "NetworkFirewallPolicyModifiedViolation":{"shape":"NetworkFirewallPolicyModifiedViolation"},
+        "NetworkFirewallInternetTrafficNotInspectedViolation":{"shape":"NetworkFirewallInternetTrafficNotInspectedViolation"},
+        "NetworkFirewallInvalidRouteConfigurationViolation":{"shape":"NetworkFirewallInvalidRouteConfigurationViolation"},
+        "NetworkFirewallBlackHoleRouteDetectedViolation":{"shape":"NetworkFirewallBlackHoleRouteDetectedViolation"},
+        "NetworkFirewallUnexpectedFirewallRoutesViolation":{"shape":"NetworkFirewallUnexpectedFirewallRoutesViolation"},
+        "NetworkFirewallUnexpectedGatewayRoutesViolation":{"shape":"NetworkFirewallUnexpectedGatewayRoutesViolation"},
+        "NetworkFirewallMissingExpectedRoutesViolation":{"shape":"NetworkFirewallMissingExpectedRoutesViolation"},
         "DnsRuleGroupPriorityConflictViolation":{"shape":"DnsRuleGroupPriorityConflictViolation"},
         "DnsDuplicateRuleGroupViolation":{"shape":"DnsDuplicateRuleGroupViolation"},
-        "DnsRuleGroupLimitExceededViolation":{"shape":"DnsRuleGroupLimitExceededViolation"}
+        "DnsRuleGroupLimitExceededViolation":{"shape":"DnsRuleGroupLimitExceededViolation"},
+        "PossibleRemediationActions":{"shape":"PossibleRemediationActions"}
       }
     },
     "ResourceViolations":{
       "type":"list",
       "member":{"shape":"ResourceViolation"}
+    },
+    "Route":{
+      "type":"structure",
+      "members":{
+        "DestinationType":{"shape":"DestinationType"},
+        "TargetType":{"shape":"TargetType"},
+        "Destination":{"shape":"LengthBoundedString"},
+        "Target":{"shape":"LengthBoundedString"}
+      }
+    },
+    "Routes":{
+      "type":"list",
+      "member":{"shape":"Route"}
     },
     "SecurityGroupRemediationAction":{
       "type":"structure",
@@ -1412,6 +1666,21 @@
       "min":0,
       "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
     },
+    "TargetType":{
+      "type":"string",
+      "enum":[
+        "GATEWAY",
+        "CARRIER_GATEWAY",
+        "INSTANCE",
+        "LOCAL_GATEWAY",
+        "NAT_GATEWAY",
+        "NETWORK_INTERFACE",
+        "VPC_ENDPOINT",
+        "VPC_PEERING_CONNECTION",
+        "EGRESS_ONLY_INTERNET_GATEWAY",
+        "TRANSIT_GATEWAY"
+      ]
+    },
     "TargetViolationReason":{
       "type":"string",
       "max":256,
@@ -1481,6 +1750,16 @@
         "MISSING_FIREWALL_SUBNET_IN_AZ",
         "MISSING_EXPECTED_ROUTE_TABLE",
         "NETWORK_FIREWALL_POLICY_MODIFIED",
+        "INTERNET_GATEWAY_MISSING_EXPECTED_ROUTE",
+        "FIREWALL_SUBNET_MISSING_EXPECTED_ROUTE",
+        "UNEXPECTED_FIREWALL_ROUTES",
+        "UNEXPECTED_TARGET_GATEWAY_ROUTES",
+        "TRAFFIC_INSPECTION_CROSSES_AZ_BOUNDARY",
+        "INVALID_ROUTE_CONFIGURATION",
+        "MISSING_TARGET_GATEWAY",
+        "INTERNET_TRAFFIC_NOT_INSPECTED",
+        "BLACK_HOLE_ROUTE_DETECTED",
+        "BLACK_HOLE_ROUTE_DETECTED_IN_FIREWALL_SUBNET",
         "RESOURCE_MISSING_DNS_FIREWALL"
       ]
     },

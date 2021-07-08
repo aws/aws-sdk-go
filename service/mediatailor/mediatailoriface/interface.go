@@ -131,6 +131,13 @@ type MediaTailorAPI interface {
 	GetPlaybackConfigurationWithContext(aws.Context, *mediatailor.GetPlaybackConfigurationInput, ...request.Option) (*mediatailor.GetPlaybackConfigurationOutput, error)
 	GetPlaybackConfigurationRequest(*mediatailor.GetPlaybackConfigurationInput) (*request.Request, *mediatailor.GetPlaybackConfigurationOutput)
 
+	ListAlerts(*mediatailor.ListAlertsInput) (*mediatailor.ListAlertsOutput, error)
+	ListAlertsWithContext(aws.Context, *mediatailor.ListAlertsInput, ...request.Option) (*mediatailor.ListAlertsOutput, error)
+	ListAlertsRequest(*mediatailor.ListAlertsInput) (*request.Request, *mediatailor.ListAlertsOutput)
+
+	ListAlertsPages(*mediatailor.ListAlertsInput, func(*mediatailor.ListAlertsOutput, bool) bool) error
+	ListAlertsPagesWithContext(aws.Context, *mediatailor.ListAlertsInput, func(*mediatailor.ListAlertsOutput, bool) bool, ...request.Option) error
+
 	ListChannels(*mediatailor.ListChannelsInput) (*mediatailor.ListChannelsOutput, error)
 	ListChannelsWithContext(aws.Context, *mediatailor.ListChannelsInput, ...request.Option) (*mediatailor.ListChannelsOutput, error)
 	ListChannelsRequest(*mediatailor.ListChannelsInput) (*request.Request, *mediatailor.ListChannelsOutput)

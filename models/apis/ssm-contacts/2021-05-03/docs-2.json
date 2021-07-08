@@ -599,7 +599,7 @@
         "ContactChannel$ContactChannelArn": "<p>The Amazon Resource Name (ARN) of the contact channel.</p>",
         "ContactChannel$ContactArn": "<p>The ARN of the contact that contains the contact channel.</p>",
         "ContactTargetInfo$ContactId": "<p>The Amazon Resource Name (ARN) of the contact.</p>",
-        "CreateContactChannelRequest$ContactId": "<p>The Amazon Resource Name (ARN) of the contact channel.</p>",
+        "CreateContactChannelRequest$ContactId": "<p>The Amazon Resource Name (ARN) of the contact you are adding the contact channel to.</p>",
         "CreateContactChannelResult$ContactChannelArn": "<p>The ARN of the contact channel.</p>",
         "CreateContactResult$ContactArn": "<p>The Amazon Resource Name (ARN) of the created contact or escalation plan.</p>",
         "DeactivateContactChannelRequest$ContactChannelId": "<p>The Amazon Resource Name (ARN) of the contact channel you're deactivating.</p>",

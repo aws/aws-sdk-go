@@ -267,6 +267,21 @@
         "shape": "GetPlaybackConfigurationResponse"
       }
     },
+    "ListAlerts": {
+      "errors": [],
+      "http": {
+        "method": "GET",
+        "requestUri": "/alerts",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ListAlertsRequest"
+      },
+      "name": "ListAlerts",
+      "output": {
+        "shape": "ListAlertsResponse"
+      }
+    },
     "ListChannels": {
       "errors": [],
       "http": {
@@ -526,6 +541,33 @@
           "shape": "__boolean"
         }
       },
+      "type": "structure"
+    },
+    "Alert": {
+      "members": {
+        "AlertCode": {
+          "shape": "__string"
+        },
+        "AlertMessage": {
+          "shape": "__string"
+        },
+        "LastModifiedTime": {
+          "shape": "__timestampUnix"
+        },
+        "RelatedResourceArns": {
+          "shape": "__listOf__string"
+        },
+        "ResourceArn": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "ResourceArn",
+        "AlertCode",
+        "LastModifiedTime",
+        "RelatedResourceArns",
+        "AlertMessage"
+      ],
       "type": "structure"
     },
     "AvailSuppression": {
@@ -1386,6 +1428,40 @@
         "shape": "HttpPackageConfiguration"
       },
       "type": "list"
+    },
+    "ListAlertsRequest": {
+      "members": {
+        "MaxResults": {
+          "location": "querystring",
+          "locationName": "maxResults",
+          "shape": "MaxResults"
+        },
+        "NextToken": {
+          "location": "querystring",
+          "locationName": "nextToken",
+          "shape": "__string"
+        },
+        "ResourceArn": {
+          "location": "querystring",
+          "locationName": "resourceArn",
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "ResourceArn"
+      ],
+      "type": "structure"
+    },
+    "ListAlertsResponse": {
+      "members": {
+        "Items": {
+          "shape": "__listOfAlert"
+        },
+        "NextToken": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
     },
     "ListChannelsRequest": {
       "members": {
@@ -2258,6 +2334,12 @@
     "__listOfAdBreak": {
       "member": {
         "shape": "AdBreak"
+      },
+      "type": "list"
+    },
+    "__listOfAlert": {
+      "member": {
+        "shape": "Alert"
       },
       "type": "list"
     },

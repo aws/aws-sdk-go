@@ -2,12 +2,12 @@
   "version": "2.0",
   "service": "<p>AWS Outposts is a fully managed service that extends AWS infrastructure, APIs, and tools to customer premises. By providing local access to AWS managed infrastructure, AWS Outposts enables customers to build and run applications on premises using the same programming interfaces as in AWS Regions, while using local compute and storage resources for lower latency and local data processing needs.</p>",
   "operations": {
-    "CreateOutpost": "<p>Creates an Outpost.</p>",
+    "CreateOutpost": "<p>Creates an Outpost.</p> <p>You can specify <code>AvailabilityZone</code> or <code>AvailabilityZoneId</code>.</p>",
     "DeleteOutpost": "<p>Deletes the Outpost.</p>",
     "DeleteSite": "<p>Deletes the site.</p>",
     "GetOutpost": "<p>Gets information about the specified Outpost.</p>",
     "GetOutpostInstanceTypes": "<p>Lists the instance types for the specified Outpost.</p>",
-    "ListOutposts": "<p>List the Outposts for your AWS account.</p>",
+    "ListOutposts": "<p>Create a list of the Outposts for your AWS account. Add filters to your request to return a more specific list of results. Use filters to match an Outpost lifecycle status, Availibility Zone (<code>us-east-1a</code>), and AZ ID (<code>use1-az1</code>). </p> <p>If you specify multiple filters, the filters are joined with an <code>AND</code>, and the request returns only results that match all of the specified filters.</p>",
     "ListSites": "<p>Lists the sites for the specified AWS account.</p>",
     "ListTagsForResource": "<p>Lists the tags for the specified resource.</p>",
     "TagResource": "<p>Adds tags to the specified resource.</p>",
@@ -34,17 +34,31 @@
       }
     },
     "AvailabilityZone": {
-      "base": "<p>The Availability Zone.</p> <p>You must specify <code>AvailabilityZone</code> or <code>AvailabilityZoneId</code>.</p>",
+      "base": "<p>The Availability Zone.</p>",
       "refs": {
+        "AvailabilityZoneList$member": null,
         "CreateOutpostInput$AvailabilityZone": null,
         "Outpost$AvailabilityZone": null
       }
     },
     "AvailabilityZoneId": {
-      "base": "<p>The ID of the Availability Zone.</p> <p>You must specify <code>AvailabilityZone</code> or <code>AvailabilityZoneId</code>.</p>",
+      "base": "<p>The ID of the Availability Zone.</p>",
       "refs": {
+        "AvailabilityZoneIdList$member": null,
         "CreateOutpostInput$AvailabilityZoneId": null,
         "Outpost$AvailabilityZoneId": null
+      }
+    },
+    "AvailabilityZoneIdList": {
+      "base": null,
+      "refs": {
+        "ListOutpostsInput$AvailabilityZoneIdFilter": "<p> A filter for the AZ IDs (<code>use1-az1</code>) of the Outpost. </p> <p> Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values. </p>"
+      }
+    },
+    "AvailabilityZoneList": {
+      "base": null,
+      "refs": {
+        "ListOutpostsInput$AvailabilityZoneFilter": "<p> A filter for the Availibility Zone (<code>us-east-1a</code>) of the Outpost. </p> <p> Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values. </p>"
       }
     },
     "ConflictException": {
@@ -139,7 +153,14 @@
     "LifeCycleStatus": {
       "base": "<p>The life cycle status.</p>",
       "refs": {
+        "LifeCycleStatusList$member": null,
         "Outpost$LifeCycleStatus": null
+      }
+    },
+    "LifeCycleStatusList": {
+      "base": null,
+      "refs": {
+        "ListOutpostsInput$LifeCycleStatusFilter": "<p> A filter for the lifecycle status of the Outpost. </p> <p> Filter values are case sensitive. If you specify multiple values for a filter, the values are joined with an <code>OR</code>, and the request returns all results that match any of the specified values. </p>"
       }
     },
     "ListOutpostsInput": {

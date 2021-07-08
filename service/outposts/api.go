@@ -58,6 +58,8 @@ func (c *Outposts) CreateOutpostRequest(input *CreateOutpostInput) (req *request
 //
 // Creates an Outpost.
 //
+// You can specify AvailabilityZone or AvailabilityZoneId.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -516,7 +518,12 @@ func (c *Outposts) ListOutpostsRequest(input *ListOutpostsInput) (req *request.R
 
 // ListOutposts API operation for AWS Outposts.
 //
-// List the Outposts for your AWS account.
+// Create a list of the Outposts for your AWS account. Add filters to your request
+// to return a more specific list of results. Use filters to match an Outpost
+// lifecycle status, Availibility Zone (us-east-1a), and AZ ID (use1-az1).
+//
+// If you specify multiple filters, the filters are joined with an AND, and
+// the request returns only results that match all of the specified filters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1131,13 +1138,9 @@ type CreateOutpostInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone.
-	//
-	// You must specify AvailabilityZone or AvailabilityZoneId.
 	AvailabilityZone *string `min:"1" type:"string"`
 
 	// The ID of the Availability Zone.
-	//
-	// You must specify AvailabilityZone or AvailabilityZoneId.
 	AvailabilityZoneId *string `min:"1" type:"string"`
 
 	// The description of the Outpost.
@@ -1629,6 +1632,27 @@ func (s *InternalServerException) RequestID() string {
 type ListOutpostsInput struct {
 	_ struct{} `type:"structure"`
 
+	// A filter for the Availibility Zone (us-east-1a) of the Outpost.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	AvailabilityZoneFilter []*string `location:"querystring" locationName:"AvailabilityZoneFilter" min:"1" type:"list"`
+
+	// A filter for the AZ IDs (use1-az1) of the Outpost.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	AvailabilityZoneIdFilter []*string `location:"querystring" locationName:"AvailabilityZoneIdFilter" min:"1" type:"list"`
+
+	// A filter for the lifecycle status of the Outpost.
+	//
+	// Filter values are case sensitive. If you specify multiple values for a filter,
+	// the values are joined with an OR, and the request returns all results that
+	// match any of the specified values.
+	LifeCycleStatusFilter []*string `location:"querystring" locationName:"LifeCycleStatusFilter" min:"1" type:"list"`
+
 	// The maximum page size.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
@@ -1649,6 +1673,15 @@ func (s ListOutpostsInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *ListOutpostsInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListOutpostsInput"}
+	if s.AvailabilityZoneFilter != nil && len(s.AvailabilityZoneFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZoneFilter", 1))
+	}
+	if s.AvailabilityZoneIdFilter != nil && len(s.AvailabilityZoneIdFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AvailabilityZoneIdFilter", 1))
+	}
+	if s.LifeCycleStatusFilter != nil && len(s.LifeCycleStatusFilter) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LifeCycleStatusFilter", 1))
+	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
@@ -1660,6 +1693,24 @@ func (s *ListOutpostsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAvailabilityZoneFilter sets the AvailabilityZoneFilter field's value.
+func (s *ListOutpostsInput) SetAvailabilityZoneFilter(v []*string) *ListOutpostsInput {
+	s.AvailabilityZoneFilter = v
+	return s
+}
+
+// SetAvailabilityZoneIdFilter sets the AvailabilityZoneIdFilter field's value.
+func (s *ListOutpostsInput) SetAvailabilityZoneIdFilter(v []*string) *ListOutpostsInput {
+	s.AvailabilityZoneIdFilter = v
+	return s
+}
+
+// SetLifeCycleStatusFilter sets the LifeCycleStatusFilter field's value.
+func (s *ListOutpostsInput) SetLifeCycleStatusFilter(v []*string) *ListOutpostsInput {
+	s.LifeCycleStatusFilter = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -1911,20 +1962,16 @@ type Outpost struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone.
-	//
-	// You must specify AvailabilityZone or AvailabilityZoneId.
 	AvailabilityZone *string `min:"1" type:"string"`
 
 	// The ID of the Availability Zone.
-	//
-	// You must specify AvailabilityZone or AvailabilityZoneId.
 	AvailabilityZoneId *string `min:"1" type:"string"`
 
 	// The description of the Outpost.
 	Description *string `type:"string"`
 
 	// The life cycle status.
-	LifeCycleStatus *string `type:"string"`
+	LifeCycleStatus *string `min:"1" type:"string"`
 
 	// The name of the Outpost.
 	Name *string `min:"1" type:"string"`

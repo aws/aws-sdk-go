@@ -1,3 +1,14 @@
+Release v1.39.3 (2021-07-08)
+===
+
+### Service Client Updates
+* `service/devops-guru`: Updates service API, documentation, and paginators
+* `service/eks`: Updates service waiters
+* `service/fms`: Updates service API, documentation, and paginators
+* `service/mediatailor`: Updates service API, documentation, and paginators
+* `service/outposts`: Updates service API and documentation
+* `service/ssm-contacts`: Updates service documentation
+
 Release v1.39.2 (2021-07-07)
 ===
 
