@@ -120,6 +120,9 @@ type FMSAPI interface {
 	ListAppsListsWithContext(aws.Context, *fms.ListAppsListsInput, ...request.Option) (*fms.ListAppsListsOutput, error)
 	ListAppsListsRequest(*fms.ListAppsListsInput) (*request.Request, *fms.ListAppsListsOutput)
 
+	ListAppsListsPages(*fms.ListAppsListsInput, func(*fms.ListAppsListsOutput, bool) bool) error
+	ListAppsListsPagesWithContext(aws.Context, *fms.ListAppsListsInput, func(*fms.ListAppsListsOutput, bool) bool, ...request.Option) error
+
 	ListComplianceStatus(*fms.ListComplianceStatusInput) (*fms.ListComplianceStatusOutput, error)
 	ListComplianceStatusWithContext(aws.Context, *fms.ListComplianceStatusInput, ...request.Option) (*fms.ListComplianceStatusOutput, error)
 	ListComplianceStatusRequest(*fms.ListComplianceStatusInput) (*request.Request, *fms.ListComplianceStatusOutput)
@@ -144,6 +147,9 @@ type FMSAPI interface {
 	ListProtocolsLists(*fms.ListProtocolsListsInput) (*fms.ListProtocolsListsOutput, error)
 	ListProtocolsListsWithContext(aws.Context, *fms.ListProtocolsListsInput, ...request.Option) (*fms.ListProtocolsListsOutput, error)
 	ListProtocolsListsRequest(*fms.ListProtocolsListsInput) (*request.Request, *fms.ListProtocolsListsOutput)
+
+	ListProtocolsListsPages(*fms.ListProtocolsListsInput, func(*fms.ListProtocolsListsOutput, bool) bool) error
+	ListProtocolsListsPagesWithContext(aws.Context, *fms.ListProtocolsListsInput, func(*fms.ListProtocolsListsOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*fms.ListTagsForResourceInput) (*fms.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *fms.ListTagsForResourceInput, ...request.Option) (*fms.ListTagsForResourceOutput, error)

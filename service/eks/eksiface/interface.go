@@ -221,6 +221,12 @@ type EKSAPI interface {
 	WaitUntilClusterDeleted(*eks.DescribeClusterInput) error
 	WaitUntilClusterDeletedWithContext(aws.Context, *eks.DescribeClusterInput, ...request.WaiterOption) error
 
+	WaitUntilFargateProfileActive(*eks.DescribeFargateProfileInput) error
+	WaitUntilFargateProfileActiveWithContext(aws.Context, *eks.DescribeFargateProfileInput, ...request.WaiterOption) error
+
+	WaitUntilFargateProfileDeleted(*eks.DescribeFargateProfileInput) error
+	WaitUntilFargateProfileDeletedWithContext(aws.Context, *eks.DescribeFargateProfileInput, ...request.WaiterOption) error
+
 	WaitUntilNodegroupActive(*eks.DescribeNodegroupInput) error
 	WaitUntilNodegroupActiveWithContext(aws.Context, *eks.DescribeNodegroupInput, ...request.WaiterOption) error
 

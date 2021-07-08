@@ -402,6 +402,14 @@
       "type":"double",
       "box":true
     },
+    "AnomalyReportedTimeRange":{
+      "type":"structure",
+      "required":["OpenTime"],
+      "members":{
+        "OpenTime":{"shape":"Timestamp"},
+        "CloseTime":{"shape":"Timestamp"}
+      }
+    },
     "AnomalySeverity":{
       "type":"string",
       "enum":[
@@ -1155,6 +1163,7 @@
         "Status":{"shape":"AnomalyStatus"},
         "UpdateTime":{"shape":"Timestamp"},
         "AnomalyTimeRange":{"shape":"AnomalyTimeRange"},
+        "AnomalyReportedTimeRange":{"shape":"AnomalyReportedTimeRange"},
         "PredictionTimeRange":{"shape":"PredictionTimeRange"},
         "SourceDetails":{"shape":"AnomalySourceDetails"},
         "AssociatedInsightId":{"shape":"InsightId"},
@@ -1170,6 +1179,7 @@
         "Status":{"shape":"AnomalyStatus"},
         "UpdateTime":{"shape":"Timestamp"},
         "AnomalyTimeRange":{"shape":"AnomalyTimeRange"},
+        "AnomalyReportedTimeRange":{"shape":"AnomalyReportedTimeRange"},
         "PredictionTimeRange":{"shape":"PredictionTimeRange"},
         "SourceDetails":{"shape":"AnomalySourceDetails"},
         "AssociatedInsightId":{"shape":"InsightId"},
@@ -1229,6 +1239,7 @@
         "Severity":{"shape":"AnomalySeverity"},
         "Status":{"shape":"AnomalyStatus"},
         "AnomalyTimeRange":{"shape":"AnomalyTimeRange"},
+        "AnomalyReportedTimeRange":{"shape":"AnomalyReportedTimeRange"},
         "SourceDetails":{"shape":"AnomalySourceDetails"},
         "AssociatedInsightId":{"shape":"InsightId"},
         "ResourceCollection":{"shape":"ResourceCollection"}
@@ -1241,6 +1252,7 @@
         "Severity":{"shape":"AnomalySeverity"},
         "Status":{"shape":"AnomalyStatus"},
         "AnomalyTimeRange":{"shape":"AnomalyTimeRange"},
+        "AnomalyReportedTimeRange":{"shape":"AnomalyReportedTimeRange"},
         "SourceDetails":{"shape":"AnomalySourceDetails"},
         "AssociatedInsightId":{"shape":"InsightId"},
         "ResourceCollection":{"shape":"ResourceCollection"}

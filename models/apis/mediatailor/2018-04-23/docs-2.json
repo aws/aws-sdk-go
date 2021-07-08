@@ -1,6 +1,4 @@
 {
-  "version": "2.0",
-  "service": "<p>Use the AWS Elemental MediaTailor SDKs and CLI to configure scalable ad insertion and linear channels. With MediaTailor, you can assemble existing content into a linear stream and serve targeted ads to viewers while maintaining broadcast quality in over-the-top (OTT) video applications. For information about using the service, including detailed information about the settings covered in this guide, see the <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/\">AWS Elemental MediaTailor User Guide</a>.</p> <p>Through the SDKs and the CLI you manage AWS Elemental MediaTailor configurations and channels the same as you do through the console. For example, you specify ad insertion behavior and mapping information for the origin server and the ad decision server (ADS).</p>",
   "operations": {
     "CreateChannel": "<p>Creates a channel.</p>",
     "CreateProgram": "<p>Creates a program.</p>",
@@ -19,6 +17,7 @@
     "GetChannelPolicy": "<p>Retrieves information about a channel's IAM policy.</p>",
     "GetChannelSchedule": "<p>Retrieves information about your channel's schedule.</p>",
     "GetPlaybackConfiguration": "<p>Returns the playback configuration for the specified name.</p>  ",
+    "ListAlerts": "<p>Returns a list of alerts for the given resource.</p>",
     "ListChannels": "<p>Retrieves a list of channels that are associated with this account.</p>",
     "ListPlaybackConfigurations": "<p>Returns a list of the playback configurations defined in AWS Elemental MediaTailor. You can specify a maximum number of configurations to return at a time. The default maximum is 50. Results are returned in pagefuls. If MediaTailor has more configurations than the specified maximum, it provides parameters in the response that you can use to retrieve the next pageful.</p>  ",
     "ListSourceLocations": "<p>Retrieves a list of source locations.</p>",
@@ -34,6 +33,7 @@
     "UpdateSourceLocation": "<p>Updates a source location on a specific channel.</p>",
     "UpdateVodSource": "<p>Updates a specific VOD source in a specific source location.</p>"
   },
+  "service": "<p>Use the AWS Elemental MediaTailor SDKs and CLI to configure scalable ad insertion and linear channels. With MediaTailor, you can assemble existing content into a linear stream and serve targeted ads to viewers while maintaining broadcast quality in over-the-top (OTT) video applications. For information about using the service, including detailed information about the settings covered in this guide, see the <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/\">AWS Elemental MediaTailor User Guide</a>.</p> <p>Through the SDKs and the CLI you manage AWS Elemental MediaTailor configurations and channels the same as you do through the console. For example, you specify ad insertion behavior and mapping information for the origin server and the ad decision server (ADS).</p>",
   "shapes": {
     "AccessConfiguration": {
       "base": "<p>Access configuration parameters.</p>",
@@ -60,6 +60,12 @@
       "base": "<p>For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT, and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor personalized manifest.</p> <p>No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has a value of 60, but no ads are filled for that ad break, MediaTailor will not set the value to 0.</p>",
       "refs": {
         "ManifestProcessingRules$AdMarkerPassthrough": "<p>For HLS, when set to true, MediaTailor passes through EXT-X-CUE-IN, EXT-X-CUE-OUT, and EXT-X-SPLICEPOINT-SCTE35 ad markers from the origin manifest to the MediaTailor personalized manifest.</p> <p>No logic is applied to these ad markers. For example, if EXT-X-CUE-OUT has a value of 60, but no ads are filled for that ad break, MediaTailor will not set the value to 0.</p>"
+      }
+    },
+    "Alert": {
+      "base": "<p>Alert configuration parameters.</p>",
+      "refs": {
+        "__listOfAlert$member": null
       }
     },
     "AvailSuppression": {
@@ -253,6 +259,10 @@
         "UpdateVodSourceRequest$HttpPackageConfigurations": "<p>An array of HTTP package configurations for the VOD source on this account.</p>",
         "VodSource$HttpPackageConfigurations": "<p>The HTTP package configurations for the VOD source.</p>"
       }
+    },
+    "ListAlertsResponse": {
+      "base": "<p>Lists the alerts for a given resource.</p>",
+      "refs": {}
     },
     "ListChannelsResponse": {
       "base": "<p>Returns a list of channels.</p>",
@@ -473,6 +483,12 @@
         "DescribeProgramResponse$AdBreaks": "<p>The ad break configuration settings.</p>"
       }
     },
+    "__listOfAlert": {
+      "base": null,
+      "refs": {
+        "ListAlertsResponse$Items": "<p>An array of alerts that are associated with this resource.</p>"
+      }
+    },
     "__listOfChannel": {
       "base": null,
       "refs": {
@@ -509,6 +525,12 @@
         "ListVodSourcesResponse$Items": "<p>Lists the VOD sources.</p>"
       }
     },
+    "__listOf__string": {
+      "base": null,
+      "refs": {
+        "Alert$RelatedResourceArns": "<p>The Amazon Resource Names (ARNs) related to this alert.</p>"
+      }
+    },
     "__long": {
       "base": null,
       "refs": {
@@ -540,6 +562,9 @@
     "__string": {
       "base": null,
       "refs": {
+        "Alert$AlertCode": "<p>The code for the alert. For example, NOT_PROCESSED.</p>",
+        "Alert$AlertMessage": "<p>If an alert is generated for a resource, an explanation of the reason for the alert.</p>",
+        "Alert$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "AvailSuppression$Value": "<p>A live edge offset time in HH:MM:SS. MediaTailor won't fill ad breaks on or behind this time in the manifest lookback window. If Value is set to 00:00:00, it is in sync with the live edge, and MediaTailor won't fill any ad breaks on or behind the live edge. If you set a Value time, MediaTailor won't fill any ad breaks on or behind this time in the manifest lookback window. For example, if you set 00:45:00, then MediaTailor will fill ad breaks that occur within 45 minutes behind the live edge, but won't fill ad breaks on or behind 45 minutes behind the live edge.</p>",
         "BadRequestException$Message": "<p>Constructs a new BadRequestException with the specified error message.</p>",
         "Bumper$EndUrl": "<p>The URL for the end bumper asset.</p>",
@@ -583,6 +608,8 @@
         "HttpConfiguration$BaseUrl": "<p>The base URL for the source location host server. This string must include the protocol, such as <b>https://</b>.</p>",
         "HttpPackageConfiguration$Path": "<p>The relative path to the URL for this VOD source. This is combined with SourceLocation::HttpConfiguration::BaseUrl to form a valid URL.</p>",
         "HttpPackageConfiguration$SourceGroup": "<p>The name of the source group. This has to match one of the Channel::Outputs::SourceGroup.</p>",
+        "ListAlertsResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
+        "ListAlertsResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ListChannelsResponse$NextToken": "<p>Pagination token returned by the list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
         "ListPlaybackConfigurationsResponse$NextToken": "<p>Pagination token returned by the GET list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
         "ListSourceLocationsResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
@@ -626,12 +653,14 @@
         "VodSource$Arn": "<p>The ARN for the VOD source.</p>",
         "VodSource$SourceLocationName": "<p>The name of the source location that the VOD source is associated with.</p>",
         "VodSource$VodSourceName": "<p>The name of the VOD source.</p>",
+        "__listOf__string$member": null,
         "__mapOf__string$member": null
       }
     },
     "__timestampUnix": {
       "base": null,
       "refs": {
+        "Alert$LastModifiedTime": "<p>The timestamp when the alert was last modified.</p>",
         "Channel$CreationTime": "<p>The timestamp of when the channel was created.</p>",
         "Channel$LastModifiedTime": "<p>The timestamp of when the channel was last modified.</p>",
         "DescribeChannelResponse$CreationTime": "<p>The timestamp of when the channel was created.</p>",
@@ -649,5 +678,6 @@
         "VodSource$LastModifiedTime": "<p>The timestamp that indicates when the VOD source was last modified.</p>"
       }
     }
-  }
+  },
+  "version": "2.0"
 }

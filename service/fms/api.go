@@ -58,14 +58,13 @@ func (c *FMS) AssociateAdminAccountRequest(input *AssociateAdminAccountInput) (r
 
 // AssociateAdminAccount API operation for Firewall Management Service.
 //
-// Sets the AWS Firewall Manager administrator account. AWS Firewall Manager
-// must be associated with the master account of your AWS organization or associated
-// with a member account that has the appropriate permissions. If the account
-// ID that you submit is not an AWS Organizations master account, AWS Firewall
-// Manager will set the appropriate permissions for the given member account.
+// Sets the Firewall Manager administrator account. The account must be a member
+// of the organization in Organizations whose resources you want to protect.
+// Firewall Manager sets the permissions that allow the account to administer
+// your Firewall Manager policies.
 //
-// The account that you associate with AWS Firewall Manager is called the AWS
-// Firewall Manager administrator account.
+// The account that you associate with Firewall Manager is called the Firewall
+// Manager administrator account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -78,10 +77,10 @@ func (c *FMS) AssociateAdminAccountRequest(input *AssociateAdminAccountInput) (r
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InvalidInputException
 //   The parameters of the request were invalid.
@@ -92,6 +91,12 @@ func (c *FMS) AssociateAdminAccountRequest(input *AssociateAdminAccountInput) (r
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
 //   was valid. Retry your request.
+//
+//   * LimitExceededException
+//   The operation exceeds a resource limit, for example, the maximum number of
+//   policy objects that you can create for an Amazon Web Services account. For
+//   more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the WAF Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/AssociateAdminAccount
 func (c *FMS) AssociateAdminAccount(input *AssociateAdminAccountInput) (*AssociateAdminAccountOutput, error) {
@@ -160,7 +165,7 @@ func (c *FMS) DeleteAppsListRequest(input *DeleteAppsListInput) (req *request.Re
 
 // DeleteAppsList API operation for Firewall Management Service.
 //
-// Permanently deletes an AWS Firewall Manager applications list.
+// Permanently deletes an Firewall Manager applications list.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -176,10 +181,10 @@ func (c *FMS) DeleteAppsListRequest(input *DeleteAppsListInput) (req *request.Re
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -252,9 +257,9 @@ func (c *FMS) DeleteNotificationChannelRequest(input *DeleteNotificationChannelI
 
 // DeleteNotificationChannel API operation for Firewall Management Service.
 //
-// Deletes an AWS Firewall Manager association with the IAM role and the Amazon
-// Simple Notification Service (SNS) topic that is used to record AWS Firewall
-// Manager SNS logs.
+// Deletes an Firewall Manager association with the IAM role and the Amazon
+// Simple Notification Service (SNS) topic that is used to record Firewall Manager
+// SNS logs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -270,10 +275,10 @@ func (c *FMS) DeleteNotificationChannelRequest(input *DeleteNotificationChannelI
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -346,7 +351,7 @@ func (c *FMS) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 
 // DeletePolicy API operation for Firewall Management Service.
 //
-// Permanently deletes an AWS Firewall Manager policy.
+// Permanently deletes an Firewall Manager policy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -362,10 +367,10 @@ func (c *FMS) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -376,9 +381,9 @@ func (c *FMS) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 //
 //   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
-//   policy objects that you can create for an AWS account. For more information,
-//   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
-//   in the AWS WAF Developer Guide.
+//   policy objects that you can create for an Amazon Web Services account. For
+//   more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the WAF Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/DeletePolicy
 func (c *FMS) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
@@ -447,7 +452,7 @@ func (c *FMS) DeleteProtocolsListRequest(input *DeleteProtocolsListInput) (req *
 
 // DeleteProtocolsList API operation for Firewall Management Service.
 //
-// Permanently deletes an AWS Firewall Manager protocols list.
+// Permanently deletes an Firewall Manager protocols list.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -463,10 +468,10 @@ func (c *FMS) DeleteProtocolsListRequest(input *DeleteProtocolsListInput) (req *
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -539,7 +544,7 @@ func (c *FMS) DisassociateAdminAccountRequest(input *DisassociateAdminAccountInp
 
 // DisassociateAdminAccount API operation for Firewall Management Service.
 //
-// Disassociates the account that has been set as the AWS Firewall Manager administrator
+// Disassociates the account that has been set as the Firewall Manager administrator
 // account. To set a different account as the administrator account, you must
 // submit an AssociateAdminAccount request.
 //
@@ -554,10 +559,10 @@ func (c *FMS) DisassociateAdminAccountRequest(input *DisassociateAdminAccountInp
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * ResourceNotFoundException
 //   The specified resource was not found.
@@ -632,8 +637,8 @@ func (c *FMS) GetAdminAccountRequest(input *GetAdminAccountInput) (req *request.
 
 // GetAdminAccount API operation for Firewall Management Service.
 //
-// Returns the AWS Organizations master account that is associated with AWS
-// Firewall Manager as the AWS Firewall Manager administrator.
+// Returns the Organizations account that is associated with Firewall Manager
+// as the Firewall Manager administrator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -646,10 +651,10 @@ func (c *FMS) GetAdminAccountRequest(input *GetAdminAccountInput) (req *request.
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * ResourceNotFoundException
 //   The specified resource was not found.
@@ -724,8 +729,7 @@ func (c *FMS) GetAppsListRequest(input *GetAppsListInput) (req *request.Request,
 
 // GetAppsList API operation for Firewall Management Service.
 //
-// Returns information about the specified AWS Firewall Manager applications
-// list.
+// Returns information about the specified Firewall Manager applications list.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -741,10 +745,10 @@ func (c *FMS) GetAppsListRequest(input *GetAppsListInput) (req *request.Request,
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -818,15 +822,24 @@ func (c *FMS) GetComplianceDetailRequest(input *GetComplianceDetailInput) (req *
 //
 // Returns detailed compliance information about the specified member account.
 // Details include resources that are in and out of compliance with the specified
-// policy. Resources are considered noncompliant for AWS WAF and Shield Advanced
-// policies if the specified policy has not been applied to them. Resources
-// are considered noncompliant for security group policies if they are in scope
-// of the policy, they violate one or more of the policy rules, and remediation
-// is disabled or not possible. Resources are considered noncompliant for Network
-// Firewall policies if a firewall is missing in the VPC, if the firewall endpoint
-// isn't set up in an expected Availability Zone and subnet, if a subnet created
-// by the Firewall Manager doesn't have the expected route table, and for modifications
-// to a firewall policy that violate the Firewall Manager policy's rules.
+// policy.
+//
+//    * Resources are considered noncompliant for WAF and Shield Advanced policies
+//    if the specified policy has not been applied to them.
+//
+//    * Resources are considered noncompliant for security group policies if
+//    they are in scope of the policy, they violate one or more of the policy
+//    rules, and remediation is disabled or not possible.
+//
+//    * Resources are considered noncompliant for Network Firewall policies
+//    if a firewall is missing in the VPC, if the firewall endpoint isn't set
+//    up in an expected Availability Zone and subnet, if a subnet created by
+//    the Firewall Manager doesn't have the expected route table, and for modifications
+//    to a firewall policy that violate the Firewall Manager policy's rules.
+//
+//    * Resources are considered noncompliant for DNS Firewall policies if a
+//    DNS Firewall rule group is missing from the rule group associations for
+//    the VPC.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -849,10 +862,10 @@ func (c *FMS) GetComplianceDetailRequest(input *GetComplianceDetailInput) (req *
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/GetComplianceDetail
 func (c *FMS) GetComplianceDetail(input *GetComplianceDetailInput) (*GetComplianceDetailOutput, error) {
@@ -921,7 +934,7 @@ func (c *FMS) GetNotificationChannelRequest(input *GetNotificationChannelInput) 
 // GetNotificationChannel API operation for Firewall Management Service.
 //
 // Information about the Amazon Simple Notification Service (SNS) topic that
-// is used to record AWS Firewall Manager SNS logs.
+// is used to record Firewall Manager SNS logs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -937,10 +950,10 @@ func (c *FMS) GetNotificationChannelRequest(input *GetNotificationChannelInput) 
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -1012,7 +1025,7 @@ func (c *FMS) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, out
 
 // GetPolicy API operation for Firewall Management Service.
 //
-// Returns information about the specified AWS Firewall Manager policy.
+// Returns information about the specified Firewall Manager policy.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1028,10 +1041,10 @@ func (c *FMS) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, out
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -1194,7 +1207,7 @@ func (c *FMS) GetProtocolsListRequest(input *GetProtocolsListInput) (req *reques
 
 // GetProtocolsList API operation for Firewall Management Service.
 //
-// Returns information about the specified AWS Firewall Manager protocols list.
+// Returns information about the specified Firewall Manager protocols list.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1210,10 +1223,10 @@ func (c *FMS) GetProtocolsListRequest(input *GetProtocolsListInput) (req *reques
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -1285,8 +1298,8 @@ func (c *FMS) GetViolationDetailsRequest(input *GetViolationDetailsInput) (req *
 
 // GetViolationDetails API operation for Firewall Management Service.
 //
-// Retrieves violations for a resource based on the specified AWS Firewall Manager
-// policy and AWS account.
+// Retrieves violations for a resource based on the specified Firewall Manager
+// policy and Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1359,6 +1372,12 @@ func (c *FMS) ListAppsListsRequest(input *ListAppsListsInput) (req *request.Requ
 		Name:       opListAppsLists,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1388,16 +1407,16 @@ func (c *FMS) ListAppsListsRequest(input *ListAppsListsInput) (req *request.Requ
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
-//   policy objects that you can create for an AWS account. For more information,
-//   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
-//   in the AWS WAF Developer Guide.
+//   policy objects that you can create for an Amazon Web Services account. For
+//   more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the WAF Developer Guide.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -1423,6 +1442,58 @@ func (c *FMS) ListAppsListsWithContext(ctx aws.Context, input *ListAppsListsInpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListAppsListsPages iterates over the pages of a ListAppsLists operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAppsLists method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAppsLists operation.
+//    pageNum := 0
+//    err := client.ListAppsListsPages(params,
+//        func(page *fms.ListAppsListsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FMS) ListAppsListsPages(input *ListAppsListsInput, fn func(*ListAppsListsOutput, bool) bool) error {
+	return c.ListAppsListsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAppsListsPagesWithContext same as ListAppsListsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListAppsListsPagesWithContext(ctx aws.Context, input *ListAppsListsInput, fn func(*ListAppsListsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAppsListsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAppsListsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAppsListsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListComplianceStatus = "ListComplianceStatus"
@@ -1619,10 +1690,10 @@ func (c *FMS) ListMemberAccountsRequest(input *ListMemberAccountsInput) (req *re
 // ListMemberAccounts API operation for Firewall Management Service.
 //
 // Returns a MemberAccounts object that lists the member accounts in the administrator's
-// AWS organization.
+// Amazon Web Services organization.
 //
 // The ListMemberAccounts must be submitted by the account that is set as the
-// AWS Firewall Manager administrator.
+// Firewall Manager administrator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1779,16 +1850,16 @@ func (c *FMS) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
-//   policy objects that you can create for an AWS account. For more information,
-//   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
-//   in the AWS WAF Developer Guide.
+//   policy objects that you can create for an Amazon Web Services account. For
+//   more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the WAF Developer Guide.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -1899,6 +1970,12 @@ func (c *FMS) ListProtocolsListsRequest(input *ListProtocolsListsInput) (req *re
 		Name:       opListProtocolsLists,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1928,10 +2005,10 @@ func (c *FMS) ListProtocolsListsRequest(input *ListProtocolsListsInput) (req *re
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -1957,6 +2034,58 @@ func (c *FMS) ListProtocolsListsWithContext(ctx aws.Context, input *ListProtocol
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListProtocolsListsPages iterates over the pages of a ListProtocolsLists operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListProtocolsLists method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListProtocolsLists operation.
+//    pageNum := 0
+//    err := client.ListProtocolsListsPages(params,
+//        func(page *fms.ListProtocolsListsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FMS) ListProtocolsListsPages(input *ListProtocolsListsInput, fn func(*ListProtocolsListsOutput, bool) bool) error {
+	return c.ListProtocolsListsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListProtocolsListsPagesWithContext same as ListProtocolsListsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FMS) ListProtocolsListsPagesWithContext(ctx aws.Context, input *ListProtocolsListsInput, fn func(*ListProtocolsListsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListProtocolsListsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListProtocolsListsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListProtocolsListsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -2003,7 +2132,7 @@ func (c *FMS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 
 // ListTagsForResource API operation for Firewall Management Service.
 //
-// Retrieves the list of tags for the specified AWS resource.
+// Retrieves the list of tags for the specified Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2019,10 +2148,10 @@ func (c *FMS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -2097,7 +2226,7 @@ func (c *FMS) PutAppsListRequest(input *PutAppsListInput) (req *request.Request,
 
 // PutAppsList API operation for Firewall Management Service.
 //
-// Creates an AWS Firewall Manager applications list.
+// Creates an Firewall Manager applications list.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2113,19 +2242,19 @@ func (c *FMS) PutAppsListRequest(input *PutAppsListInput) (req *request.Request,
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InvalidInputException
 //   The parameters of the request were invalid.
 //
 //   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
-//   policy objects that you can create for an AWS account. For more information,
-//   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
-//   in the AWS WAF Developer Guide.
+//   policy objects that you can create for an Amazon Web Services account. For
+//   more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the WAF Developer Guide.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -2199,13 +2328,13 @@ func (c *FMS) PutNotificationChannelRequest(input *PutNotificationChannelInput) 
 // PutNotificationChannel API operation for Firewall Management Service.
 //
 // Designates the IAM role and Amazon Simple Notification Service (SNS) topic
-// that AWS Firewall Manager uses to record SNS logs.
+// that Firewall Manager uses to record SNS logs.
 //
 // To perform this action outside of the console, you must configure the SNS
 // topic to allow the Firewall Manager role AWSServiceRoleForFMS to publish
 // SNS logs. For more information, see Firewall Manager required permissions
 // for API actions (https://docs.aws.amazon.com/waf/latest/developerguide/fms-api-permissions-ref.html)
-// in the AWS Firewall Manager Developer Guide.
+// in the Firewall Manager Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2221,10 +2350,10 @@ func (c *FMS) PutNotificationChannelRequest(input *PutNotificationChannelInput) 
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -2296,24 +2425,26 @@ func (c *FMS) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, out
 
 // PutPolicy API operation for Firewall Management Service.
 //
-// Creates an AWS Firewall Manager policy.
+// Creates an Firewall Manager policy.
 //
 // Firewall Manager provides the following types of policies:
 //
-//    * An AWS WAF policy (type WAFV2), which defines rule groups to run first
-//    in the corresponding AWS WAF web ACL and rule groups to run last in the
-//    web ACL.
+//    * An WAF policy (type WAFV2), which defines rule groups to run first in
+//    the corresponding WAF web ACL and rule groups to run last in the web ACL.
 //
-//    * An AWS WAF Classic policy (type WAF), which defines a rule group.
+//    * An WAF Classic policy (type WAF), which defines a rule group.
 //
 //    * A Shield Advanced policy, which applies Shield Advanced protection to
 //    specified accounts and resources.
 //
 //    * A security group policy, which manages VPC security groups across your
-//    AWS organization.
+//    Amazon Web Services organization.
 //
-//    * An AWS Network Firewall policy, which provides firewall rules to filter
+//    * An Network Firewall policy, which provides firewall rules to filter
 //    network traffic in specified Amazon VPCs.
+//
+//    * A DNS Firewall policy, which provides Route 53 Resolver DNS Firewall
+//    rules to filter DNS queries for specified VPCs.
 //
 // Each policy is specific to one of the types. If you want to enforce more
 // than one policy type across accounts, create multiple policies. You can create
@@ -2337,19 +2468,19 @@ func (c *FMS) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, out
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InvalidInputException
 //   The parameters of the request were invalid.
 //
 //   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
-//   policy objects that you can create for an AWS account. For more information,
-//   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
-//   in the AWS WAF Developer Guide.
+//   policy objects that you can create for an Amazon Web Services account. For
+//   more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the WAF Developer Guide.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -2424,7 +2555,7 @@ func (c *FMS) PutProtocolsListRequest(input *PutProtocolsListInput) (req *reques
 
 // PutProtocolsList API operation for Firewall Management Service.
 //
-// Creates an AWS Firewall Manager protocols list.
+// Creates an Firewall Manager protocols list.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2440,19 +2571,19 @@ func (c *FMS) PutProtocolsListRequest(input *PutProtocolsListInput) (req *reques
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InvalidInputException
 //   The parameters of the request were invalid.
 //
 //   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
-//   policy objects that you can create for an AWS account. For more information,
-//   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
-//   in the AWS WAF Developer Guide.
+//   policy objects that you can create for an Amazon Web Services account. For
+//   more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the WAF Developer Guide.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -2525,7 +2656,7 @@ func (c *FMS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 
 // TagResource API operation for Firewall Management Service.
 //
-// Adds one or more tags to an AWS resource.
+// Adds one or more tags to an Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2541,10 +2672,10 @@ func (c *FMS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -2555,9 +2686,9 @@ func (c *FMS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //
 //   * LimitExceededException
 //   The operation exceeds a resource limit, for example, the maximum number of
-//   policy objects that you can create for an AWS account. For more information,
-//   see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
-//   in the AWS WAF Developer Guide.
+//   policy objects that you can create for an Amazon Web Services account. For
+//   more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+//   in the WAF Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fms-2018-01-01/TagResource
 func (c *FMS) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2626,7 +2757,7 @@ func (c *FMS) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 
 // UntagResource API operation for Firewall Management Service.
 //
-// Removes one or more tags from an AWS resource.
+// Removes one or more tags from an Amazon Web Services resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2642,10 +2773,10 @@ func (c *FMS) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 //   * InvalidOperationException
 //   The operation failed because there was nothing to do or the operation wasn't
 //   possible. For example, you might have submitted an AssociateAdminAccount
-//   request for an account ID that was already set as the AWS Firewall Manager
-//   administrator. Or you might have tried to access a Region that's disabled
-//   by default, and that you need to enable for the Firewall Manager administrator
-//   account and for AWS Organizations before you can access it.
+//   request for an account ID that was already set as the Firewall Manager administrator.
+//   Or you might have tried to access a Region that's disabled by default, and
+//   that you need to enable for the Firewall Manager administrator account and
+//   for Organizations before you can access it.
 //
 //   * InternalErrorException
 //   The operation failed because of a system problem, even though the request
@@ -2676,7 +2807,40 @@ func (c *FMS) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInpu
 	return out, req.Send()
 }
 
-// An individual AWS Firewall Manager application.
+// Describes a remediation action target.
+type ActionTarget struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the remediation action target.
+	Description *string `type:"string"`
+
+	// The ID of the remediation target.
+	ResourceId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ActionTarget) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ActionTarget) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *ActionTarget) SetDescription(v string) *ActionTarget {
+	s.Description = &v
+	return s
+}
+
+// SetResourceId sets the ResourceId field's value.
+func (s *ActionTarget) SetResourceId(v string) *ActionTarget {
+	s.ResourceId = &v
+	return s
+}
+
+// An individual Firewall Manager application.
 type App struct {
 	_ struct{} `type:"structure"`
 
@@ -2750,25 +2914,25 @@ func (s *App) SetProtocol(v string) *App {
 	return s
 }
 
-// An AWS Firewall Manager applications list.
+// An Firewall Manager applications list.
 type AppsListData struct {
 	_ struct{} `type:"structure"`
 
-	// An array of applications in the AWS Firewall Manager applications list.
+	// An array of applications in the Firewall Manager applications list.
 	//
 	// AppsList is a required field
 	AppsList []*App `type:"list" required:"true"`
 
-	// The time that the AWS Firewall Manager applications list was created.
+	// The time that the Firewall Manager applications list was created.
 	CreateTime *time.Time `type:"timestamp"`
 
-	// The time that the AWS Firewall Manager applications list was last updated.
+	// The time that the Firewall Manager applications list was last updated.
 	LastUpdateTime *time.Time `type:"timestamp"`
 
-	// The ID of the AWS Firewall Manager applications list.
+	// The ID of the Firewall Manager applications list.
 	ListId *string `min:"36" type:"string"`
 
-	// The name of the AWS Firewall Manager applications list.
+	// The name of the Firewall Manager applications list.
 	//
 	// ListName is a required field
 	ListName *string `min:"1" type:"string" required:"true"`
@@ -2869,11 +3033,11 @@ func (s *AppsListData) SetPreviousAppsList(v map[string][]*App) *AppsListData {
 	return s
 }
 
-// Details of the AWS Firewall Manager applications list.
+// Details of the Firewall Manager applications list.
 type AppsListDataSummary struct {
 	_ struct{} `type:"structure"`
 
-	// An array of App objects in the AWS Firewall Manager applications list.
+	// An array of App objects in the Firewall Manager applications list.
 	AppsList []*App `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the applications list.
@@ -2923,10 +3087,10 @@ func (s *AppsListDataSummary) SetListName(v string) *AppsListDataSummary {
 type AssociateAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID to associate with AWS Firewall Manager as the AWS Firewall
-	// Manager administrator account. This can be an AWS Organizations master account
-	// or a member account. For more information about AWS Organizations and master
-	// accounts, see Managing the AWS Accounts in Your Organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html).
+	// The Amazon Web Services account ID to associate with Firewall Manager as
+	// the Firewall Manager administrator account. This must be an Organizations
+	// member account. For more information about Organizations, see Managing the
+	// Amazon Web Services Accounts in Your Organization (https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_accounts.html).
 	//
 	// AdminAccount is a required field
 	AdminAccount *string `min:"1" type:"string" required:"true"`
@@ -2978,11 +3142,11 @@ func (s AssociateAdminAccountOutput) GoString() string {
 	return s.String()
 }
 
-// Violations for an EC2 instance resource.
+// Violation detail for an EC2 instance resource.
 type AwsEc2InstanceViolation struct {
 	_ struct{} `type:"structure"`
 
-	// Violations for network interfaces associated with the EC2 instance.
+	// Violation detail for network interfaces associated with the EC2 instance.
 	AwsEc2NetworkInterfaceViolations []*AwsEc2NetworkInterfaceViolation `type:"list"`
 
 	// The resource ID of the EC2 instance.
@@ -3011,12 +3175,12 @@ func (s *AwsEc2InstanceViolation) SetViolationTarget(v string) *AwsEc2InstanceVi
 	return s
 }
 
-// Violations for network interfaces associated with an EC2 instance.
+// Violation detail for network interfaces associated with an EC2 instance.
 type AwsEc2NetworkInterfaceViolation struct {
 	_ struct{} `type:"structure"`
 
-	// List of security groups that violate the rules specified in the master security
-	// group of the AWS Firewall Manager policy.
+	// List of security groups that violate the rules specified in the primary security
+	// group of the Firewall Manager policy.
 	ViolatingSecurityGroups []*string `type:"list"`
 
 	// The resource ID of the network interface.
@@ -3045,13 +3209,13 @@ func (s *AwsEc2NetworkInterfaceViolation) SetViolationTarget(v string) *AwsEc2Ne
 	return s
 }
 
-// Details of the rule violation in a security group when compared to the master
-// security group of the AWS Firewall Manager policy.
+// Violation detail for the rule violation in a security group when compared
+// to the primary security group of the Firewall Manager policy.
 type AwsVPCSecurityGroupViolation struct {
 	_ struct{} `type:"structure"`
 
-	// List of rules specified in the security group of the AWS Firewall Manager
-	// policy that partially match the ViolationTarget rule.
+	// List of rules specified in the security group of the Firewall Manager policy
+	// that partially match the ViolationTarget rule.
 	PartialMatches []*PartialMatch `type:"list"`
 
 	// Remediation options for the rule specified in the ViolationTarget.
@@ -3105,8 +3269,8 @@ type ComplianceViolator struct {
 	// The resource ID.
 	ResourceId *string `min:"1" type:"string"`
 
-	// The resource type. This is in the format shown in the AWS Resource Types
-	// Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
+	// The resource type. This is in the format shown in the Amazon Web Services
+	// Resource Types Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
 	// For example: AWS::ElasticLoadBalancingV2::LoadBalancer, AWS::CloudFront::Distribution,
 	// or AWS::NetworkFirewall::FirewallPolicy.
 	ResourceType *string `min:"1" type:"string"`
@@ -3232,9 +3396,9 @@ type DeletePolicyInput struct {
 
 	// If True, the request performs cleanup according to the policy type.
 	//
-	// For AWS WAF and Shield Advanced policies, the cleanup does the following:
+	// For WAF and Shield Advanced policies, the cleanup does the following:
 	//
-	//    * Deletes rule groups created by AWS Firewall Manager
+	//    * Deletes rule groups created by Firewall Manager
 	//
 	//    * Removes web ACLs from in-scope resources
 	//
@@ -3405,7 +3569,7 @@ func (s DisassociateAdminAccountOutput) GoString() string {
 type DnsDuplicateRuleGroupViolation struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the VPC.
+	// Information about the VPC ID.
 	ViolationTarget *string `type:"string"`
 
 	// A description of the violation that specifies the rule group and VPC.
@@ -3443,7 +3607,7 @@ type DnsRuleGroupLimitExceededViolation struct {
 	// The number of rule groups currently associated with the VPC.
 	NumberOfRuleGroupsAlreadyAssociated *int64 `type:"integer"`
 
-	// The ID of the VPC.
+	// Information about the VPC ID.
 	ViolationTarget *string `type:"string"`
 
 	// A description of the violation that specifies the rule group and VPC.
@@ -3496,7 +3660,7 @@ type DnsRuleGroupPriorityConflictViolation struct {
 	// the rule groups in your new DNS Firewall policy.
 	UnavailablePriorities []*int64 `type:"list"`
 
-	// The ID of the VPC.
+	// Information about the VPC ID.
 	ViolationTarget *string `type:"string"`
 
 	// A description of the violation that specifies the VPC and the rule group
@@ -3544,21 +3708,430 @@ func (s *DnsRuleGroupPriorityConflictViolation) SetViolationTargetDescription(v 
 	return s
 }
 
+// The action of associating an EC2 resource, such as a subnet or internet gateway,
+// with a route table.
+type EC2AssociateRouteTableAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the EC2 route table that is associated with the remediation
+	// action.
+	Description *string `type:"string"`
+
+	// The ID of the gateway to be used with the EC2 route table that is associated
+	// with the remediation action.
+	GatewayId *ActionTarget `type:"structure"`
+
+	// The ID of the EC2 route table that is associated with the remediation action.
+	//
+	// RouteTableId is a required field
+	RouteTableId *ActionTarget `type:"structure" required:"true"`
+
+	// The ID of the subnet for the EC2 route table that is associated with the
+	// remediation action.
+	SubnetId *ActionTarget `type:"structure"`
+}
+
+// String returns the string representation
+func (s EC2AssociateRouteTableAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2AssociateRouteTableAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *EC2AssociateRouteTableAction) SetDescription(v string) *EC2AssociateRouteTableAction {
+	s.Description = &v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *EC2AssociateRouteTableAction) SetGatewayId(v *ActionTarget) *EC2AssociateRouteTableAction {
+	s.GatewayId = v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *EC2AssociateRouteTableAction) SetRouteTableId(v *ActionTarget) *EC2AssociateRouteTableAction {
+	s.RouteTableId = v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *EC2AssociateRouteTableAction) SetSubnetId(v *ActionTarget) *EC2AssociateRouteTableAction {
+	s.SubnetId = v
+	return s
+}
+
+// An action that copies the EC2 route table for use in remediation.
+type EC2CopyRouteTableAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the copied EC2 route table that is associated with the remediation
+	// action.
+	Description *string `type:"string"`
+
+	// The ID of the copied EC2 route table that is associated with the remediation
+	// action.
+	//
+	// RouteTableId is a required field
+	RouteTableId *ActionTarget `type:"structure" required:"true"`
+
+	// The VPC ID of the copied EC2 route table that is associated with the remediation
+	// action.
+	//
+	// VpcId is a required field
+	VpcId *ActionTarget `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s EC2CopyRouteTableAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2CopyRouteTableAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *EC2CopyRouteTableAction) SetDescription(v string) *EC2CopyRouteTableAction {
+	s.Description = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *EC2CopyRouteTableAction) SetRouteTableId(v *ActionTarget) *EC2CopyRouteTableAction {
+	s.RouteTableId = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *EC2CopyRouteTableAction) SetVpcId(v *ActionTarget) *EC2CopyRouteTableAction {
+	s.VpcId = v
+	return s
+}
+
+// Information about the CreateRoute action in Amazon EC2.
+type EC2CreateRouteAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of CreateRoute action in Amazon EC2.
+	Description *string `type:"string"`
+
+	// Information about the IPv4 CIDR address block used for the destination match.
+	DestinationCidrBlock *string `type:"string"`
+
+	// Information about the IPv6 CIDR block destination.
+	DestinationIpv6CidrBlock *string `type:"string"`
+
+	// Information about the ID of a prefix list used for the destination match.
+	DestinationPrefixListId *string `min:"1" type:"string"`
+
+	// Information about the ID of an internet gateway or virtual private gateway
+	// attached to your VPC.
+	GatewayId *ActionTarget `type:"structure"`
+
+	// Information about the ID of the route table for the route.
+	//
+	// RouteTableId is a required field
+	RouteTableId *ActionTarget `type:"structure" required:"true"`
+
+	// Information about the ID of a VPC endpoint. Supported for Gateway Load Balancer
+	// endpoints only.
+	VpcEndpointId *ActionTarget `type:"structure"`
+}
+
+// String returns the string representation
+func (s EC2CreateRouteAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2CreateRouteAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *EC2CreateRouteAction) SetDescription(v string) *EC2CreateRouteAction {
+	s.Description = &v
+	return s
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *EC2CreateRouteAction) SetDestinationCidrBlock(v string) *EC2CreateRouteAction {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDestinationIpv6CidrBlock sets the DestinationIpv6CidrBlock field's value.
+func (s *EC2CreateRouteAction) SetDestinationIpv6CidrBlock(v string) *EC2CreateRouteAction {
+	s.DestinationIpv6CidrBlock = &v
+	return s
+}
+
+// SetDestinationPrefixListId sets the DestinationPrefixListId field's value.
+func (s *EC2CreateRouteAction) SetDestinationPrefixListId(v string) *EC2CreateRouteAction {
+	s.DestinationPrefixListId = &v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *EC2CreateRouteAction) SetGatewayId(v *ActionTarget) *EC2CreateRouteAction {
+	s.GatewayId = v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *EC2CreateRouteAction) SetRouteTableId(v *ActionTarget) *EC2CreateRouteAction {
+	s.RouteTableId = v
+	return s
+}
+
+// SetVpcEndpointId sets the VpcEndpointId field's value.
+func (s *EC2CreateRouteAction) SetVpcEndpointId(v *ActionTarget) *EC2CreateRouteAction {
+	s.VpcEndpointId = v
+	return s
+}
+
+// Information about the CreateRouteTable action in Amazon EC2.
+type EC2CreateRouteTableAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the CreateRouteTable action.
+	Description *string `type:"string"`
+
+	// Information about the ID of a VPC.
+	//
+	// VpcId is a required field
+	VpcId *ActionTarget `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s EC2CreateRouteTableAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2CreateRouteTableAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *EC2CreateRouteTableAction) SetDescription(v string) *EC2CreateRouteTableAction {
+	s.Description = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *EC2CreateRouteTableAction) SetVpcId(v *ActionTarget) *EC2CreateRouteTableAction {
+	s.VpcId = v
+	return s
+}
+
+// Information about the DeleteRoute action in Amazon EC2.
+type EC2DeleteRouteAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the DeleteRoute action.
+	Description *string `type:"string"`
+
+	// Information about the IPv4 CIDR range for the route. The value you specify
+	// must match the CIDR for the route exactly.
+	DestinationCidrBlock *string `type:"string"`
+
+	// Information about the IPv6 CIDR range for the route. The value you specify
+	// must match the CIDR for the route exactly.
+	DestinationIpv6CidrBlock *string `type:"string"`
+
+	// Information about the ID of the prefix list for the route.
+	DestinationPrefixListId *string `min:"1" type:"string"`
+
+	// Information about the ID of the route table.
+	//
+	// RouteTableId is a required field
+	RouteTableId *ActionTarget `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s EC2DeleteRouteAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2DeleteRouteAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *EC2DeleteRouteAction) SetDescription(v string) *EC2DeleteRouteAction {
+	s.Description = &v
+	return s
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *EC2DeleteRouteAction) SetDestinationCidrBlock(v string) *EC2DeleteRouteAction {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDestinationIpv6CidrBlock sets the DestinationIpv6CidrBlock field's value.
+func (s *EC2DeleteRouteAction) SetDestinationIpv6CidrBlock(v string) *EC2DeleteRouteAction {
+	s.DestinationIpv6CidrBlock = &v
+	return s
+}
+
+// SetDestinationPrefixListId sets the DestinationPrefixListId field's value.
+func (s *EC2DeleteRouteAction) SetDestinationPrefixListId(v string) *EC2DeleteRouteAction {
+	s.DestinationPrefixListId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *EC2DeleteRouteAction) SetRouteTableId(v *ActionTarget) *EC2DeleteRouteAction {
+	s.RouteTableId = v
+	return s
+}
+
+// Information about the ReplaceRoute action in Amazon EC2.
+type EC2ReplaceRouteAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the ReplaceRoute action in Amazon EC2.
+	Description *string `type:"string"`
+
+	// Information about the IPv4 CIDR address block used for the destination match.
+	// The value that you provide must match the CIDR of an existing route in the
+	// table.
+	DestinationCidrBlock *string `type:"string"`
+
+	// Information about the IPv6 CIDR address block used for the destination match.
+	// The value that you provide must match the CIDR of an existing route in the
+	// table.
+	DestinationIpv6CidrBlock *string `type:"string"`
+
+	// Information about the ID of the prefix list for the route.
+	DestinationPrefixListId *string `min:"1" type:"string"`
+
+	// Information about the ID of an internet gateway or virtual private gateway.
+	GatewayId *ActionTarget `type:"structure"`
+
+	// Information about the ID of the route table.
+	//
+	// RouteTableId is a required field
+	RouteTableId *ActionTarget `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s EC2ReplaceRouteAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2ReplaceRouteAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *EC2ReplaceRouteAction) SetDescription(v string) *EC2ReplaceRouteAction {
+	s.Description = &v
+	return s
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *EC2ReplaceRouteAction) SetDestinationCidrBlock(v string) *EC2ReplaceRouteAction {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetDestinationIpv6CidrBlock sets the DestinationIpv6CidrBlock field's value.
+func (s *EC2ReplaceRouteAction) SetDestinationIpv6CidrBlock(v string) *EC2ReplaceRouteAction {
+	s.DestinationIpv6CidrBlock = &v
+	return s
+}
+
+// SetDestinationPrefixListId sets the DestinationPrefixListId field's value.
+func (s *EC2ReplaceRouteAction) SetDestinationPrefixListId(v string) *EC2ReplaceRouteAction {
+	s.DestinationPrefixListId = &v
+	return s
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *EC2ReplaceRouteAction) SetGatewayId(v *ActionTarget) *EC2ReplaceRouteAction {
+	s.GatewayId = v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *EC2ReplaceRouteAction) SetRouteTableId(v *ActionTarget) *EC2ReplaceRouteAction {
+	s.RouteTableId = v
+	return s
+}
+
+// Information about the ReplaceRouteTableAssociation action in Amazon EC2.
+type EC2ReplaceRouteTableAssociationAction struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the association ID.
+	//
+	// AssociationId is a required field
+	AssociationId *ActionTarget `type:"structure" required:"true"`
+
+	// A description of the ReplaceRouteTableAssociation action in Amazon EC2.
+	Description *string `type:"string"`
+
+	// Information about the ID of the new route table to associate with the subnet.
+	//
+	// RouteTableId is a required field
+	RouteTableId *ActionTarget `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s EC2ReplaceRouteTableAssociationAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EC2ReplaceRouteTableAssociationAction) GoString() string {
+	return s.String()
+}
+
+// SetAssociationId sets the AssociationId field's value.
+func (s *EC2ReplaceRouteTableAssociationAction) SetAssociationId(v *ActionTarget) *EC2ReplaceRouteTableAssociationAction {
+	s.AssociationId = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *EC2ReplaceRouteTableAssociationAction) SetDescription(v string) *EC2ReplaceRouteTableAssociationAction {
+	s.Description = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *EC2ReplaceRouteTableAssociationAction) SetRouteTableId(v *ActionTarget) *EC2ReplaceRouteTableAssociationAction {
+	s.RouteTableId = v
+	return s
+}
+
 // Describes the compliance status for the account. An account is considered
 // noncompliant if it includes resources that are not protected by the specified
 // policy or that don't comply with the policy.
 type EvaluationResult struct {
 	_ struct{} `type:"structure"`
 
-	// Describes an AWS account's compliance with the AWS Firewall Manager policy.
+	// Describes an Amazon Web Services account's compliance with the Firewall Manager
+	// policy.
 	ComplianceStatus *string `type:"string" enum:"PolicyComplianceStatusType"`
 
-	// Indicates that over 100 resources are noncompliant with the AWS Firewall
-	// Manager policy.
+	// Indicates that over 100 resources are noncompliant with the Firewall Manager
+	// policy.
 	EvaluationLimitExceeded *bool `type:"boolean"`
 
 	// The number of resources that are noncompliant with the specified policy.
-	// For AWS WAF and Shield Advanced policies, a resource is considered noncompliant
+	// For WAF and Shield Advanced policies, a resource is considered noncompliant
 	// if it is not associated with the policy. For security group policies, a resource
 	// is considered noncompliant if it doesn't comply with the rules of the policy
 	// and remediation is disabled or not possible.
@@ -3593,6 +4166,75 @@ func (s *EvaluationResult) SetViolatorCount(v int64) *EvaluationResult {
 	return s
 }
 
+// Information about the expected route in the route table.
+type ExpectedRoute struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the allowed targets.
+	AllowedTargets []*string `type:"list"`
+
+	// Information about the contributing subnets.
+	ContributingSubnets []*string `type:"list"`
+
+	// Information about the IPv4 CIDR block.
+	IpV4Cidr *string `type:"string"`
+
+	// Information about the IPv6 CIDR block.
+	IpV6Cidr *string `type:"string"`
+
+	// Information about the ID of the prefix list for the route.
+	PrefixListId *string `type:"string"`
+
+	// Information about the route table ID.
+	RouteTableId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ExpectedRoute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExpectedRoute) GoString() string {
+	return s.String()
+}
+
+// SetAllowedTargets sets the AllowedTargets field's value.
+func (s *ExpectedRoute) SetAllowedTargets(v []*string) *ExpectedRoute {
+	s.AllowedTargets = v
+	return s
+}
+
+// SetContributingSubnets sets the ContributingSubnets field's value.
+func (s *ExpectedRoute) SetContributingSubnets(v []*string) *ExpectedRoute {
+	s.ContributingSubnets = v
+	return s
+}
+
+// SetIpV4Cidr sets the IpV4Cidr field's value.
+func (s *ExpectedRoute) SetIpV4Cidr(v string) *ExpectedRoute {
+	s.IpV4Cidr = &v
+	return s
+}
+
+// SetIpV6Cidr sets the IpV6Cidr field's value.
+func (s *ExpectedRoute) SetIpV6Cidr(v string) *ExpectedRoute {
+	s.IpV6Cidr = &v
+	return s
+}
+
+// SetPrefixListId sets the PrefixListId field's value.
+func (s *ExpectedRoute) SetPrefixListId(v string) *ExpectedRoute {
+	s.PrefixListId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *ExpectedRoute) SetRouteTableId(v string) *ExpectedRoute {
+	s.RouteTableId = &v
+	return s
+}
+
 type GetAdminAccountInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -3610,10 +4252,11 @@ func (s GetAdminAccountInput) GoString() string {
 type GetAdminAccountOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account that is set as the AWS Firewall Manager administrator.
+	// The Amazon Web Services account that is set as the Firewall Manager administrator.
 	AdminAccount *string `min:"1" type:"string"`
 
-	// The status of the AWS account that you set as the AWS Firewall Manager administrator.
+	// The status of the Amazon Web Services account that you set as the Firewall
+	// Manager administrator.
 	RoleStatus *string `type:"string" enum:"AccountRoleStatus"`
 }
 
@@ -3642,11 +4285,11 @@ func (s *GetAdminAccountOutput) SetRoleStatus(v string) *GetAdminAccountOutput {
 type GetAppsListInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the list to retrieve is a default list owned by AWS Firewall
+	// Specifies whether the list to retrieve is a default list owned by Firewall
 	// Manager.
 	DefaultList *bool `type:"boolean"`
 
-	// The ID of the AWS Firewall Manager applications list that you want the details
+	// The ID of the Firewall Manager applications list that you want the details
 	// for.
 	//
 	// ListId is a required field
@@ -3694,7 +4337,7 @@ func (s *GetAppsListInput) SetListId(v string) *GetAppsListInput {
 type GetAppsListOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the specified AWS Firewall Manager applications list.
+	// Information about the specified Firewall Manager applications list.
 	AppsList *AppsListData `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the applications list.
@@ -3726,8 +4369,8 @@ func (s *GetAppsListOutput) SetAppsListArn(v string) *GetAppsListOutput {
 type GetComplianceDetailInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account that owns the resources that you want to get the details
-	// for.
+	// The Amazon Web Services account that owns the resources that you want to
+	// get the details for.
 	//
 	// MemberAccount is a required field
 	MemberAccount *string `min:"1" type:"string" required:"true"`
@@ -3824,10 +4467,10 @@ func (s GetNotificationChannelInput) GoString() string {
 type GetNotificationChannelOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The IAM role that is used by AWS Firewall Manager to record activity to SNS.
+	// The IAM role that is used by Firewall Manager to record activity to SNS.
 	SnsRoleName *string `min:"1" type:"string"`
 
-	// The SNS topic that records AWS Firewall Manager activity.
+	// The SNS topic that records Firewall Manager activity.
 	SnsTopicArn *string `min:"1" type:"string"`
 }
 
@@ -3856,7 +4499,7 @@ func (s *GetNotificationChannelOutput) SetSnsTopicArn(v string) *GetNotification
 type GetPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS Firewall Manager policy that you want the details for.
+	// The ID of the Firewall Manager policy that you want the details for.
 	//
 	// PolicyId is a required field
 	PolicyId *string `min:"36" type:"string" required:"true"`
@@ -3897,7 +4540,7 @@ func (s *GetPolicyInput) SetPolicyId(v string) *GetPolicyInput {
 type GetPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the specified AWS Firewall Manager policy.
+	// Information about the specified Firewall Manager policy.
 	Policy *Policy `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the specified policy.
@@ -3931,22 +4574,22 @@ type GetProtectionStatusInput struct {
 
 	// The end of the time period to query for the attacks. This is a timestamp
 	// type. The request syntax listing indicates a number type because the default
-	// used by AWS Firewall Manager is Unix time in seconds. However, any valid
-	// timestamp format is allowed.
+	// used by Firewall Manager is Unix time in seconds. However, any valid timestamp
+	// format is allowed.
 	EndTime *time.Time `type:"timestamp"`
 
-	// Specifies the number of objects that you want AWS Firewall Manager to return
+	// Specifies the number of objects that you want Firewall Manager to return
 	// for this request. If you have more objects than the number that you specify
 	// for MaxResults, the response includes a NextToken value that you can use
 	// to get another batch of objects.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The AWS account that is in scope of the policy that you want to get the details
-	// for.
+	// The Amazon Web Services account that is in scope of the policy that you want
+	// to get the details for.
 	MemberAccountId *string `min:"1" type:"string"`
 
 	// If you specify a value for MaxResults and you have more objects than the
-	// number that you specify for MaxResults, AWS Firewall Manager returns a NextToken
+	// number that you specify for MaxResults, Firewall Manager returns a NextToken
 	// value in the response, which you can use to retrieve another group of objects.
 	// For the second and subsequent GetProtectionStatus requests, specify the value
 	// of NextToken from the previous response to get information about another
@@ -3960,8 +4603,8 @@ type GetProtectionStatusInput struct {
 
 	// The start of the time period to query for the attacks. This is a timestamp
 	// type. The request syntax listing indicates a number type because the default
-	// used by AWS Firewall Manager is Unix time in seconds. However, any valid
-	// timestamp format is allowed.
+	// used by Firewall Manager is Unix time in seconds. However, any valid timestamp
+	// format is allowed.
 	StartTime *time.Time `type:"timestamp"`
 }
 
@@ -4039,7 +4682,7 @@ func (s *GetProtectionStatusInput) SetStartTime(v time.Time) *GetProtectionStatu
 type GetProtectionStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS Firewall administrator account for this policy.
+	// The ID of the Firewall Manager administrator account for this policy.
 	AdminAccountId *string `min:"1" type:"string"`
 
 	// Details about the attack, including the following:
@@ -4062,10 +4705,10 @@ type GetProtectionStatusOutput struct {
 	// submit another GetProtectionStatus request, and specify the NextToken value
 	// from the response in the NextToken value in the next request.
 	//
-	// AWS SDKs provide auto-pagination that identify NextToken in a response and
-	// make subsequent request calls automatically on your behalf. However, this
-	// feature is not supported by GetProtectionStatus. You must submit subsequent
-	// requests with NextToken using your own processes.
+	// Amazon Web Services SDKs provide auto-pagination that identify NextToken
+	// in a response and make subsequent request calls automatically on your behalf.
+	// However, this feature is not supported by GetProtectionStatus. You must submit
+	// subsequent requests with NextToken using your own processes.
 	NextToken *string `min:"1" type:"string"`
 
 	// The service type that is protected by the policy. Currently, this is always
@@ -4110,12 +4753,11 @@ func (s *GetProtectionStatusOutput) SetServiceType(v string) *GetProtectionStatu
 type GetProtocolsListInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the list to retrieve is a default list owned by AWS Firewall
+	// Specifies whether the list to retrieve is a default list owned by Firewall
 	// Manager.
 	DefaultList *bool `type:"boolean"`
 
-	// The ID of the AWS Firewall Manager protocols list that you want the details
-	// for.
+	// The ID of the Firewall Manager protocols list that you want the details for.
 	//
 	// ListId is a required field
 	ListId *string `min:"36" type:"string" required:"true"`
@@ -4162,7 +4804,7 @@ func (s *GetProtocolsListInput) SetListId(v string) *GetProtocolsListInput {
 type GetProtocolsListOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the specified AWS Firewall Manager protocols list.
+	// Information about the specified Firewall Manager protocols list.
 	ProtocolsList *ProtocolsListData `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the specified protocols list.
@@ -4194,13 +4836,13 @@ func (s *GetProtocolsListOutput) SetProtocolsListArn(v string) *GetProtocolsList
 type GetViolationDetailsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID that you want the details for.
+	// The Amazon Web Services account ID that you want the details for.
 	//
 	// MemberAccount is a required field
 	MemberAccount *string `min:"1" type:"string" required:"true"`
 
-	// The ID of the AWS Firewall Manager policy that you want the details for.
-	// This currently only supports security group content audit policies.
+	// The ID of the Firewall Manager policy that you want the details for. This
+	// currently only supports security group content audit policies.
 	//
 	// PolicyId is a required field
 	PolicyId *string `min:"36" type:"string" required:"true"`
@@ -4210,8 +4852,8 @@ type GetViolationDetailsInput struct {
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
-	// The resource type. This is in the format shown in the AWS Resource Types
-	// Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
+	// The resource type. This is in the format shown in the Amazon Web Services
+	// Resource Types Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
 	// Supported resource types are: AWS::EC2::Instance, AWS::EC2::NetworkInterface,
 	// AWS::EC2::SecurityGroup, AWS::NetworkFirewall::FirewallPolicy, and AWS::EC2::Subnet.
 	//
@@ -4425,10 +5067,10 @@ func (s *InvalidInputException) RequestID() string {
 
 // The operation failed because there was nothing to do or the operation wasn't
 // possible. For example, you might have submitted an AssociateAdminAccount
-// request for an account ID that was already set as the AWS Firewall Manager
-// administrator. Or you might have tried to access a Region that's disabled
-// by default, and that you need to enable for the Firewall Manager administrator
-// account and for AWS Organizations before you can access it.
+// request for an account ID that was already set as the Firewall Manager administrator.
+// Or you might have tried to access a Region that's disabled by default, and
+// that you need to enable for the Firewall Manager administrator account and
+// for Organizations before you can access it.
 type InvalidOperationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4541,9 +5183,9 @@ func (s *InvalidTypeException) RequestID() string {
 }
 
 // The operation exceeds a resource limit, for example, the maximum number of
-// policy objects that you can create for an AWS account. For more information,
-// see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
-// in the AWS WAF Developer Guide.
+// policy objects that you can create for an Amazon Web Services account. For
+// more information, see Firewall Manager Limits (https://docs.aws.amazon.com/waf/latest/developerguide/fms-limits.html)
+// in the WAF Developer Guide.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4602,25 +5244,25 @@ func (s *LimitExceededException) RequestID() string {
 type ListAppsListsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the lists to retrieve are default lists owned by AWS Firewall
+	// Specifies whether the lists to retrieve are default lists owned by Firewall
 	// Manager.
 	DefaultLists *bool `type:"boolean"`
 
-	// The maximum number of objects that you want AWS Firewall Manager to return
-	// for this request. If more objects are available, in the response, AWS Firewall
-	// Manager provides a NextToken value that you can use in a subsequent call
-	// to get the next batch of objects.
+	// The maximum number of objects that you want Firewall Manager to return for
+	// this request. If more objects are available, in the response, Firewall Manager
+	// provides a NextToken value that you can use in a subsequent call to get the
+	// next batch of objects.
 	//
-	// If you don't specify this, AWS Firewall Manager returns all available objects.
+	// If you don't specify this, Firewall Manager returns all available objects.
 	//
 	// MaxResults is a required field
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
 	// If you specify a value for MaxResults in your list request, and you have
-	// more objects than the maximum, AWS Firewall Manager returns this token in
-	// the response. For all but the first request, you provide the token returned
-	// by the prior request in the request parameters, to retrieve the next batch
-	// of objects.
+	// more objects than the maximum, Firewall Manager returns this token in the
+	// response. For all but the first request, you provide the token returned by
+	// the prior request in the request parameters, to retrieve the next batch of
+	// objects.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -4678,9 +5320,9 @@ type ListAppsListsOutput struct {
 	AppsLists []*AppsListDataSummary `type:"list"`
 
 	// If you specify a value for MaxResults in your list request, and you have
-	// more objects than the maximum, AWS Firewall Manager returns this token in
-	// the response. You can use this token in subsequent requests to retrieve the
-	// next batch of objects.
+	// more objects than the maximum, Firewall Manager returns this token in the
+	// response. You can use this token in subsequent requests to retrieve the next
+	// batch of objects.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -4709,22 +5351,22 @@ func (s *ListAppsListsOutput) SetNextToken(v string) *ListAppsListsOutput {
 type ListComplianceStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the number of PolicyComplianceStatus objects that you want AWS
-	// Firewall Manager to return for this request. If you have more PolicyComplianceStatus
+	// Specifies the number of PolicyComplianceStatus objects that you want Firewall
+	// Manager to return for this request. If you have more PolicyComplianceStatus
 	// objects than the number that you specify for MaxResults, the response includes
 	// a NextToken value that you can use to get another batch of PolicyComplianceStatus
 	// objects.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If you specify a value for MaxResults and you have more PolicyComplianceStatus
-	// objects than the number that you specify for MaxResults, AWS Firewall Manager
+	// objects than the number that you specify for MaxResults, Firewall Manager
 	// returns a NextToken value in the response that allows you to list another
 	// group of PolicyComplianceStatus objects. For the second and subsequent ListComplianceStatus
 	// requests, specify the value of NextToken from the previous response to get
 	// information about another batch of PolicyComplianceStatus objects.
 	NextToken *string `min:"1" type:"string"`
 
-	// The ID of the AWS Firewall Manager policy that you want the details for.
+	// The ID of the Firewall Manager policy that you want the details for.
 	//
 	// PolicyId is a required field
 	PolicyId *string `min:"36" type:"string" required:"true"`
@@ -4819,18 +5461,18 @@ func (s *ListComplianceStatusOutput) SetPolicyComplianceStatusList(v []*PolicyCo
 type ListMemberAccountsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the number of member account IDs that you want AWS Firewall Manager
+	// Specifies the number of member account IDs that you want Firewall Manager
 	// to return for this request. If you have more IDs than the number that you
 	// specify for MaxResults, the response includes a NextToken value that you
 	// can use to get another batch of member account IDs.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If you specify a value for MaxResults and you have more account IDs than
-	// the number that you specify for MaxResults, AWS Firewall Manager returns
-	// a NextToken value in the response that allows you to list another group of
-	// IDs. For the second and subsequent ListMemberAccountsRequest requests, specify
-	// the value of NextToken from the previous response to get information about
-	// another batch of member account IDs.
+	// the number that you specify for MaxResults, Firewall Manager returns a NextToken
+	// value in the response that allows you to list another group of IDs. For the
+	// second and subsequent ListMemberAccountsRequest requests, specify the value
+	// of NextToken from the previous response to get information about another
+	// batch of member account IDs.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -4910,14 +5552,14 @@ func (s *ListMemberAccountsOutput) SetNextToken(v string) *ListMemberAccountsOut
 type ListPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the number of PolicySummary objects that you want AWS Firewall
-	// Manager to return for this request. If you have more PolicySummary objects
-	// than the number that you specify for MaxResults, the response includes a
-	// NextToken value that you can use to get another batch of PolicySummary objects.
+	// Specifies the number of PolicySummary objects that you want Firewall Manager
+	// to return for this request. If you have more PolicySummary objects than the
+	// number that you specify for MaxResults, the response includes a NextToken
+	// value that you can use to get another batch of PolicySummary objects.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If you specify a value for MaxResults and you have more PolicySummary objects
-	// than the number that you specify for MaxResults, AWS Firewall Manager returns
+	// than the number that you specify for MaxResults, Firewall Manager returns
 	// a NextToken value in the response that allows you to list another group of
 	// PolicySummary objects. For the second and subsequent ListPolicies requests,
 	// specify the value of NextToken from the previous response to get information
@@ -5002,25 +5644,25 @@ func (s *ListPoliciesOutput) SetPolicyList(v []*PolicySummary) *ListPoliciesOutp
 type ListProtocolsListsInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the lists to retrieve are default lists owned by AWS Firewall
+	// Specifies whether the lists to retrieve are default lists owned by Firewall
 	// Manager.
 	DefaultLists *bool `type:"boolean"`
 
-	// The maximum number of objects that you want AWS Firewall Manager to return
-	// for this request. If more objects are available, in the response, AWS Firewall
-	// Manager provides a NextToken value that you can use in a subsequent call
-	// to get the next batch of objects.
+	// The maximum number of objects that you want Firewall Manager to return for
+	// this request. If more objects are available, in the response, Firewall Manager
+	// provides a NextToken value that you can use in a subsequent call to get the
+	// next batch of objects.
 	//
-	// If you don't specify this, AWS Firewall Manager returns all available objects.
+	// If you don't specify this, Firewall Manager returns all available objects.
 	//
 	// MaxResults is a required field
 	MaxResults *int64 `min:"1" type:"integer" required:"true"`
 
 	// If you specify a value for MaxResults in your list request, and you have
-	// more objects than the maximum, AWS Firewall Manager returns this token in
-	// the response. For all but the first request, you provide the token returned
-	// by the prior request in the request parameters, to retrieve the next batch
-	// of objects.
+	// more objects than the maximum, Firewall Manager returns this token in the
+	// response. For all but the first request, you provide the token returned by
+	// the prior request in the request parameters, to retrieve the next batch of
+	// objects.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -5075,9 +5717,9 @@ type ListProtocolsListsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If you specify a value for MaxResults in your list request, and you have
-	// more objects than the maximum, AWS Firewall Manager returns this token in
-	// the response. You can use this token in subsequent requests to retrieve the
-	// next batch of objects.
+	// more objects than the maximum, Firewall Manager returns this token in the
+	// response. You can use this token in subsequent requests to retrieve the next
+	// batch of objects.
 	NextToken *string `min:"1" type:"string"`
 
 	// An array of ProtocolsListDataSummary objects.
@@ -5109,9 +5751,9 @@ func (s *ListProtocolsListsOutput) SetProtocolsLists(v []*ProtocolsListDataSumma
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource to return tags for. The AWS
-	// Firewall Manager resources that support tagging are policies, applications
-	// lists, and protocols lists.
+	// The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall
+	// Manager resources that support tagging are policies, applications lists,
+	// and protocols lists.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
@@ -5172,7 +5814,373 @@ func (s *ListTagsForResourceOutput) SetTagList(v []*Tag) *ListTagsForResourceOut
 	return s
 }
 
-// Violation details for AWS Network Firewall for a subnet that's not associated
+// Violation detail for an internet gateway route with an inactive state in
+// the customer subnet route table or Network Firewall subnet route table.
+type NetworkFirewallBlackHoleRouteDetectedViolation struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the route table ID.
+	RouteTableId *string `min:"1" type:"string"`
+
+	// Information about the route or routes that are in violation.
+	ViolatingRoutes []*Route `type:"list"`
+
+	// The subnet that has an inactive state.
+	ViolationTarget *string `type:"string"`
+
+	// Information about the VPC ID.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallBlackHoleRouteDetectedViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallBlackHoleRouteDetectedViolation) GoString() string {
+	return s.String()
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *NetworkFirewallBlackHoleRouteDetectedViolation) SetRouteTableId(v string) *NetworkFirewallBlackHoleRouteDetectedViolation {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetViolatingRoutes sets the ViolatingRoutes field's value.
+func (s *NetworkFirewallBlackHoleRouteDetectedViolation) SetViolatingRoutes(v []*Route) *NetworkFirewallBlackHoleRouteDetectedViolation {
+	s.ViolatingRoutes = v
+	return s
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *NetworkFirewallBlackHoleRouteDetectedViolation) SetViolationTarget(v string) *NetworkFirewallBlackHoleRouteDetectedViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NetworkFirewallBlackHoleRouteDetectedViolation) SetVpcId(v string) *NetworkFirewallBlackHoleRouteDetectedViolation {
+	s.VpcId = &v
+	return s
+}
+
+// Violation detail for the subnet for which internet traffic that hasn't been
+// inspected.
+type NetworkFirewallInternetTrafficNotInspectedViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The actual firewall subnet routes.
+	ActualFirewallSubnetRoutes []*Route `type:"list"`
+
+	// The actual internet gateway routes.
+	ActualInternetGatewayRoutes []*Route `type:"list"`
+
+	// Information about the subnet route table for the current firewall.
+	CurrentFirewallSubnetRouteTable *string `min:"1" type:"string"`
+
+	// The current route table for the internet gateway.
+	CurrentInternetGatewayRouteTable *string `min:"1" type:"string"`
+
+	// The expected endpoint for the current firewall.
+	ExpectedFirewallEndpoint *string `min:"1" type:"string"`
+
+	// The firewall subnet routes that are expected.
+	ExpectedFirewallSubnetRoutes []*ExpectedRoute `type:"list"`
+
+	// The internet gateway routes that are expected.
+	ExpectedInternetGatewayRoutes []*ExpectedRoute `type:"list"`
+
+	// The firewall subnet ID.
+	FirewallSubnetId *string `min:"1" type:"string"`
+
+	// The internet gateway ID.
+	InternetGatewayId *string `min:"1" type:"string"`
+
+	// Information about whether the route table is used in another Availability
+	// Zone.
+	IsRouteTableUsedInDifferentAZ *bool `type:"boolean"`
+
+	// Information about the route table ID.
+	RouteTableId *string `min:"1" type:"string"`
+
+	// The subnet Availability Zone.
+	SubnetAvailabilityZone *string `type:"string"`
+
+	// The subnet ID.
+	SubnetId *string `min:"1" type:"string"`
+
+	// The route or routes that are in violation.
+	ViolatingRoutes []*Route `type:"list"`
+
+	// Information about the VPC ID.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallInternetTrafficNotInspectedViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallInternetTrafficNotInspectedViolation) GoString() string {
+	return s.String()
+}
+
+// SetActualFirewallSubnetRoutes sets the ActualFirewallSubnetRoutes field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetActualFirewallSubnetRoutes(v []*Route) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.ActualFirewallSubnetRoutes = v
+	return s
+}
+
+// SetActualInternetGatewayRoutes sets the ActualInternetGatewayRoutes field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetActualInternetGatewayRoutes(v []*Route) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.ActualInternetGatewayRoutes = v
+	return s
+}
+
+// SetCurrentFirewallSubnetRouteTable sets the CurrentFirewallSubnetRouteTable field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetCurrentFirewallSubnetRouteTable(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.CurrentFirewallSubnetRouteTable = &v
+	return s
+}
+
+// SetCurrentInternetGatewayRouteTable sets the CurrentInternetGatewayRouteTable field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetCurrentInternetGatewayRouteTable(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.CurrentInternetGatewayRouteTable = &v
+	return s
+}
+
+// SetExpectedFirewallEndpoint sets the ExpectedFirewallEndpoint field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetExpectedFirewallEndpoint(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.ExpectedFirewallEndpoint = &v
+	return s
+}
+
+// SetExpectedFirewallSubnetRoutes sets the ExpectedFirewallSubnetRoutes field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetExpectedFirewallSubnetRoutes(v []*ExpectedRoute) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.ExpectedFirewallSubnetRoutes = v
+	return s
+}
+
+// SetExpectedInternetGatewayRoutes sets the ExpectedInternetGatewayRoutes field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetExpectedInternetGatewayRoutes(v []*ExpectedRoute) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.ExpectedInternetGatewayRoutes = v
+	return s
+}
+
+// SetFirewallSubnetId sets the FirewallSubnetId field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetFirewallSubnetId(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.FirewallSubnetId = &v
+	return s
+}
+
+// SetInternetGatewayId sets the InternetGatewayId field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetInternetGatewayId(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.InternetGatewayId = &v
+	return s
+}
+
+// SetIsRouteTableUsedInDifferentAZ sets the IsRouteTableUsedInDifferentAZ field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetIsRouteTableUsedInDifferentAZ(v bool) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.IsRouteTableUsedInDifferentAZ = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetRouteTableId(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetSubnetAvailabilityZone sets the SubnetAvailabilityZone field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetSubnetAvailabilityZone(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.SubnetAvailabilityZone = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetSubnetId(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.SubnetId = &v
+	return s
+}
+
+// SetViolatingRoutes sets the ViolatingRoutes field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetViolatingRoutes(v []*Route) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.ViolatingRoutes = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NetworkFirewallInternetTrafficNotInspectedViolation) SetVpcId(v string) *NetworkFirewallInternetTrafficNotInspectedViolation {
+	s.VpcId = &v
+	return s
+}
+
+// Violation detail for the improperly configured subnet route. It's possible
+// there is a missing route table route, or a configuration that causes traffic
+// to cross an Availability Zone boundary.
+type NetworkFirewallInvalidRouteConfigurationViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The actual firewall endpoint.
+	ActualFirewallEndpoint *string `min:"1" type:"string"`
+
+	// The actual subnet ID for the firewall.
+	ActualFirewallSubnetId *string `min:"1" type:"string"`
+
+	// The actual firewall subnet routes that are expected.
+	ActualFirewallSubnetRoutes []*Route `type:"list"`
+
+	// The actual internet gateway routes.
+	ActualInternetGatewayRoutes []*Route `type:"list"`
+
+	// The subnets that are affected.
+	AffectedSubnets []*string `type:"list"`
+
+	// The subnet route table for the current firewall.
+	CurrentFirewallSubnetRouteTable *string `min:"1" type:"string"`
+
+	// The route table for the current internet gateway.
+	CurrentInternetGatewayRouteTable *string `min:"1" type:"string"`
+
+	// The firewall endpoint that's expected.
+	ExpectedFirewallEndpoint *string `min:"1" type:"string"`
+
+	// The expected subnet ID for the firewall.
+	ExpectedFirewallSubnetId *string `min:"1" type:"string"`
+
+	// The firewall subnet routes that are expected.
+	ExpectedFirewallSubnetRoutes []*ExpectedRoute `type:"list"`
+
+	// The expected routes for the internet gateway.
+	ExpectedInternetGatewayRoutes []*ExpectedRoute `type:"list"`
+
+	// The internet gateway ID.
+	InternetGatewayId *string `min:"1" type:"string"`
+
+	// Information about whether the route table is used in another Availability
+	// Zone.
+	IsRouteTableUsedInDifferentAZ *bool `type:"boolean"`
+
+	// The route table ID.
+	RouteTableId *string `min:"1" type:"string"`
+
+	// The route that's in violation.
+	ViolatingRoute *Route `type:"structure"`
+
+	// Information about the VPC ID.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallInvalidRouteConfigurationViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallInvalidRouteConfigurationViolation) GoString() string {
+	return s.String()
+}
+
+// SetActualFirewallEndpoint sets the ActualFirewallEndpoint field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetActualFirewallEndpoint(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ActualFirewallEndpoint = &v
+	return s
+}
+
+// SetActualFirewallSubnetId sets the ActualFirewallSubnetId field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetActualFirewallSubnetId(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ActualFirewallSubnetId = &v
+	return s
+}
+
+// SetActualFirewallSubnetRoutes sets the ActualFirewallSubnetRoutes field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetActualFirewallSubnetRoutes(v []*Route) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ActualFirewallSubnetRoutes = v
+	return s
+}
+
+// SetActualInternetGatewayRoutes sets the ActualInternetGatewayRoutes field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetActualInternetGatewayRoutes(v []*Route) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ActualInternetGatewayRoutes = v
+	return s
+}
+
+// SetAffectedSubnets sets the AffectedSubnets field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetAffectedSubnets(v []*string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.AffectedSubnets = v
+	return s
+}
+
+// SetCurrentFirewallSubnetRouteTable sets the CurrentFirewallSubnetRouteTable field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetCurrentFirewallSubnetRouteTable(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.CurrentFirewallSubnetRouteTable = &v
+	return s
+}
+
+// SetCurrentInternetGatewayRouteTable sets the CurrentInternetGatewayRouteTable field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetCurrentInternetGatewayRouteTable(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.CurrentInternetGatewayRouteTable = &v
+	return s
+}
+
+// SetExpectedFirewallEndpoint sets the ExpectedFirewallEndpoint field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetExpectedFirewallEndpoint(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ExpectedFirewallEndpoint = &v
+	return s
+}
+
+// SetExpectedFirewallSubnetId sets the ExpectedFirewallSubnetId field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetExpectedFirewallSubnetId(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ExpectedFirewallSubnetId = &v
+	return s
+}
+
+// SetExpectedFirewallSubnetRoutes sets the ExpectedFirewallSubnetRoutes field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetExpectedFirewallSubnetRoutes(v []*ExpectedRoute) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ExpectedFirewallSubnetRoutes = v
+	return s
+}
+
+// SetExpectedInternetGatewayRoutes sets the ExpectedInternetGatewayRoutes field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetExpectedInternetGatewayRoutes(v []*ExpectedRoute) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ExpectedInternetGatewayRoutes = v
+	return s
+}
+
+// SetInternetGatewayId sets the InternetGatewayId field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetInternetGatewayId(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.InternetGatewayId = &v
+	return s
+}
+
+// SetIsRouteTableUsedInDifferentAZ sets the IsRouteTableUsedInDifferentAZ field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetIsRouteTableUsedInDifferentAZ(v bool) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.IsRouteTableUsedInDifferentAZ = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetRouteTableId(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetViolatingRoute sets the ViolatingRoute field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetViolatingRoute(v *Route) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.ViolatingRoute = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NetworkFirewallInvalidRouteConfigurationViolation) SetVpcId(v string) *NetworkFirewallInvalidRouteConfigurationViolation {
+	s.VpcId = &v
+	return s
+}
+
+// Violation detail for Network Firewall for a subnet that's not associated
 // to the expected Firewall Manager managed route table.
 type NetworkFirewallMissingExpectedRTViolation struct {
 	_ struct{} `type:"structure"`
@@ -5190,7 +6198,7 @@ type NetworkFirewallMissingExpectedRTViolation struct {
 	// The resource ID of the VPC associated with a violating subnet.
 	VPC *string `min:"1" type:"string"`
 
-	// The ID of the AWS Network Firewall or VPC resource that's in violation.
+	// The ID of the Network Firewall or VPC resource that's in violation.
 	ViolationTarget *string `type:"string"`
 }
 
@@ -5234,8 +6242,50 @@ func (s *NetworkFirewallMissingExpectedRTViolation) SetViolationTarget(v string)
 	return s
 }
 
-// Violation details for AWS Network Firewall for a subnet that doesn't have
-// a Firewall Manager managed firewall in its VPC.
+// Violation detail for an expected route missing in Network Firewall.
+type NetworkFirewallMissingExpectedRoutesViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The expected routes.
+	ExpectedRoutes []*ExpectedRoute `type:"list"`
+
+	// The target of the violation.
+	ViolationTarget *string `type:"string"`
+
+	// Information about the VPC ID.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallMissingExpectedRoutesViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallMissingExpectedRoutesViolation) GoString() string {
+	return s.String()
+}
+
+// SetExpectedRoutes sets the ExpectedRoutes field's value.
+func (s *NetworkFirewallMissingExpectedRoutesViolation) SetExpectedRoutes(v []*ExpectedRoute) *NetworkFirewallMissingExpectedRoutesViolation {
+	s.ExpectedRoutes = v
+	return s
+}
+
+// SetViolationTarget sets the ViolationTarget field's value.
+func (s *NetworkFirewallMissingExpectedRoutesViolation) SetViolationTarget(v string) *NetworkFirewallMissingExpectedRoutesViolation {
+	s.ViolationTarget = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NetworkFirewallMissingExpectedRoutesViolation) SetVpcId(v string) *NetworkFirewallMissingExpectedRoutesViolation {
+	s.VpcId = &v
+	return s
+}
+
+// Violation detail for Network Firewall for a subnet that doesn't have a Firewall
+// Manager managed firewall in its VPC.
 type NetworkFirewallMissingFirewallViolation struct {
 	_ struct{} `type:"structure"`
 
@@ -5248,7 +6298,7 @@ type NetworkFirewallMissingFirewallViolation struct {
 	// The resource ID of the VPC associated with a violating subnet.
 	VPC *string `min:"1" type:"string"`
 
-	// The ID of the AWS Network Firewall or VPC resource that's in violation.
+	// The ID of the Network Firewall or VPC resource that's in violation.
 	ViolationTarget *string `type:"string"`
 }
 
@@ -5286,8 +6336,8 @@ func (s *NetworkFirewallMissingFirewallViolation) SetViolationTarget(v string) *
 	return s
 }
 
-// Violation details for AWS Network Firewall for an Availability Zone that's
-// missing the expected Firewall Manager managed subnet.
+// Violation detail for Network Firewall for an Availability Zone that's missing
+// the expected Firewall Manager managed subnet.
 type NetworkFirewallMissingSubnetViolation struct {
 	_ struct{} `type:"structure"`
 
@@ -5300,7 +6350,7 @@ type NetworkFirewallMissingSubnetViolation struct {
 	// The resource ID of the VPC associated with a violating subnet.
 	VPC *string `min:"1" type:"string"`
 
-	// The ID of the AWS Network Firewall or VPC resource that's in violation.
+	// The ID of the Network Firewall or VPC resource that's in violation.
 	ViolationTarget *string `type:"string"`
 }
 
@@ -5338,7 +6388,7 @@ func (s *NetworkFirewallMissingSubnetViolation) SetViolationTarget(v string) *Ne
 	return s
 }
 
-// The definition of the AWS Network Firewall firewall policy.
+// The definition of the Network Firewall firewall policy.
 type NetworkFirewallPolicyDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -5402,9 +6452,9 @@ func (s *NetworkFirewallPolicyDescription) SetStatelessRuleGroups(v []*Stateless
 	return s
 }
 
-// Violation details for AWS Network Firewall for a firewall policy that has
-// a different NetworkFirewallPolicyDescription than is required by the Firewall
-// Manager policy.
+// Violation detail for Network Firewall for a firewall policy that has a different
+// NetworkFirewallPolicyDescription than is required by the Firewall Manager
+// policy.
 type NetworkFirewallPolicyModifiedViolation struct {
 	_ struct{} `type:"structure"`
 
@@ -5415,7 +6465,7 @@ type NetworkFirewallPolicyModifiedViolation struct {
 	// compliant.
 	ExpectedPolicyDescription *NetworkFirewallPolicyDescription `type:"structure"`
 
-	// The ID of the AWS Network Firewall or VPC resource that's in violation.
+	// The ID of the Network Firewall or VPC resource that's in violation.
 	ViolationTarget *string `type:"string"`
 }
 
@@ -5447,12 +6497,124 @@ func (s *NetworkFirewallPolicyModifiedViolation) SetViolationTarget(v string) *N
 	return s
 }
 
+// Violation detail for an unexpected route that's present in a route table.
+type NetworkFirewallUnexpectedFirewallRoutesViolation struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of the firewall.
+	FirewallEndpoint *string `min:"1" type:"string"`
+
+	// The subnet ID for the firewall.
+	FirewallSubnetId *string `min:"1" type:"string"`
+
+	// The ID of the route table.
+	RouteTableId *string `min:"1" type:"string"`
+
+	// The routes that are in violation.
+	ViolatingRoutes []*Route `type:"list"`
+
+	// Information about the VPC ID.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallUnexpectedFirewallRoutesViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallUnexpectedFirewallRoutesViolation) GoString() string {
+	return s.String()
+}
+
+// SetFirewallEndpoint sets the FirewallEndpoint field's value.
+func (s *NetworkFirewallUnexpectedFirewallRoutesViolation) SetFirewallEndpoint(v string) *NetworkFirewallUnexpectedFirewallRoutesViolation {
+	s.FirewallEndpoint = &v
+	return s
+}
+
+// SetFirewallSubnetId sets the FirewallSubnetId field's value.
+func (s *NetworkFirewallUnexpectedFirewallRoutesViolation) SetFirewallSubnetId(v string) *NetworkFirewallUnexpectedFirewallRoutesViolation {
+	s.FirewallSubnetId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *NetworkFirewallUnexpectedFirewallRoutesViolation) SetRouteTableId(v string) *NetworkFirewallUnexpectedFirewallRoutesViolation {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetViolatingRoutes sets the ViolatingRoutes field's value.
+func (s *NetworkFirewallUnexpectedFirewallRoutesViolation) SetViolatingRoutes(v []*Route) *NetworkFirewallUnexpectedFirewallRoutesViolation {
+	s.ViolatingRoutes = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NetworkFirewallUnexpectedFirewallRoutesViolation) SetVpcId(v string) *NetworkFirewallUnexpectedFirewallRoutesViolation {
+	s.VpcId = &v
+	return s
+}
+
+// Violation detail for an unexpected gateway route that’s present in a route
+// table.
+type NetworkFirewallUnexpectedGatewayRoutesViolation struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the gateway ID.
+	GatewayId *string `min:"1" type:"string"`
+
+	// Information about the route table.
+	RouteTableId *string `min:"1" type:"string"`
+
+	// The routes that are in violation.
+	ViolatingRoutes []*Route `type:"list"`
+
+	// Information about the VPC ID.
+	VpcId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s NetworkFirewallUnexpectedGatewayRoutesViolation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NetworkFirewallUnexpectedGatewayRoutesViolation) GoString() string {
+	return s.String()
+}
+
+// SetGatewayId sets the GatewayId field's value.
+func (s *NetworkFirewallUnexpectedGatewayRoutesViolation) SetGatewayId(v string) *NetworkFirewallUnexpectedGatewayRoutesViolation {
+	s.GatewayId = &v
+	return s
+}
+
+// SetRouteTableId sets the RouteTableId field's value.
+func (s *NetworkFirewallUnexpectedGatewayRoutesViolation) SetRouteTableId(v string) *NetworkFirewallUnexpectedGatewayRoutesViolation {
+	s.RouteTableId = &v
+	return s
+}
+
+// SetViolatingRoutes sets the ViolatingRoutes field's value.
+func (s *NetworkFirewallUnexpectedGatewayRoutesViolation) SetViolatingRoutes(v []*Route) *NetworkFirewallUnexpectedGatewayRoutesViolation {
+	s.ViolatingRoutes = v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *NetworkFirewallUnexpectedGatewayRoutesViolation) SetVpcId(v string) *NetworkFirewallUnexpectedGatewayRoutesViolation {
+	s.VpcId = &v
+	return s
+}
+
 // The reference rule that partially matches the ViolationTarget rule and violation
 // reason.
 type PartialMatch struct {
 	_ struct{} `type:"structure"`
 
-	// The reference rule from the master security group of the AWS Firewall Manager
+	// The reference rule from the primary security group of the Firewall Manager
 	// policy.
 	Reference *string `type:"string"`
 
@@ -5482,17 +6644,17 @@ func (s *PartialMatch) SetTargetViolationReasons(v []*string) *PartialMatch {
 	return s
 }
 
-// An AWS Firewall Manager policy.
+// An Firewall Manager policy.
 type Policy struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the AWS account IDs and AWS Organizations organizational units
-	// (OUs) to exclude from the policy. Specifying an OU is the equivalent of specifying
-	// all accounts in the OU and in any of its child OUs, including any child OUs
-	// and accounts that are added at a later time.
+	// Specifies the Amazon Web Services account IDs and Organizations organizational
+	// units (OUs) to exclude from the policy. Specifying an OU is the equivalent
+	// of specifying all accounts in the OU and in any of its child OUs, including
+	// any child OUs and accounts that are added at a later time.
 	//
 	// You can specify inclusions or exclusions, but not both. If you specify an
-	// IncludeMap, AWS Firewall Manager applies the policy to all accounts specified
+	// IncludeMap, Firewall Manager applies the policy to all accounts specified
 	// by the IncludeMap, and does not evaluate any ExcludeMap specifications. If
 	// you do not specify an IncludeMap, then Firewall Manager applies the policy
 	// to all accounts except for those specified by the ExcludeMap.
@@ -5518,13 +6680,13 @@ type Policy struct {
 	// ExcludeResourceTags is a required field
 	ExcludeResourceTags *bool `type:"boolean" required:"true"`
 
-	// Specifies the AWS account IDs and AWS Organizations organizational units
-	// (OUs) to include in the policy. Specifying an OU is the equivalent of specifying
-	// all accounts in the OU and in any of its child OUs, including any child OUs
-	// and accounts that are added at a later time.
+	// Specifies the Amazon Web Services account IDs and Organizations organizational
+	// units (OUs) to include in the policy. Specifying an OU is the equivalent
+	// of specifying all accounts in the OU and in any of its child OUs, including
+	// any child OUs and accounts that are added at a later time.
 	//
 	// You can specify inclusions or exclusions, but not both. If you specify an
-	// IncludeMap, AWS Firewall Manager applies the policy to all accounts specified
+	// IncludeMap, Firewall Manager applies the policy to all accounts specified
 	// by the IncludeMap, and does not evaluate any ExcludeMap specifications. If
 	// you do not specify an IncludeMap, then Firewall Manager applies the policy
 	// to all accounts except for those specified by the ExcludeMap.
@@ -5542,10 +6704,10 @@ type Policy struct {
 	//    “accountID2”], “ORG_UNIT” : [“ouid111”, “ouid112”]}.
 	IncludeMap map[string][]*string `type:"map"`
 
-	// The ID of the AWS Firewall Manager policy.
+	// The ID of the Firewall Manager policy.
 	PolicyId *string `min:"36" type:"string"`
 
-	// The name of the AWS Firewall Manager policy.
+	// The name of the Firewall Manager policy.
 	//
 	// PolicyName is a required field
 	PolicyName *string `min:"1" type:"string" required:"true"`
@@ -5565,19 +6727,23 @@ type Policy struct {
 	ResourceTags []*ResourceTag `type:"list"`
 
 	// The type of resource protected by or in scope of the policy. This is in the
-	// format shown in the AWS Resource Types Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
-	// For AWS WAF and Shield Advanced, examples include AWS::ElasticLoadBalancingV2::LoadBalancer
+	// format shown in the Amazon Web Services Resource Types Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
+	// To apply this policy to multiple resource types, specify a resource type
+	// of ResourceTypeList and then specify the resource types in a ResourceTypeList.
+	//
+	// For WAF and Shield Advanced, example resource types include AWS::ElasticLoadBalancingV2::LoadBalancer
 	// and AWS::CloudFront::Distribution. For a security group common policy, valid
 	// values are AWS::EC2::NetworkInterface and AWS::EC2::Instance. For a security
 	// group content audit policy, valid values are AWS::EC2::SecurityGroup, AWS::EC2::NetworkInterface,
 	// and AWS::EC2::Instance. For a security group usage audit policy, the value
-	// is AWS::EC2::SecurityGroup. For an AWS Network Firewall policy, the value
-	// is AWS::EC2::VPC.
+	// is AWS::EC2::SecurityGroup. For an Network Firewall policy or DNS Firewall
+	// policy, the value is AWS::EC2::VPC.
 	//
 	// ResourceType is a required field
 	ResourceType *string `min:"1" type:"string" required:"true"`
 
-	// An array of ResourceType.
+	// An array of ResourceType objects. Use this only to specify multiple resource
+	// types. To specify a single resource type, use ResourceType.
 	ResourceTypeList []*string `type:"list"`
 
 	// Details about the security service that is being used to protect the resources.
@@ -5714,13 +6880,13 @@ func (s *Policy) SetSecurityServicePolicyData(v *SecurityServicePolicyData) *Pol
 	return s
 }
 
-// Describes the noncompliant resources in a member account for a specific AWS
-// Firewall Manager policy. A maximum of 100 entries are displayed. If more
-// than 100 resources are noncompliant, EvaluationLimitExceeded is set to True.
+// Describes the noncompliant resources in a member account for a specific Firewall
+// Manager policy. A maximum of 100 entries are displayed. If more than 100
+// resources are noncompliant, EvaluationLimitExceeded is set to True.
 type PolicyComplianceDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates if over 100 resources are noncompliant with the AWS Firewall Manager
+	// Indicates if over 100 resources are noncompliant with the Firewall Manager
 	// policy.
 	EvaluationLimitExceeded *bool `type:"boolean"`
 
@@ -5728,22 +6894,20 @@ type PolicyComplianceDetail struct {
 	// out of date.
 	ExpiredAt *time.Time `type:"timestamp"`
 
-	// Details about problems with dependent services, such as AWS WAF or AWS Config,
-	// that are causing a resource to be noncompliant. The details include the name
-	// of the dependent service and the error message received that indicates the
-	// problem with the service.
+	// Details about problems with dependent services, such as WAF or Config, and
+	// the error message received that indicates the problem with the service.
 	IssueInfoMap map[string]*string `type:"map"`
 
-	// The AWS account ID.
+	// The Amazon Web Services account ID.
 	MemberAccount *string `min:"1" type:"string"`
 
-	// The ID of the AWS Firewall Manager policy.
+	// The ID of the Firewall Manager policy.
 	PolicyId *string `min:"36" type:"string"`
 
-	// The AWS account that created the AWS Firewall Manager policy.
+	// The Amazon Web Services account that created the Firewall Manager policy.
 	PolicyOwner *string `min:"1" type:"string"`
 
-	// An array of resources that aren't protected by the AWS WAF or Shield Advanced
+	// An array of resources that aren't protected by the WAF or Shield Advanced
 	// policy or that aren't in compliance with the security group policy.
 	Violators []*ComplianceViolator `type:"list"`
 }
@@ -5802,18 +6966,16 @@ func (s *PolicyComplianceDetail) SetViolators(v []*ComplianceViolator) *PolicyCo
 
 // Indicates whether the account is compliant with the specified policy. An
 // account is considered noncompliant if it includes resources that are not
-// protected by the policy, for AWS WAF and Shield Advanced policies, or that
-// are noncompliant with the policy, for security group policies.
+// protected by the policy, for WAF and Shield Advanced policies, or that are
+// noncompliant with the policy, for security group policies.
 type PolicyComplianceStatus struct {
 	_ struct{} `type:"structure"`
 
 	// An array of EvaluationResult objects.
 	EvaluationResults []*EvaluationResult `type:"list"`
 
-	// Details about problems with dependent services, such as AWS WAF or AWS Config,
-	// that are causing a resource to be noncompliant. The details include the name
-	// of the dependent service and the error message received that indicates the
-	// problem with the service.
+	// Details about problems with dependent services, such as WAF or Config, and
+	// the error message received that indicates the problem with the service.
 	IssueInfoMap map[string]*string `type:"map"`
 
 	// Timestamp of the last update to the EvaluationResult objects.
@@ -5822,13 +6984,13 @@ type PolicyComplianceStatus struct {
 	// The member account ID.
 	MemberAccount *string `min:"1" type:"string"`
 
-	// The ID of the AWS Firewall Manager policy.
+	// The ID of the Firewall Manager policy.
 	PolicyId *string `min:"36" type:"string"`
 
-	// The name of the AWS Firewall Manager policy.
+	// The name of the Firewall Manager policy.
 	PolicyName *string `min:"1" type:"string"`
 
-	// The AWS account that created the AWS Firewall Manager policy.
+	// The Amazon Web Services account that created the Firewall Manager policy.
 	PolicyOwner *string `min:"1" type:"string"`
 }
 
@@ -5884,7 +7046,7 @@ func (s *PolicyComplianceStatus) SetPolicyOwner(v string) *PolicyComplianceStatu
 	return s
 }
 
-// Details of the AWS Firewall Manager policy.
+// Details of the Firewall Manager policy.
 type PolicySummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5901,18 +7063,18 @@ type PolicySummary struct {
 	RemediationEnabled *bool `type:"boolean"`
 
 	// The type of resource protected by or in scope of the policy. This is in the
-	// format shown in the AWS Resource Types Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
-	// For AWS WAF and Shield Advanced, examples include AWS::ElasticLoadBalancingV2::LoadBalancer
+	// format shown in the Amazon Web Services Resource Types Reference (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html).
+	// For WAF and Shield Advanced, examples include AWS::ElasticLoadBalancingV2::LoadBalancer
 	// and AWS::CloudFront::Distribution. For a security group common policy, valid
 	// values are AWS::EC2::NetworkInterface and AWS::EC2::Instance. For a security
 	// group content audit policy, valid values are AWS::EC2::SecurityGroup, AWS::EC2::NetworkInterface,
 	// and AWS::EC2::Instance. For a security group usage audit policy, the value
-	// is AWS::EC2::SecurityGroup. For an AWS Network Firewall policy, the value
-	// is AWS::EC2::VPC.
+	// is AWS::EC2::SecurityGroup. For an Network Firewall policy or DNS Firewall
+	// policy, the value is AWS::EC2::VPC.
 	ResourceType *string `min:"1" type:"string"`
 
 	// The service that the policy is using to protect the resources. This specifies
-	// the type of policy that is created, either an AWS WAF policy, a Shield Advanced
+	// the type of policy that is created, either an WAF policy, a Shield Advanced
 	// policy, or a security group policy.
 	SecurityServiceType *string `type:"string" enum:"SecurityServiceType"`
 }
@@ -5963,20 +7125,98 @@ func (s *PolicySummary) SetSecurityServiceType(v string) *PolicySummary {
 	return s
 }
 
-// An AWS Firewall Manager protocols list.
+// A list of remediation actions.
+type PossibleRemediationAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the list of remediation actions.
+	Description *string `type:"string"`
+
+	// Information about whether an action is taken by default.
+	IsDefaultAction *bool `type:"boolean"`
+
+	// The ordered list of remediation actions.
+	//
+	// OrderedRemediationActions is a required field
+	OrderedRemediationActions []*RemediationActionWithOrder `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s PossibleRemediationAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PossibleRemediationAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *PossibleRemediationAction) SetDescription(v string) *PossibleRemediationAction {
+	s.Description = &v
+	return s
+}
+
+// SetIsDefaultAction sets the IsDefaultAction field's value.
+func (s *PossibleRemediationAction) SetIsDefaultAction(v bool) *PossibleRemediationAction {
+	s.IsDefaultAction = &v
+	return s
+}
+
+// SetOrderedRemediationActions sets the OrderedRemediationActions field's value.
+func (s *PossibleRemediationAction) SetOrderedRemediationActions(v []*RemediationActionWithOrder) *PossibleRemediationAction {
+	s.OrderedRemediationActions = v
+	return s
+}
+
+// A list of possible remediation action lists. Each individual possible remediation
+// action is a list of individual remediation actions.
+type PossibleRemediationActions struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the actions.
+	Actions []*PossibleRemediationAction `type:"list"`
+
+	// A description of the possible remediation actions list.
+	Description *string `type:"string"`
+}
+
+// String returns the string representation
+func (s PossibleRemediationActions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PossibleRemediationActions) GoString() string {
+	return s.String()
+}
+
+// SetActions sets the Actions field's value.
+func (s *PossibleRemediationActions) SetActions(v []*PossibleRemediationAction) *PossibleRemediationActions {
+	s.Actions = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *PossibleRemediationActions) SetDescription(v string) *PossibleRemediationActions {
+	s.Description = &v
+	return s
+}
+
+// An Firewall Manager protocols list.
 type ProtocolsListData struct {
 	_ struct{} `type:"structure"`
 
-	// The time that the AWS Firewall Manager protocols list was created.
+	// The time that the Firewall Manager protocols list was created.
 	CreateTime *time.Time `type:"timestamp"`
 
-	// The time that the AWS Firewall Manager protocols list was last updated.
+	// The time that the Firewall Manager protocols list was last updated.
 	LastUpdateTime *time.Time `type:"timestamp"`
 
-	// The ID of the AWS Firewall Manager protocols list.
+	// The ID of the Firewall Manager protocols list.
 	ListId *string `min:"36" type:"string"`
 
-	// The name of the AWS Firewall Manager protocols list.
+	// The name of the Firewall Manager protocols list.
 	//
 	// ListName is a required field
 	ListName *string `min:"1" type:"string" required:"true"`
@@ -5989,7 +7229,7 @@ type ProtocolsListData struct {
 	// A map of previous version numbers to their corresponding protocol arrays.
 	PreviousProtocolsList map[string][]*string `type:"map"`
 
-	// An array of protocols in the AWS Firewall Manager protocols list.
+	// An array of protocols in the Firewall Manager protocols list.
 	//
 	// ProtocolsList is a required field
 	ProtocolsList []*string `type:"list" required:"true"`
@@ -6072,7 +7312,7 @@ func (s *ProtocolsListData) SetProtocolsList(v []*string) *ProtocolsListData {
 	return s
 }
 
-// Details of the AWS Firewall Manager protocols list.
+// Details of the Firewall Manager protocols list.
 type ProtocolsListDataSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -6085,7 +7325,7 @@ type ProtocolsListDataSummary struct {
 	// The name of the specified protocols list.
 	ListName *string `min:"1" type:"string"`
 
-	// An array of protocols in the AWS Firewall Manager protocols list.
+	// An array of protocols in the Firewall Manager protocols list.
 	ProtocolsList []*string `type:"list"`
 }
 
@@ -6126,7 +7366,7 @@ func (s *ProtocolsListDataSummary) SetProtocolsList(v []*string) *ProtocolsListD
 type PutAppsListInput struct {
 	_ struct{} `type:"structure"`
 
-	// The details of the AWS Firewall Manager applications list to be created.
+	// The details of the Firewall Manager applications list to be created.
 	//
 	// AppsList is a required field
 	AppsList *AppsListData `type:"structure" required:"true"`
@@ -6188,7 +7428,7 @@ func (s *PutAppsListInput) SetTagList(v []*Tag) *PutAppsListInput {
 type PutAppsListOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The details of the AWS Firewall Manager applications list.
+	// The details of the Firewall Manager applications list.
 	AppsList *AppsListData `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the applications list.
@@ -6221,13 +7461,13 @@ type PutNotificationChannelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that allows Amazon SNS to
-	// record AWS Firewall Manager activity.
+	// record Firewall Manager activity.
 	//
 	// SnsRoleName is a required field
 	SnsRoleName *string `min:"1" type:"string" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the SNS topic that collects notifications
-	// from AWS Firewall Manager.
+	// from Firewall Manager.
 	//
 	// SnsTopicArn is a required field
 	SnsTopicArn *string `min:"1" type:"string" required:"true"`
@@ -6294,12 +7534,12 @@ func (s PutNotificationChannelOutput) GoString() string {
 type PutPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The details of the AWS Firewall Manager policy to be created.
+	// The details of the Firewall Manager policy to be created.
 	//
 	// Policy is a required field
 	Policy *Policy `type:"structure" required:"true"`
 
-	// The tags to add to the AWS resource.
+	// The tags to add to the Amazon Web Services resource.
 	TagList []*Tag `type:"list"`
 }
 
@@ -6356,7 +7596,7 @@ func (s *PutPolicyInput) SetTagList(v []*Tag) *PutPolicyInput {
 type PutPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The details of the AWS Firewall Manager policy.
+	// The details of the Firewall Manager policy.
 	Policy *Policy `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the policy.
@@ -6388,7 +7628,7 @@ func (s *PutPolicyOutput) SetPolicyArn(v string) *PutPolicyOutput {
 type PutProtocolsListInput struct {
 	_ struct{} `type:"structure"`
 
-	// The details of the AWS Firewall Manager protocols list to be created.
+	// The details of the Firewall Manager protocols list to be created.
 	//
 	// ProtocolsList is a required field
 	ProtocolsList *ProtocolsListData `type:"structure" required:"true"`
@@ -6450,7 +7690,7 @@ func (s *PutProtocolsListInput) SetTagList(v []*Tag) *PutProtocolsListInput {
 type PutProtocolsListOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The details of the AWS Firewall Manager protocols list.
+	// The details of the Firewall Manager protocols list.
 	ProtocolsList *ProtocolsListData `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the protocols list.
@@ -6476,6 +7716,127 @@ func (s *PutProtocolsListOutput) SetProtocolsList(v *ProtocolsListData) *PutProt
 // SetProtocolsListArn sets the ProtocolsListArn field's value.
 func (s *PutProtocolsListOutput) SetProtocolsListArn(v string) *PutProtocolsListOutput {
 	s.ProtocolsListArn = &v
+	return s
+}
+
+// Information about an individual action you can take to remediate a violation.
+type RemediationAction struct {
+	_ struct{} `type:"structure"`
+
+	// A description of a remediation action.
+	Description *string `type:"string"`
+
+	// Information about the AssociateRouteTable action in the Amazon EC2 API.
+	EC2AssociateRouteTableAction *EC2AssociateRouteTableAction `type:"structure"`
+
+	// Information about the CopyRouteTable action in the Amazon EC2 API.
+	EC2CopyRouteTableAction *EC2CopyRouteTableAction `type:"structure"`
+
+	// Information about the CreateRoute action in the Amazon EC2 API.
+	EC2CreateRouteAction *EC2CreateRouteAction `type:"structure"`
+
+	// Information about the CreateRouteTable action in the Amazon EC2 API.
+	EC2CreateRouteTableAction *EC2CreateRouteTableAction `type:"structure"`
+
+	// Information about the DeleteRoute action in the Amazon EC2 API.
+	EC2DeleteRouteAction *EC2DeleteRouteAction `type:"structure"`
+
+	// Information about the ReplaceRoute action in the Amazon EC2 API.
+	EC2ReplaceRouteAction *EC2ReplaceRouteAction `type:"structure"`
+
+	// Information about the ReplaceRouteTableAssociation action in the Amazon EC2
+	// API.
+	EC2ReplaceRouteTableAssociationAction *EC2ReplaceRouteTableAssociationAction `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemediationAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemediationAction) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *RemediationAction) SetDescription(v string) *RemediationAction {
+	s.Description = &v
+	return s
+}
+
+// SetEC2AssociateRouteTableAction sets the EC2AssociateRouteTableAction field's value.
+func (s *RemediationAction) SetEC2AssociateRouteTableAction(v *EC2AssociateRouteTableAction) *RemediationAction {
+	s.EC2AssociateRouteTableAction = v
+	return s
+}
+
+// SetEC2CopyRouteTableAction sets the EC2CopyRouteTableAction field's value.
+func (s *RemediationAction) SetEC2CopyRouteTableAction(v *EC2CopyRouteTableAction) *RemediationAction {
+	s.EC2CopyRouteTableAction = v
+	return s
+}
+
+// SetEC2CreateRouteAction sets the EC2CreateRouteAction field's value.
+func (s *RemediationAction) SetEC2CreateRouteAction(v *EC2CreateRouteAction) *RemediationAction {
+	s.EC2CreateRouteAction = v
+	return s
+}
+
+// SetEC2CreateRouteTableAction sets the EC2CreateRouteTableAction field's value.
+func (s *RemediationAction) SetEC2CreateRouteTableAction(v *EC2CreateRouteTableAction) *RemediationAction {
+	s.EC2CreateRouteTableAction = v
+	return s
+}
+
+// SetEC2DeleteRouteAction sets the EC2DeleteRouteAction field's value.
+func (s *RemediationAction) SetEC2DeleteRouteAction(v *EC2DeleteRouteAction) *RemediationAction {
+	s.EC2DeleteRouteAction = v
+	return s
+}
+
+// SetEC2ReplaceRouteAction sets the EC2ReplaceRouteAction field's value.
+func (s *RemediationAction) SetEC2ReplaceRouteAction(v *EC2ReplaceRouteAction) *RemediationAction {
+	s.EC2ReplaceRouteAction = v
+	return s
+}
+
+// SetEC2ReplaceRouteTableAssociationAction sets the EC2ReplaceRouteTableAssociationAction field's value.
+func (s *RemediationAction) SetEC2ReplaceRouteTableAssociationAction(v *EC2ReplaceRouteTableAssociationAction) *RemediationAction {
+	s.EC2ReplaceRouteTableAssociationAction = v
+	return s
+}
+
+// An ordered list of actions you can take to remediate a violation.
+type RemediationActionWithOrder struct {
+	_ struct{} `type:"structure"`
+
+	// The order of the remediation actions in the list.
+	Order *int64 `type:"integer"`
+
+	// Information about an action you can take to remediate a violation.
+	RemediationAction *RemediationAction `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemediationActionWithOrder) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemediationActionWithOrder) GoString() string {
+	return s.String()
+}
+
+// SetOrder sets the Order field's value.
+func (s *RemediationActionWithOrder) SetOrder(v int64) *RemediationActionWithOrder {
+	s.Order = &v
+	return s
+}
+
+// SetRemediationAction sets the RemediationAction field's value.
+func (s *RemediationActionWithOrder) SetRemediationAction(v *RemediationAction) *RemediationActionWithOrder {
+	s.RemediationAction = v
 	return s
 }
 
@@ -6535,14 +7896,14 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The resource tags that AWS Firewall Manager uses to determine if a particular
-// resource should be included or excluded from the AWS Firewall Manager policy.
-// Tags enable you to categorize your AWS resources in different ways, for example,
-// by purpose, owner, or environment. Each tag consists of a key and an optional
-// value. Firewall Manager combines the tags with "AND" so that, if you add
-// more than one tag to a policy scope, a resource must have all the specified
-// tags to be included or excluded. For more information, see Working with Tag
-// Editor (https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html).
+// The resource tags that Firewall Manager uses to determine if a particular
+// resource should be included or excluded from the Firewall Manager policy.
+// Tags enable you to categorize your Amazon Web Services resources in different
+// ways, for example, by purpose, owner, or environment. Each tag consists of
+// a key and an optional value. Firewall Manager combines the tags with "AND"
+// so that, if you add more than one tag to a policy scope, a resource must
+// have all the specified tags to be included or excluded. For more information,
+// see Working with Tag Editor (https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/tag-editor.html).
 type ResourceTag struct {
 	_ struct{} `type:"structure"`
 
@@ -6597,13 +7958,13 @@ func (s *ResourceTag) SetValue(v string) *ResourceTag {
 type ResourceViolation struct {
 	_ struct{} `type:"structure"`
 
-	// Violation details for an EC2 instance.
+	// Violation detail for an EC2 instance.
 	AwsEc2InstanceViolation *AwsEc2InstanceViolation `type:"structure"`
 
-	// Violation details for network interface.
+	// Violation detail for a network interface.
 	AwsEc2NetworkInterfaceViolation *AwsEc2NetworkInterfaceViolation `type:"structure"`
 
-	// Violation details for security groups.
+	// Violation detail for security groups.
 	AwsVPCSecurityGroupViolation *AwsVPCSecurityGroupViolation `type:"structure"`
 
 	// Violation detail for a DNS Firewall policy that indicates that a rule group
@@ -6611,7 +7972,7 @@ type ResourceViolation struct {
 	// with the VPC and can't be associated again.
 	DnsDuplicateRuleGroupViolation *DnsDuplicateRuleGroupViolation `type:"structure"`
 
-	// Violation details for a DNS Firewall policy that indicates that the VPC reached
+	// Violation detail for a DNS Firewall policy that indicates that the VPC reached
 	// the limit for associated DNS Firewall rule groups. Firewall Manager tried
 	// to associate another rule group with the VPC and failed.
 	DnsRuleGroupLimitExceededViolation *DnsRuleGroupLimitExceededViolation `type:"structure"`
@@ -6621,9 +7982,22 @@ type ResourceViolation struct {
 	// as a rule group that's already associated.
 	DnsRuleGroupPriorityConflictViolation *DnsRuleGroupPriorityConflictViolation `type:"structure"`
 
+	// Violation detail for an internet gateway route with an inactive state in
+	// the customer subnet route table or Network Firewall subnet route table.
+	NetworkFirewallBlackHoleRouteDetectedViolation *NetworkFirewallBlackHoleRouteDetectedViolation `type:"structure"`
+
+	// Violation detail for the subnet for which internet traffic hasn't been inspected.
+	NetworkFirewallInternetTrafficNotInspectedViolation *NetworkFirewallInternetTrafficNotInspectedViolation `type:"structure"`
+
+	// The route configuration is invalid.
+	NetworkFirewallInvalidRouteConfigurationViolation *NetworkFirewallInvalidRouteConfigurationViolation `type:"structure"`
+
 	// Violation detail for an Network Firewall policy that indicates that a subnet
 	// is not associated with the expected Firewall Manager managed route table.
 	NetworkFirewallMissingExpectedRTViolation *NetworkFirewallMissingExpectedRTViolation `type:"structure"`
+
+	// Expected routes are missing from Network Firewall.
+	NetworkFirewallMissingExpectedRoutesViolation *NetworkFirewallMissingExpectedRoutesViolation `type:"structure"`
 
 	// Violation detail for an Network Firewall policy that indicates that a subnet
 	// has no Firewall Manager managed firewall in its VPC.
@@ -6639,6 +8013,16 @@ type ResourceViolation struct {
 	// a rule group, changed the priority of a stateless rule group, or changed
 	// a policy default action.
 	NetworkFirewallPolicyModifiedViolation *NetworkFirewallPolicyModifiedViolation `type:"structure"`
+
+	// There's an unexpected firewall route.
+	NetworkFirewallUnexpectedFirewallRoutesViolation *NetworkFirewallUnexpectedFirewallRoutesViolation `type:"structure"`
+
+	// There's an unexpected gateway route.
+	NetworkFirewallUnexpectedGatewayRoutesViolation *NetworkFirewallUnexpectedGatewayRoutesViolation `type:"structure"`
+
+	// A list of possible remediation action lists. Each individual possible remediation
+	// action is a list of individual remediation actions.
+	PossibleRemediationActions *PossibleRemediationActions `type:"structure"`
 }
 
 // String returns the string representation
@@ -6687,9 +8071,33 @@ func (s *ResourceViolation) SetDnsRuleGroupPriorityConflictViolation(v *DnsRuleG
 	return s
 }
 
+// SetNetworkFirewallBlackHoleRouteDetectedViolation sets the NetworkFirewallBlackHoleRouteDetectedViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallBlackHoleRouteDetectedViolation(v *NetworkFirewallBlackHoleRouteDetectedViolation) *ResourceViolation {
+	s.NetworkFirewallBlackHoleRouteDetectedViolation = v
+	return s
+}
+
+// SetNetworkFirewallInternetTrafficNotInspectedViolation sets the NetworkFirewallInternetTrafficNotInspectedViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallInternetTrafficNotInspectedViolation(v *NetworkFirewallInternetTrafficNotInspectedViolation) *ResourceViolation {
+	s.NetworkFirewallInternetTrafficNotInspectedViolation = v
+	return s
+}
+
+// SetNetworkFirewallInvalidRouteConfigurationViolation sets the NetworkFirewallInvalidRouteConfigurationViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallInvalidRouteConfigurationViolation(v *NetworkFirewallInvalidRouteConfigurationViolation) *ResourceViolation {
+	s.NetworkFirewallInvalidRouteConfigurationViolation = v
+	return s
+}
+
 // SetNetworkFirewallMissingExpectedRTViolation sets the NetworkFirewallMissingExpectedRTViolation field's value.
 func (s *ResourceViolation) SetNetworkFirewallMissingExpectedRTViolation(v *NetworkFirewallMissingExpectedRTViolation) *ResourceViolation {
 	s.NetworkFirewallMissingExpectedRTViolation = v
+	return s
+}
+
+// SetNetworkFirewallMissingExpectedRoutesViolation sets the NetworkFirewallMissingExpectedRoutesViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallMissingExpectedRoutesViolation(v *NetworkFirewallMissingExpectedRoutesViolation) *ResourceViolation {
+	s.NetworkFirewallMissingExpectedRoutesViolation = v
 	return s
 }
 
@@ -6708,6 +8116,75 @@ func (s *ResourceViolation) SetNetworkFirewallMissingSubnetViolation(v *NetworkF
 // SetNetworkFirewallPolicyModifiedViolation sets the NetworkFirewallPolicyModifiedViolation field's value.
 func (s *ResourceViolation) SetNetworkFirewallPolicyModifiedViolation(v *NetworkFirewallPolicyModifiedViolation) *ResourceViolation {
 	s.NetworkFirewallPolicyModifiedViolation = v
+	return s
+}
+
+// SetNetworkFirewallUnexpectedFirewallRoutesViolation sets the NetworkFirewallUnexpectedFirewallRoutesViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallUnexpectedFirewallRoutesViolation(v *NetworkFirewallUnexpectedFirewallRoutesViolation) *ResourceViolation {
+	s.NetworkFirewallUnexpectedFirewallRoutesViolation = v
+	return s
+}
+
+// SetNetworkFirewallUnexpectedGatewayRoutesViolation sets the NetworkFirewallUnexpectedGatewayRoutesViolation field's value.
+func (s *ResourceViolation) SetNetworkFirewallUnexpectedGatewayRoutesViolation(v *NetworkFirewallUnexpectedGatewayRoutesViolation) *ResourceViolation {
+	s.NetworkFirewallUnexpectedGatewayRoutesViolation = v
+	return s
+}
+
+// SetPossibleRemediationActions sets the PossibleRemediationActions field's value.
+func (s *ResourceViolation) SetPossibleRemediationActions(v *PossibleRemediationActions) *ResourceViolation {
+	s.PossibleRemediationActions = v
+	return s
+}
+
+// Describes a route in a route table.
+type Route struct {
+	_ struct{} `type:"structure"`
+
+	// The destination of the route.
+	Destination *string `type:"string"`
+
+	// The type of destination for the route.
+	DestinationType *string `type:"string" enum:"DestinationType"`
+
+	// The route's target.
+	Target *string `type:"string"`
+
+	// The type of target for the route.
+	TargetType *string `type:"string" enum:"TargetType"`
+}
+
+// String returns the string representation
+func (s Route) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Route) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *Route) SetDestination(v string) *Route {
+	s.Destination = &v
+	return s
+}
+
+// SetDestinationType sets the DestinationType field's value.
+func (s *Route) SetDestinationType(v string) *Route {
+	s.DestinationType = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *Route) SetTarget(v string) *Route {
+	s.Target = &v
+	return s
+}
+
+// SetTargetType sets the TargetType field's value.
+func (s *Route) SetTargetType(v string) *Route {
+	s.TargetType = &v
 	return s
 }
 
@@ -6841,6 +8318,8 @@ type SecurityServicePolicyData struct {
 	// Details about the service that are specific to the service type, in JSON
 	// format. For service type SHIELD_ADVANCED, this is an empty string.
 	//
+	//    * Example: DNS_FIREWALL "{\"type\":\"DNS_FIREWALL\",\"preProcessRuleGroups\":[{\"ruleGroupId\":\"rslvr-frg-1\",\"priority\":10}],\"postProcessRuleGroups\":[{\"ruleGroupId\":\"rslvr-frg-2\",\"priority\":9911}]}"
+	//
 	//    * Example: NETWORK_FIREWALL "{\"type\":\"NETWORK_FIREWALL\",\"networkFirewallStatelessRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-1:1234567891011:stateless-rulegroup/rulegroup2\",\"priority\":10}],\"networkFirewallStatelessDefaultActions\":[\"aws:pass\",\"custom1\"],\"networkFirewallStatelessFragmentDefaultActions\":[\"custom2\",\"aws:pass\"],\"networkFirewallStatelessCustomActions\":[{\"actionName\":\"custom1\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"dimension1\"}]}}},{\"actionName\":\"custom2\",\"actionDefinition\":{\"publishMetricAction\":{\"dimensions\":[{\"value\":\"dimension2\"}]}}}],\"networkFirewallStatefulRuleGroupReferences\":[{\"resourceARN\":\"arn:aws:network-firewall:us-west-1:1234567891011:stateful-rulegroup/rulegroup1\"}],\"networkFirewallOrchestrationConfig\":{\"singleFirewallEndpointPerVPC\":true,\"allowedIPV4CidrList\":[\"10.24.34.0/28\"]}
 	//    }"
 	//
@@ -6856,6 +8335,11 @@ type SecurityServicePolicyData struct {
 	//    * Example: SECURITY_GROUPS_COMMON "{\"type\":\"SECURITY_GROUPS_COMMON\",\"revertManualSecurityGroupChanges\":false,\"exclusiveResourceSecurityGroupManagement\":false,
 	//    \"applyToAllEC2InstanceENIs\":false,\"securityGroups\":[{\"id\":\" sg-000e55995d61a06bd\"}]}"
 	//
+	//    * Example: Shared VPCs. Apply the preceding policy to resources in shared
+	//    VPCs as well as to those in VPCs that the account owns "{\"type\":\"SECURITY_GROUPS_COMMON\",\"revertManualSecurityGroupChanges\":false,\"exclusiveResourceSecurityGroupManagement\":false,
+	//    \"applyToAllEC2InstanceENIs\":false,\"includeSharedVPC\":true,\"securityGroups\":[{\"id\":\"
+	//    sg-000e55995d61a06bd\"}]}"
+	//
 	//    * Example: SECURITY_GROUPS_CONTENT_AUDIT "{\"type\":\"SECURITY_GROUPS_CONTENT_AUDIT\",\"securityGroups\":[{\"id\":\"sg-000e55995d61a06bd\"}],\"securityGroupAction\":{\"type\":\"ALLOW\"}}"
 	//    The security group action for content audit can be ALLOW or DENY. For
 	//    ALLOW, all in-scope security group rules must be within the allowed range
@@ -6867,11 +8351,11 @@ type SecurityServicePolicyData struct {
 	ManagedServiceData *string `min:"1" type:"string"`
 
 	// The service that the policy is using to protect the resources. This specifies
-	// the type of policy that is created, either an AWS WAF policy, a Shield Advanced
+	// the type of policy that is created, either an WAF policy, a Shield Advanced
 	// policy, or a security group policy. For security group policies, Firewall
 	// Manager supports one security group for each common policy and for each content
 	// audit policy. This is an adjustable limit that you can increase by contacting
-	// AWS Support.
+	// Amazon Web Services Support.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"SecurityServiceType"`
@@ -6915,7 +8399,7 @@ func (s *SecurityServicePolicyData) SetType(v string) *SecurityServicePolicyData
 	return s
 }
 
-// AWS Network Firewall stateful rule group, used in a NetworkFirewallPolicyDescription.
+// Network Firewall stateful rule group, used in a NetworkFirewallPolicyDescription.
 type StatefulRuleGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -6948,11 +8432,11 @@ func (s *StatefulRuleGroup) SetRuleGroupName(v string) *StatefulRuleGroup {
 	return s
 }
 
-// AWS Network Firewall stateless rule group, used in a NetworkFirewallPolicyDescription.
+// Network Firewall stateless rule group, used in a NetworkFirewallPolicyDescription.
 type StatelessRuleGroup struct {
 	_ struct{} `type:"structure"`
 
-	// The priority of the rule group. AWS Network Firewall evaluates the stateless
+	// The priority of the rule group. Network Firewall evaluates the stateless
 	// rule groups in a firewall policy starting from the lowest priority setting.
 	Priority *int64 `min:"1" type:"integer"`
 
@@ -6991,11 +8475,11 @@ func (s *StatelessRuleGroup) SetRuleGroupName(v string) *StatelessRuleGroup {
 	return s
 }
 
-// A collection of key:value pairs associated with an AWS resource. The key:value
-// pair can be anything you define. Typically, the tag key represents a category
-// (such as "environment") and the tag value represents a specific value within
-// that category (such as "test," "development," or "production"). You can add
-// up to 50 tags to each AWS resource.
+// A collection of key:value pairs associated with an Amazon Web Services resource.
+// The key:value pair can be anything you define. Typically, the tag key represents
+// a category (such as "environment") and the tag value represents a specific
+// value within that category (such as "test," "development," or "production").
+// You can add up to 50 tags to each Amazon Web Services resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -7057,9 +8541,9 @@ func (s *Tag) SetValue(v string) *Tag {
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource to return tags for. The AWS
-	// Firewall Manager resources that support tagging are policies, applications
-	// lists, and protocols lists.
+	// The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall
+	// Manager resources that support tagging are policies, applications lists,
+	// and protocols lists.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
@@ -7138,9 +8622,9 @@ func (s TagResourceOutput) GoString() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the resource to return tags for. The AWS
-	// Firewall Manager resources that support tagging are policies, applications
-	// lists, and protocols lists.
+	// The Amazon Resource Name (ARN) of the resource to return tags for. The Firewall
+	// Manager resources that support tagging are policies, applications lists,
+	// and protocols lists.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `min:"1" type:"string" required:"true"`
@@ -7206,18 +8690,19 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// Violations for a resource based on the specified AWS Firewall Manager policy
-// and AWS account.
+// Violations for a resource based on the specified Firewall Manager policy
+// and Amazon Web Services account.
 type ViolationDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account that the violation details were requested for.
+	// The Amazon Web Services account that the violation details were requested
+	// for.
 	//
 	// MemberAccount is a required field
 	MemberAccount *string `min:"1" type:"string" required:"true"`
 
-	// The ID of the AWS Firewall Manager policy that the violation details were
-	// requested for.
+	// The ID of the Firewall Manager policy that the violation details were requested
+	// for.
 	//
 	// PolicyId is a required field
 	PolicyId *string `min:"36" type:"string" required:"true"`
@@ -7365,6 +8850,26 @@ func DependentServiceName_Values() []string {
 }
 
 const (
+	// DestinationTypeIpv4 is a DestinationType enum value
+	DestinationTypeIpv4 = "IPV4"
+
+	// DestinationTypeIpv6 is a DestinationType enum value
+	DestinationTypeIpv6 = "IPV6"
+
+	// DestinationTypePrefixList is a DestinationType enum value
+	DestinationTypePrefixList = "PREFIX_LIST"
+)
+
+// DestinationType_Values returns all elements of the DestinationType enum
+func DestinationType_Values() []string {
+	return []string{
+		DestinationTypeIpv4,
+		DestinationTypeIpv6,
+		DestinationTypePrefixList,
+	}
+}
+
+const (
 	// PolicyComplianceStatusTypeCompliant is a PolicyComplianceStatusType enum value
 	PolicyComplianceStatusTypeCompliant = "COMPLIANT"
 
@@ -7437,6 +8942,54 @@ func SecurityServiceType_Values() []string {
 }
 
 const (
+	// TargetTypeGateway is a TargetType enum value
+	TargetTypeGateway = "GATEWAY"
+
+	// TargetTypeCarrierGateway is a TargetType enum value
+	TargetTypeCarrierGateway = "CARRIER_GATEWAY"
+
+	// TargetTypeInstance is a TargetType enum value
+	TargetTypeInstance = "INSTANCE"
+
+	// TargetTypeLocalGateway is a TargetType enum value
+	TargetTypeLocalGateway = "LOCAL_GATEWAY"
+
+	// TargetTypeNatGateway is a TargetType enum value
+	TargetTypeNatGateway = "NAT_GATEWAY"
+
+	// TargetTypeNetworkInterface is a TargetType enum value
+	TargetTypeNetworkInterface = "NETWORK_INTERFACE"
+
+	// TargetTypeVpcEndpoint is a TargetType enum value
+	TargetTypeVpcEndpoint = "VPC_ENDPOINT"
+
+	// TargetTypeVpcPeeringConnection is a TargetType enum value
+	TargetTypeVpcPeeringConnection = "VPC_PEERING_CONNECTION"
+
+	// TargetTypeEgressOnlyInternetGateway is a TargetType enum value
+	TargetTypeEgressOnlyInternetGateway = "EGRESS_ONLY_INTERNET_GATEWAY"
+
+	// TargetTypeTransitGateway is a TargetType enum value
+	TargetTypeTransitGateway = "TRANSIT_GATEWAY"
+)
+
+// TargetType_Values returns all elements of the TargetType enum
+func TargetType_Values() []string {
+	return []string{
+		TargetTypeGateway,
+		TargetTypeCarrierGateway,
+		TargetTypeInstance,
+		TargetTypeLocalGateway,
+		TargetTypeNatGateway,
+		TargetTypeNetworkInterface,
+		TargetTypeVpcEndpoint,
+		TargetTypeVpcPeeringConnection,
+		TargetTypeEgressOnlyInternetGateway,
+		TargetTypeTransitGateway,
+	}
+}
+
+const (
 	// ViolationReasonWebAclMissingRuleGroup is a ViolationReason enum value
 	ViolationReasonWebAclMissingRuleGroup = "WEB_ACL_MISSING_RULE_GROUP"
 
@@ -7479,6 +9032,36 @@ const (
 	// ViolationReasonNetworkFirewallPolicyModified is a ViolationReason enum value
 	ViolationReasonNetworkFirewallPolicyModified = "NETWORK_FIREWALL_POLICY_MODIFIED"
 
+	// ViolationReasonInternetGatewayMissingExpectedRoute is a ViolationReason enum value
+	ViolationReasonInternetGatewayMissingExpectedRoute = "INTERNET_GATEWAY_MISSING_EXPECTED_ROUTE"
+
+	// ViolationReasonFirewallSubnetMissingExpectedRoute is a ViolationReason enum value
+	ViolationReasonFirewallSubnetMissingExpectedRoute = "FIREWALL_SUBNET_MISSING_EXPECTED_ROUTE"
+
+	// ViolationReasonUnexpectedFirewallRoutes is a ViolationReason enum value
+	ViolationReasonUnexpectedFirewallRoutes = "UNEXPECTED_FIREWALL_ROUTES"
+
+	// ViolationReasonUnexpectedTargetGatewayRoutes is a ViolationReason enum value
+	ViolationReasonUnexpectedTargetGatewayRoutes = "UNEXPECTED_TARGET_GATEWAY_ROUTES"
+
+	// ViolationReasonTrafficInspectionCrossesAzBoundary is a ViolationReason enum value
+	ViolationReasonTrafficInspectionCrossesAzBoundary = "TRAFFIC_INSPECTION_CROSSES_AZ_BOUNDARY"
+
+	// ViolationReasonInvalidRouteConfiguration is a ViolationReason enum value
+	ViolationReasonInvalidRouteConfiguration = "INVALID_ROUTE_CONFIGURATION"
+
+	// ViolationReasonMissingTargetGateway is a ViolationReason enum value
+	ViolationReasonMissingTargetGateway = "MISSING_TARGET_GATEWAY"
+
+	// ViolationReasonInternetTrafficNotInspected is a ViolationReason enum value
+	ViolationReasonInternetTrafficNotInspected = "INTERNET_TRAFFIC_NOT_INSPECTED"
+
+	// ViolationReasonBlackHoleRouteDetected is a ViolationReason enum value
+	ViolationReasonBlackHoleRouteDetected = "BLACK_HOLE_ROUTE_DETECTED"
+
+	// ViolationReasonBlackHoleRouteDetectedInFirewallSubnet is a ViolationReason enum value
+	ViolationReasonBlackHoleRouteDetectedInFirewallSubnet = "BLACK_HOLE_ROUTE_DETECTED_IN_FIREWALL_SUBNET"
+
 	// ViolationReasonResourceMissingDnsFirewall is a ViolationReason enum value
 	ViolationReasonResourceMissingDnsFirewall = "RESOURCE_MISSING_DNS_FIREWALL"
 )
@@ -7500,6 +9083,16 @@ func ViolationReason_Values() []string {
 		ViolationReasonMissingFirewallSubnetInAz,
 		ViolationReasonMissingExpectedRouteTable,
 		ViolationReasonNetworkFirewallPolicyModified,
+		ViolationReasonInternetGatewayMissingExpectedRoute,
+		ViolationReasonFirewallSubnetMissingExpectedRoute,
+		ViolationReasonUnexpectedFirewallRoutes,
+		ViolationReasonUnexpectedTargetGatewayRoutes,
+		ViolationReasonTrafficInspectionCrossesAzBoundary,
+		ViolationReasonInvalidRouteConfiguration,
+		ViolationReasonMissingTargetGateway,
+		ViolationReasonInternetTrafficNotInspected,
+		ViolationReasonBlackHoleRouteDetected,
+		ViolationReasonBlackHoleRouteDetectedInFirewallSubnet,
 		ViolationReasonResourceMissingDnsFirewall,
 	}
 }

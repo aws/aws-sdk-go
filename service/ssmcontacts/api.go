@@ -3501,7 +3501,8 @@ func (s *ContactTargetInfo) SetIsEssential(v bool) *ContactTargetInfo {
 type CreateContactChannelInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the contact channel.
+	// The Amazon Resource Name (ARN) of the contact you are adding the contact
+	// channel to.
 	//
 	// ContactId is a required field
 	ContactId *string `min:"1" type:"string" required:"true"`

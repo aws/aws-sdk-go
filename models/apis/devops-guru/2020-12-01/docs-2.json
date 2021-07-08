@@ -57,6 +57,15 @@
         "ProactiveAnomalySummary$Limit": "<p> A threshold that was exceeded by behavior in analyzed resources. Exceeding this threshold is related to the anomalous behavior that generated this anomaly. </p>"
       }
     },
+    "AnomalyReportedTimeRange": {
+      "base": "<p> A time range that specifies when DevOps Guru opens and then closes an anomaly. This is different from <code>AnomalyTimeRange</code>, which specifies the time range when DevOps Guru actually observes the anomalous behavior. </p>",
+      "refs": {
+        "ProactiveAnomaly$AnomalyReportedTimeRange": "<p> A <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
+        "ProactiveAnomalySummary$AnomalyReportedTimeRange": "<p> A <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
+        "ReactiveAnomaly$AnomalyReportedTimeRange": "<p> A <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>",
+        "ReactiveAnomalySummary$AnomalyReportedTimeRange": "<p> A <code>AnomalyReportedTimeRange</code> object that specifies the time range between when the anomaly is opened and the time when it is closed. </p>"
+      }
+    },
     "AnomalySeverity": {
       "base": null,
       "refs": {
@@ -85,7 +94,7 @@
       }
     },
     "AnomalyTimeRange": {
-      "base": "<p> A time range that specifies when the observed unusual behavior in an anomaly started and ended. </p>",
+      "base": "<p> A time range that specifies when the observed unusual behavior in an anomaly started and ended. This is different from <code>AnomalyReportedTimeRange</code>, which specifies the time range when DevOps Guru opens and then closes an anomaly. </p>",
       "refs": {
         "ProactiveAnomaly$AnomalyTimeRange": null,
         "ProactiveAnomalySummary$AnomalyTimeRange": null,
@@ -1205,6 +1214,8 @@
     "Timestamp": {
       "base": null,
       "refs": {
+        "AnomalyReportedTimeRange$OpenTime": "<p> The time when an anomaly is opened. </p>",
+        "AnomalyReportedTimeRange$CloseTime": "<p> The time when an anomaly is closed. </p>",
         "AnomalyTimeRange$StartTime": "<p> The time when the anomalous behavior started. </p>",
         "AnomalyTimeRange$EndTime": "<p> The time when the anomalous behavior ended. </p>",
         "CostEstimationTimeRange$StartTime": "<p>The start time of the cost estimation.</p>",

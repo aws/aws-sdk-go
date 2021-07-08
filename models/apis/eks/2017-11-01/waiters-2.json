@@ -129,6 +129,43 @@
           "state": "success"
         }
       ]
+    },
+    "FargateProfileActive": {
+      "delay": 10,
+      "operation": "DescribeFargateProfile",
+      "maxAttempts": 60,
+      "acceptors": [
+        {
+          "expected": "CREATE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "fargateProfile.status"
+        },
+        {
+          "expected": "ACTIVE",
+          "matcher": "path",
+          "state": "success",
+          "argument": "fargateProfile.status"
+        }
+      ]
+    },
+    "FargateProfileDeleted": {
+      "delay": 30,
+      "operation": "DescribeFargateProfile",
+      "maxAttempts": 60,
+      "acceptors": [
+        {
+          "expected": "DELETE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "fargateProfile.status"
+        },
+        {
+          "expected": "ResourceNotFoundException",
+          "matcher": "error",
+          "state": "success"
+        }
+      ]
     }
   }
 }

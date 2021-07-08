@@ -2735,6 +2735,43 @@ func (s *AddNotificationChannelOutput) SetId(v string) *AddNotificationChannelOu
 	return s
 }
 
+// A time range that specifies when DevOps Guru opens and then closes an anomaly.
+// This is different from AnomalyTimeRange, which specifies the time range when
+// DevOps Guru actually observes the anomalous behavior.
+type AnomalyReportedTimeRange struct {
+	_ struct{} `type:"structure"`
+
+	// The time when an anomaly is closed.
+	CloseTime *time.Time `type:"timestamp"`
+
+	// The time when an anomaly is opened.
+	//
+	// OpenTime is a required field
+	OpenTime *time.Time `type:"timestamp" required:"true"`
+}
+
+// String returns the string representation
+func (s AnomalyReportedTimeRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AnomalyReportedTimeRange) GoString() string {
+	return s.String()
+}
+
+// SetCloseTime sets the CloseTime field's value.
+func (s *AnomalyReportedTimeRange) SetCloseTime(v time.Time) *AnomalyReportedTimeRange {
+	s.CloseTime = &v
+	return s
+}
+
+// SetOpenTime sets the OpenTime field's value.
+func (s *AnomalyReportedTimeRange) SetOpenTime(v time.Time) *AnomalyReportedTimeRange {
+	s.OpenTime = &v
+	return s
+}
+
 // Details about the source of the anomalous operational data that triggered
 // the anomaly. The one supported source is Amazon CloudWatch metrics.
 type AnomalySourceDetails struct {
@@ -2762,7 +2799,8 @@ func (s *AnomalySourceDetails) SetCloudWatchMetrics(v []*CloudWatchMetricsDetail
 }
 
 // A time range that specifies when the observed unusual behavior in an anomaly
-// started and ended.
+// started and ended. This is different from AnomalyReportedTimeRange, which
+// specifies the time range when DevOps Guru opens and then closes an anomaly.
 type AnomalyTimeRange struct {
 	_ struct{} `type:"structure"`
 
@@ -5330,8 +5368,13 @@ func (s *PredictionTimeRange) SetStartTime(v time.Time) *PredictionTimeRange {
 type ProactiveAnomaly struct {
 	_ struct{} `type:"structure"`
 
+	// A AnomalyReportedTimeRange object that specifies the time range between when
+	// the anomaly is opened and the time when it is closed.
+	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
 	// A time range that specifies when the observed unusual behavior in an anomaly
-	// started and ended.
+	// started and ended. This is different from AnomalyReportedTimeRange, which
+	// specifies the time range when DevOps Guru opens and then closes an anomaly.
 	AnomalyTimeRange *AnomalyTimeRange `type:"structure"`
 
 	// The ID of the insight that contains this anomaly. An insight is composed
@@ -5377,6 +5420,12 @@ func (s ProactiveAnomaly) String() string {
 // GoString returns the string representation
 func (s ProactiveAnomaly) GoString() string {
 	return s.String()
+}
+
+// SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
+func (s *ProactiveAnomaly) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ProactiveAnomaly {
+	s.AnomalyReportedTimeRange = v
+	return s
 }
 
 // SetAnomalyTimeRange sets the AnomalyTimeRange field's value.
@@ -5443,8 +5492,13 @@ func (s *ProactiveAnomaly) SetUpdateTime(v time.Time) *ProactiveAnomaly {
 type ProactiveAnomalySummary struct {
 	_ struct{} `type:"structure"`
 
+	// A AnomalyReportedTimeRange object that specifies the time range between when
+	// the anomaly is opened and the time when it is closed.
+	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
 	// A time range that specifies when the observed unusual behavior in an anomaly
-	// started and ended.
+	// started and ended. This is different from AnomalyReportedTimeRange, which
+	// specifies the time range when DevOps Guru opens and then closes an anomaly.
 	AnomalyTimeRange *AnomalyTimeRange `type:"structure"`
 
 	// The ID of the insight that contains this anomaly. An insight is composed
@@ -5490,6 +5544,12 @@ func (s ProactiveAnomalySummary) String() string {
 // GoString returns the string representation
 func (s ProactiveAnomalySummary) GoString() string {
 	return s.String()
+}
+
+// SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
+func (s *ProactiveAnomalySummary) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ProactiveAnomalySummary {
+	s.AnomalyReportedTimeRange = v
+	return s
 }
 
 // SetAnomalyTimeRange sets the AnomalyTimeRange field's value.
@@ -5794,8 +5854,13 @@ func (s PutFeedbackOutput) GoString() string {
 type ReactiveAnomaly struct {
 	_ struct{} `type:"structure"`
 
+	// A AnomalyReportedTimeRange object that specifies the time range between when
+	// the anomaly is opened and the time when it is closed.
+	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
 	// A time range that specifies when the observed unusual behavior in an anomaly
-	// started and ended.
+	// started and ended. This is different from AnomalyReportedTimeRange, which
+	// specifies the time range when DevOps Guru opens and then closes an anomaly.
 	AnomalyTimeRange *AnomalyTimeRange `type:"structure"`
 
 	// The ID of the insight that contains this anomaly. An insight is composed
@@ -5830,6 +5895,12 @@ func (s ReactiveAnomaly) String() string {
 // GoString returns the string representation
 func (s ReactiveAnomaly) GoString() string {
 	return s.String()
+}
+
+// SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
+func (s *ReactiveAnomaly) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ReactiveAnomaly {
+	s.AnomalyReportedTimeRange = v
+	return s
 }
 
 // SetAnomalyTimeRange sets the AnomalyTimeRange field's value.
@@ -5878,8 +5949,13 @@ func (s *ReactiveAnomaly) SetStatus(v string) *ReactiveAnomaly {
 type ReactiveAnomalySummary struct {
 	_ struct{} `type:"structure"`
 
+	// A AnomalyReportedTimeRange object that specifies the time range between when
+	// the anomaly is opened and the time when it is closed.
+	AnomalyReportedTimeRange *AnomalyReportedTimeRange `type:"structure"`
+
 	// A time range that specifies when the observed unusual behavior in an anomaly
-	// started and ended.
+	// started and ended. This is different from AnomalyReportedTimeRange, which
+	// specifies the time range when DevOps Guru opens and then closes an anomaly.
 	AnomalyTimeRange *AnomalyTimeRange `type:"structure"`
 
 	// The ID of the insight that contains this anomaly. An insight is composed
@@ -5914,6 +5990,12 @@ func (s ReactiveAnomalySummary) String() string {
 // GoString returns the string representation
 func (s ReactiveAnomalySummary) GoString() string {
 	return s.String()
+}
+
+// SetAnomalyReportedTimeRange sets the AnomalyReportedTimeRange field's value.
+func (s *ReactiveAnomalySummary) SetAnomalyReportedTimeRange(v *AnomalyReportedTimeRange) *ReactiveAnomalySummary {
+	s.AnomalyReportedTimeRange = v
+	return s
 }
 
 // SetAnomalyTimeRange sets the AnomalyTimeRange field's value.

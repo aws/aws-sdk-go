@@ -195,6 +195,18 @@
       "min":1,
       "pattern":"^[a-zA-Z]+\\d-[a-zA-Z]+\\d$"
     },
+    "AvailabilityZoneIdList":{
+      "type":"list",
+      "member":{"shape":"AvailabilityZoneId"},
+      "max":5,
+      "min":1
+    },
+    "AvailabilityZoneList":{
+      "type":"list",
+      "member":{"shape":"AvailabilityZone"},
+      "max":5,
+      "min":1
+    },
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -330,7 +342,18 @@
       "error":{"httpStatusCode":500},
       "exception":true
     },
-    "LifeCycleStatus":{"type":"string"},
+    "LifeCycleStatus":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^[ A-Za-z]+$"
+    },
+    "LifeCycleStatusList":{
+      "type":"list",
+      "member":{"shape":"LifeCycleStatus"},
+      "max":5,
+      "min":1
+    },
     "ListOutpostsInput":{
       "type":"structure",
       "members":{
@@ -343,6 +366,21 @@
           "shape":"MaxResults1000",
           "location":"querystring",
           "locationName":"MaxResults"
+        },
+        "LifeCycleStatusFilter":{
+          "shape":"LifeCycleStatusList",
+          "location":"querystring",
+          "locationName":"LifeCycleStatusFilter"
+        },
+        "AvailabilityZoneFilter":{
+          "shape":"AvailabilityZoneList",
+          "location":"querystring",
+          "locationName":"AvailabilityZoneFilter"
+        },
+        "AvailabilityZoneIdFilter":{
+          "shape":"AvailabilityZoneIdList",
+          "location":"querystring",
+          "locationName":"AvailabilityZoneIdFilter"
         }
       }
     },

@@ -1335,6 +1335,138 @@ func (c *MediaTailor) GetPlaybackConfigurationWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opListAlerts = "ListAlerts"
+
+// ListAlertsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAlerts operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAlerts for more information on using the ListAlerts
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAlertsRequest method.
+//    req, resp := client.ListAlertsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListAlerts
+func (c *MediaTailor) ListAlertsRequest(input *ListAlertsInput) (req *request.Request, output *ListAlertsOutput) {
+	op := &request.Operation{
+		Name:       opListAlerts,
+		HTTPMethod: "GET",
+		HTTPPath:   "/alerts",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAlertsInput{}
+	}
+
+	output = &ListAlertsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAlerts API operation for AWS MediaTailor.
+//
+// Returns a list of alerts for the given resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation ListAlerts for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ListAlerts
+func (c *MediaTailor) ListAlerts(input *ListAlertsInput) (*ListAlertsOutput, error) {
+	req, out := c.ListAlertsRequest(input)
+	return out, req.Send()
+}
+
+// ListAlertsWithContext is the same as ListAlerts with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAlerts for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListAlertsWithContext(ctx aws.Context, input *ListAlertsInput, opts ...request.Option) (*ListAlertsOutput, error) {
+	req, out := c.ListAlertsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAlertsPages iterates over the pages of a ListAlerts operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAlerts method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAlerts operation.
+//    pageNum := 0
+//    err := client.ListAlertsPages(params,
+//        func(page *mediatailor.ListAlertsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *MediaTailor) ListAlertsPages(input *ListAlertsInput, fn func(*ListAlertsOutput, bool) bool) error {
+	return c.ListAlertsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAlertsPagesWithContext same as ListAlertsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ListAlertsPagesWithContext(ctx aws.Context, input *ListAlertsInput, fn func(*ListAlertsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAlertsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAlertsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAlertsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListChannels = "ListChannels"
 
 // ListChannelsRequest generates a "aws/request.Request" representing the
@@ -2766,6 +2898,77 @@ func (s AdMarkerPassthrough) GoString() string {
 // SetEnabled sets the Enabled field's value.
 func (s *AdMarkerPassthrough) SetEnabled(v bool) *AdMarkerPassthrough {
 	s.Enabled = &v
+	return s
+}
+
+// Alert configuration parameters.
+type Alert struct {
+	_ struct{} `type:"structure"`
+
+	// The code for the alert. For example, NOT_PROCESSED.
+	//
+	// AlertCode is a required field
+	AlertCode *string `type:"string" required:"true"`
+
+	// If an alert is generated for a resource, an explanation of the reason for
+	// the alert.
+	//
+	// AlertMessage is a required field
+	AlertMessage *string `type:"string" required:"true"`
+
+	// The timestamp when the alert was last modified.
+	//
+	// LastModifiedTime is a required field
+	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp" required:"true"`
+
+	// The Amazon Resource Names (ARNs) related to this alert.
+	//
+	// RelatedResourceArns is a required field
+	RelatedResourceArns []*string `type:"list" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Alert) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Alert) GoString() string {
+	return s.String()
+}
+
+// SetAlertCode sets the AlertCode field's value.
+func (s *Alert) SetAlertCode(v string) *Alert {
+	s.AlertCode = &v
+	return s
+}
+
+// SetAlertMessage sets the AlertMessage field's value.
+func (s *Alert) SetAlertMessage(v string) *Alert {
+	s.AlertMessage = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *Alert) SetLastModifiedTime(v time.Time) *Alert {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetRelatedResourceArns sets the RelatedResourceArns field's value.
+func (s *Alert) SetRelatedResourceArns(v []*string) *Alert {
+	s.RelatedResourceArns = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *Alert) SetResourceArn(v string) *Alert {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -5338,6 +5541,95 @@ func (s *HttpPackageConfiguration) SetSourceGroup(v string) *HttpPackageConfigur
 // SetType sets the Type field's value.
 func (s *HttpPackageConfiguration) SetType(v string) *HttpPackageConfiguration {
 	s.Type = &v
+	return s
+}
+
+type ListAlertsInput struct {
+	_ struct{} `type:"structure"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// ResourceArn is a required field
+	ResourceArn *string `location:"querystring" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListAlertsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAlertsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAlertsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAlertsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAlertsInput) SetMaxResults(v int64) *ListAlertsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAlertsInput) SetNextToken(v string) *ListAlertsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListAlertsInput) SetResourceArn(v string) *ListAlertsInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// Lists the alerts for a given resource.
+type ListAlertsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of alerts that are associated with this resource.
+	Items []*Alert `type:"list"`
+
+	// Pagination token from the list request. Use the token to fetch the next page
+	// of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListAlertsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAlertsOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListAlertsOutput) SetItems(v []*Alert) *ListAlertsOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAlertsOutput) SetNextToken(v string) *ListAlertsOutput {
+	s.NextToken = &v
 	return s
 }
 
