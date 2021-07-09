@@ -11835,6 +11835,7 @@
         "TrainingJob":{"shape":"TrainingJobStepMetadata"},
         "ProcessingJob":{"shape":"ProcessingJobStepMetadata"},
         "TransformJob":{"shape":"TransformJobStepMetadata"},
+        "TuningJob":{"shape":"TuningJobStepMetaData"},
         "Model":{"shape":"ModelStepMetadata"},
         "RegisterModel":{"shape":"RegisterModelStepMetadata"},
         "Condition":{"shape":"ConditionStepMetadata"},
@@ -14393,6 +14394,12 @@
       "required":["TargetObjectiveMetricValue"],
       "members":{
         "TargetObjectiveMetricValue":{"shape":"TargetObjectiveMetricValue"}
+      }
+    },
+    "TuningJobStepMetaData":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"HyperParameterTuningJobArn"}
       }
     },
     "USD":{

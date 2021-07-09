@@ -66120,6 +66120,10 @@ type PipelineExecutionStepMetadata struct {
 	// The Amazon Resource Name (ARN) of the transform job that was run by this
 	// step execution.
 	TransformJob *TransformJobStepMetadata `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the tuning job that was run by this step
+	// execution.
+	TuningJob *TuningJobStepMetaData `type:"structure"`
 }
 
 // String returns the string representation
@@ -66171,6 +66175,12 @@ func (s *PipelineExecutionStepMetadata) SetTrainingJob(v *TrainingJobStepMetadat
 // SetTransformJob sets the TransformJob field's value.
 func (s *PipelineExecutionStepMetadata) SetTransformJob(v *TransformJobStepMetadata) *PipelineExecutionStepMetadata {
 	s.TransformJob = v
+	return s
+}
+
+// SetTuningJob sets the TuningJob field's value.
+func (s *PipelineExecutionStepMetadata) SetTuningJob(v *TuningJobStepMetaData) *PipelineExecutionStepMetadata {
+	s.TuningJob = v
 	return s
 }
 
@@ -74957,6 +74967,31 @@ func (s *TuningJobCompletionCriteria) Validate() error {
 // SetTargetObjectiveMetricValue sets the TargetObjectiveMetricValue field's value.
 func (s *TuningJobCompletionCriteria) SetTargetObjectiveMetricValue(v float64) *TuningJobCompletionCriteria {
 	s.TargetObjectiveMetricValue = &v
+	return s
+}
+
+// Metadata for a tuning step.
+type TuningJobStepMetaData struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the tuning job that was run by this step
+	// execution.
+	Arn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s TuningJobStepMetaData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TuningJobStepMetaData) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *TuningJobStepMetaData) SetArn(v string) *TuningJobStepMetaData {
+	s.Arn = &v
 	return s
 }
 

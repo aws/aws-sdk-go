@@ -4411,7 +4411,8 @@
         "DescribeHyperParameterTuningJobResponse$HyperParameterTuningJobArn": "<p>The Amazon Resource Name (ARN) of the tuning job.</p>",
         "DescribeTrainingJobResponse$TuningJobArn": "<p>The Amazon Resource Name (ARN) of the associated hyperparameter tuning job if the training job was launched by a hyperparameter tuning job.</p>",
         "HyperParameterTuningJobSummary$HyperParameterTuningJobArn": "<p>The Amazon Resource Name (ARN) of the tuning job.</p>",
-        "TrainingJob$TuningJobArn": "<p>The Amazon Resource Name (ARN) of the associated hyperparameter tuning job if the training job was launched by a hyperparameter tuning job.</p>"
+        "TrainingJob$TuningJobArn": "<p>The Amazon Resource Name (ARN) of the associated hyperparameter tuning job if the training job was launched by a hyperparameter tuning job.</p>",
+        "TuningJobStepMetaData$Arn": "<p>The Amazon Resource Name (ARN) of the tuning job that was run by this step execution.</p>"
       }
     },
     "HyperParameterTuningJobConfig": {
@@ -8125,7 +8126,7 @@
       }
     },
     "RepositoryAuthConfig": {
-      "base": "<p>Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified <code>Vpc</code> as the value for the <code>RepositoryAccessMode</code> field of the <code>ImageConfig</code> object that you passed to a call to <a>CreateModel</a> and the private Docker registry where the model image is hosted requires authentication.</p>",
+      "base": "<p>Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified <code>Vpc</code> as the value for the <code>RepositoryAccessMode</code> field of the <code>ImageConfig</code> object that you passed to a call to <code>CreateModel</code> and the private Docker registry where the model image is hosted requires authentication.</p>",
       "refs": {
         "ImageConfig$RepositoryAuthConfig": "<p>(Optional) Specifies an authentication configuration for the private docker registry where your model image is hosted. Specify a value for this property only if you specified <code>Vpc</code> as the value for the <code>RepositoryAccessMode</code> field, and the private Docker registry where the model image is hosted requires authentication.</p>"
       }
@@ -10075,6 +10076,12 @@
       "base": "<p>The job completion criteria.</p>",
       "refs": {
         "HyperParameterTuningJobConfig$TuningJobCompletionCriteria": "<p>The tuning job's completion criteria.</p>"
+      }
+    },
+    "TuningJobStepMetaData": {
+      "base": "<p>Metadata for a tuning step.</p>",
+      "refs": {
+        "PipelineExecutionStepMetadata$TuningJob": "<p>The Amazon Resource Name (ARN) of the tuning job that was run by this step execution.</p>"
       }
     },
     "USD": {

@@ -1,3 +1,13 @@
+Release v1.39.4 (2021-07-09)
+===
+
+### Service Client Updates
+* `service/frauddetector`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * MediaConvert now supports color, style and position information passthrough from 608 and Teletext to SRT and WebVTT subtitles. MediaConvert now also supports Automatic QVBR quality levels for QVBR RateControlMode.
+* `service/sagemaker`: Updates service API and documentation
+  * Releasing new APIs related to Tuning steps in model building pipelines.
+
 Release v1.39.3 (2021-07-08)
 ===
 

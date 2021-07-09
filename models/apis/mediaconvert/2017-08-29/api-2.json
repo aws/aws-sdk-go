@@ -1970,6 +1970,10 @@
           "shape": "SccDestinationSettings",
           "locationName": "sccDestinationSettings"
         },
+        "SrtDestinationSettings": {
+          "shape": "SrtDestinationSettings",
+          "locationName": "srtDestinationSettings"
+        },
         "TeletextDestinationSettings": {
           "shape": "TeletextDestinationSettings",
           "locationName": "teletextDestinationSettings"
@@ -2234,6 +2238,10 @@
           "shape": "CmafStreamInfResolution",
           "locationName": "streamInfResolution"
         },
+        "TargetDurationCompatibilityMode": {
+          "shape": "CmafTargetDurationCompatibilityMode",
+          "locationName": "targetDurationCompatibilityMode"
+        },
         "WriteDashManifest": {
           "shape": "CmafWriteDASHManifest",
           "locationName": "writeDashManifest"
@@ -2310,6 +2318,13 @@
       "enum": [
         "INCLUDE",
         "EXCLUDE"
+      ]
+    },
+    "CmafTargetDurationCompatibilityMode": {
+      "type": "string",
+      "enum": [
+        "LEGACY",
+        "SPEC_COMPLIANT"
       ]
     },
     "CmafWriteDASHManifest": {
@@ -5078,6 +5093,10 @@
           "shape": "HlsStreamInfResolution",
           "locationName": "streamInfResolution"
         },
+        "TargetDurationCompatibilityMode": {
+          "shape": "HlsTargetDurationCompatibilityMode",
+          "locationName": "targetDurationCompatibilityMode"
+        },
         "TimedMetadataId3Frame": {
           "shape": "HlsTimedMetadataId3Frame",
           "locationName": "timedMetadataId3Frame"
@@ -5218,6 +5237,13 @@
       "enum": [
         "INCLUDE",
         "EXCLUDE"
+      ]
+    },
+    "HlsTargetDurationCompatibilityMode": {
+      "type": "string",
+      "enum": [
+        "LEGACY",
+        "SPEC_COMPLIANT"
       ]
     },
     "HlsTimedMetadataId3Frame": {
@@ -8341,6 +8367,22 @@
           "locationName": "url"
         }
       }
+    },
+    "SrtDestinationSettings": {
+      "type": "structure",
+      "members": {
+        "StylePassthrough": {
+          "shape": "SrtStylePassthrough",
+          "locationName": "stylePassthrough"
+        }
+      }
+    },
+    "SrtStylePassthrough": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
     },
     "StaticKeyProvider": {
       "type": "structure",

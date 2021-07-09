@@ -3873,21 +3873,23 @@ func (s *AutomatedEncodingSettings) SetAbrSettings(v *AutomatedAbrSettings) *Aut
 	return s
 }
 
-// Settings for quality-defined variable bitrate encoding with the AV1 codec.
-// Required when you set Rate control mode to QVBR. Not valid when you set Rate
-// control mode to a value other than QVBR, or when you don't define Rate control
-// mode.
+// Settings for quality-defined variable bitrate encoding with the H.265 codec.
+// Use these settings only when you set QVBR for Rate control mode (RateControlMode).
 type Av1QvbrSettings struct {
 	_ struct{} `type:"structure"`
 
-	// Required when you use QVBR rate control mode. That is, when you specify qvbrSettings
-	// within av1Settings. Specify the general target quality level for this output,
-	// from 1 to 10. Use higher numbers for greater quality. Level 10 results in
-	// nearly lossless compression. The quality level for most broadcast-quality
-	// transcodes is between 6 and 9. Optionally, to specify a value between whole
-	// numbers, also provide a value for the setting qvbrQualityLevelFineTune. For
-	// example, if you want your QVBR quality level to be 7.33, set qvbrQualityLevel
-	// to 7 and set qvbrQualityLevelFineTune to .33.
+	// Use this setting only when you set Rate control mode (RateControlMode) to
+	// QVBR. Specify the target quality level for this output. MediaConvert determines
+	// the right number of bits to use for each part of the video to maintain the
+	// video quality that you specify. When you keep the default value, AUTO, MediaConvert
+	// picks a quality level for you, based on characteristics of your input video.
+	// If you prefer to specify a quality level, specify a number from 1 through
+	// 10. Use higher numbers for greater quality. Level 10 results in nearly lossless
+	// compression. The quality level for most broadcast-quality transcodes is between
+	// 6 and 9. Optionally, to specify a value between whole numbers, also provide
+	// a value for the setting qvbrQualityLevelFineTune. For example, if you want
+	// your QVBR quality level to be 7.33, set qvbrQualityLevel to 7 and set qvbrQualityLevelFineTune
+	// to .33.
 	QvbrQualityLevel *int64 `locationName:"qvbrQualityLevel" min:"1" type:"integer"`
 
 	// Optional. Specify a value here to set the QVBR quality to a level that is
@@ -3999,10 +4001,8 @@ type Av1Settings struct {
 	// smaller file size; choose a smaller number for better video quality.
 	NumberBFramesBetweenReferenceFrames *int64 `locationName:"numberBFramesBetweenReferenceFrames" type:"integer"`
 
-	// Settings for quality-defined variable bitrate encoding with the AV1 codec.
-	// Required when you set Rate control mode to QVBR. Not valid when you set Rate
-	// control mode to a value other than QVBR, or when you don't define Rate control
-	// mode.
+	// Settings for quality-defined variable bitrate encoding with the H.265 codec.
+	// Use these settings only when you set QVBR for Rate control mode (RateControlMode).
 	QvbrSettings *Av1QvbrSettings `locationName:"qvbrSettings" type:"structure"`
 
 	// 'With AV1 outputs, for rate control mode, MediaConvert supports only quality-defined
@@ -5002,6 +5002,9 @@ type CaptionDestinationSettings struct {
 	// and any required children when you set destinationType to SCC.
 	SccDestinationSettings *SccDestinationSettings `locationName:"sccDestinationSettings" type:"structure"`
 
+	// SRT Destination Settings
+	SrtDestinationSettings *SrtDestinationSettings `locationName:"srtDestinationSettings" type:"structure"`
+
 	// Settings related to teletext captions. Set up teletext captions in the same
 	// output as your video. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/teletext-output-captions.html.
 	// When you work directly in your JSON job specification, include this object
@@ -5093,6 +5096,12 @@ func (s *CaptionDestinationSettings) SetImscDestinationSettings(v *ImscDestinati
 // SetSccDestinationSettings sets the SccDestinationSettings field's value.
 func (s *CaptionDestinationSettings) SetSccDestinationSettings(v *SccDestinationSettings) *CaptionDestinationSettings {
 	s.SccDestinationSettings = v
+	return s
+}
+
+// SetSrtDestinationSettings sets the SrtDestinationSettings field's value.
+func (s *CaptionDestinationSettings) SetSrtDestinationSettings(v *SrtDestinationSettings) *CaptionDestinationSettings {
+	s.SrtDestinationSettings = v
 	return s
 }
 
@@ -5697,6 +5706,16 @@ type CmafGroupSettings struct {
 	// of variant manifest.
 	StreamInfResolution *string `locationName:"streamInfResolution" type:"string" enum:"CmafStreamInfResolution"`
 
+	// When set to LEGACY, the segment target duration is always rounded up to the
+	// nearest integer value above its current value in seconds. When set to SPEC\\_COMPLIANT,
+	// the segment target duration is rounded up to the nearest integer value if
+	// fraction seconds are greater than or equal to 0.5 (>= 0.5) and rounded down
+	// if less than 0.5 (< 0.5). You may need to use LEGACY if your client needs
+	// to ensure that the target duration is always longer than the actual duration
+	// of the segment. Some older players may experience interrupted playback when
+	// the actual duration of a track in a segment is longer than the target duration.
+	TargetDurationCompatibilityMode *string `locationName:"targetDurationCompatibilityMode" type:"string" enum:"CmafTargetDurationCompatibilityMode"`
+
 	// When set to ENABLED, a DASH MPD manifest will be generated for this output.
 	WriteDashManifest *string `locationName:"writeDashManifest" type:"string" enum:"CmafWriteDASHManifest"`
 
@@ -5858,6 +5877,12 @@ func (s *CmafGroupSettings) SetSegmentLength(v int64) *CmafGroupSettings {
 // SetStreamInfResolution sets the StreamInfResolution field's value.
 func (s *CmafGroupSettings) SetStreamInfResolution(v string) *CmafGroupSettings {
 	s.StreamInfResolution = &v
+	return s
+}
+
+// SetTargetDurationCompatibilityMode sets the TargetDurationCompatibilityMode field's value.
+func (s *CmafGroupSettings) SetTargetDurationCompatibilityMode(v string) *CmafGroupSettings {
+	s.TargetDurationCompatibilityMode = &v
 	return s
 }
 
@@ -8042,7 +8067,7 @@ type DvbSubDestinationSettings struct {
 	// (PCS). All burn-in and DVB-Sub font settings must match.
 	DdsYCoordinate *int64 `locationName:"ddsYCoordinate" type:"integer"`
 
-	// Specifies the color of the burned-in captions. This option is not valid for
+	// Specifies the color of the DVB-SUB captions. This option is not valid for
 	// source captions that are STL, 608/embedded or teletext. These source settings
 	// are already pre-defined by the caption stream. All burn-in and DVB-Sub font
 	// settings must match.
@@ -9772,10 +9797,8 @@ func (s *GetQueueOutput) SetQueue(v *Queue) *GetQueueOutput {
 	return s
 }
 
-// Settings for quality-defined variable bitrate encoding with the H.264 codec.
-// Required when you set Rate control mode to QVBR. Not valid when you set Rate
-// control mode to a value other than QVBR, or when you don't define Rate control
-// mode.
+// Settings for quality-defined variable bitrate encoding with the H.265 codec.
+// Use these settings only when you set QVBR for Rate control mode (RateControlMode).
 type H264QvbrSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -9787,14 +9810,18 @@ type H264QvbrSettings struct {
 	// by the number of seconds of encoded output.
 	MaxAverageBitrate *int64 `locationName:"maxAverageBitrate" min:"1000" type:"integer"`
 
-	// Required when you use QVBR rate control mode. That is, when you specify qvbrSettings
-	// within h264Settings. Specify the general target quality level for this output,
-	// from 1 to 10. Use higher numbers for greater quality. Level 10 results in
-	// nearly lossless compression. The quality level for most broadcast-quality
-	// transcodes is between 6 and 9. Optionally, to specify a value between whole
-	// numbers, also provide a value for the setting qvbrQualityLevelFineTune. For
-	// example, if you want your QVBR quality level to be 7.33, set qvbrQualityLevel
-	// to 7 and set qvbrQualityLevelFineTune to .33.
+	// Use this setting only when you set Rate control mode (RateControlMode) to
+	// QVBR. Specify the target quality level for this output. MediaConvert determines
+	// the right number of bits to use for each part of the video to maintain the
+	// video quality that you specify. When you keep the default value, AUTO, MediaConvert
+	// picks a quality level for you, based on characteristics of your input video.
+	// If you prefer to specify a quality level, specify a number from 1 through
+	// 10. Use higher numbers for greater quality. Level 10 results in nearly lossless
+	// compression. The quality level for most broadcast-quality transcodes is between
+	// 6 and 9. Optionally, to specify a value between whole numbers, also provide
+	// a value for the setting qvbrQualityLevelFineTune. For example, if you want
+	// your QVBR quality level to be 7.33, set qvbrQualityLevel to 7 and set qvbrQualityLevelFineTune
+	// to .33.
 	QvbrQualityLevel *int64 `locationName:"qvbrQualityLevel" min:"1" type:"integer"`
 
 	// Optional. Specify a value here to set the QVBR quality to a level that is
@@ -10038,10 +10065,8 @@ type H264Settings struct {
 	// is faster, lower quality, single-pass encoding.
 	QualityTuningLevel *string `locationName:"qualityTuningLevel" type:"string" enum:"H264QualityTuningLevel"`
 
-	// Settings for quality-defined variable bitrate encoding with the H.264 codec.
-	// Required when you set Rate control mode to QVBR. Not valid when you set Rate
-	// control mode to a value other than QVBR, or when you don't define Rate control
-	// mode.
+	// Settings for quality-defined variable bitrate encoding with the H.265 codec.
+	// Use these settings only when you set QVBR for Rate control mode (RateControlMode).
 	QvbrSettings *H264QvbrSettings `locationName:"qvbrSettings" type:"structure"`
 
 	// Use this setting to specify whether this output has a variable bitrate (VBR),
@@ -10455,9 +10480,7 @@ func (s *H264Settings) SetUnregisteredSeiTimecode(v string) *H264Settings {
 }
 
 // Settings for quality-defined variable bitrate encoding with the H.265 codec.
-// Required when you set Rate control mode to QVBR. Not valid when you set Rate
-// control mode to a value other than QVBR, or when you don't define Rate control
-// mode.
+// Use these settings only when you set QVBR for Rate control mode (RateControlMode).
 type H265QvbrSettings struct {
 	_ struct{} `type:"structure"`
 
@@ -10469,14 +10492,18 @@ type H265QvbrSettings struct {
 	// by the number of seconds of encoded output.
 	MaxAverageBitrate *int64 `locationName:"maxAverageBitrate" min:"1000" type:"integer"`
 
-	// Required when you use QVBR rate control mode. That is, when you specify qvbrSettings
-	// within h265Settings. Specify the general target quality level for this output,
-	// from 1 to 10. Use higher numbers for greater quality. Level 10 results in
-	// nearly lossless compression. The quality level for most broadcast-quality
-	// transcodes is between 6 and 9. Optionally, to specify a value between whole
-	// numbers, also provide a value for the setting qvbrQualityLevelFineTune. For
-	// example, if you want your QVBR quality level to be 7.33, set qvbrQualityLevel
-	// to 7 and set qvbrQualityLevelFineTune to .33.
+	// Use this setting only when you set Rate control mode (RateControlMode) to
+	// QVBR. Specify the target quality level for this output. MediaConvert determines
+	// the right number of bits to use for each part of the video to maintain the
+	// video quality that you specify. When you keep the default value, AUTO, MediaConvert
+	// picks a quality level for you, based on characteristics of your input video.
+	// If you prefer to specify a quality level, specify a number from 1 through
+	// 10. Use higher numbers for greater quality. Level 10 results in nearly lossless
+	// compression. The quality level for most broadcast-quality transcodes is between
+	// 6 and 9. Optionally, to specify a value between whole numbers, also provide
+	// a value for the setting qvbrQualityLevelFineTune. For example, if you want
+	// your QVBR quality level to be 7.33, set qvbrQualityLevel to 7 and set qvbrQualityLevelFineTune
+	// to .33.
 	QvbrQualityLevel *int64 `locationName:"qvbrQualityLevel" min:"1" type:"integer"`
 
 	// Optional. Specify a value here to set the QVBR quality to a level that is
@@ -10705,9 +10732,7 @@ type H265Settings struct {
 	QualityTuningLevel *string `locationName:"qualityTuningLevel" type:"string" enum:"H265QualityTuningLevel"`
 
 	// Settings for quality-defined variable bitrate encoding with the H.265 codec.
-	// Required when you set Rate control mode to QVBR. Not valid when you set Rate
-	// control mode to a value other than QVBR, or when you don't define Rate control
-	// mode.
+	// Use these settings only when you set QVBR for Rate control mode (RateControlMode).
 	QvbrSettings *H265QvbrSettings `locationName:"qvbrSettings" type:"structure"`
 
 	// Use this setting to specify whether this output has a variable bitrate (VBR),
@@ -11660,6 +11685,16 @@ type HlsGroupSettings struct {
 	// of variant manifest.
 	StreamInfResolution *string `locationName:"streamInfResolution" type:"string" enum:"HlsStreamInfResolution"`
 
+	// When set to LEGACY, the segment target duration is always rounded up to the
+	// nearest integer value above its current value in seconds. When set to SPEC\\_COMPLIANT,
+	// the segment target duration is rounded up to the nearest integer value if
+	// fraction seconds are greater than or equal to 0.5 (>= 0.5) and rounded down
+	// if less than 0.5 (< 0.5). You may need to use LEGACY if your client needs
+	// to ensure that the target duration is always longer than the actual duration
+	// of the segment. Some older players may experience interrupted playback when
+	// the actual duration of a track in a segment is longer than the target duration.
+	TargetDurationCompatibilityMode *string `locationName:"targetDurationCompatibilityMode" type:"string" enum:"HlsTargetDurationCompatibilityMode"`
+
 	// Indicates ID3 frame that has the timecode.
 	TimedMetadataId3Frame *string `locationName:"timedMetadataId3Frame" type:"string" enum:"HlsTimedMetadataId3Frame"`
 
@@ -11868,6 +11903,12 @@ func (s *HlsGroupSettings) SetSegmentsPerSubdirectory(v int64) *HlsGroupSettings
 // SetStreamInfResolution sets the StreamInfResolution field's value.
 func (s *HlsGroupSettings) SetStreamInfResolution(v string) *HlsGroupSettings {
 	s.StreamInfResolution = &v
+	return s
+}
+
+// SetTargetDurationCompatibilityMode sets the TargetDurationCompatibilityMode field's value.
+func (s *HlsGroupSettings) SetTargetDurationCompatibilityMode(v string) *HlsGroupSettings {
+	s.TargetDurationCompatibilityMode = &v
 	return s
 }
 
@@ -19335,6 +19376,32 @@ func (s *SpekeKeyProviderCmaf) SetUrl(v string) *SpekeKeyProviderCmaf {
 	return s
 }
 
+// SRT Destination Settings
+type SrtDestinationSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Choose Enabled (ENABLED) to have MediaConvert use the font style, color,
+	// and position information from the captions source in the input. Keep the
+	// default value, Disabled (DISABLED), for simplified output captions.
+	StylePassthrough *string `locationName:"stylePassthrough" type:"string" enum:"SrtStylePassthrough"`
+}
+
+// String returns the string representation
+func (s SrtDestinationSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SrtDestinationSettings) GoString() string {
+	return s.String()
+}
+
+// SetStylePassthrough sets the StylePassthrough field's value.
+func (s *SrtDestinationSettings) SetStylePassthrough(v string) *SrtDestinationSettings {
+	s.StylePassthrough = &v
+	return s
+}
+
 // Use these settings to set up encryption with a static key provider.
 type StaticKeyProvider struct {
 	_ struct{} `type:"structure"`
@@ -24345,6 +24412,30 @@ func CmafStreamInfResolution_Values() []string {
 	}
 }
 
+// When set to LEGACY, the segment target duration is always rounded up to the
+// nearest integer value above its current value in seconds. When set to SPEC\\_COMPLIANT,
+// the segment target duration is rounded up to the nearest integer value if
+// fraction seconds are greater than or equal to 0.5 (>= 0.5) and rounded down
+// if less than 0.5 (< 0.5). You may need to use LEGACY if your client needs
+// to ensure that the target duration is always longer than the actual duration
+// of the segment. Some older players may experience interrupted playback when
+// the actual duration of a track in a segment is longer than the target duration.
+const (
+	// CmafTargetDurationCompatibilityModeLegacy is a CmafTargetDurationCompatibilityMode enum value
+	CmafTargetDurationCompatibilityModeLegacy = "LEGACY"
+
+	// CmafTargetDurationCompatibilityModeSpecCompliant is a CmafTargetDurationCompatibilityMode enum value
+	CmafTargetDurationCompatibilityModeSpecCompliant = "SPEC_COMPLIANT"
+)
+
+// CmafTargetDurationCompatibilityMode_Values returns all elements of the CmafTargetDurationCompatibilityMode enum
+func CmafTargetDurationCompatibilityMode_Values() []string {
+	return []string{
+		CmafTargetDurationCompatibilityModeLegacy,
+		CmafTargetDurationCompatibilityModeSpecCompliant,
+	}
+}
+
 // When set to ENABLED, a DASH MPD manifest will be generated for this output.
 const (
 	// CmafWriteDASHManifestDisabled is a CmafWriteDASHManifest enum value
@@ -25132,7 +25223,7 @@ func DvbSubtitleBackgroundColor_Values() []string {
 	}
 }
 
-// Specifies the color of the burned-in captions. This option is not valid for
+// Specifies the color of the DVB-SUB captions. This option is not valid for
 // source captions that are STL, 608/embedded or teletext. These source settings
 // are already pre-defined by the caption stream. All burn-in and DVB-Sub font
 // settings must match.
@@ -27785,6 +27876,30 @@ func HlsStreamInfResolution_Values() []string {
 	return []string{
 		HlsStreamInfResolutionInclude,
 		HlsStreamInfResolutionExclude,
+	}
+}
+
+// When set to LEGACY, the segment target duration is always rounded up to the
+// nearest integer value above its current value in seconds. When set to SPEC\\_COMPLIANT,
+// the segment target duration is rounded up to the nearest integer value if
+// fraction seconds are greater than or equal to 0.5 (>= 0.5) and rounded down
+// if less than 0.5 (< 0.5). You may need to use LEGACY if your client needs
+// to ensure that the target duration is always longer than the actual duration
+// of the segment. Some older players may experience interrupted playback when
+// the actual duration of a track in a segment is longer than the target duration.
+const (
+	// HlsTargetDurationCompatibilityModeLegacy is a HlsTargetDurationCompatibilityMode enum value
+	HlsTargetDurationCompatibilityModeLegacy = "LEGACY"
+
+	// HlsTargetDurationCompatibilityModeSpecCompliant is a HlsTargetDurationCompatibilityMode enum value
+	HlsTargetDurationCompatibilityModeSpecCompliant = "SPEC_COMPLIANT"
+)
+
+// HlsTargetDurationCompatibilityMode_Values returns all elements of the HlsTargetDurationCompatibilityMode enum
+func HlsTargetDurationCompatibilityMode_Values() []string {
+	return []string{
+		HlsTargetDurationCompatibilityModeLegacy,
+		HlsTargetDurationCompatibilityModeSpecCompliant,
 	}
 }
 
@@ -30936,6 +31051,25 @@ func SimulateReservedQueue_Values() []string {
 	return []string{
 		SimulateReservedQueueDisabled,
 		SimulateReservedQueueEnabled,
+	}
+}
+
+// Choose Enabled (ENABLED) to have MediaConvert use the font style, color,
+// and position information from the captions source in the input. Keep the
+// default value, Disabled (DISABLED), for simplified output captions.
+const (
+	// SrtStylePassthroughEnabled is a SrtStylePassthrough enum value
+	SrtStylePassthroughEnabled = "ENABLED"
+
+	// SrtStylePassthroughDisabled is a SrtStylePassthrough enum value
+	SrtStylePassthroughDisabled = "DISABLED"
+)
+
+// SrtStylePassthrough_Values returns all elements of the SrtStylePassthrough enum
+func SrtStylePassthrough_Values() []string {
+	return []string{
+		SrtStylePassthroughEnabled,
+		SrtStylePassthroughDisabled,
 	}
 }
 
