@@ -260,6 +260,23 @@ func TestDownloadZero(t *testing.T) {
 	}
 }
 
+func TestPerChunkTimeout(t *testing.T) {
+	s, _, _ := dlLoggingSvc([]byte{1, 2, 3, 4})
+	d := s3manager.NewDownloaderWithClient(s)
+	d.PerChunkTimeout = time.Millisecond * 5
+	s.Handlers.Complete.PushBack(func(r *request.Request) {
+		_, deadlineSet := r.Context().Deadline()
+		if !deadlineSet {
+			t.Fatalf(`expected context deadline`)
+		}
+	})
+	w := &aws.WriteAtBuffer{}
+	_, _ = d.Download(w, &s3.GetObjectInput{
+		Bucket: aws.String("bucket"),
+		Key:    aws.String("key"),
+	})
+}
+
 func TestDownloadSetPartSize(t *testing.T) {
 	s, names, ranges := dlLoggingSvc([]byte{1, 2, 3})
 
