@@ -3675,6 +3675,18 @@
       },
       "iotwireless" : {
         "endpoints" : {
+          "ap-northeast-1" : {
+            "credentialScope" : {
+              "region" : "ap-northeast-1"
+            },
+            "hostname" : "api.iotwireless.ap-northeast-1.amazonaws.com"
+          },
+          "ap-southeast-2" : {
+            "credentialScope" : {
+              "region" : "ap-southeast-2"
+            },
+            "hostname" : "api.iotwireless.ap-southeast-2.amazonaws.com"
+          },
           "eu-west-1" : {
             "credentialScope" : {
               "region" : "eu-west-1"
@@ -3686,6 +3698,12 @@
               "region" : "us-east-1"
             },
             "hostname" : "api.iotwireless.us-east-1.amazonaws.com"
+          },
+          "us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "api.iotwireless.us-west-2.amazonaws.com"
           }
         }
       },
@@ -8103,6 +8121,12 @@
             },
             "hostname" : "cn.transcribe.cn-northwest-1.amazonaws.com.cn"
           }
+        }
+      },
+      "transcribestreaming" : {
+        "endpoints" : {
+          "cn-north-1" : { },
+          "cn-northwest-1" : { }
         }
       },
       "transfer" : {

@@ -445,7 +445,7 @@
     "EventVariableMap": {
       "base": null,
       "refs": {
-        "GetEventPredictionRequest$eventVariables": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p>"
+        "GetEventPredictionRequest$eventVariables": "<p>Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.</p> <important> <ul> <li> <p>You must provide at least one eventVariable</p> </li> <li> <p>If detectorVersion is associated with a modelVersion, you must provide at least one associated eventVariable</p> </li> </ul> </important> <p>To ensure highest possible fraud prediction and to simplify your data preparation, Amazon Fraud Detector will replace all missing variables or values as follows:</p> <p> <b>For Amazon Fraud Detector trained models:</b> </p> <p>If a null value is provided explicitly for a variable or if a variable is missing, model will replace the null value or the missing variable (no variable name in the eventVariables map) with calculated default mean/medians for numeric variables and with special values for categorical variables.</p> <p> <b>For External models ( for example, imported SageMaker):</b> </p> <p>If a null value is provided explicitly for a variable, the model and rules will use “null” as the value. If a variable is not provided (no variable name in the eventVariables map), model and rules will use the default value that is provided for the variable. </p>"
       }
     },
     "ExternalEventsDetail": {
@@ -679,6 +679,12 @@
         "UpdateRuleVersionRequest$language": "<p>The language.</p>"
       }
     },
+    "ListOfLogitMetrics": {
+      "base": null,
+      "refs": {
+        "VariableImportanceMetrics$LogitMetrics": "<p>List of variable metrics.</p>"
+      }
+    },
     "ListOfModelScores": {
       "base": null,
       "refs": {
@@ -721,6 +727,12 @@
     "ListTagsForResourceResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "LogitMetric": {
+      "base": "<p>The logit metric details.</p>",
+      "refs": {
+        "ListOfLogitMetrics$member": null
       }
     },
     "MetricDataPoint": {
@@ -1178,6 +1190,12 @@
         "BatchCreateVariableRequest$variableEntries": "<p>The list of variables for the batch create variable request.</p>"
       }
     },
+    "VariableImportanceMetrics": {
+      "base": "<p>The variable importance metrics details.</p>",
+      "refs": {
+        "TrainingResult$variableImportanceMetrics": "<p>The variable importance metrics.</p>"
+      }
+    },
     "VariableList": {
       "base": null,
       "refs": {
@@ -1275,6 +1293,7 @@
     "float": {
       "base": null,
       "refs": {
+        "LogitMetric$variableImportance": "<p>The relative importance of the variable.</p>",
         "MetricDataPoint$fpr": "<p>The false positive rate. This is the percentage of total legitimate events that are incorrectly predicted as fraud.</p>",
         "MetricDataPoint$precision": "<p>The percentage of fraud events correctly predicted as fraudulent as compared to all events predicted as fraudulent.</p>",
         "MetricDataPoint$tpr": "<p>The true positive rate. This is the percentage of total fraud the model detects. Also known as capture rate.</p>",
@@ -1564,6 +1583,8 @@
         "ListOfStrings$member": null,
         "ListTagsForResourceRequest$nextToken": "<p>The next token from the previous results.</p>",
         "ListTagsForResourceResult$nextToken": "<p>The next token for subsequent requests. </p>",
+        "LogitMetric$variableName": "<p>The name of the variable.</p>",
+        "LogitMetric$variableType": "<p>The type of variable.</p>",
         "Model$eventTypeName": "<p>The name of the event type.</p>",
         "ModelInputConfiguration$jsonInputTemplate": "<p> Template for constructing the JSON input-data sent to SageMaker. At event-evaluation, the placeholders for variable names in the template will be replaced with the variable values before being sent to SageMaker. </p>",
         "ModelInputConfiguration$csvInputTemplate": "<p> Template for constructing the CSV input-data sent to SageMaker. At event-evaluation, the placeholders for variable-names in the template will be replaced with the variable values before being sent to SageMaker. </p>",

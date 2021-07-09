@@ -349,6 +349,9 @@ func (c *FraudDetector) CreateBatchPredictionJobRequest(input *CreateBatchPredic
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
 //
+//   * ResourceNotFoundException
+//   An exception indicating the specified resource was not found.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchPredictionJob
 func (c *FraudDetector) CreateBatchPredictionJob(input *CreateBatchPredictionJobInput) (*CreateBatchPredictionJobOutput, error) {
 	req, out := c.CreateBatchPredictionJobRequest(input)
@@ -9823,6 +9826,28 @@ type GetEventPredictionInput struct {
 	// to represent data elements and their corresponding values for the event you
 	// are sending for evaluation.
 	//
+	//    * You must provide at least one eventVariable
+	//
+	//    * If detectorVersion is associated with a modelVersion, you must provide
+	//    at least one associated eventVariable
+	//
+	// To ensure highest possible fraud prediction and to simplify your data preparation,
+	// Amazon Fraud Detector will replace all missing variables or values as follows:
+	//
+	// For Amazon Fraud Detector trained models:
+	//
+	// If a null value is provided explicitly for a variable or if a variable is
+	// missing, model will replace the null value or the missing variable (no variable
+	// name in the eventVariables map) with calculated default mean/medians for
+	// numeric variables and with special values for categorical variables.
+	//
+	// For External models ( for example, imported SageMaker):
+	//
+	// If a null value is provided explicitly for a variable, the model and rules
+	// will use “null” as the value. If a variable is not provided (no variable
+	// name in the eventVariables map), model and rules will use the default value
+	// that is provided for the variable.
+	//
 	// EventVariables is a required field
 	EventVariables map[string]*string `locationName:"eventVariables" min:"1" type:"map" required:"true"`
 
@@ -11124,6 +11149,54 @@ func (s *ListTagsForResourceOutput) SetNextToken(v string) *ListTagsForResourceO
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// The logit metric details.
+type LogitMetric struct {
+	_ struct{} `type:"structure"`
+
+	// The relative importance of the variable.
+	//
+	// VariableImportance is a required field
+	VariableImportance *float64 `locationName:"variableImportance" type:"float" required:"true"`
+
+	// The name of the variable.
+	//
+	// VariableName is a required field
+	VariableName *string `locationName:"variableName" type:"string" required:"true"`
+
+	// The type of variable.
+	//
+	// VariableType is a required field
+	VariableType *string `locationName:"variableType" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s LogitMetric) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LogitMetric) GoString() string {
+	return s.String()
+}
+
+// SetVariableImportance sets the VariableImportance field's value.
+func (s *LogitMetric) SetVariableImportance(v float64) *LogitMetric {
+	s.VariableImportance = &v
+	return s
+}
+
+// SetVariableName sets the VariableName field's value.
+func (s *LogitMetric) SetVariableName(v string) *LogitMetric {
+	s.VariableName = &v
+	return s
+}
+
+// SetVariableType sets the VariableType field's value.
+func (s *LogitMetric) SetVariableType(v string) *LogitMetric {
+	s.VariableType = &v
 	return s
 }
 
@@ -13008,6 +13081,9 @@ type TrainingResult struct {
 
 	// The training metric details.
 	TrainingMetrics *TrainingMetrics `locationName:"trainingMetrics" type:"structure"`
+
+	// The variable importance metrics.
+	VariableImportanceMetrics *VariableImportanceMetrics `locationName:"variableImportanceMetrics" type:"structure"`
 }
 
 // String returns the string representation
@@ -13029,6 +13105,12 @@ func (s *TrainingResult) SetDataValidationMetrics(v *DataValidationMetrics) *Tra
 // SetTrainingMetrics sets the TrainingMetrics field's value.
 func (s *TrainingResult) SetTrainingMetrics(v *TrainingMetrics) *TrainingResult {
 	s.TrainingMetrics = v
+	return s
+}
+
+// SetVariableImportanceMetrics sets the VariableImportanceMetrics field's value.
+func (s *TrainingResult) SetVariableImportanceMetrics(v *VariableImportanceMetrics) *TrainingResult {
+	s.VariableImportanceMetrics = v
 	return s
 }
 
@@ -14304,6 +14386,30 @@ func (s *VariableEntry) SetName(v string) *VariableEntry {
 // SetVariableType sets the VariableType field's value.
 func (s *VariableEntry) SetVariableType(v string) *VariableEntry {
 	s.VariableType = &v
+	return s
+}
+
+// The variable importance metrics details.
+type VariableImportanceMetrics struct {
+	_ struct{} `type:"structure"`
+
+	// List of variable metrics.
+	LogitMetrics []*LogitMetric `type:"list"`
+}
+
+// String returns the string representation
+func (s VariableImportanceMetrics) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VariableImportanceMetrics) GoString() string {
+	return s.String()
+}
+
+// SetLogitMetrics sets the LogitMetrics field's value.
+func (s *VariableImportanceMetrics) SetLogitMetrics(v []*LogitMetric) *VariableImportanceMetrics {
+	s.LogitMetrics = v
 	return s
 }
 
