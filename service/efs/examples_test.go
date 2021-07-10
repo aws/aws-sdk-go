@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // This operation creates a new, encrypted file system with automatic backups enabled,
 // and the default generalpurpose performance mode.
 func ExampleEFS_CreateFileSystem_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.CreateFileSystemInput{
 		Backup:          aws.Bool(true),
 		CreationToken:   aws.String("tokenstring"),
@@ -80,7 +80,7 @@ func ExampleEFS_CreateFileSystem_shared00() {
 //
 // This operation creates a new mount target for an EFS file system.
 func ExampleEFS_CreateMountTarget_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.CreateMountTargetInput{
 		FileSystemId: aws.String("fs-01234567"),
 		SubnetId:     aws.String("subnet-1234abcd"),
@@ -134,7 +134,7 @@ func ExampleEFS_CreateMountTarget_shared00() {
 //
 // This operation creates a new tag for an EFS file system.
 func ExampleEFS_CreateTags_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.CreateTagsInput{
 		FileSystemId: aws.String("fs-01234567"),
 		Tags: []*efs.Tag{
@@ -173,7 +173,7 @@ func ExampleEFS_CreateTags_shared00() {
 //
 // This operation deletes an EFS file system.
 func ExampleEFS_DeleteFileSystem_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.DeleteFileSystemInput{
 		FileSystemId: aws.String("fs-01234567"),
 	}
@@ -208,7 +208,7 @@ func ExampleEFS_DeleteFileSystem_shared00() {
 //
 // This operation deletes a mount target.
 func ExampleEFS_DeleteMountTarget_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.DeleteMountTargetInput{
 		MountTargetId: aws.String("fsmt-12340abc"),
 	}
@@ -243,7 +243,7 @@ func ExampleEFS_DeleteMountTarget_shared00() {
 //
 // This operation deletes tags for an EFS file system.
 func ExampleEFS_DeleteTags_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.DeleteTagsInput{
 		FileSystemId: aws.String("fs-01234567"),
 		TagKeys: []*string{
@@ -279,7 +279,7 @@ func ExampleEFS_DeleteTags_shared00() {
 //
 // This operation describes all of the EFS file systems in an account.
 func ExampleEFS_DescribeFileSystems_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.DescribeFileSystemsInput{}
 
 	result, err := svc.DescribeFileSystems(input)
@@ -312,7 +312,7 @@ func ExampleEFS_DescribeFileSystems_shared00() {
 // uses the LifecycleConfiguration object to identify which files to move to the EFS
 // Infrequent Access (IA) storage class.
 func ExampleEFS_DescribeLifecycleConfiguration_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.DescribeLifecycleConfigurationInput{
 		FileSystemId: aws.String("fs-01234567"),
 	}
@@ -345,7 +345,7 @@ func ExampleEFS_DescribeLifecycleConfiguration_shared00() {
 //
 // This operation describes all of the security groups for a file system's mount target.
 func ExampleEFS_DescribeMountTargetSecurityGroups_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.DescribeMountTargetSecurityGroupsInput{
 		MountTargetId: aws.String("fsmt-12340abc"),
 	}
@@ -380,7 +380,7 @@ func ExampleEFS_DescribeMountTargetSecurityGroups_shared00() {
 //
 // This operation describes all of a file system's mount targets.
 func ExampleEFS_DescribeMountTargets_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.DescribeMountTargetsInput{
 		FileSystemId: aws.String("fs-01234567"),
 	}
@@ -417,7 +417,7 @@ func ExampleEFS_DescribeMountTargets_shared00() {
 //
 // This operation describes all of a file system's tags.
 func ExampleEFS_DescribeTags_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.DescribeTagsInput{
 		FileSystemId: aws.String("fs-01234567"),
 	}
@@ -451,7 +451,7 @@ func ExampleEFS_DescribeTags_shared00() {
 // This operation modifies the security groups associated with a mount target for a
 // file system.
 func ExampleEFS_ModifyMountTargetSecurityGroups_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.ModifyMountTargetSecurityGroupsInput{
 		MountTargetId: aws.String("fsmt-12340abc"),
 		SecurityGroups: []*string{
@@ -496,7 +496,7 @@ func ExampleEFS_ModifyMountTargetSecurityGroups_shared00() {
 // system are automatically transitioned to the lower-cost EFS Infrequent Access (IA)
 // storage class. A LifecycleConfiguration applies to all files in a file system.
 func ExampleEFS_PutLifecycleConfiguration_shared00() {
-	svc := efs.New(session.New())
+	svc := efs.New(session.Must(session.NewSession()))
 	input := &efs.PutLifecycleConfigurationInput{
 		FileSystemId: aws.String("fs-01234567"),
 		LifecyclePolicies: []*efs.LifecyclePolicy{

@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // The following example gets information about builds with the specified build IDs.
 func ExampleCodeBuild_BatchGetBuilds_shared00() {
-	svc := codebuild.New(session.New())
+	svc := codebuild.New(session.Must(session.NewSession()))
 	input := &codebuild.BatchGetBuildsInput{
 		Ids: []*string{
 			aws.String("codebuild-demo-project:9b0ac37f-d19e-4254-9079-f47e9a389eEX"),

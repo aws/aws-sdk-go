@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // This operation compares the largest face detected in the source image with each face
 // detected in the target image.
 func ExampleRekognition_CompareFaces_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.CompareFacesInput{
 		SimilarityThreshold: aws.Float64(90.000000),
 		SourceImage: &rekognition.Image{
@@ -85,7 +85,7 @@ func ExampleRekognition_CompareFaces_shared00() {
 //
 // This operation creates a Rekognition collection for storing image data.
 func ExampleRekognition_CreateCollection_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.CreateCollectionInput{
 		CollectionId: aws.String("myphotos"),
 	}
@@ -126,7 +126,7 @@ func ExampleRekognition_CreateCollection_shared00() {
 //
 // This operation deletes a Rekognition collection.
 func ExampleRekognition_DeleteCollection_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.DeleteCollectionInput{
 		CollectionId: aws.String("myphotos"),
 	}
@@ -165,7 +165,7 @@ func ExampleRekognition_DeleteCollection_shared00() {
 //
 // This operation deletes one or more faces from a Rekognition collection.
 func ExampleRekognition_DeleteFaces_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.DeleteFacesInput{
 		CollectionId: aws.String("myphotos"),
 		FaceIds: []*string{
@@ -207,7 +207,7 @@ func ExampleRekognition_DeleteFaces_shared00() {
 //
 // This operation detects faces in an image stored in an AWS S3 bucket.
 func ExampleRekognition_DetectFaces_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.DetectFacesInput{
 		Image: &rekognition.Image{
 			S3Object: &rekognition.S3Object{
@@ -255,7 +255,7 @@ func ExampleRekognition_DetectFaces_shared00() {
 //
 // This operation detects labels in the supplied image
 func ExampleRekognition_DetectLabels_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.DetectLabelsInput{
 		Image: &rekognition.Image{
 			S3Object: &rekognition.S3Object{
@@ -306,7 +306,7 @@ func ExampleRekognition_DetectLabels_shared00() {
 // This operation detects faces in an image and adds them to the specified Rekognition
 // collection.
 func ExampleRekognition_IndexFaces_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.IndexFacesInput{
 		CollectionId:    aws.String("myphotos"),
 		ExternalImageId: aws.String("myphotoid"),
@@ -360,7 +360,7 @@ func ExampleRekognition_IndexFaces_shared00() {
 //
 // This operation returns a list of Rekognition collections.
 func ExampleRekognition_ListCollections_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.ListCollectionsInput{}
 
 	result, err := svc.ListCollections(input)
@@ -399,7 +399,7 @@ func ExampleRekognition_ListCollections_shared00() {
 //
 // This operation lists the faces in a Rekognition collection.
 func ExampleRekognition_ListFaces_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.ListFacesInput{
 		CollectionId: aws.String("myphotos"),
 		MaxResults:   aws.Int64(20),
@@ -442,7 +442,7 @@ func ExampleRekognition_ListFaces_shared00() {
 // This operation searches for matching faces in the collection the supplied face belongs
 // to.
 func ExampleRekognition_SearchFaces_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.SearchFacesInput{
 		CollectionId:       aws.String("myphotos"),
 		FaceId:             aws.String("70008e50-75e4-55d0-8e80-363fb73b3a14"),
@@ -485,7 +485,7 @@ func ExampleRekognition_SearchFaces_shared00() {
 // This operation searches for faces in a Rekognition collection that match the largest
 // face in an S3 bucket stored image.
 func ExampleRekognition_SearchFacesByImage_shared00() {
-	svc := rekognition.New(session.New())
+	svc := rekognition.New(session.Must(session.NewSession()))
 	input := &rekognition.SearchFacesByImageInput{
 		CollectionId:       aws.String("myphotos"),
 		FaceMatchThreshold: aws.Float64(95.000000),

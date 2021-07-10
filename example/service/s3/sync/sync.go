@@ -102,9 +102,12 @@ func main() {
 	pathPtr := flag.String("path", "", "path of directory to be synced")
 	flag.Parse()
 
-	sess := session.New(&aws.Config{
+	sess, err := session.NewSession(&aws.Config{
 		Region: regionPtr,
 	})
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "unexpected error occurred during creating session: %v", err)
+	}
 	uploader := s3manager.NewUploader(sess)
 
 	iter := NewSyncFolderIterator(*pathPtr, *bucketPtr)

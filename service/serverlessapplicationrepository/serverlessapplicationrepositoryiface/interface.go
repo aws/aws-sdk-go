@@ -30,7 +30,7 @@ import (
 //    }
 //
 //    func main() {
-//        sess := session.New()
+//        sess := session.Must(session.NewSession())
 //        svc := serverlessapplicationrepository.New(sess)
 //
 //        myFunc(svc)

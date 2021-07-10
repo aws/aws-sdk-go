@@ -32,7 +32,7 @@ func parseTime(layout, value string) *time.Time {
 // reporting to track cost associated with AWS DMS resources, or used in a Condition
 // statement in an IAM policy for AWS DMS.
 func ExampleDatabaseMigrationService_AddTagsToResource_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.AddTagsToResourceInput{
 		ResourceArn: aws.String("arn:aws:dms:us-east-1:123456789012:endpoint:ASXWXJZLNWNT5HTWCGV2BUJQ7E"),
 		Tags: []*databasemigrationservice.Tag{
@@ -67,7 +67,7 @@ func ExampleDatabaseMigrationService_AddTagsToResource_shared00() {
 //
 // Creates an endpoint using the provided settings.
 func ExampleDatabaseMigrationService_CreateEndpoint_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.CreateEndpointInput{
 		CertificateArn:            aws.String(""),
 		DatabaseName:              aws.String("testdb"),
@@ -125,7 +125,7 @@ func ExampleDatabaseMigrationService_CreateEndpoint_shared00() {
 //
 // Creates the replication instance using the specified parameters.
 func ExampleDatabaseMigrationService_CreateReplicationInstance_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.CreateReplicationInstanceInput{
 		AllocatedStorage:                 aws.Int64(123),
 		AutoMinorVersionUpgrade:          aws.Bool(true),
@@ -188,7 +188,7 @@ func ExampleDatabaseMigrationService_CreateReplicationInstance_shared00() {
 //
 // Creates a replication subnet group given a list of the subnet IDs in a VPC.
 func ExampleDatabaseMigrationService_CreateReplicationSubnetGroup_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.CreateReplicationSubnetGroupInput{
 		ReplicationSubnetGroupDescription: aws.String("US West subnet group"),
 		ReplicationSubnetGroupIdentifier:  aws.String("us-west-2ab-vpc-215ds366"),
@@ -238,7 +238,7 @@ func ExampleDatabaseMigrationService_CreateReplicationSubnetGroup_shared00() {
 //
 // Creates a replication task using the specified parameters.
 func ExampleDatabaseMigrationService_CreateReplicationTask_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.CreateReplicationTaskInput{
 		CdcStartTime:              parseTime("2006-01-02T15:04:05.999999999Z", "2016-12-14T18:25:43Z"),
 		MigrationType:             aws.String("full-load"),
@@ -290,7 +290,7 @@ func ExampleDatabaseMigrationService_CreateReplicationTask_shared00() {
 //
 // Deletes the specified certificate.
 func ExampleDatabaseMigrationService_DeleteCertificate_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DeleteCertificateInput{
 		CertificateArn: aws.String("arn:aws:dms:us-east-1:123456789012:rep:6UTDJGBOUSM457DE6XFJCJQ"),
 	}
@@ -321,7 +321,7 @@ func ExampleDatabaseMigrationService_DeleteCertificate_shared00() {
 //
 // Deletes the connection between the replication instance and the endpoint.
 func ExampleDatabaseMigrationService_DeleteConnection_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DeleteConnectionInput{
 		EndpointArn:            aws.String("arn:aws:dms:us-east-1:123456789012:endpoint:RAAR3R22XSH46S3PWLC3NJAWKM"),
 		ReplicationInstanceArn: aws.String("arn:aws:dms:us-east-1:123456789012:rep:6UTDJGBOUS3VI3SUWA66XFJCJQ"),
@@ -356,7 +356,7 @@ func ExampleDatabaseMigrationService_DeleteConnection_shared00() {
 // Deletes the specified endpoint. All tasks associated with the endpoint must be deleted
 // before you can delete the endpoint.
 func ExampleDatabaseMigrationService_DeleteEndpoint_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DeleteEndpointInput{
 		EndpointArn: aws.String("arn:aws:dms:us-east-1:123456789012:endpoint:RAAR3R22XSH46S3PWLC3NJAWKM"),
 	}
@@ -388,7 +388,7 @@ func ExampleDatabaseMigrationService_DeleteEndpoint_shared00() {
 // Deletes the specified replication instance. You must delete any migration tasks that
 // are associated with the replication instance before you can delete it.
 func ExampleDatabaseMigrationService_DeleteReplicationInstance_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DeleteReplicationInstanceInput{
 		ReplicationInstanceArn: aws.String("arn:aws:dms:us-east-1:123456789012:rep:6UTDJGBOUS3VI3SUWA66XFJCJQ"),
 	}
@@ -419,7 +419,7 @@ func ExampleDatabaseMigrationService_DeleteReplicationInstance_shared00() {
 //
 // Deletes a replication subnet group.
 func ExampleDatabaseMigrationService_DeleteReplicationSubnetGroup_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DeleteReplicationSubnetGroupInput{
 		ReplicationSubnetGroupIdentifier: aws.String("us-west-2ab-vpc-215ds366"),
 	}
@@ -450,7 +450,7 @@ func ExampleDatabaseMigrationService_DeleteReplicationSubnetGroup_shared00() {
 //
 // Deletes the specified replication task.
 func ExampleDatabaseMigrationService_DeleteReplicationTask_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DeleteReplicationTaskInput{
 		ReplicationTaskArn: aws.String("arn:aws:dms:us-east-1:123456789012:rep:6UTDJGBOUS3VI3SUWA66XFJCJQ"),
 	}
@@ -484,7 +484,7 @@ func ExampleDatabaseMigrationService_DeleteReplicationTask_shared00() {
 // The description for a quota includes the quota name, current usage toward that quota,
 // and the quota's maximum value. This operation does not take any parameters.
 func ExampleDatabaseMigrationService_DescribeAccountAttributes_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeAccountAttributesInput{}
 
 	result, err := svc.DescribeAccountAttributes(input)
@@ -509,7 +509,7 @@ func ExampleDatabaseMigrationService_DescribeAccountAttributes_shared00() {
 //
 // Provides a description of the certificate.
 func ExampleDatabaseMigrationService_DescribeCertificates_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeCertificatesInput{
 		Filters: []*databasemigrationservice.Filter{
 			{
@@ -549,7 +549,7 @@ func ExampleDatabaseMigrationService_DescribeCertificates_shared00() {
 // Describes the status of the connections that have been made between the replication
 // instance and an endpoint. Connections are created when you test an endpoint.
 func ExampleDatabaseMigrationService_DescribeConnections_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeConnectionsInput{
 		Filters: []*databasemigrationservice.Filter{
 			{
@@ -588,7 +588,7 @@ func ExampleDatabaseMigrationService_DescribeConnections_shared00() {
 //
 // Returns information about the type of endpoints available.
 func ExampleDatabaseMigrationService_DescribeEndpointTypes_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeEndpointTypesInput{
 		Filters: []*databasemigrationservice.Filter{
 			{
@@ -625,7 +625,7 @@ func ExampleDatabaseMigrationService_DescribeEndpointTypes_shared00() {
 //
 // Returns information about the endpoints for your account in the current region.
 func ExampleDatabaseMigrationService_DescribeEndpoints_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeEndpointsInput{
 		Filters: []*databasemigrationservice.Filter{
 			{
@@ -665,7 +665,7 @@ func ExampleDatabaseMigrationService_DescribeEndpoints_shared00() {
 // Returns information about the replication instance types that can be created in the
 // specified region.
 func ExampleDatabaseMigrationService_DescribeOrderableReplicationInstances_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeOrderableReplicationInstancesInput{
 		Marker:     aws.String(""),
 		MaxRecords: aws.Int64(123),
@@ -693,7 +693,7 @@ func ExampleDatabaseMigrationService_DescribeOrderableReplicationInstances_share
 //
 // Returns the status of the refresh-schemas operation.
 func ExampleDatabaseMigrationService_DescribeRefreshSchemasStatus_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeRefreshSchemasStatusInput{
 		EndpointArn: aws.String(""),
 	}
@@ -724,7 +724,7 @@ func ExampleDatabaseMigrationService_DescribeRefreshSchemasStatus_shared00() {
 //
 // Returns the status of the refresh-schemas operation.
 func ExampleDatabaseMigrationService_DescribeReplicationInstances_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeReplicationInstancesInput{
 		Filters: []*databasemigrationservice.Filter{
 			{
@@ -763,7 +763,7 @@ func ExampleDatabaseMigrationService_DescribeReplicationInstances_shared00() {
 //
 // Returns information about the replication subnet groups.
 func ExampleDatabaseMigrationService_DescribeReplicationSubnetGroups_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeReplicationSubnetGroupsInput{
 		Filters: []*databasemigrationservice.Filter{
 			{
@@ -802,7 +802,7 @@ func ExampleDatabaseMigrationService_DescribeReplicationSubnetGroups_shared00() 
 //
 // Returns information about replication tasks for your account in the current region.
 func ExampleDatabaseMigrationService_DescribeReplicationTasks_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeReplicationTasksInput{
 		Filters: []*databasemigrationservice.Filter{
 			{
@@ -841,7 +841,7 @@ func ExampleDatabaseMigrationService_DescribeReplicationTasks_shared00() {
 //
 // Returns information about the schema for the specified endpoint.
 func ExampleDatabaseMigrationService_DescribeSchemas_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeSchemasInput{
 		EndpointArn: aws.String(""),
 		Marker:      aws.String(""),
@@ -875,7 +875,7 @@ func ExampleDatabaseMigrationService_DescribeSchemas_shared00() {
 // Returns table statistics on the database migration task, including table name, rows
 // inserted, rows updated, and rows deleted.
 func ExampleDatabaseMigrationService_DescribeTableStatistics_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.DescribeTableStatisticsInput{
 		Marker:             aws.String(""),
 		MaxRecords:         aws.Int64(123),
@@ -908,7 +908,7 @@ func ExampleDatabaseMigrationService_DescribeTableStatistics_shared00() {
 //
 // Uploads the specified certificate.
 func ExampleDatabaseMigrationService_ImportCertificate_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.ImportCertificateInput{
 		CertificateIdentifier: aws.String(""),
 		CertificatePem:        aws.String(""),
@@ -942,7 +942,7 @@ func ExampleDatabaseMigrationService_ImportCertificate_shared00() {
 //
 // Lists all tags for an AWS DMS resource.
 func ExampleDatabaseMigrationService_ListTagsForResource_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.ListTagsForResourceInput{
 		ResourceArn: aws.String(""),
 	}
@@ -971,7 +971,7 @@ func ExampleDatabaseMigrationService_ListTagsForResource_shared00() {
 //
 // Modifies the specified endpoint.
 func ExampleDatabaseMigrationService_ModifyEndpoint_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.ModifyEndpointInput{
 		CertificateArn:            aws.String(""),
 		DatabaseName:              aws.String(""),
@@ -1021,7 +1021,7 @@ func ExampleDatabaseMigrationService_ModifyEndpoint_shared00() {
 // parameters by specifying these parameters and the new values in the request. Some
 // settings are applied during the maintenance window.
 func ExampleDatabaseMigrationService_ModifyReplicationInstance_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.ModifyReplicationInstanceInput{
 		AllocatedStorage:              aws.Int64(123),
 		AllowMajorVersionUpgrade:      aws.Bool(true),
@@ -1071,7 +1071,7 @@ func ExampleDatabaseMigrationService_ModifyReplicationInstance_shared00() {
 //
 // Modifies the settings for the specified replication subnet group.
 func ExampleDatabaseMigrationService_ModifyReplicationSubnetGroup_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.ModifyReplicationSubnetGroupInput{
 		ReplicationSubnetGroupDescription: aws.String(""),
 		ReplicationSubnetGroupIdentifier:  aws.String(""),
@@ -1113,7 +1113,7 @@ func ExampleDatabaseMigrationService_ModifyReplicationSubnetGroup_shared00() {
 // and can take several minutes. You can check the status of this operation by calling
 // the describe-refresh-schemas-status operation.
 func ExampleDatabaseMigrationService_RefreshSchemas_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.RefreshSchemasInput{
 		EndpointArn:            aws.String(""),
 		ReplicationInstanceArn: aws.String(""),
@@ -1149,7 +1149,7 @@ func ExampleDatabaseMigrationService_RefreshSchemas_shared00() {
 //
 // Removes metadata tags from an AWS DMS resource.
 func ExampleDatabaseMigrationService_RemoveTagsFromResource_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.RemoveTagsFromResourceInput{
 		ResourceArn: aws.String("arn:aws:dms:us-east-1:123456789012:endpoint:ASXWXJZLNWNT5HTWCGV2BUJQ7E"),
 	}
@@ -1178,7 +1178,7 @@ func ExampleDatabaseMigrationService_RemoveTagsFromResource_shared00() {
 //
 // Starts the replication task.
 func ExampleDatabaseMigrationService_StartReplicationTask_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.StartReplicationTaskInput{
 		CdcStartTime:             parseTime("2006-01-02T15:04:05.999999999Z", "2016-12-14T13:33:20Z"),
 		ReplicationTaskArn:       aws.String("arn:aws:dms:us-east-1:123456789012:rep:6UTDJGBOUS3VI3SUWA66XFJCJQ"),
@@ -1213,7 +1213,7 @@ func ExampleDatabaseMigrationService_StartReplicationTask_shared00() {
 //
 // Stops the replication task.
 func ExampleDatabaseMigrationService_StopReplicationTask_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.StopReplicationTaskInput{
 		ReplicationTaskArn: aws.String("arn:aws:dms:us-east-1:123456789012:endpoint:ASXWXJZLNWNT5HTWCGV2BUJQ7E"),
 	}
@@ -1244,7 +1244,7 @@ func ExampleDatabaseMigrationService_StopReplicationTask_shared00() {
 //
 // Tests the connection between the replication instance and the endpoint.
 func ExampleDatabaseMigrationService_TestConnection_shared00() {
-	svc := databasemigrationservice.New(session.New())
+	svc := databasemigrationservice.New(session.Must(session.NewSession()))
 	input := &databasemigrationservice.TestConnectionInput{
 		EndpointArn:            aws.String("arn:aws:dms:us-east-1:123456789012:endpoint:RAAR3R22XSH46S3PWLC3NJAWKM"),
 		ReplicationInstanceArn: aws.String("arn:aws:dms:us-east-1:123456789012:rep:6UTDJGBOUS3VI3SUWA66XFJCJQ"),

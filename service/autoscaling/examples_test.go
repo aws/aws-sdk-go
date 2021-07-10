@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // This example attaches the specified instance to the specified Auto Scaling group.
 func ExampleAutoScaling_AttachInstances_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.AttachInstancesInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		InstanceIds: []*string{
@@ -63,7 +63,7 @@ func ExampleAutoScaling_AttachInstances_shared00() {
 //
 // This example attaches the specified target group to the specified Auto Scaling group.
 func ExampleAutoScaling_AttachLoadBalancerTargetGroups_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.AttachLoadBalancerTargetGroupsInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		TargetGroupARNs: []*string{
@@ -97,7 +97,7 @@ func ExampleAutoScaling_AttachLoadBalancerTargetGroups_shared00() {
 //
 // This example attaches the specified load balancer to the specified Auto Scaling group.
 func ExampleAutoScaling_AttachLoadBalancers_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.AttachLoadBalancersInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		LoadBalancerNames: []*string{
@@ -131,7 +131,7 @@ func ExampleAutoScaling_AttachLoadBalancers_shared00() {
 //
 // This example cancels an instance refresh operation in progress.
 func ExampleAutoScaling_CancelInstanceRefresh_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.CancelInstanceRefreshInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -165,7 +165,7 @@ func ExampleAutoScaling_CancelInstanceRefresh_shared00() {
 // This example notifies Auto Scaling that the specified lifecycle action is complete
 // so that it can finish launching or terminating the instance.
 func ExampleAutoScaling_CompleteLifecycleAction_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.CompleteLifecycleActionInput{
 		AutoScalingGroupName:  aws.String("my-auto-scaling-group"),
 		LifecycleActionResult: aws.String("CONTINUE"),
@@ -197,7 +197,7 @@ func ExampleAutoScaling_CompleteLifecycleAction_shared00() {
 //
 // This example creates an Auto Scaling group.
 func ExampleAutoScaling_CreateAutoScalingGroup_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.CreateAutoScalingGroupInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		LaunchTemplate: &autoscaling.LaunchTemplateSpecification{
@@ -240,7 +240,7 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared00() {
 //
 // This example creates an Auto Scaling group and attaches the specified target group.
 func ExampleAutoScaling_CreateAutoScalingGroup_shared01() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.CreateAutoScalingGroupInput{
 		AutoScalingGroupName:   aws.String("my-auto-scaling-group"),
 		HealthCheckGracePeriod: aws.Int64(300),
@@ -289,7 +289,7 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared01() {
 // the c5.large, c5a.large, and c6g.large instance types and defines a different launch
 // template for the c6g.large instance type.
 func ExampleAutoScaling_CreateAutoScalingGroup_shared02() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.CreateAutoScalingGroupInput{
 		AutoScalingGroupName: aws.String("my-asg"),
 		DesiredCapacity:      aws.Int64(3),
@@ -356,7 +356,7 @@ func ExampleAutoScaling_CreateAutoScalingGroup_shared02() {
 //
 // This example creates a launch configuration.
 func ExampleAutoScaling_CreateLaunchConfiguration_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.CreateLaunchConfigurationInput{
 		IamInstanceProfile:      aws.String("my-iam-role"),
 		ImageId:                 aws.String("ami-12345678"),
@@ -395,7 +395,7 @@ func ExampleAutoScaling_CreateLaunchConfiguration_shared00() {
 //
 // This example adds two tags to the specified Auto Scaling group.
 func ExampleAutoScaling_CreateOrUpdateTags_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.CreateOrUpdateTagsInput{
 		Tags: []*autoscaling.Tag{
 			{
@@ -445,7 +445,7 @@ func ExampleAutoScaling_CreateOrUpdateTags_shared00() {
 //
 // This example deletes the specified Auto Scaling group.
 func ExampleAutoScaling_DeleteAutoScalingGroup_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DeleteAutoScalingGroupInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -478,7 +478,7 @@ func ExampleAutoScaling_DeleteAutoScalingGroup_shared00() {
 //
 // This example deletes the specified Auto Scaling group and all its instances.
 func ExampleAutoScaling_DeleteAutoScalingGroup_shared01() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DeleteAutoScalingGroupInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		ForceDelete:          aws.Bool(true),
@@ -512,7 +512,7 @@ func ExampleAutoScaling_DeleteAutoScalingGroup_shared01() {
 //
 // This example deletes the specified launch configuration.
 func ExampleAutoScaling_DeleteLaunchConfiguration_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DeleteLaunchConfigurationInput{
 		LaunchConfigurationName: aws.String("my-launch-config"),
 	}
@@ -543,7 +543,7 @@ func ExampleAutoScaling_DeleteLaunchConfiguration_shared00() {
 //
 // This example deletes the specified lifecycle hook.
 func ExampleAutoScaling_DeleteLifecycleHook_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DeleteLifecycleHookInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		LifecycleHookName:    aws.String("my-lifecycle-hook"),
@@ -573,7 +573,7 @@ func ExampleAutoScaling_DeleteLifecycleHook_shared00() {
 //
 // This example deletes the specified notification from the specified Auto Scaling group.
 func ExampleAutoScaling_DeleteNotificationConfiguration_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DeleteNotificationConfigurationInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		TopicARN:             aws.String("arn:aws:sns:us-west-2:123456789012:my-sns-topic"),
@@ -603,7 +603,7 @@ func ExampleAutoScaling_DeleteNotificationConfiguration_shared00() {
 //
 // This example deletes the specified Auto Scaling policy.
 func ExampleAutoScaling_DeletePolicy_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DeletePolicyInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		PolicyName:           aws.String("my-step-scale-out-policy"),
@@ -636,7 +636,7 @@ func ExampleAutoScaling_DeletePolicy_shared00() {
 // This example deletes the specified scheduled action from the specified Auto Scaling
 // group.
 func ExampleAutoScaling_DeleteScheduledAction_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DeleteScheduledActionInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		ScheduledActionName:  aws.String("my-scheduled-action"),
@@ -666,7 +666,7 @@ func ExampleAutoScaling_DeleteScheduledAction_shared00() {
 //
 // This example deletes the specified tag from the specified Auto Scaling group.
 func ExampleAutoScaling_DeleteTags_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DeleteTagsInput{
 		Tags: []*autoscaling.Tag{
 			{
@@ -704,7 +704,7 @@ func ExampleAutoScaling_DeleteTags_shared00() {
 //
 // This example describes the Amazon EC2 Auto Scaling service quotas for your account.
 func ExampleAutoScaling_DescribeAccountLimits_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeAccountLimitsInput{}
 
 	result, err := svc.DescribeAccountLimits(input)
@@ -731,7 +731,7 @@ func ExampleAutoScaling_DescribeAccountLimits_shared00() {
 //
 // This example describes the available adjustment types.
 func ExampleAutoScaling_DescribeAdjustmentTypes_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeAdjustmentTypesInput{}
 
 	result, err := svc.DescribeAdjustmentTypes(input)
@@ -758,7 +758,7 @@ func ExampleAutoScaling_DescribeAdjustmentTypes_shared00() {
 //
 // This example describes the specified Auto Scaling group.
 func ExampleAutoScaling_DescribeAutoScalingGroups_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeAutoScalingGroupsInput{
 		AutoScalingGroupNames: []*string{
 			aws.String("my-auto-scaling-group"),
@@ -791,7 +791,7 @@ func ExampleAutoScaling_DescribeAutoScalingGroups_shared00() {
 //
 // This example describes the specified Auto Scaling instance.
 func ExampleAutoScaling_DescribeAutoScalingInstances_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeAutoScalingInstancesInput{
 		InstanceIds: []*string{
 			aws.String("i-4ba0837f"),
@@ -824,7 +824,7 @@ func ExampleAutoScaling_DescribeAutoScalingInstances_shared00() {
 //
 // This example describes the available notification types.
 func ExampleAutoScaling_DescribeAutoScalingNotificationTypes_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeAutoScalingNotificationTypesInput{}
 
 	result, err := svc.DescribeAutoScalingNotificationTypes(input)
@@ -851,7 +851,7 @@ func ExampleAutoScaling_DescribeAutoScalingNotificationTypes_shared00() {
 //
 // This example describes the instance refreshes for the specified Auto Scaling group.
 func ExampleAutoScaling_DescribeInstanceRefreshes_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeInstanceRefreshesInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -882,7 +882,7 @@ func ExampleAutoScaling_DescribeInstanceRefreshes_shared00() {
 //
 // This example describes the specified launch configuration.
 func ExampleAutoScaling_DescribeLaunchConfigurations_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeLaunchConfigurationsInput{
 		LaunchConfigurationNames: []*string{
 			aws.String("my-launch-config"),
@@ -915,7 +915,7 @@ func ExampleAutoScaling_DescribeLaunchConfigurations_shared00() {
 //
 // This example describes the available lifecycle hook types.
 func ExampleAutoScaling_DescribeLifecycleHookTypes_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeLifecycleHookTypesInput{}
 
 	result, err := svc.DescribeLifecycleHookTypes(input)
@@ -942,7 +942,7 @@ func ExampleAutoScaling_DescribeLifecycleHookTypes_shared00() {
 //
 // This example describes the lifecycle hooks for the specified Auto Scaling group.
 func ExampleAutoScaling_DescribeLifecycleHooks_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeLifecycleHooksInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -971,7 +971,7 @@ func ExampleAutoScaling_DescribeLifecycleHooks_shared00() {
 //
 // This example describes the target groups attached to the specified Auto Scaling group.
 func ExampleAutoScaling_DescribeLoadBalancerTargetGroups_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeLoadBalancerTargetGroupsInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -1001,7 +1001,7 @@ func ExampleAutoScaling_DescribeLoadBalancerTargetGroups_shared00() {
 // This example describes the load balancers attached to the specified Auto Scaling
 // group.
 func ExampleAutoScaling_DescribeLoadBalancers_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeLoadBalancersInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -1030,7 +1030,7 @@ func ExampleAutoScaling_DescribeLoadBalancers_shared00() {
 //
 // This example describes the available metric collection types.
 func ExampleAutoScaling_DescribeMetricCollectionTypes_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeMetricCollectionTypesInput{}
 
 	result, err := svc.DescribeMetricCollectionTypes(input)
@@ -1058,7 +1058,7 @@ func ExampleAutoScaling_DescribeMetricCollectionTypes_shared00() {
 // This example describes the notification configurations for the specified Auto Scaling
 // group.
 func ExampleAutoScaling_DescribeNotificationConfigurations_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeNotificationConfigurationsInput{
 		AutoScalingGroupNames: []*string{
 			aws.String("my-auto-scaling-group"),
@@ -1091,7 +1091,7 @@ func ExampleAutoScaling_DescribeNotificationConfigurations_shared00() {
 //
 // This example describes the policies for the specified Auto Scaling group.
 func ExampleAutoScaling_DescribePolicies_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribePoliciesInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -1124,7 +1124,7 @@ func ExampleAutoScaling_DescribePolicies_shared00() {
 //
 // This example describes the scaling activities for the specified Auto Scaling group.
 func ExampleAutoScaling_DescribeScalingActivities_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeScalingActivitiesInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -1155,7 +1155,7 @@ func ExampleAutoScaling_DescribeScalingActivities_shared00() {
 //
 // This example describes the Auto Scaling process types.
 func ExampleAutoScaling_DescribeScalingProcessTypes_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeScalingProcessTypesInput{}
 
 	result, err := svc.DescribeScalingProcessTypes(input)
@@ -1182,7 +1182,7 @@ func ExampleAutoScaling_DescribeScalingProcessTypes_shared00() {
 //
 // This example describes the scheduled actions for the specified Auto Scaling group.
 func ExampleAutoScaling_DescribeScheduledActions_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeScheduledActionsInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 	}
@@ -1213,7 +1213,7 @@ func ExampleAutoScaling_DescribeScheduledActions_shared00() {
 //
 // This example describes the tags for the specified Auto Scaling group.
 func ExampleAutoScaling_DescribeTags_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeTagsInput{
 		Filters: []*autoscaling.Filter{
 			{
@@ -1251,7 +1251,7 @@ func ExampleAutoScaling_DescribeTags_shared00() {
 //
 // This example describes the available termination policy types.
 func ExampleAutoScaling_DescribeTerminationPolicyTypes_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DescribeTerminationPolicyTypesInput{}
 
 	result, err := svc.DescribeTerminationPolicyTypes(input)
@@ -1278,7 +1278,7 @@ func ExampleAutoScaling_DescribeTerminationPolicyTypes_shared00() {
 //
 // This example detaches the specified instance from the specified Auto Scaling group.
 func ExampleAutoScaling_DetachInstances_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DetachInstancesInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		InstanceIds: []*string{
@@ -1312,7 +1312,7 @@ func ExampleAutoScaling_DetachInstances_shared00() {
 // This example detaches the specified target group from the specified Auto Scaling
 // group
 func ExampleAutoScaling_DetachLoadBalancerTargetGroups_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DetachLoadBalancerTargetGroupsInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		TargetGroupARNs: []*string{
@@ -1345,7 +1345,7 @@ func ExampleAutoScaling_DetachLoadBalancerTargetGroups_shared00() {
 // This example detaches the specified load balancer from the specified Auto Scaling
 // group.
 func ExampleAutoScaling_DetachLoadBalancers_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DetachLoadBalancersInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		LoadBalancerNames: []*string{
@@ -1378,7 +1378,7 @@ func ExampleAutoScaling_DetachLoadBalancers_shared00() {
 // This example disables collecting data for the GroupDesiredCapacity metric for the
 // specified Auto Scaling group.
 func ExampleAutoScaling_DisableMetricsCollection_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.DisableMetricsCollectionInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		Metrics: []*string{
@@ -1410,7 +1410,7 @@ func ExampleAutoScaling_DisableMetricsCollection_shared00() {
 //
 // This example enables data collection for the specified Auto Scaling group.
 func ExampleAutoScaling_EnableMetricsCollection_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.EnableMetricsCollectionInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		Granularity:          aws.String("1Minute"),
@@ -1440,7 +1440,7 @@ func ExampleAutoScaling_EnableMetricsCollection_shared00() {
 //
 // This example puts the specified instance into standby mode.
 func ExampleAutoScaling_EnterStandby_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.EnterStandbyInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		InstanceIds: []*string{
@@ -1473,7 +1473,7 @@ func ExampleAutoScaling_EnterStandby_shared00() {
 //
 // This example executes the specified policy.
 func ExampleAutoScaling_ExecutePolicy_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.ExecutePolicyInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		BreachThreshold:      aws.Float64(50.000000),
@@ -1507,7 +1507,7 @@ func ExampleAutoScaling_ExecutePolicy_shared00() {
 //
 // This example moves the specified instance out of standby mode.
 func ExampleAutoScaling_ExitStandby_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.ExitStandbyInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		InstanceIds: []*string{
@@ -1539,7 +1539,7 @@ func ExampleAutoScaling_ExitStandby_shared00() {
 //
 // This example creates a lifecycle hook.
 func ExampleAutoScaling_PutLifecycleHook_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.PutLifecycleHookInput{
 		AutoScalingGroupName:  aws.String("my-auto-scaling-group"),
 		LifecycleHookName:     aws.String("my-lifecycle-hook"),
@@ -1574,7 +1574,7 @@ func ExampleAutoScaling_PutLifecycleHook_shared00() {
 //
 // This example adds the specified notification to the specified Auto Scaling group.
 func ExampleAutoScaling_PutNotificationConfiguration_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.PutNotificationConfigurationInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		NotificationTypes: []*string{
@@ -1611,7 +1611,7 @@ func ExampleAutoScaling_PutNotificationConfiguration_shared00() {
 //
 // This example adds the specified policy to the specified Auto Scaling group.
 func ExampleAutoScaling_PutScalingPolicy_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.PutScalingPolicyInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		PolicyName:           aws.String("alb1000-target-tracking-scaling-policy"),
@@ -1653,7 +1653,7 @@ func ExampleAutoScaling_PutScalingPolicy_shared00() {
 //
 // This example adds the specified scheduled action to the specified Auto Scaling group.
 func ExampleAutoScaling_PutScheduledUpdateGroupAction_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.PutScheduledUpdateGroupActionInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		DesiredCapacity:      aws.Int64(4),
@@ -1726,7 +1726,7 @@ func ExampleAutoScaling_PutWarmPool_shared00() {
 // This example records a lifecycle action heartbeat to keep the instance in a pending
 // state.
 func ExampleAutoScaling_RecordLifecycleActionHeartbeat_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.RecordLifecycleActionHeartbeatInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		LifecycleActionToken: aws.String("bcd2f1b8-9a78-44d3-8a7a-4dd07d7cf635"),
@@ -1758,7 +1758,7 @@ func ExampleAutoScaling_RecordLifecycleActionHeartbeat_shared00() {
 // This example resumes the specified suspended scaling process for the specified Auto
 // Scaling group.
 func ExampleAutoScaling_ResumeProcesses_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.ScalingProcessQuery{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		ScalingProcesses: []*string{
@@ -1792,7 +1792,7 @@ func ExampleAutoScaling_ResumeProcesses_shared00() {
 //
 // This example sets the desired capacity for the specified Auto Scaling group.
 func ExampleAutoScaling_SetDesiredCapacity_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.SetDesiredCapacityInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		DesiredCapacity:      aws.Int64(2),
@@ -1825,7 +1825,7 @@ func ExampleAutoScaling_SetDesiredCapacity_shared00() {
 //
 // This example sets the health status of the specified instance to Unhealthy.
 func ExampleAutoScaling_SetInstanceHealth_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.SetInstanceHealthInput{
 		HealthStatus: aws.String("Unhealthy"),
 		InstanceId:   aws.String("i-93633f9b"),
@@ -1855,7 +1855,7 @@ func ExampleAutoScaling_SetInstanceHealth_shared00() {
 //
 // This example enables instance protection for the specified instance.
 func ExampleAutoScaling_SetInstanceProtection_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.SetInstanceProtectionInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		InstanceIds: []*string{
@@ -1890,7 +1890,7 @@ func ExampleAutoScaling_SetInstanceProtection_shared00() {
 //
 // This example disables instance protection for the specified instance.
 func ExampleAutoScaling_SetInstanceProtection_shared01() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.SetInstanceProtectionInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		InstanceIds: []*string{
@@ -1925,7 +1925,7 @@ func ExampleAutoScaling_SetInstanceProtection_shared01() {
 //
 // This example starts an instance refresh for the specified Auto Scaling group.
 func ExampleAutoScaling_StartInstanceRefresh_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.StartInstanceRefreshInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		Preferences: &autoscaling.RefreshPreferences{
@@ -1963,7 +1963,7 @@ func ExampleAutoScaling_StartInstanceRefresh_shared00() {
 // This example suspends the specified scaling process for the specified Auto Scaling
 // group.
 func ExampleAutoScaling_SuspendProcesses_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.ScalingProcessQuery{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		ScalingProcesses: []*string{
@@ -1999,7 +1999,7 @@ func ExampleAutoScaling_SuspendProcesses_shared00() {
 // without updating the size of the group. Auto Scaling launches a replacement instance
 // after the specified instance terminates.
 func ExampleAutoScaling_TerminateInstanceInAutoScalingGroup_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.TerminateInstanceInAutoScalingGroupInput{
 		InstanceId:                     aws.String("i-93633f9b"),
 		ShouldDecrementDesiredCapacity: aws.Bool(false),
@@ -2031,7 +2031,7 @@ func ExampleAutoScaling_TerminateInstanceInAutoScalingGroup_shared00() {
 //
 // This example updates the launch configuration of the specified Auto Scaling group.
 func ExampleAutoScaling_UpdateAutoScalingGroup_shared00() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.UpdateAutoScalingGroupInput{
 		AutoScalingGroupName:    aws.String("my-auto-scaling-group"),
 		LaunchConfigurationName: aws.String("new-launch-config"),
@@ -2066,7 +2066,7 @@ func ExampleAutoScaling_UpdateAutoScalingGroup_shared00() {
 // This example updates the minimum size and maximum size of the specified Auto Scaling
 // group.
 func ExampleAutoScaling_UpdateAutoScalingGroup_shared01() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.UpdateAutoScalingGroupInput{
 		AutoScalingGroupName: aws.String("my-auto-scaling-group"),
 		MaxSize:              aws.Int64(3),
@@ -2101,7 +2101,7 @@ func ExampleAutoScaling_UpdateAutoScalingGroup_shared01() {
 //
 // This example enables instance protection for the specified Auto Scaling group.
 func ExampleAutoScaling_UpdateAutoScalingGroup_shared02() {
-	svc := autoscaling.New(session.New())
+	svc := autoscaling.New(session.Must(session.NewSession()))
 	input := &autoscaling.UpdateAutoScalingGroupInput{
 		AutoScalingGroupName:             aws.String("my-auto-scaling-group"),
 		NewInstancesProtectedFromScaleIn: aws.Bool(true),

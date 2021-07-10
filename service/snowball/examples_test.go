@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // This operation cancels a cluster job. You can only cancel a cluster job while it's
 // in the AwaitingQuorum status.
 func ExampleSnowball_CancelCluster_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.CancelClusterInput{
 		ClusterId: aws.String("CID123e4567-e89b-12d3-a456-426655440000"),
 	}
@@ -64,7 +64,7 @@ func ExampleSnowball_CancelCluster_shared00() {
 // This operation cancels a job. You can only cancel a job before its JobState value
 // changes to PreparingAppliance.
 func ExampleSnowball_CancelJob_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.CancelJobInput{
 		JobId: aws.String("JID123e4567-e89b-12d3-a456-426655440000"),
 	}
@@ -99,7 +99,7 @@ func ExampleSnowball_CancelJob_shared00() {
 // of creation. The address you provide must be located within the serviceable area
 // of your region. If the address is invalid or unsupported, then an exception is thrown.
 func ExampleSnowball_CreateAddress_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.CreateAddressInput{
 		Address: &snowball.Address{
 			City:            aws.String("Seattle"),
@@ -141,7 +141,7 @@ func ExampleSnowball_CreateAddress_shared00() {
 // action separately to create the jobs for each of these nodes. The cluster does not
 // ship until these five node jobs have been created.
 func ExampleSnowball_CreateCluster_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.CreateClusterInput{
 		AddressId:   aws.String("ADID1234ab12-3eec-4eb3-9be6-9374c10eb51b"),
 		Description: aws.String("MyCluster"),
@@ -197,7 +197,7 @@ func ExampleSnowball_CreateCluster_shared00() {
 // only need to provide the clusterId value; the other job attributes are inherited
 // from the cluster.
 func ExampleSnowball_CreateJob_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.CreateJobInput{
 		AddressId:   aws.String("ADID1234ab12-3eec-4eb3-9be6-9374c10eb51b"),
 		Description: aws.String("My Job"),
@@ -252,7 +252,7 @@ func ExampleSnowball_CreateJob_shared00() {
 //
 // This operation describes an address for a job.
 func ExampleSnowball_DescribeAddress_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.DescribeAddressInput{
 		AddressId: aws.String("ADID1234ab12-3eec-4eb3-9be6-9374c10eb51b"),
 	}
@@ -283,7 +283,7 @@ func ExampleSnowball_DescribeAddress_shared00() {
 // Calling this API in one of the US regions will return addresses from the list of
 // all addresses associated with this account in all US regions.
 func ExampleSnowball_DescribeAddresses_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.DescribeAddressesInput{}
 
 	result, err := svc.DescribeAddresses(input)
@@ -313,7 +313,7 @@ func ExampleSnowball_DescribeAddresses_shared00() {
 // Returns information about a specific cluster including shipping information, cluster
 // status, and other important metadata.
 func ExampleSnowball_DescribeCluster_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.DescribeClusterInput{
 		ClusterId: aws.String("CID123e4567-e89b-12d3-a456-426655440000"),
 	}
@@ -342,7 +342,7 @@ func ExampleSnowball_DescribeCluster_shared00() {
 //
 // This operation describes a job you've created for AWS Snowball.
 func ExampleSnowball_DescribeJob_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.DescribeJobInput{
 		JobId: aws.String("JID123e4567-e89b-12d3-a456-426655440000"),
 	}
@@ -387,7 +387,7 @@ func ExampleSnowball_DescribeJob_shared00() {
 // The credentials of a given job, including its manifest file and unlock code, expire
 // 90 days after the job is created.
 func ExampleSnowball_GetJobManifest_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.GetJobManifestInput{
 		JobId: aws.String("JID123e4567-e89b-12d3-a456-426655440000"),
 	}
@@ -429,7 +429,7 @@ func ExampleSnowball_GetJobManifest_shared00() {
 // prevent unauthorized parties from gaining access to the Snowball associated with
 // that job.
 func ExampleSnowball_GetJobUnlockCode_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.GetJobUnlockCodeInput{
 		JobId: aws.String("JID123e4567-e89b-12d3-a456-426655440000"),
 	}
@@ -464,7 +464,7 @@ func ExampleSnowball_GetJobUnlockCode_shared00() {
 // The default service limit for the number of Snowballs that you can have at one time
 // is 1. If you want to increase your service limit, contact AWS Support.
 func ExampleSnowball_GetSnowballUsage_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.GetSnowballUsageInput{}
 
 	result, err := svc.GetSnowballUsage(input)
@@ -491,7 +491,7 @@ func ExampleSnowball_GetSnowballUsage_shared00() {
 // object is for a job in the specified cluster and contains a job's state, a job's
 // ID, and other information.
 func ExampleSnowball_ListClusterJobs_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.ListClusterJobsInput{
 		ClusterId: aws.String("CID123e4567-e89b-12d3-a456-426655440000"),
 	}
@@ -523,7 +523,7 @@ func ExampleSnowball_ListClusterJobs_shared00() {
 // Returns an array of ClusterListEntry objects of the specified length. Each ClusterListEntry
 // object contains a cluster's state, a cluster's ID, and other important status information.
 func ExampleSnowball_ListClusters_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.ListClustersInput{}
 
 	result, err := svc.ListClusters(input)
@@ -554,7 +554,7 @@ func ExampleSnowball_ListClusters_shared00() {
 // the US regions will return jobs from the list of all jobs associated with this account
 // in all US regions.
 func ExampleSnowball_ListJobs_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.ListJobsInput{}
 
 	result, err := svc.ListJobs(input)
@@ -583,7 +583,7 @@ func ExampleSnowball_ListJobs_shared00() {
 // changes to a different state, usually within 60 minutes of it being created, this
 // action is no longer available.
 func ExampleSnowball_UpdateCluster_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.UpdateClusterInput{
 		AddressId:   aws.String("ADID1234ab12-3eec-4eb3-9be6-9374c10eb51b"),
 		ClusterId:   aws.String("CID123e4567-e89b-12d3-a456-426655440000"),
@@ -624,7 +624,7 @@ func ExampleSnowball_UpdateCluster_shared00() {
 // to a different job state, usually within 60 minutes of the job being created, this
 // action is no longer available.
 func ExampleSnowball_UpdateJob_shared00() {
-	svc := snowball.New(session.New())
+	svc := snowball.New(session.Must(session.NewSession()))
 	input := &snowball.UpdateJobInput{
 		AddressId:                  aws.String("ADID1234ab12-3eec-4eb3-9be6-9374c10eb51b"),
 		Description:                aws.String("Upgraded to Edge, shipped to Finance Dept, and requested faster shipping speed - TS."),

@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // This example adds two tags to the specified load balancer.
 func ExampleELB_AddTags_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.AddTagsInput{
 		LoadBalancerNames: []*string{
 			aws.String("my-load-balancer"),
@@ -74,7 +74,7 @@ func ExampleELB_AddTags_shared00() {
 //
 // This example associates a security group with the specified load balancer in a VPC.
 func ExampleELB_ApplySecurityGroupsToLoadBalancer_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.ApplySecurityGroupsToLoadBalancerInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		SecurityGroups: []*string{
@@ -111,7 +111,7 @@ func ExampleELB_ApplySecurityGroupsToLoadBalancer_shared00() {
 // This example adds the specified subnet to the set of configured subnets for the specified
 // load balancer.
 func ExampleELB_AttachLoadBalancerToSubnets_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.AttachLoadBalancerToSubnetsInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		Subnets: []*string{
@@ -150,7 +150,7 @@ func ExampleELB_AttachLoadBalancerToSubnets_shared00() {
 // This example specifies the health check settings used to evaluate the health of your
 // backend EC2 instances.
 func ExampleELB_ConfigureHealthCheck_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.ConfigureHealthCheckInput{
 		HealthCheck: &elb.HealthCheck{
 			HealthyThreshold:   aws.Int64(2),
@@ -187,7 +187,7 @@ func ExampleELB_ConfigureHealthCheck_shared00() {
 // This example generates a stickiness policy that follows the sticky session lifetimes
 // of the application-generated cookie.
 func ExampleELB_CreateAppCookieStickinessPolicy_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateAppCookieStickinessPolicyInput{
 		CookieName:       aws.String("my-app-cookie"),
 		LoadBalancerName: aws.String("my-load-balancer"),
@@ -225,7 +225,7 @@ func ExampleELB_CreateAppCookieStickinessPolicy_shared00() {
 // This example generates a stickiness policy with sticky session lifetimes controlled
 // by the specified expiration period.
 func ExampleELB_CreateLBCookieStickinessPolicy_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLBCookieStickinessPolicyInput{
 		CookieExpirationPeriod: aws.Int64(60),
 		LoadBalancerName:       aws.String("my-load-balancer"),
@@ -262,7 +262,7 @@ func ExampleELB_CreateLBCookieStickinessPolicy_shared00() {
 //
 // This example creates a load balancer with an HTTP listener in a VPC.
 func ExampleELB_CreateLoadBalancer_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerInput{
 		Listeners: []*elb.Listener{
 			{
@@ -327,7 +327,7 @@ func ExampleELB_CreateLoadBalancer_shared00() {
 //
 // This example creates a load balancer with an HTTP listener in EC2-Classic.
 func ExampleELB_CreateLoadBalancer_shared01() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerInput{
 		AvailabilityZones: []*string{
 			aws.String("us-west-2a"),
@@ -389,7 +389,7 @@ func ExampleELB_CreateLoadBalancer_shared01() {
 //
 // This example creates a load balancer with an HTTPS listener in a VPC.
 func ExampleELB_CreateLoadBalancer_shared02() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerInput{
 		Listeners: []*elb.Listener{
 			{
@@ -461,7 +461,7 @@ func ExampleELB_CreateLoadBalancer_shared02() {
 //
 // This example creates a load balancer with an HTTPS listener in EC2-Classic.
 func ExampleELB_CreateLoadBalancer_shared03() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerInput{
 		AvailabilityZones: []*string{
 			aws.String("us-west-2a"),
@@ -530,7 +530,7 @@ func ExampleELB_CreateLoadBalancer_shared03() {
 //
 // This example creates an internal load balancer with an HTTP listener in a VPC.
 func ExampleELB_CreateLoadBalancer_shared04() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerInput{
 		Listeners: []*elb.Listener{
 			{
@@ -597,7 +597,7 @@ func ExampleELB_CreateLoadBalancer_shared04() {
 // This example creates a listener for your load balancer at port 80 using the HTTP
 // protocol.
 func ExampleELB_CreateLoadBalancerListeners_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerListenersInput{
 		Listeners: []*elb.Listener{
 			{
@@ -643,7 +643,7 @@ func ExampleELB_CreateLoadBalancerListeners_shared00() {
 // This example creates a listener for your load balancer at port 443 using the HTTPS
 // protocol.
 func ExampleELB_CreateLoadBalancerListeners_shared01() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerListenersInput{
 		Listeners: []*elb.Listener{
 			{
@@ -689,7 +689,7 @@ func ExampleELB_CreateLoadBalancerListeners_shared01() {
 //
 // This example creates a policy that enables Proxy Protocol on the specified load balancer.
 func ExampleELB_CreateLoadBalancerPolicy_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerPolicyInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		PolicyAttributes: []*elb.PolicyAttribute{
@@ -734,7 +734,7 @@ func ExampleELB_CreateLoadBalancerPolicy_shared00() {
 //
 // This example creates a public key policy.
 func ExampleELB_CreateLoadBalancerPolicy_shared01() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerPolicyInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		PolicyAttributes: []*elb.PolicyAttribute{
@@ -780,7 +780,7 @@ func ExampleELB_CreateLoadBalancerPolicy_shared01() {
 // This example creates a backend server authentication policy that enables authentication
 // on your backend instance using a public key policy.
 func ExampleELB_CreateLoadBalancerPolicy_shared02() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.CreateLoadBalancerPolicyInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		PolicyAttributes: []*elb.PolicyAttribute{
@@ -825,7 +825,7 @@ func ExampleELB_CreateLoadBalancerPolicy_shared02() {
 //
 // This example deletes the specified load balancer.
 func ExampleELB_DeleteLoadBalancer_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DeleteLoadBalancerInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 	}
@@ -853,7 +853,7 @@ func ExampleELB_DeleteLoadBalancer_shared00() {
 // This example deletes the listener for the specified port from the specified load
 // balancer.
 func ExampleELB_DeleteLoadBalancerListeners_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DeleteLoadBalancerListenersInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		LoadBalancerPorts: []*int64{
@@ -886,7 +886,7 @@ func ExampleELB_DeleteLoadBalancerListeners_shared00() {
 // This example deletes the specified policy from the specified load balancer. The policy
 // must not be enabled on any listener.
 func ExampleELB_DeleteLoadBalancerPolicy_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DeleteLoadBalancerPolicyInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		PolicyName:       aws.String("my-duration-cookie-policy"),
@@ -918,7 +918,7 @@ func ExampleELB_DeleteLoadBalancerPolicy_shared00() {
 //
 // This example deregisters the specified instance from the specified load balancer.
 func ExampleELB_DeregisterInstancesFromLoadBalancer_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DeregisterInstancesFromLoadBalancerInput{
 		Instances: []*elb.Instance{
 			{
@@ -954,7 +954,7 @@ func ExampleELB_DeregisterInstancesFromLoadBalancer_shared00() {
 //
 // This example describes the health of the instances for the specified load balancer.
 func ExampleELB_DescribeInstanceHealth_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DescribeInstanceHealthInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 	}
@@ -985,7 +985,7 @@ func ExampleELB_DescribeInstanceHealth_shared00() {
 //
 // This example describes the attributes of the specified load balancer.
 func ExampleELB_DescribeLoadBalancerAttributes_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DescribeLoadBalancerAttributesInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 	}
@@ -1016,7 +1016,7 @@ func ExampleELB_DescribeLoadBalancerAttributes_shared00() {
 //
 // This example describes the specified policy associated with the specified load balancer.
 func ExampleELB_DescribeLoadBalancerPolicies_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DescribeLoadBalancerPoliciesInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		PolicyNames: []*string{
@@ -1050,7 +1050,7 @@ func ExampleELB_DescribeLoadBalancerPolicies_shared00() {
 //
 // This example describes the specified load balancer policy type.
 func ExampleELB_DescribeLoadBalancerPolicyTypes_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DescribeLoadBalancerPolicyTypesInput{
 		PolicyTypeNames: []*string{
 			aws.String("ProxyProtocolPolicyType"),
@@ -1081,7 +1081,7 @@ func ExampleELB_DescribeLoadBalancerPolicyTypes_shared00() {
 //
 // This example describes the specified load balancer.
 func ExampleELB_DescribeLoadBalancers_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DescribeLoadBalancersInput{
 		LoadBalancerNames: []*string{
 			aws.String("my-load-balancer"),
@@ -1114,7 +1114,7 @@ func ExampleELB_DescribeLoadBalancers_shared00() {
 //
 // This example describes the tags for the specified load balancer.
 func ExampleELB_DescribeTags_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DescribeTagsInput{
 		LoadBalancerNames: []*string{
 			aws.String("my-load-balancer"),
@@ -1145,7 +1145,7 @@ func ExampleELB_DescribeTags_shared00() {
 //
 // This example detaches the specified load balancer from the specified subnet.
 func ExampleELB_DetachLoadBalancerFromSubnets_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DetachLoadBalancerFromSubnetsInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		Subnets: []*string{
@@ -1180,7 +1180,7 @@ func ExampleELB_DetachLoadBalancerFromSubnets_shared00() {
 // This example removes the specified Availability Zone from the set of Availability
 // Zones for the specified load balancer.
 func ExampleELB_DisableAvailabilityZonesForLoadBalancer_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.DisableAvailabilityZonesForLoadBalancerInput{
 		AvailabilityZones: []*string{
 			aws.String("us-west-2a"),
@@ -1214,7 +1214,7 @@ func ExampleELB_DisableAvailabilityZonesForLoadBalancer_shared00() {
 //
 // This example adds the specified Availability Zone to the specified load balancer.
 func ExampleELB_EnableAvailabilityZonesForLoadBalancer_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.EnableAvailabilityZonesForLoadBalancerInput{
 		AvailabilityZones: []*string{
 			aws.String("us-west-2b"),
@@ -1246,7 +1246,7 @@ func ExampleELB_EnableAvailabilityZonesForLoadBalancer_shared00() {
 //
 // This example enables cross-zone load balancing for the specified load balancer.
 func ExampleELB_ModifyLoadBalancerAttributes_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.ModifyLoadBalancerAttributesInput{
 		LoadBalancerAttributes: &elb.LoadBalancerAttributes{
 			CrossZoneLoadBalancing: &elb.CrossZoneLoadBalancing{
@@ -1284,7 +1284,7 @@ func ExampleELB_ModifyLoadBalancerAttributes_shared00() {
 //
 // This example enables connection draining for the specified load balancer.
 func ExampleELB_ModifyLoadBalancerAttributes_shared01() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.ModifyLoadBalancerAttributesInput{
 		LoadBalancerAttributes: &elb.LoadBalancerAttributes{
 			ConnectionDraining: &elb.ConnectionDraining{
@@ -1323,7 +1323,7 @@ func ExampleELB_ModifyLoadBalancerAttributes_shared01() {
 //
 // This example registers the specified instance with the specified load balancer.
 func ExampleELB_RegisterInstancesWithLoadBalancer_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.RegisterInstancesWithLoadBalancerInput{
 		Instances: []*elb.Instance{
 			{
@@ -1359,7 +1359,7 @@ func ExampleELB_RegisterInstancesWithLoadBalancer_shared00() {
 //
 // This example removes the specified tag from the specified load balancer.
 func ExampleELB_RemoveTags_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.RemoveTagsInput{
 		LoadBalancerNames: []*string{
 			aws.String("my-load-balancer"),
@@ -1395,7 +1395,7 @@ func ExampleELB_RemoveTags_shared00() {
 //
 // This example replaces the existing SSL certificate for the specified HTTPS listener.
 func ExampleELB_SetLoadBalancerListenerSSLCertificate_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.SetLoadBalancerListenerSSLCertificateInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		LoadBalancerPort: aws.Int64(443),
@@ -1435,7 +1435,7 @@ func ExampleELB_SetLoadBalancerListenerSSLCertificate_shared00() {
 // This example replaces the policies that are currently associated with the specified
 // port.
 func ExampleELB_SetLoadBalancerPoliciesForBackendServer_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.SetLoadBalancerPoliciesForBackendServerInput{
 		InstancePort:     aws.Int64(80),
 		LoadBalancerName: aws.String("my-load-balancer"),
@@ -1473,7 +1473,7 @@ func ExampleELB_SetLoadBalancerPoliciesForBackendServer_shared00() {
 // This example replaces the policies that are currently associated with the specified
 // listener.
 func ExampleELB_SetLoadBalancerPoliciesOfListener_shared00() {
-	svc := elb.New(session.New())
+	svc := elb.New(session.Must(session.NewSession()))
 	input := &elb.SetLoadBalancerPoliciesOfListenerInput{
 		LoadBalancerName: aws.String("my-load-balancer"),
 		LoadBalancerPort: aws.Int64(80),

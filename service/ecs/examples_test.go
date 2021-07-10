@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // This example creates a cluster in your default region.
 func ExampleECS_CreateCluster_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.CreateClusterInput{
 		ClusterName: aws.String("my_cluster"),
 	}
@@ -64,7 +64,7 @@ func ExampleECS_CreateCluster_shared00() {
 // The service uses the ``hello_world`` task definition and it maintains 10 copies of
 // that task.
 func ExampleECS_CreateService_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.CreateServiceInput{
 		DesiredCount:   aws.Int64(10),
 		ServiceName:    aws.String("ecs-simple-service"),
@@ -111,7 +111,7 @@ func ExampleECS_CreateService_shared00() {
 // The service uses the ``ecs-demo`` task definition and it maintains 10 copies of that
 // task. You must reference an existing load balancer in the same region by its name.
 func ExampleECS_CreateService_shared01() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.CreateServiceInput{
 		DesiredCount: aws.Int64(10),
 		LoadBalancers: []*ecs.LoadBalancer{
@@ -165,7 +165,7 @@ func ExampleECS_CreateService_shared01() {
 // This example deletes the account setting for your user for the specified resource
 // type.
 func ExampleECS_DeleteAccountSetting_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DeleteAccountSettingInput{
 		Name: aws.String("serviceLongArnFormat"),
 	}
@@ -200,7 +200,7 @@ func ExampleECS_DeleteAccountSetting_shared00() {
 // the specified resource type. Only the root user can view or modify the account settings
 // for another user.
 func ExampleECS_DeleteAccountSetting_shared01() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DeleteAccountSettingInput{
 		Name:         aws.String("containerInstanceLongArnFormat"),
 		PrincipalArn: aws.String("arn:aws:iam::<aws_account_id>:user/principalName"),
@@ -234,7 +234,7 @@ func ExampleECS_DeleteAccountSetting_shared01() {
 //
 // This example deletes an empty cluster in your default region.
 func ExampleECS_DeleteCluster_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DeleteClusterInput{
 		Cluster: aws.String("my_cluster"),
 	}
@@ -278,7 +278,7 @@ func ExampleECS_DeleteCluster_shared00() {
 // This example deletes the my-http-service service. The service must have a desired
 // count and running count of 0 before you can delete it.
 func ExampleECS_DeleteService_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DeleteServiceInput{
 		Service: aws.String("my-http-service"),
 	}
@@ -317,7 +317,7 @@ func ExampleECS_DeleteService_shared00() {
 // default region. If there are still tasks running on the container instance, you must
 // either stop those tasks before deregistering, or use the force option.
 func ExampleECS_DeregisterContainerInstance_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DeregisterContainerInstanceInput{
 		Cluster:           aws.String("default"),
 		ContainerInstance: aws.String("container_instance_UUID"),
@@ -354,7 +354,7 @@ func ExampleECS_DeregisterContainerInstance_shared00() {
 //
 // This example provides a description of the specified cluster in your default region.
 func ExampleECS_DescribeClusters_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DescribeClustersInput{
 		Clusters: []*string{
 			aws.String("default"),
@@ -390,7 +390,7 @@ func ExampleECS_DescribeClusters_shared00() {
 // This example provides a description of the specified container instance in your default
 // region, using the container instance UUID as an identifier.
 func ExampleECS_DescribeContainerInstances_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DescribeContainerInstancesInput{
 		Cluster: aws.String("default"),
 		ContainerInstances: []*string{
@@ -428,7 +428,7 @@ func ExampleECS_DescribeContainerInstances_shared00() {
 //
 // This example provides descriptive information about the service named ``ecs-simple-service``.
 func ExampleECS_DescribeServices_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DescribeServicesInput{
 		Services: []*string{
 			aws.String("ecs-simple-service"),
@@ -465,7 +465,7 @@ func ExampleECS_DescribeServices_shared00() {
 //
 // This example provides a description of the specified task definition.
 func ExampleECS_DescribeTaskDefinition_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DescribeTaskDefinitionInput{
 		TaskDefinition: aws.String("hello_world:8"),
 	}
@@ -499,7 +499,7 @@ func ExampleECS_DescribeTaskDefinition_shared00() {
 // This example provides a description of the specified task, using the task UUID as
 // an identifier.
 func ExampleECS_DescribeTasks_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.DescribeTasksInput{
 		Tasks: []*string{
 			aws.String("c5cba4eb-5dad-405e-96db-71ef8eefe6a8"),
@@ -536,7 +536,7 @@ func ExampleECS_DescribeTasks_shared00() {
 //
 // This example displays the effective account settings for your account.
 func ExampleECS_ListAccountSettings_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListAccountSettingsInput{
 		EffectiveSettings: aws.Bool(true),
 	}
@@ -569,7 +569,7 @@ func ExampleECS_ListAccountSettings_shared00() {
 //
 // This example displays the effective account settings for the specified user or role.
 func ExampleECS_ListAccountSettings_shared01() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListAccountSettingsInput{
 		EffectiveSettings: aws.Bool(true),
 		PrincipalArn:      aws.String("arn:aws:iam::<aws_account_id>:user/principalName"),
@@ -603,7 +603,7 @@ func ExampleECS_ListAccountSettings_shared01() {
 //
 // This example lists all of your available clusters in your default region.
 func ExampleECS_ListClusters_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListClustersInput{}
 
 	result, err := svc.ListClusters(input)
@@ -635,7 +635,7 @@ func ExampleECS_ListClusters_shared00() {
 // This example lists all of your available container instances in the specified cluster
 // in your default region.
 func ExampleECS_ListContainerInstances_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListContainerInstancesInput{
 		Cluster: aws.String("default"),
 	}
@@ -670,7 +670,7 @@ func ExampleECS_ListContainerInstances_shared00() {
 //
 // This example lists the services running in the default cluster for an account.
 func ExampleECS_ListServices_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListServicesInput{}
 
 	result, err := svc.ListServices(input)
@@ -703,7 +703,7 @@ func ExampleECS_ListServices_shared00() {
 //
 // This example lists the tags for the 'dev' cluster.
 func ExampleECS_ListTagsForResource_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListTagsForResourceInput{
 		ResourceArn: aws.String("arn:aws:ecs:region:aws_account_id:cluster/dev"),
 	}
@@ -738,7 +738,7 @@ func ExampleECS_ListTagsForResource_shared00() {
 //
 // This example lists all of your registered task definition families.
 func ExampleECS_ListTaskDefinitionFamilies_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListTaskDefinitionFamiliesInput{}
 
 	result, err := svc.ListTaskDefinitionFamilies(input)
@@ -769,7 +769,7 @@ func ExampleECS_ListTaskDefinitionFamilies_shared00() {
 //
 // This example lists the task definition revisions that start with "hpcc".
 func ExampleECS_ListTaskDefinitionFamilies_shared01() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListTaskDefinitionFamiliesInput{
 		FamilyPrefix: aws.String("hpcc"),
 	}
@@ -802,7 +802,7 @@ func ExampleECS_ListTaskDefinitionFamilies_shared01() {
 //
 // This example lists all of your registered task definitions.
 func ExampleECS_ListTaskDefinitions_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListTaskDefinitionsInput{}
 
 	result, err := svc.ListTaskDefinitions(input)
@@ -833,7 +833,7 @@ func ExampleECS_ListTaskDefinitions_shared00() {
 //
 // This example lists the task definition revisions of a specified family.
 func ExampleECS_ListTaskDefinitions_shared01() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListTaskDefinitionsInput{
 		FamilyPrefix: aws.String("wordpress"),
 	}
@@ -866,7 +866,7 @@ func ExampleECS_ListTaskDefinitions_shared01() {
 //
 // This example lists all of the tasks in a cluster.
 func ExampleECS_ListTasks_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListTasksInput{
 		Cluster: aws.String("default"),
 	}
@@ -904,7 +904,7 @@ func ExampleECS_ListTasks_shared00() {
 // This example lists the tasks of a specified container instance. Specifying a ``containerInstance``
 // value limits the results to tasks that belong to that container instance.
 func ExampleECS_ListTasks_shared01() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.ListTasksInput{
 		Cluster:           aws.String("default"),
 		ContainerInstance: aws.String("f6bbb147-5370-4ace-8c73-c7181ded911f"),
@@ -945,7 +945,7 @@ func ExampleECS_ListTasks_shared01() {
 // then changes apply to the entire AWS account, unless an IAM user or role explicitly
 // overrides these settings for themselves.
 func ExampleECS_PutAccountSetting_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.PutAccountSettingInput{
 		Name:  aws.String("serviceLongArnFormat"),
 		Value: aws.String("enabled"),
@@ -982,7 +982,7 @@ func ExampleECS_PutAccountSetting_shared00() {
 // If you’re using this command as the root user, then changes apply to the entire
 // AWS account, unless an IAM user or role explicitly overrides these settings for themselves.
 func ExampleECS_PutAccountSetting_shared01() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.PutAccountSettingInput{
 		Name:         aws.String("containerInstanceLongArnFormat"),
 		PrincipalArn: aws.String("arn:aws:iam::<aws_account_id>:user/principalName"),
@@ -1019,7 +1019,7 @@ func ExampleECS_PutAccountSetting_shared01() {
 // all IAM users or roles on an account. These changes apply to the entire AWS account,
 // unless an IAM user or role explicitly overrides these settings for themselves.
 func ExampleECS_PutAccountSettingDefault_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.PutAccountSettingDefaultInput{
 		Name:  aws.String("serviceLongArnFormat"),
 		Value: aws.String("enabled"),
@@ -1053,7 +1053,7 @@ func ExampleECS_PutAccountSettingDefault_shared00() {
 //
 // This example registers a task definition to the specified family.
 func ExampleECS_RegisterTaskDefinition_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.RegisterTaskDefinitionInput{
 		ContainerDefinitions: []*ecs.ContainerDefinition{
 			{
@@ -1100,7 +1100,7 @@ func ExampleECS_RegisterTaskDefinition_shared00() {
 //
 // This example runs the specified task definition on your default cluster.
 func ExampleECS_RunTask_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.RunTaskInput{
 		Cluster:        aws.String("default"),
 		TaskDefinition: aws.String("sleep360:1"),
@@ -1146,7 +1146,7 @@ func ExampleECS_RunTask_shared00() {
 //
 // This example tags the 'dev' cluster with key 'team' and value 'dev'.
 func ExampleECS_TagResource_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.TagResourceInput{
 		ResourceArn: aws.String("arn:aws:ecs:region:aws_account_id:cluster/dev"),
 		Tags: []*ecs.Tag{
@@ -1189,7 +1189,7 @@ func ExampleECS_TagResource_shared00() {
 //
 // This example deletes the 'team' tag from the 'dev' cluster.
 func ExampleECS_UntagResource_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.UntagResourceInput{
 		ResourceArn: aws.String("arn:aws:ecs:region:aws_account_id:cluster/dev"),
 		TagKeys: []*string{
@@ -1230,7 +1230,7 @@ func ExampleECS_UntagResource_shared00() {
 // This example updates the my-http-service service to use the amazon-ecs-sample task
 // definition.
 func ExampleECS_UpdateService_shared00() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.UpdateServiceInput{
 		Service:        aws.String("my-http-service"),
 		TaskDefinition: aws.String("amazon-ecs-sample"),
@@ -1276,7 +1276,7 @@ func ExampleECS_UpdateService_shared00() {
 //
 // This example updates the desired count of the my-http-service service to 10.
 func ExampleECS_UpdateService_shared01() {
-	svc := ecs.New(session.New())
+	svc := ecs.New(session.Must(session.NewSession()))
 	input := &ecs.UpdateServiceInput{
 		DesiredCount: aws.Int64(10),
 		Service:      aws.String("my-http-service"),

@@ -748,7 +748,7 @@ var tplInterface = template.Must(template.New("interface").Parse(`
 //    }
 //
 //    func main() {
-//        sess := session.New()
+//        sess := session.Must(session.NewSession())
 //        svc := {{ .PackageName }}.New(sess)
 //
 //        myFunc(svc)

@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // The following example creates an IP match set named MyIPSetFriendlyName.
 func ExampleWAF_CreateIPSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.CreateIPSetInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		Name:        aws.String("MyIPSetFriendlyName"),
@@ -69,7 +69,7 @@ func ExampleWAF_CreateIPSet_shared00() {
 //
 // The following example creates a rule named WAFByteHeaderRule.
 func ExampleWAF_CreateRule_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.CreateRuleInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		MetricName:  aws.String("WAFByteHeaderRule"),
@@ -114,7 +114,7 @@ func ExampleWAF_CreateRule_shared00() {
 //
 // The following example creates size constraint set named MySampleSizeConstraintSet.
 func ExampleWAF_CreateSizeConstraintSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.CreateSizeConstraintSetInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		Name:        aws.String("MySampleSizeConstraintSet"),
@@ -154,7 +154,7 @@ func ExampleWAF_CreateSizeConstraintSet_shared00() {
 //
 // The following example creates a SQL injection match set named MySQLInjectionMatchSet.
 func ExampleWAF_CreateSqlInjectionMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.CreateSqlInjectionMatchSetInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		Name:        aws.String("MySQLInjectionMatchSet"),
@@ -194,7 +194,7 @@ func ExampleWAF_CreateSqlInjectionMatchSet_shared00() {
 //
 // The following example creates a web ACL named CreateExample.
 func ExampleWAF_CreateWebACL_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.CreateWebACLInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		DefaultAction: &waf.WafAction{
@@ -244,7 +244,7 @@ func ExampleWAF_CreateWebACL_shared00() {
 //
 // The following example creates an XSS match set named MySampleXssMatchSet.
 func ExampleWAF_CreateXssMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.CreateXssMatchSetInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		Name:        aws.String("MySampleXssMatchSet"),
@@ -284,7 +284,7 @@ func ExampleWAF_CreateXssMatchSet_shared00() {
 //
 // The following example deletes a byte match set with the ID exampleIDs3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteByteMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.DeleteByteMatchSetInput{
 		ByteMatchSetId: aws.String("exampleIDs3t-46da-4fdb-b8d5-abc321j569j5"),
 		ChangeToken:    aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
@@ -324,7 +324,7 @@ func ExampleWAF_DeleteByteMatchSet_shared00() {
 //
 // The following example deletes an IP match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteIPSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.DeleteIPSetInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		IPSetId:     aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
@@ -364,7 +364,7 @@ func ExampleWAF_DeleteIPSet_shared00() {
 //
 // The following example deletes a rule with the ID WAFRule-1-Example.
 func ExampleWAF_DeleteRule_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.DeleteRuleInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		RuleId:      aws.String("WAFRule-1-Example"),
@@ -408,7 +408,7 @@ func ExampleWAF_DeleteRule_shared00() {
 //
 // The following example deletes a size constraint set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteSizeConstraintSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.DeleteSizeConstraintSetInput{
 		ChangeToken:         aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		SizeConstraintSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
@@ -448,7 +448,7 @@ func ExampleWAF_DeleteSizeConstraintSet_shared00() {
 //
 // The following example deletes a SQL injection match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteSqlInjectionMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.DeleteSqlInjectionMatchSetInput{
 		ChangeToken:            aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		SqlInjectionMatchSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
@@ -488,7 +488,7 @@ func ExampleWAF_DeleteSqlInjectionMatchSet_shared00() {
 //
 // The following example deletes a web ACL with the ID example-46da-4444-5555-example.
 func ExampleWAF_DeleteWebACL_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.DeleteWebACLInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		WebACLId:    aws.String("example-46da-4444-5555-example"),
@@ -532,7 +532,7 @@ func ExampleWAF_DeleteWebACL_shared00() {
 //
 // The following example deletes an XSS match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_DeleteXssMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.DeleteXssMatchSetInput{
 		ChangeToken:   aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		XssMatchSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
@@ -572,7 +572,7 @@ func ExampleWAF_DeleteXssMatchSet_shared00() {
 //
 // The following example returns the details of a byte match set with the ID exampleIDs3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetByteMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetByteMatchSetInput{
 		ByteMatchSetId: aws.String("exampleIDs3t-46da-4fdb-b8d5-abc321j569j5"),
 	}
@@ -606,7 +606,7 @@ func ExampleWAF_GetByteMatchSet_shared00() {
 // The following example returns a change token to use for a create, update or delete
 // operation.
 func ExampleWAF_GetChangeToken_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetChangeTokenInput{}
 
 	result, err := svc.GetChangeToken(input)
@@ -633,7 +633,7 @@ func ExampleWAF_GetChangeToken_shared00() {
 //
 // The following example returns the status of a change token with the ID abcd12f2-46da-4fdb-b8d5-fbd4c466928f.
 func ExampleWAF_GetChangeTokenStatus_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetChangeTokenStatusInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 	}
@@ -664,7 +664,7 @@ func ExampleWAF_GetChangeTokenStatus_shared00() {
 //
 // The following example returns the details of an IP match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetIPSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetIPSetInput{
 		IPSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
 	}
@@ -697,7 +697,7 @@ func ExampleWAF_GetIPSet_shared00() {
 //
 // The following example returns the details of a rule with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetRule_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetRuleInput{
 		RuleId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
 	}
@@ -732,7 +732,7 @@ func ExampleWAF_GetRule_shared00() {
 // that AWS WAF randomly selects from among the first 5,000 requests that your AWS resource
 // received between the time period 2016-09-27T15:50Z to 2016-09-27T15:50Z.
 func ExampleWAF_GetSampledRequests_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetSampledRequestsInput{
 		MaxItems: aws.Int64(100),
 		RuleId:   aws.String("WAFRule-1-Example"),
@@ -770,7 +770,7 @@ func ExampleWAF_GetSampledRequests_shared00() {
 // The following example returns the details of a size constraint match set with the
 // ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetSizeConstraintSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetSizeConstraintSetInput{
 		SizeConstraintSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
 	}
@@ -804,7 +804,7 @@ func ExampleWAF_GetSizeConstraintSet_shared00() {
 // The following example returns the details of a SQL injection match set with the ID
 // example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetSqlInjectionMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetSqlInjectionMatchSetInput{
 		SqlInjectionMatchSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
 	}
@@ -837,7 +837,7 @@ func ExampleWAF_GetSqlInjectionMatchSet_shared00() {
 //
 // The following example returns the details of a web ACL with the ID createwebacl-1472061481310.
 func ExampleWAF_GetWebACL_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetWebACLInput{
 		WebACLId: aws.String("createwebacl-1472061481310"),
 	}
@@ -870,7 +870,7 @@ func ExampleWAF_GetWebACL_shared00() {
 //
 // The following example returns the details of an XSS match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_GetXssMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.GetXssMatchSetInput{
 		XssMatchSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
 	}
@@ -903,7 +903,7 @@ func ExampleWAF_GetXssMatchSet_shared00() {
 //
 // The following example returns an array of up to 100 IP match sets.
 func ExampleWAF_ListIPSets_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.ListIPSetsInput{
 		Limit: aws.Int64(100),
 	}
@@ -934,7 +934,7 @@ func ExampleWAF_ListIPSets_shared00() {
 //
 // The following example returns an array of up to 100 rules.
 func ExampleWAF_ListRules_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.ListRulesInput{
 		Limit: aws.Int64(100),
 	}
@@ -965,7 +965,7 @@ func ExampleWAF_ListRules_shared00() {
 //
 // The following example returns an array of up to 100 size contraint match sets.
 func ExampleWAF_ListSizeConstraintSets_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.ListSizeConstraintSetsInput{
 		Limit: aws.Int64(100),
 	}
@@ -996,7 +996,7 @@ func ExampleWAF_ListSizeConstraintSets_shared00() {
 //
 // The following example returns an array of up to 100 SQL injection match sets.
 func ExampleWAF_ListSqlInjectionMatchSets_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.ListSqlInjectionMatchSetsInput{
 		Limit: aws.Int64(100),
 	}
@@ -1027,7 +1027,7 @@ func ExampleWAF_ListSqlInjectionMatchSets_shared00() {
 //
 // The following example returns an array of up to 100 web ACLs.
 func ExampleWAF_ListWebACLs_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.ListWebACLsInput{
 		Limit: aws.Int64(100),
 	}
@@ -1058,7 +1058,7 @@ func ExampleWAF_ListWebACLs_shared00() {
 //
 // The following example returns an array of up to 100 XSS match sets.
 func ExampleWAF_ListXssMatchSets_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.ListXssMatchSetsInput{
 		Limit: aws.Int64(100),
 	}
@@ -1090,7 +1090,7 @@ func ExampleWAF_ListXssMatchSets_shared00() {
 // The following example deletes a ByteMatchTuple object (filters) in an byte match
 // set with the ID exampleIDs3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateByteMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.UpdateByteMatchSetInput{
 		ByteMatchSetId: aws.String("exampleIDs3t-46da-4fdb-b8d5-abc321j569j5"),
 		ChangeToken:    aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
@@ -1149,7 +1149,7 @@ func ExampleWAF_UpdateByteMatchSet_shared00() {
 // The following example deletes an IPSetDescriptor object in an IP match set with the
 // ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateIPSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.UpdateIPSetInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		IPSetId:     aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
@@ -1204,7 +1204,7 @@ func ExampleWAF_UpdateIPSet_shared00() {
 //
 // The following example deletes a Predicate object in a rule with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateRule_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.UpdateRuleInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		RuleId:      aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
@@ -1261,7 +1261,7 @@ func ExampleWAF_UpdateRule_shared00() {
 // The following example deletes a SizeConstraint object (filters) in a size constraint
 // set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateSizeConstraintSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.UpdateSizeConstraintSetInput{
 		ChangeToken:         aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		SizeConstraintSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
@@ -1321,7 +1321,7 @@ func ExampleWAF_UpdateSizeConstraintSet_shared00() {
 // The following example deletes a SqlInjectionMatchTuple object (filters) in a SQL
 // injection match set with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateSqlInjectionMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.UpdateSqlInjectionMatchSetInput{
 		ChangeToken:            aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		SqlInjectionMatchSetId: aws.String("example1ds3t-46da-4fdb-b8d5-abc321j569j5"),
@@ -1376,7 +1376,7 @@ func ExampleWAF_UpdateSqlInjectionMatchSet_shared00() {
 //
 // The following example deletes an ActivatedRule object in a WebACL with the ID webacl-1472061481310.
 func ExampleWAF_UpdateWebACL_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.UpdateWebACLInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		DefaultAction: &waf.WafAction{
@@ -1440,7 +1440,7 @@ func ExampleWAF_UpdateWebACL_shared00() {
 // The following example deletes an XssMatchTuple object (filters) in an XssMatchSet
 // with the ID example1ds3t-46da-4fdb-b8d5-abc321j569j5.
 func ExampleWAF_UpdateXssMatchSet_shared00() {
-	svc := waf.New(session.New())
+	svc := waf.New(session.Must(session.NewSession()))
 	input := &waf.UpdateXssMatchSetInput{
 		ChangeToken: aws.String("abcd12f2-46da-4fdb-b8d5-fbd4c466928f"),
 		Updates: []*waf.XssMatchSetUpdate{

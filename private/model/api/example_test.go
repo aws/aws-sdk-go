@@ -252,7 +252,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // Foo bar baz qux
 func ExampleFooService_Foo_shared00() {
-	svc := fooservice.New(session.New())
+	svc := fooservice.New(session.Must(session.NewSession()))
 	input := &fooservice.FooInput{
 		BarShape: aws.String("Hello world"),
 		ComplexField: &fooservice.ComplexShape{

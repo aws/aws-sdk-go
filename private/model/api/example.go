@@ -58,7 +58,7 @@ var exampleTmpls = template.Must(template.New("example").Funcs(exampleFuncMap).P
 //
 {{ commentify (wrap .Description 80) }}
 func Example{{ .API.StructName }}_{{ .MethodName }}() {
-	svc := {{ .API.PackageName }}.New(session.New())
+	svc := {{ .API.PackageName }}.New(session.Must(session.NewSession()))
 	input := {{ generateExampleInput . }}
 
 	result, err := svc.{{ .OperationName }}(input)

@@ -28,7 +28,7 @@ func parseTime(layout, value string) *time.Time {
 //
 
 func ExampleCloudFront_CreateCloudFrontOriginAccessIdentity_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.CreateCloudFrontOriginAccessIdentityInput{}
 
 	result, err := svc.CreateCloudFrontOriginAccessIdentity(input)
@@ -62,7 +62,7 @@ func ExampleCloudFront_CreateCloudFrontOriginAccessIdentity_shared00() {
 //
 
 func ExampleCloudFront_CreateDistribution_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.CreateDistributionInput{}
 
 	result, err := svc.CreateDistribution(input)
@@ -166,7 +166,7 @@ func ExampleCloudFront_CreateDistribution_shared00() {
 //
 
 func ExampleCloudFront_CreateDistributionWithTags_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.CreateDistributionWithTagsInput{}
 
 	result, err := svc.CreateDistributionWithTags(input)
@@ -272,7 +272,7 @@ func ExampleCloudFront_CreateDistributionWithTags_shared00() {
 //
 
 func ExampleCloudFront_CreateInvalidation_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.CreateInvalidationInput{}
 
 	result, err := svc.CreateInvalidation(input)
@@ -310,7 +310,7 @@ func ExampleCloudFront_CreateInvalidation_shared00() {
 //
 
 func ExampleCloudFront_CreateStreamingDistribution_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.CreateStreamingDistributionInput{}
 
 	result, err := svc.CreateStreamingDistribution(input)
@@ -358,7 +358,7 @@ func ExampleCloudFront_CreateStreamingDistribution_shared00() {
 //
 
 func ExampleCloudFront_DeleteCloudFrontOriginAccessIdentity_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.DeleteCloudFrontOriginAccessIdentityInput{}
 
 	result, err := svc.DeleteCloudFrontOriginAccessIdentity(input)
@@ -392,7 +392,7 @@ func ExampleCloudFront_DeleteCloudFrontOriginAccessIdentity_shared00() {
 //
 
 func ExampleCloudFront_DeleteDistribution_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.DeleteDistributionInput{}
 
 	result, err := svc.DeleteDistribution(input)
@@ -426,7 +426,7 @@ func ExampleCloudFront_DeleteDistribution_shared00() {
 //
 
 func ExampleCloudFront_DeleteStreamingDistribution_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.DeleteStreamingDistributionInput{}
 
 	result, err := svc.DeleteStreamingDistribution(input)
@@ -460,7 +460,7 @@ func ExampleCloudFront_DeleteStreamingDistribution_shared00() {
 //
 
 func ExampleCloudFront_GetCloudFrontOriginAccessIdentity_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.GetCloudFrontOriginAccessIdentityInput{}
 
 	result, err := svc.GetCloudFrontOriginAccessIdentity(input)
@@ -488,7 +488,7 @@ func ExampleCloudFront_GetCloudFrontOriginAccessIdentity_shared00() {
 //
 
 func ExampleCloudFront_GetCloudFrontOriginAccessIdentityConfig_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.GetCloudFrontOriginAccessIdentityConfigInput{}
 
 	result, err := svc.GetCloudFrontOriginAccessIdentityConfig(input)
@@ -516,7 +516,7 @@ func ExampleCloudFront_GetCloudFrontOriginAccessIdentityConfig_shared00() {
 //
 
 func ExampleCloudFront_GetDistribution_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.GetDistributionInput{}
 
 	result, err := svc.GetDistribution(input)
@@ -544,7 +544,7 @@ func ExampleCloudFront_GetDistribution_shared00() {
 //
 
 func ExampleCloudFront_GetDistributionConfig_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.GetDistributionConfigInput{}
 
 	result, err := svc.GetDistributionConfig(input)
@@ -572,7 +572,7 @@ func ExampleCloudFront_GetDistributionConfig_shared00() {
 //
 
 func ExampleCloudFront_GetInvalidation_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.GetInvalidationInput{}
 
 	result, err := svc.GetInvalidation(input)
@@ -602,7 +602,7 @@ func ExampleCloudFront_GetInvalidation_shared00() {
 //
 
 func ExampleCloudFront_GetStreamingDistribution_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.GetStreamingDistributionInput{}
 
 	result, err := svc.GetStreamingDistribution(input)
@@ -630,7 +630,7 @@ func ExampleCloudFront_GetStreamingDistribution_shared00() {
 //
 
 func ExampleCloudFront_GetStreamingDistributionConfig_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.GetStreamingDistributionConfigInput{}
 
 	result, err := svc.GetStreamingDistributionConfig(input)
@@ -658,7 +658,7 @@ func ExampleCloudFront_GetStreamingDistributionConfig_shared00() {
 //
 
 func ExampleCloudFront_ListCloudFrontOriginAccessIdentities_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.ListCloudFrontOriginAccessIdentitiesInput{}
 
 	result, err := svc.ListCloudFrontOriginAccessIdentities(input)
@@ -684,7 +684,7 @@ func ExampleCloudFront_ListCloudFrontOriginAccessIdentities_shared00() {
 //
 
 func ExampleCloudFront_ListDistributions_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.ListDistributionsInput{}
 
 	result, err := svc.ListDistributions(input)
@@ -710,7 +710,7 @@ func ExampleCloudFront_ListDistributions_shared00() {
 //
 
 func ExampleCloudFront_ListDistributionsByWebACLId_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.ListDistributionsByWebACLIdInput{}
 
 	result, err := svc.ListDistributionsByWebACLId(input)
@@ -738,7 +738,7 @@ func ExampleCloudFront_ListDistributionsByWebACLId_shared00() {
 //
 
 func ExampleCloudFront_ListInvalidations_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.ListInvalidationsInput{}
 
 	result, err := svc.ListInvalidations(input)
@@ -768,7 +768,7 @@ func ExampleCloudFront_ListInvalidations_shared00() {
 //
 
 func ExampleCloudFront_ListStreamingDistributions_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.ListStreamingDistributionsInput{}
 
 	result, err := svc.ListStreamingDistributions(input)
@@ -794,7 +794,7 @@ func ExampleCloudFront_ListStreamingDistributions_shared00() {
 //
 
 func ExampleCloudFront_ListTagsForResource_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.ListTagsForResourceInput{}
 
 	result, err := svc.ListTagsForResource(input)
@@ -826,7 +826,7 @@ func ExampleCloudFront_ListTagsForResource_shared00() {
 //
 
 func ExampleCloudFront_TagResource_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.TagResourceInput{}
 
 	result, err := svc.TagResource(input)
@@ -858,7 +858,7 @@ func ExampleCloudFront_TagResource_shared00() {
 //
 
 func ExampleCloudFront_UntagResource_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.UntagResourceInput{}
 
 	result, err := svc.UntagResource(input)
@@ -890,7 +890,7 @@ func ExampleCloudFront_UntagResource_shared00() {
 //
 
 func ExampleCloudFront_UpdateCloudFrontOriginAccessIdentity_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.UpdateCloudFrontOriginAccessIdentityInput{}
 
 	result, err := svc.UpdateCloudFrontOriginAccessIdentity(input)
@@ -930,7 +930,7 @@ func ExampleCloudFront_UpdateCloudFrontOriginAccessIdentity_shared00() {
 //
 
 func ExampleCloudFront_UpdateDistribution_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.UpdateDistributionInput{}
 
 	result, err := svc.UpdateDistribution(input)
@@ -1034,7 +1034,7 @@ func ExampleCloudFront_UpdateDistribution_shared00() {
 //
 
 func ExampleCloudFront_UpdateStreamingDistribution_shared00() {
-	svc := cloudfront.New(session.New())
+	svc := cloudfront.New(session.Must(session.NewSession()))
 	input := &cloudfront.UpdateStreamingDistributionInput{}
 
 	result, err := svc.UpdateStreamingDistribution(input)

@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // Deletes a specified pronunciation lexicon stored in an AWS Region.
 func ExamplePolly_DeleteLexicon_shared00() {
-	svc := polly.New(session.New())
+	svc := polly.New(session.Must(session.NewSession()))
 	input := &polly.DeleteLexiconInput{
 		Name: aws.String("example"),
 	}
@@ -62,7 +62,7 @@ func ExamplePolly_DeleteLexicon_shared00() {
 // Displayed languages are those within the specified language code. If no language
 // code is specified, voices for all available languages are displayed.
 func ExamplePolly_DescribeVoices_shared00() {
-	svc := polly.New(session.New())
+	svc := polly.New(session.Must(session.NewSession()))
 	input := &polly.DescribeVoicesInput{
 		LanguageCode: aws.String("en-GB"),
 	}
@@ -93,7 +93,7 @@ func ExamplePolly_DescribeVoices_shared00() {
 //
 // Returns the content of the specified pronunciation lexicon stored in an AWS Region.
 func ExamplePolly_GetLexicon_shared00() {
-	svc := polly.New(session.New())
+	svc := polly.New(session.Must(session.NewSession()))
 	input := &polly.GetLexiconInput{
 		Name: aws.String(""),
 	}
@@ -124,7 +124,7 @@ func ExamplePolly_GetLexicon_shared00() {
 //
 // Returns a list of pronunciation lexicons stored in an AWS Region.
 func ExamplePolly_ListLexicons_shared00() {
-	svc := polly.New(session.New())
+	svc := polly.New(session.Must(session.NewSession()))
 	input := &polly.ListLexiconsInput{}
 
 	result, err := svc.ListLexicons(input)
@@ -153,7 +153,7 @@ func ExamplePolly_ListLexicons_shared00() {
 //
 // Stores a pronunciation lexicon in an AWS Region.
 func ExamplePolly_PutLexicon_shared00() {
-	svc := polly.New(session.New())
+	svc := polly.New(session.Must(session.NewSession()))
 	input := &polly.PutLexiconInput{
 		Content: aws.String("file://example.pls"),
 		Name:    aws.String("W3C"),
@@ -195,7 +195,7 @@ func ExamplePolly_PutLexicon_shared00() {
 //
 // Synthesizes plain text or SSML into a file of human-like speech.
 func ExamplePolly_SynthesizeSpeech_shared00() {
-	svc := polly.New(session.New())
+	svc := polly.New(session.Must(session.NewSession()))
 	input := &polly.SynthesizeSpeechInput{
 		LexiconNames: []*string{
 			aws.String("example"),

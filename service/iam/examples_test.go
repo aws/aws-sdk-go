@@ -30,7 +30,7 @@ func parseTime(layout, value string) *time.Time {
 // The following add-client-id-to-open-id-connect-provider command adds the client ID
 // my-application-ID to the OIDC provider named server.example.com:
 func ExampleIAM_AddClientIDToOpenIDConnectProvider_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.AddClientIDToOpenIDConnectProviderInput{
 		ClientID:                 aws.String("my-application-ID"),
 		OpenIDConnectProviderArn: aws.String("arn:aws:iam::123456789012:oidc-provider/server.example.com"),
@@ -67,7 +67,7 @@ func ExampleIAM_AddClientIDToOpenIDConnectProvider_shared00() {
 // The following command adds the role named S3Access to the instance profile named
 // Webserver:
 func ExampleIAM_AddRoleToInstanceProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.AddRoleToInstanceProfileInput{
 		InstanceProfileName: aws.String("Webserver"),
 		RoleName:            aws.String("S3Access"),
@@ -105,7 +105,7 @@ func ExampleIAM_AddRoleToInstanceProfile_shared00() {
 //
 // The following command adds an IAM user named Bob to the IAM group named Admins:
 func ExampleIAM_AddUserToGroup_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.AddUserToGroupInput{
 		GroupName: aws.String("Admins"),
 		UserName:  aws.String("Bob"),
@@ -140,7 +140,7 @@ func ExampleIAM_AddUserToGroup_shared00() {
 // The following command attaches the AWS managed policy named ReadOnlyAccess to the
 // IAM group named Finance.
 func ExampleIAM_AttachGroupPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.AttachGroupPolicyInput{
 		GroupName: aws.String("Finance"),
 		PolicyArn: aws.String("arn:aws:iam::aws:policy/ReadOnlyAccess"),
@@ -179,7 +179,7 @@ func ExampleIAM_AttachGroupPolicy_shared00() {
 // The following command attaches the AWS managed policy named ReadOnlyAccess to the
 // IAM role named ReadOnlyRole.
 func ExampleIAM_AttachRolePolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.AttachRolePolicyInput{
 		PolicyArn: aws.String("arn:aws:iam::aws:policy/ReadOnlyAccess"),
 		RoleName:  aws.String("ReadOnlyRole"),
@@ -220,7 +220,7 @@ func ExampleIAM_AttachRolePolicy_shared00() {
 // The following command attaches the AWS managed policy named AdministratorAccess to
 // the IAM user named Alice.
 func ExampleIAM_AttachUserPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.AttachUserPolicyInput{
 		PolicyArn: aws.String("arn:aws:iam::aws:policy/AdministratorAccess"),
 		UserName:  aws.String("Alice"),
@@ -258,7 +258,7 @@ func ExampleIAM_AttachUserPolicy_shared00() {
 //
 // The following command changes the password for the current IAM user.
 func ExampleIAM_ChangePassword_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ChangePasswordInput{
 		NewPassword: aws.String("]35d/{pB9Fo9wJ"),
 		OldPassword: aws.String("3s0K_;xh4~8XXI"),
@@ -299,7 +299,7 @@ func ExampleIAM_ChangePassword_shared00() {
 // The following command creates an access key (access key ID and secret access key)
 // for the IAM user named Bob.
 func ExampleIAM_CreateAccessKey_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.CreateAccessKeyInput{
 		UserName: aws.String("Bob"),
 	}
@@ -332,7 +332,7 @@ func ExampleIAM_CreateAccessKey_shared00() {
 //
 // The following command associates the alias examplecorp to your AWS account.
 func ExampleIAM_CreateAccountAlias_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.CreateAccountAliasInput{
 		AccountAlias: aws.String("examplecorp"),
 	}
@@ -365,7 +365,7 @@ func ExampleIAM_CreateAccountAlias_shared00() {
 //
 // The following command creates an IAM group named Admins.
 func ExampleIAM_CreateGroup_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.CreateGroupInput{
 		GroupName: aws.String("Admins"),
 	}
@@ -401,7 +401,7 @@ func ExampleIAM_CreateGroup_shared00() {
 // The following command creates an instance profile named Webserver that is ready to
 // have a role attached and then be associated with an EC2 instance.
 func ExampleIAM_CreateInstanceProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.CreateInstanceProfileInput{
 		InstanceProfileName: aws.String("Webserver"),
 	}
@@ -439,7 +439,7 @@ func ExampleIAM_CreateInstanceProfile_shared00() {
 // The following command changes IAM user Bob's password and sets the flag that required
 // Bob to change the password the next time he signs in.
 func ExampleIAM_CreateLoginProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.CreateLoginProfileInput{
 		Password:              aws.String("h]6EszR}vJ*m"),
 		PasswordResetRequired: aws.Bool(true),
@@ -479,7 +479,7 @@ func ExampleIAM_CreateLoginProfile_shared00() {
 // The following example defines a new OIDC provider in IAM with a client ID of my-application-id
 // and pointing at the server with a URL of https://server.example.com.
 func ExampleIAM_CreateOpenIDConnectProvider_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.CreateOpenIDConnectProviderInput{
 		ClientIDList: []*string{
 			aws.String("my-application-id"),
@@ -524,7 +524,7 @@ func ExampleIAM_CreateOpenIDConnectProvider_shared00() {
 // that you must convert from JSON to a string. Upon success, the response includes
 // the same policy as a URL-encoded JSON string.
 func ExampleIAM_CreateRole_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.CreateRoleInput{
 		AssumeRolePolicyDocument: aws.String("<Stringified-JSON>"),
 		Path:                     aws.String("/"),
@@ -565,7 +565,7 @@ func ExampleIAM_CreateRole_shared00() {
 //
 // The following create-user command creates an IAM user named Bob in the current account.
 func ExampleIAM_CreateUser_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.CreateUserInput{
 		UserName: aws.String("Bob"),
 	}
@@ -605,7 +605,7 @@ func ExampleIAM_CreateUser_shared00() {
 // The following command deletes one access key (access key ID and secret access key)
 // assigned to the IAM user named Bob.
 func ExampleIAM_DeleteAccessKey_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteAccessKeyInput{
 		AccessKeyId: aws.String("AKIDPMS9RO4H3FEXAMPLE"),
 		UserName:    aws.String("Bob"),
@@ -639,7 +639,7 @@ func ExampleIAM_DeleteAccessKey_shared00() {
 //
 // The following command removes the alias mycompany from the current AWS account:
 func ExampleIAM_DeleteAccountAlias_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteAccountAliasInput{
 		AccountAlias: aws.String("mycompany"),
 	}
@@ -672,7 +672,7 @@ func ExampleIAM_DeleteAccountAlias_shared00() {
 //
 // The following command removes the password policy from the current AWS account:
 func ExampleIAM_DeleteAccountPasswordPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteAccountPasswordPolicyInput{}
 
 	result, err := svc.DeleteAccountPasswordPolicy(input)
@@ -704,7 +704,7 @@ func ExampleIAM_DeleteAccountPasswordPolicy_shared00() {
 // The following command deletes the policy named ExamplePolicy from the group named
 // Admins:
 func ExampleIAM_DeleteGroupPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteGroupPolicyInput{
 		GroupName:  aws.String("Admins"),
 		PolicyName: aws.String("ExamplePolicy"),
@@ -738,7 +738,7 @@ func ExampleIAM_DeleteGroupPolicy_shared00() {
 //
 // The following command deletes the instance profile named ExampleInstanceProfile
 func ExampleIAM_DeleteInstanceProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteInstanceProfileInput{
 		InstanceProfileName: aws.String("ExampleInstanceProfile"),
 	}
@@ -773,7 +773,7 @@ func ExampleIAM_DeleteInstanceProfile_shared00() {
 //
 // The following command deletes the password for the IAM user named Bob.
 func ExampleIAM_DeleteLoginProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteLoginProfileInput{
 		UserName: aws.String("Bob"),
 	}
@@ -808,7 +808,7 @@ func ExampleIAM_DeleteLoginProfile_shared00() {
 //
 // The following command removes the role named Test-Role.
 func ExampleIAM_DeleteRole_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteRoleInput{
 		RoleName: aws.String("Test-Role"),
 	}
@@ -848,7 +848,7 @@ func ExampleIAM_DeleteRole_shared00() {
 // The following command removes the policy named ExamplePolicy from the role named
 // Test-Role.
 func ExampleIAM_DeleteRolePolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteRolePolicyInput{
 		PolicyName: aws.String("ExamplePolicy"),
 		RoleName:   aws.String("Test-Role"),
@@ -885,7 +885,7 @@ func ExampleIAM_DeleteRolePolicy_shared00() {
 // The following command deletes the specified signing certificate for the IAM user
 // named Anika.
 func ExampleIAM_DeleteSigningCertificate_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteSigningCertificateInput{
 		CertificateId: aws.String("TA7SMP42TDN5Z26OBPJE7EXAMPLE"),
 		UserName:      aws.String("Anika"),
@@ -919,7 +919,7 @@ func ExampleIAM_DeleteSigningCertificate_shared00() {
 //
 // The following command removes the IAM user named Bob from the current account.
 func ExampleIAM_DeleteUser_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteUserInput{
 		UserName: aws.String("Bob"),
 	}
@@ -957,7 +957,7 @@ func ExampleIAM_DeleteUser_shared00() {
 // The following delete-user-policy command removes the specified policy from the IAM
 // user named Juan:
 func ExampleIAM_DeleteUserPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteUserPolicyInput{
 		PolicyName: aws.String("ExamplePolicy"),
 		UserName:   aws.String("Juan"),
@@ -992,7 +992,7 @@ func ExampleIAM_DeleteUserPolicy_shared00() {
 // The following delete-virtual-mfa-device command removes the specified MFA device
 // from the current AWS account.
 func ExampleIAM_DeleteVirtualMFADevice_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.DeleteVirtualMFADeviceInput{
 		SerialNumber: aws.String("arn:aws:iam::123456789012:mfa/ExampleName"),
 	}
@@ -1027,7 +1027,7 @@ func ExampleIAM_DeleteVirtualMFADevice_shared00() {
 //
 // The following operation generates a report for the organizational unit ou-rge0-awexample
 func ExampleIAM_GenerateOrganizationsAccessReport_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GenerateOrganizationsAccessReportInput{
 		EntityPath: aws.String("o-a1b2c3d4e5/r-f6g7h8i9j0example/ou-1a2b3c-k9l8m7n6o5example"),
 	}
@@ -1056,7 +1056,7 @@ func ExampleIAM_GenerateOrganizationsAccessReport_shared00() {
 //
 // The following operation generates a report for the policy: ExamplePolicy1
 func ExampleIAM_GenerateServiceLastAccessedDetails_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GenerateServiceLastAccessedDetailsInput{
 		Arn: aws.String("arn:aws:iam::123456789012:policy/ExamplePolicy1"),
 	}
@@ -1088,7 +1088,7 @@ func ExampleIAM_GenerateServiceLastAccessedDetails_shared00() {
 // The following command displays details about the password policy for the current
 // AWS account.
 func ExampleIAM_GetAccountPasswordPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetAccountPasswordPolicyInput{}
 
 	result, err := svc.GetAccountPasswordPolicy(input)
@@ -1118,7 +1118,7 @@ func ExampleIAM_GetAccountPasswordPolicy_shared00() {
 // The following command returns information about the IAM entity quotas and usage in
 // the current AWS account.
 func ExampleIAM_GetAccountSummary_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetAccountSummaryInput{}
 
 	result, err := svc.GetAccountSummary(input)
@@ -1145,7 +1145,7 @@ func ExampleIAM_GetAccountSummary_shared00() {
 //
 // The following command gets information about the instance profile named ExampleInstanceProfile.
 func ExampleIAM_GetInstanceProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetInstanceProfileInput{
 		InstanceProfileName: aws.String("ExampleInstanceProfile"),
 	}
@@ -1177,7 +1177,7 @@ func ExampleIAM_GetInstanceProfile_shared00() {
 // The following command gets information about the password for the IAM user named
 // Anika.
 func ExampleIAM_GetLoginProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetLoginProfileInput{
 		UserName: aws.String("Anika"),
 	}
@@ -1208,7 +1208,7 @@ func ExampleIAM_GetLoginProfile_shared00() {
 //
 // The following operation gets details about the report with the job ID: examplea-1234-b567-cde8-90fg123abcd4
 func ExampleIAM_GetOrganizationsAccessReport_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetOrganizationsAccessReportInput{
 		JobId: aws.String("examplea-1234-b567-cde8-90fg123abcd4"),
 	}
@@ -1237,7 +1237,7 @@ func ExampleIAM_GetOrganizationsAccessReport_shared00() {
 //
 // The following command gets information about the role named Test-Role.
 func ExampleIAM_GetRole_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetRoleInput{
 		RoleName: aws.String("Test-Role"),
 	}
@@ -1268,7 +1268,7 @@ func ExampleIAM_GetRole_shared00() {
 //
 // The following operation gets details about the report with the job ID: examplef-1305-c245-eba4-71fe298bcda7
 func ExampleIAM_GetServiceLastAccessedDetails_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetServiceLastAccessedDetailsInput{
 		JobId: aws.String("examplef-1305-c245-eba4-71fe298bcda7"),
 	}
@@ -1300,7 +1300,7 @@ func ExampleIAM_GetServiceLastAccessedDetails_shared00() {
 // The following operation returns details about the entities that attempted to access
 // the IAM service.
 func ExampleIAM_GetServiceLastAccessedDetailsWithEntities_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetServiceLastAccessedDetailsWithEntitiesInput{
 		JobId:            aws.String("examplef-1305-c245-eba4-71fe298bcda7"),
 		ServiceNamespace: aws.String("iam"),
@@ -1332,7 +1332,7 @@ func ExampleIAM_GetServiceLastAccessedDetailsWithEntities_shared00() {
 //
 // The following command gets information about the IAM user named Bob.
 func ExampleIAM_GetUser_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.GetUserInput{
 		UserName: aws.String("Bob"),
 	}
@@ -1363,7 +1363,7 @@ func ExampleIAM_GetUser_shared00() {
 //
 // The following command lists the access keys IDs for the IAM user named Alice.
 func ExampleIAM_ListAccessKeys_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListAccessKeysInput{
 		UserName: aws.String("Alice"),
 	}
@@ -1394,7 +1394,7 @@ func ExampleIAM_ListAccessKeys_shared00() {
 //
 // The following command lists the aliases for the current account.
 func ExampleIAM_ListAccountAliases_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListAccountAliasesInput{}
 
 	result, err := svc.ListAccountAliases(input)
@@ -1422,7 +1422,7 @@ func ExampleIAM_ListAccountAliases_shared00() {
 // The following command lists the names of in-line policies that are embedded in the
 // IAM group named Admins.
 func ExampleIAM_ListGroupPolicies_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListGroupPoliciesInput{
 		GroupName: aws.String("Admins"),
 	}
@@ -1453,7 +1453,7 @@ func ExampleIAM_ListGroupPolicies_shared00() {
 //
 // The following command lists the IAM groups in the current account:
 func ExampleIAM_ListGroups_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListGroupsInput{}
 
 	result, err := svc.ListGroups(input)
@@ -1480,7 +1480,7 @@ func ExampleIAM_ListGroups_shared00() {
 //
 // The following command displays the groups that the IAM user named Bob belongs to.
 func ExampleIAM_ListGroupsForUser_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListGroupsForUserInput{
 		UserName: aws.String("Bob"),
 	}
@@ -1512,7 +1512,7 @@ func ExampleIAM_ListGroupsForUser_shared00() {
 // The following operation lists policies that allow ExampleUser01 to access IAM or
 // EC2.
 func ExampleIAM_ListPoliciesGrantingServiceAccess_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListPoliciesGrantingServiceAccessInput{
 		Arn: aws.String("arn:aws:iam::123456789012:user/ExampleUser01"),
 		ServiceNamespaces: []*string{
@@ -1547,7 +1547,7 @@ func ExampleIAM_ListPoliciesGrantingServiceAccess_shared00() {
 //
 // The following example shows how to list the tags attached to a role.
 func ExampleIAM_ListRoleTags_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListRoleTagsInput{
 		RoleName: aws.String("taggedrole1"),
 	}
@@ -1578,7 +1578,7 @@ func ExampleIAM_ListRoleTags_shared00() {
 //
 // The following command lists the signing certificates for the IAM user named Bob.
 func ExampleIAM_ListSigningCertificates_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListSigningCertificatesInput{
 		UserName: aws.String("Bob"),
 	}
@@ -1609,7 +1609,7 @@ func ExampleIAM_ListSigningCertificates_shared00() {
 //
 // The following example shows how to list the tags attached to a user.
 func ExampleIAM_ListUserTags_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListUserTagsInput{
 		UserName: aws.String("anika"),
 	}
@@ -1640,7 +1640,7 @@ func ExampleIAM_ListUserTags_shared00() {
 //
 // The following command lists the IAM users in the current account.
 func ExampleIAM_ListUsers_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListUsersInput{}
 
 	result, err := svc.ListUsers(input)
@@ -1668,7 +1668,7 @@ func ExampleIAM_ListUsers_shared00() {
 // The following command lists the virtual MFA devices that have been configured for
 // the current account.
 func ExampleIAM_ListVirtualMFADevices_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.ListVirtualMFADevicesInput{}
 
 	result, err := svc.ListVirtualMFADevices(input)
@@ -1693,7 +1693,7 @@ func ExampleIAM_ListVirtualMFADevices_shared00() {
 //
 // The following command adds a policy named AllPerms to the IAM group named Admins.
 func ExampleIAM_PutGroupPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.PutGroupPolicyInput{
 		GroupName:      aws.String("Admins"),
 		PolicyDocument: aws.String("{\"Version\":\"2012-10-17\",\"Statement\":{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}}"),
@@ -1730,7 +1730,7 @@ func ExampleIAM_PutGroupPolicy_shared00() {
 //
 // The following command adds a permissions policy to the role named Test-Role.
 func ExampleIAM_PutRolePolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.PutRolePolicyInput{
 		PolicyDocument: aws.String("{\"Version\":\"2012-10-17\",\"Statement\":{\"Effect\":\"Allow\",\"Action\":\"s3:*\",\"Resource\":\"*\"}}"),
 		PolicyName:     aws.String("S3AccessPolicy"),
@@ -1769,7 +1769,7 @@ func ExampleIAM_PutRolePolicy_shared00() {
 //
 // The following command attaches a policy to the IAM user named Bob.
 func ExampleIAM_PutUserPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.PutUserPolicyInput{
 		PolicyDocument: aws.String("{\"Version\":\"2012-10-17\",\"Statement\":{\"Effect\":\"Allow\",\"Action\":\"*\",\"Resource\":\"*\"}}"),
 		PolicyName:     aws.String("AllAccessPolicy"),
@@ -1807,7 +1807,7 @@ func ExampleIAM_PutUserPolicy_shared00() {
 // The following command removes the role named Test-Role from the instance profile
 // named ExampleInstanceProfile.
 func ExampleIAM_RemoveRoleFromInstanceProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.RemoveRoleFromInstanceProfileInput{
 		InstanceProfileName: aws.String("ExampleInstanceProfile"),
 		RoleName:            aws.String("Test-Role"),
@@ -1843,7 +1843,7 @@ func ExampleIAM_RemoveRoleFromInstanceProfile_shared00() {
 //
 // The following command removes the user named Bob from the IAM group named Admins.
 func ExampleIAM_RemoveUserFromGroup_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.RemoveUserFromGroupInput{
 		GroupName: aws.String("Admins"),
 		UserName:  aws.String("Bob"),
@@ -1878,7 +1878,7 @@ func ExampleIAM_RemoveUserFromGroup_shared00() {
 // The following command sets the STS global endpoint token to version 2. Version 2
 // tokens are valid in all Regions.
 func ExampleIAM_SetSecurityTokenServicePreferences_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.SetSecurityTokenServicePreferencesInput{
 		GlobalEndpointTokenVersion: aws.String("v2Token"),
 	}
@@ -1907,7 +1907,7 @@ func ExampleIAM_SetSecurityTokenServicePreferences_shared00() {
 //
 // The following example shows how to add tags to an existing role.
 func ExampleIAM_TagRole_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.TagRoleInput{
 		RoleName: aws.String("taggedrole"),
 		Tags: []*iam.Tag{
@@ -1954,7 +1954,7 @@ func ExampleIAM_TagRole_shared00() {
 //
 // The following example shows how to add tags to an existing user.
 func ExampleIAM_TagUser_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.TagUserInput{
 		Tags: []*iam.Tag{
 			{
@@ -2002,7 +2002,7 @@ func ExampleIAM_TagUser_shared00() {
 // The following example shows how to remove a tag with the key 'Dept' from a role named
 // 'taggedrole'.
 func ExampleIAM_UntagRole_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UntagRoleInput{
 		RoleName: aws.String("taggedrole"),
 		TagKeys: []*string{
@@ -2039,7 +2039,7 @@ func ExampleIAM_UntagRole_shared00() {
 // The following example shows how to remove tags that are attached to a user named
 // 'anika'.
 func ExampleIAM_UntagUser_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UntagUserInput{
 		TagKeys: []*string{
 			aws.String("Dept"),
@@ -2076,7 +2076,7 @@ func ExampleIAM_UntagUser_shared00() {
 // The following command deactivates the specified access key (access key ID and secret
 // access key) for the IAM user named Bob.
 func ExampleIAM_UpdateAccessKey_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UpdateAccessKeyInput{
 		AccessKeyId: aws.String("AKIAIOSFODNN7EXAMPLE"),
 		Status:      aws.String("Inactive"),
@@ -2112,7 +2112,7 @@ func ExampleIAM_UpdateAccessKey_shared00() {
 // The following command sets the password policy to require a minimum length of eight
 // characters and to require one or more numbers in the password:
 func ExampleIAM_UpdateAccountPasswordPolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UpdateAccountPasswordPolicyInput{
 		MinimumPasswordLength: aws.Int64(8),
 		RequireNumbers:        aws.Bool(true),
@@ -2148,7 +2148,7 @@ func ExampleIAM_UpdateAccountPasswordPolicy_shared00() {
 //
 // The following command updates the role trust policy for the role named Test-Role:
 func ExampleIAM_UpdateAssumeRolePolicy_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UpdateAssumeRolePolicyInput{
 		PolicyDocument: aws.String("{\"Version\":\"2012-10-17\",\"Statement\":[{\"Effect\":\"Allow\",\"Principal\":{\"Service\":[\"ec2.amazonaws.com\"]},\"Action\":[\"sts:AssumeRole\"]}]}"),
 		RoleName:       aws.String("S3AccessForEC2Instances"),
@@ -2186,7 +2186,7 @@ func ExampleIAM_UpdateAssumeRolePolicy_shared00() {
 //
 // The following command changes the name of the IAM group Test to Test-1.
 func ExampleIAM_UpdateGroup_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UpdateGroupInput{
 		GroupName:    aws.String("Test"),
 		NewGroupName: aws.String("Test-1"),
@@ -2222,7 +2222,7 @@ func ExampleIAM_UpdateGroup_shared00() {
 //
 // The following command creates or changes the password for the IAM user named Bob.
 func ExampleIAM_UpdateLoginProfile_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UpdateLoginProfileInput{
 		Password: aws.String("SomeKindOfPassword123!@#"),
 		UserName: aws.String("Bob"),
@@ -2261,7 +2261,7 @@ func ExampleIAM_UpdateLoginProfile_shared00() {
 // The following command changes the status of a signing certificate for a user named
 // Bob to Inactive.
 func ExampleIAM_UpdateSigningCertificate_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UpdateSigningCertificateInput{
 		CertificateId: aws.String("TA7SMP42TDN5Z26OBPJE7EXAMPLE"),
 		Status:        aws.String("Inactive"),
@@ -2297,7 +2297,7 @@ func ExampleIAM_UpdateSigningCertificate_shared00() {
 // The following command changes the name of the IAM user Bob to Robert. It does not
 // change the user's path.
 func ExampleIAM_UpdateUser_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UpdateUserInput{
 		NewUserName: aws.String("Robert"),
 		UserName:    aws.String("Bob"),
@@ -2338,7 +2338,7 @@ func ExampleIAM_UpdateUser_shared00() {
 // The following upload-server-certificate command uploads a server certificate to your
 // AWS account:
 func ExampleIAM_UploadServerCertificate_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UploadServerCertificateInput{
 		CertificateBody:       aws.String("-----BEGIN CERTIFICATE-----<a very long certificate text string>-----END CERTIFICATE-----"),
 		Path:                  aws.String("/company/servercerts/"),
@@ -2382,7 +2382,7 @@ func ExampleIAM_UploadServerCertificate_shared00() {
 //
 // The following command uploads a signing certificate for the IAM user named Bob.
 func ExampleIAM_UploadSigningCertificate_shared00() {
-	svc := iam.New(session.New())
+	svc := iam.New(session.Must(session.NewSession()))
 	input := &iam.UploadSigningCertificateInput{
 		CertificateBody: aws.String("-----BEGIN CERTIFICATE-----<certificate-body>-----END CERTIFICATE-----"),
 		UserName:        aws.String("Bob"),

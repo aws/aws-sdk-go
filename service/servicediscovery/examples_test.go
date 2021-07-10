@@ -29,7 +29,7 @@ func parseTime(layout, value string) *time.Time {
 //
 // This example creates an HTTP namespace.
 func ExampleServiceDiscovery_CreateHttpNamespace_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.CreateHttpNamespaceInput{
 		CreatorRequestId: aws.String("example-creator-request-id-0001"),
 		Description:      aws.String("Example.com AWS Cloud Map HTTP Namespace"),
@@ -68,7 +68,7 @@ func ExampleServiceDiscovery_CreateHttpNamespace_shared00() {
 //
 // Example: Create private DNS namespace
 func ExampleServiceDiscovery_CreatePrivateDnsNamespace_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.CreatePrivateDnsNamespaceInput{
 		CreatorRequestId: aws.String("eedd6892-50f3-41b2-8af9-611d6e1d1a8c"),
 		Name:             aws.String("example.com"),
@@ -107,7 +107,7 @@ func ExampleServiceDiscovery_CreatePrivateDnsNamespace_shared00() {
 //
 // This example creates a public namespace based on DNS.
 func ExampleServiceDiscovery_CreatePublicDnsNamespace_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.CreatePublicDnsNamespaceInput{
 		CreatorRequestId: aws.String("example-creator-request-id-0003"),
 		Description:      aws.String("Example.com AWS Cloud Map Public DNS Namespace"),
@@ -146,7 +146,7 @@ func ExampleServiceDiscovery_CreatePublicDnsNamespace_shared00() {
 //
 // Example: Create service
 func ExampleServiceDiscovery_CreateService_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.CreateServiceInput{
 		CreatorRequestId: aws.String("567c1193-6b00-4308-bd57-ad38a8822d25"),
 		DnsConfig: &servicediscovery.DnsConfig{
@@ -195,7 +195,7 @@ func ExampleServiceDiscovery_CreateService_shared00() {
 //
 // Example: Delete namespace
 func ExampleServiceDiscovery_DeleteNamespace_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.DeleteNamespaceInput{
 		Id: aws.String("ns-ylexjili4cdxy3xm"),
 	}
@@ -230,7 +230,7 @@ func ExampleServiceDiscovery_DeleteNamespace_shared00() {
 //
 // Example: Delete service
 func ExampleServiceDiscovery_DeleteService_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.DeleteServiceInput{
 		Id: aws.String("srv-p5zdwlg5uvvzjita"),
 	}
@@ -263,7 +263,7 @@ func ExampleServiceDiscovery_DeleteService_shared00() {
 //
 // Example: Deregister a service instance
 func ExampleServiceDiscovery_DeregisterInstance_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.DeregisterInstanceInput{
 		InstanceId: aws.String("myservice-53"),
 		ServiceId:  aws.String("srv-p5zdwlg5uvvzjita"),
@@ -301,7 +301,7 @@ func ExampleServiceDiscovery_DeregisterInstance_shared00() {
 //
 // Example: Discover registered instances
 func ExampleServiceDiscovery_DiscoverInstances_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.DiscoverInstancesInput{
 		HealthStatus:  aws.String("ALL"),
 		MaxResults:    aws.Int64(10),
@@ -339,7 +339,7 @@ func ExampleServiceDiscovery_DiscoverInstances_shared00() {
 //
 // This example gets information about a specified instance.
 func ExampleServiceDiscovery_GetInstance_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.GetInstanceInput{
 		InstanceId: aws.String("i-abcd1234"),
 		ServiceId:  aws.String("srv-e4anhexample0004"),
@@ -374,7 +374,7 @@ func ExampleServiceDiscovery_GetInstance_shared00() {
 // This example gets the current health status of one or more instances that are associate
 // with a specified service.
 func ExampleServiceDiscovery_GetInstancesHealthStatus_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.GetInstancesHealthStatusInput{
 		ServiceId: aws.String("srv-e4anhexample0004"),
 	}
@@ -407,7 +407,7 @@ func ExampleServiceDiscovery_GetInstancesHealthStatus_shared00() {
 //
 // This example gets information about a specified namespace.
 func ExampleServiceDiscovery_GetNamespace_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.GetNamespaceInput{
 		Id: aws.String("ns-e4anhexample0004"),
 	}
@@ -438,7 +438,7 @@ func ExampleServiceDiscovery_GetNamespace_shared00() {
 //
 // Example: Get operation result
 func ExampleServiceDiscovery_GetOperation_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.GetOperationInput{
 		OperationId: aws.String("gv4g5meo7ndmeh4fqskygvk23d2fijwa-k9302yzd"),
 	}
@@ -469,7 +469,7 @@ func ExampleServiceDiscovery_GetOperation_shared00() {
 //
 // This example gets the settings for a specified service.
 func ExampleServiceDiscovery_GetService_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.GetServiceInput{
 		Id: aws.String("srv-e4anhexample0004"),
 	}
@@ -500,7 +500,7 @@ func ExampleServiceDiscovery_GetService_shared00() {
 //
 // Example: List service instances
 func ExampleServiceDiscovery_ListInstances_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.ListInstancesInput{
 		ServiceId: aws.String("srv-qzpwvt2tfqcegapy"),
 	}
@@ -531,7 +531,7 @@ func ExampleServiceDiscovery_ListInstances_shared00() {
 //
 // Example: List namespaces
 func ExampleServiceDiscovery_ListNamespaces_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.ListNamespacesInput{}
 
 	result, err := svc.ListNamespaces(input)
@@ -558,7 +558,7 @@ func ExampleServiceDiscovery_ListNamespaces_shared00() {
 //
 // This example gets the operations that have a STATUS of either PENDING or SUCCESS.
 func ExampleServiceDiscovery_ListOperations_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.ListOperationsInput{
 		Filters: []*servicediscovery.OperationFilter{
 			{
@@ -596,7 +596,7 @@ func ExampleServiceDiscovery_ListOperations_shared00() {
 //
 // Example: List services
 func ExampleServiceDiscovery_ListServices_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.ListServicesInput{}
 
 	result, err := svc.ListServices(input)
@@ -623,7 +623,7 @@ func ExampleServiceDiscovery_ListServices_shared00() {
 //
 // This example lists the tags of a resource.
 func ExampleServiceDiscovery_ListTagsForResource_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.ListTagsForResourceInput{
 		ResourceARN: aws.String("arn:aws:servicediscovery:us-east-1:123456789012:namespace/ns-ylexjili4cdxy3xm"),
 	}
@@ -654,7 +654,7 @@ func ExampleServiceDiscovery_ListTagsForResource_shared00() {
 //
 // Example: Register Instance
 func ExampleServiceDiscovery_RegisterInstance_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.RegisterInstanceInput{
 		Attributes: map[string]*string{
 			"AWS_INSTANCE_IPV4": aws.String("172.2.1.3"),
@@ -697,7 +697,7 @@ func ExampleServiceDiscovery_RegisterInstance_shared00() {
 //
 // This example adds "Department" and "Project" tags to a resource.
 func ExampleServiceDiscovery_TagResource_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.TagResourceInput{
 		ResourceARN: aws.String("arn:aws:servicediscovery:us-east-1:123456789012:namespace/ns-ylexjili4cdxy3xm"),
 		Tags: []*servicediscovery.Tag{
@@ -740,7 +740,7 @@ func ExampleServiceDiscovery_TagResource_shared00() {
 //
 // This example removes the "Department" and "Project" tags from a resource.
 func ExampleServiceDiscovery_UntagResource_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.UntagResourceInput{
 		ResourceARN: aws.String("arn:aws:servicediscovery:us-east-1:123456789012:namespace/ns-ylexjili4cdxy3xm"),
 		TagKeys: []*string{
@@ -776,7 +776,7 @@ func ExampleServiceDiscovery_UntagResource_shared00() {
 // This example submits a request to change the health status of an instance associated
 // with a service with a custom health check to HEALTHY.
 func ExampleServiceDiscovery_UpdateInstanceCustomHealthStatus_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.UpdateInstanceCustomHealthStatusInput{
 		InstanceId: aws.String("i-abcd1234"),
 		ServiceId:  aws.String("srv-e4anhexample0004"),
@@ -814,7 +814,7 @@ func ExampleServiceDiscovery_UpdateInstanceCustomHealthStatus_shared00() {
 // This example submits a request to replace the DnsConfig and HealthCheckConfig settings
 // of a specified service.
 func ExampleServiceDiscovery_UpdateService_shared00() {
-	svc := servicediscovery.New(session.New())
+	svc := servicediscovery.New(session.Must(session.NewSession()))
 	input := &servicediscovery.UpdateServiceInput{
 		Id: aws.String("srv-e4anhexample0004"),
 		Service: &servicediscovery.ServiceChange{

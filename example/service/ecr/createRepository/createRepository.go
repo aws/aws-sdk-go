@@ -20,7 +20,7 @@ const DEFAULT_AWS_REGION = "us-east-1"
 func main() {
 
 	config := &aws.Config{Region: aws.String(getAwsRegion())}
-	svc := ecr.New(session.New(), config)
+	svc := ecr.New(session.Must(session.NewSession()), config)
 
 	repoName := getRepoNameArg()
 	if repoName == "" {
