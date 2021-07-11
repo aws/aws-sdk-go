@@ -641,20 +641,20 @@ func (o *Operation) GenerateAction() error {
 
 	actionParameters["awsRegion"] = plugin.ActionParameter{
 		Type:        "string",
-		Description: "AWS Region",
+		Description: "AWS Region(s), More than 1 region can be provided seperated by \",\", Use \"*\" to run on all regions",
 		Required:    true,
 	}
 
 	inputShape := o.API.Shapes[o.InputRef.ShapeName]
 	requiredMembers := inputShape.Required
-	for _, member := range inputShape.MemberNames() {
-		memberInfo := inputShape.MemberRefs[member]
+	for _, memberName := range inputShape.MemberNames() {
+		memberInfo := inputShape.MemberRefs[memberName]
 
 		description := strings.ReplaceAll(memberInfo.Documentation, "//", "")
 		description = strings.ReplaceAll(description, "\\", "")
 		description = strings.ReplaceAll(description, "\n ", "")
 
-		actionParameters[member] = plugin.ActionParameter{
+		actionParameters[memberName] = plugin.ActionParameter{
 			Type:        memberInfo.GoTypeElem(),
 			Description: strings.TrimSpace(description),
 			Required: func(name string, requiredList []string) bool {
@@ -664,7 +664,7 @@ func (o *Operation) GenerateAction() error {
 					}
 				}
 				return false
-			}(memberInfo.ShapeName, requiredMembers),
+			}(memberName, requiredMembers),
 		}
 	}
 
@@ -674,10 +674,10 @@ func (o *Operation) GenerateAction() error {
 			Name:   outputShape.ShapeName,
 			Fields: func(shape *Shape) []plugin.Field {
 				var fields []plugin.Field
-				for _, member := range shape.MemberNames() {
-					memberInfo := shape.MemberRefs[member]
+				for _, memberName := range shape.MemberNames() {
+					memberInfo := shape.MemberRefs[memberName]
 					fields = append(fields, plugin.Field{
-						Name: member,
+						Name: memberName,
 						Type: memberInfo.GoTypeElem(),
 					})
 				}
