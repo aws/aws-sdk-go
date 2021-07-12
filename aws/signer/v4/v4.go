@@ -56,9 +56,9 @@ package v4
 
 import (
 	"crypto/hmac"
-	"crypto/sha256"
 	"encoding/hex"
 	"fmt"
+	"github.com/minio/sha256-simd"
 	"io"
 	"io/ioutil"
 	"net/http"

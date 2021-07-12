@@ -2,8 +2,8 @@ package glacier_test
 
 import (
 	"bytes"
-	"crypto/sha256"
 	"fmt"
+	"github.com/minio/sha256-simd"
 	"io"
 
 	"github.com/aws/aws-sdk-go/service/glacier"

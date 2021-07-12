@@ -2,10 +2,10 @@ package v2
 
 import (
 	"crypto/hmac"
-	"crypto/sha256"
 	"encoding/base64"
 	"errors"
 	"fmt"
+	"github.com/minio/sha256-simd"
 	"net/http"
 	"net/url"
 	"sort"

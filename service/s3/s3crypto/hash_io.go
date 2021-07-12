@@ -1,7 +1,7 @@
 package s3crypto
 
 import (
-	"crypto/sha256"
+	"github.com/minio/sha256-simd"
 	"hash"
 	"io"
 )
