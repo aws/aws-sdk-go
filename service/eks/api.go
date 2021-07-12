@@ -61,7 +61,7 @@ func (c *EKS) AssociateEncryptionConfigRequest(input *AssociateEncryptionConfigI
 //
 // You can use this API to enable encryption on existing clusters which do not
 // have encryption already enabled. This allows you to implement a defense-in-depth
-// security strategy without migrating applications to new EKS clusters.
+// security strategy without migrating applications to new Amazon EKS clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -379,9 +379,10 @@ func (c *EKS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 //
 // The Amazon EKS control plane consists of control plane instances that run
 // the Kubernetes software, such as etcd and the API server. The control plane
-// runs in an account managed by AWS, and the Kubernetes API is exposed via
-// the Amazon EKS API server endpoint. Each Amazon EKS cluster control plane
-// is single-tenant and unique and runs on its own set of Amazon EC2 instances.
+// runs in an account managed by Amazon Web Services, and the Kubernetes API
+// is exposed via the Amazon EKS API server endpoint. Each Amazon EKS cluster
+// control plane is single-tenant and unique and runs on its own set of Amazon
+// EC2 instances.
 //
 // The cluster control plane is provisioned across multiple Availability Zones
 // and fronted by an Elastic Load Balancing Network Load Balancer. Amazon EKS
@@ -389,9 +390,9 @@ func (c *EKS) CreateClusterRequest(input *CreateClusterInput) (req *request.Requ
 // connectivity from the control plane instances to the nodes (for example,
 // to support kubectl exec, logs, and proxy data flows).
 //
-// Amazon EKS nodes run in your AWS account and connect to your cluster's control
-// plane via the Kubernetes API server endpoint and a certificate file that
-// is created for your cluster.
+// Amazon EKS nodes run in your Amazon Web Services account and connect to your
+// cluster's control plane via the Kubernetes API server endpoint and a certificate
+// file that is created for your cluster.
 //
 // Cluster creation typically takes several minutes. After you create an Amazon
 // EKS cluster, you must configure your Kubernetes tooling to communicate with
@@ -501,8 +502,8 @@ func (c *EKS) CreateFargateProfileRequest(input *CreateFargateProfileInput) (req
 
 // CreateFargateProfile API operation for Amazon Elastic Kubernetes Service.
 //
-// Creates an AWS Fargate profile for your Amazon EKS cluster. You must have
-// at least one Fargate profile in a cluster to be able to run pods on Fargate.
+// Creates an Fargate profile for your Amazon EKS cluster. You must have at
+// least one Fargate profile in a cluster to be able to run pods on Fargate.
 //
 // The Fargate profile allows an administrator to declare which pods run on
 // Fargate and specify which pods run on which Fargate profile. This declaration
@@ -531,7 +532,7 @@ func (c *EKS) CreateFargateProfileRequest(input *CreateFargateProfileInput) (req
 // wait for that Fargate profile to finish deleting before you can create any
 // other profiles in that cluster.
 //
-// For more information, see AWS Fargate Profile (https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html)
+// For more information, see Fargate Profile (https://docs.aws.amazon.com/eks/latest/userguide/fargate-profile.html)
 // in the Amazon EKS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -641,9 +642,9 @@ func (c *EKS) CreateNodegroupRequest(input *CreateNodegroupInput) (req *request.
 // using launch templates, see Launch template support (https://docs.aws.amazon.com/eks/latest/userguide/launch-templates.html).
 //
 // An Amazon EKS managed node group is an Amazon EC2 Auto Scaling group and
-// associated Amazon EC2 instances that are managed by AWS for an Amazon EKS
-// cluster. Each node group uses a version of the Amazon EKS optimized Amazon
-// Linux 2 AMI. For more information, see Managed Node Groups (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html)
+// associated Amazon EC2 instances that are managed by Amazon Web Services for
+// an Amazon EKS cluster. Each node group uses a version of the Amazon EKS optimized
+// Amazon Linux 2 AMI. For more information, see Managed Node Groups (https://docs.aws.amazon.com/eks/latest/userguide/managed-node-groups.html)
 // in the Amazon EKS User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -951,7 +952,7 @@ func (c *EKS) DeleteFargateProfileRequest(input *DeleteFargateProfileInput) (req
 
 // DeleteFargateProfile API operation for Amazon Elastic Kubernetes Service.
 //
-// Deletes an AWS Fargate profile.
+// Deletes an Fargate profile.
 //
 // When you delete a Fargate profile, any pods running on Fargate that were
 // created with the profile are deleted. If those pods match another Fargate
@@ -1496,7 +1497,7 @@ func (c *EKS) DescribeFargateProfileRequest(input *DescribeFargateProfileInput) 
 
 // DescribeFargateProfile API operation for Amazon Elastic Kubernetes Service.
 //
-// Returns descriptive information about an AWS Fargate profile.
+// Returns descriptive information about an Fargate profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1882,7 +1883,7 @@ func (c *EKS) DisassociateIdentityProviderConfigRequest(input *DisassociateIdent
 // Disassociates an identity provider configuration from a cluster. If you disassociate
 // an identity provider from your cluster, users included in the provider can
 // no longer access the cluster. However, you can still access the cluster with
-// AWS IAM users.
+// Amazon Web Services IAM users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2143,7 +2144,8 @@ func (c *EKS) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 
 // ListClusters API operation for Amazon Elastic Kubernetes Service.
 //
-// Lists the Amazon EKS clusters in your AWS account in the specified Region.
+// Lists the Amazon EKS clusters in your Amazon Web Services account in the
+// specified Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2292,8 +2294,8 @@ func (c *EKS) ListFargateProfilesRequest(input *ListFargateProfilesInput) (req *
 
 // ListFargateProfiles API operation for Amazon Elastic Kubernetes Service.
 //
-// Lists the AWS Fargate profiles associated with the specified cluster in your
-// AWS account in the specified Region.
+// Lists the Fargate profiles associated with the specified cluster in your
+// Amazon Web Services account in the specified Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2599,8 +2601,8 @@ func (c *EKS) ListNodegroupsRequest(input *ListNodegroupsInput) (req *request.Re
 // ListNodegroups API operation for Amazon Elastic Kubernetes Service.
 //
 // Lists the Amazon EKS managed node groups associated with the specified cluster
-// in your AWS account in the specified Region. Self-managed node groups are
-// not listed.
+// in your Amazon Web Services account in the specified Region. Self-managed
+// node groups are not listed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2839,7 +2841,7 @@ func (c *EKS) ListUpdatesRequest(input *ListUpdatesInput) (req *request.Request,
 // ListUpdates API operation for Amazon Elastic Kubernetes Service.
 //
 // Lists the updates associated with an Amazon EKS cluster or managed node group
-// in your AWS account, in the specified Region.
+// in your Amazon Web Services account, in the specified Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3272,13 +3274,13 @@ func (c *EKS) UpdateClusterConfigRequest(input *UpdateClusterConfigInput) (req *
 // in the Amazon EKS User Guide .
 //
 // CloudWatch Logs ingestion, archive storage, and data scanning rates apply
-// to exported control plane logs. For more information, see Amazon CloudWatch
-// Pricing (http://aws.amazon.com/cloudwatch/pricing/).
+// to exported control plane logs. For more information, see CloudWatch Pricing
+// (http://aws.amazon.com/cloudwatch/pricing/).
 //
 // You can also use this API operation to enable or disable public and private
 // access to your cluster's Kubernetes API server endpoint. By default, public
 // access is enabled, and private access is disabled. For more information,
-// see Amazon EKS Cluster Endpoint Access Control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
+// see Amazon EKS cluster endpoint access control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 // in the Amazon EKS User Guide .
 //
 // You can't update the subnets or security group IDs for an existing cluster.
@@ -4368,8 +4370,8 @@ type Cluster struct {
 	ResourcesVpcConfig *VpcConfigResponse `locationName:"resourcesVpcConfig" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that provides permissions
-	// for the Kubernetes control plane to make calls to AWS API operations on your
-	// behalf.
+	// for the Kubernetes control plane to make calls to Amazon Web Services API
+	// operations on your behalf.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The current status of the cluster.
@@ -4537,7 +4539,7 @@ type CreateAddonInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the add-on. The name must match one of the names returned by
-	// ListAddons (https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html).
+	// DescribeAddonVersions (https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html).
 	//
 	// AddonName is a required field
 	AddonName *string `locationName:"addonName" type:"string" required:"true"`
@@ -4692,13 +4694,13 @@ type CreateClusterInput struct {
 
 	// Enable or disable exporting the Kubernetes control plane logs for your cluster
 	// to CloudWatch Logs. By default, cluster control plane logs aren't exported
-	// to CloudWatch Logs. For more information, see Amazon EKS Cluster Control
-	// Plane Logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
+	// to CloudWatch Logs. For more information, see Amazon EKS Cluster control
+	// plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
 	// in the Amazon EKS User Guide .
 	//
 	// CloudWatch Logs ingestion, archive storage, and data scanning rates apply
-	// to exported control plane logs. For more information, see Amazon CloudWatch
-	// Pricing (http://aws.amazon.com/cloudwatch/pricing/).
+	// to exported control plane logs. For more information, see CloudWatch Pricing
+	// (http://aws.amazon.com/cloudwatch/pricing/).
 	Logging *Logging `locationName:"logging" type:"structure"`
 
 	// The unique name to give to your cluster.
@@ -4718,8 +4720,9 @@ type CreateClusterInput struct {
 	ResourcesVpcConfig *VpcConfigRequest `locationName:"resourcesVpcConfig" type:"structure" required:"true"`
 
 	// The Amazon Resource Name (ARN) of the IAM role that provides permissions
-	// for the Kubernetes control plane to make calls to AWS API operations on your
-	// behalf. For more information, see Amazon EKS Service IAM Role (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html)
+	// for the Kubernetes control plane to make calls to Amazon Web Services API
+	// operations on your behalf. For more information, see Amazon EKS Service IAM
+	// Role (https://docs.aws.amazon.com/eks/latest/userguide/service_IAM_role.html)
 	// in the Amazon EKS User Guide .
 	//
 	// RoleArn is a required field
@@ -5047,12 +5050,12 @@ type CreateNodegroupInput struct {
 	LaunchTemplate *LaunchTemplateSpecification `locationName:"launchTemplate" type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the IAM role to associate with your node
-	// group. The Amazon EKS worker node kubelet daemon makes calls to AWS APIs
-	// on your behalf. Nodes receive permissions for these API calls through an
-	// IAM instance profile and associated policies. Before you can launch nodes
-	// and register them into a cluster, you must create an IAM role for those nodes
-	// to use when they are launched. For more information, see Amazon EKS node
-	// IAM role (https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html)
+	// group. The Amazon EKS worker node kubelet daemon makes calls to Amazon Web
+	// Services APIs on your behalf. Nodes receive permissions for these API calls
+	// through an IAM instance profile and associated policies. Before you can launch
+	// nodes and register them into a cluster, you must create an IAM role for those
+	// nodes to use when they are launched. For more information, see Amazon EKS
+	// node IAM role (https://docs.aws.amazon.com/eks/latest/userguide/worker_node_IAM_role.html)
 	// in the Amazon EKS User Guide . If you specify launchTemplate, then don't
 	// specify IamInstanceProfile (https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_IamInstanceProfile.html)
 	// in your launch template, or the node group deployment will fail. For more
@@ -5109,6 +5112,7 @@ type CreateNodegroupInput struct {
 	// The Kubernetes taints to be applied to the nodes in the node group.
 	Taints []*Taint `locationName:"taints" type:"list"`
 
+	// The node group update configuration.
 	UpdateConfig *NodegroupUpdateConfig `locationName:"updateConfig" type:"structure"`
 
 	// The Kubernetes version to use for your managed nodes. By default, the Kubernetes
@@ -6315,8 +6319,7 @@ func (s *DisassociateIdentityProviderConfigOutput) SetUpdate(v *Update) *Disasso
 type EncryptionConfig struct {
 	_ struct{} `type:"structure"`
 
-	// AWS Key Management Service (AWS KMS) key. Either the ARN or the alias can
-	// be used.
+	// Key Management Service (KMS) key. Either the ARN or the alias can be used.
 	Provider *Provider `locationName:"provider" type:"structure"`
 
 	// Specifies the resources to be encrypted. The only supported value is "secrets".
@@ -6406,7 +6409,7 @@ func (s *ErrorDetail) SetResourceIds(v []*string) *ErrorDetail {
 	return s
 }
 
-// An object representing an AWS Fargate profile.
+// An object representing an Fargate profile.
 type FargateProfile struct {
 	_ struct{} `type:"structure"`
 
@@ -6509,7 +6512,7 @@ func (s *FargateProfile) SetTags(v map[string]*string) *FargateProfile {
 	return s
 }
 
-// An object representing an AWS Fargate profile selector.
+// An object representing an Fargate profile selector.
 type FargateProfileSelector struct {
 	_ struct{} `type:"structure"`
 
@@ -6832,9 +6835,9 @@ type Issue struct {
 	//    node group. You may be able to recreate an IAM role with the same settings
 	//    to recover.
 	//
-	//    * InstanceLimitExceeded: Your AWS account is unable to launch any more
-	//    instances of the specified instance type. You may be able to request an
-	//    Amazon EC2 instance limit increase to recover.
+	//    * InstanceLimitExceeded: Your Amazon Web Services account is unable to
+	//    launch any more instances of the specified instance type. You may be able
+	//    to request an Amazon EC2 instance limit increase to recover.
 	//
 	//    * InsufficientFreeAddresses: One or more of the subnets associated with
 	//    your managed node group does not have enough available IP addresses for
@@ -6852,7 +6855,7 @@ type Issue struct {
 	// The error message associated with the issue.
 	Message *string `locationName:"message" type:"string"`
 
-	// The AWS resources that are afflicted by this issue.
+	// The Amazon Web Services resources that are afflicted by this issue.
 	ResourceIds []*string `locationName:"resourceIds" type:"list"`
 }
 
@@ -7213,7 +7216,7 @@ func (s *ListClustersOutput) SetNextToken(v string) *ListClustersOutput {
 type ListFargateProfilesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the Amazon EKS cluster that you would like to listFargate profiles
+	// The name of the Amazon EKS cluster that you would like to list Fargate profiles
 	// in.
 	//
 	// ClusterName is a required field
@@ -7828,8 +7831,9 @@ type Nodegroup struct {
 	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp"`
 
 	// The IAM role associated with your node group. The Amazon EKS node kubelet
-	// daemon makes calls to AWS APIs on your behalf. Nodes receive permissions
-	// for these API calls through an IAM instance profile and associated policies.
+	// daemon makes calls to Amazon Web Services APIs on your behalf. Nodes receive
+	// permissions for these API calls through an IAM instance profile and associated
+	// policies.
 	NodeRole *string `locationName:"nodeRole" type:"string"`
 
 	// The Amazon Resource Name (ARN) associated with the managed node group.
@@ -7871,11 +7875,12 @@ type Nodegroup struct {
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The Kubernetes taints to be applied to the nodes in the node group when they
-	// are created. Effect is one of NoSchedule, PreferNoSchedule, or NoExecute.
+	// are created. Effect is one of No_Schedule, Prefer_No_Schedule, or No_Execute.
 	// Kubernetes taints can be used together with tolerations to control how workloads
 	// are scheduled to your nodes.
 	Taints []*Taint `locationName:"taints" type:"list"`
 
+	// The node group update configuration.
 	UpdateConfig *NodegroupUpdateConfig `locationName:"updateConfig" type:"structure"`
 
 	// The Kubernetes version of the managed node group.
@@ -8106,7 +8111,6 @@ type NodegroupScalingConfig struct {
 	MaxSize *int64 `locationName:"maxSize" min:"1" type:"integer"`
 
 	// The minimum number of nodes that the managed node group can scale in to.
-	// This number must be greater than zero.
 	MinSize *int64 `locationName:"minSize" type:"integer"`
 }
 
@@ -8151,11 +8155,18 @@ func (s *NodegroupScalingConfig) SetMinSize(v int64) *NodegroupScalingConfig {
 	return s
 }
 
+// The node group update configuration.
 type NodegroupUpdateConfig struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of nodes unavailable at once during a version update.
+	// Nodes will be updated in parallel. This value or maxUnavailablePercentage
+	// is required to have a value.The maximum number is 100.
 	MaxUnavailable *int64 `locationName:"maxUnavailable" min:"1" type:"integer"`
 
+	// The maximum percentage of nodes unavailable during a version update. This
+	// percentage of nodes will be updated in parallel, up to 100 nodes at once.
+	// This value or maxUnavailable is required to have a value.
 	MaxUnavailablePercentage *int64 `locationName:"maxUnavailablePercentage" min:"1" type:"integer"`
 }
 
@@ -8547,8 +8558,7 @@ func (s *OidcIdentityProviderConfigRequest) SetUsernamePrefix(v string) *OidcIde
 	return s
 }
 
-// Identifies the AWS Key Management Service (AWS KMS) key used to encrypt the
-// secrets.
+// Identifies the Key Management Service (KMS) key used to encrypt the secrets.
 type Provider struct {
 	_ struct{} `type:"structure"`
 
@@ -8556,7 +8566,7 @@ type Provider struct {
 	// created in the same region as the cluster, and if the KMS key was created
 	// in a different account, the user must have access to the KMS key. For more
 	// information, see Allowing Users in Other Accounts to Use a KMS key (https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html)
-	// in the AWS Key Management Service Developer Guide.
+	// in the Key Management Service Developer Guide.
 	KeyArn *string `locationName:"keyArn" type:"string"`
 }
 
@@ -8582,8 +8592,8 @@ type RemoteAccessConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon EC2 SSH key that provides access for SSH communication with the
-	// nodes in the managed node group. For more information, see Amazon EC2 Key
-	// Pairs (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
+	// nodes in the managed node group. For more information, see Amazon EC2 key
+	// pairs and Linux instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html)
 	// in the Amazon Elastic Compute Cloud User Guide for Linux Instances.
 	Ec2SshKey *string `locationName:"ec2SshKey" type:"string"`
 
@@ -9416,13 +9426,13 @@ type UpdateClusterConfigInput struct {
 
 	// Enable or disable exporting the Kubernetes control plane logs for your cluster
 	// to CloudWatch Logs. By default, cluster control plane logs aren't exported
-	// to CloudWatch Logs. For more information, see Amazon EKS Cluster Control
-	// Plane Logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
+	// to CloudWatch Logs. For more information, see Amazon EKS cluster control
+	// plane logs (https://docs.aws.amazon.com/eks/latest/userguide/control-plane-logs.html)
 	// in the Amazon EKS User Guide .
 	//
 	// CloudWatch Logs ingestion, archive storage, and data scanning rates apply
-	// to exported control plane logs. For more information, see Amazon CloudWatch
-	// Pricing (http://aws.amazon.com/cloudwatch/pricing/).
+	// to exported control plane logs. For more information, see CloudWatch Pricing
+	// (http://aws.amazon.com/cloudwatch/pricing/).
 	Logging *Logging `locationName:"logging" type:"structure"`
 
 	// The name of the Amazon EKS cluster to update.
@@ -9656,6 +9666,7 @@ type UpdateNodegroupConfigInput struct {
 	// the update.
 	Taints *UpdateTaintsPayload `locationName:"taints" type:"structure"`
 
+	// The node group update configuration.
 	UpdateConfig *NodegroupUpdateConfig `locationName:"updateConfig" type:"structure"`
 }
 
@@ -10024,9 +10035,9 @@ type VpcConfigRequest struct {
 	// from within your cluster's VPC use the private VPC endpoint. The default
 	// value for this parameter is false, which disables private access for your
 	// Kubernetes API server. If you disable private access and you have nodes or
-	// AWS Fargate pods in the cluster, then ensure that publicAccessCidrs includes
+	// Fargate pods in the cluster, then ensure that publicAccessCidrs includes
 	// the necessary CIDR blocks for communication with the nodes or Fargate pods.
-	// For more information, see Amazon EKS Cluster Endpoint Access Control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
+	// For more information, see Amazon EKS cluster endpoint access control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 	// in the Amazon EKS User Guide .
 	EndpointPrivateAccess *bool `locationName:"endpointPrivateAccess" type:"boolean"`
 
@@ -10034,22 +10045,22 @@ type VpcConfigRequest struct {
 	// API server endpoint. If you disable public access, your cluster's Kubernetes
 	// API server can only receive requests from within the cluster VPC. The default
 	// value for this parameter is true, which enables public access for your Kubernetes
-	// API server. For more information, see Amazon EKS Cluster Endpoint Access
-	// Control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
+	// API server. For more information, see Amazon EKS cluster endpoint access
+	// control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 	// in the Amazon EKS User Guide .
 	EndpointPublicAccess *bool `locationName:"endpointPublicAccess" type:"boolean"`
 
 	// The CIDR blocks that are allowed access to your cluster's public Kubernetes
 	// API server endpoint. Communication to the endpoint from addresses outside
 	// of the CIDR blocks that you specify is denied. The default value is 0.0.0.0/0.
-	// If you've disabled private endpoint access and you have nodes or AWS Fargate
+	// If you've disabled private endpoint access and you have nodes or Fargate
 	// pods in the cluster, then ensure that you specify the necessary CIDR blocks.
-	// For more information, see Amazon EKS Cluster Endpoint Access Control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
+	// For more information, see Amazon EKS cluster endpoint access control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 	// in the Amazon EKS User Guide .
 	PublicAccessCidrs []*string `locationName:"publicAccessCidrs" type:"list"`
 
 	// Specify one or more security groups for the cross-account elastic network
-	// interfaces that Amazon EKS creates to use to allow communication between
+	// interfaces that Amazon EKS creates to use that allow communication between
 	// your nodes and the Kubernetes control plane. If you don't specify any security
 	// groups, then familiarize yourself with the difference between Amazon EKS
 	// defaults for clusters deployed with Kubernetes:
@@ -10121,9 +10132,9 @@ type VpcConfigResponse struct {
 	// is enabled. If the Amazon EKS private API server endpoint is enabled, Kubernetes
 	// API requests that originate from within your cluster's VPC use the private
 	// VPC endpoint instead of traversing the internet. If this value is disabled
-	// and you have nodes or AWS Fargate pods in the cluster, then ensure that publicAccessCidrs
+	// and you have nodes or Fargate pods in the cluster, then ensure that publicAccessCidrs
 	// includes the necessary CIDR blocks for communication with the nodes or Fargate
-	// pods. For more information, see Amazon EKS Cluster Endpoint Access Control
+	// pods. For more information, see Amazon EKS cluster endpoint access control
 	// (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 	// in the Amazon EKS User Guide .
 	EndpointPrivateAccess *bool `locationName:"endpointPrivateAccess" type:"boolean"`
@@ -10137,9 +10148,9 @@ type VpcConfigResponse struct {
 	// The CIDR blocks that are allowed access to your cluster's public Kubernetes
 	// API server endpoint. Communication to the endpoint from addresses outside
 	// of the listed CIDR blocks is denied. The default value is 0.0.0.0/0. If you've
-	// disabled private endpoint access and you have nodes or AWS Fargate pods in
-	// the cluster, then ensure that the necessary CIDR blocks are listed. For more
-	// information, see Amazon EKS Cluster Endpoint Access Control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
+	// disabled private endpoint access and you have nodes or Fargate pods in the
+	// cluster, then ensure that the necessary CIDR blocks are listed. For more
+	// information, see Amazon EKS cluster endpoint access control (https://docs.aws.amazon.com/eks/latest/userguide/cluster-endpoint.html)
 	// in the Amazon EKS User Guide .
 	PublicAccessCidrs []*string `locationName:"publicAccessCidrs" type:"list"`
 

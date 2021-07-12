@@ -61,8 +61,8 @@ func (c *Kendra) BatchDeleteDocumentRequest(input *BatchDeleteDocumentInput) (re
 // added with the BatchPutDocument operation.
 //
 // The documents are deleted asynchronously. You can see the progress of the
-// deletion by using AWS CloudWatch. Any error messages related to the processing
-// of the batch are sent to you CloudWatch log.
+// deletion by using Amazon Web Services CloudWatch. Any error messages related
+// to the processing of the batch are sent to you CloudWatch log.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -259,8 +259,8 @@ func (c *Kendra) BatchPutDocumentRequest(input *BatchPutDocumentInput) (req *req
 // the index.
 //
 // The documents are indexed asynchronously. You can see the progress of the
-// batch using AWS CloudWatch. Any error messages related to processing the
-// batch are sent to your AWS CloudWatch log.
+// batch using Amazon Web Services CloudWatch. Any error messages related to
+// processing the batch are sent to your Amazon Web Services CloudWatch log.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1149,6 +1149,106 @@ func (c *Kendra) DeleteIndexWithContext(ctx aws.Context, input *DeleteIndexInput
 	return out, req.Send()
 }
 
+const opDeletePrincipalMapping = "DeletePrincipalMapping"
+
+// DeletePrincipalMappingRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePrincipalMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePrincipalMapping for more information on using the DeletePrincipalMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeletePrincipalMappingRequest method.
+//    req, resp := client.DeletePrincipalMappingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeletePrincipalMapping
+func (c *Kendra) DeletePrincipalMappingRequest(input *DeletePrincipalMappingInput) (req *request.Request, output *DeletePrincipalMappingOutput) {
+	op := &request.Operation{
+		Name:       opDeletePrincipalMapping,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeletePrincipalMappingInput{}
+	}
+
+	output = &DeletePrincipalMappingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePrincipalMapping API operation for AWSKendraFrontendService.
+//
+// Deletes a group so that all users and sub groups that belong to the group
+// can no longer access documents only available to that group.
+//
+// For example, after deleting the group "Summer Interns", all interns who belonged
+// to that group no longer see intern-only documents in their search results.
+//
+// If you want to delete or replace users or sub groups of a group, you need
+// to use the PutPrincipalMapping operation. For example, if a user in the group
+// "Engineering" leaves the engineering team and another user takes their place,
+// you provide an updated list of users or sub groups that belong to the "Engineering"
+// group when calling PutPrincipalMapping. You can update your internal list
+// of users or sub groups and input this list when calling PutPrincipalMapping.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DeletePrincipalMapping for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DeletePrincipalMapping
+func (c *Kendra) DeletePrincipalMapping(input *DeletePrincipalMappingInput) (*DeletePrincipalMappingOutput, error) {
+	req, out := c.DeletePrincipalMappingRequest(input)
+	return out, req.Send()
+}
+
+// DeletePrincipalMappingWithContext is the same as DeletePrincipalMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePrincipalMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DeletePrincipalMappingWithContext(ctx aws.Context, input *DeletePrincipalMappingInput, opts ...request.Option) (*DeletePrincipalMappingOutput, error) {
+	req, out := c.DeletePrincipalMappingRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteQuerySuggestionsBlockList = "DeleteQuerySuggestionsBlockList"
 
 // DeleteQuerySuggestionsBlockListRequest generates a "aws/request.Request" representing the
@@ -1584,6 +1684,97 @@ func (c *Kendra) DescribeIndex(input *DescribeIndexInput) (*DescribeIndexOutput,
 // for more information on using Contexts.
 func (c *Kendra) DescribeIndexWithContext(ctx aws.Context, input *DescribeIndexInput, opts ...request.Option) (*DescribeIndexOutput, error) {
 	req, out := c.DescribeIndexRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribePrincipalMapping = "DescribePrincipalMapping"
+
+// DescribePrincipalMappingRequest generates a "aws/request.Request" representing the
+// client's request for the DescribePrincipalMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribePrincipalMapping for more information on using the DescribePrincipalMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribePrincipalMappingRequest method.
+//    req, resp := client.DescribePrincipalMappingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribePrincipalMapping
+func (c *Kendra) DescribePrincipalMappingRequest(input *DescribePrincipalMappingInput) (req *request.Request, output *DescribePrincipalMappingOutput) {
+	op := &request.Operation{
+		Name:       opDescribePrincipalMapping,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribePrincipalMappingInput{}
+	}
+
+	output = &DescribePrincipalMappingOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribePrincipalMapping API operation for AWSKendraFrontendService.
+//
+// Describes the processing of PUT and DELETE actions for mapping users to their
+// groups. This includes information on the status of actions currently processing
+// or yet to be processed, when actions were last updated, when actions were
+// received by Amazon Kendra, the latest action that should process and apply
+// after other actions, and useful error messages if an action could not be
+// processed.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation DescribePrincipalMapping for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/DescribePrincipalMapping
+func (c *Kendra) DescribePrincipalMapping(input *DescribePrincipalMappingInput) (*DescribePrincipalMappingOutput, error) {
+	req, out := c.DescribePrincipalMappingRequest(input)
+	return out, req.Send()
+}
+
+// DescribePrincipalMappingWithContext is the same as DescribePrincipalMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribePrincipalMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) DescribePrincipalMappingWithContext(ctx aws.Context, input *DescribePrincipalMappingInput, opts ...request.Option) (*DescribePrincipalMappingOutput, error) {
+	req, out := c.DescribePrincipalMappingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2317,6 +2508,95 @@ func (c *Kendra) ListFaqsWithContext(ctx aws.Context, input *ListFaqsInput, opts
 	return out, req.Send()
 }
 
+const opListGroupsOlderThanOrderingId = "ListGroupsOlderThanOrderingId"
+
+// ListGroupsOlderThanOrderingIdRequest generates a "aws/request.Request" representing the
+// client's request for the ListGroupsOlderThanOrderingId operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListGroupsOlderThanOrderingId for more information on using the ListGroupsOlderThanOrderingId
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListGroupsOlderThanOrderingIdRequest method.
+//    req, resp := client.ListGroupsOlderThanOrderingIdRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListGroupsOlderThanOrderingId
+func (c *Kendra) ListGroupsOlderThanOrderingIdRequest(input *ListGroupsOlderThanOrderingIdInput) (req *request.Request, output *ListGroupsOlderThanOrderingIdOutput) {
+	op := &request.Operation{
+		Name:       opListGroupsOlderThanOrderingId,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListGroupsOlderThanOrderingIdInput{}
+	}
+
+	output = &ListGroupsOlderThanOrderingIdOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListGroupsOlderThanOrderingId API operation for AWSKendraFrontendService.
+//
+// Provides a list of groups that are mapped to users before a given ordering
+// or timestamp identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation ListGroupsOlderThanOrderingId for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ResourceNotFoundException
+//
+//   * AccessDeniedException
+//
+//   * ThrottlingException
+//
+//   * ConflictException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/ListGroupsOlderThanOrderingId
+func (c *Kendra) ListGroupsOlderThanOrderingId(input *ListGroupsOlderThanOrderingIdInput) (*ListGroupsOlderThanOrderingIdOutput, error) {
+	req, out := c.ListGroupsOlderThanOrderingIdRequest(input)
+	return out, req.Send()
+}
+
+// ListGroupsOlderThanOrderingIdWithContext is the same as ListGroupsOlderThanOrderingId with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListGroupsOlderThanOrderingId for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) ListGroupsOlderThanOrderingIdWithContext(ctx aws.Context, input *ListGroupsOlderThanOrderingIdInput, opts ...request.Option) (*ListGroupsOlderThanOrderingIdOutput, error) {
+	req, out := c.ListGroupsOlderThanOrderingIdRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListIndices = "ListIndices"
 
 // ListIndicesRequest generates a "aws/request.Request" representing the
@@ -2716,6 +2996,110 @@ func (c *Kendra) ListThesauri(input *ListThesauriInput) (*ListThesauriOutput, er
 // for more information on using Contexts.
 func (c *Kendra) ListThesauriWithContext(ctx aws.Context, input *ListThesauriInput, opts ...request.Option) (*ListThesauriOutput, error) {
 	req, out := c.ListThesauriRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutPrincipalMapping = "PutPrincipalMapping"
+
+// PutPrincipalMappingRequest generates a "aws/request.Request" representing the
+// client's request for the PutPrincipalMapping operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutPrincipalMapping for more information on using the PutPrincipalMapping
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutPrincipalMappingRequest method.
+//    req, resp := client.PutPrincipalMappingRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/PutPrincipalMapping
+func (c *Kendra) PutPrincipalMappingRequest(input *PutPrincipalMappingInput) (req *request.Request, output *PutPrincipalMappingOutput) {
+	op := &request.Operation{
+		Name:       opPutPrincipalMapping,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutPrincipalMappingInput{}
+	}
+
+	output = &PutPrincipalMappingOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutPrincipalMapping API operation for AWSKendraFrontendService.
+//
+// Maps users to their groups. You can also map sub groups to groups. For example,
+// the group "Company Intellectual Property Teams" includes sub groups "Research"
+// and "Engineering". These sub groups include their own list of users or people
+// who work in these teams. Only users who work in research and engineering,
+// and therefore belong in the intellectual property group, can see top-secret
+// company documents in their search results.
+//
+// You map users to their groups when you want to filter search results for
+// different users based on their group’s access to documents. For more information
+// on filtering search results for different users, see Filtering on user context
+// (https://docs.aws.amazon.com/kendra/latest/dg/user-context-filter.html).
+//
+// If more than five PUT actions for a group are currently processing, a validation
+// exception is thrown.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWSKendraFrontendService's
+// API operation PutPrincipalMapping for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//
+//   * ConflictException
+//
+//   * ResourceNotFoundException
+//
+//   * ThrottlingException
+//
+//   * AccessDeniedException
+//
+//   * ServiceQuotaExceededException
+//
+//   * InternalServerException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kendra-2019-02-03/PutPrincipalMapping
+func (c *Kendra) PutPrincipalMapping(input *PutPrincipalMappingInput) (*PutPrincipalMappingOutput, error) {
+	req, out := c.PutPrincipalMappingRequest(input)
+	return out, req.Send()
+}
+
+// PutPrincipalMappingWithContext is the same as PutPrincipalMapping with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutPrincipalMapping for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kendra) PutPrincipalMappingWithContext(ctx aws.Context, input *PutPrincipalMappingInput, opts ...request.Option) (*PutPrincipalMappingOutput, error) {
+	req, out := c.PutPrincipalMappingRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3748,7 +4132,7 @@ func (c *Kendra) UpdateThesaurusWithContext(ctx aws.Context, input *UpdateThesau
 type AccessControlListConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Path to the AWS S3 bucket that contains the ACL files.
+	// Path to the Amazon Web Services S3 bucket that contains the ACL files.
 	KeyPath *string `min:"1" type:"string"`
 }
 
@@ -4671,8 +5055,8 @@ type BatchPutDocumentOutput struct {
 	// why the document couldn't be added to the index.
 	//
 	// If there was an error adding a document to an index the error is reported
-	// in your AWS CloudWatch log. For more information, see Monitoring Amazon Kendra
-	// with Amazon CloudWatch Logs (https://docs.aws.amazon.com/kendra/latest/dg/cloudwatch-logs.html)
+	// in your Amazon Web Services CloudWatch log. For more information, see Monitoring
+	// Amazon Kendra with Amazon CloudWatch Logs (https://docs.aws.amazon.com/kendra/latest/dg/cloudwatch-logs.html)
 	FailedDocuments []*BatchPutDocumentResponseFailedDocument `type:"list"`
 }
 
@@ -4742,23 +5126,21 @@ type CapacityUnitsConfiguration struct {
 	// The amount of extra query capacity for an index and GetQuerySuggestions (https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html)
 	// capacity.
 	//
-	// A single extra capacity unit for an index provides 0.1 queries per second
-	// or approximately 8,000 queries per day.
+	// A single extra capacity unit for an index provides 0.5 queries per second
+	// or approximately 40,000 queries per day.
 	//
-	// GetQuerySuggestions capacity is five times the provisioned query capacity
-	// for an index, or the base capacity of 2.5 calls per second, whichever is
-	// higher. For example, the base capacity for an index is 0.1 queries per second,
-	// and GetQuerySuggestions capacity has a base of 2.5 calls per second. If you
-	// add another 0.1 queries per second to total 0.2 queries per second for an
-	// index, the GetQuerySuggestions capacity is 2.5 calls per second (higher than
-	// five times 0.2 queries per second).
+	// GetQuerySuggestions capacity is 5 times the provisioned query capacity for
+	// an index. For example, the base capacity for an index is 0.5 queries per
+	// second, so GetQuerySuggestions capacity is 2.5 calls per second. If adding
+	// another 0.5 queries per second to total 1 queries per second for an index,
+	// the GetQuerySuggestions capacity is 5 calls per second.
 	//
 	// QueryCapacityUnits is a required field
 	QueryCapacityUnits *int64 `type:"integer" required:"true"`
 
 	// The amount of extra storage capacity for an index. A single capacity unit
-	// provides 30 GB of storage space or 100,000 documents, whichever is reached
-	// first.
+	// for an index provides 150 GB of storage space or 500,000 documents, whichever
+	// is reached first.
 	//
 	// StorageCapacityUnits is a required field
 	StorageCapacityUnits *int64 `type:"integer" required:"true"`
@@ -5360,7 +5742,7 @@ type ConfluenceConfiguration struct {
 	// Specifies configuration information for indexing Confluence pages.
 	PageConfiguration *ConfluencePageConfiguration `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains
+	// The Amazon Resource Name (ARN) of an Secrets Managersecret that contains
 	// the key/value pairs required to connect to your Confluence server. The secret
 	// must contain a JSON structure with the following keys:
 	//
@@ -5822,7 +6204,7 @@ type ConnectionConfiguration struct {
 	// Using a Database Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html).
 	// For more information about AWS Secrets Manager, see What Is AWS Secrets Manager
 	// (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
-	// in the AWS Secrets Manager user guide.
+	// in the Secrets Manager user guide.
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -6302,9 +6684,6 @@ type CreateIndexInput struct {
 	//
 	// The Edition parameter is optional. If you don't supply a value, the default
 	// is ENTERPRISE_EDITION.
-	//
-	// For more information on quota limits for enterprise and developer editions,
-	// see Quotas (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
 	Edition *string `type:"string" enum:"IndexEdition"`
 
 	// The name for the new index.
@@ -6312,16 +6691,16 @@ type CreateIndexInput struct {
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// An AWS Identity and Access Management (IAM) role that gives Amazon Kendra
-	// permissions to access your Amazon CloudWatch logs and metrics. This is also
-	// the role used when you use the BatchPutDocument operation to index documents
-	// from an Amazon S3 bucket.
+	// An Identity and Access Management(IAM) role that gives Amazon Kendra permissions
+	// to access your Amazon CloudWatch logs and metrics. This is also the role
+	// used when you use the BatchPutDocument operation to index documents from
+	// an Amazon S3 bucket.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"1" type:"string" required:"true"`
 
-	// The identifier of the AWS KMS customer managed key (CMK) to use to encrypt
-	// data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
+	// The identifier of the KMScustomer managed key (CMK) to use to encrypt data
+	// indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
 
 	// A list of key-value pairs that identify the index. You can use the tags to
@@ -6971,6 +7350,68 @@ func (s *DataSourceConfiguration) SetSharePointConfiguration(v *SharePointConfig
 // SetWebCrawlerConfiguration sets the WebCrawlerConfiguration field's value.
 func (s *DataSourceConfiguration) SetWebCrawlerConfiguration(v *WebCrawlerConfiguration) *DataSourceConfiguration {
 	s.WebCrawlerConfiguration = v
+	return s
+}
+
+// Data source information for user context filtering.
+type DataSourceGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data source group you want to add to your list of data
+	// source groups. This is for filtering search results based on the groups'
+	// access to documents in that data source.
+	//
+	// DataSourceId is a required field
+	DataSourceId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the group you want to add to your list of groups. This
+	// is for filtering search results based on the groups' access to documents.
+	//
+	// GroupId is a required field
+	GroupId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DataSourceGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataSourceGroup) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DataSourceGroup) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DataSourceGroup"}
+	if s.DataSourceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSourceId"))
+	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.GroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupId"))
+	}
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *DataSourceGroup) SetDataSourceId(v string) *DataSourceGroup {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *DataSourceGroup) SetGroupId(v string) *DataSourceGroup {
+	s.GroupId = &v
 	return s
 }
 
@@ -7719,6 +8160,121 @@ func (s DeleteIndexOutput) GoString() string {
 	return s.String()
 }
 
+type DeletePrincipalMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data source you want to delete a group from.
+	//
+	// This is useful if a group is tied to multiple data sources and you want to
+	// delete a group from accessing documents in a certain data source. For example,
+	// the groups "Research", "Engineering", and "Sales and Marketing" are all tied
+	// to the company's documents stored in the data sources Confluence and Salesforce.
+	// You want to delete "Research" and "Engineering" groups from Salesforce, so
+	// that these groups cannot access customer-related documents stored in Salesforce.
+	// Only "Sales and Marketing" should access documents in the Salesforce data
+	// source.
+	DataSourceId *string `min:"1" type:"string"`
+
+	// The identifier of the group you want to delete.
+	//
+	// GroupId is a required field
+	GroupId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index you want to delete a group from.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The timestamp identifier you specify to ensure Amazon Kendra does not override
+	// the latest DELETE action with previous actions. The highest number ID, which
+	// is the ordering ID, is the latest action you want to process and apply on
+	// top of other actions with lower number IDs. This prevents previous actions
+	// with lower number IDs from possibly overriding the latest action.
+	//
+	// The ordering ID can be the UNIX time of the last update you made to a group
+	// members list. You would then provide this list when calling PutPrincipalMapping.
+	// This ensures your DELETE action for that updated group with the latest members
+	// list doesn't get overwritten by earlier DELETE actions for the same group
+	// which are yet to be processed.
+	//
+	// The default ordering ID is the current UNIX time in milliseconds that the
+	// action was received by Amazon Kendra.
+	OrderingId *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s DeletePrincipalMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePrincipalMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeletePrincipalMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeletePrincipalMappingInput"}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.GroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupId"))
+	}
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *DeletePrincipalMappingInput) SetDataSourceId(v string) *DeletePrincipalMappingInput {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *DeletePrincipalMappingInput) SetGroupId(v string) *DeletePrincipalMappingInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DeletePrincipalMappingInput) SetIndexId(v string) *DeletePrincipalMappingInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetOrderingId sets the OrderingId field's value.
+func (s *DeletePrincipalMappingInput) SetOrderingId(v int64) *DeletePrincipalMappingInput {
+	s.OrderingId = &v
+	return s
+}
+
+type DeletePrincipalMappingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeletePrincipalMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeletePrincipalMappingOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteQuerySuggestionsBlockListInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8303,8 +8859,8 @@ type DescribeIndexOutput struct {
 	// to write to your Amazon Cloudwatch logs.
 	RoleArn *string `min:"1" type:"string"`
 
-	// The identifier of the AWS KMS customer master key (CMK) used to encrypt your
-	// data. Amazon Kendra doesn't support asymmetric CMKs.
+	// The identifier of the KMScustomer master key (CMK) used to encrypt your data.
+	// Amazon Kendra doesn't support asymmetric CMKs.
 	ServerSideEncryptionConfiguration *ServerSideEncryptionConfiguration `type:"structure"`
 
 	// The current status of the index. When the value is ACTIVE, the index is ready
@@ -8419,6 +8975,145 @@ func (s *DescribeIndexOutput) SetUserContextPolicy(v string) *DescribeIndexOutpu
 // SetUserTokenConfigurations sets the UserTokenConfigurations field's value.
 func (s *DescribeIndexOutput) SetUserTokenConfigurations(v []*UserTokenConfiguration) *DescribeIndexOutput {
 	s.UserTokenConfigurations = v
+	return s
+}
+
+type DescribePrincipalMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data source to check the processing of PUT and DELETE
+	// actions for mapping users to their groups.
+	DataSourceId *string `min:"1" type:"string"`
+
+	// The identifier of the group required to check the processing of PUT and DELETE
+	// actions for mapping users to their groups.
+	//
+	// GroupId is a required field
+	GroupId *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the index required to check the processing of PUT and DELETE
+	// actions for mapping users to their groups.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribePrincipalMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribePrincipalMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribePrincipalMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribePrincipalMappingInput"}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.GroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupId"))
+	}
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *DescribePrincipalMappingInput) SetDataSourceId(v string) *DescribePrincipalMappingInput {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *DescribePrincipalMappingInput) SetGroupId(v string) *DescribePrincipalMappingInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribePrincipalMappingInput) SetIndexId(v string) *DescribePrincipalMappingInput {
+	s.IndexId = &v
+	return s
+}
+
+type DescribePrincipalMappingOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Shows the identifier of the data source to see information on the processing
+	// of PUT and DELETE actions for mapping users to their groups.
+	DataSourceId *string `min:"1" type:"string"`
+
+	// Shows the identifier of the group to see information on the processing of
+	// PUT and DELETE actions for mapping users to their groups.
+	GroupId *string `min:"1" type:"string"`
+
+	// Shows the following information on the processing of PUT and DELETE actions
+	// for mapping users to their groups:
+	//
+	//    * Status – the status can be either PROCESSING, SUCCEEDED, DELETING,
+	//    DELETED, or FAILED.
+	//
+	//    * Last updated – the last date-time an action was updated.
+	//
+	//    * Received – the last date-time an action was received or submitted.
+	//
+	//    * Ordering ID – the latest action that should process and apply after
+	//    other actions.
+	//
+	//    * Failure reason – the reason an action could not be processed.
+	GroupOrderingIdSummaries []*GroupOrderingIdSummary `type:"list"`
+
+	// Shows the identifier of the index to see information on the processing of
+	// PUT and DELETE actions for mapping users to their groups.
+	IndexId *string `min:"36" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribePrincipalMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribePrincipalMappingOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *DescribePrincipalMappingOutput) SetDataSourceId(v string) *DescribePrincipalMappingOutput {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *DescribePrincipalMappingOutput) SetGroupId(v string) *DescribePrincipalMappingOutput {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupOrderingIdSummaries sets the GroupOrderingIdSummaries field's value.
+func (s *DescribePrincipalMappingOutput) SetGroupOrderingIdSummaries(v []*GroupOrderingIdSummary) *DescribePrincipalMappingOutput {
+	s.GroupOrderingIdSummaries = v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *DescribePrincipalMappingOutput) SetIndexId(v string) *DescribePrincipalMappingOutput {
+	s.IndexId = &v
 	return s
 }
 
@@ -8973,7 +9668,8 @@ func (s *DescribeThesaurusOutput) SetUpdatedAt(v time.Time) *DescribeThesaurusOu
 type Document struct {
 	_ struct{} `type:"structure"`
 
-	// Information to use for user context filtering.
+	// Information on user and group access rights, which is used for user context
+	// filtering.
 	AccessControlList []*Principal `type:"list"`
 
 	// Custom attributes to apply to the document. Use the custom attributes to
@@ -8984,15 +9680,21 @@ type Document struct {
 	// The contents of the document.
 	//
 	// Documents passed to the Blob parameter must be base64 encoded. Your code
-	// might not need to encode the document file bytes if you're using an AWS SDK
-	// to call Amazon Kendra operations. If you are calling the Amazon Kendra endpoint
-	// directly using REST, you must base64 encode the contents before sending.
+	// might not need to encode the document file bytes if you're using an Amazon
+	// Web Services SDK to call Amazon Kendra operations. If you are calling the
+	// Amazon Kendra endpoint directly using REST, you must base64 encode the contents
+	// before sending.
 	//
 	// Blob is automatically base64 encoded/decoded by the SDK.
 	Blob []byte `type:"blob"`
 
 	// The file type of the document in the Blob field.
 	ContentType *string `type:"string" enum:"ContentType"`
+
+	// The list of principal (https://docs.aws.amazon.com/kendra/latest/dg/API_Principal.html)
+	// lists that define the hierarchy for which documents users should have access
+	// to.
+	HierarchicalAccessControlList []*HierarchicalPrincipal `min:"1" type:"list"`
 
 	// A unique identifier of the document in the index.
 	//
@@ -9019,6 +9721,9 @@ func (s Document) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *Document) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "Document"}
+	if s.HierarchicalAccessControlList != nil && len(s.HierarchicalAccessControlList) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HierarchicalAccessControlList", 1))
+	}
 	if s.Id == nil {
 		invalidParams.Add(request.NewErrParamRequired("Id"))
 	}
@@ -9042,6 +9747,16 @@ func (s *Document) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Attributes", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.HierarchicalAccessControlList != nil {
+		for i, v := range s.HierarchicalAccessControlList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "HierarchicalAccessControlList", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -9078,6 +9793,12 @@ func (s *Document) SetBlob(v []byte) *Document {
 // SetContentType sets the ContentType field's value.
 func (s *Document) SetContentType(v string) *Document {
 	s.ContentType = &v
+	return s
+}
+
+// SetHierarchicalAccessControlList sets the HierarchicalAccessControlList field's value.
+func (s *Document) SetHierarchicalAccessControlList(v []*HierarchicalPrincipal) *Document {
+	s.HierarchicalAccessControlList = v
 	return s
 }
 
@@ -9492,9 +10213,9 @@ func (s *DocumentRelevanceConfiguration) SetRelevance(v *Relevance) *DocumentRel
 type DocumentsMetadataConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A prefix used to filter metadata configuration files in the AWS S3 bucket.
-	// The S3 bucket might contain multiple metadata files. Use S3Prefix to include
-	// only the desired metadata files.
+	// A prefix used to filter metadata configuration files in the Amazon Web Services
+	// S3 bucket. The S3 bucket might contain multiple metadata files. Use S3Prefix
+	// to include only the desired metadata files.
 	S3Prefix *string `min:"1" type:"string"`
 }
 
@@ -9853,9 +10574,9 @@ type GoogleDriveConfiguration struct {
 	// pattern, it is excluded from the index.
 	InclusionPatterns []*string `type:"list"`
 
-	// The Amazon Resource Name (ARN) of a AWS Secrets Manager secret that contains
-	// the credentials required to connect to Google Drive. For more information,
-	// see Using a Google Workspace Drive data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html).
+	// The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the
+	// credentials required to connect to Google Drive. For more information, see
+	// Using a Google Workspace Drive data source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html).
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -9939,6 +10660,250 @@ func (s *GoogleDriveConfiguration) SetInclusionPatterns(v []*string) *GoogleDriv
 // SetSecretArn sets the SecretArn field's value.
 func (s *GoogleDriveConfiguration) SetSecretArn(v string) *GoogleDriveConfiguration {
 	s.SecretArn = &v
+	return s
+}
+
+// A list of users or sub groups that belong to a group. Users and groups are
+// useful for filtering search results to different users based on their group's
+// access to documents.
+type GroupMembers struct {
+	_ struct{} `type:"structure"`
+
+	// A list of sub groups that belong to a group. For example, the sub groups
+	// "Research", "Engineering", and "Sales and Marketing" all belong to the group
+	// "Company".
+	MemberGroups []*MemberGroup `min:"1" type:"list"`
+
+	// A list of users that belong to a group. For example, a list of interns all
+	// belong to the "Interns" group.
+	MemberUsers []*MemberUser `min:"1" type:"list"`
+
+	// If you have more than 1000 users and/or sub groups for a single group, you
+	// need to provide the path to the S3 file that lists your users and sub groups
+	// for a group. Your sub groups can contain more than 1000 users, but the list
+	// of sub groups that belong to a group (and/or users) must be no more than
+	// 1000.
+	S3PathforGroupMembers *S3Path `type:"structure"`
+}
+
+// String returns the string representation
+func (s GroupMembers) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GroupMembers) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GroupMembers) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GroupMembers"}
+	if s.MemberGroups != nil && len(s.MemberGroups) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberGroups", 1))
+	}
+	if s.MemberUsers != nil && len(s.MemberUsers) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MemberUsers", 1))
+	}
+	if s.MemberGroups != nil {
+		for i, v := range s.MemberGroups {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MemberGroups", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.MemberUsers != nil {
+		for i, v := range s.MemberUsers {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MemberUsers", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.S3PathforGroupMembers != nil {
+		if err := s.S3PathforGroupMembers.Validate(); err != nil {
+			invalidParams.AddNested("S3PathforGroupMembers", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMemberGroups sets the MemberGroups field's value.
+func (s *GroupMembers) SetMemberGroups(v []*MemberGroup) *GroupMembers {
+	s.MemberGroups = v
+	return s
+}
+
+// SetMemberUsers sets the MemberUsers field's value.
+func (s *GroupMembers) SetMemberUsers(v []*MemberUser) *GroupMembers {
+	s.MemberUsers = v
+	return s
+}
+
+// SetS3PathforGroupMembers sets the S3PathforGroupMembers field's value.
+func (s *GroupMembers) SetS3PathforGroupMembers(v *S3Path) *GroupMembers {
+	s.S3PathforGroupMembers = v
+	return s
+}
+
+// Information on the processing of PUT and DELETE actions for mapping users
+// to their groups.
+type GroupOrderingIdSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The reason an action could not be processed. An action can be a PUT or DELETE
+	// action for mapping users to their groups.
+	FailureReason *string `min:"1" type:"string"`
+
+	// The last date-time an action was updated. An action can be a PUT or DELETE
+	// action for mapping users to their groups.
+	LastUpdatedAt *time.Time `type:"timestamp"`
+
+	// The order in which actions should complete processing. An action can be a
+	// PUT or DELETE action for mapping users to their groups.
+	OrderingId *int64 `type:"long"`
+
+	// The date-time an action was received by Amazon Kendra. An action can be a
+	// PUT or DELETE action for mapping users to their groups.
+	ReceivedAt *time.Time `type:"timestamp"`
+
+	// The current processing status of actions for mapping users to their groups.
+	// The status can be either PROCESSING, SUCCEEDED, DELETING, DELETED, or FAILED.
+	Status *string `type:"string" enum:"PrincipalMappingStatus"`
+}
+
+// String returns the string representation
+func (s GroupOrderingIdSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GroupOrderingIdSummary) GoString() string {
+	return s.String()
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *GroupOrderingIdSummary) SetFailureReason(v string) *GroupOrderingIdSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLastUpdatedAt sets the LastUpdatedAt field's value.
+func (s *GroupOrderingIdSummary) SetLastUpdatedAt(v time.Time) *GroupOrderingIdSummary {
+	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetOrderingId sets the OrderingId field's value.
+func (s *GroupOrderingIdSummary) SetOrderingId(v int64) *GroupOrderingIdSummary {
+	s.OrderingId = &v
+	return s
+}
+
+// SetReceivedAt sets the ReceivedAt field's value.
+func (s *GroupOrderingIdSummary) SetReceivedAt(v time.Time) *GroupOrderingIdSummary {
+	s.ReceivedAt = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GroupOrderingIdSummary) SetStatus(v string) *GroupOrderingIdSummary {
+	s.Status = &v
+	return s
+}
+
+// Group summary information.
+type GroupSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the group you want group summary information on.
+	GroupId *string `min:"1" type:"string"`
+
+	// The timestamp identifier used for the latest PUT or DELETE action.
+	OrderingId *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s GroupSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GroupSummary) GoString() string {
+	return s.String()
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *GroupSummary) SetGroupId(v string) *GroupSummary {
+	s.GroupId = &v
+	return s
+}
+
+// SetOrderingId sets the OrderingId field's value.
+func (s *GroupSummary) SetOrderingId(v int64) *GroupSummary {
+	s.OrderingId = &v
+	return s
+}
+
+// Information to define the hierarchy for which documents users should have
+// access to.
+type HierarchicalPrincipal struct {
+	_ struct{} `type:"structure"`
+
+	// A list of principal (https://docs.aws.amazon.com/kendra/latest/dg/API_Principal.html)
+	// lists that define the hierarchy for which documents users should have access
+	// to. Each hierarchical list specifies which user or group has allow or deny
+	// access for each document.
+	//
+	// PrincipalList is a required field
+	PrincipalList []*Principal `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s HierarchicalPrincipal) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s HierarchicalPrincipal) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HierarchicalPrincipal) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HierarchicalPrincipal"}
+	if s.PrincipalList == nil {
+		invalidParams.Add(request.NewErrParamRequired("PrincipalList"))
+	}
+	if s.PrincipalList != nil {
+		for i, v := range s.PrincipalList {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "PrincipalList", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPrincipalList sets the PrincipalList field's value.
+func (s *HierarchicalPrincipal) SetPrincipalList(v []*Principal) *HierarchicalPrincipal {
+	s.PrincipalList = v
 	return s
 }
 
@@ -10684,6 +11649,134 @@ func (s *ListFaqsOutput) SetNextToken(v string) *ListFaqsOutput {
 	return s
 }
 
+type ListGroupsOlderThanOrderingIdInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data source for getting a list of groups mapped to
+	// users before a given ordering timestamp identifier.
+	DataSourceId *string `min:"1" type:"string"`
+
+	// The identifier of the index for getting a list of groups mapped to users
+	// before a given ordering or timestamp identifier.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The maximum results shown for a list of groups that are mapped to users before
+	// a given ordering or timestamp identifier.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The next items in the list of groups that go beyond the maximum.
+	NextToken *string `min:"1" type:"string"`
+
+	// The timestamp identifier used for the latest PUT or DELETE action for mapping
+	// users to their groups.
+	//
+	// OrderingId is a required field
+	OrderingId *int64 `type:"long" required:"true"`
+}
+
+// String returns the string representation
+func (s ListGroupsOlderThanOrderingIdInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupsOlderThanOrderingIdInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListGroupsOlderThanOrderingIdInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListGroupsOlderThanOrderingIdInput"}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OrderingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrderingId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *ListGroupsOlderThanOrderingIdInput) SetDataSourceId(v string) *ListGroupsOlderThanOrderingIdInput {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *ListGroupsOlderThanOrderingIdInput) SetIndexId(v string) *ListGroupsOlderThanOrderingIdInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListGroupsOlderThanOrderingIdInput) SetMaxResults(v int64) *ListGroupsOlderThanOrderingIdInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGroupsOlderThanOrderingIdInput) SetNextToken(v string) *ListGroupsOlderThanOrderingIdInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrderingId sets the OrderingId field's value.
+func (s *ListGroupsOlderThanOrderingIdInput) SetOrderingId(v int64) *ListGroupsOlderThanOrderingIdInput {
+	s.OrderingId = &v
+	return s
+}
+
+type ListGroupsOlderThanOrderingIdOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summary information for list of groups that are mapped to users before a
+	// given ordering or timestamp identifier.
+	GroupsSummaries []*GroupSummary `type:"list"`
+
+	// The next items in the list of groups that go beyond the maximum.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListGroupsOlderThanOrderingIdOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListGroupsOlderThanOrderingIdOutput) GoString() string {
+	return s.String()
+}
+
+// SetGroupsSummaries sets the GroupsSummaries field's value.
+func (s *ListGroupsOlderThanOrderingIdOutput) SetGroupsSummaries(v []*GroupSummary) *ListGroupsOlderThanOrderingIdOutput {
+	s.GroupsSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListGroupsOlderThanOrderingIdOutput) SetNextToken(v string) *ListGroupsOlderThanOrderingIdOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListIndicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11043,6 +12136,103 @@ func (s *ListThesauriOutput) SetThesaurusSummaryItems(v []*ThesaurusSummary) *Li
 	return s
 }
 
+// The sub groups that belong to a group.
+type MemberGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data source for the sub group you want to map to a
+	// group.
+	DataSourceId *string `min:"1" type:"string"`
+
+	// The identifier of the sub group you want to map to a group.
+	//
+	// GroupId is a required field
+	GroupId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MemberGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MemberGroup) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MemberGroup) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MemberGroup"}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.GroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupId"))
+	}
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *MemberGroup) SetDataSourceId(v string) *MemberGroup {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *MemberGroup) SetGroupId(v string) *MemberGroup {
+	s.GroupId = &v
+	return s
+}
+
+// The users that belong to a group.
+type MemberUser struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the user you want to map to a group.
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s MemberUser) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MemberUser) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MemberUser) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MemberUser"}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserId sets the UserId field's value.
+func (s *MemberUser) SetUserId(v string) *MemberUser {
+	s.UserId = &v
+	return s
+}
+
 // Provides configuration information for data sources that connect to OneDrive.
 type OneDriveConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -11076,7 +12266,7 @@ type OneDriveConfiguration struct {
 	// OneDriveUsers is a required field
 	OneDriveUsers *OneDriveUsers `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains
+	// The Amazon Resource Name (ARN) of an Secrets Managersecret that contains
 	// the user name and password to connect to OneDrive. The user namd should be
 	// the application ID for the OneDrive application, and the password is the
 	// application key for the OneDrive application.
@@ -11249,6 +12439,9 @@ type Principal struct {
 	// Access is a required field
 	Access *string `type:"string" required:"true" enum:"ReadAccessType"`
 
+	// The identifier of the data source the principal should access documents from.
+	DataSourceId *string `min:"1" type:"string"`
+
 	// The name of the user or group.
 	//
 	// Name is a required field
@@ -11276,6 +12469,9 @@ func (s *Principal) Validate() error {
 	if s.Access == nil {
 		invalidParams.Add(request.NewErrParamRequired("Access"))
 	}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -11295,6 +12491,12 @@ func (s *Principal) Validate() error {
 // SetAccess sets the Access field's value.
 func (s *Principal) SetAccess(v string) *Principal {
 	s.Access = &v
+	return s
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *Principal) SetDataSourceId(v string) *Principal {
+	s.DataSourceId = &v
 	return s
 }
 
@@ -11390,6 +12592,162 @@ func (s *ProxyConfiguration) SetHost(v string) *ProxyConfiguration {
 func (s *ProxyConfiguration) SetPort(v int64) *ProxyConfiguration {
 	s.Port = &v
 	return s
+}
+
+type PutPrincipalMappingInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data source you want to map users to their groups.
+	//
+	// This is useful if a group is tied to multiple data sources, but you only
+	// want the group to access documents of a certain data source. For example,
+	// the groups "Research", "Engineering", and "Sales and Marketing" are all tied
+	// to the company's documents stored in the data sources Confluence and Salesforce.
+	// However, "Sales and Marketing" team only needs access to customer-related
+	// documents stored in Salesforce.
+	DataSourceId *string `min:"1" type:"string"`
+
+	// The identifier of the group you want to map its users to.
+	//
+	// GroupId is a required field
+	GroupId *string `min:"1" type:"string" required:"true"`
+
+	// The list that contains your users or sub groups that belong the same group.
+	//
+	// For example, the group "Company" includes the user "CEO" and the sub groups
+	// "Research", "Engineering", and "Sales and Marketing".
+	//
+	// If you have more than 1000 users and/or sub groups for a single group, you
+	// need to provide the path to the S3 file that lists your users and sub groups
+	// for a group. Your sub groups can contain more than 1000 users, but the list
+	// of sub groups that belong to a group (and/or users) must be no more than
+	// 1000.
+	//
+	// GroupMembers is a required field
+	GroupMembers *GroupMembers `type:"structure" required:"true"`
+
+	// The identifier of the index you want to map users to their groups.
+	//
+	// IndexId is a required field
+	IndexId *string `min:"36" type:"string" required:"true"`
+
+	// The timestamp identifier you specify to ensure Amazon Kendra does not override
+	// the latest PUT action with previous actions. The highest number ID, which
+	// is the ordering ID, is the latest action you want to process and apply on
+	// top of other actions with lower number IDs. This prevents previous actions
+	// with lower number IDs from possibly overriding the latest action.
+	//
+	// The ordering ID can be the UNIX time of the last update you made to a group
+	// members list. You would then provide this list when calling PutPrincipalMapping.
+	// This ensures your PUT action for that updated group with the latest members
+	// list doesn't get overwritten by earlier PUT actions for the same group which
+	// are yet to be processed.
+	//
+	// The default ordering ID is the current UNIX time in milliseconds that the
+	// action was received by Amazon Kendra.
+	OrderingId *int64 `type:"long"`
+
+	// The Amazon Resource Name (ARN) of a role that has access to the S3 file that
+	// contains your list of users or sub groups that belong to a group.
+	//
+	// For more information, see IAM roles for Amazon Kendra (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-ds).
+	RoleArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutPrincipalMappingInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutPrincipalMappingInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutPrincipalMappingInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutPrincipalMappingInput"}
+	if s.DataSourceId != nil && len(*s.DataSourceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceId", 1))
+	}
+	if s.GroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupId"))
+	}
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+	if s.GroupMembers == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupMembers"))
+	}
+	if s.IndexId == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexId"))
+	}
+	if s.IndexId != nil && len(*s.IndexId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+	if s.GroupMembers != nil {
+		if err := s.GroupMembers.Validate(); err != nil {
+			invalidParams.AddNested("GroupMembers", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSourceId sets the DataSourceId field's value.
+func (s *PutPrincipalMappingInput) SetDataSourceId(v string) *PutPrincipalMappingInput {
+	s.DataSourceId = &v
+	return s
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *PutPrincipalMappingInput) SetGroupId(v string) *PutPrincipalMappingInput {
+	s.GroupId = &v
+	return s
+}
+
+// SetGroupMembers sets the GroupMembers field's value.
+func (s *PutPrincipalMappingInput) SetGroupMembers(v *GroupMembers) *PutPrincipalMappingInput {
+	s.GroupMembers = v
+	return s
+}
+
+// SetIndexId sets the IndexId field's value.
+func (s *PutPrincipalMappingInput) SetIndexId(v string) *PutPrincipalMappingInput {
+	s.IndexId = &v
+	return s
+}
+
+// SetOrderingId sets the OrderingId field's value.
+func (s *PutPrincipalMappingInput) SetOrderingId(v int64) *PutPrincipalMappingInput {
+	s.OrderingId = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *PutPrincipalMappingInput) SetRoleArn(v string) *PutPrincipalMappingInput {
+	s.RoleArn = &v
+	return s
+}
+
+type PutPrincipalMappingOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutPrincipalMappingOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutPrincipalMappingOutput) GoString() string {
+	return s.String()
 }
 
 type QueryInput struct {
@@ -12571,7 +13929,7 @@ type SalesforceConfiguration struct {
 	// knowledge articles, but not both.
 	KnowledgeArticleConfiguration *SalesforceKnowledgeArticleConfiguration `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS Secrets Manager secret that contains
+	// The Amazon Resource Name (ARN) of an Secrets Managersecret that contains
 	// the key/value pairs required to connect to your Salesforce instance. The
 	// secret must contain a JSON structure with the following keys:
 	//
@@ -13285,13 +14643,12 @@ func (s *SeedUrlConfiguration) SetWebCrawlerMode(v string) *SeedUrlConfiguration
 	return s
 }
 
-// Provides the identifier of the AWS KMS customer master key (CMK) used to
-// encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric
-// CMKs.
+// Provides the identifier of the KMScustomer master key (CMK) used to encrypt
+// data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.
 type ServerSideEncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS KMS customer master key (CMK). Amazon Kendra doesn't
+	// The identifier of the KMScustomer master key (CMK). Amazon Kendra doesn't
 	// support asymmetric CMKs.
 	KmsKeyId *string `min:"1" type:"string" sensitive:"true"`
 }
@@ -13353,7 +14710,7 @@ type ServiceNowConfiguration struct {
 	// ServiceNow site.
 	KnowledgeArticleConfiguration *ServiceNowKnowledgeArticleConfiguration `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Secret Manager secret that contains
+	// The Amazon Resource Name (ARN) of the Secrets Manager secret that contains
 	// the user name and password required to connect to the ServiceNow instance.
 	//
 	// SecretArn is a required field
@@ -13791,11 +15148,12 @@ type SharePointConfiguration struct {
 	InclusionPatterns []*string `type:"list"`
 
 	// The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager.
-	// The credentials should be a user/password pair. For more information, see
-	// Using a Microsoft SharePoint Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
+	// The credentials should be a user/password pair. If you use SharePoint Sever,
+	// you also need to provide the sever domain name as part of the credentials.
+	// For more information, see Using a Microsoft SharePoint Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
 	// For more information about AWS Secrets Manager, see What Is AWS Secrets Manager
 	// (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
-	// in the AWS Secrets Manager user guide.
+	// in the Secrets Manager user guide.
 	//
 	// SecretArn is a required field
 	SecretArn *string `min:"1" type:"string" required:"true"`
@@ -15752,11 +17110,36 @@ func (s *Urls) SetSiteMapsConfiguration(v *SiteMapsConfiguration) *Urls {
 }
 
 // Provides information about the user context for a Amazon Kendra index.
+//
+// This is used for filtering search results for different users based on their
+// access to documents.
+//
+// You provide one of the following:
+//
+//    * User token
+//
+//    * User ID, the groups the user belongs to, and the data sources the groups
+//    can access
+//
+// If you provide both, an exception is thrown.
 type UserContext struct {
 	_ struct{} `type:"structure"`
 
-	// The user context token. It must be a JWT or a JSON token.
+	// The list of data source groups you want to filter search results based on
+	// groups' access to documents in that data source.
+	DataSourceGroups []*DataSourceGroup `min:"1" type:"list"`
+
+	// The list of groups you want to filter search results based on the groups'
+	// access to documents.
+	Groups []*string `min:"1" type:"list"`
+
+	// The user context token for filtering search results for a user. It must be
+	// a JWT or a JSON token.
 	Token *string `min:"1" type:"string"`
+
+	// The identifier of the user you want to filter search results based on their
+	// access to documents.
+	UserId *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -15772,8 +17155,27 @@ func (s UserContext) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UserContext) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UserContext"}
+	if s.DataSourceGroups != nil && len(s.DataSourceGroups) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataSourceGroups", 1))
+	}
+	if s.Groups != nil && len(s.Groups) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Groups", 1))
+	}
 	if s.Token != nil && len(*s.Token) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Token", 1))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+	if s.DataSourceGroups != nil {
+		for i, v := range s.DataSourceGroups {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DataSourceGroups", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -15782,9 +17184,27 @@ func (s *UserContext) Validate() error {
 	return nil
 }
 
+// SetDataSourceGroups sets the DataSourceGroups field's value.
+func (s *UserContext) SetDataSourceGroups(v []*DataSourceGroup) *UserContext {
+	s.DataSourceGroups = v
+	return s
+}
+
+// SetGroups sets the Groups field's value.
+func (s *UserContext) SetGroups(v []*string) *UserContext {
+	s.Groups = v
+	return s
+}
+
 // SetToken sets the Token field's value.
 func (s *UserContext) SetToken(v string) *UserContext {
 	s.Token = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *UserContext) SetUserId(v string) *UserContext {
+	s.UserId = &v
 	return s
 }
 
@@ -16684,6 +18104,34 @@ func Order_Values() []string {
 	return []string{
 		OrderAscending,
 		OrderDescending,
+	}
+}
+
+const (
+	// PrincipalMappingStatusFailed is a PrincipalMappingStatus enum value
+	PrincipalMappingStatusFailed = "FAILED"
+
+	// PrincipalMappingStatusSucceeded is a PrincipalMappingStatus enum value
+	PrincipalMappingStatusSucceeded = "SUCCEEDED"
+
+	// PrincipalMappingStatusProcessing is a PrincipalMappingStatus enum value
+	PrincipalMappingStatusProcessing = "PROCESSING"
+
+	// PrincipalMappingStatusDeleting is a PrincipalMappingStatus enum value
+	PrincipalMappingStatusDeleting = "DELETING"
+
+	// PrincipalMappingStatusDeleted is a PrincipalMappingStatus enum value
+	PrincipalMappingStatusDeleted = "DELETED"
+)
+
+// PrincipalMappingStatus_Values returns all elements of the PrincipalMappingStatus enum
+func PrincipalMappingStatus_Values() []string {
+	return []string{
+		PrincipalMappingStatusFailed,
+		PrincipalMappingStatusSucceeded,
+		PrincipalMappingStatusProcessing,
+		PrincipalMappingStatusDeleting,
+		PrincipalMappingStatusDeleted,
 	}
 }
 

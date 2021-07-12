@@ -221,6 +221,22 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeletePrincipalMapping":{
+      "name":"DeletePrincipalMapping",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeletePrincipalMappingRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DeleteQuerySuggestionsBlockList":{
       "name":"DeleteQuerySuggestionsBlockList",
       "http":{
@@ -293,6 +309,22 @@
       },
       "input":{"shape":"DescribeIndexRequest"},
       "output":{"shape":"DescribeIndexResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribePrincipalMapping":{
+      "name":"DescribePrincipalMapping",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribePrincipalMappingRequest"},
+      "output":{"shape":"DescribePrincipalMappingResponse"},
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
@@ -416,6 +448,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListGroupsOlderThanOrderingId":{
+      "name":"ListGroupsOlderThanOrderingId",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListGroupsOlderThanOrderingIdRequest"},
+      "output":{"shape":"ListGroupsOlderThanOrderingIdResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListIndices":{
       "name":"ListIndices",
       "http":{
@@ -476,6 +525,23 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "PutPrincipalMapping":{
+      "name":"PutPrincipalMapping",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutPrincipalMappingRequest"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1302,6 +1368,23 @@
       "min":1,
       "pattern":"^[a-zA-Z][a-zA-Z0-9_.]*$"
     },
+    "DataSourceGroup":{
+      "type":"structure",
+      "required":[
+        "GroupId",
+        "DataSourceId"
+      ],
+      "members":{
+        "GroupId":{"shape":"PrincipalName"},
+        "DataSourceId":{"shape":"DataSourceId"}
+      }
+    },
+    "DataSourceGroups":{
+      "type":"list",
+      "member":{"shape":"DataSourceGroup"},
+      "max":2048,
+      "min":1
+    },
     "DataSourceId":{
       "type":"string",
       "max":100,
@@ -1517,6 +1600,19 @@
         "Id":{"shape":"IndexId"}
       }
     },
+    "DeletePrincipalMappingRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "GroupId"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "DataSourceId":{"shape":"DataSourceId"},
+        "GroupId":{"shape":"GroupId"},
+        "OrderingId":{"shape":"PrincipalOrderingId"}
+      }
+    },
     "DeleteQuerySuggestionsBlockListRequest":{
       "type":"structure",
       "required":[
@@ -1621,6 +1717,27 @@
         "UserContextPolicy":{"shape":"UserContextPolicy"}
       }
     },
+    "DescribePrincipalMappingRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "GroupId"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "DataSourceId":{"shape":"DataSourceId"},
+        "GroupId":{"shape":"GroupId"}
+      }
+    },
+    "DescribePrincipalMappingResponse":{
+      "type":"structure",
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "DataSourceId":{"shape":"DataSourceId"},
+        "GroupId":{"shape":"GroupId"},
+        "GroupOrderingIdSummaries":{"shape":"GroupOrderingIdSummaries"}
+      }
+    },
     "DescribeQuerySuggestionsBlockListRequest":{
       "type":"structure",
       "required":[
@@ -1715,6 +1832,7 @@
         "S3Path":{"shape":"S3Path"},
         "Attributes":{"shape":"DocumentAttributeList"},
         "AccessControlList":{"shape":"PrincipalList"},
+        "HierarchicalAccessControlList":{"shape":"HierarchicalPrincipalList"},
         "ContentType":{"shape":"ContentType"}
       }
     },
@@ -1936,6 +2054,12 @@
       "type":"list",
       "member":{"shape":"FacetResult"}
     },
+    "FailureReason":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
     "FaqFileFormat":{
       "type":"string",
       "enum":[
@@ -2031,6 +2155,61 @@
       "max":100,
       "min":1,
       "pattern":"^\\P{C}*$"
+    },
+    "GroupId":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^\\P{C}*$"
+    },
+    "GroupMembers":{
+      "type":"structure",
+      "members":{
+        "MemberGroups":{"shape":"MemberGroups"},
+        "MemberUsers":{"shape":"MemberUsers"},
+        "S3PathforGroupMembers":{"shape":"S3Path"}
+      }
+    },
+    "GroupOrderingIdSummaries":{
+      "type":"list",
+      "member":{"shape":"GroupOrderingIdSummary"},
+      "max":10
+    },
+    "GroupOrderingIdSummary":{
+      "type":"structure",
+      "members":{
+        "Status":{"shape":"PrincipalMappingStatus"},
+        "LastUpdatedAt":{"shape":"Timestamp"},
+        "ReceivedAt":{"shape":"Timestamp"},
+        "OrderingId":{"shape":"PrincipalOrderingId"},
+        "FailureReason":{"shape":"FailureReason"}
+      }
+    },
+    "GroupSummary":{
+      "type":"structure",
+      "members":{
+        "GroupId":{"shape":"GroupId"},
+        "OrderingId":{"shape":"PrincipalOrderingId"}
+      }
+    },
+    "Groups":{
+      "type":"list",
+      "member":{"shape":"PrincipalName"},
+      "max":2048,
+      "min":1
+    },
+    "HierarchicalPrincipal":{
+      "type":"structure",
+      "required":["PrincipalList"],
+      "members":{
+        "PrincipalList":{"shape":"PrincipalList"}
+      }
+    },
+    "HierarchicalPrincipalList":{
+      "type":"list",
+      "member":{"shape":"HierarchicalPrincipal"},
+      "max":30,
+      "min":1
     },
     "Highlight":{
       "type":"structure",
@@ -2252,6 +2431,27 @@
         "FaqSummaryItems":{"shape":"FaqSummaryItems"}
       }
     },
+    "ListGroupsOlderThanOrderingIdRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "OrderingId"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "DataSourceId":{"shape":"DataSourceId"},
+        "OrderingId":{"shape":"PrincipalOrderingId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsIntegerForListPrincipalsRequest"}
+      }
+    },
+    "ListGroupsOlderThanOrderingIdResponse":{
+      "type":"structure",
+      "members":{
+        "GroupsSummaries":{"shape":"ListOfGroupSummaries"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "ListIndicesRequest":{
       "type":"structure",
       "members":{
@@ -2265,6 +2465,10 @@
         "IndexConfigurationSummaryItems":{"shape":"IndexConfigurationSummaryList"},
         "NextToken":{"shape":"NextToken"}
       }
+    },
+    "ListOfGroupSummaries":{
+      "type":"list",
+      "member":{"shape":"GroupSummary"}
     },
     "ListQuerySuggestionsBlockListsRequest":{
       "type":"structure",
@@ -2342,6 +2546,11 @@
       "max":100,
       "min":1
     },
+    "MaxResultsIntegerForListPrincipalsRequest":{
+      "type":"integer",
+      "max":10,
+      "min":1
+    },
     "MaxResultsIntegerForListQuerySuggestionsBlockLists":{
       "type":"integer",
       "max":100,
@@ -2355,6 +2564,33 @@
     "MaxUrlsPerMinuteCrawlRate":{
       "type":"integer",
       "max":300,
+      "min":1
+    },
+    "MemberGroup":{
+      "type":"structure",
+      "required":["GroupId"],
+      "members":{
+        "GroupId":{"shape":"GroupId"},
+        "DataSourceId":{"shape":"DataSourceId"}
+      }
+    },
+    "MemberGroups":{
+      "type":"list",
+      "member":{"shape":"MemberGroup"},
+      "max":1000,
+      "min":1
+    },
+    "MemberUser":{
+      "type":"structure",
+      "required":["UserId"],
+      "members":{
+        "UserId":{"shape":"UserId"}
+      }
+    },
+    "MemberUsers":{
+      "type":"list",
+      "member":{"shape":"MemberUser"},
+      "max":1000,
       "min":1
     },
     "MetricValue":{
@@ -2448,18 +2684,34 @@
       "members":{
         "Name":{"shape":"PrincipalName"},
         "Type":{"shape":"PrincipalType"},
-        "Access":{"shape":"ReadAccessType"}
+        "Access":{"shape":"ReadAccessType"},
+        "DataSourceId":{"shape":"DataSourceId"}
       }
     },
     "PrincipalList":{
       "type":"list",
       "member":{"shape":"Principal"}
     },
+    "PrincipalMappingStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "SUCCEEDED",
+        "PROCESSING",
+        "DELETING",
+        "DELETED"
+      ]
+    },
     "PrincipalName":{
       "type":"string",
       "max":200,
       "min":1,
       "pattern":"^\\P{C}*$"
+    },
+    "PrincipalOrderingId":{
+      "type":"long",
+      "max":32535158400000,
+      "min":0
     },
     "PrincipalType":{
       "type":"string",
@@ -2478,6 +2730,22 @@
         "Host":{"shape":"Host"},
         "Port":{"shape":"Port"},
         "Credentials":{"shape":"SecretArn"}
+      }
+    },
+    "PutPrincipalMappingRequest":{
+      "type":"structure",
+      "required":[
+        "IndexId",
+        "GroupId",
+        "GroupMembers"
+      ],
+      "members":{
+        "IndexId":{"shape":"IndexId"},
+        "DataSourceId":{"shape":"DataSourceId"},
+        "GroupId":{"shape":"GroupId"},
+        "GroupMembers":{"shape":"GroupMembers"},
+        "OrderingId":{"shape":"PrincipalOrderingId"},
+        "RoleArn":{"shape":"RoleArn"}
       }
     },
     "QueryCapacityUnit":{
@@ -3448,7 +3716,10 @@
     "UserContext":{
       "type":"structure",
       "members":{
-        "Token":{"shape":"Token"}
+        "Token":{"shape":"Token"},
+        "UserId":{"shape":"PrincipalName"},
+        "Groups":{"shape":"Groups"},
+        "DataSourceGroups":{"shape":"DataSourceGroups"}
       }
     },
     "UserContextPolicy":{
@@ -3457,6 +3728,12 @@
         "ATTRIBUTE_FILTER",
         "USER_TOKEN"
       ]
+    },
+    "UserId":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^\\P{C}*$"
     },
     "UserNameAttributeField":{
       "type":"string",
