@@ -108,6 +108,10 @@ type KendraAPI interface {
 	DeleteIndexWithContext(aws.Context, *kendra.DeleteIndexInput, ...request.Option) (*kendra.DeleteIndexOutput, error)
 	DeleteIndexRequest(*kendra.DeleteIndexInput) (*request.Request, *kendra.DeleteIndexOutput)
 
+	DeletePrincipalMapping(*kendra.DeletePrincipalMappingInput) (*kendra.DeletePrincipalMappingOutput, error)
+	DeletePrincipalMappingWithContext(aws.Context, *kendra.DeletePrincipalMappingInput, ...request.Option) (*kendra.DeletePrincipalMappingOutput, error)
+	DeletePrincipalMappingRequest(*kendra.DeletePrincipalMappingInput) (*request.Request, *kendra.DeletePrincipalMappingOutput)
+
 	DeleteQuerySuggestionsBlockList(*kendra.DeleteQuerySuggestionsBlockListInput) (*kendra.DeleteQuerySuggestionsBlockListOutput, error)
 	DeleteQuerySuggestionsBlockListWithContext(aws.Context, *kendra.DeleteQuerySuggestionsBlockListInput, ...request.Option) (*kendra.DeleteQuerySuggestionsBlockListOutput, error)
 	DeleteQuerySuggestionsBlockListRequest(*kendra.DeleteQuerySuggestionsBlockListInput) (*request.Request, *kendra.DeleteQuerySuggestionsBlockListOutput)
@@ -127,6 +131,10 @@ type KendraAPI interface {
 	DescribeIndex(*kendra.DescribeIndexInput) (*kendra.DescribeIndexOutput, error)
 	DescribeIndexWithContext(aws.Context, *kendra.DescribeIndexInput, ...request.Option) (*kendra.DescribeIndexOutput, error)
 	DescribeIndexRequest(*kendra.DescribeIndexInput) (*request.Request, *kendra.DescribeIndexOutput)
+
+	DescribePrincipalMapping(*kendra.DescribePrincipalMappingInput) (*kendra.DescribePrincipalMappingOutput, error)
+	DescribePrincipalMappingWithContext(aws.Context, *kendra.DescribePrincipalMappingInput, ...request.Option) (*kendra.DescribePrincipalMappingOutput, error)
+	DescribePrincipalMappingRequest(*kendra.DescribePrincipalMappingInput) (*request.Request, *kendra.DescribePrincipalMappingOutput)
 
 	DescribeQuerySuggestionsBlockList(*kendra.DescribeQuerySuggestionsBlockListInput) (*kendra.DescribeQuerySuggestionsBlockListOutput, error)
 	DescribeQuerySuggestionsBlockListWithContext(aws.Context, *kendra.DescribeQuerySuggestionsBlockListInput, ...request.Option) (*kendra.DescribeQuerySuggestionsBlockListOutput, error)
@@ -162,6 +170,10 @@ type KendraAPI interface {
 	ListFaqsWithContext(aws.Context, *kendra.ListFaqsInput, ...request.Option) (*kendra.ListFaqsOutput, error)
 	ListFaqsRequest(*kendra.ListFaqsInput) (*request.Request, *kendra.ListFaqsOutput)
 
+	ListGroupsOlderThanOrderingId(*kendra.ListGroupsOlderThanOrderingIdInput) (*kendra.ListGroupsOlderThanOrderingIdOutput, error)
+	ListGroupsOlderThanOrderingIdWithContext(aws.Context, *kendra.ListGroupsOlderThanOrderingIdInput, ...request.Option) (*kendra.ListGroupsOlderThanOrderingIdOutput, error)
+	ListGroupsOlderThanOrderingIdRequest(*kendra.ListGroupsOlderThanOrderingIdInput) (*request.Request, *kendra.ListGroupsOlderThanOrderingIdOutput)
+
 	ListIndices(*kendra.ListIndicesInput) (*kendra.ListIndicesOutput, error)
 	ListIndicesWithContext(aws.Context, *kendra.ListIndicesInput, ...request.Option) (*kendra.ListIndicesOutput, error)
 	ListIndicesRequest(*kendra.ListIndicesInput) (*request.Request, *kendra.ListIndicesOutput)
@@ -180,6 +192,10 @@ type KendraAPI interface {
 	ListThesauri(*kendra.ListThesauriInput) (*kendra.ListThesauriOutput, error)
 	ListThesauriWithContext(aws.Context, *kendra.ListThesauriInput, ...request.Option) (*kendra.ListThesauriOutput, error)
 	ListThesauriRequest(*kendra.ListThesauriInput) (*request.Request, *kendra.ListThesauriOutput)
+
+	PutPrincipalMapping(*kendra.PutPrincipalMappingInput) (*kendra.PutPrincipalMappingOutput, error)
+	PutPrincipalMappingWithContext(aws.Context, *kendra.PutPrincipalMappingInput, ...request.Option) (*kendra.PutPrincipalMappingOutput, error)
+	PutPrincipalMappingRequest(*kendra.PutPrincipalMappingInput) (*request.Request, *kendra.PutPrincipalMappingOutput)
 
 	Query(*kendra.QueryInput) (*kendra.QueryOutput, error)
 	QueryWithContext(aws.Context, *kendra.QueryInput, ...request.Option) (*kendra.QueryOutput, error)

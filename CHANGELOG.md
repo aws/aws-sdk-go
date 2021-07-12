@@ -1,3 +1,11 @@
+Release v1.39.5 (2021-07-12)
+===
+
+### Service Client Updates
+* `service/eks`: Updates service documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports Principal Store
+
 Release v1.39.4 (2021-07-09)
 ===
 
