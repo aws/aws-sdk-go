@@ -8,7 +8,7 @@
 //
 // The endpoint of the EC2 IMDS client can be configured via the environment
 // variable, AWS_EC2_METADATA_SERVICE_ENDPOINT when creating the client with a
-// Session. See aws/session#Options.EC2MetadataEndpoint for more details.
+// Session. See aws/session#Options.EC2IMDSEndpoint for more details.
 package ec2metadata
 
 import (
