@@ -452,6 +452,37 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "GetMigration":{
+      "name":"GetMigration",
+      "http":{
+        "method":"GET",
+        "requestUri":"/migrations/{migrationId}",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMigrationRequest"},
+      "output":{"shape":"GetMigrationResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
+    "GetMigrations":{
+      "name":"GetMigrations",
+      "http":{
+        "method":"GET",
+        "requestUri":"/migrations",
+        "responseCode":200
+      },
+      "input":{"shape":"GetMigrationsRequest"},
+      "output":{"shape":"GetMigrationsResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"}
+      ]
+    },
     "GetSlotType":{
       "name":"GetSlotType",
       "http":{
@@ -614,6 +645,23 @@
         {"shape":"BadRequestException"}
       ]
     },
+    "StartMigration":{
+      "name":"StartMigration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/migrations",
+        "responseCode":202
+      },
+      "input":{"shape":"StartMigrationRequest"},
+      "output":{"shape":"StartMigrationResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"BadRequestException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"}
+      ]
+    },
     "TagResource":{
       "name":"TagResource",
       "http":{
@@ -650,6 +698,14 @@
     }
   },
   "shapes":{
+    "AccessDeniedException":{
+      "type":"structure",
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":403},
+      "exception":true
+    },
     "AliasName":{
       "type":"string",
       "max":100,
@@ -1680,6 +1736,74 @@
         "nextToken":{"shape":"NextToken"}
       }
     },
+    "GetMigrationRequest":{
+      "type":"structure",
+      "required":["migrationId"],
+      "members":{
+        "migrationId":{
+          "shape":"MigrationId",
+          "location":"uri",
+          "locationName":"migrationId"
+        }
+      }
+    },
+    "GetMigrationResponse":{
+      "type":"structure",
+      "members":{
+        "migrationId":{"shape":"MigrationId"},
+        "v1BotName":{"shape":"BotName"},
+        "v1BotVersion":{"shape":"Version"},
+        "v1BotLocale":{"shape":"Locale"},
+        "v2BotId":{"shape":"V2BotId"},
+        "v2BotRole":{"shape":"IamRoleArn"},
+        "migrationStatus":{"shape":"MigrationStatus"},
+        "migrationStrategy":{"shape":"MigrationStrategy"},
+        "migrationTimestamp":{"shape":"Timestamp"},
+        "alerts":{"shape":"MigrationAlerts"}
+      }
+    },
+    "GetMigrationsRequest":{
+      "type":"structure",
+      "members":{
+        "sortByAttribute":{
+          "shape":"MigrationSortAttribute",
+          "location":"querystring",
+          "locationName":"sortByAttribute"
+        },
+        "sortByOrder":{
+          "shape":"SortOrder",
+          "location":"querystring",
+          "locationName":"sortByOrder"
+        },
+        "v1BotNameContains":{
+          "shape":"BotName",
+          "location":"querystring",
+          "locationName":"v1BotNameContains"
+        },
+        "migrationStatusEquals":{
+          "shape":"MigrationStatus",
+          "location":"querystring",
+          "locationName":"migrationStatusEquals"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "GetMigrationsResponse":{
+      "type":"structure",
+      "members":{
+        "migrationSummaries":{"shape":"MigrationSummaryList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "GetSlotTypeRequest":{
       "type":"structure",
       "required":[
@@ -1918,7 +2042,7 @@
       "type":"string",
       "max":2048,
       "min":20,
-      "pattern":"arn:aws:lambda:[a-z]+-[a-z]+-[0-9]:[0-9]{12}:function:[a-zA-Z0-9-_]+(/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?(:[a-zA-Z0-9-_]+)?"
+      "pattern":"arn:aws[a-zA-Z-]*:lambda:[a-z]+-[a-z]+(-[a-z]+)*-[0-9]:[0-9]{12}:function:[a-zA-Z0-9-_]+(\\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})?(:[a-zA-Z0-9-_]+)?"
     },
     "LimitExceededException":{
       "type":"structure",
@@ -2052,6 +2176,83 @@
       "type":"string",
       "max":5,
       "min":1
+    },
+    "MigrationAlert":{
+      "type":"structure",
+      "members":{
+        "type":{"shape":"MigrationAlertType"},
+        "message":{"shape":"MigrationAlertMessage"},
+        "details":{"shape":"MigrationAlertDetails"},
+        "referenceURLs":{"shape":"MigrationAlertReferenceURLs"}
+      }
+    },
+    "MigrationAlertDetail":{"type":"string"},
+    "MigrationAlertDetails":{
+      "type":"list",
+      "member":{"shape":"MigrationAlertDetail"}
+    },
+    "MigrationAlertMessage":{"type":"string"},
+    "MigrationAlertReferenceURL":{"type":"string"},
+    "MigrationAlertReferenceURLs":{
+      "type":"list",
+      "member":{"shape":"MigrationAlertReferenceURL"}
+    },
+    "MigrationAlertType":{
+      "type":"string",
+      "enum":[
+        "ERROR",
+        "WARN"
+      ]
+    },
+    "MigrationAlerts":{
+      "type":"list",
+      "member":{"shape":"MigrationAlert"}
+    },
+    "MigrationId":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"^[0-9a-zA-Z]+$"
+    },
+    "MigrationSortAttribute":{
+      "type":"string",
+      "enum":[
+        "V1_BOT_NAME",
+        "MIGRATION_DATE_TIME"
+      ]
+    },
+    "MigrationStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "FAILED"
+      ]
+    },
+    "MigrationStrategy":{
+      "type":"string",
+      "enum":[
+        "CREATE_NEW",
+        "UPDATE_EXISTING"
+      ]
+    },
+    "MigrationSummary":{
+      "type":"structure",
+      "members":{
+        "migrationId":{"shape":"MigrationId"},
+        "v1BotName":{"shape":"BotName"},
+        "v1BotVersion":{"shape":"Version"},
+        "v1BotLocale":{"shape":"Locale"},
+        "v2BotId":{"shape":"V2BotId"},
+        "v2BotRole":{"shape":"IamRoleArn"},
+        "migrationStatus":{"shape":"MigrationStatus"},
+        "migrationStrategy":{"shape":"MigrationStrategy"},
+        "migrationTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "MigrationSummaryList":{
+      "type":"list",
+      "member":{"shape":"MigrationSummary"}
     },
     "Name":{
       "type":"string",
@@ -2499,6 +2700,13 @@
         "TOP_RESOLUTION"
       ]
     },
+    "SortOrder":{
+      "type":"string",
+      "enum":[
+        "ASCENDING",
+        "DESCENDING"
+      ]
+    },
     "StartImportRequest":{
       "type":"structure",
       "required":[
@@ -2523,6 +2731,36 @@
         "importStatus":{"shape":"ImportStatus"},
         "tags":{"shape":"TagList"},
         "createdDate":{"shape":"Timestamp"}
+      }
+    },
+    "StartMigrationRequest":{
+      "type":"structure",
+      "required":[
+        "v1BotName",
+        "v1BotVersion",
+        "v2BotName",
+        "v2BotRole",
+        "migrationStrategy"
+      ],
+      "members":{
+        "v1BotName":{"shape":"BotName"},
+        "v1BotVersion":{"shape":"Version"},
+        "v2BotName":{"shape":"V2BotName"},
+        "v2BotRole":{"shape":"IamRoleArn"},
+        "migrationStrategy":{"shape":"MigrationStrategy"}
+      }
+    },
+    "StartMigrationResponse":{
+      "type":"structure",
+      "members":{
+        "v1BotName":{"shape":"BotName"},
+        "v1BotVersion":{"shape":"Version"},
+        "v1BotLocale":{"shape":"Locale"},
+        "v2BotId":{"shape":"V2BotId"},
+        "v2BotRole":{"shape":"IamRoleArn"},
+        "migrationId":{"shape":"MigrationId"},
+        "migrationStrategy":{"shape":"MigrationStrategy"},
+        "migrationTimestamp":{"shape":"Timestamp"}
       }
     },
     "Statement":{
@@ -2668,6 +2906,18 @@
       "type":"string",
       "max":2000,
       "min":1
+    },
+    "V2BotId":{
+      "type":"string",
+      "max":10,
+      "min":10,
+      "pattern":"^[0-9a-zA-Z]+$"
+    },
+    "V2BotName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^([0-9a-zA-Z][_-]?)+$"
     },
     "Value":{
       "type":"string",

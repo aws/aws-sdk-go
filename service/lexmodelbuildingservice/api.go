@@ -3209,6 +3209,242 @@ func (c *LexModelBuildingService) GetIntentsPagesWithContext(ctx aws.Context, in
 	return p.Err()
 }
 
+const opGetMigration = "GetMigration"
+
+// GetMigrationRequest generates a "aws/request.Request" representing the
+// client's request for the GetMigration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMigration for more information on using the GetMigration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMigrationRequest method.
+//    req, resp := client.GetMigrationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/GetMigration
+func (c *LexModelBuildingService) GetMigrationRequest(input *GetMigrationInput) (req *request.Request, output *GetMigrationOutput) {
+	op := &request.Operation{
+		Name:       opGetMigration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/migrations/{migrationId}",
+	}
+
+	if input == nil {
+		input = &GetMigrationInput{}
+	}
+
+	output = &GetMigrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMigration API operation for Amazon Lex Model Building Service.
+//
+// Provides details about an ongoing or complete migration from an Amazon Lex
+// V1 bot to an Amazon Lex V2 bot. Use this operation to view the migration
+// alerts and warnings related to the migration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building Service's
+// API operation GetMigration for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   The request exceeded a limit. Try your request again.
+//
+//   * InternalFailureException
+//   An internal Amazon Lex error occurred. Try your request again.
+//
+//   * BadRequestException
+//   The request is not well formed. For example, a value is invalid or a required
+//   field is missing. Check the field values, and try again.
+//
+//   * NotFoundException
+//   The resource specified in the request was not found. Check the resource and
+//   try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/GetMigration
+func (c *LexModelBuildingService) GetMigration(input *GetMigrationInput) (*GetMigrationOutput, error) {
+	req, out := c.GetMigrationRequest(input)
+	return out, req.Send()
+}
+
+// GetMigrationWithContext is the same as GetMigration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMigration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelBuildingService) GetMigrationWithContext(ctx aws.Context, input *GetMigrationInput, opts ...request.Option) (*GetMigrationOutput, error) {
+	req, out := c.GetMigrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMigrations = "GetMigrations"
+
+// GetMigrationsRequest generates a "aws/request.Request" representing the
+// client's request for the GetMigrations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMigrations for more information on using the GetMigrations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMigrationsRequest method.
+//    req, resp := client.GetMigrationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/GetMigrations
+func (c *LexModelBuildingService) GetMigrationsRequest(input *GetMigrationsInput) (req *request.Request, output *GetMigrationsOutput) {
+	op := &request.Operation{
+		Name:       opGetMigrations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/migrations",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetMigrationsInput{}
+	}
+
+	output = &GetMigrationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMigrations API operation for Amazon Lex Model Building Service.
+//
+// Gets a list of migrations between Amazon Lex V1 and Amazon Lex V2.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building Service's
+// API operation GetMigrations for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   The request exceeded a limit. Try your request again.
+//
+//   * InternalFailureException
+//   An internal Amazon Lex error occurred. Try your request again.
+//
+//   * BadRequestException
+//   The request is not well formed. For example, a value is invalid or a required
+//   field is missing. Check the field values, and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/GetMigrations
+func (c *LexModelBuildingService) GetMigrations(input *GetMigrationsInput) (*GetMigrationsOutput, error) {
+	req, out := c.GetMigrationsRequest(input)
+	return out, req.Send()
+}
+
+// GetMigrationsWithContext is the same as GetMigrations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMigrations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelBuildingService) GetMigrationsWithContext(ctx aws.Context, input *GetMigrationsInput, opts ...request.Option) (*GetMigrationsOutput, error) {
+	req, out := c.GetMigrationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetMigrationsPages iterates over the pages of a GetMigrations operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetMigrations method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetMigrations operation.
+//    pageNum := 0
+//    err := client.GetMigrationsPages(params,
+//        func(page *lexmodelbuildingservice.GetMigrationsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LexModelBuildingService) GetMigrationsPages(input *GetMigrationsInput, fn func(*GetMigrationsOutput, bool) bool) error {
+	return c.GetMigrationsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetMigrationsPagesWithContext same as GetMigrationsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelBuildingService) GetMigrationsPagesWithContext(ctx aws.Context, input *GetMigrationsInput, fn func(*GetMigrationsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetMigrationsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetMigrationsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetMigrationsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opGetSlotType = "GetSlotType"
 
 // GetSlotTypeRequest generates a "aws/request.Request" representing the
@@ -3681,8 +3917,9 @@ func (c *LexModelBuildingService) GetUtterancesViewRequest(input *GetUtterancesV
 // by the bot in the last 15 days. The response contains information about a
 // maximum of 100 utterances for each version.
 //
-// If you set childDirected field to true when you created your bot, or if you
-// opted out of participating in improving Amazon Lex, utterances are not available.
+// If you set childDirected field to true when you created your bot, if you
+// are using slot obfuscation with one or more slots, or if you opted out of
+// participating in improving Amazon Lex, utterances are not available.
 //
 // This operation requires permissions for the lex:GetUtterancesView action.
 //
@@ -4353,6 +4590,104 @@ func (c *LexModelBuildingService) StartImportWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opStartMigration = "StartMigration"
+
+// StartMigrationRequest generates a "aws/request.Request" representing the
+// client's request for the StartMigration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMigration for more information on using the StartMigration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartMigrationRequest method.
+//    req, resp := client.StartMigrationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/StartMigration
+func (c *LexModelBuildingService) StartMigrationRequest(input *StartMigrationInput) (req *request.Request, output *StartMigrationOutput) {
+	op := &request.Operation{
+		Name:       opStartMigration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/migrations",
+	}
+
+	if input == nil {
+		input = &StartMigrationInput{}
+	}
+
+	output = &StartMigrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartMigration API operation for Amazon Lex Model Building Service.
+//
+// Starts migrating a bot from Amazon Lex V1 to Amazon Lex V2. Migrate your
+// bot when you want to take advantage of the new features of Amazon Lex V2.
+//
+// For more information, see Migrating a bot (https://docs.aws.amazon.com/lex/latest/dg/migrate.html)
+// in the Amazon Lex developer guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building Service's
+// API operation StartMigration for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   The request exceeded a limit. Try your request again.
+//
+//   * InternalFailureException
+//   An internal Amazon Lex error occurred. Try your request again.
+//
+//   * BadRequestException
+//   The request is not well formed. For example, a value is invalid or a required
+//   field is missing. Check the field values, and try again.
+//
+//   * AccessDeniedException
+//   Your IAM user or role does not have permission to call the Amazon Lex V2
+//   APIs required to migrate your bot.
+//
+//   * NotFoundException
+//   The resource specified in the request was not found. Check the resource and
+//   try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/lex-models-2017-04-19/StartMigration
+func (c *LexModelBuildingService) StartMigration(input *StartMigrationInput) (*StartMigrationOutput, error) {
+	req, out := c.StartMigrationRequest(input)
+	return out, req.Send()
+}
+
+// StartMigrationWithContext is the same as StartMigration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMigration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelBuildingService) StartMigrationWithContext(ctx aws.Context, input *StartMigrationInput, opts ...request.Option) (*StartMigrationOutput, error) {
+	req, out := c.StartMigrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -4540,6 +4875,63 @@ func (c *LexModelBuildingService) UntagResourceWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Your IAM user or role does not have permission to call the Amazon Lex V2
+// APIs required to migrate your bot.
+type AccessDeniedException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessDeniedException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessDeniedException) GoString() string {
+	return s.String()
+}
+
+func newErrorAccessDeniedException(v protocol.ResponseMetadata) error {
+	return &AccessDeniedException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *AccessDeniedException) Code() string {
+	return "AccessDeniedException"
+}
+
+// Message returns the exception's message.
+func (s *AccessDeniedException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *AccessDeniedException) OrigErr() error {
+	return nil
+}
+
+func (s *AccessDeniedException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *AccessDeniedException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *AccessDeniedException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 // The request is not well formed. For example, a value is invalid or a required
@@ -8741,6 +9133,294 @@ func (s *GetIntentsOutput) SetNextToken(v string) *GetIntentsOutput {
 	return s
 }
 
+type GetMigrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the migration to view. The migrationID is returned
+	// by the operation.
+	//
+	// MigrationId is a required field
+	MigrationId *string `location:"uri" locationName:"migrationId" min:"10" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMigrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMigrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMigrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMigrationInput"}
+	if s.MigrationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MigrationId"))
+	}
+	if s.MigrationId != nil && len(*s.MigrationId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("MigrationId", 10))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMigrationId sets the MigrationId field's value.
+func (s *GetMigrationInput) SetMigrationId(v string) *GetMigrationInput {
+	s.MigrationId = &v
+	return s
+}
+
+type GetMigrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of alerts and warnings that indicate issues with the migration for
+	// the Amazon Lex V1 bot to Amazon Lex V2. You receive a warning when an Amazon
+	// Lex V1 feature has a different implementation if Amazon Lex V2.
+	//
+	// For more information, see Migrating a bot (https://docs.aws.amazon.com/lexv2/latest/dg/migrate.html)
+	// in the Amazon Lex V2 developer guide.
+	Alerts []*MigrationAlert `locationName:"alerts" type:"list"`
+
+	// The unique identifier of the migration. This is the same as the identifier
+	// used when calling the GetMigration operation.
+	MigrationId *string `locationName:"migrationId" min:"10" type:"string"`
+
+	// Indicates the status of the migration. When the status is COMPLETE the migration
+	// is finished and the bot is available in Amazon Lex V2. There may be alerts
+	// and warnings that need to be resolved to complete the migration.
+	MigrationStatus *string `locationName:"migrationStatus" type:"string" enum:"MigrationStatus"`
+
+	// The strategy used to conduct the migration.
+	//
+	//    * CREATE_NEW - Creates a new Amazon Lex V2 bot and migrates the Amazon
+	//    Lex V1 bot to the new bot.
+	//
+	//    * UPDATE_EXISTING - Overwrites the existing Amazon Lex V2 bot metadata
+	//    and the locale being migrated. It doesn't change any other locales in
+	//    the Amazon Lex V2 bot. If the locale doesn't exist, a new locale is created
+	//    in the Amazon Lex V2 bot.
+	MigrationStrategy *string `locationName:"migrationStrategy" type:"string" enum:"MigrationStrategy"`
+
+	// The date and time that the migration started.
+	MigrationTimestamp *time.Time `locationName:"migrationTimestamp" type:"timestamp"`
+
+	// The locale of the Amazon Lex V1 bot migrated to Amazon Lex V2.
+	V1BotLocale *string `locationName:"v1BotLocale" type:"string" enum:"Locale"`
+
+	// The name of the Amazon Lex V1 bot migrated to Amazon Lex V2.
+	V1BotName *string `locationName:"v1BotName" min:"2" type:"string"`
+
+	// The version of the Amazon Lex V1 bot migrated to Amazon Lex V2.
+	V1BotVersion *string `locationName:"v1BotVersion" min:"1" type:"string"`
+
+	// The unique identifier of the Amazon Lex V2 bot that the Amazon Lex V1 is
+	// being migrated to.
+	V2BotId *string `locationName:"v2BotId" min:"10" type:"string"`
+
+	// The IAM role that Amazon Lex uses to run the Amazon Lex V2 bot.
+	V2BotRole *string `locationName:"v2BotRole" min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s GetMigrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMigrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAlerts sets the Alerts field's value.
+func (s *GetMigrationOutput) SetAlerts(v []*MigrationAlert) *GetMigrationOutput {
+	s.Alerts = v
+	return s
+}
+
+// SetMigrationId sets the MigrationId field's value.
+func (s *GetMigrationOutput) SetMigrationId(v string) *GetMigrationOutput {
+	s.MigrationId = &v
+	return s
+}
+
+// SetMigrationStatus sets the MigrationStatus field's value.
+func (s *GetMigrationOutput) SetMigrationStatus(v string) *GetMigrationOutput {
+	s.MigrationStatus = &v
+	return s
+}
+
+// SetMigrationStrategy sets the MigrationStrategy field's value.
+func (s *GetMigrationOutput) SetMigrationStrategy(v string) *GetMigrationOutput {
+	s.MigrationStrategy = &v
+	return s
+}
+
+// SetMigrationTimestamp sets the MigrationTimestamp field's value.
+func (s *GetMigrationOutput) SetMigrationTimestamp(v time.Time) *GetMigrationOutput {
+	s.MigrationTimestamp = &v
+	return s
+}
+
+// SetV1BotLocale sets the V1BotLocale field's value.
+func (s *GetMigrationOutput) SetV1BotLocale(v string) *GetMigrationOutput {
+	s.V1BotLocale = &v
+	return s
+}
+
+// SetV1BotName sets the V1BotName field's value.
+func (s *GetMigrationOutput) SetV1BotName(v string) *GetMigrationOutput {
+	s.V1BotName = &v
+	return s
+}
+
+// SetV1BotVersion sets the V1BotVersion field's value.
+func (s *GetMigrationOutput) SetV1BotVersion(v string) *GetMigrationOutput {
+	s.V1BotVersion = &v
+	return s
+}
+
+// SetV2BotId sets the V2BotId field's value.
+func (s *GetMigrationOutput) SetV2BotId(v string) *GetMigrationOutput {
+	s.V2BotId = &v
+	return s
+}
+
+// SetV2BotRole sets the V2BotRole field's value.
+func (s *GetMigrationOutput) SetV2BotRole(v string) *GetMigrationOutput {
+	s.V2BotRole = &v
+	return s
+}
+
+type GetMigrationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of migrations to return in the response. The default is
+	// 10.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Filters the list to contain only migrations in the specified state.
+	MigrationStatusEquals *string `location:"querystring" locationName:"migrationStatusEquals" type:"string" enum:"MigrationStatus"`
+
+	// A pagination token that fetches the next page of migrations. If the response
+	// to this operation is truncated, Amazon Lex returns a pagination token in
+	// the response. To fetch the next page of migrations, specify the pagination
+	// token in the request.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The field to sort the list of migrations by. You can sort by the Amazon Lex
+	// V1 bot name or the date and time that the migration was started.
+	SortByAttribute *string `location:"querystring" locationName:"sortByAttribute" type:"string" enum:"MigrationSortAttribute"`
+
+	// The order so sort the list.
+	SortByOrder *string `location:"querystring" locationName:"sortByOrder" type:"string" enum:"SortOrder"`
+
+	// Filters the list to contain only bots whose name contains the specified string.
+	// The string is matched anywhere in bot name.
+	V1BotNameContains *string `location:"querystring" locationName:"v1BotNameContains" min:"2" type:"string"`
+}
+
+// String returns the string representation
+func (s GetMigrationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMigrationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMigrationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMigrationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.V1BotNameContains != nil && len(*s.V1BotNameContains) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("V1BotNameContains", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetMigrationsInput) SetMaxResults(v int64) *GetMigrationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetMigrationStatusEquals sets the MigrationStatusEquals field's value.
+func (s *GetMigrationsInput) SetMigrationStatusEquals(v string) *GetMigrationsInput {
+	s.MigrationStatusEquals = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetMigrationsInput) SetNextToken(v string) *GetMigrationsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortByAttribute sets the SortByAttribute field's value.
+func (s *GetMigrationsInput) SetSortByAttribute(v string) *GetMigrationsInput {
+	s.SortByAttribute = &v
+	return s
+}
+
+// SetSortByOrder sets the SortByOrder field's value.
+func (s *GetMigrationsInput) SetSortByOrder(v string) *GetMigrationsInput {
+	s.SortByOrder = &v
+	return s
+}
+
+// SetV1BotNameContains sets the V1BotNameContains field's value.
+func (s *GetMigrationsInput) SetV1BotNameContains(v string) *GetMigrationsInput {
+	s.V1BotNameContains = &v
+	return s
+}
+
+type GetMigrationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of summaries for migrations from Amazon Lex V1 to Amazon Lex V2.
+	// To see details of the migration, use the migrationId from the summary in
+	// a call to the operation.
+	MigrationSummaries []*MigrationSummary `locationName:"migrationSummaries" type:"list"`
+
+	// If the response is truncated, it includes a pagination token that you can
+	// specify in your next request to fetch the next page of migrations.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetMigrationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMigrationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetMigrationSummaries sets the MigrationSummaries field's value.
+func (s *GetMigrationsOutput) SetMigrationSummaries(v []*MigrationSummary) *GetMigrationsOutput {
+	s.MigrationSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetMigrationsOutput) SetNextToken(v string) *GetMigrationsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetSlotTypeInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9856,6 +10536,165 @@ func (s *Message) SetContentType(v string) *Message {
 // SetGroupNumber sets the GroupNumber field's value.
 func (s *Message) SetGroupNumber(v int64) *Message {
 	s.GroupNumber = &v
+	return s
+}
+
+// Provides information about alerts and warnings that Amazon Lex sends during
+// a migration. The alerts include information about how to resolve the issue.
+type MigrationAlert struct {
+	_ struct{} `type:"structure"`
+
+	// Additional details about the alert.
+	Details []*string `locationName:"details" type:"list"`
+
+	// A message that describes why the alert was issued.
+	Message *string `locationName:"message" type:"string"`
+
+	// A link to the Amazon Lex documentation that describes how to resolve the
+	// alert.
+	ReferenceURLs []*string `locationName:"referenceURLs" type:"list"`
+
+	// The type of alert. There are two kinds of alerts:
+	//
+	//    * ERROR - There was an issue with the migration that can't be resolved.
+	//    The migration stops.
+	//
+	//    * WARN - There was an issue with the migration that requires manual changes
+	//    to the new Amazon Lex V2 bot. The migration continues.
+	Type *string `locationName:"type" type:"string" enum:"MigrationAlertType"`
+}
+
+// String returns the string representation
+func (s MigrationAlert) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MigrationAlert) GoString() string {
+	return s.String()
+}
+
+// SetDetails sets the Details field's value.
+func (s *MigrationAlert) SetDetails(v []*string) *MigrationAlert {
+	s.Details = v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *MigrationAlert) SetMessage(v string) *MigrationAlert {
+	s.Message = &v
+	return s
+}
+
+// SetReferenceURLs sets the ReferenceURLs field's value.
+func (s *MigrationAlert) SetReferenceURLs(v []*string) *MigrationAlert {
+	s.ReferenceURLs = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *MigrationAlert) SetType(v string) *MigrationAlert {
+	s.Type = &v
+	return s
+}
+
+// Provides information about migrating a bot from Amazon Lex V1 to Amazon Lex
+// V2.
+type MigrationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier that Amazon Lex assigned to the migration.
+	MigrationId *string `locationName:"migrationId" min:"10" type:"string"`
+
+	// The status of the operation. When the status is COMPLETE the bot is available
+	// in Amazon Lex V2. There may be alerts and warnings that need to be resolved
+	// to complete the migration.
+	MigrationStatus *string `locationName:"migrationStatus" type:"string" enum:"MigrationStatus"`
+
+	// The strategy used to conduct the migration.
+	MigrationStrategy *string `locationName:"migrationStrategy" type:"string" enum:"MigrationStrategy"`
+
+	// The date and time that the migration started.
+	MigrationTimestamp *time.Time `locationName:"migrationTimestamp" type:"timestamp"`
+
+	// The locale of the Amazon Lex V1 bot that is the source of the migration.
+	V1BotLocale *string `locationName:"v1BotLocale" type:"string" enum:"Locale"`
+
+	// The name of the Amazon Lex V1 bot that is the source of the migration.
+	V1BotName *string `locationName:"v1BotName" min:"2" type:"string"`
+
+	// The version of the Amazon Lex V1 bot that is the source of the migration.
+	V1BotVersion *string `locationName:"v1BotVersion" min:"1" type:"string"`
+
+	// The unique identifier of the Amazon Lex V2 that is the destination of the
+	// migration.
+	V2BotId *string `locationName:"v2BotId" min:"10" type:"string"`
+
+	// The IAM role that Amazon Lex uses to run the Amazon Lex V2 bot.
+	V2BotRole *string `locationName:"v2BotRole" min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s MigrationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MigrationSummary) GoString() string {
+	return s.String()
+}
+
+// SetMigrationId sets the MigrationId field's value.
+func (s *MigrationSummary) SetMigrationId(v string) *MigrationSummary {
+	s.MigrationId = &v
+	return s
+}
+
+// SetMigrationStatus sets the MigrationStatus field's value.
+func (s *MigrationSummary) SetMigrationStatus(v string) *MigrationSummary {
+	s.MigrationStatus = &v
+	return s
+}
+
+// SetMigrationStrategy sets the MigrationStrategy field's value.
+func (s *MigrationSummary) SetMigrationStrategy(v string) *MigrationSummary {
+	s.MigrationStrategy = &v
+	return s
+}
+
+// SetMigrationTimestamp sets the MigrationTimestamp field's value.
+func (s *MigrationSummary) SetMigrationTimestamp(v time.Time) *MigrationSummary {
+	s.MigrationTimestamp = &v
+	return s
+}
+
+// SetV1BotLocale sets the V1BotLocale field's value.
+func (s *MigrationSummary) SetV1BotLocale(v string) *MigrationSummary {
+	s.V1BotLocale = &v
+	return s
+}
+
+// SetV1BotName sets the V1BotName field's value.
+func (s *MigrationSummary) SetV1BotName(v string) *MigrationSummary {
+	s.V1BotName = &v
+	return s
+}
+
+// SetV1BotVersion sets the V1BotVersion field's value.
+func (s *MigrationSummary) SetV1BotVersion(v string) *MigrationSummary {
+	s.V1BotVersion = &v
+	return s
+}
+
+// SetV2BotId sets the V2BotId field's value.
+func (s *MigrationSummary) SetV2BotId(v string) *MigrationSummary {
+	s.V2BotId = &v
+	return s
+}
+
+// SetV2BotRole sets the V2BotRole field's value.
+func (s *MigrationSummary) SetV2BotRole(v string) *MigrationSummary {
+	s.V2BotRole = &v
 	return s
 }
 
@@ -12545,6 +13384,214 @@ func (s *StartImportOutput) SetTags(v []*Tag) *StartImportOutput {
 	return s
 }
 
+type StartMigrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The strategy used to conduct the migration.
+	//
+	//    * CREATE_NEW - Creates a new Amazon Lex V2 bot and migrates the Amazon
+	//    Lex V1 bot to the new bot.
+	//
+	//    * UPDATE_EXISTING - Overwrites the existing Amazon Lex V2 bot metadata
+	//    and the locale being migrated. It doesn't change any other locales in
+	//    the Amazon Lex V2 bot. If the locale doesn't exist, a new locale is created
+	//    in the Amazon Lex V2 bot.
+	//
+	// MigrationStrategy is a required field
+	MigrationStrategy *string `locationName:"migrationStrategy" type:"string" required:"true" enum:"MigrationStrategy"`
+
+	// The name of the Amazon Lex V1 bot that you are migrating to Amazon Lex V2.
+	//
+	// V1BotName is a required field
+	V1BotName *string `locationName:"v1BotName" min:"2" type:"string" required:"true"`
+
+	// The version of the bot to migrate to Amazon Lex V2. You can migrate the $LATEST
+	// version as well as any numbered version.
+	//
+	// V1BotVersion is a required field
+	V1BotVersion *string `locationName:"v1BotVersion" min:"1" type:"string" required:"true"`
+
+	// The name of the Amazon Lex V2 bot that you are migrating the Amazon Lex V1
+	// bot to.
+	//
+	//    * If the Amazon Lex V2 bot doesn't exist, you must use the CREATE_NEW
+	//    migration strategy.
+	//
+	//    * If the Amazon Lex V2 bot exists, you must use the UPDATE_EXISTING migration
+	//    strategy to change the contents of the Amazon Lex V2 bot.
+	//
+	// V2BotName is a required field
+	V2BotName *string `locationName:"v2BotName" min:"1" type:"string" required:"true"`
+
+	// The IAM role that Amazon Lex uses to run the Amazon Lex V2 bot.
+	//
+	// V2BotRole is a required field
+	V2BotRole *string `locationName:"v2BotRole" min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartMigrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMigrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMigrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMigrationInput"}
+	if s.MigrationStrategy == nil {
+		invalidParams.Add(request.NewErrParamRequired("MigrationStrategy"))
+	}
+	if s.V1BotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("V1BotName"))
+	}
+	if s.V1BotName != nil && len(*s.V1BotName) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("V1BotName", 2))
+	}
+	if s.V1BotVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("V1BotVersion"))
+	}
+	if s.V1BotVersion != nil && len(*s.V1BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("V1BotVersion", 1))
+	}
+	if s.V2BotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("V2BotName"))
+	}
+	if s.V2BotName != nil && len(*s.V2BotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("V2BotName", 1))
+	}
+	if s.V2BotRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("V2BotRole"))
+	}
+	if s.V2BotRole != nil && len(*s.V2BotRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("V2BotRole", 20))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMigrationStrategy sets the MigrationStrategy field's value.
+func (s *StartMigrationInput) SetMigrationStrategy(v string) *StartMigrationInput {
+	s.MigrationStrategy = &v
+	return s
+}
+
+// SetV1BotName sets the V1BotName field's value.
+func (s *StartMigrationInput) SetV1BotName(v string) *StartMigrationInput {
+	s.V1BotName = &v
+	return s
+}
+
+// SetV1BotVersion sets the V1BotVersion field's value.
+func (s *StartMigrationInput) SetV1BotVersion(v string) *StartMigrationInput {
+	s.V1BotVersion = &v
+	return s
+}
+
+// SetV2BotName sets the V2BotName field's value.
+func (s *StartMigrationInput) SetV2BotName(v string) *StartMigrationInput {
+	s.V2BotName = &v
+	return s
+}
+
+// SetV2BotRole sets the V2BotRole field's value.
+func (s *StartMigrationInput) SetV2BotRole(v string) *StartMigrationInput {
+	s.V2BotRole = &v
+	return s
+}
+
+type StartMigrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier that Amazon Lex assigned to the migration.
+	MigrationId *string `locationName:"migrationId" min:"10" type:"string"`
+
+	// The strategy used to conduct the migration.
+	MigrationStrategy *string `locationName:"migrationStrategy" type:"string" enum:"MigrationStrategy"`
+
+	// The date and time that the migration started.
+	MigrationTimestamp *time.Time `locationName:"migrationTimestamp" type:"timestamp"`
+
+	// The locale used for the Amazon Lex V1 bot.
+	V1BotLocale *string `locationName:"v1BotLocale" type:"string" enum:"Locale"`
+
+	// The name of the Amazon Lex V1 bot that you are migrating to Amazon Lex V2.
+	V1BotName *string `locationName:"v1BotName" min:"2" type:"string"`
+
+	// The version of the bot to migrate to Amazon Lex V2.
+	V1BotVersion *string `locationName:"v1BotVersion" min:"1" type:"string"`
+
+	// The unique identifier for the Amazon Lex V2 bot.
+	V2BotId *string `locationName:"v2BotId" min:"10" type:"string"`
+
+	// The IAM role that Amazon Lex uses to run the Amazon Lex V2 bot.
+	V2BotRole *string `locationName:"v2BotRole" min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s StartMigrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMigrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetMigrationId sets the MigrationId field's value.
+func (s *StartMigrationOutput) SetMigrationId(v string) *StartMigrationOutput {
+	s.MigrationId = &v
+	return s
+}
+
+// SetMigrationStrategy sets the MigrationStrategy field's value.
+func (s *StartMigrationOutput) SetMigrationStrategy(v string) *StartMigrationOutput {
+	s.MigrationStrategy = &v
+	return s
+}
+
+// SetMigrationTimestamp sets the MigrationTimestamp field's value.
+func (s *StartMigrationOutput) SetMigrationTimestamp(v time.Time) *StartMigrationOutput {
+	s.MigrationTimestamp = &v
+	return s
+}
+
+// SetV1BotLocale sets the V1BotLocale field's value.
+func (s *StartMigrationOutput) SetV1BotLocale(v string) *StartMigrationOutput {
+	s.V1BotLocale = &v
+	return s
+}
+
+// SetV1BotName sets the V1BotName field's value.
+func (s *StartMigrationOutput) SetV1BotName(v string) *StartMigrationOutput {
+	s.V1BotName = &v
+	return s
+}
+
+// SetV1BotVersion sets the V1BotVersion field's value.
+func (s *StartMigrationOutput) SetV1BotVersion(v string) *StartMigrationOutput {
+	s.V1BotVersion = &v
+	return s
+}
+
+// SetV2BotId sets the V2BotId field's value.
+func (s *StartMigrationOutput) SetV2BotId(v string) *StartMigrationOutput {
+	s.V2BotId = &v
+	return s
+}
+
+// SetV2BotRole sets the V2BotRole field's value.
+func (s *StartMigrationOutput) SetV2BotRole(v string) *StartMigrationOutput {
+	s.V2BotRole = &v
+	return s
+}
+
 // A collection of messages that convey information to the user. At runtime,
 // Amazon Lex selects the message to convey.
 type Statement struct {
@@ -13155,6 +14202,74 @@ func MergeStrategy_Values() []string {
 }
 
 const (
+	// MigrationAlertTypeError is a MigrationAlertType enum value
+	MigrationAlertTypeError = "ERROR"
+
+	// MigrationAlertTypeWarn is a MigrationAlertType enum value
+	MigrationAlertTypeWarn = "WARN"
+)
+
+// MigrationAlertType_Values returns all elements of the MigrationAlertType enum
+func MigrationAlertType_Values() []string {
+	return []string{
+		MigrationAlertTypeError,
+		MigrationAlertTypeWarn,
+	}
+}
+
+const (
+	// MigrationSortAttributeV1BotName is a MigrationSortAttribute enum value
+	MigrationSortAttributeV1BotName = "V1_BOT_NAME"
+
+	// MigrationSortAttributeMigrationDateTime is a MigrationSortAttribute enum value
+	MigrationSortAttributeMigrationDateTime = "MIGRATION_DATE_TIME"
+)
+
+// MigrationSortAttribute_Values returns all elements of the MigrationSortAttribute enum
+func MigrationSortAttribute_Values() []string {
+	return []string{
+		MigrationSortAttributeV1BotName,
+		MigrationSortAttributeMigrationDateTime,
+	}
+}
+
+const (
+	// MigrationStatusInProgress is a MigrationStatus enum value
+	MigrationStatusInProgress = "IN_PROGRESS"
+
+	// MigrationStatusCompleted is a MigrationStatus enum value
+	MigrationStatusCompleted = "COMPLETED"
+
+	// MigrationStatusFailed is a MigrationStatus enum value
+	MigrationStatusFailed = "FAILED"
+)
+
+// MigrationStatus_Values returns all elements of the MigrationStatus enum
+func MigrationStatus_Values() []string {
+	return []string{
+		MigrationStatusInProgress,
+		MigrationStatusCompleted,
+		MigrationStatusFailed,
+	}
+}
+
+const (
+	// MigrationStrategyCreateNew is a MigrationStrategy enum value
+	MigrationStrategyCreateNew = "CREATE_NEW"
+
+	// MigrationStrategyUpdateExisting is a MigrationStrategy enum value
+	MigrationStrategyUpdateExisting = "UPDATE_EXISTING"
+)
+
+// MigrationStrategy_Values returns all elements of the MigrationStrategy enum
+func MigrationStrategy_Values() []string {
+	return []string{
+		MigrationStrategyCreateNew,
+		MigrationStrategyUpdateExisting,
+	}
+}
+
+const (
 	// ObfuscationSettingNone is a ObfuscationSetting enum value
 	ObfuscationSettingNone = "NONE"
 
@@ -13259,6 +14374,22 @@ func SlotValueSelectionStrategy_Values() []string {
 	return []string{
 		SlotValueSelectionStrategyOriginalValue,
 		SlotValueSelectionStrategyTopResolution,
+	}
+}
+
+const (
+	// SortOrderAscending is a SortOrder enum value
+	SortOrderAscending = "ASCENDING"
+
+	// SortOrderDescending is a SortOrder enum value
+	SortOrderDescending = "DESCENDING"
+)
+
+// SortOrder_Values returns all elements of the SortOrder enum
+func SortOrder_Values() []string {
+	return []string{
+		SortOrderAscending,
+		SortOrderDescending,
 	}
 }
 

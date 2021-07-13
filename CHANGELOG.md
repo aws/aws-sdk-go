@@ -1,3 +1,18 @@
+Release v1.39.6 (2021-07-13)
+===
+
+### Service Client Updates
+* `service/amplifybackend`: Updates service API and documentation
+* `service/devops-guru`: Updates service paginators
+* `service/directconnect`: Updates service API and documentation
+  * This release adds a new filed named awsLogicalDeviceId that it displays the AWS Direct Connect endpoint which terminates a physical connection's BGP Sessions.
+* `service/lex-models`: Updates service API, documentation, and paginators
+* `service/pricing`: Updates service documentation and examples
+* `service/redshift`: Updates service API and documentation
+  * Release new APIs to support new Redshift feature - Authentication Profile
+* `service/ssm`: Updates service API and documentation
+  * Changes to OpsCenter APIs to support a new feature, operational insights.
+
 Release v1.39.5 (2021-07-12)
 ===
 
