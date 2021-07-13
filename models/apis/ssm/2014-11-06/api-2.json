@@ -7554,7 +7554,8 @@
         "ChangeRequestByApproverArn",
         "ChangeRequestByApproverName",
         "ChangeRequestByTemplate",
-        "ChangeRequestByTargetsResourceGroup"
+        "ChangeRequestByTargetsResourceGroup",
+        "InsightByType"
       ]
     },
     "OpsItemFilterOperator":{
@@ -7752,7 +7753,8 @@
         "ChangeCalendarOverrideRejected",
         "PendingApproval",
         "Approved",
-        "Rejected"
+        "Rejected",
+        "Closed"
       ]
     },
     "OpsItemSummaries":{

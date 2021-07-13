@@ -152,7 +152,7 @@ func (c *DirectConnect) AllocateConnectionOnInterconnectRequest(input *AllocateC
 // Allocates a VLAN number and a specified amount of bandwidth for use by a
 // hosted connection on the specified interconnect.
 //
-// Intended for use by AWS Direct Connect Partners only.
+// Intended for use by Direct Connect Partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -243,11 +243,11 @@ func (c *DirectConnect) AllocateHostedConnectionRequest(input *AllocateHostedCon
 //
 // Allocates a VLAN number and a specified amount of capacity (bandwidth) for
 // use by a hosted connection on the specified interconnect or LAG of interconnects.
-// AWS polices the hosted connection for the specified capacity and the AWS
-// Direct Connect Partner must also police the hosted connection for the specified
-// capacity.
+// Amazon Web Services polices the hosted connection for the specified capacity
+// and the Direct Connect Partner must also police the hosted connection for
+// the specified capacity.
 //
-// Intended for use by AWS Direct Connect Partners only.
+// Intended for use by Direct Connect Partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -335,7 +335,7 @@ func (c *DirectConnect) AllocatePrivateVirtualInterfaceRequest(input *AllocatePr
 
 // AllocatePrivateVirtualInterface API operation for AWS Direct Connect.
 //
-// Provisions a private virtual interface to be owned by the specified AWS account.
+// Provisions a private virtual interface to be owned by the specified account.
 //
 // Virtual interfaces created using this action must be confirmed by the owner
 // using ConfirmPrivateVirtualInterface. Until then, the virtual interface is
@@ -427,10 +427,10 @@ func (c *DirectConnect) AllocatePublicVirtualInterfaceRequest(input *AllocatePub
 
 // AllocatePublicVirtualInterface API operation for AWS Direct Connect.
 //
-// Provisions a public virtual interface to be owned by the specified AWS account.
+// Provisions a public virtual interface to be owned by the specified account.
 //
 // The owner of a connection calls this function to provision a public virtual
-// interface to be owned by the specified AWS account.
+// interface to be owned by the specified account.
 //
 // Virtual interfaces created using this function must be confirmed by the owner
 // using ConfirmPublicVirtualInterface. Until this step has been completed,
@@ -527,12 +527,12 @@ func (c *DirectConnect) AllocateTransitVirtualInterfaceRequest(input *AllocateTr
 
 // AllocateTransitVirtualInterface API operation for AWS Direct Connect.
 //
-// Provisions a transit virtual interface to be owned by the specified AWS account.
+// Provisions a transit virtual interface to be owned by the specified account.
 // Use this type of interface to connect a transit gateway to your Direct Connect
 // gateway.
 //
 // The owner of a connection provisions a transit virtual interface to be owned
-// by the specified AWS account.
+// by the specified account.
 //
 // After you create a transit virtual interface, it must be confirmed by the
 // owner using ConfirmTransitVirtualInterface. Until this step has been completed,
@@ -627,12 +627,12 @@ func (c *DirectConnect) AssociateConnectionWithLagRequest(input *AssociateConnec
 //
 // Associates an existing connection with a link aggregation group (LAG). The
 // connection is interrupted and re-established as a member of the LAG (connectivity
-// to AWS is interrupted). The connection must be hosted on the same AWS Direct
-// Connect endpoint as the LAG, and its bandwidth must match the bandwidth for
-// the LAG. You can re-associate a connection that's currently associated with
-// a different LAG; however, if removing the connection would cause the original
-// LAG to fall below its setting for minimum number of operational connections,
-// the request fails.
+// to Amazon Web Services is interrupted). The connection must be hosted on
+// the same Direct Connect endpoint as the LAG, and its bandwidth must match
+// the bandwidth for the LAG. You can re-associate a connection that's currently
+// associated with a different LAG; however, if removing the connection would
+// cause the original LAG to fall below its setting for minimum number of operational
+// connections, the request fails.
 //
 // Any virtual interfaces that are directly associated with the connection are
 // automatically re-associated with the LAG. If the connection was originally
@@ -727,9 +727,9 @@ func (c *DirectConnect) AssociateHostedConnectionRequest(input *AssociateHostedC
 // group (LAG) or interconnect. If the target interconnect or LAG has an existing
 // hosted connection with a conflicting VLAN number or IP address, the operation
 // fails. This action temporarily interrupts the hosted connection's connectivity
-// to AWS as it is being migrated.
+// to Amazon Web Services as it is being migrated.
 //
-// Intended for use by AWS Direct Connect Partners only.
+// Intended for use by Direct Connect Partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -812,14 +812,14 @@ func (c *DirectConnect) AssociateMacSecKeyRequest(input *AssociateMacSecKeyInput
 // AssociateMacSecKey API operation for AWS Direct Connect.
 //
 // Associates a MAC Security (MACsec) Connection Key Name (CKN)/ Connectivity
-// Association Key (CAK) pair with an AWS Direct Connect dedicated connection.
+// Association Key (CAK) pair with an Direct Connect dedicated connection.
 //
 // You must supply either the secretARN, or the CKN/CAK (ckn and cak) pair in
 // the request.
 //
 // For information about MAC Security (MACsec) key considerations, see MACsec
 // pre-shared CKN/CAK key considerations (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-key-consideration)
-// in the AWS Direct Connect User Guide.
+// in the Direct Connect User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -902,10 +902,10 @@ func (c *DirectConnect) AssociateVirtualInterfaceRequest(input *AssociateVirtual
 // AssociateVirtualInterface API operation for AWS Direct Connect.
 //
 // Associates a virtual interface with a specified link aggregation group (LAG)
-// or connection. Connectivity to AWS is temporarily interrupted as the virtual
-// interface is being migrated. If the target connection or LAG has an associated
-// virtual interface with a conflicting VLAN number or a conflicting IP address,
-// the operation fails.
+// or connection. Connectivity to Amazon Web Services is temporarily interrupted
+// as the virtual interface is being migrated. If the target connection or LAG
+// has an associated virtual interface with a conflicting VLAN number or a conflicting
+// IP address, the operation fails.
 //
 // Virtual interfaces associated with a hosted connection cannot be associated
 // with a LAG; hosted connections must be migrated along with their virtual
@@ -1082,7 +1082,7 @@ func (c *DirectConnect) ConfirmPrivateVirtualInterfaceRequest(input *ConfirmPriv
 
 // ConfirmPrivateVirtualInterface API operation for AWS Direct Connect.
 //
-// Accepts ownership of a private virtual interface created by another AWS account.
+// Accepts ownership of a private virtual interface created by another account.
 //
 // After the virtual interface owner makes this call, the virtual interface
 // is created and attached to the specified virtual private gateway or Direct
@@ -1168,7 +1168,7 @@ func (c *DirectConnect) ConfirmPublicVirtualInterfaceRequest(input *ConfirmPubli
 
 // ConfirmPublicVirtualInterface API operation for AWS Direct Connect.
 //
-// Accepts ownership of a public virtual interface created by another AWS account.
+// Accepts ownership of a public virtual interface created by another account.
 //
 // After the virtual interface owner makes this call, the specified virtual
 // interface is created and made available to handle traffic.
@@ -1253,7 +1253,7 @@ func (c *DirectConnect) ConfirmTransitVirtualInterfaceRequest(input *ConfirmTran
 
 // ConfirmTransitVirtualInterface API operation for AWS Direct Connect.
 //
-// Accepts ownership of a transit virtual interface created by another AWS account.
+// Accepts ownership of a transit virtual interface created by another account.
 //
 // After the owner of the transit virtual interface makes this call, the specified
 // transit virtual interface is created and made available to handle traffic.
@@ -1341,7 +1341,8 @@ func (c *DirectConnect) CreateBGPPeerRequest(input *CreateBGPPeerInput) (req *re
 // Creates a BGP peer on the specified virtual interface.
 //
 // You must create a BGP peer for the corresponding address family (IPv4/IPv6)
-// in order to access AWS resources that also use that address family.
+// in order to access Amazon Web Services resources that also use that address
+// family.
 //
 // If logical redundancy is not supported by the connection, interconnect, or
 // LAG, the BGP peer cannot be in the same address family as an existing BGP
@@ -1434,18 +1435,18 @@ func (c *DirectConnect) CreateConnectionRequest(input *CreateConnectionInput) (r
 
 // CreateConnection API operation for AWS Direct Connect.
 //
-// Creates a connection between a customer network and a specific AWS Direct
-// Connect location.
+// Creates a connection between a customer network and a specific Direct Connect
+// location.
 //
-// A connection links your internal network to an AWS Direct Connect location
-// over a standard Ethernet fiber-optic cable. One end of the cable is connected
-// to your router, the other to an AWS Direct Connect router.
+// A connection links your internal network to an Direct Connect location over
+// a standard Ethernet fiber-optic cable. One end of the cable is connected
+// to your router, the other to an Direct Connect router.
 //
 // To find the locations for your Region, use DescribeLocations.
 //
 // You can automatically add the new connection to a link aggregation group
 // (LAG) by specifying a LAG ID in the request. This ensures that the new connection
-// is allocated on the same AWS Direct Connect endpoint that hosts the specified
+// is allocated on the same Direct Connect endpoint that hosts the specified
 // LAG. If there are no available ports on the endpoint, the request fails and
 // no connection is created.
 //
@@ -1537,11 +1538,11 @@ func (c *DirectConnect) CreateDirectConnectGatewayRequest(input *CreateDirectCon
 //
 // Creates a Direct Connect gateway, which is an intermediate object that enables
 // you to connect a set of virtual interfaces and virtual private gateways.
-// A Direct Connect gateway is global and visible in any AWS Region after it
-// is created. The virtual interfaces and virtual private gateways that are
-// connected through a Direct Connect gateway can be in different AWS Regions.
-// This enables you to connect to a VPC in any Region, regardless of the Region
-// in which the virtual interfaces are located, and pass traffic between them.
+// A Direct Connect gateway is global and visible in any Region after it is
+// created. The virtual interfaces and virtual private gateways that are connected
+// through a Direct Connect gateway can be in different Regions. This enables
+// you to connect to a VPC in any Region, regardless of the Region in which
+// the virtual interfaces are located, and pass traffic between them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1711,7 +1712,7 @@ func (c *DirectConnect) CreateDirectConnectGatewayAssociationProposalRequest(inp
 // transit gateway with the specified Direct Connect gateway.
 //
 // You can associate a Direct Connect gateway and virtual private gateway or
-// transit gateway that is owned by any AWS account.
+// transit gateway that is owned by any account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1793,29 +1794,29 @@ func (c *DirectConnect) CreateInterconnectRequest(input *CreateInterconnectInput
 
 // CreateInterconnect API operation for AWS Direct Connect.
 //
-// Creates an interconnect between an AWS Direct Connect Partner's network and
-// a specific AWS Direct Connect location.
+// Creates an interconnect between an Direct Connect Partner's network and a
+// specific Direct Connect location.
 //
 // An interconnect is a connection that is capable of hosting other connections.
-// The AWS Direct Connect partner can use an interconnect to provide AWS Direct
-// Connect hosted connections to customers through their own network services.
-// Like a standard connection, an interconnect links the partner's network to
-// an AWS Direct Connect location over a standard Ethernet fiber-optic cable.
-// One end is connected to the partner's router, the other to an AWS Direct
-// Connect router.
+// The Direct Connect Partner can use an interconnect to provide Direct Connect
+// hosted connections to customers through their own network services. Like
+// a standard connection, an interconnect links the partner's network to an
+// Direct Connect location over a standard Ethernet fiber-optic cable. One end
+// is connected to the partner's router, the other to an Direct Connect router.
 //
 // You can automatically add the new interconnect to a link aggregation group
 // (LAG) by specifying a LAG ID in the request. This ensures that the new interconnect
-// is allocated on the same AWS Direct Connect endpoint that hosts the specified
+// is allocated on the same Direct Connect endpoint that hosts the specified
 // LAG. If there are no available ports on the endpoint, the request fails and
 // no interconnect is created.
 //
-// For each end customer, the AWS Direct Connect Partner provisions a connection
+// For each end customer, the Direct Connect Partner provisions a connection
 // on their interconnect by calling AllocateHostedConnection. The end customer
-// can then connect to AWS resources by creating a virtual interface on their
-// connection, using the VLAN assigned to them by the AWS Direct Connect Partner.
+// can then connect to Amazon Web Services resources by creating a virtual interface
+// on their connection, using the VLAN assigned to them by the Direct Connect
+// Partner.
 //
-// Intended for use by AWS Direct Connect Partners only.
+// Intended for use by Direct Connect Partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1905,29 +1906,28 @@ func (c *DirectConnect) CreateLagRequest(input *CreateLagInput) (req *request.Re
 //
 // Creates a link aggregation group (LAG) with the specified number of bundled
 // physical dedicated connections between the customer network and a specific
-// AWS Direct Connect location. A LAG is a logical interface that uses the Link
+// Direct Connect location. A LAG is a logical interface that uses the Link
 // Aggregation Control Protocol (LACP) to aggregate multiple interfaces, enabling
 // you to treat them as a single interface.
 //
 // All connections in a LAG must use the same bandwidth (either 1Gbps or 10Gbps)
-// and must terminate at the same AWS Direct Connect endpoint.
+// and must terminate at the same Direct Connect endpoint.
 //
 // You can have up to 10 dedicated connections per LAG. Regardless of this limit,
-// if you request more connections for the LAG than AWS Direct Connect can allocate
+// if you request more connections for the LAG than Direct Connect can allocate
 // on a single endpoint, no LAG is created.
 //
 // You can specify an existing physical dedicated connection or interconnect
 // to include in the LAG (which counts towards the total number of connections).
 // Doing so interrupts the current physical dedicated connection, and re-establishes
-// them as a member of the LAG. The LAG will be created on the same AWS Direct
-// Connect endpoint to which the dedicated connection terminates. Any virtual
-// interfaces associated with the dedicated connection are automatically disassociated
+// them as a member of the LAG. The LAG will be created on the same Direct Connect
+// endpoint to which the dedicated connection terminates. Any virtual interfaces
+// associated with the dedicated connection are automatically disassociated
 // and re-associated with the LAG. The connection ID does not change.
 //
-// If the AWS account used to create a LAG is a registered AWS Direct Connect
-// Partner, the LAG is automatically enabled to host sub-connections. For a
-// LAG owned by a partner, any associated virtual interfaces cannot be directly
-// configured.
+// If the account used to create a LAG is a registered Direct Connect Partner,
+// the LAG is automatically enabled to host sub-connections. For a LAG owned
+// by a partner, any associated virtual interfaces cannot be directly configured.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2016,12 +2016,12 @@ func (c *DirectConnect) CreatePrivateVirtualInterfaceRequest(input *CreatePrivat
 // CreatePrivateVirtualInterface API operation for AWS Direct Connect.
 //
 // Creates a private virtual interface. A virtual interface is the VLAN that
-// transports AWS Direct Connect traffic. A private virtual interface can be
-// connected to either a Direct Connect gateway or a Virtual Private Gateway
-// (VGW). Connecting the private virtual interface to a Direct Connect gateway
-// enables the possibility for connecting to multiple VPCs, including VPCs in
-// different AWS Regions. Connecting the private virtual interface to a VGW
-// only provides access to a single VPC within the same Region.
+// transports Direct Connect traffic. A private virtual interface can be connected
+// to either a Direct Connect gateway or a Virtual Private Gateway (VGW). Connecting
+// the private virtual interface to a Direct Connect gateway enables the possibility
+// for connecting to multiple VPCs, including VPCs in different Regions. Connecting
+// the private virtual interface to a VGW only provides access to a single VPC
+// within the same Region.
 //
 // Setting the MTU of a virtual interface to 9001 (jumbo frames) can cause an
 // update to the underlying physical connection if it wasn't updated to support
@@ -2117,8 +2117,8 @@ func (c *DirectConnect) CreatePublicVirtualInterfaceRequest(input *CreatePublicV
 // CreatePublicVirtualInterface API operation for AWS Direct Connect.
 //
 // Creates a public virtual interface. A virtual interface is the VLAN that
-// transports AWS Direct Connect traffic. A public virtual interface supports
-// sending traffic to public services of AWS such as Amazon S3.
+// transports Direct Connect traffic. A public virtual interface supports sending
+// traffic to public services of Amazon Web Services such as Amazon S3.
 //
 // When creating an IPv6 public virtual interface (addressFamily is ipv6), leave
 // the customer and amazon address fields blank to use auto-assigned IPv6 space.
@@ -2401,10 +2401,9 @@ func (c *DirectConnect) DeleteConnectionRequest(input *DeleteConnectionInput) (r
 //
 // Deletes the specified connection.
 //
-// Deleting a connection only stops the AWS Direct Connect port hour and data
-// transfer charges. If you are partnering with any third parties to connect
-// with the AWS Direct Connect location, you must cancel your service with them
-// separately.
+// Deleting a connection only stops the Direct Connect port hour and data transfer
+// charges. If you are partnering with any third parties to connect with the
+// Direct Connect location, you must cancel your service with them separately.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2743,7 +2742,7 @@ func (c *DirectConnect) DeleteInterconnectRequest(input *DeleteInterconnectInput
 //
 // Deletes the specified interconnect.
 //
-// Intended for use by AWS Direct Connect Partners only.
+// Intended for use by Direct Connect Partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3001,9 +3000,10 @@ func (c *DirectConnect) DescribeConnectionLoaRequest(input *DescribeConnectionLo
 //
 // The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is
 // a document that your APN partner or service provider uses when establishing
-// your cross connect to AWS at the colocation facility. For more information,
-// see Requesting Cross Connects at AWS Direct Connect Locations (https://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
-// in the AWS Direct Connect User Guide.
+// your cross connect to Amazon Web Services at the colocation facility. For
+// more information, see Requesting Cross Connects at Direct Connect Locations
+// (https://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
+// in the Direct Connect User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3180,7 +3180,7 @@ func (c *DirectConnect) DescribeConnectionsOnInterconnectRequest(input *Describe
 //
 // Lists the connections that have been provisioned on the specified interconnect.
 //
-// Intended for use by AWS Direct Connect Partners only.
+// Intended for use by Direct Connect Partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3620,7 +3620,7 @@ func (c *DirectConnect) DescribeHostedConnectionsRequest(input *DescribeHostedCo
 // Lists the hosted connections that have been provisioned on the specified
 // interconnect or link aggregation group (LAG).
 //
-// Intended for use by AWS Direct Connect Partners only.
+// Intended for use by Direct Connect Partners only.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3712,10 +3712,10 @@ func (c *DirectConnect) DescribeInterconnectLoaRequest(input *DescribeInterconne
 // Gets the LOA-CFA for the specified interconnect.
 //
 // The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is
-// a document that is used when establishing your cross connect to AWS at the
-// colocation facility. For more information, see Requesting Cross Connects
-// at AWS Direct Connect Locations (https://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
-// in the AWS Direct Connect User Guide.
+// a document that is used when establishing your cross connect to Amazon Web
+// Services at the colocation facility. For more information, see Requesting
+// Cross Connects at Direct Connect Locations (https://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
+// in the Direct Connect User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3801,7 +3801,7 @@ func (c *DirectConnect) DescribeInterconnectsRequest(input *DescribeInterconnect
 
 // DescribeInterconnects API operation for AWS Direct Connect.
 //
-// Lists the interconnects owned by the AWS account or only the specified interconnect.
+// Lists the interconnects owned by the account or only the specified interconnect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3969,10 +3969,10 @@ func (c *DirectConnect) DescribeLoaRequest(input *DescribeLoaInput) (req *reques
 // (LAG).
 //
 // The Letter of Authorization - Connecting Facility Assignment (LOA-CFA) is
-// a document that is used when establishing your cross connect to AWS at the
-// colocation facility. For more information, see Requesting Cross Connects
-// at AWS Direct Connect Locations (https://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
-// in the AWS Direct Connect User Guide.
+// a document that is used when establishing your cross connect to Amazon Web
+// Services at the colocation facility. For more information, see Requesting
+// Cross Connects at Direct Connect Locations (https://docs.aws.amazon.com/directconnect/latest/UserGuide/Colocation.html)
+// in the Direct Connect User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4054,8 +4054,8 @@ func (c *DirectConnect) DescribeLocationsRequest(input *DescribeLocationsInput) 
 
 // DescribeLocations API operation for AWS Direct Connect.
 //
-// Lists the AWS Direct Connect locations in the current AWS Region. These are
-// the locations that can be selected when calling CreateConnection or CreateInterconnect.
+// Lists the Direct Connect locations in the current Region. These are the locations
+// that can be selected when calling CreateConnection or CreateInterconnect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4137,7 +4137,7 @@ func (c *DirectConnect) DescribeTagsRequest(input *DescribeTagsInput) (req *requ
 
 // DescribeTags API operation for AWS Direct Connect.
 //
-// Describes the tags associated with the specified AWS Direct Connect resources.
+// Describes the tags associated with the specified Direct Connect resources.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4219,10 +4219,10 @@ func (c *DirectConnect) DescribeVirtualGatewaysRequest(input *DescribeVirtualGat
 
 // DescribeVirtualGateways API operation for AWS Direct Connect.
 //
-// Lists the virtual private gateways owned by the AWS account.
+// Lists the virtual private gateways owned by the account.
 //
-// You can create one or more AWS Direct Connect private virtual interfaces
-// linked to a virtual private gateway.
+// You can create one or more Direct Connect private virtual interfaces linked
+// to a virtual private gateway.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4304,13 +4304,13 @@ func (c *DirectConnect) DescribeVirtualInterfacesRequest(input *DescribeVirtualI
 
 // DescribeVirtualInterfaces API operation for AWS Direct Connect.
 //
-// Displays all virtual interfaces for an AWS account. Virtual interfaces deleted
+// Displays all virtual interfaces for an account. Virtual interfaces deleted
 // fewer than 15 minutes before you make the request are also returned. If you
 // specify a connection ID, only the virtual interfaces associated with the
 // connection are returned. If you specify a virtual interface ID, then only
 // a single virtual interface is returned.
 //
-// A virtual interface (VLAN) transmits the traffic between the AWS Direct Connect
+// A virtual interface (VLAN) transmits the traffic between the Direct Connect
 // location and the customer network.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4397,8 +4397,8 @@ func (c *DirectConnect) DisassociateConnectionFromLagRequest(input *Disassociate
 // is interrupted and re-established as a standalone connection (the connection
 // is not deleted; to delete the connection, use the DeleteConnection request).
 // If the LAG has associated virtual interfaces or hosted connections, they
-// remain associated with the LAG. A disassociated connection owned by an AWS
-// Direct Connect Partner is automatically converted to an interconnect.
+// remain associated with the LAG. A disassociated connection owned by an Direct
+// Connect Partner is automatically converted to an interconnect.
 //
 // If disassociating the connection would cause the LAG to fall below its setting
 // for minimum number of operational connections, the request fails, except
@@ -4486,7 +4486,7 @@ func (c *DirectConnect) DisassociateMacSecKeyRequest(input *DisassociateMacSecKe
 // DisassociateMacSecKey API operation for AWS Direct Connect.
 //
 // Removes the association between a MAC Security (MACsec) security key and
-// an AWS Direct Connect dedicated connection.
+// an Direct Connect dedicated connection.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4825,8 +4825,8 @@ func (c *DirectConnect) TagResourceRequest(input *TagResourceInput) (req *reques
 
 // TagResource API operation for AWS Direct Connect.
 //
-// Adds the specified tags to the specified AWS Direct Connect resource. Each
-// resource can have a maximum of 50 tags.
+// Adds the specified tags to the specified Direct Connect resource. Each resource
+// can have a maximum of 50 tags.
 //
 // Each tag consists of a key and an optional value. If a tag with the same
 // key is already associated with the resource, this action updates its value.
@@ -4918,7 +4918,7 @@ func (c *DirectConnect) UntagResourceRequest(input *UntagResourceInput) (req *re
 
 // UntagResource API operation for AWS Direct Connect.
 //
-// Removes one or more tags from the specified AWS Direct Connect resource.
+// Removes one or more tags from the specified Direct Connect resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5000,7 +5000,7 @@ func (c *DirectConnect) UpdateConnectionRequest(input *UpdateConnectionInput) (r
 
 // UpdateConnection API operation for AWS Direct Connect.
 //
-// Updates the AWS Direct Connect dedicated connection configuration.
+// Updates the Direct Connect dedicated connection configuration.
 //
 // You can update the following parameters for a connection:
 //
@@ -5181,8 +5181,8 @@ func (c *DirectConnect) UpdateLagRequest(input *UpdateLagInput) (req *request.Re
 //    * The value for the minimum number of connections that must be operational
 //    for the LAG itself to be operational.
 //
-//    * The LAG's MACsec encryption mode. AWS assigns this value to each connection
-//    which is part of the LAG.
+//    * The LAG's MACsec encryption mode. Amazon Web Services assigns this value
+//    to each connection which is part of the LAG.
 //
 //    * The tags
 //
@@ -5318,8 +5318,7 @@ func (c *DirectConnect) UpdateVirtualInterfaceAttributesWithContext(ctx aws.Cont
 type AcceptDirectConnectGatewayAssociationProposalInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account that owns the virtual private gateway or transit
-	// gateway.
+	// The ID of the account that owns the virtual private gateway or transit gateway.
 	//
 	// AssociatedGatewayOwnerAccount is a required field
 	AssociatedGatewayOwnerAccount *string `locationName:"associatedGatewayOwnerAccount" type:"string" required:"true"`
@@ -5332,7 +5331,7 @@ type AcceptDirectConnectGatewayAssociationProposalInput struct {
 	// Overrides the Amazon VPC prefixes advertised to the Direct Connect gateway.
 	//
 	// For information about how to set the prefixes, see Allowed Prefixes (https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html#allowed-prefixes)
-	// in the AWS Direct Connect User Guide.
+	// in the Direct Connect User Guide.
 	OverrideAllowedPrefixesToDirectConnectGateway []*RouteFilterPrefix `locationName:"overrideAllowedPrefixesToDirectConnectGateway" type:"list"`
 
 	// The ID of the request proposal.
@@ -5423,7 +5422,7 @@ type AllocateConnectionOnInterconnectInput struct {
 
 	// The bandwidth of the connection. The possible values are 50Mbps, 100Mbps,
 	// 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, and 10Gbps. Note
-	// that only those AWS Direct Connect Partners who have met specific requirements
+	// that only those Direct Connect Partners who have met specific requirements
 	// are allowed to create a 1Gbps, 2Gbps, 5Gbps or 10Gbps hosted connection.
 	//
 	// Bandwidth is a required field
@@ -5439,8 +5438,7 @@ type AllocateConnectionOnInterconnectInput struct {
 	// InterconnectId is a required field
 	InterconnectId *string `locationName:"interconnectId" type:"string" required:"true"`
 
-	// The ID of the AWS account of the customer for whom the connection will be
-	// provisioned.
+	// The ID of the account of the customer for whom the connection will be provisioned.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
@@ -5521,7 +5519,7 @@ type AllocateHostedConnectionInput struct {
 
 	// The bandwidth of the connection. The possible values are 50Mbps, 100Mbps,
 	// 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, and 10Gbps. Note
-	// that only those AWS Direct Connect Partners who have met specific requirements
+	// that only those Direct Connect Partners who have met specific requirements
 	// are allowed to create a 1Gbps, 2Gbps, 5Gbps or 10Gbps hosted connection.
 	//
 	// Bandwidth is a required field
@@ -5537,7 +5535,7 @@ type AllocateHostedConnectionInput struct {
 	// ConnectionName is a required field
 	ConnectionName *string `locationName:"connectionName" type:"string" required:"true"`
 
-	// The ID of the AWS account ID of the customer for the connection.
+	// The ID of the account ID of the customer for the connection.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
@@ -5648,7 +5646,7 @@ type AllocatePrivateVirtualInterfaceInput struct {
 	// NewPrivateVirtualInterfaceAllocation is a required field
 	NewPrivateVirtualInterfaceAllocation *NewPrivateVirtualInterfaceAllocation `locationName:"newPrivateVirtualInterfaceAllocation" type:"structure" required:"true"`
 
-	// The ID of the AWS account that owns the virtual private interface.
+	// The ID of the account that owns the virtual private interface.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
@@ -5719,7 +5717,7 @@ type AllocatePublicVirtualInterfaceInput struct {
 	// NewPublicVirtualInterfaceAllocation is a required field
 	NewPublicVirtualInterfaceAllocation *NewPublicVirtualInterfaceAllocation `locationName:"newPublicVirtualInterfaceAllocation" type:"structure" required:"true"`
 
-	// The ID of the AWS account that owns the public virtual interface.
+	// The ID of the account that owns the public virtual interface.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
@@ -5790,7 +5788,7 @@ type AllocateTransitVirtualInterfaceInput struct {
 	// NewTransitVirtualInterfaceAllocation is a required field
 	NewTransitVirtualInterfaceAllocation *NewTransitVirtualInterfaceAllocation `locationName:"newTransitVirtualInterfaceAllocation" type:"structure" required:"true"`
 
-	// The ID of the AWS account that owns the transit virtual interface.
+	// The ID of the account that owns the transit virtual interface.
 	//
 	// OwnerAccount is a required field
 	OwnerAccount *string `locationName:"ownerAccount" type:"string" required:"true"`
@@ -6154,8 +6152,8 @@ type AssociatedGateway struct {
 	// The ID of the associated gateway.
 	Id *string `locationName:"id" type:"string"`
 
-	// The ID of the AWS account that owns the associated virtual private gateway
-	// or transit gateway.
+	// The ID of the account that owns the associated virtual private gateway or
+	// transit gateway.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The Region where the associated gateway is located.
@@ -6218,6 +6216,8 @@ type BGPPeer struct {
 
 	// The Direct Connect endpoint on which the BGP peer terminates.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
+
+	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The ID of the BGP peer.
 	BgpPeerId *string `locationName:"bgpPeerId" type:"string"`
@@ -6290,6 +6290,12 @@ func (s *BGPPeer) SetAuthKey(v string) *BGPPeer {
 // SetAwsDeviceV2 sets the AwsDeviceV2 field's value.
 func (s *BGPPeer) SetAwsDeviceV2(v string) *BGPPeer {
 	s.AwsDeviceV2 = &v
+	return s
+}
+
+// SetAwsLogicalDeviceId sets the AwsLogicalDeviceId field's value.
+func (s *BGPPeer) SetAwsLogicalDeviceId(v string) *BGPPeer {
+	s.AwsLogicalDeviceId = &v
 	return s
 }
 
@@ -6759,7 +6765,7 @@ func (s *ConfirmTransitVirtualInterfaceOutput) SetVirtualInterfaceState(v string
 	return s
 }
 
-// Information about an AWS Direct Connect connection.
+// Information about an Direct Connect connection.
 type Connection struct {
 	_ struct{} `type:"structure"`
 
@@ -6768,6 +6774,9 @@ type Connection struct {
 
 	// The Direct Connect endpoint on which the physical connection terminates.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
+
+	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The bandwidth of the connection.
 	Bandwidth *string `locationName:"bandwidth" type:"string"`
@@ -6831,10 +6840,10 @@ type Connection struct {
 	// The MAC Security (MACsec) security keys associated with the connection.
 	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
 
-	// The ID of the AWS account that owns the connection.
+	// The ID of the account that owns the connection.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
-	// The name of the AWS Direct Connect service provider associated with the connection.
+	// The name of the Direct Connect service provider associated with the connection.
 	PartnerName *string `locationName:"partnerName" type:"string"`
 
 	// The MAC Security (MACsec) port link status of the connection.
@@ -6846,7 +6855,7 @@ type Connection struct {
 	// The name of the service provider associated with the connection.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
-	// The AWS Region where the connection is located.
+	// The Region where the connection is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The tags associated with the connection.
@@ -6875,6 +6884,12 @@ func (s *Connection) SetAwsDevice(v string) *Connection {
 // SetAwsDeviceV2 sets the AwsDeviceV2 field's value.
 func (s *Connection) SetAwsDeviceV2(v string) *Connection {
 	s.AwsDeviceV2 = &v
+	return s
+}
+
+// SetAwsLogicalDeviceId sets the AwsLogicalDeviceId field's value.
+func (s *Connection) SetAwsLogicalDeviceId(v string) *Connection {
+	s.AwsLogicalDeviceId = &v
 	return s
 }
 
@@ -7098,7 +7113,7 @@ type CreateConnectionInput struct {
 	//
 	// MAC Security (MACsec) is only available on dedicated connections. For information
 	// about MAC Security (MACsec) prerequisties, see MACsec prerequisties (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites)
-	// in the AWS Direct Connect User Guide.
+	// in the Direct Connect User Guide.
 	RequestMACSec *bool `locationName:"requestMACSec" type:"boolean"`
 
 	// The tags to associate with the lag.
@@ -7197,7 +7212,7 @@ type CreateDirectConnectGatewayAssociationInput struct {
 	// This parameter is required when you create an association to a transit gateway.
 	//
 	// For information about how to set the prefixes, see Allowed Prefixes (https://docs.aws.amazon.com/directconnect/latest/UserGuide/multi-account-associate-vgw.html#allowed-prefixes)
-	// in the AWS Direct Connect User Guide.
+	// in the Direct Connect User Guide.
 	AddAllowedPrefixesToDirectConnectGateway []*RouteFilterPrefix `locationName:"addAllowedPrefixesToDirectConnectGateway" type:"list"`
 
 	// The ID of the Direct Connect gateway.
@@ -7293,7 +7308,7 @@ type CreateDirectConnectGatewayAssociationProposalInput struct {
 	// DirectConnectGatewayId is a required field
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string" required:"true"`
 
-	// The ID of the AWS account that owns the Direct Connect gateway.
+	// The ID of the account that owns the Direct Connect gateway.
 	//
 	// DirectConnectGatewayOwnerAccount is a required field
 	DirectConnectGatewayOwnerAccount *string `locationName:"directConnectGatewayOwnerAccount" type:"string" required:"true"`
@@ -7607,7 +7622,7 @@ type CreateLagInput struct {
 	// All connections in the LAG must be capable of supporting MAC Security (MACsec).
 	// For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties
 	// (https://docs.aws.amazon.com/directconnect/latest/UserGuide/direct-connect-mac-sec-getting-started.html#mac-sec-prerequisites)
-	// in the AWS Direct Connect User Guide.
+	// in the Direct Connect User Guide.
 	RequestMACSec *bool `locationName:"requestMACSec" type:"boolean"`
 
 	// The tags to associate with the LAG.
@@ -9609,7 +9624,7 @@ type Gateway struct {
 	//    * deleted: The Direct Connect gateway is deleted and cannot pass traffic.
 	DirectConnectGatewayState *string `locationName:"directConnectGatewayState" type:"string" enum:"GatewayState"`
 
-	// The ID of the AWS account that owns the Direct Connect gateway.
+	// The ID of the account that owns the Direct Connect gateway.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The error message if the state of an object failed to advance.
@@ -9693,7 +9708,7 @@ type GatewayAssociation struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
-	// The ID of the AWS account that owns the associated gateway.
+	// The ID of the account that owns the associated gateway.
 	DirectConnectGatewayOwnerAccount *string `locationName:"directConnectGatewayOwnerAccount" type:"string"`
 
 	// The error message if the state of an object failed to advance.
@@ -9702,10 +9717,10 @@ type GatewayAssociation struct {
 	// The ID of the virtual private gateway. Applies only to private virtual interfaces.
 	VirtualGatewayId *string `locationName:"virtualGatewayId" type:"string"`
 
-	// The ID of the AWS account that owns the virtual private gateway.
+	// The ID of the account that owns the virtual private gateway.
 	VirtualGatewayOwnerAccount *string `locationName:"virtualGatewayOwnerAccount" type:"string"`
 
-	// The AWS Region where the virtual private gateway is located.
+	// The Region where the virtual private gateway is located.
 	VirtualGatewayRegion *string `locationName:"virtualGatewayRegion" deprecated:"true" type:"string"`
 }
 
@@ -9790,7 +9805,7 @@ type GatewayAssociationProposal struct {
 	// The ID of the Direct Connect gateway.
 	DirectConnectGatewayId *string `locationName:"directConnectGatewayId" type:"string"`
 
-	// The ID of the AWS account that owns the Direct Connect gateway.
+	// The ID of the account that owns the Direct Connect gateway.
 	DirectConnectGatewayOwnerAccount *string `locationName:"directConnectGatewayOwnerAccount" type:"string"`
 
 	// The existing Amazon VPC prefixes advertised to the Direct Connect gateway.
@@ -9899,10 +9914,10 @@ type GatewayAttachment struct {
 	// The ID of the virtual interface.
 	VirtualInterfaceId *string `locationName:"virtualInterfaceId" type:"string"`
 
-	// The ID of the AWS account that owns the virtual interface.
+	// The ID of the account that owns the virtual interface.
 	VirtualInterfaceOwnerAccount *string `locationName:"virtualInterfaceOwnerAccount" type:"string"`
 
-	// The AWS Region where the virtual interface is located.
+	// The Region where the virtual interface is located.
 	VirtualInterfaceRegion *string `locationName:"virtualInterfaceRegion" type:"string"`
 }
 
@@ -9968,6 +9983,9 @@ type Interconnect struct {
 	// The Direct Connect endpoint on which the physical connection terminates.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
+	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
+
 	// The bandwidth of the connection.
 	Bandwidth *string `locationName:"bandwidth" type:"string"`
 
@@ -10016,7 +10034,7 @@ type Interconnect struct {
 	// The name of the service provider associated with the interconnect.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
-	// The AWS Region where the connection is located.
+	// The Region where the connection is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The tags associated with the interconnect.
@@ -10042,6 +10060,12 @@ func (s *Interconnect) SetAwsDevice(v string) *Interconnect {
 // SetAwsDeviceV2 sets the AwsDeviceV2 field's value.
 func (s *Interconnect) SetAwsDeviceV2(v string) *Interconnect {
 	s.AwsDeviceV2 = &v
+	return s
+}
+
+// SetAwsLogicalDeviceId sets the AwsLogicalDeviceId field's value.
+func (s *Interconnect) SetAwsLogicalDeviceId(v string) *Interconnect {
+	s.AwsLogicalDeviceId = &v
 	return s
 }
 
@@ -10124,11 +10148,14 @@ type Lag struct {
 	// Indicates whether the LAG can host other connections.
 	AllowsHostedConnections *bool `locationName:"allowsHostedConnections" type:"boolean"`
 
-	// The AWS Direct Connect endpoint that hosts the LAG.
+	// The Direct Connect endpoint that hosts the LAG.
 	AwsDevice *string `locationName:"awsDevice" deprecated:"true" type:"string"`
 
-	// The AWS Direct Connect endpoint that hosts the LAG.
+	// The Direct Connect endpoint that hosts the LAG.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
+
+	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The connections bundled by the LAG.
 	Connections []*Connection `locationName:"connections" type:"list"`
@@ -10191,13 +10218,13 @@ type Lag struct {
 	// maximum of 10.
 	NumberOfConnections *int64 `locationName:"numberOfConnections" type:"integer"`
 
-	// The ID of the AWS account that owns the LAG.
+	// The ID of the account that owns the LAG.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
 	// The name of the service provider associated with the LAG.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
-	// The AWS Region where the connection is located.
+	// The Region where the connection is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The tags associated with the LAG.
@@ -10229,6 +10256,12 @@ func (s *Lag) SetAwsDevice(v string) *Lag {
 // SetAwsDeviceV2 sets the AwsDeviceV2 field's value.
 func (s *Lag) SetAwsDeviceV2(v string) *Lag {
 	s.AwsDeviceV2 = &v
+	return s
+}
+
+// SetAwsLogicalDeviceId sets the AwsLogicalDeviceId field's value.
+func (s *Lag) SetAwsLogicalDeviceId(v string) *Lag {
+	s.AwsLogicalDeviceId = &v
 	return s
 }
 
@@ -10476,7 +10509,7 @@ func (s *Loa) SetLoaContentType(v string) *Loa {
 	return s
 }
 
-// Information about an AWS Direct Connect location.
+// Information about an Direct Connect location.
 type Location struct {
 	_ struct{} `type:"structure"`
 
@@ -10496,7 +10529,7 @@ type Location struct {
 	// and the physical site of the building.
 	LocationName *string `locationName:"locationName" type:"string"`
 
-	// The AWS Region for the location.
+	// The Region for the location.
 	Region *string `locationName:"region" type:"string"`
 }
 
@@ -10995,8 +11028,8 @@ type NewPublicVirtualInterface struct {
 	// The IP address assigned to the customer interface.
 	CustomerAddress *string `locationName:"customerAddress" type:"string"`
 
-	// The routes to be advertised to the AWS network in this Region. Applies to
-	// public virtual interfaces.
+	// The routes to be advertised to the Amazon Web Services network in this Region.
+	// Applies to public virtual interfaces.
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
 
 	// The tags associated with the public virtual interface.
@@ -11135,8 +11168,8 @@ type NewPublicVirtualInterfaceAllocation struct {
 	// The IP address assigned to the customer interface.
 	CustomerAddress *string `locationName:"customerAddress" type:"string"`
 
-	// The routes to be advertised to the AWS network in this Region. Applies to
-	// public virtual interfaces.
+	// The routes to be advertised to the Amazon Web Services network in this Region.
+	// Applies to public virtual interfaces.
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
 
 	// The tags associated with the public virtual interface.
@@ -11510,7 +11543,7 @@ func (s *NewTransitVirtualInterfaceAllocation) SetVlan(v int64) *NewTransitVirtu
 	return s
 }
 
-// Information about a tag associated with an AWS Direct Connect resource.
+// Information about a tag associated with an Direct Connect resource.
 type ResourceTag struct {
 	_ struct{} `type:"structure"`
 
@@ -12081,7 +12114,7 @@ func (s *UpdateConnectionInput) SetEncryptionMode(v string) *UpdateConnectionInp
 	return s
 }
 
-// Information about an AWS Direct Connect connection.
+// Information about an Direct Connect connection.
 type UpdateConnectionOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12090,6 +12123,9 @@ type UpdateConnectionOutput struct {
 
 	// The Direct Connect endpoint on which the physical connection terminates.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
+
+	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The bandwidth of the connection.
 	Bandwidth *string `locationName:"bandwidth" type:"string"`
@@ -12153,10 +12189,10 @@ type UpdateConnectionOutput struct {
 	// The MAC Security (MACsec) security keys associated with the connection.
 	MacSecKeys []*MacSecKey `locationName:"macSecKeys" type:"list"`
 
-	// The ID of the AWS account that owns the connection.
+	// The ID of the account that owns the connection.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
-	// The name of the AWS Direct Connect service provider associated with the connection.
+	// The name of the Direct Connect service provider associated with the connection.
 	PartnerName *string `locationName:"partnerName" type:"string"`
 
 	// The MAC Security (MACsec) port link status of the connection.
@@ -12168,7 +12204,7 @@ type UpdateConnectionOutput struct {
 	// The name of the service provider associated with the connection.
 	ProviderName *string `locationName:"providerName" type:"string"`
 
-	// The AWS Region where the connection is located.
+	// The Region where the connection is located.
 	Region *string `locationName:"region" type:"string"`
 
 	// The tags associated with the connection.
@@ -12197,6 +12233,12 @@ func (s *UpdateConnectionOutput) SetAwsDevice(v string) *UpdateConnectionOutput 
 // SetAwsDeviceV2 sets the AwsDeviceV2 field's value.
 func (s *UpdateConnectionOutput) SetAwsDeviceV2(v string) *UpdateConnectionOutput {
 	s.AwsDeviceV2 = &v
+	return s
+}
+
+// SetAwsLogicalDeviceId sets the AwsLogicalDeviceId field's value.
+func (s *UpdateConnectionOutput) SetAwsLogicalDeviceId(v string) *UpdateConnectionOutput {
+	s.AwsLogicalDeviceId = &v
 	return s
 }
 
@@ -12384,7 +12426,8 @@ type UpdateLagInput struct {
 
 	// The LAG MAC Security (MACsec) encryption mode.
 	//
-	// AWS applies the value to all connections which are part of the LAG.
+	// Amazon Web Services applies the value to all connections which are part of
+	// the LAG.
 	EncryptionMode *string `locationName:"encryptionMode" type:"string"`
 
 	// The ID of the LAG.
@@ -12520,6 +12563,9 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	// The Direct Connect endpoint on which the virtual interface terminates.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
+	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
+
 	// The BGP peers configured on this virtual interface.
 	BgpPeers []*BGPPeer `locationName:"bgpPeers" type:"list"`
 
@@ -12545,14 +12591,14 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
-	// The ID of the AWS account that owns the virtual interface.
+	// The ID of the account that owns the virtual interface.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
-	// The AWS Region where the virtual interface is located.
+	// The Region where the virtual interface is located.
 	Region *string `locationName:"region" type:"string"`
 
-	// The routes to be advertised to the AWS network in this Region. Applies to
-	// public virtual interfaces.
+	// The routes to be advertised to the Amazon Web Services network in this Region.
+	// Applies to public virtual interfaces.
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
 
 	// The tags associated with the virtual interface.
@@ -12651,6 +12697,12 @@ func (s *UpdateVirtualInterfaceAttributesOutput) SetAuthKey(v string) *UpdateVir
 // SetAwsDeviceV2 sets the AwsDeviceV2 field's value.
 func (s *UpdateVirtualInterfaceAttributesOutput) SetAwsDeviceV2(v string) *UpdateVirtualInterfaceAttributesOutput {
 	s.AwsDeviceV2 = &v
+	return s
+}
+
+// SetAwsLogicalDeviceId sets the AwsLogicalDeviceId field's value.
+func (s *UpdateVirtualInterfaceAttributesOutput) SetAwsLogicalDeviceId(v string) *UpdateVirtualInterfaceAttributesOutput {
+	s.AwsLogicalDeviceId = &v
 	return s
 }
 
@@ -12830,6 +12882,9 @@ type VirtualInterface struct {
 	// The Direct Connect endpoint on which the virtual interface terminates.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
+	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
+
 	// The BGP peers configured on this virtual interface.
 	BgpPeers []*BGPPeer `locationName:"bgpPeers" type:"list"`
 
@@ -12855,14 +12910,14 @@ type VirtualInterface struct {
 	// and 9001. The default value is 1500.
 	Mtu *int64 `locationName:"mtu" type:"integer"`
 
-	// The ID of the AWS account that owns the virtual interface.
+	// The ID of the account that owns the virtual interface.
 	OwnerAccount *string `locationName:"ownerAccount" type:"string"`
 
-	// The AWS Region where the virtual interface is located.
+	// The Region where the virtual interface is located.
 	Region *string `locationName:"region" type:"string"`
 
-	// The routes to be advertised to the AWS network in this Region. Applies to
-	// public virtual interfaces.
+	// The routes to be advertised to the Amazon Web Services network in this Region.
+	// Applies to public virtual interfaces.
 	RouteFilterPrefixes []*RouteFilterPrefix `locationName:"routeFilterPrefixes" type:"list"`
 
 	// The tags associated with the virtual interface.
@@ -12961,6 +13016,12 @@ func (s *VirtualInterface) SetAuthKey(v string) *VirtualInterface {
 // SetAwsDeviceV2 sets the AwsDeviceV2 field's value.
 func (s *VirtualInterface) SetAwsDeviceV2(v string) *VirtualInterface {
 	s.AwsDeviceV2 = &v
+	return s
+}
+
+// SetAwsLogicalDeviceId sets the AwsLogicalDeviceId field's value.
+func (s *VirtualInterface) SetAwsLogicalDeviceId(v string) *VirtualInterface {
+	s.AwsLogicalDeviceId = &v
 	return s
 }
 

@@ -96,6 +96,10 @@ type RedshiftAPI interface {
 	CopyClusterSnapshotWithContext(aws.Context, *redshift.CopyClusterSnapshotInput, ...request.Option) (*redshift.CopyClusterSnapshotOutput, error)
 	CopyClusterSnapshotRequest(*redshift.CopyClusterSnapshotInput) (*request.Request, *redshift.CopyClusterSnapshotOutput)
 
+	CreateAuthenticationProfile(*redshift.CreateAuthenticationProfileInput) (*redshift.CreateAuthenticationProfileOutput, error)
+	CreateAuthenticationProfileWithContext(aws.Context, *redshift.CreateAuthenticationProfileInput, ...request.Option) (*redshift.CreateAuthenticationProfileOutput, error)
+	CreateAuthenticationProfileRequest(*redshift.CreateAuthenticationProfileInput) (*request.Request, *redshift.CreateAuthenticationProfileOutput)
+
 	CreateCluster(*redshift.CreateClusterInput) (*redshift.CreateClusterOutput, error)
 	CreateClusterWithContext(aws.Context, *redshift.CreateClusterInput, ...request.Option) (*redshift.CreateClusterOutput, error)
 	CreateClusterRequest(*redshift.CreateClusterInput) (*request.Request, *redshift.CreateClusterOutput)
@@ -151,6 +155,10 @@ type RedshiftAPI interface {
 	CreateUsageLimit(*redshift.CreateUsageLimitInput) (*redshift.CreateUsageLimitOutput, error)
 	CreateUsageLimitWithContext(aws.Context, *redshift.CreateUsageLimitInput, ...request.Option) (*redshift.CreateUsageLimitOutput, error)
 	CreateUsageLimitRequest(*redshift.CreateUsageLimitInput) (*request.Request, *redshift.CreateUsageLimitOutput)
+
+	DeleteAuthenticationProfile(*redshift.DeleteAuthenticationProfileInput) (*redshift.DeleteAuthenticationProfileOutput, error)
+	DeleteAuthenticationProfileWithContext(aws.Context, *redshift.DeleteAuthenticationProfileInput, ...request.Option) (*redshift.DeleteAuthenticationProfileOutput, error)
+	DeleteAuthenticationProfileRequest(*redshift.DeleteAuthenticationProfileInput) (*request.Request, *redshift.DeleteAuthenticationProfileOutput)
 
 	DeleteCluster(*redshift.DeleteClusterInput) (*redshift.DeleteClusterOutput, error)
 	DeleteClusterWithContext(aws.Context, *redshift.DeleteClusterInput, ...request.Option) (*redshift.DeleteClusterOutput, error)
@@ -215,6 +223,10 @@ type RedshiftAPI interface {
 	DescribeAccountAttributes(*redshift.DescribeAccountAttributesInput) (*redshift.DescribeAccountAttributesOutput, error)
 	DescribeAccountAttributesWithContext(aws.Context, *redshift.DescribeAccountAttributesInput, ...request.Option) (*redshift.DescribeAccountAttributesOutput, error)
 	DescribeAccountAttributesRequest(*redshift.DescribeAccountAttributesInput) (*request.Request, *redshift.DescribeAccountAttributesOutput)
+
+	DescribeAuthenticationProfiles(*redshift.DescribeAuthenticationProfilesInput) (*redshift.DescribeAuthenticationProfilesOutput, error)
+	DescribeAuthenticationProfilesWithContext(aws.Context, *redshift.DescribeAuthenticationProfilesInput, ...request.Option) (*redshift.DescribeAuthenticationProfilesOutput, error)
+	DescribeAuthenticationProfilesRequest(*redshift.DescribeAuthenticationProfilesInput) (*request.Request, *redshift.DescribeAuthenticationProfilesOutput)
 
 	DescribeClusterDbRevisions(*redshift.DescribeClusterDbRevisionsInput) (*redshift.DescribeClusterDbRevisionsOutput, error)
 	DescribeClusterDbRevisionsWithContext(aws.Context, *redshift.DescribeClusterDbRevisionsInput, ...request.Option) (*redshift.DescribeClusterDbRevisionsOutput, error)
@@ -448,6 +460,10 @@ type RedshiftAPI interface {
 	ModifyAquaConfiguration(*redshift.ModifyAquaConfigurationInput) (*redshift.ModifyAquaConfigurationOutput, error)
 	ModifyAquaConfigurationWithContext(aws.Context, *redshift.ModifyAquaConfigurationInput, ...request.Option) (*redshift.ModifyAquaConfigurationOutput, error)
 	ModifyAquaConfigurationRequest(*redshift.ModifyAquaConfigurationInput) (*request.Request, *redshift.ModifyAquaConfigurationOutput)
+
+	ModifyAuthenticationProfile(*redshift.ModifyAuthenticationProfileInput) (*redshift.ModifyAuthenticationProfileOutput, error)
+	ModifyAuthenticationProfileWithContext(aws.Context, *redshift.ModifyAuthenticationProfileInput, ...request.Option) (*redshift.ModifyAuthenticationProfileOutput, error)
+	ModifyAuthenticationProfileRequest(*redshift.ModifyAuthenticationProfileInput) (*request.Request, *redshift.ModifyAuthenticationProfileOutput)
 
 	ModifyCluster(*redshift.ModifyClusterInput) (*redshift.ModifyClusterOutput, error)
 	ModifyClusterWithContext(aws.Context, *redshift.ModifyClusterInput, ...request.Option) (*redshift.ModifyClusterOutput, error)

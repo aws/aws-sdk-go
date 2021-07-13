@@ -79,6 +79,12 @@
       "base" : "<p>The response object sent when a backend is created.</p>",
       "refs" : { }
     },
+    "BackendAuthAppleProviderConfig" : {
+      "base" : "<p>Describes Apple social federation configurations for allowing your app users to sign in using OAuth.</p>",
+      "refs" : {
+        "SocialProviderSettings$SignInWithApple" : null
+      }
+    },
     "BackendAuthRespObj" : {
       "base" : "<p>The response object for this operation.</p>",
       "refs" : { }
@@ -134,9 +140,9 @@
       }
     },
     "CreateBackendAuthMFAConfig" : {
-      "base" : "<p>Describes whether multi-factor authentication policies should be applied for your Amazon Cognito user pool configured as a part of your Amplify project.</p>",
+      "base" : "<p>Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool configured as a part of your Amplify project.</p>",
       "refs" : {
-        "CreateBackendAuthUserPoolConfig$Mfa" : "<p>Describes whether multi-factor authentication policies should be applied for your Amazon Cognito user pool configured as a part of your Amplify project.</p>"
+        "CreateBackendAuthUserPoolConfig$Mfa" : "<p>Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool configured as a part of your Amplify project.</p>"
       }
     },
     "CreateBackendAuthOAuthConfig" : {
@@ -199,7 +205,7 @@
     "DeliveryMethod" : {
       "base" : null,
       "refs" : {
-        "CreateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p>Describes which mode to use (either SMS or email) to deliver messages to app users that want to recover their password.</p>",
+        "CreateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p>Describes which mode to use (either SMS or email) to deliver messages to app users who want to recover their password.</p>",
         "UpdateBackendAuthForgotPasswordConfig$DeliveryMethod" : "<p>Describes which mode to use (either SMS or email) to deliver messages to app users that want to recover their password.</p>"
       }
     },
@@ -272,7 +278,7 @@
     "MFAMode" : {
       "base" : null,
       "refs" : {
-        "CreateBackendAuthMFAConfig$MFAMode" : "<p>Describes whether MFA should be [ON, OFF, OPTIONAL] for authentication in your Amplify project.</p>",
+        "CreateBackendAuthMFAConfig$MFAMode" : "<p>Describes whether MFA should be [ON, OFF, or OPTIONAL] for authentication in your Amplify project.</p>",
         "UpdateBackendAuthMFAConfig$MFAMode" : "<p>The MFA mode for the backend of your Amplify project.</p>"
       }
     },
@@ -380,7 +386,7 @@
     "UpdateBackendAuthMFAConfig" : {
       "base" : "<p>Updates the multi-factor authentication (MFA) configuration for the backend of your Amplify project.</p>",
       "refs" : {
-        "UpdateBackendAuthUserPoolConfig$Mfa" : "<p>Describes whether multi-factor authentication policies should be applied for your Amazon Cognito user pool configured as a part of your Amplify project.</p>"
+        "UpdateBackendAuthUserPoolConfig$Mfa" : "<p>Describes whether to apply multi-factor authentication policies for your Amazon Cognito user pool configured as a part of your Amplify project.</p>"
       }
     },
     "UpdateBackendAuthOAuthConfig" : {
@@ -445,7 +451,7 @@
         "CreateBackendAuthIdentityPoolConfig$UnauthenticatedLogin" : "<p>Set to true or false based on whether you want to enable guest authorization to your Amplify app.</p>",
         "DeleteTokenRespObj$IsSuccess" : "<p>Indicates whether the request succeeded or failed.</p>",
         "RemoveAllBackendsReqObj$CleanAmplifyApp" : "<p>Cleans up the Amplify Console app if this value is set to true.</p>",
-        "UpdateBackendAuthIdentityPoolConfig$UnauthenticatedLogin" : "<p>A boolean value which can be set to allow or disallow guest-level authorization into your Amplify app.</p>"
+        "UpdateBackendAuthIdentityPoolConfig$UnauthenticatedLogin" : "<p>A boolean value that can be set to allow or disallow guest-level authorization into your Amplify app.</p>"
       }
     },
     "__double" : {
@@ -504,10 +510,10 @@
       "base" : null,
       "refs" : {
         "CreateBackendAuthOAuthConfig$RedirectSignInURIs" : "<p>The redirected URI for signing in to your Amplify app.</p>",
-        "CreateBackendAuthOAuthConfig$RedirectSignOutURIs" : "<p>Redirect URLs used by OAuth when a user signs out of an Amplify app.</p>",
+        "CreateBackendAuthOAuthConfig$RedirectSignOutURIs" : "<p>Redirect URLs that OAuth uses when a user signs out of an Amplify app.</p>",
         "GetBackendRespObj$BackendEnvironmentList" : "<p>A list of backend environments in an array.</p>",
-        "UpdateBackendAuthOAuthConfig$RedirectSignInURIs" : "<p>Redirect URLs used by OAuth when a user signs in to an Amplify app.</p>",
-        "UpdateBackendAuthOAuthConfig$RedirectSignOutURIs" : "<p>Redirect URLs used by OAuth when a user signs out of an Amplify app.</p>"
+        "UpdateBackendAuthOAuthConfig$RedirectSignInURIs" : "<p>Redirect URLs that OAuth uses when a user signs in to an Amplify app.</p>",
+        "UpdateBackendAuthOAuthConfig$RedirectSignOutURIs" : "<p>Redirect URLs that OAuth uses when a user signs out of an Amplify app.</p>"
       }
     },
     "__string" : {
@@ -528,7 +534,7 @@
         "BackendAPICodegenRespObj$Operation" : "<p>The name of the operation.</p>",
         "BackendAPICodegenRespObj$Status" : "<p>The current status of the request.</p>",
         "BackendAPIReqObj$ResourceName" : "<p>The name of this resource.</p>",
-        "BackendAPIResourceConfig$ApiName" : "<p>The API name used to interact with the data model, configured as a part of the amplify project.</p>",
+        "BackendAPIResourceConfig$ApiName" : "<p>The API name used to interact with the data model, configured as a part of your Amplify project.</p>",
         "BackendAPIResourceConfig$Service" : "<p>The service used to provision and interact with the data model.</p>",
         "BackendAPIResourceConfig$TransformSchema" : "<p>The definition of the data model in the annotated transform of the GraphQL schema.</p>",
         "BackendAPIRespObj$AppId" : "<p>The app ID.</p>",
@@ -537,18 +543,22 @@
         "BackendAPIRespObj$JobId" : "<p>The ID for the job.</p>",
         "BackendAPIRespObj$Operation" : "<p>The name of the operation.</p>",
         "BackendAPIRespObj$Status" : "<p>The current status of the request.</p>",
+        "BackendAuthAppleProviderConfig$ClientId" : "<p>Describes the client_id (also called Services ID) that comes from Apple.</p>",
+        "BackendAuthAppleProviderConfig$KeyId" : "<p>Describes the key_id that comes from Apple.</p>",
+        "BackendAuthAppleProviderConfig$PrivateKey" : "<p>Describes the private_key that comes from Apple.</p>",
+        "BackendAuthAppleProviderConfig$TeamId" : "<p>Describes the team_id that comes from Apple.</p>",
         "BackendAuthRespObj$AppId" : "<p>The app ID.</p>",
         "BackendAuthRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
         "BackendAuthRespObj$Error" : "<p>If the request fails, this error is returned.</p>",
         "BackendAuthRespObj$JobId" : "<p>The ID for the job.</p>",
         "BackendAuthRespObj$Operation" : "<p>The name of the operation.</p>",
         "BackendAuthRespObj$Status" : "<p>The current status of the request.</p>",
-        "BackendAuthSocialProviderConfig$ClientId" : "<p>Describes the client_id which can be obtained from the third-party social federation provider.</p>",
-        "BackendAuthSocialProviderConfig$ClientSecret" : "<p>Describes the client_secret which can be obtained from third-party social federation providers.</p>",
+        "BackendAuthSocialProviderConfig$ClientId" : "<p>Describes the client_id, which can be obtained from the third-party social federation provider.</p>",
+        "BackendAuthSocialProviderConfig$ClientSecret" : "<p>Describes the client_secret, which can be obtained from third-party social federation providers.</p>",
         "BackendConfigRespObj$AppId" : "<p>The app ID.</p>",
         "BackendConfigRespObj$BackendManagerAppId" : "<p>The app ID for the backend manager.</p>",
         "BackendConfigRespObj$Error" : "<p>If the request fails, this error is returned.</p>",
-        "BackendJobReqObj$Operation" : "<p>Filters the list of response objects to only include those with the specified operation name.</p>",
+        "BackendJobReqObj$Operation" : "<p>Filters the list of response objects to include only those with the specified operation name.</p>",
         "BackendJobReqObj$Status" : "<p>Filters the list of response objects to include only those with the specified status.</p>",
         "BackendJobRespObj$AppId" : "<p>The app ID.</p>",
         "BackendJobRespObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",

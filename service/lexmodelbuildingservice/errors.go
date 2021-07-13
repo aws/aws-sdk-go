@@ -8,6 +8,13 @@ import (
 
 const (
 
+	// ErrCodeAccessDeniedException for service response error code
+	// "AccessDeniedException".
+	//
+	// Your IAM user or role does not have permission to call the Amazon Lex V2
+	// APIs required to migrate your bot.
+	ErrCodeAccessDeniedException = "AccessDeniedException"
+
 	// ErrCodeBadRequestException for service response error code
 	// "BadRequestException".
 	//
@@ -65,6 +72,7 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
+	"AccessDeniedException":       newErrorAccessDeniedException,
 	"BadRequestException":         newErrorBadRequestException,
 	"ConflictException":           newErrorConflictException,
 	"InternalFailureException":    newErrorInternalFailureException,

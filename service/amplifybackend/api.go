@@ -2432,7 +2432,7 @@ type BackendAPIResourceConfig struct {
 	AdditionalAuthTypes []*BackendAPIAuthType `locationName:"additionalAuthTypes" type:"list"`
 
 	// The API name used to interact with the data model, configured as a part of
-	// the amplify project.
+	// your Amplify project.
 	ApiName *string `locationName:"apiName" type:"string"`
 
 	// The conflict resolution strategy for your data stored in the data models.
@@ -2496,16 +2496,68 @@ func (s *BackendAPIResourceConfig) SetTransformSchema(v string) *BackendAPIResou
 	return s
 }
 
+// Describes Apple social federation configurations for allowing your app users
+// to sign in using OAuth.
+type BackendAuthAppleProviderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the client_id (also called Services ID) that comes from Apple.
+	ClientId *string `locationName:"client_id" type:"string"`
+
+	// Describes the key_id that comes from Apple.
+	KeyId *string `locationName:"key_id" type:"string"`
+
+	// Describes the private_key that comes from Apple.
+	PrivateKey *string `locationName:"private_key" type:"string"`
+
+	// Describes the team_id that comes from Apple.
+	TeamId *string `locationName:"team_id" type:"string"`
+}
+
+// String returns the string representation
+func (s BackendAuthAppleProviderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BackendAuthAppleProviderConfig) GoString() string {
+	return s.String()
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *BackendAuthAppleProviderConfig) SetClientId(v string) *BackendAuthAppleProviderConfig {
+	s.ClientId = &v
+	return s
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *BackendAuthAppleProviderConfig) SetKeyId(v string) *BackendAuthAppleProviderConfig {
+	s.KeyId = &v
+	return s
+}
+
+// SetPrivateKey sets the PrivateKey field's value.
+func (s *BackendAuthAppleProviderConfig) SetPrivateKey(v string) *BackendAuthAppleProviderConfig {
+	s.PrivateKey = &v
+	return s
+}
+
+// SetTeamId sets the TeamId field's value.
+func (s *BackendAuthAppleProviderConfig) SetTeamId(v string) *BackendAuthAppleProviderConfig {
+	s.TeamId = &v
+	return s
+}
+
 // Describes third-party social federation configurations for allowing your
 // app users to sign in using OAuth.
 type BackendAuthSocialProviderConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes the client_id which can be obtained from the third-party social
+	// Describes the client_id, which can be obtained from the third-party social
 	// federation provider.
 	ClientId *string `locationName:"client_id" type:"string"`
 
-	// Describes the client_secret which can be obtained from third-party social
+	// Describes the client_secret, which can be obtained from third-party social
 	// federation providers.
 	ClientSecret *string `locationName:"client_secret" type:"string"`
 }
@@ -2954,7 +3006,7 @@ type CreateBackendAuthForgotPasswordConfig struct {
 	_ struct{} `type:"structure"`
 
 	// Describes which mode to use (either SMS or email) to deliver messages to
-	// app users that want to recover their password.
+	// app users who want to recover their password.
 	//
 	// DeliveryMethod is a required field
 	DeliveryMethod *string `locationName:"deliveryMethod" type:"string" required:"true" enum:"DeliveryMethod"`
@@ -3146,13 +3198,13 @@ func (s *CreateBackendAuthInput) SetResourceName(v string) *CreateBackendAuthInp
 	return s
 }
 
-// Describes whether multi-factor authentication policies should be applied
-// for your Amazon Cognito user pool configured as a part of your Amplify project.
+// Describes whether to apply multi-factor authentication policies for your
+// Amazon Cognito user pool configured as a part of your Amplify project.
 type CreateBackendAuthMFAConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Describes whether MFA should be [ON, OFF, OPTIONAL] for authentication in
-	// your Amplify project.
+	// Describes whether MFA should be [ON, OFF, or OPTIONAL] for authentication
+	// in your Amplify project.
 	//
 	// MFAMode is a required field
 	MFAMode *string `type:"string" required:"true" enum:"MFAMode"`
@@ -3221,7 +3273,7 @@ type CreateBackendAuthOAuthConfig struct {
 	// RedirectSignInURIs is a required field
 	RedirectSignInURIs []*string `locationName:"redirectSignInURIs" type:"list" required:"true"`
 
-	// Redirect URLs used by OAuth when a user signs out of an Amplify app.
+	// Redirect URLs that OAuth uses when a user signs out of an Amplify app.
 	//
 	// RedirectSignOutURIs is a required field
 	RedirectSignOutURIs []*string `locationName:"redirectSignOutURIs" type:"list" required:"true"`
@@ -3510,8 +3562,8 @@ type CreateBackendAuthUserPoolConfig struct {
 	// configured as a part of your Amplify project.
 	ForgotPassword *CreateBackendAuthForgotPasswordConfig `locationName:"forgotPassword" type:"structure"`
 
-	// Describes whether multi-factor authentication policies should be applied
-	// for your Amazon Cognito user pool configured as a part of your Amplify project.
+	// Describes whether to apply multi-factor authentication policies for your
+	// Amazon Cognito user pool configured as a part of your Amplify project.
 	Mfa *CreateBackendAuthMFAConfig `locationName:"mfa" type:"structure"`
 
 	// Describes the OAuth policy and rules for your Amazon Cognito user pool, configured
@@ -5968,6 +6020,10 @@ type SocialProviderSettings struct {
 	// Describes third-party social federation configurations for allowing your
 	// app users to sign in using OAuth.
 	LoginWithAmazon *BackendAuthSocialProviderConfig `type:"structure"`
+
+	// Describes Apple social federation configurations for allowing your app users
+	// to sign in using OAuth.
+	SignInWithApple *BackendAuthAppleProviderConfig `type:"structure"`
 }
 
 // String returns the string representation
@@ -5995,6 +6051,12 @@ func (s *SocialProviderSettings) SetGoogle(v *BackendAuthSocialProviderConfig) *
 // SetLoginWithAmazon sets the LoginWithAmazon field's value.
 func (s *SocialProviderSettings) SetLoginWithAmazon(v *BackendAuthSocialProviderConfig) *SocialProviderSettings {
 	s.LoginWithAmazon = v
+	return s
+}
+
+// SetSignInWithApple sets the SignInWithApple field's value.
+func (s *SocialProviderSettings) SetSignInWithApple(v *BackendAuthAppleProviderConfig) *SocialProviderSettings {
+	s.SignInWithApple = v
 	return s
 }
 
@@ -6244,7 +6306,7 @@ func (s *UpdateBackendAuthForgotPasswordConfig) SetSmsSettings(v *SmsSettings) *
 type UpdateBackendAuthIdentityPoolConfig struct {
 	_ struct{} `type:"structure"`
 
-	// A boolean value which can be set to allow or disallow guest-level authorization
+	// A boolean value that can be set to allow or disallow guest-level authorization
 	// into your Amplify app.
 	UnauthenticatedLogin *bool `locationName:"unauthenticatedLogin" type:"boolean"`
 }
@@ -6400,10 +6462,10 @@ type UpdateBackendAuthOAuthConfig struct {
 	// your Amplify app.
 	OAuthScopes []*string `locationName:"oAuthScopes" type:"list"`
 
-	// Redirect URLs used by OAuth when a user signs in to an Amplify app.
+	// Redirect URLs that OAuth uses when a user signs in to an Amplify app.
 	RedirectSignInURIs []*string `locationName:"redirectSignInURIs" type:"list"`
 
-	// Redirect URLs used by OAuth when a user signs out of an Amplify app.
+	// Redirect URLs that OAuth uses when a user signs out of an Amplify app.
 	RedirectSignOutURIs []*string `locationName:"redirectSignOutURIs" type:"list"`
 
 	// Describes third-party social federation configurations for allowing your
@@ -6645,8 +6707,8 @@ type UpdateBackendAuthUserPoolConfig struct {
 	// as a part of your Amplify project.
 	ForgotPassword *UpdateBackendAuthForgotPasswordConfig `locationName:"forgotPassword" type:"structure"`
 
-	// Describes whether multi-factor authentication policies should be applied
-	// for your Amazon Cognito user pool configured as a part of your Amplify project.
+	// Describes whether to apply multi-factor authentication policies for your
+	// Amazon Cognito user pool configured as a part of your Amplify project.
 	Mfa *UpdateBackendAuthMFAConfig `locationName:"mfa" type:"structure"`
 
 	// Describes the OAuth policy and rules for your Amazon Cognito user pool, configured

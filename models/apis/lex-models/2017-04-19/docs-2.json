@@ -29,20 +29,28 @@
     "GetIntent": "<p> Returns information about an intent. In addition to the intent name, you must specify the intent version. </p> <p> This operation requires permissions to perform the <code>lex:GetIntent</code> action. </p>",
     "GetIntentVersions": "<p>Gets information about all of the versions of an intent.</p> <p>The <code>GetIntentVersions</code> operation returns an <code>IntentMetadata</code> object for each version of an intent. For example, if an intent has three numbered versions, the <code>GetIntentVersions</code> operation returns four <code>IntentMetadata</code> objects in the response, one for each numbered version and one for the <code>$LATEST</code> version. </p> <p>The <code>GetIntentVersions</code> operation always returns at least one version, the <code>$LATEST</code> version.</p> <p>This operation requires permissions for the <code>lex:GetIntentVersions</code> action.</p>",
     "GetIntents": "<p>Returns intent information as follows: </p> <ul> <li> <p>If you specify the <code>nameContains</code> field, returns the <code>$LATEST</code> version of all intents that contain the specified string.</p> </li> <li> <p> If you don't specify the <code>nameContains</code> field, returns information about the <code>$LATEST</code> version of all intents. </p> </li> </ul> <p> The operation requires permission for the <code>lex:GetIntents</code> action. </p>",
+    "GetMigration": "<p>Provides details about an ongoing or complete migration from an Amazon Lex V1 bot to an Amazon Lex V2 bot. Use this operation to view the migration alerts and warnings related to the migration.</p>",
+    "GetMigrations": "<p>Gets a list of migrations between Amazon Lex V1 and Amazon Lex V2.</p>",
     "GetSlotType": "<p>Returns information about a specific version of a slot type. In addition to specifying the slot type name, you must specify the slot type version.</p> <p>This operation requires permissions for the <code>lex:GetSlotType</code> action.</p>",
     "GetSlotTypeVersions": "<p>Gets information about all versions of a slot type.</p> <p>The <code>GetSlotTypeVersions</code> operation returns a <code>SlotTypeMetadata</code> object for each version of a slot type. For example, if a slot type has three numbered versions, the <code>GetSlotTypeVersions</code> operation returns four <code>SlotTypeMetadata</code> objects in the response, one for each numbered version and one for the <code>$LATEST</code> version. </p> <p>The <code>GetSlotTypeVersions</code> operation always returns at least one version, the <code>$LATEST</code> version.</p> <p>This operation requires permissions for the <code>lex:GetSlotTypeVersions</code> action.</p>",
     "GetSlotTypes": "<p>Returns slot type information as follows: </p> <ul> <li> <p>If you specify the <code>nameContains</code> field, returns the <code>$LATEST</code> version of all slot types that contain the specified string.</p> </li> <li> <p> If you don't specify the <code>nameContains</code> field, returns information about the <code>$LATEST</code> version of all slot types. </p> </li> </ul> <p> The operation requires permission for the <code>lex:GetSlotTypes</code> action. </p>",
-    "GetUtterancesView": "<p>Use the <code>GetUtterancesView</code> operation to get information about the utterances that your users have made to your bot. You can use this list to tune the utterances that your bot responds to.</p> <p>For example, say that you have created a bot to order flowers. After your users have used your bot for a while, use the <code>GetUtterancesView</code> operation to see the requests that they have made and whether they have been successful. You might find that the utterance \"I want flowers\" is not being recognized. You could add this utterance to the <code>OrderFlowers</code> intent so that your bot recognizes that utterance.</p> <p>After you publish a new version of a bot, you can get information about the old version and the new so that you can compare the performance across the two versions. </p> <p>Utterance statistics are generated once a day. Data is available for the last 15 days. You can request information for up to 5 versions of your bot in each request. Amazon Lex returns the most frequent utterances received by the bot in the last 15 days. The response contains information about a maximum of 100 utterances for each version.</p> <p>If you set <code>childDirected</code> field to true when you created your bot, or if you opted out of participating in improving Amazon Lex, utterances are not available.</p> <p>This operation requires permissions for the <code>lex:GetUtterancesView</code> action.</p>",
+    "GetUtterancesView": "<p>Use the <code>GetUtterancesView</code> operation to get information about the utterances that your users have made to your bot. You can use this list to tune the utterances that your bot responds to.</p> <p>For example, say that you have created a bot to order flowers. After your users have used your bot for a while, use the <code>GetUtterancesView</code> operation to see the requests that they have made and whether they have been successful. You might find that the utterance \"I want flowers\" is not being recognized. You could add this utterance to the <code>OrderFlowers</code> intent so that your bot recognizes that utterance.</p> <p>After you publish a new version of a bot, you can get information about the old version and the new so that you can compare the performance across the two versions. </p> <p>Utterance statistics are generated once a day. Data is available for the last 15 days. You can request information for up to 5 versions of your bot in each request. Amazon Lex returns the most frequent utterances received by the bot in the last 15 days. The response contains information about a maximum of 100 utterances for each version.</p> <p>If you set <code>childDirected</code> field to true when you created your bot, if you are using slot obfuscation with one or more slots, or if you opted out of participating in improving Amazon Lex, utterances are not available.</p> <p>This operation requires permissions for the <code>lex:GetUtterancesView</code> action.</p>",
     "ListTagsForResource": "<p>Gets a list of tags associated with the specified resource. Only bots, bot aliases, and bot channels can have tags associated with them.</p>",
     "PutBot": "<p>Creates an Amazon Lex conversational bot or replaces an existing bot. When you create or update a bot you are only required to specify a name, a locale, and whether the bot is directed toward children under age 13. You can use this to add intents later, or to remove intents from an existing bot. When you create a bot with the minimum information, the bot is created or updated but Amazon Lex returns the <code/> response <code>FAILED</code>. You can build the bot after you add one or more intents. For more information about Amazon Lex bots, see <a>how-it-works</a>. </p> <p>If you specify the name of an existing bot, the fields in the request replace the existing values in the <code>$LATEST</code> version of the bot. Amazon Lex removes any fields that you don't provide values for in the request, except for the <code>idleTTLInSeconds</code> and <code>privacySettings</code> fields, which are set to their default values. If you don't specify values for required fields, Amazon Lex throws an exception.</p> <p>This operation requires permissions for the <code>lex:PutBot</code> action. For more information, see <a>security-iam</a>.</p>",
     "PutBotAlias": "<p>Creates an alias for the specified version of the bot or replaces an alias for the specified bot. To change the version of the bot that the alias points to, replace the alias. For more information about aliases, see <a>versioning-aliases</a>.</p> <p>This operation requires permissions for the <code>lex:PutBotAlias</code> action. </p>",
     "PutIntent": "<p>Creates an intent or replaces an existing intent.</p> <p>To define the interaction between the user and your bot, you use one or more intents. For a pizza ordering bot, for example, you would create an <code>OrderPizza</code> intent. </p> <p>To create an intent or replace an existing intent, you must provide the following:</p> <ul> <li> <p>Intent name. For example, <code>OrderPizza</code>.</p> </li> <li> <p>Sample utterances. For example, \"Can I order a pizza, please.\" and \"I want to order a pizza.\"</p> </li> <li> <p>Information to be gathered. You specify slot types for the information that your bot will request from the user. You can specify standard slot types, such as a date or a time, or custom slot types such as the size and crust of a pizza.</p> </li> <li> <p>How the intent will be fulfilled. You can provide a Lambda function or configure the intent to return the intent information to the client application. If you use a Lambda function, when all of the intent information is available, Amazon Lex invokes your Lambda function. If you configure your intent to return the intent information to the client application. </p> </li> </ul> <p>You can specify other optional information in the request, such as:</p> <ul> <li> <p>A confirmation prompt to ask the user to confirm an intent. For example, \"Shall I order your pizza?\"</p> </li> <li> <p>A conclusion statement to send to the user after the intent has been fulfilled. For example, \"I placed your pizza order.\"</p> </li> <li> <p>A follow-up prompt that asks the user for additional activity. For example, asking \"Do you want to order a drink with your pizza?\"</p> </li> </ul> <p>If you specify an existing intent name to update the intent, Amazon Lex replaces the values in the <code>$LATEST</code> version of the intent with the values in the request. Amazon Lex removes fields that you don't provide in the request. If you don't specify the required fields, Amazon Lex throws an exception. When you update the <code>$LATEST</code> version of an intent, the <code>status</code> field of any bot that uses the <code>$LATEST</code> version of the intent is set to <code>NOT_BUILT</code>.</p> <p>For more information, see <a>how-it-works</a>.</p> <p>This operation requires permissions for the <code>lex:PutIntent</code> action.</p>",
     "PutSlotType": "<p>Creates a custom slot type or replaces an existing custom slot type.</p> <p>To create a custom slot type, specify a name for the slot type and a set of enumeration values, which are the values that a slot of this type can assume. For more information, see <a>how-it-works</a>.</p> <p>If you specify the name of an existing slot type, the fields in the request replace the existing values in the <code>$LATEST</code> version of the slot type. Amazon Lex removes the fields that you don't provide in the request. If you don't specify required fields, Amazon Lex throws an exception. When you update the <code>$LATEST</code> version of a slot type, if a bot uses the <code>$LATEST</code> version of an intent that contains the slot type, the bot's <code>status</code> field is set to <code>NOT_BUILT</code>.</p> <p>This operation requires permissions for the <code>lex:PutSlotType</code> action.</p>",
     "StartImport": "<p>Starts a job to import a resource to Amazon Lex.</p>",
+    "StartMigration": "<p>Starts migrating a bot from Amazon Lex V1 to Amazon Lex V2. Migrate your bot when you want to take advantage of the new features of Amazon Lex V2.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/migrate.html\">Migrating a bot</a> in the <i>Amazon Lex developer guide</i>.</p>",
     "TagResource": "<p>Adds the specified tags to the specified resource. If a tag key already exists, the existing value is replaced with the new value.</p>",
     "UntagResource": "<p>Removes tags from a bot, bot alias or bot channel.</p>"
   },
   "shapes": {
+    "AccessDeniedException": {
+      "base": "<p>Your IAM user or role does not have permission to call the Amazon Lex V2 APIs required to migrate your bot.</p>",
+      "refs": {
+      }
+    },
     "AliasName": {
       "base": null,
       "refs": {
@@ -177,12 +185,17 @@
         "GetBotResponse$name": "<p>The name of the bot.</p>",
         "GetBotVersionsRequest$name": "<p>The name of the bot for which versions should be returned.</p>",
         "GetBotsRequest$nameContains": "<p>Substring to match in bot names. A bot will be returned if any part of its name matches the substring. For example, \"xyz\" matches both \"xyzabc\" and \"abcxyz.\"</p>",
+        "GetMigrationResponse$v1BotName": "<p>The name of the Amazon Lex V1 bot migrated to Amazon Lex V2.</p>",
+        "GetMigrationsRequest$v1BotNameContains": "<p>Filters the list to contain only bots whose name contains the specified string. The string is matched anywhere in bot name.</p>",
         "GetUtterancesViewRequest$botName": "<p>The name of the bot for which utterance information should be returned.</p>",
         "GetUtterancesViewResponse$botName": "<p>The name of the bot for which utterance information was returned.</p>",
+        "MigrationSummary$v1BotName": "<p>The name of the Amazon Lex V1 bot that is the source of the migration.</p>",
         "PutBotAliasRequest$botName": "<p>The name of the bot.</p>",
         "PutBotAliasResponse$botName": "<p>The name of the bot that the alias points to.</p>",
         "PutBotRequest$name": "<p>The name of the bot. The name is <i>not</i> case sensitive. </p>",
-        "PutBotResponse$name": "<p>The name of the bot.</p>"
+        "PutBotResponse$name": "<p>The name of the bot.</p>",
+        "StartMigrationRequest$v1BotName": "<p>The name of the Amazon Lex V1 bot that you are migrating to Amazon Lex V2.</p>",
+        "StartMigrationResponse$v1BotName": "<p>The name of the Amazon Lex V1 bot that you are migrating to Amazon Lex V2.</p>"
       }
     },
     "BotVersions": {
@@ -655,6 +668,26 @@
       "refs": {
       }
     },
+    "GetMigrationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMigrationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMigrationsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMigrationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "GetSlotTypeRequest": {
       "base": null,
       "refs": {
@@ -705,7 +738,11 @@
       "base": null,
       "refs": {
         "ConversationLogsRequest$iamRoleArn": "<p>The Amazon Resource Name (ARN) of an IAM role with permission to write to your CloudWatch Logs for text logs and your S3 bucket for audio logs. If audio encryption is enabled, this role also provides access permission for the AWS KMS key used for encrypting audio logs. For more information, see <a href=\"https://docs.aws.amazon.com/lex/latest/dg/conversation-logs-role-and-policy.html\">Creating an IAM Role and Policy for Conversation Logs</a>.</p>",
-        "ConversationLogsResponse$iamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used to write your logs to CloudWatch Logs or an S3 bucket.</p>"
+        "ConversationLogsResponse$iamRoleArn": "<p>The Amazon Resource Name (ARN) of the IAM role used to write your logs to CloudWatch Logs or an S3 bucket.</p>",
+        "GetMigrationResponse$v2BotRole": "<p>The IAM role that Amazon Lex uses to run the Amazon Lex V2 bot.</p>",
+        "MigrationSummary$v2BotRole": "<p>The IAM role that Amazon Lex uses to run the Amazon Lex V2 bot.</p>",
+        "StartMigrationRequest$v2BotRole": "<p>The IAM role that Amazon Lex uses to run the Amazon Lex V2 bot.</p>",
+        "StartMigrationResponse$v2BotRole": "<p>The IAM role that Amazon Lex uses to run the Amazon Lex V2 bot.</p>"
       }
     },
     "ImportStatus": {
@@ -857,9 +894,12 @@
         "GetBotResponse$locale": "<p> The target locale for the bot. </p>",
         "GetBuiltinIntentsRequest$locale": "<p>A list of locales that the intent supports.</p>",
         "GetBuiltinSlotTypesRequest$locale": "<p>A list of locales that the slot type supports.</p>",
+        "GetMigrationResponse$v1BotLocale": "<p>The locale of the Amazon Lex V1 bot migrated to Amazon Lex V2.</p>",
         "LocaleList$member": null,
+        "MigrationSummary$v1BotLocale": "<p>The locale of the Amazon Lex V1 bot that is the source of the migration.</p>",
         "PutBotRequest$locale": "<p> Specifies the target locale for the bot. Any intent used in the bot must be compatible with the locale of the bot. </p> <p>The default is <code>en-US</code>.</p>",
-        "PutBotResponse$locale": "<p> The target locale for the bot. </p>"
+        "PutBotResponse$locale": "<p> The target locale for the bot. </p>",
+        "StartMigrationResponse$v1BotLocale": "<p>The locale used for the Amazon Lex V1 bot. </p>"
       }
     },
     "LocaleList": {
@@ -912,6 +952,7 @@
         "GetBuiltinSlotTypesRequest$maxResults": "<p>The maximum number of slot types to return in the response. The default is 10.</p>",
         "GetIntentVersionsRequest$maxResults": "<p>The maximum number of intent versions to return in the response. The default is 10.</p>",
         "GetIntentsRequest$maxResults": "<p>The maximum number of intents to return in the response. The default is 10.</p>",
+        "GetMigrationsRequest$maxResults": "<p>The maximum number of migrations to return in the response. The default is 10.</p>",
         "GetSlotTypeVersionsRequest$maxResults": "<p>The maximum number of slot type versions to return in the response. The default is 10.</p>",
         "GetSlotTypesRequest$maxResults": "<p>The maximum number of slot types to return in the response. The default is 10.</p>"
       }
@@ -943,6 +984,98 @@
         "CodeHook$messageVersion": "<p>The version of the request-response that you want Amazon Lex to use to invoke your Lambda function. For more information, see <a>using-lambda</a>.</p>"
       }
     },
+    "MigrationAlert": {
+      "base": "<p>Provides information about alerts and warnings that Amazon Lex sends during a migration. The alerts include information about how to resolve the issue.</p>",
+      "refs": {
+        "MigrationAlerts$member": null
+      }
+    },
+    "MigrationAlertDetail": {
+      "base": null,
+      "refs": {
+        "MigrationAlertDetails$member": null
+      }
+    },
+    "MigrationAlertDetails": {
+      "base": null,
+      "refs": {
+        "MigrationAlert$details": "<p>Additional details about the alert.</p>"
+      }
+    },
+    "MigrationAlertMessage": {
+      "base": null,
+      "refs": {
+        "MigrationAlert$message": "<p>A message that describes why the alert was issued.</p>"
+      }
+    },
+    "MigrationAlertReferenceURL": {
+      "base": null,
+      "refs": {
+        "MigrationAlertReferenceURLs$member": null
+      }
+    },
+    "MigrationAlertReferenceURLs": {
+      "base": null,
+      "refs": {
+        "MigrationAlert$referenceURLs": "<p>A link to the Amazon Lex documentation that describes how to resolve the alert.</p>"
+      }
+    },
+    "MigrationAlertType": {
+      "base": null,
+      "refs": {
+        "MigrationAlert$type": "<p>The type of alert. There are two kinds of alerts:</p> <ul> <li> <p> <code>ERROR</code> - There was an issue with the migration that can't be resolved. The migration stops.</p> </li> <li> <p> <code>WARN</code> - There was an issue with the migration that requires manual changes to the new Amazon Lex V2 bot. The migration continues.</p> </li> </ul>"
+      }
+    },
+    "MigrationAlerts": {
+      "base": null,
+      "refs": {
+        "GetMigrationResponse$alerts": "<p>A list of alerts and warnings that indicate issues with the migration for the Amazon Lex V1 bot to Amazon Lex V2. You receive a warning when an Amazon Lex V1 feature has a different implementation if Amazon Lex V2.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/migrate.html\">Migrating a bot</a> in the <i>Amazon Lex V2 developer guide</i>.</p>"
+      }
+    },
+    "MigrationId": {
+      "base": null,
+      "refs": {
+        "GetMigrationRequest$migrationId": "<p>The unique identifier of the migration to view. The <code>migrationID</code> is returned by the operation.</p>",
+        "GetMigrationResponse$migrationId": "<p>The unique identifier of the migration. This is the same as the identifier used when calling the <code>GetMigration</code> operation.</p>",
+        "MigrationSummary$migrationId": "<p>The unique identifier that Amazon Lex assigned to the migration.</p>",
+        "StartMigrationResponse$migrationId": "<p>The unique identifier that Amazon Lex assigned to the migration.</p>"
+      }
+    },
+    "MigrationSortAttribute": {
+      "base": null,
+      "refs": {
+        "GetMigrationsRequest$sortByAttribute": "<p>The field to sort the list of migrations by. You can sort by the Amazon Lex V1 bot name or the date and time that the migration was started.</p>"
+      }
+    },
+    "MigrationStatus": {
+      "base": null,
+      "refs": {
+        "GetMigrationResponse$migrationStatus": "<p>Indicates the status of the migration. When the status is <code>COMPLETE</code> the migration is finished and the bot is available in Amazon Lex V2. There may be alerts and warnings that need to be resolved to complete the migration.</p>",
+        "GetMigrationsRequest$migrationStatusEquals": "<p>Filters the list to contain only migrations in the specified state.</p>",
+        "MigrationSummary$migrationStatus": "<p>The status of the operation. When the status is <code>COMPLETE</code> the bot is available in Amazon Lex V2. There may be alerts and warnings that need to be resolved to complete the migration.</p>"
+      }
+    },
+    "MigrationStrategy": {
+      "base": null,
+      "refs": {
+        "GetMigrationResponse$migrationStrategy": "<p>The strategy used to conduct the migration.</p> <ul> <li> <p> <code>CREATE_NEW</code> - Creates a new Amazon Lex V2 bot and migrates the Amazon Lex V1 bot to the new bot.</p> </li> <li> <p> <code>UPDATE_EXISTING</code> - Overwrites the existing Amazon Lex V2 bot metadata and the locale being migrated. It doesn't change any other locales in the Amazon Lex V2 bot. If the locale doesn't exist, a new locale is created in the Amazon Lex V2 bot.</p> </li> </ul>",
+        "MigrationSummary$migrationStrategy": "<p>The strategy used to conduct the migration.</p>",
+        "StartMigrationRequest$migrationStrategy": "<p>The strategy used to conduct the migration.</p> <ul> <li> <p> <code>CREATE_NEW</code> - Creates a new Amazon Lex V2 bot and migrates the Amazon Lex V1 bot to the new bot.</p> </li> <li> <p> <code>UPDATE_EXISTING</code> - Overwrites the existing Amazon Lex V2 bot metadata and the locale being migrated. It doesn't change any other locales in the Amazon Lex V2 bot. If the locale doesn't exist, a new locale is created in the Amazon Lex V2 bot.</p> </li> </ul>",
+        "StartMigrationResponse$migrationStrategy": "<p>The strategy used to conduct the migration.</p>"
+      }
+    },
+    "MigrationSummary": {
+      "base": "<p>Provides information about migrating a bot from Amazon Lex V1 to Amazon Lex V2.</p>",
+      "refs": {
+        "MigrationSummaryList$member": null
+      }
+    },
+    "MigrationSummaryList": {
+      "base": null,
+      "refs": {
+        "GetMigrationsResponse$migrationSummaries": "<p>An array of summaries for migrations from Amazon Lex V1 to Amazon Lex V2. To see details of the migration, use the <code>migrationId</code> from the summary in a call to the operation.</p>"
+      }
+    },
     "Name": {
       "base": null,
       "refs": {
@@ -972,6 +1105,8 @@
         "GetIntentVersionsResponse$nextToken": "<p>A pagination token for fetching the next page of intent versions. If the response to this call is truncated, Amazon Lex returns a pagination token in the response. To fetch the next page of versions, specify the pagination token in the next request. </p>",
         "GetIntentsRequest$nextToken": "<p>A pagination token that fetches the next page of intents. If the response to this API call is truncated, Amazon Lex returns a pagination token in the response. To fetch the next page of intents, specify the pagination token in the next request. </p>",
         "GetIntentsResponse$nextToken": "<p>If the response is truncated, the response includes a pagination token that you can specify in your next request to fetch the next page of intents. </p>",
+        "GetMigrationsRequest$nextToken": "<p>A pagination token that fetches the next page of migrations. If the response to this operation is truncated, Amazon Lex returns a pagination token in the response. To fetch the next page of migrations, specify the pagination token in the request.</p>",
+        "GetMigrationsResponse$nextToken": "<p>If the response is truncated, it includes a pagination token that you can specify in your next request to fetch the next page of migrations.</p>",
         "GetSlotTypeVersionsRequest$nextToken": "<p>A pagination token for fetching the next page of slot type versions. If the response to this call is truncated, Amazon Lex returns a pagination token in the response. To fetch the next page of versions, specify the pagination token in the next request. </p>",
         "GetSlotTypeVersionsResponse$nextToken": "<p>A pagination token for fetching the next page of slot type versions. If the response to this call is truncated, Amazon Lex returns a pagination token in the response. To fetch the next page of versions, specify the pagination token in the next request. </p>",
         "GetSlotTypesRequest$nextToken": "<p>A pagination token that fetches the next page of slot types. If the response to this API call is truncated, Amazon Lex returns a pagination token in the response. To fetch next page of slot types, specify the pagination token in the next request.</p>",
@@ -1283,12 +1418,28 @@
         "PutSlotTypeResponse$valueSelectionStrategy": "<p>The slot resolution strategy that Amazon Lex uses to determine the value of the slot. For more information, see <a>PutSlotType</a>.</p>"
       }
     },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "GetMigrationsRequest$sortByOrder": "<p>The order so sort the list.</p>"
+      }
+    },
     "StartImportRequest": {
       "base": null,
       "refs": {
       }
     },
     "StartImportResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMigrationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMigrationResponse": {
       "base": null,
       "refs": {
       }
@@ -1329,6 +1480,7 @@
     "String": {
       "base": null,
       "refs": {
+        "AccessDeniedException$message": null,
         "BadRequestException$message": null,
         "BotAliasMetadata$checksum": "<p>Checksum of the bot alias.</p>",
         "BotChannelAssociation$failureReason": "<p>If <code>status</code> is <code>FAILED</code>, Amazon Lex provides the reason that it failed to create the association.</p>",
@@ -1460,10 +1612,12 @@
         "GetImportResponse$createdDate": "<p>A timestamp for the date and time that the import job was created.</p>",
         "GetIntentResponse$lastUpdatedDate": "<p>The date that the intent was updated. When you create a resource, the creation date and the last updated date are the same. </p>",
         "GetIntentResponse$createdDate": "<p>The date that the intent was created.</p>",
+        "GetMigrationResponse$migrationTimestamp": "<p>The date and time that the migration started.</p>",
         "GetSlotTypeResponse$lastUpdatedDate": "<p>The date that the slot type was updated. When you create a resource, the creation date and last update date are the same.</p>",
         "GetSlotTypeResponse$createdDate": "<p>The date that the slot type was created.</p>",
         "IntentMetadata$lastUpdatedDate": "<p>The date that the intent was updated. When you create an intent, the creation date and last updated date are the same.</p>",
         "IntentMetadata$createdDate": "<p>The date that the intent was created.</p>",
+        "MigrationSummary$migrationTimestamp": "<p>The date and time that the migration started.</p>",
         "PutBotAliasResponse$lastUpdatedDate": "<p>The date that the bot alias was updated. When you create a resource, the creation date and the last updated date are the same.</p>",
         "PutBotAliasResponse$createdDate": "<p>The date that the bot alias was created.</p>",
         "PutBotResponse$lastUpdatedDate": "<p>The date that the bot was updated. When you create a resource, the creation date and last updated date are the same.</p>",
@@ -1475,6 +1629,7 @@
         "SlotTypeMetadata$lastUpdatedDate": "<p>The date that the slot type was updated. When you create a resource, the creation date and last updated date are the same. </p>",
         "SlotTypeMetadata$createdDate": "<p>The date that the slot type was created.</p>",
         "StartImportResponse$createdDate": "<p>A timestamp for the date and time that the import job was requested.</p>",
+        "StartMigrationResponse$migrationTimestamp": "<p>The date and time that the migration started.</p>",
         "UtteranceData$firstUtteredDate": "<p>The date that the utterance was first recorded.</p>",
         "UtteranceData$lastUtteredDate": "<p>The date that the utterance was last recorded.</p>"
       }
@@ -1520,6 +1675,20 @@
         "UtteranceData$utteranceString": "<p>The text that was entered by the user or the text representation of an audio clip.</p>"
       }
     },
+    "V2BotId": {
+      "base": null,
+      "refs": {
+        "GetMigrationResponse$v2BotId": "<p>The unique identifier of the Amazon Lex V2 bot that the Amazon Lex V1 is being migrated to.</p>",
+        "MigrationSummary$v2BotId": "<p>The unique identifier of the Amazon Lex V2 that is the destination of the migration.</p>",
+        "StartMigrationResponse$v2BotId": "<p>The unique identifier for the Amazon Lex V2 bot. </p>"
+      }
+    },
+    "V2BotName": {
+      "base": null,
+      "refs": {
+        "StartMigrationRequest$v2BotName": "<p>The name of the Amazon Lex V2 bot that you are migrating the Amazon Lex V1 bot to. </p> <ul> <li> <p>If the Amazon Lex V2 bot doesn't exist, you must use the <code>CREATE_NEW</code> migration strategy.</p> </li> <li> <p>If the Amazon Lex V2 bot exists, you must use the <code>UPDATE_EXISTING</code> migration strategy to change the contents of the Amazon Lex V2 bot.</p> </li> </ul>"
+      }
+    },
     "Value": {
       "base": null,
       "refs": {
@@ -1540,10 +1709,12 @@
         "GetBotResponse$version": "<p>The version of the bot. For a new bot, the version is always <code>$LATEST</code>.</p>",
         "GetIntentRequest$version": "<p>The version of the intent.</p>",
         "GetIntentResponse$version": "<p>The version of the intent.</p>",
+        "GetMigrationResponse$v1BotVersion": "<p>The version of the Amazon Lex V1 bot migrated to Amazon Lex V2.</p>",
         "GetSlotTypeRequest$version": "<p>The version of the slot type. </p>",
         "GetSlotTypeResponse$version": "<p>The version of the slot type.</p>",
         "Intent$intentVersion": "<p>The version of the intent.</p>",
         "IntentMetadata$version": "<p>The version of the intent.</p>",
+        "MigrationSummary$v1BotVersion": "<p>The version of the Amazon Lex V1 bot that is the source of the migration.</p>",
         "PutBotAliasRequest$botVersion": "<p>The version of the bot.</p>",
         "PutBotAliasResponse$botVersion": "<p>The version of the bot that the alias points to.</p>",
         "PutBotResponse$version": "<p>The version of the bot. For a new bot, the version is always <code>$LATEST</code>.</p>",
@@ -1552,6 +1723,8 @@
         "ResourceReference$version": "<p>The version of the resource that is using the resource that you are trying to delete.</p>",
         "Slot$slotTypeVersion": "<p>The version of the slot type.</p>",
         "SlotTypeMetadata$version": "<p>The version of the slot type.</p>",
+        "StartMigrationRequest$v1BotVersion": "<p>The version of the bot to migrate to Amazon Lex V2. You can migrate the <code>$LATEST</code> version as well as any numbered version.</p>",
+        "StartMigrationResponse$v1BotVersion": "<p>The version of the bot to migrate to Amazon Lex V2. </p>",
         "UtteranceList$botVersion": "<p>The version of the bot that processed the list.</p>"
       }
     },

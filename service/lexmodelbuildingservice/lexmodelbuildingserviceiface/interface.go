@@ -192,6 +192,17 @@ type LexModelBuildingServiceAPI interface {
 	GetIntentsPages(*lexmodelbuildingservice.GetIntentsInput, func(*lexmodelbuildingservice.GetIntentsOutput, bool) bool) error
 	GetIntentsPagesWithContext(aws.Context, *lexmodelbuildingservice.GetIntentsInput, func(*lexmodelbuildingservice.GetIntentsOutput, bool) bool, ...request.Option) error
 
+	GetMigration(*lexmodelbuildingservice.GetMigrationInput) (*lexmodelbuildingservice.GetMigrationOutput, error)
+	GetMigrationWithContext(aws.Context, *lexmodelbuildingservice.GetMigrationInput, ...request.Option) (*lexmodelbuildingservice.GetMigrationOutput, error)
+	GetMigrationRequest(*lexmodelbuildingservice.GetMigrationInput) (*request.Request, *lexmodelbuildingservice.GetMigrationOutput)
+
+	GetMigrations(*lexmodelbuildingservice.GetMigrationsInput) (*lexmodelbuildingservice.GetMigrationsOutput, error)
+	GetMigrationsWithContext(aws.Context, *lexmodelbuildingservice.GetMigrationsInput, ...request.Option) (*lexmodelbuildingservice.GetMigrationsOutput, error)
+	GetMigrationsRequest(*lexmodelbuildingservice.GetMigrationsInput) (*request.Request, *lexmodelbuildingservice.GetMigrationsOutput)
+
+	GetMigrationsPages(*lexmodelbuildingservice.GetMigrationsInput, func(*lexmodelbuildingservice.GetMigrationsOutput, bool) bool) error
+	GetMigrationsPagesWithContext(aws.Context, *lexmodelbuildingservice.GetMigrationsInput, func(*lexmodelbuildingservice.GetMigrationsOutput, bool) bool, ...request.Option) error
+
 	GetSlotType(*lexmodelbuildingservice.GetSlotTypeInput) (*lexmodelbuildingservice.GetSlotTypeOutput, error)
 	GetSlotTypeWithContext(aws.Context, *lexmodelbuildingservice.GetSlotTypeInput, ...request.Option) (*lexmodelbuildingservice.GetSlotTypeOutput, error)
 	GetSlotTypeRequest(*lexmodelbuildingservice.GetSlotTypeInput) (*request.Request, *lexmodelbuildingservice.GetSlotTypeOutput)
@@ -237,6 +248,10 @@ type LexModelBuildingServiceAPI interface {
 	StartImport(*lexmodelbuildingservice.StartImportInput) (*lexmodelbuildingservice.StartImportOutput, error)
 	StartImportWithContext(aws.Context, *lexmodelbuildingservice.StartImportInput, ...request.Option) (*lexmodelbuildingservice.StartImportOutput, error)
 	StartImportRequest(*lexmodelbuildingservice.StartImportInput) (*request.Request, *lexmodelbuildingservice.StartImportOutput)
+
+	StartMigration(*lexmodelbuildingservice.StartMigrationInput) (*lexmodelbuildingservice.StartMigrationOutput, error)
+	StartMigrationWithContext(aws.Context, *lexmodelbuildingservice.StartMigrationInput, ...request.Option) (*lexmodelbuildingservice.StartMigrationOutput, error)
+	StartMigrationRequest(*lexmodelbuildingservice.StartMigrationInput) (*request.Request, *lexmodelbuildingservice.StartMigrationOutput)
 
 	TagResource(*lexmodelbuildingservice.TagResourceInput) (*lexmodelbuildingservice.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *lexmodelbuildingservice.TagResourceInput, ...request.Option) (*lexmodelbuildingservice.TagResourceOutput, error)

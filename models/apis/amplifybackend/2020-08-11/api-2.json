@@ -764,6 +764,27 @@
       },
       "required" : [ "AppId", "BackendEnvironmentName" ]
     },
+    "BackendAuthAppleProviderConfig" : {
+      "type" : "structure",
+      "members" : {
+        "ClientId" : {
+          "shape" : "__string",
+          "locationName" : "client_id"
+        },
+        "KeyId" : {
+          "shape" : "__string",
+          "locationName" : "key_id"
+        },
+        "PrivateKey" : {
+          "shape" : "__string",
+          "locationName" : "private_key"
+        },
+        "TeamId" : {
+          "shape" : "__string",
+          "locationName" : "team_id"
+        }
+      }
+    },
     "BackendAuthRespObj" : {
       "type" : "structure",
       "members" : {
@@ -2596,6 +2617,9 @@
         },
         "LoginWithAmazon" : {
           "shape" : "BackendAuthSocialProviderConfig"
+        },
+        "SignInWithApple" : {
+          "shape" : "BackendAuthAppleProviderConfig"
         }
       }
     },

@@ -175,6 +175,23 @@
         {"shape":"InvalidRetentionPeriodFault"}
       ]
     },
+    "CreateAuthenticationProfile":{
+      "name":"CreateAuthenticationProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateAuthenticationProfileMessage"},
+      "output":{
+        "shape":"CreateAuthenticationProfileResult",
+        "resultWrapper":"CreateAuthenticationProfileResult"
+      },
+      "errors":[
+        {"shape":"AuthenticationProfileAlreadyExistsFault"},
+        {"shape":"AuthenticationProfileQuotaExceededFault"},
+        {"shape":"InvalidAuthenticationProfileRequestFault"}
+      ]
+    },
     "CreateCluster":{
       "name":"CreateCluster",
       "http":{
@@ -470,6 +487,22 @@
         {"shape":"UnsupportedOperationFault"}
       ]
     },
+    "DeleteAuthenticationProfile":{
+      "name":"DeleteAuthenticationProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteAuthenticationProfileMessage"},
+      "output":{
+        "shape":"DeleteAuthenticationProfileResult",
+        "resultWrapper":"DeleteAuthenticationProfileResult"
+      },
+      "errors":[
+        {"shape":"AuthenticationProfileNotFoundFault"},
+        {"shape":"InvalidAuthenticationProfileRequestFault"}
+      ]
+    },
     "DeleteCluster":{
       "name":"DeleteCluster",
       "http":{
@@ -685,6 +718,22 @@
         "shape":"AccountAttributeList",
         "resultWrapper":"DescribeAccountAttributesResult"
       }
+    },
+    "DescribeAuthenticationProfiles":{
+      "name":"DescribeAuthenticationProfiles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeAuthenticationProfilesMessage"},
+      "output":{
+        "shape":"DescribeAuthenticationProfilesResult",
+        "resultWrapper":"DescribeAuthenticationProfilesResult"
+      },
+      "errors":[
+        {"shape":"AuthenticationProfileNotFoundFault"},
+        {"shape":"InvalidAuthenticationProfileRequestFault"}
+      ]
     },
     "DescribeClusterDbRevisions":{
       "name":"DescribeClusterDbRevisions",
@@ -1286,6 +1335,23 @@
         {"shape":"ClusterNotFoundFault"},
         {"shape":"InvalidClusterStateFault"},
         {"shape":"UnsupportedOperationFault"}
+      ]
+    },
+    "ModifyAuthenticationProfile":{
+      "name":"ModifyAuthenticationProfile",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyAuthenticationProfileMessage"},
+      "output":{
+        "shape":"ModifyAuthenticationProfileResult",
+        "resultWrapper":"ModifyAuthenticationProfileResult"
+      },
+      "errors":[
+        {"shape":"AuthenticationProfileNotFoundFault"},
+        {"shape":"AuthenticationProfileQuotaExceededFault"},
+        {"shape":"InvalidAuthenticationProfileRequestFault"}
       ]
     },
     "ModifyCluster":{
@@ -1938,6 +2004,55 @@
       "members":{
         "AttributeValue":{"shape":"String"}
       }
+    },
+    "AuthenticationProfile":{
+      "type":"structure",
+      "members":{
+        "AuthenticationProfileName":{"shape":"AuthenticationProfileNameString"},
+        "AuthenticationProfileContent":{"shape":"String"}
+      }
+    },
+    "AuthenticationProfileAlreadyExistsFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AuthenticationProfileAlreadyExistsFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "AuthenticationProfileList":{
+      "type":"list",
+      "member":{"shape":"AuthenticationProfile"}
+    },
+    "AuthenticationProfileNameString":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9\\-]+$"
+    },
+    "AuthenticationProfileNotFoundFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AuthenticationProfileNotFoundFault",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
+    },
+    "AuthenticationProfileQuotaExceededFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"AuthenticationProfileQuotaExceededFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
     },
     "AuthorizationAlreadyExistsFault":{
       "type":"structure",
@@ -2635,6 +2750,24 @@
       },
       "exception":true
     },
+    "CreateAuthenticationProfileMessage":{
+      "type":"structure",
+      "required":[
+        "AuthenticationProfileName",
+        "AuthenticationProfileContent"
+      ],
+      "members":{
+        "AuthenticationProfileName":{"shape":"AuthenticationProfileNameString"},
+        "AuthenticationProfileContent":{"shape":"String"}
+      }
+    },
+    "CreateAuthenticationProfileResult":{
+      "type":"structure",
+      "members":{
+        "AuthenticationProfileName":{"shape":"AuthenticationProfileNameString"},
+        "AuthenticationProfileContent":{"shape":"String"}
+      }
+    },
     "CreateClusterMessage":{
       "type":"structure",
       "required":[
@@ -2961,6 +3094,19 @@
         "locationName":"DeferredMaintenanceWindow"
       }
     },
+    "DeleteAuthenticationProfileMessage":{
+      "type":"structure",
+      "required":["AuthenticationProfileName"],
+      "members":{
+        "AuthenticationProfileName":{"shape":"AuthenticationProfileNameString"}
+      }
+    },
+    "DeleteAuthenticationProfileResult":{
+      "type":"structure",
+      "members":{
+        "AuthenticationProfileName":{"shape":"AuthenticationProfileNameString"}
+      }
+    },
     "DeleteClusterMessage":{
       "type":"structure",
       "required":["ClusterIdentifier"],
@@ -3112,6 +3258,18 @@
       "type":"structure",
       "members":{
         "AttributeNames":{"shape":"AttributeNameList"}
+      }
+    },
+    "DescribeAuthenticationProfilesMessage":{
+      "type":"structure",
+      "members":{
+        "AuthenticationProfileName":{"shape":"AuthenticationProfileNameString"}
+      }
+    },
+    "DescribeAuthenticationProfilesResult":{
+      "type":"structure",
+      "members":{
+        "AuthenticationProfiles":{"shape":"AuthenticationProfileList"}
       }
     },
     "DescribeClusterDbRevisionsMessage":{
@@ -4003,6 +4161,17 @@
     },
     "Integer":{"type":"integer"},
     "IntegerOptional":{"type":"integer"},
+    "InvalidAuthenticationProfileRequestFault":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"InvalidAuthenticationProfileRequestFault",
+        "httpStatusCode":400,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "InvalidAuthorizationStateFault":{
       "type":"structure",
       "members":{
@@ -4351,6 +4520,24 @@
       "type":"structure",
       "members":{
         "AquaConfiguration":{"shape":"AquaConfiguration"}
+      }
+    },
+    "ModifyAuthenticationProfileMessage":{
+      "type":"structure",
+      "required":[
+        "AuthenticationProfileName",
+        "AuthenticationProfileContent"
+      ],
+      "members":{
+        "AuthenticationProfileName":{"shape":"AuthenticationProfileNameString"},
+        "AuthenticationProfileContent":{"shape":"String"}
+      }
+    },
+    "ModifyAuthenticationProfileResult":{
+      "type":"structure",
+      "members":{
+        "AuthenticationProfileName":{"shape":"AuthenticationProfileNameString"},
+        "AuthenticationProfileContent":{"shape":"String"}
       }
     },
     "ModifyClusterDbRevisionMessage":{
