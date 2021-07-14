@@ -1,4 +1,4 @@
-// +build go1.7
+// +build go1.9
 
 package endpoints
 
@@ -572,9 +572,6 @@ func TestEndpointFor_S3UsEast1RegionalFlag(t *testing.T) {
 				Defaults: endpoint{
 					Protocols:         []string{"http", "https"},
 					SignatureVersions: []string{"s3v4"},
-
-					HasDualStack:      boxedTrue,
-					DualStackHostname: "{service}.dualstack.{region}.{dnsSuffix}",
 				},
 				Endpoints: endpoints{
 					"ap-east-1": endpoint{},

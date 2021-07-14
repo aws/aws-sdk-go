@@ -82,7 +82,6 @@ func decodeV3Endpoints(modelDef modelDefinition, opts DecodeModelOptions) (Resol
 	for i := 0; i < len(ps); i++ {
 		p := &ps[i]
 		custAddEC2Metadata(p)
-		custAddS3DualStack(p)
 		custRegionalS3(p)
 		custRmIotDataService(p)
 		custFixAppAutoscalingChina(p)
@@ -90,15 +89,6 @@ func decodeV3Endpoints(modelDef modelDefinition, opts DecodeModelOptions) (Resol
 	}
 
 	return ps, nil
-}
-
-func custAddS3DualStack(p *partition) {
-	if !(p.ID == "aws" || p.ID == "aws-cn" || p.ID == "aws-us-gov") {
-		return
-	}
-
-	custAddDualstack(p, "s3")
-	custAddDualstack(p, "s3-control")
 }
 
 func custRegionalS3(p *partition) {
@@ -126,18 +116,6 @@ func custRegionalS3(p *partition) {
 	}
 
 	p.Services["s3"] = service
-}
-
-func custAddDualstack(p *partition, svcName string) {
-	s, ok := p.Services[svcName]
-	if !ok {
-		return
-	}
-
-	s.Defaults.HasDualStack = boxedTrue
-	s.Defaults.DualStackHostname = "{service}.dualstack.{region}.{dnsSuffix}"
-
-	p.Services[svcName] = s
 }
 
 func custAddEC2Metadata(p *partition) {
@@ -169,7 +147,7 @@ func custFixAppAutoscalingChina(p *partition) {
 	}
 
 	const expectHostname = `autoscaling.{region}.amazonaws.com`
-	if e, a := s.Defaults.Hostname, expectHostname; e != a {
+	if e, a := expectHostname, s.Defaults.Hostname; e != a {
 		fmt.Printf("custFixAppAutoscalingChina: ignoring customization, expected %s, got %s\n", e, a)
 		return
 	}

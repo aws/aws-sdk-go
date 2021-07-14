@@ -7,6 +7,11 @@ import (
 	"strings"
 )
 
+const (
+	dnsSuffixTemplateKey          = "{dnsSuffix}"
+	dualStackDNSSuffixTemplateKey = "{dualstackDnsSuffix}"
+)
+
 var regionValidationRegex = regexp.MustCompile(`^[[:alnum:]]([[:alnum:]\-]*[[:alnum:]])?$`)
 
 type partitions []partition
@@ -45,13 +50,15 @@ func (ps partitions) Partitions() []Partition {
 }
 
 type partition struct {
-	ID          string      `json:"partition"`
-	Name        string      `json:"partitionName"`
-	DNSSuffix   string      `json:"dnsSuffix"`
-	RegionRegex regionRegex `json:"regionRegex"`
-	Defaults    endpoint    `json:"defaults"`
-	Regions     regions     `json:"regions"`
-	Services    services    `json:"services"`
+	ID                 string      `json:"partition"`
+	Name               string      `json:"partitionName"`
+	DNSSuffix          string      `json:"dnsSuffix"`
+	DualStackDNSSuffix string      `json:"dualstackDnsSuffix"`
+	RegionRegex        regionRegex `json:"regionRegex"`
+	Defaults           endpoint    `json:"defaults"`
+	DualStackDefaults  endpoint    `json:"dualstackDefaults"`
+	Regions            regions     `json:"regions"`
+	Services           services    `json:"services"`
 }
 
 func (p partition) Partition() Partition {
@@ -112,21 +119,64 @@ func (p partition) EndpointFor(service, region string, opts ...func(*Options)) (
 		region = s.PartitionEndpoint
 	}
 
-	if (service == "sts" && opt.STSRegionalEndpoint != RegionalSTSEndpoint) ||
-		(service == "s3" && opt.S3UsEast1RegionalEndpoint != RegionalS3UsEast1Endpoint) {
+	if r, ok := isLegacyGlobalRegion(service, region, opt); ok {
+		region = r
+	}
+
+	isDualStack := opt.isUseDualStackEndpoint(service)
+
+	endpoints := s.Endpoints
+	dnsSuffix := p.DNSSuffix
+	dnsTemplateKey := dnsSuffixTemplateKey
+	serviceDefaults := s.Defaults
+	partitionDefaults := p.Defaults
+
+	if isDualStack {
+		endpoints = s.DualStackEndpoints
+		dnsSuffix = s.DualStackDNSSuffix
+		if len(dnsSuffix) == 0 {
+			dnsSuffix = p.DualStackDNSSuffix
+		}
+		serviceDefaults = s.DualStackDefaults
+		partitionDefaults = p.DualStackDefaults
+		dnsTemplateKey = dualStackDNSSuffixTemplateKey
+	}
+
+	emptyDefaults := serviceDefaults.isZero() && partitionDefaults.isZero()
+
+	e, hasEndpoint := s.endpointForRegion(region, endpoints)
+	if len(region) == 0 || (!hasEndpoint && (opt.StrictMatching || (isDualStack && emptyDefaults))) {
+		return resolved, NewUnknownEndpointError(p.ID, service, region, endpointList(endpoints))
+	}
+
+	defs := []endpoint{partitionDefaults, serviceDefaults}
+
+	return e.resolve(service, p.ID, region, dnsTemplateKey, dnsSuffix, defs, opt)
+}
+
+func isLegacyGlobalRegion(service string, region string, opt Options) (string, bool) {
+	if opt.isUseDualStackEndpoint(service) {
+		return region, false
+	}
+
+	const (
+		sts       = "sts"
+		s3        = "s3"
+		awsGlobal = "aws-global"
+	)
+
+	switch {
+	case service == sts && opt.STSRegionalEndpoint == RegionalSTSEndpoint:
+		return region, false
+	case service == s3 && opt.S3UsEast1RegionalEndpoint == RegionalS3UsEast1Endpoint:
+		return region, false
+	default:
 		if _, ok := legacyGlobalRegions[service][region]; ok {
-			region = "aws-global"
+			return awsGlobal, true
 		}
 	}
 
-	e, hasEndpoint := s.endpointForRegion(region)
-	if len(region) == 0 || (!hasEndpoint && opt.StrictMatching) {
-		return resolved, NewUnknownEndpointError(p.ID, service, region, endpointList(s.Endpoints))
-	}
-
-	defs := []endpoint{p.Defaults, s.Defaults}
-
-	return e.resolve(service, p.ID, region, p.DNSSuffix, defs, opt)
+	return region, false
 }
 
 func serviceList(ss services) []string {
@@ -171,19 +221,22 @@ type region struct {
 type services map[string]service
 
 type service struct {
-	PartitionEndpoint string    `json:"partitionEndpoint"`
-	IsRegionalized    boxedBool `json:"isRegionalized,omitempty"`
-	Defaults          endpoint  `json:"defaults"`
-	Endpoints         endpoints `json:"endpoints"`
+	PartitionEndpoint  string    `json:"partitionEndpoint"`
+	IsRegionalized     boxedBool `json:"isRegionalized,omitempty"`
+	Defaults           endpoint  `json:"defaults"`
+	DualStackDefaults  endpoint  `json:"dualstackDefaults"`
+	DualStackDNSSuffix string    `json:"dualstackDnsSuffix"`
+	Endpoints          endpoints `json:"endpoints"`
+	DualStackEndpoints endpoints `json:"dualstackEndpoints"`
 }
 
-func (s *service) endpointForRegion(region string) (endpoint, bool) {
-	if e, ok := s.Endpoints[region]; ok {
+func (s *service) endpointForRegion(region string, endpoints endpoints) (endpoint, bool) {
+	if e, ok := endpoints[region]; ok {
 		return e, true
 	}
 
 	if s.IsRegionalized == boxedFalse {
-		return s.Endpoints[s.PartitionEndpoint], region == s.PartitionEndpoint
+		return endpoints[s.PartitionEndpoint], region == s.PartitionEndpoint
 	}
 
 	// Unable to find any matching endpoint, return
@@ -198,15 +251,28 @@ type endpoint struct {
 	Protocols       []string        `json:"protocols"`
 	CredentialScope credentialScope `json:"credentialScope"`
 
-	// Custom fields not modeled
-	HasDualStack      boxedBool `json:"-"`
-	DualStackHostname string    `json:"-"`
-
 	// Signature Version not used
 	SignatureVersions []string `json:"signatureVersions"`
 
 	// SSLCommonName not used.
 	SSLCommonName string `json:"sslCommonName"`
+}
+
+// isZero returns whether the endpoint structure is an empty (zero) value.
+func (e endpoint) isZero() bool {
+	switch {
+	case len(e.Hostname) != 0:
+		return false
+	case len(e.Protocols) != 0:
+		return false
+	case e.CredentialScope != (credentialScope{}):
+		return false
+	case len(e.SignatureVersions) != 0:
+		return false
+	case len(e.SSLCommonName) != 0:
+		return false
+	}
+	return true
 }
 
 const (
@@ -235,7 +301,7 @@ func getByPriority(s []string, p []string, def string) string {
 	return s[0]
 }
 
-func (e endpoint) resolve(service, partitionID, region, dnsSuffix string, defs []endpoint, opts Options) (ResolvedEndpoint, error) {
+func (e endpoint) resolve(service, partitionID, region, dnsSuffixTemplateVariable, dnsSuffix string, defs []endpoint, opts Options) (ResolvedEndpoint, error) {
 	var merged endpoint
 	for _, def := range defs {
 		merged.mergeIn(def)
@@ -256,11 +322,6 @@ func (e endpoint) resolve(service, partitionID, region, dnsSuffix string, defs [
 	}
 
 	hostname := e.Hostname
-	// Offset the hostname for dualstack if enabled
-	if opts.UseDualStack && e.HasDualStack == boxedTrue {
-		hostname = e.DualStackHostname
-		region = signingRegion
-	}
 
 	if !validateInputRegion(region) {
 		return ResolvedEndpoint{}, fmt.Errorf("invalid region identifier format provided")
@@ -268,7 +329,7 @@ func (e endpoint) resolve(service, partitionID, region, dnsSuffix string, defs [
 
 	u := strings.Replace(hostname, "{service}", service, 1)
 	u = strings.Replace(u, "{region}", region, 1)
-	u = strings.Replace(u, "{dnsSuffix}", dnsSuffix, 1)
+	u = strings.Replace(u, dnsSuffixTemplateVariable, dnsSuffix, 1)
 
 	scheme := getEndpointScheme(e.Protocols, opts.DisableSSL)
 	u = fmt.Sprintf("%s://%s", scheme, u)
@@ -309,12 +370,6 @@ func (e *endpoint) mergeIn(other endpoint) {
 	}
 	if len(other.SSLCommonName) > 0 {
 		e.SSLCommonName = other.SSLCommonName
-	}
-	if other.HasDualStack != boxedBoolUnset {
-		e.HasDualStack = other.HasDualStack
-	}
-	if len(other.DualStackHostname) > 0 {
-		e.DualStackHostname = other.DualStackHostname
 	}
 }
 

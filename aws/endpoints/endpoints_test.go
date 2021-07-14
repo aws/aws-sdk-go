@@ -1,3 +1,5 @@
+// +build go1.9
+
 package endpoints
 
 import "testing"
@@ -109,7 +111,7 @@ func TestEnumServicesEndpoints(t *testing.T) {
 
 	ss := p.Services()
 
-	if a, e := len(ss), 5; a != e {
+	if a, e := len(ss), 6; a != e {
 		t.Errorf("expect %d regions got %d", e, a)
 	}
 
@@ -253,12 +255,13 @@ func TestResolverFunc(t *testing.T) {
 
 func TestOptionsSet(t *testing.T) {
 	var actual Options
-	actual.Set(DisableSSLOption, UseDualStackOption, StrictMatchingOption)
+	actual.Set(DisableSSLOption, UseDualStackOption, StrictMatchingOption, DualStackEndpointOption)
 
 	expect := Options{
-		DisableSSL:     true,
-		UseDualStack:   true,
-		StrictMatching: true,
+		DisableSSL:           true,
+		UseDualStack:         true,
+		UseDualStackEndpoint: DualStackEndpointStateEnabled,
+		StrictMatching:       true,
 	}
 
 	if actual != expect {

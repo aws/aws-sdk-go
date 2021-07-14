@@ -294,6 +294,24 @@ func TestLoadSharedConfig(t *testing.T) {
 				CredentialProcess: "/path/to/process",
 			},
 		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseDualStackEndpointEnabled",
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointEnabled",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateEnabled,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "UseDualStackEndpointDisabled",
+			Expected: sharedConfig{
+				Profile:              "UseDualStackEndpointDisabled",
+				Region:               "us-west-2",
+				UseDualStackEndpoint: endpoints.DualStackEndpointStateDisabled,
+			},
+		},
 	}
 
 	for i, c := range cases {

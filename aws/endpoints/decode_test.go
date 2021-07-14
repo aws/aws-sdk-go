@@ -1,3 +1,5 @@
+// +build go1.9
+
 package endpoints
 
 import (
@@ -6,8 +8,7 @@ import (
 )
 
 func TestDecodeEndpoints_V3(t *testing.T) {
-	const v3Doc = `
-{
+	const v3Doc = `{
   "version": 3,
   "partitions": [
     {
@@ -20,7 +21,15 @@ func TestDecodeEndpoints_V3(t *testing.T) {
           "v4"
         ]
       },
+      "dualstackDefaults": {
+        "protocols": [
+          "http",
+          "https"
+        ],
+        "hostname": "{service}.{region}.{dualstackDnsSuffix}"
+      },
       "dnsSuffix": "amazonaws.com",
+      "dualstackDnsSuffix": "aws",
       "partition": "aws",
       "partitionName": "AWS Standard",
       "regionRegex": "^(us|eu|ap|sa|ca)\\-\\w+\\-\\d+$",
@@ -32,13 +41,27 @@ func TestDecodeEndpoints_V3(t *testing.T) {
       "services": {
         "acm": {
           "endpoints": {
-             "ap-northeast-1": {}
-    	  }
+            "ap-northeast-1": {}
+          }
         },
         "s3": {
+          "dualstackDefaults": {
+            "protocols": [
+              "http",
+              "https"
+            ],
+            "hostname": "{service}.dualstack.{region}.{dualstackDnsSuffix}"
+          },
+          "dualstackDnsSuffix": "amazonaws.com",
           "endpoints": {
-             "ap-northeast-1": {}
-    	  }
+            "ap-northeast-1": {}
+          },
+          "dualstackEndpoints": {
+            "us-west-2": {
+              "hostname": "s3.dualstack.us-west-2.amazonaws.com",
+              "signatureVersions": ["s3", "s3v4"]
+            }
+          }
         }
       }
     }
@@ -61,17 +84,34 @@ func TestDecodeEndpoints_V3(t *testing.T) {
 
 	p := resolver.(partitions)[0]
 
-	s3Defaults := p.Services["s3"].Defaults
-	if a, e := s3Defaults.HasDualStack, boxedTrue; a != e {
-		t.Errorf("expect s3 service to have dualstack enabled")
+	resolved, err := p.EndpointFor("s3", "us-west-2", func(options *Options) {
+		options.UseDualStackEndpoint = DualStackEndpointStateEnabled
+	})
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
 	}
-	if a, e := s3Defaults.DualStackHostname, "{service}.dualstack.{region}.{dnsSuffix}"; a != e {
-		t.Errorf("expect s3 dualstack host pattern to be %q, got %q", e, a)
-	}
+
+	assertEndpoint(t, resolved, "https://s3.dualstack.us-west-2.amazonaws.com", "s3", "us-west-2")
 
 	ec2metaEndpoint := p.Services["ec2metadata"].Endpoints["aws-global"]
 	if a, e := ec2metaEndpoint.Hostname, "169.254.169.254/latest"; a != e {
 		t.Errorf("expect ec2metadata host to be %q, got %q", e, a)
+	}
+}
+
+func assertEndpoint(t *testing.T, endpoint ResolvedEndpoint, expectedURL, expectedSigningName, expectedSigningRegion string) {
+	t.Helper()
+
+	if e, a := expectedURL, endpoint.URL; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+	if e, a := expectedSigningName, endpoint.SigningName; e != a {
+		t.Errorf("expect %v, got %v", e, a)
+	}
+
+	if e, a := expectedSigningRegion, endpoint.SigningRegion; e != a {
+		t.Errorf("expect %v, got %v", e, a)
 	}
 }
 

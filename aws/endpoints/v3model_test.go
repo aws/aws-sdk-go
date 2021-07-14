@@ -1,4 +1,4 @@
-// +build go1.7
+// +build go1.9
 
 package endpoints
 
@@ -210,7 +210,7 @@ func TestEndpointResolve(t *testing.T) {
 		SSLCommonName:     "new sslCommonName",
 	}
 
-	resolved, err := e.resolve("service", "partitionID", "region", "dnsSuffix",
+	resolved, err := e.resolve("service", "partitionID", "region", dnsSuffixTemplateKey, "dnsSuffix",
 		defs, Options{},
 	)
 	if err != nil {
@@ -231,7 +231,7 @@ func TestEndpointResolve(t *testing.T) {
 	}
 
 	// Check Invalid Region Identifier Format
-	_, err = e.resolve("service", "partitionID", "notvalid.com", "dnsSuffix",
+	_, err = e.resolve("service", "partitionID", "notvalid.com", dnsSuffixTemplateKey, "dnsSuffix",
 		defs, Options{},
 	)
 	if err == nil {
@@ -308,23 +308,151 @@ func TestResolveEndpoint_DisableSSL(t *testing.T) {
 	}
 }
 
-func TestResolveEndpoint_UseDualStack(t *testing.T) {
-	resolved, err := testPartitions.EndpointFor("service1", "us-west-2", UseDualStackOption)
+func TestResolveEndpoint_UseDualStack_UseDualStackEndpoint(t *testing.T) {
+	cases := map[string]struct {
+		Service string
+		Region  string
 
-	if err != nil {
-		t.Fatalf("expect no error, got %v", err)
+		Options func(*Options)
+
+		ExpectedURL              string
+		ExpectedSigningName      string
+		ExpectedSigningRegion    string
+		ExpectSigningNameDerived bool
+
+		ExpectErr bool
+	}{
+		"deprecated UseDualStack does not apply to services that are not s3 or s3-control": {
+			Service:               "service1",
+			Region:                "us-west-2",
+			Options:               UseDualStackOption,
+			ExpectedURL:           "https://service1.us-west-2.amazonaws.com",
+			ExpectedSigningName:   "service1",
+			ExpectedSigningRegion: "us-west-2",
+		},
+		"deprecated UseDualStack allowed for s3": {
+			Service:               "s3",
+			Region:                "us-west-2",
+			Options:               UseDualStackOption,
+			ExpectedURL:           "https://s3.dualstack.us-west-2.amazonaws.com",
+			ExpectedSigningName:   "s3",
+			ExpectedSigningRegion: "us-west-2",
+		},
+		"deprecated UseDualStack allowed for s3-control": {
+			Service:               "s3-control",
+			Region:                "us-west-2",
+			Options:               UseDualStackOption,
+			ExpectedURL:           "https://s3-control.dualstack.us-west-2.amazonaws.com",
+			ExpectedSigningName:   "s3-control",
+			ExpectedSigningRegion: "us-west-2",
+		},
+		"UseDualStackEndpoint applies to all services": {
+			Service:                  "service1",
+			Region:                   "us-west-2",
+			Options:                  DualStackEndpointOption,
+			ExpectedURL:              "https://service1.us-west-2.aws",
+			ExpectedSigningName:      "service1",
+			ExpectedSigningRegion:    "us-west-2",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint applies to s3": {
+			Service:               "s3",
+			Region:                "us-west-2",
+			Options:               DualStackEndpointOption,
+			ExpectedURL:           "https://s3.dualstack.us-west-2.amazonaws.com",
+			ExpectedSigningName:   "s3",
+			ExpectedSigningRegion: "us-west-2",
+		},
+		"UseDualStackEndpoint applies to s3-control": {
+			Service:               "s3-control",
+			Region:                "us-west-2",
+			Options:               DualStackEndpointOption,
+			ExpectedURL:           "https://s3-control.dualstack.us-west-2.amazonaws.com",
+			ExpectedSigningName:   "s3-control",
+			ExpectedSigningRegion: "us-west-2",
+		},
+		"UseDualStackEndpoint setting has higher precedence then UseDualStack for s3": {
+			Service: "s3",
+			Region:  "us-west-2",
+			Options: func(options *Options) {
+				options.UseDualStack = true
+				options.UseDualStackEndpoint = DualStackEndpointStateDisabled
+			},
+			ExpectedURL:           "https://s3.us-west-2.amazonaws.com",
+			ExpectedSigningName:   "s3",
+			ExpectedSigningRegion: "us-west-2",
+		},
+		"UseDualStackEndpoint setting has higher precedence then UseDualStack for s3-control": {
+			Service: "s3-control",
+			Region:  "us-west-2",
+			Options: func(options *Options) {
+				options.UseDualStack = true
+				options.UseDualStackEndpoint = DualStackEndpointStateDisabled
+			},
+			ExpectedURL:           "https://s3-control.us-west-2.amazonaws.com",
+			ExpectedSigningName:   "s3-control",
+			ExpectedSigningRegion: "us-west-2",
+		},
+		"UseDualStackEndpoint in partition with no partition or service defaults": {
+			Service:   "service1",
+			Region:    "cn-north-2",
+			Options:   DualStackEndpointOption,
+			ExpectErr: true,
+		},
+		"UseDualStackEndpoint in partition with no partition or service defaults and modeled region": {
+			Service:               "service1",
+			Region:                "cn-north-1",
+			Options:               DualStackEndpointOption,
+			ExpectedURL:           "https://service1.cn-north-1.aws.cn",
+			ExpectedSigningName:   "service1",
+			ExpectedSigningRegion: "cn-north-1",
+		},
+		"UseDualStackEndpoint with partition endpoint": {
+			Service:                  "globalService",
+			Region:                   "aws-global",
+			Options:                  DualStackEndpointOption,
+			ExpectedURL:              "https://globalService.global.aws",
+			ExpectedSigningName:      "globalService",
+			ExpectedSigningRegion:    "us-east-1",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint with fips partition endpoint": {
+			Service:                  "globalService",
+			Region:                   "fips-aws-global",
+			Options:                  DualStackEndpointOption,
+			ExpectedURL:              "https://globalService-fips.global.aws",
+			ExpectedSigningName:      "globalService",
+			ExpectedSigningRegion:    "us-east-1",
+			ExpectSigningNameDerived: true,
+		},
+		"UseDualStackEndpoint fallback to partition endpoint": {
+			Service:                  "globalService",
+			Region:                   "us-west-2",
+			Options:                  DualStackEndpointOption,
+			ExpectedURL:              "https://globalService.global.aws",
+			ExpectedSigningName:      "globalService",
+			ExpectedSigningRegion:    "us-east-1",
+			ExpectSigningNameDerived: true,
+		},
 	}
-	if e, a := "https://service1.dualstack.us-west-2.amazonaws.com", resolved.URL; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := "us-west-2", resolved.SigningRegion; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if e, a := "service1", resolved.SigningName; e != a {
-		t.Errorf("expect %v, got %v", e, a)
-	}
-	if resolved.SigningNameDerived {
-		t.Errorf("expect the signing name not to be derived, but was")
+
+	for name, tt := range cases {
+		t.Run(name, func(t *testing.T) {
+			if tt.Options == nil {
+				tt.Options = func(options *Options) {}
+			}
+
+			resolved, err := testPartitions.EndpointFor(tt.Service, tt.Region, tt.Options)
+			if tt.ExpectErr != (err != nil) {
+				t.Fatalf("ExpectErr=%v, got err=%v", tt.ExpectErr, err)
+			}
+
+			assertEndpoint(t, resolved, tt.ExpectedURL, tt.ExpectedSigningName, tt.ExpectedSigningRegion)
+
+			if e, a := tt.ExpectSigningNameDerived, resolved.SigningNameDerived; e != a {
+				t.Errorf("ExpectSigningNameDerived(%v) != SigningNameDerived(%v)", e, a)
+			}
+		})
 	}
 }
 

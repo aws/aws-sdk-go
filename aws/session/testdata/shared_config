@@ -147,3 +147,11 @@ sso_region = us-west-2
 sso_role_name = TestRole
 sso_start_url = https://127.0.0.1/start
 credential_process = /path/to/process
+
+[profile UseDualStackEndpointEnabled]
+region = "us-west-2"
+use_dualstack_endpoint=true
+
+[profile UseDualStackEndpointDisabled]
+region = "us-west-2"
+use_dualstack_endpoint=false

@@ -165,6 +165,12 @@ type envConfig struct {
 	//
 	// AWS_EC2_METADATA_SERVICE_ENDPOINT=http://[::1]
 	EC2IMDSEndpoint string
+
+	// Specifies that SDK clients must resolve a dual-stack endpoint for
+	// services.
+	//
+	// AWS_USE_DUALSTACK_ENDPOINT=true
+	UseDualStackEndpoint endpoints.DualStackEndpointState
 }
 
 var (
@@ -239,6 +245,9 @@ var (
 	}
 	useClientTLSKey = []string{
 		"AWS_SDK_GO_CLIENT_TLS_KEY",
+	}
+	awsUseDualStackEndpoint = []string{
+		"AWS_USE_DUALSTACK_ENDPOINT",
 	}
 )
 
@@ -365,6 +374,10 @@ func envConfigLoad(enableSharedConfig bool) (envConfig, error) {
 
 	setFromEnvVal(&cfg.EC2IMDSEndpoint, ec2IMDSEndpointEnvKey)
 
+	if err := setUseDualStackEndpointFromEnvVal(&cfg.UseDualStackEndpoint, awsUseDualStackEndpoint); err != nil {
+		return cfg, err
+	}
+
 	return cfg, nil
 }
 
@@ -375,4 +388,25 @@ func setFromEnvVal(dst *string, keys []string) {
 			break
 		}
 	}
+}
+
+func setUseDualStackEndpointFromEnvVal(dst *endpoints.DualStackEndpointState, keys []string) error {
+	for _, k := range keys {
+		value := os.Getenv(k)
+		if len(value) == 0 {
+			continue // skip if empty
+		}
+
+		switch {
+		case strings.EqualFold(value, "true"):
+			*dst = endpoints.DualStackEndpointStateEnabled
+		case strings.EqualFold(value, "false"):
+			*dst = endpoints.DualStackEndpointStateDisabled
+		default:
+			return fmt.Errorf(
+				"invalid value for environment variable, %s=%s, need true, false",
+				k, value)
+		}
+	}
+	return nil
 }

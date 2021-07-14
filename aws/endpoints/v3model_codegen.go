@@ -270,9 +270,13 @@ partition{
 	{{ StringIfSet "ID: %q,\n" .ID -}}
 	{{ StringIfSet "Name: %q,\n" .Name -}}
 	{{ StringIfSet "DNSSuffix: %q,\n" .DNSSuffix -}}
+	{{ StringIfSet "DualStackDNSSuffix: %q,\n" .DualStackDNSSuffix -}}
 	RegionRegex: {{ template "gocode RegionRegex" .RegionRegex }},
 	{{ if EndpointIsSet .Defaults -}}
 		Defaults: {{ template "gocode Endpoint" .Defaults }},
+	{{- end }}
+	{{ if EndpointIsSet .DualStackDefaults -}}
+		DualStackDefaults: {{ template "gocode Endpoint" .DualStackDefaults }},
 	{{- end }}
 	Regions:  {{ template "gocode Regions" .Regions }},
 	Services: {{ template "gocode Services" .Services }},
@@ -316,9 +320,16 @@ service{
 	{{ BoxedBoolIfSet "IsRegionalized: %s,\n" .IsRegionalized -}}
 	{{ if EndpointIsSet .Defaults -}}
 		Defaults: {{ template "gocode Endpoint" .Defaults -}},
-	{{- end }}
+	{{ end -}}
+	{{- if EndpointIsSet .DualStackDefaults -}}
+		DualStackDefaults: {{ template "gocode Endpoint" .DualStackDefaults -}},
+	{{ end -}}
+	{{ StringIfSet "DualStackDNSSuffix: %q,\n" .DualStackDNSSuffix -}}
 	{{ if .Endpoints -}}
 		Endpoints: {{ template "gocode Endpoints" .Endpoints }},
+	{{- end }}
+	{{ if .DualStackEndpoints -}}
+		DualStackEndpoints: {{ template "gocode Endpoints" .DualStackEndpoints }},
 	{{- end }}
 }
 {{- end }}
@@ -343,8 +354,6 @@ endpoint{
 		{{ StringIfSet "Service: %q,\n" .CredentialScope.Service -}}
 	},
 	{{- end }}
-	{{ BoxedBoolIfSet "HasDualStack: %s,\n" .HasDualStack -}}
-	{{ StringIfSet "DualStackHostname: %q,\n" .DualStackHostname -}}
 
 }
 {{- end }}

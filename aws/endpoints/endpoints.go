@@ -8,6 +8,22 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
+// DualStackEndpointState is a constant to describe the dual-stack endpoint resolution
+// behavior.
+type DualStackEndpointState uint
+
+const (
+	// DualStackEndpointStateUnset is the default value behavior for dual-stack endpoint
+	// resolution.
+	DualStackEndpointStateUnset DualStackEndpointState = iota
+
+	// DualStackEndpointStateEnabled enable dual-stack endpoint resolution for endpoints.
+	DualStackEndpointStateEnabled
+
+	// DualStackEndpointStateDisabled disables dual-stack endpoint resolution for endpoints.
+	DualStackEndpointStateDisabled
+)
+
 // Options provide the configuration needed to direct how the
 // endpoints will be resolved.
 type Options struct {
@@ -21,7 +37,15 @@ type Options struct {
 	// be returned. This endpoint may not be valid. If StrictMatching is
 	// enabled only services that are known to support dualstack will return
 	// dualstack endpoints.
+	//
+	// Deprecated: This option will continue to function for S3 and S3 Control for backwards compatibility.
+	// UseDualStackEndpoint should be used to enable usage of a service's dual-stack endpoint for all service clients
+	// moving forward. For S3 and S3 Control, when UseDualStackEndpoint is set to a non-zero value it takes higher
+	// precedence then this option.
 	UseDualStack bool
+
+	// Sets the resolver to resolve a dual-stack endpoint for the service.
+	UseDualStackEndpoint DualStackEndpointState
 
 	// Enables strict matching of services and regions resolved endpoints.
 	// If the partition doesn't enumerate the exact service and region an
@@ -53,6 +77,18 @@ type Options struct {
 
 	// S3 Regional Endpoint flag helps with resolving the S3 endpoint
 	S3UsEast1RegionalEndpoint S3UsEast1RegionalEndpoint
+}
+
+func (o Options) isUseDualStackEndpoint(service string) (v bool) {
+	if o.UseDualStackEndpoint != DualStackEndpointStateUnset {
+		return o.UseDualStackEndpoint == DualStackEndpointStateEnabled
+	}
+	const s3 = "s3"
+	const s3Control = "s3-control"
+	if service == s3 || service == s3Control {
+		return o.UseDualStack
+	}
+	return false
 }
 
 // STSRegionalEndpoint is an enum for the states of the STS Regional Endpoint
@@ -166,8 +202,17 @@ func DisableSSLOption(o *Options) {
 
 // UseDualStackOption sets the UseDualStack option. Can be used as a functional
 // option when resolving endpoints.
+//
+// Deprecated: DualStackEndpointOption should be used to enable usage of a service's dual-stack endpoint.
+// When DualStackEndpointState is set to a non-zero value it takes higher precedence then this option.
 func UseDualStackOption(o *Options) {
 	o.UseDualStack = true
+}
+
+// DualStackEndpointOption sets the DualStackEndpointState option to enabled. Can be used as a functional
+// option when resolving endpoints.
+func DualStackEndpointOption(o *Options) {
+	o.UseDualStackEndpoint = DualStackEndpointStateEnabled
 }
 
 // StrictMatchingOption sets the StrictMatching option. Can be used as a functional

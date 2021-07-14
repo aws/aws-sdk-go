@@ -66,6 +66,9 @@ const (
 
 	// S3 ARN Region Usage
 	s3UseARNRegionKey = "s3_use_arn_region"
+
+	// Use DualStack Endpoint Resolution
+	useDualStackEndpoint = "use_dualstack_endpoint"
 )
 
 // sharedConfig represents the configuration fields of the SDK config files.
@@ -145,6 +148,12 @@ type sharedConfig struct {
 	//
 	// s3_use_arn_region=true
 	S3UseARNRegion bool
+
+	// Specifies that SDK clients must resolve a dual-stack endpoint for
+	// services.
+	//
+	// use_dualstack_endpoint=true
+	UseDualStackEndpoint endpoints.DualStackEndpointState
 }
 
 type sharedConfigFile struct {
@@ -334,6 +343,8 @@ func (cfg *sharedConfig) setFromIniFile(profile string, file sharedConfigFile, e
 		updateString(&cfg.SSORegion, section, ssoRegionKey)
 		updateString(&cfg.SSORoleName, section, ssoRoleNameKey)
 		updateString(&cfg.SSOStartURL, section, ssoStartURL)
+
+		updateUseDualStackEndpoint(&cfg.UseDualStackEndpoint, section, useDualStackEndpoint)
 	}
 
 	updateString(&cfg.CredentialProcess, section, credentialProcessKey)
@@ -642,4 +653,17 @@ func (e CredentialRequiresARNError) OrigErr() error {
 // Error satisfies the error interface.
 func (e CredentialRequiresARNError) Error() string {
 	return awserr.SprintError(e.Code(), e.Message(), "", nil)
+}
+
+// updateEndpointDiscoveryType will only update the dst with the value in the section, if
+// a valid key and corresponding EndpointDiscoveryType is found.
+func updateUseDualStackEndpoint(dst *endpoints.DualStackEndpointState, section ini.Section, key string) {
+	if !section.Has(key) {
+		return
+	}
+	if section.Bool(key) {
+		*dst = endpoints.DualStackEndpointStateEnabled
+	} else {
+		*dst = endpoints.DualStackEndpointStateDisabled
+	}
 }

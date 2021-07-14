@@ -224,6 +224,7 @@ func resolveRegionalEndpoint(r *request.Request, region string, endpointsID stri
 	return r.Config.EndpointResolver.EndpointFor(endpointsID, region, func(opts *endpoints.Options) {
 		opts.DisableSSL = aws.BoolValue(r.Config.DisableSSL)
 		opts.UseDualStack = aws.BoolValue(r.Config.UseDualStack)
+		opts.UseDualStackEndpoint = r.Config.UseDualStackEndpoint
 		opts.S3UsEast1RegionalEndpoint = endpoints.RegionalS3UsEast1Endpoint
 	})
 }
