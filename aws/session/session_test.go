@@ -699,6 +699,107 @@ func TestSession_ClientConfig_ResolveEndpoint(t *testing.T) {
 			},
 			ExpectEndpoint: "http://correct.example.aws",
 		},
+		"IMDS custom endpoint from profile": {
+			Service: ec2MetadataServiceID,
+			Options: Options{
+				SharedConfigState: SharedConfigEnable,
+				SharedConfigFiles: []string{testConfigFilename},
+				Profile:           "EC2MetadataServiceEndpoint",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://endpoint.localhost",
+		},
+		"IMDS custom endpoint from profile and env": {
+			Service: ec2MetadataServiceID,
+			Options: Options{
+				SharedConfigFiles: []string{testConfigFilename},
+				Profile:           "EC2MetadataServiceEndpoint",
+			},
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT": "http://endpoint-env.localhost",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://endpoint-env.localhost",
+		},
+		"IMDS IPv6 mode from profile": {
+			Service: ec2MetadataServiceID,
+			Options: Options{
+				SharedConfigState: SharedConfigEnable,
+				SharedConfigFiles: []string{testConfigFilename},
+				Profile:           "EC2MetadataServiceEndpointModeIPv6",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://[fd00:ec2::254]/latest",
+		},
+		"IMDS IPv4 mode from profile": {
+			Service: ec2MetadataServiceID,
+			Options: Options{
+				SharedConfigFiles: []string{testConfigFilename},
+				Profile:           "EC2MetadataServiceEndpointModeIPv4",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://169.254.169.254/latest",
+		},
+		"IMDS IPv6 mode in env": {
+			Service: ec2MetadataServiceID,
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv6",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://[fd00:ec2::254]/latest",
+		},
+		"IMDS IPv4 mode in env": {
+			Service: ec2MetadataServiceID,
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv4",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://169.254.169.254/latest",
+		},
+		"IMDS mode in env and profile": {
+			Service: ec2MetadataServiceID,
+			Options: Options{
+				SharedConfigFiles: []string{testConfigFilename},
+				Profile:           "EC2MetadataServiceEndpointModeIPv4",
+			},
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv6",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://[fd00:ec2::254]/latest",
+		},
+		"IMDS mode and endpoint profile": {
+			Service: ec2MetadataServiceID,
+			Options: Options{
+				SharedConfigState: SharedConfigEnable,
+				SharedConfigFiles: []string{testConfigFilename},
+				Profile:           "EC2MetadataServiceEndpointAndModeMixed",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://endpoint.localhost",
+		},
+		"IMDS mode session option and env": {
+			Service: ec2MetadataServiceID,
+			Options: Options{
+				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeStateIPv6,
+			},
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE": "IPv4",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://[fd00:ec2::254]/latest",
+		},
+		"IMDS endpoint session option and env": {
+			Service: ec2MetadataServiceID,
+			Options: Options{
+				EC2IMDSEndpoint: "http://endpoint.localhost",
+			},
+			Env: map[string]string{
+				"AWS_EC2_METADATA_SERVICE_ENDPOINT": "http://endpoint-env.localhost",
+			},
+			Region:         "ignored",
+			ExpectEndpoint: "http://endpoint.localhost",
+		},
 	}
 
 	for name, c := range cases {

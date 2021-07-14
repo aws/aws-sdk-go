@@ -68,11 +68,6 @@ func TestDecodeEndpoints_V3(t *testing.T) {
 	if a, e := s3Defaults.DualStackHostname, "{service}.dualstack.{region}.{dnsSuffix}"; a != e {
 		t.Errorf("expect s3 dualstack host pattern to be %q, got %q", e, a)
 	}
-
-	ec2metaEndpoint := p.Services["ec2metadata"].Endpoints["aws-global"]
-	if a, e := ec2metaEndpoint.Hostname, "169.254.169.254/latest"; a != e {
-		t.Errorf("expect ec2metadata host to be %q, got %q", e, a)
-	}
 }
 
 func TestDecodeEndpoints_NoPartitions(t *testing.T) {

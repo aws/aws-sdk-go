@@ -294,6 +294,47 @@ func TestLoadSharedConfig(t *testing.T) {
 				CredentialProcess: "/path/to/process",
 			},
 		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpoint",
+			Expected: sharedConfig{
+				Profile:         "EC2MetadataServiceEndpoint",
+				EC2IMDSEndpoint: "http://endpoint.localhost",
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpointModeIPv6",
+			Expected: sharedConfig{
+				Profile:             "EC2MetadataServiceEndpointModeIPv6",
+				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeStateIPv6,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpointModeIPv4",
+			Expected: sharedConfig{
+				Profile:             "EC2MetadataServiceEndpointModeIPv4",
+				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeStateIPv4,
+			},
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpointModeUnknown",
+			Expected: sharedConfig{
+				Profile: "EC2MetadataServiceEndpointModeUnknown",
+			},
+			Err: fmt.Errorf("failed to load ec2_metadata_service_endpoint_mode from shared config"),
+		},
+		{
+			Filenames: []string{testConfigFilename},
+			Profile:   "EC2MetadataServiceEndpointAndModeMixed",
+			Expected: sharedConfig{
+				Profile:             "EC2MetadataServiceEndpointAndModeMixed",
+				EC2IMDSEndpoint:     "http://endpoint.localhost",
+				EC2IMDSEndpointMode: endpoints.EC2IMDSEndpointModeStateIPv6,
+			},
+		},
 	}
 
 	for i, c := range cases {
