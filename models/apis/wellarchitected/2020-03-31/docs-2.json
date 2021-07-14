@@ -9,7 +9,7 @@
     "DeleteWorkload": "<p>Delete an existing workload.</p>",
     "DeleteWorkloadShare": "<p>Delete a workload share.</p>",
     "DisassociateLenses": "<p>Disassociate a lens from a workload.</p> <note> <p>The AWS Well-Architected Framework lens (<code>wellarchitected</code>) cannot be removed from a workload.</p> </note>",
-    "GetAnswer": "<p>Get lens review.</p>",
+    "GetAnswer": "<p>Get the answer to a specific question in a workload review.</p>",
     "GetLensReview": "<p>Get lens review.</p>",
     "GetLensReviewReport": "<p>Get lens review report.</p>",
     "GetLensVersionDifference": "<p>Get lens version differences.</p>",
@@ -26,7 +26,7 @@
     "ListWorkloadShares": "<p>List the workload shares associated with the workload.</p>",
     "ListWorkloads": "<p>List workloads. Paginated.</p>",
     "TagResource": "<p>Adds one or more tags to the specified resource.</p>",
-    "UntagResource": "<p>Deletes specified tags from a resource.</p>",
+    "UntagResource": "<p>Deletes specified tags from a resource.</p> <p>To specify multiple tags, use separate <b>tagKeys</b> parameters, for example:</p> <p> <code>DELETE /tags/WorkloadArn?tagKeys=key1&amp;tagKeys=key2</code> </p>",
     "UpdateAnswer": "<p>Update the answer to a specific question in a workload review.</p>",
     "UpdateLensReview": "<p>Update lens review.</p>",
     "UpdateShareInvitation": "<p>Update a workload invitation.</p>",
@@ -45,6 +45,14 @@
       "refs": {
         "GetAnswerOutput$Answer": null,
         "UpdateAnswerOutput$Answer": null
+      }
+    },
+    "AnswerReason": {
+      "base": null,
+      "refs": {
+        "Answer$Reason": "<p>The reason why the question is not applicable to your workload.</p>",
+        "AnswerSummary$Reason": "<p>The reason why a choice is non-applicable to a question in your workload.</p>",
+        "UpdateAnswerInput$Reason": "<p>The reason why a question is not applicable to your workload.</p>"
       }
     },
     "AnswerSummaries": {
@@ -92,6 +100,30 @@
         "Choices$member": null
       }
     },
+    "ChoiceAnswer": {
+      "base": "<p>A choice that has been answered on a question in your workload.</p>",
+      "refs": {
+        "ChoiceAnswers$member": null
+      }
+    },
+    "ChoiceAnswerSummaries": {
+      "base": null,
+      "refs": {
+        "AnswerSummary$ChoiceAnswerSummaries": "<p>A list of selected choices to a question in your workload.</p>"
+      }
+    },
+    "ChoiceAnswerSummary": {
+      "base": "<p>A choice summary that has been answered on a question in your workload.</p>",
+      "refs": {
+        "ChoiceAnswerSummaries$member": null
+      }
+    },
+    "ChoiceAnswers": {
+      "base": null,
+      "refs": {
+        "Answer$ChoiceAnswers": "<p>A list of selected choices to a question in your workload.</p>"
+      }
+    },
     "ChoiceDescription": {
       "base": "<p>The description of a choice.</p>",
       "refs": {
@@ -102,13 +134,51 @@
       "base": "<p>The ID of a choice.</p>",
       "refs": {
         "Choice$ChoiceId": null,
+        "ChoiceAnswer$ChoiceId": null,
+        "ChoiceAnswerSummary$ChoiceId": null,
+        "ChoiceUpdates$key": null,
         "SelectedChoices$member": null
+      }
+    },
+    "ChoiceNotes": {
+      "base": null,
+      "refs": {
+        "ChoiceAnswer$Notes": "<p>The notes associated with a choice.</p>",
+        "ChoiceUpdate$Notes": "<p>The notes associated with a choice.</p>"
+      }
+    },
+    "ChoiceReason": {
+      "base": null,
+      "refs": {
+        "ChoiceAnswer$Reason": "<p>The reason why a choice is non-applicable to a question in your workload.</p>",
+        "ChoiceAnswerSummary$Reason": "<p>The reason why a choice is non-applicable to a question in your workload.</p>",
+        "ChoiceUpdate$Reason": "<p>The reason why a choice is non-applicable to a question in your workload.</p>"
+      }
+    },
+    "ChoiceStatus": {
+      "base": null,
+      "refs": {
+        "ChoiceAnswer$Status": "<p>The status of a choice.</p>",
+        "ChoiceAnswerSummary$Status": "<p>The status of a choice.</p>",
+        "ChoiceUpdate$Status": "<p>The status of a choice.</p>"
       }
     },
     "ChoiceTitle": {
       "base": "<p>The title of a choice.</p>",
       "refs": {
         "Choice$Title": null
+      }
+    },
+    "ChoiceUpdate": {
+      "base": "<p>A list of choices to be updated.</p>",
+      "refs": {
+        "ChoiceUpdates$value": null
+      }
+    },
+    "ChoiceUpdates": {
+      "base": null,
+      "refs": {
+        "UpdateAnswerInput$ChoiceUpdates": "<p>A list of choices to update on a question in your workload. The String key corresponds to the choice ID to be updated.</p>"
       }
     },
     "Choices": {
@@ -288,7 +358,7 @@
       }
     },
     "ImprovementPlanUrl": {
-      "base": "<p>The improvement plan URL for a question.</p>",
+      "base": "<p>The improvement plan URL for a question.</p> <p>This value is only available if the question has been answered.</p>",
       "refs": {
         "Answer$ImprovementPlanUrl": null,
         "ImprovementSummary$ImprovementPlanUrl": null
@@ -908,7 +978,7 @@
     "TagKeyList": {
       "base": null,
       "refs": {
-        "UntagResourceInput$TagKeys": "<p>The keys of the tags to be removed.</p>"
+        "UntagResourceInput$TagKeys": "<p>A list of tag keys. Existing tags of the resource whose keys are members of this list are removed from the resource.</p>"
       }
     },
     "TagMap": {

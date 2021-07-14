@@ -528,10 +528,22 @@
         "HelpfulResourceUrl":{"shape":"HelpfulResourceUrl"},
         "Choices":{"shape":"Choices"},
         "SelectedChoices":{"shape":"SelectedChoices"},
+        "ChoiceAnswers":{"shape":"ChoiceAnswers"},
         "IsApplicable":{"shape":"IsApplicable"},
         "Risk":{"shape":"Risk"},
-        "Notes":{"shape":"Notes"}
+        "Notes":{"shape":"Notes"},
+        "Reason":{"shape":"AnswerReason"}
       }
+    },
+    "AnswerReason":{
+      "type":"string",
+      "enum":[
+        "OUT_OF_SCOPE",
+        "BUSINESS_PRIORITIES",
+        "ARCHITECTURE_CONSTRAINTS",
+        "OTHER",
+        "NONE"
+      ]
     },
     "AnswerSummaries":{
       "type":"list",
@@ -545,8 +557,10 @@
         "QuestionTitle":{"shape":"QuestionTitle"},
         "Choices":{"shape":"Choices"},
         "SelectedChoices":{"shape":"SelectedChoices"},
+        "ChoiceAnswerSummaries":{"shape":"ChoiceAnswerSummaries"},
         "IsApplicable":{"shape":"IsApplicable"},
-        "Risk":{"shape":"Risk"}
+        "Risk":{"shape":"Risk"},
+        "Reason":{"shape":"AnswerReason"}
       }
     },
     "AssociateLensesInput":{
@@ -581,6 +595,31 @@
         "Description":{"shape":"ChoiceDescription"}
       }
     },
+    "ChoiceAnswer":{
+      "type":"structure",
+      "members":{
+        "ChoiceId":{"shape":"ChoiceId"},
+        "Status":{"shape":"ChoiceStatus"},
+        "Reason":{"shape":"ChoiceReason"},
+        "Notes":{"shape":"ChoiceNotes"}
+      }
+    },
+    "ChoiceAnswerSummaries":{
+      "type":"list",
+      "member":{"shape":"ChoiceAnswerSummary"}
+    },
+    "ChoiceAnswerSummary":{
+      "type":"structure",
+      "members":{
+        "ChoiceId":{"shape":"ChoiceId"},
+        "Status":{"shape":"ChoiceStatus"},
+        "Reason":{"shape":"ChoiceReason"}
+      }
+    },
+    "ChoiceAnswers":{
+      "type":"list",
+      "member":{"shape":"ChoiceAnswer"}
+    },
     "ChoiceDescription":{
       "type":"string",
       "max":1024,
@@ -591,10 +630,46 @@
       "max":64,
       "min":1
     },
+    "ChoiceNotes":{
+      "type":"string",
+      "max":250
+    },
+    "ChoiceReason":{
+      "type":"string",
+      "enum":[
+        "OUT_OF_SCOPE",
+        "BUSINESS_PRIORITIES",
+        "ARCHITECTURE_CONSTRAINTS",
+        "OTHER",
+        "NONE"
+      ]
+    },
+    "ChoiceStatus":{
+      "type":"string",
+      "enum":[
+        "SELECTED",
+        "NOT_APPLICABLE",
+        "UNSELECTED"
+      ]
+    },
     "ChoiceTitle":{
       "type":"string",
       "max":512,
       "min":1
+    },
+    "ChoiceUpdate":{
+      "type":"structure",
+      "required":["Status"],
+      "members":{
+        "Status":{"shape":"ChoiceStatus"},
+        "Reason":{"shape":"ChoiceReason"},
+        "Notes":{"shape":"ChoiceNotes"}
+      }
+    },
+    "ChoiceUpdates":{
+      "type":"map",
+      "key":{"shape":"ChoiceId"},
+      "value":{"shape":"ChoiceUpdate"}
     },
     "Choices":{
       "type":"list",
@@ -1748,8 +1823,10 @@
           "locationName":"QuestionId"
         },
         "SelectedChoices":{"shape":"SelectedChoices"},
+        "ChoiceUpdates":{"shape":"ChoiceUpdates"},
         "Notes":{"shape":"Notes"},
-        "IsApplicable":{"shape":"IsApplicable"}
+        "IsApplicable":{"shape":"IsApplicable"},
+        "Reason":{"shape":"AnswerReason"}
       }
     },
     "UpdateAnswerOutput":{

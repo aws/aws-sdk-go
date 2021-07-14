@@ -356,6 +356,12 @@
       "refs": {
       }
     },
+    "BatchSize": {
+      "base": null,
+      "refs": {
+        "EventBatchingCondition$BatchSize": "<p>Number of events that must be received from Amazon EventBridge before EventBridge event trigger fires.</p>"
+      }
+    },
     "BatchStopJobRunError": {
       "base": "<p>Records an error that occurred when attempting to stop a specified job run.</p>",
       "refs": {
@@ -428,6 +434,12 @@
     "BatchUpdatePartitionResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "BatchWindow": {
+      "base": null,
+      "refs": {
+        "EventBatchingCondition$BatchWindow": "<p>Window of time in seconds after which EventBridge event trigger fires. Window starts when first event is received.</p>"
       }
     },
     "BinaryColumnStatisticsData": {
@@ -1742,7 +1754,7 @@
       }
     },
     "Edge": {
-      "base": "<p>An edge represents a directed connection between two Glue components that are part of the workflow the edge belongs to.</p>",
+      "base": "<p>An edge represents a directed connection between two components on a workflow graph.</p>",
       "refs": {
         "EdgeList$member": null
       }
@@ -1826,6 +1838,14 @@
       "refs": {
         "GetMLTransformResponse$EvaluationMetrics": "<p>The latest evaluation metrics.</p>",
         "MLTransform$EvaluationMetrics": "<p>An <code>EvaluationMetrics</code> object. Evaluation metrics provide an estimate of the quality of your machine learning transform.</p>"
+      }
+    },
+    "EventBatchingCondition": {
+      "base": "<p>Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires.</p>",
+      "refs": {
+        "CreateTriggerRequest$EventBatchingCondition": null,
+        "Trigger$EventBatchingCondition": "<p>Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires.</p>",
+        "TriggerUpdate$EventBatchingCondition": "<p>Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires.</p>"
       }
     },
     "ExecutionProperty": {
@@ -3538,7 +3558,7 @@
         "UserDefinedFunctionInput$FunctionName": "<p>The name of the function.</p>",
         "UserDefinedFunctionInput$ClassName": "<p>The Java class that contains the function code.</p>",
         "UserDefinedFunctionInput$OwnerName": "<p>The owner of the function.</p>",
-        "Workflow$Name": "<p>The name of the workflow representing the flow.</p>",
+        "Workflow$Name": "<p>The name of the workflow.</p>",
         "WorkflowNames$member": null,
         "WorkflowRun$Name": "<p>Name of the workflow that was run.</p>",
         "XMLClassifier$Name": "<p>The name of the classifier.</p>"
@@ -3558,7 +3578,7 @@
       }
     },
     "Node": {
-      "base": "<p>A node represents an Glue component such as a trigger, or job, etc., that is part of a workflow.</p>",
+      "base": "<p>A node represents an Glue component (trigger, crawler, or job) on a workflow graph.</p>",
       "refs": {
         "NodeList$member": null
       }
@@ -3693,6 +3713,8 @@
         "MLTransform$MaxRetries": "<p>The maximum number of times to retry after an <code>MLTaskRun</code> of the machine learning transform fails.</p>",
         "S3Target$SampleSize": "<p>Sets the number of files in each leaf folder to be crawled when crawling sample files in a dataset. If not set, all the files are crawled. A valid value is an integer between 1 and 249.</p>",
         "StartJobRunRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when a job runs.</p> <p>The maximum number of workers you can define are 299 for <code>G.1X</code>, and 149 for <code>G.2X</code>. </p>",
+        "StartingEventBatchCondition$BatchSize": "<p>Number of events in the batch.</p>",
+        "StartingEventBatchCondition$BatchWindow": "<p>Duration of the batch window in seconds.</p>",
         "UpdateMLTransformRequest$NumberOfWorkers": "<p>The number of workers of a defined <code>workerType</code> that are allocated when this task runs.</p>",
         "UpdateMLTransformRequest$MaxRetries": "<p>The maximum number of times to retry a task for this transform after a task run fails.</p>",
         "UpdateWorkflowRequest$MaxConcurrentRuns": "<p>You can use this parameter to prevent unwanted multiple updates to data, to control costs, or in some cases, to prevent exceeding the maximum number of concurrent runs of any of the component jobs. If you leave this parameter blank, there is no limit to the number of concurrent workflow runs.</p>",
@@ -4667,6 +4689,12 @@
       "refs": {
       }
     },
+    "StartingEventBatchCondition": {
+      "base": "<p>The batch condition that started the workflow run. Either the number of events in the batch size arrived, in which case the BatchSize member is non-zero, or the batch window expired, in which case the BatchWindow member is non-zero.</p>",
+      "refs": {
+        "WorkflowRun$StartingEventBatchCondition": "<p>The batch condition that started the workflow run.</p>"
+      }
+    },
     "StopCrawlerRequest": {
       "base": null,
       "refs": {
@@ -5547,7 +5575,7 @@
       }
     },
     "Workflow": {
-      "base": "<p>A workflow represents a flow in which Glue components should be run to complete a logical task.</p>",
+      "base": "<p>A workflow is a collection of multiple dependent Glue jobs and crawlers that are run to complete a complex ETL task. A workflow manages the execution and monitoring of all its jobs and crawlers.</p>",
       "refs": {
         "GetWorkflowResponse$Workflow": "<p>The resource metadata for the workflow.</p>",
         "Workflows$member": null
@@ -5583,7 +5611,7 @@
         "GetWorkflowRunPropertiesResponse$RunProperties": "<p>The workflow run properties which were set during the specified run.</p>",
         "PutWorkflowRunPropertiesRequest$RunProperties": "<p>The properties to put for the specified run.</p>",
         "UpdateWorkflowRequest$DefaultRunProperties": "<p>A collection of properties to be used as part of each execution of the workflow.</p>",
-        "Workflow$DefaultRunProperties": "<p>A collection of properties to be used as part of each execution of the workflow.</p>",
+        "Workflow$DefaultRunProperties": "<p>A collection of properties to be used as part of each execution of the workflow. The run properties are made available to each job in the workflow. A job can modify the properties for the next jobs in the flow.</p>",
         "WorkflowRun$WorkflowRunProperties": "<p>The workflow run properties which were set during the run.</p>"
       }
     },

@@ -87,6 +87,24 @@ type HealthLakeAPI interface {
 	ListFHIRDatastoresPages(*healthlake.ListFHIRDatastoresInput, func(*healthlake.ListFHIRDatastoresOutput, bool) bool) error
 	ListFHIRDatastoresPagesWithContext(aws.Context, *healthlake.ListFHIRDatastoresInput, func(*healthlake.ListFHIRDatastoresOutput, bool) bool, ...request.Option) error
 
+	ListFHIRExportJobs(*healthlake.ListFHIRExportJobsInput) (*healthlake.ListFHIRExportJobsOutput, error)
+	ListFHIRExportJobsWithContext(aws.Context, *healthlake.ListFHIRExportJobsInput, ...request.Option) (*healthlake.ListFHIRExportJobsOutput, error)
+	ListFHIRExportJobsRequest(*healthlake.ListFHIRExportJobsInput) (*request.Request, *healthlake.ListFHIRExportJobsOutput)
+
+	ListFHIRExportJobsPages(*healthlake.ListFHIRExportJobsInput, func(*healthlake.ListFHIRExportJobsOutput, bool) bool) error
+	ListFHIRExportJobsPagesWithContext(aws.Context, *healthlake.ListFHIRExportJobsInput, func(*healthlake.ListFHIRExportJobsOutput, bool) bool, ...request.Option) error
+
+	ListFHIRImportJobs(*healthlake.ListFHIRImportJobsInput) (*healthlake.ListFHIRImportJobsOutput, error)
+	ListFHIRImportJobsWithContext(aws.Context, *healthlake.ListFHIRImportJobsInput, ...request.Option) (*healthlake.ListFHIRImportJobsOutput, error)
+	ListFHIRImportJobsRequest(*healthlake.ListFHIRImportJobsInput) (*request.Request, *healthlake.ListFHIRImportJobsOutput)
+
+	ListFHIRImportJobsPages(*healthlake.ListFHIRImportJobsInput, func(*healthlake.ListFHIRImportJobsOutput, bool) bool) error
+	ListFHIRImportJobsPagesWithContext(aws.Context, *healthlake.ListFHIRImportJobsInput, func(*healthlake.ListFHIRImportJobsOutput, bool) bool, ...request.Option) error
+
+	ListTagsForResource(*healthlake.ListTagsForResourceInput) (*healthlake.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *healthlake.ListTagsForResourceInput, ...request.Option) (*healthlake.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*healthlake.ListTagsForResourceInput) (*request.Request, *healthlake.ListTagsForResourceOutput)
+
 	StartFHIRExportJob(*healthlake.StartFHIRExportJobInput) (*healthlake.StartFHIRExportJobOutput, error)
 	StartFHIRExportJobWithContext(aws.Context, *healthlake.StartFHIRExportJobInput, ...request.Option) (*healthlake.StartFHIRExportJobOutput, error)
 	StartFHIRExportJobRequest(*healthlake.StartFHIRExportJobInput) (*request.Request, *healthlake.StartFHIRExportJobOutput)
@@ -94,6 +112,14 @@ type HealthLakeAPI interface {
 	StartFHIRImportJob(*healthlake.StartFHIRImportJobInput) (*healthlake.StartFHIRImportJobOutput, error)
 	StartFHIRImportJobWithContext(aws.Context, *healthlake.StartFHIRImportJobInput, ...request.Option) (*healthlake.StartFHIRImportJobOutput, error)
 	StartFHIRImportJobRequest(*healthlake.StartFHIRImportJobInput) (*request.Request, *healthlake.StartFHIRImportJobOutput)
+
+	TagResource(*healthlake.TagResourceInput) (*healthlake.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *healthlake.TagResourceInput, ...request.Option) (*healthlake.TagResourceOutput, error)
+	TagResourceRequest(*healthlake.TagResourceInput) (*request.Request, *healthlake.TagResourceOutput)
+
+	UntagResource(*healthlake.UntagResourceInput) (*healthlake.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *healthlake.UntagResourceInput, ...request.Option) (*healthlake.UntagResourceOutput, error)
+	UntagResourceRequest(*healthlake.UntagResourceInput) (*request.Request, *healthlake.UntagResourceOutput)
 }
 
 var _ HealthLakeAPI = (*healthlake.HealthLake)(nil)

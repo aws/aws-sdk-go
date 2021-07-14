@@ -742,7 +742,7 @@ func (c *WellArchitected) GetAnswerRequest(input *GetAnswerInput) (req *request.
 
 // GetAnswer API operation for AWS Well-Architected Tool.
 //
-// Get lens review.
+// Get the answer to a specific question in a workload review.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2785,6 +2785,10 @@ func (c *WellArchitected) UntagResourceRequest(input *UntagResourceInput) (req *
 //
 // Deletes specified tags from a resource.
 //
+// To specify multiple tags, use separate tagKeys parameters, for example:
+//
+// DELETE /tags/WorkloadArn?tagKeys=key1&tagKeys=key2
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3447,6 +3451,9 @@ func (s *AccessDeniedException) RequestID() string {
 type Answer struct {
 	_ struct{} `type:"structure"`
 
+	// A list of selected choices to a question in your workload.
+	ChoiceAnswers []*ChoiceAnswer `type:"list"`
+
 	// List of choices available for a question.
 	Choices []*Choice `type:"list"`
 
@@ -3454,6 +3461,8 @@ type Answer struct {
 	HelpfulResourceUrl *string `min:"1" type:"string"`
 
 	// The improvement plan URL for a question.
+	//
+	// This value is only available if the question has been answered.
 	ImprovementPlanUrl *string `min:"1" type:"string"`
 
 	// Defines whether this question is applicable to a lens review.
@@ -3476,6 +3485,9 @@ type Answer struct {
 	// The title of the question.
 	QuestionTitle *string `min:"1" type:"string"`
 
+	// The reason why the question is not applicable to your workload.
+	Reason *string `type:"string" enum:"AnswerReason"`
+
 	// The risk for a given workload, lens review, pillar, or question.
 	Risk *string `type:"string" enum:"Risk"`
 
@@ -3493,6 +3505,12 @@ func (s Answer) String() string {
 // GoString returns the string representation
 func (s Answer) GoString() string {
 	return s.String()
+}
+
+// SetChoiceAnswers sets the ChoiceAnswers field's value.
+func (s *Answer) SetChoiceAnswers(v []*ChoiceAnswer) *Answer {
+	s.ChoiceAnswers = v
+	return s
 }
 
 // SetChoices sets the Choices field's value.
@@ -3549,6 +3567,12 @@ func (s *Answer) SetQuestionTitle(v string) *Answer {
 	return s
 }
 
+// SetReason sets the Reason field's value.
+func (s *Answer) SetReason(v string) *Answer {
+	s.Reason = &v
+	return s
+}
+
 // SetRisk sets the Risk field's value.
 func (s *Answer) SetRisk(v string) *Answer {
 	s.Risk = &v
@@ -3564,6 +3588,9 @@ func (s *Answer) SetSelectedChoices(v []*string) *Answer {
 // An answer summary of a lens review in a workload.
 type AnswerSummary struct {
 	_ struct{} `type:"structure"`
+
+	// A list of selected choices to a question in your workload.
+	ChoiceAnswerSummaries []*ChoiceAnswerSummary `type:"list"`
 
 	// List of choices available for a question.
 	Choices []*Choice `type:"list"`
@@ -3582,6 +3609,9 @@ type AnswerSummary struct {
 	// The title of the question.
 	QuestionTitle *string `min:"1" type:"string"`
 
+	// The reason why a choice is non-applicable to a question in your workload.
+	Reason *string `type:"string" enum:"AnswerReason"`
+
 	// The risk for a given workload, lens review, pillar, or question.
 	Risk *string `type:"string" enum:"Risk"`
 
@@ -3599,6 +3629,12 @@ func (s AnswerSummary) String() string {
 // GoString returns the string representation
 func (s AnswerSummary) GoString() string {
 	return s.String()
+}
+
+// SetChoiceAnswerSummaries sets the ChoiceAnswerSummaries field's value.
+func (s *AnswerSummary) SetChoiceAnswerSummaries(v []*ChoiceAnswerSummary) *AnswerSummary {
+	s.ChoiceAnswerSummaries = v
+	return s
 }
 
 // SetChoices sets the Choices field's value.
@@ -3628,6 +3664,12 @@ func (s *AnswerSummary) SetQuestionId(v string) *AnswerSummary {
 // SetQuestionTitle sets the QuestionTitle field's value.
 func (s *AnswerSummary) SetQuestionTitle(v string) *AnswerSummary {
 	s.QuestionTitle = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *AnswerSummary) SetReason(v string) *AnswerSummary {
+	s.Reason = &v
 	return s
 }
 
@@ -3757,6 +3799,156 @@ func (s *Choice) SetDescription(v string) *Choice {
 // SetTitle sets the Title field's value.
 func (s *Choice) SetTitle(v string) *Choice {
 	s.Title = &v
+	return s
+}
+
+// A choice that has been answered on a question in your workload.
+type ChoiceAnswer struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a choice.
+	ChoiceId *string `min:"1" type:"string"`
+
+	// The notes associated with a choice.
+	Notes *string `type:"string"`
+
+	// The reason why a choice is non-applicable to a question in your workload.
+	Reason *string `type:"string" enum:"ChoiceReason"`
+
+	// The status of a choice.
+	Status *string `type:"string" enum:"ChoiceStatus"`
+}
+
+// String returns the string representation
+func (s ChoiceAnswer) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChoiceAnswer) GoString() string {
+	return s.String()
+}
+
+// SetChoiceId sets the ChoiceId field's value.
+func (s *ChoiceAnswer) SetChoiceId(v string) *ChoiceAnswer {
+	s.ChoiceId = &v
+	return s
+}
+
+// SetNotes sets the Notes field's value.
+func (s *ChoiceAnswer) SetNotes(v string) *ChoiceAnswer {
+	s.Notes = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *ChoiceAnswer) SetReason(v string) *ChoiceAnswer {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChoiceAnswer) SetStatus(v string) *ChoiceAnswer {
+	s.Status = &v
+	return s
+}
+
+// A choice summary that has been answered on a question in your workload.
+type ChoiceAnswerSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of a choice.
+	ChoiceId *string `min:"1" type:"string"`
+
+	// The reason why a choice is non-applicable to a question in your workload.
+	Reason *string `type:"string" enum:"ChoiceReason"`
+
+	// The status of a choice.
+	Status *string `type:"string" enum:"ChoiceStatus"`
+}
+
+// String returns the string representation
+func (s ChoiceAnswerSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChoiceAnswerSummary) GoString() string {
+	return s.String()
+}
+
+// SetChoiceId sets the ChoiceId field's value.
+func (s *ChoiceAnswerSummary) SetChoiceId(v string) *ChoiceAnswerSummary {
+	s.ChoiceId = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *ChoiceAnswerSummary) SetReason(v string) *ChoiceAnswerSummary {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChoiceAnswerSummary) SetStatus(v string) *ChoiceAnswerSummary {
+	s.Status = &v
+	return s
+}
+
+// A list of choices to be updated.
+type ChoiceUpdate struct {
+	_ struct{} `type:"structure"`
+
+	// The notes associated with a choice.
+	Notes *string `type:"string"`
+
+	// The reason why a choice is non-applicable to a question in your workload.
+	Reason *string `type:"string" enum:"ChoiceReason"`
+
+	// The status of a choice.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"ChoiceStatus"`
+}
+
+// String returns the string representation
+func (s ChoiceUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChoiceUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChoiceUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChoiceUpdate"}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNotes sets the Notes field's value.
+func (s *ChoiceUpdate) SetNotes(v string) *ChoiceUpdate {
+	s.Notes = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *ChoiceUpdate) SetReason(v string) *ChoiceUpdate {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ChoiceUpdate) SetStatus(v string) *ChoiceUpdate {
+	s.Status = &v
 	return s
 }
 
@@ -5269,6 +5461,8 @@ type ImprovementSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The improvement plan URL for a question.
+	//
+	// This value is only available if the question has been answered.
 	ImprovementPlanUrl *string `min:"1" type:"string"`
 
 	// The ID used to identify a pillar, for example, security.
@@ -7476,7 +7670,8 @@ func (s *ThrottlingException) RequestID() string {
 type UntagResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The keys of the tags to be removed.
+	// A list of tag keys. Existing tags of the resource whose keys are members
+	// of this list are removed from the resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `location:"querystring" locationName:"tagKeys" min:"1" type:"list" required:"true"`
@@ -7549,6 +7744,10 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateAnswerInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of choices to update on a question in your workload. The String key
+	// corresponds to the choice ID to be updated.
+	ChoiceUpdates map[string]*ChoiceUpdate `type:"map"`
+
 	// Defines whether this question is applicable to a lens review.
 	IsApplicable *bool `type:"boolean"`
 
@@ -7566,6 +7765,9 @@ type UpdateAnswerInput struct {
 	//
 	// QuestionId is a required field
 	QuestionId *string `location:"uri" locationName:"QuestionId" min:"1" type:"string" required:"true"`
+
+	// The reason why a question is not applicable to your workload.
+	Reason *string `type:"string" enum:"AnswerReason"`
 
 	// List of selected choice IDs in a question answer.
 	//
@@ -7609,11 +7811,27 @@ func (s *UpdateAnswerInput) Validate() error {
 	if s.WorkloadId != nil && len(*s.WorkloadId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("WorkloadId", 1))
 	}
+	if s.ChoiceUpdates != nil {
+		for i, v := range s.ChoiceUpdates {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ChoiceUpdates", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChoiceUpdates sets the ChoiceUpdates field's value.
+func (s *UpdateAnswerInput) SetChoiceUpdates(v map[string]*ChoiceUpdate) *UpdateAnswerInput {
+	s.ChoiceUpdates = v
+	return s
 }
 
 // SetIsApplicable sets the IsApplicable field's value.
@@ -7637,6 +7855,12 @@ func (s *UpdateAnswerInput) SetNotes(v string) *UpdateAnswerInput {
 // SetQuestionId sets the QuestionId field's value.
 func (s *UpdateAnswerInput) SetQuestionId(v string) *UpdateAnswerInput {
 	s.QuestionId = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *UpdateAnswerInput) SetReason(v string) *UpdateAnswerInput {
+	s.Reason = &v
 	return s
 }
 
@@ -9006,6 +9230,82 @@ func (s *WorkloadSummary) SetWorkloadId(v string) *WorkloadSummary {
 func (s *WorkloadSummary) SetWorkloadName(v string) *WorkloadSummary {
 	s.WorkloadName = &v
 	return s
+}
+
+const (
+	// AnswerReasonOutOfScope is a AnswerReason enum value
+	AnswerReasonOutOfScope = "OUT_OF_SCOPE"
+
+	// AnswerReasonBusinessPriorities is a AnswerReason enum value
+	AnswerReasonBusinessPriorities = "BUSINESS_PRIORITIES"
+
+	// AnswerReasonArchitectureConstraints is a AnswerReason enum value
+	AnswerReasonArchitectureConstraints = "ARCHITECTURE_CONSTRAINTS"
+
+	// AnswerReasonOther is a AnswerReason enum value
+	AnswerReasonOther = "OTHER"
+
+	// AnswerReasonNone is a AnswerReason enum value
+	AnswerReasonNone = "NONE"
+)
+
+// AnswerReason_Values returns all elements of the AnswerReason enum
+func AnswerReason_Values() []string {
+	return []string{
+		AnswerReasonOutOfScope,
+		AnswerReasonBusinessPriorities,
+		AnswerReasonArchitectureConstraints,
+		AnswerReasonOther,
+		AnswerReasonNone,
+	}
+}
+
+const (
+	// ChoiceReasonOutOfScope is a ChoiceReason enum value
+	ChoiceReasonOutOfScope = "OUT_OF_SCOPE"
+
+	// ChoiceReasonBusinessPriorities is a ChoiceReason enum value
+	ChoiceReasonBusinessPriorities = "BUSINESS_PRIORITIES"
+
+	// ChoiceReasonArchitectureConstraints is a ChoiceReason enum value
+	ChoiceReasonArchitectureConstraints = "ARCHITECTURE_CONSTRAINTS"
+
+	// ChoiceReasonOther is a ChoiceReason enum value
+	ChoiceReasonOther = "OTHER"
+
+	// ChoiceReasonNone is a ChoiceReason enum value
+	ChoiceReasonNone = "NONE"
+)
+
+// ChoiceReason_Values returns all elements of the ChoiceReason enum
+func ChoiceReason_Values() []string {
+	return []string{
+		ChoiceReasonOutOfScope,
+		ChoiceReasonBusinessPriorities,
+		ChoiceReasonArchitectureConstraints,
+		ChoiceReasonOther,
+		ChoiceReasonNone,
+	}
+}
+
+const (
+	// ChoiceStatusSelected is a ChoiceStatus enum value
+	ChoiceStatusSelected = "SELECTED"
+
+	// ChoiceStatusNotApplicable is a ChoiceStatus enum value
+	ChoiceStatusNotApplicable = "NOT_APPLICABLE"
+
+	// ChoiceStatusUnselected is a ChoiceStatus enum value
+	ChoiceStatusUnselected = "UNSELECTED"
+)
+
+// ChoiceStatus_Values returns all elements of the ChoiceStatus enum
+func ChoiceStatus_Values() []string {
+	return []string{
+		ChoiceStatusSelected,
+		ChoiceStatusNotApplicable,
+		ChoiceStatusUnselected,
+	}
 }
 
 const (

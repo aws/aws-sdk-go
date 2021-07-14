@@ -74,8 +74,8 @@ const (
 	// ErrCodeResourceInUseException for service response error code
 	// "ResourceInUseException".
 	//
-	// The certificate is in use by another AWS service in the caller's account.
-	// Remove the association and try again.
+	// The certificate is in use by another Amazon Web Services service in the caller's
+	// account. Remove the association and try again.
 	ErrCodeResourceInUseException = "ResourceInUseException"
 
 	// ErrCodeResourceNotFoundException for service response error code
@@ -106,7 +106,8 @@ const (
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The supplied input failed to satisfy constraints of an AWS service.
+	// The supplied input failed to satisfy constraints of an Amazon Web Services
+	// service.
 	ErrCodeValidationException = "ValidationException"
 )
 

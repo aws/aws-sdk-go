@@ -2690,6 +2690,11 @@
         "MissingWorkflows":{"shape":"WorkflowNames"}
       }
     },
+    "BatchSize":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
     "BatchStopJobRunError":{
       "type":"structure",
       "members":{
@@ -2784,6 +2789,12 @@
       "members":{
         "Errors":{"shape":"BatchUpdatePartitionFailureList"}
       }
+    },
+    "BatchWindow":{
+      "type":"integer",
+      "box":true,
+      "max":900,
+      "min":1
     },
     "BinaryColumnStatisticsData":{
       "type":"structure",
@@ -3815,7 +3826,8 @@
         "Actions":{"shape":"ActionList"},
         "Description":{"shape":"DescriptionString"},
         "StartOnCreation":{"shape":"BooleanValue"},
-        "Tags":{"shape":"TagsMap"}
+        "Tags":{"shape":"TagsMap"},
+        "EventBatchingCondition":{"shape":"EventBatchingCondition"}
       }
     },
     "CreateTriggerResponse":{
@@ -4514,6 +4526,14 @@
       "members":{
         "TransformType":{"shape":"TransformType"},
         "FindMatchesMetrics":{"shape":"FindMatchesMetrics"}
+      }
+    },
+    "EventBatchingCondition":{
+      "type":"structure",
+      "required":["BatchSize"],
+      "members":{
+        "BatchSize":{"shape":"BatchSize"},
+        "BatchWindow":{"shape":"BatchWindow"}
       }
     },
     "ExecutionProperty":{
@@ -7246,6 +7266,13 @@
         "RunId":{"shape":"IdString"}
       }
     },
+    "StartingEventBatchCondition":{
+      "type":"structure",
+      "members":{
+        "BatchSize":{"shape":"NullableInteger"},
+        "BatchWindow":{"shape":"NullableInteger"}
+      }
+    },
     "StopCrawlerRequest":{
       "type":"structure",
       "required":["Name"],
@@ -7649,7 +7676,8 @@
         "Description":{"shape":"DescriptionString"},
         "Schedule":{"shape":"GenericString"},
         "Actions":{"shape":"ActionList"},
-        "Predicate":{"shape":"Predicate"}
+        "Predicate":{"shape":"Predicate"},
+        "EventBatchingCondition":{"shape":"EventBatchingCondition"}
       }
     },
     "TriggerList":{
@@ -7684,7 +7712,8 @@
       "enum":[
         "SCHEDULED",
         "CONDITIONAL",
-        "ON_DEMAND"
+        "ON_DEMAND",
+        "EVENT"
       ]
     },
     "TriggerUpdate":{
@@ -7694,7 +7723,8 @@
         "Description":{"shape":"DescriptionString"},
         "Schedule":{"shape":"GenericString"},
         "Actions":{"shape":"ActionList"},
-        "Predicate":{"shape":"Predicate"}
+        "Predicate":{"shape":"Predicate"},
+        "EventBatchingCondition":{"shape":"EventBatchingCondition"}
       }
     },
     "TypeString":{
@@ -8210,7 +8240,8 @@
         "Status":{"shape":"WorkflowRunStatus"},
         "ErrorMessage":{"shape":"ErrorString"},
         "Statistics":{"shape":"WorkflowRunStatistics"},
-        "Graph":{"shape":"WorkflowGraph"}
+        "Graph":{"shape":"WorkflowGraph"},
+        "StartingEventBatchCondition":{"shape":"StartingEventBatchCondition"}
       }
     },
     "WorkflowRunProperties":{

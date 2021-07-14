@@ -155,6 +155,37 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "CreateBucket":{
+      "name":"CreateBucket",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateBucketRequest"},
+      "output":{"shape":"CreateBucketResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "CreateBucketAccessKey":{
+      "name":"CreateBucketAccessKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateBucketAccessKeyRequest"},
+      "output":{"shape":"CreateBucketAccessKeyResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "CreateCertificate":{
       "name":"CreateCertificate",
       "http":{
@@ -554,6 +585,38 @@
         {"shape":"NotFoundException"},
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "DeleteBucket":{
+      "name":"DeleteBucket",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBucketRequest"},
+      "output":{"shape":"DeleteBucketResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "DeleteBucketAccessKey":{
+      "name":"DeleteBucketAccessKey",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBucketAccessKeyRequest"},
+      "output":{"shape":"DeleteBucketAccessKeyResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -1063,6 +1126,69 @@
         {"shape":"OperationFailureException"},
         {"shape":"AccessDeniedException"},
         {"shape":"AccountSetupInProgressException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetBucketAccessKeys":{
+      "name":"GetBucketAccessKeys",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBucketAccessKeysRequest"},
+      "output":{"shape":"GetBucketAccessKeysResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetBucketBundles":{
+      "name":"GetBucketBundles",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBucketBundlesRequest"},
+      "output":{"shape":"GetBucketBundlesResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetBucketMetricData":{
+      "name":"GetBucketMetricData",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBucketMetricDataRequest"},
+      "output":{"shape":"GetBucketMetricDataResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "GetBuckets":{
+      "name":"GetBuckets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBucketsRequest"},
+      "output":{"shape":"GetBucketsResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
         {"shape":"UnauthenticatedException"}
       ]
     },
@@ -2244,6 +2370,22 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "SetResourceAccessForBucket":{
+      "name":"SetResourceAccessForBucket",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SetResourceAccessForBucketRequest"},
+      "output":{"shape":"SetResourceAccessForBucketResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "StartInstance":{
       "name":"StartInstance",
       "http":{
@@ -2387,6 +2529,38 @@
         {"shape":"UnauthenticatedException"}
       ]
     },
+    "UpdateBucket":{
+      "name":"UpdateBucket",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateBucketRequest"},
+      "output":{"shape":"UpdateBucketResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
+    "UpdateBucketBundle":{
+      "name":"UpdateBucketBundle",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateBucketBundleRequest"},
+      "output":{"shape":"UpdateBucketBundleResult"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"NotFoundException"},
+        {"shape":"ServiceException"},
+        {"shape":"UnauthenticatedException"}
+      ]
+    },
     "UpdateContainerService":{
       "name":"UpdateContainerService",
       "http":{
@@ -2526,6 +2700,37 @@
       "enum":[
         "inbound",
         "outbound"
+      ]
+    },
+    "AccessKey":{
+      "type":"structure",
+      "members":{
+        "accessKeyId":{"shape":"IAMAccessKeyId"},
+        "secretAccessKey":{"shape":"NonEmptyString"},
+        "status":{"shape":"StatusType"},
+        "createdAt":{"shape":"IsoDate"}
+      }
+    },
+    "AccessKeyList":{
+      "type":"list",
+      "member":{"shape":"AccessKey"}
+    },
+    "AccessReceiverList":{
+      "type":"list",
+      "member":{"shape":"ResourceReceivingAccess"}
+    },
+    "AccessRules":{
+      "type":"structure",
+      "members":{
+        "getObject":{"shape":"AccessType"},
+        "allowPublicOverrides":{"shape":"boolean"}
+      }
+    },
+    "AccessType":{
+      "type":"string",
+      "enum":[
+        "public",
+        "private"
       ]
     },
     "AccountSetupInProgressException":{
@@ -2798,6 +3003,65 @@
         "os",
         "app"
       ]
+    },
+    "Bucket":{
+      "type":"structure",
+      "members":{
+        "resourceType":{"shape":"NonEmptyString"},
+        "accessRules":{"shape":"AccessRules"},
+        "arn":{"shape":"NonEmptyString"},
+        "bundleId":{"shape":"NonEmptyString"},
+        "createdAt":{"shape":"IsoDate"},
+        "url":{"shape":"NonEmptyString"},
+        "location":{"shape":"ResourceLocation"},
+        "name":{"shape":"BucketName"},
+        "supportCode":{"shape":"NonEmptyString"},
+        "tags":{"shape":"TagList"},
+        "objectVersioning":{"shape":"NonEmptyString"},
+        "ableToUpdateBundle":{"shape":"boolean"},
+        "readonlyAccessAccounts":{"shape":"PartnerIdList"},
+        "resourcesReceivingAccess":{"shape":"AccessReceiverList"},
+        "state":{"shape":"BucketState"}
+      }
+    },
+    "BucketBundle":{
+      "type":"structure",
+      "members":{
+        "bundleId":{"shape":"NonEmptyString"},
+        "name":{"shape":"NonEmptyString"},
+        "price":{"shape":"float"},
+        "storagePerMonthInGb":{"shape":"integer"},
+        "transferPerMonthInGb":{"shape":"integer"},
+        "isActive":{"shape":"boolean"}
+      }
+    },
+    "BucketBundleList":{
+      "type":"list",
+      "member":{"shape":"BucketBundle"}
+    },
+    "BucketList":{
+      "type":"list",
+      "member":{"shape":"Bucket"}
+    },
+    "BucketMetricName":{
+      "type":"string",
+      "enum":[
+        "BucketSizeBytes",
+        "NumberOfObjects"
+      ]
+    },
+    "BucketName":{
+      "type":"string",
+      "max":54,
+      "min":3,
+      "pattern":"^[a-z0-9][a-z0-9-]{1,52}[a-z0-9]$"
+    },
+    "BucketState":{
+      "type":"structure",
+      "members":{
+        "code":{"shape":"NonEmptyString"},
+        "message":{"shape":"string"}
+      }
     },
     "Bundle":{
       "type":"structure",
@@ -3278,6 +3542,40 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "CreateBucketAccessKeyRequest":{
+      "type":"structure",
+      "required":["bucketName"],
+      "members":{
+        "bucketName":{"shape":"BucketName"}
+      }
+    },
+    "CreateBucketAccessKeyResult":{
+      "type":"structure",
+      "members":{
+        "accessKey":{"shape":"AccessKey"},
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "CreateBucketRequest":{
+      "type":"structure",
+      "required":[
+        "bucketName",
+        "bundleId"
+      ],
+      "members":{
+        "bucketName":{"shape":"BucketName"},
+        "bundleId":{"shape":"NonEmptyString"},
+        "tags":{"shape":"TagList"},
+        "enableObjectVersioning":{"shape":"boolean"}
+      }
+    },
+    "CreateBucketResult":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"Bucket"},
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "CreateCertificateRequest":{
       "type":"structure",
       "required":[
@@ -3726,6 +4024,37 @@
       }
     },
     "DeleteAutoSnapshotResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "DeleteBucketAccessKeyRequest":{
+      "type":"structure",
+      "required":[
+        "bucketName",
+        "accessKeyId"
+      ],
+      "members":{
+        "bucketName":{"shape":"BucketName"},
+        "accessKeyId":{"shape":"NonEmptyString"}
+      }
+    },
+    "DeleteBucketAccessKeyResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "DeleteBucketRequest":{
+      "type":"structure",
+      "required":["bucketName"],
+      "members":{
+        "bucketName":{"shape":"BucketName"},
+        "forceDelete":{"shape":"boolean"}
+      }
+    },
+    "DeleteBucketResult":{
       "type":"structure",
       "members":{
         "operations":{"shape":"OperationList"}
@@ -4397,6 +4726,74 @@
       "type":"structure",
       "members":{
         "blueprints":{"shape":"BlueprintList"},
+        "nextPageToken":{"shape":"string"}
+      }
+    },
+    "GetBucketAccessKeysRequest":{
+      "type":"structure",
+      "required":["bucketName"],
+      "members":{
+        "bucketName":{"shape":"BucketName"}
+      }
+    },
+    "GetBucketAccessKeysResult":{
+      "type":"structure",
+      "members":{
+        "accessKeys":{"shape":"AccessKeyList"}
+      }
+    },
+    "GetBucketBundlesRequest":{
+      "type":"structure",
+      "members":{
+        "includeInactive":{"shape":"boolean"}
+      }
+    },
+    "GetBucketBundlesResult":{
+      "type":"structure",
+      "members":{
+        "bundles":{"shape":"BucketBundleList"}
+      }
+    },
+    "GetBucketMetricDataRequest":{
+      "type":"structure",
+      "required":[
+        "bucketName",
+        "metricName",
+        "startTime",
+        "endTime",
+        "period",
+        "statistics",
+        "unit"
+      ],
+      "members":{
+        "bucketName":{"shape":"BucketName"},
+        "metricName":{"shape":"BucketMetricName"},
+        "startTime":{"shape":"IsoDate"},
+        "endTime":{"shape":"IsoDate"},
+        "period":{"shape":"MetricPeriod"},
+        "statistics":{"shape":"MetricStatisticList"},
+        "unit":{"shape":"MetricUnit"}
+      }
+    },
+    "GetBucketMetricDataResult":{
+      "type":"structure",
+      "members":{
+        "metricName":{"shape":"BucketMetricName"},
+        "metricData":{"shape":"MetricDatapointList"}
+      }
+    },
+    "GetBucketsRequest":{
+      "type":"structure",
+      "members":{
+        "bucketName":{"shape":"BucketName"},
+        "pageToken":{"shape":"string"},
+        "includeConnectedResources":{"shape":"boolean"}
+      }
+    },
+    "GetBucketsResult":{
+      "type":"structure",
+      "members":{
+        "buckets":{"shape":"BucketList"},
         "nextPageToken":{"shape":"string"}
       }
     },
@@ -5244,6 +5641,13 @@
       "type":"list",
       "member":{"shape":"HostKeyAttributes"}
     },
+    "IAMAccessKeyId":{
+      "type":"string",
+      "max":20,
+      "min":20,
+      "pattern":"^[A-Z0-9]{20}$",
+      "sensitive":true
+    },
     "ImportKeyPairRequest":{
       "type":"structure",
       "required":[
@@ -6075,7 +6479,14 @@
         "CreateContainerServiceDeployment",
         "CreateContainerServiceRegistryLogin",
         "RegisterContainerImage",
-        "DeleteContainerImage"
+        "DeleteContainerImage",
+        "CreateBucket",
+        "DeleteBucket",
+        "CreateBucketAccessKey",
+        "DeleteBucketAccessKey",
+        "UpdateBucketBundle",
+        "UpdateBucket",
+        "SetResourceAccessForBucket"
       ]
     },
     "Origin":{
@@ -6093,6 +6504,11 @@
         "http-only",
         "https-only"
       ]
+    },
+    "PartnerIdList":{
+      "type":"list",
+      "member":{"shape":"NonEmptyString"},
+      "max":10
     },
     "PasswordData":{
       "type":"structure",
@@ -6303,7 +6719,8 @@
         "ap-southeast-1",
         "ap-southeast-2",
         "ap-northeast-1",
-        "ap-northeast-2"
+        "ap-northeast-2",
+        "eu-north-1"
       ]
     },
     "RegisterContainerImageRequest":{
@@ -6536,6 +6953,13 @@
       "type":"string",
       "pattern":"^arn:(aws[^:]*):([a-zA-Z0-9-]+):([a-z0-9-]+):([0-9]+):([a-zA-Z]+)/([a-zA-Z0-9-]+)$"
     },
+    "ResourceBucketAccess":{
+      "type":"string",
+      "enum":[
+        "allow",
+        "deny"
+      ]
+    },
     "ResourceLocation":{
       "type":"structure",
       "members":{
@@ -6550,6 +6974,13 @@
     "ResourceNameList":{
       "type":"list",
       "member":{"shape":"ResourceName"}
+    },
+    "ResourceReceivingAccess":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"NonEmptyString"},
+        "resourceType":{"shape":"NonEmptyString"}
+      }
     },
     "ResourceRecord":{
       "type":"structure",
@@ -6580,7 +7011,8 @@
         "Alarm",
         "ContactMethod",
         "Distribution",
-        "Certificate"
+        "Certificate",
+        "Bucket"
       ]
     },
     "RevocationReason":{"type":"string"},
@@ -6632,6 +7064,25 @@
         "operations":{"shape":"OperationList"}
       }
     },
+    "SetResourceAccessForBucketRequest":{
+      "type":"structure",
+      "required":[
+        "resourceName",
+        "bucketName",
+        "access"
+      ],
+      "members":{
+        "resourceName":{"shape":"ResourceName"},
+        "bucketName":{"shape":"BucketName"},
+        "access":{"shape":"ResourceBucketAccess"}
+      }
+    },
+    "SetResourceAccessForBucketResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
     "StartInstanceRequest":{
       "type":"structure",
       "required":["instanceName"],
@@ -6675,6 +7126,13 @@
     "StaticIpList":{
       "type":"list",
       "member":{"shape":"StaticIp"}
+    },
+    "StatusType":{
+      "type":"string",
+      "enum":[
+        "Active",
+        "Inactive"
+      ]
     },
     "StopInstanceRequest":{
       "type":"structure",
@@ -6818,6 +7276,40 @@
     "UntagResourceResult":{
       "type":"structure",
       "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "UpdateBucketBundleRequest":{
+      "type":"structure",
+      "required":[
+        "bucketName",
+        "bundleId"
+      ],
+      "members":{
+        "bucketName":{"shape":"BucketName"},
+        "bundleId":{"shape":"NonEmptyString"}
+      }
+    },
+    "UpdateBucketBundleResult":{
+      "type":"structure",
+      "members":{
+        "operations":{"shape":"OperationList"}
+      }
+    },
+    "UpdateBucketRequest":{
+      "type":"structure",
+      "required":["bucketName"],
+      "members":{
+        "bucketName":{"shape":"BucketName"},
+        "accessRules":{"shape":"AccessRules"},
+        "versioning":{"shape":"NonEmptyString"},
+        "readonlyAccessAccounts":{"shape":"PartnerIdList"}
+      }
+    },
+    "UpdateBucketResult":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"Bucket"},
         "operations":{"shape":"OperationList"}
       }
     },

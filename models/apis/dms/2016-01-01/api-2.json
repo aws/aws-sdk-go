@@ -1654,7 +1654,8 @@
         "Units":{"shape":"String"},
         "Applicability":{"shape":"String"},
         "IntValueMin":{"shape":"IntegerOptional"},
-        "IntValueMax":{"shape":"IntegerOptional"}
+        "IntValueMax":{"shape":"IntegerOptional"},
+        "DefaultValue":{"shape":"String"}
       }
     },
     "EndpointSettingEnumValues":{
@@ -1891,7 +1892,8 @@
         "SslClientKeyPassword":{"shape":"SecretString"},
         "SslCaCertificateArn":{"shape":"String"},
         "SaslUsername":{"shape":"String"},
-        "SaslPassword":{"shape":"SecretString"}
+        "SaslPassword":{"shape":"SecretString"},
+        "NoHexPrefix":{"shape":"BooleanOptional"}
       }
     },
     "KeyList":{
@@ -1909,7 +1911,8 @@
         "PartitionIncludeSchemaTable":{"shape":"BooleanOptional"},
         "IncludeTableAlterOperations":{"shape":"BooleanOptional"},
         "IncludeControlDetails":{"shape":"BooleanOptional"},
-        "IncludeNullAndEmpty":{"shape":"BooleanOptional"}
+        "IncludeNullAndEmpty":{"shape":"BooleanOptional"},
+        "NoHexPrefix":{"shape":"BooleanOptional"}
       }
     },
     "ListTagsForResourceMessage":{
@@ -1993,7 +1996,8 @@
         "SybaseSettings":{"shape":"SybaseSettings"},
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
         "IBMDb2Settings":{"shape":"IBMDb2Settings"},
-        "DocDbSettings":{"shape":"DocDbSettings"}
+        "DocDbSettings":{"shape":"DocDbSettings"},
+        "ExactSettings":{"shape":"BooleanOptional"}
       }
     },
     "ModifyEndpointResponse":{
@@ -2192,7 +2196,11 @@
         "SecurityDbEncryptionName":{"shape":"String"},
         "ServerName":{"shape":"String"},
         "SpatialDataOptionToGeoJsonFunctionName":{"shape":"String"},
+        "StandbyDelayTime":{"shape":"IntegerOptional"},
         "Username":{"shape":"String"},
+        "UseBFile":{"shape":"BooleanOptional"},
+        "UseDirectPathFullLoad":{"shape":"BooleanOptional"},
+        "UseLogminerReader":{"shape":"BooleanOptional"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
         "SecretsManagerSecretId":{"shape":"String"},
         "SecretsManagerOracleAsmAccessRoleArn":{"shape":"String"},
@@ -2243,6 +2251,14 @@
       "type":"list",
       "member":{"shape":"ResourcePendingMaintenanceActions"}
     },
+    "PluginNameValue":{
+      "type":"string",
+      "enum":[
+        "no-preference",
+        "test-decoding",
+        "pglogical"
+      ]
+    },
     "PostgreSQLSettings":{
       "type":"structure",
       "members":{
@@ -2253,11 +2269,15 @@
         "DdlArtifactsSchema":{"shape":"String"},
         "ExecuteTimeout":{"shape":"IntegerOptional"},
         "FailTasksOnLobTruncation":{"shape":"BooleanOptional"},
+        "HeartbeatEnable":{"shape":"BooleanOptional"},
+        "HeartbeatSchema":{"shape":"String"},
+        "HeartbeatFrequency":{"shape":"IntegerOptional"},
         "Password":{"shape":"SecretString"},
         "Port":{"shape":"IntegerOptional"},
         "ServerName":{"shape":"String"},
         "Username":{"shape":"String"},
         "SlotName":{"shape":"String"},
+        "PluginName":{"shape":"PluginNameValue"},
         "SecretsManagerAccessRoleArn":{"shape":"String"},
         "SecretsManagerSecretId":{"shape":"String"}
       }

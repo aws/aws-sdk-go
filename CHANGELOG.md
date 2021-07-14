@@ -1,3 +1,25 @@
+Release v1.40.0 (2021-07-14)
+===
+
+### Service Client Updates
+* `service/acm`: Updates service API and documentation
+  * Added support for RSA 3072 SSL certificate import
+* `service/dms`: Updates service API and documentation
+  * Release of feature needed for ECA-Endpoint settings. This allows customer to delete a field in endpoint settings by using --exact-settings flag in modify-endpoint api. This also displays default values for certain required fields of endpoint settings in describe-endpoint-settings api.
+* `service/glue`: Updates service API and documentation
+  * Add support for Event Driven Workflows
+* `service/healthlake`: Updates service API, documentation, and paginators
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support for the Amazon Lightsail object storage service, which allows you to create buckets and store objects.
+* `service/wellarchitected`: Updates service API and documentation
+
+### SDK Features
+* `aws/session`: Support has been added for EC2 IPv6-enabled Instance Metadata Service Endpoints ([#4006](https://github.com/aws/aws-sdk-go/pull/4006))
+  * Adds support for `AWS_EC2_METADATA_SERVICE_ENDPOINT_MODE`  environment variable which may specify `IPv6` or `IPv4` for selecting the desired endpoint.
+  * Adds support for `ec2_metadata_service_endpoint_mode` AWS profile key, which may specify `IPv6` or `IPv4` for selecting the desired endpoint. Has lower precedence then `AWS_EC2_METADATA_SERVICE_ENDPOINT`.
+  * Adds support for `ec2_metadata_service_endpoint` AWS profile key, which may specify an explicit endpoint URI. Has higher precedence then `ec2_metadata_service_endpoint_mode`.
+* `aws/endpoints`: Supported has been added for EC2 IPv6-enabled Instance Metadata Service Endpoints ([#4006](https://github.com/aws/aws-sdk-go/pull/4006))
+
 Release v1.39.6 (2021-07-13)
 ===
 
