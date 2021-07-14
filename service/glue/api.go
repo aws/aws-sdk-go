@@ -22936,6 +22936,10 @@ type CreateTriggerInput struct {
 	// A description of the new trigger.
 	Description *string `type:"string"`
 
+	// Batch condition that must be met (specified number of events received or
+	// batch time window expired) before EventBridge event trigger fires.
+	EventBatchingCondition *EventBatchingCondition `type:"structure"`
+
 	// The name of the trigger.
 	//
 	// Name is a required field
@@ -23011,6 +23015,11 @@ func (s *CreateTriggerInput) Validate() error {
 			}
 		}
 	}
+	if s.EventBatchingCondition != nil {
+		if err := s.EventBatchingCondition.Validate(); err != nil {
+			invalidParams.AddNested("EventBatchingCondition", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Predicate != nil {
 		if err := s.Predicate.Validate(); err != nil {
 			invalidParams.AddNested("Predicate", err.(request.ErrInvalidParams))
@@ -23032,6 +23041,12 @@ func (s *CreateTriggerInput) SetActions(v []*Action) *CreateTriggerInput {
 // SetDescription sets the Description field's value.
 func (s *CreateTriggerInput) SetDescription(v string) *CreateTriggerInput {
 	s.Description = &v
+	return s
+}
+
+// SetEventBatchingCondition sets the EventBatchingCondition field's value.
+func (s *CreateTriggerInput) SetEventBatchingCondition(v *EventBatchingCondition) *CreateTriggerInput {
+	s.EventBatchingCondition = v
 	return s
 }
 
@@ -26117,8 +26132,8 @@ func (s *DynamoDBTarget) SetScanRate(v float64) *DynamoDBTarget {
 	return s
 }
 
-// An edge represents a directed connection between two Glue components that
-// are part of the workflow the edge belongs to.
+// An edge represents a directed connection between two components on a workflow
+// graph.
 type Edge struct {
 	_ struct{} `type:"structure"`
 
@@ -26458,6 +26473,63 @@ func (s *EvaluationMetrics) SetFindMatchesMetrics(v *FindMatchesMetrics) *Evalua
 // SetTransformType sets the TransformType field's value.
 func (s *EvaluationMetrics) SetTransformType(v string) *EvaluationMetrics {
 	s.TransformType = &v
+	return s
+}
+
+// Batch condition that must be met (specified number of events received or
+// batch time window expired) before EventBridge event trigger fires.
+type EventBatchingCondition struct {
+	_ struct{} `type:"structure"`
+
+	// Number of events that must be received from Amazon EventBridge before EventBridge
+	// event trigger fires.
+	//
+	// BatchSize is a required field
+	BatchSize *int64 `min:"1" type:"integer" required:"true"`
+
+	// Window of time in seconds after which EventBridge event trigger fires. Window
+	// starts when first event is received.
+	BatchWindow *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s EventBatchingCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EventBatchingCondition) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EventBatchingCondition) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EventBatchingCondition"}
+	if s.BatchSize == nil {
+		invalidParams.Add(request.NewErrParamRequired("BatchSize"))
+	}
+	if s.BatchSize != nil && *s.BatchSize < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("BatchSize", 1))
+	}
+	if s.BatchWindow != nil && *s.BatchWindow < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("BatchWindow", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBatchSize sets the BatchSize field's value.
+func (s *EventBatchingCondition) SetBatchSize(v int64) *EventBatchingCondition {
+	s.BatchSize = &v
+	return s
+}
+
+// SetBatchWindow sets the BatchWindow field's value.
+func (s *EventBatchingCondition) SetBatchWindow(v int64) *EventBatchingCondition {
+	s.BatchWindow = &v
 	return s
 }
 
@@ -35412,8 +35484,8 @@ func (s *NoScheduleException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A node represents an Glue component such as a trigger, or job, etc., that
-// is part of a workflow.
+// A node represents an Glue component (trigger, crawler, or job) on a workflow
+// graph.
 type Node struct {
 	_ struct{} `type:"structure"`
 
@@ -39449,6 +39521,41 @@ func (s *StartWorkflowRunOutput) SetRunId(v string) *StartWorkflowRunOutput {
 	return s
 }
 
+// The batch condition that started the workflow run. Either the number of events
+// in the batch size arrived, in which case the BatchSize member is non-zero,
+// or the batch window expired, in which case the BatchWindow member is non-zero.
+type StartingEventBatchCondition struct {
+	_ struct{} `type:"structure"`
+
+	// Number of events in the batch.
+	BatchSize *int64 `type:"integer"`
+
+	// Duration of the batch window in seconds.
+	BatchWindow *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s StartingEventBatchCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartingEventBatchCondition) GoString() string {
+	return s.String()
+}
+
+// SetBatchSize sets the BatchSize field's value.
+func (s *StartingEventBatchCondition) SetBatchSize(v int64) *StartingEventBatchCondition {
+	s.BatchSize = &v
+	return s
+}
+
+// SetBatchWindow sets the BatchWindow field's value.
+func (s *StartingEventBatchCondition) SetBatchWindow(v int64) *StartingEventBatchCondition {
+	s.BatchWindow = &v
+	return s
+}
+
 type StopCrawlerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -41246,6 +41353,10 @@ type Trigger struct {
 	// A description of this trigger.
 	Description *string `type:"string"`
 
+	// Batch condition that must be met (specified number of events received or
+	// batch time window expired) before EventBridge event trigger fires.
+	EventBatchingCondition *EventBatchingCondition `type:"structure"`
+
 	// Reserved for future use.
 	Id *string `min:"1" type:"string"`
 
@@ -41290,6 +41401,12 @@ func (s *Trigger) SetActions(v []*Action) *Trigger {
 // SetDescription sets the Description field's value.
 func (s *Trigger) SetDescription(v string) *Trigger {
 	s.Description = &v
+	return s
+}
+
+// SetEventBatchingCondition sets the EventBatchingCondition field's value.
+func (s *Trigger) SetEventBatchingCondition(v *EventBatchingCondition) *Trigger {
+	s.EventBatchingCondition = v
 	return s
 }
 
@@ -41370,6 +41487,10 @@ type TriggerUpdate struct {
 	// A description of this trigger.
 	Description *string `type:"string"`
 
+	// Batch condition that must be met (specified number of events received or
+	// batch time window expired) before EventBridge event trigger fires.
+	EventBatchingCondition *EventBatchingCondition `type:"structure"`
+
 	// Reserved for future use.
 	Name *string `min:"1" type:"string"`
 
@@ -41409,6 +41530,11 @@ func (s *TriggerUpdate) Validate() error {
 			}
 		}
 	}
+	if s.EventBatchingCondition != nil {
+		if err := s.EventBatchingCondition.Validate(); err != nil {
+			invalidParams.AddNested("EventBatchingCondition", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Predicate != nil {
 		if err := s.Predicate.Validate(); err != nil {
 			invalidParams.AddNested("Predicate", err.(request.ErrInvalidParams))
@@ -41430,6 +41556,12 @@ func (s *TriggerUpdate) SetActions(v []*Action) *TriggerUpdate {
 // SetDescription sets the Description field's value.
 func (s *TriggerUpdate) SetDescription(v string) *TriggerUpdate {
 	s.Description = &v
+	return s
+}
+
+// SetEventBatchingCondition sets the EventBatchingCondition field's value.
+func (s *TriggerUpdate) SetEventBatchingCondition(v *EventBatchingCondition) *TriggerUpdate {
+	s.EventBatchingCondition = v
 	return s
 }
 
@@ -43987,8 +44119,9 @@ func (s *VersionMismatchException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// A workflow represents a flow in which Glue components should be run to complete
-// a logical task.
+// A workflow is a collection of multiple dependent Glue jobs and crawlers that
+// are run to complete a complex ETL task. A workflow manages the execution
+// and monitoring of all its jobs and crawlers.
 type Workflow struct {
 	_ struct{} `type:"structure"`
 
@@ -43996,6 +44129,8 @@ type Workflow struct {
 	CreatedOn *time.Time `type:"timestamp"`
 
 	// A collection of properties to be used as part of each execution of the workflow.
+	// The run properties are made available to each job in the workflow. A job
+	// can modify the properties for the next jobs in the flow.
 	DefaultRunProperties map[string]*string `type:"map"`
 
 	// A description of the workflow.
@@ -44017,7 +44152,7 @@ type Workflow struct {
 	// blank, there is no limit to the number of concurrent workflow runs.
 	MaxConcurrentRuns *int64 `type:"integer"`
 
-	// The name of the workflow representing the flow.
+	// The name of the workflow.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -44140,6 +44275,9 @@ type WorkflowRun struct {
 	// The date and time when the workflow run was started.
 	StartedOn *time.Time `type:"timestamp"`
 
+	// The batch condition that started the workflow run.
+	StartingEventBatchCondition *StartingEventBatchCondition `type:"structure"`
+
 	// The statistics of the run.
 	Statistics *WorkflowRunStatistics `type:"structure"`
 
@@ -44196,6 +44334,12 @@ func (s *WorkflowRun) SetPreviousRunId(v string) *WorkflowRun {
 // SetStartedOn sets the StartedOn field's value.
 func (s *WorkflowRun) SetStartedOn(v time.Time) *WorkflowRun {
 	s.StartedOn = &v
+	return s
+}
+
+// SetStartingEventBatchCondition sets the StartingEventBatchCondition field's value.
+func (s *WorkflowRun) SetStartingEventBatchCondition(v *StartingEventBatchCondition) *WorkflowRun {
+	s.StartingEventBatchCondition = v
 	return s
 }
 
@@ -45482,6 +45626,9 @@ const (
 
 	// TriggerTypeOnDemand is a TriggerType enum value
 	TriggerTypeOnDemand = "ON_DEMAND"
+
+	// TriggerTypeEvent is a TriggerType enum value
+	TriggerTypeEvent = "EVENT"
 )
 
 // TriggerType_Values returns all elements of the TriggerType enum
@@ -45490,6 +45637,7 @@ func TriggerType_Values() []string {
 		TriggerTypeScheduled,
 		TriggerTypeConditional,
 		TriggerTypeOnDemand,
+		TriggerTypeEvent,
 	}
 }
 

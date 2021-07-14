@@ -25,6 +25,7 @@
       "errors":[
         {"shape":"ValidationException"},
         {"shape":"ThrottlingException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -104,6 +105,51 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListFHIRExportJobs":{
+      "name":"ListFHIRExportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListFHIRExportJobsRequest"},
+      "output":{"shape":"ListFHIRExportJobsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListFHIRImportJobs":{
+      "name":"ListFHIRImportJobs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListFHIRImportJobsRequest"},
+      "output":{"shape":"ListFHIRImportJobsResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "StartFHIRExportJob":{
       "name":"StartFHIRExportJob",
       "http":{
@@ -135,6 +181,32 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
     }
   },
   "shapes":{
@@ -144,6 +216,12 @@
         "Message":{"shape":"String"}
       },
       "exception":true
+    },
+    "AmazonResourceName":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"^arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:healthlake:[a-z0-9-]+:\\d{12}:datastore\\/fhir\\/.{32}"
     },
     "BoundedLengthString":{
       "type":"string",
@@ -156,6 +234,13 @@
       "max":64,
       "min":1,
       "pattern":"^[a-zA-Z0-9-]+$"
+    },
+    "CmkType":{
+      "type":"string",
+      "enum":[
+        "CUSTOMER_MANAGED_KMS_KEY",
+        "AWS_OWNED_KMS_KEY"
+      ]
     },
     "ConflictException":{
       "type":"structure",
@@ -170,11 +255,13 @@
       "members":{
         "DatastoreName":{"shape":"DatastoreName"},
         "DatastoreTypeVersion":{"shape":"FHIRVersion"},
+        "SseConfiguration":{"shape":"SseConfiguration"},
         "PreloadDataConfig":{"shape":"PreloadDataConfig"},
         "ClientToken":{
           "shape":"ClientTokenString",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateFHIRDatastoreResponse":{
@@ -234,6 +321,7 @@
         "CreatedAt":{"shape":"Timestamp"},
         "DatastoreTypeVersion":{"shape":"FHIRVersion"},
         "DatastoreEndpoint":{"shape":"String"},
+        "SseConfiguration":{"shape":"SseConfiguration"},
         "PreloadDataConfig":{"shape":"PreloadDataConfig"}
       }
     },
@@ -320,6 +408,12 @@
         "ImportJobProperties":{"shape":"ImportJobProperties"}
       }
     },
+    "EncryptionKeyID":{
+      "type":"string",
+      "max":400,
+      "min":1,
+      "pattern":"(arn:aws((-us-gov)|(-iso)|(-iso-b)|(-cn))?:kms:)?([a-z]{2}-[a-z]+(-[a-z]+)?-\\d:)?(\\d{12}:)?(((key/)?[a-zA-Z0-9-_]+)|(alias/[a-zA-Z0-9:/_-]+))"
+    },
     "ExportJobProperties":{
       "type":"structure",
       "required":[
@@ -340,6 +434,10 @@
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "Message":{"shape":"Message"}
       }
+    },
+    "ExportJobPropertiesList":{
+      "type":"list",
+      "member":{"shape":"ExportJobProperties"}
     },
     "FHIRVersion":{
       "type":"string",
@@ -368,9 +466,14 @@
         "EndTime":{"shape":"Timestamp"},
         "DatastoreId":{"shape":"DatastoreId"},
         "InputDataConfig":{"shape":"InputDataConfig"},
+        "JobOutputDataConfig":{"shape":"OutputDataConfig"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "Message":{"shape":"Message"}
       }
+    },
+    "ImportJobPropertiesList":{
+      "type":"list",
+      "member":{"shape":"ImportJobProperties"}
     },
     "InputDataConfig":{
       "type":"structure",
@@ -404,9 +507,18 @@
       "enum":[
         "SUBMITTED",
         "IN_PROGRESS",
+        "COMPLETED_WITH_ERRORS",
         "COMPLETED",
         "FAILED"
       ]
+    },
+    "KmsEncryptionConfig":{
+      "type":"structure",
+      "required":["CmkType"],
+      "members":{
+        "CmkType":{"shape":"CmkType"},
+        "KmsKeyId":{"shape":"EncryptionKeyID"}
+      }
     },
     "ListFHIRDatastoresRequest":{
       "type":"structure",
@@ -422,6 +534,61 @@
       "members":{
         "DatastorePropertiesList":{"shape":"DatastorePropertiesList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListFHIRExportJobsRequest":{
+      "type":"structure",
+      "required":["DatastoreId"],
+      "members":{
+        "DatastoreId":{"shape":"DatastoreId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsInteger"},
+        "JobName":{"shape":"JobName"},
+        "JobStatus":{"shape":"JobStatus"},
+        "SubmittedBefore":{"shape":"Timestamp"},
+        "SubmittedAfter":{"shape":"Timestamp"}
+      }
+    },
+    "ListFHIRExportJobsResponse":{
+      "type":"structure",
+      "required":["ExportJobPropertiesList"],
+      "members":{
+        "ExportJobPropertiesList":{"shape":"ExportJobPropertiesList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListFHIRImportJobsRequest":{
+      "type":"structure",
+      "required":["DatastoreId"],
+      "members":{
+        "DatastoreId":{"shape":"DatastoreId"},
+        "NextToken":{"shape":"NextToken"},
+        "MaxResults":{"shape":"MaxResultsInteger"},
+        "JobName":{"shape":"JobName"},
+        "JobStatus":{"shape":"JobStatus"},
+        "SubmittedBefore":{"shape":"Timestamp"},
+        "SubmittedAfter":{"shape":"Timestamp"}
+      }
+    },
+    "ListFHIRImportJobsResponse":{
+      "type":"structure",
+      "required":["ImportJobPropertiesList"],
+      "members":{
+        "ImportJobPropertiesList":{"shape":"ImportJobPropertiesList"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceARN"],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "Tags":{"shape":"TagList"}
       }
     },
     "MaxResultsInteger":{
@@ -443,7 +610,7 @@
     "OutputDataConfig":{
       "type":"structure",
       "members":{
-        "S3Uri":{"shape":"S3Uri"}
+        "S3Configuration":{"shape":"S3Configuration"}
       },
       "union":true
     },
@@ -465,10 +632,28 @@
       },
       "exception":true
     },
+    "S3Configuration":{
+      "type":"structure",
+      "required":[
+        "S3Uri",
+        "KmsKeyId"
+      ],
+      "members":{
+        "S3Uri":{"shape":"S3Uri"},
+        "KmsKeyId":{"shape":"EncryptionKeyID"}
+      }
+    },
     "S3Uri":{
       "type":"string",
       "max":1024,
       "pattern":"s3://[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9](/.*)?"
+    },
+    "SseConfiguration":{
+      "type":"structure",
+      "required":["KmsEncryptionConfig"],
+      "members":{
+        "KmsEncryptionConfig":{"shape":"KmsEncryptionConfig"}
+      }
     },
     "StartFHIRExportJobRequest":{
       "type":"structure",
@@ -505,6 +690,7 @@
       "type":"structure",
       "required":[
         "InputDataConfig",
+        "JobOutputDataConfig",
         "DatastoreId",
         "DataAccessRoleArn",
         "ClientToken"
@@ -512,6 +698,7 @@
       "members":{
         "JobName":{"shape":"JobName"},
         "InputDataConfig":{"shape":"InputDataConfig"},
+        "JobOutputDataConfig":{"shape":"OutputDataConfig"},
         "DatastoreId":{"shape":"DatastoreId"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "ClientToken":{
@@ -537,6 +724,57 @@
       "max":10000,
       "pattern":"[\\P{M}\\p{M}]{0,10000}"
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":0
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "Tags"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
     "ThrottlingException":{
       "type":"structure",
       "members":{
@@ -545,6 +783,22 @@
       "exception":true
     },
     "Timestamp":{"type":"timestamp"},
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceARN",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceARN":{"shape":"AmazonResourceName"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{

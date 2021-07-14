@@ -59,9 +59,10 @@ func (c *ACM) AddTagsToCertificateRequest(input *AddTagsToCertificateInput) (req
 // AddTagsToCertificate API operation for AWS Certificate Manager.
 //
 // Adds one or more tags to an ACM certificate. Tags are labels that you can
-// use to identify and organize your AWS resources. Each tag consists of a key
-// and an optional value. You specify the certificate on input by its Amazon
-// Resource Name (ARN). You specify the tag by using a key-value pair.
+// use to identify and organize your Amazon Web Services resources. Each tag
+// consists of a key and an optional value. You specify the certificate on input
+// by its Amazon Resource Name (ARN). You specify the tag by using a key-value
+// pair.
 //
 // You can apply a tag to just one certificate if you want to identify a specific
 // characteristic of that certificate, or you can apply the same tag to multiple
@@ -177,12 +178,12 @@ func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 // Deletes a certificate and its associated private key. If this action succeeds,
 // the certificate no longer appears in the list that can be displayed by calling
 // the ListCertificates action or be retrieved by calling the GetCertificate
-// action. The certificate will not be available for use by AWS services integrated
-// with ACM.
+// action. The certificate will not be available for use by Amazon Web Services
+// services integrated with ACM.
 //
-// You cannot delete an ACM certificate that is being used by another AWS service.
-// To delete a certificate that is in use, the certificate association must
-// first be removed.
+// You cannot delete an ACM certificate that is being used by another Amazon
+// Web Services service. To delete a certificate that is in use, the certificate
+// association must first be removed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -197,8 +198,8 @@ func (c *ACM) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 //   caller's account cannot be found.
 //
 //   * ResourceInUseException
-//   The certificate is in use by another AWS service in the caller's account.
-//   Remove the association and try again.
+//   The certificate is in use by another Amazon Web Services service in the caller's
+//   account. Remove the association and try again.
 //
 //   * InvalidArnException
 //   The requested Amazon Resource Name (ARN) does not refer to an existing resource.
@@ -446,7 +447,8 @@ func (c *ACM) GetAccountConfigurationRequest(input *GetAccountConfigurationInput
 
 // GetAccountConfiguration API operation for AWS Certificate Manager.
 //
-// Returns the account configuration options associated with an AWS account.
+// Returns the account configuration options associated with an Amazon Web Services
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -619,14 +621,15 @@ func (c *ACM) ImportCertificateRequest(input *ImportCertificateInput) (req *requ
 
 // ImportCertificate API operation for AWS Certificate Manager.
 //
-// Imports a certificate into AWS Certificate Manager (ACM) to use with services
-// that are integrated with ACM. Note that integrated services (https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html)
-// allow only certificate types and keys they support to be associated with
-// their resources. Further, their support differs depending on whether the
-// certificate is imported into IAM or into ACM. For more information, see the
-// documentation for each service. For more information about importing certificates
-// into ACM, see Importing Certificates (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
-// in the AWS Certificate Manager User Guide.
+// Imports a certificate into Amazon Web Services Certificate Manager (ACM)
+// to use with services that are integrated with ACM. Note that integrated services
+// (https://docs.aws.amazon.com/acm/latest/userguide/acm-services.html) allow
+// only certificate types and keys they support to be associated with their
+// resources. Further, their support differs depending on whether the certificate
+// is imported into IAM or into ACM. For more information, see the documentation
+// for each service. For more information about importing certificates into
+// ACM, see Importing Certificates (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
+// in the Amazon Web Services Certificate Manager User Guide.
 //
 // ACM does not provide managed renewal (https://docs.aws.amazon.com/acm/latest/userguide/acm-renewal.html)
 // for certificates that you import.
@@ -1018,7 +1021,8 @@ func (c *ACM) PutAccountConfigurationRequest(input *PutAccountConfigurationInput
 //
 // Returned Error Types:
 //   * ValidationException
-//   The supplied input failed to satisfy constraints of an AWS service.
+//   The supplied input failed to satisfy constraints of an Amazon Web Services
+//   service.
 //
 //   * ThrottlingException
 //   The request was denied because it exceeded a quota.
@@ -1289,10 +1293,10 @@ func (c *ACM) RequestCertificateRequest(input *RequestCertificateInput) (req *re
 
 // RequestCertificate API operation for AWS Certificate Manager.
 //
-// Requests an ACM certificate for use with other AWS services. To request an
-// ACM certificate, you must specify a fully qualified domain name (FQDN) in
-// the DomainName parameter. You can also specify additional FQDNs in the SubjectAlternativeNames
-// parameter.
+// Requests an ACM certificate for use with other Amazon Web Services services.
+// To request an ACM certificate, you must specify a fully qualified domain
+// name (FQDN) in the DomainName parameter. You can also specify additional
+// FQDNs in the SubjectAlternativeNames parameter.
 //
 // If you are requesting a private certificate, domain validation is not required.
 // If you are requesting a public certificate, each domain name that you specify
@@ -1301,6 +1305,11 @@ func (c *ACM) RequestCertificateRequest(input *RequestCertificateInput) (req *re
 // or email validation (https://docs.aws.amazon.com/acm/latest/userguide/gs-acm-validate-email.html).
 // We recommend that you use DNS validation. ACM issues public certificates
 // after receiving approval from the domain owner.
+//
+// ACM behavior differs from the https://tools.ietf.org/html/rfc6125#appendix-B.2
+// (https://tools.ietf.org/html/rfc6125#appendix-B.2)RFC 6125 specification
+// of the certificate validation process. first checks for a subject alternative
+// name, and, if it finds one, ignores the common name (CN)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1697,7 +1706,7 @@ type CertificateDetail struct {
 
 	// The Amazon Resource Name (ARN) of the certificate. For more information about
 	// ARNs, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// in the Amazon Web Services General Reference.
 	CertificateArn *string `min:"20" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the ACM PCA private certificate authority
@@ -1726,15 +1735,15 @@ type CertificateDetail struct {
 	// The reason the certificate request failed. This value exists only when the
 	// certificate status is FAILED. For more information, see Certificate Request
 	// Failed (https://docs.aws.amazon.com/acm/latest/userguide/troubleshooting.html#troubleshooting-failed)
-	// in the AWS Certificate Manager User Guide.
+	// in the Amazon Web Services Certificate Manager User Guide.
 	FailureReason *string `type:"string" enum:"FailureReason"`
 
 	// The date and time at which the certificate was imported. This value exists
 	// only when the certificate type is IMPORTED.
 	ImportedAt *time.Time `type:"timestamp"`
 
-	// A list of ARNs for the AWS resources that are using the certificate. A certificate
-	// can be used by multiple AWS resources.
+	// A list of ARNs for the Amazon Web Services resources that are using the certificate.
+	// A certificate can be used by multiple Amazon Web Services resources.
 	InUseBy []*string `type:"list"`
 
 	// The time at which the certificate was issued. This value exists only when
@@ -1810,7 +1819,7 @@ type CertificateDetail struct {
 	// for imported certificates. For more information about the differences between
 	// certificates that you import and those that ACM provides, see Importing Certificates
 	// (https://docs.aws.amazon.com/acm/latest/userguide/import-certificate.html)
-	// in the AWS Certificate Manager User Guide.
+	// in the Amazon Web Services Certificate Manager User Guide.
 	Type *string `type:"string" enum:"CertificateType"`
 }
 
@@ -2395,7 +2404,8 @@ func (s *DomainValidationOption) SetValidationDomain(v string) *DomainValidation
 	return s
 }
 
-// Object containing expiration events options associated with an AWS account.
+// Object containing expiration events options associated with an Amazon Web
+// Services account.
 type ExpiryEventsConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2665,7 +2675,8 @@ func (s GetAccountConfigurationInput) GoString() string {
 type GetAccountConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Expiration events configuration options associated with the AWS account.
+	// Expiration events configuration options associated with the Amazon Web Services
+	// account.
 	ExpiryEvents *ExpiryEventsConfiguration `type:"structure"`
 }
 
@@ -3784,8 +3795,9 @@ type RequestCertificateInput struct {
 	// that will be used to issue the certificate. If you do not provide an ARN
 	// and you are trying to request a private certificate, ACM will attempt to
 	// issue a public certificate. For more information about private CAs, see the
-	// AWS Certificate Manager Private Certificate Authority (PCA) (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html)
-	// user guide. The ARN must have the following form:
+	// Amazon Web Services Certificate Manager Private Certificate Authority (PCA)
+	// (https://docs.aws.amazon.com/acm-pca/latest/userguide/PcaWelcome.html) user
+	// guide. The ARN must have the following form:
 	//
 	// arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012
 	CertificateAuthorityArn *string `min:"20" type:"string"`
@@ -4159,8 +4171,8 @@ func (s ResendValidationEmailOutput) GoString() string {
 	return s.String()
 }
 
-// The certificate is in use by another AWS service in the caller's account.
-// Remove the association and try again.
+// The certificate is in use by another Amazon Web Services service in the caller's
+// account. Remove the association and try again.
 type ResourceInUseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4273,8 +4285,8 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains a DNS record value that you can use to can use to validate ownership
-// or control of a domain. This is used by the DescribeCertificate action.
+// Contains a DNS record value that you can use to validate ownership or control
+// of a domain. This is used by the DescribeCertificate action.
 type ResourceRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -4618,7 +4630,8 @@ func (s UpdateCertificateOptionsOutput) GoString() string {
 	return s.String()
 }
 
-// The supplied input failed to satisfy constraints of an AWS service.
+// The supplied input failed to satisfy constraints of an Amazon Web Services
+// service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4899,11 +4912,14 @@ func FailureReason_Values() []string {
 }
 
 const (
+	// KeyAlgorithmRsa1024 is a KeyAlgorithm enum value
+	KeyAlgorithmRsa1024 = "RSA_1024"
+
 	// KeyAlgorithmRsa2048 is a KeyAlgorithm enum value
 	KeyAlgorithmRsa2048 = "RSA_2048"
 
-	// KeyAlgorithmRsa1024 is a KeyAlgorithm enum value
-	KeyAlgorithmRsa1024 = "RSA_1024"
+	// KeyAlgorithmRsa3072 is a KeyAlgorithm enum value
+	KeyAlgorithmRsa3072 = "RSA_3072"
 
 	// KeyAlgorithmRsa4096 is a KeyAlgorithm enum value
 	KeyAlgorithmRsa4096 = "RSA_4096"
@@ -4921,8 +4937,9 @@ const (
 // KeyAlgorithm_Values returns all elements of the KeyAlgorithm enum
 func KeyAlgorithm_Values() []string {
 	return []string{
-		KeyAlgorithmRsa2048,
 		KeyAlgorithmRsa1024,
+		KeyAlgorithmRsa2048,
+		KeyAlgorithmRsa3072,
 		KeyAlgorithmRsa4096,
 		KeyAlgorithmEcPrime256v1,
 		KeyAlgorithmEcSecp384r1,

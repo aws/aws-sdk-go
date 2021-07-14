@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awsutil"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/private/protocol"
+	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
 const opCreateFHIRDatastore = "CreateFHIRDatastore"
@@ -72,6 +73,9 @@ func (c *HealthLake) CreateFHIRDatastoreRequest(input *CreateFHIRDatastoreInput)
 //   * ThrottlingException
 //   The user has exceeded their maximum number of allowed calls to the given
 //   API.
+//
+//   * AccessDeniedException
+//   Access is denied. Your account is not authorized to perform this operation.
 //
 //   * InternalServerException
 //   Unknown error occurs in the service.
@@ -610,6 +614,388 @@ func (c *HealthLake) ListFHIRDatastoresPagesWithContext(ctx aws.Context, input *
 	return p.Err()
 }
 
+const opListFHIRExportJobs = "ListFHIRExportJobs"
+
+// ListFHIRExportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFHIRExportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFHIRExportJobs for more information on using the ListFHIRExportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFHIRExportJobsRequest method.
+//    req, resp := client.ListFHIRExportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/ListFHIRExportJobs
+func (c *HealthLake) ListFHIRExportJobsRequest(input *ListFHIRExportJobsInput) (req *request.Request, output *ListFHIRExportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListFHIRExportJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFHIRExportJobsInput{}
+	}
+
+	output = &ListFHIRExportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFHIRExportJobs API operation for Amazon HealthLake.
+//
+// Lists all FHIR export jobs associated with an account and their statuses.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon HealthLake's
+// API operation ListFHIRExportJobs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The user input parameter was invalid.
+//
+//   * ResourceNotFoundException
+//   The requested Data Store was not found.
+//
+//   * AccessDeniedException
+//   Access is denied. Your account is not authorized to perform this operation.
+//
+//   * ThrottlingException
+//   The user has exceeded their maximum number of allowed calls to the given
+//   API.
+//
+//   * InternalServerException
+//   Unknown error occurs in the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/ListFHIRExportJobs
+func (c *HealthLake) ListFHIRExportJobs(input *ListFHIRExportJobsInput) (*ListFHIRExportJobsOutput, error) {
+	req, out := c.ListFHIRExportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListFHIRExportJobsWithContext is the same as ListFHIRExportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFHIRExportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) ListFHIRExportJobsWithContext(ctx aws.Context, input *ListFHIRExportJobsInput, opts ...request.Option) (*ListFHIRExportJobsOutput, error) {
+	req, out := c.ListFHIRExportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFHIRExportJobsPages iterates over the pages of a ListFHIRExportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFHIRExportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFHIRExportJobs operation.
+//    pageNum := 0
+//    err := client.ListFHIRExportJobsPages(params,
+//        func(page *healthlake.ListFHIRExportJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *HealthLake) ListFHIRExportJobsPages(input *ListFHIRExportJobsInput, fn func(*ListFHIRExportJobsOutput, bool) bool) error {
+	return c.ListFHIRExportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFHIRExportJobsPagesWithContext same as ListFHIRExportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) ListFHIRExportJobsPagesWithContext(ctx aws.Context, input *ListFHIRExportJobsInput, fn func(*ListFHIRExportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFHIRExportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFHIRExportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFHIRExportJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListFHIRImportJobs = "ListFHIRImportJobs"
+
+// ListFHIRImportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFHIRImportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFHIRImportJobs for more information on using the ListFHIRImportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFHIRImportJobsRequest method.
+//    req, resp := client.ListFHIRImportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/ListFHIRImportJobs
+func (c *HealthLake) ListFHIRImportJobsRequest(input *ListFHIRImportJobsInput) (req *request.Request, output *ListFHIRImportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListFHIRImportJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFHIRImportJobsInput{}
+	}
+
+	output = &ListFHIRImportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFHIRImportJobs API operation for Amazon HealthLake.
+//
+// Lists all FHIR import jobs associated with an account and their statuses.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon HealthLake's
+// API operation ListFHIRImportJobs for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The user input parameter was invalid.
+//
+//   * ResourceNotFoundException
+//   The requested Data Store was not found.
+//
+//   * AccessDeniedException
+//   Access is denied. Your account is not authorized to perform this operation.
+//
+//   * ThrottlingException
+//   The user has exceeded their maximum number of allowed calls to the given
+//   API.
+//
+//   * InternalServerException
+//   Unknown error occurs in the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/ListFHIRImportJobs
+func (c *HealthLake) ListFHIRImportJobs(input *ListFHIRImportJobsInput) (*ListFHIRImportJobsOutput, error) {
+	req, out := c.ListFHIRImportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListFHIRImportJobsWithContext is the same as ListFHIRImportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFHIRImportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) ListFHIRImportJobsWithContext(ctx aws.Context, input *ListFHIRImportJobsInput, opts ...request.Option) (*ListFHIRImportJobsOutput, error) {
+	req, out := c.ListFHIRImportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFHIRImportJobsPages iterates over the pages of a ListFHIRImportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFHIRImportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFHIRImportJobs operation.
+//    pageNum := 0
+//    err := client.ListFHIRImportJobsPages(params,
+//        func(page *healthlake.ListFHIRImportJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *HealthLake) ListFHIRImportJobsPages(input *ListFHIRImportJobsInput, fn func(*ListFHIRImportJobsOutput, bool) bool) error {
+	return c.ListFHIRImportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFHIRImportJobsPagesWithContext same as ListFHIRImportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) ListFHIRImportJobsPagesWithContext(ctx aws.Context, input *ListFHIRImportJobsInput, fn func(*ListFHIRImportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFHIRImportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFHIRImportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFHIRImportJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/ListTagsForResource
+func (c *HealthLake) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon HealthLake.
+//
+// Returns a list of all existing tags associated with a Data Store.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon HealthLake's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The user input parameter was invalid.
+//
+//   * ResourceNotFoundException
+//   The requested Data Store was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/ListTagsForResource
+func (c *HealthLake) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartFHIRExportJob = "StartFHIRExportJob"
 
 // StartFHIRExportJobRequest generates a "aws/request.Request" representing the
@@ -794,6 +1180,172 @@ func (c *HealthLake) StartFHIRImportJobWithContext(ctx aws.Context, input *Start
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/TagResource
+func (c *HealthLake) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon HealthLake.
+//
+// Adds a user specifed key and value tag to a Data Store.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon HealthLake's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The user input parameter was invalid.
+//
+//   * ResourceNotFoundException
+//   The requested Data Store was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/TagResource
+func (c *HealthLake) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/UntagResource
+func (c *HealthLake) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon HealthLake.
+//
+// Removes tags from a Data Store.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon HealthLake's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The user input parameter was invalid.
+//
+//   * ResourceNotFoundException
+//   The requested Data Store was not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/healthlake-2017-07-01/UntagResource
+func (c *HealthLake) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *HealthLake) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Access is denied. Your account is not authorized to perform this operation.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
@@ -924,6 +1476,13 @@ type CreateFHIRDatastoreInput struct {
 	// Optional parameter to preload data upon creation of the Data Store. Currently,
 	// the only supported preloaded data is synthetic data generated from Synthea.
 	PreloadDataConfig *PreloadDataConfig `type:"structure"`
+
+	// The server-side encryption key configuration for a customer provided encryption
+	// key specified for creating a Data Store.
+	SseConfiguration *SseConfiguration `type:"structure"`
+
+	// Resource tags that are applied to a Data Store when it is created.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -951,6 +1510,21 @@ func (s *CreateFHIRDatastoreInput) Validate() error {
 	if s.PreloadDataConfig != nil {
 		if err := s.PreloadDataConfig.Validate(); err != nil {
 			invalidParams.AddNested("PreloadDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SseConfiguration != nil {
+		if err := s.SseConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SseConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -981,6 +1555,18 @@ func (s *CreateFHIRDatastoreInput) SetDatastoreTypeVersion(v string) *CreateFHIR
 // SetPreloadDataConfig sets the PreloadDataConfig field's value.
 func (s *CreateFHIRDatastoreInput) SetPreloadDataConfig(v *PreloadDataConfig) *CreateFHIRDatastoreInput {
 	s.PreloadDataConfig = v
+	return s
+}
+
+// SetSseConfiguration sets the SseConfiguration field's value.
+func (s *CreateFHIRDatastoreInput) SetSseConfiguration(v *SseConfiguration) *CreateFHIRDatastoreInput {
+	s.SseConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFHIRDatastoreInput) SetTags(v []*Tag) *CreateFHIRDatastoreInput {
+	s.Tags = v
 	return s
 }
 
@@ -1153,6 +1739,10 @@ type DatastoreProperties struct {
 	// The preloaded data configuration for the Data Store. Only data preloaded
 	// from Synthea is supported.
 	PreloadDataConfig *PreloadDataConfig `type:"structure"`
+
+	// The server-side encryption key configuration for a customer provided encryption
+	// key (CMK).
+	SseConfiguration *SseConfiguration `type:"structure"`
 }
 
 // String returns the string representation
@@ -1210,6 +1800,12 @@ func (s *DatastoreProperties) SetDatastoreTypeVersion(v string) *DatastoreProper
 // SetPreloadDataConfig sets the PreloadDataConfig field's value.
 func (s *DatastoreProperties) SetPreloadDataConfig(v *PreloadDataConfig) *DatastoreProperties {
 	s.PreloadDataConfig = v
+	return s
+}
+
+// SetSseConfiguration sets the SseConfiguration field's value.
+func (s *DatastoreProperties) SetSseConfiguration(v *SseConfiguration) *DatastoreProperties {
+	s.SseConfiguration = v
 	return s
 }
 
@@ -1679,6 +2275,9 @@ type ImportJobProperties struct {
 	// The user-generated name for an Import job.
 	JobName *string `min:"1" type:"string"`
 
+	// The output data configuration that was supplied when the export job was created.
+	JobOutputDataConfig *OutputDataConfig `type:"structure"`
+
 	// The job status for an Import job. Possible statuses are SUBMITTED, IN_PROGRESS,
 	// COMPLETED, FAILED.
 	//
@@ -1738,6 +2337,12 @@ func (s *ImportJobProperties) SetJobId(v string) *ImportJobProperties {
 // SetJobName sets the JobName field's value.
 func (s *ImportJobProperties) SetJobName(v string) *ImportJobProperties {
 	s.JobName = &v
+	return s
+}
+
+// SetJobOutputDataConfig sets the JobOutputDataConfig field's value.
+func (s *ImportJobProperties) SetJobOutputDataConfig(v *OutputDataConfig) *ImportJobProperties {
+	s.JobOutputDataConfig = v
 	return s
 }
 
@@ -1840,6 +2445,60 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The customer-managed-key(CMK) used when creating a Data Store. If a customer
+// owned key is not specified, an AWS owned key will be used for encryption.
+type KmsEncryptionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The type of customer-managed-key(CMK) used for encyrption. The two types
+	// of supported CMKs are customer owned CMKs and AWS owned CMKs.
+	//
+	// CmkType is a required field
+	CmkType *string `type:"string" required:"true" enum:"CmkType"`
+
+	// The KMS encryption key id/alias used to encrypt the Data Store contents at
+	// rest.
+	KmsKeyId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s KmsEncryptionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KmsEncryptionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *KmsEncryptionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "KmsEncryptionConfig"}
+	if s.CmkType == nil {
+		invalidParams.Add(request.NewErrParamRequired("CmkType"))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCmkType sets the CmkType field's value.
+func (s *KmsEncryptionConfig) SetCmkType(v string) *KmsEncryptionConfig {
+	s.CmkType = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *KmsEncryptionConfig) SetKmsKeyId(v string) *KmsEncryptionConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
 type ListFHIRDatastoresInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1934,13 +2593,365 @@ func (s *ListFHIRDatastoresOutput) SetNextToken(v string) *ListFHIRDatastoresOut
 	return s
 }
 
+type ListFHIRExportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// This parameter limits the response to the export job with the specified Data
+	// Store ID.
+	//
+	// DatastoreId is a required field
+	DatastoreId *string `min:"1" type:"string" required:"true"`
+
+	// This parameter limits the response to the export job with the specified job
+	// name.
+	JobName *string `min:"1" type:"string"`
+
+	// This parameter limits the response to the export jobs with the specified
+	// job status.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// This parameter limits the number of results returned for a ListFHIRExportJobs
+	// to a maximum quantity specified by the user.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A pagination token used to identify the next page of results to return for
+	// a ListFHIRExportJobs query.
+	NextToken *string `type:"string"`
+
+	// This parameter limits the response to FHIR export jobs submitted after a
+	// user specified date.
+	SubmittedAfter *time.Time `type:"timestamp"`
+
+	// This parameter limits the response to FHIR export jobs submitted before a
+	// user specified date.
+	SubmittedBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s ListFHIRExportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFHIRExportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFHIRExportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFHIRExportJobsInput"}
+	if s.DatastoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatastoreId"))
+	}
+	if s.DatastoreId != nil && len(*s.DatastoreId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatastoreId", 1))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatastoreId sets the DatastoreId field's value.
+func (s *ListFHIRExportJobsInput) SetDatastoreId(v string) *ListFHIRExportJobsInput {
+	s.DatastoreId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *ListFHIRExportJobsInput) SetJobName(v string) *ListFHIRExportJobsInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *ListFHIRExportJobsInput) SetJobStatus(v string) *ListFHIRExportJobsInput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFHIRExportJobsInput) SetMaxResults(v int64) *ListFHIRExportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFHIRExportJobsInput) SetNextToken(v string) *ListFHIRExportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSubmittedAfter sets the SubmittedAfter field's value.
+func (s *ListFHIRExportJobsInput) SetSubmittedAfter(v time.Time) *ListFHIRExportJobsInput {
+	s.SubmittedAfter = &v
+	return s
+}
+
+// SetSubmittedBefore sets the SubmittedBefore field's value.
+func (s *ListFHIRExportJobsInput) SetSubmittedBefore(v time.Time) *ListFHIRExportJobsInput {
+	s.SubmittedBefore = &v
+	return s
+}
+
+type ListFHIRExportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of listed FHIR export jobs, including the ID, ARN, name, and
+	// the status of the job.
+	//
+	// ExportJobPropertiesList is a required field
+	ExportJobPropertiesList []*ExportJobProperties `type:"list" required:"true"`
+
+	// A pagination token used to identify the next page of results to return for
+	// a ListFHIRExportJobs query.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFHIRExportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFHIRExportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetExportJobPropertiesList sets the ExportJobPropertiesList field's value.
+func (s *ListFHIRExportJobsOutput) SetExportJobPropertiesList(v []*ExportJobProperties) *ListFHIRExportJobsOutput {
+	s.ExportJobPropertiesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFHIRExportJobsOutput) SetNextToken(v string) *ListFHIRExportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFHIRImportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// This parameter limits the response to the import job with the specified Data
+	// Store ID.
+	//
+	// DatastoreId is a required field
+	DatastoreId *string `min:"1" type:"string" required:"true"`
+
+	// This parameter limits the response to the import job with the specified job
+	// name.
+	JobName *string `min:"1" type:"string"`
+
+	// This parameter limits the response to the import job with the specified job
+	// status.
+	JobStatus *string `type:"string" enum:"JobStatus"`
+
+	// This parameter limits the number of results returned for a ListFHIRImportJobs
+	// to a maximum quantity specified by the user.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A pagination token used to identify the next page of results to return for
+	// a ListFHIRImportJobs query.
+	NextToken *string `type:"string"`
+
+	// This parameter limits the response to FHIR import jobs submitted after a
+	// user specified date.
+	SubmittedAfter *time.Time `type:"timestamp"`
+
+	// This parameter limits the response to FHIR import jobs submitted before a
+	// user specified date.
+	SubmittedBefore *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s ListFHIRImportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFHIRImportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFHIRImportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFHIRImportJobsInput"}
+	if s.DatastoreId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatastoreId"))
+	}
+	if s.DatastoreId != nil && len(*s.DatastoreId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatastoreId", 1))
+	}
+	if s.JobName != nil && len(*s.JobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatastoreId sets the DatastoreId field's value.
+func (s *ListFHIRImportJobsInput) SetDatastoreId(v string) *ListFHIRImportJobsInput {
+	s.DatastoreId = &v
+	return s
+}
+
+// SetJobName sets the JobName field's value.
+func (s *ListFHIRImportJobsInput) SetJobName(v string) *ListFHIRImportJobsInput {
+	s.JobName = &v
+	return s
+}
+
+// SetJobStatus sets the JobStatus field's value.
+func (s *ListFHIRImportJobsInput) SetJobStatus(v string) *ListFHIRImportJobsInput {
+	s.JobStatus = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFHIRImportJobsInput) SetMaxResults(v int64) *ListFHIRImportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFHIRImportJobsInput) SetNextToken(v string) *ListFHIRImportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSubmittedAfter sets the SubmittedAfter field's value.
+func (s *ListFHIRImportJobsInput) SetSubmittedAfter(v time.Time) *ListFHIRImportJobsInput {
+	s.SubmittedAfter = &v
+	return s
+}
+
+// SetSubmittedBefore sets the SubmittedBefore field's value.
+func (s *ListFHIRImportJobsInput) SetSubmittedBefore(v time.Time) *ListFHIRImportJobsInput {
+	s.SubmittedBefore = &v
+	return s
+}
+
+type ListFHIRImportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of a listed FHIR import jobs, including the ID, ARN, name,
+	// and the status of the job.
+	//
+	// ImportJobPropertiesList is a required field
+	ImportJobPropertiesList []*ImportJobProperties `type:"list" required:"true"`
+
+	// A pagination token used to identify the next page of results to return for
+	// a ListFHIRImportJobs query.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFHIRImportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFHIRImportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetImportJobPropertiesList sets the ImportJobPropertiesList field's value.
+func (s *ListFHIRImportJobsOutput) SetImportJobPropertiesList(v []*ImportJobProperties) *ListFHIRImportJobsOutput {
+	s.ImportJobPropertiesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFHIRImportJobsOutput) SetNextToken(v string) *ListFHIRImportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name(ARN) of the Data Store for which tags are being
+	// added.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *ListTagsForResourceInput) SetResourceARN(v string) *ListTagsForResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a list of tags associated with a Data Store.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 // The output data configuration that was supplied when the export job was created.
 type OutputDataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The S3Uri is the user specified S3 location to which data will be exported
-	// from a FHIR Data Store.
-	S3Uri *string `type:"string"`
+	// The output data configuration that was supplied when the export job was created.
+	S3Configuration *S3Configuration `type:"structure"`
 }
 
 // String returns the string representation
@@ -1953,9 +2964,24 @@ func (s OutputDataConfig) GoString() string {
 	return s.String()
 }
 
-// SetS3Uri sets the S3Uri field's value.
-func (s *OutputDataConfig) SetS3Uri(v string) *OutputDataConfig {
-	s.S3Uri = &v
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OutputDataConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OutputDataConfig"}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *OutputDataConfig) SetS3Configuration(v *S3Configuration) *OutputDataConfig {
+	s.S3Configuration = v
 	return s
 }
 
@@ -2055,6 +3081,109 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The configuration of the S3 bucket for either an import or export job. This
+// includes assigning permissions for access.
+type S3Configuration struct {
+	_ struct{} `type:"structure"`
+
+	// The KMS key ID used to access the S3 bucket.
+	//
+	// KmsKeyId is a required field
+	KmsKeyId *string `min:"1" type:"string" required:"true"`
+
+	// The S3Uri is the user specified S3 location of the FHIR data to be imported
+	// into Amazon HealthLake.
+	//
+	// S3Uri is a required field
+	S3Uri *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3Configuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3Configuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Configuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Configuration"}
+	if s.KmsKeyId == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsKeyId"))
+	}
+	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
+	}
+	if s.S3Uri == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *S3Configuration) SetKmsKeyId(v string) *S3Configuration {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetS3Uri sets the S3Uri field's value.
+func (s *S3Configuration) SetS3Uri(v string) *S3Configuration {
+	s.S3Uri = &v
+	return s
+}
+
+// The server-side encryption key configuration for a customer provided encryption
+// key.
+type SseConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The KMS encryption configuration used to provide details for data encryption.
+	//
+	// KmsEncryptionConfig is a required field
+	KmsEncryptionConfig *KmsEncryptionConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s SseConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SseConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SseConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SseConfiguration"}
+	if s.KmsEncryptionConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("KmsEncryptionConfig"))
+	}
+	if s.KmsEncryptionConfig != nil {
+		if err := s.KmsEncryptionConfig.Validate(); err != nil {
+			invalidParams.AddNested("KmsEncryptionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsEncryptionConfig sets the KmsEncryptionConfig field's value.
+func (s *SseConfiguration) SetKmsEncryptionConfig(v *KmsEncryptionConfig) *SseConfiguration {
+	s.KmsEncryptionConfig = v
+	return s
+}
+
 type StartFHIRExportJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2114,6 +3243,11 @@ func (s *StartFHIRExportJobInput) Validate() error {
 	}
 	if s.OutputDataConfig == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutputDataConfig"))
+	}
+	if s.OutputDataConfig != nil {
+		if err := s.OutputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2222,6 +3356,11 @@ type StartFHIRImportJobInput struct {
 
 	// The name of the FHIR Import job in the StartFHIRImport job request.
 	JobName *string `min:"1" type:"string"`
+
+	// The output data configuration that was supplied when the export job was created.
+	//
+	// JobOutputDataConfig is a required field
+	JobOutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -2258,6 +3397,14 @@ func (s *StartFHIRImportJobInput) Validate() error {
 	if s.JobName != nil && len(*s.JobName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("JobName", 1))
 	}
+	if s.JobOutputDataConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("JobOutputDataConfig"))
+	}
+	if s.JobOutputDataConfig != nil {
+		if err := s.JobOutputDataConfig.Validate(); err != nil {
+			invalidParams.AddNested("JobOutputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -2292,6 +3439,12 @@ func (s *StartFHIRImportJobInput) SetInputDataConfig(v *InputDataConfig) *StartF
 // SetJobName sets the JobName field's value.
 func (s *StartFHIRImportJobInput) SetJobName(v string) *StartFHIRImportJobInput {
 	s.JobName = &v
+	return s
+}
+
+// SetJobOutputDataConfig sets the JobOutputDataConfig field's value.
+func (s *StartFHIRImportJobInput) SetJobOutputDataConfig(v *OutputDataConfig) *StartFHIRImportJobInput {
+	s.JobOutputDataConfig = v
 	return s
 }
 
@@ -2338,6 +3491,143 @@ func (s *StartFHIRImportJobOutput) SetJobId(v string) *StartFHIRImportJobOutput 
 func (s *StartFHIRImportJobOutput) SetJobStatus(v string) *StartFHIRImportJobOutput {
 	s.JobStatus = &v
 	return s
+}
+
+// A tag is a label consisting of a user-defined key and value. The form for
+// tags is {"Key", "Value"}
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The key portion of a tag. Tag keys are case sensitive.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value portion of tag. Tag values are case sensitive.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name(ARN)that gives Amazon HealthLake access to the Data
+	// Store which tags are being added to.
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// The user specified key and value pair tags being added to a Data Store.
+	//
+	// Tags is a required field
+	Tags []*Tag `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *TagResourceInput) SetResourceARN(v string) *TagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // The user has exceeded their maximum number of allowed calls to the given
@@ -2397,6 +3687,76 @@ func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// "The Amazon Resource Name(ARN) of the Data Store for which tags are being
+	// removed
+	//
+	// ResourceARN is a required field
+	ResourceARN *string `min:"1" type:"string" required:"true"`
+
+	// The keys for the tags to be removed from the Healthlake Data Store.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceARN"))
+	}
+	if s.ResourceARN != nil && len(*s.ResourceARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceARN", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *UntagResourceInput) SetResourceARN(v string) *UntagResourceInput {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // The user input parameter was invalid.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
@@ -2454,6 +3814,22 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// CmkTypeCustomerManagedKmsKey is a CmkType enum value
+	CmkTypeCustomerManagedKmsKey = "CUSTOMER_MANAGED_KMS_KEY"
+
+	// CmkTypeAwsOwnedKmsKey is a CmkType enum value
+	CmkTypeAwsOwnedKmsKey = "AWS_OWNED_KMS_KEY"
+)
+
+// CmkType_Values returns all elements of the CmkType enum
+func CmkType_Values() []string {
+	return []string{
+		CmkTypeCustomerManagedKmsKey,
+		CmkTypeAwsOwnedKmsKey,
+	}
+}
+
+const (
 	// DatastoreStatusCreating is a DatastoreStatus enum value
 	DatastoreStatusCreating = "CREATING"
 
@@ -2496,6 +3872,9 @@ const (
 	// JobStatusInProgress is a JobStatus enum value
 	JobStatusInProgress = "IN_PROGRESS"
 
+	// JobStatusCompletedWithErrors is a JobStatus enum value
+	JobStatusCompletedWithErrors = "COMPLETED_WITH_ERRORS"
+
 	// JobStatusCompleted is a JobStatus enum value
 	JobStatusCompleted = "COMPLETED"
 
@@ -2508,6 +3887,7 @@ func JobStatus_Values() []string {
 	return []string{
 		JobStatusSubmitted,
 		JobStatusInProgress,
+		JobStatusCompletedWithErrors,
 		JobStatusCompleted,
 		JobStatusFailed,
 	}
