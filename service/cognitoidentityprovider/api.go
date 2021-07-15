@@ -281,11 +281,11 @@ func (c *CognitoIdentityProvider) AdminConfirmSignUpRequest(input *AdminConfirmS
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * NotAuthorizedException
 //   This exception is thrown when a user is not authorized.
@@ -296,15 +296,15 @@ func (c *CognitoIdentityProvider) AdminConfirmSignUpRequest(input *AdminConfirmS
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * UserNotFoundException
 //   This exception is thrown when a user is not found.
@@ -393,12 +393,12 @@ func (c *CognitoIdentityProvider) AdminCreateUserRequest(input *AdminCreateUserI
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // This message is based on a template that you configured in your call to create
@@ -445,15 +445,15 @@ func (c *CognitoIdentityProvider) AdminCreateUserRequest(input *AdminCreateUserI
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * PreconditionNotMetException
 //   This exception is thrown when a precondition is not met.
@@ -1395,12 +1395,12 @@ func (c *CognitoIdentityProvider) AdminInitiateAuthRequest(input *AdminInitiateA
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
@@ -1433,18 +1433,18 @@ func (c *CognitoIdentityProvider) AdminInitiateAuthRequest(input *AdminInitiateA
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * InvalidUserPoolConfigurationException
 //   This exception is thrown when the user pool configuration is invalid.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * MFAMethodNotFoundException
 //   This exception is thrown when Amazon Cognito cannot find a multi-factor authentication
@@ -1589,8 +1589,8 @@ func (c *CognitoIdentityProvider) AdminLinkProviderForUserRequest(input *AdminLi
 //   already exists.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
@@ -2200,12 +2200,12 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
@@ -2228,26 +2228,26 @@ func (c *CognitoIdentityProvider) AdminResetUserPasswordRequest(input *AdminRese
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * NotAuthorizedException
 //   This exception is thrown when a user is not authorized.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * UserNotFoundException
 //   This exception is thrown when a user is not found.
@@ -2347,12 +2347,12 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
@@ -2385,7 +2385,7 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * InvalidPasswordException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
@@ -2393,11 +2393,11 @@ func (c *CognitoIdentityProvider) AdminRespondToAuthChallengeRequest(input *Admi
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
@@ -3049,12 +3049,12 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Calling this action requires developer credentials.
@@ -3077,15 +3077,15 @@ func (c *CognitoIdentityProvider) AdminUpdateUserAttributesRequest(input *AdminU
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
@@ -3426,8 +3426,8 @@ func (c *CognitoIdentityProvider) ChangePasswordRequest(input *ChangePasswordInp
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * PasswordResetRequiredException
 //   This exception is thrown when a password reset is required.
@@ -3535,7 +3535,7 @@ func (c *CognitoIdentityProvider) ConfirmDeviceRequest(input *ConfirmDeviceInput
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * UsernameExistsException
 //   This exception is thrown when Amazon Cognito encounters a user name that
@@ -3644,11 +3644,11 @@ func (c *CognitoIdentityProvider) ConfirmForgotPasswordRequest(input *ConfirmFor
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidParameterException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
@@ -3674,15 +3674,15 @@ func (c *CognitoIdentityProvider) ConfirmForgotPasswordRequest(input *ConfirmFor
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * UserNotFoundException
 //   This exception is thrown when a user is not found.
@@ -3782,11 +3782,11 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * NotAuthorizedException
 //   This exception is thrown when a user is not authorized.
@@ -3804,7 +3804,7 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * AliasExistsException
 //   This exception is thrown when a user tries to confirm the account with an
@@ -3817,8 +3817,8 @@ func (c *CognitoIdentityProvider) ConfirmSignUpRequest(input *ConfirmSignUpInput
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * UserNotFoundException
 //   This exception is thrown when a user is not found.
@@ -3921,8 +3921,8 @@ func (c *CognitoIdentityProvider) CreateGroupRequest(input *CreateGroupInput) (r
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * NotAuthorizedException
 //   This exception is thrown when a user is not authorized.
@@ -4026,8 +4026,8 @@ func (c *CognitoIdentityProvider) CreateIdentityProviderRequest(input *CreateIde
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
@@ -4124,8 +4124,8 @@ func (c *CognitoIdentityProvider) CreateResourceServerRequest(input *CreateResou
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
@@ -4225,8 +4225,8 @@ func (c *CognitoIdentityProvider) CreateUserImportJobRequest(input *CreateUserIm
 //   This exception is thrown when a user is not authorized.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
@@ -4310,12 +4310,12 @@ func (c *CognitoIdentityProvider) CreateUserPoolRequest(input *CreateUserPoolInp
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4335,8 +4335,8 @@ func (c *CognitoIdentityProvider) CreateUserPoolRequest(input *CreateUserPoolInp
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * InvalidSmsRoleAccessPolicyException
 //   This exception is returned when the role provided for SMS configuration does
@@ -4453,8 +4453,8 @@ func (c *CognitoIdentityProvider) CreateUserPoolClientRequest(input *CreateUserP
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * NotAuthorizedException
 //   This exception is thrown when a user is not authorized.
@@ -4556,8 +4556,8 @@ func (c *CognitoIdentityProvider) CreateUserPoolDomainRequest(input *CreateUserP
 //   requested resource.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * InternalErrorException
 //   This exception is thrown when Amazon Cognito encounters an internal error.
@@ -6203,12 +6203,12 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6229,26 +6229,26 @@ func (c *CognitoIdentityProvider) ForgotPasswordRequest(input *ForgotPasswordInp
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * NotAuthorizedException
 //   This exception is thrown when a user is not authorized.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * InvalidSmsRoleAccessPolicyException
 //   This exception is returned when the role provided for SMS configuration does
@@ -7034,12 +7034,12 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7067,15 +7067,15 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * InvalidSmsRoleAccessPolicyException
 //   This exception is returned when the role provided for SMS configuration does
@@ -7095,8 +7095,8 @@ func (c *CognitoIdentityProvider) GetUserAttributeVerificationCodeRequest(input 
 //   This exception is thrown when a verification code fails to deliver successfully.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * PasswordResetRequiredException
 //   This exception is thrown when a password reset is required.
@@ -7386,12 +7386,12 @@ func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) 
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7419,18 +7419,18 @@ func (c *CognitoIdentityProvider) InitiateAuthRequest(input *InitiateAuthInput) 
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * InvalidUserPoolConfigurationException
 //   This exception is thrown when the user pool configuration is invalid.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * PasswordResetRequiredException
 //   This exception is thrown when a password reset is required.
@@ -8436,7 +8436,7 @@ func (c *CognitoIdentityProvider) ListUserPoolsRequest(input *ListUserPoolsInput
 
 // ListUserPools API operation for Amazon Cognito Identity Provider.
 //
-// Lists the user pools associated with an AWS account.
+// Lists the user pools associated with an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8898,12 +8898,12 @@ func (c *CognitoIdentityProvider) ResendConfirmationCodeRequest(input *ResendCon
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8924,26 +8924,26 @@ func (c *CognitoIdentityProvider) ResendConfirmationCodeRequest(input *ResendCon
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * NotAuthorizedException
 //   This exception is thrown when a user is not authorized.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * InvalidSmsRoleAccessPolicyException
 //   This exception is returned when the role provided for SMS configuration does
@@ -9047,12 +9047,12 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9083,11 +9083,11 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidPasswordException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
@@ -9095,7 +9095,7 @@ func (c *CognitoIdentityProvider) RespondToAuthChallengeRequest(input *RespondTo
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
@@ -9641,12 +9641,12 @@ func (c *CognitoIdentityProvider) SetUserPoolMfaConfigRequest(input *SetUserPool
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9869,12 +9869,12 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -9895,11 +9895,11 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * NotAuthorizedException
 //   This exception is thrown when a user is not authorized.
@@ -9910,7 +9910,7 @@ func (c *CognitoIdentityProvider) SignUpRequest(input *SignUpInput) (req *reques
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * UsernameExistsException
 //   This exception is thrown when Amazon Cognito encounters a user name that
@@ -10622,9 +10622,6 @@ func (c *CognitoIdentityProvider) UpdateGroupRequest(input *UpdateGroupInput) (r
 //
 // Calling this action requires developer credentials.
 //
-// If you don't provide a value for an attribute, it will be set to the default
-// value.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10924,12 +10921,12 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -10960,15 +10957,15 @@ func (c *CognitoIdentityProvider) UpdateUserAttributesRequest(input *UpdateUserA
 //
 //   * UnexpectedLambdaException
 //   This exception is thrown when the Amazon Cognito service encounters an unexpected
-//   exception with the AWS Lambda service.
+//   exception with the Lambda service.
 //
 //   * UserLambdaValidationException
 //   This exception is thrown when the Amazon Cognito service encounters a user
-//   validation exception with the AWS Lambda service.
+//   validation exception with the Lambda service.
 //
 //   * InvalidLambdaResponseException
 //   This exception is thrown when the Amazon Cognito service encounters an invalid
-//   AWS Lambda response.
+//   Lambda response.
 //
 //   * TooManyRequestsException
 //   This exception is thrown when the user has made too many requests for a given
@@ -11091,12 +11088,12 @@ func (c *CognitoIdentityProvider) UpdateUserPoolRequest(input *UpdateUserPoolInp
 // in.
 //
 // If you have never used SMS text messages with Amazon Cognito or any other
-// AWS service, Amazon SNS might place your account in SMS sandbox. In sandbox
-// mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html) , you’ll
-// have limitations, such as sending messages to only verified phone numbers.
-// After testing in the sandbox environment, you can move out of the SMS sandbox
-// and into production. For more information, see SMS message settings for Cognito
-// User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
+// Amazon Web Service, Amazon SNS might place your account in SMS sandbox. In
+// sandbox mode (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox.html)
+// , you’ll have limitations, such as sending messages to only verified phone
+// numbers. After testing in the sandbox environment, you can move out of the
+// SMS sandbox and into production. For more information, see SMS message settings
+// for Cognito User Pools (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-sms-userpool-settings.html)
 // in the Amazon Cognito Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -11335,7 +11332,7 @@ func (c *CognitoIdentityProvider) UpdateUserPoolDomainRequest(input *UpdateUserP
 //
 // A custom domain is used to host the Amazon Cognito hosted UI, which provides
 // sign-up and sign-in pages for your application. When you set up a custom
-// domain, you provide a certificate that you manage with AWS Certificate Manager
+// domain, you provide a certificate that you manage with Certificate Manager
 // (ACM). When necessary, you can use this operation to change the certificate
 // that you applied to your custom domain.
 //
@@ -11348,7 +11345,7 @@ func (c *CognitoIdentityProvider) UpdateUserPoolDomainRequest(input *UpdateUserP
 // domain, you must provide this ARN to Amazon Cognito.
 //
 // When you add your new certificate in ACM, you must choose US East (N. Virginia)
-// as the AWS Region.
+// as the Region.
 //
 // After you submit your request, Amazon Cognito requires up to 1 hour to distribute
 // your new certificate to your custom domain.
@@ -11606,8 +11603,8 @@ func (c *CognitoIdentityProvider) VerifyUserAttributeRequest(input *VerifyUserAt
 //   operation.
 //
 //   * LimitExceededException
-//   This exception is thrown when a user exceeds the limit for a requested AWS
-//   resource.
+//   This exception is thrown when a user exceeds the limit for a requested Amazon
+//   Web Services resource.
 //
 //   * PasswordResetRequiredException
 //   This exception is thrown when a password reset is required.
@@ -12060,13 +12057,13 @@ type AdminConfirmSignUpInput struct {
 	// workflows that this action triggers.
 	//
 	// If your user pool configuration includes triggers, the AdminConfirmSignUp
-	// API action invokes the AWS Lambda function that is specified for the post
-	// confirmation trigger. When Amazon Cognito invokes this function, it passes
-	// a JSON payload, which the function receives as input. In this payload, the
-	// clientMetadata attribute provides the data that you assigned to the ClientMetadata
-	// parameter in your AdminConfirmSignUp request. In your function code in AWS
-	// Lambda, you can process the ClientMetadata value to enhance your workflow
-	// for your specific needs.
+	// API action invokes the Lambda function that is specified for the post confirmation
+	// trigger. When Amazon Cognito invokes this function, it passes a JSON payload,
+	// which the function receives as input. In this payload, the clientMetadata
+	// attribute provides the data that you assigned to the ClientMetadata parameter
+	// in your AdminConfirmSignUp request. In your function code in Lambda, you
+	// can process the ClientMetadata value to enhance your workflow for your specific
+	// needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -12076,9 +12073,9 @@ type AdminConfirmSignUpInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -12236,13 +12233,13 @@ type AdminCreateUserInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the AdminCreateUser API action, Amazon Cognito invokes
-	// the function that is assigned to the pre sign-up trigger. When Amazon Cognito
-	// invokes this function, it passes a JSON payload, which the function receives
-	// as input. This payload contains a clientMetadata attribute, which provides
-	// the data that you assigned to the ClientMetadata parameter in your AdminCreateUser
-	// request. In your function code in AWS Lambda, you can process the clientMetadata
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the AdminCreateUser API action, Amazon Cognito invokes the function
+	// that is assigned to the pre sign-up trigger. When Amazon Cognito invokes
+	// this function, it passes a JSON payload, which the function receives as input.
+	// This payload contains a clientMetadata attribute, which provides the data
+	// that you assigned to the ClientMetadata parameter in your AdminCreateUser
+	// request. In your function code in Lambda, you can process the clientMetadata
 	// value to enhance your workflow for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
@@ -12253,9 +12250,9 @@ type AdminCreateUserInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -13323,9 +13320,9 @@ type AdminInitiateAuthInput struct {
 	// A map of custom key-value pairs that you can provide as input for certain
 	// custom workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the AdminInitiateAuth API action, Amazon Cognito invokes
-	// the AWS Lambda functions that are specified for various triggers. The ClientMetadata
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the AdminInitiateAuth API action, Amazon Cognito invokes the
+	// Lambda functions that are specified for various triggers. The ClientMetadata
 	// value is passed as input to the functions for only the following triggers:
 	//
 	//    * Pre signup
@@ -13338,7 +13335,7 @@ type AdminInitiateAuthInput struct {
 	// JSON payload, which the function receives as input. This payload contains
 	// a validationData attribute, which provides the data that you assigned to
 	// the ClientMetadata parameter in your AdminInitiateAuth request. In your function
-	// code in AWS Lambda, you can process the validationData value to enhance your
+	// code in Lambda, you can process the validationData value to enhance your
 	// workflow for your specific needs.
 	//
 	// When you use the AdminInitiateAuth API action, Amazon Cognito also invokes
@@ -13365,9 +13362,9 @@ type AdminInitiateAuthInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -14132,15 +14129,15 @@ type AdminResetUserPasswordInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the AdminResetUserPassword API action, Amazon Cognito
-	// invokes the function that is assigned to the custom message trigger. When
-	// Amazon Cognito invokes this function, it passes a JSON payload, which the
-	// function receives as input. This payload contains a clientMetadata attribute,
-	// which provides the data that you assigned to the ClientMetadata parameter
-	// in your AdminResetUserPassword request. In your function code in AWS Lambda,
-	// you can process the clientMetadata value to enhance your workflow for your
-	// specific needs.
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the AdminResetUserPassword API action, Amazon Cognito invokes
+	// the function that is assigned to the custom message trigger. When Amazon
+	// Cognito invokes this function, it passes a JSON payload, which the function
+	// receives as input. This payload contains a clientMetadata attribute, which
+	// provides the data that you assigned to the ClientMetadata parameter in your
+	// AdminResetUserPassword request. In your function code in Lambda, you can
+	// process the clientMetadata value to enhance your workflow for your specific
+	// needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -14150,9 +14147,9 @@ type AdminResetUserPasswordInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -14282,17 +14279,17 @@ type AdminRespondToAuthChallengeInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the AdminRespondToAuthChallenge API action, Amazon
-	// Cognito invokes any functions that are assigned to the following triggers:
-	// pre sign-up, custom message, post authentication, user migration, pre token
-	// generation, define auth challenge, create auth challenge, and verify auth
-	// challenge response. When Amazon Cognito invokes any of these functions, it
-	// passes a JSON payload, which the function receives as input. This payload
-	// contains a clientMetadata attribute, which provides the data that you assigned
-	// to the ClientMetadata parameter in your AdminRespondToAuthChallenge request.
-	// In your function code in AWS Lambda, you can process the clientMetadata value
-	// to enhance your workflow for your specific needs.
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the AdminRespondToAuthChallenge API action, Amazon Cognito invokes
+	// any functions that are assigned to the following triggers: pre sign-up, custom
+	// message, post authentication, user migration, pre token generation, define
+	// auth challenge, create auth challenge, and verify auth challenge response.
+	// When Amazon Cognito invokes any of these functions, it passes a JSON payload,
+	// which the function receives as input. This payload contains a clientMetadata
+	// attribute, which provides the data that you assigned to the ClientMetadata
+	// parameter in your AdminRespondToAuthChallenge request. In your function code
+	// in Lambda, you can process the clientMetadata value to enhance your workflow
+	// for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -14302,9 +14299,9 @@ type AdminRespondToAuthChallengeInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -14974,15 +14971,15 @@ type AdminUpdateUserAttributesInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the AdminUpdateUserAttributes API action, Amazon Cognito
-	// invokes the function that is assigned to the custom message trigger. When
-	// Amazon Cognito invokes this function, it passes a JSON payload, which the
-	// function receives as input. This payload contains a clientMetadata attribute,
-	// which provides the data that you assigned to the ClientMetadata parameter
-	// in your AdminUpdateUserAttributes request. In your function code in AWS Lambda,
-	// you can process the clientMetadata value to enhance your workflow for your
-	// specific needs.
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the AdminUpdateUserAttributes API action, Amazon Cognito invokes
+	// the function that is assigned to the custom message trigger. When Amazon
+	// Cognito invokes this function, it passes a JSON payload, which the function
+	// receives as input. This payload contains a clientMetadata attribute, which
+	// provides the data that you assigned to the ClientMetadata parameter in your
+	// AdminUpdateUserAttributes request. In your function code in Lambda, you can
+	// process the clientMetadata value to enhance your workflow for your specific
+	// needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -14992,9 +14989,9 @@ type AdminUpdateUserAttributesInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -16195,15 +16192,14 @@ type ConfirmForgotPasswordInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the ConfirmForgotPassword API action, Amazon Cognito
-	// invokes the function that is assigned to the post confirmation trigger. When
-	// Amazon Cognito invokes this function, it passes a JSON payload, which the
-	// function receives as input. This payload contains a clientMetadata attribute,
-	// which provides the data that you assigned to the ClientMetadata parameter
-	// in your ConfirmForgotPassword request. In your function code in AWS Lambda,
-	// you can process the clientMetadata value to enhance your workflow for your
-	// specific needs.
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the ConfirmForgotPassword API action, Amazon Cognito invokes
+	// the function that is assigned to the post confirmation trigger. When Amazon
+	// Cognito invokes this function, it passes a JSON payload, which the function
+	// receives as input. This payload contains a clientMetadata attribute, which
+	// provides the data that you assigned to the ClientMetadata parameter in your
+	// ConfirmForgotPassword request. In your function code in Lambda, you can process
+	// the clientMetadata value to enhance your workflow for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -16213,9 +16209,9 @@ type ConfirmForgotPasswordInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -16377,14 +16373,14 @@ type ConfirmSignUpInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the ConfirmSignUp API action, Amazon Cognito invokes
-	// the function that is assigned to the post confirmation trigger. When Amazon
-	// Cognito invokes this function, it passes a JSON payload, which the function
-	// receives as input. This payload contains a clientMetadata attribute, which
-	// provides the data that you assigned to the ClientMetadata parameter in your
-	// ConfirmSignUp request. In your function code in AWS Lambda, you can process
-	// the clientMetadata value to enhance your workflow for your specific needs.
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the ConfirmSignUp API action, Amazon Cognito invokes the function
+	// that is assigned to the post confirmation trigger. When Amazon Cognito invokes
+	// this function, it passes a JSON payload, which the function receives as input.
+	// This payload contains a clientMetadata attribute, which provides the data
+	// that you assigned to the ClientMetadata parameter in your ConfirmSignUp request.
+	// In your function code in Lambda, you can process the clientMetadata value
+	// to enhance your workflow for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -16394,9 +16390,9 @@ type ConfirmSignUpInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -17148,8 +17144,9 @@ type CreateUserPoolClientInput struct {
 	AllowedOAuthFlowsUserPoolClient *bool `type:"boolean"`
 
 	// The allowed OAuth scopes. Possible values provided by OAuth are: phone, email,
-	// openid, and profile. Possible values provided by AWS are: aws.cognito.signin.user.admin.
-	// Custom scopes created in Resource Servers are also supported.
+	// openid, and profile. Possible values provided by Amazon Web Services are:
+	// aws.cognito.signin.user.admin. Custom scopes created in Resource Servers
+	// are also supported.
 	AllowedOAuthScopes []*string `type:"list"`
 
 	// The Amazon Pinpoint analytics configuration for collecting metrics for this
@@ -17639,7 +17636,7 @@ type CreateUserPoolInput struct {
 	// For more information on using the Lambda API to add permission, see AddPermission
 	// (https://docs.aws.amazon.com/lambda/latest/dg/API_AddPermission.html).
 	//
-	// For adding permission using the AWS CLI, see add-permission (https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html).
+	// For adding permission using the CLI, see add-permission (https://docs.aws.amazon.com/cli/latest/reference/lambda/add-permission.html).
 	LambdaConfig *LambdaConfigType `type:"structure"`
 
 	// Specifies MFA configuration details.
@@ -17943,7 +17940,7 @@ func (s *CreateUserPoolOutput) SetUserPool(v *UserPoolType) *CreateUserPoolOutpu
 type CustomDomainConfigType struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS Certificate Manager SSL certificate.
+	// The Amazon Resource Name (ARN) of an Certificate Manager SSL certificate.
 	// You use this certificate for the subdomain of your custom domain.
 	//
 	// CertificateArn is a required field
@@ -19314,7 +19311,7 @@ func (s *DeviceType) SetDeviceLastModifiedDate(v time.Time) *DeviceType {
 type DomainDescriptionType struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID for the user pool owner.
+	// The account ID for the user pool owner.
 	AWSAccountId *string `type:"string"`
 
 	// The ARN of the CloudFront distribution.
@@ -19471,8 +19468,8 @@ type EmailConfigurationType struct {
 	//
 	//    * Event publishing – Amazon SES can track the number of send, delivery,
 	//    open, click, bounce, and complaint events for each email sent. Use event
-	//    publishing to send information about these events to other AWS services
-	//    such as SNS and CloudWatch.
+	//    publishing to send information about these events to other Amazon Web
+	//    Services services such as SNS and CloudWatch.
 	//
 	//    * IP pool management – When leasing dedicated IP addresses with Amazon
 	//    SES, you can create groups of IP addresses, called dedicated IP pools.
@@ -19527,7 +19524,7 @@ type EmailConfigurationType struct {
 	// Amazon Cognito calls Amazon SES on your behalf to send email from your verified
 	// email address. When you use this option, the email delivery limits are the
 	// same limits that apply to your Amazon SES verified email address in your
-	// AWS account.
+	// account.
 	//
 	// If you use this option, you must provide the ARN of an Amazon SES verified
 	// email address for the SourceArn parameter.
@@ -19535,7 +19532,7 @@ type EmailConfigurationType struct {
 	// Before Amazon Cognito can email your users, it requires additional permissions
 	// to call Amazon SES on your behalf. When you update your user pool with this
 	// option, Amazon Cognito creates a service-linked role, which is a type of
-	// IAM role, in your AWS account. This role contains the permissions that allow
+	// IAM role, in your account. This role contains the permissions that allow
 	// Amazon Cognito to access Amazon SES and send email messages with your address.
 	// For more information about the service-linked role that Amazon Cognito creates,
 	// see Using Service-Linked Roles for Amazon Cognito (https://docs.aws.amazon.com/cognito/latest/developerguide/using-service-linked-roles.html)
@@ -19963,14 +19960,14 @@ type ForgotPasswordInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the ForgotPassword API action, Amazon Cognito invokes
-	// any functions that are assigned to the following triggers: pre sign-up, custom
-	// message, and user migration. When Amazon Cognito invokes any of these functions,
-	// it passes a JSON payload, which the function receives as input. This payload
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the ForgotPassword API action, Amazon Cognito invokes any functions
+	// that are assigned to the following triggers: pre sign-up, custom message,
+	// and user migration. When Amazon Cognito invokes any of these functions, it
+	// passes a JSON payload, which the function receives as input. This payload
 	// contains a clientMetadata attribute, which provides the data that you assigned
 	// to the ClientMetadata parameter in your ForgotPassword request. In your function
-	// code in AWS Lambda, you can process the clientMetadata value to enhance your
+	// code in Lambda, you can process the clientMetadata value to enhance your
 	// workflow for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
@@ -19981,9 +19978,9 @@ type ForgotPasswordInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -20585,14 +20582,14 @@ type GetUserAttributeVerificationCodeInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the GetUserAttributeVerificationCode API action, Amazon
-	// Cognito invokes the function that is assigned to the custom message trigger.
-	// When Amazon Cognito invokes this function, it passes a JSON payload, which
-	// the function receives as input. This payload contains a clientMetadata attribute,
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the GetUserAttributeVerificationCode API action, Amazon Cognito
+	// invokes the function that is assigned to the custom message trigger. When
+	// Amazon Cognito invokes this function, it passes a JSON payload, which the
+	// function receives as input. This payload contains a clientMetadata attribute,
 	// which provides the data that you assigned to the ClientMetadata parameter
 	// in your GetUserAttributeVerificationCode request. In your function code in
-	// AWS Lambda, you can process the clientMetadata value to enhance your workflow
+	// Lambda, you can process the clientMetadata value to enhance your workflow
 	// for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
@@ -20603,9 +20600,9 @@ type GetUserAttributeVerificationCodeInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -21295,10 +21292,10 @@ type InitiateAuthInput struct {
 	// A map of custom key-value pairs that you can provide as input for certain
 	// custom workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the InitiateAuth API action, Amazon Cognito invokes
-	// the AWS Lambda functions that are specified for various triggers. The ClientMetadata
-	// value is passed as input to the functions for only the following triggers:
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the InitiateAuth API action, Amazon Cognito invokes the Lambda
+	// functions that are specified for various triggers. The ClientMetadata value
+	// is passed as input to the functions for only the following triggers:
 	//
 	//    * Pre signup
 	//
@@ -21310,7 +21307,7 @@ type InitiateAuthInput struct {
 	// JSON payload, which the function receives as input. This payload contains
 	// a validationData attribute, which provides the data that you assigned to
 	// the ClientMetadata parameter in your InitiateAuth request. In your function
-	// code in AWS Lambda, you can process the validationData value to enhance your
+	// code in Lambda, you can process the validationData value to enhance your
 	// workflow for your specific needs.
 	//
 	// When you use the InitiateAuth API action, Amazon Cognito also invokes the
@@ -21337,9 +21334,9 @@ type InitiateAuthInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -21631,13 +21628,13 @@ func (s *InvalidEmailRoleAccessPolicyException) RequestID() string {
 }
 
 // This exception is thrown when the Amazon Cognito service encounters an invalid
-// AWS Lambda response.
+// Lambda response.
 type InvalidLambdaResponseException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The message returned when the Amazon Cognito service throws an invalid AWS
-	// Lambda response exception.
+	// The message returned when the Amazon Cognito service throws an invalid Lambda
+	// response exception.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -22040,20 +22037,20 @@ func (s *InvalidUserPoolConfigurationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Specifies the configuration for AWS Lambda triggers.
+// Specifies the configuration for Lambda triggers.
 type LambdaConfigType struct {
 	_ struct{} `type:"structure"`
 
 	// Creates an authentication challenge.
 	CreateAuthChallenge *string `min:"20" type:"string"`
 
-	// A custom email sender AWS Lambda trigger.
+	// A custom email sender Lambda trigger.
 	CustomEmailSender *CustomEmailLambdaVersionConfigType `type:"structure"`
 
-	// A custom Message AWS Lambda trigger.
+	// A custom Message Lambda trigger.
 	CustomMessage *string `min:"20" type:"string"`
 
-	// A custom SMS sender AWS Lambda trigger.
+	// A custom SMS sender Lambda trigger.
 	CustomSMSSender *CustomSMSLambdaVersionConfigType `type:"structure"`
 
 	// Defines the authentication challenge.
@@ -22064,16 +22061,16 @@ type LambdaConfigType struct {
 	// to CustomEmailSender and CustomSMSSender.
 	KMSKeyID *string `min:"20" type:"string"`
 
-	// A post-authentication AWS Lambda trigger.
+	// A post-authentication Lambda trigger.
 	PostAuthentication *string `min:"20" type:"string"`
 
-	// A post-confirmation AWS Lambda trigger.
+	// A post-confirmation Lambda trigger.
 	PostConfirmation *string `min:"20" type:"string"`
 
-	// A pre-authentication AWS Lambda trigger.
+	// A pre-authentication Lambda trigger.
 	PreAuthentication *string `min:"20" type:"string"`
 
-	// A pre-registration AWS Lambda trigger.
+	// A pre-registration Lambda trigger.
 	PreSignUp *string `min:"20" type:"string"`
 
 	// A Lambda trigger that is invoked before token generation.
@@ -22227,8 +22224,8 @@ func (s *LambdaConfigType) SetVerifyAuthChallengeResponse(v string) *LambdaConfi
 	return s
 }
 
-// This exception is thrown when a user exceeds the limit for a requested AWS
-// resource.
+// This exception is thrown when a user exceeds the limit for a requested Amazon
+// Web Services resource.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -24160,15 +24157,15 @@ type ResendConfirmationCodeInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the ResendConfirmationCode API action, Amazon Cognito
-	// invokes the function that is assigned to the custom message trigger. When
-	// Amazon Cognito invokes this function, it passes a JSON payload, which the
-	// function receives as input. This payload contains a clientMetadata attribute,
-	// which provides the data that you assigned to the ClientMetadata parameter
-	// in your ResendConfirmationCode request. In your function code in AWS Lambda,
-	// you can process the clientMetadata value to enhance your workflow for your
-	// specific needs.
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the ResendConfirmationCode API action, Amazon Cognito invokes
+	// the function that is assigned to the custom message trigger. When Amazon
+	// Cognito invokes this function, it passes a JSON payload, which the function
+	// receives as input. This payload contains a clientMetadata attribute, which
+	// provides the data that you assigned to the ClientMetadata parameter in your
+	// ResendConfirmationCode request. In your function code in Lambda, you can
+	// process the clientMetadata value to enhance your workflow for your specific
+	// needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -24178,9 +24175,9 @@ type ResendConfirmationCodeInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -24518,16 +24515,16 @@ type RespondToAuthChallengeInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the RespondToAuthChallenge API action, Amazon Cognito
-	// invokes any functions that are assigned to the following triggers: post authentication,
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the RespondToAuthChallenge API action, Amazon Cognito invokes
+	// any functions that are assigned to the following triggers: post authentication,
 	// pre token generation, define auth challenge, create auth challenge, and verify
 	// auth challenge. When Amazon Cognito invokes any of these functions, it passes
 	// a JSON payload, which the function receives as input. This payload contains
 	// a clientMetadata attribute, which provides the data that you assigned to
 	// the ClientMetadata parameter in your RespondToAuthChallenge request. In your
-	// function code in AWS Lambda, you can process the clientMetadata value to
-	// enhance your workflow for your specific needs.
+	// function code in Lambda, you can process the clientMetadata value to enhance
+	// your workflow for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -24537,9 +24534,9 @@ type RespondToAuthChallengeInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -25598,15 +25595,15 @@ type SignUpInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the SignUp API action, Amazon Cognito invokes any
-	// functions that are assigned to the following triggers: pre sign-up, custom
-	// message, and post confirmation. When Amazon Cognito invokes any of these
-	// functions, it passes a JSON payload, which the function receives as input.
-	// This payload contains a clientMetadata attribute, which provides the data
-	// that you assigned to the ClientMetadata parameter in your SignUp request.
-	// In your function code in AWS Lambda, you can process the clientMetadata value
-	// to enhance your workflow for your specific needs.
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the SignUp API action, Amazon Cognito invokes any functions
+	// that are assigned to the following triggers: pre sign-up, custom message,
+	// and post confirmation. When Amazon Cognito invokes any of these functions,
+	// it passes a JSON payload, which the function receives as input. This payload
+	// contains a clientMetadata attribute, which provides the data that you assigned
+	// to the ClientMetadata parameter in your SignUp request. In your function
+	// code in Lambda, you can process the clientMetadata value to enhance your
+	// workflow for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -25616,9 +25613,9 @@ type SignUpInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -25819,8 +25816,8 @@ func (s *SignUpOutput) SetUserSub(v string) *SignUpOutput {
 
 // The SMS configuration type that includes the settings the Cognito User Pool
 // needs to call for the Amazon SNS service to send an SMS message from your
-// AWS account. The Cognito User Pool makes the request to the Amazon SNS Service
-// by using an AWS IAM role that you provide for your AWS account.
+// account. The Cognito User Pool makes the request to the Amazon SNS Service
+// by using an IAM role that you provide for your account.
 type SmsConfigurationType struct {
 	_ struct{} `type:"structure"`
 
@@ -25833,11 +25830,12 @@ type SmsConfigurationType struct {
 	// permissions and a trust policy that demonstrates use of the ExternalId.
 	//
 	// For more information about the ExternalId of a role, see How to use an external
-	// ID when granting access to your AWS resources to a third party (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html)
+	// ID when granting access to your Amazon Web Services resources to a third
+	// party (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user_externalid.html)
 	ExternalId *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Amazon Simple Notification Service
-	// (SNS) caller. This is the ARN of the IAM role in your AWS account which Cognito
+	// (SNS) caller. This is the ARN of the IAM role in your account which Cognito
 	// will use to send SMS messages. SMS messages are subject to a spending limit
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-email-phone-verification.html).
 	//
@@ -26629,13 +26627,13 @@ func (s *UnauthorizedException) RequestID() string {
 }
 
 // This exception is thrown when the Amazon Cognito service encounters an unexpected
-// exception with the AWS Lambda service.
+// exception with the Lambda service.
 type UnexpectedLambdaException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns an unexpected
-	// AWS Lambda exception.
+	// Lambda exception.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -27534,15 +27532,14 @@ type UpdateUserAttributesInput struct {
 	// A map of custom key-value pairs that you can provide as input for any custom
 	// workflows that this action triggers.
 	//
-	// You create custom workflows by assigning AWS Lambda functions to user pool
-	// triggers. When you use the UpdateUserAttributes API action, Amazon Cognito
-	// invokes the function that is assigned to the custom message trigger. When
-	// Amazon Cognito invokes this function, it passes a JSON payload, which the
-	// function receives as input. This payload contains a clientMetadata attribute,
-	// which provides the data that you assigned to the ClientMetadata parameter
-	// in your UpdateUserAttributes request. In your function code in AWS Lambda,
-	// you can process the clientMetadata value to enhance your workflow for your
-	// specific needs.
+	// You create custom workflows by assigning Lambda functions to user pool triggers.
+	// When you use the UpdateUserAttributes API action, Amazon Cognito invokes
+	// the function that is assigned to the custom message trigger. When Amazon
+	// Cognito invokes this function, it passes a JSON payload, which the function
+	// receives as input. This payload contains a clientMetadata attribute, which
+	// provides the data that you assigned to the ClientMetadata parameter in your
+	// UpdateUserAttributes request. In your function code in Lambda, you can process
+	// the clientMetadata value to enhance your workflow for your specific needs.
 	//
 	// For more information, see Customizing User Pool Workflows with Lambda Triggers
 	// (https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html)
@@ -27552,9 +27549,9 @@ type UpdateUserAttributesInput struct {
 	// parameter:
 	//
 	//    * Amazon Cognito does not store the ClientMetadata value. This data is
-	//    available only to AWS Lambda triggers that are assigned to a user pool
-	//    to support custom workflows. If your user pool configuration does not
-	//    include triggers, the ClientMetadata parameter serves no purpose.
+	//    available only to Lambda triggers that are assigned to a user pool to
+	//    support custom workflows. If your user pool configuration does not include
+	//    triggers, the ClientMetadata parameter serves no purpose.
 	//
 	//    * Amazon Cognito does not validate the ClientMetadata value.
 	//
@@ -27677,8 +27674,9 @@ type UpdateUserPoolClientInput struct {
 	AllowedOAuthFlowsUserPoolClient *bool `type:"boolean"`
 
 	// The allowed OAuth scopes. Possible values provided by OAuth are: phone, email,
-	// openid, and profile. Possible values provided by AWS are: aws.cognito.signin.user.admin.
-	// Custom scopes created in Resource Servers are also supported.
+	// openid, and profile. Possible values provided by Amazon Web Services are:
+	// aws.cognito.signin.user.admin. Custom scopes created in Resource Servers
+	// are also supported.
 	AllowedOAuthScopes []*string `type:"list"`
 
 	// The Amazon Pinpoint analytics configuration for collecting metrics for this
@@ -28152,7 +28150,7 @@ type UpdateUserPoolInput struct {
 	// The subject of the email verification message.
 	EmailVerificationSubject *string `min:"1" type:"string"`
 
-	// The AWS Lambda configuration information from the request to update the user
+	// The Lambda configuration information from the request to update the user
 	// pool.
 	LambdaConfig *LambdaConfigType `type:"structure"`
 
@@ -28637,13 +28635,13 @@ func (s *UserImportJobType) SetUserPoolId(v string) *UserImportJobType {
 }
 
 // This exception is thrown when the Amazon Cognito service encounters a user
-// validation exception with the AWS Lambda service.
+// validation exception with the Lambda service.
 type UserLambdaValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
 	// The message returned when the Amazon Cognito service returns a user validation
-	// exception with the AWS Lambda service.
+	// exception with the Lambda service.
 	Message_ *string `locationName:"message" type:"string"`
 }
 
@@ -28974,8 +28972,9 @@ type UserPoolClientType struct {
 	AllowedOAuthFlowsUserPoolClient *bool `type:"boolean"`
 
 	// The allowed OAuth scopes. Possible values provided by OAuth are: phone, email,
-	// openid, and profile. Possible values provided by AWS are: aws.cognito.signin.user.admin.
-	// Custom scopes created in Resource Servers are also supported.
+	// openid, and profile. Possible values provided by Amazon Web Services are:
+	// aws.cognito.signin.user.admin. Custom scopes created in Resource Servers
+	// are also supported.
 	AllowedOAuthScopes []*string `type:"list"`
 
 	// The Amazon Pinpoint analytics configuration for the user pool client.
@@ -29272,7 +29271,7 @@ type UserPoolDescriptionType struct {
 	// The ID in a user pool description.
 	Id *string `min:"1" type:"string"`
 
-	// The AWS Lambda configuration information in a user pool description.
+	// The Lambda configuration information in a user pool description.
 	LambdaConfig *LambdaConfigType `type:"structure"`
 
 	// The date the user pool description was last modified.
@@ -29486,7 +29485,7 @@ type UserPoolType struct {
 	// The ID of the user pool.
 	Id *string `min:"1" type:"string"`
 
-	// The AWS Lambda triggers associated with the user pool.
+	// The Lambda triggers associated with the user pool.
 	LambdaConfig *LambdaConfigType `type:"structure"`
 
 	// The date the user pool was last modified.
@@ -29527,11 +29526,11 @@ type UserPoolType struct {
 	//    to send SMS messages is not properly configured. For more information,
 	//    see SmsConfigurationType (https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_SmsConfigurationType.html).
 	//
-	//    * SNSSandbox - The AWS account is in SNS Sandbox and messages won’t
-	//    reach unverified end users. This parameter won’t get populated with
-	//    SNSSandbox if the IAM user creating the user pool doesn’t have SNS permissions.
-	//    To learn how to move your AWS account out of the sandbox, see Moving out
-	//    of the SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html).
+	//    * SNSSandbox - The account is in SNS Sandbox and messages won’t reach
+	//    unverified end users. This parameter won’t get populated with SNSSandbox
+	//    if the IAM user creating the user pool doesn’t have SNS permissions.
+	//    To learn how to move your account out of the sandbox, see Moving out of
+	//    the SMS sandbox (https://docs.aws.amazon.com/sns/latest/dg/sns-sms-sandbox-moving-to-production.html).
 	SmsConfigurationFailure *string `type:"string"`
 
 	// The contents of the SMS verification message.

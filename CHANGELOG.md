@@ -1,3 +1,15 @@
+Release v1.40.1 (2021-07-15)
+===
+
+### Service Client Updates
+* `service/cognito-idp`: Updates service documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This feature enables customers  to specify weekly recurring time window(s) for scheduled events that reboot, stop or terminate EC2 instances.
+* `service/ecs`: Updates service documentation
+  * Documentation updates for support of awsvpc mode on Windows.
+* `service/iotsitewise`: Updates service API
+* `service/lex-models`: Updates service API
+
 Release v1.40.0 (2021-07-14)
 ===
 
