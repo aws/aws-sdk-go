@@ -7,7 +7,7 @@
 // container management service that makes it easy to run, stop, and manage
 // Docker containers on a cluster. You can host your cluster on a serverless
 // infrastructure that is managed by Amazon ECS by launching your services or
-// tasks on AWS Fargate. For more control, you can host your tasks on a cluster
+// tasks on Fargate. For more control, you can host your tasks on a cluster
 // of Amazon Elastic Compute Cloud (Amazon EC2) instances that you manage.
 //
 // Amazon ECS makes it easy to launch and stop container-based applications

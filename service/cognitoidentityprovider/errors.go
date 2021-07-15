@@ -80,7 +80,7 @@ const (
 	// "InvalidLambdaResponseException".
 	//
 	// This exception is thrown when the Amazon Cognito service encounters an invalid
-	// AWS Lambda response.
+	// Lambda response.
 	ErrCodeInvalidLambdaResponseException = "InvalidLambdaResponseException"
 
 	// ErrCodeInvalidOAuthFlowException for service response error code
@@ -128,8 +128,8 @@ const (
 	// ErrCodeLimitExceededException for service response error code
 	// "LimitExceededException".
 	//
-	// This exception is thrown when a user exceeds the limit for a requested AWS
-	// resource.
+	// This exception is thrown when a user exceeds the limit for a requested Amazon
+	// Web Services resource.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeMFAMethodNotFoundException for service response error code
@@ -202,7 +202,7 @@ const (
 	// "UnexpectedLambdaException".
 	//
 	// This exception is thrown when the Amazon Cognito service encounters an unexpected
-	// exception with the AWS Lambda service.
+	// exception with the Lambda service.
 	ErrCodeUnexpectedLambdaException = "UnexpectedLambdaException"
 
 	// ErrCodeUnsupportedIdentityProviderException for service response error code
@@ -241,7 +241,7 @@ const (
 	// "UserLambdaValidationException".
 	//
 	// This exception is thrown when the Amazon Cognito service encounters a user
-	// validation exception with the AWS Lambda service.
+	// validation exception with the Lambda service.
 	ErrCodeUserLambdaValidationException = "UserLambdaValidationException"
 
 	// ErrCodeUserNotConfirmedException for service response error code

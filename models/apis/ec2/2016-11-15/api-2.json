@@ -164,6 +164,15 @@
       "input":{"shape":"AssociateIamInstanceProfileRequest"},
       "output":{"shape":"AssociateIamInstanceProfileResult"}
     },
+    "AssociateInstanceEventWindow":{
+      "name":"AssociateInstanceEventWindow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AssociateInstanceEventWindowRequest"},
+      "output":{"shape":"AssociateInstanceEventWindowResult"}
+    },
     "AssociateRouteTable":{
       "name":"AssociateRouteTable",
       "http":{
@@ -520,6 +529,15 @@
       },
       "input":{"shape":"CreateImageRequest"},
       "output":{"shape":"CreateImageResult"}
+    },
+    "CreateInstanceEventWindow":{
+      "name":"CreateInstanceEventWindow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateInstanceEventWindowRequest"},
+      "output":{"shape":"CreateInstanceEventWindowResult"}
     },
     "CreateInstanceExportTask":{
       "name":"CreateInstanceExportTask",
@@ -1037,6 +1055,15 @@
       },
       "input":{"shape":"DeleteFpgaImageRequest"},
       "output":{"shape":"DeleteFpgaImageResult"}
+    },
+    "DeleteInstanceEventWindow":{
+      "name":"DeleteInstanceEventWindow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteInstanceEventWindowRequest"},
+      "output":{"shape":"DeleteInstanceEventWindowResult"}
     },
     "DeleteInternetGateway":{
       "name":"DeleteInternetGateway",
@@ -1855,6 +1882,15 @@
       },
       "input":{"shape":"DescribeInstanceEventNotificationAttributesRequest"},
       "output":{"shape":"DescribeInstanceEventNotificationAttributesResult"}
+    },
+    "DescribeInstanceEventWindows":{
+      "name":"DescribeInstanceEventWindows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInstanceEventWindowsRequest"},
+      "output":{"shape":"DescribeInstanceEventWindowsResult"}
     },
     "DescribeInstanceStatus":{
       "name":"DescribeInstanceStatus",
@@ -2733,6 +2769,15 @@
       "input":{"shape":"DisassociateIamInstanceProfileRequest"},
       "output":{"shape":"DisassociateIamInstanceProfileResult"}
     },
+    "DisassociateInstanceEventWindow":{
+      "name":"DisassociateInstanceEventWindow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DisassociateInstanceEventWindowRequest"},
+      "output":{"shape":"DisassociateInstanceEventWindowResult"}
+    },
     "DisassociateRouteTable":{
       "name":"DisassociateRouteTable",
       "http":{
@@ -3301,6 +3346,15 @@
       },
       "input":{"shape":"ModifyInstanceEventStartTimeRequest"},
       "output":{"shape":"ModifyInstanceEventStartTimeResult"}
+    },
+    "ModifyInstanceEventWindow":{
+      "name":"ModifyInstanceEventWindow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyInstanceEventWindowRequest"},
+      "output":{"shape":"ModifyInstanceEventWindowResult"}
     },
     "ModifyInstanceMetadataOptions":{
       "name":"ModifyInstanceMetadataOptions",
@@ -5049,6 +5103,27 @@
         "IamInstanceProfileAssociation":{
           "shape":"IamInstanceProfileAssociation",
           "locationName":"iamInstanceProfileAssociation"
+        }
+      }
+    },
+    "AssociateInstanceEventWindowRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceEventWindowId",
+        "AssociationTarget"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceEventWindowId":{"shape":"InstanceEventWindowId"},
+        "AssociationTarget":{"shape":"InstanceEventWindowAssociationRequest"}
+      }
+    },
+    "AssociateInstanceEventWindowResult":{
+      "type":"structure",
+      "members":{
+        "InstanceEventWindow":{
+          "shape":"InstanceEventWindow",
+          "locationName":"instanceEventWindow"
         }
       }
     },
@@ -7958,6 +8033,31 @@
         }
       }
     },
+    "CreateInstanceEventWindowRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Name":{"shape":"String"},
+        "TimeRanges":{
+          "shape":"InstanceEventWindowTimeRangeRequestSet",
+          "locationName":"TimeRange"
+        },
+        "CronExpression":{"shape":"InstanceEventWindowCronExpression"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        }
+      }
+    },
+    "CreateInstanceEventWindowResult":{
+      "type":"structure",
+      "members":{
+        "InstanceEventWindow":{
+          "shape":"InstanceEventWindow",
+          "locationName":"instanceEventWindow"
+        }
+      }
+    },
     "CreateInstanceExportTaskRequest":{
       "type":"structure",
       "required":[
@@ -9566,6 +9666,13 @@
     "DateTime":{"type":"timestamp"},
     "DedicatedHostFlag":{"type":"boolean"},
     "DedicatedHostId":{"type":"string"},
+    "DedicatedHostIdList":{
+      "type":"list",
+      "member":{
+        "shape":"DedicatedHostId",
+        "locationName":"item"
+      }
+    },
     "DefaultNetworkCardIndex":{"type":"integer"},
     "DefaultRouteTableAssociationValue":{
       "type":"string",
@@ -9812,6 +9919,24 @@
         "Return":{
           "shape":"Boolean",
           "locationName":"return"
+        }
+      }
+    },
+    "DeleteInstanceEventWindowRequest":{
+      "type":"structure",
+      "required":["InstanceEventWindowId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "ForceDelete":{"shape":"Boolean"},
+        "InstanceEventWindowId":{"shape":"InstanceEventWindowId"}
+      }
+    },
+    "DeleteInstanceEventWindowResult":{
+      "type":"structure",
+      "members":{
+        "InstanceEventWindowState":{
+          "shape":"InstanceEventWindowStateChange",
+          "locationName":"instanceEventWindowState"
         }
       }
     },
@@ -12090,6 +12215,35 @@
         "InstanceTagAttribute":{
           "shape":"InstanceTagNotificationAttribute",
           "locationName":"instanceTagAttribute"
+        }
+      }
+    },
+    "DescribeInstanceEventWindowsRequest":{
+      "type":"structure",
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceEventWindowIds":{
+          "shape":"InstanceEventWindowIdSet",
+          "locationName":"InstanceEventWindowId"
+        },
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "MaxResults":{"shape":"ResultRange"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "DescribeInstanceEventWindowsResult":{
+      "type":"structure",
+      "members":{
+        "InstanceEventWindows":{
+          "shape":"InstanceEventWindowSet",
+          "locationName":"instanceEventWindowSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
         }
       }
     },
@@ -15205,6 +15359,27 @@
         "IamInstanceProfileAssociation":{
           "shape":"IamInstanceProfileAssociation",
           "locationName":"iamInstanceProfileAssociation"
+        }
+      }
+    },
+    "DisassociateInstanceEventWindowRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceEventWindowId",
+        "AssociationTarget"
+      ],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "InstanceEventWindowId":{"shape":"InstanceEventWindowId"},
+        "AssociationTarget":{"shape":"InstanceEventWindowDisassociationRequest"}
+      }
+    },
+    "DisassociateInstanceEventWindowResult":{
+      "type":"structure",
+      "members":{
+        "InstanceEventWindow":{
+          "shape":"InstanceEventWindow",
+          "locationName":"instanceEventWindow"
         }
       }
     },
@@ -18439,6 +18614,11 @@
         "host"
       ]
     },
+    "Hour":{
+      "type":"integer",
+      "max":23,
+      "min":0
+    },
     "HttpTokensState":{
       "type":"string",
       "enum":[
@@ -19826,6 +20006,169 @@
       }
     },
     "InstanceEventId":{"type":"string"},
+    "InstanceEventWindow":{
+      "type":"structure",
+      "members":{
+        "InstanceEventWindowId":{
+          "shape":"InstanceEventWindowId",
+          "locationName":"instanceEventWindowId"
+        },
+        "TimeRanges":{
+          "shape":"InstanceEventWindowTimeRangeList",
+          "locationName":"timeRangeSet"
+        },
+        "Name":{
+          "shape":"String",
+          "locationName":"name"
+        },
+        "CronExpression":{
+          "shape":"InstanceEventWindowCronExpression",
+          "locationName":"cronExpression"
+        },
+        "AssociationTarget":{
+          "shape":"InstanceEventWindowAssociationTarget",
+          "locationName":"associationTarget"
+        },
+        "State":{
+          "shape":"InstanceEventWindowState",
+          "locationName":"state"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "InstanceEventWindowAssociationRequest":{
+      "type":"structure",
+      "members":{
+        "InstanceIds":{
+          "shape":"InstanceIdList",
+          "locationName":"InstanceId"
+        },
+        "InstanceTags":{
+          "shape":"TagList",
+          "locationName":"InstanceTag"
+        },
+        "DedicatedHostIds":{
+          "shape":"DedicatedHostIdList",
+          "locationName":"DedicatedHostId"
+        }
+      }
+    },
+    "InstanceEventWindowAssociationTarget":{
+      "type":"structure",
+      "members":{
+        "InstanceIds":{
+          "shape":"InstanceIdList",
+          "locationName":"instanceIdSet"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        },
+        "DedicatedHostIds":{
+          "shape":"DedicatedHostIdList",
+          "locationName":"dedicatedHostIdSet"
+        }
+      }
+    },
+    "InstanceEventWindowCronExpression":{"type":"string"},
+    "InstanceEventWindowDisassociationRequest":{
+      "type":"structure",
+      "members":{
+        "InstanceIds":{
+          "shape":"InstanceIdList",
+          "locationName":"InstanceId"
+        },
+        "InstanceTags":{
+          "shape":"TagList",
+          "locationName":"InstanceTag"
+        },
+        "DedicatedHostIds":{
+          "shape":"DedicatedHostIdList",
+          "locationName":"DedicatedHostId"
+        }
+      }
+    },
+    "InstanceEventWindowId":{"type":"string"},
+    "InstanceEventWindowIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceEventWindowId",
+        "locationName":"InstanceEventWindowId"
+      }
+    },
+    "InstanceEventWindowSet":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceEventWindow",
+        "locationName":"item"
+      }
+    },
+    "InstanceEventWindowState":{
+      "type":"string",
+      "enum":[
+        "creating",
+        "deleting",
+        "active",
+        "deleted"
+      ]
+    },
+    "InstanceEventWindowStateChange":{
+      "type":"structure",
+      "members":{
+        "InstanceEventWindowId":{
+          "shape":"InstanceEventWindowId",
+          "locationName":"instanceEventWindowId"
+        },
+        "State":{
+          "shape":"InstanceEventWindowState",
+          "locationName":"state"
+        }
+      }
+    },
+    "InstanceEventWindowTimeRange":{
+      "type":"structure",
+      "members":{
+        "StartWeekDay":{
+          "shape":"WeekDay",
+          "locationName":"startWeekDay"
+        },
+        "StartHour":{
+          "shape":"Hour",
+          "locationName":"startHour"
+        },
+        "EndWeekDay":{
+          "shape":"WeekDay",
+          "locationName":"endWeekDay"
+        },
+        "EndHour":{
+          "shape":"Hour",
+          "locationName":"endHour"
+        }
+      }
+    },
+    "InstanceEventWindowTimeRangeList":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceEventWindowTimeRange",
+        "locationName":"item"
+      }
+    },
+    "InstanceEventWindowTimeRangeRequest":{
+      "type":"structure",
+      "members":{
+        "StartWeekDay":{"shape":"WeekDay"},
+        "StartHour":{"shape":"Hour"},
+        "EndWeekDay":{"shape":"WeekDay"},
+        "EndHour":{"shape":"Hour"}
+      }
+    },
+    "InstanceEventWindowTimeRangeRequestSet":{
+      "type":"list",
+      "member":{"shape":"InstanceEventWindowTimeRangeRequest"}
+    },
     "InstanceExportDetails":{
       "type":"structure",
       "members":{
@@ -19860,6 +20203,13 @@
       ]
     },
     "InstanceId":{"type":"string"},
+    "InstanceIdList":{
+      "type":"list",
+      "member":{
+        "shape":"InstanceId",
+        "locationName":"item"
+      }
+    },
     "InstanceIdSet":{
       "type":"list",
       "member":{
@@ -23194,6 +23544,29 @@
         "Event":{
           "shape":"InstanceStatusEvent",
           "locationName":"event"
+        }
+      }
+    },
+    "ModifyInstanceEventWindowRequest":{
+      "type":"structure",
+      "required":["InstanceEventWindowId"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "Name":{"shape":"String"},
+        "InstanceEventWindowId":{"shape":"InstanceEventWindowId"},
+        "TimeRanges":{
+          "shape":"InstanceEventWindowTimeRangeRequestSet",
+          "locationName":"TimeRange"
+        },
+        "CronExpression":{"shape":"InstanceEventWindowCronExpression"}
+      }
+    },
+    "ModifyInstanceEventWindowResult":{
+      "type":"structure",
+      "members":{
+        "InstanceEventWindow":{
+          "shape":"InstanceEventWindow",
+          "locationName":"instanceEventWindow"
         }
       }
     },
@@ -27716,6 +28089,7 @@
         "import-image-task",
         "import-snapshot-task",
         "instance",
+        "instance-event-window",
         "internet-gateway",
         "key-pair",
         "launch-template",
@@ -27943,6 +28317,11 @@
           "locationName":"prefixList"
         }
       }
+    },
+    "ResultRange":{
+      "type":"integer",
+      "max":500,
+      "min":20
     },
     "RevokeClientVpnIngressRequest":{
       "type":"structure",
@@ -34096,6 +34475,18 @@
     "VpnTunnelOptionsSpecificationsList":{
       "type":"list",
       "member":{"shape":"VpnTunnelOptionsSpecification"}
+    },
+    "WeekDay":{
+      "type":"string",
+      "enum":[
+        "sunday",
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday"
+      ]
     },
     "WithdrawByoipCidrRequest":{
       "type":"structure",

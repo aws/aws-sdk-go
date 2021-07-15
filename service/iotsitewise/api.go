@@ -53,7 +53,7 @@ func (c *IoTSiteWise) AssociateAssetsRequest(input *AssociateAssetsInput) (req *
 	output = &AssociateAssetsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -604,7 +604,7 @@ func (c *IoTSiteWise) CreateAssetRequest(input *CreateAssetInput) (req *request.
 
 	output = &CreateAssetOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -717,7 +717,7 @@ func (c *IoTSiteWise) CreateAssetModelRequest(input *CreateAssetModelInput) (req
 
 	output = &CreateAssetModelOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -937,7 +937,7 @@ func (c *IoTSiteWise) CreateGatewayRequest(input *CreateGatewayInput) (req *requ
 
 	output = &CreateGatewayOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("edge.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1358,7 +1358,7 @@ func (c *IoTSiteWise) DeleteAssetRequest(input *DeleteAssetInput) (req *request.
 
 	output = &DeleteAssetOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1463,7 +1463,7 @@ func (c *IoTSiteWise) DeleteAssetModelRequest(input *DeleteAssetModelInput) (req
 
 	output = &DeleteAssetModelOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -1666,7 +1666,7 @@ func (c *IoTSiteWise) DeleteGatewayRequest(input *DeleteGatewayInput) (req *requ
 	output = &DeleteGatewayOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("edge.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2057,7 +2057,7 @@ func (c *IoTSiteWise) DescribeAssetRequest(input *DescribeAssetInput) (req *requ
 
 	output = &DescribeAssetOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2153,7 +2153,7 @@ func (c *IoTSiteWise) DescribeAssetModelRequest(input *DescribeAssetModelInput) 
 
 	output = &DescribeAssetModelOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2249,7 +2249,7 @@ func (c *IoTSiteWise) DescribeAssetPropertyRequest(input *DescribeAssetPropertyI
 
 	output = &DescribeAssetPropertyOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2449,6 +2449,8 @@ func (c *IoTSiteWise) DescribeDefaultEncryptionConfigurationRequest(input *Descr
 
 	output = &DescribeDefaultEncryptionConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
 
@@ -2543,7 +2545,7 @@ func (c *IoTSiteWise) DescribeGatewayRequest(input *DescribeGatewayInput) (req *
 
 	output = &DescribeGatewayOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("edge.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2639,7 +2641,7 @@ func (c *IoTSiteWise) DescribeGatewayCapabilityConfigurationRequest(input *Descr
 
 	output = &DescribeGatewayCapabilityConfigurationOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("edge.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -2740,7 +2742,7 @@ func (c *IoTSiteWise) DescribeLoggingOptionsRequest(input *DescribeLoggingOption
 
 	output = &DescribeLoggingOptionsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -3028,6 +3030,8 @@ func (c *IoTSiteWise) DescribeStorageConfigurationRequest(input *DescribeStorage
 
 	output = &DescribeStorageConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
 
@@ -3135,7 +3139,7 @@ func (c *IoTSiteWise) DisassociateAssetsRequest(input *DisassociateAssetsInput) 
 	output = &DisassociateAssetsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4002,7 +4006,7 @@ func (c *IoTSiteWise) ListAssetModelsRequest(input *ListAssetModelsInput) (req *
 
 	output = &ListAssetModelsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4153,7 +4157,7 @@ func (c *IoTSiteWise) ListAssetRelationshipsRequest(input *ListAssetRelationship
 
 	output = &ListAssetRelationshipsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4309,7 +4313,7 @@ func (c *IoTSiteWise) ListAssetsRequest(input *ListAssetsInput) (req *request.Re
 
 	output = &ListAssetsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4474,7 +4478,7 @@ func (c *IoTSiteWise) ListAssociatedAssetsRequest(input *ListAssociatedAssetsInp
 
 	output = &ListAssociatedAssetsOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -4786,7 +4790,7 @@ func (c *IoTSiteWise) ListGatewaysRequest(input *ListGatewaysInput) (req *reques
 
 	output = &ListGatewaysOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("edge.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -5385,6 +5389,8 @@ func (c *IoTSiteWise) ListTagsForResourceRequest(input *ListTagsForResourceInput
 
 	output = &ListTagsForResourceOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
 
@@ -5494,6 +5500,8 @@ func (c *IoTSiteWise) PutDefaultEncryptionConfigurationRequest(input *PutDefault
 
 	output = &PutDefaultEncryptionConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
 
@@ -5600,7 +5608,7 @@ func (c *IoTSiteWise) PutLoggingOptionsRequest(input *PutLoggingOptionsInput) (r
 	output = &PutLoggingOptionsOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -5700,6 +5708,8 @@ func (c *IoTSiteWise) PutStorageConfigurationRequest(input *PutStorageConfigurat
 
 	output = &PutStorageConfigurationOutput{}
 	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
 
@@ -5810,6 +5820,8 @@ func (c *IoTSiteWise) TagResourceRequest(input *TagResourceInput) (req *request.
 	output = &TagResourceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
 
@@ -5926,6 +5938,8 @@ func (c *IoTSiteWise) UntagResourceRequest(input *UntagResourceInput) (req *requ
 	output = &UntagResourceOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
 
@@ -6133,7 +6147,7 @@ func (c *IoTSiteWise) UpdateAssetRequest(input *UpdateAssetInput) (req *request.
 
 	output = &UpdateAssetOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -6238,7 +6252,7 @@ func (c *IoTSiteWise) UpdateAssetModelRequest(input *UpdateAssetModelInput) (req
 
 	output = &UpdateAssetModelOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -6364,7 +6378,7 @@ func (c *IoTSiteWise) UpdateAssetPropertyRequest(input *UpdateAssetPropertyInput
 	output = &UpdateAssetPropertyOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("model.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -6567,7 +6581,7 @@ func (c *IoTSiteWise) UpdateGatewayRequest(input *UpdateGatewayInput) (req *requ
 	output = &UpdateGatewayOutput{}
 	req = c.newRequest(op, input, output)
 	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("edge.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }
@@ -6667,7 +6681,7 @@ func (c *IoTSiteWise) UpdateGatewayCapabilityConfigurationRequest(input *UpdateG
 
 	output = &UpdateGatewayCapabilityConfigurationOutput{}
 	req = c.newRequest(op, input, output)
-	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("edge.", nil))
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("api.", nil))
 	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
 	return
 }

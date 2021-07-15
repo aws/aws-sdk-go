@@ -25,8 +25,8 @@ const (
 	// ErrCodeBlockedException for service response error code
 	// "BlockedException".
 	//
-	// Your AWS account has been blocked. For more information, contact AWS Support
-	// (http://aws.amazon.com/contact-us/).
+	// Your Amazon Web Services account has been blocked. For more information,
+	// contact Amazon Web Services Support (http://aws.amazon.com/contact-us/).
 	ErrCodeBlockedException = "BlockedException"
 
 	// ErrCodeClientException for service response error code
