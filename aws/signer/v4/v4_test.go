@@ -645,6 +645,23 @@ func TestBuildCanonicalRequest(t *testing.T) {
 	}
 }
 
+func TestSignString_ReplaceRequestBody(t *testing.T) {
+	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
+
+	s := NewSigner(creds)
+
+	var stringToSign = "mypolicy"
+
+	signature, err := s.SignString(aws.BackgroundContext(), stringToSign, "s3", "us-east-1", time.Hour, time.Now())
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	if len(signature) < 1 {
+		t.Errorf("expect signature to have value but it didn't")
+	}
+}
+
 func TestSignWithBody_ReplaceRequestBody(t *testing.T) {
 	creds := credentials.NewStaticCredentials("AKID", "SECRET", "SESSION")
 	req, seekerBody := buildRequest("dynamodb", "us-east-1", "{}")

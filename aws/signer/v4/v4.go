@@ -312,6 +312,35 @@ func (v4 Signer) Presign(r *http.Request, body io.ReadSeeker, service, region st
 	return v4.signWithBody(r, body, service, region, exp, true, signTime)
 }
 
+// SignString creates a signature of provided string according to AWS v4
+// signing process described in the documentation:
+// https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html
+//
+// It may be used to create signatures of "Browser-Based Upload using HTTP POST"
+// policy documents to be used in the browser. In which case, make sure to
+// base64 encode the policy document using base64.StdEncoding before creating
+// it's signature. See https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-authentication-HTTPPOST.html
+func (v4 Signer) SignString(awsContext aws.Context, stringToSign string, service, region string, exp time.Duration, signTime time.Time) (string, error) {
+	ctx := &signingCtx{
+		Time:                   signTime,
+		ExpireTime:             exp,
+		ServiceName:            service,
+		Region:                 region,
+	}
+
+	var err error
+	ctx.credValues, err = v4.Credentials.GetWithContext(awsContext)
+	if err != nil {
+		return "", err
+	}
+
+	ctx.stringToSign = stringToSign
+
+	ctx.buildSignature()
+
+	return ctx.signature, err
+}
+
 func (v4 Signer) signWithBody(r *http.Request, body io.ReadSeeker, service, region string, exp time.Duration, isPresign bool, signTime time.Time) (http.Header, error) {
 	currentTimeFn := v4.currentTimeFn
 	if currentTimeFn == nil {
