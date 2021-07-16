@@ -3607,6 +3607,7 @@
         "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
         "DefaultLicense":{"shape":"License"},
         "SupportedLicenses":{"shape":"LicenseList"},
+        "AccountStatus":{"shape":"AccountStatus"},
         "SigninDelegateGroups":{"shape":"SigninDelegateGroupList"}
       }
     },
@@ -3626,6 +3627,13 @@
         "DisableRemoteControl":{"shape":"Boolean"},
         "EnableDialOut":{"shape":"Boolean"}
       }
+    },
+    "AccountStatus":{
+      "type":"string",
+      "enum":[
+        "Suspended",
+        "Active"
+      ]
     },
     "AccountType":{
       "type":"string",

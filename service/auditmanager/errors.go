@@ -11,8 +11,8 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// Your account is not registered with AWS Audit Manager. Check the delegated
-	// administrator setup on the AWS Audit Manager settings page, and try again.
+	// Your account is not registered with Audit Manager. Check the delegated administrator
+	// setup on the Audit Manager settings page, and try again.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeInternalServerException for service response error code

@@ -3,9 +3,6 @@
 // Package appintegrationsservice provides the client and types for making API
 // requests to Amazon AppIntegrations Service.
 //
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // The Amazon AppIntegrations service enables you to configure and reuse connections
 // to external applications.
 //

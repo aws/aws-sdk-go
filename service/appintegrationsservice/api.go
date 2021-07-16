@@ -56,13 +56,10 @@ func (c *AppIntegrationsService) CreateEventIntegrationRequest(input *CreateEven
 
 // CreateEventIntegration API operation for Amazon AppIntegrations Service.
 //
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // Creates an EventIntegration, given a specified name, description, and a reference
-// to an Amazon Eventbridge bus in your account and a partner event source that
-// will push events to that bus. No objects are created in the your account,
-// only metadata that is persisted on the EventIntegration control plane.
+// to an Amazon EventBridge bus in your account and a partner event source that
+// pushes events to that bus. No objects are created in the your account, only
+// metadata that is persisted on the EventIntegration control plane.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -157,9 +154,6 @@ func (c *AppIntegrationsService) DeleteEventIntegrationRequest(input *DeleteEven
 
 // DeleteEventIntegration API operation for Amazon AppIntegrations Service.
 //
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // Deletes the specified existing event integration. If the event integration
 // is associated with clients, the request is rejected.
 //
@@ -252,9 +246,6 @@ func (c *AppIntegrationsService) GetEventIntegrationRequest(input *GetEventInteg
 
 // GetEventIntegration API operation for Amazon AppIntegrations Service.
 //
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // Return information about the event integration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -345,9 +336,6 @@ func (c *AppIntegrationsService) ListEventIntegrationAssociationsRequest(input *
 }
 
 // ListEventIntegrationAssociations API operation for Amazon AppIntegrations Service.
-//
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
 //
 // Returns a paginated list of event integration associations in the account.
 //
@@ -440,9 +428,6 @@ func (c *AppIntegrationsService) ListEventIntegrationsRequest(input *ListEventIn
 
 // ListEventIntegrations API operation for Amazon AppIntegrations Service.
 //
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // Returns a paginated list of event integrations in the account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -530,9 +515,6 @@ func (c *AppIntegrationsService) ListTagsForResourceRequest(input *ListTagsForRe
 }
 
 // ListTagsForResource API operation for Amazon AppIntegrations Service.
-//
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
 //
 // Lists the tags for the specified resource.
 //
@@ -623,9 +605,6 @@ func (c *AppIntegrationsService) TagResourceRequest(input *TagResourceInput) (re
 
 // TagResource API operation for Amazon AppIntegrations Service.
 //
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // Adds the specified tags to the specified resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -715,9 +694,6 @@ func (c *AppIntegrationsService) UntagResourceRequest(input *UntagResourceInput)
 
 // UntagResource API operation for Amazon AppIntegrations Service.
 //
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // Removes the specified tags from the specified resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -806,9 +782,6 @@ func (c *AppIntegrationsService) UpdateEventIntegrationRequest(input *UpdateEven
 }
 
 // UpdateEventIntegration API operation for Amazon AppIntegrations Service.
-//
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
 //
 // Updates the description of an event integration.
 //
@@ -923,7 +896,7 @@ type CreateEventIntegrationInput struct {
 	// The description of the event integration.
 	Description *string `min:"1" type:"string"`
 
-	// The Eventbridge bus.
+	// The EventBridge bus.
 	//
 	// EventBridgeBus is a required field
 	EventBridgeBus *string `min:"1" type:"string" required:"true"`
@@ -1161,9 +1134,6 @@ func (s *DuplicateResourceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // The event filter.
 type EventFilter struct {
 	_ struct{} `type:"structure"`
@@ -1206,9 +1176,6 @@ func (s *EventFilter) SetSource(v string) *EventFilter {
 	return s
 }
 
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // The event integration.
 type EventIntegration struct {
 	_ struct{} `type:"structure"`
@@ -1216,7 +1183,7 @@ type EventIntegration struct {
 	// The event integration description.
 	Description *string `min:"1" type:"string"`
 
-	// The Amazon Eventbridge bus for the event integration.
+	// The Amazon EventBridge bus for the event integration.
 	EventBridgeBus *string `min:"1" type:"string"`
 
 	// The event integration filter.
@@ -1278,9 +1245,6 @@ func (s *EventIntegration) SetTags(v map[string]*string) *EventIntegration {
 	return s
 }
 
-// The Amazon AppIntegrations APIs are in preview release and are subject to
-// change.
-//
 // The event integration association.
 type EventIntegrationAssociation struct {
 	_ struct{} `type:"structure"`
@@ -1291,7 +1255,7 @@ type EventIntegrationAssociation struct {
 	// The identifier for the client that is associated with the event integration.
 	ClientId *string `min:"1" type:"string"`
 
-	// The name of the Eventbridge rule.
+	// The name of the EventBridge rule.
 	EventBridgeRuleName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the event integration association.
@@ -1397,7 +1361,7 @@ type GetEventIntegrationOutput struct {
 	// The description of the event integration.
 	Description *string `min:"1" type:"string"`
 
-	// The Eventbridge bus.
+	// The EventBridge bus.
 	EventBridgeBus *string `min:"1" type:"string"`
 
 	// The event filter.
