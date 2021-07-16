@@ -1,3 +1,12 @@
+Release v1.40.2 (2021-07-16)
+===
+
+### Service Client Updates
+* `service/appintegrations`: Updates service documentation
+* `service/auditmanager`: Updates service API and documentation
+* `service/chime`: Updates service API and documentation
+  * This SDK release adds Account Status as one of the attributes in Account API response
+
 Release v1.40.1 (2021-07-15)
 ===
 

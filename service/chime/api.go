@@ -20396,6 +20396,9 @@ type Account struct {
 	// AccountId is a required field
 	AccountId *string `type:"string" required:"true"`
 
+	// The status of the account, Suspended or Active.
+	AccountStatus *string `type:"string" enum:"AccountStatus"`
+
 	// The Amazon Chime account type. For more information about different account
 	// types, see Managing Your Amazon Chime Accounts (https://docs.aws.amazon.com/chime/latest/ag/manage-chime-account.html)
 	// in the Amazon Chime Administration Guide.
@@ -20437,6 +20440,12 @@ func (s Account) GoString() string {
 // SetAccountId sets the AccountId field's value.
 func (s *Account) SetAccountId(v string) *Account {
 	s.AccountId = &v
+	return s
+}
+
+// SetAccountStatus sets the AccountStatus field's value.
+func (s *Account) SetAccountStatus(v string) *Account {
+	s.AccountStatus = &v
 	return s
 }
 
@@ -41633,6 +41642,22 @@ func (s VoiceConnectorSettings) GoString() string {
 func (s *VoiceConnectorSettings) SetCdrBucket(v string) *VoiceConnectorSettings {
 	s.CdrBucket = &v
 	return s
+}
+
+const (
+	// AccountStatusSuspended is a AccountStatus enum value
+	AccountStatusSuspended = "Suspended"
+
+	// AccountStatusActive is a AccountStatus enum value
+	AccountStatusActive = "Active"
+)
+
+// AccountStatus_Values returns all elements of the AccountStatus enum
+func AccountStatus_Values() []string {
+	return []string{
+		AccountStatusSuspended,
+		AccountStatusActive,
+	}
 }
 
 const (

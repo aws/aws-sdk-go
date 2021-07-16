@@ -227,6 +227,12 @@
         "UpdateAccountSettingsRequest$AccountSettings": "<p>The Amazon Chime account settings to update.</p>"
       }
     },
+    "AccountStatus": {
+      "base": null,
+      "refs": {
+        "Account$AccountStatus": "<p>The status of the account, <code>Suspended</code> or <code>Active</code>.</p>"
+      }
+    },
     "AccountType": {
       "base": null,
       "refs": {

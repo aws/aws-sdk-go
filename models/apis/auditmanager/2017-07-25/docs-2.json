@@ -1,75 +1,75 @@
 {
   "version": "2.0",
-  "service": "<p>Welcome to the AWS Audit Manager API reference. This guide is for developers who need detailed information about the AWS Audit Manager API operations, data types, and errors. </p> <p>AWS Audit Manager is a service that provides automated evidence collection so that you can continuously audit your AWS usage, and assess the effectiveness of your controls to better manage risk and simplify compliance.</p> <p>AWS Audit Manager provides pre-built frameworks that structure and automate assessments for a given compliance standard. Frameworks include a pre-built collection of controls with descriptions and testing procedures, which are grouped according to the requirements of the specified compliance standard or regulation. You can also customize frameworks and controls to support internal audits with unique requirements. </p> <p>Use the following links to get started with the AWS Audit Manager API:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Operations.html\">Actions</a>: An alphabetical list of all AWS Audit Manager API operations.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Types.html\">Data types</a>: An alphabetical list of all AWS Audit Manager data types.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonParameters.html\">Common parameters</a>: Parameters that all Query operations can use.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonErrors.html\">Common errors</a>: Client and server errors that all operations can return.</p> </li> </ul> <p>If you're new to AWS Audit Manager, we recommend that you review the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html\"> AWS Audit Manager User Guide</a>.</p>",
+  "service": "<p>Welcome to the Audit Manager API reference. This guide is for developers who need detailed information about the Audit Manager API operations, data types, and errors. </p> <p>Audit Manager is a service that provides automated evidence collection so that you can continuously audit your Amazon Web Services usage, and assess the effectiveness of your controls to better manage risk and simplify compliance.</p> <p>Audit Manager provides pre-built frameworks that structure and automate assessments for a given compliance standard. Frameworks include a pre-built collection of controls with descriptions and testing procedures, which are grouped according to the requirements of the specified compliance standard or regulation. You can also customize frameworks and controls to support internal audits with unique requirements. </p> <p>Use the following links to get started with the Audit Manager API:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Operations.html\">Actions</a>: An alphabetical list of all Audit Manager API operations.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/API_Types.html\">Data types</a>: An alphabetical list of all Audit Manager data types.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonParameters.html\">Common parameters</a>: Parameters that all Query operations can use.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/audit-manager/latest/APIReference/CommonErrors.html\">Common errors</a>: Client and server errors that all operations can return.</p> </li> </ul> <p>If you're new to Audit Manager, we recommend that you review the <a href=\"https://docs.aws.amazon.com/audit-manager/latest/userguide/what-is.html\"> Audit Manager User Guide</a>.</p>",
   "operations": {
-    "AssociateAssessmentReportEvidenceFolder": "<p> Associates an evidence folder to the specified assessment report in AWS Audit Manager. </p>",
-    "BatchAssociateAssessmentReportEvidence": "<p> Associates a list of evidence to an assessment report in an AWS Audit Manager assessment. </p>",
-    "BatchCreateDelegationByAssessment": "<p> Create a batch of delegations for a specified assessment in AWS Audit Manager. </p>",
-    "BatchDeleteDelegationByAssessment": "<p> Deletes the delegations in the specified AWS Audit Manager assessment. </p>",
-    "BatchDisassociateAssessmentReportEvidence": "<p> Disassociates a list of evidence from the specified assessment report in AWS Audit Manager. </p>",
-    "BatchImportEvidenceToAssessmentControl": "<p> Uploads one or more pieces of evidence to the specified control in the assessment in AWS Audit Manager. </p>",
-    "CreateAssessment": "<p> Creates an assessment in AWS Audit Manager. </p>",
-    "CreateAssessmentFramework": "<p> Creates a custom framework in AWS Audit Manager. </p>",
+    "AssociateAssessmentReportEvidenceFolder": "<p> Associates an evidence folder to the specified assessment report in Audit Manager. </p>",
+    "BatchAssociateAssessmentReportEvidence": "<p> Associates a list of evidence to an assessment report in an Audit Manager assessment. </p>",
+    "BatchCreateDelegationByAssessment": "<p> Create a batch of delegations for a specified assessment in Audit Manager. </p>",
+    "BatchDeleteDelegationByAssessment": "<p> Deletes the delegations in the specified Audit Manager assessment. </p>",
+    "BatchDisassociateAssessmentReportEvidence": "<p> Disassociates a list of evidence from the specified assessment report in Audit Manager. </p>",
+    "BatchImportEvidenceToAssessmentControl": "<p> Uploads one or more pieces of evidence to the specified control in the assessment in Audit Manager. </p>",
+    "CreateAssessment": "<p> Creates an assessment in Audit Manager. </p>",
+    "CreateAssessmentFramework": "<p> Creates a custom framework in Audit Manager. </p>",
     "CreateAssessmentReport": "<p> Creates an assessment report for the specified assessment. </p>",
-    "CreateControl": "<p> Creates a new custom control in AWS Audit Manager. </p>",
-    "DeleteAssessment": "<p> Deletes an assessment in AWS Audit Manager. </p>",
-    "DeleteAssessmentFramework": "<p> Deletes a custom framework in AWS Audit Manager. </p>",
-    "DeleteAssessmentReport": "<p> Deletes an assessment report from an assessment in AWS Audit Manager. </p>",
-    "DeleteControl": "<p> Deletes a custom control in AWS Audit Manager. </p>",
-    "DeregisterAccount": "<p> Deregisters an account in AWS Audit Manager. </p>",
-    "DeregisterOrganizationAdminAccount": "<p> Deregisters the delegated AWS administrator account from the AWS organization. </p>",
-    "DisassociateAssessmentReportEvidenceFolder": "<p> Disassociates an evidence folder from the specified assessment report in AWS Audit Manager. </p>",
-    "GetAccountStatus": "<p> Returns the registration status of an account in AWS Audit Manager. </p>",
-    "GetAssessment": "<p> Returns an assessment from AWS Audit Manager. </p>",
-    "GetAssessmentFramework": "<p> Returns a framework from AWS Audit Manager. </p>",
-    "GetAssessmentReportUrl": "<p> Returns the URL of a specified assessment report in AWS Audit Manager. </p>",
-    "GetChangeLogs": "<p> Returns a list of changelogs from AWS Audit Manager. </p>",
-    "GetControl": "<p> Returns a control from AWS Audit Manager. </p>",
+    "CreateControl": "<p> Creates a new custom control in Audit Manager. </p>",
+    "DeleteAssessment": "<p> Deletes an assessment in Audit Manager. </p>",
+    "DeleteAssessmentFramework": "<p> Deletes a custom framework in Audit Manager. </p>",
+    "DeleteAssessmentReport": "<p> Deletes an assessment report from an assessment in Audit Manager. </p>",
+    "DeleteControl": "<p> Deletes a custom control in Audit Manager. </p>",
+    "DeregisterAccount": "<p> Deregisters an account in Audit Manager. </p>",
+    "DeregisterOrganizationAdminAccount": "<p>Removes the specified member account as a delegated administrator for Audit Manager. </p> <important> <p>When you remove a delegated administrator from your Audit Manager settings, or when you deregister a delegated administrator from Organizations, you continue to have access to the evidence that you previously collected under that account. However, Audit Manager will stop collecting and attaching evidence to that delegated administrator account moving forward.</p> </important>",
+    "DisassociateAssessmentReportEvidenceFolder": "<p> Disassociates an evidence folder from the specified assessment report in Audit Manager. </p>",
+    "GetAccountStatus": "<p> Returns the registration status of an account in Audit Manager. </p>",
+    "GetAssessment": "<p> Returns an assessment from Audit Manager. </p>",
+    "GetAssessmentFramework": "<p> Returns a framework from Audit Manager. </p>",
+    "GetAssessmentReportUrl": "<p> Returns the URL of a specified assessment report in Audit Manager. </p>",
+    "GetChangeLogs": "<p> Returns a list of changelogs from Audit Manager. </p>",
+    "GetControl": "<p> Returns a control from Audit Manager. </p>",
     "GetDelegations": "<p> Returns a list of delegations from an audit owner to a delegate. </p>",
-    "GetEvidence": "<p> Returns evidence from AWS Audit Manager. </p>",
-    "GetEvidenceByEvidenceFolder": "<p> Returns all evidence from a specified evidence folder in AWS Audit Manager. </p>",
-    "GetEvidenceFolder": "<p> Returns an evidence folder from the specified assessment in AWS Audit Manager. </p>",
-    "GetEvidenceFoldersByAssessment": "<p> Returns the evidence folders from a specified assessment in AWS Audit Manager. </p>",
-    "GetEvidenceFoldersByAssessmentControl": "<p> Returns a list of evidence folders associated with a specified control of an assessment in AWS Audit Manager. </p>",
-    "GetOrganizationAdminAccount": "<p> Returns the name of the delegated AWS administrator account for the AWS organization. </p>",
-    "GetServicesInScope": "<p> Returns a list of the in-scope AWS services for the specified assessment. </p>",
-    "GetSettings": "<p> Returns the settings for the specified AWS account. </p>",
-    "ListAssessmentFrameworks": "<p> Returns a list of the frameworks available in the AWS Audit Manager framework library. </p>",
-    "ListAssessmentReports": "<p> Returns a list of assessment reports created in AWS Audit Manager. </p>",
-    "ListAssessments": "<p> Returns a list of current and past assessments from AWS Audit Manager. </p>",
-    "ListControls": "<p> Returns a list of controls from AWS Audit Manager. </p>",
+    "GetEvidence": "<p> Returns evidence from Audit Manager. </p>",
+    "GetEvidenceByEvidenceFolder": "<p> Returns all evidence from a specified evidence folder in Audit Manager. </p>",
+    "GetEvidenceFolder": "<p> Returns an evidence folder from the specified assessment in Audit Manager. </p>",
+    "GetEvidenceFoldersByAssessment": "<p> Returns the evidence folders from a specified assessment in Audit Manager. </p>",
+    "GetEvidenceFoldersByAssessmentControl": "<p> Returns a list of evidence folders associated with a specified control of an assessment in Audit Manager. </p>",
+    "GetOrganizationAdminAccount": "<p> Returns the name of the delegated Amazon Web Services administrator account for the organization. </p>",
+    "GetServicesInScope": "<p> Returns a list of the in-scope Amazon Web Services services for the specified assessment. </p>",
+    "GetSettings": "<p> Returns the settings for the specified account. </p>",
+    "ListAssessmentFrameworks": "<p> Returns a list of the frameworks available in the Audit Manager framework library. </p>",
+    "ListAssessmentReports": "<p> Returns a list of assessment reports created in Audit Manager. </p>",
+    "ListAssessments": "<p> Returns a list of current and past assessments from Audit Manager. </p>",
+    "ListControls": "<p> Returns a list of controls from Audit Manager. </p>",
     "ListKeywordsForDataSource": "<p> Returns a list of keywords that pre-mapped to the specified control data source. </p>",
-    "ListNotifications": "<p> Returns a list of all AWS Audit Manager notifications. </p>",
-    "ListTagsForResource": "<p> Returns a list of tags for the specified resource in AWS Audit Manager. </p>",
-    "RegisterAccount": "<p> Enables AWS Audit Manager for the specified AWS account. </p>",
-    "RegisterOrganizationAdminAccount": "<p> Enables an AWS account within the organization as the delegated administrator for AWS Audit Manager. </p>",
-    "TagResource": "<p> Tags the specified resource in AWS Audit Manager. </p>",
-    "UntagResource": "<p> Removes a tag from a resource in AWS Audit Manager. </p>",
-    "UpdateAssessment": "<p> Edits an AWS Audit Manager assessment. </p>",
-    "UpdateAssessmentControl": "<p> Updates a control within an assessment in AWS Audit Manager. </p>",
-    "UpdateAssessmentControlSetStatus": "<p> Updates the status of a control set in an AWS Audit Manager assessment. </p>",
-    "UpdateAssessmentFramework": "<p> Updates a custom framework in AWS Audit Manager. </p>",
-    "UpdateAssessmentStatus": "<p> Updates the status of an assessment in AWS Audit Manager. </p>",
-    "UpdateControl": "<p> Updates a custom control in AWS Audit Manager. </p>",
-    "UpdateSettings": "<p> Updates AWS Audit Manager settings for the current user account. </p>",
-    "ValidateAssessmentReportIntegrity": "<p> Validates the integrity of an assessment report in AWS Audit Manager. </p>"
+    "ListNotifications": "<p> Returns a list of all Audit Manager notifications. </p>",
+    "ListTagsForResource": "<p> Returns a list of tags for the specified resource in Audit Manager. </p>",
+    "RegisterAccount": "<p> Enables Audit Manager for the specified account. </p>",
+    "RegisterOrganizationAdminAccount": "<p> Enables an account within the organization as the delegated administrator for Audit Manager. </p>",
+    "TagResource": "<p> Tags the specified resource in Audit Manager. </p>",
+    "UntagResource": "<p> Removes a tag from a resource in Audit Manager. </p>",
+    "UpdateAssessment": "<p> Edits an Audit Manager assessment. </p>",
+    "UpdateAssessmentControl": "<p> Updates a control within an assessment in Audit Manager. </p>",
+    "UpdateAssessmentControlSetStatus": "<p> Updates the status of a control set in an Audit Manager assessment. </p>",
+    "UpdateAssessmentFramework": "<p> Updates a custom framework in Audit Manager. </p>",
+    "UpdateAssessmentStatus": "<p> Updates the status of an assessment in Audit Manager. </p>",
+    "UpdateControl": "<p> Updates a custom control in Audit Manager. </p>",
+    "UpdateSettings": "<p> Updates Audit Manager settings for the current user account. </p>",
+    "ValidateAssessmentReportIntegrity": "<p> Validates the integrity of an assessment report in Audit Manager. </p>"
   },
   "shapes": {
     "AWSAccount": {
-      "base": "<p> The wrapper of AWS account details, such as account ID, email address, and so on. </p>",
+      "base": "<p> The wrapper of account details, such as account ID, email address, and so on. </p>",
       "refs": {
         "AWSAccounts$member": null,
-        "Assessment$awsAccount": "<p> The AWS account associated with the assessment. </p>"
+        "Assessment$awsAccount": "<p> The account associated with the assessment. </p>"
       }
     },
     "AWSAccounts": {
       "base": null,
       "refs": {
-        "Scope$awsAccounts": "<p> The AWS accounts included in the scope of the assessment. </p>"
+        "Scope$awsAccounts": "<p> The accounts included in the scope of the assessment. </p>"
       }
     },
     "AWSService": {
-      "base": "<p> An AWS service such as Amazon S3, AWS CloudTrail, and so on. </p>",
+      "base": "<p> An Amazon Web Service such as Amazon S3, CloudTrail, and so on. </p>",
       "refs": {
         "AWSServices$member": null
       }
@@ -77,32 +77,32 @@
     "AWSServiceName": {
       "base": null,
       "refs": {
-        "AWSService$serviceName": "<p> The name of the AWS service. </p>",
-        "Evidence$eventSource": "<p> The AWS service from which the evidence is collected. </p>",
-        "ServiceMetadata$name": "<p> The name of the AWS service. </p>"
+        "AWSService$serviceName": "<p> The name of the Amazon Web Service. </p>",
+        "Evidence$eventSource": "<p> The Amazon Web Service from which the evidence is collected. </p>",
+        "ServiceMetadata$name": "<p> The name of the Amazon Web Service. </p>"
       }
     },
     "AWSServices": {
       "base": null,
       "refs": {
-        "Scope$awsServices": "<p> The AWS services included in the scope of the assessment. </p>"
+        "Scope$awsServices": "<p> The Amazon Web Services services included in the scope of the assessment. </p>"
       }
     },
     "AccessDeniedException": {
-      "base": "<p> Your account is not registered with AWS Audit Manager. Check the delegated administrator setup on the AWS Audit Manager settings page, and try again. </p>",
+      "base": "<p> Your account is not registered with Audit Manager. Check the delegated administrator setup on the Audit Manager settings page, and try again. </p>",
       "refs": {
       }
     },
     "AccountId": {
       "base": null,
       "refs": {
-        "AWSAccount$id": "<p> The identifier for the specified AWS account. </p>",
-        "AssessmentReport$awsAccountId": "<p> The identifier for the specified AWS account. </p>",
+        "AWSAccount$id": "<p> The identifier for the specified account. </p>",
+        "AssessmentReport$awsAccountId": "<p> The identifier for the specified account. </p>",
         "DeregisterOrganizationAdminAccountRequest$adminAccountId": "<p> The identifier for the specified administrator account. </p>",
-        "Evidence$evidenceAwsAccountId": "<p> The identifier for the specified AWS account. </p>",
-        "Evidence$awsAccountId": "<p> The identifier for the specified AWS account. </p>",
+        "Evidence$evidenceAwsAccountId": "<p> The identifier for the specified account. </p>",
+        "Evidence$awsAccountId": "<p> The identifier for the specified account. </p>",
         "GetOrganizationAdminAccountResponse$adminAccountId": "<p> The identifier for the specified administrator account. </p>",
-        "RegisterAccountRequest$delegatedAdminAccount": "<p> The delegated administrator account for AWS Audit Manager. </p>",
+        "RegisterAccountRequest$delegatedAdminAccount": "<p> The delegated administrator account for Audit Manager. </p>",
         "RegisterOrganizationAdminAccountRequest$adminAccountId": "<p> The identifier for the specified delegated administrator account. </p>",
         "RegisterOrganizationAdminAccountResponse$adminAccountId": "<p> The identifier for the specified delegated administrator account. </p>"
       }
@@ -110,14 +110,14 @@
     "AccountName": {
       "base": null,
       "refs": {
-        "AWSAccount$name": "<p> The name of the specified AWS account. </p>"
+        "AWSAccount$name": "<p> The name of the specified account. </p>"
       }
     },
     "AccountStatus": {
       "base": null,
       "refs": {
         "DeregisterAccountResponse$status": "<p> The registration status of the account. </p>",
-        "GetAccountStatusResponse$status": "<p> The status of the specified AWS account. </p>",
+        "GetAccountStatusResponse$status": "<p> The status of the specified account. </p>",
         "RegisterAccountResponse$status": "<p> The status of the account registration request. </p>"
       }
     },
@@ -144,7 +144,7 @@
       }
     },
     "Assessment": {
-      "base": "<p> An entity that defines the scope of audit evidence collected by AWS Audit Manager. An AWS Audit Manager assessment is an implementation of an AWS Audit Manager framework. </p>",
+      "base": "<p> An entity that defines the scope of audit evidence collected by Audit Manager. An Audit Manager assessment is an implementation of an Audit Manager framework. </p>",
       "refs": {
         "CreateAssessmentResponse$assessment": null,
         "GetAssessmentResponse$assessment": null,
@@ -153,14 +153,14 @@
       }
     },
     "AssessmentControl": {
-      "base": "<p> The control entity that represents a standard or custom control used in an AWS Audit Manager assessment. </p>",
+      "base": "<p> The control entity that represents a standard or custom control used in an Audit Manager assessment. </p>",
       "refs": {
         "AssessmentControls$member": null,
         "UpdateAssessmentControlResponse$control": "<p> The name of the updated control set returned by the <code>UpdateAssessmentControl</code> API. </p>"
       }
     },
     "AssessmentControlSet": {
-      "base": "<p> Represents a set of controls in an AWS Audit Manager assessment. </p>",
+      "base": "<p> Represents a set of controls in an Audit Manager assessment. </p>",
       "refs": {
         "AssessmentControlSets$member": null,
         "UpdateAssessmentControlSetStatusResponse$controlSet": "<p> The name of the updated control set returned by the <code>UpdateAssessmentControlSetStatus</code> API. </p>"
@@ -187,7 +187,7 @@
       }
     },
     "AssessmentEvidenceFolder": {
-      "base": "<p> The folder in which AWS Audit Manager stores evidence for an assessment. </p>",
+      "base": "<p> The folder in which Audit Manager stores evidence for an assessment. </p>",
       "refs": {
         "AssessmentEvidenceFolders$member": null,
         "GetEvidenceFolderResponse$evidenceFolder": "<p> The folder in which evidence is stored. </p>"
@@ -207,7 +207,7 @@
       }
     },
     "AssessmentFramework": {
-      "base": "<p> The file used to structure and automate AWS Audit Manager assessments for a given compliance standard. </p>",
+      "base": "<p> The file used to structure and automate Audit Manager assessments for a given compliance standard. </p>",
       "refs": {
         "Assessment$framework": "<p> The framework from which the assessment was created. </p>"
       }
@@ -231,7 +231,7 @@
       }
     },
     "AssessmentMetadataItem": {
-      "base": "<p> A metadata object associated with an assessment in AWS Audit Manager. </p>",
+      "base": "<p> A metadata object associated with an assessment in Audit Manager. </p>",
       "refs": {
         "ListAssessmentMetadata$member": null
       }
@@ -252,7 +252,7 @@
       }
     },
     "AssessmentReport": {
-      "base": "<p> A finalized document generated from an AWS Audit Manager assessment. These reports summarize the relevant evidence collected for your audit, and link to the relevant evidence folders which are named and organized according to the controls specified in your assessment. </p>",
+      "base": "<p> A finalized document generated from an Audit Manager assessment. These reports summarize the relevant evidence collected for your audit, and link to the relevant evidence folders which are named and organized according to the controls specified in your assessment. </p>",
       "refs": {
         "CreateAssessmentReportResponse$assessmentReport": "<p> The new assessment report returned by the <code>CreateAssessmentReport</code> API. </p>"
       }
@@ -306,7 +306,7 @@
       }
     },
     "AssessmentReportsDestination": {
-      "base": "<p> The location in which AWS Audit Manager saves assessment reports for the given assessment. </p>",
+      "base": "<p> The location in which Audit Manager saves assessment reports for the given assessment. </p>",
       "refs": {
         "AssessmentMetadata$assessmentReportsDestination": "<p> The destination in which evidence reports are stored for the specified assessment. </p>",
         "CreateAssessmentRequest$assessmentReportsDestination": "<p> The assessment report storage destination for the specified assessment that is being created. </p>",
@@ -442,12 +442,12 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "Settings$isAwsOrgEnabled": "<p> Specifies whether AWS Organizations is enabled. </p>",
+        "Settings$isAwsOrgEnabled": "<p> Specifies whether Organizations is enabled. </p>",
         "ValidateAssessmentReportIntegrityResponse$signatureValid": "<p> Specifies whether the signature key is valid. </p>"
       }
     },
     "ChangeLog": {
-      "base": "<p> The record of a change within AWS Audit Manager, such as a modified assessment, a delegated control set, and so on. </p>",
+      "base": "<p> The record of a change within Audit Manager, such as a modified assessment, a delegated control set, and so on. </p>",
       "refs": {
         "ChangeLogs$member": null
       }
@@ -471,7 +471,7 @@
       }
     },
     "Control": {
-      "base": "<p> A control in AWS Audit Manager. </p>",
+      "base": "<p> A control in Audit Manager. </p>",
       "refs": {
         "Controls$member": null,
         "CreateControlResponse$control": "<p> The new control returned by the <code>CreateControl</code> API. </p>",
@@ -508,7 +508,7 @@
       }
     },
     "ControlMappingSource": {
-      "base": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>",
+      "base": "<p> The data source that determines from where Audit Manager collects evidence for the control. </p>",
       "refs": {
         "ControlMappingSources$member": null
       }
@@ -550,7 +550,7 @@
       }
     },
     "ControlSet": {
-      "base": "<p> A set of controls in AWS Audit Manager. </p>",
+      "base": "<p> A set of controls in Audit Manager. </p>",
       "refs": {
         "ControlSets$member": null
       }
@@ -603,9 +603,9 @@
     "ControlSources": {
       "base": null,
       "refs": {
-        "Control$controlSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>",
-        "ControlMetadata$controlSources": "<p> The data source that determines from where AWS Audit Manager collects evidence for the control. </p>",
-        "Framework$controlSources": "<p> The sources from which AWS Audit Manager collects evidence for the control. </p>"
+        "Control$controlSources": "<p> The data source that determines from where Audit Manager collects evidence for the control. </p>",
+        "ControlMetadata$controlSources": "<p> The data source that determines from where Audit Manager collects evidence for the control. </p>",
+        "Framework$controlSources": "<p> The sources from which Audit Manager collects evidence for the control. </p>"
       }
     },
     "ControlStatus": {
@@ -635,13 +635,13 @@
       }
     },
     "CreateAssessmentFrameworkControl": {
-      "base": "<p> Control entity attributes that uniquely identify an existing control to be added to a framework in AWS Audit Manager. </p>",
+      "base": "<p> Control entity attributes that uniquely identify an existing control to be added to a framework in Audit Manager. </p>",
       "refs": {
         "CreateAssessmentFrameworkControls$member": null
       }
     },
     "CreateAssessmentFrameworkControlSet": {
-      "base": "<p> A <code>controlSet</code> entity that represents a collection of controls in AWS Audit Manager. This does not contain the control set ID. </p>",
+      "base": "<p> A <code>controlSet</code> entity that represents a collection of controls in Audit Manager. This does not contain the control set ID. </p>",
       "refs": {
         "CreateAssessmentFrameworkControlSets$member": null
       }
@@ -712,16 +712,16 @@
       }
     },
     "CreateDelegationRequest": {
-      "base": "<p> A collection of attributes used to create a delegation for an assessment in AWS Audit Manager. </p>",
+      "base": "<p> A collection of attributes used to create a delegation for an assessment in Audit Manager. </p>",
       "refs": {
-        "BatchCreateDelegationByAssessmentError$createDelegationRequest": "<p> The API request to batch create delegations in AWS Audit Manager. </p>",
+        "BatchCreateDelegationByAssessmentError$createDelegationRequest": "<p> The API request to batch create delegations in Audit Manager. </p>",
         "CreateDelegationRequests$member": null
       }
     },
     "CreateDelegationRequests": {
       "base": null,
       "refs": {
-        "BatchCreateDelegationByAssessmentRequest$createDelegationRequests": "<p> The API request to batch create delegations in AWS Audit Manager. </p>"
+        "BatchCreateDelegationByAssessmentRequest$createDelegationRequests": "<p> The API request to batch create delegations in Audit Manager. </p>"
       }
     },
     "CreatedBy": {
@@ -853,7 +853,7 @@
     "EmailAddress": {
       "base": null,
       "refs": {
-        "AWSAccount$emailAddress": "<p> The email address associated with the specified AWS account. </p>"
+        "AWSAccount$emailAddress": "<p> The email address associated with the specified account. </p>"
       }
     },
     "ErrorCode": {
@@ -935,7 +935,7 @@
       }
     },
     "Framework": {
-      "base": "<p> The file used to structure and automate AWS Audit Manager assessments for a given compliance standard. </p>",
+      "base": "<p> The file used to structure and automate Audit Manager assessments for a given compliance standard. </p>",
       "refs": {
         "CreateAssessmentFrameworkResponse$framework": "<p> The name of the new framework returned by the <code>CreateAssessmentFramework</code> API. </p>",
         "GetAssessmentFrameworkResponse$framework": "<p> The framework returned by the <code>GetAssessmentFramework</code> API. </p>",
@@ -1163,12 +1163,12 @@
         "AssessmentEvidenceFolder$totalEvidence": "<p> The total amount of evidence in the evidence folder. </p>",
         "AssessmentEvidenceFolder$assessmentReportSelectionCount": "<p> The total count of evidence included in the assessment report. </p>",
         "AssessmentEvidenceFolder$evidenceResourcesIncludedCount": "<p> The amount of evidence included in the evidence folder. </p>",
-        "AssessmentEvidenceFolder$evidenceByTypeConfigurationDataCount": "<p> The number of evidence that falls under the configuration data category. This evidence is collected from configuration snapshots of other AWS services such as Amazon EC2, Amazon S3, or IAM. </p>",
+        "AssessmentEvidenceFolder$evidenceByTypeConfigurationDataCount": "<p> The number of evidence that falls under the configuration data category. This evidence is collected from configuration snapshots of other Amazon Web Services services such as Amazon EC2, Amazon S3, or IAM. </p>",
         "AssessmentEvidenceFolder$evidenceByTypeManualCount": "<p> The number of evidence that falls under the manual category. This evidence is imported manually. </p>",
-        "AssessmentEvidenceFolder$evidenceByTypeComplianceCheckCount": "<p> The number of evidence that falls under the compliance check category. This evidence is collected from AWS Config or AWS Security Hub. </p>",
-        "AssessmentEvidenceFolder$evidenceByTypeComplianceCheckIssuesCount": "<p> The total number of issues that were reported directly from AWS Security Hub, AWS Config, or both. </p>",
-        "AssessmentEvidenceFolder$evidenceByTypeUserActivityCount": "<p> The number of evidence that falls under the user activity category. This evidence is collected from AWS CloudTrail logs. </p>",
-        "AssessmentEvidenceFolder$evidenceAwsServiceSourceCount": "<p> The total number of AWS resources assessed to generate the evidence. </p>"
+        "AssessmentEvidenceFolder$evidenceByTypeComplianceCheckCount": "<p> The number of evidence that falls under the compliance check category. This evidence is collected from Config or Security Hub. </p>",
+        "AssessmentEvidenceFolder$evidenceByTypeComplianceCheckIssuesCount": "<p> The total number of issues that were reported directly from Security Hub, Config, or both. </p>",
+        "AssessmentEvidenceFolder$evidenceByTypeUserActivityCount": "<p> The number of evidence that falls under the user activity category. This evidence is collected from CloudTrail logs. </p>",
+        "AssessmentEvidenceFolder$evidenceAwsServiceSourceCount": "<p> The total number of Amazon Web Services resources assessed to generate the evidence. </p>"
       }
     },
     "InternalServerException": {
@@ -1186,7 +1186,7 @@
       "base": null,
       "refs": {
         "Keywords$member": null,
-        "SourceKeyword$keywordValue": "<p> The value of the keyword used to search AWS CloudTrail logs, AWS Config rules, AWS Security Hub checks, and AWS API names when mapping a control data source. </p>"
+        "SourceKeyword$keywordValue": "<p> The value of the keyword used to search CloudTrail logs, Config rules, Security Hub checks, and Amazon Web Services API names when mapping a control data source. </p>"
       }
     },
     "Keywords": {
@@ -1198,9 +1198,9 @@
     "KmsKey": {
       "base": null,
       "refs": {
-        "RegisterAccountRequest$kmsKey": "<p> The AWS KMS key details. </p>",
-        "Settings$kmsKey": "<p> The AWS KMS key details. </p>",
-        "UpdateSettingsRequest$kmsKey": "<p> The AWS KMS key details. </p>"
+        "RegisterAccountRequest$kmsKey": "<p> The KMS key details. </p>",
+        "Settings$kmsKey": "<p> The KMS key details. </p>",
+        "UpdateSettingsRequest$kmsKey": "<p> The KMS key details. </p>"
       }
     },
     "LastUpdatedBy": {
@@ -1287,9 +1287,9 @@
       }
     },
     "ManualEvidence": {
-      "base": "<p> Evidence that is uploaded to AWS Audit Manager manually. </p>",
+      "base": "<p> Evidence that is uploaded to Audit Manager manually. </p>",
       "refs": {
-        "BatchImportEvidenceToAssessmentControlError$manualEvidence": "<p> Manual evidence that cannot be collected automatically by AWS Audit Manager. </p>",
+        "BatchImportEvidenceToAssessmentControlError$manualEvidence": "<p> Manual evidence that cannot be collected automatically by Audit Manager. </p>",
         "ManualEvidenceList$member": null
       }
     },
@@ -1325,14 +1325,14 @@
         "Notification$controlSetName": "<p> Specifies the name of the control set that the notification is about. </p>",
         "Notification$description": "<p> The description of the notification. </p>",
         "Notification$source": "<p> The sender of the notification. </p>",
-        "ServiceMetadata$displayName": "<p> The display name of the AWS service. </p>",
-        "ServiceMetadata$description": "<p> The description of the specified AWS service. </p>",
-        "ServiceMetadata$category": "<p> The category in which the AWS service belongs, such as compute, storage, database, and so on. </p>",
+        "ServiceMetadata$displayName": "<p> The display name of the Amazon Web Service. </p>",
+        "ServiceMetadata$description": "<p> The description of the specified Amazon Web Service. </p>",
+        "ServiceMetadata$category": "<p> The category in which the Amazon Web Service belongs, such as compute, storage, database, and so on. </p>",
         "ValidationErrors$member": null
       }
     },
     "Notification": {
-      "base": "<p> The notification used to inform a user of an update in AWS Audit Manager. For example, this includes the notification that is sent when a control set is delegated for review. </p>",
+      "base": "<p> The notification used to inform a user of an update in Audit Manager. For example, this includes the notification that is sent when a control set is delegated for review. </p>",
       "refs": {
         "Notifications$member": null
       }
@@ -1370,7 +1370,7 @@
       }
     },
     "Resource": {
-      "base": "<p> A system asset that is evaluated in an AWS Audit Manager assessment. </p>",
+      "base": "<p> A system asset that is evaluated in an Audit Manager assessment. </p>",
       "refs": {
         "Resources$member": null
       }
@@ -1387,7 +1387,7 @@
       }
     },
     "Role": {
-      "base": "<p> The wrapper that contains the AWS Audit Manager role information of the current user, such as the role type and IAM Amazon Resource Name (ARN). </p>",
+      "base": "<p> The wrapper that contains the Audit Manager role information of the current user, such as the role type and IAM Amazon Resource Name (ARN). </p>",
       "refs": {
         "GetAssessmentResponse$userRole": null,
         "Roles$member": null
@@ -1428,15 +1428,15 @@
       }
     },
     "Scope": {
-      "base": "<p> The wrapper that contains the AWS accounts and AWS services in scope for the assessment. </p>",
+      "base": "<p> The wrapper that contains the accounts and services in scope for the assessment. </p>",
       "refs": {
-        "AssessmentMetadata$scope": "<p> The wrapper of AWS accounts and services in scope for the assessment. </p>",
+        "AssessmentMetadata$scope": "<p> The wrapper of accounts and services in scope for the assessment. </p>",
         "CreateAssessmentRequest$scope": null,
         "UpdateAssessmentRequest$scope": "<p> The scope of the specified assessment. </p>"
       }
     },
     "ServiceMetadata": {
-      "base": "<p> The metadata associated with the specified AWS service. </p>",
+      "base": "<p> The metadata associated with the specified Amazon Web Service. </p>",
       "refs": {
         "ServiceMetadataList$member": null
       }
@@ -1444,7 +1444,7 @@
     "ServiceMetadataList": {
       "base": null,
       "refs": {
-        "GetServicesInScopeResponse$serviceMetadata": "<p> The metadata associated with the aAWS service. </p>"
+        "GetServicesInScopeResponse$serviceMetadata": "<p> The metadata associated with the Amazon Web Service. </p>"
       }
     },
     "SettingAttribute": {
@@ -1454,23 +1454,23 @@
       }
     },
     "Settings": {
-      "base": "<p> The settings object that holds all supported AWS Audit Manager settings. </p>",
+      "base": "<p> The settings object that holds all supported Audit Manager settings. </p>",
       "refs": {
-        "GetSettingsResponse$settings": "<p> The settings object that holds all supported AWS Audit Manager settings. </p>",
+        "GetSettingsResponse$settings": "<p> The settings object that holds all supported Audit Manager settings. </p>",
         "UpdateSettingsResponse$settings": "<p> The current list of settings. </p>"
       }
     },
     "SnsArn": {
       "base": null,
       "refs": {
-        "UpdateSettingsRequest$snsTopic": "<p> The Amazon Simple Notification Service (Amazon SNS) topic to which AWS Audit Manager sends notifications. </p>"
+        "UpdateSettingsRequest$snsTopic": "<p> The Amazon Simple Notification Service (Amazon SNS) topic to which Audit Manager sends notifications. </p>"
       }
     },
     "SourceDescription": {
       "base": null,
       "refs": {
         "ControlMappingSource$sourceDescription": "<p> The description of the specified source. </p>",
-        "CreateControlMappingSource$sourceDescription": "<p> The description of the data source that determines from where AWS Audit Manager collects evidence for the control. </p>"
+        "CreateControlMappingSource$sourceDescription": "<p> The description of the data source that determines from where Audit Manager collects evidence for the control. </p>"
       }
     },
     "SourceFrequency": {
@@ -1481,7 +1481,7 @@
       }
     },
     "SourceKeyword": {
-      "base": "<p> The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS Security Hub checks, and AWS API names. </p>",
+      "base": "<p> The keyword to search for in CloudTrail logs, Config rules, Security Hub checks, and Amazon Web Services API names. </p>",
       "refs": {
         "ControlMappingSource$sourceKeyword": null,
         "CreateControlMappingSource$sourceKeyword": null
@@ -1513,12 +1513,12 @@
       "base": null,
       "refs": {
         "AccessDeniedException$message": null,
-        "AssessmentEvidenceFolder$dataSource": "<p> The AWS service from which the evidence was collected. </p>",
+        "AssessmentEvidenceFolder$dataSource": "<p> The Amazon Web Service from which the evidence was collected. </p>",
         "AssessmentEvidenceFolder$author": "<p> The name of the user who created the evidence folder. </p>",
         "Evidence$dataSource": "<p> The data source from which the specified evidence was collected. </p>",
         "Evidence$evidenceByType": "<p> The type of automated evidence. </p>",
-        "Evidence$complianceCheck": "<p> The evaluation status for evidence that falls under the compliance check category. For evidence collected from AWS Security Hub, a <i>Pass</i> or <i>Fail</i> result is shown. For evidence collected from AWS Config, a <i>Compliant</i> or <i>Noncompliant</i> result is shown. </p>",
-        "Evidence$awsOrganization": "<p> The AWS account from which the evidence is collected, and its AWS organization path. </p>",
+        "Evidence$complianceCheck": "<p> The evaluation status for evidence that falls under the compliance check category. For evidence collected from Security Hub, a <i>Pass</i> or <i>Fail</i> result is shown. For evidence collected from Config, a <i>Compliant</i> or <i>Noncompliant</i> result is shown. </p>",
+        "Evidence$awsOrganization": "<p> The account from which the evidence is collected, and its organization path. </p>",
         "Evidence$assessmentReportSelection": "<p> Specifies whether the evidence is included in the assessment report. </p>",
         "InternalServerException$message": null,
         "Resource$value": "<p> The value of the specified resource. </p>",
@@ -1765,7 +1765,7 @@
       }
     },
     "UpdateAssessmentFrameworkControlSet": {
-      "base": "<p> A <code>controlSet</code> entity that represents a collection of controls in AWS Audit Manager. This does not contain the control set ID. </p>",
+      "base": "<p> A <code>controlSet</code> entity that represents a collection of controls in Audit Manager. This does not contain the control set ID. </p>",
       "refs": {
         "UpdateAssessmentFrameworkControlSets$member": null
       }
@@ -1883,7 +1883,7 @@
       "base": null,
       "refs": {
         "GetOrganizationAdminAccountResponse$organizationId": "<p> The identifier for the specified organization. </p>",
-        "RegisterOrganizationAdminAccountResponse$organizationId": "<p> The identifier for the specified AWS organization. </p>"
+        "RegisterOrganizationAdminAccountResponse$organizationId": "<p> The identifier for the specified organization. </p>"
       }
     }
   }

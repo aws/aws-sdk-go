@@ -58,7 +58,7 @@ func (c *AuditManager) AssociateAssessmentReportEvidenceFolderRequest(input *Ass
 
 // AssociateAssessmentReportEvidenceFolder API operation for AWS Audit Manager.
 //
-// Associates an evidence folder to the specified assessment report in AWS Audit
+// Associates an evidence folder to the specified assessment report in Audit
 // Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -73,8 +73,8 @@ func (c *AuditManager) AssociateAssessmentReportEvidenceFolderRequest(input *Ass
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -149,7 +149,7 @@ func (c *AuditManager) BatchAssociateAssessmentReportEvidenceRequest(input *Batc
 
 // BatchAssociateAssessmentReportEvidence API operation for AWS Audit Manager.
 //
-// Associates a list of evidence to an assessment report in an AWS Audit Manager
+// Associates a list of evidence to an assessment report in an Audit Manager
 // assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -164,8 +164,8 @@ func (c *AuditManager) BatchAssociateAssessmentReportEvidenceRequest(input *Batc
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -240,7 +240,7 @@ func (c *AuditManager) BatchCreateDelegationByAssessmentRequest(input *BatchCrea
 
 // BatchCreateDelegationByAssessment API operation for AWS Audit Manager.
 //
-// Create a batch of delegations for a specified assessment in AWS Audit Manager.
+// Create a batch of delegations for a specified assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -254,8 +254,8 @@ func (c *AuditManager) BatchCreateDelegationByAssessmentRequest(input *BatchCrea
 //   The resource specified in the request cannot be found.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -330,7 +330,7 @@ func (c *AuditManager) BatchDeleteDelegationByAssessmentRequest(input *BatchDele
 
 // BatchDeleteDelegationByAssessment API operation for AWS Audit Manager.
 //
-// Deletes the delegations in the specified AWS Audit Manager assessment.
+// Deletes the delegations in the specified Audit Manager assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -344,8 +344,8 @@ func (c *AuditManager) BatchDeleteDelegationByAssessmentRequest(input *BatchDele
 //   The resource specified in the request cannot be found.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -421,7 +421,7 @@ func (c *AuditManager) BatchDisassociateAssessmentReportEvidenceRequest(input *B
 // BatchDisassociateAssessmentReportEvidence API operation for AWS Audit Manager.
 //
 // Disassociates a list of evidence from the specified assessment report in
-// AWS Audit Manager.
+// Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -435,8 +435,8 @@ func (c *AuditManager) BatchDisassociateAssessmentReportEvidenceRequest(input *B
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -512,7 +512,7 @@ func (c *AuditManager) BatchImportEvidenceToAssessmentControlRequest(input *Batc
 // BatchImportEvidenceToAssessmentControl API operation for AWS Audit Manager.
 //
 // Uploads one or more pieces of evidence to the specified control in the assessment
-// in AWS Audit Manager.
+// in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -526,8 +526,8 @@ func (c *AuditManager) BatchImportEvidenceToAssessmentControlRequest(input *Batc
 //   The resource specified in the request cannot be found.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -602,7 +602,7 @@ func (c *AuditManager) CreateAssessmentRequest(input *CreateAssessmentInput) (re
 
 // CreateAssessment API operation for AWS Audit Manager.
 //
-// Creates an assessment in AWS Audit Manager.
+// Creates an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -619,8 +619,8 @@ func (c *AuditManager) CreateAssessmentRequest(input *CreateAssessmentInput) (re
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -692,7 +692,7 @@ func (c *AuditManager) CreateAssessmentFrameworkRequest(input *CreateAssessmentF
 
 // CreateAssessmentFramework API operation for AWS Audit Manager.
 //
-// Creates a custom framework in AWS Audit Manager.
+// Creates a custom framework in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -709,8 +709,8 @@ func (c *AuditManager) CreateAssessmentFrameworkRequest(input *CreateAssessmentF
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -796,8 +796,8 @@ func (c *AuditManager) CreateAssessmentReportRequest(input *CreateAssessmentRepo
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -872,7 +872,7 @@ func (c *AuditManager) CreateControlRequest(input *CreateControlInput) (req *req
 
 // CreateControl API operation for AWS Audit Manager.
 //
-// Creates a new custom control in AWS Audit Manager.
+// Creates a new custom control in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -889,8 +889,8 @@ func (c *AuditManager) CreateControlRequest(input *CreateControlInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -963,7 +963,7 @@ func (c *AuditManager) DeleteAssessmentRequest(input *DeleteAssessmentInput) (re
 
 // DeleteAssessment API operation for AWS Audit Manager.
 //
-// Deletes an assessment in AWS Audit Manager.
+// Deletes an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -980,8 +980,8 @@ func (c *AuditManager) DeleteAssessmentRequest(input *DeleteAssessmentInput) (re
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1054,7 +1054,7 @@ func (c *AuditManager) DeleteAssessmentFrameworkRequest(input *DeleteAssessmentF
 
 // DeleteAssessmentFramework API operation for AWS Audit Manager.
 //
-// Deletes a custom framework in AWS Audit Manager.
+// Deletes a custom framework in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1071,8 +1071,8 @@ func (c *AuditManager) DeleteAssessmentFrameworkRequest(input *DeleteAssessmentF
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1145,7 +1145,7 @@ func (c *AuditManager) DeleteAssessmentReportRequest(input *DeleteAssessmentRepo
 
 // DeleteAssessmentReport API operation for AWS Audit Manager.
 //
-// Deletes an assessment report from an assessment in AWS Audit Manager.
+// Deletes an assessment report from an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1159,8 +1159,8 @@ func (c *AuditManager) DeleteAssessmentReportRequest(input *DeleteAssessmentRepo
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1236,7 +1236,7 @@ func (c *AuditManager) DeleteControlRequest(input *DeleteControlInput) (req *req
 
 // DeleteControl API operation for AWS Audit Manager.
 //
-// Deletes a custom control in AWS Audit Manager.
+// Deletes a custom control in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1253,8 +1253,8 @@ func (c *AuditManager) DeleteControlRequest(input *DeleteControlInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1326,7 +1326,7 @@ func (c *AuditManager) DeregisterAccountRequest(input *DeregisterAccountInput) (
 
 // DeregisterAccount API operation for AWS Audit Manager.
 //
-// Deregisters an account in AWS Audit Manager.
+// Deregisters an account in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1340,8 +1340,8 @@ func (c *AuditManager) DeregisterAccountRequest(input *DeregisterAccountInput) (
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1417,7 +1417,14 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 
 // DeregisterOrganizationAdminAccount API operation for AWS Audit Manager.
 //
-// Deregisters the delegated AWS administrator account from the AWS organization.
+// Removes the specified member account as a delegated administrator for Audit
+// Manager.
+//
+// When you remove a delegated administrator from your Audit Manager settings,
+// or when you deregister a delegated administrator from Organizations, you
+// continue to have access to the evidence that you previously collected under
+// that account. However, Audit Manager will stop collecting and attaching evidence
+// to that delegated administrator account moving forward.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1431,8 +1438,8 @@ func (c *AuditManager) DeregisterOrganizationAdminAccountRequest(input *Deregist
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1509,7 +1516,7 @@ func (c *AuditManager) DisassociateAssessmentReportEvidenceFolderRequest(input *
 // DisassociateAssessmentReportEvidenceFolder API operation for AWS Audit Manager.
 //
 // Disassociates an evidence folder from the specified assessment report in
-// AWS Audit Manager.
+// Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1523,8 +1530,8 @@ func (c *AuditManager) DisassociateAssessmentReportEvidenceFolderRequest(input *
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1599,7 +1606,7 @@ func (c *AuditManager) GetAccountStatusRequest(input *GetAccountStatusInput) (re
 
 // GetAccountStatus API operation for AWS Audit Manager.
 //
-// Returns the registration status of an account in AWS Audit Manager.
+// Returns the registration status of an account in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1679,7 +1686,7 @@ func (c *AuditManager) GetAssessmentRequest(input *GetAssessmentInput) (req *req
 
 // GetAssessment API operation for AWS Audit Manager.
 //
-// Returns an assessment from AWS Audit Manager.
+// Returns an assessment from Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1696,8 +1703,8 @@ func (c *AuditManager) GetAssessmentRequest(input *GetAssessmentInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1769,7 +1776,7 @@ func (c *AuditManager) GetAssessmentFrameworkRequest(input *GetAssessmentFramewo
 
 // GetAssessmentFramework API operation for AWS Audit Manager.
 //
-// Returns a framework from AWS Audit Manager.
+// Returns a framework from Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1786,8 +1793,8 @@ func (c *AuditManager) GetAssessmentFrameworkRequest(input *GetAssessmentFramewo
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1859,7 +1866,7 @@ func (c *AuditManager) GetAssessmentReportUrlRequest(input *GetAssessmentReportU
 
 // GetAssessmentReportUrl API operation for AWS Audit Manager.
 //
-// Returns the URL of a specified assessment report in AWS Audit Manager.
+// Returns the URL of a specified assessment report in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1873,8 +1880,8 @@ func (c *AuditManager) GetAssessmentReportUrlRequest(input *GetAssessmentReportU
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -1955,7 +1962,7 @@ func (c *AuditManager) GetChangeLogsRequest(input *GetChangeLogsInput) (req *req
 
 // GetChangeLogs API operation for AWS Audit Manager.
 //
-// Returns a list of changelogs from AWS Audit Manager.
+// Returns a list of changelogs from Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1966,8 +1973,8 @@ func (c *AuditManager) GetChangeLogsRequest(input *GetChangeLogsInput) (req *req
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ResourceNotFoundException
 //   The resource specified in the request cannot be found.
@@ -2097,7 +2104,7 @@ func (c *AuditManager) GetControlRequest(input *GetControlInput) (req *request.R
 
 // GetControl API operation for AWS Audit Manager.
 //
-// Returns a control from AWS Audit Manager.
+// Returns a control from Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2114,8 +2121,8 @@ func (c *AuditManager) GetControlRequest(input *GetControlInput) (req *request.R
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2207,8 +2214,8 @@ func (c *AuditManager) GetDelegationsRequest(input *GetDelegationsInput) (req *r
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2332,7 +2339,7 @@ func (c *AuditManager) GetEvidenceRequest(input *GetEvidenceInput) (req *request
 
 // GetEvidence API operation for AWS Audit Manager.
 //
-// Returns evidence from AWS Audit Manager.
+// Returns evidence from Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2349,8 +2356,8 @@ func (c *AuditManager) GetEvidenceRequest(input *GetEvidenceInput) (req *request
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2428,7 +2435,7 @@ func (c *AuditManager) GetEvidenceByEvidenceFolderRequest(input *GetEvidenceByEv
 
 // GetEvidenceByEvidenceFolder API operation for AWS Audit Manager.
 //
-// Returns all evidence from a specified evidence folder in AWS Audit Manager.
+// Returns all evidence from a specified evidence folder in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2445,8 +2452,8 @@ func (c *AuditManager) GetEvidenceByEvidenceFolderRequest(input *GetEvidenceByEv
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2570,7 +2577,7 @@ func (c *AuditManager) GetEvidenceFolderRequest(input *GetEvidenceFolderInput) (
 
 // GetEvidenceFolder API operation for AWS Audit Manager.
 //
-// Returns an evidence folder from the specified assessment in AWS Audit Manager.
+// Returns an evidence folder from the specified assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2587,8 +2594,8 @@ func (c *AuditManager) GetEvidenceFolderRequest(input *GetEvidenceFolderInput) (
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2666,7 +2673,7 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentRequest(input *GetEvidenceF
 
 // GetEvidenceFoldersByAssessment API operation for AWS Audit Manager.
 //
-// Returns the evidence folders from a specified assessment in AWS Audit Manager.
+// Returns the evidence folders from a specified assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2680,8 +2687,8 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentRequest(input *GetEvidenceF
 //   The resource specified in the request cannot be found.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -2815,7 +2822,7 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentControlRequest(input *GetEv
 // GetEvidenceFoldersByAssessmentControl API operation for AWS Audit Manager.
 //
 // Returns a list of evidence folders associated with a specified control of
-// an assessment in AWS Audit Manager.
+// an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2832,8 +2839,8 @@ func (c *AuditManager) GetEvidenceFoldersByAssessmentControlRequest(input *GetEv
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -2957,7 +2964,8 @@ func (c *AuditManager) GetOrganizationAdminAccountRequest(input *GetOrganization
 
 // GetOrganizationAdminAccount API operation for AWS Audit Manager.
 //
-// Returns the name of the delegated AWS administrator account for the AWS organization.
+// Returns the name of the delegated Amazon Web Services administrator account
+// for the organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2971,8 +2979,8 @@ func (c *AuditManager) GetOrganizationAdminAccountRequest(input *GetOrganization
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -3047,7 +3055,8 @@ func (c *AuditManager) GetServicesInScopeRequest(input *GetServicesInScopeInput)
 
 // GetServicesInScope API operation for AWS Audit Manager.
 //
-// Returns a list of the in-scope AWS services for the specified assessment.
+// Returns a list of the in-scope Amazon Web Services services for the specified
+// assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3058,8 +3067,8 @@ func (c *AuditManager) GetServicesInScopeRequest(input *GetServicesInScopeInput)
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -3134,7 +3143,7 @@ func (c *AuditManager) GetSettingsRequest(input *GetSettingsInput) (req *request
 
 // GetSettings API operation for AWS Audit Manager.
 //
-// Returns the settings for the specified AWS account.
+// Returns the settings for the specified account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3145,8 +3154,8 @@ func (c *AuditManager) GetSettingsRequest(input *GetSettingsInput) (req *request
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -3224,7 +3233,7 @@ func (c *AuditManager) ListAssessmentFrameworksRequest(input *ListAssessmentFram
 
 // ListAssessmentFrameworks API operation for AWS Audit Manager.
 //
-// Returns a list of the frameworks available in the AWS Audit Manager framework
+// Returns a list of the frameworks available in the Audit Manager framework
 // library.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3239,8 +3248,8 @@ func (c *AuditManager) ListAssessmentFrameworksRequest(input *ListAssessmentFram
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -3370,7 +3379,7 @@ func (c *AuditManager) ListAssessmentReportsRequest(input *ListAssessmentReports
 
 // ListAssessmentReports API operation for AWS Audit Manager.
 //
-// Returns a list of assessment reports created in AWS Audit Manager.
+// Returns a list of assessment reports created in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3384,8 +3393,8 @@ func (c *AuditManager) ListAssessmentReportsRequest(input *ListAssessmentReports
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -3515,7 +3524,7 @@ func (c *AuditManager) ListAssessmentsRequest(input *ListAssessmentsInput) (req 
 
 // ListAssessments API operation for AWS Audit Manager.
 //
-// Returns a list of current and past assessments from AWS Audit Manager.
+// Returns a list of current and past assessments from Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3526,8 +3535,8 @@ func (c *AuditManager) ListAssessmentsRequest(input *ListAssessmentsInput) (req 
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -3660,7 +3669,7 @@ func (c *AuditManager) ListControlsRequest(input *ListControlsInput) (req *reque
 
 // ListControls API operation for AWS Audit Manager.
 //
-// Returns a list of controls from AWS Audit Manager.
+// Returns a list of controls from Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3671,8 +3680,8 @@ func (c *AuditManager) ListControlsRequest(input *ListControlsInput) (req *reque
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -3817,8 +3826,8 @@ func (c *AuditManager) ListKeywordsForDataSourceRequest(input *ListKeywordsForDa
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -3951,7 +3960,7 @@ func (c *AuditManager) ListNotificationsRequest(input *ListNotificationsInput) (
 
 // ListNotifications API operation for AWS Audit Manager.
 //
-// Returns a list of all AWS Audit Manager notifications.
+// Returns a list of all Audit Manager notifications.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3962,8 +3971,8 @@ func (c *AuditManager) ListNotificationsRequest(input *ListNotificationsInput) (
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * ValidationException
 //   The request has invalid or missing parameters.
@@ -4090,7 +4099,7 @@ func (c *AuditManager) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for AWS Audit Manager.
 //
-// Returns a list of tags for the specified resource in AWS Audit Manager.
+// Returns a list of tags for the specified resource in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4176,7 +4185,7 @@ func (c *AuditManager) RegisterAccountRequest(input *RegisterAccountInput) (req 
 
 // RegisterAccount API operation for AWS Audit Manager.
 //
-// Enables AWS Audit Manager for the specified AWS account.
+// Enables Audit Manager for the specified account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4190,8 +4199,8 @@ func (c *AuditManager) RegisterAccountRequest(input *RegisterAccountInput) (req 
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4266,8 +4275,8 @@ func (c *AuditManager) RegisterOrganizationAdminAccountRequest(input *RegisterOr
 
 // RegisterOrganizationAdminAccount API operation for AWS Audit Manager.
 //
-// Enables an AWS account within the organization as the delegated administrator
-// for AWS Audit Manager.
+// Enables an account within the organization as the delegated administrator
+// for Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4281,8 +4290,8 @@ func (c *AuditManager) RegisterOrganizationAdminAccountRequest(input *RegisterOr
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4358,7 +4367,7 @@ func (c *AuditManager) TagResourceRequest(input *TagResourceInput) (req *request
 
 // TagResource API operation for AWS Audit Manager.
 //
-// Tags the specified resource in AWS Audit Manager.
+// Tags the specified resource in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4445,7 +4454,7 @@ func (c *AuditManager) UntagResourceRequest(input *UntagResourceInput) (req *req
 
 // UntagResource API operation for AWS Audit Manager.
 //
-// Removes a tag from a resource in AWS Audit Manager.
+// Removes a tag from a resource in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4531,7 +4540,7 @@ func (c *AuditManager) UpdateAssessmentRequest(input *UpdateAssessmentInput) (re
 
 // UpdateAssessment API operation for AWS Audit Manager.
 //
-// Edits an AWS Audit Manager assessment.
+// Edits an Audit Manager assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4548,8 +4557,8 @@ func (c *AuditManager) UpdateAssessmentRequest(input *UpdateAssessmentInput) (re
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4621,7 +4630,7 @@ func (c *AuditManager) UpdateAssessmentControlRequest(input *UpdateAssessmentCon
 
 // UpdateAssessmentControl API operation for AWS Audit Manager.
 //
-// Updates a control within an assessment in AWS Audit Manager.
+// Updates a control within an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4638,8 +4647,8 @@ func (c *AuditManager) UpdateAssessmentControlRequest(input *UpdateAssessmentCon
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4711,7 +4720,7 @@ func (c *AuditManager) UpdateAssessmentControlSetStatusRequest(input *UpdateAsse
 
 // UpdateAssessmentControlSetStatus API operation for AWS Audit Manager.
 //
-// Updates the status of a control set in an AWS Audit Manager assessment.
+// Updates the status of a control set in an Audit Manager assessment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4728,8 +4737,8 @@ func (c *AuditManager) UpdateAssessmentControlSetStatusRequest(input *UpdateAsse
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4801,7 +4810,7 @@ func (c *AuditManager) UpdateAssessmentFrameworkRequest(input *UpdateAssessmentF
 
 // UpdateAssessmentFramework API operation for AWS Audit Manager.
 //
-// Updates a custom framework in AWS Audit Manager.
+// Updates a custom framework in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4818,8 +4827,8 @@ func (c *AuditManager) UpdateAssessmentFrameworkRequest(input *UpdateAssessmentF
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4891,7 +4900,7 @@ func (c *AuditManager) UpdateAssessmentStatusRequest(input *UpdateAssessmentStat
 
 // UpdateAssessmentStatus API operation for AWS Audit Manager.
 //
-// Updates the status of an assessment in AWS Audit Manager.
+// Updates the status of an assessment in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4908,8 +4917,8 @@ func (c *AuditManager) UpdateAssessmentStatusRequest(input *UpdateAssessmentStat
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -4981,7 +4990,7 @@ func (c *AuditManager) UpdateControlRequest(input *UpdateControlInput) (req *req
 
 // UpdateControl API operation for AWS Audit Manager.
 //
-// Updates a custom control in AWS Audit Manager.
+// Updates a custom control in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4998,8 +5007,8 @@ func (c *AuditManager) UpdateControlRequest(input *UpdateControlInput) (req *req
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -5071,7 +5080,7 @@ func (c *AuditManager) UpdateSettingsRequest(input *UpdateSettingsInput) (req *r
 
 // UpdateSettings API operation for AWS Audit Manager.
 //
-// Updates AWS Audit Manager settings for the current user account.
+// Updates Audit Manager settings for the current user account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5085,8 +5094,8 @@ func (c *AuditManager) UpdateSettingsRequest(input *UpdateSettingsInput) (req *r
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -5158,7 +5167,7 @@ func (c *AuditManager) ValidateAssessmentReportIntegrityRequest(input *ValidateA
 
 // ValidateAssessmentReportIntegrity API operation for AWS Audit Manager.
 //
-// Validates the integrity of an assessment report in AWS Audit Manager.
+// Validates the integrity of an assessment report in Audit Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5172,8 +5181,8 @@ func (c *AuditManager) ValidateAssessmentReportIntegrityRequest(input *ValidateA
 //   The request has invalid or missing parameters.
 //
 //   * AccessDeniedException
-//   Your account is not registered with AWS Audit Manager. Check the delegated
-//   administrator setup on the AWS Audit Manager settings page, and try again.
+//   Your account is not registered with Audit Manager. Check the delegated administrator
+//   setup on the Audit Manager settings page, and try again.
 //
 //   * InternalServerException
 //   An internal service error occurred during the processing of your request.
@@ -5204,18 +5213,18 @@ func (c *AuditManager) ValidateAssessmentReportIntegrityWithContext(ctx aws.Cont
 	return out, req.Send()
 }
 
-// The wrapper of AWS account details, such as account ID, email address, and
-// so on.
+// The wrapper of account details, such as account ID, email address, and so
+// on.
 type AWSAccount struct {
 	_ struct{} `type:"structure"`
 
-	// The email address associated with the specified AWS account.
+	// The email address associated with the specified account.
 	EmailAddress *string `locationName:"emailAddress" min:"1" type:"string"`
 
-	// The identifier for the specified AWS account.
+	// The identifier for the specified account.
 	Id *string `locationName:"id" min:"12" type:"string"`
 
-	// The name of the specified AWS account.
+	// The name of the specified account.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
@@ -5266,11 +5275,11 @@ func (s *AWSAccount) SetName(v string) *AWSAccount {
 	return s
 }
 
-// An AWS service such as Amazon S3, AWS CloudTrail, and so on.
+// An Amazon Web Service such as Amazon S3, CloudTrail, and so on.
 type AWSService struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS service.
+	// The name of the Amazon Web Service.
 	ServiceName *string `locationName:"serviceName" min:"1" type:"string"`
 }
 
@@ -5303,8 +5312,8 @@ func (s *AWSService) SetServiceName(v string) *AWSService {
 	return s
 }
 
-// Your account is not registered with AWS Audit Manager. Check the delegated
-// administrator setup on the AWS Audit Manager settings page, and try again.
+// Your account is not registered with Audit Manager. Check the delegated administrator
+// setup on the Audit Manager settings page, and try again.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5360,16 +5369,15 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An entity that defines the scope of audit evidence collected by AWS Audit
-// Manager. An AWS Audit Manager assessment is an implementation of an AWS Audit
-// Manager framework.
+// An entity that defines the scope of audit evidence collected by Audit Manager.
+// An Audit Manager assessment is an implementation of an Audit Manager framework.
 type Assessment struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the assessment.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The AWS account associated with the assessment.
+	// The account associated with the assessment.
 	AwsAccount *AWSAccount `locationName:"awsAccount" type:"structure"`
 
 	// The framework from which the assessment was created.
@@ -5423,7 +5431,7 @@ func (s *Assessment) SetTags(v map[string]*string) *Assessment {
 }
 
 // The control entity that represents a standard or custom control used in an
-// AWS Audit Manager assessment.
+// Audit Manager assessment.
 type AssessmentControl struct {
 	_ struct{} `type:"structure"`
 
@@ -5519,7 +5527,7 @@ func (s *AssessmentControl) SetStatus(v string) *AssessmentControl {
 	return s
 }
 
-// Represents a set of controls in an AWS Audit Manager assessment.
+// Represents a set of controls in an Audit Manager assessment.
 type AssessmentControlSet struct {
 	_ struct{} `type:"structure"`
 
@@ -5608,7 +5616,7 @@ func (s *AssessmentControlSet) SetSystemEvidenceCount(v int64) *AssessmentContro
 	return s
 }
 
-// The folder in which AWS Audit Manager stores evidence for an assessment.
+// The folder in which Audit Manager stores evidence for an assessment.
 type AssessmentEvidenceFolder struct {
 	_ struct{} `type:"structure"`
 
@@ -5630,26 +5638,27 @@ type AssessmentEvidenceFolder struct {
 	// The identifier for the control set.
 	ControlSetId *string `locationName:"controlSetId" min:"1" type:"string"`
 
-	// The AWS service from which the evidence was collected.
+	// The Amazon Web Service from which the evidence was collected.
 	DataSource *string `locationName:"dataSource" type:"string"`
 
 	// The date when the first evidence was added to the evidence folder.
 	Date *time.Time `locationName:"date" type:"timestamp"`
 
-	// The total number of AWS resources assessed to generate the evidence.
+	// The total number of Amazon Web Services resources assessed to generate the
+	// evidence.
 	EvidenceAwsServiceSourceCount *int64 `locationName:"evidenceAwsServiceSourceCount" type:"integer"`
 
 	// The number of evidence that falls under the compliance check category. This
-	// evidence is collected from AWS Config or AWS Security Hub.
+	// evidence is collected from Config or Security Hub.
 	EvidenceByTypeComplianceCheckCount *int64 `locationName:"evidenceByTypeComplianceCheckCount" type:"integer"`
 
-	// The total number of issues that were reported directly from AWS Security
-	// Hub, AWS Config, or both.
+	// The total number of issues that were reported directly from Security Hub,
+	// Config, or both.
 	EvidenceByTypeComplianceCheckIssuesCount *int64 `locationName:"evidenceByTypeComplianceCheckIssuesCount" type:"integer"`
 
 	// The number of evidence that falls under the configuration data category.
-	// This evidence is collected from configuration snapshots of other AWS services
-	// such as Amazon EC2, Amazon S3, or IAM.
+	// This evidence is collected from configuration snapshots of other Amazon Web
+	// Services services such as Amazon EC2, Amazon S3, or IAM.
 	EvidenceByTypeConfigurationDataCount *int64 `locationName:"evidenceByTypeConfigurationDataCount" type:"integer"`
 
 	// The number of evidence that falls under the manual category. This evidence
@@ -5657,7 +5666,7 @@ type AssessmentEvidenceFolder struct {
 	EvidenceByTypeManualCount *int64 `locationName:"evidenceByTypeManualCount" type:"integer"`
 
 	// The number of evidence that falls under the user activity category. This
-	// evidence is collected from AWS CloudTrail logs.
+	// evidence is collected from CloudTrail logs.
 	EvidenceByTypeUserActivityCount *int64 `locationName:"evidenceByTypeUserActivityCount" type:"integer"`
 
 	// The amount of evidence included in the evidence folder.
@@ -5791,8 +5800,8 @@ func (s *AssessmentEvidenceFolder) SetTotalEvidence(v int64) *AssessmentEvidence
 	return s
 }
 
-// The file used to structure and automate AWS Audit Manager assessments for
-// a given compliance standard.
+// The file used to structure and automate Audit Manager assessments for a given
+// compliance standard.
 type AssessmentFramework struct {
 	_ struct{} `type:"structure"`
 
@@ -5989,7 +5998,7 @@ type AssessmentMetadata struct {
 	// The roles associated with the assessment.
 	Roles []*Role `locationName:"roles" type:"list"`
 
-	// The wrapper of AWS accounts and services in scope for the assessment.
+	// The wrapper of accounts and services in scope for the assessment.
 	Scope *Scope `locationName:"scope" type:"structure"`
 
 	// The overall status of the assessment.
@@ -6072,7 +6081,7 @@ func (s *AssessmentMetadata) SetStatus(v string) *AssessmentMetadata {
 	return s
 }
 
-// A metadata object associated with an assessment in AWS Audit Manager.
+// A metadata object associated with an assessment in Audit Manager.
 type AssessmentMetadataItem struct {
 	_ struct{} `type:"structure"`
 
@@ -6159,10 +6168,10 @@ func (s *AssessmentMetadataItem) SetStatus(v string) *AssessmentMetadataItem {
 	return s
 }
 
-// A finalized document generated from an AWS Audit Manager assessment. These
-// reports summarize the relevant evidence collected for your audit, and link
-// to the relevant evidence folders which are named and organized according
-// to the controls specified in your assessment.
+// A finalized document generated from an Audit Manager assessment. These reports
+// summarize the relevant evidence collected for your audit, and link to the
+// relevant evidence folders which are named and organized according to the
+// controls specified in your assessment.
 type AssessmentReport struct {
 	_ struct{} `type:"structure"`
 
@@ -6175,7 +6184,7 @@ type AssessmentReport struct {
 	// The name of the user who created the assessment report.
 	Author *string `locationName:"author" min:"1" type:"string"`
 
-	// The identifier for the specified AWS account.
+	// The identifier for the specified account.
 	AwsAccountId *string `locationName:"awsAccountId" min:"12" type:"string"`
 
 	// Specifies when the assessment report was created.
@@ -6388,8 +6397,8 @@ func (s *AssessmentReportMetadata) SetStatus(v string) *AssessmentReportMetadata
 	return s
 }
 
-// The location in which AWS Audit Manager saves assessment reports for the
-// given assessment.
+// The location in which Audit Manager saves assessment reports for the given
+// assessment.
 type AssessmentReportsDestination struct {
 	_ struct{} `type:"structure"`
 
@@ -6616,7 +6625,7 @@ func (s *BatchAssociateAssessmentReportEvidenceOutput) SetEvidenceIds(v []*strin
 type BatchCreateDelegationByAssessmentError struct {
 	_ struct{} `type:"structure"`
 
-	// The API request to batch create delegations in AWS Audit Manager.
+	// The API request to batch create delegations in Audit Manager.
 	CreateDelegationRequest *CreateDelegationRequest `locationName:"createDelegationRequest" type:"structure"`
 
 	// The error code returned by the BatchCreateDelegationByAssessment API.
@@ -6662,7 +6671,7 @@ type BatchCreateDelegationByAssessmentInput struct {
 	// AssessmentId is a required field
 	AssessmentId *string `location:"uri" locationName:"assessmentId" min:"36" type:"string" required:"true"`
 
-	// The API request to batch create delegations in AWS Audit Manager.
+	// The API request to batch create delegations in Audit Manager.
 	//
 	// CreateDelegationRequests is a required field
 	CreateDelegationRequests []*CreateDelegationRequest `locationName:"createDelegationRequests" min:"1" type:"list" required:"true"`
@@ -6995,7 +7004,7 @@ type BatchImportEvidenceToAssessmentControlError struct {
 	// API.
 	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
-	// Manual evidence that cannot be collected automatically by AWS Audit Manager.
+	// Manual evidence that cannot be collected automatically by Audit Manager.
 	ManualEvidence *ManualEvidence `locationName:"manualEvidence" type:"structure"`
 }
 
@@ -7152,7 +7161,7 @@ func (s *BatchImportEvidenceToAssessmentControlOutput) SetErrors(v []*BatchImpor
 	return s
 }
 
-// The record of a change within AWS Audit Manager, such as a modified assessment,
+// The record of a change within Audit Manager, such as a modified assessment,
 // a delegated control set, and so on.
 type ChangeLog struct {
 	_ struct{} `type:"structure"`
@@ -7213,7 +7222,7 @@ func (s *ChangeLog) SetObjectType(v string) *ChangeLog {
 	return s
 }
 
-// A control in AWS Audit Manager.
+// A control in Audit Manager.
 type Control struct {
 	_ struct{} `type:"structure"`
 
@@ -7229,7 +7238,7 @@ type Control struct {
 	// The data mapping sources for the specified control.
 	ControlMappingSources []*ControlMappingSource `locationName:"controlMappingSources" min:"1" type:"list"`
 
-	// The data source that determines from where AWS Audit Manager collects evidence
+	// The data source that determines from where Audit Manager collects evidence
 	// for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
@@ -7407,7 +7416,7 @@ func (s *ControlComment) SetPostedDate(v time.Time) *ControlComment {
 	return s
 }
 
-// The data source that determines from where AWS Audit Manager collects evidence
+// The data source that determines from where Audit Manager collects evidence
 // for the control.
 type ControlMappingSource struct {
 	_ struct{} `type:"structure"`
@@ -7421,8 +7430,8 @@ type ControlMappingSource struct {
 	// The unique identifier for the specified source.
 	SourceId *string `locationName:"sourceId" min:"36" type:"string"`
 
-	// The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS Security
-	// Hub checks, and AWS API names.
+	// The keyword to search for in CloudTrail logs, Config rules, Security Hub
+	// checks, and Amazon Web Services API names.
 	SourceKeyword *SourceKeyword `locationName:"sourceKeyword" type:"structure"`
 
 	// The name of the specified source.
@@ -7525,7 +7534,7 @@ type ControlMetadata struct {
 	// The Amazon Resource Name (ARN) of the specified control.
 	Arn *string `locationName:"arn" min:"20" type:"string"`
 
-	// The data source that determines from where AWS Audit Manager collects evidence
+	// The data source that determines from where Audit Manager collects evidence
 	// for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
@@ -7588,7 +7597,7 @@ func (s *ControlMetadata) SetName(v string) *ControlMetadata {
 	return s
 }
 
-// A set of controls in AWS Audit Manager.
+// A set of controls in Audit Manager.
 type ControlSet struct {
 	_ struct{} `type:"structure"`
 
@@ -7632,7 +7641,7 @@ func (s *ControlSet) SetName(v string) *ControlSet {
 }
 
 // Control entity attributes that uniquely identify an existing control to be
-// added to a framework in AWS Audit Manager.
+// added to a framework in Audit Manager.
 type CreateAssessmentFrameworkControl struct {
 	_ struct{} `type:"structure"`
 
@@ -7669,8 +7678,8 @@ func (s *CreateAssessmentFrameworkControl) SetId(v string) *CreateAssessmentFram
 	return s
 }
 
-// A controlSet entity that represents a collection of controls in AWS Audit
-// Manager. This does not contain the control set ID.
+// A controlSet entity that represents a collection of controls in Audit Manager.
+// This does not contain the control set ID.
 type CreateAssessmentFrameworkControlSet struct {
 	_ struct{} `type:"structure"`
 
@@ -7884,8 +7893,7 @@ type CreateAssessmentInput struct {
 	// Roles is a required field
 	Roles []*Role `locationName:"roles" type:"list" required:"true"`
 
-	// The wrapper that contains the AWS accounts and AWS services in scope for
-	// the assessment.
+	// The wrapper that contains the accounts and services in scope for the assessment.
 	//
 	// Scope is a required field
 	Scope *Scope `locationName:"scope" type:"structure" required:"true"`
@@ -8000,9 +8008,8 @@ func (s *CreateAssessmentInput) SetTags(v map[string]*string) *CreateAssessmentI
 type CreateAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An entity that defines the scope of audit evidence collected by AWS Audit
-	// Manager. An AWS Audit Manager assessment is an implementation of an AWS Audit
-	// Manager framework.
+	// An entity that defines the scope of audit evidence collected by Audit Manager.
+	// An Audit Manager assessment is an implementation of an Audit Manager framework.
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
 }
 
@@ -8230,15 +8237,15 @@ func (s *CreateControlInput) SetTestingInformation(v string) *CreateControlInput
 type CreateControlMappingSource struct {
 	_ struct{} `type:"structure"`
 
-	// The description of the data source that determines from where AWS Audit Manager
+	// The description of the data source that determines from where Audit Manager
 	// collects evidence for the control.
 	SourceDescription *string `locationName:"sourceDescription" type:"string"`
 
 	// The frequency of evidence collection for the specified control mapping source.
 	SourceFrequency *string `locationName:"sourceFrequency" type:"string" enum:"SourceFrequency"`
 
-	// The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS Security
-	// Hub checks, and AWS API names.
+	// The keyword to search for in CloudTrail logs, Config rules, Security Hub
+	// checks, and Amazon Web Services API names.
 	SourceKeyword *SourceKeyword `locationName:"sourceKeyword" type:"structure"`
 
 	// The name of the control mapping data source.
@@ -8349,7 +8356,7 @@ func (s *CreateControlOutput) SetControl(v *Control) *CreateControlOutput {
 }
 
 // A collection of attributes used to create a delegation for an assessment
-// in AWS Audit Manager.
+// in Audit Manager.
 type CreateDelegationRequest struct {
 	_ struct{} `type:"structure"`
 
@@ -9029,16 +9036,15 @@ type Evidence struct {
 	// (such as allowUsersToChangePassword) and value (such as true or false).
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
-	// The identifier for the specified AWS account.
+	// The identifier for the specified account.
 	AwsAccountId *string `locationName:"awsAccountId" min:"12" type:"string"`
 
-	// The AWS account from which the evidence is collected, and its AWS organization
-	// path.
+	// The account from which the evidence is collected, and its organization path.
 	AwsOrganization *string `locationName:"awsOrganization" type:"string"`
 
 	// The evaluation status for evidence that falls under the compliance check
-	// category. For evidence collected from AWS Security Hub, a Pass or Fail result
-	// is shown. For evidence collected from AWS Config, a Compliant or Noncompliant
+	// category. For evidence collected from Security Hub, a Pass or Fail result
+	// is shown. For evidence collected from Config, a Compliant or Noncompliant
 	// result is shown.
 	ComplianceCheck *string `locationName:"complianceCheck" type:"string"`
 
@@ -9048,10 +9054,10 @@ type Evidence struct {
 	// The name of the specified evidence event.
 	EventName *string `locationName:"eventName" type:"string"`
 
-	// The AWS service from which the evidence is collected.
+	// The Amazon Web Service from which the evidence is collected.
 	EventSource *string `locationName:"eventSource" min:"1" type:"string"`
 
-	// The identifier for the specified AWS account.
+	// The identifier for the specified account.
 	EvidenceAwsAccountId *string `locationName:"evidenceAwsAccountId" min:"12" type:"string"`
 
 	// The type of automated evidence.
@@ -9173,8 +9179,8 @@ func (s *Evidence) SetTime(v time.Time) *Evidence {
 	return s
 }
 
-// The file used to structure and automate AWS Audit Manager assessments for
-// a given compliance standard.
+// The file used to structure and automate Audit Manager assessments for a given
+// compliance standard.
 type Framework struct {
 	_ struct{} `type:"structure"`
 
@@ -9188,7 +9194,7 @@ type Framework struct {
 	// The control sets associated with the framework.
 	ControlSets []*ControlSet `locationName:"controlSets" min:"1" type:"list"`
 
-	// The sources from which AWS Audit Manager collects evidence for the control.
+	// The sources from which Audit Manager collects evidence for the control.
 	ControlSources *string `locationName:"controlSources" min:"1" type:"string"`
 
 	// Specifies when the framework was created.
@@ -9385,7 +9391,7 @@ func (s GetAccountStatusInput) GoString() string {
 type GetAccountStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the specified AWS account.
+	// The status of the specified account.
 	Status *string `locationName:"status" type:"string" enum:"AccountStatus"`
 }
 
@@ -9513,12 +9519,11 @@ func (s *GetAssessmentInput) SetAssessmentId(v string) *GetAssessmentInput {
 type GetAssessmentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An entity that defines the scope of audit evidence collected by AWS Audit
-	// Manager. An AWS Audit Manager assessment is an implementation of an AWS Audit
-	// Manager framework.
+	// An entity that defines the scope of audit evidence collected by Audit Manager.
+	// An Audit Manager assessment is an implementation of an Audit Manager framework.
 	Assessment *Assessment `locationName:"assessment" type:"structure"`
 
-	// The wrapper that contains the AWS Audit Manager role information of the current
+	// The wrapper that contains the Audit Manager role information of the current
 	// user, such as the role type and IAM Amazon Resource Name (ARN).
 	UserRole *Role `locationName:"userRole" type:"structure"`
 }
@@ -10529,7 +10534,7 @@ func (s GetServicesInScopeInput) GoString() string {
 type GetServicesInScopeOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The metadata associated with the aAWS service.
+	// The metadata associated with the Amazon Web Service.
 	ServiceMetadata []*ServiceMetadata `locationName:"serviceMetadata" type:"list"`
 }
 
@@ -10593,7 +10598,7 @@ func (s *GetSettingsInput) SetAttribute(v string) *GetSettingsInput {
 type GetSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The settings object that holds all supported AWS Audit Manager settings.
+	// The settings object that holds all supported Audit Manager settings.
 	Settings *Settings `locationName:"settings" type:"structure"`
 }
 
@@ -11256,7 +11261,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Evidence that is uploaded to AWS Audit Manager manually.
+// Evidence that is uploaded to Audit Manager manually.
 type ManualEvidence struct {
 	_ struct{} `type:"structure"`
 
@@ -11293,9 +11298,9 @@ func (s *ManualEvidence) SetS3ResourcePath(v string) *ManualEvidence {
 	return s
 }
 
-// The notification used to inform a user of an update in AWS Audit Manager.
-// For example, this includes the notification that is sent when a control set
-// is delegated for review.
+// The notification used to inform a user of an update in Audit Manager. For
+// example, this includes the notification that is sent when a control set is
+// delegated for review.
 type Notification struct {
 	_ struct{} `type:"structure"`
 
@@ -11385,10 +11390,10 @@ func (s *Notification) SetSource(v string) *Notification {
 type RegisterAccountInput struct {
 	_ struct{} `type:"structure"`
 
-	// The delegated administrator account for AWS Audit Manager.
+	// The delegated administrator account for Audit Manager.
 	DelegatedAdminAccount *string `locationName:"delegatedAdminAccount" min:"12" type:"string"`
 
-	// The AWS KMS key details.
+	// The KMS key details.
 	KmsKey *string `locationName:"kmsKey" min:"7" type:"string"`
 }
 
@@ -11500,7 +11505,7 @@ type RegisterOrganizationAdminAccountOutput struct {
 	// The identifier for the specified delegated administrator account.
 	AdminAccountId *string `locationName:"adminAccountId" min:"12" type:"string"`
 
-	// The identifier for the specified AWS organization.
+	// The identifier for the specified organization.
 	OrganizationId *string `locationName:"organizationId" min:"12" type:"string"`
 }
 
@@ -11526,7 +11531,7 @@ func (s *RegisterOrganizationAdminAccountOutput) SetOrganizationId(v string) *Re
 	return s
 }
 
-// A system asset that is evaluated in an AWS Audit Manager assessment.
+// A system asset that is evaluated in an Audit Manager assessment.
 type Resource struct {
 	_ struct{} `type:"structure"`
 
@@ -11625,7 +11630,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The wrapper that contains the AWS Audit Manager role information of the current
+// The wrapper that contains the Audit Manager role information of the current
 // user, such as the role type and IAM Amazon Resource Name (ARN).
 type Role struct {
 	_ struct{} `type:"structure"`
@@ -11678,15 +11683,14 @@ func (s *Role) SetRoleType(v string) *Role {
 	return s
 }
 
-// The wrapper that contains the AWS accounts and AWS services in scope for
-// the assessment.
+// The wrapper that contains the accounts and services in scope for the assessment.
 type Scope struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS accounts included in the scope of the assessment.
+	// The accounts included in the scope of the assessment.
 	AwsAccounts []*AWSAccount `locationName:"awsAccounts" type:"list"`
 
-	// The AWS services included in the scope of the assessment.
+	// The Amazon Web Services services included in the scope of the assessment.
 	AwsServices []*AWSService `locationName:"awsServices" type:"list"`
 }
 
@@ -11742,21 +11746,21 @@ func (s *Scope) SetAwsServices(v []*AWSService) *Scope {
 	return s
 }
 
-// The metadata associated with the specified AWS service.
+// The metadata associated with the specified Amazon Web Service.
 type ServiceMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The category in which the AWS service belongs, such as compute, storage,
+	// The category in which the Amazon Web Service belongs, such as compute, storage,
 	// database, and so on.
 	Category *string `locationName:"category" min:"1" type:"string"`
 
-	// The description of the specified AWS service.
+	// The description of the specified Amazon Web Service.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
-	// The display name of the AWS service.
+	// The display name of the Amazon Web Service.
 	DisplayName *string `locationName:"displayName" min:"1" type:"string"`
 
-	// The name of the AWS service.
+	// The name of the Amazon Web Service.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
@@ -11794,7 +11798,7 @@ func (s *ServiceMetadata) SetName(v string) *ServiceMetadata {
 	return s
 }
 
-// The settings object that holds all supported AWS Audit Manager settings.
+// The settings object that holds all supported Audit Manager settings.
 type Settings struct {
 	_ struct{} `type:"structure"`
 
@@ -11804,10 +11808,10 @@ type Settings struct {
 	// The designated default audit owners.
 	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list"`
 
-	// Specifies whether AWS Organizations is enabled.
+	// Specifies whether Organizations is enabled.
 	IsAwsOrgEnabled *bool `locationName:"isAwsOrgEnabled" type:"boolean"`
 
-	// The AWS KMS key details.
+	// The KMS key details.
 	KmsKey *string `locationName:"kmsKey" min:"7" type:"string"`
 
 	// The designated Amazon Simple Notification Service (Amazon SNS) topic.
@@ -11854,16 +11858,17 @@ func (s *Settings) SetSnsTopic(v string) *Settings {
 	return s
 }
 
-// The keyword to search for in AWS CloudTrail logs, AWS Config rules, AWS Security
-// Hub checks, and AWS API names.
+// The keyword to search for in CloudTrail logs, Config rules, Security Hub
+// checks, and Amazon Web Services API names.
 type SourceKeyword struct {
 	_ struct{} `type:"structure"`
 
 	// The method of input for the specified keyword.
 	KeywordInputType *string `locationName:"keywordInputType" type:"string" enum:"KeywordInputType"`
 
-	// The value of the keyword used to search AWS CloudTrail logs, AWS Config rules,
-	// AWS Security Hub checks, and AWS API names when mapping a control data source.
+	// The value of the keyword used to search CloudTrail logs, Config rules, Security
+	// Hub checks, and Amazon Web Services API names when mapping a control data
+	// source.
 	KeywordValue *string `locationName:"keywordValue" min:"1" type:"string"`
 }
 
@@ -12304,8 +12309,8 @@ func (s *UpdateAssessmentControlSetStatusOutput) SetControlSet(v *AssessmentCont
 	return s
 }
 
-// A controlSet entity that represents a collection of controls in AWS Audit
-// Manager. This does not contain the control set ID.
+// A controlSet entity that represents a collection of controls in Audit Manager.
+// This does not contain the control set ID.
 type UpdateAssessmentFrameworkControlSet struct {
 	_ struct{} `type:"structure"`
 
@@ -12879,10 +12884,10 @@ type UpdateSettingsInput struct {
 	// A list of the default audit owners.
 	DefaultProcessOwners []*Role `locationName:"defaultProcessOwners" type:"list"`
 
-	// The AWS KMS key details.
+	// The KMS key details.
 	KmsKey *string `locationName:"kmsKey" min:"7" type:"string"`
 
-	// The Amazon Simple Notification Service (Amazon SNS) topic to which AWS Audit
+	// The Amazon Simple Notification Service (Amazon SNS) topic to which Audit
 	// Manager sends notifications.
 	SnsTopic *string `locationName:"snsTopic" min:"20" type:"string"`
 }
