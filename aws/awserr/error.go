@@ -76,21 +76,14 @@ type BatchedErrors interface {
 }
 
 // New returns an Error object described by the code, message, and origErr.
-//
-// If origErr satisfies the Error interface it will not be wrapped within a new
-// Error object and will instead be returned.
 func New(code, message string, origErr error) Error {
-	var errs []error
-	if origErr != nil {
-		errs = append(errs, origErr)
-	}
-	return newBaseError(code, message, errs)
+	return newBaseError(code, message, origErr)
 }
 
 // NewBatchError returns an BatchedErrors with a collection of errors as an
 // array of errors.
 func NewBatchError(code, message string, errs []error) BatchedErrors {
-	return newBaseError(code, message, errs)
+	return newBatchError(code, message, errs)
 }
 
 // A RequestFailure is an interface to extract request failure information from
