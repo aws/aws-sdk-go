@@ -25,16 +25,17 @@ func (errorReader) Seek(int64, int) (int64, error) {
 	return 0, nil
 }
 
-func TestComputeBodyHases(t *testing.T) {
+func TestComputeBodyHashes(t *testing.T) {
 	bodyContent := []byte("bodyContent goes here")
 
 	cases := []struct {
-		Req               *request.Request
-		ExpectMD5         string
-		ExpectSHA256      string
-		Error             string
-		DisableContentMD5 bool
-		Presigned         bool
+		Req                  *request.Request
+		ExpectMD5            string
+		ExpectSHA256         string
+		Error                string
+		DisableContentMD5    bool
+		DisableContentSHA256 bool
+		Presigned            bool
 	}{
 		{
 			Req: &request.Request{
@@ -136,6 +137,18 @@ func TestComputeBodyHases(t *testing.T) {
 			DisableContentMD5: true,
 		},
 		{
+			// Disabled ContentSHA256 computation
+			Req: &request.Request{
+				HTTPRequest: &http.Request{
+					Header: http.Header{},
+				},
+				Body: bytes.NewReader(bodyContent),
+			},
+			ExpectMD5:            "CqD6NNPvoNOBT/5pkjtzOw==",
+			ExpectSHA256:         "",
+			DisableContentSHA256: true,
+		},
+		{
 			// Disabled ContentMD5 validation
 			Req: &request.Request{
 				HTTPRequest: &http.Request{
@@ -151,6 +164,7 @@ func TestComputeBodyHases(t *testing.T) {
 
 	for i, c := range cases {
 		c.Req.Config.S3DisableContentMD5Validation = aws.Bool(c.DisableContentMD5)
+		c.Req.Config.S3DisableContentSHA256Computation = aws.Bool(c.DisableContentSHA256)
 
 		if c.Presigned {
 			c.Req.ExpireTime = 10 * time.Minute

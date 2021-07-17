@@ -161,6 +161,10 @@ type Config struct {
 	// on GetObject API calls.
 	S3DisableContentMD5Validation *bool
 
+	// Set this to `true` to disable the S3 service client from automatically
+	// adding the Content-Sha256 to S3 Object Put and Upload API calls.
+	S3DisableContentSHA256Computation *bool
+
 	// Set this to `true` to have the S3 service client to use the region specified
 	// in the ARN, when an ARN is provided as an argument to a bucket parameter.
 	S3UseARNRegion *bool

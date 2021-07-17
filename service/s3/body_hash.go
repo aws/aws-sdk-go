@@ -48,7 +48,7 @@ func computeBodyHashes(r *request.Request) {
 		hashers = append(hashers, md5Hash)
 	}
 
-	if v := r.HTTPRequest.Header.Get(contentSha256Header); len(v) == 0 {
+	if v := r.HTTPRequest.Header.Get(contentSha256Header); len(v) == 0 && !aws.BoolValue(r.Config.S3DisableContentSHA256Computation) {
 		sha256Hash = sha256.New()
 		hashers = append(hashers, sha256Hash)
 	}
