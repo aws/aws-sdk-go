@@ -4438,6 +4438,9 @@ func (c *SES) SendEmailRequest(input *SendEmailInput) (req *request.Request, out
 //   * ErrCodeAccountSendingPausedException "AccountSendingPausedException"
 //   Indicates that email sending is disabled for your entire Amazon SES account.
 //
+//	 * ErrCodeThrottling "Throtling"
+//   Indicates that request was denied due to request throttling.
+//
 //   You can enable or disable email sending for your Amazon SES account using
 //   UpdateAccountSendingEnabled.
 //
