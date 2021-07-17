@@ -8,6 +8,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 )
 
 // Retryer provides the interface drive the SDK's request retry behavior. The
@@ -38,9 +39,7 @@ type Retryer interface {
 // value for chaining. The value must not be nil.
 func WithRetryer(cfg *aws.Config, retryer Retryer) *aws.Config {
 	if retryer == nil {
-		if cfg.Logger != nil {
-			cfg.Logger.Log("ERROR: Request.WithRetryer called with nil retryer. Replacing with retry disabled Retryer.")
-		}
+		awslog.Error(aws.BackgroundContext(), cfg, "Request.WithRetryer called with nil retryer. Replacing with retry disabled Retryer.")
 		retryer = noOpRetryer{}
 	}
 	cfg.Retryer = retryer

@@ -47,7 +47,8 @@ func (c *Lambda) WaitUntilFunctionActiveWithContext(ctx aws.Context, input *GetF
 				Expected: "Pending",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetFunctionConfigurationInput
 			if input != nil {
@@ -98,7 +99,8 @@ func (c *Lambda) WaitUntilFunctionExistsWithContext(ctx aws.Context, input *GetF
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetFunctionInput
 			if input != nil {
@@ -154,7 +156,8 @@ func (c *Lambda) WaitUntilFunctionUpdatedWithContext(ctx aws.Context, input *Get
 				Expected: "InProgress",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetFunctionConfigurationInput
 			if input != nil {

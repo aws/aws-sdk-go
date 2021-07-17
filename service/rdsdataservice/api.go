@@ -332,9 +332,15 @@ const opExecuteSql = "ExecuteSql"
 //
 // Deprecated: The ExecuteSql API is deprecated, please use the ExecuteStatement API.
 func (c *RDSDataService) ExecuteSqlRequest(input *ExecuteSqlInput) (req *request.Request, output *ExecuteSqlOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, ExecuteSql, has been deprecated")
+	msg := "This operation, ExecuteSql, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opExecuteSql,
 		HTTPMethod: "POST",

@@ -42,7 +42,8 @@ func (c *IoTSiteWise) WaitUntilAssetActiveWithContext(ctx aws.Context, input *De
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeAssetInput
 			if input != nil {
@@ -93,7 +94,8 @@ func (c *IoTSiteWise) WaitUntilAssetModelActiveWithContext(ctx aws.Context, inpu
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeAssetModelInput
 			if input != nil {
@@ -139,7 +141,8 @@ func (c *IoTSiteWise) WaitUntilAssetModelNotExistsWithContext(ctx aws.Context, i
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeAssetModelInput
 			if input != nil {
@@ -185,7 +188,8 @@ func (c *IoTSiteWise) WaitUntilAssetNotExistsWithContext(ctx aws.Context, input 
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeAssetInput
 			if input != nil {
@@ -231,7 +235,8 @@ func (c *IoTSiteWise) WaitUntilPortalActiveWithContext(ctx aws.Context, input *D
 				Expected: "ACTIVE",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribePortalInput
 			if input != nil {
@@ -277,7 +282,8 @@ func (c *IoTSiteWise) WaitUntilPortalNotExistsWithContext(ctx aws.Context, input
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribePortalInput
 			if input != nil {

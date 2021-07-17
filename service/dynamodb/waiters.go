@@ -42,7 +42,8 @@ func (c *DynamoDB) WaitUntilTableExistsWithContext(ctx aws.Context, input *Descr
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTableInput
 			if input != nil {
@@ -88,7 +89,8 @@ func (c *DynamoDB) WaitUntilTableNotExistsWithContext(ctx aws.Context, input *De
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTableInput
 			if input != nil {

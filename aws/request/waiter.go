@@ -72,9 +72,10 @@ func WithWaiterRequestOptions(opts ...Option) WaiterOption {
 // This type should not be used directly. The API operations provided in the
 // service packages prefixed with "WaitUntil" should be used instead.
 type Waiter struct {
-	Name      string
-	Acceptors []WaiterAcceptor
-	Logger    aws.Logger
+	Name          string
+	Acceptors     []WaiterAcceptor
+	Logger        aws.Logger
+	ContextLogger aws.ContextLogger
 
 	MaxAttempts int
 	Delay       WaiterDelay
@@ -171,7 +172,7 @@ func (w Waiter) WaitWithContext(ctx aws.Context) error {
 	for attempt := 1; ; attempt++ {
 		req, err := w.NewRequest(w.RequestOptions)
 		if err != nil {
-			waiterLogf(w.Logger, "unable to create request %v", err)
+			logErrorf(ctx, &w, "unable to create request %v", err)
 			return err
 		}
 		req.Handlers.Build.PushBack(MakeAddToUserAgentFreeFormHandler("Waiter"))
@@ -179,7 +180,7 @@ func (w Waiter) WaitWithContext(ctx aws.Context) error {
 
 		// See if any of the acceptors match the request's response, or error
 		for _, a := range w.Acceptors {
-			if matched, matchErr := a.match(w.Name, w.Logger, req, err); matched {
+			if matched, matchErr := a.match(ctx, &w, req, err); matched {
 				return matchErr
 			}
 		}
@@ -223,7 +224,7 @@ type WaiterAcceptor struct {
 // match returns if the acceptor found a match with the passed in request
 // or error. True is returned if the acceptor made a match, error is returned
 // if there was an error attempting to perform the match.
-func (a *WaiterAcceptor) match(name string, l aws.Logger, req *Request, err error) (bool, error) {
+func (a *WaiterAcceptor) match(ctx aws.Context, w *Waiter, req *Request, err error) (bool, error) {
 	result := false
 	var vals []interface{}
 
@@ -260,8 +261,8 @@ func (a *WaiterAcceptor) match(name string, l aws.Logger, req *Request, err erro
 			result = aerr.Code() == a.Expected.(string)
 		}
 	default:
-		waiterLogf(l, "WARNING: Waiter %s encountered unexpected matcher: %s",
-			name, a.Matcher)
+		logWarningf(ctx, w, "Waiter %s encountered unexpected matcher: %s",
+			w.Name, a.Matcher)
 	}
 
 	if !result {
@@ -282,14 +283,28 @@ func (a *WaiterAcceptor) match(name string, l aws.Logger, req *Request, err erro
 		// clear the error and retry the operation
 		return false, nil
 	default:
-		waiterLogf(l, "WARNING: Waiter %s encountered unexpected state: %s",
-			name, a.State)
+		logWarningf(ctx, w, "Waiter %s encountered unexpected state: %s",
+			w.Name, a.State)
 		return false, nil
 	}
 }
 
-func waiterLogf(logger aws.Logger, msg string, args ...interface{}) {
-	if logger != nil {
-		logger.Log(fmt.Sprintf(msg, args...))
+func logErrorf(ctx aws.Context, w *Waiter, msg string, args ...interface{}) {
+	if w.ContextLogger != nil {
+		w.ContextLogger.Errorf(ctx, msg, args...)
+	} else if w.Logger != nil {
+		w.Logger.Log(fmt.Sprintf("ERROR: "+msg, args...))
+	} else {
+		// no-op
+	}
+}
+
+func logWarningf(ctx aws.Context, w *Waiter, msg string, args ...interface{}) {
+	if w.ContextLogger != nil {
+		w.ContextLogger.Warnf(ctx, msg, args...)
+	} else if w.Logger != nil {
+		w.Logger.Log(fmt.Sprintf("WARNING: "+msg, args...))
+	} else {
+		// no-op
 	}
 }

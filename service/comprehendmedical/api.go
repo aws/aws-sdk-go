@@ -413,9 +413,15 @@ const opDetectEntities = "DetectEntities"
 //
 // Deprecated: This operation is deprecated, use DetectEntitiesV2 instead.
 func (c *ComprehendMedical) DetectEntitiesRequest(input *DetectEntitiesInput) (req *request.Request, output *DetectEntitiesOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DetectEntities, has been deprecated")
+	msg := "This operation, DetectEntities, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opDetectEntities,
 		HTTPMethod: "POST",

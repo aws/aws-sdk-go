@@ -9,6 +9,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/aws/aws-sdk-go/aws/request"
+	"github.com/aws/aws-sdk-go/internal/awslog"
 )
 
 var (
@@ -74,12 +75,10 @@ func verifyReceiveMessage(r *request.Request) {
 			err := checksumsMatch(msg.Body, msg.MD5OfBody)
 			if err != nil {
 				if msg.MessageId == nil {
-					if r.Config.Logger != nil {
-						r.Config.Logger.Log(fmt.Sprintf(
-							"WARN: SQS.ReceiveMessage failed checksum request id: %s, message %d has no message ID.",
-							r.RequestID, i,
-						))
-					}
+					awslog.Warnf(r.Context(), &r.Config,
+						"SQS.ReceiveMessage failed checksum request id: %s, message %d has no message ID.",
+						r.RequestID, i,
+					)
 					continue
 				}
 

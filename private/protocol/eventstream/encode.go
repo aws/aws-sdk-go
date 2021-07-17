@@ -15,8 +15,9 @@ import (
 
 // Encoder provides EventStream message encoding.
 type Encoder struct {
-	w      io.Writer
-	logger aws.Logger
+	w             io.Writer
+	logger        aws.Logger
+	contextLogger aws.ContextLogger
 
 	headersBuf *bytes.Buffer
 }
@@ -36,11 +37,20 @@ func NewEncoder(w io.Writer, opts ...func(*Encoder)) *Encoder {
 	return e
 }
 
-// EncodeWithLogger adds a logger to be used by the encode when decoding
+// EncodeWithLogger adds a logger to be used by the encode when encoding
 // stream events.
+// Deprecated: Use EncodeWithContextLogger instead.
 func EncodeWithLogger(logger aws.Logger) func(*Encoder) {
-	return func(d *Encoder) {
-		d.logger = logger
+	return func(e *Encoder) {
+		e.logger = logger
+	}
+}
+
+// EncodeWithContextLogger adds a logger to be used by the encode when enccoding
+// stream events.
+func EncodeWithContextLogger(logger aws.ContextLogger) func(*Encoder) {
+	return func(e *Encoder) {
+		e.contextLogger = logger
 	}
 }
 
@@ -54,7 +64,7 @@ func (e *Encoder) Encode(msg Message) (err error) {
 		encodeMsgBuf := bytes.NewBuffer(nil)
 		writer = io.MultiWriter(writer, encodeMsgBuf)
 		defer func() {
-			logMessageEncode(e.logger, encodeMsgBuf, msg, err)
+			logMessageEncode(e, encodeMsgBuf, msg, err)
 		}()
 	}
 
@@ -88,9 +98,17 @@ func (e *Encoder) Encode(msg Message) (err error) {
 	return binary.Write(writer, binary.BigEndian, msgCRC)
 }
 
-func logMessageEncode(logger aws.Logger, msgBuf *bytes.Buffer, msg Message, encodeErr error) {
+func logMessageEncode(e *Encoder, msgBuf *bytes.Buffer, msg Message, encodeErr error) {
 	w := bytes.NewBuffer(nil)
-	defer func() { logger.Log(w.String()) }()
+	defer func() {
+		if e.contextLogger != nil {
+			e.contextLogger.Info(aws.BackgroundContext(), w.String())
+		} else if e.logger != nil {
+			e.logger.Log(w.String())
+		} else {
+			// no-op
+		}
+	}()
 
 	fmt.Fprintf(w, "Message to encode:\n")
 	encoder := json.NewEncoder(w)

@@ -42,7 +42,8 @@ func (c *Rekognition) WaitUntilProjectVersionRunningWithContext(ctx aws.Context,
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeProjectVersionsInput
 			if input != nil {
@@ -93,7 +94,8 @@ func (c *Rekognition) WaitUntilProjectVersionTrainingCompletedWithContext(ctx aw
 				Expected: "TRAINING_FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeProjectVersionsInput
 			if input != nil {

@@ -52,7 +52,8 @@ func (c *Schemas) WaitUntilCodeBindingExistsWithContext(ctx aws.Context, input *
 				Expected: "NotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeCodeBindingInput
 			if input != nil {

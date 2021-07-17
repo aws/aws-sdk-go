@@ -42,7 +42,8 @@ func (c *SageMaker) WaitUntilEndpointDeletedWithContext(ctx aws.Context, input *
 				Expected: "Failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeEndpointInput
 			if input != nil {
@@ -98,7 +99,8 @@ func (c *SageMaker) WaitUntilEndpointInServiceWithContext(ctx aws.Context, input
 				Expected: "ValidationException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeEndpointInput
 			if input != nil {
@@ -149,7 +151,8 @@ func (c *SageMaker) WaitUntilNotebookInstanceDeletedWithContext(ctx aws.Context,
 				Expected: "Failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeNotebookInstanceInput
 			if input != nil {
@@ -200,7 +203,8 @@ func (c *SageMaker) WaitUntilNotebookInstanceInServiceWithContext(ctx aws.Contex
 				Expected: "Failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeNotebookInstanceInput
 			if input != nil {
@@ -251,7 +255,8 @@ func (c *SageMaker) WaitUntilNotebookInstanceStoppedWithContext(ctx aws.Context,
 				Expected: "Failed",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeNotebookInstanceInput
 			if input != nil {
@@ -312,7 +317,8 @@ func (c *SageMaker) WaitUntilProcessingJobCompletedOrStoppedWithContext(ctx aws.
 				Expected: "ValidationException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeProcessingJobInput
 			if input != nil {
@@ -373,7 +379,8 @@ func (c *SageMaker) WaitUntilTrainingJobCompletedOrStoppedWithContext(ctx aws.Co
 				Expected: "ValidationException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTrainingJobInput
 			if input != nil {
@@ -434,7 +441,8 @@ func (c *SageMaker) WaitUntilTransformJobCompletedOrStoppedWithContext(ctx aws.C
 				Expected: "ValidationException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeTransformJobInput
 			if input != nil {

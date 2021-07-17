@@ -62,7 +62,8 @@ func (c *Neptune) WaitUntilDBInstanceAvailableWithContext(ctx aws.Context, input
 				Expected: "incompatible-parameters",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDBInstancesInput
 			if input != nil {
@@ -133,7 +134,8 @@ func (c *Neptune) WaitUntilDBInstanceDeletedWithContext(ctx aws.Context, input *
 				Expected: "resetting-master-credentials",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDBInstancesInput
 			if input != nil {

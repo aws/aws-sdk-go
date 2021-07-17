@@ -29,7 +29,7 @@ func sessionWithLogCheck(message string) (*session.Session, *bool) {
 		if len(i) == 0 {
 			return
 		}
-		s, ok := i[0].(string)
+		s, ok := i[1].(string)
 		if !ok {
 			return
 		}

@@ -536,9 +536,15 @@ const opCreateTags = "CreateTags"
 //
 // Deprecated: Use TagResource.
 func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, output *CreateTagsOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, CreateTags, has been deprecated")
+	msg := "This operation, CreateTags, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opCreateTags,
 		HTTPMethod: "POST",
@@ -1052,9 +1058,15 @@ const opDeleteTags = "DeleteTags"
 //
 // Deprecated: Use UntagResource.
 func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, output *DeleteTagsOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DeleteTags, has been deprecated")
+	msg := "This operation, DeleteTags, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opDeleteTags,
 		HTTPMethod: "POST",
@@ -2040,9 +2052,15 @@ const opDescribeTags = "DescribeTags"
 //
 // Deprecated: Use ListTagsForResource.
 func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Request, output *DescribeTagsOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, DescribeTags, has been deprecated")
+	msg := "This operation, DescribeTags, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opDescribeTags,
 		HTTPMethod: "GET",

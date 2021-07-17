@@ -52,7 +52,8 @@ func (c *S3) WaitUntilBucketExistsWithContext(ctx aws.Context, input *HeadBucket
 				Expected: 404,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *HeadBucketInput
 			if input != nil {
@@ -98,7 +99,8 @@ func (c *S3) WaitUntilBucketNotExistsWithContext(ctx aws.Context, input *HeadBuc
 				Expected: 404,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *HeadBucketInput
 			if input != nil {
@@ -149,7 +151,8 @@ func (c *S3) WaitUntilObjectExistsWithContext(ctx aws.Context, input *HeadObject
 				Expected: 404,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *HeadObjectInput
 			if input != nil {
@@ -195,7 +198,8 @@ func (c *S3) WaitUntilObjectNotExistsWithContext(ctx aws.Context, input *HeadObj
 				Expected: 404,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *HeadObjectInput
 			if input != nil {

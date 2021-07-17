@@ -62,7 +62,8 @@ func (c *RDS) WaitUntilDBClusterSnapshotAvailableWithContext(ctx aws.Context, in
 				Expected: "incompatible-parameters",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDBClusterSnapshotsInput
 			if input != nil {
@@ -133,7 +134,8 @@ func (c *RDS) WaitUntilDBClusterSnapshotDeletedWithContext(ctx aws.Context, inpu
 				Expected: "resetting-master-credentials",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDBClusterSnapshotsInput
 			if input != nil {
@@ -204,7 +206,8 @@ func (c *RDS) WaitUntilDBInstanceAvailableWithContext(ctx aws.Context, input *De
 				Expected: "incompatible-parameters",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDBInstancesInput
 			if input != nil {
@@ -275,7 +278,8 @@ func (c *RDS) WaitUntilDBInstanceDeletedWithContext(ctx aws.Context, input *Desc
 				Expected: "resetting-master-credentials",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDBInstancesInput
 			if input != nil {
@@ -346,7 +350,8 @@ func (c *RDS) WaitUntilDBSnapshotAvailableWithContext(ctx aws.Context, input *De
 				Expected: "incompatible-parameters",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDBSnapshotsInput
 			if input != nil {
@@ -417,7 +422,8 @@ func (c *RDS) WaitUntilDBSnapshotDeletedWithContext(ctx aws.Context, input *Desc
 				Expected: "resetting-master-credentials",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDBSnapshotsInput
 			if input != nil {

@@ -42,7 +42,8 @@ func (c *MachineLearning) WaitUntilBatchPredictionAvailableWithContext(ctx aws.C
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeBatchPredictionsInput
 			if input != nil {
@@ -93,7 +94,8 @@ func (c *MachineLearning) WaitUntilDataSourceAvailableWithContext(ctx aws.Contex
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeDataSourcesInput
 			if input != nil {
@@ -144,7 +146,8 @@ func (c *MachineLearning) WaitUntilEvaluationAvailableWithContext(ctx aws.Contex
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeEvaluationsInput
 			if input != nil {
@@ -195,7 +198,8 @@ func (c *MachineLearning) WaitUntilMLModelAvailableWithContext(ctx aws.Context, 
 				Expected: "FAILED",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeMLModelsInput
 			if input != nil {

@@ -29,11 +29,12 @@ const (
 
 type signer struct {
 	// Values that must be populated from the request
-	Request     *http.Request
-	Time        time.Time
-	Credentials *credentials.Credentials
-	Debug       aws.LogLevelType
-	Logger      aws.Logger
+	Request       *http.Request
+	Time          time.Time
+	Credentials   *credentials.Credentials
+	Debug         aws.LogLevelType
+	Logger        aws.Logger
+	ContextLogger aws.ContextLogger
 
 	Query        url.Values
 	stringToSign string
@@ -65,11 +66,12 @@ func SignSDKRequest(req *request.Request) {
 	}
 
 	v2 := signer{
-		Request:     req.HTTPRequest,
-		Time:        req.Time,
-		Credentials: req.Config.Credentials,
-		Debug:       req.Config.LogLevel.Value(),
-		Logger:      req.Config.Logger,
+		Request:       req.HTTPRequest,
+		Time:          req.Time,
+		Credentials:   req.Config.Credentials,
+		Debug:         req.Config.LogLevel.Value(),
+		Logger:        req.Config.Logger,
+		ContextLogger: req.Config.ContextLogger,
 	}
 
 	req.Error = v2.Sign()
@@ -167,7 +169,7 @@ func (v2 *signer) Sign() error {
 	return nil
 }
 
-const logSignInfoMsg = `DEBUG: Request Signature:
+const logSignInfoMsg = `Request Signature:
 ---[ STRING TO SIGN ]--------------------------------
 %s
 ---[ SIGNATURE ]-------------------------------------
@@ -176,5 +178,11 @@ const logSignInfoMsg = `DEBUG: Request Signature:
 
 func (v2 *signer) logSigningInfo() {
 	msg := fmt.Sprintf(logSignInfoMsg, v2.stringToSign, v2.Query.Get("Signature"))
-	v2.Logger.Log(msg)
+	if v2.ContextLogger != nil {
+		v2.ContextLogger.Debug(requestContext(v2.Request), msg)
+	} else if v2.Logger != nil {
+		v2.Logger.Log("DEBUG: " + msg)
+	} else {
+		// no-op
+	}
 }

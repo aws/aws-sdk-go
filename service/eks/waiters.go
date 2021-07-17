@@ -154,7 +154,8 @@ func (c *EKS) WaitUntilClusterActiveWithContext(ctx aws.Context, input *Describe
 				Expected: "ACTIVE",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeClusterInput
 			if input != nil {
@@ -210,7 +211,8 @@ func (c *EKS) WaitUntilClusterDeletedWithContext(ctx aws.Context, input *Describ
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeClusterInput
 			if input != nil {
@@ -363,7 +365,8 @@ func (c *EKS) WaitUntilNodegroupActiveWithContext(ctx aws.Context, input *Descri
 				Expected: "ACTIVE",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeNodegroupInput
 			if input != nil {
@@ -414,7 +417,8 @@ func (c *EKS) WaitUntilNodegroupDeletedWithContext(ctx aws.Context, input *Descr
 				Expected: "ResourceNotFoundException",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *DescribeNodegroupInput
 			if input != nil {

@@ -42,7 +42,8 @@ func (c *IAM) WaitUntilInstanceProfileExistsWithContext(ctx aws.Context, input *
 				Expected: 404,
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetInstanceProfileInput
 			if input != nil {
@@ -93,7 +94,8 @@ func (c *IAM) WaitUntilPolicyExistsWithContext(ctx aws.Context, input *GetPolicy
 				Expected: "NoSuchEntity",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetPolicyInput
 			if input != nil {
@@ -144,7 +146,8 @@ func (c *IAM) WaitUntilRoleExistsWithContext(ctx aws.Context, input *GetRoleInpu
 				Expected: "NoSuchEntity",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetRoleInput
 			if input != nil {
@@ -195,7 +198,8 @@ func (c *IAM) WaitUntilUserExistsWithContext(ctx aws.Context, input *GetUserInpu
 				Expected: "NoSuchEntity",
 			},
 		},
-		Logger: c.Config.Logger,
+		Logger:        c.Config.Logger,
+		ContextLogger: c.Config.ContextLogger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {
 			var inCpy *GetUserInput
 			if input != nil {

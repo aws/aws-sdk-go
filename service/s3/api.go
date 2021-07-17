@@ -3121,9 +3121,15 @@ const opGetBucketLifecycle = "GetBucketLifecycle"
 //
 // Deprecated: GetBucketLifecycle has been deprecated
 func (c *S3) GetBucketLifecycleRequest(input *GetBucketLifecycleInput) (req *request.Request, output *GetBucketLifecycleOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, GetBucketLifecycle, has been deprecated")
+	msg := "This operation, GetBucketLifecycle, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opGetBucketLifecycle,
 		HTTPMethod: "GET",
@@ -3594,9 +3600,15 @@ const opGetBucketNotification = "GetBucketNotification"
 //
 // Deprecated: GetBucketNotification has been deprecated
 func (c *S3) GetBucketNotificationRequest(input *GetBucketNotificationConfigurationRequest) (req *request.Request, output *NotificationConfigurationDeprecated) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, GetBucketNotification, has been deprecated")
+	msg := "This operation, GetBucketNotification, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opGetBucketNotification,
 		HTTPMethod: "GET",
@@ -7659,9 +7671,15 @@ const opPutBucketLifecycle = "PutBucketLifecycle"
 //
 // Deprecated: PutBucketLifecycle has been deprecated
 func (c *S3) PutBucketLifecycleRequest(input *PutBucketLifecycleInput) (req *request.Request, output *PutBucketLifecycleOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, PutBucketLifecycle, has been deprecated")
+	msg := "This operation, PutBucketLifecycle, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opPutBucketLifecycle,
 		HTTPMethod: "PUT",
@@ -8163,9 +8181,15 @@ const opPutBucketNotification = "PutBucketNotification"
 //
 // Deprecated: PutBucketNotification has been deprecated
 func (c *S3) PutBucketNotificationRequest(input *PutBucketNotificationInput) (req *request.Request, output *PutBucketNotificationOutput) {
-	if c.Client.Config.Logger != nil {
-		c.Client.Config.Logger.Log("This operation, PutBucketNotification, has been deprecated")
+	msg := "This operation, PutBucketNotification, has been deprecated"
+	if c.Client.Config.ContextLogger != nil {
+		c.Client.Config.ContextLogger.Warn(aws.BackgroundContext(), msg)
+	} else if c.Client.Config.Logger != nil {
+		c.Client.Config.Logger.Log(msg)
+	} else {
+		// no-op
 	}
+
 	op := &request.Operation{
 		Name:       opPutBucketNotification,
 		HTTPMethod: "PUT",
@@ -10460,8 +10484,13 @@ func (es *SelectObjectContentEventStream) Events() <-chan SelectObjectContentEve
 
 func (es *SelectObjectContentEventStream) runOutputStream(r *request.Request) {
 	var opts []func(*eventstream.Decoder)
-	if r.Config.Logger != nil && r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
-		opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+	if r.Config.LogLevel.Matches(aws.LogDebugWithEventStreamBody) {
+		if r.Config.ContextLogger != nil {
+			opts = append(opts, eventstream.DecodeWithContextLogger(r.Config.ContextLogger))
+		}
+		if r.Config.Logger != nil {
+			opts = append(opts, eventstream.DecodeWithLogger(r.Config.Logger))
+		}
 	}
 
 	unmarshalerForEvent := unmarshalerForSelectObjectContentEventStreamEvent{

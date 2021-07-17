@@ -1,6 +1,7 @@
 package aws
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
@@ -81,12 +82,27 @@ const (
 
 // A Logger is a minimalistic interface for the SDK to log messages to. Should
 // be used to provide custom logging writers for the SDK to use.
+// Deprecated: Use ContextLogger instead.
 type Logger interface {
 	Log(...interface{})
 }
 
+// A ContextLogger is a minimalistic interface for the SDK to log messages to.
+// Should be used to provide custom logging writers for the SDK to use.
+type ContextLogger interface {
+	Debug(Context, ...interface{})
+	Debugf(Context, string, ...interface{})
+	Info(Context, ...interface{})
+	Infof(Context, string, ...interface{})
+	Warn(Context, ...interface{})
+	Warnf(Context, string, ...interface{})
+	Error(Context, ...interface{})
+	Errorf(Context, string, ...interface{})
+}
+
 // A LoggerFunc is a convenience type to convert a function taking a variadic
 // list of arguments and wrap it so the Logger interface can be used.
+// Deprecated: Use SimpleContextLoggerFunc instead.
 //
 // Example:
 //     s3.New(sess, &aws.Config{Logger: aws.LoggerFunc(func(args ...interface{}) {
@@ -115,4 +131,56 @@ type defaultLogger struct {
 // Log logs the parameters to the stdlib logger. See log.Println.
 func (l defaultLogger) Log(args ...interface{}) {
 	l.logger.Println(args...)
+}
+
+// A SimpleContextLoggerFunc is a convenience type to convert a function taking a
+// logging level and message and wrap it so the ContextLogger interface can be used.
+//
+// Example:
+//     f := func(ctx context.Context, level string, msg string) {
+//         fmt.Fprint(os.Stderr, "[" + level + "] " + msg)
+//     }
+//     s3.New(sess, &aws.Config{
+//         ContextLogger: aws.SimpleContextLoggerFunc(f),
+//     })
+type SimpleContextLoggerFunc func(ctx Context, level string, msg string)
+
+// Debug implements the ContextLogger Debug method by calling the wrapped function.
+func (f SimpleContextLoggerFunc) Debug(ctx Context, v ...interface{}) {
+	f(ctx, "DEBUG", fmt.Sprintln(v...))
+}
+
+// Debugf implements the ContextLogger Debugf method by calling the wrapped function.
+func (f SimpleContextLoggerFunc) Debugf(ctx Context, format string, v ...interface{}) {
+	f(ctx, "DEBUG", fmt.Sprintf(format+"\n", v...))
+}
+
+// Info implements the ContextLogger Info method by calling the wrapped function.
+func (f SimpleContextLoggerFunc) Info(ctx Context, v ...interface{}) {
+	f(ctx, "INFO", fmt.Sprintln(v...))
+}
+
+// Infof implements the ContextLogger Infof method by calling the wrapped function.
+func (f SimpleContextLoggerFunc) Infof(ctx Context, format string, v ...interface{}) {
+	f(ctx, "INFO", fmt.Sprintf(format+"\n", v...))
+}
+
+// Warn implements the ContextLogger Warn method by calling the wrapped function.
+func (f SimpleContextLoggerFunc) Warn(ctx Context, v ...interface{}) {
+	f(ctx, "WARNING", fmt.Sprintln(v...))
+}
+
+// Warnf implements the ContextLogger Warnf method by calling the wrapped function.
+func (f SimpleContextLoggerFunc) Warnf(ctx Context, format string, v ...interface{}) {
+	f(ctx, "WARNING", fmt.Sprintf(format+"\n", v...))
+}
+
+// Error implements the ContextLogger Error method by calling the wrapped function.
+func (f SimpleContextLoggerFunc) Error(ctx Context, v ...interface{}) {
+	f(ctx, "ERROR", fmt.Sprintln(v...))
+}
+
+// Errorf implements the ContextLogger Errorf method by calling the wrapped function.
+func (f SimpleContextLoggerFunc) Errorf(ctx Context, format string, v ...interface{}) {
+	f(ctx, "ERROR", fmt.Sprintf(format+"\n", v...))
 }
