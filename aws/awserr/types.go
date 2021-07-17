@@ -2,6 +2,7 @@ package awserr
 
 import (
 	"encoding/hex"
+	"errors"
 	"fmt"
 )
 
@@ -105,6 +106,16 @@ func (b baseError) OrigErr() error {
 	}
 }
 
+// Is reports whether this error matches target.
+func (b baseError) Is(target error) bool {
+	for _, e := range b.errs {
+		if errors.Is(e, target) {
+			return true
+		}
+	}
+	return false
+}
+
 // OrigErrs returns the original errors if one was set. An empty slice is
 // returned if no error was set.
 func (b baseError) OrigErrs() []error {
@@ -174,6 +185,11 @@ func (r requestError) OrigErrs() []error {
 	return []error{r.OrigErr()}
 }
 
+// Unwrap returns the original error.
+func (r requestError) Unwrap() error {
+	return r.awsError
+}
+
 type unmarshalError struct {
 	awsError
 	bytes []byte
@@ -195,6 +211,11 @@ func (e unmarshalError) String() string {
 // Bytes returns the bytes that failed to unmarshal.
 func (e unmarshalError) Bytes() []byte {
 	return e.bytes
+}
+
+// Unwrap returns the original error.
+func (e unmarshalError) Unwrap() error {
+	return e.awsError
 }
 
 // An error list that satisfies the golang interface
