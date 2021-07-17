@@ -87,6 +87,13 @@ func (b baseError) Message() string {
 	return b.message
 }
 
+// Unwrap returns the original error so as to satisfy the Wrapper interface.
+// This provides support for errors and xerrors and go 1.13's Is/As functions.
+// As OrigErr is basically the same, we can just alias it here.
+func (b baseError) Unwrap() error {
+	return b.OrigErr()
+}
+
 // OrigErr returns the original error if one was set. Nil is returned if no
 // error was set. This only returns the first element in the list. If the full
 // list is needed, use BatchedErrors.
