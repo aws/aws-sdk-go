@@ -362,6 +362,7 @@ func (p *AssumeRoleProvider) RetrieveWithContext(ctx credentials.Context) (crede
 		AccessKeyID:     *roleOutput.Credentials.AccessKeyId,
 		SecretAccessKey: *roleOutput.Credentials.SecretAccessKey,
 		SessionToken:    *roleOutput.Credentials.SessionToken,
+		Expiration:      *roleOutput.Credentials.Expiration,
 		ProviderName:    ProviderName,
 	}, nil
 }
