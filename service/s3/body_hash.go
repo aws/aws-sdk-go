@@ -3,10 +3,10 @@ package s3
 import (
 	"bytes"
 	"crypto/md5"
-	"crypto/sha256"
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	"github.com/minio/sha256-simd"
 	"hash"
 	"io"
 

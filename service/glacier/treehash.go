@@ -1,7 +1,7 @@
 package glacier
 
 import (
-	"crypto/sha256"
+	"github.com/minio/sha256-simd"
 	"io"
 
 	"github.com/aws/aws-sdk-go/internal/sdkio"
