@@ -1,12 +1,14 @@
 package s3manager
 
 import (
+	"context"
 	"fmt"
 	"io"
 	"net/http"
 	"strconv"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"
@@ -70,6 +72,11 @@ type Downloader struct {
 	// and will use the returned WriterReadFrom from the provider as the
 	// destination writer when copying from http response body.
 	BufferProvider WriterReadFromProvider
+
+	// If PerChunkTimeout is greater than zero, a context.WithTimeout() is
+	// applied to each chunk download attempt. DeadlineExceeded errors will
+	// be retried through the tryDownloadChunk loop.
+	PerChunkTimeout time.Duration
 }
 
 // WithDownloaderRequestOptions appends to the Downloader's API request options.
@@ -458,7 +465,14 @@ func (d *downloader) tryDownloadChunk(in *s3.GetObjectInput, w io.Writer) (int64
 	}
 	defer cleanup()
 
-	resp, err := d.cfg.S3.GetObjectWithContext(d.ctx, in, d.cfg.RequestOptions...)
+	ctx := d.ctx
+	if d.cfg.PerChunkTimeout > 0 {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, d.cfg.PerChunkTimeout)
+		defer cancel()
+	}
+
+	resp, err := d.cfg.S3.GetObjectWithContext(ctx, in, d.cfg.RequestOptions...)
 	if err != nil {
 		return 0, err
 	}
