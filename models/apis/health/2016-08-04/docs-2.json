@@ -585,12 +585,17 @@
       "base": null,
       "refs": {
         "DescribeAffectedAccountsForOrganizationRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>",
-        "DescribeAffectedEntitiesForOrganizationRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>",
         "DescribeAffectedEntitiesRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>",
         "DescribeEventAggregatesRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>",
         "DescribeEventTypesRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>",
-        "DescribeEventsForOrganizationRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>",
         "DescribeEventsRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>"
+      }
+    },
+    "maxResultsLowerRange": {
+      "base": null,
+      "refs": {
+        "DescribeAffectedEntitiesForOrganizationRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>",
+        "DescribeEventsForOrganizationRequest$maxResults": "<p>The maximum number of items to return in one batch, between 10 and 100, inclusive.</p>"
       }
     },
     "metadataKey": {

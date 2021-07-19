@@ -1,3 +1,16 @@
+Release v1.40.3 (2021-07-19)
+===
+
+### Service Client Updates
+* `service/directconnect`: Updates service documentation
+  * Documentation updates for directconnect
+* `service/emr-containers`: Updates service API and documentation
+* `service/health`: Updates service API and documentation
+  * In the Health API, the maximum number of entities for the EventFilter and EntityFilter data types has changed from 100 to 99. This change is related to an internal optimization of the AWS Health service.
+* `service/imagebuilder`: Updates service documentation
+* `service/location`: Updates service API and documentation
+* `service/robomaker`: Updates service API and documentation
+
 Release v1.40.2 (2021-07-16)
 ===
 

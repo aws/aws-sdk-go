@@ -914,6 +914,7 @@
         "DescribeSimulationJobResponse$failureReason": "<p>Details about why the simulation job failed. For more information about troubleshooting, see <a href=\"https://docs.aws.amazon.com/robomaker/latest/dg/troubleshooting.html\">Troubleshooting</a>.</p>",
         "DescribeWorldExportJobResponse$failureReason": "<p>The reason why the world export job failed.</p>",
         "DescribeWorldGenerationJobResponse$failureReason": "<p>The reason why the world generation job failed.</p>",
+        "DescribeWorldTemplateResponse$version": "<p>The version of the world template that you're using.</p>",
         "FailedCreateSimulationJobRequest$failureReason": "<p>The failure reason of the simulation job request.</p>",
         "NetworkInterface$networkInterfaceId": "<p>The ID of the network interface.</p>",
         "NetworkInterface$privateIpAddress": "<p>The IPv4 address of the network interface within the subnet.</p>",
@@ -923,6 +924,7 @@
         "SimulationJob$failureReason": "<p>The reason why the simulation job failed.</p>",
         "StartSimulationJobBatchResponse$failureReason": "<p>The reason the simulation job batch failed.</p>",
         "SyncDeploymentJobResponse$failureReason": "<p>The failure reason if the job fails.</p>",
+        "TemplateSummary$version": "<p>The version of the template that you're using.</p>",
         "VPCConfigResponse$vpcId": "<p>The VPC ID associated with your simulation job.</p>",
         "WorldFailure$sampleFailureReason": "<p>The sample reason why the world failed. World errors are aggregated. A sample is used as the <code>sampleFailureReason</code>. </p>"
       }
@@ -1007,6 +1009,7 @@
       "base": null,
       "refs": {
         "CreateWorldTemplateRequest$templateBody": "<p>The world template body.</p>",
+        "DescribeWorldResponse$worldDescriptionBody": "<p>Returns the JSON formatted string that describes the contents of your world.</p>",
         "GetWorldTemplateBodyResponse$templateBody": "<p>The world template body.</p>",
         "UpdateWorldTemplateRequest$templateBody": "<p>The world template body.</p>"
       }

@@ -208,21 +208,21 @@
     "AwsDeviceV2": {
       "base": null,
       "refs": {
-        "BGPPeer$awsDeviceV2": "<p>The Direct Connect endpoint on which the BGP peer terminates.</p>",
-        "Connection$awsDeviceV2": "<p>The Direct Connect endpoint on which the physical connection terminates.</p>",
-        "Interconnect$awsDeviceV2": "<p>The Direct Connect endpoint on which the physical connection terminates.</p>",
+        "BGPPeer$awsDeviceV2": "<p>The Direct Connect endpoint that terminates the BGP peer.</p>",
+        "Connection$awsDeviceV2": "<p>The Direct Connect endpoint that terminates the physical connection.</p>",
+        "Interconnect$awsDeviceV2": "<p>The Direct Connect endpoint that terminates the physical connection.</p>",
         "Lag$awsDeviceV2": "<p>The Direct Connect endpoint that hosts the LAG.</p>",
-        "VirtualInterface$awsDeviceV2": "<p>The Direct Connect endpoint on which the virtual interface terminates.</p>"
+        "VirtualInterface$awsDeviceV2": "<p>The Direct Connect endpoint that terminates the physical connection.</p>"
       }
     },
     "AwsLogicalDeviceId": {
       "base": null,
       "refs": {
-        "BGPPeer$awsLogicalDeviceId": null,
-        "Connection$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates a physical connection's BGP sessions.</p>",
-        "Interconnect$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates a physical connection's BGP sessions.</p>",
-        "Lag$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates a physical connection's BGP sessions.</p>",
-        "VirtualInterface$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates a physical connection's BGP sessions.</p>"
+        "BGPPeer$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates the logical connection. This device might be different than the device that terminates the physical connection.</p>",
+        "Connection$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates the logical connection. This device might be different than the device that terminates the physical connection.</p>",
+        "Interconnect$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates the logical connection. This device might be different than the device that terminates the physical connection.</p>",
+        "Lag$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates the logical connection. This device might be different than the device that terminates the physical connection.</p>",
+        "VirtualInterface$awsLogicalDeviceId": "<p>The Direct Connect endpoint that terminates the logical connection. This device might be different than the device that terminates the physical connection.</p>"
       }
     },
     "BGPAuthKey": {

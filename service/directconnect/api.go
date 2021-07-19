@@ -6214,9 +6214,11 @@ type BGPPeer struct {
 	// of 6 characters and and a maximun lenth of 80 characters.
 	AuthKey *string `locationName:"authKey" type:"string"`
 
-	// The Direct Connect endpoint on which the BGP peer terminates.
+	// The Direct Connect endpoint that terminates the BGP peer.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
+	// The Direct Connect endpoint that terminates the logical connection. This
+	// device might be different than the device that terminates the physical connection.
 	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The ID of the BGP peer.
@@ -6772,10 +6774,11 @@ type Connection struct {
 	// The Direct Connect endpoint on which the physical connection terminates.
 	AwsDevice *string `locationName:"awsDevice" deprecated:"true" type:"string"`
 
-	// The Direct Connect endpoint on which the physical connection terminates.
+	// The Direct Connect endpoint that terminates the physical connection.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
-	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	// The Direct Connect endpoint that terminates the logical connection. This
+	// device might be different than the device that terminates the physical connection.
 	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The bandwidth of the connection.
@@ -9980,10 +9983,11 @@ type Interconnect struct {
 	// The Direct Connect endpoint on which the physical connection terminates.
 	AwsDevice *string `locationName:"awsDevice" deprecated:"true" type:"string"`
 
-	// The Direct Connect endpoint on which the physical connection terminates.
+	// The Direct Connect endpoint that terminates the physical connection.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
-	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	// The Direct Connect endpoint that terminates the logical connection. This
+	// device might be different than the device that terminates the physical connection.
 	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The bandwidth of the connection.
@@ -10154,7 +10158,8 @@ type Lag struct {
 	// The Direct Connect endpoint that hosts the LAG.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
-	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	// The Direct Connect endpoint that terminates the logical connection. This
+	// device might be different than the device that terminates the physical connection.
 	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The connections bundled by the LAG.
@@ -12121,10 +12126,11 @@ type UpdateConnectionOutput struct {
 	// The Direct Connect endpoint on which the physical connection terminates.
 	AwsDevice *string `locationName:"awsDevice" deprecated:"true" type:"string"`
 
-	// The Direct Connect endpoint on which the physical connection terminates.
+	// The Direct Connect endpoint that terminates the physical connection.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
-	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	// The Direct Connect endpoint that terminates the logical connection. This
+	// device might be different than the device that terminates the physical connection.
 	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The bandwidth of the connection.
@@ -12560,10 +12566,11 @@ type UpdateVirtualInterfaceAttributesOutput struct {
 	// of 6 characters and and a maximun lenth of 80 characters.
 	AuthKey *string `locationName:"authKey" type:"string"`
 
-	// The Direct Connect endpoint on which the virtual interface terminates.
+	// The Direct Connect endpoint that terminates the physical connection.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
-	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	// The Direct Connect endpoint that terminates the logical connection. This
+	// device might be different than the device that terminates the physical connection.
 	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The BGP peers configured on this virtual interface.
@@ -12879,10 +12886,11 @@ type VirtualInterface struct {
 	// of 6 characters and and a maximun lenth of 80 characters.
 	AuthKey *string `locationName:"authKey" type:"string"`
 
-	// The Direct Connect endpoint on which the virtual interface terminates.
+	// The Direct Connect endpoint that terminates the physical connection.
 	AwsDeviceV2 *string `locationName:"awsDeviceV2" type:"string"`
 
-	// The Direct Connect endpoint that terminates a physical connection's BGP sessions.
+	// The Direct Connect endpoint that terminates the logical connection. This
+	// device might be different than the device that terminates the physical connection.
 	AwsLogicalDeviceId *string `locationName:"awsLogicalDeviceId" type:"string"`
 
 	// The BGP peers configured on this virtual interface.

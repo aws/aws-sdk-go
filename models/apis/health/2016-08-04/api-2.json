@@ -233,7 +233,7 @@
         "organizationEntityFilters":{"shape":"OrganizationEntityFiltersList"},
         "locale":{"shape":"locale"},
         "nextToken":{"shape":"nextToken"},
-        "maxResults":{"shape":"maxResults"}
+        "maxResults":{"shape":"maxResultsLowerRange"}
       }
     },
     "DescribeAffectedEntitiesForOrganizationResponse":{
@@ -357,7 +357,7 @@
       "members":{
         "filter":{"shape":"OrganizationEventFilter"},
         "nextToken":{"shape":"nextToken"},
-        "maxResults":{"shape":"maxResults"},
+        "maxResults":{"shape":"maxResultsLowerRange"},
         "locale":{"shape":"locale"}
       }
     },
@@ -663,7 +663,7 @@
     "entityArnList":{
       "type":"list",
       "member":{"shape":"entityArn"},
-      "max":100,
+      "max":99,
       "min":1
     },
     "entityStatusCode":{
@@ -689,7 +689,7 @@
     "entityValueList":{
       "type":"list",
       "member":{"shape":"entityValue"},
-      "max":100,
+      "max":99,
       "min":1
     },
     "eventAggregateField":{
@@ -781,6 +781,11 @@
       "type":"integer",
       "max":100,
       "min":10
+    },
+    "maxResultsLowerRange":{
+      "type":"integer",
+      "max":100,
+      "min":1
     },
     "metadataKey":{
       "type":"string",

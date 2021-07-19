@@ -2646,6 +2646,9 @@ type Endpoint struct {
 	// The execution role ARN of the endpoint.
 	ExecutionRoleArn *string `locationName:"executionRoleArn" min:"20" type:"string"`
 
+	// The reasons why the endpoint has failed.
+	FailureReason *string `locationName:"failureReason" type:"string" enum:"FailureReason"`
+
 	// The ID of the endpoint.
 	Id *string `locationName:"id" min:"1" type:"string"`
 
@@ -2663,6 +2666,9 @@ type Endpoint struct {
 
 	// The state of the endpoint.
 	State *string `locationName:"state" type:"string" enum:"EndpointState"`
+
+	// Additional details of the endpoint state.
+	StateDetails *string `locationName:"stateDetails" min:"1" type:"string"`
 
 	// The subnet IDs of the endpoint.
 	SubnetIds []*string `locationName:"subnetIds" type:"list"`
@@ -2717,6 +2723,12 @@ func (s *Endpoint) SetExecutionRoleArn(v string) *Endpoint {
 	return s
 }
 
+// SetFailureReason sets the FailureReason field's value.
+func (s *Endpoint) SetFailureReason(v string) *Endpoint {
+	s.FailureReason = &v
+	return s
+}
+
 // SetId sets the Id field's value.
 func (s *Endpoint) SetId(v string) *Endpoint {
 	s.Id = &v
@@ -2750,6 +2762,12 @@ func (s *Endpoint) SetServerUrl(v string) *Endpoint {
 // SetState sets the State field's value.
 func (s *Endpoint) SetState(v string) *Endpoint {
 	s.State = &v
+	return s
+}
+
+// SetStateDetails sets the StateDetails field's value.
+func (s *Endpoint) SetStateDetails(v string) *Endpoint {
+	s.StateDetails = &v
 	return s
 }
 

@@ -27,6 +27,7 @@
         {"shape":"ConflictException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ValidationException"},
+        {"shape":"ServiceQuotaExceededException"},
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"tracking."}
@@ -827,6 +828,101 @@
         {"shape":"ThrottlingException"}
       ],
       "endpoint":{"hostPrefix":"metadata."},
+      "idempotent":true
+    },
+    "UpdateGeofenceCollection":{
+      "name":"UpdateGeofenceCollection",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/geofencing/v0/collections/{CollectionName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateGeofenceCollectionRequest"},
+      "output":{"shape":"UpdateGeofenceCollectionResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"geofencing."},
+      "idempotent":true
+    },
+    "UpdateMap":{
+      "name":"UpdateMap",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/maps/v0/maps/{MapName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateMapRequest"},
+      "output":{"shape":"UpdateMapResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"maps."},
+      "idempotent":true
+    },
+    "UpdatePlaceIndex":{
+      "name":"UpdatePlaceIndex",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/places/v0/indexes/{IndexName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdatePlaceIndexRequest"},
+      "output":{"shape":"UpdatePlaceIndexResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"places."},
+      "idempotent":true
+    },
+    "UpdateRouteCalculator":{
+      "name":"UpdateRouteCalculator",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/routes/v0/calculators/{CalculatorName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateRouteCalculatorRequest"},
+      "output":{"shape":"UpdateRouteCalculatorResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"routes."},
+      "idempotent":true
+    },
+    "UpdateTracker":{
+      "name":"UpdateTracker",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/tracking/v0/trackers/{TrackerName}",
+        "responseCode":200
+      },
+      "input":{"shape":"UpdateTrackerRequest"},
+      "output":{"shape":"UpdateTrackerResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"}
+      ],
+      "endpoint":{"hostPrefix":"tracking."},
       "idempotent":true
     }
   },
@@ -2701,6 +2797,21 @@
         "Text":{"shape":"SyntheticSearchPlaceIndexForTextSummaryString"}
       }
     },
+    "ServiceQuotaExceededException":{
+      "type":"structure",
+      "required":["Message"],
+      "members":{
+        "Message":{
+          "shape":"String",
+          "locationName":"message"
+        }
+      },
+      "error":{
+        "httpStatusCode":402,
+        "senderFault":true
+      },
+      "exception":true
+    },
     "Step":{
       "type":"structure",
       "required":[
@@ -2883,6 +2994,139 @@
     "UntagResourceResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateGeofenceCollectionRequest":{
+      "type":"structure",
+      "required":["CollectionName"],
+      "members":{
+        "CollectionName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"CollectionName"
+        },
+        "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "PricingPlanDataSource":{"shape":"String"}
+      }
+    },
+    "UpdateGeofenceCollectionResponse":{
+      "type":"structure",
+      "required":[
+        "CollectionArn",
+        "CollectionName",
+        "UpdateTime"
+      ],
+      "members":{
+        "CollectionArn":{"shape":"Arn"},
+        "CollectionName":{"shape":"ResourceName"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateMapRequest":{
+      "type":"structure",
+      "required":["MapName"],
+      "members":{
+        "Description":{"shape":"ResourceDescription"},
+        "MapName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"MapName"
+        },
+        "PricingPlan":{"shape":"PricingPlan"}
+      }
+    },
+    "UpdateMapResponse":{
+      "type":"structure",
+      "required":[
+        "MapArn",
+        "MapName",
+        "UpdateTime"
+      ],
+      "members":{
+        "MapArn":{"shape":"Arn"},
+        "MapName":{"shape":"ResourceName"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdatePlaceIndexRequest":{
+      "type":"structure",
+      "required":["IndexName"],
+      "members":{
+        "DataSourceConfiguration":{"shape":"DataSourceConfiguration"},
+        "Description":{"shape":"ResourceDescription"},
+        "IndexName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"IndexName"
+        },
+        "PricingPlan":{"shape":"PricingPlan"}
+      }
+    },
+    "UpdatePlaceIndexResponse":{
+      "type":"structure",
+      "required":[
+        "IndexArn",
+        "IndexName",
+        "UpdateTime"
+      ],
+      "members":{
+        "IndexArn":{"shape":"Arn"},
+        "IndexName":{"shape":"ResourceName"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateRouteCalculatorRequest":{
+      "type":"structure",
+      "required":["CalculatorName"],
+      "members":{
+        "CalculatorName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"CalculatorName"
+        },
+        "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"}
+      }
+    },
+    "UpdateRouteCalculatorResponse":{
+      "type":"structure",
+      "required":[
+        "CalculatorArn",
+        "CalculatorName",
+        "UpdateTime"
+      ],
+      "members":{
+        "CalculatorArn":{"shape":"Arn"},
+        "CalculatorName":{"shape":"ResourceName"},
+        "UpdateTime":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateTrackerRequest":{
+      "type":"structure",
+      "required":["TrackerName"],
+      "members":{
+        "Description":{"shape":"ResourceDescription"},
+        "PricingPlan":{"shape":"PricingPlan"},
+        "PricingPlanDataSource":{"shape":"String"},
+        "TrackerName":{
+          "shape":"ResourceName",
+          "location":"uri",
+          "locationName":"TrackerName"
+        }
+      }
+    },
+    "UpdateTrackerResponse":{
+      "type":"structure",
+      "required":[
+        "TrackerArn",
+        "TrackerName",
+        "UpdateTime"
+      ],
+      "members":{
+        "TrackerArn":{"shape":"Arn"},
+        "TrackerName":{"shape":"ResourceName"},
+        "UpdateTime":{"shape":"Timestamp"}
       }
     },
     "ValidationException":{

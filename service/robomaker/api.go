@@ -11294,6 +11294,9 @@ type DescribeWorldOutput struct {
 
 	// The world template.
 	Template *string `locationName:"template" min:"1" type:"string"`
+
+	// Returns the JSON formatted string that describes the contents of your world.
+	WorldDescriptionBody *string `locationName:"worldDescriptionBody" min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -11333,6 +11336,12 @@ func (s *DescribeWorldOutput) SetTags(v map[string]*string) *DescribeWorldOutput
 // SetTemplate sets the Template field's value.
 func (s *DescribeWorldOutput) SetTemplate(v string) *DescribeWorldOutput {
 	s.Template = &v
+	return s
+}
+
+// SetWorldDescriptionBody sets the WorldDescriptionBody field's value.
+func (s *DescribeWorldOutput) SetWorldDescriptionBody(v string) *DescribeWorldOutput {
+	s.WorldDescriptionBody = &v
 	return s
 }
 
@@ -11400,6 +11409,9 @@ type DescribeWorldTemplateOutput struct {
 	// A map that contains tag keys and tag values that are attached to the world
 	// template.
 	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The version of the world template that you're using.
+	Version *string `locationName:"version" type:"string"`
 }
 
 // String returns the string representation
@@ -11445,6 +11457,12 @@ func (s *DescribeWorldTemplateOutput) SetName(v string) *DescribeWorldTemplateOu
 // SetTags sets the Tags field's value.
 func (s *DescribeWorldTemplateOutput) SetTags(v map[string]*string) *DescribeWorldTemplateOutput {
 	s.Tags = v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DescribeWorldTemplateOutput) SetVersion(v string) *DescribeWorldTemplateOutput {
+	s.Version = &v
 	return s
 }
 
@@ -16197,6 +16215,9 @@ type TemplateSummary struct {
 
 	// The name of the template.
 	Name *string `locationName:"name" type:"string"`
+
+	// The version of the template that you're using.
+	Version *string `locationName:"version" type:"string"`
 }
 
 // String returns the string representation
@@ -16230,6 +16251,12 @@ func (s *TemplateSummary) SetLastUpdatedAt(v time.Time) *TemplateSummary {
 // SetName sets the Name field's value.
 func (s *TemplateSummary) SetName(v string) *TemplateSummary {
 	s.Name = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *TemplateSummary) SetVersion(v string) *TemplateSummary {
+	s.Version = &v
 	return s
 }
 

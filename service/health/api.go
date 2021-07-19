@@ -1991,7 +1991,7 @@ type DescribeAffectedEntitiesForOrganizationInput struct {
 	Locale *string `locationName:"locale" min:"2" type:"string"`
 
 	// The maximum number of items to return in one batch, between 10 and 100, inclusive.
-	MaxResults *int64 `locationName:"maxResults" min:"10" type:"integer"`
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// If the results of a search are large, only a portion of the results are returned,
 	// and a nextToken pagination token is returned in the response. To retrieve
@@ -2022,8 +2022,8 @@ func (s *DescribeAffectedEntitiesForOrganizationInput) Validate() error {
 	if s.Locale != nil && len(*s.Locale) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("Locale", 2))
 	}
-	if s.MaxResults != nil && *s.MaxResults < 10 {
-		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 10))
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
@@ -2730,7 +2730,7 @@ type DescribeEventsForOrganizationInput struct {
 	Locale *string `locationName:"locale" min:"2" type:"string"`
 
 	// The maximum number of items to return in one batch, between 10 and 100, inclusive.
-	MaxResults *int64 `locationName:"maxResults" min:"10" type:"integer"`
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
 	// If the results of a search are large, only a portion of the results are returned,
 	// and a nextToken pagination token is returned in the response. To retrieve
@@ -2756,8 +2756,8 @@ func (s *DescribeEventsForOrganizationInput) Validate() error {
 	if s.Locale != nil && len(*s.Locale) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("Locale", 2))
 	}
-	if s.MaxResults != nil && *s.MaxResults < 10 {
-		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 10))
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
 	}
 	if s.NextToken != nil && len(*s.NextToken) < 4 {
 		invalidParams.Add(request.NewErrParamMinLen("NextToken", 4))
