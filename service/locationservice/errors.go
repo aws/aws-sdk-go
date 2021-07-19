@@ -11,14 +11,14 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// The request was denied due to insufficient access or permission. Check with
-	// an administrator to verify your permissions.
+	// The request was denied because of insufficient access or permissions. Check
+	// with an administrator to verify your permissions.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// The request was unsuccessful due to a conflict.
+	// The request was unsuccessful because of a conflict.
 	ErrCodeConflictException = "ConflictException"
 
 	// ErrCodeInternalServerException for service response error code
@@ -34,10 +34,18 @@ const (
 	// The resource that you've entered was not found in your AWS account.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
+	// ErrCodeServiceQuotaExceededException for service response error code
+	// "ServiceQuotaExceededException".
+	//
+	// The operation was denied because the request would exceed the maximum quota
+	// (https://docs.aws.amazon.com/location/latest/developerguide/location-quotas.html)
+	// set for Amazon Location Service.
+	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
+
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
 	//
-	// The request was denied due to request throttling.
+	// The request was denied because of request throttling.
 	ErrCodeThrottlingException = "ThrottlingException"
 
 	// ErrCodeValidationException for service response error code
@@ -48,10 +56,11 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":     newErrorAccessDeniedException,
-	"ConflictException":         newErrorConflictException,
-	"InternalServerException":   newErrorInternalServerException,
-	"ResourceNotFoundException": newErrorResourceNotFoundException,
-	"ThrottlingException":       newErrorThrottlingException,
-	"ValidationException":       newErrorValidationException,
+	"AccessDeniedException":         newErrorAccessDeniedException,
+	"ConflictException":             newErrorConflictException,
+	"InternalServerException":       newErrorInternalServerException,
+	"ResourceNotFoundException":     newErrorResourceNotFoundException,
+	"ServiceQuotaExceededException": newErrorServiceQuotaExceededException,
+	"ThrottlingException":           newErrorThrottlingException,
+	"ValidationException":           newErrorValidationException,
 }

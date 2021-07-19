@@ -266,6 +266,26 @@ type LocationServiceAPI interface {
 	UntagResource(*locationservice.UntagResourceInput) (*locationservice.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *locationservice.UntagResourceInput, ...request.Option) (*locationservice.UntagResourceOutput, error)
 	UntagResourceRequest(*locationservice.UntagResourceInput) (*request.Request, *locationservice.UntagResourceOutput)
+
+	UpdateGeofenceCollection(*locationservice.UpdateGeofenceCollectionInput) (*locationservice.UpdateGeofenceCollectionOutput, error)
+	UpdateGeofenceCollectionWithContext(aws.Context, *locationservice.UpdateGeofenceCollectionInput, ...request.Option) (*locationservice.UpdateGeofenceCollectionOutput, error)
+	UpdateGeofenceCollectionRequest(*locationservice.UpdateGeofenceCollectionInput) (*request.Request, *locationservice.UpdateGeofenceCollectionOutput)
+
+	UpdateMap(*locationservice.UpdateMapInput) (*locationservice.UpdateMapOutput, error)
+	UpdateMapWithContext(aws.Context, *locationservice.UpdateMapInput, ...request.Option) (*locationservice.UpdateMapOutput, error)
+	UpdateMapRequest(*locationservice.UpdateMapInput) (*request.Request, *locationservice.UpdateMapOutput)
+
+	UpdatePlaceIndex(*locationservice.UpdatePlaceIndexInput) (*locationservice.UpdatePlaceIndexOutput, error)
+	UpdatePlaceIndexWithContext(aws.Context, *locationservice.UpdatePlaceIndexInput, ...request.Option) (*locationservice.UpdatePlaceIndexOutput, error)
+	UpdatePlaceIndexRequest(*locationservice.UpdatePlaceIndexInput) (*request.Request, *locationservice.UpdatePlaceIndexOutput)
+
+	UpdateRouteCalculator(*locationservice.UpdateRouteCalculatorInput) (*locationservice.UpdateRouteCalculatorOutput, error)
+	UpdateRouteCalculatorWithContext(aws.Context, *locationservice.UpdateRouteCalculatorInput, ...request.Option) (*locationservice.UpdateRouteCalculatorOutput, error)
+	UpdateRouteCalculatorRequest(*locationservice.UpdateRouteCalculatorInput) (*request.Request, *locationservice.UpdateRouteCalculatorOutput)
+
+	UpdateTracker(*locationservice.UpdateTrackerInput) (*locationservice.UpdateTrackerOutput, error)
+	UpdateTrackerWithContext(aws.Context, *locationservice.UpdateTrackerInput, ...request.Option) (*locationservice.UpdateTrackerOutput, error)
+	UpdateTrackerRequest(*locationservice.UpdateTrackerInput) (*request.Request, *locationservice.UpdateTrackerOutput)
 }
 
 var _ LocationServiceAPI = (*locationservice.LocationService)(nil)

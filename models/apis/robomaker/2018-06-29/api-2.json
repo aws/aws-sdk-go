@@ -1790,7 +1790,8 @@
         "generationJob":{"shape":"Arn"},
         "template":{"shape":"Arn"},
         "createdAt":{"shape":"CreatedAt"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "worldDescriptionBody":{"shape":"Json"}
       }
     },
     "DescribeWorldTemplateRequest":{
@@ -1808,7 +1809,8 @@
         "name":{"shape":"TemplateName"},
         "createdAt":{"shape":"CreatedAt"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "version":{"shape":"GenericString"}
       }
     },
     "EnvironmentVariableKey":{
@@ -2914,7 +2916,8 @@
         "arn":{"shape":"Arn"},
         "createdAt":{"shape":"CreatedAt"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
-        "name":{"shape":"TemplateName"}
+        "name":{"shape":"TemplateName"},
+        "version":{"shape":"GenericString"}
       }
     },
     "ThrottlingException":{

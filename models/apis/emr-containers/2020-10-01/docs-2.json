@@ -51,6 +51,12 @@
         "MonitoringConfiguration$cloudWatchMonitoringConfiguration": "<p>Monitoring configurations for CloudWatch.</p>"
       }
     },
+    "ClusterId": {
+      "base": null,
+      "refs": {
+        "ContainerProvider$id": "<p>The ID of the container cluster.</p>"
+      }
+    },
     "Configuration": {
       "base": "<p>A configuration specification to be used when provisioning virtual clusters, which can include configurations for applications and software bundled with Amazon EMR on EKS. A configuration consists of a classification, properties, and optional nested configurations. A classification refers to an application-specific configuration file. Properties are the settings you want to change in that file.</p>",
       "refs": {
@@ -252,6 +258,7 @@
     "FailureReason": {
       "base": null,
       "refs": {
+        "Endpoint$failureReason": "<p> The reasons why the endpoint has failed. </p>",
         "JobRun$failureReason": "<p>The reasons why the job run has failed.</p>"
       }
     },
@@ -315,6 +322,12 @@
       "base": null,
       "refs": {
         "ListJobRunsResponse$jobRuns": "<p>This output lists information about the specified job runs.</p>"
+      }
+    },
+    "KubernetesNamespace": {
+      "base": null,
+      "refs": {
+        "EksInfo$namespace": "<p>The namespaces of the EKS cluster.</p>"
       }
     },
     "ListJobRunsRequest": {
@@ -520,9 +533,8 @@
       "base": null,
       "refs": {
         "CloudWatchMonitoringConfiguration$logStreamNamePrefix": "<p>The specified name prefix for log streams.</p>",
-        "ContainerProvider$id": "<p>The ID of the container cluster.</p>",
-        "EksInfo$namespace": "<p>The namespaces of the EKS cluster.</p>",
         "Endpoint$securityGroup": "<p>The security group configuration of the endpoint. </p>",
+        "Endpoint$stateDetails": "<p> Additional details of the endpoint state. </p>",
         "JobRun$stateDetails": "<p>Additional details of the job run state.</p>",
         "SubnetIds$member": null
       }

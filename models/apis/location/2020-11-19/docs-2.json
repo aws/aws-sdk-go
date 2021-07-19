@@ -2,14 +2,14 @@
   "version": "2.0",
   "service": "<p>Suite of geospatial services including Maps, Places, Routes, Tracking, and Geofencing</p>",
   "operations": {
-    "AssociateTrackerConsumer": "<p>Creates an association between a geofence collection and a tracker resource. This allows the tracker resource to communicate location data to the linked geofence collection.</p> <note> <p>Currently not supported — Cross-account configurations, such as creating associations between a tracker resource in one account and a geofence collection in another account.</p> </note>",
+    "AssociateTrackerConsumer": "<p>Creates an association between a geofence collection and a tracker resource. This allows the tracker resource to communicate location data to the linked geofence collection. </p> <p>You can associate up to five geofence collections to each tracker resource.</p> <note> <p>Currently not supported — Cross-account configurations, such as creating associations between a tracker resource in one account and a geofence collection in another account.</p> </note>",
     "BatchDeleteDevicePositionHistory": "<p>Deletes the position history of one or more devices from a tracker resource.</p>",
     "BatchDeleteGeofence": "<p>Deletes a batch of geofences from a geofence collection.</p> <note> <p>This operation deletes the resource permanently.</p> </note>",
-    "BatchEvaluateGeofences": "<p>Evaluates device positions against the geofence geometries from a given geofence collection. The evaluation determines if the device has entered or exited a geofenced area, which publishes ENTER or EXIT geofence events to Amazon EventBridge.</p> <note> <p>The last geofence that a device was observed within, if any, is tracked for 30 days after the most recent device position update</p> </note>",
-    "BatchGetDevicePosition": "<p>A batch request to retrieve all device positions.</p>",
+    "BatchEvaluateGeofences": "<p>Evaluates device positions against the geofence geometries from a given geofence collection.</p> <p>This operation always returns an empty response because geofences are asynchronously evaluated. The evaluation determines if the device has entered or exited a geofenced area, and then publishes one of the following events to Amazon EventBridge:</p> <ul> <li> <p> <code>ENTER</code> if Amazon Location determines that the tracked device has entered a geofenced area.</p> </li> <li> <p> <code>EXIT</code> if Amazon Location determines that the tracked device has exited a geofenced area.</p> </li> </ul> <note> <p>The last geofence that a device was observed within is tracked for 30 days after the most recent device position update.</p> </note>",
+    "BatchGetDevicePosition": "<p>Lists the latest device positions for requested devices.</p>",
     "BatchPutGeofence": "<p>A batch request for storing geofence geometries into a given geofence collection, or updates the geometry of an existing geofence if a geofence ID is included in the request.</p>",
     "BatchUpdateDevicePosition": "<p>Uploads position update data for one or more devices to a tracker resource. Amazon Location uses the data when reporting the last known device position and position history.</p> <note> <p>Only one position update is stored per sample time. Location data is sampled at a fixed rate of one position per 30-second interval and retained for 30 days before it's deleted.</p> </note>",
-    "CalculateRoute": "<p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html\">Calculates a route</a> given the following required parameters: <code>DeparturePostiton</code> and <code>DestinationPosition</code>. Requires that you first <a href=\"https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html\">create aroute calculator resource</a> </p> <p>By default, a request that doesn't specify a departure time uses the best time of day to travel with the best traffic conditions when calculating the route.</p> <p>Additional options include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#departure-time\">Specifying a departure time</a> using either <code>DepartureTime</code> or <code>DepartureNow</code>. This calculates a route based on predictive traffic data at the given time. </p> <note> <p>You can't specify both <code>DepartureTime</code> and <code>DepartureNow</code> in a single request. Specifying both parameters returns an error message.</p> </note> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode\">Specifying a travel mode</a> using TravelMode. This lets you specify additional route preference such as <code>CarModeOptions</code> if traveling by <code>Car</code>, or <code>TruckModeOptions</code> if traveling by <code>Truck</code>.</p> </li> </ul> <p> </p>",
+    "CalculateRoute": "<p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html\">Calculates a route</a> given the following required parameters: <code>DeparturePostiton</code> and <code>DestinationPosition</code>. Requires that you first <a href=\"https://docs.aws.amazon.com/location-routes/latest/APIReference/API_CreateRouteCalculator.html\">create a route calculator resource</a> </p> <p>By default, a request that doesn't specify a departure time uses the best time of day to travel with the best traffic conditions when calculating the route.</p> <p>Additional options include:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#departure-time\">Specifying a departure time</a> using either <code>DepartureTime</code> or <code>DepartureNow</code>. This calculates a route based on predictive traffic data at the given time. </p> <note> <p>You can't specify both <code>DepartureTime</code> and <code>DepartureNow</code> in a single request. Specifying both parameters returns an error message.</p> </note> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#travel-mode\">Specifying a travel mode</a> using TravelMode. This lets you specify an additional route preference such as <code>CarModeOptions</code> if traveling by <code>Car</code>, or <code>TruckModeOptions</code> if traveling by <code>Truck</code>.</p> </li> </ul> <p> </p>",
     "CreateGeofenceCollection": "<p>Creates a geofence collection, which manages and stores geofences.</p>",
     "CreateMap": "<p>Creates a map resource in your AWS account, which provides map tiles of different styles sourced from global location data providers.</p>",
     "CreatePlaceIndex": "<p>Creates a place index resource in your AWS account, which supports functions with geospatial data sourced from your chosen data provider.</p>",
@@ -33,24 +33,29 @@
     "GetMapSprites": "<p>Retrieves the sprite sheet corresponding to a map resource. The sprite sheet is a PNG image paired with a JSON document describing the offsets of individual icons that will be displayed on a rendered map.</p>",
     "GetMapStyleDescriptor": "<p>Retrieves the map style descriptor from a map resource. </p> <p>The style descriptor contains speciﬁcations on how features render on a map. For example, what data to display, what order to display the data in, and the style for the data. Style descriptors follow the Mapbox Style Specification.</p>",
     "GetMapTile": "<p>Retrieves a vector data tile from the map resource. Map tiles are used by clients to render a map. they're addressed using a grid arrangement with an X coordinate, Y coordinate, and Z (zoom) level. </p> <p>The origin (0, 0) is the top left of the map. Increasing the zoom level by 1 doubles both the X and Y dimensions, so a tile containing data for the entire world at (0/0/0) will be split into 4 tiles at zoom 1 (1/0/0, 1/0/1, 1/1/0, 1/1/1).</p>",
-    "ListDevicePositions": "<p>Lists the latest device positions for requested devices.</p>",
+    "ListDevicePositions": "<p>A batch request to retrieve all device positions.</p>",
     "ListGeofenceCollections": "<p>Lists geofence collections in your AWS account.</p>",
     "ListGeofences": "<p>Lists geofences stored in a given geofence collection.</p>",
     "ListMaps": "<p>Lists map resources in your AWS account.</p>",
     "ListPlaceIndexes": "<p>Lists place index resources in your AWS account.</p>",
     "ListRouteCalculators": "<p>Lists route calculator resources in your AWS account.</p>",
-    "ListTagsForResource": "<p>Returns the tags for the specified Amazon Location Service resource.</p>",
+    "ListTagsForResource": "<p>Returns a list of tags that are applied to the specified Amazon Location resource.</p>",
     "ListTrackerConsumers": "<p>Lists geofence collections currently associated to the given tracker resource.</p>",
     "ListTrackers": "<p>Lists tracker resources in your AWS account.</p>",
     "PutGeofence": "<p>Stores a geofence geometry in a given geofence collection, or updates the geometry of an existing geofence if a geofence ID is included in the request. </p>",
     "SearchPlaceIndexForPosition": "<p>Reverse geocodes a given coordinate and returns a legible address. Allows you to search for Places or points of interest near a given position.</p>",
     "SearchPlaceIndexForText": "<p>Geocodes free-form text, such as an address, name, city, or region to allow you to search for Places or points of interest. </p> <p>Includes the option to apply additional parameters to narrow your list of results.</p> <note> <p>You can search for places near a given position using <code>BiasPosition</code>, or filter results within a bounding box using <code>FilterBBox</code>. Providing both parameters simultaneously returns an error.</p> </note>",
-    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon Location Service resource.</p> <pre><code> &lt;p&gt;Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.&lt;/p&gt; &lt;p&gt;Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.&lt;/p&gt; &lt;p&gt;You can use the &lt;code&gt;TagResource&lt;/code&gt; action with an Amazon Location Service resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the tags already associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag. &lt;/p&gt; &lt;p&gt;You can associate as many as 50 tags with a resource.&lt;/p&gt; </code></pre>",
-    "UntagResource": "<p>Removes one or more tags from the specified Amazon Location Service resource.</p>"
+    "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon Location Service resource.</p> <pre><code> &lt;p&gt;Tags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only resources with certain tag values.&lt;/p&gt; &lt;p&gt;You can use the &lt;code&gt;TagResource&lt;/code&gt; operation with an Amazon Location Service resource that already has tags. If you specify a new tag key for the resource, this tag is appended to the tags already associated with the resource. If you specify a tag key that's already associated with the resource, the new tag value that you specify replaces the previous value for that tag. &lt;/p&gt; &lt;p&gt;You can associate up to 50 tags with a resource.&lt;/p&gt; </code></pre>",
+    "UntagResource": "<p>Removes one or more tags from the specified Amazon Location resource.</p>",
+    "UpdateGeofenceCollection": "<p>Updates the specified properties of a given geofence collection.</p>",
+    "UpdateMap": "<p>Updates the specified properties of a given map resource.</p>",
+    "UpdatePlaceIndex": "<p>Updates the specified properties of a given place index resource.</p>",
+    "UpdateRouteCalculator": "<p>Updates the specified properties for a given route calculator resource.</p>",
+    "UpdateTracker": "<p>Updates the specified properties of a given tracker resource.</p>"
   },
   "shapes": {
     "AccessDeniedException": {
-      "base": "<p>The request was denied due to insufficient access or permission. Check with an administrator to verify your permissions.</p>",
+      "base": "<p>The request was denied because of insufficient access or permissions. Check with an administrator to verify your permissions.</p>",
       "refs": {
       }
     },
@@ -60,19 +65,24 @@
         "ArnList$member": null,
         "AssociateTrackerConsumerRequest$ConsumerArn": "<p>The Amazon Resource Name (ARN) for the geofence collection to be associated to tracker resource. Used when you need to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code> </p> </li> </ul>",
         "CreateGeofenceCollectionResponse$CollectionArn": "<p>The Amazon Resource Name (ARN) for the geofence collection resource. Used when you need to specify a resource across all AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code> </p> </li> </ul>",
-        "CreateMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used when you need to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
-        "CreatePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) for the place index resource. Used to specify a resource across all AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code> </p> </li> </ul>",
+        "CreateMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
+        "CreatePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) for the place index resource. Used to specify a resource across AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code> </p> </li> </ul>",
         "CreateRouteCalculatorResponse$CalculatorArn": "<p>The Amazon Resource Name (ARN) for the route calculator resource. Use the ARN when you specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:route-calculator/ExampleCalculator</code> </p> </li> </ul>",
         "CreateTrackerResponse$TrackerArn": "<p>The Amazon Resource Name (ARN) for the tracker resource. Used when you need to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code> </p> </li> </ul>",
         "DescribeGeofenceCollectionResponse$CollectionArn": "<p>The Amazon Resource Name (ARN) for the geofence collection resource. Used when you need to specify a resource across all AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code> </p> </li> </ul>",
-        "DescribeMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used when you need to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
-        "DescribePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) for the place index resource. Used to specify a resource across all AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code> </p> </li> </ul>",
+        "DescribeMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) for the map resource. Used to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
+        "DescribePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) for the place index resource. Used to specify a resource across AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place-index/ExamplePlaceIndex</code> </p> </li> </ul>",
         "DescribeRouteCalculatorResponse$CalculatorArn": "<p>The Amazon Resource Name (ARN) for the Route calculator resource. Use the ARN when you specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:route-calculator/ExampleCalculator</code> </p> </li> </ul>",
         "DescribeTrackerResponse$TrackerArn": "<p>The Amazon Resource Name (ARN) for the tracker resource. Used when you need to specify a resource across all AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code> </p> </li> </ul>",
         "DisassociateTrackerConsumerRequest$ConsumerArn": "<p>The Amazon Resource Name (ARN) for the geofence collection to be disassociated from the tracker resource. Used when you need to specify a resource across all AWS. </p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollectionConsumer</code> </p> </li> </ul>",
-        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve.</p>",
-        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource whose tags you want to update.</p>",
-        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which you want to remove tags.</p>"
+        "ListTagsForResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code> </p> </li> </ul>",
+        "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource whose tags you want to update.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code> </p> </li> </ul>",
+        "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which you want to remove tags.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:resourcetype/ExampleResource</code> </p> </li> </ul>",
+        "UpdateGeofenceCollectionResponse$CollectionArn": "<p>The Amazon Resource Name (ARN) of the updated geofence collection. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:geofence-collection/ExampleGeofenceCollection</code> </p> </li> </ul>",
+        "UpdateMapResponse$MapArn": "<p>The Amazon Resource Name (ARN) of the updated map resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:maps/ExampleMap</code> </p> </li> </ul>",
+        "UpdatePlaceIndexResponse$IndexArn": "<p>The Amazon Resource Name (ARN) of the upated place index resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:place- index/ExamplePlaceIndex</code> </p> </li> </ul>",
+        "UpdateRouteCalculatorResponse$CalculatorArn": "<p>The Amazon Resource Name (ARN) of the updated route calculator resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:route- calculator/ExampleCalculator</code> </p> </li> </ul>",
+        "UpdateTrackerResponse$TrackerArn": "<p>The Amazon Resource Name (ARN) of the updated tracker resource. Used to specify a resource across AWS.</p> <ul> <li> <p>Format example: <code>arn:aws:geo:region:account-id:tracker/ExampleTracker</code> </p> </li> </ul>"
       }
     },
     "ArnList": {
@@ -323,7 +333,7 @@
     "BoundingBox": {
       "base": null,
       "refs": {
-        "CalculateRouteSummary$RouteBBox": "<p>Specifies a geographical box surrounding a route. Used to zoom into a route when displaying it in a map. For example, <code>[min x, min y, max x, max y]</code> </p> <p>The first 2 <code>bbox</code> parameters describe the lower southwest corner: </p> <ul> <li> <p>The first <code>bbox</code> position is the X coordinate or longitude of the lower southwest corner. </p> </li> <li> <p>The second <code>bbox</code> position is the Y coordinate or latitude of the lower southwest corner. </p> </li> </ul> <p>The next 2 <code>bbox</code> parameters describe the upper northeast corner: </p> <ul> <li> <p>The third <code>bbox</code> position is the X coordinate, or longitude of the upper northeast corner. </p> </li> <li> <p>The fourth <code>bbox</code> position is the Y coordinate, or longitude of the upper northeast corner. </p> </li> </ul>",
+        "CalculateRouteSummary$RouteBBox": "<p>Specifies a geographical box surrounding a route. Used to zoom into a route when displaying it in a map. For example, <code>[min x, min y, max x, max y]</code>.</p> <p>The first 2 <code>bbox</code> parameters describe the lower southwest corner: </p> <ul> <li> <p>The first <code>bbox</code> position is the X coordinate or longitude of the lower southwest corner. </p> </li> <li> <p>The second <code>bbox</code> position is the Y coordinate or latitude of the lower southwest corner. </p> </li> </ul> <p>The next 2 <code>bbox</code> parameters describe the upper northeast corner: </p> <ul> <li> <p>The third <code>bbox</code> position is the X coordinate, or longitude of the upper northeast corner. </p> </li> <li> <p>The fourth <code>bbox</code> position is the Y coordinate, or longitude of the upper northeast corner. </p> </li> </ul>",
         "SearchPlaceIndexForTextRequest$FilterBBox": "<p>Filters the results by returning only Places within the provided bounding box. An optional parameter.</p> <p>The first 2 <code>bbox</code> parameters describe the lower southwest corner:</p> <ul> <li> <p>The first <code>bbox</code> position is the X coordinate or longitude of the lower southwest corner.</p> </li> <li> <p>The second <code>bbox</code> position is the Y coordinate or latitude of the lower southwest corner.</p> </li> </ul> <p>For example, <code>bbox=xLongitudeSW&amp;bbox=yLatitudeSW</code>.</p> <p>The next <code>bbox</code> parameters describe the upper northeast corner:</p> <ul> <li> <p>The third <code>bbox</code> position is the X coordinate, or longitude of the upper northeast corner.</p> </li> <li> <p>The fourth <code>bbox</code> position is the Y coordinate, or longitude of the upper northeast corner.</p> </li> </ul> <p>For example, <code>bbox=xLongitudeNE&amp;bbox=yLatitudeNE</code> </p>",
         "SearchPlaceIndexForTextSummary$FilterBBox": "<p>Contains the coordinates for the optional bounding box coordinated entered in the geocoding request.</p>",
         "SearchPlaceIndexForTextSummary$ResultBBox": "<p>A bounding box that contains the search results within the specified area indicated by <code>FilterBBox</code>. A subset of bounding box specified using <code>FilterBBox</code>.</p>"
@@ -354,7 +364,7 @@
     "CalculateRouteSummary": {
       "base": "<p>A summary of the calculated route.</p>",
       "refs": {
-        "CalculateRouteResponse$Summary": "<p>Contains information about the whole route, such as: <code>RouteBBox</code>, <code>DataSource</code>, <code>Distance</code>, <code>DistanceUnit</code>, and <code>DurationSeconds</code> </p>"
+        "CalculateRouteResponse$Summary": "<p>Contains information about the whole route, such as: <code>RouteBBox</code>, <code>DataSource</code>, <code>Distance</code>, <code>DistanceUnit</code>, and <code>DurationSeconds</code>.</p>"
       }
     },
     "CalculateRouteSummaryDistanceDouble": {
@@ -376,7 +386,7 @@
       }
     },
     "ConflictException": {
-      "base": "<p>The request was unsuccessful due to a conflict.</p>",
+      "base": "<p>The request was unsuccessful because of a conflict.</p>",
       "refs": {
       }
     },
@@ -444,10 +454,11 @@
       }
     },
     "DataSourceConfiguration": {
-      "base": "<p>Specifies the data storage option chosen for requesting Places.</p>",
+      "base": "<p>Specifies the data storage option chosen for requesting Places.</p> <important> <p>When using Amazon Location Places:</p> <ul> <li> <p>If using HERE Technologies as a data provider, you can't store results for locations in Japan by setting <code>IntendedUse</code> to <code>Storage</code>. parameter.</p> </li> <li> <p>Under the <code>MobileAssetTracking</code> or <code>MobilAssetManagement</code> pricing plan, you can't store results from your place index resources by setting <code>IntendedUse</code> to <code>Storage</code>. This returns a validation exception error.</p> </li> </ul> <p>For more information, see the <a href=\"https://aws.amazon.com/service-terms/\">AWS Service Terms</a> for Amazon Location Service.</p> </important>",
       "refs": {
-        "CreatePlaceIndexRequest$DataSourceConfiguration": "<p>Specifies the data storage option for requesting Places.</p>",
-        "DescribePlaceIndexResponse$DataSourceConfiguration": "<p>The specified data storage option for requesting Places.</p>"
+        "CreatePlaceIndexRequest$DataSourceConfiguration": "<p>Specifies the data storage option requesting Places.</p>",
+        "DescribePlaceIndexResponse$DataSourceConfiguration": "<p>The specified data storage option for requesting Places.</p>",
+        "UpdatePlaceIndexRequest$DataSourceConfiguration": "<p>Updates the data storage option for the place index resource.</p>"
       }
     },
     "DeleteGeofenceCollectionRequest": {
@@ -739,7 +750,7 @@
     "IntendedUse": {
       "base": null,
       "refs": {
-        "DataSourceConfiguration$IntendedUse": "<p>Specifies how the results of an operation will be stored by the caller. </p> <p>Valid values include:</p> <ul> <li> <p> <code>SingleUse</code> specifies that the results won't be stored. </p> </li> <li> <p> <code>Storage</code> specifies that the result can be cached or stored in a database.</p> <important> <p>Place index resources using HERE as a data provider can't be configured to store results for locations in Japan when choosing <code>Storage</code> for the <code>IntendedUse</code> parameter.</p> </important> </li> </ul> <p>Default value: <code>SingleUse</code> </p>"
+        "DataSourceConfiguration$IntendedUse": "<p>Specifies how the results of an operation will be stored by the caller. </p> <p>Valid values include:</p> <ul> <li> <p> <code>SingleUse</code> specifies that the results won't be stored. </p> </li> <li> <p> <code>Storage</code> specifies that the result can be cached or stored in a database.</p> </li> </ul> <p>Default value: <code>SingleUse</code> </p>"
       }
     },
     "InternalServerException": {
@@ -757,7 +768,7 @@
       }
     },
     "Leg": {
-      "base": "<p>Contains the calculated route's details for each path between a pair of positions. The number of legs returned corresponds to one less than the total number of positions in the request. </p> <p>For example, a route with a departure position and destination position returns one leg with the positions <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road\">snapped to a nearby road</a>:</p> <ul> <li> <p>The <code>StartPosition</code> is the departure position.</p> </li> <li> <p>The <code>EndPosition</code> is the destination position.</p> </li> </ul> <p>A route with a waypoint between the departure and destination position returns two legs with the positions snapped to a nearby road.:</p> <ul> <li> <p>Leg 1: The <code>StartPosition</code> is the departure position . The <code>EndPosition</code> is the waypoint positon.</p> </li> <li> <p>Leg 2: The <code>StartPosition</code> is the waypoint position. The <code>EndPosition</code> is the destination position.</p> </li> </ul>",
+      "base": "<p>Contains the calculated route's details for each path between a pair of positions. The number of legs returned corresponds to one fewer than the total number of positions in the request. </p> <p>For example, a route with a departure position and destination position returns one leg with the positions <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road\">snapped to a nearby road</a>:</p> <ul> <li> <p>The <code>StartPosition</code> is the departure position.</p> </li> <li> <p>The <code>EndPosition</code> is the destination position.</p> </li> </ul> <p>A route with a waypoint between the departure and destination position returns two legs with the positions snapped to a nearby road:</p> <ul> <li> <p>Leg 1: The <code>StartPosition</code> is the departure position . The <code>EndPosition</code> is the waypoint positon.</p> </li> <li> <p>Leg 2: The <code>StartPosition</code> is the waypoint position. The <code>EndPosition</code> is the destination position.</p> </li> </ul>",
       "refs": {
         "LegList$member": null
       }
@@ -783,7 +794,7 @@
     "LegList": {
       "base": null,
       "refs": {
-        "CalculateRouteResponse$Legs": "<p>Contains details about each path between a pair of positions included along a route such as: <code>StartPosition</code>, <code>EndPosition</code>, <code>Distance</code>, <code>DurationSeconds</code>, <code>Geometry</code>, and <code>Steps</code>. The number of legs returned corresponds to one less than the total number of positions in the request. </p> <p>For example, a route with a departure position and destination position returns one leg with the positions <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road\">snapped to a nearby road</a>:</p> <ul> <li> <p>The <code>StartPosition</code> is the departure position.</p> </li> <li> <p>The <code>EndPosition</code> is the destination position.</p> </li> </ul> <p>A route with a waypoint between the departure and destination position returns two legs with the positions snapped to a nearby road.:</p> <ul> <li> <p>Leg 1: The <code>StartPosition</code> is the departure position . The <code>EndPosition</code> is the waypoint positon.</p> </li> <li> <p>Leg 2: The <code>StartPosition</code> is the waypoint position. The <code>EndPosition</code> is the destination position.</p> </li> </ul>"
+        "CalculateRouteResponse$Legs": "<p>Contains details about each path between a pair of positions included along a route such as: <code>StartPosition</code>, <code>EndPosition</code>, <code>Distance</code>, <code>DurationSeconds</code>, <code>Geometry</code>, and <code>Steps</code>. The number of legs returned corresponds to one fewer than the total number of positions in the request. </p> <p>For example, a route with a departure position and destination position returns one leg with the positions <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road\">snapped to a nearby road</a>:</p> <ul> <li> <p>The <code>StartPosition</code> is the departure position.</p> </li> <li> <p>The <code>EndPosition</code> is the destination position.</p> </li> </ul> <p>A route with a waypoint between the departure and destination position returns two legs with the positions snapped to a nearby road:</p> <ul> <li> <p>Leg 1: The <code>StartPosition</code> is the departure position . The <code>EndPosition</code> is the waypoint positon.</p> </li> <li> <p>Leg 2: The <code>StartPosition</code> is the waypoint position. The <code>EndPosition</code> is the destination position.</p> </li> </ul>"
       }
     },
     "LineString": {
@@ -1030,7 +1041,7 @@
     "MapStyle": {
       "base": null,
       "refs": {
-        "MapConfiguration$Style": "<p>Specifies the map style selected from an available data provider.</p> <p>Valid styles: <code>RasterEsriImagery</code>, <code>VectorEsriStreets</code>, <code>VectorEsriTopographic</code>, <code>VectorEsriNavigation</code>, <code>VectorEsriDarkGrayCanvas</code>, <code>VectorEsriLightGrayCanvas</code>, <code>VectorHereBerlin</code>.</p> <note> <p>When using HERE as your data provider, and selecting the Style <code>VectorHereBerlin</code>, you may not use HERE Maps for Asset Management. See the <a href=\"https://aws.amazon.com/service-terms/\">AWS Service Terms</a> for Amazon Location Service.</p> </note>"
+        "MapConfiguration$Style": "<p>Specifies the map style selected from an available data provider. For additional information on each map style and to preview each map style, see <a href=\"location/latest/developerguide/esri.html#esri-map-styles\">Esri map styles</a> and <a href=\"location/latest/developerguide/HERE.html#HERE-map-styles\">HERE map styles</a>.</p> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/esri.html\">Esri</a> styles: </p> <ul> <li> <p> <code>VectorEsriDarkGrayCanvas</code> – The Esri Dark Gray Canvas map style. A vector basemap with a dark gray, neutral background with minimal colors, labels, and features that's designed to draw attention to your thematic content. </p> </li> <li> <p> <code>RasterEsriImagery</code> – The Esri Imagery map style. A raster basemap that provides one meter or better satellite and aerial imagery in many parts of the world and lower resolution satellite imagery worldwide. </p> </li> <li> <p> <code>VectorEsriLightGrayCanvas</code> – The Esri Light Gray Canvas map style, which provides a detailed vector basemap with a light gray, neutral background style with minimal colors, labels, and features that's designed to draw attention to your thematic content. </p> </li> <li> <p> <code>VectorEsriTopographic</code> – The Esri Light map style, which provides a detailed vector basemap with a classic Esri map style.</p> </li> <li> <p> <code>VectorEsriStreets</code> – The Esri World Streets map style, which provides a detailed vector basemap for the world symbolized with a classic Esri street map style. The vector tile layer is similar in content and style to the World Street Map raster map.</p> </li> <li> <p> <code>VectorEsriNavigation</code> – The Esri World Navigation map style, which provides a detailed basemap for the world symbolized with a custom navigation map style that's designed for use during the day in mobile devices.</p> </li> </ul> <p>Valid <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/HERE.html\">HERE Technologies</a> styles: </p> <ul> <li> <p> <code>VectorHereBerlin</code> – The HERE Berlin map style is a high contrast detailed base map of the world that blends 3D and 2D rendering.</p> <note> <p>When using HERE as your data provider, and selecting the Style <code>VectorHereBerlin</code>, you may not use HERE Technologies maps for Asset Management. See the <a href=\"https://aws.amazon.com/service-terms/\">AWS Service Terms</a> for Amazon Location Service.</p> </note> </li> </ul>"
       }
     },
     "Place": {
@@ -1095,7 +1106,12 @@
         "ListMapsResponseEntry$PricingPlan": "<p>The pricing plan for the specified map resource.</p> <p>For additional details and restrictions on each pricing plan option, see the <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing page</a>.</p>",
         "ListPlaceIndexesResponseEntry$PricingPlan": "<p>The pricing plan for the specified place index resource.</p> <p>For additional details and restrictions on each pricing plan option, see the <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing page</a>.</p>",
         "ListRouteCalculatorsResponseEntry$PricingPlan": "<p>The pricing plan for the specified route calculator resource.</p> <p>For additional details and restrictions on each pricing plan option, see <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing</a>.</p>",
-        "ListTrackersResponseEntry$PricingPlan": "<p>The pricing plan for the specified tracker resource.</p> <p>For additional details and restrictions on each pricing plan option, see the <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing page</a>.</p>"
+        "ListTrackersResponseEntry$PricingPlan": "<p>The pricing plan for the specified tracker resource.</p> <p>For additional details and restrictions on each pricing plan option, see the <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing page</a>.</p>",
+        "UpdateGeofenceCollectionRequest$PricingPlan": "<p>Updates the pricing plan for the geofence collection.</p> <p>For more information about each pricing plan option restrictions, see <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing</a>.</p>",
+        "UpdateMapRequest$PricingPlan": "<p>Updates the pricing plan for the map resource.</p> <p>For more information about each pricing plan option restrictions, see <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing</a>.</p>",
+        "UpdatePlaceIndexRequest$PricingPlan": "<p>Updates the pricing plan for the place index resource.</p> <p>For more information about each pricing plan option restrictions, see <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing</a>.</p>",
+        "UpdateRouteCalculatorRequest$PricingPlan": "<p>Updates the pricing plan for the route calculator resource.</p> <p>For more information about each pricing plan option restrictions, see <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing</a>.</p>",
+        "UpdateTrackerRequest$PricingPlan": "<p>Updates the pricing plan for the tracker resource.</p> <p>For more information about each pricing plan option restrictions, see <a href=\"https://aws.amazon.com/location/pricing/\">Amazon Location Service pricing</a>.</p>"
       }
     },
     "PutGeofenceRequest": {
@@ -1125,7 +1141,12 @@
         "ListMapsResponseEntry$Description": "<p>The description for the map resource.</p>",
         "ListPlaceIndexesResponseEntry$Description": "<p>The optional description for the place index resource.</p>",
         "ListRouteCalculatorsResponseEntry$Description": "<p>The optional description of the route calculator resource.</p>",
-        "ListTrackersResponseEntry$Description": "<p>The description for the tracker resource.</p>"
+        "ListTrackersResponseEntry$Description": "<p>The description for the tracker resource.</p>",
+        "UpdateGeofenceCollectionRequest$Description": "<p>Updates the description for the geofence collection.</p>",
+        "UpdateMapRequest$Description": "<p>Updates the description for the map resource.</p>",
+        "UpdatePlaceIndexRequest$Description": "<p>Updates the description for the place index resource.</p>",
+        "UpdateRouteCalculatorRequest$Description": "<p>Updates the description for the route calculator resource.</p>",
+        "UpdateTrackerRequest$Description": "<p>Updates the description for the tracker resource.</p>"
       }
     },
     "ResourceName": {
@@ -1181,7 +1202,17 @@
         "ListTrackersResponseEntry$TrackerName": "<p>The name of the tracker resource.</p>",
         "PutGeofenceRequest$CollectionName": "<p>The geofence collection to store the geofence in.</p>",
         "SearchPlaceIndexForPositionRequest$IndexName": "<p>The name of the place index resource you want to use for the search.</p>",
-        "SearchPlaceIndexForTextRequest$IndexName": "<p>The name of the place index resource you want to use for the search.</p>"
+        "SearchPlaceIndexForTextRequest$IndexName": "<p>The name of the place index resource you want to use for the search.</p>",
+        "UpdateGeofenceCollectionRequest$CollectionName": "<p>The name of the geofence collection to update.</p>",
+        "UpdateGeofenceCollectionResponse$CollectionName": "<p>The name of the updated geofence collection.</p>",
+        "UpdateMapRequest$MapName": "<p>The name of the map resource to update.</p>",
+        "UpdateMapResponse$MapName": "<p>The name of the updated map resource.</p>",
+        "UpdatePlaceIndexRequest$IndexName": "<p>The name of the place index resource to update.</p>",
+        "UpdatePlaceIndexResponse$IndexName": "<p>The name of the updated place index resource.</p>",
+        "UpdateRouteCalculatorRequest$CalculatorName": "<p>The name of the route calculator resource to update.</p>",
+        "UpdateRouteCalculatorResponse$CalculatorName": "<p>The name of the updated route calculator resource.</p>",
+        "UpdateTrackerRequest$TrackerName": "<p>The name of the tracker resource to update.</p>",
+        "UpdateTrackerResponse$TrackerName": "<p>The name of the updated tracker resource.</p>"
       }
     },
     "ResourceNotFoundException": {
@@ -1245,6 +1276,11 @@
         "SearchPlaceIndexForTextResponse$Summary": "<p>Contains a summary of the request. Contains the <code>BiasPosition</code>, <code>DataSource</code>, <code>FilterBBox</code>, <code>FilterCountries</code>, <code>MaxResults</code>, <code>ResultBBox</code>, and <code>Text</code>.</p>"
       }
     },
+    "ServiceQuotaExceededException": {
+      "base": "<p>The operation was denied because the request would exceed the maximum <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/location-quotas.html\">quota</a> set for Amazon Location Service.</p>",
+      "refs": {
+      }
+    },
     "Step": {
       "base": "<p> Represents an element of a leg within a route. A step contains instructions for how to move to the next step in the leg. </p>",
       "refs": {
@@ -1283,8 +1319,8 @@
         "CalculateRouteSummary$DataSource": "<p>The data provider of traffic and road network data used to calculate the route. Indicates one of the available providers:</p> <ul> <li> <p> <code>Esri</code> </p> </li> <li> <p> <code>Here</code> </p> </li> </ul> <p>For more information about data providers, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers</a>.</p>",
         "ConflictException$Message": null,
         "CreateGeofenceCollectionRequest$PricingPlanDataSource": "<p>Specifies the data provider for the geofence collection.</p> <ul> <li> <p>Required value for the following pricing plans: <code>MobileAssetTracking </code>| <code>MobileAssetManagement</code> </p> </li> </ul> <p>For more information about <a href=\"https://aws.amazon.com/location/data-providers/\">Data Providers</a>, and <a href=\"https://aws.amazon.com/location/pricing/\">Pricing plans</a>, see the Amazon Location Service product page.</p> <note> <p>Amazon Location Service only uses <code>PricingPlanDataSource</code> to calculate billing for your geofence collection. Your data won't be shared with the data provider, and will remain in your AWS account or Region unless you move it.</p> </note> <p>Valid Values: <code>Esri </code>| <code>Here</code> </p>",
-        "CreatePlaceIndexRequest$DataSource": "<p>Specifies the data provider of geospatial data.</p> <note> <p>This field is case-sensitive. Enter the valid values as shown. For example, entering <code>HERE</code> will return an error.</p> </note> <p>Valid values include:</p> <ul> <li> <p> <code>Esri</code> </p> </li> <li> <p> <code>Here</code> </p> <important> <p>Place index resources using HERE as a data provider can't be used to <a href=\"https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html\">store</a> results for locations in Japan. For more information, see the <a href=\"https://aws.amazon.com/service-terms/\">AWS Service Terms</a> for Amazon Location Service.</p> </important> </li> </ul> <p>For additional details on data providers, see the <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers page</a>.</p>",
-        "CreateRouteCalculatorRequest$DataSource": "<p>Specifies the data provider of traffic and road network data.</p> <note> <p>This field is case-sensitive. Enter the valid values as shown. For example, entering <code>HERE</code> returns an error.</p> </note> <p>Valid Values: <code>Esri</code> | <code>Here</code> </p> <p>For more information about data providers, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers</a>.</p>",
+        "CreatePlaceIndexRequest$DataSource": "<p>Specifies the data provider of geospatial data.</p> <note> <p>This field is case-sensitive. Enter the valid values as shown. For example, entering <code>HERE</code> returns an error.</p> </note> <p>Valid values include:</p> <ul> <li> <p> <code>Esri</code> – For additional information about <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/esri.html\">Esri</a>'s coverage in your region of interest, see <a href=\"https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm\">Esri details on geocoding coverage</a>.</p> </li> <li> <p> <code>Here</code> – For additional information about <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/HERE.html\">HERE Technologies</a>'s coverage in your region of interest, see <a href=\"https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html\">HERE details on goecoding coverage</a>.</p> <important> <p>Place index resources using HERE Technologies as a data provider can't <a href=\"https://docs.aws.amazon.com/location-places/latest/APIReference/API_DataSourceConfiguration.html\">store results</a> for locations in Japan. For more information, see the <a href=\"https://aws.amazon.com/service-terms/\">AWS Service Terms</a> for Amazon Location Service.</p> </important> </li> </ul> <p>For additional information , see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Data providers</a> on the <i>Amazon Location Service Developer Guide</i>.</p>",
+        "CreateRouteCalculatorRequest$DataSource": "<p>Specifies the data provider of traffic and road network data.</p> <note> <p>This field is case-sensitive. Enter the valid values as shown. For example, entering <code>HERE</code> returns an error.</p> </note> <p>Valid values include:</p> <ul> <li> <p> <code>Esri</code> – For additional information about <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/esri.html\">Esri</a>'s coverage in your region of interest, see <a href=\"https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm\">Esri details on street networks and traffic coverage</a>.</p> </li> <li> <p> <code>Here</code> – For additional information about <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/HERE.html\">HERE Technologies</a>'s coverage in your region of interest, see <a href=\"https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html\">HERE car routing coverage</a> and <a href=\"https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html\">HERE truck routing coverage</a>.</p> </li> </ul> <p>For additional information , see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Data providers</a> on the <i>Amazon Location Service Developer Guide</i>.</p>",
         "CreateTrackerRequest$PricingPlanDataSource": "<p>Specifies the data provider for the tracker resource.</p> <ul> <li> <p>Required value for the following pricing plans: <code>MobileAssetTracking </code>| <code>MobileAssetManagement</code> </p> </li> </ul> <p>For more information about <a href=\"https://aws.amazon.com/location/data-providers/\">Data Providers</a>, and <a href=\"https://aws.amazon.com/location/pricing/\">Pricing plans</a>, see the Amazon Location Service product page.</p> <note> <p>Amazon Location Service only uses <code>PricingPlanDataSource</code> to calculate billing for your tracker resource. Your data will not be shared with the data provider, and will remain in your AWS account or Region unless you move it.</p> </note> <p>Valid Values: <code>Esri</code> | <code>Here</code> </p>",
         "DescribeGeofenceCollectionResponse$PricingPlanDataSource": "<p>The specified data provider for the geofence collection.</p>",
         "DescribeMapResponse$DataSource": "<p>Specifies the data provider for the associated map tiles.</p>",
@@ -1292,7 +1328,7 @@
         "DescribeRouteCalculatorResponse$DataSource": "<p>The data provider of traffic and road network data. Indicates one of the available providers:</p> <ul> <li> <p> <code>Esri</code> </p> </li> <li> <p> <code>Here</code> </p> </li> </ul> <p>For more information about data providers, see <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers</a>.</p>",
         "DescribeTrackerResponse$PricingPlanDataSource": "<p>The specified data provider for the tracker resource.</p>",
         "GetGeofenceResponse$Status": "<p>Identifies the state of the geofence. A geofence will hold one of the following states:</p> <ul> <li> <p> <code>ACTIVE</code> — The geofence has been indexed by the system. </p> </li> <li> <p> <code>PENDING</code> — The geofence is being processed by the system.</p> </li> <li> <p> <code>FAILED</code> — The geofence failed to be indexed by the system.</p> </li> <li> <p> <code>DELETED</code> — The geofence has been deleted from the system index.</p> </li> <li> <p> <code>DELETING</code> — The geofence is being deleted from the system index.</p> </li> </ul>",
-        "GetMapGlyphsRequest$FontStack": "<p>A comma-separated list of fonts to load glyphs from in order of preference.. For example, <code>Noto Sans, Arial Unicode</code>.</p>",
+        "GetMapGlyphsRequest$FontStack": "<p>A comma-separated list of fonts to load glyphs from in order of preference. For example, <code>Noto Sans Regular, Arial Unicode</code>.</p> <p>Valid fonts for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/esri.html\">Esri</a> styles: </p> <ul> <li> <p>VectorEsriDarkGrayCanvas – <code>Ubuntu Medium Italic</code> | <code>Ubuntu Medium</code> | <code>Ubuntu Italic</code> | <code>Ubuntu Regular</code> | <code>Ubuntu Bold</code> </p> </li> <li> <p>VectorEsriLightGrayCanvas – <code>Ubuntu Italic</code> | <code>Ubuntu Regular</code> | <code>Ubuntu Light</code> | <code>Ubuntu Bold</code> </p> </li> <li> <p>VectorEsriTopographic – <code>Noto Sans Italic</code> | <code>Noto Sans Regular</code> | <code>Noto Sans Bold</code> | <code>Noto Serif Regular</code> | <code>Roboto Condensed Light Italic</code> </p> </li> <li> <p>VectorEsriStreets – <code>Arial Regular</code> | <code>Arial Italic</code> | <code>Arial Bold</code> </p> </li> <li> <p>VectorEsriNavigation – <code>Arial Regular</code> | <code>Arial Italic</code> | <code>Arial Bold</code> </p> </li> </ul> <p>Valid fonts for <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/HERE.html\">HERE Technologies</a> styles: </p> <ul> <li> <p> <code>VectorHereBerlin</code> – <code>Fira GO Regular</code> | <code>Fira GO Bold</code> </p> </li> </ul>",
         "GetMapGlyphsResponse$ContentType": "<p>The map glyph content type. For example, <code>application/octet-stream</code>.</p>",
         "GetMapSpritesResponse$ContentType": "<p>The content type of the sprite sheet and offsets. For example, the sprite sheet content type is <code>image/png</code>, and the sprite offset JSON document is <code>application/json</code>. </p>",
         "GetMapStyleDescriptorResponse$ContentType": "<p>The style descriptor's content type. For example, <code>application/json</code>.</p>",
@@ -1316,8 +1352,11 @@
         "ResourceNotFoundException$Message": null,
         "SearchPlaceIndexForPositionSummary$DataSource": "<p>The data provider of geospatial data. Indicates one of the available providers:</p> <ul> <li> <p>Esri</p> </li> <li> <p>HERE</p> </li> </ul> <p>For additional details on data providers, see the <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers page</a>.</p>",
         "SearchPlaceIndexForTextSummary$DataSource": "<p>The data provider of geospatial data. Indicates one of the available providers:</p> <ul> <li> <p>Esri</p> </li> <li> <p>HERE</p> </li> </ul> <p>For additional details on data providers, see the <a href=\"https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html\">Amazon Location Service data providers page</a>.</p>",
+        "ServiceQuotaExceededException$Message": "<p>A message with the reason for the service quota exceeded exception error.</p>",
         "TagKeys$member": null,
         "ThrottlingException$Message": null,
+        "UpdateGeofenceCollectionRequest$PricingPlanDataSource": "<p>Updates the data provider for the geofence collection. </p> <p>A required value for the following pricing plans: <code>MobileAssetTracking</code>| <code>MobileAssetManagement</code> </p> <p>For more information about <a href=\"https://aws.amazon.com/location/data-providers/\">data providers</a> and <a href=\"https://aws.amazon.com/location/pricing/\">pricing plans</a>, see the Amazon Location Service product page.</p> <note> <p>This can only be updated when updating the <code>PricingPlan</code> in the same request.</p> <p>Amazon Location Service uses <code>PricingPlanDataSource</code> to calculate billing for your geofence collection. Your data won't be shared with the data provider, and will remain in your AWS account and Region unless you move it.</p> </note>",
+        "UpdateTrackerRequest$PricingPlanDataSource": "<p>Updates the data provider for the tracker resource. </p> <p>A required value for the following pricing plans: <code>MobileAssetTracking</code>| <code>MobileAssetManagement</code> </p> <p>For more information about <a href=\"https://aws.amazon.com/location/data-providers/\">data providers</a> and <a href=\"https://aws.amazon.com/location/pricing/\">pricing plans</a>, see the Amazon Location Service product page</p> <note> <p>This can only be updated when updating the <code>PricingPlan</code> in the same request.</p> <p>Amazon Location Service uses <code>PricingPlanDataSource</code> to calculate billing for your tracker resource. Your data won't be shared with the data provider, and will remain in your AWS account and Region unless you move it.</p> </note>",
         "ValidationException$Message": null,
         "ValidationExceptionField$Message": "<p>A message with the reason for the validation exception error.</p>",
         "ValidationExceptionField$Name": "<p>The field name where the invalid entry was detected.</p>"
@@ -1344,7 +1383,7 @@
     "TagKeys": {
       "base": null,
       "refs": {
-        "UntagResourceRequest$TagKeys": "<p>The list of tag keys to remove from the resource.</p>"
+        "UntagResourceRequest$TagKeys": "<p>The list of tag keys to remove from the specified resource.</p>"
       }
     },
     "TagMap": {
@@ -1360,8 +1399,8 @@
         "DescribePlaceIndexResponse$Tags": "<p>Tags associated with place index resource.</p>",
         "DescribeRouteCalculatorResponse$Tags": "<p>Tags associated with route calculator resource.</p>",
         "DescribeTrackerResponse$Tags": "<p>The tags associated with the tracker resource.</p>",
-        "ListTagsForResourceResponse$Tags": "<p>The mapping from tag key to tag value for each tag associated with the specified resource.</p>",
-        "TagResourceRequest$Tags": "<p>The mapping from tag key to tag value for each tag associated with the specified resource.</p>"
+        "ListTagsForResourceResponse$Tags": "<p>Tags that have been applied to the specified resource. Tags are mapped from the tag key to the tag value: <code>\"TagKey\" : \"TagValue\"</code>.</p> <ul> <li> <p>Format example: <code>{\"tag1\" : \"value1\", \"tag2\" : \"value2\"} </code> </p> </li> </ul>",
+        "TagResourceRequest$Tags": "<p>Tags that have been applied to the specified resource. Tags are mapped from the tag key to the tag value: <code>\"TagKey\" : \"TagValue\"</code>.</p> <ul> <li> <p>Format example: <code>{\"tag1\" : \"value1\", \"tag2\" : \"value2\"} </code> </p> </li> </ul>"
       }
     },
     "TagResourceRequest": {
@@ -1381,7 +1420,7 @@
       }
     },
     "ThrottlingException": {
-      "base": "<p>The request was denied due to request throttling.</p>",
+      "base": "<p>The request was denied because of request throttling.</p>",
       "refs": {
       }
     },
@@ -1431,7 +1470,12 @@
         "ListTrackersResponseEntry$CreateTime": "<p>The timestamp for when the tracker resource was created in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "ListTrackersResponseEntry$UpdateTime": "<p>The timestamp at which the device's position was determined. Uses <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
         "PutGeofenceResponse$CreateTime": "<p>The timestamp for when the geofence was created in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
-        "PutGeofenceResponse$UpdateTime": "<p>The timestamp for when the geofence was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>"
+        "PutGeofenceResponse$UpdateTime": "<p>The timestamp for when the geofence was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
+        "UpdateGeofenceCollectionResponse$UpdateTime": "<p>The time when the geofence collection was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\">ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code> </p>",
+        "UpdateMapResponse$UpdateTime": "<p>The timestamp for when the map resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "UpdatePlaceIndexResponse$UpdateTime": "<p>The timestamp for when the place index resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "UpdateRouteCalculatorResponse$UpdateTime": "<p>The timestamp for when the route calculator was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>",
+        "UpdateTrackerResponse$UpdateTime": "<p>The timestamp for when the tracker resource was last updated in <a href=\"https://www.iso.org/iso-8601-date-and-time-format.html\"> ISO 8601</a> format: <code>YYYY-MM-DDThh:mm:ss.sssZ</code>. </p>"
       }
     },
     "Token": {
@@ -1505,6 +1549,56 @@
       }
     },
     "UntagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateGeofenceCollectionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateGeofenceCollectionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMapRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateMapResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePlaceIndexRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdatePlaceIndexResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRouteCalculatorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateRouteCalculatorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTrackerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateTrackerResponse": {
       "base": null,
       "refs": {
       }
