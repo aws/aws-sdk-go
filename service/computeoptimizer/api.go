@@ -1637,10 +1637,10 @@ type AutoScalingGroupRecommendationOption struct {
 	// recommended instance is calculated as the maximum performance risk score
 	// across the analyzed resource specifications.
 	//
-	// The value ranges from 0 to 5, with 0 meaning that the recommended resource
+	// The value ranges from 0 - 4, with 0 meaning that the recommended resource
 	// is predicted to always provide enough hardware capability. The higher the
-	// performance risk is, the more likely you should validate whether the recommended
-	// resource meets the performance requirements of your workload before migrating
+	// performance risk is, the more likely you should validate whether the recommendation
+	// will meet the performance requirements of your workload before migrating
 	// your resource.
 	PerformanceRisk *float64 `locationName:"performanceRisk" type:"double"`
 
@@ -3714,7 +3714,7 @@ type InstanceRecommendationOption struct {
 	// recommended instance is calculated as the maximum performance risk score
 	// across the analyzed resource specifications.
 	//
-	// The value ranges from 0 to 5, with 0 meaning that the recommended resource
+	// The value ranges from 0 - 4, with 0 meaning that the recommended resource
 	// is predicted to always provide enough hardware capability. The higher the
 	// performance risk is, the more likely you should validate whether the recommendation
 	// will meet the performance requirements of your workload before migrating
@@ -5579,7 +5579,7 @@ type VolumeRecommendationOption struct {
 	// Performance risk is the likelihood of the recommended volume type meeting
 	// the performance requirement of your workload.
 	//
-	// The value ranges from 0 to 5, with 0 meaning that the recommended resource
+	// The value ranges from 0 - 4, with 0 meaning that the recommended resource
 	// is predicted to always provide enough hardware capability. The higher the
 	// performance risk is, the more likely you should validate whether the recommendation
 	// will meet the performance requirements of your workload before migrating

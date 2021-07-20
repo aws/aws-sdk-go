@@ -1,3 +1,11 @@
+Release v1.40.4 (2021-07-20)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * Added idempotency to the CreateVolume API using the ClientToken request parameter
+
 Release v1.40.3 (2021-07-19)
 ===
 

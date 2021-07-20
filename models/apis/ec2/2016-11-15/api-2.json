@@ -9322,7 +9322,11 @@
           "locationName":"TagSpecification"
         },
         "MultiAttachEnabled":{"shape":"Boolean"},
-        "Throughput":{"shape":"Integer"}
+        "Throughput":{"shape":"Integer"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateVpcEndpointConnectionNotificationRequest":{
