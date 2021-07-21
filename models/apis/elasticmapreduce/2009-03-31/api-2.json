@@ -190,6 +190,19 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "DescribeReleaseLabel":{
+      "name":"DescribeReleaseLabel",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeReleaseLabelInput"},
+      "output":{"shape":"DescribeReleaseLabelOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
     "DescribeSecurityConfiguration":{
       "name":"DescribeSecurityConfiguration",
       "http":{
@@ -339,6 +352,19 @@
       "output":{"shape":"ListNotebookExecutionsOutput"},
       "errors":[
         {"shape":"InternalServerError"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "ListReleaseLabels":{
+      "name":"ListReleaseLabels",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListReleaseLabelsInput"},
+      "output":{"shape":"ListReleaseLabelsOutput"},
+      "errors":[
+        {"shape":"InternalServerException"},
         {"shape":"InvalidRequestException"}
       ]
     },
@@ -1158,6 +1184,22 @@
       "type":"structure",
       "members":{
         "NotebookExecution":{"shape":"NotebookExecution"}
+      }
+    },
+    "DescribeReleaseLabelInput":{
+      "type":"structure",
+      "members":{
+        "ReleaseLabel":{"shape":"String"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsNumber"}
+      }
+    },
+    "DescribeReleaseLabelOutput":{
+      "type":"structure",
+      "members":{
+        "ReleaseLabel":{"shape":"String"},
+        "Applications":{"shape":"SimplifiedApplicationList"},
+        "NextToken":{"shape":"String"}
       }
     },
     "DescribeSecurityConfigurationInput":{
@@ -2019,6 +2061,21 @@
         "Marker":{"shape":"Marker"}
       }
     },
+    "ListReleaseLabelsInput":{
+      "type":"structure",
+      "members":{
+        "Filters":{"shape":"ReleaseLabelFilter"},
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsNumber"}
+      }
+    },
+    "ListReleaseLabelsOutput":{
+      "type":"structure",
+      "members":{
+        "ReleaseLabels":{"shape":"StringList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListSecurityConfigurationsInput":{
       "type":"structure",
       "members":{
@@ -2091,6 +2148,11 @@
         "ON_DEMAND",
         "SPOT"
       ]
+    },
+    "MaxResultsNumber":{
+      "type":"integer",
+      "max":100,
+      "min":1
     },
     "MetricDimension":{
       "type":"structure",
@@ -2320,6 +2382,13 @@
     "PutManagedScalingPolicyOutput":{
       "type":"structure",
       "members":{
+      }
+    },
+    "ReleaseLabelFilter":{
+      "type":"structure",
+      "members":{
+        "Prefix":{"shape":"String"},
+        "Application":{"shape":"String"}
       }
     },
     "RemoveAutoScalingPolicyInput":{
@@ -2555,6 +2624,17 @@
         "ScalingAdjustment":{"shape":"Integer"},
         "CoolDown":{"shape":"Integer"}
       }
+    },
+    "SimplifiedApplication":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"String"},
+        "Version":{"shape":"String"}
+      }
+    },
+    "SimplifiedApplicationList":{
+      "type":"list",
+      "member":{"shape":"SimplifiedApplication"}
     },
     "SpotProvisioningAllocationStrategy":{
       "type":"string",

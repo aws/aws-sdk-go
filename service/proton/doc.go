@@ -28,7 +28,7 @@
 // on AWS Proton, developers need permissions to the service create, list, update
 // and delete API operations and the service instance list and update API operations.
 //
-// To learn more about AWS Proton administration, see the AWS Proton Administration
+// To learn more about AWS Proton administration, see the AWS Proton Administrator
 // Guide (https://docs.aws.amazon.com/proton/latest/adminguide/Welcome.html).
 //
 // To learn more about deploying serverless and containerized applications on
@@ -90,22 +90,45 @@
 //
 //    * CreateEnvironmentAccountConnection
 //
-//    <p> <b>Idempotent delete APIs</b> </p> <p>Given a request action that
-//    has succeeded:</p> <p>When you retry the request with an API from this
-//    group and the resource was deleted, its metadata is returned in the response.</p>
-//    <p>If you retry and the resource doesn't exist, the response is empty.</p>
-//    <p>In both cases, the retry succeeds.</p> <p>Idempotent delete APIs:</p>
-//    <ul> <li> <p>DeleteEnvironmentTemplate</p> </li> <li> <p>DeleteEnvironmentTemplateVersion</p>
-//    </li> <li> <p>DeleteServiceTemplate</p> </li> <li> <p>DeleteServiceTemplateVersion</p>
-//    </li> <li> <p>DeleteEnvironmentAccountConnection</p> </li> </ul> <p> <b>Asynchronous
-//    idempotent delete APIs</b> </p> <p>Given a request action that has succeeded:</p>
-//    <p>If you retry the request with an API from this group, if the original
-//    request delete operation status is <code>DELETE_IN_PROGRESS</code>, the
-//    retry returns the resource detail data in the response without performing
-//    any further actions.</p> <p>If the original request delete operation is
-//    complete, a retry returns an empty response.</p> <p>Asynchronous idempotent
-//    delete APIs:</p> <ul> <li> <p>DeleteEnvironment</p> </li> <li> <p>DeleteService</p>
-//    </li> </ul>
+// Idempotent delete APIs
+//
+// Given a request action that has succeeded:
+//
+// When you retry the request with an API from this group and the resource was
+// deleted, its metadata is returned in the response.
+//
+// If you retry and the resource doesn't exist, the response is empty.
+//
+// In both cases, the retry succeeds.
+//
+// Idempotent delete APIs:
+//
+//    * DeleteEnvironmentTemplate
+//
+//    * DeleteEnvironmentTemplateVersion
+//
+//    * DeleteServiceTemplate
+//
+//    * DeleteServiceTemplateVersion
+//
+//    * DeleteEnvironmentAccountConnection
+//
+// Asynchronous idempotent delete APIs
+//
+// Given a request action that has succeeded:
+//
+// If you retry the request with an API from this group, if the original request
+// delete operation status is DELETE_IN_PROGRESS, the retry returns the resource
+// detail data in the response without performing any further actions.
+//
+// If the original request delete operation is complete, a retry returns an
+// empty response.
+//
+// Asynchronous idempotent delete APIs:
+//
+//    * DeleteEnvironment
+//
+//    * DeleteService
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/proton-2020-07-20 for more information on this service.
 //

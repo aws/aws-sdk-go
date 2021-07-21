@@ -923,8 +923,7 @@
       "type":"structure",
       "required":[
         "name",
-        "solutionVersionArn",
-        "minProvisionedTPS"
+        "solutionVersionArn"
       ],
       "members":{
         "name":{"shape":"Name"},

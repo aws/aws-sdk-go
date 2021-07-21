@@ -1353,7 +1353,8 @@
         "ServiceNowConfiguration":{"shape":"ServiceNowConfiguration"},
         "ConfluenceConfiguration":{"shape":"ConfluenceConfiguration"},
         "GoogleDriveConfiguration":{"shape":"GoogleDriveConfiguration"},
-        "WebCrawlerConfiguration":{"shape":"WebCrawlerConfiguration"}
+        "WebCrawlerConfiguration":{"shape":"WebCrawlerConfiguration"},
+        "WorkDocsConfiguration":{"shape":"WorkDocsConfiguration"}
       }
     },
     "DataSourceDateFieldFormat":{
@@ -1516,7 +1517,8 @@
         "CUSTOM",
         "CONFLUENCE",
         "GOOGLEDRIVE",
-        "WEBCRAWLER"
+        "WEBCRAWLER",
+        "WORKDOCS"
       ]
     },
     "DataSourceVpcConfiguration":{
@@ -2669,6 +2671,12 @@
         "DESCENDING"
       ]
     },
+    "OrganizationId":{
+      "type":"string",
+      "max":12,
+      "min":12,
+      "pattern":"d-[0-9a-fA-F]{10}"
+    },
     "Port":{
       "type":"integer",
       "max":65535,
@@ -3804,6 +3812,18 @@
         "SUBDOMAINS",
         "EVERYTHING"
       ]
+    },
+    "WorkDocsConfiguration":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "CrawlComments":{"shape":"Boolean"},
+        "UseChangeLog":{"shape":"Boolean"},
+        "InclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "ExclusionPatterns":{"shape":"DataSourceInclusionsExclusionsStrings"},
+        "FieldMappings":{"shape":"DataSourceToIndexFieldMappingList"}
+      }
     }
   }
 }

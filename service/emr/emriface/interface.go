@@ -116,6 +116,10 @@ type EMRAPI interface {
 	DescribeNotebookExecutionWithContext(aws.Context, *emr.DescribeNotebookExecutionInput, ...request.Option) (*emr.DescribeNotebookExecutionOutput, error)
 	DescribeNotebookExecutionRequest(*emr.DescribeNotebookExecutionInput) (*request.Request, *emr.DescribeNotebookExecutionOutput)
 
+	DescribeReleaseLabel(*emr.DescribeReleaseLabelInput) (*emr.DescribeReleaseLabelOutput, error)
+	DescribeReleaseLabelWithContext(aws.Context, *emr.DescribeReleaseLabelInput, ...request.Option) (*emr.DescribeReleaseLabelOutput, error)
+	DescribeReleaseLabelRequest(*emr.DescribeReleaseLabelInput) (*request.Request, *emr.DescribeReleaseLabelOutput)
+
 	DescribeSecurityConfiguration(*emr.DescribeSecurityConfigurationInput) (*emr.DescribeSecurityConfigurationOutput, error)
 	DescribeSecurityConfigurationWithContext(aws.Context, *emr.DescribeSecurityConfigurationInput, ...request.Option) (*emr.DescribeSecurityConfigurationOutput, error)
 	DescribeSecurityConfigurationRequest(*emr.DescribeSecurityConfigurationInput) (*request.Request, *emr.DescribeSecurityConfigurationOutput)
@@ -181,6 +185,13 @@ type EMRAPI interface {
 
 	ListNotebookExecutionsPages(*emr.ListNotebookExecutionsInput, func(*emr.ListNotebookExecutionsOutput, bool) bool) error
 	ListNotebookExecutionsPagesWithContext(aws.Context, *emr.ListNotebookExecutionsInput, func(*emr.ListNotebookExecutionsOutput, bool) bool, ...request.Option) error
+
+	ListReleaseLabels(*emr.ListReleaseLabelsInput) (*emr.ListReleaseLabelsOutput, error)
+	ListReleaseLabelsWithContext(aws.Context, *emr.ListReleaseLabelsInput, ...request.Option) (*emr.ListReleaseLabelsOutput, error)
+	ListReleaseLabelsRequest(*emr.ListReleaseLabelsInput) (*request.Request, *emr.ListReleaseLabelsOutput)
+
+	ListReleaseLabelsPages(*emr.ListReleaseLabelsInput, func(*emr.ListReleaseLabelsOutput, bool) bool) error
+	ListReleaseLabelsPagesWithContext(aws.Context, *emr.ListReleaseLabelsInput, func(*emr.ListReleaseLabelsOutput, bool) bool, ...request.Option) error
 
 	ListSecurityConfigurations(*emr.ListSecurityConfigurationsInput) (*emr.ListSecurityConfigurationsOutput, error)
 	ListSecurityConfigurationsWithContext(aws.Context, *emr.ListSecurityConfigurationsInput, ...request.Option) (*emr.ListSecurityConfigurationsOutput, error)

@@ -4483,7 +4483,8 @@
         "IAMDatabaseAuthenticationEnabled":{"shape":"Boolean"},
         "ProcessorFeatures":{"shape":"ProcessorFeatureList"},
         "DbiResourceId":{"shape":"String"},
-        "TagList":{"shape":"TagList"}
+        "TagList":{"shape":"TagList"},
+        "OriginalSnapshotCreateTime":{"shape":"TStamp"}
       },
       "wrapper":true
     },
