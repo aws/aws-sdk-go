@@ -3439,7 +3439,7 @@ func (c *Kendra) SubmitFeedbackRequest(input *SubmitFeedbackInput) (req *request
 // SubmitFeedback API operation for AWSKendraFrontendService.
 //
 // Enables you to provide feedback to Amazon Kendra to improve the performance
-// of the service.
+// of your index.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4351,6 +4351,10 @@ func (s *AdditionalResultAttributeValue) SetTextWithHighlightsValue(v *TextWithH
 //
 // If you use more than 2 layers, you receive a ValidationException exception
 // with the message "AttributeFilter cannot have a depth of more than 2."
+//
+// If you use more than 10 attribute filters, you receive a ValidationException
+// exception with the message "AttributeFilter cannot have a length of more
+// than 10".
 type AttributeFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -5126,21 +5130,23 @@ type CapacityUnitsConfiguration struct {
 	// The amount of extra query capacity for an index and GetQuerySuggestions (https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html)
 	// capacity.
 	//
-	// A single extra capacity unit for an index provides 0.5 queries per second
-	// or approximately 40,000 queries per day.
+	// A single extra capacity unit for an index provides 0.1 queries per second
+	// or approximately 8,000 queries per day.
 	//
-	// GetQuerySuggestions capacity is 5 times the provisioned query capacity for
-	// an index. For example, the base capacity for an index is 0.5 queries per
-	// second, so GetQuerySuggestions capacity is 2.5 calls per second. If adding
-	// another 0.5 queries per second to total 1 queries per second for an index,
-	// the GetQuerySuggestions capacity is 5 calls per second.
+	// GetQuerySuggestions capacity is five times the provisioned query capacity
+	// for an index, or the base capacity of 2.5 calls per second, whichever is
+	// higher. For example, the base capacity for an index is 0.1 queries per second,
+	// and GetQuerySuggestions capacity has a base of 2.5 calls per second. If you
+	// add another 0.1 queries per second to total 0.2 queries per second for an
+	// index, the GetQuerySuggestions capacity is 2.5 calls per second (higher than
+	// five times 0.2 queries per second).
 	//
 	// QueryCapacityUnits is a required field
 	QueryCapacityUnits *int64 `type:"integer" required:"true"`
 
 	// The amount of extra storage capacity for an index. A single capacity unit
-	// for an index provides 150 GB of storage space or 500,000 documents, whichever
-	// is reached first.
+	// provides 30 GB of storage space or 100,000 documents, whichever is reached
+	// first.
 	//
 	// StorageCapacityUnits is a required field
 	StorageCapacityUnits *int64 `type:"integer" required:"true"`
@@ -6199,11 +6205,10 @@ type ConnectionConfiguration struct {
 	// DatabasePort is a required field
 	DatabasePort *int64 `min:"1" type:"integer" required:"true"`
 
-	// The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager.
+	// The Amazon Resource Name (ARN) of credentials stored in Secrets Manager.
 	// The credentials should be a user/password pair. For more information, see
 	// Using a Database Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html).
-	// For more information about AWS Secrets Manager, see What Is AWS Secrets Manager
-	// (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	// For more information about Secrets Manager, see What Is Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 	// in the Secrets Manager user guide.
 	//
 	// SecretArn is a required field
@@ -6684,6 +6689,9 @@ type CreateIndexInput struct {
 	//
 	// The Edition parameter is optional. If you don't supply a value, the default
 	// is ENTERPRISE_EDITION.
+	//
+	// For more information on quota limits for enterprise and developer editions,
+	// see Quotas (https://docs.aws.amazon.com/kendra/latest/dg/quotas.html).
 	Edition *string `type:"string" enum:"IndexEdition"`
 
 	// The name for the new index.
@@ -7232,6 +7240,10 @@ type DataSourceConfiguration struct {
 
 	// Provides the configuration information required for Amazon Kendra web crawler.
 	WebCrawlerConfiguration *WebCrawlerConfiguration `type:"structure"`
+
+	// Provides the configuration information to connect to WorkDocs as your data
+	// source.
+	WorkDocsConfiguration *WorkDocsConfiguration `type:"structure"`
 }
 
 // String returns the string representation
@@ -7292,6 +7304,11 @@ func (s *DataSourceConfiguration) Validate() error {
 			invalidParams.AddNested("WebCrawlerConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.WorkDocsConfiguration != nil {
+		if err := s.WorkDocsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("WorkDocsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7350,6 +7367,12 @@ func (s *DataSourceConfiguration) SetSharePointConfiguration(v *SharePointConfig
 // SetWebCrawlerConfiguration sets the WebCrawlerConfiguration field's value.
 func (s *DataSourceConfiguration) SetWebCrawlerConfiguration(v *WebCrawlerConfiguration) *DataSourceConfiguration {
 	s.WebCrawlerConfiguration = v
+	return s
+}
+
+// SetWorkDocsConfiguration sets the WorkDocsConfiguration field's value.
+func (s *DataSourceConfiguration) SetWorkDocsConfiguration(v *WorkDocsConfiguration) *DataSourceConfiguration {
+	s.WorkDocsConfiguration = v
 	return s
 }
 
@@ -15147,12 +15170,11 @@ type SharePointConfiguration struct {
 	// The regex is applied to the display URL of the SharePoint document.
 	InclusionPatterns []*string `type:"list"`
 
-	// The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager.
-	// The credentials should be a user/password pair. If you use SharePoint Sever,
+	// The Amazon Resource Name (ARN) of credentials stored in Secrets Manager.
+	// The credentials should be a user/password pair. If you use SharePoint Server,
 	// you also need to provide the sever domain name as part of the credentials.
 	// For more information, see Using a Microsoft SharePoint Data Source (https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html).
-	// For more information about AWS Secrets Manager, see What Is AWS Secrets Manager
-	// (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
+	// For more information about Secrets Manager, see What Is Secrets Manager (https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html)
 	// in the Secrets Manager user guide.
 	//
 	// SecretArn is a required field
@@ -17507,6 +17529,141 @@ func (s *WebCrawlerConfiguration) SetUrls(v *Urls) *WebCrawlerConfiguration {
 	return s
 }
 
+// Provides the configuration information to connect to Amazon WorkDocs as your
+// data source.
+//
+// Amazon WorkDocs connector is available in Oregon, North Virginia, Sydney,
+// Singapore and Ireland regions.
+type WorkDocsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// TRUE to include comments on documents in your index. Including comments in
+	// your index means each comment is a document that can be searched on.
+	//
+	// The default is set to FALSE.
+	CrawlComments *bool `type:"boolean"`
+
+	// A list of regular expression patterns to exclude certain files in your Amazon
+	// WorkDocs site repository. Files that match the patterns are excluded from
+	// the index. Files that don’t match the patterns are included in the index.
+	// If a file matches both an inclusion pattern and an exclusion pattern, the
+	// exclusion pattern takes precedence and the file isn’t included in the index.
+	ExclusionPatterns []*string `type:"list"`
+
+	// A list of DataSourceToIndexFieldMapping objects that map Amazon WorkDocs
+	// field names to custom index field names in Amazon Kendra. You must first
+	// create the custom index fields using the UpdateIndex operation before you
+	// map to Amazon WorkDocs fields. For more information, see Mapping Data Source
+	// Fields (https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html).
+	// The Amazon WorkDocs data source field names need to exist in your Amazon
+	// WorkDocs custom metadata.
+	FieldMappings []*DataSourceToIndexFieldMapping `min:"1" type:"list"`
+
+	// A list of regular expression patterns to include certain files in your Amazon
+	// WorkDocs site repository. Files that match the patterns are included in the
+	// index. Files that don't match the patterns are excluded from the index. If
+	// a file matches both an inclusion pattern and an exclusion pattern, the exclusion
+	// pattern takes precedence and the file isn’t included in the index.
+	InclusionPatterns []*string `type:"list"`
+
+	// The identifier of the directory corresponding to your Amazon WorkDocs site
+	// repository.
+	//
+	// You can find the organization ID in the AWS Directory Service (https://console.aws.amazon.com/directoryservicev2/)
+	// by going to Active Directory, then Directories. Your Amazon WorkDocs site
+	// directory has an ID, which is the organization ID. You can also set up a
+	// new Amazon WorkDocs directory in the AWS Directory Service console and enable
+	// a Amazon WorkDocs site for the directory in the Amazon WorkDocs console.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"12" type:"string" required:"true"`
+
+	// TRUE to use the change logs to update documents in your index instead of
+	// scanning all documents.
+	//
+	// If you are syncing your Amazon WorkDocs data source with your index for the
+	// first time, all documents are scanned. After your first sync, you can use
+	// the change logs to update your documents in your index for future syncs.
+	//
+	// The default is set to FALSE.
+	UseChangeLog *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s WorkDocsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WorkDocsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkDocsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkDocsConfiguration"}
+	if s.FieldMappings != nil && len(s.FieldMappings) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FieldMappings", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 12))
+	}
+	if s.FieldMappings != nil {
+		for i, v := range s.FieldMappings {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FieldMappings", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCrawlComments sets the CrawlComments field's value.
+func (s *WorkDocsConfiguration) SetCrawlComments(v bool) *WorkDocsConfiguration {
+	s.CrawlComments = &v
+	return s
+}
+
+// SetExclusionPatterns sets the ExclusionPatterns field's value.
+func (s *WorkDocsConfiguration) SetExclusionPatterns(v []*string) *WorkDocsConfiguration {
+	s.ExclusionPatterns = v
+	return s
+}
+
+// SetFieldMappings sets the FieldMappings field's value.
+func (s *WorkDocsConfiguration) SetFieldMappings(v []*DataSourceToIndexFieldMapping) *WorkDocsConfiguration {
+	s.FieldMappings = v
+	return s
+}
+
+// SetInclusionPatterns sets the InclusionPatterns field's value.
+func (s *WorkDocsConfiguration) SetInclusionPatterns(v []*string) *WorkDocsConfiguration {
+	s.InclusionPatterns = v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *WorkDocsConfiguration) SetOrganizationId(v string) *WorkDocsConfiguration {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUseChangeLog sets the UseChangeLog field's value.
+func (s *WorkDocsConfiguration) SetUseChangeLog(v bool) *WorkDocsConfiguration {
+	s.UseChangeLog = &v
+	return s
+}
+
 const (
 	// AdditionalResultAttributeValueTypeTextWithHighlightsValue is a AdditionalResultAttributeValueType enum value
 	AdditionalResultAttributeValueTypeTextWithHighlightsValue = "TEXT_WITH_HIGHLIGHTS_VALUE"
@@ -17833,6 +17990,9 @@ const (
 
 	// DataSourceTypeWebcrawler is a DataSourceType enum value
 	DataSourceTypeWebcrawler = "WEBCRAWLER"
+
+	// DataSourceTypeWorkdocs is a DataSourceType enum value
+	DataSourceTypeWorkdocs = "WORKDOCS"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -17848,6 +18008,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeConfluence,
 		DataSourceTypeGoogledrive,
 		DataSourceTypeWebcrawler,
+		DataSourceTypeWorkdocs,
 	}
 }
 

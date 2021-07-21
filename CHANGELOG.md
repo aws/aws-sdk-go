@@ -1,3 +1,23 @@
+Release v1.40.5 (2021-07-21)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * AWS CodeBuild now allows you to set the access permissions for build artifacts, project artifacts, and log files that are uploaded to an Amazon S3 bucket that is owned by another account.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/elasticmapreduce`: Updates service API, documentation, and paginators
+  * EMR now supports new DescribeReleaseLabel and ListReleaseLabel APIs. They can provide Amazon EMR release label details. You can programmatically list available releases and applications for a specific Amazon EMR release label.
+* `service/iam`: Updates service documentation
+  * Documentation updates for AWS Identity and Access Management (IAM).
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now provides a data source connector for Amazon WorkDocs. For more information, see https://docs.aws.amazon.com/kendra/latest/dg/data-source-workdocs.html
+* `service/lambda`: Updates service API and documentation
+  * New ResourceConflictException error code for PutFunctionEventInvokeConfig, UpdateFunctionEventInvokeConfig, and DeleteFunctionEventInvokeConfig operations.
+* `service/personalize`: Updates service API and documentation
+* `service/proton`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * Adds the OriginalSnapshotCreateTime field to the DBSnapshot response object. This field timestamps the underlying data of a snapshot and doesn't change when the snapshot is copied.
+
 Release v1.40.4 (2021-07-20)
 ===
 

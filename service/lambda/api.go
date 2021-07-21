@@ -1334,6 +1334,9 @@ func (c *Lambda) DeleteFunctionEventInvokeConfigRequest(input *DeleteFunctionEve
 //   * TooManyRequestsException
 //   The request throughput limit was exceeded.
 //
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/DeleteFunctionEventInvokeConfig
 func (c *Lambda) DeleteFunctionEventInvokeConfig(input *DeleteFunctionEventInvokeConfigInput) (*DeleteFunctionEventInvokeConfigOutput, error) {
 	req, out := c.DeleteFunctionEventInvokeConfigRequest(input)
@@ -5130,6 +5133,9 @@ func (c *Lambda) PutFunctionEventInvokeConfigRequest(input *PutFunctionEventInvo
 //   * TooManyRequestsException
 //   The request throughput limit was exceeded.
 //
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/PutFunctionEventInvokeConfig
 func (c *Lambda) PutFunctionEventInvokeConfig(input *PutFunctionEventInvokeConfigInput) (*PutFunctionEventInvokeConfigOutput, error) {
 	req, out := c.PutFunctionEventInvokeConfigRequest(input)
@@ -6229,6 +6235,9 @@ func (c *Lambda) UpdateFunctionEventInvokeConfigRequest(input *UpdateFunctionEve
 //
 //   * TooManyRequestsException
 //   The request throughput limit was exceeded.
+//
+//   * ResourceConflictException
+//   The resource already exists, or another operation is in progress.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/lambda-2015-03-31/UpdateFunctionEventInvokeConfig
 func (c *Lambda) UpdateFunctionEventInvokeConfig(input *UpdateFunctionEventInvokeConfigInput) (*UpdateFunctionEventInvokeConfigOutput, error) {
@@ -7390,7 +7399,7 @@ type CreateEventSourceMappingInput struct {
 	// The Self-Managed Apache Kafka cluster to send records.
 	SelfManagedEventSource *SelfManagedEventSource `type:"structure"`
 
-	// An array of the authentication protocol, or the VPC components to secure
+	// An array of authentication protocols or VPC components required to secure
 	// your event source.
 	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
@@ -9102,8 +9111,8 @@ func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentRes
 	return s
 }
 
-// A mapping between an Amazon Web Services resource and an Lambda function.
-// See CreateEventSourceMapping for details.
+// A mapping between an Amazon Web Services resource and a Lambda function.
+// For details, see CreateEventSourceMapping.
 type EventSourceMappingConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -9128,14 +9137,15 @@ type EventSourceMappingConfiguration struct {
 	// source mapping.
 	FunctionResponseTypes []*string `type:"list"`
 
-	// The date that the event source mapping was last updated, or its state changed.
+	// The date that the event source mapping was last updated or that its state
+	// changed.
 	LastModified *time.Time `type:"timestamp"`
 
-	// The result of the last Lambda invocation of your Lambda function.
+	// The result of the last Lambda invocation of your function.
 	LastProcessingResult *string `type:"string"`
 
-	// (Streams and SQS standard queues) The maximum amount of time to gather records
-	// before invoking the function, in seconds. The default value is zero.
+	// (Streams and Amazon SQS standard queues) The maximum amount of time to gather
+	// records before invoking the function, in seconds. The default value is zero.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams only) Discard records older than the specified age. The default
@@ -9149,23 +9159,23 @@ type EventSourceMappingConfiguration struct {
 	// the record expires in the event source.
 	MaximumRetryAttempts *int64 `type:"integer"`
 
-	// (Streams only) The number of batches to process from each shard concurrently.
+	// (Streams only) The number of batches to process concurrently from each shard.
 	// The default value is 1.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
 
-	// (MQ) The name of the Amazon MQ broker destination queue to consume.
+	// (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.
 	Queues []*string `min:"1" type:"list"`
 
-	// The Self-Managed Apache Kafka cluster for your event source.
+	// The self-managed Apache Kafka cluster for your event source.
 	SelfManagedEventSource *SelfManagedEventSource `type:"structure"`
 
-	// An array of the authentication protocol, or the VPC components to secure
-	// your event source.
+	// An array of the authentication protocol, VPC components, or virtual host
+	// to secure and define your event source.
 	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 
 	// The position in a stream from which to start reading. Required for Amazon
-	// Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is
-	// only supported for Amazon Kinesis streams.
+	// Kinesis, Amazon DynamoDB, and Amazon MSK stream sources. AT_TIMESTAMP is
+	// supported only for Amazon Kinesis streams.
 	StartingPosition *string `type:"string" enum:"EventSourcePosition"`
 
 	// With StartingPosition set to AT_TIMESTAMP, the time from which to start reading.
@@ -9175,15 +9185,15 @@ type EventSourceMappingConfiguration struct {
 	// Enabling, Enabled, Disabling, Disabled, Updating, or Deleting.
 	State *string `type:"string"`
 
-	// Indicates whether the last change to the event source mapping was made by
-	// a user, or by the Lambda service.
+	// Indicates whether a user or Lambda made the last change to the event source
+	// mapping.
 	StateTransitionReason *string `type:"string"`
 
 	// The name of the Kafka topic.
 	Topics []*string `min:"1" type:"list"`
 
 	// (Streams only) The duration in seconds of a processing window. The range
-	// is between 1 second up to 900 seconds.
+	// is 1–900 seconds.
 	TumblingWindowInSeconds *int64 `type:"integer"`
 
 	// The identifier of the event source mapping.
@@ -12753,7 +12763,9 @@ type ListEventSourceMappingsInput struct {
 	// A pagination token returned by a previous call.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
-	// The maximum number of event source mappings to return.
+	// The maximum number of event source mappings to return. Note that ListEventSourceMappings
+	// returns a maximum of 100 items in each response, even if you set the number
+	// higher.
 	MaxItems *int64 `location:"querystring" locationName:"MaxItems" min:"1" type:"integer"`
 }
 
@@ -15219,7 +15231,7 @@ func (s *ResourceNotReadyException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Self-Managed Apache Kafka cluster for your event source.
+// The self-managed Apache Kafka cluster for your event source.
 type SelfManagedEventSource struct {
 	_ struct{} `type:"structure"`
 
@@ -15315,31 +15327,35 @@ func (s *ServiceException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// You can specify the authentication protocol, or the VPC components to secure
-// access to your event source.
+// To secure and define access to your event source, you can specify the authentication
+// protocol, VPC components, or virtual host.
 type SourceAccessConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The type of authentication protocol or the VPC components for your event
-	// source. For example: "Type":"SASL_SCRAM_512_AUTH".
+	// The type of authentication protocol, VPC components, or virtual host for
+	// your event source. For example: "Type":"SASL_SCRAM_512_AUTH".
 	//
-	//    * BASIC_AUTH - (MQ) The Secrets Manager secret that stores your broker
-	//    credentials.
+	//    * BASIC_AUTH - (Amazon MQ) The Secrets Manager secret that stores your
+	//    broker credentials.
+	//
+	//    * BASIC_AUTH - (Self-managed Apache Kafka) The Secrets Manager ARN of
+	//    your secret key used for SASL/PLAIN authentication of your Apache Kafka
+	//    brokers.
 	//
 	//    * VPC_SUBNET - The subnets associated with your VPC. Lambda connects to
-	//    these subnets to fetch data from your Self-Managed Apache Kafka cluster.
+	//    these subnets to fetch data from your self-managed Apache Kafka cluster.
 	//
 	//    * VPC_SECURITY_GROUP - The VPC security group used to manage access to
-	//    your Self-Managed Apache Kafka brokers.
+	//    your self-managed Apache Kafka brokers.
 	//
 	//    * SASL_SCRAM_256_AUTH - The Secrets Manager ARN of your secret key used
-	//    for SASL SCRAM-256 authentication of your Self-Managed Apache Kafka brokers.
+	//    for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.
 	//
 	//    * SASL_SCRAM_512_AUTH - The Secrets Manager ARN of your secret key used
-	//    for SASL SCRAM-512 authentication of your Self-Managed Apache Kafka brokers.
+	//    for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.
 	//
-	//    * VIRTUAL_HOST - The name of the virtual host in your RabbitMQ broker.
-	//    Lambda will use this host as the event source.
+	//    * VIRTUAL_HOST - (Amazon MQ) The name of the virtual host in your RabbitMQ
+	//    broker. Lambda uses this RabbitMQ host as the event source.
 	Type *string `type:"string" enum:"SourceAccessType"`
 
 	// The value for your chosen configuration in Type. For example: "URI": "arn:aws:secretsmanager:us-east-1:01234567890:secret:MyBrokerSecretName".
@@ -16023,7 +16039,7 @@ type UpdateEventSourceMappingInput struct {
 	// (Streams only) The number of batches to process from each shard concurrently.
 	ParallelizationFactor *int64 `min:"1" type:"integer"`
 
-	// An array of the authentication protocol, or the VPC components to secure
+	// An array of authentication protocols or VPC components required to secure
 	// your event source.
 	SourceAccessConfigurations []*SourceAccessConfiguration `type:"list"`
 

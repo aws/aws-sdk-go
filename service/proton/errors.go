@@ -36,7 +36,7 @@ const (
 	// "ServiceQuotaExceededException".
 	//
 	// A quota was exceeded. For more information, see AWS Proton Quotas (https://docs.aws.amazon.com/proton/latest/adminguide/ag-limits.html)
-	// in the AWS Proton Administration Guide.
+	// in the AWS Proton Administrator Guide.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 
 	// ErrCodeThrottlingException for service response error code

@@ -313,7 +313,7 @@
       "refs": {
         "CreateEventSourceMappingRequest$StartingPositionTimestamp": "<p>With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from which to start reading.</p>",
         "EventSourceMappingConfiguration$StartingPositionTimestamp": "<p>With <code>StartingPosition</code> set to <code>AT_TIMESTAMP</code>, the time from which to start reading.</p>",
-        "EventSourceMappingConfiguration$LastModified": "<p>The date that the event source mapping was last updated, or its state changed.</p>",
+        "EventSourceMappingConfiguration$LastModified": "<p>The date that the event source mapping was last updated or that its state changed.</p>",
         "FunctionEventInvokeConfig$LastModified": "<p>The date and time that the configuration was last updated.</p>"
       }
     },
@@ -522,7 +522,7 @@
       }
     },
     "EventSourceMappingConfiguration": {
-      "base": "<p>A mapping between an Amazon Web Services resource and an Lambda function. See <a>CreateEventSourceMapping</a> for details.</p>",
+      "base": "<p>A mapping between an Amazon Web Services resource and a Lambda function. For details, see <a>CreateEventSourceMapping</a>.</p>",
       "refs": {
         "EventSourceMappingsList$member": null
       }
@@ -537,7 +537,7 @@
       "base": null,
       "refs": {
         "CreateEventSourceMappingRequest$StartingPosition": "<p>The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. <code>AT_TIMESTAMP</code> is only supported for Amazon Kinesis streams.</p>",
-        "EventSourceMappingConfiguration$StartingPosition": "<p>The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. <code>AT_TIMESTAMP</code> is only supported for Amazon Kinesis streams.</p>"
+        "EventSourceMappingConfiguration$StartingPosition": "<p>The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK stream sources. <code>AT_TIMESTAMP</code> is supported only for Amazon Kinesis streams.</p>"
       }
     },
     "EventSourceToken": {
@@ -1226,7 +1226,7 @@
       "refs": {
         "ListAliasesRequest$MaxItems": "<p>Limit the number of aliases returned.</p>",
         "ListCodeSigningConfigsRequest$MaxItems": "<p>Maximum number of items to return.</p>",
-        "ListEventSourceMappingsRequest$MaxItems": "<p>The maximum number of event source mappings to return.</p>",
+        "ListEventSourceMappingsRequest$MaxItems": "<p>The maximum number of event source mappings to return. Note that ListEventSourceMappings returns a maximum of 100 items in each response, even if you set the number higher.</p>",
         "ListFunctionsByCodeSigningConfigRequest$MaxItems": "<p>Maximum number of items to return.</p>",
         "ListFunctionsRequest$MaxItems": "<p>The maximum number of functions to return in the response. Note that <code>ListFunctions</code> returns a maximum of 50 items in each response, even if you set the number higher.</p>",
         "ListVersionsByFunctionRequest$MaxItems": "<p>The maximum number of versions to return. Note that <code>ListVersionsByFunction</code> returns a maximum of 50 items in each response, even if you set the number higher.</p>"
@@ -1242,7 +1242,7 @@
       "base": null,
       "refs": {
         "CreateEventSourceMappingRequest$MaximumBatchingWindowInSeconds": "<p>(Streams and SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds.</p>",
-        "EventSourceMappingConfiguration$MaximumBatchingWindowInSeconds": "<p>(Streams and SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds. The default value is zero.</p>",
+        "EventSourceMappingConfiguration$MaximumBatchingWindowInSeconds": "<p>(Streams and Amazon SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds. The default value is zero.</p>",
         "UpdateEventSourceMappingRequest$MaximumBatchingWindowInSeconds": "<p>(Streams and SQS standard queues) The maximum amount of time to gather records before invoking the function, in seconds.</p>"
       }
     },
@@ -1350,7 +1350,7 @@
       "base": null,
       "refs": {
         "CreateEventSourceMappingRequest$ParallelizationFactor": "<p>(Streams only) The number of batches to process from each shard concurrently.</p>",
-        "EventSourceMappingConfiguration$ParallelizationFactor": "<p>(Streams only) The number of batches to process from each shard concurrently. The default value is 1.</p>",
+        "EventSourceMappingConfiguration$ParallelizationFactor": "<p>(Streams only) The number of batches to process concurrently from each shard. The default value is 1.</p>",
         "UpdateEventSourceMappingRequest$ParallelizationFactor": "<p>(Streams only) The number of batches to process from each shard concurrently.</p>"
       }
     },
@@ -1478,7 +1478,7 @@
       "base": null,
       "refs": {
         "CreateEventSourceMappingRequest$Queues": "<p> (MQ) The name of the Amazon MQ broker destination queue to consume. </p>",
-        "EventSourceMappingConfiguration$Queues": "<p> (MQ) The name of the Amazon MQ broker destination queue to consume. </p>"
+        "EventSourceMappingConfiguration$Queues": "<p> (Amazon MQ) The name of the Amazon MQ broker destination queue to consume.</p>"
       }
     },
     "RemoveLayerVersionPermissionRequest": {
@@ -1587,10 +1587,10 @@
       }
     },
     "SelfManagedEventSource": {
-      "base": "<p>The Self-Managed Apache Kafka cluster for your event source.</p>",
+      "base": "<p>The self-managed Apache Kafka cluster for your event source.</p>",
       "refs": {
         "CreateEventSourceMappingRequest$SelfManagedEventSource": "<p>The Self-Managed Apache Kafka cluster to send records.</p>",
-        "EventSourceMappingConfiguration$SelfManagedEventSource": "<p>The Self-Managed Apache Kafka cluster for your event source.</p>"
+        "EventSourceMappingConfiguration$SelfManagedEventSource": "<p>The self-managed Apache Kafka cluster for your event source.</p>"
       }
     },
     "SensitiveString": {
@@ -1612,7 +1612,7 @@
       }
     },
     "SourceAccessConfiguration": {
-      "base": "<p>You can specify the authentication protocol, or the VPC components to secure access to your event source.</p>",
+      "base": "<p>To secure and define access to your event source, you can specify the authentication protocol, VPC components, or virtual host.</p>",
       "refs": {
         "SourceAccessConfigurations$member": null
       }
@@ -1620,15 +1620,15 @@
     "SourceAccessConfigurations": {
       "base": null,
       "refs": {
-        "CreateEventSourceMappingRequest$SourceAccessConfigurations": "<p>An array of the authentication protocol, or the VPC components to secure your event source.</p>",
-        "EventSourceMappingConfiguration$SourceAccessConfigurations": "<p>An array of the authentication protocol, or the VPC components to secure your event source.</p>",
-        "UpdateEventSourceMappingRequest$SourceAccessConfigurations": "<p>An array of the authentication protocol, or the VPC components to secure your event source.</p>"
+        "CreateEventSourceMappingRequest$SourceAccessConfigurations": "<p>An array of authentication protocols or VPC components required to secure your event source.</p>",
+        "EventSourceMappingConfiguration$SourceAccessConfigurations": "<p>An array of the authentication protocol, VPC components, or virtual host to secure and define your event source.</p>",
+        "UpdateEventSourceMappingRequest$SourceAccessConfigurations": "<p>An array of authentication protocols or VPC components required to secure your event source.</p>"
       }
     },
     "SourceAccessType": {
       "base": null,
       "refs": {
-        "SourceAccessConfiguration$Type": "<p>The type of authentication protocol or the VPC components for your event source. For example: <code>\"Type\":\"SASL_SCRAM_512_AUTH\"</code>.</p> <ul> <li> <p> <code>BASIC_AUTH</code> - (MQ) The Secrets Manager secret that stores your broker credentials.</p> </li> <li> <p> <code>VPC_SUBNET</code> - The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your Self-Managed Apache Kafka cluster.</p> </li> <li> <p> <code>VPC_SECURITY_GROUP</code> - The VPC security group used to manage access to your Self-Managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_256_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your Self-Managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_512_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your Self-Managed Apache Kafka brokers.</p> </li> <li> <p> <code>VIRTUAL_HOST</code> - The name of the virtual host in your RabbitMQ broker. Lambda will use this host as the event source.</p> </li> </ul>"
+        "SourceAccessConfiguration$Type": "<p>The type of authentication protocol, VPC components, or virtual host for your event source. For example: <code>\"Type\":\"SASL_SCRAM_512_AUTH\"</code>.</p> <ul> <li> <p> <code>BASIC_AUTH</code> - (Amazon MQ) The Secrets Manager secret that stores your broker credentials.</p> </li> <li> <p> <code>BASIC_AUTH</code> - (Self-managed Apache Kafka) The Secrets Manager ARN of your secret key used for SASL/PLAIN authentication of your Apache Kafka brokers.</p> </li> <li> <p> <code>VPC_SUBNET</code> - The subnets associated with your VPC. Lambda connects to these subnets to fetch data from your self-managed Apache Kafka cluster.</p> </li> <li> <p> <code>VPC_SECURITY_GROUP</code> - The VPC security group used to manage access to your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_256_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-256 authentication of your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>SASL_SCRAM_512_AUTH</code> - The Secrets Manager ARN of your secret key used for SASL SCRAM-512 authentication of your self-managed Apache Kafka brokers.</p> </li> <li> <p> <code>VIRTUAL_HOST</code> - (Amazon MQ) The name of the virtual host in your RabbitMQ broker. Lambda uses this RabbitMQ host as the event source.</p> </li> </ul>"
       }
     },
     "SourceOwner": {
@@ -1698,9 +1698,9 @@
         "ENILimitReachedException$Message": null,
         "EnvironmentError$ErrorCode": "<p>The error code.</p>",
         "EventSourceMappingConfiguration$UUID": "<p>The identifier of the event source mapping.</p>",
-        "EventSourceMappingConfiguration$LastProcessingResult": "<p>The result of the last Lambda invocation of your Lambda function.</p>",
+        "EventSourceMappingConfiguration$LastProcessingResult": "<p>The result of the last Lambda invocation of your function.</p>",
         "EventSourceMappingConfiguration$State": "<p>The state of the event source mapping. It can be one of the following: <code>Creating</code>, <code>Enabling</code>, <code>Enabled</code>, <code>Disabling</code>, <code>Disabled</code>, <code>Updating</code>, or <code>Deleting</code>.</p>",
-        "EventSourceMappingConfiguration$StateTransitionReason": "<p>Indicates whether the last change to the event source mapping was made by a user, or by the Lambda service.</p>",
+        "EventSourceMappingConfiguration$StateTransitionReason": "<p>Indicates whether a user or Lambda made the last change to the event source mapping.</p>",
         "FunctionCode$ImageUri": "<p>URI of a <a href=\"https://docs.aws.amazon.com/lambda/latest/dg/lambda-images.html\">container image</a> in the Amazon ECR registry.</p>",
         "FunctionCodeLocation$RepositoryType": "<p>The service that's hosting the file.</p>",
         "FunctionCodeLocation$Location": "<p>A presigned URL that you can use to download the deployment package.</p>",
@@ -1930,7 +1930,7 @@
       "base": null,
       "refs": {
         "CreateEventSourceMappingRequest$TumblingWindowInSeconds": "<p>(Streams only) The duration in seconds of a processing window. The range is between 1 second up to 900 seconds.</p>",
-        "EventSourceMappingConfiguration$TumblingWindowInSeconds": "<p>(Streams only) The duration in seconds of a processing window. The range is between 1 second up to 900 seconds.</p>",
+        "EventSourceMappingConfiguration$TumblingWindowInSeconds": "<p>(Streams only) The duration in seconds of a processing window. The range is 1–900 seconds.</p>",
         "UpdateEventSourceMappingRequest$TumblingWindowInSeconds": "<p>(Streams only) The duration in seconds of a processing window. The range is between 1 second up to 900 seconds.</p>"
       }
     },

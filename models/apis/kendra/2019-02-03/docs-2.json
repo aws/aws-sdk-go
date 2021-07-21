@@ -37,7 +37,7 @@
     "Query": "<p>Searches an active index. Use this API to search your documents using query. The <code>Query</code> operation enables to do faceted search and to filter results based on document attributes.</p> <p>It also enables you to provide user context that Amazon Kendra uses to enforce document access control in the search results. </p> <p>Amazon Kendra searches your index for text content and question and answer (FAQ) content. By default the response contains three types of results.</p> <ul> <li> <p>Relevant passages</p> </li> <li> <p>Matching FAQs</p> </li> <li> <p>Relevant documents</p> </li> </ul> <p>You can specify that the query return only one type of result using the <code>QueryResultTypeConfig</code> parameter.</p> <p>Each query returns the 100 most relevant results. </p>",
     "StartDataSourceSyncJob": "<p>Starts a synchronization job for a data source. If a synchronization job is already in progress, Amazon Kendra returns a <code>ResourceInUseException</code> exception.</p>",
     "StopDataSourceSyncJob": "<p>Stops a running synchronization job. You can't stop a scheduled synchronization job.</p>",
-    "SubmitFeedback": "<p>Enables you to provide feedback to Amazon Kendra to improve the performance of the service. </p>",
+    "SubmitFeedback": "<p>Enables you to provide feedback to Amazon Kendra to improve the performance of your index. </p>",
     "TagResource": "<p>Adds the specified tag to the specified index, FAQ, or data source resource. If the tag already exists, the existing value is replaced with the new value.</p>",
     "UntagResource": "<p>Removes a tag from an index, FAQ, or a data source.</p>",
     "UpdateDataSource": "<p>Updates an existing Amazon Kendra data source.</p>",
@@ -97,7 +97,7 @@
       }
     },
     "AttributeFilter": {
-      "base": "<p>Provides filtering the query results based on document attributes.</p> <p>When you use the <code>AndAllFilters</code> or <code>OrAllFilters</code>, filters you can use 2 layers under the first attribute filter. For example, you can use:</p> <p> <code>&lt;AndAllFilters&gt;</code> </p> <ol> <li> <p> <code> &lt;OrAllFilters&gt;</code> </p> </li> <li> <p> <code> &lt;EqualTo&gt;</code> </p> </li> </ol> <p>If you use more than 2 layers, you receive a <code>ValidationException</code> exception with the message \"<code>AttributeFilter</code> cannot have a depth of more than 2.\"</p>",
+      "base": "<p>Provides filtering the query results based on document attributes.</p> <p>When you use the <code>AndAllFilters</code> or <code>OrAllFilters</code>, filters you can use 2 layers under the first attribute filter. For example, you can use:</p> <p> <code>&lt;AndAllFilters&gt;</code> </p> <ol> <li> <p> <code> &lt;OrAllFilters&gt;</code> </p> </li> <li> <p> <code> &lt;EqualTo&gt;</code> </p> </li> </ol> <p>If you use more than 2 layers, you receive a <code>ValidationException</code> exception with the message \"<code>AttributeFilter</code> cannot have a depth of more than 2.\"</p> <p>If you use more than 10 attribute filters, you receive a <code>ValidationException</code> exception with the message \"<code>AttributeFilter</code> cannot have a length of more than 10\".</p>",
       "refs": {
         "AttributeFilter$NotFilter": "<p>Performs a logical <code>NOT</code> operation on all supplied filters.</p>",
         "AttributeFilterList$member": null,
@@ -218,7 +218,9 @@
         "ServiceNowServiceCatalogConfiguration$CrawlAttachments": "<p>Indicates whether Amazon Kendra should crawl attachments to the service catalog items. </p>",
         "SharePointConfiguration$CrawlAttachments": "<p> <code>TRUE</code> to include attachments to documents stored in your Microsoft SharePoint site in the index; otherwise, <code>FALSE</code>.</p>",
         "SharePointConfiguration$UseChangeLog": "<p>Set to <code>TRUE</code> to use the Microsoft SharePoint change log to determine the documents that need to be updated in the index. Depending on the size of the SharePoint change log, it may take longer for Amazon Kendra to use the change log than it takes it to determine the changed documents using the Amazon Kendra document crawler.</p>",
-        "SharePointConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>"
+        "SharePointConfiguration$DisableLocalGroups": "<p>A Boolean value that specifies whether local groups are disabled (<code>True</code>) or enabled (<code>False</code>). </p>",
+        "WorkDocsConfiguration$CrawlComments": "<p> <code>TRUE</code> to include comments on documents in your index. Including comments in your index means each comment is a document that can be searched on.</p> <p>The default is set to <code>FALSE</code>.</p>",
+        "WorkDocsConfiguration$UseChangeLog": "<p> <code>TRUE</code> to use the change logs to update documents in your index instead of scanning all documents.</p> <p>If you are syncing your Amazon WorkDocs data source with your index for the first time, all documents are scanned. After your first sync, you can use the change logs to update your documents in your index for future syncs.</p> <p>The default is set to <code>FALSE</code>.</p>"
       }
     },
     "CapacityUnitsConfiguration": {
@@ -571,7 +573,9 @@
         "SharePointConfiguration$InclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are included in the index. Documents that don't match the patterns are excluded from the index. If a document matches both an inclusion pattern and an exclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
         "SharePointConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns. Documents that match the patterns are excluded from the index. Documents that don't match the patterns are included in the index. If a document matches both an exclusion pattern and an inclusion pattern, the document is not included in the index.</p> <p>The regex is applied to the display URL of the SharePoint document.</p>",
         "WebCrawlerConfiguration$UrlInclusionPatterns": "<p>The regular expression pattern to include certain URLs to crawl.</p> <p>If there is a regular expression pattern to exclude certain URLs that conflicts with the include pattern, the exclude pattern takes precedence.</p>",
-        "WebCrawlerConfiguration$UrlExclusionPatterns": "<p>The regular expression pattern to exclude certain URLs to crawl.</p> <p>If there is a regular expression pattern to include certain URLs that conflicts with the exclude pattern, the exclude pattern takes precedence.</p>"
+        "WebCrawlerConfiguration$UrlExclusionPatterns": "<p>The regular expression pattern to exclude certain URLs to crawl.</p> <p>If there is a regular expression pattern to include certain URLs that conflicts with the exclude pattern, the exclude pattern takes precedence.</p>",
+        "WorkDocsConfiguration$InclusionPatterns": "<p>A list of regular expression patterns to include certain files in your Amazon WorkDocs site repository. Files that match the patterns are included in the index. Files that don't match the patterns are excluded from the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn’t included in the index.</p>",
+        "WorkDocsConfiguration$ExclusionPatterns": "<p>A list of regular expression patterns to exclude certain files in your Amazon WorkDocs site repository. Files that match the patterns are excluded from the index. Files that don’t match the patterns are included in the index. If a file matches both an inclusion pattern and an exclusion pattern, the exclusion pattern takes precedence and the file isn’t included in the index.</p>"
       }
     },
     "DataSourceInclusionsExclusionsStringsMember": {
@@ -664,7 +668,8 @@
         "SalesforceStandardObjectConfiguration$FieldMappings": "<p>One or more objects that map fields in the standard object to Amazon Kendra index fields. The index field must exist before you can map a Salesforce field to it.</p>",
         "ServiceNowKnowledgeArticleConfiguration$FieldMappings": "<p>Mapping between ServiceNow fields and Amazon Kendra index fields. You must create the index field before you map the field.</p>",
         "ServiceNowServiceCatalogConfiguration$FieldMappings": "<p>Mapping between ServiceNow fields and Amazon Kendra index fields. You must create the index field before you map the field.</p>",
-        "SharePointConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft SharePoint attributes to custom fields in the Amazon Kendra index. You must first create the index fields using the <code>UpdateIndex</code> operation before you map SharePoint attributes. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping Data Source Fields</a>.</p>"
+        "SharePointConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Microsoft SharePoint attributes to custom fields in the Amazon Kendra index. You must first create the index fields using the <code>UpdateIndex</code> operation before you map SharePoint attributes. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping Data Source Fields</a>.</p>",
+        "WorkDocsConfiguration$FieldMappings": "<p>A list of <code>DataSourceToIndexFieldMapping</code> objects that map Amazon WorkDocs field names to custom index field names in Amazon Kendra. You must first create the custom index fields using the <code>UpdateIndex</code> operation before you map to Amazon WorkDocs fields. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/field-mapping.html\">Mapping Data Source Fields</a>. The Amazon WorkDocs data source field names need to exist in your Amazon WorkDocs custom metadata.</p>"
       }
     },
     "DataSourceType": {
@@ -1272,7 +1277,7 @@
     "IndexEdition": {
       "base": null,
       "refs": {
-        "CreateIndexRequest$Edition": "<p>The Amazon Kendra edition to use for the index. Choose <code>DEVELOPER_EDITION</code> for indexes intended for development, testing, or proof of concept. Use <code>ENTERPRISE_EDITION</code> for your production databases. Once you set the edition for an index, it can't be changed. </p> <p>The <code>Edition</code> parameter is optional. If you don't supply a value, the default is <code>ENTERPRISE_EDITION</code>.</p>",
+        "CreateIndexRequest$Edition": "<p>The Amazon Kendra edition to use for the index. Choose <code>DEVELOPER_EDITION</code> for indexes intended for development, testing, or proof of concept. Use <code>ENTERPRISE_EDITION</code> for your production databases. Once you set the edition for an index, it can't be changed.</p> <p>The <code>Edition</code> parameter is optional. If you don't supply a value, the default is <code>ENTERPRISE_EDITION</code>.</p> <p>For more information on quota limits for enterprise and developer editions, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/quotas.html\">Quotas</a>.</p>",
         "DescribeIndexResponse$Edition": "<p>The Amazon Kendra edition used for the index. You decide the edition when you create the index.</p>",
         "IndexConfigurationSummary$Edition": "<p>Indicates whether the index is a enterprise edition index or a developer edition index. </p>"
       }
@@ -1705,6 +1710,12 @@
         "Relevance$RankOrder": "<p>Determines how values should be interpreted.</p> <p>When the <code>RankOrder</code> field is <code>ASCENDING</code>, higher numbers are better. For example, a document with a rating score of 10 is higher ranking than a document with a rating score of 1.</p> <p>When the <code>RankOrder</code> field is <code>DESCENDING</code>, lower numbers are better. For example, in a task tracking application, a priority 1 task is more important than a priority 5 task.</p> <p>Only applies to <code>LONG</code> and <code>DOUBLE</code> fields.</p>"
       }
     },
+    "OrganizationId": {
+      "base": null,
+      "refs": {
+        "WorkDocsConfiguration$OrganizationId": "<p>The identifier of the directory corresponding to your Amazon WorkDocs site repository.</p> <p>You can find the organization ID in the <a href=\"https://console.aws.amazon.com/directoryservicev2/\">AWS Directory Service</a> by going to <b>Active Directory</b>, then <b>Directories</b>. Your Amazon WorkDocs site directory has an ID, which is the organization ID. You can also set up a new Amazon WorkDocs directory in the AWS Directory Service console and enable a Amazon WorkDocs site for the directory in the Amazon WorkDocs console.</p>"
+      }
+    },
     "Port": {
       "base": null,
       "refs": {
@@ -1770,7 +1781,7 @@
     "QueryCapacityUnit": {
       "base": null,
       "refs": {
-        "CapacityUnitsConfiguration$QueryCapacityUnits": "<p>The amount of extra query capacity for an index and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html\">GetQuerySuggestions</a> capacity.</p> <p>A single extra capacity unit for an index provides 0.5 queries per second or approximately 40,000 queries per day.</p> <p> <code>GetQuerySuggestions</code> capacity is 5 times the provisioned query capacity for an index. For example, the base capacity for an index is 0.5 queries per second, so GetQuerySuggestions capacity is 2.5 calls per second. If adding another 0.5 queries per second to total 1 queries per second for an index, the <code>GetQuerySuggestions</code> capacity is 5 calls per second.</p>"
+        "CapacityUnitsConfiguration$QueryCapacityUnits": "<p>The amount of extra query capacity for an index and <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/API_GetQuerySuggestions.html\">GetQuerySuggestions</a> capacity.</p> <p>A single extra capacity unit for an index provides 0.1 queries per second or approximately 8,000 queries per day.</p> <p> <code>GetQuerySuggestions</code> capacity is five times the provisioned query capacity for an index, or the base capacity of 2.5 calls per second, whichever is higher. For example, the base capacity for an index is 0.1 queries per second, and <code>GetQuerySuggestions</code> capacity has a base of 2.5 calls per second. If you add another 0.1 queries per second to total 0.2 queries per second for an index, the <code>GetQuerySuggestions</code> capacity is 2.5 calls per second (higher than five times 0.2 queries per second).</p>"
       }
     },
     "QueryId": {
@@ -2113,13 +2124,13 @@
       "refs": {
         "BasicAuthenticationConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">AWS Secrets Manager</a> </p> <p>You use a secret if basic authentication credentials are required to connect to a website. The secret stores your credentials of user name and password.</p>",
         "ConfluenceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the key/value pairs required to connect to your Confluence server. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>username - The user name or email address of a user with administrative privileges for the Confluence server.</p> </li> <li> <p>password - The password associated with the user logging in to the Confluence server.</p> </li> </ul>",
-        "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about AWS Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is AWS Secrets Manager </a> in the <i> Secrets Manager </i> user guide.</p>",
+        "ConnectionConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-database.html\">Using a Database Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i> Secrets Manager </i> user guide.</p>",
         "GoogleDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of a Secrets Managersecret that contains the credentials required to connect to Google Drive. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-google-drive.html\">Using a Google Workspace Drive data source</a>.</p>",
         "OneDriveConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the user name and password to connect to OneDrive. The user namd should be the application ID for the OneDrive application, and the password is the application key for the OneDrive application.</p>",
         "ProxyConfiguration$Credentials": "<p>Your secret ARN, which you can create in <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\">AWS Secrets Manager</a> </p> <p>The credentials are optional. You use a secret if web proxy credentials are required to connect to a website host. Amazon Kendra currently support basic authentication to connect to a web proxy server. The secret stores your credentials.</p>",
         "SalesforceConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of an Secrets Managersecret that contains the key/value pairs required to connect to your Salesforce instance. The secret must contain a JSON structure with the following keys:</p> <ul> <li> <p>authenticationUrl - The OAUTH endpoint that Amazon Kendra connects to get an OAUTH token. </p> </li> <li> <p>consumerKey - The application public key generated when you created your Salesforce application.</p> </li> <li> <p>consumerSecret - The application private key generated when you created your Salesforce application.</p> </li> <li> <p>password - The password associated with the user logging in to the Salesforce instance.</p> </li> <li> <p>securityToken - The token associated with the user account logging in to the Salesforce instance.</p> </li> <li> <p>username - The user name of the user logging in to the Salesforce instance.</p> </li> </ul>",
         "ServiceNowConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of the Secrets Manager secret that contains the user name and password required to connect to the ServiceNow instance.</p>",
-        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in AWS Secrets Manager. The credentials should be a user/password pair. If you use SharePoint Sever, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>. For more information about AWS Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is AWS Secrets Manager </a> in the <i>Secrets Manager </i> user guide.</p>"
+        "SharePointConfiguration$SecretArn": "<p>The Amazon Resource Name (ARN) of credentials stored in Secrets Manager. The credentials should be a user/password pair. If you use SharePoint Server, you also need to provide the sever domain name as part of the credentials. For more information, see <a href=\"https://docs.aws.amazon.com/kendra/latest/dg/data-source-sharepoint.html\">Using a Microsoft SharePoint Data Source</a>. For more information about Secrets Manager, see <a href=\"https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html\"> What Is Secrets Manager</a> in the <i>Secrets Manager </i> user guide.</p>"
       }
     },
     "SecurityGroupIdList": {
@@ -2284,7 +2295,7 @@
     "StorageCapacityUnit": {
       "base": null,
       "refs": {
-        "CapacityUnitsConfiguration$StorageCapacityUnits": "<p>The amount of extra storage capacity for an index. A single capacity unit for an index provides 150 GB of storage space or 500,000 documents, whichever is reached first.</p>"
+        "CapacityUnitsConfiguration$StorageCapacityUnits": "<p>The amount of extra storage capacity for an index. A single capacity unit provides 30 GB of storage space or 100,000 documents, whichever is reached first.</p>"
       }
     },
     "String": {
@@ -2668,6 +2679,12 @@
       "base": null,
       "refs": {
         "SeedUrlConfiguration$WebCrawlerMode": "<p>You can choose one of the following modes:</p> <ul> <li> <p> <code>HOST_ONLY</code> – crawl only the website host names. For example, if the seed URL is \"abc.example.com\", then only URLs with host name \"abc.example.com\" are crawled.</p> </li> <li> <p> <code>SUBDOMAINS</code> – crawl the website host names with subdomains. For example, if the seed URL is \"abc.example.com\", then \"a.abc.example.com\" and \"b.abc.example.com\" are also crawled.</p> </li> <li> <p> <code>EVERYTHING</code> – crawl the website host names with subdomains and other domains that the webpages link to.</p> </li> </ul> <p>The default mode is set to <code>HOST_ONLY</code>.</p>"
+      }
+    },
+    "WorkDocsConfiguration": {
+      "base": "<p>Provides the configuration information to connect to Amazon WorkDocs as your data source.</p> <p>Amazon WorkDocs connector is available in Oregon, North Virginia, Sydney, Singapore and Ireland regions.</p>",
+      "refs": {
+        "DataSourceConfiguration$WorkDocsConfiguration": "<p>Provides the configuration information to connect to WorkDocs as your data source.</p>"
       }
     }
   }

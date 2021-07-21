@@ -545,12 +545,11 @@ func (c *CodeBuild) CreateProjectRequest(input *CreateProjectInput) (req *reques
 //   The input value that was provided is not valid.
 //
 //   * ResourceAlreadyExistsException
-//   The specified Amazon Web Services resource cannot be created, because an
-//   Amazon Web Services resource with the same settings already exists.
+//   The specified AWS resource cannot be created, because an AWS resource with
+//   the same settings already exists.
 //
 //   * AccountLimitExceededException
-//   An Amazon Web Services service limit was exceeded for the calling Amazon
-//   Web Services account.
+//   An AWS service limit was exceeded for the calling AWS account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateProject
 func (c *CodeBuild) CreateProject(input *CreateProjectInput) (*CreateProjectOutput, error) {
@@ -632,12 +631,11 @@ func (c *CodeBuild) CreateReportGroupRequest(input *CreateReportGroupInput) (req
 //   The input value that was provided is not valid.
 //
 //   * ResourceAlreadyExistsException
-//   The specified Amazon Web Services resource cannot be created, because an
-//   Amazon Web Services resource with the same settings already exists.
+//   The specified AWS resource cannot be created, because an AWS resource with
+//   the same settings already exists.
 //
 //   * AccountLimitExceededException
-//   An Amazon Web Services service limit was exceeded for the calling Amazon
-//   Web Services account.
+//   An AWS service limit was exceeded for the calling AWS account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateReportGroup
 func (c *CodeBuild) CreateReportGroup(input *CreateReportGroupInput) (*CreateReportGroupOutput, error) {
@@ -705,17 +703,18 @@ func (c *CodeBuild) CreateWebhookRequest(input *CreateWebhookInput) (req *reques
 
 // CreateWebhook API operation for AWS CodeBuild.
 //
-// For an existing CodeBuild build project that has its source code stored in
-// a GitHub or Bitbucket repository, enables CodeBuild to start rebuilding the
-// source code every time a code change is pushed to the repository.
+// For an existing AWS CodeBuild build project that has its source code stored
+// in a GitHub or Bitbucket repository, enables AWS CodeBuild to start rebuilding
+// the source code every time a code change is pushed to the repository.
 //
-// If you enable webhooks for an CodeBuild project, and the project is used
-// as a build step in CodePipeline, then two identical builds are created for
-// each commit. One build is triggered through webhooks, and one through CodePipeline.
-// Because billing is on a per-build basis, you are billed for both builds.
-// Therefore, if you are using CodePipeline, we recommend that you disable webhooks
-// in CodeBuild. In the CodeBuild console, clear the Webhook box. For more information,
-// see step 5 in Change a Build Project's Settings (https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console).
+// If you enable webhooks for an AWS CodeBuild project, and the project is used
+// as a build step in AWS CodePipeline, then two identical builds are created
+// for each commit. One build is triggered through webhooks, and one through
+// AWS CodePipeline. Because billing is on a per-build basis, you are billed
+// for both builds. Therefore, if you are using AWS CodePipeline, we recommend
+// that you disable webhooks in AWS CodeBuild. In the AWS CodeBuild console,
+// clear the Webhook box. For more information, see step 5 in Change a Build
+// Project's Settings (https://docs.aws.amazon.com/codebuild/latest/userguide/change-project.html#change-project-console).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -732,11 +731,11 @@ func (c *CodeBuild) CreateWebhookRequest(input *CreateWebhookInput) (req *reques
 //   There was a problem with the underlying OAuth provider.
 //
 //   * ResourceAlreadyExistsException
-//   The specified Amazon Web Services resource cannot be created, because an
-//   Amazon Web Services resource with the same settings already exists.
+//   The specified AWS resource cannot be created, because an AWS resource with
+//   the same settings already exists.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/CreateWebhook
 func (c *CodeBuild) CreateWebhook(input *CreateWebhookInput) (*CreateWebhookOutput, error) {
@@ -1218,7 +1217,7 @@ func (c *CodeBuild) DeleteSourceCredentialsRequest(input *DeleteSourceCredential
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DeleteSourceCredentials
 func (c *CodeBuild) DeleteSourceCredentials(input *DeleteSourceCredentialsInput) (*DeleteSourceCredentialsOutput, error) {
@@ -1287,9 +1286,9 @@ func (c *CodeBuild) DeleteWebhookRequest(input *DeleteWebhookInput) (req *reques
 
 // DeleteWebhook API operation for AWS CodeBuild.
 //
-// For an existing CodeBuild build project that has its source code stored in
-// a GitHub or Bitbucket repository, stops CodeBuild from rebuilding the source
-// code every time a code change is pushed to the repository.
+// For an existing AWS CodeBuild build project that has its source code stored
+// in a GitHub or Bitbucket repository, stops AWS CodeBuild from rebuilding
+// the source code every time a code change is pushed to the repository.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1303,7 +1302,7 @@ func (c *CodeBuild) DeleteWebhookRequest(input *DeleteWebhookInput) (req *reques
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 //   * OAuthProviderException
 //   There was a problem with the underlying OAuth provider.
@@ -1531,7 +1530,7 @@ func (c *CodeBuild) DescribeTestCasesRequest(input *DescribeTestCasesInput) (req
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/DescribeTestCases
 func (c *CodeBuild) DescribeTestCases(input *DescribeTestCasesInput) (*DescribeTestCasesOutput, error) {
@@ -1665,7 +1664,7 @@ func (c *CodeBuild) GetReportGroupTrendRequest(input *GetReportGroupTrendInput) 
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/GetReportGroupTrend
 func (c *CodeBuild) GetReportGroupTrend(input *GetReportGroupTrendInput) (*GetReportGroupTrendOutput, error) {
@@ -1744,7 +1743,7 @@ func (c *CodeBuild) GetResourcePolicyRequest(input *GetResourcePolicyInput) (req
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 //   * InvalidInputException
 //   The input value that was provided is not valid.
@@ -1815,8 +1814,8 @@ func (c *CodeBuild) ImportSourceCredentialsRequest(input *ImportSourceCredential
 
 // ImportSourceCredentials API operation for AWS CodeBuild.
 //
-// Imports the source repository credentials for an CodeBuild project that has
-// its source code stored in a GitHub, GitHub Enterprise, or Bitbucket repository.
+// Imports the source repository credentials for an AWS CodeBuild project that
+// has its source code stored in a GitHub, GitHub Enterprise, or Bitbucket repository.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1830,12 +1829,11 @@ func (c *CodeBuild) ImportSourceCredentialsRequest(input *ImportSourceCredential
 //   The input value that was provided is not valid.
 //
 //   * AccountLimitExceededException
-//   An Amazon Web Services service limit was exceeded for the calling Amazon
-//   Web Services account.
+//   An AWS service limit was exceeded for the calling AWS account.
 //
 //   * ResourceAlreadyExistsException
-//   The specified Amazon Web Services resource cannot be created, because an
-//   Amazon Web Services resource with the same settings already exists.
+//   The specified AWS resource cannot be created, because an AWS resource with
+//   the same settings already exists.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ImportSourceCredentials
 func (c *CodeBuild) ImportSourceCredentials(input *ImportSourceCredentialsInput) (*ImportSourceCredentialsOutput, error) {
@@ -1918,7 +1916,7 @@ func (c *CodeBuild) InvalidateProjectCacheRequest(input *InvalidateProjectCacheI
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/InvalidateProjectCache
 func (c *CodeBuild) InvalidateProjectCache(input *InvalidateProjectCacheInput) (*InvalidateProjectCacheOutput, error) {
@@ -2143,7 +2141,7 @@ func (c *CodeBuild) ListBuildBatchesForProjectRequest(input *ListBuildBatchesFor
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListBuildBatchesForProject
 func (c *CodeBuild) ListBuildBatchesForProject(input *ListBuildBatchesForProjectInput) (*ListBuildBatchesForProjectOutput, error) {
@@ -2421,7 +2419,7 @@ func (c *CodeBuild) ListBuildsForProjectRequest(input *ListBuildsForProjectInput
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListBuildsForProject
 func (c *CodeBuild) ListBuildsForProject(input *ListBuildsForProjectInput) (*ListBuildsForProjectOutput, error) {
@@ -2541,7 +2539,7 @@ func (c *CodeBuild) ListCuratedEnvironmentImagesRequest(input *ListCuratedEnviro
 
 // ListCuratedEnvironmentImages API operation for AWS CodeBuild.
 //
-// Gets information about Docker images that are managed by CodeBuild.
+// Gets information about Docker images that are managed by AWS CodeBuild.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2759,8 +2757,7 @@ func (c *CodeBuild) ListReportGroupsRequest(input *ListReportGroupsInput) (req *
 
 // ListReportGroups API operation for AWS CodeBuild.
 //
-// Gets a list ARNs for the report groups in the current Amazon Web Services
-// account.
+// Gets a list ARNs for the report groups in the current AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2897,8 +2894,7 @@ func (c *CodeBuild) ListReportsRequest(input *ListReportsInput) (req *request.Re
 
 // ListReports API operation for AWS CodeBuild.
 //
-// Returns a list of ARNs for the reports in the current Amazon Web Services
-// account.
+// Returns a list of ARNs for the reports in the current AWS account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3049,7 +3045,7 @@ func (c *CodeBuild) ListReportsForReportGroupRequest(input *ListReportsForReport
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/ListReportsForReportGroup
 func (c *CodeBuild) ListReportsForReportGroup(input *ListReportsForReportGroupInput) (*ListReportsForReportGroupOutput, error) {
@@ -3175,8 +3171,7 @@ func (c *CodeBuild) ListSharedProjectsRequest(input *ListSharedProjectsInput) (r
 
 // ListSharedProjects API operation for AWS CodeBuild.
 //
-// Gets a list of projects that are shared with other Amazon Web Services accounts
-// or users.
+// Gets a list of projects that are shared with other AWS accounts or users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3313,8 +3308,7 @@ func (c *CodeBuild) ListSharedReportGroupsRequest(input *ListSharedReportGroupsI
 
 // ListSharedReportGroups API operation for AWS CodeBuild.
 //
-// Gets a list of report groups that are shared with other Amazon Web Services
-// accounts or users.
+// Gets a list of report groups that are shared with other AWS accounts or users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3535,7 +3529,7 @@ func (c *CodeBuild) PutResourcePolicyRequest(input *PutResourcePolicyInput) (req
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 //   * InvalidInputException
 //   The input value that was provided is not valid.
@@ -3620,11 +3614,10 @@ func (c *CodeBuild) RetryBuildRequest(input *RetryBuildInput) (req *request.Requ
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 //   * AccountLimitExceededException
-//   An Amazon Web Services service limit was exceeded for the calling Amazon
-//   Web Services account.
+//   An AWS service limit was exceeded for the calling AWS account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/RetryBuild
 func (c *CodeBuild) RetryBuild(input *RetryBuildInput) (*RetryBuildOutput, error) {
@@ -3707,7 +3700,7 @@ func (c *CodeBuild) RetryBuildBatchRequest(input *RetryBuildBatchInput) (req *re
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/RetryBuildBatch
 func (c *CodeBuild) RetryBuildBatch(input *RetryBuildBatchInput) (*RetryBuildBatchOutput, error) {
@@ -3789,11 +3782,10 @@ func (c *CodeBuild) StartBuildRequest(input *StartBuildInput) (req *request.Requ
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 //   * AccountLimitExceededException
-//   An Amazon Web Services service limit was exceeded for the calling Amazon
-//   Web Services account.
+//   An AWS service limit was exceeded for the calling AWS account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StartBuild
 func (c *CodeBuild) StartBuild(input *StartBuildInput) (*StartBuildOutput, error) {
@@ -3875,7 +3867,7 @@ func (c *CodeBuild) StartBuildBatchRequest(input *StartBuildBatchInput) (req *re
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StartBuildBatch
 func (c *CodeBuild) StartBuildBatch(input *StartBuildBatchInput) (*StartBuildBatchOutput, error) {
@@ -3957,7 +3949,7 @@ func (c *CodeBuild) StopBuildRequest(input *StopBuildInput) (req *request.Reques
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StopBuild
 func (c *CodeBuild) StopBuild(input *StopBuildInput) (*StopBuildOutput, error) {
@@ -4039,7 +4031,7 @@ func (c *CodeBuild) StopBuildBatchRequest(input *StopBuildBatchInput) (req *requ
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/StopBuildBatch
 func (c *CodeBuild) StopBuildBatch(input *StopBuildBatchInput) (*StopBuildBatchOutput, error) {
@@ -4121,7 +4113,7 @@ func (c *CodeBuild) UpdateProjectRequest(input *UpdateProjectInput) (req *reques
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateProject
 func (c *CodeBuild) UpdateProject(input *UpdateProjectInput) (*UpdateProjectOutput, error) {
@@ -4203,7 +4195,7 @@ func (c *CodeBuild) UpdateReportGroupRequest(input *UpdateReportGroupInput) (req
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/codebuild-2016-10-06/UpdateReportGroup
 func (c *CodeBuild) UpdateReportGroup(input *UpdateReportGroupInput) (*UpdateReportGroupOutput, error) {
@@ -4271,7 +4263,7 @@ func (c *CodeBuild) UpdateWebhookRequest(input *UpdateWebhookInput) (req *reques
 
 // UpdateWebhook API operation for AWS CodeBuild.
 //
-// Updates the webhook associated with an CodeBuild build project.
+// Updates the webhook associated with an AWS CodeBuild build project.
 //
 // If you use Bitbucket for your repository, rotateSecret is ignored.
 //
@@ -4287,7 +4279,7 @@ func (c *CodeBuild) UpdateWebhookRequest(input *UpdateWebhookInput) (req *reques
 //   The input value that was provided is not valid.
 //
 //   * ResourceNotFoundException
-//   The specified Amazon Web Services resource cannot be found.
+//   The specified AWS resource cannot be found.
 //
 //   * OAuthProviderException
 //   There was a problem with the underlying OAuth provider.
@@ -4314,8 +4306,7 @@ func (c *CodeBuild) UpdateWebhookWithContext(ctx aws.Context, input *UpdateWebho
 	return out, req.Send()
 }
 
-// An Amazon Web Services service limit was exceeded for the calling Amazon
-// Web Services account.
+// An AWS service limit was exceeded for the calling AWS account.
 type AccountLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4591,8 +4582,8 @@ type BatchGetProjectsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The names or ARNs of the build projects. To get information about a project
-	// shared with your Amazon Web Services account, its ARN must be specified.
-	// You cannot specify a shared project using its name.
+	// shared with your AWS account, its ARN must be specified. You cannot specify
+	// a shared project using its name.
 	//
 	// Names is a required field
 	Names []*string `locationName:"names" min:"1" type:"list" required:"true"`
@@ -4816,7 +4807,7 @@ type BatchRestrictions struct {
 
 	// An array of strings that specify the compute types that are allowed for the
 	// batch build. See Build environment compute types (https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html)
-	// in the CodeBuild User Guide for these values.
+	// in the AWS CodeBuild User Guide for these values.
 	ComputeTypesAllowed []*string `locationName:"computeTypesAllowed" type:"list"`
 
 	// Specifies the maximum number of builds allowed.
@@ -4890,8 +4881,8 @@ type Build struct {
 	// Contains information about the debug session for this build.
 	DebugSession *DebugSession `locationName:"debugSession" type:"structure"`
 
-	// The Key Management Service customer master key (CMK) to be used for encrypting
-	// the build output artifacts.
+	// The AWS Key Management Service (AWS KMS) customer master key (CMK) to be
+	// used for encrypting the build output artifacts.
 	//
 	// You can use a cross-account KMS key to encrypt the build output artifacts
 	// if your service role has permission to that key.
@@ -4908,11 +4899,11 @@ type Build struct {
 
 	// A list of exported environment variables for this build.
 	//
-	// Exported environment variables are used in conjunction with CodePipeline
+	// Exported environment variables are used in conjunction with AWS CodePipeline
 	// to export environment variables from the current build stage to subsequent
 	// stages in the pipeline. For more information, see Working with variables
 	// (https://docs.aws.amazon.com/codepipeline/latest/userguide/actions-variables.html)
-	// in the CodePipeline User Guide.
+	// in the AWS CodePipeline User Guide.
 	ExportedEnvironmentVariables []*ExportedEnvironmentVariable `locationName:"exportedEnvironmentVariables" type:"list"`
 
 	// An array of ProjectFileSystemLocation objects for a CodeBuild build project.
@@ -4925,16 +4916,17 @@ type Build struct {
 
 	// The entity that started the build. Valid values include:
 	//
-	//    * If CodePipeline started the build, the pipeline's name (for example,
+	//    * If AWS CodePipeline started the build, the pipeline's name (for example,
 	//    codepipeline/my-demo-pipeline).
 	//
-	//    * If an Identity and Access Management user started the build, the user's
-	//    name (for example, MyUserName).
+	//    * If an AWS Identity and Access Management (IAM) user started the build,
+	//    the user's name (for example, MyUserName).
 	//
-	//    * If the Jenkins plugin for CodeBuild started the build, the string CodeBuild-Jenkins-Plugin.
+	//    * If the Jenkins plugin for AWS CodeBuild started the build, the string
+	//    CodeBuild-Jenkins-Plugin.
 	Initiator *string `locationName:"initiator" type:"string"`
 
-	// Information about the build's logs in CloudWatch Logs.
+	// Information about the build's logs in Amazon CloudWatch Logs.
 	Logs *LogsLocation `locationName:"logs" type:"structure"`
 
 	// Describes a network interface.
@@ -4944,7 +4936,7 @@ type Build struct {
 	// about any current build phase that is not yet complete.
 	Phases []*BuildPhase `locationName:"phases" type:"list"`
 
-	// The name of the CodeBuild project.
+	// The name of the AWS CodeBuild project.
 	ProjectName *string `locationName:"projectName" min:"1" type:"string"`
 
 	// The number of minutes a build is allowed to be queued before it times out.
@@ -4955,10 +4947,10 @@ type Build struct {
 
 	// An identifier for the version of this build's source code.
 	//
-	//    * For CodeCommit, GitHub, GitHub Enterprise, and BitBucket, the commit
+	//    * For AWS CodeCommit, GitHub, GitHub Enterprise, and BitBucket, the commit
 	//    ID.
 	//
-	//    * For CodePipeline, the source revision provided by CodePipeline.
+	//    * For AWS CodePipeline, the source revision provided by AWS CodePipeline.
 	//
 	//    * For Amazon S3, this does not apply.
 	ResolvedSourceVersion *string `locationName:"resolvedSourceVersion" min:"1" type:"string"`
@@ -4969,7 +4961,7 @@ type Build struct {
 	// An array of ProjectSourceVersion objects. Each ProjectSourceVersion must
 	// be one of:
 	//
-	//    * For CodeCommit: the commit ID, branch, or Git tag to use.
+	//    * For AWS CodeCommit: the commit ID, branch, or Git tag to use.
 	//
 	//    * For GitHub: the commit ID, pull request ID, branch name, or tag name
 	//    that corresponds to the version of the source code you want to build.
@@ -5001,17 +4993,17 @@ type Build struct {
 	// (at the build level) takes precedence.
 	//
 	// For more information, see Source Version Sample with CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	SourceVersion *string `locationName:"sourceVersion" min:"1" type:"string"`
 
 	// When the build process started, expressed in Unix time format.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
-	// How long, in minutes, for CodeBuild to wait before timing out this build
+	// How long, in minutes, for AWS CodeBuild to wait before timing out this build
 	// if it does not get marked as completed.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" type:"integer"`
 
-	// If your CodeBuild project accesses resources in an Amazon VPC, you provide
+	// If your AWS CodeBuild project accesses resources in an Amazon VPC, you provide
 	// this parameter that identifies the VPC ID and the list of security group
 	// IDs and subnet IDs. The security groups and subnets must belong to the same
 	// VPC. You must provide at least one security group and one subnet ID.
@@ -5227,6 +5219,38 @@ type BuildArtifacts struct {
 	// An identifier for this artifact definition.
 	ArtifactIdentifier *string `locationName:"artifactIdentifier" type:"string"`
 
+	// Specifies the access for objects that are uploaded to an Amazon S3 bucket
+	// that is owned by another account.
+	//
+	// By default, only the account that uploads the objects to the bucket has access
+	// to these objects. This property allows you to give the bucket owner access
+	// to these objects.
+	//
+	// NONE
+	//
+	// The bucket owner does not have access to the objects. This is the default.
+	//
+	// READ_ONLY
+	//
+	// The bucket owner has read only access to the objects. The uploading account
+	// retains ownership of the objects.
+	//
+	// FULL
+	//
+	// The bucket owner has full access to the objects. Object ownership is determined
+	// by the following criteria:
+	//
+	//    * If the bucket is configured with the Bucket owner preferred setting,
+	//    the bucket owner owns the objects. The uploading account will have object
+	//    access as specified by the bucket's policy.
+	//
+	//    * Otherwise, the uploading account retains ownership of the objects.
+	//
+	// For more information about Amazon S3 object ownership, see Controlling ownership
+	// of uploaded objects using S3 Object Ownership (https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html)
+	// in the Amazon Simple Storage Service User Guide.
+	BucketOwnerAccess *string `locationName:"bucketOwnerAccess" type:"string" enum:"BucketOwnerAccess"`
+
 	// Information that tells you if encryption for build artifacts is disabled.
 	EncryptionDisabled *bool `locationName:"encryptionDisabled" type:"boolean"`
 
@@ -5271,6 +5295,12 @@ func (s BuildArtifacts) GoString() string {
 // SetArtifactIdentifier sets the ArtifactIdentifier field's value.
 func (s *BuildArtifacts) SetArtifactIdentifier(v string) *BuildArtifacts {
 	s.ArtifactIdentifier = &v
+	return s
+}
+
+// SetBucketOwnerAccess sets the BucketOwnerAccess field's value.
+func (s *BuildArtifacts) SetBucketOwnerAccess(v string) *BuildArtifacts {
+	s.BucketOwnerAccess = &v
 	return s
 }
 
@@ -5348,8 +5378,8 @@ type BuildBatch struct {
 	// Batch session debugging is not supported for matrix batch builds.
 	DebugSessionEnabled *bool `locationName:"debugSessionEnabled" type:"boolean"`
 
-	// The Key Management Service customer master key (CMK) to be used for encrypting
-	// the batch build output artifacts.
+	// The AWS Key Management Service (AWS KMS) customer master key (CMK) to be
+	// used for encrypting the batch build output artifacts.
 	//
 	// You can use a cross-account KMS key to encrypt the build output artifacts
 	// if your service role has permission to that key.
@@ -5374,16 +5404,17 @@ type BuildBatch struct {
 
 	// The entity that started the batch build. Valid values include:
 	//
-	//    * If CodePipeline started the build, the pipeline's name (for example,
+	//    * If AWS CodePipeline started the build, the pipeline's name (for example,
 	//    codepipeline/my-demo-pipeline).
 	//
-	//    * If an Identity and Access Management user started the build, the user's
-	//    name.
+	//    * If an AWS Identity and Access Management (IAM) user started the build,
+	//    the user's name.
 	//
-	//    * If the Jenkins plugin for CodeBuild started the build, the string CodeBuild-Jenkins-Plugin.
+	//    * If the Jenkins plugin for AWS CodeBuild started the build, the string
+	//    CodeBuild-Jenkins-Plugin.
 	Initiator *string `locationName:"initiator" type:"string"`
 
-	// Information about logs for a build project. These can be logs in CloudWatch
+	// Information about logs for a build project. These can be logs in Amazon CloudWatch
 	// Logs, built in a specified S3 bucket, or both.
 	LogConfig *LogsConfig `locationName:"logConfig" type:"structure"`
 
@@ -5399,10 +5430,10 @@ type BuildBatch struct {
 
 	// The identifier of the resolved version of this batch build's source code.
 	//
-	//    * For CodeCommit, GitHub, GitHub Enterprise, and BitBucket, the commit
+	//    * For AWS CodeCommit, GitHub, GitHub Enterprise, and BitBucket, the commit
 	//    ID.
 	//
-	//    * For CodePipeline, the source revision provided by CodePipeline.
+	//    * For AWS CodePipeline, the source revision provided by AWS CodePipeline.
 	//
 	//    * For Amazon S3, this does not apply.
 	ResolvedSourceVersion *string `locationName:"resolvedSourceVersion" min:"1" type:"string"`
@@ -5414,7 +5445,7 @@ type BuildBatch struct {
 	// An array of ProjectSourceVersion objects. Each ProjectSourceVersion must
 	// be one of:
 	//
-	//    * For CodeCommit: the commit ID, branch, or Git tag to use.
+	//    * For AWS CodeCommit: the commit ID, branch, or Git tag to use.
 	//
 	//    * For GitHub: the commit ID, pull request ID, branch name, or tag name
 	//    that corresponds to the version of the source code you want to build.
@@ -5447,7 +5478,7 @@ type BuildBatch struct {
 	// The date and time that the batch build started.
 	StartTime *time.Time `locationName:"startTime" type:"timestamp"`
 
-	// Information about the VPC configuration that CodeBuild accesses.
+	// Information about the VPC configuration that AWS CodeBuild accesses.
 	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
@@ -6013,7 +6044,7 @@ func (s *BuildPhase) SetStartTime(v time.Time) *BuildPhase {
 	return s
 }
 
-// Contains information that defines how the CodeBuild build project reports
+// Contains information that defines how the AWS CodeBuild build project reports
 // the build status to the source provider.
 type BuildStatusConfig struct {
 	_ struct{} `type:"structure"`
@@ -6159,25 +6190,25 @@ func (s *BuildSummary) SetSecondaryArtifacts(v []*ResolvedArtifact) *BuildSummar
 	return s
 }
 
-// Information about CloudWatch Logs for a build project.
+// Information about Amazon CloudWatch Logs for a build project.
 type CloudWatchLogsConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The group name of the logs in CloudWatch Logs. For more information, see
-	// Working with Log Groups and Log Streams (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html).
+	// The group name of the logs in Amazon CloudWatch Logs. For more information,
+	// see Working with Log Groups and Log Streams (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html).
 	GroupName *string `locationName:"groupName" type:"string"`
 
-	// The current status of the logs in CloudWatch Logs for a build project. Valid
-	// values are:
+	// The current status of the logs in Amazon CloudWatch Logs for a build project.
+	// Valid values are:
 	//
-	//    * ENABLED: CloudWatch Logs are enabled for this build project.
+	//    * ENABLED: Amazon CloudWatch Logs are enabled for this build project.
 	//
-	//    * DISABLED: CloudWatch Logs are not enabled for this build project.
+	//    * DISABLED: Amazon CloudWatch Logs are not enabled for this build project.
 	//
 	// Status is a required field
 	Status *string `locationName:"status" type:"string" required:"true" enum:"LogsConfigStatusType"`
 
-	// The prefix of the stream name of the CloudWatch Logs. For more information,
+	// The prefix of the stream name of the Amazon CloudWatch Logs. For more information,
 	// see Working with Log Groups and Log Streams (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html).
 	StreamName *string `locationName:"streamName" type:"string"`
 }
@@ -6439,8 +6470,8 @@ type CreateProjectInput struct {
 	// A description that makes the build project easy to identify.
 	Description *string `locationName:"description" type:"string"`
 
-	// The Key Management Service customer master key (CMK) to be used for encrypting
-	// the build output artifacts.
+	// The AWS Key Management Service (AWS KMS) customer master key (CMK) to be
+	// used for encrypting the build output artifacts.
 	//
 	// You can use a cross-account KMS key to encrypt the build output artifacts
 	// if your service role has permission to that key.
@@ -6459,8 +6490,8 @@ type CreateProjectInput struct {
 	// mountPoint, and type of a file system created using Amazon Elastic File System.
 	FileSystemLocations []*ProjectFileSystemLocation `locationName:"fileSystemLocations" type:"list"`
 
-	// Information about logs for the build project. These can be logs in CloudWatch
-	// Logs, logs uploaded to a specified S3 bucket, or both.
+	// Information about logs for the build project. These can be logs in Amazon
+	// CloudWatch Logs, logs uploaded to a specified S3 bucket, or both.
 	LogsConfig *LogsConfig `locationName:"logsConfig" type:"structure"`
 
 	// The name of the build project.
@@ -6482,9 +6513,9 @@ type CreateProjectInput struct {
 	// An array of ProjectSource objects.
 	SecondarySources []*ProjectSource `locationName:"secondarySources" type:"list"`
 
-	// The ARN of the Identity and Access Management role that enables CodeBuild
-	// to interact with dependent Amazon Web Services services on behalf of the
-	// Amazon Web Services account.
+	// The ARN of the AWS Identity and Access Management (IAM) role that enables
+	// AWS CodeBuild to interact with dependent AWS services on behalf of the AWS
+	// account.
 	//
 	// ServiceRole is a required field
 	ServiceRole *string `locationName:"serviceRole" min:"1" type:"string" required:"true"`
@@ -6497,7 +6528,7 @@ type CreateProjectInput struct {
 	// A version of the build input to be built for this project. If not specified,
 	// the latest version is used. If specified, it must be one of:
 	//
-	//    * For CodeCommit: the commit ID, branch, or Git tag to use.
+	//    * For AWS CodeCommit: the commit ID, branch, or Git tag to use.
 	//
 	//    * For GitHub: the commit ID, pull request ID, branch name, or tag name
 	//    that corresponds to the version of the source code you want to build.
@@ -6518,21 +6549,21 @@ type CreateProjectInput struct {
 	// precedence over this sourceVersion (at the project level).
 	//
 	// For more information, see Source Version Sample with CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	SourceVersion *string `locationName:"sourceVersion" type:"string"`
 
 	// A list of tag key and value pairs associated with this build project.
 	//
-	// These tags are available for use by Amazon Web Services services that support
-	// CodeBuild build project tags.
+	// These tags are available for use by AWS services that support AWS CodeBuild
+	// build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before
-	// it times out any build that has not been marked as completed. The default
-	// is 60 minutes.
+	// How long, in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait
+	// before it times out any build that has not been marked as completed. The
+	// default is 60 minutes.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
 
-	// VpcConfig enables CodeBuild to access resources in an Amazon VPC.
+	// VpcConfig enables AWS CodeBuild to access resources in an Amazon VPC.
 	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
@@ -6826,8 +6857,8 @@ type CreateReportGroupInput struct {
 
 	// A list of tag key and value pairs associated with this report group.
 	//
-	// These tags are available for use by Amazon Web Services services that support
-	// CodeBuild report group tags.
+	// These tags are available for use by AWS services that support AWS CodeBuild
+	// report group tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The type of report group.
@@ -6952,7 +6983,7 @@ type CreateWebhookInput struct {
 	// array must pass. For a filter group to pass, each of its filters must pass.
 	FilterGroups [][]*WebhookFilter `locationName:"filterGroups" type:"list"`
 
-	// The name of the CodeBuild project.
+	// The name of the AWS CodeBuild project.
 	//
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"2" type:"string" required:"true"`
@@ -7012,7 +7043,7 @@ type CreateWebhookOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about a webhook that connects repository events to a build project
-	// in CodeBuild.
+	// in AWS CodeBuild.
 	Webhook *Webhook `locationName:"webhook" type:"structure"`
 }
 
@@ -7455,7 +7486,7 @@ func (s *DeleteSourceCredentialsOutput) SetArn(v string) *DeleteSourceCredential
 type DeleteWebhookInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the CodeBuild project.
+	// The name of the AWS CodeBuild project.
 	//
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"2" type:"string" required:"true"`
@@ -7762,7 +7793,7 @@ func (s *DescribeTestCasesOutput) SetTestCases(v []*TestCase) *DescribeTestCases
 	return s
 }
 
-// Information about a Docker image that is managed by CodeBuild.
+// Information about a Docker image that is managed by AWS CodeBuild.
 type EnvironmentImage struct {
 	_ struct{} `type:"structure"`
 
@@ -7805,7 +7836,7 @@ func (s *EnvironmentImage) SetVersions(v []*string) *EnvironmentImage {
 }
 
 // A set of Docker images that are related by programming language and are managed
-// by CodeBuild.
+// by AWS CodeBuild.
 type EnvironmentLanguage struct {
 	_ struct{} `type:"structure"`
 
@@ -7838,7 +7869,8 @@ func (s *EnvironmentLanguage) SetLanguage(v string) *EnvironmentLanguage {
 	return s
 }
 
-// A set of Docker images that are related by platform and are managed by CodeBuild.
+// A set of Docker images that are related by platform and are managed by AWS
+// CodeBuild.
 type EnvironmentPlatform struct {
 	_ struct{} `type:"structure"`
 
@@ -7882,28 +7914,27 @@ type EnvironmentVariable struct {
 
 	// The type of environment variable. Valid values include:
 	//
-	//    * PARAMETER_STORE: An environment variable stored in Systems Manager Parameter
-	//    Store. To learn how to specify a parameter store environment variable,
-	//    see env/parameter-store (https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec.env.parameter-store)
-	//    in the CodeBuild User Guide.
+	//    * PARAMETER_STORE: An environment variable stored in Amazon EC2 Systems
+	//    Manager Parameter Store. To learn how to specify a parameter store environment
+	//    variable, see env/parameter-store (https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec.env.parameter-store)
+	//    in the AWS CodeBuild User Guide.
 	//
 	//    * PLAINTEXT: An environment variable in plain text format. This is the
 	//    default value.
 	//
-	//    * SECRETS_MANAGER: An environment variable stored in Secrets Manager.
+	//    * SECRETS_MANAGER: An environment variable stored in AWS Secrets Manager.
 	//    To learn how to specify a secrets manager environment variable, see env/secrets-manager
 	//    (https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html#build-spec.env.secrets-manager)
-	//    in the CodeBuild User Guide.
+	//    in the AWS CodeBuild User Guide.
 	Type *string `locationName:"type" type:"string" enum:"EnvironmentVariableType"`
 
 	// The value of the environment variable.
 	//
 	// We strongly discourage the use of PLAINTEXT environment variables to store
-	// sensitive values, especially Amazon Web Services secret key IDs and secret
-	// access keys. PLAINTEXT environment variables can be displayed in plain text
-	// using the CodeBuild console and the AWS Command Line Interface (AWS CLI).
-	// For sensitive values, we recommend you use an environment variable of type
-	// PARAMETER_STORE or SECRETS_MANAGER.
+	// sensitive values, especially AWS secret key IDs and secret access keys. PLAINTEXT
+	// environment variables can be displayed in plain text using the AWS CodeBuild
+	// console and the AWS Command Line Interface (AWS CLI). For sensitive values,
+	// we recommend you use an environment variable of type PARAMETER_STORE or SECRETS_MANAGER.
 	//
 	// Value is a required field
 	Value *string `locationName:"value" type:"string" required:"true"`
@@ -7958,11 +7989,11 @@ func (s *EnvironmentVariable) SetValue(v string) *EnvironmentVariable {
 
 // Contains information about an exported environment variable.
 //
-// Exported environment variables are used in conjunction with CodePipeline
+// Exported environment variables are used in conjunction with AWS CodePipeline
 // to export environment variables from the current build stage to subsequent
 // stages in the pipeline. For more information, see Working with variables
 // (https://docs.aws.amazon.com/codepipeline/latest/userguide/actions-variables.html)
-// in the CodePipeline User Guide.
+// in the AWS CodePipeline User Guide.
 //
 // During a build, the value of a variable is available starting with the install
 // phase. It can be updated between the start of the install phase and the end
@@ -8206,12 +8237,12 @@ func (s *GetResourcePolicyOutput) SetPolicy(v string) *GetResourcePolicyOutput {
 	return s
 }
 
-// Information about the Git submodules configuration for an CodeBuild build
+// Information about the Git submodules configuration for an AWS CodeBuild build
 // project.
 type GitSubmodulesConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Set to true to fetch Git submodules for your CodeBuild build project.
+	// Set to true to fetch Git submodules for your AWS CodeBuild build project.
 	//
 	// FetchSubmodules is a required field
 	FetchSubmodules *bool `locationName:"fetchSubmodules" type:"boolean" required:"true"`
@@ -8251,7 +8282,7 @@ type ImportSourceCredentialsInput struct {
 
 	// The type of authentication used to connect to a GitHub, GitHub Enterprise,
 	// or Bitbucket repository. An OAUTH connection is not supported by the API
-	// and must be created using the CodeBuild console.
+	// and must be created using the AWS CodeBuild console.
 	//
 	// AuthType is a required field
 	AuthType *string `locationName:"authType" type:"string" required:"true" enum:"AuthType"`
@@ -8424,7 +8455,7 @@ func (s *InvalidInputException) RequestID() string {
 type InvalidateProjectCacheInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the CodeBuild build project that the cache is reset for.
+	// The name of the AWS CodeBuild build project that the cache is reset for.
 	//
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"1" type:"string" required:"true"`
@@ -8706,7 +8737,7 @@ type ListBuildsForProjectInput struct {
 	// more next tokens are returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The name of the CodeBuild project.
+	// The name of the AWS CodeBuild project.
 	//
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"1" type:"string" required:"true"`
@@ -8899,7 +8930,7 @@ type ListCuratedEnvironmentImagesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about supported platforms for Docker images that are managed
-	// by CodeBuild.
+	// by AWS CodeBuild.
 	Platforms []*EnvironmentPlatform `locationName:"platforms" type:"list"`
 }
 
@@ -9120,8 +9151,7 @@ type ListReportGroupsOutput struct {
 	// returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The list of ARNs for the report groups in the current Amazon Web Services
-	// account.
+	// The list of ARNs for the report groups in the current AWS account.
 	ReportGroups []*string `locationName:"reportGroups" min:"1" type:"list"`
 }
 
@@ -9360,8 +9390,7 @@ type ListReportsOutput struct {
 	// returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The list of returned ARNs for the reports in the current Amazon Web Services
-	// account.
+	// The list of returned ARNs for the reports in the current AWS account.
 	Reports []*string `locationName:"reports" min:"1" type:"list"`
 }
 
@@ -9404,8 +9433,8 @@ type ListSharedProjectsInput struct {
 	// returned.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
-	// The criterion to be used to list build projects shared with the current Amazon
-	// Web Services account or user. Valid values include:
+	// The criterion to be used to list build projects shared with the current AWS
+	// account or user. Valid values include:
 	//
 	//    * ARN: List based on the ARN.
 	//
@@ -9483,8 +9512,8 @@ type ListSharedProjectsOutput struct {
 	// returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The list of ARNs for the build projects shared with the current Amazon Web
-	// Services account or user.
+	// The list of ARNs for the build projects shared with the current AWS account
+	// or user.
 	Projects []*string `locationName:"projects" min:"1" type:"list"`
 }
 
@@ -9527,8 +9556,8 @@ type ListSharedReportGroupsInput struct {
 	// returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The criterion to be used to list report groups shared with the current Amazon
-	// Web Services account or user. Valid values include:
+	// The criterion to be used to list report groups shared with the current AWS
+	// account or user. Valid values include:
 	//
 	//    * ARN: List based on the ARN.
 	//
@@ -9603,8 +9632,8 @@ type ListSharedReportGroupsOutput struct {
 	// returned.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The list of ARNs for the report groups shared with the current Amazon Web
-	// Services account or user.
+	// The list of ARNs for the report groups shared with the current AWS account
+	// or user.
 	ReportGroups []*string `locationName:"reportGroups" min:"1" type:"list"`
 }
 
@@ -9669,13 +9698,13 @@ func (s *ListSourceCredentialsOutput) SetSourceCredentialsInfos(v []*SourceCrede
 	return s
 }
 
-// Information about logs for a build project. These can be logs in CloudWatch
+// Information about logs for a build project. These can be logs in Amazon CloudWatch
 // Logs, built in a specified S3 bucket, or both.
 type LogsConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Information about CloudWatch Logs for a build project. CloudWatch Logs are
-	// enabled by default.
+	// Information about Amazon CloudWatch Logs for a build project. Amazon CloudWatch
+	// Logs are enabled by default.
 	CloudWatchLogs *CloudWatchLogsConfig `locationName:"cloudWatchLogs" type:"structure"`
 
 	// Information about logs built to an S3 bucket for a build project. S3 logs
@@ -9725,21 +9754,21 @@ func (s *LogsConfig) SetS3Logs(v *S3LogsConfig) *LogsConfig {
 	return s
 }
 
-// Information about build logs in CloudWatch Logs.
+// Information about build logs in Amazon CloudWatch Logs.
 type LogsLocation struct {
 	_ struct{} `type:"structure"`
 
-	// Information about CloudWatch Logs for a build project.
+	// Information about Amazon CloudWatch Logs for a build project.
 	CloudWatchLogs *CloudWatchLogsConfig `locationName:"cloudWatchLogs" type:"structure"`
 
-	// The ARN of CloudWatch Logs for a build project. Its format is arn:${Partition}:logs:${Region}:${Account}:log-group:${LogGroupName}:log-stream:${LogStreamName}.
-	// For more information, see Resources Defined by CloudWatch Logs (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazoncloudwatchlogs.html#amazoncloudwatchlogs-resources-for-iam-policies).
+	// The ARN of Amazon CloudWatch Logs for a build project. Its format is arn:${Partition}:logs:${Region}:${Account}:log-group:${LogGroupName}:log-stream:${LogStreamName}.
+	// For more information, see Resources Defined by Amazon CloudWatch Logs (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazoncloudwatchlogs.html#amazoncloudwatchlogs-resources-for-iam-policies).
 	CloudWatchLogsArn *string `locationName:"cloudWatchLogsArn" type:"string"`
 
-	// The URL to an individual build log in CloudWatch Logs.
+	// The URL to an individual build log in Amazon CloudWatch Logs.
 	DeepLink *string `locationName:"deepLink" type:"string"`
 
-	// The name of the CloudWatch Logs group for the build logs.
+	// The name of the Amazon CloudWatch Logs group for the build logs.
 	GroupName *string `locationName:"groupName" type:"string"`
 
 	// The URL to a build log in an S3 bucket.
@@ -9752,7 +9781,7 @@ type LogsLocation struct {
 	// For more information, see Resources Defined by Amazon S3 (https://docs.aws.amazon.com/IAM/latest/UserGuide/list_amazons3.html#amazons3-resources-for-iam-policies).
 	S3LogsArn *string `locationName:"s3LogsArn" type:"string"`
 
-	// The name of the CloudWatch Logs stream for the build logs.
+	// The name of the Amazon CloudWatch Logs stream for the build logs.
 	StreamName *string `locationName:"streamName" type:"string"`
 }
 
@@ -9971,16 +10000,14 @@ type Project struct {
 	// A description that makes the build project easy to identify.
 	Description *string `locationName:"description" type:"string"`
 
-	// The Key Management Service customer master key (CMK) to be used for encrypting
-	// the build output artifacts.
+	// The AWS Key Management Service (AWS KMS) customer master key (CMK) to be
+	// used for encrypting the build output artifacts.
 	//
 	// You can use a cross-account KMS key to encrypt the build output artifacts
 	// if your service role has permission to that key.
 	//
 	// You can specify either the Amazon Resource Name (ARN) of the CMK or, if available,
-	// the CMK's alias (using the format alias/<alias-name>). If you don't specify
-	// a value, CodeBuild uses the managed CMK for Amazon Simple Storage Service
-	// (Amazon S3).
+	// the CMK's alias (using the format alias/<alias-name>).
 	EncryptionKey *string `locationName:"encryptionKey" min:"1" type:"string"`
 
 	// Information about the build environment for this build project.
@@ -9996,7 +10023,7 @@ type Project struct {
 	LastModified *time.Time `locationName:"lastModified" type:"timestamp"`
 
 	// Information about logs for the build project. A project can create logs in
-	// CloudWatch Logs, an S3 bucket, or both.
+	// Amazon CloudWatch Logs, an S3 bucket, or both.
 	LogsConfig *LogsConfig `locationName:"logsConfig" type:"structure"`
 
 	// The name of the build project.
@@ -10016,9 +10043,9 @@ type Project struct {
 	// An array of ProjectSource objects.
 	SecondarySources []*ProjectSource `locationName:"secondarySources" type:"list"`
 
-	// The ARN of the Identity and Access Management role that enables CodeBuild
-	// to interact with dependent Amazon Web Services services on behalf of the
-	// Amazon Web Services account.
+	// The ARN of the AWS Identity and Access Management (IAM) role that enables
+	// AWS CodeBuild to interact with dependent AWS services on behalf of the AWS
+	// account.
 	ServiceRole *string `locationName:"serviceRole" min:"1" type:"string"`
 
 	// Information about the build input source code for this build project.
@@ -10027,7 +10054,7 @@ type Project struct {
 	// A version of the build input to be built for this project. If not specified,
 	// the latest version is used. If specified, it must be one of:
 	//
-	//    * For CodeCommit: the commit ID, branch, or Git tag to use.
+	//    * For AWS CodeCommit: the commit ID, branch, or Git tag to use.
 	//
 	//    * For GitHub: the commit ID, pull request ID, branch name, or tag name
 	//    that corresponds to the version of the source code you want to build.
@@ -10048,25 +10075,25 @@ type Project struct {
 	// precedence over this sourceVersion (at the project level).
 	//
 	// For more information, see Source Version Sample with CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	SourceVersion *string `locationName:"sourceVersion" type:"string"`
 
 	// A list of tag key and value pairs associated with this build project.
 	//
-	// These tags are available for use by Amazon Web Services services that support
-	// CodeBuild build project tags.
+	// These tags are available for use by AWS services that support AWS CodeBuild
+	// build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// How long, in minutes, from 5 to 480 (8 hours), for CodeBuild to wait before
-	// timing out any related build that did not get marked as completed. The default
-	// is 60 minutes.
+	// How long, in minutes, from 5 to 480 (8 hours), for AWS CodeBuild to wait
+	// before timing out any related build that did not get marked as completed.
+	// The default is 60 minutes.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
 
-	// Information about the VPC configuration that CodeBuild accesses.
+	// Information about the VPC configuration that AWS CodeBuild accesses.
 	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 
 	// Information about a webhook that connects repository events to a build project
-	// in CodeBuild.
+	// in AWS CodeBuild.
 	Webhook *Webhook `locationName:"webhook" type:"structure"`
 }
 
@@ -10237,6 +10264,38 @@ type ProjectArtifacts struct {
 	// An identifier for this artifact definition.
 	ArtifactIdentifier *string `locationName:"artifactIdentifier" type:"string"`
 
+	// Specifies the access for objects that are uploaded to an Amazon S3 bucket
+	// that is owned by another account.
+	//
+	// By default, only the account that uploads the objects to the bucket has access
+	// to these objects. This property allows you to give the bucket owner access
+	// to these objects.
+	//
+	// NONE
+	//
+	// The bucket owner does not have access to the objects. This is the default.
+	//
+	// READ_ONLY
+	//
+	// The bucket owner has read only access to the objects. The uploading account
+	// retains ownership of the objects.
+	//
+	// FULL
+	//
+	// The bucket owner has full access to the objects. Object ownership is determined
+	// by the following criteria:
+	//
+	//    * If the bucket is configured with the Bucket owner preferred setting,
+	//    the bucket owner owns the objects. The uploading account will have object
+	//    access as specified by the bucket's policy.
+	//
+	//    * Otherwise, the uploading account retains ownership of the objects.
+	//
+	// For more information about Amazon S3 object ownership, see Controlling ownership
+	// of uploaded objects using S3 Object Ownership (https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html)
+	// in the Amazon Simple Storage Service User Guide.
+	BucketOwnerAccess *string `locationName:"bucketOwnerAccess" type:"string" enum:"BucketOwnerAccess"`
+
 	// Set to true if you do not want your output artifacts encrypted. This option
 	// is valid only if your artifacts type is Amazon S3. If this is set with another
 	// artifacts type, an invalidInputException is thrown.
@@ -10244,9 +10303,9 @@ type ProjectArtifacts struct {
 
 	// Information about the build output artifact location:
 	//
-	//    * If type is set to CODEPIPELINE, CodePipeline ignores this value if specified.
-	//    This is because CodePipeline manages its build output locations instead
-	//    of CodeBuild.
+	//    * If type is set to CODEPIPELINE, AWS CodePipeline ignores this value
+	//    if specified. This is because AWS CodePipeline manages its build output
+	//    locations instead of AWS CodeBuild.
 	//
 	//    * If type is set to NO_ARTIFACTS, this value is ignored if specified,
 	//    because no build output is produced.
@@ -10254,12 +10313,12 @@ type ProjectArtifacts struct {
 	//    * If type is set to S3, this is the name of the output bucket.
 	Location *string `locationName:"location" type:"string"`
 
-	// Along with path and namespaceType, the pattern that CodeBuild uses to name
-	// and store the output artifact:
+	// Along with path and namespaceType, the pattern that AWS CodeBuild uses to
+	// name and store the output artifact:
 	//
-	//    * If type is set to CODEPIPELINE, CodePipeline ignores this value if specified.
-	//    This is because CodePipeline manages its build output names instead of
-	//    CodeBuild.
+	//    * If type is set to CODEPIPELINE, AWS CodePipeline ignores this value
+	//    if specified. This is because AWS CodePipeline manages its build output
+	//    names instead of AWS CodeBuild.
 	//
 	//    * If type is set to NO_ARTIFACTS, this value is ignored if specified,
 	//    because no build output is produced.
@@ -10280,12 +10339,12 @@ type ProjectArtifacts struct {
 	//    name is set to "/", the output artifact is stored in MyArtifacts/<build-ID>.
 	Name *string `locationName:"name" type:"string"`
 
-	// Along with path and name, the pattern that CodeBuild uses to determine the
-	// name and location to store the output artifact:
+	// Along with path and name, the pattern that AWS CodeBuild uses to determine
+	// the name and location to store the output artifact:
 	//
-	//    * If type is set to CODEPIPELINE, CodePipeline ignores this value if specified.
-	//    This is because CodePipeline manages its build output names instead of
-	//    CodeBuild.
+	//    * If type is set to CODEPIPELINE, AWS CodePipeline ignores this value
+	//    if specified. This is because AWS CodePipeline manages its build output
+	//    names instead of AWS CodeBuild.
 	//
 	//    * If type is set to NO_ARTIFACTS, this value is ignored if specified,
 	//    because no build output is produced.
@@ -10306,25 +10365,25 @@ type ProjectArtifacts struct {
 
 	// The type of build output artifact to create:
 	//
-	//    * If type is set to CODEPIPELINE, CodePipeline ignores this value if specified.
-	//    This is because CodePipeline manages its build output artifacts instead
-	//    of CodeBuild.
+	//    * If type is set to CODEPIPELINE, AWS CodePipeline ignores this value
+	//    if specified. This is because AWS CodePipeline manages its build output
+	//    artifacts instead of AWS CodeBuild.
 	//
 	//    * If type is set to NO_ARTIFACTS, this value is ignored if specified,
 	//    because no build output is produced.
 	//
-	//    * If type is set to S3, valid values include: NONE: CodeBuild creates
+	//    * If type is set to S3, valid values include: NONE: AWS CodeBuild creates
 	//    in the output bucket a folder that contains the build output. This is
-	//    the default if packaging is not specified. ZIP: CodeBuild creates in the
-	//    output bucket a ZIP file that contains the build output.
+	//    the default if packaging is not specified. ZIP: AWS CodeBuild creates
+	//    in the output bucket a ZIP file that contains the build output.
 	Packaging *string `locationName:"packaging" type:"string" enum:"ArtifactPackaging"`
 
-	// Along with namespaceType and name, the pattern that CodeBuild uses to name
-	// and store the output artifact:
+	// Along with namespaceType and name, the pattern that AWS CodeBuild uses to
+	// name and store the output artifact:
 	//
-	//    * If type is set to CODEPIPELINE, CodePipeline ignores this value if specified.
-	//    This is because CodePipeline manages its build output names instead of
-	//    CodeBuild.
+	//    * If type is set to CODEPIPELINE, AWS CodePipeline ignores this value
+	//    if specified. This is because AWS CodePipeline manages its build output
+	//    names instead of AWS CodeBuild.
 	//
 	//    * If type is set to NO_ARTIFACTS, this value is ignored if specified,
 	//    because no build output is produced.
@@ -10339,8 +10398,8 @@ type ProjectArtifacts struct {
 
 	// The type of build output artifact. Valid values include:
 	//
-	//    * CODEPIPELINE: The build project has build output generated through CodePipeline.
-	//    The CODEPIPELINE type is not supported for secondaryArtifacts.
+	//    * CODEPIPELINE: The build project has build output generated through AWS
+	//    CodePipeline. The CODEPIPELINE type is not supported for secondaryArtifacts.
 	//
 	//    * NO_ARTIFACTS: The build project does not produce any build output.
 	//
@@ -10376,6 +10435,12 @@ func (s *ProjectArtifacts) Validate() error {
 // SetArtifactIdentifier sets the ArtifactIdentifier field's value.
 func (s *ProjectArtifacts) SetArtifactIdentifier(v string) *ProjectArtifacts {
 	s.ArtifactIdentifier = &v
+	return s
+}
+
+// SetBucketOwnerAccess sets the BucketOwnerAccess field's value.
+func (s *ProjectArtifacts) SetBucketOwnerAccess(v string) *ProjectArtifacts {
+	s.BucketOwnerAccess = &v
 	return s
 }
 
@@ -10647,7 +10712,7 @@ type ProjectEnvironment struct {
 	// The ARN of the Amazon S3 bucket, path prefix, and object key that contains
 	// the PEM-encoded certificate for the build project. For more information,
 	// see certificate (https://docs.aws.amazon.com/codebuild/latest/userguide/create-project-cli.html#cli.environment.certificate)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	Certificate *string `locationName:"certificate" type:"string"`
 
 	// Information about the compute resources the build project uses. Available
@@ -10676,7 +10741,7 @@ type ProjectEnvironment struct {
 	//    8 vCPUs on ARM-based processors for builds.
 	//
 	// For more information, see Build Environment Compute Types (https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	//
 	// ComputeType is a required field
 	ComputeType *string `locationName:"computeType" type:"string" required:"true" enum:"ComputeType"`
@@ -10696,24 +10761,21 @@ type ProjectEnvironment struct {
 	//    to specify an image with the digest "sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf,"
 	//    use <registry>/<repository>@sha256:cbbf2f9a99b47fc460d422812b6a5adff7dfee951d8fa2e4a98caa0382cfbdbf.
 	//
-	// For more information, see Docker images provided by CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)
-	// in the CodeBuild user guide.
-	//
 	// Image is a required field
 	Image *string `locationName:"image" min:"1" type:"string" required:"true"`
 
-	// The type of credentials CodeBuild uses to pull images in your build. There
-	// are two valid values:
+	// The type of credentials AWS CodeBuild uses to pull images in your build.
+	// There are two valid values:
 	//
-	//    * CODEBUILD specifies that CodeBuild uses its own credentials. This requires
-	//    that you modify your ECR repository policy to trust CodeBuild service
-	//    principal.
+	//    * CODEBUILD specifies that AWS CodeBuild uses its own credentials. This
+	//    requires that you modify your ECR repository policy to trust AWS CodeBuild's
+	//    service principal.
 	//
-	//    * SERVICE_ROLE specifies that CodeBuild uses your build project's service
-	//    role.
+	//    * SERVICE_ROLE specifies that AWS CodeBuild uses your build project's
+	//    service role.
 	//
 	// When you use a cross-account or private registry image, you must use SERVICE_ROLE
-	// credentials. When you use an CodeBuild curated image, you must use CODEBUILD
+	// credentials. When you use an AWS CodeBuild curated image, you must use CODEBUILD
 	// credentials.
 	ImagePullCredentialsType *string `locationName:"imagePullCredentialsType" type:"string" enum:"ImagePullCredentialsType"`
 
@@ -10762,13 +10824,6 @@ type ProjectEnvironment struct {
 	//    EU (Ireland), EU (London), EU (Frankfurt), Asia Pacific (Tokyo), Asia
 	//    Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney) , China
 	//    (Beijing), and China (Ningxia).
-	//
-	//    * The environment types WINDOWS_CONTAINER and WINDOWS_SERVER_2019_CONTAINER
-	//    are available only in regions US East (N. Virginia), US East (Ohio), US
-	//    West (Oregon), and EU (Ireland).
-	//
-	// For more information, see Build environment compute types (https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html)
-	// in the CodeBuild user guide.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"EnvironmentType"`
@@ -10884,9 +10939,9 @@ type ProjectFileSystemLocation struct {
 
 	// A string that specifies the location of the file system created by Amazon
 	// EFS. Its format is efs-dns-name:/directory-path. You can find the DNS name
-	// of file system when you view it in the Amazon EFS console. The directory
-	// path is a path to a directory in the file system that CodeBuild mounts. For
-	// example, if the DNS name of a file system is fs-abcd1234.efs.us-west-2.amazonaws.com,
+	// of file system when you view it in the AWS EFS console. The directory path
+	// is a path to a directory in the file system that CodeBuild mounts. For example,
+	// if the DNS name of a file system is fs-abcd1234.efs.us-west-2.amazonaws.com,
 	// and its mount directory is my-efs-mount-directory, then the location is fs-abcd1234.efs.us-west-2.amazonaws.com:/my-efs-mount-directory.
 	//
 	// The directory path in the format efs-dns-name:/directory-path is optional.
@@ -10894,7 +10949,7 @@ type ProjectFileSystemLocation struct {
 	// and CodeBuild mounts the entire file system.
 	Location *string `locationName:"location" type:"string"`
 
-	// The mount options for a file system created by Amazon EFS. The default mount
+	// The mount options for a file system created by AWS EFS. The default mount
 	// options used by CodeBuild are nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2.
 	// For more information, see Recommended NFS Mount Options (https://docs.aws.amazon.com/efs/latest/ug/mounting-fs-nfs-mount-settings.html).
 	MountOptions *string `locationName:"mountOptions" type:"string"`
@@ -10950,10 +11005,10 @@ func (s *ProjectFileSystemLocation) SetType(v string) *ProjectFileSystemLocation
 type ProjectSource struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the authorization settings for CodeBuild to access the
-	// source code to be built.
+	// Information about the authorization settings for AWS CodeBuild to access
+	// the source code to be built.
 	//
-	// This information is for the CodeBuild console's use only. Your code should
+	// This information is for the AWS CodeBuild console's use only. Your code should
 	// not get or set this information directly.
 	Auth *SourceAuth `locationName:"auth" type:"structure"`
 
@@ -10967,7 +11022,7 @@ type ProjectSource struct {
 	// If this value is set, it can be either an inline buildspec definition, the
 	// path to an alternate buildspec file relative to the value of the built-in
 	// CODEBUILD_SRC_DIR environment variable, or the path to an S3 bucket. The
-	// bucket must be in the same Region as the build project. Specify the buildspec
+	// bucket must be in the same AWS Region as the build project. Specify the buildspec
 	// file using its ARN (for example, arn:aws:s3:::my-codebuild-sample2/buildspec.yml).
 	// If this value is not provided or is set to an empty string, the source code
 	// must contain a buildspec file in its root directory. For more information,
@@ -10988,13 +11043,13 @@ type ProjectSource struct {
 	// include:
 	//
 	//    * For source code settings that are specified in the source action of
-	//    a pipeline in CodePipeline, location should not be specified. If it is
-	//    specified, CodePipeline ignores it. This is because CodePipeline uses
-	//    the settings in a pipeline's source action instead of this value.
+	//    a pipeline in AWS CodePipeline, location should not be specified. If it
+	//    is specified, AWS CodePipeline ignores it. This is because AWS CodePipeline
+	//    uses the settings in a pipeline's source action instead of this value.
 	//
-	//    * For source code in an CodeCommit repository, the HTTPS clone URL to
-	//    the repository that contains the source code and the buildspec file (for
-	//    example, https://git-codecommit.<region-ID>.amazonaws.com/v1/repos/<repo-name>).
+	//    * For source code in an AWS CodeCommit repository, the HTTPS clone URL
+	//    to the repository that contains the source code and the buildspec file
+	//    (for example, https://git-codecommit.<region-ID>.amazonaws.com/v1/repos/<repo-name>).
 	//
 	//    * For source code in an Amazon S3 input bucket, one of the following.
 	//    The path to the ZIP file that contains the source code (for example, <bucket-name>/<path>/<object-name>.zip).
@@ -11002,29 +11057,26 @@ type ProjectSource struct {
 	//
 	//    * For source code in a GitHub repository, the HTTPS clone URL to the repository
 	//    that contains the source and the buildspec file. You must connect your
-	//    account to your GitHub account. Use the CodeBuild console to start creating
-	//    a build project. When you use the console to connect (or reconnect) with
-	//    GitHub, on the GitHub Authorize application page, for Organization access,
-	//    choose Request access next to each repository you want to allow CodeBuild
-	//    to have access to, and then choose Authorize application. (After you have
-	//    connected to your GitHub account, you do not need to finish creating the
-	//    build project. You can leave the CodeBuild console.) To instruct CodeBuild
-	//    to use this connection, in the source object, set the auth object's type
-	//    value to OAUTH.
+	//    AWS account to your GitHub account. Use the AWS CodeBuild console to start
+	//    creating a build project. When you use the console to connect (or reconnect)
+	//    with GitHub, on the GitHub Authorize application page, for Organization
+	//    access, choose Request access next to each repository you want to allow
+	//    AWS CodeBuild to have access to, and then choose Authorize application.
+	//    (After you have connected to your GitHub account, you do not need to finish
+	//    creating the build project. You can leave the AWS CodeBuild console.)
+	//    To instruct AWS CodeBuild to use this connection, in the source object,
+	//    set the auth object's type value to OAUTH.
 	//
 	//    * For source code in a Bitbucket repository, the HTTPS clone URL to the
 	//    repository that contains the source and the buildspec file. You must connect
-	//    your Amazon Web Services account to your Bitbucket account. Use the CodeBuild
-	//    console to start creating a build project. When you use the console to
-	//    connect (or reconnect) with Bitbucket, on the Bitbucket Confirm access
-	//    to your account page, choose Grant access. (After you have connected to
-	//    your Bitbucket account, you do not need to finish creating the build project.
-	//    You can leave the CodeBuild console.) To instruct CodeBuild to use this
+	//    your AWS account to your Bitbucket account. Use the AWS CodeBuild console
+	//    to start creating a build project. When you use the console to connect
+	//    (or reconnect) with Bitbucket, on the Bitbucket Confirm access to your
+	//    account page, choose Grant access. (After you have connected to your Bitbucket
+	//    account, you do not need to finish creating the build project. You can
+	//    leave the AWS CodeBuild console.) To instruct AWS CodeBuild to use this
 	//    connection, in the source object, set the auth object's type value to
 	//    OAUTH.
-	//
-	// If you specify CODEPIPELINE for the Type property, don't specify this property.
-	// For all of the other types, you must specify Location.
 	Location *string `locationName:"location" type:"string"`
 
 	// Set to true to report the status of a build's start and finish to your source
@@ -11036,7 +11088,7 @@ type ProjectSource struct {
 	// with the source provider must have write access to the repo. If the user
 	// does not have write access, the build status cannot be updated. For more
 	// information, see Source provider access (https://docs.aws.amazon.com/codebuild/latest/userguide/access-tokens.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	//
 	// The status of a build triggered by a webhook is always reported to your source
 	// provider.
@@ -11051,10 +11103,10 @@ type ProjectSource struct {
 	//
 	//    * BITBUCKET: The source code is in a Bitbucket repository.
 	//
-	//    * CODECOMMIT: The source code is in an CodeCommit repository.
+	//    * CODECOMMIT: The source code is in an AWS CodeCommit repository.
 	//
 	//    * CODEPIPELINE: The source code settings are specified in the source action
-	//    of a pipeline in CodePipeline.
+	//    of a pipeline in AWS CodePipeline.
 	//
 	//    * GITHUB: The source code is in a GitHub or GitHub Enterprise Cloud repository.
 	//
@@ -11176,7 +11228,7 @@ type ProjectSourceVersion struct {
 	// The source version for the corresponding source identifier. If specified,
 	// must be one of:
 	//
-	//    * For CodeCommit: the commit ID, branch, or Git tag to use.
+	//    * For AWS CodeCommit: the commit ID, branch, or Git tag to use.
 	//
 	//    * For GitHub: the commit ID, pull request ID, branch name, or tag name
 	//    that corresponds to the version of the source code you want to build.
@@ -11194,7 +11246,7 @@ type ProjectSourceVersion struct {
 	//    input ZIP file to use.
 	//
 	// For more information, see Source Version Sample with CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	//
 	// SourceVersion is a required field
 	SourceVersion *string `locationName:"sourceVersion" type:"string" required:"true"`
@@ -11244,7 +11296,7 @@ type PutResourcePolicyInput struct {
 	// A JSON-formatted resource policy. For more information, see Sharing a Project
 	// (https://docs.aws.amazon.com/codebuild/latest/userguide/project-sharing.html#project-sharing-share)
 	// and Sharing a Report Group (https://docs.aws.amazon.com/codebuild/latest/userguide/report-groups-sharing.html#report-groups-sharing-share)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	//
 	// Policy is a required field
 	Policy *string `locationName:"policy" min:"1" type:"string" required:"true"`
@@ -11331,22 +11383,22 @@ func (s *PutResourcePolicyOutput) SetResourceArn(v string) *PutResourcePolicyOut
 //
 //    * images cannot be curated or an Amazon ECR image.
 //
-// For more information, see Private Registry with Secrets Manager Sample for
-// CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-private-registry.html).
+// For more information, see Private Registry with AWS Secrets Manager Sample
+// for AWS CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-private-registry.html).
 type RegistryCredential struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) or name of credentials created using Secrets
+	// The Amazon Resource Name (ARN) or name of credentials created using AWS Secrets
 	// Manager.
 	//
 	// The credential can use the name of the credentials only if they exist in
-	// your current Region.
+	// your current AWS Region.
 	//
 	// Credential is a required field
 	Credential *string `locationName:"credential" min:"1" type:"string" required:"true"`
 
 	// The service that created the credentials to access a private Docker registry.
-	// The valid value, SECRETS_MANAGER, is for Secrets Manager.
+	// The valid value, SECRETS_MANAGER, is for AWS Secrets Manager.
 	//
 	// CredentialProvider is a required field
 	CredentialProvider *string `locationName:"credentialProvider" type:"string" required:"true" enum:"CredentialProviderType"`
@@ -11647,8 +11699,8 @@ type ReportGroup struct {
 
 	// A list of tag key and value pairs associated with this report group.
 	//
-	// These tags are available for use by Amazon Web Services services that support
-	// CodeBuild report group tags.
+	// These tags are available for use by AWS services that support AWS CodeBuild
+	// report group tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
 	// The type of the ReportGroup. This can be one of the following values:
@@ -11840,8 +11892,8 @@ func (s *ResolvedArtifact) SetType(v string) *ResolvedArtifact {
 	return s
 }
 
-// The specified Amazon Web Services resource cannot be created, because an
-// Amazon Web Services resource with the same settings already exists.
+// The specified AWS resource cannot be created, because an AWS resource with
+// the same settings already exists.
 type ResourceAlreadyExistsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11897,7 +11949,7 @@ func (s *ResourceAlreadyExistsException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified Amazon Web Services resource cannot be found.
+// The specified AWS resource cannot be found.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11962,8 +12014,8 @@ type RetryBuildBatchInput struct {
 	// A unique, case sensitive identifier you provide to ensure the idempotency
 	// of the RetryBuildBatch request. The token is included in the RetryBuildBatch
 	// request and is valid for five minutes. If you repeat the RetryBuildBatch
-	// request with the same token, but change a parameter, CodeBuild returns a
-	// parameter mismatch error.
+	// request with the same token, but change a parameter, AWS CodeBuild returns
+	// a parameter mismatch error.
 	IdempotencyToken *string `locationName:"idempotencyToken" type:"string"`
 
 	// Specifies the type of retry to perform.
@@ -12043,8 +12095,8 @@ type RetryBuildInput struct {
 	// A unique, case sensitive identifier you provide to ensure the idempotency
 	// of the RetryBuild request. The token is included in the RetryBuild request
 	// and is valid for five minutes. If you repeat the RetryBuild request with
-	// the same token, but change a parameter, CodeBuild returns a parameter mismatch
-	// error.
+	// the same token, but change a parameter, AWS CodeBuild returns a parameter
+	// mismatch error.
 	IdempotencyToken *string `locationName:"idempotencyToken" type:"string"`
 }
 
@@ -12110,6 +12162,38 @@ func (s *RetryBuildOutput) SetBuild(v *Build) *RetryBuildOutput {
 type S3LogsConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the access for objects that are uploaded to an Amazon S3 bucket
+	// that is owned by another account.
+	//
+	// By default, only the account that uploads the objects to the bucket has access
+	// to these objects. This property allows you to give the bucket owner access
+	// to these objects.
+	//
+	// NONE
+	//
+	// The bucket owner does not have access to the objects. This is the default.
+	//
+	// READ_ONLY
+	//
+	// The bucket owner has read only access to the objects. The uploading account
+	// retains ownership of the objects.
+	//
+	// FULL
+	//
+	// The bucket owner has full access to the objects. Object ownership is determined
+	// by the following criteria:
+	//
+	//    * If the bucket is configured with the Bucket owner preferred setting,
+	//    the bucket owner owns the objects. The uploading account will have object
+	//    access as specified by the bucket's policy.
+	//
+	//    * Otherwise, the uploading account retains ownership of the objects.
+	//
+	// For more information about Amazon S3 object ownership, see Controlling ownership
+	// of uploaded objects using S3 Object Ownership (https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html)
+	// in the Amazon Simple Storage Service User Guide.
+	BucketOwnerAccess *string `locationName:"bucketOwnerAccess" type:"string" enum:"BucketOwnerAccess"`
+
 	// Set to true if you do not want your S3 build log output encrypted. By default
 	// S3 build logs are encrypted.
 	EncryptionDisabled *bool `locationName:"encryptionDisabled" type:"boolean"`
@@ -12152,6 +12236,12 @@ func (s *S3LogsConfig) Validate() error {
 	return nil
 }
 
+// SetBucketOwnerAccess sets the BucketOwnerAccess field's value.
+func (s *S3LogsConfig) SetBucketOwnerAccess(v string) *S3LogsConfig {
+	s.BucketOwnerAccess = &v
+	return s
+}
+
 // SetEncryptionDisabled sets the EncryptionDisabled field's value.
 func (s *S3LogsConfig) SetEncryptionDisabled(v bool) *S3LogsConfig {
 	s.EncryptionDisabled = &v
@@ -12177,9 +12267,9 @@ type S3ReportExportConfig struct {
 	// The name of the S3 bucket where the raw data of a report are exported.
 	Bucket *string `locationName:"bucket" min:"1" type:"string"`
 
-	// The Amazon Web Services account identifier of the owner of the Amazon S3
-	// bucket. This allows report data to be exported to an Amazon S3 bucket that
-	// is owned by an account other than the account running the build.
+	// The AWS account identifier of the owner of the Amazon S3 bucket. This allows
+	// report data to be exported to an Amazon S3 bucket that is owned by an account
+	// other than the account running the build.
 	BucketOwner *string `locationName:"bucketOwner" type:"string"`
 
 	// A boolean value that specifies if the results of a report are encrypted.
@@ -12190,10 +12280,11 @@ type S3ReportExportConfig struct {
 
 	// The type of build output artifact to create. Valid values include:
 	//
-	//    * NONE: CodeBuild creates the raw data in the output bucket. This is the
-	//    default if packaging is not specified.
+	//    * NONE: AWS CodeBuild creates the raw data in the output bucket. This
+	//    is the default if packaging is not specified.
 	//
-	//    * ZIP: CodeBuild creates a ZIP file with the raw data in the output bucket.
+	//    * ZIP: AWS CodeBuild creates a ZIP file with the raw data in the output
+	//    bucket.
 	Packaging *string `locationName:"packaging" type:"string" enum:"ReportPackagingType"`
 
 	// The path to the exported report's raw data results.
@@ -12262,10 +12353,10 @@ func (s *S3ReportExportConfig) SetPath(v string) *S3ReportExportConfig {
 	return s
 }
 
-// Information about the authorization settings for CodeBuild to access the
-// source code to be built.
+// Information about the authorization settings for AWS CodeBuild to access
+// the source code to be built.
 //
-// This information is for the CodeBuild console's use only. Your code should
+// This information is for the AWS CodeBuild console's use only. Your code should
 // not get or set this information directly.
 type SourceAuth struct {
 	_ struct{} `type:"structure"`
@@ -12383,7 +12474,7 @@ type StartBuildBatchInput struct {
 	// If this value is set, it can be either an inline buildspec definition, the
 	// path to an alternate buildspec file relative to the value of the built-in
 	// CODEBUILD_SRC_DIR environment variable, or the path to an S3 bucket. The
-	// bucket must be in the same Region as the build project. Specify the buildspec
+	// bucket must be in the same AWS Region as the build project. Specify the buildspec
 	// file using its ARN (for example, arn:aws:s3:::my-codebuild-sample2/buildspec.yml).
 	// If this value is not provided or is set to an empty string, the source code
 	// must contain a buildspec file in its root directory. For more information,
@@ -12406,9 +12497,9 @@ type StartBuildBatchInput struct {
 	// Batch session debugging is not supported for matrix batch builds.
 	DebugSessionEnabled *bool `locationName:"debugSessionEnabled" type:"boolean"`
 
-	// The Key Management Service customer master key (CMK) that overrides the one
-	// specified in the batch build project. The CMK key encrypts the build output
-	// artifacts.
+	// The AWS Key Management Service (AWS KMS) customer master key (CMK) that overrides
+	// the one specified in the batch build project. The CMK key encrypts the build
+	// output artifacts.
 	//
 	// You can use a cross-account KMS key to encrypt the build output artifacts
 	// if your service role has permission to that key.
@@ -12437,28 +12528,28 @@ type StartBuildBatchInput struct {
 	// A unique, case sensitive identifier you provide to ensure the idempotency
 	// of the StartBuildBatch request. The token is included in the StartBuildBatch
 	// request and is valid for five minutes. If you repeat the StartBuildBatch
-	// request with the same token, but change a parameter, CodeBuild returns a
-	// parameter mismatch error.
+	// request with the same token, but change a parameter, AWS CodeBuild returns
+	// a parameter mismatch error.
 	IdempotencyToken *string `locationName:"idempotencyToken" type:"string"`
 
 	// The name of an image for this batch build that overrides the one specified
 	// in the batch build project.
 	ImageOverride *string `locationName:"imageOverride" min:"1" type:"string"`
 
-	// The type of credentials CodeBuild uses to pull images in your batch build.
+	// The type of credentials AWS CodeBuild uses to pull images in your batch build.
 	// There are two valid values:
 	//
 	// CODEBUILD
 	//
-	// Specifies that CodeBuild uses its own credentials. This requires that you
-	// modify your ECR repository policy to trust CodeBuild's service principal.
+	// Specifies that AWS CodeBuild uses its own credentials. This requires that
+	// you modify your ECR repository policy to trust AWS CodeBuild's service principal.
 	//
 	// SERVICE_ROLE
 	//
-	// Specifies that CodeBuild uses your build project's service role.
+	// Specifies that AWS CodeBuild uses your build project's service role.
 	//
 	// When using a cross-account or private registry image, you must use SERVICE_ROLE
-	// credentials. When using an CodeBuild curated image, you must use CODEBUILD
+	// credentials. When using an AWS CodeBuild curated image, you must use CODEBUILD
 	// credentials.
 	ImagePullCredentialsTypeOverride *string `locationName:"imagePullCredentialsTypeOverride" type:"string" enum:"ImagePullCredentialsType"`
 
@@ -12530,7 +12621,7 @@ type StartBuildBatchInput struct {
 	// not specified, the latest version is used. If specified, the contents depends
 	// on the source provider:
 	//
-	// CodeCommit
+	// AWS CodeCommit
 	//
 	// The commit ID, branch, or Git tag to use.
 	//
@@ -12558,7 +12649,7 @@ type StartBuildBatchInput struct {
 	// (at the build level) takes precedence.
 	//
 	// For more information, see Source Version Sample with CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	SourceVersion *string `locationName:"sourceVersion" type:"string"`
 }
 
@@ -12905,7 +12996,7 @@ type StartBuildInput struct {
 	// If this value is set, it can be either an inline buildspec definition, the
 	// path to an alternate buildspec file relative to the value of the built-in
 	// CODEBUILD_SRC_DIR environment variable, or the path to an S3 bucket. The
-	// bucket must be in the same Region as the build project. Specify the buildspec
+	// bucket must be in the same AWS Region as the build project. Specify the buildspec
 	// file using its ARN (for example, arn:aws:s3:::my-codebuild-sample2/buildspec.yml).
 	// If this value is not provided or is set to an empty string, the source code
 	// must contain a buildspec file in its root directory. For more information,
@@ -12928,8 +13019,9 @@ type StartBuildInput struct {
 	// see Viewing a running build in Session Manager (https://docs.aws.amazon.com/codebuild/latest/userguide/session-manager.html).
 	DebugSessionEnabled *bool `locationName:"debugSessionEnabled" type:"boolean"`
 
-	// The Key Management Service customer master key (CMK) that overrides the one
-	// specified in the build project. The CMK key encrypts the build output artifacts.
+	// The AWS Key Management Service (AWS KMS) customer master key (CMK) that overrides
+	// the one specified in the build project. The CMK key encrypts the build output
+	// artifacts.
 	//
 	// You can use a cross-account KMS key to encrypt the build output artifacts
 	// if your service role has permission to that key.
@@ -12950,14 +13042,14 @@ type StartBuildInput struct {
 	// for this build only, any previous depth of history defined in the build project.
 	GitCloneDepthOverride *int64 `locationName:"gitCloneDepthOverride" type:"integer"`
 
-	// Information about the Git submodules configuration for this build of an CodeBuild
-	// build project.
+	// Information about the Git submodules configuration for this build of an AWS
+	// CodeBuild build project.
 	GitSubmodulesConfigOverride *GitSubmodulesConfig `locationName:"gitSubmodulesConfigOverride" type:"structure"`
 
 	// A unique, case sensitive identifier you provide to ensure the idempotency
 	// of the StartBuild request. The token is included in the StartBuild request
 	// and is valid for 5 minutes. If you repeat the StartBuild request with the
-	// same token, but change a parameter, CodeBuild returns a parameter mismatch
+	// same token, but change a parameter, AWS CodeBuild returns a parameter mismatch
 	// error.
 	IdempotencyToken *string `locationName:"idempotencyToken" type:"string"`
 
@@ -12965,20 +13057,20 @@ type StartBuildInput struct {
 	// build project.
 	ImageOverride *string `locationName:"imageOverride" min:"1" type:"string"`
 
-	// The type of credentials CodeBuild uses to pull images in your build. There
-	// are two valid values:
+	// The type of credentials AWS CodeBuild uses to pull images in your build.
+	// There are two valid values:
 	//
 	// CODEBUILD
 	//
-	// Specifies that CodeBuild uses its own credentials. This requires that you
-	// modify your ECR repository policy to trust CodeBuild's service principal.
+	// Specifies that AWS CodeBuild uses its own credentials. This requires that
+	// you modify your ECR repository policy to trust AWS CodeBuild's service principal.
 	//
 	// SERVICE_ROLE
 	//
-	// Specifies that CodeBuild uses your build project's service role.
+	// Specifies that AWS CodeBuild uses your build project's service role.
 	//
 	// When using a cross-account or private registry image, you must use SERVICE_ROLE
-	// credentials. When using an CodeBuild curated image, you must use CODEBUILD
+	// credentials. When using an AWS CodeBuild curated image, you must use CODEBUILD
 	// credentials.
 	ImagePullCredentialsTypeOverride *string `locationName:"imagePullCredentialsTypeOverride" type:"string" enum:"ImagePullCredentialsType"`
 
@@ -12995,7 +13087,7 @@ type StartBuildInput struct {
 	// Enable this flag to override privileged mode in the build project.
 	PrivilegedModeOverride *bool `locationName:"privilegedModeOverride" type:"boolean"`
 
-	// The name of the CodeBuild build project to start running a build.
+	// The name of the AWS CodeBuild build project to start running a build.
 	//
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"1" type:"string" required:"true"`
@@ -13014,7 +13106,7 @@ type StartBuildInput struct {
 	// with the source provider must have write access to the repo. If the user
 	// does not have write access, the build status cannot be updated. For more
 	// information, see Source provider access (https://docs.aws.amazon.com/codebuild/latest/userguide/access-tokens.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	//
 	// The status of a build triggered by a webhook is always reported to your source
 	// provider.
@@ -13051,7 +13143,7 @@ type StartBuildInput struct {
 	// the latest version is used. If specified, the contents depends on the source
 	// provider:
 	//
-	// CodeCommit
+	// AWS CodeCommit
 	//
 	// The commit ID, branch, or Git tag to use.
 	//
@@ -13079,7 +13171,7 @@ type StartBuildInput struct {
 	// (at the build level) takes precedence.
 	//
 	// For more information, see Source Version Sample with CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	SourceVersion *string `locationName:"sourceVersion" type:"string"`
 
 	// The number of build timeout minutes, from 5 to 480 (8 hours), that overrides,
@@ -13537,8 +13629,7 @@ func (s *StopBuildOutput) SetBuild(v *Build) *StopBuildOutput {
 
 // A tag, consisting of a key and a value.
 //
-// This tag is available for use by Amazon Web Services services that support
-// tags in CodeBuild.
+// This tag is available for use by AWS services that support tags in AWS CodeBuild.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -13803,8 +13894,8 @@ type UpdateProjectInput struct {
 	// A new or replacement description of the build project.
 	Description *string `locationName:"description" type:"string"`
 
-	// The Key Management Service customer master key (CMK) to be used for encrypting
-	// the build output artifacts.
+	// The AWS Key Management Service (AWS KMS) customer master key (CMK) to be
+	// used for encrypting the build output artifacts.
 	//
 	// You can use a cross-account KMS key to encrypt the build output artifacts
 	// if your service role has permission to that key.
@@ -13822,7 +13913,7 @@ type UpdateProjectInput struct {
 	FileSystemLocations []*ProjectFileSystemLocation `locationName:"fileSystemLocations" type:"list"`
 
 	// Information about logs for the build project. A project can create logs in
-	// CloudWatch Logs, logs in an S3 bucket, or both.
+	// Amazon CloudWatch Logs, logs in an S3 bucket, or both.
 	LogsConfig *LogsConfig `locationName:"logsConfig" type:"structure"`
 
 	// The name of the build project.
@@ -13846,9 +13937,9 @@ type UpdateProjectInput struct {
 	// An array of ProjectSource objects.
 	SecondarySources []*ProjectSource `locationName:"secondarySources" type:"list"`
 
-	// The replacement ARN of the Identity and Access Management role that enables
-	// CodeBuild to interact with dependent Amazon Web Services services on behalf
-	// of the Amazon Web Services account.
+	// The replacement ARN of the AWS Identity and Access Management (IAM) role
+	// that enables AWS CodeBuild to interact with dependent AWS services on behalf
+	// of the AWS account.
 	ServiceRole *string `locationName:"serviceRole" min:"1" type:"string"`
 
 	// Information to be changed about the build input source code for the build
@@ -13858,7 +13949,7 @@ type UpdateProjectInput struct {
 	// A version of the build input to be built for this project. If not specified,
 	// the latest version is used. If specified, it must be one of:
 	//
-	//    * For CodeCommit: the commit ID, branch, or Git tag to use.
+	//    * For AWS CodeCommit: the commit ID, branch, or Git tag to use.
 	//
 	//    * For GitHub: the commit ID, pull request ID, branch name, or tag name
 	//    that corresponds to the version of the source code you want to build.
@@ -13879,20 +13970,20 @@ type UpdateProjectInput struct {
 	// precedence over this sourceVersion (at the project level).
 	//
 	// For more information, see Source Version Sample with CodeBuild (https://docs.aws.amazon.com/codebuild/latest/userguide/sample-source-version.html)
-	// in the CodeBuild User Guide.
+	// in the AWS CodeBuild User Guide.
 	SourceVersion *string `locationName:"sourceVersion" type:"string"`
 
 	// An updated list of tag key and value pairs associated with this build project.
 	//
-	// These tags are available for use by Amazon Web Services services that support
-	// CodeBuild build project tags.
+	// These tags are available for use by AWS services that support AWS CodeBuild
+	// build project tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 
-	// The replacement value in minutes, from 5 to 480 (8 hours), for CodeBuild
+	// The replacement value in minutes, from 5 to 480 (8 hours), for AWS CodeBuild
 	// to wait before timing out any related build that did not get marked as completed.
 	TimeoutInMinutes *int64 `locationName:"timeoutInMinutes" min:"5" type:"integer"`
 
-	// VpcConfig enables CodeBuild to access resources in an Amazon VPC.
+	// VpcConfig enables AWS CodeBuild to access resources in an Amazon VPC.
 	VpcConfig *VpcConfig `locationName:"vpcConfig" type:"structure"`
 }
 
@@ -14175,8 +14266,8 @@ type UpdateReportGroupInput struct {
 
 	// An updated list of tag key and value pairs associated with this report group.
 	//
-	// These tags are available for use by Amazon Web Services services that support
-	// CodeBuild report group tags.
+	// These tags are available for use by AWS services that support AWS CodeBuild
+	// report group tags.
 	Tags []*Tag `locationName:"tags" type:"list"`
 }
 
@@ -14281,7 +14372,7 @@ type UpdateWebhookInput struct {
 	// WebhookFilter.
 	FilterGroups [][]*WebhookFilter `locationName:"filterGroups" type:"list"`
 
-	// The name of the CodeBuild project.
+	// The name of the AWS CodeBuild project.
 	//
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"2" type:"string" required:"true"`
@@ -14352,7 +14443,7 @@ type UpdateWebhookOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about a repository's webhook that is associated with a project
-	// in CodeBuild.
+	// in AWS CodeBuild.
 	Webhook *Webhook `locationName:"webhook" type:"structure"`
 }
 
@@ -14372,7 +14463,7 @@ func (s *UpdateWebhookOutput) SetWebhook(v *Webhook) *UpdateWebhookOutput {
 	return s
 }
 
-// Information about the VPC configuration that CodeBuild accesses.
+// Information about the VPC configuration that AWS CodeBuild accesses.
 type VpcConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -14428,7 +14519,7 @@ func (s *VpcConfig) SetVpcId(v string) *VpcConfig {
 }
 
 // Information about a webhook that connects repository events to a build project
-// in CodeBuild.
+// in AWS CodeBuild.
 type Webhook struct {
 	_ struct{} `type:"structure"`
 
@@ -14455,7 +14546,7 @@ type Webhook struct {
 	// modified.
 	LastModifiedSecret *time.Time `locationName:"lastModifiedSecret" type:"timestamp"`
 
-	// The CodeBuild endpoint where webhook events are sent.
+	// The AWS CodeBuild endpoint where webhook events are sent.
 	PayloadUrl *string `locationName:"payloadUrl" min:"1" type:"string"`
 
 	// The secret token of the associated repository.
@@ -14694,6 +14785,56 @@ func AuthType_Values() []string {
 		AuthTypeOauth,
 		AuthTypeBasicAuth,
 		AuthTypePersonalAccessToken,
+	}
+}
+
+// Specifies the access for objects that are uploaded to an Amazon S3 bucket
+// that is owned by another account.
+//
+// By default, only the account that uploads the objects to the bucket has access
+// to these objects. This property allows you to give the bucket owner access
+// to these objects.
+//
+// NONE
+//
+// The bucket owner does not have access to the objects. This is the default.
+//
+// READ_ONLY
+//
+// The bucket owner has read only access to the objects. The uploading account
+// retains ownership of the objects.
+//
+// FULL
+//
+// The bucket owner has full access to the objects. Object ownership is determined
+// by the following criteria:
+//
+//    * If the bucket is configured with the Bucket owner preferred setting,
+//    the bucket owner owns the objects. The uploading account will have object
+//    access as specified by the bucket's policy.
+//
+//    * Otherwise, the uploading account retains ownership of the objects.
+//
+// For more information about Amazon S3 object ownership, see Controlling ownership
+// of uploaded objects using S3 Object Ownership (https://docs.aws.amazon.com/AmazonS3/latest/userguide/about-object-ownership.html)
+// in the Amazon Simple Storage Service User Guide.
+const (
+	// BucketOwnerAccessNone is a BucketOwnerAccess enum value
+	BucketOwnerAccessNone = "NONE"
+
+	// BucketOwnerAccessReadOnly is a BucketOwnerAccess enum value
+	BucketOwnerAccessReadOnly = "READ_ONLY"
+
+	// BucketOwnerAccessFull is a BucketOwnerAccess enum value
+	BucketOwnerAccessFull = "FULL"
+)
+
+// BucketOwnerAccess_Values returns all elements of the BucketOwnerAccess enum
+func BucketOwnerAccess_Values() []string {
+	return []string{
+		BucketOwnerAccessNone,
+		BucketOwnerAccessReadOnly,
+		BucketOwnerAccessFull,
 	}
 }
 

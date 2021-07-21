@@ -410,9 +410,8 @@ func (c *Personalize) CreateDatasetExportJobRequest(input *CreateDatasetExportJo
 //
 // Creates a job that exports data from your dataset to an Amazon S3 bucket.
 // To allow Amazon Personalize to export the training data, you must specify
-// an service-linked AWS Identity and Access Management (IAM) role that gives
-// Amazon Personalize PutObject permissions for your Amazon S3 bucket. For information,
-// see Exporting a dataset (https://docs.aws.amazon.com/personalize/latest/dg/export-data.html)
+// an service-linked IAM role that gives Amazon Personalize PutObject permissions
+// for your Amazon S3 bucket. For information, see Exporting a dataset (https://docs.aws.amazon.com/personalize/latest/dg/export-data.html)
 // in the Amazon Personalize developer guide.
 //
 // Status
@@ -542,8 +541,8 @@ func (c *Personalize) CreateDatasetGroupRequest(input *CreateDatasetGroupInput) 
 // You must wait until the status of the dataset group is ACTIVE before adding
 // a dataset to the group.
 //
-// You can specify an AWS Key Management Service (KMS) key to encrypt the datasets
-// in the group. If you specify a KMS key, you must also include an AWS Identity
+// You can specify an Key Management Service (KMS) key to encrypt the datasets
+// in the group. If you specify a KMS key, you must also include an Identity
 // and Access Management (IAM) role that has permission to access the key.
 //
 // APIs that require a dataset group ARN in the request
@@ -647,11 +646,11 @@ func (c *Personalize) CreateDatasetImportJobRequest(input *CreateDatasetImportJo
 //
 // Creates a job that imports training data from your data source (an Amazon
 // S3 bucket) to an Amazon Personalize dataset. To allow Amazon Personalize
-// to import the training data, you must specify an AWS Identity and Access
-// Management (IAM) service role that has permission to read from the data source,
-// as Amazon Personalize makes a copy of your data and processes it in an internal
-// AWS system. For information on granting access to your Amazon S3 bucket,
-// see Giving Amazon Personalize Access to Amazon S3 Resources (https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html).
+// to import the training data, you must specify an IAM service role that has
+// permission to read from the data source, as Amazon Personalize makes a copy
+// of your data and processes it internally. For information on granting access
+// to your Amazon S3 bucket, see Giving Amazon Personalize Access to Amazon
+// S3 Resources (https://docs.aws.amazon.com/personalize/latest/dg/granting-personalize-s3-access.html).
 //
 // The dataset import job replaces any existing data in the dataset that you
 // imported in bulk.
@@ -6194,9 +6193,7 @@ type CreateCampaignInput struct {
 
 	// Specifies the requested minimum provisioned transactions (recommendations)
 	// per second that Amazon Personalize will support.
-	//
-	// MinProvisionedTPS is a required field
-	MinProvisionedTPS *int64 `locationName:"minProvisionedTPS" min:"1" type:"integer" required:"true"`
+	MinProvisionedTPS *int64 `locationName:"minProvisionedTPS" min:"1" type:"integer"`
 
 	// A name for the new campaign. The campaign name must be unique within your
 	// account.
@@ -6223,9 +6220,6 @@ func (s CreateCampaignInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateCampaignInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateCampaignInput"}
-	if s.MinProvisionedTPS == nil {
-		invalidParams.Add(request.NewErrParamRequired("MinProvisionedTPS"))
-	}
 	if s.MinProvisionedTPS != nil && *s.MinProvisionedTPS < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MinProvisionedTPS", 1))
 	}
@@ -6316,8 +6310,8 @@ type CreateDatasetExportJobInput struct {
 	// JobOutput is a required field
 	JobOutput *DatasetExportJobOutput `locationName:"jobOutput" type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// service role that has permissions to add data to your output Amazon S3 bucket.
+	// The Amazon Resource Name (ARN) of the IAM service role that has permissions
+	// to add data to your output Amazon S3 bucket.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -6419,7 +6413,8 @@ func (s *CreateDatasetExportJobOutput) SetDatasetExportJobArn(v string) *CreateD
 type CreateDatasetGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of a KMS key used to encrypt the datasets.
+	// The Amazon Resource Name (ARN) of a Key Management Service (KMS) key used
+	// to encrypt the datasets.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
 
 	// The name for the new dataset group.
@@ -6427,8 +6422,9 @@ type CreateDatasetGroupInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
 
-	// The ARN of the IAM role that has permissions to access the KMS key. Supplying
-	// an IAM role is only valid when also specifying a KMS key.
+	// The ARN of the Identity and Access Management (IAM) role that has permissions
+	// to access the Key Management Service (KMS) key. Supplying an IAM role is
+	// only valid when also specifying a KMS key.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 }
 
@@ -7383,8 +7379,8 @@ type DatasetExportJob struct {
 	// last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
-	// The Amazon Resource Name (ARN) of the AWS Identity and Access Management
-	// service role that has permissions to add data to your output Amazon S3 bucket.
+	// The Amazon Resource Name (ARN) of the IAM service role that has permissions
+	// to add data to your output Amazon S3 bucket.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The status of the dataset export job.
@@ -7590,7 +7586,7 @@ func (s *DatasetExportJobSummary) SetStatus(v string) *DatasetExportJobSummary {
 // The dataset group is used to create and train a solution by calling CreateSolution.
 // A dataset group can contain only one of each type of dataset.
 //
-// You can specify an AWS Key Management Service (KMS) key to encrypt the datasets
+// You can specify an Key Management Service (KMS) key to encrypt the datasets
 // in the group.
 type DatasetGroup struct {
 	_ struct{} `type:"structure"`
@@ -7604,7 +7600,8 @@ type DatasetGroup struct {
 	// If creating a dataset group fails, provides the reason why.
 	FailureReason *string `locationName:"failureReason" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the KMS key used to encrypt the datasets.
+	// The Amazon Resource Name (ARN) of the Key Management Service (KMS) key used
+	// to encrypt the datasets.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
 
 	// The last update date and time (in Unix time) of the dataset group.
@@ -7791,8 +7788,8 @@ type DatasetImportJob struct {
 	// The date and time (in Unix time) the dataset was last updated.
 	LastUpdatedDateTime *time.Time `locationName:"lastUpdatedDateTime" type:"timestamp"`
 
-	// The ARN of the AWS Identity and Access Management (IAM) role that has permissions
-	// to read from the Amazon S3 data source.
+	// The ARN of the IAM role that has permissions to read from the Amazon S3 data
+	// source.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 
 	// The status of the dataset import job.
@@ -9574,7 +9571,7 @@ func (s *DescribeSolutionVersionOutput) SetSolutionVersion(v *SolutionVersion) *
 type EventTracker struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon AWS account that owns the event tracker.
+	// The Amazon Web Services account that owns the event tracker.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The date and time (in Unix format) that the event tracker was created.
@@ -11901,9 +11898,9 @@ func (s *ResourceNotFoundException) RequestID() string {
 type S3DataConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Key Management Service (KMS)
-	// key that Amazon Personalize uses to encrypt or decrypt the input and output
-	// files of a batch inference job.
+	// The Amazon Resource Name (ARN) of the Key Management Service (KMS) key that
+	// Amazon Personalize uses to encrypt or decrypt the input and output files
+	// of a batch inference job.
 	KmsKeyArn *string `locationName:"kmsKeyArn" type:"string"`
 
 	// The file path of the Amazon S3 bucket.

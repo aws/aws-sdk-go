@@ -25097,6 +25097,10 @@ type DBSnapshot struct {
 	// Provides the option group name for the DB snapshot.
 	OptionGroupName *string `type:"string"`
 
+	// Specifies the time of the CreateDBSnapshot operation in Coordinated Universal
+	// Time (UTC). Doesn't change when the snapshot is copied.
+	OriginalSnapshotCreateTime *time.Time `type:"timestamp"`
+
 	// The percentage of the estimated data that has been transferred.
 	PercentProgress *int64 `type:"integer"`
 
@@ -25109,13 +25113,15 @@ type DBSnapshot struct {
 	ProcessorFeatures []*ProcessorFeature `locationNameList:"ProcessorFeature" type:"list"`
 
 	// Specifies when the snapshot was taken in Coordinated Universal Time (UTC).
+	// Changes for the copy when the snapshot is copied.
 	SnapshotCreateTime *time.Time `type:"timestamp"`
 
 	// Provides the type of the DB snapshot.
 	SnapshotType *string `type:"string"`
 
 	// The DB snapshot Amazon Resource Name (ARN) that the DB snapshot was copied
-	// from. It only has value in case of cross-customer or cross-region copy.
+	// from. It only has a value in the case of a cross-account or cross-Region
+	// copy.
 	SourceDBSnapshotIdentifier *string `type:"string"`
 
 	// The Amazon Web Services Region that the DB snapshot was created in or copied
@@ -25247,6 +25253,12 @@ func (s *DBSnapshot) SetMasterUsername(v string) *DBSnapshot {
 // SetOptionGroupName sets the OptionGroupName field's value.
 func (s *DBSnapshot) SetOptionGroupName(v string) *DBSnapshot {
 	s.OptionGroupName = &v
+	return s
+}
+
+// SetOriginalSnapshotCreateTime sets the OriginalSnapshotCreateTime field's value.
+func (s *DBSnapshot) SetOriginalSnapshotCreateTime(v time.Time) *DBSnapshot {
+	s.OriginalSnapshotCreateTime = &v
 	return s
 }
 
@@ -27990,9 +28002,19 @@ type DescribeDBClustersInput struct {
 	//
 	// Supported filters:
 	//
+	//    * clone-group-id - Accepts clone group identifiers. The results list will
+	//    only include information about the DB clusters associated with these clone
+	//    groups.
+	//
 	//    * db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon
 	//    Resource Names (ARNs). The results list will only include information
 	//    about the DB clusters identified by these ARNs.
+	//
+	//    * domain - Accepts Active Directory directory IDs. The results list will
+	//    only include information about the DB clusters associated with these domains.
+	//
+	//    * engine - Accepts engine names. The results list will only include information
+	//    about the DB clusters for these engines.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// Optional Boolean parameter that specifies whether the output includes information
@@ -30834,13 +30856,7 @@ func (s *DescribeExportTasksOutput) SetMarker(v string) *DescribeExportTasksOutp
 type DescribeGlobalClustersInput struct {
 	_ struct{} `type:"structure"`
 
-	// A filter that specifies one or more global DB clusters to describe.
-	//
-	// Supported filters:
-	//
-	//    * db-cluster-id - Accepts DB cluster identifiers and DB cluster Amazon
-	//    Resource Names (ARNs). The results list will only include information
-	//    about the DB clusters identified by these ARNs.
+	// This parameter isn't currently supported.
 	Filters []*Filter `locationNameList:"Filter" type:"list"`
 
 	// The user-supplied DB cluster identifier. If this parameter is specified,
