@@ -147,7 +147,7 @@ func (c *QLDB) CreateLedgerRequest(input *CreateLedgerInput) (req *request.Reque
 
 // CreateLedger API operation for Amazon QLDB.
 //
-// Creates a new ledger in your AWS account in the current Region.
+// Creates a new ledger in your account in the current Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -508,7 +508,8 @@ func (c *QLDB) DescribeLedgerRequest(input *DescribeLedgerInput) (req *request.R
 
 // DescribeLedger API operation for Amazon QLDB.
 //
-// Returns information about a ledger, including its state and when it was created.
+// Returns information about a ledger, including its state, permissions mode,
+// encryption at rest settings, and when it was created.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1111,7 +1112,7 @@ func (c *QLDB) ListJournalS3ExportsRequest(input *ListJournalS3ExportsInput) (re
 // ListJournalS3Exports API operation for Amazon QLDB.
 //
 // Returns an array of journal export job descriptions for all ledgers that
-// are associated with the current AWS account and Region.
+// are associated with the current account and Region.
 //
 // This action returns a maximum of MaxResults items, and is paginated so that
 // you can retrieve all the items by calling ListJournalS3Exports multiple times.
@@ -1391,7 +1392,7 @@ func (c *QLDB) ListLedgersRequest(input *ListLedgersInput) (req *request.Request
 // ListLedgers API operation for Amazon QLDB.
 //
 // Returns an array of ledger summaries that are associated with the current
-// AWS account and Region.
+// account and Region.
 //
 // This action returns a maximum of 100 items and is paginated so that you can
 // retrieve all the items by calling ListLedgers multiple times.
@@ -2077,8 +2078,44 @@ type CreateLedgerInput struct {
 	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
+	// The key in Key Management Service (KMS) to use for encryption of data at
+	// rest in the ledger. For more information, see Encryption at rest (https://docs.aws.amazon.com/qldb/latest/developerguide/encryption-at-rest.html)
+	// in the Amazon QLDB Developer Guide.
+	//
+	// Use one of the following options to specify this parameter:
+	//
+	//    * AWS_OWNED_KMS_KEY: Use an KMS key that is owned and managed by Amazon
+	//    Web Services on your behalf.
+	//
+	//    * Undefined: By default, use an Amazon Web Services owned KMS key.
+	//
+	//    * A valid symmetric customer managed KMS key: Use the specified KMS key
+	//    in your account that you create, own, and manage. Amazon QLDB does not
+	//    support asymmetric keys. For more information, see Using symmetric and
+	//    asymmetric keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)
+	//    in the Key Management Service Developer Guide.
+	//
+	// To specify a customer managed KMS key, you can use its key ID, Amazon Resource
+	// Name (ARN), alias name, or alias ARN. When using an alias name, prefix it
+	// with "alias/". To specify a key in a different account, you must use the
+	// key ARN or alias ARN.
+	//
+	// For example:
+	//
+	//    * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Alias name: alias/ExampleAlias
+	//
+	//    * Alias ARN: arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias
+	//
+	// For more information, see Key identifiers (KeyId) (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id)
+	// in the Key Management Service Developer Guide.
+	KmsKey *string `type:"string"`
+
 	// The name of the ledger that you want to create. The name must be unique among
-	// all of your ledgers in the current AWS Region.
+	// all of the ledgers in your account in the current Region.
 	//
 	// Naming constraints for ledger names are defined in Quotas in Amazon QLDB
 	// (https://docs.aws.amazon.com/qldb/latest/developerguide/limits.html#limits.naming)
@@ -2152,6 +2189,12 @@ func (s *CreateLedgerInput) SetDeletionProtection(v bool) *CreateLedgerInput {
 	return s
 }
 
+// SetKmsKey sets the KmsKey field's value.
+func (s *CreateLedgerInput) SetKmsKey(v string) *CreateLedgerInput {
+	s.KmsKey = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateLedgerInput) SetName(v string) *CreateLedgerInput {
 	s.Name = &v
@@ -2189,6 +2232,11 @@ type CreateLedgerOutput struct {
 	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
+	// The ARN of the customer managed KMS key that the ledger uses for encryption
+	// at rest. If this parameter is undefined, the ledger uses an Amazon Web Services
+	// owned KMS key for encryption.
+	KmsKeyArn *string `min:"20" type:"string"`
+
 	// The name of the ledger.
 	Name *string `min:"1" type:"string"`
 
@@ -2224,6 +2272,12 @@ func (s *CreateLedgerOutput) SetCreationDateTime(v time.Time) *CreateLedgerOutpu
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *CreateLedgerOutput) SetDeletionProtection(v bool) *CreateLedgerOutput {
 	s.DeletionProtection = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *CreateLedgerOutput) SetKmsKeyArn(v string) *CreateLedgerOutput {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -2528,6 +2582,11 @@ type DescribeLedgerOutput struct {
 	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
+	// Information about the encryption of data at rest in the ledger. This includes
+	// the current status, the KMS key, and when the key became inaccessible (in
+	// the case of an error).
+	EncryptionDescription *LedgerEncryptionDescription `type:"structure"`
+
 	// The name of the ledger.
 	Name *string `min:"1" type:"string"`
 
@@ -2563,6 +2622,12 @@ func (s *DescribeLedgerOutput) SetCreationDateTime(v time.Time) *DescribeLedgerO
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *DescribeLedgerOutput) SetDeletionProtection(v bool) *DescribeLedgerOutput {
 	s.DeletionProtection = &v
+	return s
+}
+
+// SetEncryptionDescription sets the EncryptionDescription field's value.
+func (s *DescribeLedgerOutput) SetEncryptionDescription(v *LedgerEncryptionDescription) *DescribeLedgerOutput {
+	s.EncryptionDescription = v
 	return s
 }
 
@@ -2621,8 +2686,8 @@ type ExportJournalToS3Input struct {
 	//
 	//    * Write objects into your Amazon Simple Storage Service (Amazon S3) bucket.
 	//
-	//    * (Optional) Use your customer master key (CMK) in AWS Key Management
-	//    Service (AWS KMS) for server-side encryption of your exported data.
+	//    * (Optional) Use your customer master key (CMK) in Key Management Service
+	//    (KMS) for server-side encryption of your exported data.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -3148,7 +3213,7 @@ type JournalKinesisStreamDescription struct {
 	ErrorCause *string `type:"string" enum:"ErrorCause"`
 
 	// The exclusive date and time that specifies when the stream ends. If this
-	// parameter is blank, the stream runs indefinitely until you cancel it.
+	// parameter is undefined, the stream runs indefinitely until you cancel it.
 	ExclusiveEndTime *time.Time `type:"timestamp"`
 
 	// The inclusive start date and time from which to start streaming journal data.
@@ -3303,8 +3368,8 @@ type JournalS3ExportDescription struct {
 	//
 	//    * Write objects into your Amazon Simple Storage Service (Amazon S3) bucket.
 	//
-	//    * (Optional) Use your customer master key (CMK) in AWS Key Management
-	//    Service (AWS KMS) for server-side encryption of your exported data.
+	//    * (Optional) Use your customer master key (CMK) in Key Management Service
+	//    (KMS) for server-side encryption of your exported data.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
@@ -3435,6 +3500,81 @@ func (s *KinesisConfiguration) SetAggregationEnabled(v bool) *KinesisConfigurati
 // SetStreamArn sets the StreamArn field's value.
 func (s *KinesisConfiguration) SetStreamArn(v string) *KinesisConfiguration {
 	s.StreamArn = &v
+	return s
+}
+
+// Information about the encryption of data at rest in an Amazon QLDB ledger.
+// This includes the current status, the key in Key Management Service (KMS),
+// and when the key became inaccessible (in the case of an error).
+//
+// For more information, see Encryption at rest (https://docs.aws.amazon.com/qldb/latest/developerguide/encryption-at-rest.html)
+// in the Amazon QLDB Developer Guide.
+type LedgerEncryptionDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The current state of encryption at rest for the ledger. This can be one of
+	// the following values:
+	//
+	//    * ENABLED: Encryption is fully enabled using the specified key.
+	//
+	//    * UPDATING: The ledger is actively processing the specified key change.
+	//    Key changes in QLDB are asynchronous. The ledger is fully accessible without
+	//    any performance impact while the key change is being processed. The amount
+	//    of time it takes to update a key varies depending on the ledger size.
+	//
+	//    * KMS_KEY_INACCESSIBLE: The specified customer managed KMS key is not
+	//    accessible, and the ledger is impaired. Either the key was disabled or
+	//    deleted, or the grants on the key were revoked. When a ledger is impaired,
+	//    it is not accessible and does not accept any read or write requests. An
+	//    impaired ledger automatically returns to an active state after you restore
+	//    the grants on the key, or re-enable the key that was disabled. However,
+	//    deleting a customer managed KMS key is irreversible. After a key is deleted,
+	//    you can no longer access the ledgers that are protected with that key,
+	//    and the data becomes unrecoverable permanently.
+	//
+	// EncryptionStatus is a required field
+	EncryptionStatus *string `type:"string" required:"true" enum:"EncryptionStatus"`
+
+	// The date and time, in epoch time format, when the KMS key first became inaccessible,
+	// in the case of an error. (Epoch time format is the number of seconds that
+	// have elapsed since 12:00:00 AM January 1, 1970 UTC.)
+	//
+	// This parameter is undefined if the KMS key is accessible.
+	InaccessibleKmsKeyDateTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the customer managed KMS key that the ledger
+	// uses for encryption at rest. If this parameter is undefined, the ledger uses
+	// an Amazon Web Services owned KMS key for encryption.
+	//
+	// KmsKeyArn is a required field
+	KmsKeyArn *string `min:"20" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s LedgerEncryptionDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LedgerEncryptionDescription) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionStatus sets the EncryptionStatus field's value.
+func (s *LedgerEncryptionDescription) SetEncryptionStatus(v string) *LedgerEncryptionDescription {
+	s.EncryptionStatus = &v
+	return s
+}
+
+// SetInaccessibleKmsKeyDateTime sets the InaccessibleKmsKeyDateTime field's value.
+func (s *LedgerEncryptionDescription) SetInaccessibleKmsKeyDateTime(v time.Time) *LedgerEncryptionDescription {
+	s.InaccessibleKmsKeyDateTime = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *LedgerEncryptionDescription) SetKmsKeyArn(v string) *LedgerEncryptionDescription {
+	s.KmsKeyArn = &v
 	return s
 }
 
@@ -3810,7 +3950,7 @@ type ListJournalS3ExportsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The array of journal export job descriptions for all ledgers that are associated
-	// with the current AWS account and Region.
+	// with the current account and Region.
 	JournalS3Exports []*JournalS3ExportDescription `type:"list"`
 
 	//    * If NextToken is empty, then the last page of results has been processed
@@ -3898,7 +4038,7 @@ func (s *ListLedgersInput) SetNextToken(v string) *ListLedgersInput {
 type ListLedgersOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The array of ledger summaries that are associated with the current AWS account
+	// The array of ledger summaries that are associated with the current account
 	// and Region.
 	Ledgers []*LedgerSummary `type:"list"`
 
@@ -4254,9 +4394,8 @@ func (s *ResourcePreconditionNotMetException) RequestID() string {
 type S3EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for a symmetric customer master key (CMK)
-	// in AWS Key Management Service (AWS KMS). Amazon S3 does not support asymmetric
-	// CMKs.
+	// The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) in
+	// Key Management Service (KMS). Amazon S3 does not support asymmetric CMKs.
 	//
 	// You must provide a KmsKeyArn if you specify SSE_KMS as the ObjectEncryptionType.
 	//
@@ -4732,6 +4871,42 @@ type UpdateLedgerInput struct {
 	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
 
+	// The key in Key Management Service (KMS) to use for encryption of data at
+	// rest in the ledger. For more information, see Encryption at rest (https://docs.aws.amazon.com/qldb/latest/developerguide/encryption-at-rest.html)
+	// in the Amazon QLDB Developer Guide.
+	//
+	// Use one of the following options to specify this parameter:
+	//
+	//    * AWS_OWNED_KMS_KEY: Use an KMS key that is owned and managed by Amazon
+	//    Web Services on your behalf.
+	//
+	//    * Undefined: Make no changes to the KMS key of the ledger.
+	//
+	//    * A valid symmetric customer managed KMS key: Use the specified KMS key
+	//    in your account that you create, own, and manage. Amazon QLDB does not
+	//    support asymmetric keys. For more information, see Using symmetric and
+	//    asymmetric keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)
+	//    in the Key Management Service Developer Guide.
+	//
+	// To specify a customer managed KMS key, you can use its key ID, Amazon Resource
+	// Name (ARN), alias name, or alias ARN. When using an alias name, prefix it
+	// with "alias/". To specify a key in a different account, you must use the
+	// key ARN or alias ARN.
+	//
+	// For example:
+	//
+	//    * Key ID: 1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Key ARN: arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab
+	//
+	//    * Alias name: alias/ExampleAlias
+	//
+	//    * Alias ARN: arn:aws:kms:us-east-2:111122223333:alias/ExampleAlias
+	//
+	// For more information, see Key identifiers (KeyId) (https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#key-id)
+	// in the Key Management Service Developer Guide.
+	KmsKey *string `type:"string"`
+
 	// The name of the ledger.
 	//
 	// Name is a required field
@@ -4770,6 +4945,12 @@ func (s *UpdateLedgerInput) SetDeletionProtection(v bool) *UpdateLedgerInput {
 	return s
 }
 
+// SetKmsKey sets the KmsKey field's value.
+func (s *UpdateLedgerInput) SetKmsKey(v string) *UpdateLedgerInput {
+	s.KmsKey = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *UpdateLedgerInput) SetName(v string) *UpdateLedgerInput {
 	s.Name = &v
@@ -4794,6 +4975,11 @@ type UpdateLedgerOutput struct {
 	// delete the ledger. You can disable it by calling the UpdateLedger operation
 	// to set the flag to false.
 	DeletionProtection *bool `type:"boolean"`
+
+	// Information about the encryption of data at rest in the ledger. This includes
+	// the current status, the KMS key, and when the key became inaccessible (in
+	// the case of an error).
+	EncryptionDescription *LedgerEncryptionDescription `type:"structure"`
 
 	// The name of the ledger.
 	Name *string `min:"1" type:"string"`
@@ -4827,6 +5013,12 @@ func (s *UpdateLedgerOutput) SetCreationDateTime(v time.Time) *UpdateLedgerOutpu
 // SetDeletionProtection sets the DeletionProtection field's value.
 func (s *UpdateLedgerOutput) SetDeletionProtection(v bool) *UpdateLedgerOutput {
 	s.DeletionProtection = &v
+	return s
+}
+
+// SetEncryptionDescription sets the EncryptionDescription field's value.
+func (s *UpdateLedgerOutput) SetEncryptionDescription(v *LedgerEncryptionDescription) *UpdateLedgerOutput {
+	s.EncryptionDescription = v
 	return s
 }
 
@@ -4993,6 +5185,26 @@ func (s *ValueHolder) Validate() error {
 func (s *ValueHolder) SetIonText(v string) *ValueHolder {
 	s.IonText = &v
 	return s
+}
+
+const (
+	// EncryptionStatusEnabled is a EncryptionStatus enum value
+	EncryptionStatusEnabled = "ENABLED"
+
+	// EncryptionStatusUpdating is a EncryptionStatus enum value
+	EncryptionStatusUpdating = "UPDATING"
+
+	// EncryptionStatusKmsKeyInaccessible is a EncryptionStatus enum value
+	EncryptionStatusKmsKeyInaccessible = "KMS_KEY_INACCESSIBLE"
+)
+
+// EncryptionStatus_Values returns all elements of the EncryptionStatus enum
+func EncryptionStatus_Values() []string {
+	return []string{
+		EncryptionStatusEnabled,
+		EncryptionStatusUpdating,
+		EncryptionStatusKmsKeyInaccessible,
+	}
 }
 
 const (

@@ -6530,6 +6530,65 @@ func (s *AudioDescription) SetStreamName(v string) *AudioDescription {
 	return s
 }
 
+// Audio Hls Rendition Selection
+type AudioHlsRenditionSelection struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the GROUP-ID in the #EXT-X-MEDIA tag of the target HLS audio rendition.
+	//
+	// GroupId is a required field
+	GroupId *string `locationName:"groupId" min:"1" type:"string" required:"true"`
+
+	// Specifies the NAME in the #EXT-X-MEDIA tag of the target HLS audio rendition.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AudioHlsRenditionSelection) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AudioHlsRenditionSelection) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AudioHlsRenditionSelection) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AudioHlsRenditionSelection"}
+	if s.GroupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("GroupId"))
+	}
+	if s.GroupId != nil && len(*s.GroupId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GroupId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetGroupId sets the GroupId field's value.
+func (s *AudioHlsRenditionSelection) SetGroupId(v string) *AudioHlsRenditionSelection {
+	s.GroupId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AudioHlsRenditionSelection) SetName(v string) *AudioHlsRenditionSelection {
+	s.Name = &v
+	return s
+}
+
 // Audio Language Selection
 type AudioLanguageSelection struct {
 	_ struct{} `type:"structure"`
@@ -6810,6 +6869,9 @@ func (s *AudioSelector) SetSelectorSettings(v *AudioSelectorSettings) *AudioSele
 type AudioSelectorSettings struct {
 	_ struct{} `type:"structure"`
 
+	// Audio Hls Rendition Selection
+	AudioHlsRenditionSelection *AudioHlsRenditionSelection `locationName:"audioHlsRenditionSelection" type:"structure"`
+
 	// Audio Language Selection
 	AudioLanguageSelection *AudioLanguageSelection `locationName:"audioLanguageSelection" type:"structure"`
 
@@ -6833,6 +6895,11 @@ func (s AudioSelectorSettings) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AudioSelectorSettings) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AudioSelectorSettings"}
+	if s.AudioHlsRenditionSelection != nil {
+		if err := s.AudioHlsRenditionSelection.Validate(); err != nil {
+			invalidParams.AddNested("AudioHlsRenditionSelection", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.AudioLanguageSelection != nil {
 		if err := s.AudioLanguageSelection.Validate(); err != nil {
 			invalidParams.AddNested("AudioLanguageSelection", err.(request.ErrInvalidParams))
@@ -6853,6 +6920,12 @@ func (s *AudioSelectorSettings) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAudioHlsRenditionSelection sets the AudioHlsRenditionSelection field's value.
+func (s *AudioSelectorSettings) SetAudioHlsRenditionSelection(v *AudioHlsRenditionSelection) *AudioSelectorSettings {
+	s.AudioHlsRenditionSelection = v
+	return s
 }
 
 // SetAudioLanguageSelection sets the AudioLanguageSelection field's value.
@@ -27482,6 +27555,12 @@ func (s *WavSettings) SetSampleRate(v float64) *WavSettings {
 // Webvtt Destination Settings
 type WebvttDestinationSettings struct {
 	_ struct{} `type:"structure"`
+
+	// Controls whether the color and position of the source captions is passed
+	// through to the WebVTT output captions. PASSTHROUGH - Valid only if the source
+	// captions are EMBEDDED or TELETEXT. NO_STYLE_DATA - Don't pass through the
+	// style. The output captions will not contain any font styling information.
+	StyleControl *string `locationName:"styleControl" type:"string" enum:"WebvttDestinationStyleControl"`
 }
 
 // String returns the string representation
@@ -27492,6 +27571,12 @@ func (s WebvttDestinationSettings) String() string {
 // GoString returns the string representation
 func (s WebvttDestinationSettings) GoString() string {
 	return s.String()
+}
+
+// SetStyleControl sets the StyleControl field's value.
+func (s *WebvttDestinationSettings) SetStyleControl(v string) *WebvttDestinationSettings {
+	s.StyleControl = &v
+	return s
 }
 
 // Aac Coding Mode
@@ -32601,5 +32686,22 @@ func WavCodingMode_Values() []string {
 		WavCodingModeCodingMode20,
 		WavCodingModeCodingMode40,
 		WavCodingModeCodingMode80,
+	}
+}
+
+// Webvtt Destination Style Control
+const (
+	// WebvttDestinationStyleControlNoStyleData is a WebvttDestinationStyleControl enum value
+	WebvttDestinationStyleControlNoStyleData = "NO_STYLE_DATA"
+
+	// WebvttDestinationStyleControlPassthrough is a WebvttDestinationStyleControl enum value
+	WebvttDestinationStyleControlPassthrough = "PASSTHROUGH"
+)
+
+// WebvttDestinationStyleControl_Values returns all elements of the WebvttDestinationStyleControl enum
+func WebvttDestinationStyleControl_Values() []string {
+	return []string{
+		WebvttDestinationStyleControlNoStyleData,
+		WebvttDestinationStyleControlPassthrough,
 	}
 }

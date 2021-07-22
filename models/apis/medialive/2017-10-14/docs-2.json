@@ -241,6 +241,12 @@
         "AudioDescription$LanguageCodeControl": "Choosing followInput will cause the ISO 639 language code of the output to follow the ISO 639 language code of the input. The languageCode will be used when useConfigured is set, or when followInput is selected but there is no ISO 639 language code specified by the input."
       }
     },
+    "AudioHlsRenditionSelection": {
+      "base": "Audio Hls Rendition Selection",
+      "refs": {
+        "AudioSelectorSettings$AudioHlsRenditionSelection": null
+      }
+    },
     "AudioLanguageSelection": {
       "base": "Audio Language Selection",
       "refs": {
@@ -3322,6 +3328,12 @@
         "CaptionDestinationSettings$WebvttDestinationSettings": null
       }
     },
+    "WebvttDestinationStyleControl": {
+      "base": "Webvtt Destination Style Control",
+      "refs": {
+        "WebvttDestinationSettings$StyleControl": "Controls whether the color and position of the source captions is passed through to the WebVTT output captions.  PASSTHROUGH - Valid only if the source captions are EMBEDDED or TELETEXT.  NO_STYLE_DATA - Don't pass through the style. The output captions will not contain any font styling information."
+      }
+    },
     "__boolean": {
       "base": null,
       "refs": {
@@ -4462,6 +4474,8 @@
     "__stringMin1": {
       "base": null,
       "refs": {
+        "AudioHlsRenditionSelection$GroupId": "Specifies the GROUP-ID in the #EXT-X-MEDIA tag of the target HLS audio rendition.",
+        "AudioHlsRenditionSelection$Name": "Specifies the NAME in the #EXT-X-MEDIA tag of the target HLS audio rendition.",
         "AudioSelector$Name": "The name of this AudioSelector. AudioDescriptions will use this name to uniquely identify this Selector.  Selector names should be unique per input.",
         "CaptionLanguageMapping$LanguageDescription": "Textual description of language",
         "CaptionSelector$Name": "Name identifier for a caption selector.  This name is used to associate this caption selector with one or more caption descriptions.  Names must be unique within an event.",
