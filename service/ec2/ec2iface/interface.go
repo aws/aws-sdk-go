@@ -400,6 +400,10 @@ type EC2API interface {
 	CreateSubnetWithContext(aws.Context, *ec2.CreateSubnetInput, ...request.Option) (*ec2.CreateSubnetOutput, error)
 	CreateSubnetRequest(*ec2.CreateSubnetInput) (*request.Request, *ec2.CreateSubnetOutput)
 
+	CreateSubnetCidrReservation(*ec2.CreateSubnetCidrReservationInput) (*ec2.CreateSubnetCidrReservationOutput, error)
+	CreateSubnetCidrReservationWithContext(aws.Context, *ec2.CreateSubnetCidrReservationInput, ...request.Option) (*ec2.CreateSubnetCidrReservationOutput, error)
+	CreateSubnetCidrReservationRequest(*ec2.CreateSubnetCidrReservationInput) (*request.Request, *ec2.CreateSubnetCidrReservationOutput)
+
 	CreateTags(*ec2.CreateTagsInput) (*ec2.CreateTagsOutput, error)
 	CreateTagsWithContext(aws.Context, *ec2.CreateTagsInput, ...request.Option) (*ec2.CreateTagsOutput, error)
 	CreateTagsRequest(*ec2.CreateTagsInput) (*request.Request, *ec2.CreateTagsOutput)
@@ -619,6 +623,10 @@ type EC2API interface {
 	DeleteSubnet(*ec2.DeleteSubnetInput) (*ec2.DeleteSubnetOutput, error)
 	DeleteSubnetWithContext(aws.Context, *ec2.DeleteSubnetInput, ...request.Option) (*ec2.DeleteSubnetOutput, error)
 	DeleteSubnetRequest(*ec2.DeleteSubnetInput) (*request.Request, *ec2.DeleteSubnetOutput)
+
+	DeleteSubnetCidrReservation(*ec2.DeleteSubnetCidrReservationInput) (*ec2.DeleteSubnetCidrReservationOutput, error)
+	DeleteSubnetCidrReservationWithContext(aws.Context, *ec2.DeleteSubnetCidrReservationInput, ...request.Option) (*ec2.DeleteSubnetCidrReservationOutput, error)
+	DeleteSubnetCidrReservationRequest(*ec2.DeleteSubnetCidrReservationInput) (*request.Request, *ec2.DeleteSubnetCidrReservationOutput)
 
 	DeleteTags(*ec2.DeleteTagsInput) (*ec2.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *ec2.DeleteTagsInput, ...request.Option) (*ec2.DeleteTagsOutput, error)
@@ -1730,6 +1738,10 @@ type EC2API interface {
 	GetSerialConsoleAccessStatus(*ec2.GetSerialConsoleAccessStatusInput) (*ec2.GetSerialConsoleAccessStatusOutput, error)
 	GetSerialConsoleAccessStatusWithContext(aws.Context, *ec2.GetSerialConsoleAccessStatusInput, ...request.Option) (*ec2.GetSerialConsoleAccessStatusOutput, error)
 	GetSerialConsoleAccessStatusRequest(*ec2.GetSerialConsoleAccessStatusInput) (*request.Request, *ec2.GetSerialConsoleAccessStatusOutput)
+
+	GetSubnetCidrReservations(*ec2.GetSubnetCidrReservationsInput) (*ec2.GetSubnetCidrReservationsOutput, error)
+	GetSubnetCidrReservationsWithContext(aws.Context, *ec2.GetSubnetCidrReservationsInput, ...request.Option) (*ec2.GetSubnetCidrReservationsOutput, error)
+	GetSubnetCidrReservationsRequest(*ec2.GetSubnetCidrReservationsInput) (*request.Request, *ec2.GetSubnetCidrReservationsOutput)
 
 	GetTransitGatewayAttachmentPropagations(*ec2.GetTransitGatewayAttachmentPropagationsInput) (*ec2.GetTransitGatewayAttachmentPropagationsOutput, error)
 	GetTransitGatewayAttachmentPropagationsWithContext(aws.Context, *ec2.GetTransitGatewayAttachmentPropagationsInput, ...request.Option) (*ec2.GetTransitGatewayAttachmentPropagationsOutput, error)

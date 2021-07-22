@@ -3874,6 +3874,127 @@ func (s *BatchDeleteRecipeVersionOutput) SetName(v string) *BatchDeleteRecipeVer
 	return s
 }
 
+// Selector of a column from a dataset for profile job configuration. One selector
+// includes either a column name or a regular expression.
+type ColumnSelector struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a column from a dataset.
+	Name *string `min:"1" type:"string"`
+
+	// A regular expression for selecting a column from a dataset.
+	Regex *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ColumnSelector) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ColumnSelector) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ColumnSelector) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ColumnSelector"}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Regex != nil && len(*s.Regex) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Regex", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *ColumnSelector) SetName(v string) *ColumnSelector {
+	s.Name = &v
+	return s
+}
+
+// SetRegex sets the Regex field's value.
+func (s *ColumnSelector) SetRegex(v string) *ColumnSelector {
+	s.Regex = &v
+	return s
+}
+
+// Configuration for column evaluations for a profile job. ColumnStatisticsConfiguration
+// can be used to select evaluations and override parameters of evaluations
+// for particular columns.
+type ColumnStatisticsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// List of column selectors. Selectors can be used to select columns from the
+	// dataset. When selectors are undefined, configuration will be applied to all
+	// supported columns.
+	Selectors []*ColumnSelector `min:"1" type:"list"`
+
+	// Configuration for evaluations. Statistics can be used to select evaluations
+	// and override parameters of evaluations.
+	//
+	// Statistics is a required field
+	Statistics *StatisticsConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ColumnStatisticsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ColumnStatisticsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ColumnStatisticsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ColumnStatisticsConfiguration"}
+	if s.Selectors != nil && len(s.Selectors) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Selectors", 1))
+	}
+	if s.Statistics == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistics"))
+	}
+	if s.Selectors != nil {
+		for i, v := range s.Selectors {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Selectors", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Statistics != nil {
+		if err := s.Statistics.Validate(); err != nil {
+			invalidParams.AddNested("Statistics", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSelectors sets the Selectors field's value.
+func (s *ColumnStatisticsConfiguration) SetSelectors(v []*ColumnSelector) *ColumnStatisticsConfiguration {
+	s.Selectors = v
+	return s
+}
+
+// SetStatistics sets the Statistics field's value.
+func (s *ColumnStatisticsConfiguration) SetStatistics(v *StatisticsConfiguration) *ColumnStatisticsConfiguration {
+	s.Statistics = v
+	return s
+}
+
 // Represents an individual condition that evaluates to true or false.
 //
 // Conditions are used with recipe actions. The action is only performed for
@@ -4148,6 +4269,11 @@ func (s *CreateDatasetOutput) SetName(v string) *CreateDatasetOutput {
 type CreateProfileJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration for profile jobs. Used to select columns, do evaluations, and
+	// override default parameters of evaluations. When configuration is null, the
+	// profile job will run with default settings.
+	Configuration *ProfileConfiguration `type:"structure"`
+
 	// The name of the dataset that this job is to act upon.
 	//
 	// DatasetName is a required field
@@ -4247,6 +4373,11 @@ func (s *CreateProfileJobInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.OutputLocation != nil {
 		if err := s.OutputLocation.Validate(); err != nil {
 			invalidParams.AddNested("OutputLocation", err.(request.ErrInvalidParams))
@@ -4257,6 +4388,12 @@ func (s *CreateProfileJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *CreateProfileJobInput) SetConfiguration(v *ProfileConfiguration) *CreateProfileJobInput {
+	s.Configuration = v
+	return s
 }
 
 // SetDatasetName sets the DatasetName field's value.
@@ -4594,9 +4731,13 @@ func (s *CreateRecipeInput) SetTags(v map[string]*string) *CreateRecipeInput {
 type CreateRecipeJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// One or more artifacts that represent the AWS Glue Data Catalog output from
-	// running the job.
+	// One or more artifacts that represent the Glue Data Catalog output from running
+	// the job.
 	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
+	// Represents a list of JDBC database output objects which defines the output
+	// destination for a DataBrew recipe job to write to.
+	DatabaseOutputs []*DatabaseOutput_ `min:"1" type:"list"`
 
 	// The name of the dataset that this job processes.
 	DatasetName *string `min:"1" type:"string"`
@@ -4669,6 +4810,9 @@ func (s *CreateRecipeJobInput) Validate() error {
 	if s.DataCatalogOutputs != nil && len(s.DataCatalogOutputs) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DataCatalogOutputs", 1))
 	}
+	if s.DatabaseOutputs != nil && len(s.DatabaseOutputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseOutputs", 1))
+	}
 	if s.DatasetName != nil && len(*s.DatasetName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DatasetName", 1))
 	}
@@ -4706,6 +4850,16 @@ func (s *CreateRecipeJobInput) Validate() error {
 			}
 		}
 	}
+	if s.DatabaseOutputs != nil {
+		for i, v := range s.DatabaseOutputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DatabaseOutputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Outputs != nil {
 		for i, v := range s.Outputs {
 			if v == nil {
@@ -4731,6 +4885,12 @@ func (s *CreateRecipeJobInput) Validate() error {
 // SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
 func (s *CreateRecipeJobInput) SetDataCatalogOutputs(v []*DataCatalogOutput_) *CreateRecipeJobInput {
 	s.DataCatalogOutputs = v
+	return s
+}
+
+// SetDatabaseOutputs sets the DatabaseOutputs field's value.
+func (s *CreateRecipeJobInput) SetDatabaseOutputs(v []*DatabaseOutput_) *CreateRecipeJobInput {
+	s.DatabaseOutputs = v
 	return s
 }
 
@@ -5143,13 +5303,13 @@ func (s *DataCatalogInputDefinition) SetTempDirectory(v *S3Location) *DataCatalo
 	return s
 }
 
-// Represents options that specify how and where DataBrew writes the output
-// generated by recipe jobs.
+// Represents options that specify how and where in the Glue Data Catalog DataBrew
+// writes the output generated by recipe jobs.
 type DataCatalogOutput_ struct {
 	_ struct{} `type:"structure"`
 
-	// The unique identifier of the AWS account that holds the Data Catalog that
-	// stores the data.
+	// The unique identifier of the Amazon Web Services account that holds the Data
+	// Catalog that stores the data.
 	CatalogId *string `min:"1" type:"string"`
 
 	// The name of a database in the Data Catalog.
@@ -5165,8 +5325,8 @@ type DataCatalogOutput_ struct {
 	// output is overwritten with new output. Not supported with DatabaseOptions.
 	Overwrite *bool `type:"boolean"`
 
-	// Represents options that specify how and where DataBrew writes the S3 output
-	// generated by recipe jobs.
+	// Represents options that specify how and where DataBrew writes the Amazon
+	// S3 output generated by recipe jobs.
 	S3Options *S3TableOutputOptions `type:"structure"`
 
 	// The name of a table in the Data Catalog.
@@ -5328,6 +5488,79 @@ func (s *DatabaseInputDefinition) SetGlueConnectionName(v string) *DatabaseInput
 // SetTempDirectory sets the TempDirectory field's value.
 func (s *DatabaseInputDefinition) SetTempDirectory(v *S3Location) *DatabaseInputDefinition {
 	s.TempDirectory = v
+	return s
+}
+
+// Represents a JDBC database output object which defines the output destination
+// for a DataBrew recipe job to write into.
+type DatabaseOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Represents options that specify how and where DataBrew writes the database
+	// output generated by recipe jobs.
+	//
+	// DatabaseOptions is a required field
+	DatabaseOptions *DatabaseTableOutputOptions `type:"structure" required:"true"`
+
+	// The output mode to write into the database. Currently supported option: NEW_TABLE.
+	DatabaseOutputMode *string `type:"string" enum:"DatabaseOutputMode"`
+
+	// The Glue connection that stores the connection information for the target
+	// database.
+	//
+	// GlueConnectionName is a required field
+	GlueConnectionName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DatabaseOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DatabaseOutput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DatabaseOutput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DatabaseOutput_"}
+	if s.DatabaseOptions == nil {
+		invalidParams.Add(request.NewErrParamRequired("DatabaseOptions"))
+	}
+	if s.GlueConnectionName == nil {
+		invalidParams.Add(request.NewErrParamRequired("GlueConnectionName"))
+	}
+	if s.GlueConnectionName != nil && len(*s.GlueConnectionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("GlueConnectionName", 1))
+	}
+	if s.DatabaseOptions != nil {
+		if err := s.DatabaseOptions.Validate(); err != nil {
+			invalidParams.AddNested("DatabaseOptions", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDatabaseOptions sets the DatabaseOptions field's value.
+func (s *DatabaseOutput_) SetDatabaseOptions(v *DatabaseTableOutputOptions) *DatabaseOutput_ {
+	s.DatabaseOptions = v
+	return s
+}
+
+// SetDatabaseOutputMode sets the DatabaseOutputMode field's value.
+func (s *DatabaseOutput_) SetDatabaseOutputMode(v string) *DatabaseOutput_ {
+	s.DatabaseOutputMode = &v
+	return s
+}
+
+// SetGlueConnectionName sets the GlueConnectionName field's value.
+func (s *DatabaseOutput_) SetGlueConnectionName(v string) *DatabaseOutput_ {
+	s.GlueConnectionName = &v
 	return s
 }
 
@@ -6279,9 +6512,13 @@ type DescribeJobOutput struct {
 	// job.
 	CreatedBy *string `type:"string"`
 
-	// One or more artifacts that represent the AWS Glue Data Catalog output from
-	// running the job.
+	// One or more artifacts that represent the Glue Data Catalog output from running
+	// the job.
 	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
+	// Represents a list of JDBC database output objects which defines the output
+	// destination for a DataBrew recipe job to write into.
+	DatabaseOutputs []*DatabaseOutput_ `min:"1" type:"list"`
 
 	// The dataset that the job acts upon.
 	DatasetName *string `min:"1" type:"string"`
@@ -6324,6 +6561,11 @@ type DescribeJobOutput struct {
 
 	// One or more artifacts that represent the output from running the job.
 	Outputs []*Output `min:"1" type:"list"`
+
+	// Configuration for profile jobs. Used to select columns, do evaluations, and
+	// override default parameters of evaluations. When configuration is null, the
+	// profile job will run with default settings.
+	ProfileConfiguration *ProfileConfiguration `type:"structure"`
 
 	// The DataBrew project associated with this job.
 	ProjectName *string `min:"1" type:"string"`
@@ -6379,6 +6621,12 @@ func (s *DescribeJobOutput) SetCreatedBy(v string) *DescribeJobOutput {
 // SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
 func (s *DescribeJobOutput) SetDataCatalogOutputs(v []*DataCatalogOutput_) *DescribeJobOutput {
 	s.DataCatalogOutputs = v
+	return s
+}
+
+// SetDatabaseOutputs sets the DatabaseOutputs field's value.
+func (s *DescribeJobOutput) SetDatabaseOutputs(v []*DatabaseOutput_) *DescribeJobOutput {
+	s.DatabaseOutputs = v
 	return s
 }
 
@@ -6445,6 +6693,12 @@ func (s *DescribeJobOutput) SetName(v string) *DescribeJobOutput {
 // SetOutputs sets the Outputs field's value.
 func (s *DescribeJobOutput) SetOutputs(v []*Output) *DescribeJobOutput {
 	s.Outputs = v
+	return s
+}
+
+// SetProfileConfiguration sets the ProfileConfiguration field's value.
+func (s *DescribeJobOutput) SetProfileConfiguration(v *ProfileConfiguration) *DescribeJobOutput {
+	s.ProfileConfiguration = v
 	return s
 }
 
@@ -6557,9 +6811,13 @@ type DescribeJobRunOutput struct {
 	// The date and time when the job completed processing.
 	CompletedOn *time.Time `type:"timestamp"`
 
-	// One or more artifacts that represent the AWS Glue Data Catalog output from
-	// running the job.
+	// One or more artifacts that represent the Glue Data Catalog output from running
+	// the job.
 	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
+	// Represents a list of JDBC database output objects which defines the output
+	// destination for a DataBrew recipe job to write into.
+	DatabaseOutputs []*DatabaseOutput_ `min:"1" type:"list"`
 
 	// The name of the dataset for the job to process.
 	DatasetName *string `min:"1" type:"string"`
@@ -6591,6 +6849,11 @@ type DescribeJobRunOutput struct {
 
 	// One or more output artifacts from a job run.
 	Outputs []*Output `min:"1" type:"list"`
+
+	// Configuration for profile jobs. Used to select columns, do evaluations, and
+	// override default parameters of evaluations. When configuration is null, the
+	// profile job will run with default settings.
+	ProfileConfiguration *ProfileConfiguration `type:"structure"`
 
 	// Represents the name and version of a DataBrew recipe.
 	RecipeReference *RecipeReference `type:"structure"`
@@ -6633,6 +6896,12 @@ func (s *DescribeJobRunOutput) SetCompletedOn(v time.Time) *DescribeJobRunOutput
 // SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
 func (s *DescribeJobRunOutput) SetDataCatalogOutputs(v []*DataCatalogOutput_) *DescribeJobRunOutput {
 	s.DataCatalogOutputs = v
+	return s
+}
+
+// SetDatabaseOutputs sets the DatabaseOutputs field's value.
+func (s *DescribeJobRunOutput) SetDatabaseOutputs(v []*DatabaseOutput_) *DescribeJobRunOutput {
+	s.DatabaseOutputs = v
 	return s
 }
 
@@ -6681,6 +6950,12 @@ func (s *DescribeJobRunOutput) SetLogSubscription(v string) *DescribeJobRunOutpu
 // SetOutputs sets the Outputs field's value.
 func (s *DescribeJobRunOutput) SetOutputs(v []*Output) *DescribeJobRunOutput {
 	s.Outputs = v
+	return s
+}
+
+// SetProfileConfiguration sets the ProfileConfiguration field's value.
+func (s *DescribeJobRunOutput) SetProfileConfiguration(v *ProfileConfiguration) *DescribeJobRunOutput {
+	s.ProfileConfiguration = v
 	return s
 }
 
@@ -7621,9 +7896,13 @@ type Job struct {
 	// The Amazon Resource Name (ARN) of the user who created the job.
 	CreatedBy *string `type:"string"`
 
-	// One or more artifacts that represent the AWS Glue Data Catalog output from
-	// running the job.
+	// One or more artifacts that represent the Glue Data Catalog output from running
+	// the job.
 	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
+	// Represents a list of JDBC database output objects which defines the output
+	// destination for a DataBrew recipe job to write into.
+	DatabaseOutputs []*DatabaseOutput_ `min:"1" type:"list"`
 
 	// A dataset that the job is to process.
 	DatasetName *string `min:"1" type:"string"`
@@ -7728,6 +8007,12 @@ func (s *Job) SetCreatedBy(v string) *Job {
 // SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
 func (s *Job) SetDataCatalogOutputs(v []*DataCatalogOutput_) *Job {
 	s.DataCatalogOutputs = v
+	return s
+}
+
+// SetDatabaseOutputs sets the DatabaseOutputs field's value.
+func (s *Job) SetDatabaseOutputs(v []*DatabaseOutput_) *Job {
+	s.DatabaseOutputs = v
 	return s
 }
 
@@ -7849,9 +8134,13 @@ type JobRun struct {
 	// The date and time when the job completed processing.
 	CompletedOn *time.Time `type:"timestamp"`
 
-	// One or more artifacts that represent the AWS Glue Data Catalog output from
-	// running the job.
+	// One or more artifacts that represent the Glue Data Catalog output from running
+	// the job.
 	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
+	// Represents a list of JDBC database output objects which defines the output
+	// destination for a DataBrew recipe job to write into.
+	DatabaseOutputs []*DatabaseOutput_ `min:"1" type:"list"`
 
 	// The name of the dataset for the job to process.
 	DatasetName *string `min:"1" type:"string"`
@@ -7923,6 +8212,12 @@ func (s *JobRun) SetCompletedOn(v time.Time) *JobRun {
 // SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
 func (s *JobRun) SetDataCatalogOutputs(v []*DataCatalogOutput_) *JobRun {
 	s.DataCatalogOutputs = v
+	return s
+}
+
+// SetDatabaseOutputs sets the DatabaseOutputs field's value.
+func (s *JobRun) SetDatabaseOutputs(v []*DatabaseOutput_) *JobRun {
+	s.DatabaseOutputs = v
 	return s
 }
 
@@ -8811,8 +9106,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Represents options that specify how and where DataBrew writes the output
-// generated by recipe jobs or profile jobs.
+// Represents options that specify how and where in Amazon S3 DataBrew writes
+// the output generated by recipe jobs or profile jobs.
 type Output struct {
 	_ struct{} `type:"structure"`
 
@@ -9024,6 +9319,99 @@ func (s *PathOptions) SetLastModifiedDateCondition(v *FilterExpression) *PathOpt
 // SetParameters sets the Parameters field's value.
 func (s *PathOptions) SetParameters(v map[string]*DatasetParameter) *PathOptions {
 	s.Parameters = v
+	return s
+}
+
+// Configuration for profile jobs. Configuration can be used to select columns,
+// do evaluations, and override default parameters of evaluations. When configuration
+// is undefined, the profile job will apply default settings to all supported
+// columns.
+type ProfileConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// List of configurations for column evaluations. ColumnStatisticsConfigurations
+	// are used to select evaluations and override parameters of evaluations for
+	// particular columns. When ColumnStatisticsConfigurations is undefined, the
+	// profile job will profile all supported columns and run all supported evaluations.
+	ColumnStatisticsConfigurations []*ColumnStatisticsConfiguration `min:"1" type:"list"`
+
+	// Configuration for inter-column evaluations. Configuration can be used to
+	// select evaluations and override parameters of evaluations. When configuration
+	// is undefined, the profile job will run all supported inter-column evaluations.
+	DatasetStatisticsConfiguration *StatisticsConfiguration `type:"structure"`
+
+	// List of column selectors. ProfileColumns can be used to select columns from
+	// the dataset. When ProfileColumns is undefined, the profile job will profile
+	// all supported columns.
+	ProfileColumns []*ColumnSelector `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ProfileConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProfileConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ProfileConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ProfileConfiguration"}
+	if s.ColumnStatisticsConfigurations != nil && len(s.ColumnStatisticsConfigurations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ColumnStatisticsConfigurations", 1))
+	}
+	if s.ProfileColumns != nil && len(s.ProfileColumns) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ProfileColumns", 1))
+	}
+	if s.ColumnStatisticsConfigurations != nil {
+		for i, v := range s.ColumnStatisticsConfigurations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ColumnStatisticsConfigurations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.DatasetStatisticsConfiguration != nil {
+		if err := s.DatasetStatisticsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("DatasetStatisticsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProfileColumns != nil {
+		for i, v := range s.ProfileColumns {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "ProfileColumns", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetColumnStatisticsConfigurations sets the ColumnStatisticsConfigurations field's value.
+func (s *ProfileConfiguration) SetColumnStatisticsConfigurations(v []*ColumnStatisticsConfiguration) *ProfileConfiguration {
+	s.ColumnStatisticsConfigurations = v
+	return s
+}
+
+// SetDatasetStatisticsConfiguration sets the DatasetStatisticsConfiguration field's value.
+func (s *ProfileConfiguration) SetDatasetStatisticsConfiguration(v *StatisticsConfiguration) *ProfileConfiguration {
+	s.DatasetStatisticsConfiguration = v
+	return s
+}
+
+// SetProfileColumns sets the ProfileColumns field's value.
+func (s *ProfileConfiguration) SetProfileColumns(v []*ColumnSelector) *ProfileConfiguration {
+	s.ProfileColumns = v
 	return s
 }
 
@@ -9720,8 +10108,8 @@ func (s *S3Location) SetKey(v string) *S3Location {
 	return s
 }
 
-// Represents options that specify how and where DataBrew writes the S3 output
-// generated by recipe jobs.
+// Represents options that specify how and where DataBrew writes the Amazon
+// S3 output generated by recipe jobs.
 type S3TableOutputOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -10279,6 +10667,123 @@ func (s *StartProjectSessionOutput) SetName(v string) *StartProjectSessionOutput
 	return s
 }
 
+// Override of a particular evaluation for a profile job.
+type StatisticOverride struct {
+	_ struct{} `type:"structure"`
+
+	// A map that includes overrides of an evaluation’s parameters.
+	//
+	// Parameters is a required field
+	Parameters map[string]*string `type:"map" required:"true"`
+
+	// The name of an evaluation
+	//
+	// Statistic is a required field
+	Statistic *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StatisticOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StatisticOverride) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StatisticOverride) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StatisticOverride"}
+	if s.Parameters == nil {
+		invalidParams.Add(request.NewErrParamRequired("Parameters"))
+	}
+	if s.Statistic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Statistic"))
+	}
+	if s.Statistic != nil && len(*s.Statistic) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Statistic", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *StatisticOverride) SetParameters(v map[string]*string) *StatisticOverride {
+	s.Parameters = v
+	return s
+}
+
+// SetStatistic sets the Statistic field's value.
+func (s *StatisticOverride) SetStatistic(v string) *StatisticOverride {
+	s.Statistic = &v
+	return s
+}
+
+// Configuration of evaluations for a profile job. This configuration can be
+// used to select evaluations and override the parameters of selected evaluations.
+type StatisticsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// List of included evaluations. When the list is undefined, all supported evaluations
+	// will be included.
+	IncludedStatistics []*string `min:"1" type:"list"`
+
+	// List of overrides for evaluations.
+	Overrides []*StatisticOverride `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s StatisticsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StatisticsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StatisticsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StatisticsConfiguration"}
+	if s.IncludedStatistics != nil && len(s.IncludedStatistics) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IncludedStatistics", 1))
+	}
+	if s.Overrides != nil && len(s.Overrides) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Overrides", 1))
+	}
+	if s.Overrides != nil {
+		for i, v := range s.Overrides {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Overrides", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncludedStatistics sets the IncludedStatistics field's value.
+func (s *StatisticsConfiguration) SetIncludedStatistics(v []*string) *StatisticsConfiguration {
+	s.IncludedStatistics = v
+	return s
+}
+
+// SetOverrides sets the Overrides field's value.
+func (s *StatisticsConfiguration) SetOverrides(v []*StatisticOverride) *StatisticsConfiguration {
+	s.Overrides = v
+	return s
+}
+
 type StopJobRunInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10637,6 +11142,11 @@ func (s *UpdateDatasetOutput) SetName(v string) *UpdateDatasetOutput {
 type UpdateProfileJobInput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration for profile jobs. Used to select columns, do evaluations, and
+	// override default parameters of evaluations. When configuration is null, the
+	// profile job will run with default settings.
+	Configuration *ProfileConfiguration `type:"structure"`
+
 	// The Amazon Resource Name (ARN) of an encryption key that is used to protect
 	// the job.
 	EncryptionKeyArn *string `min:"20" type:"string"`
@@ -10718,6 +11228,11 @@ func (s *UpdateProfileJobInput) Validate() error {
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
 	}
+	if s.Configuration != nil {
+		if err := s.Configuration.Validate(); err != nil {
+			invalidParams.AddNested("Configuration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.OutputLocation != nil {
 		if err := s.OutputLocation.Validate(); err != nil {
 			invalidParams.AddNested("OutputLocation", err.(request.ErrInvalidParams))
@@ -10728,6 +11243,12 @@ func (s *UpdateProfileJobInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetConfiguration sets the Configuration field's value.
+func (s *UpdateProfileJobInput) SetConfiguration(v *ProfileConfiguration) *UpdateProfileJobInput {
+	s.Configuration = v
+	return s
 }
 
 // SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
@@ -10995,9 +11516,13 @@ func (s *UpdateRecipeInput) SetSteps(v []*RecipeStep) *UpdateRecipeInput {
 type UpdateRecipeJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// One or more artifacts that represent the AWS Glue Data Catalog output from
-	// running the job.
+	// One or more artifacts that represent the Glue Data Catalog output from running
+	// the job.
 	DataCatalogOutputs []*DataCatalogOutput_ `min:"1" type:"list"`
+
+	// Represents a list of JDBC database output objects which defines the output
+	// destination for a DataBrew recipe job to write into.
+	DatabaseOutputs []*DatabaseOutput_ `min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of an encryption key that is used to protect
 	// the job.
@@ -11056,6 +11581,9 @@ func (s *UpdateRecipeJobInput) Validate() error {
 	if s.DataCatalogOutputs != nil && len(s.DataCatalogOutputs) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DataCatalogOutputs", 1))
 	}
+	if s.DatabaseOutputs != nil && len(s.DatabaseOutputs) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DatabaseOutputs", 1))
+	}
 	if s.EncryptionKeyArn != nil && len(*s.EncryptionKeyArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("EncryptionKeyArn", 20))
 	}
@@ -11084,6 +11612,16 @@ func (s *UpdateRecipeJobInput) Validate() error {
 			}
 		}
 	}
+	if s.DatabaseOutputs != nil {
+		for i, v := range s.DatabaseOutputs {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DatabaseOutputs", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.Outputs != nil {
 		for i, v := range s.Outputs {
 			if v == nil {
@@ -11104,6 +11642,12 @@ func (s *UpdateRecipeJobInput) Validate() error {
 // SetDataCatalogOutputs sets the DataCatalogOutputs field's value.
 func (s *UpdateRecipeJobInput) SetDataCatalogOutputs(v []*DataCatalogOutput_) *UpdateRecipeJobInput {
 	s.DataCatalogOutputs = v
+	return s
+}
+
+// SetDatabaseOutputs sets the DatabaseOutputs field's value.
+func (s *UpdateRecipeJobInput) SetDatabaseOutputs(v []*DatabaseOutput_) *UpdateRecipeJobInput {
+	s.DatabaseOutputs = v
 	return s
 }
 
@@ -11460,6 +12004,18 @@ func CompressionFormat_Values() []string {
 		CompressionFormatBrotli,
 		CompressionFormatZstd,
 		CompressionFormatZlib,
+	}
+}
+
+const (
+	// DatabaseOutputModeNewTable is a DatabaseOutputMode enum value
+	DatabaseOutputModeNewTable = "NEW_TABLE"
+)
+
+// DatabaseOutputMode_Values returns all elements of the DatabaseOutputMode enum
+func DatabaseOutputMode_Values() []string {
+	return []string{
+		DatabaseOutputModeNewTable,
 	}
 }
 

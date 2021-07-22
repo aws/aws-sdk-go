@@ -3,7 +3,8 @@
 // Package s3control provides the client and types for making API
 // requests to AWS S3 Control.
 //
-// AWS S3 Control provides access to Amazon S3 control plane actions.
+// Amazon Web Services S3 Control provides access to Amazon S3 control plane
+// actions.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20 for more information on this service.
 //

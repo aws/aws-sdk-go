@@ -1,3 +1,17 @@
+Release v1.40.6 (2021-07-22)
+===
+
+### Service Client Updates
+* `service/databrew`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release allows customers to assign prefixes to their elastic network interface and to reserve IP blocks in their subnet CIDRs. These reserved blocks can be used to assign prefixes to elastic network interfaces or be excluded from auto-assignment.
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/medialive`: Updates service API and documentation
+  * MediaLive now supports passing through style data on WebVTT caption outputs.
+* `service/qldb`: Updates service API and documentation
+* `service/s3control`: Updates service documentation
+  * Documentation updates for Amazon S3-control
+
 Release v1.40.5 (2021-07-21)
 ===
 

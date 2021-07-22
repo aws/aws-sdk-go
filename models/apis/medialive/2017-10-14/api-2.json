@@ -2529,6 +2529,23 @@
         "USE_CONFIGURED"
       ]
     },
+    "AudioHlsRenditionSelection": {
+      "type": "structure",
+      "members": {
+        "GroupId": {
+          "shape": "__stringMin1",
+          "locationName": "groupId"
+        },
+        "Name": {
+          "shape": "__stringMin1",
+          "locationName": "name"
+        }
+      },
+      "required": [
+        "Name",
+        "GroupId"
+      ]
+    },
     "AudioLanguageSelection": {
       "type": "structure",
       "members": {
@@ -2650,6 +2667,10 @@
     "AudioSelectorSettings": {
       "type": "structure",
       "members": {
+        "AudioHlsRenditionSelection": {
+          "shape": "AudioHlsRenditionSelection",
+          "locationName": "audioHlsRenditionSelection"
+        },
         "AudioLanguageSelection": {
           "shape": "AudioLanguageSelection",
           "locationName": "audioLanguageSelection"
@@ -12673,7 +12694,18 @@
     "WebvttDestinationSettings": {
       "type": "structure",
       "members": {
+        "StyleControl": {
+          "shape": "WebvttDestinationStyleControl",
+          "locationName": "styleControl"
+        }
       }
+    },
+    "WebvttDestinationStyleControl": {
+      "type": "string",
+      "enum": [
+        "NO_STYLE_DATA",
+        "PASSTHROUGH"
+      ]
     },
     "__boolean": {
       "type": "boolean"

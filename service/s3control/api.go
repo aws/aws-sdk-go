@@ -301,7 +301,7 @@ func (c *S3Control) CreateBucketRequest(input *CreateBucketInput) (req *request.
 // Returned Error Codes:
 //   * ErrCodeBucketAlreadyExists "BucketAlreadyExists"
 //   The requested Outposts bucket name is not available. The bucket namespace
-//   is shared by all users of the AWS Outposts in this Region. Select a different
+//   is shared by all users of the Outposts in this Region. Select a different
 //   name and try again.
 //
 //   * ErrCodeBucketAlreadyOwnedByYou "BucketAlreadyOwnedByYou"
@@ -1065,7 +1065,7 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 //
 // This implementation of the DELETE action uses the policy subresource to delete
 // the policy of a specified Amazon S3 on Outposts bucket. If you are using
-// an identity other than the root user of the AWS account that owns the bucket,
+// an identity other than the root user of the account that owns the bucket,
 // the calling identity must have the s3-outposts:DeleteBucketPolicy permissions
 // on the specified Outposts bucket and belong to the bucket owner's account
 // to use this action. For more information, see Using Amazon S3 on Outposts
@@ -1077,7 +1077,7 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 // using an identity that belongs to the bucket owner's account, Amazon S3 returns
 // a 405 Method Not Allowed error.
 //
-// As a security precaution, the root user of the AWS account that owns a bucket
+// As a security precaution, the root user of the account that owns a bucket
 // can always use this action, even if the policy explicitly denies the root
 // user the ability to perform this action.
 //
@@ -1375,8 +1375,8 @@ func (c *S3Control) DeletePublicAccessBlockRequest(input *DeletePublicAccessBloc
 
 // DeletePublicAccessBlock API operation for AWS S3 Control.
 //
-// Removes the PublicAccessBlock configuration for an AWS account. For more
-// information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Removes the PublicAccessBlock configuration for an account. For more information,
+// see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -2316,8 +2316,8 @@ func (c *S3Control) GetBucketRequest(input *GetBucketInput) (req *request.Reques
 // S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the AWS account
-// that owns the Outposts bucket, the calling identity must have the s3-outposts:GetBucket
+// If you are using an identity other than the root user of the account that
+// owns the Outposts bucket, the calling identity must have the s3-outposts:GetBucket
 // permissions on the specified Outposts bucket and belong to the Outposts bucket
 // owner's account in order to use this action. Only users from Outposts bucket
 // owner account with the right permissions can perform actions on an Outposts
@@ -2544,17 +2544,17 @@ func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *re
 // see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the AWS account
-// that owns the bucket, the calling identity must have the GetBucketPolicy
-// permissions on the specified bucket and belong to the bucket owner's account
-// in order to use this action.
+// If you are using an identity other than the root user of the account that
+// owns the bucket, the calling identity must have the GetBucketPolicy permissions
+// on the specified bucket and belong to the bucket owner's account in order
+// to use this action.
 //
 // Only users from Outposts bucket owner account with the right permissions
 // can perform actions on an Outposts bucket. If you don't have s3-outposts:GetBucketPolicy
 // permissions or you're not using an identity that belongs to the bucket owner's
 // account, Amazon S3 returns a 403 Access Denied error.
 //
-// As a security precaution, the root user of the AWS account that owns a bucket
+// As a security precaution, the root user of the account that owns a bucket
 // can always use this action, even if the policy explicitly denies the root
 // user the ability to perform this action.
 //
@@ -2855,8 +2855,8 @@ func (c *S3Control) GetPublicAccessBlockRequest(input *GetPublicAccessBlockInput
 
 // GetPublicAccessBlock API operation for AWS S3 Control.
 //
-// Retrieves the PublicAccessBlock configuration for an AWS account. For more
-// information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Retrieves the PublicAccessBlock configuration for an account. For more information,
+// see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -3421,8 +3421,8 @@ func (c *S3Control) ListJobsRequest(input *ListJobsInput) (req *request.Request,
 // ListJobs API operation for AWS S3 Control.
 //
 // Lists current S3 Batch Operations jobs and jobs that have ended within the
-// last 30 days for the AWS account making the request. For more information,
-// see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// last 30 days for the account making the request. For more information, see
+// S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -4239,8 +4239,8 @@ func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *re
 // see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the AWS account
-// that owns the Outposts bucket, the calling identity must have the PutBucketPolicy
+// If you are using an identity other than the root user of the account that
+// owns the Outposts bucket, the calling identity must have the PutBucketPolicy
 // permissions on the specified Outposts bucket and belong to the bucket owner's
 // account in order to use this action.
 //
@@ -4249,7 +4249,7 @@ func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *re
 // identity that belongs to the bucket owner's account, Amazon S3 returns a
 // 405 Method Not Allowed error.
 //
-// As a security precaution, the root user of the AWS account that owns a bucket
+// As a security precaution, the root user of the account that owns a bucket
 // can always use this action, even if the policy explicitly denies the root
 // user the ability to perform this action.
 //
@@ -4361,13 +4361,14 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 // Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// Use tags to organize your AWS bill to reflect your own cost structure. To
-// do this, sign up to get your AWS account bill with tag key values included.
-// Then, to see the cost of combined resources, organize your billing information
-// according to resources with the same tag key values. For example, you can
-// tag several resources with a specific application name, and then organize
-// your billing information to see the total cost of that application across
-// several services. For more information, see Cost allocation and tagging (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
+// Use tags to organize your Amazon Web Services bill to reflect your own cost
+// structure. To do this, sign up to get your account bill with tag key values
+// included. Then, to see the cost of combined resources, organize your billing
+// information according to resources with the same tag key values. For example,
+// you can tag several resources with a specific application name, and then
+// organize your billing information to see the total cost of that application
+// across several services. For more information, see Cost allocation and tagging
+// (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
 //
 // Within a bucket, if you add a tag that has the same key as an existing tag,
 // the new value overwrites the old value. For more information, see Using cost
@@ -4385,7 +4386,7 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 //    valid tag. This error can occur if the tag did not pass input validation.
 //    For information about tag restrictions, see User-Defined Tag Restrictions
 //    (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html)
-//    and AWS-Generated Cost Allocation Tag Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tag-restrictions.html).
+//    and Amazon Web Services-Generated Cost Allocation Tag Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/aws-tag-restrictions.html).
 //
 //    * Error code: MalformedXMLError Description: The XML provided does not
 //    match the schema.
@@ -4514,7 +4515,7 @@ func (c *S3Control) PutJobTaggingRequest(input *PutJobTaggingInput) (req *reques
 //    characters in length. The key and values are case sensitive. For tagging-related
 //    restrictions related to characters and encodings, see User-Defined Tag
 //    Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/allocation-tag-restrictions.html)
-//    in the AWS Billing and Cost Management User Guide.
+//    in the Billing and Cost Management User Guide.
 //
 // To use this action, you must have permission to perform the s3:PutJobTagging
 // action.
@@ -4613,8 +4614,8 @@ func (c *S3Control) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput
 
 // PutPublicAccessBlock API operation for AWS S3 Control.
 //
-// Creates or modifies the PublicAccessBlock configuration for an AWS account.
-// For more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Creates or modifies the PublicAccessBlock configuration for an account. For
+// more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -5073,7 +5074,7 @@ type AccessPoint struct {
 	// exists.
 	//
 	// This element is empty if this access point is an Amazon S3 on Outposts access
-	// point that is used by other AWS services.
+	// point that is used by other Amazon Web Services.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -5194,12 +5195,12 @@ func (s *ActivityMetrics) SetIsEnabled(v bool) *ActivityMetrics {
 	return s
 }
 
-// AWS Lambda function used to transform objects through an Object Lambda Access
+// Lambda function used to transform objects through an Object Lambda Access
 // Point.
 type AwsLambdaTransformation struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the AWS Lambda function.
+	// The Amazon Resource Name (ARN) of the Lambda function.
 	//
 	// FunctionArn is a required field
 	FunctionArn *string `min:"1" type:"string" required:"true"`
@@ -5298,7 +5299,7 @@ func (s *BucketLevel) SetPrefixLevel(v *PrefixLevel) *BucketLevel {
 type CreateAccessPointForObjectLambdaInput struct {
 	_ struct{} `locationName:"CreateAccessPointForObjectLambdaRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The AWS account ID for owner of the specified Object Lambda Access Point.
+	// The account ID for owner of the specified Object Lambda Access Point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -5404,8 +5405,8 @@ func (s *CreateAccessPointForObjectLambdaOutput) SetObjectLambdaAccessPointArn(v
 type CreateAccessPointInput struct {
 	_ struct{} `locationName:"CreateAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The AWS account ID for the owner of the bucket for which you want to create
-	// an access point.
+	// The account ID for the owner of the bucket for which you want to create an
+	// access point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -5415,8 +5416,9 @@ type CreateAccessPointInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -5781,8 +5783,9 @@ type CreateBucketOutput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -5817,7 +5820,7 @@ func (s *CreateBucketOutput) SetLocation(v string) *CreateBucketOutput {
 type CreateJobInput struct {
 	_ struct{} `locationName:"CreateJobRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The AWS account ID that creates the job.
+	// The account ID that creates the job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -5857,9 +5860,9 @@ type CreateJobInput struct {
 	// Report is a required field
 	Report *JobReport `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) for the AWS Identity and Access Management
-	// (IAM) role that Batch Operations will use to run this job's action on every
-	// object in the manifest.
+	// The Amazon Resource Name (ARN) for the Identity and Access Management (IAM)
+	// role that Batch Operations will use to run this job's action on every object
+	// in the manifest.
 	//
 	// RoleArn is a required field
 	RoleArn *string `min:"1" type:"string" required:"true"`
@@ -6126,8 +6129,9 @@ type DeleteAccessPointInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the access point accessed in the
+	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -6335,8 +6339,9 @@ type DeleteAccessPointPolicyInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the access point accessed in the
+	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -6464,8 +6469,9 @@ type DeleteBucketInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -6578,8 +6584,9 @@ type DeleteBucketLifecycleConfigurationInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -6720,8 +6727,9 @@ type DeleteBucketPolicyInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -6838,7 +6846,7 @@ func (s DeleteBucketPolicyOutput) GoString() string {
 type DeleteBucketTaggingInput struct {
 	_ struct{} `locationName:"DeleteBucketTaggingRequest" type:"structure"`
 
-	// The AWS account ID of the Outposts bucket tag set to be removed.
+	// The account ID of the Outposts bucket tag set to be removed.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -6848,8 +6856,9 @@ type DeleteBucketTaggingInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -6966,7 +6975,7 @@ func (s DeleteBucketTaggingOutput) GoString() string {
 type DeleteJobTaggingInput struct {
 	_ struct{} `locationName:"DeleteJobTaggingRequest" type:"structure"`
 
-	// The AWS account ID associated with the S3 Batch Operations job.
+	// The account ID associated with the S3 Batch Operations job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7044,8 +7053,8 @@ func (s DeleteJobTaggingOutput) GoString() string {
 type DeletePublicAccessBlockInput struct {
 	_ struct{} `locationName:"DeletePublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the AWS account whose PublicAccessBlock configuration
-	// you want to remove.
+	// The account ID for the account whose PublicAccessBlock configuration you
+	// want to remove.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7262,7 +7271,7 @@ func (s DeleteStorageLensConfigurationTaggingOutput) GoString() string {
 type DescribeJobInput struct {
 	_ struct{} `locationName:"DescribeJobRequest" type:"structure"`
 
-	// The AWS account ID associated with the S3 Batch Operations job.
+	// The account ID associated with the S3 Batch Operations job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7590,8 +7599,9 @@ type GetAccessPointInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the access point accessed in the
+	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -7726,7 +7736,7 @@ type GetAccessPointOutput struct {
 	// access point.
 	//
 	// This element is empty if this access point is an Amazon S3 on Outposts access
-	// point that is used by other AWS services.
+	// point that is used by other Amazon Web Services.
 	VpcConfiguration *VpcConfiguration `type:"structure"`
 }
 
@@ -7877,8 +7887,9 @@ type GetAccessPointPolicyInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the access point accessed in the
+	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -8183,7 +8194,7 @@ func (s *GetAccessPointPolicyStatusOutput) SetPolicyStatus(v *PolicyStatus) *Get
 type GetBucketInput struct {
 	_ struct{} `locationName:"GetBucketRequest" type:"structure"`
 
-	// The AWS account ID of the Outposts bucket.
+	// The account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8193,8 +8204,9 @@ type GetBucketInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -8297,7 +8309,7 @@ func (s GetBucketInput) updateAccountID(accountId string) (interface{}, error) {
 type GetBucketLifecycleConfigurationInput struct {
 	_ struct{} `locationName:"GetBucketLifecycleConfigurationRequest" type:"structure"`
 
-	// The AWS account ID of the Outposts bucket.
+	// The account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8307,8 +8319,9 @@ type GetBucketLifecycleConfigurationInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -8474,7 +8487,7 @@ func (s *GetBucketOutput) SetPublicAccessBlockEnabled(v bool) *GetBucketOutput {
 type GetBucketPolicyInput struct {
 	_ struct{} `locationName:"GetBucketPolicyRequest" type:"structure"`
 
-	// The AWS account ID of the Outposts bucket.
+	// The account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8484,8 +8497,9 @@ type GetBucketPolicyInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -8611,7 +8625,7 @@ func (s *GetBucketPolicyOutput) SetPolicy(v string) *GetBucketPolicyOutput {
 type GetBucketTaggingInput struct {
 	_ struct{} `locationName:"GetBucketTaggingRequest" type:"structure"`
 
-	// The AWS account ID of the Outposts bucket.
+	// The account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8621,8 +8635,9 @@ type GetBucketTaggingInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -8750,7 +8765,7 @@ func (s *GetBucketTaggingOutput) SetTagSet(v []*S3Tag) *GetBucketTaggingOutput {
 type GetJobTaggingInput struct {
 	_ struct{} `locationName:"GetJobTaggingRequest" type:"structure"`
 
-	// The AWS account ID associated with the S3 Batch Operations job.
+	// The account ID associated with the S3 Batch Operations job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8837,8 +8852,8 @@ func (s *GetJobTaggingOutput) SetTags(v []*S3Tag) *GetJobTaggingOutput {
 type GetPublicAccessBlockInput struct {
 	_ struct{} `locationName:"GetPublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the AWS account whose PublicAccessBlock configuration
-	// you want to retrieve.
+	// The account ID for the account whose PublicAccessBlock configuration you
+	// want to retrieve.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8885,7 +8900,7 @@ func (s *GetPublicAccessBlockInput) hostLabels() map[string]string {
 type GetPublicAccessBlockOutput struct {
 	_ struct{} `type:"structure" payload:"PublicAccessBlockConfiguration"`
 
-	// The PublicAccessBlock configuration currently in effect for this AWS account.
+	// The PublicAccessBlock configuration currently in effect for this account.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 }
 
@@ -9157,8 +9172,8 @@ type JobDescriptor struct {
 	// requested one in the Create Job request.
 	Report *JobReport `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for the AWS Identity and Access Management
-	// (IAM) role assigned to run the tasks for this job.
+	// The Amazon Resource Name (ARN) for the Identity and Access Management (IAM)
+	// role assigned to run the tasks for this job.
 	RoleArn *string `min:"1" type:"string"`
 
 	// The current status of the specified job.
@@ -9614,8 +9629,8 @@ func (s *JobManifestSpec) SetFormat(v string) *JobManifestSpec {
 type JobOperation struct {
 	_ struct{} `type:"structure"`
 
-	// Directs the specified job to invoke an AWS Lambda function on every object
-	// in the manifest.
+	// Directs the specified job to invoke an Lambda function on every object in
+	// the manifest.
 	LambdaInvoke *LambdaInvokeOperation `type:"structure"`
 
 	// Directs the specified job to execute a DELETE Object tagging call on every
@@ -9879,7 +9894,7 @@ func (s *JobReport) SetReportScope(v string) *JobReport {
 type LambdaInvokeOperation struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) for the AWS Lambda function that the specified
+	// The Amazon Resource Name (ARN) for the Lambda function that the specified
 	// job will invoke on every object in the manifest.
 	FunctionArn *string `min:"1" type:"string"`
 }
@@ -10357,8 +10372,7 @@ func (s *ListAccessPointsForObjectLambdaOutput) SetObjectLambdaAccessPointList(v
 type ListAccessPointsInput struct {
 	_ struct{} `locationName:"ListAccessPointsRequest" type:"structure"`
 
-	// The AWS account ID for owner of the bucket whose access points you want to
-	// list.
+	// The account ID for owner of the bucket whose access points you want to list.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10368,8 +10382,9 @@ type ListAccessPointsInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -10528,7 +10543,7 @@ func (s *ListAccessPointsOutput) SetNextToken(v string) *ListAccessPointsOutput 
 type ListJobsInput struct {
 	_ struct{} `locationName:"ListJobsRequest" type:"structure"`
 
-	// The AWS account ID associated with the S3 Batch Operations job.
+	// The account ID associated with the S3 Batch Operations job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10644,7 +10659,7 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 type ListRegionalBucketsInput struct {
 	_ struct{} `locationName:"ListRegionalBucketsRequest" type:"structure"`
 
-	// The AWS account ID of the Outposts bucket.
+	// The account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10653,7 +10668,7 @@ type ListRegionalBucketsInput struct {
 
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
 
-	// The ID of the AWS Outposts.
+	// The ID of the Outposts.
 	//
 	// This is required by Amazon S3 on Outposts buckets.
 	OutpostId *string `location:"header" locationName:"x-amz-outpost-id" min:"1" type:"string"`
@@ -10984,7 +10999,7 @@ func (s *NoncurrentVersionTransition) SetStorageClass(v string) *NoncurrentVersi
 	return s
 }
 
-// An access point with an attached AWS Lambda function used to access transformed
+// An access point with an attached Lambda function used to access transformed
 // data from an Amazon S3 bucket.
 type ObjectLambdaAccessPoint struct {
 	_ struct{} `type:"structure"`
@@ -11109,7 +11124,7 @@ func (s *ObjectLambdaConfiguration) SetTransformationConfigurations(v []*ObjectL
 type ObjectLambdaContentTransformation struct {
 	_ struct{} `type:"structure"`
 
-	// A container for an AWS Lambda function.
+	// A container for an Lambda function.
 	AwsLambda *AwsLambdaTransformation `type:"structure"`
 }
 
@@ -11368,8 +11383,8 @@ type PublicAccessBlockConfiguration struct {
 
 	// Specifies whether Amazon S3 should restrict public bucket policies for buckets
 	// in this account. Setting this element to TRUE restricts access to buckets
-	// with public policies to only AWS service principals and authorized users
-	// within this account.
+	// with public policies to only Amazon Web Service principals and authorized
+	// users within this account.
 	//
 	// Enabling this setting doesn't affect previously stored bucket policies, except
 	// that public and cross-account access within any public bucket policy, including
@@ -11607,8 +11622,8 @@ func (s PutAccessPointPolicyForObjectLambdaOutput) GoString() string {
 type PutAccessPointPolicyInput struct {
 	_ struct{} `locationName:"PutAccessPointPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The AWS account ID for owner of the bucket associated with the specified
-	// access point.
+	// The account ID for owner of the bucket associated with the specified access
+	// point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -11619,8 +11634,9 @@ type PutAccessPointPolicyInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the access point accessed in the
+	// format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/accesspoint/<my-accesspoint-name>.
 	// For example, to access the access point reports-ap through outpost my-outpost
 	// owned by account 123456789012 in Region us-west-2, use the URL encoding of
 	// arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap.
@@ -11755,7 +11771,7 @@ func (s PutAccessPointPolicyOutput) GoString() string {
 type PutBucketLifecycleConfigurationInput struct {
 	_ struct{} `locationName:"PutBucketLifecycleConfigurationRequest" type:"structure" payload:"LifecycleConfiguration"`
 
-	// The AWS account ID of the Outposts bucket.
+	// The account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -11888,7 +11904,7 @@ func (s PutBucketLifecycleConfigurationOutput) GoString() string {
 type PutBucketPolicyInput struct {
 	_ struct{} `locationName:"PutBucketPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The AWS account ID of the Outposts bucket.
+	// The account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -11898,8 +11914,9 @@ type PutBucketPolicyInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -12042,7 +12059,7 @@ func (s PutBucketPolicyOutput) GoString() string {
 type PutBucketTaggingInput struct {
 	_ struct{} `locationName:"PutBucketTaggingRequest" type:"structure" payload:"Tagging"`
 
-	// The AWS account ID of the Outposts bucket.
+	// The account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -12052,8 +12069,9 @@ type PutBucketTaggingInput struct {
 	// For using this parameter with Amazon S3 on Outposts with the REST API, you
 	// must specify the name and the x-amz-outpost-id as well.
 	//
-	// For using this parameter with S3 on Outposts with the AWS SDK and CLI, you
-	// must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
+	// For using this parameter with S3 on Outposts with the Amazon Web Services
+	// SDK and CLI, you must specify the ARN of the bucket accessed in the format
+	// arn:aws:s3-outposts:<Region>:<account-id>:outpost/<outpost-id>/bucket/<my-bucket-name>.
 	// For example, to access the bucket reports through outpost my-outpost owned
 	// by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports.
 	// The value must be URL encoded.
@@ -12187,7 +12205,7 @@ func (s PutBucketTaggingOutput) GoString() string {
 type PutJobTaggingInput struct {
 	_ struct{} `locationName:"PutJobTaggingRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The AWS account ID associated with the S3 Batch Operations job.
+	// The account ID associated with the S3 Batch Operations job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -12289,14 +12307,14 @@ func (s PutJobTaggingOutput) GoString() string {
 type PutPublicAccessBlockInput struct {
 	_ struct{} `locationName:"PutPublicAccessBlockRequest" type:"structure" payload:"PublicAccessBlockConfiguration"`
 
-	// The account ID for the AWS account whose PublicAccessBlock configuration
-	// you want to set.
+	// The account ID for the account whose PublicAccessBlock configuration you
+	// want to set.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The PublicAccessBlock configuration that you want to apply to the specified
-	// AWS account.
+	// account.
 	//
 	// PublicAccessBlockConfiguration is a required field
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `locationName:"PublicAccessBlockConfiguration" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
@@ -12600,7 +12618,7 @@ type RegionalBucket struct {
 	// CreationDate is a required field
 	CreationDate *time.Time `type:"timestamp" required:"true"`
 
-	// The AWS Outposts ID of the regional bucket.
+	// The Outposts ID of the regional bucket.
 	OutpostId *string `min:"1" type:"string"`
 
 	// PublicAccessBlockEnabled is a required field
@@ -12868,9 +12886,9 @@ type S3CopyObjectOperation struct {
 	AccessControlGrants []*S3Grant `type:"list"`
 
 	// Specifies whether Amazon S3 should use an S3 Bucket Key for object encryption
-	// with server-side encryption using AWS KMS (SSE-KMS). Setting this header
-	// to true causes Amazon S3 to use an S3 Bucket Key for object encryption with
-	// SSE-KMS.
+	// with server-side encryption using Amazon Web Services KMS (SSE-KMS). Setting
+	// this header to true causes Amazon S3 to use an S3 Bucket Key for object encryption
+	// with SSE-KMS.
 	//
 	// Specifying this header with an object action doesn’t affect bucket-level
 	// settings for S3 Bucket Key.
@@ -13859,12 +13877,13 @@ func (s *SelectionCriteria) SetMinStorageBytesPercentage(v float64) *SelectionCr
 	return s
 }
 
-// The AWS organization for your S3 Storage Lens.
+// The Amazon Web Services organization for your S3 Storage Lens.
 type StorageLensAwsOrg struct {
 	_ struct{} `type:"structure"`
 
-	// A container for the Amazon Resource Name (ARN) of the AWS organization. This
-	// property is read-only and follows the following format: arn:aws:organizations:us-east-1:example-account-id:organization/o-ex2l495dck
+	// A container for the Amazon Resource Name (ARN) of the Amazon Web Services
+	// organization. This property is read-only and follows the following format:
+	// arn:aws:organizations:us-east-1:example-account-id:organization/o-ex2l495dck
 	//
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
@@ -13912,7 +13931,8 @@ type StorageLensConfiguration struct {
 	// AccountLevel is a required field
 	AccountLevel *AccountLevel `type:"structure" required:"true"`
 
-	// A container for the AWS organization for this S3 Storage Lens configuration.
+	// A container for the Amazon Web Services organization for this S3 Storage
+	// Lens configuration.
 	AwsOrg *StorageLensAwsOrg `type:"structure"`
 
 	// A container to specify the properties of your S3 Storage Lens metrics export
@@ -14283,7 +14303,7 @@ func (s *Transition) SetStorageClass(v string) *Transition {
 type UpdateJobPriorityInput struct {
 	_ struct{} `locationName:"UpdateJobPriorityRequest" type:"structure"`
 
-	// The AWS account ID associated with the S3 Batch Operations job.
+	// The account ID associated with the S3 Batch Operations job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -14397,7 +14417,7 @@ func (s *UpdateJobPriorityOutput) SetPriority(v int64) *UpdateJobPriorityOutput 
 type UpdateJobStatusInput struct {
 	_ struct{} `locationName:"UpdateJobStatusRequest" type:"structure"`
 
-	// The AWS account ID associated with the S3 Batch Operations job.
+	// The account ID associated with the S3 Batch Operations job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`

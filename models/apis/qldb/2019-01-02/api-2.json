@@ -313,7 +313,8 @@
         "Name":{"shape":"LedgerName"},
         "Tags":{"shape":"Tags"},
         "PermissionsMode":{"shape":"PermissionsMode"},
-        "DeletionProtection":{"shape":"DeletionProtection"}
+        "DeletionProtection":{"shape":"DeletionProtection"},
+        "KmsKey":{"shape":"KmsKey"}
       }
     },
     "CreateLedgerResponse":{
@@ -324,7 +325,8 @@
         "State":{"shape":"LedgerState"},
         "CreationDateTime":{"shape":"Timestamp"},
         "PermissionsMode":{"shape":"PermissionsMode"},
-        "DeletionProtection":{"shape":"DeletionProtection"}
+        "DeletionProtection":{"shape":"DeletionProtection"},
+        "KmsKeyArn":{"shape":"Arn"}
       }
     },
     "DeleteLedgerRequest":{
@@ -409,13 +411,22 @@
         "State":{"shape":"LedgerState"},
         "CreationDateTime":{"shape":"Timestamp"},
         "PermissionsMode":{"shape":"PermissionsMode"},
-        "DeletionProtection":{"shape":"DeletionProtection"}
+        "DeletionProtection":{"shape":"DeletionProtection"},
+        "EncryptionDescription":{"shape":"LedgerEncryptionDescription"}
       }
     },
     "Digest":{
       "type":"blob",
       "max":32,
       "min":32
+    },
+    "EncryptionStatus":{
+      "type":"string",
+      "enum":[
+        "ENABLED",
+        "UPDATING",
+        "KMS_KEY_INACCESSIBLE"
+      ]
     },
     "ErrorCause":{
       "type":"string",
@@ -609,6 +620,22 @@
       "members":{
         "StreamArn":{"shape":"Arn"},
         "AggregationEnabled":{"shape":"Boolean"}
+      }
+    },
+    "KmsKey":{
+      "type":"string",
+      "max":1600
+    },
+    "LedgerEncryptionDescription":{
+      "type":"structure",
+      "required":[
+        "KmsKeyArn",
+        "EncryptionStatus"
+      ],
+      "members":{
+        "KmsKeyArn":{"shape":"Arn"},
+        "EncryptionStatus":{"shape":"EncryptionStatus"},
+        "InaccessibleKmsKeyDateTime":{"shape":"Timestamp"}
       }
     },
     "LedgerList":{
@@ -1016,7 +1043,8 @@
           "location":"uri",
           "locationName":"name"
         },
-        "DeletionProtection":{"shape":"DeletionProtection"}
+        "DeletionProtection":{"shape":"DeletionProtection"},
+        "KmsKey":{"shape":"KmsKey"}
       }
     },
     "UpdateLedgerResponse":{
@@ -1026,7 +1054,8 @@
         "Arn":{"shape":"Arn"},
         "State":{"shape":"LedgerState"},
         "CreationDateTime":{"shape":"Timestamp"},
-        "DeletionProtection":{"shape":"DeletionProtection"}
+        "DeletionProtection":{"shape":"DeletionProtection"},
+        "EncryptionDescription":{"shape":"LedgerEncryptionDescription"}
       }
     },
     "ValueHolder":{
