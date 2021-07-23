@@ -1452,7 +1452,7 @@
         "ImageTestsConfiguration$imageTestsEnabled": "<p>Defines if tests should be executed when building this image.</p>",
         "InfrastructureConfiguration$terminateInstanceOnFailure": "<p>The terminate instance on failure configuration of the infrastructure configuration.</p>",
         "ListImagesRequest$includeDeprecated": "<p>Includes deprecated images in the response list.</p>",
-        "SystemsManagerAgent$uninstallAfterBuild": "<p>This property defaults to true. If Image Builder installs the SSM agent on a build instance, it removes the agent before creating a snapshot for the AMI. To ensure that the AMI you create includes the SSM agent, set this property to false.</p>",
+        "SystemsManagerAgent$uninstallAfterBuild": "<p>Controls whether the SSM agent is removed from your final build image, prior to creating the new AMI. If this is set to true, then the agent is removed from the final image. If it's set to false, then the agent is left in, so that it is included in the new AMI. The default value is false.</p>",
         "UpdateImagePipelineRequest$enhancedImageMetadataEnabled": "<p> Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.</p>",
         "UpdateInfrastructureConfigurationRequest$terminateInstanceOnFailure": "<p>The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.</p>"
       }

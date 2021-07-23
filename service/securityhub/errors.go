@@ -39,8 +39,8 @@ const (
 	// "LimitExceededException".
 	//
 	// The request was rejected because it attempted to create resources beyond
-	// the current AWS account or throttling limits. The error code describes the
-	// limit exceeded.
+	// the current Amazon Web Services account or throttling limits. The error code
+	// describes the limit exceeded.
 	ErrCodeLimitExceededException = "LimitExceededException"
 
 	// ErrCodeResourceConflictException for service response error code
