@@ -68,11 +68,7 @@
       "error":{"httpStatusCode":403},
       "exception":true
     },
-    "CidrBlock":{
-      "type":"string",
-      "max":20,
-      "min":1
-    },
+    "CidrBlock":{"type":"string"},
     "ConflictException":{
       "type":"structure",
       "members":{
@@ -91,7 +87,9 @@
       "members":{
         "OutpostId":{"shape":"OutpostId"},
         "SubnetId":{"shape":"SubnetId"},
-        "SecurityGroupId":{"shape":"SecurityGroupId"}
+        "SecurityGroupId":{"shape":"SecurityGroupId"},
+        "AccessType":{"shape":"EndpointAccessType"},
+        "CustomerOwnedIpv4Pool":{"shape":"CustomerOwnedIpv4Pool"}
       }
     },
     "CreateEndpointResult":{
@@ -101,6 +99,10 @@
       }
     },
     "CreationTime":{"type":"timestamp"},
+    "CustomerOwnedIpv4Pool":{
+      "type":"string",
+      "pattern":"^ipv4pool-coip-([0-9a-f]{17})$"
+    },
     "DeleteEndpointRequest":{
       "type":"structure",
       "required":[
@@ -128,26 +130,35 @@
         "CidrBlock":{"shape":"CidrBlock"},
         "Status":{"shape":"EndpointStatus"},
         "CreationTime":{"shape":"CreationTime"},
-        "NetworkInterfaces":{"shape":"NetworkInterfaces"}
+        "NetworkInterfaces":{"shape":"NetworkInterfaces"},
+        "VpcId":{"shape":"VpcId"},
+        "SubnetId":{"shape":"SubnetId"},
+        "SecurityGroupId":{"shape":"SecurityGroupId"},
+        "AccessType":{"shape":"EndpointAccessType"},
+        "CustomerOwnedIpv4Pool":{"shape":"CustomerOwnedIpv4Pool"}
       }
+    },
+    "EndpointAccessType":{
+      "type":"string",
+      "enum":[
+        "Private",
+        "CustomerOwnedIp"
+      ]
     },
     "EndpointArn":{
       "type":"string",
-      "max":500,
-      "min":5,
       "pattern":"^arn:(aws|aws-cn|aws-us-gov|aws-iso|aws-iso-b):s3-outposts:[a-z\\-0-9]*:[0-9]{12}:outpost/(op-[a-f0-9]{17}|ec2)/endpoint/[a-zA-Z0-9]{19}$"
     },
     "EndpointId":{
       "type":"string",
-      "max":500,
-      "min":5,
       "pattern":"^[a-zA-Z0-9]{19}$"
     },
     "EndpointStatus":{
       "type":"string",
       "enum":[
-        "PENDING",
-        "AVAILABLE"
+        "Pending",
+        "Available",
+        "Deleting"
       ]
     },
     "Endpoints":{
@@ -197,11 +208,7 @@
         "NetworkInterfaceId":{"shape":"NetworkInterfaceId"}
       }
     },
-    "NetworkInterfaceId":{
-      "type":"string",
-      "max":100,
-      "min":1
-    },
+    "NetworkInterfaceId":{"type":"string"},
     "NetworkInterfaces":{
       "type":"list",
       "member":{"shape":"NetworkInterface"}
@@ -214,8 +221,6 @@
     },
     "OutpostId":{
       "type":"string",
-      "max":100,
-      "min":1,
       "pattern":"^(op-[a-f0-9]{17}|\\d{12}|ec2)$"
     },
     "ResourceNotFoundException":{
@@ -228,14 +233,10 @@
     },
     "SecurityGroupId":{
       "type":"string",
-      "max":100,
-      "min":1,
       "pattern":"^sg-([0-9a-f]{8}|[0-9a-f]{17})$"
     },
     "SubnetId":{
       "type":"string",
-      "max":100,
-      "min":1,
       "pattern":"^subnet-([0-9a-f]{8}|[0-9a-f]{17})$"
     },
     "ValidationException":{
@@ -245,6 +246,7 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
-    }
+    },
+    "VpcId":{"type":"string"}
   }
 }

@@ -1,3 +1,11 @@
+Release v1.40.7 (2021-07-23)
+===
+
+### Service Client Updates
+* `service/imagebuilder`: Updates service documentation
+* `service/s3outposts`: Updates service API and documentation
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.40.6 (2021-07-22)
 ===
 

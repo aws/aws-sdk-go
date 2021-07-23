@@ -57,12 +57,15 @@ func (c *S3Outposts) CreateEndpointRequest(input *CreateEndpointInput) (req *req
 
 // CreateEndpoint API operation for Amazon S3 on Outposts.
 //
-// S3 on Outposts access points simplify managing data access at scale for shared
-// datasets in Amazon S3 on Outposts. S3 on Outposts uses endpoints to connect
+// Amazon S3 on Outposts Access Points simplify managing data access at scale
+// for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect
 // to Outposts buckets so that you can perform actions within your virtual private
-// cloud (VPC).
+// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC
+// only access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AccessingS3Outposts.html).
 //
-// This action creates an endpoint and associates it with the specified Outpost.
+// This action creates an endpoint and associates it with the specified Outposts.
+//
+// It can take up to 5 minutes for this action to complete.
 //
 // Related actions include:
 //
@@ -160,12 +163,15 @@ func (c *S3Outposts) DeleteEndpointRequest(input *DeleteEndpointInput) (req *req
 
 // DeleteEndpoint API operation for Amazon S3 on Outposts.
 //
-// S3 on Outposts access points simplify managing data access at scale for shared
-// datasets in Amazon S3 on Outposts. S3 on Outposts uses endpoints to connect
+// Amazon S3 on Outposts Access Points simplify managing data access at scale
+// for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect
 // to Outposts buckets so that you can perform actions within your virtual private
-// cloud (VPC).
+// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC
+// only access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AccessingS3Outposts.html).
 //
 // This action deletes an endpoint.
+//
+// It can take up to 5 minutes for this action to complete.
 //
 // Related actions include:
 //
@@ -265,12 +271,13 @@ func (c *S3Outposts) ListEndpointsRequest(input *ListEndpointsInput) (req *reque
 
 // ListEndpoints API operation for Amazon S3 on Outposts.
 //
-// S3 on Outposts access points simplify managing data access at scale for shared
-// datasets in Amazon S3 on Outposts. S3 on Outposts uses endpoints to connect
+// Amazon S3 on Outposts Access Points simplify managing data access at scale
+// for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect
 // to Outposts buckets so that you can perform actions within your virtual private
-// cloud (VPC).
+// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC
+// only access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AccessingS3Outposts.html).
 //
-// This action lists endpoints associated with the Outpost.
+// This action lists endpoints associated with the Outposts.
 //
 // Related actions include:
 //
@@ -487,20 +494,30 @@ func (s *ConflictException) RequestID() string {
 type CreateEndpointInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS Outpost.
+	// The type of access for the on-premise network connectivity for the Outpost
+	// endpoint. To access the endpoint from an on-premises network, you must specify
+	// the access type and provide the customer owned IPv4 pool.
+	AccessType *string `type:"string" enum:"EndpointAccessType"`
+
+	// The ID of the customer-owned IPv4 pool for the endpoint. IP addresses will
+	// be allocated from this pool for the endpoint.
+	CustomerOwnedIpv4Pool *string `type:"string"`
+
+	// The ID of the AWS Outposts.
 	//
 	// OutpostId is a required field
-	OutpostId *string `min:"1" type:"string" required:"true"`
+	OutpostId *string `type:"string" required:"true"`
 
 	// The ID of the security group to use with the endpoint.
 	//
 	// SecurityGroupId is a required field
-	SecurityGroupId *string `min:"1" type:"string" required:"true"`
+	SecurityGroupId *string `type:"string" required:"true"`
 
-	// The ID of the subnet in the selected VPC.
+	// The ID of the subnet in the selected VPC. The endpoint subnet must belong
+	// to the Outpost that has the Amazon S3 on Outposts provisioned.
 	//
 	// SubnetId is a required field
-	SubnetId *string `min:"1" type:"string" required:"true"`
+	SubnetId *string `type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -519,26 +536,29 @@ func (s *CreateEndpointInput) Validate() error {
 	if s.OutpostId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutpostId"))
 	}
-	if s.OutpostId != nil && len(*s.OutpostId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("OutpostId", 1))
-	}
 	if s.SecurityGroupId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SecurityGroupId"))
 	}
-	if s.SecurityGroupId != nil && len(*s.SecurityGroupId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SecurityGroupId", 1))
-	}
 	if s.SubnetId == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubnetId"))
-	}
-	if s.SubnetId != nil && len(*s.SubnetId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("SubnetId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccessType sets the AccessType field's value.
+func (s *CreateEndpointInput) SetAccessType(v string) *CreateEndpointInput {
+	s.AccessType = &v
+	return s
+}
+
+// SetCustomerOwnedIpv4Pool sets the CustomerOwnedIpv4Pool field's value.
+func (s *CreateEndpointInput) SetCustomerOwnedIpv4Pool(v string) *CreateEndpointInput {
+	s.CustomerOwnedIpv4Pool = &v
+	return s
 }
 
 // SetOutpostId sets the OutpostId field's value.
@@ -563,7 +583,7 @@ type CreateEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the endpoint.
-	EndpointArn *string `min:"5" type:"string"`
+	EndpointArn *string `type:"string"`
 }
 
 // String returns the string representation
@@ -585,15 +605,15 @@ func (s *CreateEndpointOutput) SetEndpointArn(v string) *CreateEndpointOutput {
 type DeleteEndpointInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the end point.
+	// The ID of the endpoint.
 	//
 	// EndpointId is a required field
-	EndpointId *string `location:"querystring" locationName:"endpointId" min:"5" type:"string" required:"true"`
+	EndpointId *string `location:"querystring" locationName:"endpointId" type:"string" required:"true"`
 
-	// The ID of the AWS Outpost.
+	// The ID of the AWS Outposts.
 	//
 	// OutpostId is a required field
-	OutpostId *string `location:"querystring" locationName:"outpostId" min:"1" type:"string" required:"true"`
+	OutpostId *string `location:"querystring" locationName:"outpostId" type:"string" required:"true"`
 }
 
 // String returns the string representation
@@ -612,14 +632,8 @@ func (s *DeleteEndpointInput) Validate() error {
 	if s.EndpointId == nil {
 		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
 	}
-	if s.EndpointId != nil && len(*s.EndpointId) < 5 {
-		invalidParams.Add(request.NewErrParamMinLen("EndpointId", 5))
-	}
 	if s.OutpostId == nil {
 		invalidParams.Add(request.NewErrParamRequired("OutpostId"))
-	}
-	if s.OutpostId != nil && len(*s.OutpostId) < 1 {
-		invalidParams.Add(request.NewErrParamMinLen("OutpostId", 1))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -654,30 +668,45 @@ func (s DeleteEndpointOutput) GoString() string {
 	return s.String()
 }
 
-// S3 on Outposts access points simplify managing data access at scale for shared
-// datasets in Amazon S3 on Outposts. S3 on Outposts uses endpoints to connect
+// Amazon S3 on Outposts Access Points simplify managing data access at scale
+// for shared datasets in S3 on Outposts. S3 on Outposts uses endpoints to connect
 // to Outposts buckets so that you can perform actions within your virtual private
-// cloud (VPC).
+// cloud (VPC). For more information, see Accessing S3 on Outposts using VPC
+// only access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/AccessingS3Outposts.html).
 type Endpoint struct {
 	_ struct{} `type:"structure"`
 
+	AccessType *string `type:"string" enum:"EndpointAccessType"`
+
 	// The VPC CIDR committed by this endpoint.
-	CidrBlock *string `min:"1" type:"string"`
+	CidrBlock *string `type:"string"`
 
 	// The time the endpoint was created.
 	CreationTime *time.Time `type:"timestamp"`
 
+	// The ID of the customer-owned IPv4 pool used for the endpoint.
+	CustomerOwnedIpv4Pool *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the endpoint.
-	EndpointArn *string `min:"5" type:"string"`
+	EndpointArn *string `type:"string"`
 
 	// The network interface of the endpoint.
 	NetworkInterfaces []*NetworkInterface `type:"list"`
 
-	// The ID of the AWS Outpost.
-	OutpostsId *string `min:"1" type:"string"`
+	// The ID of the AWS Outposts.
+	OutpostsId *string `type:"string"`
+
+	// The ID of the security group used for the endpoint.
+	SecurityGroupId *string `type:"string"`
 
 	// The status of the endpoint.
 	Status *string `type:"string" enum:"EndpointStatus"`
+
+	// The ID of the subnet used for the endpoint.
+	SubnetId *string `type:"string"`
+
+	// The ID of the VPC used for the endpoint.
+	VpcId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -690,6 +719,12 @@ func (s Endpoint) GoString() string {
 	return s.String()
 }
 
+// SetAccessType sets the AccessType field's value.
+func (s *Endpoint) SetAccessType(v string) *Endpoint {
+	s.AccessType = &v
+	return s
+}
+
 // SetCidrBlock sets the CidrBlock field's value.
 func (s *Endpoint) SetCidrBlock(v string) *Endpoint {
 	s.CidrBlock = &v
@@ -699,6 +734,12 @@ func (s *Endpoint) SetCidrBlock(v string) *Endpoint {
 // SetCreationTime sets the CreationTime field's value.
 func (s *Endpoint) SetCreationTime(v time.Time) *Endpoint {
 	s.CreationTime = &v
+	return s
+}
+
+// SetCustomerOwnedIpv4Pool sets the CustomerOwnedIpv4Pool field's value.
+func (s *Endpoint) SetCustomerOwnedIpv4Pool(v string) *Endpoint {
+	s.CustomerOwnedIpv4Pool = &v
 	return s
 }
 
@@ -720,9 +761,27 @@ func (s *Endpoint) SetOutpostsId(v string) *Endpoint {
 	return s
 }
 
+// SetSecurityGroupId sets the SecurityGroupId field's value.
+func (s *Endpoint) SetSecurityGroupId(v string) *Endpoint {
+	s.SecurityGroupId = &v
+	return s
+}
+
 // SetStatus sets the Status field's value.
 func (s *Endpoint) SetStatus(v string) *Endpoint {
 	s.Status = &v
+	return s
+}
+
+// SetSubnetId sets the SubnetId field's value.
+func (s *Endpoint) SetSubnetId(v string) *Endpoint {
+	s.SubnetId = &v
+	return s
+}
+
+// SetVpcId sets the VpcId field's value.
+func (s *Endpoint) SetVpcId(v string) *Endpoint {
+	s.VpcId = &v
 	return s
 }
 
@@ -830,7 +889,7 @@ func (s *ListEndpointsInput) SetNextToken(v string) *ListEndpointsInput {
 type ListEndpointsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Returns an array of endpoints associated with AWS Outpost.
+	// Returns an array of endpoints associated with AWS Outposts.
 	Endpoints []*Endpoint `type:"list"`
 
 	// The next endpoint returned in the list.
@@ -864,7 +923,7 @@ type NetworkInterface struct {
 	_ struct{} `type:"structure"`
 
 	// The ID for the network interface.
-	NetworkInterfaceId *string `min:"1" type:"string"`
+	NetworkInterfaceId *string `type:"string"`
 }
 
 // String returns the string representation
@@ -996,11 +1055,30 @@ func (s *ValidationException) RequestID() string {
 }
 
 const (
+	// EndpointAccessTypePrivate is a EndpointAccessType enum value
+	EndpointAccessTypePrivate = "Private"
+
+	// EndpointAccessTypeCustomerOwnedIp is a EndpointAccessType enum value
+	EndpointAccessTypeCustomerOwnedIp = "CustomerOwnedIp"
+)
+
+// EndpointAccessType_Values returns all elements of the EndpointAccessType enum
+func EndpointAccessType_Values() []string {
+	return []string{
+		EndpointAccessTypePrivate,
+		EndpointAccessTypeCustomerOwnedIp,
+	}
+}
+
+const (
 	// EndpointStatusPending is a EndpointStatus enum value
-	EndpointStatusPending = "PENDING"
+	EndpointStatusPending = "Pending"
 
 	// EndpointStatusAvailable is a EndpointStatus enum value
-	EndpointStatusAvailable = "AVAILABLE"
+	EndpointStatusAvailable = "Available"
+
+	// EndpointStatusDeleting is a EndpointStatus enum value
+	EndpointStatusDeleting = "Deleting"
 )
 
 // EndpointStatus_Values returns all elements of the EndpointStatus enum
@@ -1008,5 +1086,6 @@ func EndpointStatus_Values() []string {
 	return []string{
 		EndpointStatusPending,
 		EndpointStatusAvailable,
+		EndpointStatusDeleting,
 	}
 }
