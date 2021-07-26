@@ -36,9 +36,6 @@ type DefaultRetryer struct {
 }
 
 const (
-	// DefaultRetryerMaxNumRetries sets maximum number of retries
-	DefaultRetryerMaxNumRetries = 3
-
 	// DefaultRetryerMinRetryDelay sets minimum retry delay
 	DefaultRetryerMinRetryDelay = 30 * time.Millisecond
 
