@@ -3,6 +3,7 @@
   "service": "<p>Amazon Textract detects and analyzes text in documents and converts it into machine-readable text. This is the API reference documentation for Amazon Textract.</p>",
   "operations": {
     "AnalyzeDocument": "<p>Analyzes an input document for relationships between detected items. </p> <p>The types of information returned are as follows: </p> <ul> <li> <p>Form data (key-value pairs). The related information is returned in two <a>Block</a> objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.</p> </li> <li> <p>Table and table cell data. A TABLE <code>Block</code> object contains information about a detected table. A CELL <code>Block</code> object is returned for each cell in a table.</p> </li> <li> <p>Lines and words of text. A LINE <code>Block</code> object contains one or more WORD <code>Block</code> objects. All lines and words that are detected in the document are returned (including text that doesn't have a relationship with the value of <code>FeatureTypes</code>). </p> </li> </ul> <p>Selection elements such as check boxes and option buttons (radio buttons) can be detected in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains information about a selection element, including the selection status.</p> <p>You can choose which type of analysis to perform by specifying the <code>FeatureTypes</code> list. </p> <p>The output is returned in a list of <code>Block</code> objects.</p> <p> <code>AnalyzeDocument</code> is a synchronous operation. To analyze documents asynchronously, use <a>StartDocumentAnalysis</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html\">Document Text Analysis</a>.</p>",
+    "AnalyzeExpense": "<p>Analyzes an input document for financially related relationships between text.</p> <p>Information is returned as <code>ExpenseDocuments</code> and seperated as follows.</p> <ul> <li> <p> <code>LineItemGroups</code>- A data set containing <code>LineItems</code> which store information about the lines of text, such as an item purchased and its price on a receipt.</p> </li> <li> <p> <code>SummaryFields</code>- Contains all other information a receipt, such as header information or the vendors name.</p> </li> </ul>",
     "DetectDocumentText": "<p>Detects text in the input document. Amazon Textract can detect lines of text and the words that make up a line of text. The input document must be an image in JPEG or PNG format. <code>DetectDocumentText</code> returns the detected text in an array of <a>Block</a> objects. </p> <p>Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent the lines of detected text on a page. A LINE <code>Block</code> object is a parent for each word that makes up the line. Words are represented by <code>Block</code> objects of type WORD.</p> <p> <code>DetectDocumentText</code> is a synchronous operation. To analyze documents asynchronously, use <a>StartDocumentTextDetection</a>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>",
     "GetDocumentAnalysis": "<p>Gets the results for an Amazon Textract asynchronous operation that analyzes text in a document.</p> <p>You start asynchronous text analysis by calling <a>StartDocumentAnalysis</a>, which returns a job identifier (<code>JobId</code>). When the text analysis operation finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentAnalysis</code>. To get the results of the text-detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentAnalysis</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentAnalysis</code>.</p> <p> <code>GetDocumentAnalysis</code> returns an array of <a>Block</a> objects. The following types of information are returned: </p> <ul> <li> <p>Form data (key-value pairs). The related information is returned in two <a>Block</a> objects, each of type <code>KEY_VALUE_SET</code>: a KEY <code>Block</code> object and a VALUE <code>Block</code> object. For example, <i>Name: Ana Silva Carolina</i> contains a key and value. <i>Name:</i> is the key. <i>Ana Silva Carolina</i> is the value.</p> </li> <li> <p>Table and table cell data. A TABLE <code>Block</code> object contains information about a detected table. A CELL <code>Block</code> object is returned for each cell in a table.</p> </li> <li> <p>Lines and words of text. A LINE <code>Block</code> object contains one or more WORD <code>Block</code> objects. All lines and words that are detected in the document are returned (including text that doesn't have a relationship with the value of the <code>StartDocumentAnalysis</code> <code>FeatureTypes</code> input parameter). </p> </li> </ul> <p>Selection elements such as check boxes and option buttons (radio buttons) can be detected in form data and in tables. A SELECTION_ELEMENT <code>Block</code> object contains information about a selection element, including the selection status.</p> <p>Use the <code>MaxResults</code> parameter to limit the number of blocks that are returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetDocumentAnalysis</code>, and populate the <code>NextToken</code> request parameter with the token value that's returned from the previous call to <code>GetDocumentAnalysis</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-analyzing.html\">Document Text Analysis</a>.</p>",
     "GetDocumentTextDetection": "<p>Gets the results for an Amazon Textract asynchronous operation that detects text in a document. Amazon Textract can detect lines of text and the words that make up a line of text.</p> <p>You start asynchronous text detection by calling <a>StartDocumentTextDetection</a>, which returns a job identifier (<code>JobId</code>). When the text detection operation finishes, Amazon Textract publishes a completion status to the Amazon Simple Notification Service (Amazon SNS) topic that's registered in the initial call to <code>StartDocumentTextDetection</code>. To get the results of the text-detection operation, first check that the status value published to the Amazon SNS topic is <code>SUCCEEDED</code>. If so, call <code>GetDocumentTextDetection</code>, and pass the job identifier (<code>JobId</code>) from the initial call to <code>StartDocumentTextDetection</code>.</p> <p> <code>GetDocumentTextDetection</code> returns an array of <a>Block</a> objects. </p> <p>Each document page has as an associated <code>Block</code> of type PAGE. Each PAGE <code>Block</code> object is the parent of LINE <code>Block</code> objects that represent the lines of detected text on a page. A LINE <code>Block</code> object is a parent for each word that makes up the line. Words are represented by <code>Block</code> objects of type WORD.</p> <p>Use the MaxResults parameter to limit the number of blocks that are returned. If there are more results than specified in <code>MaxResults</code>, the value of <code>NextToken</code> in the operation response contains a pagination token for getting the next set of results. To get the next page of results, call <code>GetDocumentTextDetection</code>, and populate the <code>NextToken</code> request parameter with the token value that's returned from the previous call to <code>GetDocumentTextDetection</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/textract/latest/dg/how-it-works-detecting.html\">Document Text Detection</a>.</p>",
@@ -21,6 +22,16 @@
       }
     },
     "AnalyzeDocumentResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AnalyzeExpenseRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "AnalyzeExpenseResponse": {
       "base": null,
       "refs": {
       }
@@ -90,6 +101,7 @@
       "base": "<p>The input document, either as bytes or as an S3 object.</p> <p>You pass image bytes to an Amazon Textract API operation by using the <code>Bytes</code> property. For example, you would use the <code>Bytes</code> property to pass a document loaded from a local file system. Image bytes passed by using the <code>Bytes</code> property must be base64 encoded. Your code might not need to encode document file bytes if you're using an AWS SDK to call Amazon Textract API operations. </p> <p>You pass images stored in an S3 bucket to an Amazon Textract API operation by using the <code>S3Object</code> property. Documents stored in an S3 bucket don't need to be base64 encoded.</p> <p>The AWS Region for the S3 bucket that contains the S3 object must match the AWS Region that you use for Amazon Textract operations.</p> <p>If you use the AWS CLI to call Amazon Textract operations, passing image bytes using the Bytes property isn't supported. You must first upload the document to an Amazon S3 bucket, and then call the operation using the S3Object property.</p> <p>For Amazon Textract to process an S3 object, the user must have permission to access the S3 object. </p>",
       "refs": {
         "AnalyzeDocumentRequest$Document": "<p>The input document as base64-encoded bytes or an Amazon S3 object. If you use the AWS CLI to call Amazon Textract operations, you can't pass image bytes. The document must be an image in JPEG or PNG format.</p> <p>If you're using an AWS SDK to call Amazon Textract, you might not need to base64-encode image bytes that are passed using the <code>Bytes</code> field. </p>",
+        "AnalyzeExpenseRequest$Document": null,
         "DetectDocumentTextRequest$Document": "<p>The input document as base64-encoded bytes or an Amazon S3 object. If you use the AWS CLI to call Amazon Textract operations, you can't pass image bytes. The document must be an image in JPEG or PNG format.</p> <p>If you're using an AWS SDK to call Amazon Textract, you might not need to base64-encode image bytes that are passed using the <code>Bytes</code> field. </p>"
       }
     },
@@ -104,6 +116,7 @@
       "base": "<p>Information about the input document.</p>",
       "refs": {
         "AnalyzeDocumentResponse$DocumentMetadata": "<p>Metadata about the analyzed document. An example is the number of pages.</p>",
+        "AnalyzeExpenseResponse$DocumentMetadata": null,
         "DetectDocumentTextResponse$DocumentMetadata": "<p>Metadata about the document. It contains the number of pages that are detected in the document.</p>",
         "GetDocumentAnalysisResponse$DocumentMetadata": "<p>Information about a document that Amazon Textract processed. <code>DocumentMetadata</code> is returned in every page of paginated responses from an Amazon Textract video operation.</p>",
         "GetDocumentTextDetectionResponse$DocumentMetadata": "<p>Information about a document that Amazon Textract processed. <code>DocumentMetadata</code> is returned in every page of paginated responses from an Amazon Textract video operation.</p>"
@@ -130,6 +143,44 @@
       "base": null,
       "refs": {
         "Warning$ErrorCode": "<p>The error code for the warning.</p>"
+      }
+    },
+    "ExpenseDetection": {
+      "base": "<p>An object used to store information about the Value or Label detected by Amazon Textract.</p>",
+      "refs": {
+        "ExpenseField$LabelDetection": "<p>The explicitly stated label of a detected element.</p>",
+        "ExpenseField$ValueDetection": "<p>The value of a detected element. Present in explicit and implicit elements.</p>"
+      }
+    },
+    "ExpenseDocument": {
+      "base": "<p>The structure holding all the information returned by AnalyzeExpense</p>",
+      "refs": {
+        "ExpenseDocumentList$member": null
+      }
+    },
+    "ExpenseDocumentList": {
+      "base": null,
+      "refs": {
+        "AnalyzeExpenseResponse$ExpenseDocuments": "<p>The expenses detected by Amazon Textract.</p>"
+      }
+    },
+    "ExpenseField": {
+      "base": "<p>Breakdown of detected information, seperated into the catagories Type, LableDetection, and ValueDetection</p>",
+      "refs": {
+        "ExpenseFieldList$member": null
+      }
+    },
+    "ExpenseFieldList": {
+      "base": null,
+      "refs": {
+        "ExpenseDocument$SummaryFields": "<p>Any information found outside of a table by Amazon Textract.</p>",
+        "LineItemFields$LineItemExpenseFields": "<p>ExpenseFields used to show information from detected lines on a table.</p>"
+      }
+    },
+    "ExpenseType": {
+      "base": "<p>An object used to store information about the Type detected by Amazon Textract.</p>",
+      "refs": {
+        "ExpenseField$Type": "<p>The implied label of a detected element. Present alongside LabelDetection for explicit elements.</p>"
       }
     },
     "FeatureType": {
@@ -165,7 +216,8 @@
     "Geometry": {
       "base": "<p>Information about where the following items are located on a document page: detected page, text, key-value pairs, tables, table cells, and selection elements.</p>",
       "refs": {
-        "Block$Geometry": "<p>The location of the recognized text on the image. It includes an axis-aligned, coarse bounding box that surrounds the text, and a finer-grain polygon for more accurate spatial information. </p>"
+        "Block$Geometry": "<p>The location of the recognized text on the image. It includes an axis-aligned, coarse bounding box that surrounds the text, and a finer-grain polygon for more accurate spatial information. </p>",
+        "ExpenseDetection$Geometry": null
       }
     },
     "GetDocumentAnalysisRequest": {
@@ -318,6 +370,30 @@
       "refs": {
       }
     },
+    "LineItemFields": {
+      "base": "<p>A structure that holds information about the different lines found in a document's tables.</p>",
+      "refs": {
+        "LineItemList$member": null
+      }
+    },
+    "LineItemGroup": {
+      "base": "<p>A grouping of tables which contain LineItems, with each table identified by the table's <code>LineItemGroupIndex</code>.</p>",
+      "refs": {
+        "LineItemGroupList$member": null
+      }
+    },
+    "LineItemGroupList": {
+      "base": null,
+      "refs": {
+        "ExpenseDocument$LineItemGroups": "<p>Information detected on each table of a document, seperated into <code>LineItems</code>.</p>"
+      }
+    },
+    "LineItemList": {
+      "base": null,
+      "refs": {
+        "LineItemGroup$LineItems": "<p>The breakdown of information on a particular line of a table. </p>"
+      }
+    },
     "MaxResults": {
       "base": null,
       "refs": {
@@ -340,7 +416,7 @@
       }
     },
     "OutputConfig": {
-      "base": "<p>Sets whether or not your output will go to a user created bucket. Used to set the name of the bucket, and the prefix on the output file.</p>",
+      "base": "<p>Sets whether or not your output will go to a user created bucket. Used to set the name of the bucket, and the prefix on the output file.</p> <p> <code>OutputConfig</code> is an optional parameter which lets you adjust where your output will be placed. By default, Amazon Textract will store the results internally and can only be accessed by the Get API operations. With OutputConfig enabled, you can set the name of the bucket the output will be sent to and the file prefix of the results where you can download your results. Additionally, you can set the <code>KMSKeyID</code> parameter to a customer master key (CMK) to encrypt your output. Without this parameter set Amazon Textract will encrypt server-side using the AWS managed CMK for Amazon S3.</p> <p>Decryption of Customer Content is necessary for processing of the documents by Amazon Textract. If your account is opted out under an AI services opt out policy then all unencrypted Customer Content is immediately and permanently deleted after the Customer Content has been processed by the service. No copy of of the output is retained by Amazon Textract. For information about how to opt out, see <a href=\"https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_policies_ai-opt-out.html\"> Managing AI services opt-out policy. </a> </p> <p>For more information on data privacy, see the <a href=\"https://aws.amazon.com/compliance/data-privacy-faq/\">Data Privacy FAQ</a>.</p>",
       "refs": {
         "StartDocumentAnalysisRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default, Amazon Textract will save the results internally to be accessed by the GetDocumentAnalysis operation.</p>",
         "StartDocumentTextDetectionRequest$OutputConfig": "<p>Sets if the output will go to a customer defined bucket. By default Amazon Textract will save the results internally to be accessed with the GetDocumentTextDetection operation.</p>"
@@ -364,7 +440,9 @@
     "Percent": {
       "base": null,
       "refs": {
-        "Block$Confidence": "<p>The confidence score that Amazon Textract has in the accuracy of the recognized text and the accuracy of the geometry points around the recognized text.</p>"
+        "Block$Confidence": "<p>The confidence score that Amazon Textract has in the accuracy of the recognized text and the accuracy of the geometry points around the recognized text.</p>",
+        "ExpenseDetection$Confidence": "<p>The confidence in detection, as a percentage</p>",
+        "ExpenseType$Confidence": "<p>The confidence of accuracy, as a percentage.</p>"
       }
     },
     "Point": {
@@ -412,7 +490,7 @@
       "base": null,
       "refs": {
         "OutputConfig$S3Bucket": "<p>The name of the bucket your output will go to.</p>",
-        "S3Object$Bucket": "<p>The name of the S3 bucket.</p>"
+        "S3Object$Bucket": "<p>The name of the S3 bucket. Note that the # character is not valid in the file name.</p>"
       }
     },
     "S3Object": {
@@ -480,6 +558,8 @@
         "AnalyzeDocumentResponse$AnalyzeDocumentModelVersion": "<p>The version of the model used to analyze the document.</p>",
         "Block$Text": "<p>The word or line of text that's recognized by Amazon Textract. </p>",
         "DetectDocumentTextResponse$DetectDocumentTextModelVersion": "<p/>",
+        "ExpenseDetection$Text": "<p>The word or line of text recognized by Amazon Textract</p>",
+        "ExpenseType$Text": "<p>The word or line of text detected by Amazon Textract.</p>",
         "GetDocumentAnalysisResponse$AnalyzeDocumentModelVersion": "<p/>",
         "GetDocumentTextDetectionResponse$DetectDocumentTextModelVersion": "<p/>",
         "HumanLoopQuotaExceededException$ResourceType": "<p>The resource type.</p>",
@@ -507,6 +587,9 @@
         "Block$ColumnSpan": "<p>The number of columns that a table cell spans. Currently this value is always 1, even if the number of columns spanned is greater than 1. <code>ColumnSpan</code> isn't returned by <code>DetectDocumentText</code> and <code>GetDocumentTextDetection</code>. </p>",
         "Block$Page": "<p>The page on which a block was detected. <code>Page</code> is returned by asynchronous operations. Page values greater than 1 are only returned for multipage documents that are in PDF format. A scanned image (JPEG/PNG), even if it contains multiple document pages, is considered to be a single-page document. The value of <code>Page</code> is always 1. Synchronous operations don't return <code>Page</code> because every input document is considered to be a single-page document.</p>",
         "DocumentMetadata$Pages": "<p>The number of pages that are detected in the document.</p>",
+        "ExpenseDocument$ExpenseIndex": "<p>Denotes which invoice or receipt in the document the information is coming from. First document will be 1, the second 2, and so on.</p>",
+        "ExpenseField$PageNumber": "<p>The page number the value was detected on.</p>",
+        "LineItemGroup$LineItemGroupIndex": "<p>The number used to identify a specific table in a document. The first table encountered will have a LineItemGroupIndex of 1, the second 2, etc.</p>",
         "Pages$member": null
       }
     },

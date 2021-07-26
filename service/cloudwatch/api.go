@@ -1841,8 +1841,8 @@ func (c *CloudWatch) GetMetricStatisticsRequest(input *GetMetricStatisticsInput)
 // CloudWatch started retaining 5-minute and 1-hour metric data as of July 9,
 // 2016.
 //
-// For information about metrics and dimensions supported by AWS services, see
-// the Amazon CloudWatch Metrics and Dimensions Reference (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CW_Support_For_AWS.html)
+// For information about metrics and dimensions supported by Amazon Web Services
+// services, see the Amazon CloudWatch Metrics and Dimensions Reference (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CW_Support_For_AWS.html)
 // in the Amazon CloudWatch User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3068,11 +3068,32 @@ func (c *CloudWatch) PutMetricAlarmRequest(input *PutMetricAlarmInput) (req *req
 //    * The iam:CreateServiceLinkedRole to create an alarm with Systems Manager
 //    OpsItem actions.
 //
-// The first time you create an alarm in the AWS Management Console, the CLI,
-// or by using the PutMetricAlarm API, CloudWatch creates the necessary service-linked
+// The first time you create an alarm in the Management Console, the CLI, or
+// by using the PutMetricAlarm API, CloudWatch creates the necessary service-linked
 // role for you. The service-linked roles are called AWSServiceRoleForCloudWatchEvents
 // and AWSServiceRoleForCloudWatchAlarms_ActionSSM. For more information, see
-// AWS service-linked role (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role).
+// Amazon Web Services service-linked role (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role).
+//
+// Cross-account alarms
+//
+// You can set an alarm on metrics in the current account, or in another account.
+// To create a cross-account alarm that watches a metric in a different account,
+// you must have completed the following pre-requisites:
+//
+//    * The account where the metrics are located (the sharing account) must
+//    already have a sharing role named CloudWatch-CrossAccountSharingRole.
+//    If it does not already have this role, you must create it using the instructions
+//    in Set up a sharing account in Cross-account cross-Region CloudWatch console
+//    (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Cross-Account-Cross-Region.html#enable-cross-account-cross-Region).
+//    The policy for that role must grant access to the ID of the account where
+//    you are creating the alarm.
+//
+//    * The account where you are creating the alarm (the monitoring account)
+//    must already have a service-linked role named AWSServiceRoleForCloudWatchCrossAccount
+//    to allow CloudWatch to assume the sharing role in the sharing account.
+//    If it does not, you must create it following the directions in Set up
+//    a monitoring account in Cross-account cross-Region CloudWatch console
+//    (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Cross-Account-Cross-Region.html#enable-cross-account-cross-Region).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3287,8 +3308,8 @@ func (c *CloudWatch) PutMetricStreamRequest(input *PutMetricStreamInput) (req *r
 // PutMetricStream API operation for Amazon CloudWatch.
 //
 // Creates or updates a metric stream. Metric streams can automatically stream
-// CloudWatch metrics to AWS destinations including Amazon S3 and to many third-party
-// solutions.
+// CloudWatch metrics to Amazon Web Services destinations including Amazon S3
+// and to many third-party solutions.
 //
 // For more information, see Using Metric Streams (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Metric-Streams.html).
 //
@@ -3680,8 +3701,8 @@ func (c *CloudWatch) TagResourceRequest(input *TagResourceInput) (req *request.R
 // them to scope user permissions by granting a user permission to access or
 // change only resources with certain tag values.
 //
-// Tags don't have any semantic meaning to AWS and are interpreted strictly
-// as strings of characters.
+// Tags don't have any semantic meaning to Amazon Web Services and are interpreted
+// strictly as strings of characters.
 //
 // You can use the TagResource action with an alarm that already has tags. If
 // you specify a new tag key for the alarm, this tag is appended to the list
@@ -5363,14 +5384,14 @@ func (s *DescribeInsightRulesOutput) SetNextToken(v string) *DescribeInsightRule
 type Dimension struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the dimension. Dimension names cannot contain blank spaces or
-	// non-ASCII characters.
+	// The name of the dimension. Dimension names must contain only ASCII characters
+	// and must include at least one non-whitespace character.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
 
-	// The value of the dimension. Dimension values cannot contain blank spaces
-	// or non-ASCII characters.
+	// The value of the dimension. Dimension values must contain only ASCII characters
+	// and must include at least one non-whitespace character.
 	//
 	// Value is a required field
 	Value *string `min:"1" type:"string" required:"true"`
@@ -6659,9 +6680,9 @@ type GetMetricWidgetImageInput struct {
 	// </GetMetricWidgetImageResponse>
 	//
 	// The image/png setting is intended only for custom HTTP requests. For most
-	// use cases, and all actions using an AWS SDK, you should use png. If you specify
-	// image/png, the HTTP response has a content-type set to image/png, and the
-	// body of the response is a PNG image.
+	// use cases, and all actions using an Amazon Web Services SDK, you should use
+	// png. If you specify image/png, the HTTP response has a content-type set to
+	// image/png, and the body of the response is a PNG image.
 	OutputFormat *string `type:"string"`
 }
 
@@ -7384,6 +7405,11 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 }
 
 // A message returned by the GetMetricDataAPI, including a code and a description.
+//
+// If a cross-Region GetMetricData operation fails with a code of Forbidden
+// and a value of Authentication too complex to retrieve cross region data,
+// you can correct the problem by running the GetMetricData operation in the
+// same Region where the metric data is.
 type MessageData struct {
 	_ struct{} `type:"structure"`
 
@@ -7788,6 +7814,13 @@ func (s *MetricAlarm) SetUnit(v string) *MetricAlarm {
 type MetricDataQuery struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the account where the metrics are located, if this is a cross-account
+	// alarm.
+	//
+	// Use this field only for PutMetricAlarm operations. It is not used in GetMetricData
+	// operations.
+	AccountId *string `min:"1" type:"string"`
+
 	// The math expression to be performed on the returned data, if this object
 	// is performing a math expression. This expression can use the Id of the other
 	// metrics to refer to those metrics, and can also use the Id of other expressions
@@ -7858,6 +7891,9 @@ func (s MetricDataQuery) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *MetricDataQuery) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "MetricDataQuery"}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
 	if s.Expression != nil && len(*s.Expression) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Expression", 1))
 	}
@@ -7880,6 +7916,12 @@ func (s *MetricDataQuery) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *MetricDataQuery) SetAccountId(v string) *MetricDataQuery {
+	s.AccountId = &v
+	return s
 }
 
 // SetExpression sets the Expression field's value.
@@ -8990,11 +9032,12 @@ type PutMetricAlarmInput struct {
 	// Valid Values: arn:aws:automate:region:ec2:stop | arn:aws:automate:region:ec2:terminate
 	// | arn:aws:automate:region:ec2:recover | arn:aws:automate:region:ec2:reboot
 	// | arn:aws:sns:region:account-id:sns-topic-name | arn:aws:autoscaling:region:account-id:scalingPolicy:policy-id:autoScalingGroupName/group-friendly-name:policyName/policy-friendly-name
-	// | arn:aws:ssm:region:account-id:opsitem:severity
+	// | arn:aws:ssm:region:account-id:opsitem:severity | arn:aws:ssm-incidents::account-id:response-plan:response-plan-name
 	//
 	// Valid Values (for use with IAM roles): arn:aws:swf:region:account-id:action/actions/AWS_EC2.InstanceId.Stop/1.0
 	// | arn:aws:swf:region:account-id:action/actions/AWS_EC2.InstanceId.Terminate/1.0
 	// | arn:aws:swf:region:account-id:action/actions/AWS_EC2.InstanceId.Reboot/1.0
+	// | arn:aws:swf:region:account-id:action/actions/AWS_EC2.InstanceId.Recover/1.0
 	AlarmActions []*string `type:"list"`
 
 	// The description for the alarm.
@@ -9432,8 +9475,8 @@ type PutMetricDataInput struct {
 
 	// The namespace for the metric data.
 	//
-	// To avoid conflicts with AWS service namespaces, you should not specify a
-	// namespace that begins with AWS/
+	// To avoid conflicts with Amazon Web Services service namespaces, you should
+	// not specify a namespace that begins with AWS/
 	//
 	// Namespace is a required field
 	Namespace *string `min:"1" type:"string" required:"true"`
@@ -9562,6 +9605,12 @@ type PutMetricStreamInput struct {
 	// Tags can help you organize and categorize your resources. You can also use
 	// them to scope user permissions by granting a user permission to access or
 	// change only resources with certain tag values.
+	//
+	// You can use this parameter only when you are creating a new metric stream.
+	// If you are using this operation to update an existing metric stream, any
+	// tags you specify in this parameter are ignored. To change the tags of an
+	// existing metric stream, use TagResource (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_TagResource.html)
+	// or UntagResource (https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_UntagResource.html).
 	Tags []*Tag `type:"list"`
 }
 

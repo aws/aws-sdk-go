@@ -64,6 +64,10 @@ type TextractAPI interface {
 	AnalyzeDocumentWithContext(aws.Context, *textract.AnalyzeDocumentInput, ...request.Option) (*textract.AnalyzeDocumentOutput, error)
 	AnalyzeDocumentRequest(*textract.AnalyzeDocumentInput) (*request.Request, *textract.AnalyzeDocumentOutput)
 
+	AnalyzeExpense(*textract.AnalyzeExpenseInput) (*textract.AnalyzeExpenseOutput, error)
+	AnalyzeExpenseWithContext(aws.Context, *textract.AnalyzeExpenseInput, ...request.Option) (*textract.AnalyzeExpenseOutput, error)
+	AnalyzeExpenseRequest(*textract.AnalyzeExpenseInput) (*request.Request, *textract.AnalyzeExpenseOutput)
+
 	DetectDocumentText(*textract.DetectDocumentTextInput) (*textract.DetectDocumentTextOutput, error)
 	DetectDocumentTextWithContext(aws.Context, *textract.DetectDocumentTextInput, ...request.Option) (*textract.DetectDocumentTextOutput, error)
 	DetectDocumentTextRequest(*textract.DetectDocumentTextInput) (*request.Request, *textract.DetectDocumentTextOutput)

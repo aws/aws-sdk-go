@@ -33,6 +33,26 @@
         {"shape":"HumanLoopQuotaExceededException"}
       ]
     },
+    "AnalyzeExpense":{
+      "name":"AnalyzeExpense",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"AnalyzeExpenseRequest"},
+      "output":{"shape":"AnalyzeExpenseResponse"},
+      "errors":[
+        {"shape":"InvalidParameterException"},
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"UnsupportedDocumentException"},
+        {"shape":"DocumentTooLargeException"},
+        {"shape":"BadDocumentException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"ProvisionedThroughputExceededException"},
+        {"shape":"InternalServerError"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "DetectDocumentText":{
       "name":"DetectDocumentText",
       "http":{
@@ -68,7 +88,8 @@
         {"shape":"InvalidJobIdException"},
         {"shape":"InternalServerError"},
         {"shape":"ThrottlingException"},
-        {"shape":"InvalidS3ObjectException"}
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"InvalidKMSKeyException"}
       ]
     },
     "GetDocumentTextDetection":{
@@ -86,7 +107,8 @@
         {"shape":"InvalidJobIdException"},
         {"shape":"InternalServerError"},
         {"shape":"ThrottlingException"},
-        {"shape":"InvalidS3ObjectException"}
+        {"shape":"InvalidS3ObjectException"},
+        {"shape":"InvalidKMSKeyException"}
       ]
     },
     "StartDocumentAnalysis":{
@@ -162,6 +184,20 @@
         "Blocks":{"shape":"BlockList"},
         "HumanLoopActivationOutput":{"shape":"HumanLoopActivationOutput"},
         "AnalyzeDocumentModelVersion":{"shape":"String"}
+      }
+    },
+    "AnalyzeExpenseRequest":{
+      "type":"structure",
+      "required":["Document"],
+      "members":{
+        "Document":{"shape":"Document"}
+      }
+    },
+    "AnalyzeExpenseResponse":{
+      "type":"structure",
+      "members":{
+        "DocumentMetadata":{"shape":"DocumentMetadata"},
+        "ExpenseDocuments":{"shape":"ExpenseDocumentList"}
       }
     },
     "BadDocumentException":{
@@ -284,6 +320,46 @@
       "member":{"shape":"EntityType"}
     },
     "ErrorCode":{"type":"string"},
+    "ExpenseDetection":{
+      "type":"structure",
+      "members":{
+        "Text":{"shape":"String"},
+        "Geometry":{"shape":"Geometry"},
+        "Confidence":{"shape":"Percent"}
+      }
+    },
+    "ExpenseDocument":{
+      "type":"structure",
+      "members":{
+        "ExpenseIndex":{"shape":"UInteger"},
+        "SummaryFields":{"shape":"ExpenseFieldList"},
+        "LineItemGroups":{"shape":"LineItemGroupList"}
+      }
+    },
+    "ExpenseDocumentList":{
+      "type":"list",
+      "member":{"shape":"ExpenseDocument"}
+    },
+    "ExpenseField":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ExpenseType"},
+        "LabelDetection":{"shape":"ExpenseDetection"},
+        "ValueDetection":{"shape":"ExpenseDetection"},
+        "PageNumber":{"shape":"UInteger"}
+      }
+    },
+    "ExpenseFieldList":{
+      "type":"list",
+      "member":{"shape":"ExpenseField"}
+    },
+    "ExpenseType":{
+      "type":"structure",
+      "members":{
+        "Text":{"shape":"String"},
+        "Confidence":{"shape":"Percent"}
+      }
+    },
     "FeatureType":{
       "type":"string",
       "enum":[
@@ -485,6 +561,27 @@
       "members":{
       },
       "exception":true
+    },
+    "LineItemFields":{
+      "type":"structure",
+      "members":{
+        "LineItemExpenseFields":{"shape":"ExpenseFieldList"}
+      }
+    },
+    "LineItemGroup":{
+      "type":"structure",
+      "members":{
+        "LineItemGroupIndex":{"shape":"UInteger"},
+        "LineItems":{"shape":"LineItemList"}
+      }
+    },
+    "LineItemGroupList":{
+      "type":"list",
+      "member":{"shape":"LineItemGroup"}
+    },
+    "LineItemList":{
+      "type":"list",
+      "member":{"shape":"LineItemFields"}
     },
     "MaxResults":{
       "type":"integer",

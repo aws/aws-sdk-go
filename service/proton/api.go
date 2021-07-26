@@ -62,7 +62,7 @@ func (c *Proton) AcceptEnvironmentAccountConnectionRequest(input *AcceptEnvironm
 // use the associated IAM role to provision environment infrastructure resources
 // in the associated environment account.
 //
-// For more information, see Environment account connections (proton/latest/adminguide/ag-env-account-connections.html)
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
 // in the AWS Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -597,8 +597,8 @@ func (c *Proton) CreateEnvironmentAccountConnectionRequest(input *CreateEnvironm
 // An environment account connection is a secure bi-directional connection between
 // a management account and an environment account that maintains authorization
 // and permissions. For more information, see Environment account connections
-// (proton/latest/adminguide/ag-env-account-connections.html) in the AWS Proton
-// Administrator guide.
+// (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
+// in the AWS Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1319,7 +1319,7 @@ func (c *Proton) DeleteEnvironmentAccountConnectionRequest(input *DeleteEnvironm
 // environment account and associated environment. You're responsible for cleaning
 // up provisioned resources that remain without an environment connection.
 //
-// For more information, see Environment account connections (proton/latest/adminguide/ag-env-account-connections.html)
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
 // in the AWS Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2097,7 +2097,7 @@ func (c *Proton) GetEnvironmentAccountConnectionRequest(input *GetEnvironmentAcc
 // In an environment account, view the detail data for an environment account
 // connection.
 //
-// For more information, see Environment account connections (proton/latest/adminguide/ag-env-account-connections.html)
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
 // in the AWS Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2751,7 +2751,7 @@ func (c *Proton) ListEnvironmentAccountConnectionsRequest(input *ListEnvironment
 //
 // View a list of environment account connections.
 //
-// For more information, see Environment account connections (proton/latest/adminguide/ag-env-account-connections.html)
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
 // in the AWS Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4095,7 +4095,7 @@ func (c *Proton) RejectEnvironmentAccountConnectionRequest(input *RejectEnvironm
 // You can’t reject an environment account connection that is connected to
 // an environment.
 //
-// For more information, see Environment account connections (proton/latest/adminguide/ag-env-account-connections.html)
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
 // in the AWS Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4620,7 +4620,7 @@ func (c *Proton) UpdateEnvironmentAccountConnectionRequest(input *UpdateEnvironm
 // In an environment account, update an environment account connection to use
 // a new IAM role.
 //
-// For more information, see Environment account connections (proton/latest/adminguide/ag-env-account-connections.html)
+// For more information, see Environment account connections (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
 // in the AWS Proton Administrator guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6039,8 +6039,8 @@ type CreateEnvironmentInput struct {
 	// your environment infrastructure resources to an environment account. You
 	// must include either the environmentAccountConnectionId or protonServiceRoleArn
 	// parameter and value. For more information, see Environment account connections
-	// (proton/latest/adminguide/ag-env-account-connections.html) in the AWS Proton
-	// Administrator guide.
+	// (https://docs.aws.amazon.com/proton/latest/adminguide/ag-env-account-connections.html)
+	// in the AWS Proton Administrator guide.
 	EnvironmentAccountConnectionId *string `locationName:"environmentAccountConnectionId" type:"string"`
 
 	// The name of the environment.

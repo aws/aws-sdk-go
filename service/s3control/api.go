@@ -5051,6 +5051,9 @@ type AccessPoint struct {
 	// The ARN for the access point.
 	AccessPointArn *string `min:"4" type:"string"`
 
+	// The name or alias of the access point.
+	Alias *string `type:"string"`
+
 	// The name of the bucket associated with this access point.
 	//
 	// Bucket is a required field
@@ -5091,6 +5094,12 @@ func (s AccessPoint) GoString() string {
 // SetAccessPointArn sets the AccessPointArn field's value.
 func (s *AccessPoint) SetAccessPointArn(v string) *AccessPoint {
 	s.AccessPointArn = &v
+	return s
+}
+
+// SetAlias sets the Alias field's value.
+func (s *AccessPoint) SetAlias(v string) *AccessPoint {
+	s.Alias = &v
 	return s
 }
 
@@ -5569,6 +5578,9 @@ type CreateAccessPointOutput struct {
 	//
 	// This is only supported by Amazon S3 on Outposts.
 	AccessPointArn *string `min:"4" type:"string"`
+
+	// The name or alias of the access point.
+	Alias *string `type:"string"`
 }
 
 // String returns the string representation
@@ -5584,6 +5596,12 @@ func (s CreateAccessPointOutput) GoString() string {
 // SetAccessPointArn sets the AccessPointArn field's value.
 func (s *CreateAccessPointOutput) SetAccessPointArn(v string) *CreateAccessPointOutput {
 	s.AccessPointArn = &v
+	return s
+}
+
+// SetAlias sets the Alias field's value.
+func (s *CreateAccessPointOutput) SetAlias(v string) *CreateAccessPointOutput {
+	s.Alias = &v
 	return s
 }
 
@@ -7705,11 +7723,20 @@ func (s GetAccessPointInput) updateAccountID(accountId string) (interface{}, err
 type GetAccessPointOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The ARN of the access point.
+	AccessPointArn *string `min:"4" type:"string"`
+
+	// The name or alias of the access point.
+	Alias *string `type:"string"`
+
 	// The name of the bucket associated with the specified access point.
 	Bucket *string `min:"3" type:"string"`
 
 	// The date and time when the specified access point was created.
 	CreationDate *time.Time `type:"timestamp"`
+
+	// The VPC endpoint for the access point.
+	Endpoints map[string]*string `type:"map"`
 
 	// The name of the specified access point.
 	Name *string `min:"3" type:"string"`
@@ -7750,6 +7777,18 @@ func (s GetAccessPointOutput) GoString() string {
 	return s.String()
 }
 
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *GetAccessPointOutput) SetAccessPointArn(v string) *GetAccessPointOutput {
+	s.AccessPointArn = &v
+	return s
+}
+
+// SetAlias sets the Alias field's value.
+func (s *GetAccessPointOutput) SetAlias(v string) *GetAccessPointOutput {
+	s.Alias = &v
+	return s
+}
+
 // SetBucket sets the Bucket field's value.
 func (s *GetAccessPointOutput) SetBucket(v string) *GetAccessPointOutput {
 	s.Bucket = &v
@@ -7759,6 +7798,12 @@ func (s *GetAccessPointOutput) SetBucket(v string) *GetAccessPointOutput {
 // SetCreationDate sets the CreationDate field's value.
 func (s *GetAccessPointOutput) SetCreationDate(v time.Time) *GetAccessPointOutput {
 	s.CreationDate = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *GetAccessPointOutput) SetEndpoints(v map[string]*string) *GetAccessPointOutput {
+	s.Endpoints = v
 	return s
 }
 

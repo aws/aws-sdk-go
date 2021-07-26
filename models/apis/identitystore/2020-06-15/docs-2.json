@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": null,
+  "service": "<p>The AWS Single Sign-On (SSO) Identity Store service provides a single place to retrieve all of your identities (users and groups). For more information about AWS, see the <a href=\"https://docs.aws.amazon.com/singlesignon/latest/userguide/what-is.html\">AWS Single Sign-On User Guide</a>.</p>",
   "operations": {
     "DescribeGroup": "<p>Retrieves the group metadata and attributes from <code>GroupId</code> in an identity store.</p>",
     "DescribeUser": "<p>Retrieves the user metadata and attributes from <code>UserId</code> in an identity store.</p>",
@@ -16,7 +16,7 @@
     "AttributePath": {
       "base": null,
       "refs": {
-        "Filter$AttributePath": "<p>The attribute path used to specify which attribute name to search. Length limit is 255 characters. For example, <code>UserName</code> is a valid attribute path for the <code>ListUsers</code> API, and <code>DisplayName</code> is a valid attribute path for the <code>ListGroups</code> API.</p>"
+        "Filter$AttributePath": "<p>The attribute path that is used to specify which attribute name to search. Length limit is 255 characters. For example, <code>UserName</code> is a valid attribute path for the <code>ListUsers</code> API, and <code>DisplayName</code> is a valid attribute path for the <code>ListGroups</code> API.</p>"
       }
     },
     "DescribeGroupRequest": {
@@ -61,8 +61,8 @@
     "GroupDisplayName": {
       "base": null,
       "refs": {
-        "DescribeGroupResponse$DisplayName": "<p>Contains the group’s display name value. The length limit is 1024 characters. This value can consist of letters, accented characters, symbols, numbers, punctuation, tab, new line, carriage return, space and non breaking space in this attribute. The characters “&lt;&gt;;:%” are excluded. This value is specified at the time the group is created and stored as an attribute of the group object in the identity store.</p>",
-        "Group$DisplayName": "<p>Contains the group’s display name value. The length limit is 1024 characters. This value can consist of letters, accented characters, symbols, numbers, punctuation, tab, new line, carriage return, space and non breaking space in this attribute. The characters “&lt;&gt;;:%” are excluded. This value is specified at the time the group is created and stored as an attribute of the group object in the identity store.</p>"
+        "DescribeGroupResponse$DisplayName": "<p>Contains the group’s display name value. The length limit is 1,024 characters. This value can consist of letters, accented characters, symbols, numbers, punctuation, tab, new line, carriage return, space, and nonbreaking space in this attribute. The characters <code>&lt;&gt;;:%</code> are excluded. This value is specified at the time that the group is created and stored as an attribute of the group object in the identity store.</p>",
+        "Group$DisplayName": "<p>Contains the group’s display name value. The length limit is 1,024 characters. This value can consist of letters, accented characters, symbols, numbers, punctuation, tab, new line, carriage return, space, and nonbreaking space in this attribute. The characters <code>&lt;&gt;;:%</code> are excluded. This value is specified at the time the group is created and stored as an attribute of the group object in the identity store.</p>"
       }
     },
     "Groups": {
@@ -74,10 +74,10 @@
     "IdentityStoreId": {
       "base": null,
       "refs": {
-        "DescribeGroupRequest$IdentityStoreId": "<p>The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string which contains number and lower case letters. This value is generated at the time that a new identity store is created.</p>",
-        "DescribeUserRequest$IdentityStoreId": "<p>The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string which contains number and lower case letters. This value is generated at the time that a new identity store is created.</p>",
-        "ListGroupsRequest$IdentityStoreId": "<p>The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string which contains number and lower case letters. This value is generated at the time that a new identity store is created.</p>",
-        "ListUsersRequest$IdentityStoreId": "<p>The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string which contains number and lower case letters. This value is generated at the time that a new identity store is created.</p>"
+        "DescribeGroupRequest$IdentityStoreId": "<p>The globally unique identifier for the identity store, such as <code>d-1234567890</code>. In this example, <code>d-</code> is a fixed prefix, and <code>1234567890</code> is a randomly generated string that contains number and lower case letters. This value is generated at the time that a new identity store is created.</p>",
+        "DescribeUserRequest$IdentityStoreId": "<p>The globally unique identifier for the identity store, such as <code>d-1234567890</code>. In this example, <code>d-</code> is a fixed prefix, and <code>1234567890</code> is a randomly generated string that contains number and lower case letters. This value is generated at the time that a new identity store is created.</p>",
+        "ListGroupsRequest$IdentityStoreId": "<p>The globally unique identifier for the identity store, such as <code>d-1234567890</code>. In this example, <code>d-</code> is a fixed prefix, and <code>1234567890</code> is a randomly generated string that contains number and lower case letters. This value is generated at the time that a new identity store is created.</p>",
+        "ListUsersRequest$IdentityStoreId": "<p>The globally unique identifier for the identity store, such as <code>d-1234567890</code>. In this example, <code>d-</code> is a fixed prefix, and <code>1234567890</code> is a randomly generated string that contains number and lower case letters. This value is generated at the time that a new identity store is created.</p>"
       }
     },
     "InternalServerException": {
@@ -108,8 +108,8 @@
     "MaxResults": {
       "base": null,
       "refs": {
-        "ListGroupsRequest$MaxResults": "<p>The maximum number of results to be returned per request, which is used in the <code>ListUsers</code> and <code>ListGroups</code> request to specify how many results to return in one page. The length limit is 50 characters.</p>",
-        "ListUsersRequest$MaxResults": "<p>The maximum number of results to be returned per request, which is used in the <code>ListUsers</code> and <code>ListGroups</code> request to specify how many results to return in one page. The length limit is 50 characters.</p>"
+        "ListGroupsRequest$MaxResults": "<p>The maximum number of results to be returned per request. This parameter is used in the <code>ListUsers</code> and <code>ListGroups</code> request to specify how many results to return in one page. The length limit is 50 characters.</p>",
+        "ListUsersRequest$MaxResults": "<p>The maximum number of results to be returned per request. This parameter is used in the <code>ListUsers</code> and <code>ListGroups</code> request to specify how many results to return in one page. The length limit is 50 characters.</p>"
       }
     },
     "Message": {
@@ -125,10 +125,10 @@
     "NextToken": {
       "base": null,
       "refs": {
-        "ListGroupsRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> APIs. This value is generated by the identity store service and is returned in the API response if the total results are more than the size of one page, and when this token is used in the API request to search for the next page.</p>",
-        "ListGroupsResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> APIs. This value is generated by the identity store service and is returned in the API response if the total results are more than the size of one page, and when this token is used in the API request to search for the next page.</p>",
-        "ListUsersRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> APIs. This value is generated by the identity store service and is returned in the API response if the total results are more than the size of one page, and when this token is used in the API request to search for the next page.</p>",
-        "ListUsersResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> APIs. This value is generated by the identity store service and is returned in the API response if the total results are more than the size of one page, and when this token is used in the API request to search for the next page.</p>"
+        "ListGroupsRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
+        "ListGroupsResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it1 is used in the API request to search for the next page.</p>",
+        "ListUsersRequest$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>",
+        "ListUsersResponse$NextToken": "<p>The pagination token used for the <code>ListUsers</code> and <code>ListGroups</code> API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.</p>"
       }
     },
     "RequestId": {
@@ -184,8 +184,8 @@
     "UserName": {
       "base": null,
       "refs": {
-        "DescribeUserResponse$UserName": "<p>Contains the user’s username value. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers and punctuation. The characters “&lt;&gt;;:%” are excluded. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>",
-        "User$UserName": "<p>Contains the user’s username value. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers and punctuation. The characters “&lt;&gt;;:%” are excluded. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>"
+        "DescribeUserResponse$UserName": "<p>Contains the user’s user name value. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. The characters <code>&lt;&gt;;:%</code> are excluded. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>",
+        "User$UserName": "<p>Contains the user’s user name value. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. The characters <code>&lt;&gt;;:%</code> are excluded. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.</p>"
       }
     },
     "Users": {

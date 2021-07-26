@@ -1,3 +1,16 @@
+Release v1.40.8 (2021-07-26)
+===
+
+### Service Client Updates
+* `service/identitystore`: Updates service documentation
+* `service/monitoring`: Updates service API and documentation
+  * SDK update to support creation of Cross-Account Metric Alarms and update API documentation.
+* `service/proton`: Updates service documentation
+* `service/s3control`: Updates service API and documentation
+  * S3 Access Point aliases can be used anywhere you use S3 bucket names to access data in S3
+* `service/synthetics`: Updates service API and documentation
+* `service/textract`: Updates service API and documentation
+
 Release v1.40.7 (2021-07-23)
 ===
 
