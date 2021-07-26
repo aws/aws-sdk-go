@@ -152,6 +152,14 @@
         "BucketLevel$ActivityMetrics": "<p>A container for the bucket-level activity metrics for Amazon S3 Storage Lens</p>"
       }
     },
+    "Alias": {
+      "base": null,
+      "refs": {
+        "AccessPoint$Alias": "<p>The name or alias of the access point.</p>",
+        "CreateAccessPointResult$Alias": "<p>The name or alias of the access point.</p>",
+        "GetAccessPointResult$Alias": "<p>The name or alias of the access point.</p>"
+      }
+    },
     "AwsLambdaTransformation": {
       "base": "<p>Lambda function used to transform objects through an Object Lambda Access Point.</p>",
       "refs": {
@@ -432,6 +440,12 @@
     "DescribeJobResult": {
       "base": null,
       "refs": {
+      }
+    },
+    "Endpoints": {
+      "base": null,
+      "refs": {
+        "GetAccessPointResult$Endpoints": "<p>The VPC endpoint for the access point.</p>"
       }
     },
     "ExceptionMessage": {
@@ -1070,6 +1084,7 @@
     "NonEmptyMaxLength1024String": {
       "base": null,
       "refs": {
+        "Endpoints$value": null,
         "JobManifestLocation$ETag": "<p>The ETag for the specified manifest object.</p>",
         "ListAccessPointsForObjectLambdaRequest$NextToken": "<p>If the list has more access points than can be returned in one call to this API, this field contains a continuation token that you can provide in subsequent calls to this API to retrieve additional access points.</p>",
         "ListAccessPointsForObjectLambdaResult$NextToken": "<p>If the list has more access points than can be returned in one call to this API, this field contains a continuation token that you can provide in subsequent calls to this API to retrieve additional access points.</p>",
@@ -1110,6 +1125,7 @@
       "refs": {
         "CreateBucketRequest$OutpostId": "<p>The ID of the Outposts where the bucket is being created.</p> <note> <p>This is required by Amazon S3 on Outposts buckets.</p> </note>",
         "CreateJobRequest$ClientRequestToken": "<p>An idempotency token to ensure that you don't accidentally submit the same request twice. You can use any string up to the maximum length.</p>",
+        "Endpoints$key": null,
         "ListRegionalBucketsRequest$OutpostId": "<p>The ID of the Outposts.</p> <note> <p>This is required by Amazon S3 on Outposts buckets.</p> </note>",
         "RegionalBucket$OutpostId": "<p>The Outposts ID of the regional bucket.</p>"
       }
@@ -1420,7 +1436,8 @@
       "base": null,
       "refs": {
         "AccessPoint$AccessPointArn": "<p>The ARN for the access point.</p>",
-        "CreateAccessPointResult$AccessPointArn": "<p>The ARN of the access point.</p> <note> <p>This is only supported by Amazon S3 on Outposts.</p> </note>"
+        "CreateAccessPointResult$AccessPointArn": "<p>The ARN of the access point.</p> <note> <p>This is only supported by Amazon S3 on Outposts.</p> </note>",
+        "GetAccessPointResult$AccessPointArn": "<p>The ARN of the access point.</p>"
       }
     },
     "S3BucketArnString": {

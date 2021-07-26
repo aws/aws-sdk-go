@@ -1200,8 +1200,8 @@ func (c *Synthetics) TagResourceRequest(input *TagResourceInput) (req *request.R
 // them to scope user permissions, by granting a user permission to access or
 // change only resources with certain tag values.
 //
-// Tags don't have any semantic meaning to AWS and are interpreted strictly
-// as strings of characters.
+// Tags don't have any semantic meaning to Amazon Web Services and are interpreted
+// strictly as strings of characters.
 //
 // You can use the TagResource action with a canary that already has tags. If
 // you specify a new tag key for the alarm, this tag is appended to the list
@@ -1429,6 +1429,53 @@ func (c *Synthetics) UpdateCanaryWithContext(ctx aws.Context, input *UpdateCanar
 	return out, req.Send()
 }
 
+type BaseScreenshot struct {
+	_ struct{} `type:"structure"`
+
+	IgnoreCoordinates []*string `type:"list"`
+
+	// ScreenshotName is a required field
+	ScreenshotName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BaseScreenshot) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BaseScreenshot) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BaseScreenshot) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BaseScreenshot"}
+	if s.ScreenshotName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ScreenshotName"))
+	}
+	if s.ScreenshotName != nil && len(*s.ScreenshotName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScreenshotName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIgnoreCoordinates sets the IgnoreCoordinates field's value.
+func (s *BaseScreenshot) SetIgnoreCoordinates(v []*string) *BaseScreenshot {
+	s.IgnoreCoordinates = v
+	return s
+}
+
+// SetScreenshotName sets the ScreenshotName field's value.
+func (s *BaseScreenshot) SetScreenshotName(v string) *BaseScreenshot {
+	s.ScreenshotName = &v
+	return s
+}
+
 // This structure contains all information about one canary in your account.
 type Canary struct {
 	_ struct{} `type:"structure"`
@@ -1482,6 +1529,8 @@ type Canary struct {
 	// A structure that contains information about when the canary was created,
 	// modified, and most recently run.
 	Timeline *CanaryTimeline `type:"structure"`
+
+	VisualReference *VisualReferenceOutput_ `type:"structure"`
 
 	// If this canary is to test an endpoint in a VPC, this structure contains information
 	// about the subnets and security groups of the VPC endpoint. For more information,
@@ -1583,6 +1632,12 @@ func (s *Canary) SetTimeline(v *CanaryTimeline) *Canary {
 	return s
 }
 
+// SetVisualReference sets the VisualReference field's value.
+func (s *Canary) SetVisualReference(v *VisualReferenceOutput_) *Canary {
+	s.VisualReference = v
+	return s
+}
+
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *Canary) SetVpcConfig(v *VpcConfigOutput) *Canary {
 	s.VpcConfig = v
@@ -1598,14 +1653,14 @@ type CanaryCodeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The entry point to use for the source code when running the canary. This
-	// value must end with the string .handler.
+	// value must end with the string .handler. The string is limited to 29 characters
+	// or fewer.
 	//
 	// Handler is a required field
 	Handler *string `min:"1" type:"string" required:"true"`
 
-	// If your canary script is located in S3, specify the full bucket name here.
-	// The bucket must already exist. Specify the full bucket name, including s3://
-	// as the start of the bucket name.
+	// If your canary script is located in S3, specify the bucket name here. Do
+	// not include s3:// as the start of the bucket name.
 	S3Bucket *string `min:"1" type:"string"`
 
 	// The S3 key of your script. For more information, see Working with Amazon
@@ -1616,8 +1671,8 @@ type CanaryCodeInput struct {
 	S3Version *string `min:"1" type:"string"`
 
 	// If you input your canary script directly into the canary instead of referring
-	// to an S3 location, the value of this parameter is the .zip file that contains
-	// the script. It can be up to 5 MB.
+	// to an S3 location, the value of this parameter is the base64-encoded contents
+	// of the .zip file that contains the script. It can be up to 5 MB.
 	//
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
 	ZipFile []byte `min:"1" type:"blob"`
@@ -1824,10 +1879,10 @@ func (s *CanaryRun) SetTimeline(v *CanaryRunTimeline) *CanaryRun {
 type CanaryRunConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether this canary is to use active AWS X-Ray tracing when it
-	// runs. Active tracing enables this canary run to be displayed in the ServiceLens
+	// Specifies whether this canary is to use active X-Ray tracing when it runs.
+	// Active tracing enables this canary run to be displayed in the ServiceLens
 	// and X-Ray service maps even if the canary does not hit an endpoint that has
-	// X-ray tracing enabled. Using X-Ray tracing incurs charges. For more information,
+	// X-Ray tracing enabled. Using X-Ray tracing incurs charges. For more information,
 	// see Canaries and X-Ray tracing (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_tracing.html).
 	//
 	// You can enable active tracing only for canaries that use version syn-nodejs-2.0
@@ -1912,7 +1967,7 @@ func (s *CanaryRunConfigInput) SetTimeoutInSeconds(v int64) *CanaryRunConfigInpu
 type CanaryRunConfigOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Displays whether this canary run used active AWS X-Ray tracing.
+	// Displays whether this canary run used active X-Ray tracing.
 	ActiveTracing *bool `type:"boolean"`
 
 	// The maximum amount of memory available to the canary while it is running,
@@ -2038,8 +2093,11 @@ type CanaryScheduleInput struct {
 	// used.
 	DurationInSeconds *int64 `type:"long"`
 
-	// A rate expression that defines how often the canary is to run. The syntax
-	// is rate(number unit). unit can be minute, minutes, or hour.
+	// A rate expression or a cron expression that defines how often the canary
+	// is to run.
+	//
+	// For a rate expression, The syntax is rate(number unit). unit can be minute,
+	// minutes, or hour.
 	//
 	// For example, rate(1 minute) runs the canary once a minute, rate(10 minutes)
 	// runs it once every 10 minutes, and rate(1 hour) runs it once every hour.
@@ -2047,6 +2105,10 @@ type CanaryScheduleInput struct {
 	//
 	// Specifying rate(0 minute) or rate(0 hour) is a special value that causes
 	// the canary to run only once when it is started.
+	//
+	// Use cron(expression) to specify a cron expression. You can't schedule a canary
+	// to wait for more than a year before running. For information about the syntax
+	// for cron expressions, see Scheduling canary runs using cron (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_cron.html).
 	//
 	// Expression is a required field
 	Expression *string `min:"1" type:"string" required:"true"`
@@ -2100,14 +2162,21 @@ type CanaryScheduleOutput struct {
 	// value.
 	DurationInSeconds *int64 `type:"long"`
 
-	// A rate expression that defines how often the canary is to run. The syntax
-	// is rate(number unit). unit can be minute, minutes, or hour.
+	// A rate expression or a cron expression that defines how often the canary
+	// is to run.
+	//
+	// For a rate expression, The syntax is rate(number unit). unit can be minute,
+	// minutes, or hour.
 	//
 	// For example, rate(1 minute) runs the canary once a minute, rate(10 minutes)
 	// runs it once every 10 minutes, and rate(1 hour) runs it once every hour.
+	// You can specify a frequency between rate(1 minute) and rate(1 hour).
 	//
 	// Specifying rate(0 minute) or rate(0 hour) is a special value that causes
 	// the canary to run only once when it is started.
+	//
+	// Use cron(expression) to specify a cron expression. For information about
+	// the syntax for cron expressions, see Scheduling canary runs using cron (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_cron.html).
 	Expression *string `min:"1" type:"string"`
 }
 
@@ -2289,7 +2358,7 @@ type CreateCanaryInput struct {
 
 	// The location in Amazon S3 where Synthetics stores artifacts from the test
 	// runs of this canary. Artifacts include the log file, screenshots, and HAR
-	// files.
+	// files. The name of the S3 bucket can't include a period (.).
 	//
 	// ArtifactS3Location is a required field
 	ArtifactS3Location *string `min:"1" type:"string" required:"true"`
@@ -3565,6 +3634,8 @@ type UpdateCanaryInput struct {
 	// The number of days to retain data about successful runs of this canary.
 	SuccessRetentionPeriodInDays *int64 `min:"1" type:"integer"`
 
+	VisualReference *VisualReferenceInput_ `type:"structure"`
+
 	// If this canary is to test an endpoint in a VPC, this structure contains information
 	// about the subnet and security groups of the VPC endpoint. For more information,
 	// see Running a Canary in a VPC (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_VPC.html).
@@ -3615,6 +3686,11 @@ func (s *UpdateCanaryInput) Validate() error {
 	if s.Schedule != nil {
 		if err := s.Schedule.Validate(); err != nil {
 			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VisualReference != nil {
+		if err := s.VisualReference.Validate(); err != nil {
+			invalidParams.AddNested("VisualReference", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -3669,6 +3745,12 @@ func (s *UpdateCanaryInput) SetSchedule(v *CanaryScheduleInput) *UpdateCanaryInp
 // SetSuccessRetentionPeriodInDays sets the SuccessRetentionPeriodInDays field's value.
 func (s *UpdateCanaryInput) SetSuccessRetentionPeriodInDays(v int64) *UpdateCanaryInput {
 	s.SuccessRetentionPeriodInDays = &v
+	return s
+}
+
+// SetVisualReference sets the VisualReference field's value.
+func (s *UpdateCanaryInput) SetVisualReference(v *VisualReferenceInput_) *UpdateCanaryInput {
+	s.VisualReference = v
 	return s
 }
 
@@ -3746,6 +3828,93 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type VisualReferenceInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// BaseCanaryRunId is a required field
+	BaseCanaryRunId *string `min:"1" type:"string" required:"true"`
+
+	BaseScreenshots []*BaseScreenshot `type:"list"`
+}
+
+// String returns the string representation
+func (s VisualReferenceInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VisualReferenceInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VisualReferenceInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VisualReferenceInput_"}
+	if s.BaseCanaryRunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BaseCanaryRunId"))
+	}
+	if s.BaseCanaryRunId != nil && len(*s.BaseCanaryRunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BaseCanaryRunId", 1))
+	}
+	if s.BaseScreenshots != nil {
+		for i, v := range s.BaseScreenshots {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "BaseScreenshots", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBaseCanaryRunId sets the BaseCanaryRunId field's value.
+func (s *VisualReferenceInput_) SetBaseCanaryRunId(v string) *VisualReferenceInput_ {
+	s.BaseCanaryRunId = &v
+	return s
+}
+
+// SetBaseScreenshots sets the BaseScreenshots field's value.
+func (s *VisualReferenceInput_) SetBaseScreenshots(v []*BaseScreenshot) *VisualReferenceInput_ {
+	s.BaseScreenshots = v
+	return s
+}
+
+type VisualReferenceOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	BaseCanaryRunId *string `min:"1" type:"string"`
+
+	BaseScreenshots []*BaseScreenshot `type:"list"`
+}
+
+// String returns the string representation
+func (s VisualReferenceOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VisualReferenceOutput_) GoString() string {
+	return s.String()
+}
+
+// SetBaseCanaryRunId sets the BaseCanaryRunId field's value.
+func (s *VisualReferenceOutput_) SetBaseCanaryRunId(v string) *VisualReferenceOutput_ {
+	s.BaseCanaryRunId = &v
+	return s
+}
+
+// SetBaseScreenshots sets the BaseScreenshots field's value.
+func (s *VisualReferenceOutput_) SetBaseScreenshots(v []*BaseScreenshot) *VisualReferenceOutput_ {
+	s.BaseScreenshots = v
+	return s
 }
 
 // If this canary is to test an endpoint in a VPC, this structure contains information

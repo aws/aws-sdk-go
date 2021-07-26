@@ -696,7 +696,8 @@
         "NetworkOrigin":{"shape":"NetworkOrigin"},
         "VpcConfiguration":{"shape":"VpcConfiguration"},
         "Bucket":{"shape":"BucketName"},
-        "AccessPointArn":{"shape":"S3AccessPointArn"}
+        "AccessPointArn":{"shape":"S3AccessPointArn"},
+        "Alias":{"shape":"Alias"}
       }
     },
     "AccessPointList":{
@@ -708,7 +709,7 @@
     },
     "AccessPointName":{
       "type":"string",
-      "max":50,
+      "max":63,
       "min":3
     },
     "AccountId":{
@@ -729,6 +730,11 @@
       "members":{
         "IsEnabled":{"shape":"IsEnabled"}
       }
+    },
+    "Alias":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[0-9a-z\\\\-]{63}"
     },
     "AwsLambdaTransformation":{
       "type":"structure",
@@ -873,7 +879,8 @@
     "CreateAccessPointResult":{
       "type":"structure",
       "members":{
-        "AccessPointArn":{"shape":"S3AccessPointArn"}
+        "AccessPointArn":{"shape":"S3AccessPointArn"},
+        "Alias":{"shape":"Alias"}
       }
     },
     "CreateBucketConfiguration":{
@@ -1266,6 +1273,11 @@
         "Job":{"shape":"JobDescriptor"}
       }
     },
+    "Endpoints":{
+      "type":"map",
+      "key":{"shape":"NonEmptyMaxLength64String"},
+      "value":{"shape":"NonEmptyMaxLength1024String"}
+    },
     "ExceptionMessage":{
       "type":"string",
       "max":1024,
@@ -1485,7 +1497,10 @@
         "NetworkOrigin":{"shape":"NetworkOrigin"},
         "VpcConfiguration":{"shape":"VpcConfiguration"},
         "PublicAccessBlockConfiguration":{"shape":"PublicAccessBlockConfiguration"},
-        "CreationDate":{"shape":"CreationDate"}
+        "CreationDate":{"shape":"CreationDate"},
+        "Alias":{"shape":"Alias"},
+        "AccessPointArn":{"shape":"S3AccessPointArn"},
+        "Endpoints":{"shape":"Endpoints"}
       }
     },
     "GetBucketLifecycleConfigurationRequest":{
