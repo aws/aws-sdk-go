@@ -14,6 +14,12 @@ const (
 	// The number of active statements exceeds the limit.
 	ErrCodeActiveStatementsExceededException = "ActiveStatementsExceededException"
 
+	// ErrCodeBatchExecuteStatementException for service response error code
+	// "BatchExecuteStatementException".
+	//
+	// An SQL statement encountered an environmental error while running.
+	ErrCodeBatchExecuteStatementException = "BatchExecuteStatementException"
+
 	// ErrCodeExecuteStatementException for service response error code
 	// "ExecuteStatementException".
 	//
@@ -41,6 +47,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"ActiveStatementsExceededException": newErrorActiveStatementsExceededException,
+	"BatchExecuteStatementException":    newErrorBatchExecuteStatementException,
 	"ExecuteStatementException":         newErrorExecuteStatementException,
 	"InternalServerException":           newErrorInternalServerException,
 	"ResourceNotFoundException":         newErrorResourceNotFoundException,

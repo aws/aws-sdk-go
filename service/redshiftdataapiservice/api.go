@@ -12,6 +12,101 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 )
 
+const opBatchExecuteStatement = "BatchExecuteStatement"
+
+// BatchExecuteStatementRequest generates a "aws/request.Request" representing the
+// client's request for the BatchExecuteStatement operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchExecuteStatement for more information on using the BatchExecuteStatement
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchExecuteStatementRequest method.
+//    req, resp := client.BatchExecuteStatementRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/BatchExecuteStatement
+func (c *RedshiftDataAPIService) BatchExecuteStatementRequest(input *BatchExecuteStatementInput) (req *request.Request, output *BatchExecuteStatementOutput) {
+	op := &request.Operation{
+		Name:       opBatchExecuteStatement,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchExecuteStatementInput{}
+	}
+
+	output = &BatchExecuteStatementOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchExecuteStatement API operation for Redshift Data API Service.
+//
+// Runs one or more SQL statements, which can be data manipulation language
+// (DML) or data definition language (DDL). Depending on the authorization method,
+// use one of the following combinations of request parameters:
+//
+//    * Secrets Manager - specify the Amazon Resource Name (ARN) of the secret,
+//    the database name, and the cluster identifier that matches the cluster
+//    in the secret.
+//
+//    * Temporary credentials - specify the cluster identifier, the database
+//    name, and the database user name. Permission to call the redshift:GetClusterCredentials
+//    operation is required to use this method.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Redshift Data API Service's
+// API operation BatchExecuteStatement for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   The Amazon Redshift Data API operation failed due to invalid input.
+//
+//   * ActiveStatementsExceededException
+//   The number of active statements exceeds the limit.
+//
+//   * BatchExecuteStatementException
+//   An SQL statement encountered an environmental error while running.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-data-2019-12-20/BatchExecuteStatement
+func (c *RedshiftDataAPIService) BatchExecuteStatement(input *BatchExecuteStatementInput) (*BatchExecuteStatementOutput, error) {
+	req, out := c.BatchExecuteStatementRequest(input)
+	return out, req.Send()
+}
+
+// BatchExecuteStatementWithContext is the same as BatchExecuteStatement with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchExecuteStatement for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *RedshiftDataAPIService) BatchExecuteStatementWithContext(ctx aws.Context, input *BatchExecuteStatementInput, opts ...request.Option) (*BatchExecuteStatementOutput, error) {
+	req, out := c.BatchExecuteStatementRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCancelStatement = "CancelStatement"
 
 // CancelStatementRequest generates a "aws/request.Request" representing the
@@ -66,6 +161,9 @@ func (c *RedshiftDataAPIService) CancelStatementRequest(input *CancelStatementIn
 // API operation CancelStatement for usage and error information.
 //
 // Returned Error Types:
+//   * ValidationException
+//   The Amazon Redshift Data API operation failed due to invalid input.
+//
 //   * ResourceNotFoundException
 //   The Amazon Redshift Data API operation failed due to a missing resource.
 //
@@ -237,8 +335,9 @@ func (c *RedshiftDataAPIService) DescribeTableRequest(input *DescribeTableInput)
 // the column list. Depending on the authorization method, use one of the following
 // combinations of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//    * Secrets Manager - specify the Amazon Resource Name (ARN) of the secret,
+//    the database name, and the cluster identifier that matches the cluster
+//    in the secret.
 //
 //    * Temporary credentials - specify the cluster identifier, the database
 //    name, and the database user name. Permission to call the redshift:GetClusterCredentials
@@ -381,8 +480,9 @@ func (c *RedshiftDataAPIService) ExecuteStatementRequest(input *ExecuteStatement
 // Depending on the authorization method, use one of the following combinations
 // of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//    * Secrets Manager - specify the Amazon Resource Name (ARN) of the secret,
+//    the database name, and the cluster identifier that matches the cluster
+//    in the secret.
 //
 //    * Temporary credentials - specify the cluster identifier, the database
 //    name, and the database user name. Permission to call the redshift:GetClusterCredentials
@@ -625,8 +725,9 @@ func (c *RedshiftDataAPIService) ListDatabasesRequest(input *ListDatabasesInput)
 // database list. Depending on the authorization method, use one of the following
 // combinations of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//    * Secrets Manager - specify the Amazon Resource Name (ARN) of the secret,
+//    the database name, and the cluster identifier that matches the cluster
+//    in the secret.
 //
 //    * Temporary credentials - specify the cluster identifier, the database
 //    name, and the database user name. Permission to call the redshift:GetClusterCredentials
@@ -774,8 +875,9 @@ func (c *RedshiftDataAPIService) ListSchemasRequest(input *ListSchemasInput) (re
 // schema list. Depending on the authorization method, use one of the following
 // combinations of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//    * Secrets Manager - specify the Amazon Resource Name (ARN) of the secret,
+//    the database name, and the cluster identifier that matches the cluster
+//    in the secret.
 //
 //    * Temporary credentials - specify the cluster identifier, the database
 //    name, and the database user name. Permission to call the redshift:GetClusterCredentials
@@ -1065,8 +1167,9 @@ func (c *RedshiftDataAPIService) ListTablesRequest(input *ListTablesInput) (req 
 // to page through the table list. Depending on the authorization method, use
 // one of the following combinations of request parameters:
 //
-//    * AWS Secrets Manager - specify the Amazon Resource Name (ARN) of the
-//    secret and the cluster identifier that matches the cluster in the secret.
+//    * Secrets Manager - specify the Amazon Resource Name (ARN) of the secret,
+//    the database name, and the cluster identifier that matches the cluster
+//    in the secret.
 //
 //    * Temporary credentials - specify the cluster identifier, the database
 //    name, and the database user name. Permission to call the redshift:GetClusterCredentials
@@ -1216,12 +1319,254 @@ func (s *ActiveStatementsExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An SQL statement encountered an environmental error while running.
+type BatchExecuteStatementException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	// Statement identifier of the exception.
+	//
+	// StatementId is a required field
+	StatementId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchExecuteStatementException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchExecuteStatementException) GoString() string {
+	return s.String()
+}
+
+func newErrorBatchExecuteStatementException(v protocol.ResponseMetadata) error {
+	return &BatchExecuteStatementException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *BatchExecuteStatementException) Code() string {
+	return "BatchExecuteStatementException"
+}
+
+// Message returns the exception's message.
+func (s *BatchExecuteStatementException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *BatchExecuteStatementException) OrigErr() error {
+	return nil
+}
+
+func (s *BatchExecuteStatementException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *BatchExecuteStatementException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *BatchExecuteStatementException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+type BatchExecuteStatementInput struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster identifier. This parameter is required when authenticating using
+	// either Secrets Manager or temporary credentials.
+	//
+	// ClusterIdentifier is a required field
+	ClusterIdentifier *string `type:"string" required:"true"`
+
+	// The name of the database. This parameter is required when authenticating
+	// using either Secrets Manager or temporary credentials.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
+
+	// The database user name. This parameter is required when authenticating using
+	// temporary credentials.
+	DbUser *string `type:"string"`
+
+	// The name or ARN of the secret that enables access to the database. This parameter
+	// is required when authenticating using Secrets Manager.
+	SecretArn *string `type:"string"`
+
+	// One or more SQL statements to run.
+	//
+	// Sqls is a required field
+	Sqls []*string `min:"1" type:"list" required:"true"`
+
+	// The name of the SQL statements. You can name the SQL statements when you
+	// create them to identify the query.
+	StatementName *string `type:"string"`
+
+	// A value that indicates whether to send an event to the Amazon EventBridge
+	// event bus after the SQL statements run.
+	WithEvent *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s BatchExecuteStatementInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchExecuteStatementInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchExecuteStatementInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchExecuteStatementInput"}
+	if s.ClusterIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
+	}
+	if s.Sqls == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sqls"))
+	}
+	if s.Sqls != nil && len(s.Sqls) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sqls", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *BatchExecuteStatementInput) SetClusterIdentifier(v string) *BatchExecuteStatementInput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *BatchExecuteStatementInput) SetDatabase(v string) *BatchExecuteStatementInput {
+	s.Database = &v
+	return s
+}
+
+// SetDbUser sets the DbUser field's value.
+func (s *BatchExecuteStatementInput) SetDbUser(v string) *BatchExecuteStatementInput {
+	s.DbUser = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *BatchExecuteStatementInput) SetSecretArn(v string) *BatchExecuteStatementInput {
+	s.SecretArn = &v
+	return s
+}
+
+// SetSqls sets the Sqls field's value.
+func (s *BatchExecuteStatementInput) SetSqls(v []*string) *BatchExecuteStatementInput {
+	s.Sqls = v
+	return s
+}
+
+// SetStatementName sets the StatementName field's value.
+func (s *BatchExecuteStatementInput) SetStatementName(v string) *BatchExecuteStatementInput {
+	s.StatementName = &v
+	return s
+}
+
+// SetWithEvent sets the WithEvent field's value.
+func (s *BatchExecuteStatementInput) SetWithEvent(v bool) *BatchExecuteStatementInput {
+	s.WithEvent = &v
+	return s
+}
+
+type BatchExecuteStatementOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The cluster identifier.
+	ClusterIdentifier *string `type:"string"`
+
+	// The date and time (UTC) the statement was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The name of the database.
+	Database *string `type:"string"`
+
+	// The database user name.
+	DbUser *string `type:"string"`
+
+	// The identifier of the SQL statement whose results are to be fetched. This
+	// value is a universally unique identifier (UUID) generated by Amazon Redshift
+	// Data API. This identifier is returned by BatchExecuteStatment.
+	Id *string `type:"string"`
+
+	// The name or ARN of the secret that enables access to the database.
+	SecretArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s BatchExecuteStatementOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchExecuteStatementOutput) GoString() string {
+	return s.String()
+}
+
+// SetClusterIdentifier sets the ClusterIdentifier field's value.
+func (s *BatchExecuteStatementOutput) SetClusterIdentifier(v string) *BatchExecuteStatementOutput {
+	s.ClusterIdentifier = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *BatchExecuteStatementOutput) SetCreatedAt(v time.Time) *BatchExecuteStatementOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDatabase sets the Database field's value.
+func (s *BatchExecuteStatementOutput) SetDatabase(v string) *BatchExecuteStatementOutput {
+	s.Database = &v
+	return s
+}
+
+// SetDbUser sets the DbUser field's value.
+func (s *BatchExecuteStatementOutput) SetDbUser(v string) *BatchExecuteStatementOutput {
+	s.DbUser = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *BatchExecuteStatementOutput) SetId(v string) *BatchExecuteStatementOutput {
+	s.Id = &v
+	return s
+}
+
+// SetSecretArn sets the SecretArn field's value.
+func (s *BatchExecuteStatementOutput) SetSecretArn(v string) *BatchExecuteStatementOutput {
+	s.SecretArn = &v
+	return s
+}
+
 type CancelStatementInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the SQL statement to cancel. This value is a universally
 	// unique identifier (UUID) generated by Amazon Redshift Data API. This identifier
-	// is returned by ExecuteStatment and ListStatements.
+	// is returned by BatchExecuteStatment, ExecuteStatment, and ListStatements.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
@@ -1415,8 +1760,11 @@ type DescribeStatementInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the SQL statement to describe. This value is a universally
-	// unique identifier (UUID) generated by Amazon Redshift Data API. This identifier
-	// is returned by ExecuteStatment and ListStatements.
+	// unique identifier (UUID) generated by Amazon Redshift Data API. A suffix
+	// indicates the number of the SQL statement. For example, d9b6c0c9-0747-4bf4-b142-e8883122f766:2
+	// has a suffix of :2 that indicates the second SQL statement of a batch query.
+	// This identifier is returned by BatchExecuteStatment, ExecuteStatement, and
+	// ListStatements.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
@@ -1499,10 +1847,10 @@ type DescribeStatementOutput struct {
 	// Either the number of rows returned from the SQL statement or the number of
 	// rows affected. If result size is greater than zero, the result rows can be
 	// the number of rows affected by SQL statements such as INSERT, UPDATE, DELETE,
-	// COPY, and others.
+	// COPY, and others. A -1 indicates the value is null.
 	ResultRows *int64 `type:"long"`
 
-	// The size in bytes of the returned results.
+	// The size in bytes of the returned results. A -1 indicates the value is null.
 	ResultSize *int64 `type:"long"`
 
 	// The name or Amazon Resource Name (ARN) of the secret that enables access
@@ -1527,6 +1875,9 @@ type DescribeStatementOutput struct {
 	//
 	//    * SUBMITTED - The query was submitted, but not yet processed.
 	Status *string `type:"string" enum:"StatusString"`
+
+	// The SQL statements from a multiple statement run.
+	SubStatements []*SubStatementData `type:"list"`
 
 	// The date and time (UTC) that the metadata for the SQL statement was last
 	// updated. An example is the time the status last changed.
@@ -1639,6 +1990,12 @@ func (s *DescribeStatementOutput) SetStatus(v string) *DescribeStatementOutput {
 	return s
 }
 
+// SetSubStatements sets the SubStatements field's value.
+func (s *DescribeStatementOutput) SetSubStatements(v []*SubStatementData) *DescribeStatementOutput {
+	s.SubStatements = v
+	return s
+}
+
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *DescribeStatementOutput) SetUpdatedAt(v time.Time) *DescribeStatementOutput {
 	s.UpdatedAt = &v
@@ -1649,7 +2006,7 @@ type DescribeTableInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
+	// either Secrets Manager or temporary credentials.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -1686,7 +2043,7 @@ type DescribeTableInput struct {
 	Schema *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
 	// The table name. If no table is specified, then all tables for all matching
@@ -1886,14 +2243,16 @@ type ExecuteStatementInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
+	// either Secrets Manager or temporary credentials.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the database. This parameter is required when authenticating
-	// using temporary credentials.
-	Database *string `type:"string"`
+	// using either Secrets Manager or temporary credentials.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
 
 	// The database user name. This parameter is required when authenticating using
 	// temporary credentials.
@@ -1903,7 +2262,7 @@ type ExecuteStatementInput struct {
 	Parameters []*SqlParameter `min:"1" type:"list"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
 	// The SQL statement text to run.
@@ -1935,6 +2294,9 @@ func (s *ExecuteStatementInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ExecuteStatementInput"}
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
 	}
 	if s.Parameters != nil && len(s.Parameters) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
@@ -2022,8 +2384,9 @@ type ExecuteStatementOutput struct {
 	// The database user name.
 	DbUser *string `type:"string"`
 
-	// The identifier of the statement to be run. This value is a universally unique
-	// identifier (UUID) generated by Amazon Redshift Data API.
+	// The identifier of the SQL statement whose results are to be fetched. This
+	// value is a universally unique identifier (UUID) generated by Amazon Redshift
+	// Data API.
 	Id *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database.
@@ -2152,7 +2515,10 @@ type GetStatementResultInput struct {
 
 	// The identifier of the SQL statement whose results are to be fetched. This
 	// value is a universally unique identifier (UUID) generated by Amazon Redshift
-	// Data API. This identifier is returned by ExecuteStatment and ListStatements.
+	// Data API. A suffix indicates then number of the SQL statement. For example,
+	// d9b6c0c9-0747-4bf4-b142-e8883122f766:2 has a suffix of :2 that indicates
+	// the second SQL statement of a batch query. This identifier is returned by
+	// BatchExecuteStatment, ExecuteStatment, and ListStatements.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
@@ -2319,14 +2685,16 @@ type ListDatabasesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
+	// either Secrets Manager or temporary credentials.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
 	// The name of the database. This parameter is required when authenticating
-	// using temporary credentials.
-	Database *string `type:"string"`
+	// using either Secrets Manager or temporary credentials.
+	//
+	// Database is a required field
+	Database *string `type:"string" required:"true"`
 
 	// The database user name. This parameter is required when authenticating using
 	// temporary credentials.
@@ -2345,7 +2713,7 @@ type ListDatabasesInput struct {
 	NextToken *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 }
 
@@ -2364,6 +2732,9 @@ func (s *ListDatabasesInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "ListDatabasesInput"}
 	if s.ClusterIdentifier == nil {
 		invalidParams.Add(request.NewErrParamRequired("ClusterIdentifier"))
+	}
+	if s.Database == nil {
+		invalidParams.Add(request.NewErrParamRequired("Database"))
 	}
 
 	if invalidParams.Len() > 0 {
@@ -2448,7 +2819,7 @@ type ListSchemasInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
+	// either Secrets Manager or temporary credentials.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -2486,7 +2857,7 @@ type ListSchemasInput struct {
 	SchemaPattern *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 }
 
@@ -2621,12 +2992,12 @@ type ListStatementsInput struct {
 	// The default is true.
 	RoleLevel *bool `type:"boolean"`
 
-	// The name of the SQL statement specified as input to ExecuteStatement to identify
-	// the query. You can list multiple statements by providing a prefix that matches
-	// the beginning of the statement name. For example, to list myStatement1, myStatement2,
-	// myStatement3, and so on, then provide the a value of myStatement. Data API
-	// does a case-sensitive match of SQL statement names to the prefix value you
-	// provide.
+	// The name of the SQL statement specified as input to BatchExecuteStatement
+	// or ExecuteStatement to identify the query. You can list multiple statements
+	// by providing a prefix that matches the beginning of the statement name. For
+	// example, to list myStatement1, myStatement2, myStatement3, and so on, then
+	// provide the a value of myStatement. Data API does a case-sensitive match
+	// of SQL statement names to the prefix value you provide.
 	StatementName *string `type:"string"`
 
 	// The status of the SQL statement to list. Status values are defined as follows:
@@ -2730,7 +3101,7 @@ type ListTablesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The cluster identifier. This parameter is required when authenticating using
-	// either AWS Secrets Manager or temporary credentials.
+	// either Secrets Manager or temporary credentials.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -2771,7 +3142,7 @@ type ListTablesInput struct {
 	SchemaPattern *string `type:"string"`
 
 	// The name or ARN of the secret that enables access to the database. This parameter
-	// is required when authenticating using AWS Secrets Manager.
+	// is required when authenticating using Secrets Manager.
 	SecretArn *string `type:"string"`
 
 	// A pattern to filter results by table name. Within a table pattern, "%" means
@@ -3032,11 +3403,18 @@ type StatementData struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// A value that indicates whether the statement is a batch query request.
+	IsBatchStatement *bool `type:"boolean"`
+
 	// The parameters used in a SQL statement.
 	QueryParameters []*SqlParameter `min:"1" type:"list"`
 
 	// The SQL statement.
 	QueryString *string `type:"string"`
+
+	// One or more SQL statements. Each query string in the array corresponds to
+	// one of the queries in a batch query request.
+	QueryStrings []*string `type:"list"`
 
 	// The name or Amazon Resource Name (ARN) of the secret that enables access
 	// to the database.
@@ -3075,6 +3453,12 @@ func (s *StatementData) SetId(v string) *StatementData {
 	return s
 }
 
+// SetIsBatchStatement sets the IsBatchStatement field's value.
+func (s *StatementData) SetIsBatchStatement(v bool) *StatementData {
+	s.IsBatchStatement = &v
+	return s
+}
+
 // SetQueryParameters sets the QueryParameters field's value.
 func (s *StatementData) SetQueryParameters(v []*SqlParameter) *StatementData {
 	s.QueryParameters = v
@@ -3084,6 +3468,12 @@ func (s *StatementData) SetQueryParameters(v []*SqlParameter) *StatementData {
 // SetQueryString sets the QueryString field's value.
 func (s *StatementData) SetQueryString(v string) *StatementData {
 	s.QueryString = &v
+	return s
+}
+
+// SetQueryStrings sets the QueryStrings field's value.
+func (s *StatementData) SetQueryStrings(v []*string) *StatementData {
+	s.QueryStrings = v
 	return s
 }
 
@@ -3107,6 +3497,132 @@ func (s *StatementData) SetStatus(v string) *StatementData {
 
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *StatementData) SetUpdatedAt(v time.Time) *StatementData {
+	s.UpdatedAt = &v
+	return s
+}
+
+// Information about an SQL statement.
+type SubStatementData struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time (UTC) the statement was created.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The amount of time in nanoseconds that the statement ran.
+	Duration *int64 `type:"long"`
+
+	// The error message from the cluster if the SQL statement encountered an error
+	// while running.
+	Error *string `type:"string"`
+
+	// A value that indicates whether the statement has a result set. The result
+	// set can be empty.
+	HasResultSet *bool `type:"boolean"`
+
+	// The identifier of the SQL statement. This value is a universally unique identifier
+	// (UUID) generated by Amazon Redshift Data API. A suffix indicates the number
+	// of the SQL statement. For example, d9b6c0c9-0747-4bf4-b142-e8883122f766:2
+	// has a suffix of :2 that indicates the second SQL statement of a batch query.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// The SQL statement text.
+	QueryString *string `type:"string"`
+
+	// The SQL statement identifier. This value is a universally unique identifier
+	// (UUID) generated by Amazon Redshift Data API.
+	RedshiftQueryId *int64 `type:"long"`
+
+	// Either the number of rows returned from the SQL statement or the number of
+	// rows affected. If result size is greater than zero, the result rows can be
+	// the number of rows affected by SQL statements such as INSERT, UPDATE, DELETE,
+	// COPY, and others. A -1 indicates the value is null.
+	ResultRows *int64 `type:"long"`
+
+	// The size in bytes of the returned results. A -1 indicates the value is null.
+	ResultSize *int64 `type:"long"`
+
+	// The status of the SQL statement. An example is the that the SQL statement
+	// finished.
+	Status *string `type:"string" enum:"StatementStatusString"`
+
+	// The date and time (UTC) that the statement metadata was last updated.
+	UpdatedAt *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s SubStatementData) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SubStatementData) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *SubStatementData) SetCreatedAt(v time.Time) *SubStatementData {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetDuration sets the Duration field's value.
+func (s *SubStatementData) SetDuration(v int64) *SubStatementData {
+	s.Duration = &v
+	return s
+}
+
+// SetError sets the Error field's value.
+func (s *SubStatementData) SetError(v string) *SubStatementData {
+	s.Error = &v
+	return s
+}
+
+// SetHasResultSet sets the HasResultSet field's value.
+func (s *SubStatementData) SetHasResultSet(v bool) *SubStatementData {
+	s.HasResultSet = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *SubStatementData) SetId(v string) *SubStatementData {
+	s.Id = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *SubStatementData) SetQueryString(v string) *SubStatementData {
+	s.QueryString = &v
+	return s
+}
+
+// SetRedshiftQueryId sets the RedshiftQueryId field's value.
+func (s *SubStatementData) SetRedshiftQueryId(v int64) *SubStatementData {
+	s.RedshiftQueryId = &v
+	return s
+}
+
+// SetResultRows sets the ResultRows field's value.
+func (s *SubStatementData) SetResultRows(v int64) *SubStatementData {
+	s.ResultRows = &v
+	return s
+}
+
+// SetResultSize sets the ResultSize field's value.
+func (s *SubStatementData) SetResultSize(v int64) *SubStatementData {
+	s.ResultSize = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SubStatementData) SetStatus(v string) *SubStatementData {
+	s.Status = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *SubStatementData) SetUpdatedAt(v time.Time) *SubStatementData {
 	s.UpdatedAt = &v
 	return s
 }
@@ -3209,6 +3725,38 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// StatementStatusStringSubmitted is a StatementStatusString enum value
+	StatementStatusStringSubmitted = "SUBMITTED"
+
+	// StatementStatusStringPicked is a StatementStatusString enum value
+	StatementStatusStringPicked = "PICKED"
+
+	// StatementStatusStringStarted is a StatementStatusString enum value
+	StatementStatusStringStarted = "STARTED"
+
+	// StatementStatusStringFinished is a StatementStatusString enum value
+	StatementStatusStringFinished = "FINISHED"
+
+	// StatementStatusStringAborted is a StatementStatusString enum value
+	StatementStatusStringAborted = "ABORTED"
+
+	// StatementStatusStringFailed is a StatementStatusString enum value
+	StatementStatusStringFailed = "FAILED"
+)
+
+// StatementStatusString_Values returns all elements of the StatementStatusString enum
+func StatementStatusString_Values() []string {
+	return []string{
+		StatementStatusStringSubmitted,
+		StatementStatusStringPicked,
+		StatementStatusStringStarted,
+		StatementStatusStringFinished,
+		StatementStatusStringAborted,
+		StatementStatusStringFailed,
+	}
 }
 
 const (

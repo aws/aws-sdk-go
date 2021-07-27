@@ -1,3 +1,23 @@
+Release v1.40.9 (2021-07-27)
+===
+
+### Service Client Updates
+* `service/batch`: Updates service API and documentation
+  * Add support for ListJob filters
+* `service/iotanalytics`: Updates service API and documentation
+* `service/iotwireless`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service waiters
+* `service/quicksight`: Updates service API and documentation
+  * Add support to use row-level security with tags when embedding dashboards for users not provisioned in QuickSight
+* `service/redshift-data`: Updates service API and documentation
+* `service/route53`: Updates service API and documentation
+  * This release adds support for the RECOVERY_CONTROL health check type to be used in conjunction with Route53 Application Recovery Controller.
+* `service/route53-recovery-cluster`: Adds new service
+* `service/route53-recovery-control-config`: Adds new service
+* `service/route53-recovery-readiness`: Adds new service
+* `service/shield`: Updates service documentation
+  * Change name of DDoS Response Team (DRT) to Shield Response Team (SRT)
+
 Release v1.40.8 (2021-07-26)
 ===
 
