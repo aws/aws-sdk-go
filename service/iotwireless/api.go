@@ -2292,8 +2292,9 @@ func (c *IoTWireless) GetLogLevelsByResourceTypesRequest(input *GetLogLevelsByRe
 
 // GetLogLevelsByResourceTypes API operation for AWS IoT Wireless.
 //
-// Returns current default log-levels, or log levels by resource types, could
-// be for wireless device log options or wireless gateway log options.
+// Returns current default log levels or log levels by resource types. Based
+// on resource types, log levels can be for wireless device log options or wireless
+// gateway log options.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2473,8 +2474,8 @@ func (c *IoTWireless) GetResourceLogLevelRequest(input *GetResourceLogLevelInput
 
 // GetResourceLogLevel API operation for AWS IoT Wireless.
 //
-// Fetches the log-level override if any for a given resource-ID and resource-type,
-// coulde be a wireless device or a wireless gateway.
+// Fetches the log-level override, if any, for a given resource-ID and resource-type.
+// It can be used for a wireless device or a wireless gateway.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4472,8 +4473,9 @@ func (c *IoTWireless) PutResourceLogLevelRequest(input *PutResourceLogLevelInput
 
 // PutResourceLogLevel API operation for AWS IoT Wireless.
 //
-// Sets the log-level override for a resource-ID and resource-type, could be
-// a wireless gateway or a wireless device.
+// Sets the log-level override for a resource-ID and resource-type. This option
+// can be specified for a wireless gateway or a wireless device. A limit of
+// 200 log level override can be set per account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4565,8 +4567,8 @@ func (c *IoTWireless) ResetAllResourceLogLevelsRequest(input *ResetAllResourceLo
 
 // ResetAllResourceLogLevels API operation for AWS IoT Wireless.
 //
-// Remove log-level overrides if any for all resources (both wireless devices
-// and wireless gateways).
+// Removes the log-level overrides for all resources; both wireless devices
+// and wireless gateways.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4658,8 +4660,8 @@ func (c *IoTWireless) ResetResourceLogLevelRequest(input *ResetResourceLogLevelI
 
 // ResetResourceLogLevel API operation for AWS IoT Wireless.
 //
-// Remove log-level override if any for a specific resource-ID and resource-type,
-// could be a wireless device or a wireless gateway.
+// Removes the log-level override, if any, for a specific resource-ID and resource-type.
+// It can be used for a wireless device or a wireless gateway.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5206,9 +5208,9 @@ func (c *IoTWireless) UpdateLogLevelsByResourceTypesRequest(input *UpdateLogLeve
 
 // UpdateLogLevelsByResourceTypes API operation for AWS IoT Wireless.
 //
-// Set default log level, or log levels by resource types, could be for wireless
-// device log options or wireless gateways log options. This is to control the
-// log messages that will be displayed in CloudWatch.
+// Set default log level, or log levels by resource types. This can be for wireless
+// device log options or wireless gateways log options and is used to control
+// the log messages that'll be displayed in CloudWatch.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8028,12 +8030,12 @@ type GetResourceLogLevelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the resource. For a Wireless Device, it is the wireless
-	// device id. For a wireless gateway, it is the wireless gateway id.
+	// device ID. For a wireless gateway, it is the wireless gateway ID.
 	//
 	// ResourceIdentifier is a required field
 	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
 
-	// The type of the resource, currently support WirelessDevice and WirelessGateway.
+	// The type of the resource, which can be WirelessDevice or WirelessGateway.
 	//
 	// ResourceType is a required field
 	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true"`
@@ -10726,12 +10728,12 @@ type PutResourceLogLevelInput struct {
 	LogLevel *string `type:"string" required:"true" enum:"LogLevel"`
 
 	// The identifier of the resource. For a Wireless Device, it is the wireless
-	// device id. For a wireless gateway, it is the wireless gateway id.
+	// device ID. For a wireless gateway, it is the wireless gateway ID.
 	//
 	// ResourceIdentifier is a required field
 	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
 
-	// The type of the resource, currently support WirelessDevice and WirelessGateway.
+	// The type of the resource, which can be WirelessDevice or WirelessGateway.
 	//
 	// ResourceType is a required field
 	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true"`
@@ -10833,12 +10835,12 @@ type ResetResourceLogLevelInput struct {
 	_ struct{} `type:"structure"`
 
 	// The identifier of the resource. For a Wireless Device, it is the wireless
-	// device id. For a wireless gateway, it is the wireless gateway id.
+	// device ID. For a wireless gateway, it is the wireless gateway ID.
 	//
 	// ResourceIdentifier is a required field
 	ResourceIdentifier *string `location:"uri" locationName:"ResourceIdentifier" type:"string" required:"true"`
 
-	// The type of the resource, currently support WirelessDevice and WirelessGateway.
+	// The type of the resource, which can be WirelessDevice or WirelessGateway.
 	//
 	// ResourceType is a required field
 	ResourceType *string `location:"querystring" locationName:"resourceType" type:"string" required:"true"`
@@ -10969,7 +10971,7 @@ type SendDataToWirelessDeviceInput struct {
 	// Id is a required field
 	Id *string `location:"uri" locationName:"Id" type:"string" required:"true"`
 
-	// The message payload to send.
+	// The binary to be sent to the end device, encoded in base64.
 	//
 	// PayloadData is a required field
 	PayloadData *string `type:"string" required:"true"`
@@ -11286,6 +11288,9 @@ func (s *SidewalkAccountInfoWithFingerprint) SetFingerprint(v string) *SidewalkA
 type SidewalkDevice struct {
 	_ struct{} `type:"structure"`
 
+	// The Sidewalk Amazon ID.
+	AmazonId *string `type:"string"`
+
 	// The sidewalk device certificates for Ed25519 and P256r1.
 	DeviceCertificates []*CertificateList `type:"list"`
 
@@ -11304,6 +11309,12 @@ func (s SidewalkDevice) String() string {
 // GoString returns the string representation
 func (s SidewalkDevice) GoString() string {
 	return s.String()
+}
+
+// SetAmazonId sets the AmazonId field's value.
+func (s *SidewalkDevice) SetAmazonId(v string) *SidewalkDevice {
+	s.AmazonId = &v
+	return s
 }
 
 // SetDeviceCertificates sets the DeviceCertificates field's value.
@@ -11430,7 +11441,7 @@ func (s *SidewalkListDevice) SetSidewalkManufacturingSn(v string) *SidewalkListD
 type SidewalkSendDataToDevice struct {
 	_ struct{} `type:"structure"`
 
-	// Sidewalk device message type.
+	// Sidewalk device message type. Default value is CUSTOM_COMMAND_ID_NOTIFY.
 	MessageType *string `type:"string" enum:"MessageType"`
 
 	// The sequence number.
@@ -12491,11 +12502,12 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The log option for a wireless device event. Can be used to set log level
-// for a specific wireless device event. For a LoRaWAN device, the possible
-// events for a log messsage are: Join, Rejoin, Downlink_Data, Uplink_Data.
-// For a Sidewalk device, the possible events for a log message are: Registration,
-// Downlink_Data, Uplink_Data.
+// The log options for a wireless device event and can be used to set log levels
+// for a specific wireless device event.
+//
+// For a LoRaWAN device, possible events for a log messsage are: Join, Rejoin,
+// Downlink_Data, and Uplink_Data. For a Sidewalk device, possible events for
+// a log message are Registration, Downlink_Data, and Uplink_Data.
 type WirelessDeviceEventLogOption struct {
 	_ struct{} `type:"structure"`
 
@@ -12548,8 +12560,8 @@ func (s *WirelessDeviceEventLogOption) SetLogLevel(v string) *WirelessDeviceEven
 	return s
 }
 
-// The log option for wireless devices. Can be used to set log level for a specific
-// type of wireless device.
+// The log options for wireless devices and can be used to set log levels for
+// a specific type of wireless device.
 type WirelessDeviceLogOption struct {
 	_ struct{} `type:"structure"`
 
@@ -12708,9 +12720,11 @@ func (s *WirelessDeviceStatistics) SetType(v string) *WirelessDeviceStatistics {
 	return s
 }
 
-// The log option for a wireless gateway event. Can be used to set log level
-// for a specific wireless gateway event. For a LoRaWAN gateway, the possible
-// events for a log message are: CUPS_Request, Certificate.
+// The log options for a wireless gateway event and can be used to set log levels
+// for a specific wireless gateway event.
+//
+// For a LoRaWAN gateway, possible events for a log message are CUPS_Request
+// and Certificate.
 type WirelessGatewayEventLogOption struct {
 	_ struct{} `type:"structure"`
 
@@ -12763,8 +12777,8 @@ func (s *WirelessGatewayEventLogOption) SetLogLevel(v string) *WirelessGatewayEv
 	return s
 }
 
-// The log option for wireless gateways. Can be used to set log level for a
-// specific type of wireless gateway.
+// The log options for wireless gateways and can be used to set log levels for
+// a specific type of wireless gateway.
 type WirelessGatewayLogOption struct {
 	_ struct{} `type:"structure"`
 
@@ -13081,7 +13095,7 @@ func LogLevel_Values() []string {
 	}
 }
 
-// Sidewalk device message type.
+// Sidewalk device message type. Default value is CUSTOM_COMMAND_ID_NOTIFY.
 const (
 	// MessageTypeCustomCommandIdNotify is a MessageType enum value
 	MessageTypeCustomCommandIdNotify = "CUSTOM_COMMAND_ID_NOTIFY"
@@ -13173,6 +13187,9 @@ const (
 
 	// WirelessDeviceIdTypeThingName is a WirelessDeviceIdType enum value
 	WirelessDeviceIdTypeThingName = "ThingName"
+
+	// WirelessDeviceIdTypeSidewalkManufacturingSn is a WirelessDeviceIdType enum value
+	WirelessDeviceIdTypeSidewalkManufacturingSn = "SidewalkManufacturingSn"
 )
 
 // WirelessDeviceIdType_Values returns all elements of the WirelessDeviceIdType enum
@@ -13181,6 +13198,7 @@ func WirelessDeviceIdType_Values() []string {
 		WirelessDeviceIdTypeWirelessDeviceId,
 		WirelessDeviceIdTypeDevEui,
 		WirelessDeviceIdTypeThingName,
+		WirelessDeviceIdTypeSidewalkManufacturingSn,
 	}
 }
 

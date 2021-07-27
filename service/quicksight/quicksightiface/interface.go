@@ -292,6 +292,14 @@ type QuickSightAPI interface {
 	DescribeUserWithContext(aws.Context, *quicksight.DescribeUserInput, ...request.Option) (*quicksight.DescribeUserOutput, error)
 	DescribeUserRequest(*quicksight.DescribeUserInput) (*request.Request, *quicksight.DescribeUserOutput)
 
+	GenerateEmbedUrlForAnonymousUser(*quicksight.GenerateEmbedUrlForAnonymousUserInput) (*quicksight.GenerateEmbedUrlForAnonymousUserOutput, error)
+	GenerateEmbedUrlForAnonymousUserWithContext(aws.Context, *quicksight.GenerateEmbedUrlForAnonymousUserInput, ...request.Option) (*quicksight.GenerateEmbedUrlForAnonymousUserOutput, error)
+	GenerateEmbedUrlForAnonymousUserRequest(*quicksight.GenerateEmbedUrlForAnonymousUserInput) (*request.Request, *quicksight.GenerateEmbedUrlForAnonymousUserOutput)
+
+	GenerateEmbedUrlForRegisteredUser(*quicksight.GenerateEmbedUrlForRegisteredUserInput) (*quicksight.GenerateEmbedUrlForRegisteredUserOutput, error)
+	GenerateEmbedUrlForRegisteredUserWithContext(aws.Context, *quicksight.GenerateEmbedUrlForRegisteredUserInput, ...request.Option) (*quicksight.GenerateEmbedUrlForRegisteredUserOutput, error)
+	GenerateEmbedUrlForRegisteredUserRequest(*quicksight.GenerateEmbedUrlForRegisteredUserInput) (*request.Request, *quicksight.GenerateEmbedUrlForRegisteredUserOutput)
+
 	GetDashboardEmbedUrl(*quicksight.GetDashboardEmbedUrlInput) (*quicksight.GetDashboardEmbedUrlOutput, error)
 	GetDashboardEmbedUrlWithContext(aws.Context, *quicksight.GetDashboardEmbedUrlInput, ...request.Option) (*quicksight.GetDashboardEmbedUrlOutput, error)
 	GetDashboardEmbedUrlRequest(*quicksight.GetDashboardEmbedUrlInput) (*request.Request, *quicksight.GetDashboardEmbedUrlOutput)

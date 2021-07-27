@@ -703,7 +703,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^[a-zA-Z0-9_]+$"
+      "pattern":"(^(?!_{2}))(^[a-zA-Z0-9_]+$)"
     },
     "ChannelStatistics":{
       "type":"structure",
@@ -1070,7 +1070,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^[a-zA-Z0-9_]+$"
+      "pattern":"(^(?!_{2}))(^[a-zA-Z0-9_]+$)"
     },
     "DatasetStatus":{
       "type":"string",
@@ -1135,11 +1135,24 @@
       }
     },
     "DatastoreArn":{"type":"string"},
+    "DatastoreIotSiteWiseMultiLayerStorage":{
+      "type":"structure",
+      "required":["customerManagedS3Storage"],
+      "members":{
+        "customerManagedS3Storage":{"shape":"IotSiteWiseCustomerManagedDatastoreS3Storage"}
+      }
+    },
+    "DatastoreIotSiteWiseMultiLayerStorageSummary":{
+      "type":"structure",
+      "members":{
+        "customerManagedS3Storage":{"shape":"IotSiteWiseCustomerManagedDatastoreS3StorageSummary"}
+      }
+    },
     "DatastoreName":{
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^[a-zA-Z0-9_]+$"
+      "pattern":"(^(?!_{2}))(^[a-zA-Z0-9_]+$)"
     },
     "DatastorePartition":{
       "type":"structure",
@@ -1172,14 +1185,16 @@
       "type":"structure",
       "members":{
         "serviceManagedS3":{"shape":"ServiceManagedDatastoreS3Storage"},
-        "customerManagedS3":{"shape":"CustomerManagedDatastoreS3Storage"}
+        "customerManagedS3":{"shape":"CustomerManagedDatastoreS3Storage"},
+        "iotSiteWiseMultiLayerStorage":{"shape":"DatastoreIotSiteWiseMultiLayerStorage"}
       }
     },
     "DatastoreStorageSummary":{
       "type":"structure",
       "members":{
         "serviceManagedS3":{"shape":"ServiceManagedDatastoreS3StorageSummary"},
-        "customerManagedS3":{"shape":"CustomerManagedDatastoreS3StorageSummary"}
+        "customerManagedS3":{"shape":"CustomerManagedDatastoreS3StorageSummary"},
+        "iotSiteWiseMultiLayerStorage":{"shape":"DatastoreIotSiteWiseMultiLayerStorageSummary"}
       }
     },
     "DatastoreSummaries":{
@@ -1528,6 +1543,21 @@
       "max":128,
       "min":1,
       "pattern":"^[a-zA-Z][a-zA-Z0-9_]*$"
+    },
+    "IotSiteWiseCustomerManagedDatastoreS3Storage":{
+      "type":"structure",
+      "required":["bucket"],
+      "members":{
+        "bucket":{"shape":"BucketName"},
+        "keyPrefix":{"shape":"S3KeyPrefix"}
+      }
+    },
+    "IotSiteWiseCustomerManagedDatastoreS3StorageSummary":{
+      "type":"structure",
+      "members":{
+        "bucket":{"shape":"BucketName"},
+        "keyPrefix":{"shape":"S3KeyPrefix"}
+      }
     },
     "JsonConfiguration":{
       "type":"structure",
@@ -1887,7 +1917,7 @@
       "type":"string",
       "max":128,
       "min":1,
-      "pattern":"^[a-zA-Z0-9_]+$"
+      "pattern":"(^(?!_{2}))(^[a-zA-Z0-9_]+$)"
     },
     "PipelineSummaries":{
       "type":"list",

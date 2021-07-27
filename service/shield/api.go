@@ -58,11 +58,12 @@ func (c *Shield) AssociateDRTLogBucketRequest(input *AssociateDRTLogBucketInput)
 
 // AssociateDRTLogBucket API operation for AWS Shield.
 //
-// Authorizes the DDoS Response Team (DRT) to access the specified Amazon S3
-// bucket containing your AWS WAF logs. You can associate up to 10 Amazon S3
-// buckets with your subscription.
+// Authorizes the Shield Response Team (SRT) to access the specified Amazon
+// S3 bucket containing log data such as Application Load Balancer access logs,
+// CloudFront logs, or logs from third party sources. You can associate up to
+// 10 Amazon S3 buckets with your subscription.
 //
-// To use the services of the DRT and make an AssociateDRTLogBucket request,
+// To use the services of the SRT and make an AssociateDRTLogBucket request,
 // you must be subscribed to the Business Support plan (https://aws.amazon.com/premiumsupport/business-support/)
 // or the Enterprise Support plan (https://aws.amazon.com/premiumsupport/enterprise-support/).
 //
@@ -93,10 +94,11 @@ func (c *Shield) AssociateDRTLogBucketRequest(input *AssociateDRTLogBucketInput)
 //   If available, this exception includes details in additional properties.
 //
 //   * AccessDeniedForDependencyException
-//   In order to grant the necessary access to the DDoS Response Team (DRT), the
-//   user submitting the request must have the iam:PassRole permission. This error
-//   indicates the user did not have the appropriate permissions. For more information,
-//   see Granting a User Permissions to Pass a Role to an AWS Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+//   In order to grant the necessary access to the Shield Response Team (SRT)
+//   the user submitting the request must have the iam:PassRole permission. This
+//   error indicates the user did not have the appropriate permissions. For more
+//   information, see Granting a User Permissions to Pass a Role to an Amazon
+//   Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 //
 //   * OptimisticLockException
 //   Exception that indicates that the resource state has been modified by another
@@ -173,10 +175,10 @@ func (c *Shield) AssociateDRTRoleRequest(input *AssociateDRTRoleInput) (req *req
 
 // AssociateDRTRole API operation for AWS Shield.
 //
-// Authorizes the DDoS Response Team (DRT), using the specified role, to access
-// your AWS account to assist with DDoS attack mitigation during potential attacks.
-// This enables the DRT to inspect your AWS WAF configuration and create or
-// update AWS WAF rules and web ACLs.
+// Authorizes the Shield Response Team (SRT) using the specified role, to access
+// your Amazon Web Services account to assist with DDoS attack mitigation during
+// potential attacks. This enables the SRT to inspect your WAF configuration
+// and create or update WAF rules and web ACLs.
 //
 // You can associate only one RoleArn with your subscription. If you submit
 // an AssociateDRTRole request for an account that already has an associated
@@ -189,16 +191,16 @@ func (c *Shield) AssociateDRTRoleRequest(input *AssociateDRTRoleInput) (req *req
 // The role must also trust the service principal drt.shield.amazonaws.com.
 // For more information, see IAM JSON Policy Elements: Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html).
 //
-// The DRT will have access only to your AWS WAF and Shield resources. By submitting
-// this request, you authorize the DRT to inspect your AWS WAF and Shield configuration
-// and create and update AWS WAF rules and web ACLs on your behalf. The DRT
-// takes these actions only if explicitly authorized by you.
+// The SRT will have access only to your WAF and Shield resources. By submitting
+// this request, you authorize the SRT to inspect your WAF and Shield configuration
+// and create and update WAF rules and web ACLs on your behalf. The SRT takes
+// these actions only if explicitly authorized by you.
 //
 // You must have the iam:PassRole permission to make an AssociateDRTRole request.
 // For more information, see Granting a User Permissions to Pass a Role to an
-// AWS Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+// Amazon Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 //
-// To use the services of the DRT and make an AssociateDRTRole request, you
+// To use the services of the SRT and make an AssociateDRTRole request, you
 // must be subscribed to the Business Support plan (https://aws.amazon.com/premiumsupport/business-support/)
 // or the Enterprise Support plan (https://aws.amazon.com/premiumsupport/enterprise-support/).
 //
@@ -223,10 +225,11 @@ func (c *Shield) AssociateDRTRoleRequest(input *AssociateDRTRoleInput) (req *req
 //   If available, this exception includes details in additional properties.
 //
 //   * AccessDeniedForDependencyException
-//   In order to grant the necessary access to the DDoS Response Team (DRT), the
-//   user submitting the request must have the iam:PassRole permission. This error
-//   indicates the user did not have the appropriate permissions. For more information,
-//   see Granting a User Permissions to Pass a Role to an AWS Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+//   In order to grant the necessary access to the Shield Response Team (SRT)
+//   the user submitting the request must have the iam:PassRole permission. This
+//   error indicates the user did not have the appropriate permissions. For more
+//   information, see Granting a User Permissions to Pass a Role to an Amazon
+//   Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 //
 //   * OptimisticLockException
 //   Exception that indicates that the resource state has been modified by another
@@ -304,13 +307,14 @@ func (c *Shield) AssociateHealthCheckRequest(input *AssociateHealthCheckInput) (
 // AssociateHealthCheck API operation for AWS Shield.
 //
 // Adds health-based detection to the Shield Advanced protection for a resource.
-// Shield Advanced health-based detection uses the health of your AWS resource
-// to improve responsiveness and accuracy in attack detection and mitigation.
+// Shield Advanced health-based detection uses the health of your Amazon Web
+// Services resource to improve responsiveness and accuracy in attack detection
+// and mitigation.
 //
 // You define the health check in Route 53 and then associate it with your Shield
 // Advanced protection. For more information, see Shield Advanced Health-Based
 // Detection (https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html#ddos-advanced-health-check-option)
-// in the AWS WAF and AWS Shield Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/).
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -406,8 +410,8 @@ func (c *Shield) AssociateProactiveEngagementDetailsRequest(input *AssociateProa
 
 // AssociateProactiveEngagementDetails API operation for AWS Shield.
 //
-// Initializes proactive engagement and sets the list of contacts for the DDoS
-// Response Team (DRT) to use. You must provide at least one phone number in
+// Initializes proactive engagement and sets the list of contacts for the Shield
+// Response Team (SRT) to use. You must provide at least one phone number in
 // the emergency contact list.
 //
 // After you have initialized proactive engagement using this call, to disable
@@ -415,8 +419,8 @@ func (c *Shield) AssociateProactiveEngagementDetailsRequest(input *AssociateProa
 // and EnableProactiveEngagement.
 //
 // This call defines the list of email addresses and phone numbers that the
-// DDoS Response Team (DRT) can use to contact you for escalations to the DRT
-// and to initiate proactive customer support.
+// SRT can use to contact you for escalations to the SRT and to initiate proactive
+// customer support.
 //
 // The contacts that you provide in the request replace any contacts that were
 // already defined. If you already have contacts defined and want to use them,
@@ -517,16 +521,17 @@ func (c *Shield) CreateProtectionRequest(input *CreateProtectionInput) (req *req
 
 // CreateProtection API operation for AWS Shield.
 //
-// Enables AWS Shield Advanced for a specific AWS resource. The resource can
-// be an Amazon CloudFront distribution, Elastic Load Balancing load balancer,
-// AWS Global Accelerator accelerator, Elastic IP Address, or an Amazon Route
-// 53 hosted zone.
+// Enables Shield Advanced for a specific Amazon Web Services resource. The
+// resource can be an Amazon CloudFront distribution, Elastic Load Balancing
+// load balancer, Global Accelerator accelerator, Elastic IP Address, or an
+// Amazon Route 53 hosted zone.
 //
 // You can add protection to only a single resource with each CreateProtection
 // request. If you want to add protection to multiple resources at once, use
-// the AWS WAF console (https://console.aws.amazon.com/waf/). For more information
-// see Getting Started with AWS Shield Advanced (https://docs.aws.amazon.com/waf/latest/developerguide/getting-started-ddos.html)
-// and Add AWS Shield Advanced Protection to more AWS Resources (https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html).
+// the WAF console (https://console.aws.amazon.com/waf/). For more information
+// see Getting Started with Shield Advanced (https://docs.aws.amazon.com/waf/latest/developerguide/getting-started-ddos.html)
+// and Add Shield Advanced Protection to more Amazon Web Services Resources
+// (https://docs.aws.amazon.com/waf/latest/developerguide/configure-new-protection.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -736,7 +741,7 @@ func (c *Shield) CreateSubscriptionRequest(input *CreateSubscriptionInput) (req 
 
 // CreateSubscription API operation for AWS Shield.
 //
-// Activates AWS Shield Advanced for an account.
+// Activates Shield Advanced for an account.
 //
 // When you initally create a subscription, your subscription is set to be automatically
 // renewed at the end of the existing subscription period. You can change this
@@ -825,7 +830,7 @@ func (c *Shield) DeleteProtectionRequest(input *DeleteProtectionInput) (req *req
 
 // DeleteProtection API operation for AWS Shield.
 //
-// Deletes an AWS Shield Advanced Protection.
+// Deletes an Shield Advanced Protection.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1008,9 +1013,9 @@ func (c *Shield) DeleteSubscriptionRequest(input *DeleteSubscriptionInput) (req 
 
 // DeleteSubscription API operation for AWS Shield.
 //
-// Removes AWS Shield Advanced from an account. AWS Shield Advanced requires
-// a 1-year subscription commitment. You cannot delete a subscription prior
-// to the completion of that commitment.
+// Removes Shield Advanced from an account. Shield Advanced requires a 1-year
+// subscription commitment. You cannot delete a subscription prior to the completion
+// of that commitment.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1188,10 +1193,10 @@ func (c *Shield) DescribeAttackStatisticsRequest(input *DescribeAttackStatistics
 
 // DescribeAttackStatistics API operation for AWS Shield.
 //
-// Provides information about the number and type of attacks AWS Shield has
-// detected in the last year for all resources that belong to your account,
-// regardless of whether you've defined Shield protections for them. This operation
-// is available to Shield customers as well as to Shield Advanced customers.
+// Provides information about the number and type of attacks Shield has detected
+// in the last year for all resources that belong to your account, regardless
+// of whether you've defined Shield protections for them. This operation is
+// available to Shield customers as well as to Shield Advanced customers.
 //
 // The operation returns data for the time range of midnight UTC, one year ago,
 // to midnight UTC, today. For example, if the current time is 2020-10-26 15:39:32
@@ -1279,9 +1284,9 @@ func (c *Shield) DescribeDRTAccessRequest(input *DescribeDRTAccessInput) (req *r
 
 // DescribeDRTAccess API operation for AWS Shield.
 //
-// Returns the current role and list of Amazon S3 log buckets used by the DDoS
-// Response Team (DRT) to access your AWS account while assisting with attack
-// mitigation.
+// Returns the current role and list of Amazon S3 log buckets used by the Shield
+// Response Team (SRT) to access your Amazon Web Services account while assisting
+// with attack mitigation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1365,9 +1370,9 @@ func (c *Shield) DescribeEmergencyContactSettingsRequest(input *DescribeEmergenc
 
 // DescribeEmergencyContactSettings API operation for AWS Shield.
 //
-// A list of email addresses and phone numbers that the DDoS Response Team (DRT)
-// can use to contact you if you have proactive engagement enabled, for escalations
-// to the DRT and to initiate proactive customer support.
+// A list of email addresses and phone numbers that the Shield Response Team
+// (SRT) can use to contact you if you have proactive engagement enabled, for
+// escalations to the SRT and to initiate proactive customer support.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1623,7 +1628,7 @@ func (c *Shield) DescribeSubscriptionRequest(input *DescribeSubscriptionInput) (
 
 // DescribeSubscription API operation for AWS Shield.
 //
-// Provides details about the AWS Shield Advanced subscription for an account.
+// Provides details about the Shield Advanced subscription for an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1708,8 +1713,8 @@ func (c *Shield) DisableProactiveEngagementRequest(input *DisableProactiveEngage
 
 // DisableProactiveEngagement API operation for AWS Shield.
 //
-// Removes authorization from the DDoS Response Team (DRT) to notify contacts
-// about escalations to the DRT and to initiate proactive customer support.
+// Removes authorization from the Shield Response Team (SRT) to notify contacts
+// about escalations to the SRT and to initiate proactive customer support.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1806,14 +1811,14 @@ func (c *Shield) DisassociateDRTLogBucketRequest(input *DisassociateDRTLogBucket
 
 // DisassociateDRTLogBucket API operation for AWS Shield.
 //
-// Removes the DDoS Response Team's (DRT) access to the specified Amazon S3
-// bucket containing your AWS WAF logs.
+// Removes the Shield Response Team's (SRT) access to the specified Amazon S3
+// bucket containing the logs that you shared previously.
 //
 // To make a DisassociateDRTLogBucket request, you must be subscribed to the
 // Business Support plan (https://aws.amazon.com/premiumsupport/business-support/)
 // or the Enterprise Support plan (https://aws.amazon.com/premiumsupport/enterprise-support/).
 // However, if you are not subscribed to one of these support plans, but had
-// been previously and had granted the DRT access to your account, you can submit
+// been previously and had granted the SRT access to your account, you can submit
 // a DisassociateDRTLogBucket request to remove this access.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1836,10 +1841,11 @@ func (c *Shield) DisassociateDRTLogBucketRequest(input *DisassociateDRTLogBucket
 //   The ARN of the role that you specifed does not exist.
 //
 //   * AccessDeniedForDependencyException
-//   In order to grant the necessary access to the DDoS Response Team (DRT), the
-//   user submitting the request must have the iam:PassRole permission. This error
-//   indicates the user did not have the appropriate permissions. For more information,
-//   see Granting a User Permissions to Pass a Role to an AWS Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+//   In order to grant the necessary access to the Shield Response Team (SRT)
+//   the user submitting the request must have the iam:PassRole permission. This
+//   error indicates the user did not have the appropriate permissions. For more
+//   information, see Granting a User Permissions to Pass a Role to an Amazon
+//   Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 //
 //   * OptimisticLockException
 //   Exception that indicates that the resource state has been modified by another
@@ -1916,13 +1922,14 @@ func (c *Shield) DisassociateDRTRoleRequest(input *DisassociateDRTRoleInput) (re
 
 // DisassociateDRTRole API operation for AWS Shield.
 //
-// Removes the DDoS Response Team's (DRT) access to your AWS account.
+// Removes the Shield Response Team's (SRT) access to your Amazon Web Services
+// account.
 //
 // To make a DisassociateDRTRole request, you must be subscribed to the Business
 // Support plan (https://aws.amazon.com/premiumsupport/business-support/) or
 // the Enterprise Support plan (https://aws.amazon.com/premiumsupport/enterprise-support/).
 // However, if you are not subscribed to one of these support plans, but had
-// been previously and had granted the DRT access to your account, you can submit
+// been previously and had granted the SRT access to your account, you can submit
 // a DisassociateDRTRole request to remove this access.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2018,13 +2025,13 @@ func (c *Shield) DisassociateHealthCheckRequest(input *DisassociateHealthCheckIn
 //
 // Removes health-based detection from the Shield Advanced protection for a
 // resource. Shield Advanced health-based detection uses the health of your
-// AWS resource to improve responsiveness and accuracy in attack detection and
-// mitigation.
+// Amazon Web Services resource to improve responsiveness and accuracy in attack
+// detection and mitigation.
 //
 // You define the health check in Route 53 and then associate or disassociate
 // it with your Shield Advanced protection. For more information, see Shield
 // Advanced Health-Based Detection (https://docs.aws.amazon.com/waf/latest/developerguide/ddos-overview.html#ddos-advanced-health-check-option)
-// in the AWS WAF and AWS Shield Developer Guide (https://docs.aws.amazon.com/waf/latest/developerguide/).
+// in the WAF Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2117,8 +2124,8 @@ func (c *Shield) EnableProactiveEngagementRequest(input *EnableProactiveEngageme
 
 // EnableProactiveEngagement API operation for AWS Shield.
 //
-// Authorizes the DDoS Response Team (DRT) to use email and phone to notify
-// contacts about escalations to the DRT and to initiate proactive customer
+// Authorizes the Shield Response Team (SRT) to use email and phone to notify
+// contacts about escalations to the SRT and to initiate proactive customer
 // support.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2880,8 +2887,8 @@ func (c *Shield) ListTagsForResourceRequest(input *ListTagsForResourceInput) (re
 
 // ListTagsForResource API operation for AWS Shield.
 //
-// Gets information about AWS tags for a specified Amazon Resource Name (ARN)
-// in AWS Shield.
+// Gets information about Amazon Web Services tags for a specified Amazon Resource
+// Name (ARN) in Shield.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2970,7 +2977,7 @@ func (c *Shield) TagResourceRequest(input *TagResourceInput) (req *request.Reque
 
 // TagResource API operation for AWS Shield.
 //
-// Adds or updates tags for a resource in AWS Shield.
+// Adds or updates tags for a resource in Shield.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3063,7 +3070,7 @@ func (c *Shield) UntagResourceRequest(input *UntagResourceInput) (req *request.R
 
 // UntagResource API operation for AWS Shield.
 //
-// Removes tags from a resource in AWS Shield.
+// Removes tags from a resource in Shield.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3157,8 +3164,8 @@ func (c *Shield) UpdateEmergencyContactSettingsRequest(input *UpdateEmergencyCon
 // UpdateEmergencyContactSettings API operation for AWS Shield.
 //
 // Updates the details of the list of email addresses and phone numbers that
-// the DDoS Response Team (DRT) can use to contact you if you have proactive
-// engagement enabled, for escalations to the DRT and to initiate proactive
+// the Shield Response Team (SRT) can use to contact you if you have proactive
+// engagement enabled, for escalations to the SRT and to initiate proactive
 // customer support.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3459,10 +3466,11 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// In order to grant the necessary access to the DDoS Response Team (DRT), the
-// user submitting the request must have the iam:PassRole permission. This error
-// indicates the user did not have the appropriate permissions. For more information,
-// see Granting a User Permissions to Pass a Role to an AWS Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
+// In order to grant the necessary access to the Shield Response Team (SRT)
+// the user submitting the request must have the iam:PassRole permission. This
+// error indicates the user did not have the appropriate permissions. For more
+// information, see Granting a User Permissions to Pass a Role to an Amazon
+// Web Services Service (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_passrole.html).
 type AccessDeniedForDependencyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3521,7 +3529,7 @@ func (s *AccessDeniedForDependencyException) RequestID() string {
 type AssociateDRTLogBucketInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon S3 bucket that contains your AWS WAF logs.
+	// The Amazon S3 bucket that contains the logs that you want to share.
 	//
 	// LogBucket is a required field
 	LogBucket *string `min:"3" type:"string" required:"true"`
@@ -3576,8 +3584,8 @@ func (s AssociateDRTLogBucketOutput) GoString() string {
 type AssociateDRTRoleInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the role the DRT will use to access your
-	// AWS account.
+	// The Amazon Resource Name (ARN) of the role the SRT will use to access your
+	// Amazon Web Services account.
 	//
 	// Prior to making the AssociateDRTRole request, you must attach the AWSShieldDRTAccessPolicy
 	// (https://console.aws.amazon.com/iam/home?#/policies/arn:aws:iam::aws:policy/service-role/AWSShieldDRTAccessPolicy)
@@ -3711,8 +3719,8 @@ func (s AssociateHealthCheckOutput) GoString() string {
 type AssociateProactiveEngagementDetailsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of email addresses and phone numbers that the DDoS Response Team (DRT)
-	// can use to contact you for escalations to the DRT and to initiate proactive
+	// A list of email addresses and phone numbers that the Shield Response Team
+	// (SRT) can use to contact you for escalations to the SRT and to initiate proactive
 	// customer support.
 	//
 	// To enable proactive engagement, the contact list must include at least one
@@ -3789,7 +3797,12 @@ type AttackDetail struct {
 	// The unique identifier (ID) of the attack.
 	AttackId *string `min:"1" type:"string"`
 
-	// The array of AttackProperty objects.
+	// The array of objects that provide details of the Shield event.
+	//
+	// For infrastructure layer events (L3 and L4 events) after January 25, 2021,
+	// you can view metrics for top contributors in Amazon CloudWatch metrics. For
+	// more information, see Shield metrics and alarms (https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#set-ddos-alarms)
+	// in the WAF Developer Guide.
 	AttackProperties []*AttackProperty `type:"list"`
 
 	// The time the attack ended, in Unix time in seconds. For more information
@@ -3869,29 +3882,31 @@ func (s *AttackDetail) SetSubResources(v []*SubResourceSummary) *AttackDetail {
 	return s
 }
 
-// Details of the described attack.
+// Details of a Shield event. This is provided as part of an AttackDetail.
 type AttackProperty struct {
 	_ struct{} `type:"structure"`
 
-	// The type of distributed denial of service (DDoS) event that was observed.
-	// NETWORK indicates layer 3 and layer 4 events and APPLICATION indicates layer
-	// 7 events.
+	// The type of Shield event that was observed. NETWORK indicates layer 3 and
+	// layer 4 events and APPLICATION indicates layer 7 events.
+	//
+	// For infrastructure layer events (L3 and L4 events) after January 25, 2021,
+	// you can view metrics for top contributors in Amazon CloudWatch metrics. For
+	// more information, see Shield metrics and alarms (https://docs.aws.amazon.com/waf/latest/developerguide/monitoring-cloudwatch.html#set-ddos-alarms)
+	// in the WAF Developer Guide.
 	AttackLayer *string `type:"string" enum:"AttackLayer"`
 
-	// Defines the DDoS attack property information that is provided. The WORDPRESS_PINGBACK_REFLECTOR
+	// Defines the Shield event property information that is provided. The WORDPRESS_PINGBACK_REFLECTOR
 	// and WORDPRESS_PINGBACK_SOURCE values are valid only for WordPress reflective
-	// pingback DDoS attacks.
+	// pingback events.
 	AttackPropertyIdentifier *string `type:"string" enum:"AttackPropertyIdentifier"`
 
-	// The array of contributor objects that includes the top five contributors
-	// to an attack.
+	// Contributor objects for the top five contributors to a Shield event.
 	TopContributors []*Contributor `type:"list"`
 
-	// The total contributions made to this attack by all contributors, not just
-	// the five listed in the TopContributors list.
+	// The total contributions made to this Shield event by all contributors.
 	Total *int64 `type:"long"`
 
-	// The unit of the Value of the contributions.
+	// The unit used for the Contributor Value property.
 	Unit *string `type:"string" enum:"Unit"`
 }
 
@@ -4211,7 +4226,7 @@ func (s *Contributor) SetValue(v int64) *Contributor {
 type CreateProtectionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines how AWS Shield combines resource data for the group in order to detect,
+	// Defines how Shield combines resource data for the group in order to detect,
 	// mitigate, and report events.
 	//
 	//    * Sum - Use the total traffic across the group. This is a good choice
@@ -4224,8 +4239,8 @@ type CreateProtectionGroupInput struct {
 	//
 	//    * Max - Use the highest traffic from each resource. This is useful for
 	//    resources that don't share traffic and for resources that share that traffic
-	//    in a non-uniform way. Examples include CloudFront distributions and origin
-	//    resources for CloudFront distributions.
+	//    in a non-uniform way. Examples include Amazon CloudFront and origin resources
+	//    for CloudFront distributions.
 	//
 	// Aggregation is a required field
 	Aggregation *string `type:"string" required:"true" enum:"ProtectionGroupAggregation"`
@@ -4369,9 +4384,9 @@ type CreateProtectionInput struct {
 	//
 	//    * For an Elastic Load Balancer (Classic Load Balancer): arn:aws:elasticloadbalancing:region:account-id:loadbalancer/load-balancer-name
 	//
-	//    * For an AWS CloudFront distribution: arn:aws:cloudfront::account-id:distribution/distribution-id
+	//    * For an Amazon CloudFront distribution: arn:aws:cloudfront::account-id:distribution/distribution-id
 	//
-	//    * For an AWS Global Accelerator accelerator: arn:aws:globalaccelerator::account-id:accelerator/accelerator-id
+	//    * For an Global Accelerator accelerator: arn:aws:globalaccelerator::account-id:accelerator/accelerator-id
 	//
 	//    * For Amazon Route 53: arn:aws:route53:::hostedzone/hosted-zone-id
 	//
@@ -4768,11 +4783,11 @@ func (s DescribeDRTAccessInput) GoString() string {
 type DescribeDRTAccessOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of Amazon S3 buckets accessed by the DRT.
+	// The list of Amazon S3 buckets accessed by the SRT.
 	LogBucketList []*string `type:"list"`
 
-	// The Amazon Resource Name (ARN) of the role the DRT used to access your AWS
-	// account.
+	// The Amazon Resource Name (ARN) of the role the SRT used to access your Amazon
+	// Web Services account.
 	RoleArn *string `min:"1" type:"string"`
 }
 
@@ -4815,9 +4830,9 @@ func (s DescribeEmergencyContactSettingsInput) GoString() string {
 type DescribeEmergencyContactSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of email addresses and phone numbers that the DDoS Response Team (DRT)
-	// can use to contact you if you have proactive engagement enabled, for escalations
-	// to the DRT and to initiate proactive customer support.
+	// A list of email addresses and phone numbers that the Shield Response Team
+	// (SRT) can use to contact you if you have proactive engagement enabled, for
+	// escalations to the SRT and to initiate proactive customer support.
 	EmergencyContactList []*EmergencyContact `type:"list"`
 }
 
@@ -4883,7 +4898,7 @@ func (s *DescribeProtectionGroupInput) SetProtectionGroupId(v string) *DescribeP
 type DescribeProtectionGroupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A grouping of protected resources that you and AWS Shield Advanced can monitor
+	// A grouping of protected resources that you and Shield Advanced can monitor
 	// as a collective. This resource grouping improves the accuracy of detection
 	// and reduces false positives.
 	//
@@ -4915,9 +4930,10 @@ type DescribeProtectionInput struct {
 	// or the ProtectionID, but not both.
 	ProtectionId *string `min:"1" type:"string"`
 
-	// The ARN (Amazon Resource Name) of the AWS resource for the Protection object
-	// that is described. When submitting the DescribeProtection request you must
-	// provide either the ResourceArn or the ProtectionID, but not both.
+	// The ARN (Amazon Resource Name) of the Amazon Web Services resource for the
+	// Protection object that is described. When submitting the DescribeProtection
+	// request you must provide either the ResourceArn or the ProtectionID, but
+	// not both.
 	ResourceArn *string `min:"1" type:"string"`
 }
 
@@ -4999,7 +5015,7 @@ func (s DescribeSubscriptionInput) GoString() string {
 type DescribeSubscriptionOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Shield Advanced subscription details for an account.
+	// The Shield Advanced subscription details for an account.
 	Subscription *Subscription `type:"structure"`
 }
 
@@ -5050,7 +5066,7 @@ func (s DisableProactiveEngagementOutput) GoString() string {
 type DisassociateDRTLogBucketInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon S3 bucket that contains your AWS WAF logs.
+	// The Amazon S3 bucket that contains the logs that you want to share.
 	//
 	// LogBucket is a required field
 	LogBucket *string `min:"3" type:"string" required:"true"`
@@ -5204,8 +5220,8 @@ func (s DisassociateHealthCheckOutput) GoString() string {
 	return s.String()
 }
 
-// Contact information that the DRT can use to contact you if you have proactive
-// engagement enabled, for escalations to the DRT and to initiate proactive
+// Contact information that the SRT can use to contact you if you have proactive
+// engagement enabled, for escalations to the SRT and to initiate proactive
 // customer support.
 type EmergencyContact struct {
 	_ struct{} `type:"structure"`
@@ -5908,8 +5924,8 @@ type ListProtectionGroupsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If you specify a value for MaxResults and you have more protection groups
-	// than the value of MaxResults, AWS Shield Advanced returns this token that
-	// you can use in your next request, to get the next batch of objects.
+	// than the value of MaxResults, Shield Advanced returns this token that you
+	// can use in your next request, to get the next batch of objects.
 	NextToken *string `min:"1" type:"string"`
 
 	// ProtectionGroups is a required field
@@ -5995,10 +6011,10 @@ type ListProtectionsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If you specify a value for MaxResults and you have more Protections than
-	// the value of MaxResults, AWS Shield Advanced returns a NextToken value in
-	// the response that allows you to list another group of Protections. For the
-	// second and subsequent ListProtections requests, specify the value of NextToken
-	// from the previous response to get information about another batch of Protections.
+	// the value of MaxResults, Shield Advanced returns a NextToken value in the
+	// response that allows you to list another group of Protections. For the second
+	// and subsequent ListProtections requests, specify the value of NextToken from
+	// the previous response to get information about another batch of Protections.
 	//
 	// Shield Advanced might return the list of Protection objects in batches smaller
 	// than the number specified by MaxResults. If there are more Protection objects
@@ -6107,9 +6123,8 @@ type ListResourcesInProtectionGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If you specify a value for MaxResults and you have more resources in the
-	// protection group than the value of MaxResults, AWS Shield Advanced returns
-	// this token that you can use in your next request, to get the next batch of
-	// objects.
+	// protection group than the value of MaxResults, Shield Advanced returns this
+	// token that you can use in your next request, to get the next batch of objects.
 	NextToken *string `min:"1" type:"string"`
 
 	// The Amazon Resource Names (ARNs) of the resources that are included in the
@@ -6418,7 +6433,8 @@ type Protection struct {
 	// The ARN (Amazon Resource Name) of the protection.
 	ProtectionArn *string `min:"1" type:"string"`
 
-	// The ARN (Amazon Resource Name) of the AWS resource that is protected.
+	// The ARN (Amazon Resource Name) of the Amazon Web Services resource that is
+	// protected.
 	ResourceArn *string `min:"1" type:"string"`
 }
 
@@ -6462,13 +6478,13 @@ func (s *Protection) SetResourceArn(v string) *Protection {
 	return s
 }
 
-// A grouping of protected resources that you and AWS Shield Advanced can monitor
+// A grouping of protected resources that you and Shield Advanced can monitor
 // as a collective. This resource grouping improves the accuracy of detection
 // and reduces false positives.
 type ProtectionGroup struct {
 	_ struct{} `type:"structure"`
 
-	// Defines how AWS Shield combines resource data for the group in order to detect,
+	// Defines how Shield combines resource data for the group in order to detect,
 	// mitigate, and report events.
 	//
 	//    * Sum - Use the total traffic across the group. This is a good choice
@@ -6481,8 +6497,8 @@ type ProtectionGroup struct {
 	//
 	//    * Max - Use the highest traffic from each resource. This is useful for
 	//    resources that don't share traffic and for resources that share that traffic
-	//    in a non-uniform way. Examples include CloudFront distributions and origin
-	//    resources for CloudFront distributions.
+	//    in a non-uniform way. Examples include Amazon CloudFront distributions
+	//    and origin resources for CloudFront distributions.
 	//
 	// Aggregation is a required field
 	Aggregation *string `type:"string" required:"true" enum:"ProtectionGroupAggregation"`
@@ -6852,7 +6868,7 @@ func (s *SubResourceSummary) SetType(v string) *SubResourceSummary {
 	return s
 }
 
-// Information about the AWS Shield Advanced subscription for an account.
+// Information about the Shield Advanced subscription for an account.
 type Subscription struct {
 	_ struct{} `type:"structure"`
 
@@ -6871,14 +6887,14 @@ type Subscription struct {
 	// Specifies how many protections of a given type you can create.
 	Limits []*Limit `type:"list"`
 
-	// If ENABLED, the DDoS Response Team (DRT) will use email and phone to notify
-	// contacts about escalations to the DRT and to initiate proactive customer
+	// If ENABLED, the Shield Response Team (SRT) will use email and phone to notify
+	// contacts about escalations to the SRT and to initiate proactive customer
 	// support.
 	//
 	// If PENDING, you have requested proactive engagement and the request is pending.
 	// The status changes to ENABLED when your request is fully processed.
 	//
-	// If DISABLED, the DRT will not proactively notify contacts about escalations
+	// If DISABLED, the SRT will not proactively notify contacts about escalations
 	// or to initiate proactive customer support.
 	ProactiveEngagementStatus *string `type:"string" enum:"ProactiveEngagementStatus"`
 
@@ -6894,7 +6910,7 @@ type Subscription struct {
 	// SubscriptionLimits is a required field
 	SubscriptionLimits *SubscriptionLimits `type:"structure" required:"true"`
 
-	// The length, in seconds, of the AWS Shield Advanced subscription for the account.
+	// The length, in seconds, of the Shield Advanced subscription for the account.
 	TimeCommitmentInSeconds *int64 `type:"long"`
 }
 
@@ -7097,14 +7113,14 @@ func (s *SummarizedCounter) SetUnit(v string) *SummarizedCounter {
 	return s
 }
 
-// A tag associated with an AWS resource. Tags are key:value pairs that you
-// can use to categorize and manage your resources, for purposes like billing
-// or other management. Typically, the tag key represents a category, such as
-// "environment", and the tag value represents a specific value within that
-// category, such as "test," "development," or "production". Or you might set
-// the tag key to "customer" and the value to the customer name or ID. You can
-// specify one or more tags to add to each AWS resource, up to 50 tags for a
-// resource.
+// A tag associated with an Amazon Web Services resource. Tags are key:value
+// pairs that you can use to categorize and manage your resources, for purposes
+// like billing or other management. Typically, the tag key represents a category,
+// such as "environment", and the tag value represents a specific value within
+// that category, such as "test," "development," or "production". Or you might
+// set the tag key to "customer" and the value to the customer name or ID. You
+// can specify one or more tags to add to each Amazon Web Services resource,
+// up to 50 tags for a resource.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -7341,9 +7357,9 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateEmergencyContactSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of email addresses and phone numbers that the DDoS Response Team (DRT)
-	// can use to contact you if you have proactive engagement enabled, for escalations
-	// to the DRT and to initiate proactive customer support.
+	// A list of email addresses and phone numbers that the Shield Response Team
+	// (SRT) can use to contact you if you have proactive engagement enabled, for
+	// escalations to the SRT and to initiate proactive customer support.
 	//
 	// If you have proactive engagement enabled, the contact list must include at
 	// least one phone number.
@@ -7403,7 +7419,7 @@ func (s UpdateEmergencyContactSettingsOutput) GoString() string {
 type UpdateProtectionGroupInput struct {
 	_ struct{} `type:"structure"`
 
-	// Defines how AWS Shield combines resource data for the group in order to detect,
+	// Defines how Shield combines resource data for the group in order to detect,
 	// mitigate, and report events.
 	//
 	//    * Sum - Use the total traffic across the group. This is a good choice
@@ -7416,8 +7432,8 @@ type UpdateProtectionGroupInput struct {
 	//
 	//    * Max - Use the highest traffic from each resource. This is useful for
 	//    resources that don't share traffic and for resources that share that traffic
-	//    in a non-uniform way. Examples include CloudFront distributions and origin
-	//    resources for CloudFront distributions.
+	//    in a non-uniform way. Examples include Amazon CloudFront distributions
+	//    and origin resources for CloudFront distributions.
 	//
 	// Aggregation is a required field
 	Aggregation *string `type:"string" required:"true" enum:"ProtectionGroupAggregation"`

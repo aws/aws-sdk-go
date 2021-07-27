@@ -316,6 +316,30 @@ type LexModelsV2API interface {
 	UpdateSlotType(*lexmodelsv2.UpdateSlotTypeInput) (*lexmodelsv2.UpdateSlotTypeOutput, error)
 	UpdateSlotTypeWithContext(aws.Context, *lexmodelsv2.UpdateSlotTypeInput, ...request.Option) (*lexmodelsv2.UpdateSlotTypeOutput, error)
 	UpdateSlotTypeRequest(*lexmodelsv2.UpdateSlotTypeInput) (*request.Request, *lexmodelsv2.UpdateSlotTypeOutput)
+
+	WaitUntilBotAliasAvailable(*lexmodelsv2.DescribeBotAliasInput) error
+	WaitUntilBotAliasAvailableWithContext(aws.Context, *lexmodelsv2.DescribeBotAliasInput, ...request.WaiterOption) error
+
+	WaitUntilBotAvailable(*lexmodelsv2.DescribeBotInput) error
+	WaitUntilBotAvailableWithContext(aws.Context, *lexmodelsv2.DescribeBotInput, ...request.WaiterOption) error
+
+	WaitUntilBotExportCompleted(*lexmodelsv2.DescribeExportInput) error
+	WaitUntilBotExportCompletedWithContext(aws.Context, *lexmodelsv2.DescribeExportInput, ...request.WaiterOption) error
+
+	WaitUntilBotImportCompleted(*lexmodelsv2.DescribeImportInput) error
+	WaitUntilBotImportCompletedWithContext(aws.Context, *lexmodelsv2.DescribeImportInput, ...request.WaiterOption) error
+
+	WaitUntilBotLocaleBuilt(*lexmodelsv2.DescribeBotLocaleInput) error
+	WaitUntilBotLocaleBuiltWithContext(aws.Context, *lexmodelsv2.DescribeBotLocaleInput, ...request.WaiterOption) error
+
+	WaitUntilBotLocaleCreated(*lexmodelsv2.DescribeBotLocaleInput) error
+	WaitUntilBotLocaleCreatedWithContext(aws.Context, *lexmodelsv2.DescribeBotLocaleInput, ...request.WaiterOption) error
+
+	WaitUntilBotLocaleExpressTestingAvailable(*lexmodelsv2.DescribeBotLocaleInput) error
+	WaitUntilBotLocaleExpressTestingAvailableWithContext(aws.Context, *lexmodelsv2.DescribeBotLocaleInput, ...request.WaiterOption) error
+
+	WaitUntilBotVersionAvailable(*lexmodelsv2.DescribeBotVersionInput) error
+	WaitUntilBotVersionAvailableWithContext(aws.Context, *lexmodelsv2.DescribeBotVersionInput, ...request.WaiterOption) error
 }
 
 var _ LexModelsV2API = (*lexmodelsv2.LexModelsV2)(nil)

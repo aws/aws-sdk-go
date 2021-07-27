@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Redshift Data API Service.
 //    func myFunc(svc redshiftdataapiserviceiface.RedshiftDataAPIServiceAPI) bool {
-//        // Make svc.CancelStatement request
+//        // Make svc.BatchExecuteStatement request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockRedshiftDataAPIServiceClient struct {
 //        redshiftdataapiserviceiface.RedshiftDataAPIServiceAPI
 //    }
-//    func (m *mockRedshiftDataAPIServiceClient) CancelStatement(input *redshiftdataapiservice.CancelStatementInput) (*redshiftdataapiservice.CancelStatementOutput, error) {
+//    func (m *mockRedshiftDataAPIServiceClient) BatchExecuteStatement(input *redshiftdataapiservice.BatchExecuteStatementInput) (*redshiftdataapiservice.BatchExecuteStatementOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type RedshiftDataAPIServiceAPI interface {
+	BatchExecuteStatement(*redshiftdataapiservice.BatchExecuteStatementInput) (*redshiftdataapiservice.BatchExecuteStatementOutput, error)
+	BatchExecuteStatementWithContext(aws.Context, *redshiftdataapiservice.BatchExecuteStatementInput, ...request.Option) (*redshiftdataapiservice.BatchExecuteStatementOutput, error)
+	BatchExecuteStatementRequest(*redshiftdataapiservice.BatchExecuteStatementInput) (*request.Request, *redshiftdataapiservice.BatchExecuteStatementOutput)
+
 	CancelStatement(*redshiftdataapiservice.CancelStatementInput) (*redshiftdataapiservice.CancelStatementOutput, error)
 	CancelStatementWithContext(aws.Context, *redshiftdataapiservice.CancelStatementInput, ...request.Option) (*redshiftdataapiservice.CancelStatementOutput, error)
 	CancelStatementRequest(*redshiftdataapiservice.CancelStatementInput) (*request.Request, *redshiftdataapiservice.CancelStatementOutput)

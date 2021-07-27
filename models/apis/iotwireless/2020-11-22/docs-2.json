@@ -26,9 +26,9 @@
     "DisassociateWirelessGatewayFromThing": "<p>Disassociates a wireless gateway from its currently associated thing.</p>",
     "GetDestination": "<p>Gets information about a destination.</p>",
     "GetDeviceProfile": "<p>Gets information about a device profile.</p>",
-    "GetLogLevelsByResourceTypes": "<p>Returns current default log-levels, or log levels by resource types, could be for wireless device log options or wireless gateway log options.</p>",
+    "GetLogLevelsByResourceTypes": "<p>Returns current default log levels or log levels by resource types. Based on resource types, log levels can be for wireless device log options or wireless gateway log options.</p>",
     "GetPartnerAccount": "<p>Gets information about a partner account. If <code>PartnerAccountId</code> and <code>PartnerType</code> are <code>null</code>, returns all partner accounts.</p>",
-    "GetResourceLogLevel": "<p>Fetches the log-level override if any for a given resource-ID and resource-type, coulde be a wireless device or a wireless gateway.</p>",
+    "GetResourceLogLevel": "<p>Fetches the log-level override, if any, for a given resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
     "GetServiceEndpoint": "<p>Gets the account-specific endpoint for Configuration and Update Server (CUPS) protocol or LoRaWAN Network Server (LNS) connections.</p>",
     "GetServiceProfile": "<p>Gets information about a service profile.</p>",
     "GetWirelessDevice": "<p>Gets information about a wireless device.</p>",
@@ -47,15 +47,15 @@
     "ListWirelessDevices": "<p>Lists the wireless devices registered to your AWS account.</p>",
     "ListWirelessGatewayTaskDefinitions": "<p>List the wireless gateway tasks definitions registered to your AWS account.</p>",
     "ListWirelessGateways": "<p>Lists the wireless gateways registered to your AWS account.</p>",
-    "PutResourceLogLevel": "<p>Sets the log-level override for a resource-ID and resource-type, could be a wireless gateway or a wireless device.</p>",
-    "ResetAllResourceLogLevels": "<p>Remove log-level overrides if any for all resources (both wireless devices and wireless gateways).</p>",
-    "ResetResourceLogLevel": "<p>Remove log-level override if any for a specific resource-ID and resource-type, could be a wireless device or a wireless gateway.</p>",
+    "PutResourceLogLevel": "<p>Sets the log-level override for a resource-ID and resource-type. This option can be specified for a wireless gateway or a wireless device. A limit of 200 log level override can be set per account.</p>",
+    "ResetAllResourceLogLevels": "<p>Removes the log-level overrides for all resources; both wireless devices and wireless gateways.</p>",
+    "ResetResourceLogLevel": "<p>Removes the log-level override, if any, for a specific resource-ID and resource-type. It can be used for a wireless device or a wireless gateway.</p>",
     "SendDataToWirelessDevice": "<p>Sends a decrypted application data frame to a device.</p>",
     "TagResource": "<p>Adds a tag to a resource.</p>",
     "TestWirelessDevice": "<p>Simulates a provisioned device by sending an uplink data payload of <code>Hello</code>.</p>",
     "UntagResource": "<p>Removes one or more tags from a resource.</p>",
     "UpdateDestination": "<p>Updates properties of a destination.</p>",
-    "UpdateLogLevelsByResourceTypes": "<p>Set default log level, or log levels by resource types, could be for wireless device log options or wireless gateways log options. This is to control the log messages that will be displayed in CloudWatch.</p>",
+    "UpdateLogLevelsByResourceTypes": "<p>Set default log level, or log levels by resource types. This can be for wireless device log options or wireless gateways log options and is used to control the log messages that'll be displayed in CloudWatch.</p>",
     "UpdatePartnerAccount": "<p>Updates properties of a partner account.</p>",
     "UpdateWirelessDevice": "<p>Updates properties of a wireless device.</p>",
     "UpdateWirelessGateway": "<p>Updates properties of a wireless gateway.</p>"
@@ -92,10 +92,11 @@
       }
     },
     "AmazonId": {
-      "base": null,
+      "base": "<p>The Sidewalk Amazon ID.</p>",
       "refs": {
         "SidewalkAccountInfo$AmazonId": "<p>The Sidewalk Amazon ID.</p>",
         "SidewalkAccountInfoWithFingerprint$AmazonId": "<p>The Sidewalk Amazon ID.</p>",
+        "SidewalkDevice$AmazonId": null,
         "SidewalkListDevice$AmazonId": "<p>The Sidewalk Amazon ID.</p>"
       }
     },
@@ -1117,7 +1118,7 @@
       }
     },
     "MessageType": {
-      "base": "<p>Sidewalk device message type.</p>",
+      "base": "<p>Sidewalk device message type. Default value is <code>CUSTOM_COMMAND_ID_NOTIFY</code>.</p>",
       "refs": {
         "SidewalkSendDataToDevice$MessageType": null
       }
@@ -1234,7 +1235,7 @@
     "PayloadData": {
       "base": null,
       "refs": {
-        "SendDataToWirelessDeviceRequest$PayloadData": "<p>The message payload to send.</p>"
+        "SendDataToWirelessDeviceRequest$PayloadData": "<p>The binary to be sent to the end device, encoded in base64.</p>"
       }
     },
     "PingSlotDr": {
@@ -1329,7 +1330,7 @@
       }
     },
     "ResourceIdentifier": {
-      "base": "<p>The identifier of the resource. For a Wireless Device, it is the wireless device id. For a wireless gateway, it is the wireless gateway id.</p>",
+      "base": "<p>The identifier of the resource. For a Wireless Device, it is the wireless device ID. For a wireless gateway, it is the wireless gateway ID.</p>",
       "refs": {
         "GetResourceLogLevelRequest$ResourceIdentifier": null,
         "PutResourceLogLevelRequest$ResourceIdentifier": null,
@@ -1345,9 +1346,9 @@
       "base": null,
       "refs": {
         "ConflictException$ResourceType": "<p>Type of the resource in the conflicting operation.</p>",
-        "GetResourceLogLevelRequest$ResourceType": "<p>The type of the resource, currently support WirelessDevice and WirelessGateway.</p>",
-        "PutResourceLogLevelRequest$ResourceType": "<p>The type of the resource, currently support WirelessDevice and WirelessGateway.</p>",
-        "ResetResourceLogLevelRequest$ResourceType": "<p>The type of the resource, currently support WirelessDevice and WirelessGateway.</p>",
+        "GetResourceLogLevelRequest$ResourceType": "<p>The type of the resource, which can be <code>WirelessDevice</code> or <code>WirelessGateway</code>.</p>",
+        "PutResourceLogLevelRequest$ResourceType": "<p>The type of the resource, which can be <code>WirelessDevice</code> or <code>WirelessGateway</code>.</p>",
+        "ResetResourceLogLevelRequest$ResourceType": "<p>The type of the resource, which can be <code>WirelessDevice</code> or <code>WirelessGateway</code>.</p>",
         "ResourceNotFoundException$ResourceType": "<p>Type of the font found resource.</p>"
       }
     },
@@ -1805,7 +1806,7 @@
       }
     },
     "WirelessDeviceEventLogOption": {
-      "base": "<p>The log option for a wireless device event. Can be used to set log level for a specific wireless device event. For a LoRaWAN device, the possible events for a log messsage are: Join, Rejoin, Downlink_Data, Uplink_Data. For a Sidewalk device, the possible events for a log message are: Registration, Downlink_Data, Uplink_Data.</p>",
+      "base": "<p>The log options for a wireless device event and can be used to set log levels for a specific wireless device event.</p> <p>For a LoRaWAN device, possible events for a log messsage are: <code>Join</code>, <code>Rejoin</code>, <code>Downlink_Data</code>, and <code>Uplink_Data</code>. For a Sidewalk device, possible events for a log message are <code>Registration</code>, <code>Downlink_Data</code>, and <code>Uplink_Data</code>.</p>",
       "refs": {
         "WirelessDeviceEventLogOptionList$member": null
       }
@@ -1840,7 +1841,7 @@
       }
     },
     "WirelessDeviceLogOption": {
-      "base": "<p>The log option for wireless devices. Can be used to set log level for a specific type of wireless device.</p>",
+      "base": "<p>The log options for wireless devices and can be used to set log levels for a specific type of wireless device.</p>",
       "refs": {
         "WirelessDeviceLogOptionList$member": null
       }
@@ -1898,7 +1899,7 @@
       }
     },
     "WirelessGatewayEventLogOption": {
-      "base": "<p>The log option for a wireless gateway event. Can be used to set log level for a specific wireless gateway event. For a LoRaWAN gateway, the possible events for a log message are: CUPS_Request, Certificate.</p>",
+      "base": "<p>The log options for a wireless gateway event and can be used to set log levels for a specific wireless gateway event.</p> <p>For a LoRaWAN gateway, possible events for a log message are <code>CUPS_Request</code> and <code>Certificate</code>.</p>",
       "refs": {
         "WirelessGatewayEventLogOptionList$member": null
       }
@@ -1937,7 +1938,7 @@
       }
     },
     "WirelessGatewayLogOption": {
-      "base": "<p>The log option for wireless gateways. Can be used to set log level for a specific type of wireless gateway.</p>",
+      "base": "<p>The log options for wireless gateways and can be used to set log levels for a specific type of wireless gateway.</p>",
       "refs": {
         "WirelessGatewayLogOptionList$member": null
       }

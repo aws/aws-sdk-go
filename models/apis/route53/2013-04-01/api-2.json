@@ -25,7 +25,8 @@
         {"shape":"NoSuchKeySigningKey"},
         {"shape":"InvalidKeySigningKeyStatus"},
         {"shape":"InvalidSigningStatus"},
-        {"shape":"InvalidKMSArn"}
+        {"shape":"InvalidKMSArn"},
+        {"shape":"InvalidInput"}
       ]
     },
     "AssociateVPCWithHostedZone":{
@@ -302,7 +303,8 @@
         {"shape":"InvalidKeySigningKeyStatus"},
         {"shape":"InvalidSigningStatus"},
         {"shape":"KeySigningKeyInUse"},
-        {"shape":"KeySigningKeyInParentDSRecord"}
+        {"shape":"KeySigningKeyInParentDSRecord"},
+        {"shape":"InvalidInput"}
       ]
     },
     "DeleteHealthCheck":{
@@ -348,7 +350,8 @@
         {"shape":"NoSuchKeySigningKey"},
         {"shape":"InvalidKeySigningKeyStatus"},
         {"shape":"InvalidSigningStatus"},
-        {"shape":"InvalidKMSArn"}
+        {"shape":"InvalidKMSArn"},
+        {"shape":"InvalidInput"}
       ]
     },
     "DeleteQueryLoggingConfig":{
@@ -444,7 +447,8 @@
         {"shape":"KeySigningKeyInParentDSRecord"},
         {"shape":"DNSSECNotFound"},
         {"shape":"InvalidKeySigningKeyStatus"},
-        {"shape":"InvalidKMSArn"}
+        {"shape":"InvalidKMSArn"},
+        {"shape":"InvalidInput"}
       ]
     },
     "DisassociateVPCFromHostedZone":{
@@ -483,7 +487,8 @@
         {"shape":"InvalidKMSArn"},
         {"shape":"HostedZonePartiallyDelegated"},
         {"shape":"DNSSECNotFound"},
-        {"shape":"InvalidKeySigningKeyStatus"}
+        {"shape":"InvalidKeySigningKeyStatus"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetAccountLimit":{
@@ -530,7 +535,8 @@
       "output":{"shape":"GetDNSSECResponse"},
       "errors":[
         {"shape":"NoSuchHostedZone"},
-        {"shape":"InvalidArgument"}
+        {"shape":"InvalidArgument"},
+        {"shape":"InvalidInput"}
       ]
     },
     "GetGeoLocation":{
@@ -2399,7 +2405,8 @@
         "EnableSNI":{"shape":"EnableSNI"},
         "Regions":{"shape":"HealthCheckRegionList"},
         "AlarmIdentifier":{"shape":"AlarmIdentifier"},
-        "InsufficientDataHealthStatus":{"shape":"InsufficientDataHealthStatus"}
+        "InsufficientDataHealthStatus":{"shape":"InsufficientDataHealthStatus"},
+        "RoutingControlArn":{"shape":"RoutingControlArn"}
       }
     },
     "HealthCheckCount":{"type":"long"},
@@ -2469,7 +2476,8 @@
         "HTTPS_STR_MATCH",
         "TCP",
         "CALCULATED",
-        "CLOUDWATCH_METRIC"
+        "CLOUDWATCH_METRIC",
+        "RECOVERY_CONTROL"
       ]
     },
     "HealthCheckVersion":{
@@ -3764,6 +3772,11 @@
     "ReusableDelegationSetLimitType":{
       "type":"string",
       "enum":["MAX_ZONES_BY_REUSABLE_DELEGATION_SET"]
+    },
+    "RoutingControlArn":{
+      "type":"string",
+      "max":255,
+      "min":1
     },
     "SearchString":{
       "type":"string",
