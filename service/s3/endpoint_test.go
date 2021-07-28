@@ -265,13 +265,21 @@ func TestEndpoint(t *testing.T) {
 			expectedSigningName:   "s3-outposts",
 			expectedSigningRegion: "us-gov-east-1",
 		},
-		"Outpost AccessPoint FIPS client region": {
-			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+		"Outpost AccessPoint FIPS client region, resolved signing region does not match ARN region": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-unknown-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
 			config: &aws.Config{
 				EndpointResolver: endpoints.AwsUsGovPartition(),
-				Region:           aws.String("fips-us-gov-east-1"),
+				Region:           aws.String("fips-us-gov-unknown-1"),
 			},
 			expectedErr: "ConfigurationError: client region does not match provided ARN region",
+		},
+		"Outpost AccessPoint FIPS client region, resolved signing region does match ARN region": {
+			bucket: "arn:aws-us-gov:s3-outposts:us-gov-west-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
+			config: &aws.Config{
+				EndpointResolver: endpoints.AwsUsGovPartition(),
+				Region:           aws.String("fips-us-gov-west-1"),
+			},
+			expectedErr: "use of ARN is not supported when client or request is configured for FIPS",
 		},
 		"Outpost AccessPoint FIPS client region with matching ARN region": {
 			bucket: "arn:aws-us-gov:s3-outposts:us-gov-east-1:123456789012:outpost:op-01234567890123456:accesspoint:myaccesspoint",
