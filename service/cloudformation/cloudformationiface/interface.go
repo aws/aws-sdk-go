@@ -216,6 +216,10 @@ type CloudFormationAPI interface {
 	GetTemplateSummaryWithContext(aws.Context, *cloudformation.GetTemplateSummaryInput, ...request.Option) (*cloudformation.GetTemplateSummaryOutput, error)
 	GetTemplateSummaryRequest(*cloudformation.GetTemplateSummaryInput) (*request.Request, *cloudformation.GetTemplateSummaryOutput)
 
+	ImportStacksToStackSet(*cloudformation.ImportStacksToStackSetInput) (*cloudformation.ImportStacksToStackSetOutput, error)
+	ImportStacksToStackSetWithContext(aws.Context, *cloudformation.ImportStacksToStackSetInput, ...request.Option) (*cloudformation.ImportStacksToStackSetOutput, error)
+	ImportStacksToStackSetRequest(*cloudformation.ImportStacksToStackSetInput) (*request.Request, *cloudformation.ImportStacksToStackSetOutput)
+
 	ListChangeSets(*cloudformation.ListChangeSetsInput) (*cloudformation.ListChangeSetsOutput, error)
 	ListChangeSetsWithContext(aws.Context, *cloudformation.ListChangeSetsInput, ...request.Option) (*cloudformation.ListChangeSetsOutput, error)
 	ListChangeSetsRequest(*cloudformation.ListChangeSetsInput) (*request.Request, *cloudformation.ListChangeSetsOutput)
