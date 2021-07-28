@@ -1,3 +1,11 @@
+Release v1.40.10 (2021-07-28)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * SDK update to support Importing existing Stacks to new/existing Self Managed StackSet - Stack Import feature.
+* `service/sso-admin`: Updates service documentation
+
 Release v1.40.9 (2021-07-27)
 ===
 

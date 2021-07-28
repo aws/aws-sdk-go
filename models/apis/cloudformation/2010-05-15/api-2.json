@@ -545,6 +545,27 @@
         {"shape":"StackSetNotFoundException"}
       ]
     },
+    "ImportStacksToStackSet":{
+      "name":"ImportStacksToStackSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ImportStacksToStackSetInput"},
+      "output":{
+        "shape":"ImportStacksToStackSetOutput",
+        "resultWrapper":"ImportStacksToStackSetResult"
+      },
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"StackSetNotFoundException"},
+        {"shape":"InvalidOperationException"},
+        {"shape":"OperationInProgressException"},
+        {"shape":"OperationIdAlreadyExistsException"},
+        {"shape":"StackNotFoundException"},
+        {"shape":"StaleRequestException"}
+      ]
+    },
     "ListChangeSets":{
       "name":"ListChangeSets",
       "http":{
@@ -1358,6 +1379,7 @@
         "Description":{"shape":"Description"},
         "TemplateBody":{"shape":"TemplateBody"},
         "TemplateURL":{"shape":"TemplateURL"},
+        "StackId":{"shape":"StackId"},
         "Parameters":{"shape":"Parameters"},
         "Capabilities":{"shape":"Capabilities"},
         "Tags":{"shape":"Tags"},
@@ -2010,6 +2032,29 @@
         "GitHub",
         "Bitbucket"
       ]
+    },
+    "ImportStacksToStackSetInput":{
+      "type":"structure",
+      "required":[
+        "StackSetName",
+        "StackIds"
+      ],
+      "members":{
+        "StackSetName":{"shape":"StackSetNameOrId"},
+        "StackIds":{"shape":"StackIdList"},
+        "OperationPreferences":{"shape":"StackSetOperationPreferences"},
+        "OperationId":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "CallAs":{"shape":"CallAs"}
+      }
+    },
+    "ImportStacksToStackSetOutput":{
+      "type":"structure",
+      "members":{
+        "OperationId":{"shape":"ClientRequestToken"}
+      }
     },
     "Imports":{
       "type":"list",
@@ -3091,6 +3136,10 @@
       "member":{"shape":"StackEvent"}
     },
     "StackId":{"type":"string"},
+    "StackIdList":{
+      "type":"list",
+      "member":{"shape":"StackId"}
+    },
     "StackInstance":{
       "type":"structure",
       "members":{
@@ -3188,6 +3237,17 @@
       "type":"string",
       "min":1,
       "pattern":"([a-zA-Z][-a-zA-Z0-9]*)|(arn:\\b(aws|aws-us-gov|aws-cn)\\b:[-a-zA-Z0-9:/._+]*)"
+    },
+    "StackNotFoundException":{
+      "type":"structure",
+      "members":{
+      },
+      "error":{
+        "code":"StackNotFoundException",
+        "httpStatusCode":404,
+        "senderFault":true
+      },
+      "exception":true
     },
     "StackPolicyBody":{
       "type":"string",
