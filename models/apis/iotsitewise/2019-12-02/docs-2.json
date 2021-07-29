@@ -31,7 +31,7 @@
     "DescribeLoggingOptions": "<p>Retrieves the current IoT SiteWise logging options.</p>",
     "DescribePortal": "<p>Retrieves information about a portal.</p>",
     "DescribeProject": "<p>Retrieves information about a project.</p>",
-    "DescribeStorageConfiguration": "<p>Retrieves information about the storage configuration for IoT SiteWise.</p>",
+    "DescribeStorageConfiguration": "<p>Retrieves information about the storage configuration for IoT SiteWise.</p> <note> <p>Exporting data to Amazon S3 is currently in preview release and is subject to change. We recommend that you use this feature only with test data, and not in production environments.</p> </note>",
     "DisassociateAssets": "<p>Disassociates a child asset from the given parent asset through a hierarchy defined in the parent asset's model.</p>",
     "GetAssetPropertyAggregates": "<p>Gets aggregated values for an asset property. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#aggregates\">Querying aggregates</a> in the <i>IoT SiteWise User Guide</i>.</p> <p>To identify an asset property, you must specify one of the following:</p> <ul> <li> <p>The <code>assetId</code> and <code>propertyId</code> of an asset property.</p> </li> <li> <p>A <code>propertyAlias</code>, which is a data stream alias (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). To define an asset property's alias, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html\">UpdateAssetProperty</a>.</p> </li> </ul>",
     "GetAssetPropertyValue": "<p>Gets an asset property's current value. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#current-values\">Querying current values</a> in the <i>IoT SiteWise User Guide</i>.</p> <p>To identify an asset property, you must specify one of the following:</p> <ul> <li> <p>The <code>assetId</code> and <code>propertyId</code> of an asset property.</p> </li> <li> <p>A <code>propertyAlias</code>, which is a data stream alias (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). To define an asset property's alias, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html\">UpdateAssetProperty</a>.</p> </li> </ul>",
@@ -50,7 +50,7 @@
     "ListTagsForResource": "<p>Retrieves the list of tags for an IoT SiteWise resource.</p>",
     "PutDefaultEncryptionConfiguration": "<p>Sets the default encryption configuration for the Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html\">Key management</a> in the <i>IoT SiteWise User Guide</i>.</p>",
     "PutLoggingOptions": "<p>Sets logging options for IoT SiteWise.</p>",
-    "PutStorageConfiguration": "<p>Configures storage settings for IoT SiteWise.</p>",
+    "PutStorageConfiguration": "<p>Configures storage settings for IoT SiteWise.</p> <note> <p>Exporting data to Amazon S3 is currently in preview release and is subject to change. We recommend that you use this feature only with test data, and not in production environments.</p> </note>",
     "TagResource": "<p>Adds tags to an IoT SiteWise resource. If a tag already exists for the resource, this operation updates the tag's value.</p>",
     "UntagResource": "<p>Removes a tag from an IoT SiteWise resource.</p>",
     "UpdateAccessPolicy": "<p>Updates an existing access policy that specifies an identity's access to an IoT SiteWise Monitor portal or project resource.</p>",
@@ -583,6 +583,13 @@
         "DescribeAssetPropertyResponse$compositeModel": "<p>The composite asset model that declares this asset property, if this asset property exists in a composite model.</p>"
       }
     },
+    "ComputeLocation": {
+      "base": null,
+      "refs": {
+        "MetricProcessingConfig$computeLocation": "<p>The compute location for the given metric property. </p>",
+        "TransformProcessingConfig$computeLocation": "<p>The compute location for the given transform property. </p>"
+      }
+    },
     "ConfigurationErrorDetails": {
       "base": "<p>Contains the details of an IoT SiteWise configuration error.</p>",
       "refs": {
@@ -607,6 +614,12 @@
     "ConflictingOperationException": {
       "base": "<p>Your request has conflicting operations. This can occur if you're trying to perform more than one operation on the same resource at the same time.</p>",
       "refs": {
+      }
+    },
+    "CoreDeviceThingName": {
+      "base": null,
+      "refs": {
+        "GreengrassV2$coreDeviceThingName": "<p>The name of the IoT thing for your IoT Greengrass V2 core device.</p>"
       }
     },
     "CreateAccessPolicyRequest": {
@@ -920,6 +933,30 @@
         "UpdateProjectRequest$projectDescription": "<p>A new description for the project.</p>"
       }
     },
+    "DetailedError": {
+      "base": "<p>Contains detailed error information. </p>",
+      "refs": {
+        "DetailedErrors$member": null
+      }
+    },
+    "DetailedErrorCode": {
+      "base": null,
+      "refs": {
+        "DetailedError$code": "<p>The error code. </p>"
+      }
+    },
+    "DetailedErrorMessage": {
+      "base": null,
+      "refs": {
+        "DetailedError$message": "<p>The error message. </p>"
+      }
+    },
+    "DetailedErrors": {
+      "base": null,
+      "refs": {
+        "ErrorDetails$details": "<p> A list of detailed errors. </p>"
+      }
+    },
     "DisassociateAssetsRequest": {
       "base": null,
       "refs": {
@@ -1008,6 +1045,19 @@
         "Transform$variables": "<p>The list of variables used in the expression.</p>"
       }
     },
+    "ForwardingConfig": {
+      "base": "<p>The forwarding configuration for a given property.</p>",
+      "refs": {
+        "MeasurementProcessingConfig$forwardingConfig": "<p>The forwarding configuration for the given measurement property. </p>",
+        "TransformProcessingConfig$forwardingConfig": null
+      }
+    },
+    "ForwardingConfigState": {
+      "base": null,
+      "refs": {
+        "ForwardingConfig$state": "<p>The forwarding state for the given property. </p>"
+      }
+    },
     "GatewayCapabilitySummaries": {
       "base": null,
       "refs": {
@@ -1025,7 +1075,8 @@
       "base": "<p>Contains a gateway's platform information.</p>",
       "refs": {
         "CreateGatewayRequest$gatewayPlatform": "<p>The gateway's platform. You can only specify one platform in a gateway.</p>",
-        "DescribeGatewayResponse$gatewayPlatform": "<p>The gateway's platform.</p>"
+        "DescribeGatewayResponse$gatewayPlatform": "<p>The gateway's platform.</p>",
+        "GatewaySummary$gatewayPlatform": null
       }
     },
     "GatewaySummaries": {
@@ -1084,6 +1135,12 @@
       "base": "<p>Contains details for a gateway that runs on IoT Greengrass. To create a gateway that runs on IoT Greengrass, you must add the IoT SiteWise connector to a Greengrass group and deploy it. Your Greengrass group must also have permissions to upload data to IoT SiteWise. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/gateway-connector.html\">Ingesting data using a gateway</a> in the <i>IoT SiteWise User Guide</i>.</p>",
       "refs": {
         "GatewayPlatform$greengrass": "<p>A gateway that runs on IoT Greengrass.</p>"
+      }
+    },
+    "GreengrassV2": {
+      "base": "<p>Contains details for a gateway that runs on IoT Greengrass V2. To create a gateway that runs on IoT Greengrass V2, you must deploy the IoT SiteWise Edge component to your gateway device. Your <a href=\"https://docs.aws.amazon.com/greengrass/v2/developerguide/device-service-role.html\">Greengrass device role</a> must use the <code>AWSIoTSiteWiseEdgeAccess</code> policy. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/sw-gateways.html\">Using IoT SiteWise at the edge</a> in the <i>IoT SiteWise User Guide</i>.</p>",
+      "refs": {
+        "GatewayPlatform$greengrassV2": "<p>A gateway that runs on IoT Greengrass V2.</p>"
       }
     },
     "GroupIdentity": {
@@ -1488,10 +1545,22 @@
         "PropertyType$measurement": "<p>Specifies an asset measurement property. A measurement represents a device's raw sensor data stream, such as timestamped temperature values or timestamped power values.</p>"
       }
     },
+    "MeasurementProcessingConfig": {
+      "base": "<p>The processing configuration for the given measurement property. You can configure measurements to be kept at the edge or forwarded to the Amazon Web Services Cloud. By default, measurements are forwarded to the cloud.</p>",
+      "refs": {
+        "Measurement$processingConfig": "<p>The processing configuration for the given measurement property. You can configure measurements to be kept at the edge or forwarded to the Amazon Web Services Cloud. By default, measurements are forwarded to the cloud.</p>"
+      }
+    },
     "Metric": {
       "base": "<p>Contains an asset metric property. With metrics, you can calculate aggregate functions, such as an average, maximum, or minimum, as specified through an expression. A metric maps several values to a single value (such as a sum).</p> <p>The maximum number of dependent/cascading variables used in any one metric calculation is 10. Therefore, a <i>root</i> metric can have up to 10 cascading metrics in its computational dependency tree. Additionally, a metric can only have a data type of <code>DOUBLE</code> and consume properties with data types of <code>INTEGER</code> or <code>DOUBLE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#metrics\">Metrics</a> in the <i>IoT SiteWise User Guide</i>.</p>",
       "refs": {
         "PropertyType$metric": "<p>Specifies an asset metric property. A metric contains a mathematical expression that uses aggregate functions to process all input data points over a time interval and output a single data point, such as to calculate the average hourly temperature.</p>"
+      }
+    },
+    "MetricProcessingConfig": {
+      "base": "<p>The processing configuration for the given metric property. You can configure metrics to be computed at the edge or in the Amazon Web Services Cloud. By default, metrics are forwarded to the cloud.</p>",
+      "refs": {
+        "Metric$processingConfig": "<p>The processing configuration for the given metric property. You can configure metrics to be computed at the edge or in the Amazon Web Services Cloud. By default, metrics are forwarded to the cloud.</p>"
       }
     },
     "MetricWindow": {
@@ -2015,6 +2084,12 @@
       "base": "<p>Contains an asset transform property. A transform is a one-to-one mapping of a property's data points from one form to another. For example, you can use a transform to convert a Celsius data stream to Fahrenheit by applying the transformation expression to each data point of the Celsius stream. A transform can only have a data type of <code>DOUBLE</code> and consume properties with data types of <code>INTEGER</code> or <code>DOUBLE</code>.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/asset-properties.html#transforms\">Transforms</a> in the <i>IoT SiteWise User Guide</i>.</p>",
       "refs": {
         "PropertyType$transform": "<p>Specifies an asset transform property. A transform contains a mathematical expression that maps a property's data points from one form to another, such as a unit conversion from Celsius to Fahrenheit.</p>"
+      }
+    },
+    "TransformProcessingConfig": {
+      "base": "<p>The processing configuration for the given transform property. You can configure transforms to be kept at the edge or forwarded to the Amazon Web Services Cloud. You can also configure transforms to be computed at the edge or in the cloud.</p>",
+      "refs": {
+        "Transform$processingConfig": "<p>The processing configuration for the given transform property. You can configure transforms to be kept at the edge or forwarded to the Amazon Web Services Cloud. You can also configure transforms to be computed at the edge or in the cloud.</p>"
       }
     },
     "TraversalDirection": {

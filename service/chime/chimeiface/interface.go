@@ -782,6 +782,14 @@ type ChimeAPI interface {
 	SendChannelMessageWithContext(aws.Context, *chime.SendChannelMessageInput, ...request.Option) (*chime.SendChannelMessageOutput, error)
 	SendChannelMessageRequest(*chime.SendChannelMessageInput) (*request.Request, *chime.SendChannelMessageOutput)
 
+	StartMeetingTranscription(*chime.StartMeetingTranscriptionInput) (*chime.StartMeetingTranscriptionOutput, error)
+	StartMeetingTranscriptionWithContext(aws.Context, *chime.StartMeetingTranscriptionInput, ...request.Option) (*chime.StartMeetingTranscriptionOutput, error)
+	StartMeetingTranscriptionRequest(*chime.StartMeetingTranscriptionInput) (*request.Request, *chime.StartMeetingTranscriptionOutput)
+
+	StopMeetingTranscription(*chime.StopMeetingTranscriptionInput) (*chime.StopMeetingTranscriptionOutput, error)
+	StopMeetingTranscriptionWithContext(aws.Context, *chime.StopMeetingTranscriptionInput, ...request.Option) (*chime.StopMeetingTranscriptionOutput, error)
+	StopMeetingTranscriptionRequest(*chime.StopMeetingTranscriptionInput) (*request.Request, *chime.StopMeetingTranscriptionOutput)
+
 	TagAttendee(*chime.TagAttendeeInput) (*chime.TagAttendeeOutput, error)
 	TagAttendeeWithContext(aws.Context, *chime.TagAttendeeInput, ...request.Option) (*chime.TagAttendeeOutput, error)
 	TagAttendeeRequest(*chime.TagAttendeeInput) (*request.Request, *chime.TagAttendeeOutput)

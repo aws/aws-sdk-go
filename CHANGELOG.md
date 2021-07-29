@@ -1,3 +1,16 @@
+Release v1.40.11 (2021-07-29)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Adds support for live transcription of meetings with Amazon Transcribe and Amazon Transcribe Medical.  The new APIs, StartMeetingTranscription and StopMeetingTranscription, control the generation of user-attributed transcriptions sent to meeting clients via Amazon Chime SDK data messages.
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for G4ad xlarge and 2xlarge instances powered by AMD Radeon Pro V520 GPUs and AMD 2nd Generation EPYC processors
+* `service/iot`: Updates service API and documentation
+  * Increase maximum credential duration of role alias to 12 hours.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/savingsplans`: Updates service API
+
 Release v1.40.10 (2021-07-28)
 ===
 

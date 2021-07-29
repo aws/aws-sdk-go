@@ -3068,6 +3068,47 @@
       ],
       "endpoint":{"hostPrefix":"messaging-"}
     },
+    "StartMeetingTranscription":{
+      "name":"StartMeetingTranscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/meetings/{meetingId}/transcription?operation=start",
+        "responseCode":200
+      },
+      "input":{"shape":"StartMeetingTranscriptionRequest"},
+      "output":{"shape":"StartMeetingTranscriptionResponse"},
+      "errors":[
+        {"shape":"NotFoundException"},
+        {"shape":"ForbiddenException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"UnprocessableEntityException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
+    "StopMeetingTranscription":{
+      "name":"StopMeetingTranscription",
+      "http":{
+        "method":"POST",
+        "requestUri":"/meetings/{meetingId}/transcription?operation=stop",
+        "responseCode":200
+      },
+      "input":{"shape":"StopMeetingTranscriptionRequest"},
+      "output":{"shape":"StopMeetingTranscriptionResponse"},
+      "errors":[
+        {"shape":"ForbiddenException"},
+        {"shape":"NotFoundException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ThrottledClientException"},
+        {"shape":"UnauthorizedClientException"},
+        {"shape":"UnprocessableEntityException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"ServiceFailureException"}
+      ]
+    },
     "TagAttendee":{
       "name":"TagAttendee",
       "http":{
@@ -5752,6 +5793,32 @@
       "type":"structure",
       "members":{
         "DNIS":{"shape":"DNISEmergencyCallingConfigurationList"}
+      }
+    },
+    "EngineTranscribeMedicalSettings":{
+      "type":"structure",
+      "required":[
+        "LanguageCode",
+        "Specialty",
+        "Type"
+      ],
+      "members":{
+        "LanguageCode":{"shape":"TranscribeMedicalLanguageCode"},
+        "Specialty":{"shape":"TranscribeMedicalSpecialty"},
+        "Type":{"shape":"TranscribeMedicalType"},
+        "VocabularyName":{"shape":"String"},
+        "Region":{"shape":"TranscribeMedicalRegion"}
+      }
+    },
+    "EngineTranscribeSettings":{
+      "type":"structure",
+      "required":["LanguageCode"],
+      "members":{
+        "LanguageCode":{"shape":"TranscribeLanguageCode"},
+        "VocabularyFilterMethod":{"shape":"TranscribeVocabularyFilterMethod"},
+        "VocabularyFilterName":{"shape":"String"},
+        "VocabularyName":{"shape":"String"},
+        "Region":{"shape":"TranscribeRegion"}
       }
     },
     "ErrorCode":{
@@ -8602,6 +8669,42 @@
         "DESCENDING"
       ]
     },
+    "StartMeetingTranscriptionRequest":{
+      "type":"structure",
+      "required":[
+        "MeetingId",
+        "TranscriptionConfiguration"
+      ],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        },
+        "TranscriptionConfiguration":{"shape":"TranscriptionConfiguration"}
+      }
+    },
+    "StartMeetingTranscriptionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "StopMeetingTranscriptionRequest":{
+      "type":"structure",
+      "required":["MeetingId"],
+      "members":{
+        "MeetingId":{
+          "shape":"GuidString",
+          "location":"uri",
+          "locationName":"meetingId"
+        }
+      }
+    },
+    "StopMeetingTranscriptionResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "StreamingConfiguration":{
       "type":"structure",
       "required":["DataRetentionInHours"],
@@ -8760,6 +8863,87 @@
       "max":3,
       "min":3,
       "pattern":"^8(00|33|44|55|66|77|88)$"
+    },
+    "TranscribeLanguageCode":{
+      "type":"string",
+      "enum":[
+        "en-US",
+        "en-GB",
+        "es-US",
+        "fr-CA",
+        "fr-FR",
+        "en-AU",
+        "it-IT",
+        "de-DE",
+        "pt-BR",
+        "ja-JP",
+        "ko-KR",
+        "zh-CN"
+      ]
+    },
+    "TranscribeMedicalLanguageCode":{
+      "type":"string",
+      "enum":["en-US"]
+    },
+    "TranscribeMedicalRegion":{
+      "type":"string",
+      "enum":[
+        "us-east-1",
+        "us-east-2",
+        "us-west-2",
+        "ap-southeast-2",
+        "ca-central-1",
+        "eu-west-1"
+      ]
+    },
+    "TranscribeMedicalSpecialty":{
+      "type":"string",
+      "enum":[
+        "PRIMARYCARE",
+        "CARDIOLOGY",
+        "NEUROLOGY",
+        "ONCOLOGY",
+        "RADIOLOGY",
+        "UROLOGY"
+      ]
+    },
+    "TranscribeMedicalType":{
+      "type":"string",
+      "enum":[
+        "CONVERSATION",
+        "DICTATION"
+      ]
+    },
+    "TranscribeRegion":{
+      "type":"string",
+      "enum":[
+        "us-east-2",
+        "us-east-1",
+        "us-west-2",
+        "ap-northeast-2",
+        "ap-southeast-2",
+        "ap-northeast-1",
+        "ca-central-1",
+        "eu-central-1",
+        "eu-west-1",
+        "eu-west-2",
+        "sa-east-1"
+      ]
+    },
+    "TranscribeVocabularyFilterMethod":{
+      "type":"string",
+      "enum":[
+        "remove",
+        "mask",
+        "tag"
+      ]
+    },
+    "TranscriptionConfiguration":{
+      "type":"structure",
+      "members":{
+        "EngineTranscribeSettings":{"shape":"EngineTranscribeSettings"},
+        "EngineTranscribeMedicalSettings":{"shape":"EngineTranscribeMedicalSettings"}
+      }
     },
     "UnauthorizedClientException":{
       "type":"structure",
