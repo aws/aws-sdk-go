@@ -3039,6 +3039,10 @@ func (c *IoTSiteWise) DescribeStorageConfigurationRequest(input *DescribeStorage
 //
 // Retrieves information about the storage configuration for IoT SiteWise.
 //
+// Exporting data to Amazon S3 is currently in preview release and is subject
+// to change. We recommend that you use this feature only with test data, and
+// not in production environments.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5716,6 +5720,10 @@ func (c *IoTSiteWise) PutStorageConfigurationRequest(input *PutStorageConfigurat
 // PutStorageConfiguration API operation for AWS IoT SiteWise.
 //
 // Configures storage settings for IoT SiteWise.
+//
+// Exporting data to Amazon S3 is currently in preview release and is subject
+// to change. We recommend that you use this feature only with test data, and
+// not in production environments.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12550,6 +12558,43 @@ func (s *DescribeStorageConfigurationOutput) SetStorageType(v string) *DescribeS
 	return s
 }
 
+// Contains detailed error information.
+type DetailedError struct {
+	_ struct{} `type:"structure"`
+
+	// The error code.
+	//
+	// Code is a required field
+	Code *string `locationName:"code" type:"string" required:"true" enum:"DetailedErrorCode"`
+
+	// The error message.
+	//
+	// Message is a required field
+	Message *string `locationName:"message" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DetailedError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DetailedError) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *DetailedError) SetCode(v string) *DetailedError {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *DetailedError) SetMessage(v string) *DetailedError {
+	s.Message = &v
+	return s
+}
+
 type DisassociateAssetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12666,6 +12711,9 @@ type ErrorDetails struct {
 	// Code is a required field
 	Code *string `locationName:"code" type:"string" required:"true" enum:"ErrorCode"`
 
+	// A list of detailed errors.
+	Details []*DetailedError `locationName:"details" type:"list"`
+
 	// The error message.
 	//
 	// Message is a required field
@@ -12685,6 +12733,12 @@ func (s ErrorDetails) GoString() string {
 // SetCode sets the Code field's value.
 func (s *ErrorDetails) SetCode(v string) *ErrorDetails {
 	s.Code = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *ErrorDetails) SetDetails(v []*DetailedError) *ErrorDetails {
+	s.Details = v
 	return s
 }
 
@@ -12755,6 +12809,45 @@ func (s *ExpressionVariable) SetValue(v *VariableValue) *ExpressionVariable {
 	return s
 }
 
+// The forwarding configuration for a given property.
+type ForwardingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The forwarding state for the given property.
+	//
+	// State is a required field
+	State *string `locationName:"state" type:"string" required:"true" enum:"ForwardingConfigState"`
+}
+
+// String returns the string representation
+func (s ForwardingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ForwardingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ForwardingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ForwardingConfig"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetState sets the State field's value.
+func (s *ForwardingConfig) SetState(v string) *ForwardingConfig {
+	s.State = &v
+	return s
+}
+
 // Contains a summary of a gateway capability configuration.
 type GatewayCapabilitySummary struct {
 	_ struct{} `type:"structure"`
@@ -12807,9 +12900,10 @@ type GatewayPlatform struct {
 	_ struct{} `type:"structure"`
 
 	// A gateway that runs on IoT Greengrass.
-	//
-	// Greengrass is a required field
-	Greengrass *Greengrass `locationName:"greengrass" type:"structure" required:"true"`
+	Greengrass *Greengrass `locationName:"greengrass" type:"structure"`
+
+	// A gateway that runs on IoT Greengrass V2.
+	GreengrassV2 *GreengrassV2 `locationName:"greengrassV2" type:"structure"`
 }
 
 // String returns the string representation
@@ -12825,12 +12919,14 @@ func (s GatewayPlatform) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GatewayPlatform) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GatewayPlatform"}
-	if s.Greengrass == nil {
-		invalidParams.Add(request.NewErrParamRequired("Greengrass"))
-	}
 	if s.Greengrass != nil {
 		if err := s.Greengrass.Validate(); err != nil {
 			invalidParams.AddNested("Greengrass", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.GreengrassV2 != nil {
+		if err := s.GreengrassV2.Validate(); err != nil {
+			invalidParams.AddNested("GreengrassV2", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -12843,6 +12939,12 @@ func (s *GatewayPlatform) Validate() error {
 // SetGreengrass sets the Greengrass field's value.
 func (s *GatewayPlatform) SetGreengrass(v *Greengrass) *GatewayPlatform {
 	s.Greengrass = v
+	return s
+}
+
+// SetGreengrassV2 sets the GreengrassV2 field's value.
+func (s *GatewayPlatform) SetGreengrassV2(v *GreengrassV2) *GatewayPlatform {
+	s.GreengrassV2 = v
 	return s
 }
 
@@ -12870,6 +12972,9 @@ type GatewaySummary struct {
 	//
 	// GatewayName is a required field
 	GatewayName *string `locationName:"gatewayName" min:"1" type:"string" required:"true"`
+
+	// Contains a gateway's platform information.
+	GatewayPlatform *GatewayPlatform `locationName:"gatewayPlatform" type:"structure"`
 
 	// The date the gateway was last updated, in Unix epoch time.
 	//
@@ -12908,6 +13013,12 @@ func (s *GatewaySummary) SetGatewayId(v string) *GatewaySummary {
 // SetGatewayName sets the GatewayName field's value.
 func (s *GatewaySummary) SetGatewayName(v string) *GatewaySummary {
 	s.GatewayName = &v
+	return s
+}
+
+// SetGatewayPlatform sets the GatewayPlatform field's value.
+func (s *GatewaySummary) SetGatewayPlatform(v *GatewayPlatform) *GatewaySummary {
+	s.GatewayPlatform = v
 	return s
 }
 
@@ -13658,6 +13769,53 @@ func (s *Greengrass) Validate() error {
 // SetGroupArn sets the GroupArn field's value.
 func (s *Greengrass) SetGroupArn(v string) *Greengrass {
 	s.GroupArn = &v
+	return s
+}
+
+// Contains details for a gateway that runs on IoT Greengrass V2. To create
+// a gateway that runs on IoT Greengrass V2, you must deploy the IoT SiteWise
+// Edge component to your gateway device. Your Greengrass device role (https://docs.aws.amazon.com/greengrass/v2/developerguide/device-service-role.html)
+// must use the AWSIoTSiteWiseEdgeAccess policy. For more information, see Using
+// IoT SiteWise at the edge (https://docs.aws.amazon.com/iot-sitewise/latest/userguide/sw-gateways.html)
+// in the IoT SiteWise User Guide.
+type GreengrassV2 struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the IoT thing for your IoT Greengrass V2 core device.
+	//
+	// CoreDeviceThingName is a required field
+	CoreDeviceThingName *string `locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GreengrassV2) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GreengrassV2) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GreengrassV2) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GreengrassV2"}
+	if s.CoreDeviceThingName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CoreDeviceThingName"))
+	}
+	if s.CoreDeviceThingName != nil && len(*s.CoreDeviceThingName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CoreDeviceThingName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCoreDeviceThingName sets the CoreDeviceThingName field's value.
+func (s *GreengrassV2) SetCoreDeviceThingName(v string) *GreengrassV2 {
+	s.CoreDeviceThingName = &v
 	return s
 }
 
@@ -15430,6 +15588,11 @@ func (s *LoggingOptions) SetLevel(v string) *LoggingOptions {
 // in the IoT SiteWise User Guide.
 type Measurement struct {
 	_ struct{} `type:"structure"`
+
+	// The processing configuration for the given measurement property. You can
+	// configure measurements to be kept at the edge or forwarded to the Amazon
+	// Web Services Cloud. By default, measurements are forwarded to the cloud.
+	ProcessingConfig *MeasurementProcessingConfig `locationName:"processingConfig" type:"structure"`
 }
 
 // String returns the string representation
@@ -15440,6 +15603,73 @@ func (s Measurement) String() string {
 // GoString returns the string representation
 func (s Measurement) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Measurement) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Measurement"}
+	if s.ProcessingConfig != nil {
+		if err := s.ProcessingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ProcessingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProcessingConfig sets the ProcessingConfig field's value.
+func (s *Measurement) SetProcessingConfig(v *MeasurementProcessingConfig) *Measurement {
+	s.ProcessingConfig = v
+	return s
+}
+
+// The processing configuration for the given measurement property. You can
+// configure measurements to be kept at the edge or forwarded to the Amazon
+// Web Services Cloud. By default, measurements are forwarded to the cloud.
+type MeasurementProcessingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The forwarding configuration for the given measurement property.
+	//
+	// ForwardingConfig is a required field
+	ForwardingConfig *ForwardingConfig `locationName:"forwardingConfig" type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s MeasurementProcessingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MeasurementProcessingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MeasurementProcessingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MeasurementProcessingConfig"}
+	if s.ForwardingConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ForwardingConfig"))
+	}
+	if s.ForwardingConfig != nil {
+		if err := s.ForwardingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ForwardingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetForwardingConfig sets the ForwardingConfig field's value.
+func (s *MeasurementProcessingConfig) SetForwardingConfig(v *ForwardingConfig) *MeasurementProcessingConfig {
+	s.ForwardingConfig = v
+	return s
 }
 
 // Contains an asset metric property. With metrics, you can calculate aggregate
@@ -15467,6 +15697,11 @@ type Metric struct {
 	//
 	// Expression is a required field
 	Expression *string `locationName:"expression" min:"1" type:"string" required:"true"`
+
+	// The processing configuration for the given metric property. You can configure
+	// metrics to be computed at the edge or in the Amazon Web Services Cloud. By
+	// default, metrics are forwarded to the cloud.
+	ProcessingConfig *MetricProcessingConfig `locationName:"processingConfig" type:"structure"`
 
 	// The list of variables used in the expression.
 	//
@@ -15505,6 +15740,11 @@ func (s *Metric) Validate() error {
 	if s.Window == nil {
 		invalidParams.Add(request.NewErrParamRequired("Window"))
 	}
+	if s.ProcessingConfig != nil {
+		if err := s.ProcessingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ProcessingConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Variables != nil {
 		for i, v := range s.Variables {
 			if v == nil {
@@ -15533,6 +15773,12 @@ func (s *Metric) SetExpression(v string) *Metric {
 	return s
 }
 
+// SetProcessingConfig sets the ProcessingConfig field's value.
+func (s *Metric) SetProcessingConfig(v *MetricProcessingConfig) *Metric {
+	s.ProcessingConfig = v
+	return s
+}
+
 // SetVariables sets the Variables field's value.
 func (s *Metric) SetVariables(v []*ExpressionVariable) *Metric {
 	s.Variables = v
@@ -15542,6 +15788,47 @@ func (s *Metric) SetVariables(v []*ExpressionVariable) *Metric {
 // SetWindow sets the Window field's value.
 func (s *Metric) SetWindow(v *MetricWindow) *Metric {
 	s.Window = v
+	return s
+}
+
+// The processing configuration for the given metric property. You can configure
+// metrics to be computed at the edge or in the Amazon Web Services Cloud. By
+// default, metrics are forwarded to the cloud.
+type MetricProcessingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The compute location for the given metric property.
+	//
+	// ComputeLocation is a required field
+	ComputeLocation *string `locationName:"computeLocation" type:"string" required:"true" enum:"ComputeLocation"`
+}
+
+// String returns the string representation
+func (s MetricProcessingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MetricProcessingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MetricProcessingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MetricProcessingConfig"}
+	if s.ComputeLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComputeLocation"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComputeLocation sets the ComputeLocation field's value.
+func (s *MetricProcessingConfig) SetComputeLocation(v string) *MetricProcessingConfig {
+	s.ComputeLocation = &v
 	return s
 }
 
@@ -16118,6 +16405,11 @@ func (s *PropertyType) Validate() error {
 	if s.Attribute != nil {
 		if err := s.Attribute.Validate(); err != nil {
 			invalidParams.AddNested("Attribute", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Measurement != nil {
+		if err := s.Measurement.Validate(); err != nil {
+			invalidParams.AddNested("Measurement", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Metric != nil {
@@ -17040,6 +17332,12 @@ type Transform struct {
 	// Expression is a required field
 	Expression *string `locationName:"expression" min:"1" type:"string" required:"true"`
 
+	// The processing configuration for the given transform property. You can configure
+	// transforms to be kept at the edge or forwarded to the Amazon Web Services
+	// Cloud. You can also configure transforms to be computed at the edge or in
+	// the cloud.
+	ProcessingConfig *TransformProcessingConfig `locationName:"processingConfig" type:"structure"`
+
 	// The list of variables used in the expression.
 	//
 	// Variables is a required field
@@ -17068,6 +17366,11 @@ func (s *Transform) Validate() error {
 	if s.Variables == nil {
 		invalidParams.Add(request.NewErrParamRequired("Variables"))
 	}
+	if s.ProcessingConfig != nil {
+		if err := s.ProcessingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ProcessingConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Variables != nil {
 		for i, v := range s.Variables {
 			if v == nil {
@@ -17091,9 +17394,71 @@ func (s *Transform) SetExpression(v string) *Transform {
 	return s
 }
 
+// SetProcessingConfig sets the ProcessingConfig field's value.
+func (s *Transform) SetProcessingConfig(v *TransformProcessingConfig) *Transform {
+	s.ProcessingConfig = v
+	return s
+}
+
 // SetVariables sets the Variables field's value.
 func (s *Transform) SetVariables(v []*ExpressionVariable) *Transform {
 	s.Variables = v
+	return s
+}
+
+// The processing configuration for the given transform property. You can configure
+// transforms to be kept at the edge or forwarded to the Amazon Web Services
+// Cloud. You can also configure transforms to be computed at the edge or in
+// the cloud.
+type TransformProcessingConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The compute location for the given transform property.
+	//
+	// ComputeLocation is a required field
+	ComputeLocation *string `locationName:"computeLocation" type:"string" required:"true" enum:"ComputeLocation"`
+
+	// The forwarding configuration for a given property.
+	ForwardingConfig *ForwardingConfig `locationName:"forwardingConfig" type:"structure"`
+}
+
+// String returns the string representation
+func (s TransformProcessingConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TransformProcessingConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TransformProcessingConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TransformProcessingConfig"}
+	if s.ComputeLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("ComputeLocation"))
+	}
+	if s.ForwardingConfig != nil {
+		if err := s.ForwardingConfig.Validate(); err != nil {
+			invalidParams.AddNested("ForwardingConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComputeLocation sets the ComputeLocation field's value.
+func (s *TransformProcessingConfig) SetComputeLocation(v string) *TransformProcessingConfig {
+	s.ComputeLocation = &v
+	return s
+}
+
+// SetForwardingConfig sets the ForwardingConfig field's value.
+func (s *TransformProcessingConfig) SetForwardingConfig(v *ForwardingConfig) *TransformProcessingConfig {
+	s.ForwardingConfig = v
 	return s
 }
 
@@ -18745,6 +19110,9 @@ const (
 
 	// CapabilitySyncStatusSyncFailed is a CapabilitySyncStatus enum value
 	CapabilitySyncStatusSyncFailed = "SYNC_FAILED"
+
+	// CapabilitySyncStatusUnknown is a CapabilitySyncStatus enum value
+	CapabilitySyncStatusUnknown = "UNKNOWN"
 )
 
 // CapabilitySyncStatus_Values returns all elements of the CapabilitySyncStatus enum
@@ -18753,6 +19121,23 @@ func CapabilitySyncStatus_Values() []string {
 		CapabilitySyncStatusInSync,
 		CapabilitySyncStatusOutOfSync,
 		CapabilitySyncStatusSyncFailed,
+		CapabilitySyncStatusUnknown,
+	}
+}
+
+const (
+	// ComputeLocationEdge is a ComputeLocation enum value
+	ComputeLocationEdge = "EDGE"
+
+	// ComputeLocationCloud is a ComputeLocation enum value
+	ComputeLocationCloud = "CLOUD"
+)
+
+// ComputeLocation_Values returns all elements of the ComputeLocation enum
+func ComputeLocation_Values() []string {
+	return []string{
+		ComputeLocationEdge,
+		ComputeLocationCloud,
 	}
 }
 
@@ -18773,6 +19158,22 @@ func ConfigurationState_Values() []string {
 		ConfigurationStateActive,
 		ConfigurationStateUpdateInProgress,
 		ConfigurationStateUpdateFailed,
+	}
+}
+
+const (
+	// DetailedErrorCodeIncompatibleComputeLocation is a DetailedErrorCode enum value
+	DetailedErrorCodeIncompatibleComputeLocation = "INCOMPATIBLE_COMPUTE_LOCATION"
+
+	// DetailedErrorCodeIncompatibleForwardingConfiguration is a DetailedErrorCode enum value
+	DetailedErrorCodeIncompatibleForwardingConfiguration = "INCOMPATIBLE_FORWARDING_CONFIGURATION"
+)
+
+// DetailedErrorCode_Values returns all elements of the DetailedErrorCode enum
+func DetailedErrorCode_Values() []string {
+	return []string{
+		DetailedErrorCodeIncompatibleComputeLocation,
+		DetailedErrorCodeIncompatibleForwardingConfiguration,
 	}
 }
 
@@ -18805,6 +19206,22 @@ func ErrorCode_Values() []string {
 	return []string{
 		ErrorCodeValidationError,
 		ErrorCodeInternalFailure,
+	}
+}
+
+const (
+	// ForwardingConfigStateDisabled is a ForwardingConfigState enum value
+	ForwardingConfigStateDisabled = "DISABLED"
+
+	// ForwardingConfigStateEnabled is a ForwardingConfigState enum value
+	ForwardingConfigStateEnabled = "ENABLED"
+)
+
+// ForwardingConfigState_Values returns all elements of the ForwardingConfigState enum
+func ForwardingConfigState_Values() []string {
+	return []string{
+		ForwardingConfigStateDisabled,
+		ForwardingConfigStateEnabled,
 	}
 }
 

@@ -6,7 +6,7 @@
     "AddThingToBillingGroup": "<p>Adds a thing to a billing group.</p>",
     "AddThingToThingGroup": "<p>Adds a thing to a thing group.</p>",
     "AssociateTargetsWithJob": "<p>Associates a group with a continuous job. The following criteria must be met: </p> <ul> <li> <p>The job must have been created with the <code>targetSelection</code> field set to \"CONTINUOUS\".</p> </li> <li> <p>The job status must currently be \"IN_PROGRESS\".</p> </li> <li> <p>The total number of targets associated with a job must not exceed 100.</p> </li> </ul>",
-    "AttachPolicy": "<p>Attaches a policy to the specified target.</p>",
+    "AttachPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p>",
     "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p> <b>Note:</b> This API is deprecated. Please use <a>AttachPolicy</a> instead.</p>",
     "AttachSecurityProfile": "<p>Associates a Device Defender security profile with a thing group or this account. Each thing group or account can have up to five security profiles associated with it.</p>",
     "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p>",

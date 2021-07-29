@@ -163,6 +163,8 @@
     "RestorePhoneNumber": "<p>Moves a phone number from the <b>Deletion queue</b> back into the phone number <b>Inventory</b>.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches for phone numbers that can be ordered. For US numbers, provide at least one of the following search filters: <code>AreaCode</code>, <code>City</code>, <code>State</code>, or <code>TollFreePrefix</code>. If you provide <code>City</code>, you must also provide <code>State</code>. Numbers outside the US only support the <code>PhoneNumberType</code> filter, which you must use.</p>",
     "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> <p>Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
+    "StartMeetingTranscription": "<p>Start transcription for the specified <code>meetingId</code>. </p>",
+    "StopMeetingTranscription": "<p>Stops transcription for the specified <code>meetingId</code>.</p>",
     "TagAttendee": "<p>Applies the specified tags to the specified Amazon Chime SDK attendee.</p>",
     "TagMeeting": "<p>Applies the specified tags to the specified Amazon Chime SDK meeting.</p>",
     "TagResource": "<p>Applies the specified tags to the specified Amazon Chime SDK meeting resource.</p>",
@@ -230,7 +232,7 @@
     "AccountStatus": {
       "base": null,
       "refs": {
-        "Account$AccountStatus": "<p>The status of the account, <code>Suspended</code> or <code>Active</code>.</p>"
+        "Account$AccountStatus": "<p>The status of the account.</p>"
       }
     },
     "AccountType": {
@@ -1613,6 +1615,18 @@
         "PutVoiceConnectorEmergencyCallingConfigurationResponse$EmergencyCallingConfiguration": "<p>The emergency calling configuration details.</p>"
       }
     },
+    "EngineTranscribeMedicalSettings": {
+      "base": "<p>Settings specific to the Amazon Transcribe Medical engine.</p>",
+      "refs": {
+        "TranscriptionConfiguration$EngineTranscribeMedicalSettings": "<p>The transcription configuration settings passed to Amazon Transcribe.</p>"
+      }
+    },
+    "EngineTranscribeSettings": {
+      "base": "<p>Settings specific to the Amazon Transcribe engine.</p>",
+      "refs": {
+        "TranscriptionConfiguration$EngineTranscribeSettings": "<p>The transcription configuration settings passed to Amazon Transcribe.</p>"
+      }
+    },
     "ErrorCode": {
       "base": null,
       "refs": {
@@ -2019,6 +2033,8 @@
         "Meeting$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "PhoneNumberOrder$PhoneNumberOrderId": "<p>The phone number order ID.</p>",
         "SipMediaApplicationCall$TransactionId": "<p>The transaction ID of a call.</p>",
+        "StartMeetingTranscriptionRequest$MeetingId": "<p>The unique ID of the meeting being transcribed.</p>",
+        "StopMeetingTranscriptionRequest$MeetingId": "<p>The unique ID of the meeting for which you stop transcription.</p>",
         "TagAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "TagAttendeeRequest$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
         "TagMeetingRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
@@ -2516,7 +2532,7 @@
       }
     },
     "MediaPlacement": {
-      "base": "<p>A set of endpoints used by clients to connect to the media service group for a Amazon Chime SDK meeting.</p>",
+      "base": "<p>A set of endpoints used by clients to connect to the media service group for an Amazon Chime SDK meeting.</p>",
       "refs": {
         "Meeting$MediaPlacement": "<p>The media placement for the meeting.</p>"
       }
@@ -3620,6 +3636,26 @@
         "ListChannelMessagesRequest$SortOrder": "<p>The order in which you want messages sorted. Default is Descending, based on time created.</p>"
       }
     },
+    "StartMeetingTranscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartMeetingTranscriptionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopMeetingTranscriptionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StopMeetingTranscriptionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StreamingConfiguration": {
       "base": "<p>The streaming configuration associated with an Amazon Chime Voice Connector. Specifies whether media streaming is enabled for sending to Amazon Kinesis, and shows the retention period for the Amazon Kinesis data, in hours.</p>",
       "refs": {
@@ -3664,6 +3700,9 @@
         "DeletePhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$AccountId": "<p>The Amazon Chime account ID.</p>",
         "DisassociatePhoneNumberFromUserRequest$UserId": "<p>The user ID.</p>",
+        "EngineTranscribeMedicalSettings$VocabularyName": "<p>The name of the vocabulary passed to Amazon Transcribe Medical.</p>",
+        "EngineTranscribeSettings$VocabularyFilterName": "<p>The name of the vocabulary filter passed to Amazon Transcribe.</p>",
+        "EngineTranscribeSettings$VocabularyName": "<p>The name of the vocabulary passed to Amazon Transcribe.</p>",
         "EventsConfiguration$BotId": "<p>The bot ID.</p>",
         "ForbiddenException$Message": null,
         "GetPhoneNumberRequest$PhoneNumberId": "<p>The phone number ID.</p>",
@@ -3857,6 +3896,54 @@
       "base": null,
       "refs": {
         "SearchAvailablePhoneNumbersRequest$TollFreePrefix": "<p>The toll-free prefix that you use to filter results. Only applies to the US.</p>"
+      }
+    },
+    "TranscribeLanguageCode": {
+      "base": null,
+      "refs": {
+        "EngineTranscribeSettings$LanguageCode": "<p>The language code specified for the Amazon Transcribe engine.</p>"
+      }
+    },
+    "TranscribeMedicalLanguageCode": {
+      "base": null,
+      "refs": {
+        "EngineTranscribeMedicalSettings$LanguageCode": "<p>The language code specified for the Amazon Transcribe Medical engine.</p>"
+      }
+    },
+    "TranscribeMedicalRegion": {
+      "base": null,
+      "refs": {
+        "EngineTranscribeMedicalSettings$Region": "<p>The AWS Region passed to Amazon Transcribe Medical. If you don't specify a Region, Amazon Chime uses the Region closest to the meeting's Region.</p>"
+      }
+    },
+    "TranscribeMedicalSpecialty": {
+      "base": null,
+      "refs": {
+        "EngineTranscribeMedicalSettings$Specialty": "<p>The specialty specified for the Amazon Transcribe Medical engine.</p>"
+      }
+    },
+    "TranscribeMedicalType": {
+      "base": null,
+      "refs": {
+        "EngineTranscribeMedicalSettings$Type": "<p>The type of transcription.</p>"
+      }
+    },
+    "TranscribeRegion": {
+      "base": null,
+      "refs": {
+        "EngineTranscribeSettings$Region": "<p>The AWS Region passed to Amazon Transcribe. If you don't specify a Region, Amazon Chime uses the Region closest to the meeting's Region.</p>"
+      }
+    },
+    "TranscribeVocabularyFilterMethod": {
+      "base": null,
+      "refs": {
+        "EngineTranscribeSettings$VocabularyFilterMethod": "<p>The filtering method passed to Amazon Transcribe.</p>"
+      }
+    },
+    "TranscriptionConfiguration": {
+      "base": "<p>The configuration for the current transcription operation. Must contain <code>EngineTranscribeSettings</code> or <code>EngineTranscribeMedicalSettings</code>.</p>",
+      "refs": {
+        "StartMeetingTranscriptionRequest$TranscriptionConfiguration": "<p>The configuration for the current transcription operation. Must contain <code>EngineTranscribeSettings</code> or <code>EngineTranscribeMedicalSettings</code>.</p>"
       }
     },
     "UnauthorizedClientException": {
@@ -4113,7 +4200,7 @@
         "MediaPlacement$ScreenViewingUrl": "<p>The screen viewing URL.</p>",
         "MediaPlacement$SignalingUrl": "<p>The signaling URL.</p>",
         "MediaPlacement$TurnControlUrl": "<p>The turn control URL.</p>",
-        "MediaPlacement$EventIngestionUrl": "<p>The event ingestion URL.</p>"
+        "MediaPlacement$EventIngestionUrl": "<p>The URL of the S3 bucket used to store the captured media.</p>"
       }
     },
     "UrlType": {

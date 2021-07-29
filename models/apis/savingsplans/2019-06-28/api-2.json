@@ -755,7 +755,7 @@
     "TermDurationInSeconds":{"type":"long"},
     "UUID":{
       "type":"string",
-      "pattern":"^(([0-9a-f]+)(-?))+$"
+      "pattern":"[a-f0-9]+(-[a-f0-9]+)*"
     },
     "UUIDs":{
       "type":"list",

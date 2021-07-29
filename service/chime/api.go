@@ -17630,6 +17630,213 @@ func (c *Chime) SendChannelMessageWithContext(ctx aws.Context, input *SendChanne
 	return out, req.Send()
 }
 
+const opStartMeetingTranscription = "StartMeetingTranscription"
+
+// StartMeetingTranscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the StartMeetingTranscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartMeetingTranscription for more information on using the StartMeetingTranscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartMeetingTranscriptionRequest method.
+//    req, resp := client.StartMeetingTranscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/StartMeetingTranscription
+func (c *Chime) StartMeetingTranscriptionRequest(input *StartMeetingTranscriptionInput) (req *request.Request, output *StartMeetingTranscriptionOutput) {
+	op := &request.Operation{
+		Name:       opStartMeetingTranscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/transcription?operation=start",
+	}
+
+	if input == nil {
+		input = &StartMeetingTranscriptionInput{}
+	}
+
+	output = &StartMeetingTranscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StartMeetingTranscription API operation for Amazon Chime.
+//
+// Start transcription for the specified meetingId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation StartMeetingTranscription for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ResourceLimitExceededException
+//   The request exceeds the resource limit.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * UnprocessableEntityException
+//   The request was well-formed but was unable to be followed due to semantic
+//   errors.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/StartMeetingTranscription
+func (c *Chime) StartMeetingTranscription(input *StartMeetingTranscriptionInput) (*StartMeetingTranscriptionOutput, error) {
+	req, out := c.StartMeetingTranscriptionRequest(input)
+	return out, req.Send()
+}
+
+// StartMeetingTranscriptionWithContext is the same as StartMeetingTranscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartMeetingTranscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) StartMeetingTranscriptionWithContext(ctx aws.Context, input *StartMeetingTranscriptionInput, opts ...request.Option) (*StartMeetingTranscriptionOutput, error) {
+	req, out := c.StartMeetingTranscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opStopMeetingTranscription = "StopMeetingTranscription"
+
+// StopMeetingTranscriptionRequest generates a "aws/request.Request" representing the
+// client's request for the StopMeetingTranscription operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StopMeetingTranscription for more information on using the StopMeetingTranscription
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StopMeetingTranscriptionRequest method.
+//    req, resp := client.StopMeetingTranscriptionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/StopMeetingTranscription
+func (c *Chime) StopMeetingTranscriptionRequest(input *StopMeetingTranscriptionInput) (req *request.Request, output *StopMeetingTranscriptionOutput) {
+	op := &request.Operation{
+		Name:       opStopMeetingTranscription,
+		HTTPMethod: "POST",
+		HTTPPath:   "/meetings/{meetingId}/transcription?operation=stop",
+	}
+
+	if input == nil {
+		input = &StopMeetingTranscriptionInput{}
+	}
+
+	output = &StopMeetingTranscriptionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// StopMeetingTranscription API operation for Amazon Chime.
+//
+// Stops transcription for the specified meetingId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Chime's
+// API operation StopMeetingTranscription for usage and error information.
+//
+// Returned Error Types:
+//   * ForbiddenException
+//   The client is permanently forbidden from making the request.
+//
+//   * NotFoundException
+//   One or more of the resources in the request does not exist in the system.
+//
+//   * BadRequestException
+//   The input parameters don't match the service's restrictions.
+//
+//   * ThrottledClientException
+//   The client exceeded its request rate limit.
+//
+//   * UnauthorizedClientException
+//   The client is not currently authorized to make the request.
+//
+//   * UnprocessableEntityException
+//   The request was well-formed but was unable to be followed due to semantic
+//   errors.
+//
+//   * ServiceUnavailableException
+//   The service is currently unavailable.
+//
+//   * ServiceFailureException
+//   The service encountered an unexpected error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/chime-2018-05-01/StopMeetingTranscription
+func (c *Chime) StopMeetingTranscription(input *StopMeetingTranscriptionInput) (*StopMeetingTranscriptionOutput, error) {
+	req, out := c.StopMeetingTranscriptionRequest(input)
+	return out, req.Send()
+}
+
+// StopMeetingTranscriptionWithContext is the same as StopMeetingTranscription with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StopMeetingTranscription for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Chime) StopMeetingTranscriptionWithContext(ctx aws.Context, input *StopMeetingTranscriptionInput, opts ...request.Option) (*StopMeetingTranscriptionOutput, error) {
+	req, out := c.StopMeetingTranscriptionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagAttendee = "TagAttendee"
 
 // TagAttendeeRequest generates a "aws/request.Request" representing the
@@ -20396,7 +20603,7 @@ type Account struct {
 	// AccountId is a required field
 	AccountId *string `type:"string" required:"true"`
 
-	// The status of the account, Suspended or Active.
+	// The status of the account.
 	AccountStatus *string `type:"string" enum:"AccountStatus"`
 
 	// The Amazon Chime account type. For more information about different account
@@ -28878,6 +29085,168 @@ func (s *EmergencyCallingConfiguration) SetDNIS(v []*DNISEmergencyCallingConfigu
 	return s
 }
 
+// Settings specific to the Amazon Transcribe Medical engine.
+type EngineTranscribeMedicalSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The language code specified for the Amazon Transcribe Medical engine.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"TranscribeMedicalLanguageCode"`
+
+	// The AWS Region passed to Amazon Transcribe Medical. If you don't specify
+	// a Region, Amazon Chime uses the Region closest to the meeting's Region.
+	Region *string `type:"string" enum:"TranscribeMedicalRegion"`
+
+	// The specialty specified for the Amazon Transcribe Medical engine.
+	//
+	// Specialty is a required field
+	Specialty *string `type:"string" required:"true" enum:"TranscribeMedicalSpecialty"`
+
+	// The type of transcription.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"TranscribeMedicalType"`
+
+	// The name of the vocabulary passed to Amazon Transcribe Medical.
+	VocabularyName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EngineTranscribeMedicalSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EngineTranscribeMedicalSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EngineTranscribeMedicalSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EngineTranscribeMedicalSettings"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+	if s.Specialty == nil {
+		invalidParams.Add(request.NewErrParamRequired("Specialty"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *EngineTranscribeMedicalSettings) SetLanguageCode(v string) *EngineTranscribeMedicalSettings {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *EngineTranscribeMedicalSettings) SetRegion(v string) *EngineTranscribeMedicalSettings {
+	s.Region = &v
+	return s
+}
+
+// SetSpecialty sets the Specialty field's value.
+func (s *EngineTranscribeMedicalSettings) SetSpecialty(v string) *EngineTranscribeMedicalSettings {
+	s.Specialty = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *EngineTranscribeMedicalSettings) SetType(v string) *EngineTranscribeMedicalSettings {
+	s.Type = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *EngineTranscribeMedicalSettings) SetVocabularyName(v string) *EngineTranscribeMedicalSettings {
+	s.VocabularyName = &v
+	return s
+}
+
+// Settings specific to the Amazon Transcribe engine.
+type EngineTranscribeSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The language code specified for the Amazon Transcribe engine.
+	//
+	// LanguageCode is a required field
+	LanguageCode *string `type:"string" required:"true" enum:"TranscribeLanguageCode"`
+
+	// The AWS Region passed to Amazon Transcribe. If you don't specify a Region,
+	// Amazon Chime uses the Region closest to the meeting's Region.
+	Region *string `type:"string" enum:"TranscribeRegion"`
+
+	// The filtering method passed to Amazon Transcribe.
+	VocabularyFilterMethod *string `type:"string" enum:"TranscribeVocabularyFilterMethod"`
+
+	// The name of the vocabulary filter passed to Amazon Transcribe.
+	VocabularyFilterName *string `type:"string"`
+
+	// The name of the vocabulary passed to Amazon Transcribe.
+	VocabularyName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EngineTranscribeSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EngineTranscribeSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EngineTranscribeSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EngineTranscribeSettings"}
+	if s.LanguageCode == nil {
+		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *EngineTranscribeSettings) SetLanguageCode(v string) *EngineTranscribeSettings {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *EngineTranscribeSettings) SetRegion(v string) *EngineTranscribeSettings {
+	s.Region = &v
+	return s
+}
+
+// SetVocabularyFilterMethod sets the VocabularyFilterMethod field's value.
+func (s *EngineTranscribeSettings) SetVocabularyFilterMethod(v string) *EngineTranscribeSettings {
+	s.VocabularyFilterMethod = &v
+	return s
+}
+
+// SetVocabularyFilterName sets the VocabularyFilterName field's value.
+func (s *EngineTranscribeSettings) SetVocabularyFilterName(v string) *EngineTranscribeSettings {
+	s.VocabularyFilterName = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *EngineTranscribeSettings) SetVocabularyName(v string) *EngineTranscribeSettings {
+	s.VocabularyName = &v
+	return s
+}
+
 // The configuration that allows a bot to receive outgoing events. Can be either
 // an HTTPS endpoint or a Lambda function ARN.
 type EventsConfiguration struct {
@@ -34370,7 +34739,7 @@ func (s *MediaCapturePipeline) SetUpdatedTimestamp(v time.Time) *MediaCapturePip
 }
 
 // A set of endpoints used by clients to connect to the media service group
-// for a Amazon Chime SDK meeting.
+// for an Amazon Chime SDK meeting.
 type MediaPlacement struct {
 	_ struct{} `type:"structure"`
 
@@ -34380,7 +34749,7 @@ type MediaPlacement struct {
 	// The audio host URL.
 	AudioHostUrl *string `type:"string"`
 
-	// The event ingestion URL.
+	// The URL of the S3 bucket used to store the captured media.
 	EventIngestionUrl *string `type:"string"`
 
 	// The screen data URL.
@@ -38114,6 +38483,136 @@ func (s *SipRuleTargetApplication) SetSipMediaApplicationId(v string) *SipRuleTa
 	return s
 }
 
+type StartMeetingTranscriptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID of the meeting being transcribed.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+
+	// The configuration for the current transcription operation. Must contain EngineTranscribeSettings
+	// or EngineTranscribeMedicalSettings.
+	//
+	// TranscriptionConfiguration is a required field
+	TranscriptionConfiguration *TranscriptionConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s StartMeetingTranscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMeetingTranscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartMeetingTranscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartMeetingTranscriptionInput"}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+	if s.TranscriptionConfiguration == nil {
+		invalidParams.Add(request.NewErrParamRequired("TranscriptionConfiguration"))
+	}
+	if s.TranscriptionConfiguration != nil {
+		if err := s.TranscriptionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("TranscriptionConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *StartMeetingTranscriptionInput) SetMeetingId(v string) *StartMeetingTranscriptionInput {
+	s.MeetingId = &v
+	return s
+}
+
+// SetTranscriptionConfiguration sets the TranscriptionConfiguration field's value.
+func (s *StartMeetingTranscriptionInput) SetTranscriptionConfiguration(v *TranscriptionConfiguration) *StartMeetingTranscriptionInput {
+	s.TranscriptionConfiguration = v
+	return s
+}
+
+type StartMeetingTranscriptionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartMeetingTranscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartMeetingTranscriptionOutput) GoString() string {
+	return s.String()
+}
+
+type StopMeetingTranscriptionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique ID of the meeting for which you stop transcription.
+	//
+	// MeetingId is a required field
+	MeetingId *string `location:"uri" locationName:"meetingId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StopMeetingTranscriptionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopMeetingTranscriptionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StopMeetingTranscriptionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StopMeetingTranscriptionInput"}
+	if s.MeetingId == nil {
+		invalidParams.Add(request.NewErrParamRequired("MeetingId"))
+	}
+	if s.MeetingId != nil && len(*s.MeetingId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MeetingId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMeetingId sets the MeetingId field's value.
+func (s *StopMeetingTranscriptionInput) SetMeetingId(v string) *StopMeetingTranscriptionInput {
+	s.MeetingId = &v
+	return s
+}
+
+type StopMeetingTranscriptionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s StopMeetingTranscriptionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StopMeetingTranscriptionOutput) GoString() string {
+	return s.String()
+}
+
 // The streaming configuration associated with an Amazon Chime Voice Connector.
 // Specifies whether media streaming is enabled for sending to Amazon Kinesis,
 // and shows the retention period for the Amazon Kinesis data, in hours.
@@ -38780,6 +39279,60 @@ func (s *ThrottledClientException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottledClientException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The configuration for the current transcription operation. Must contain EngineTranscribeSettings
+// or EngineTranscribeMedicalSettings.
+type TranscriptionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The transcription configuration settings passed to Amazon Transcribe.
+	EngineTranscribeMedicalSettings *EngineTranscribeMedicalSettings `type:"structure"`
+
+	// The transcription configuration settings passed to Amazon Transcribe.
+	EngineTranscribeSettings *EngineTranscribeSettings `type:"structure"`
+}
+
+// String returns the string representation
+func (s TranscriptionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TranscriptionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TranscriptionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TranscriptionConfiguration"}
+	if s.EngineTranscribeMedicalSettings != nil {
+		if err := s.EngineTranscribeMedicalSettings.Validate(); err != nil {
+			invalidParams.AddNested("EngineTranscribeMedicalSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.EngineTranscribeSettings != nil {
+		if err := s.EngineTranscribeSettings.Validate(); err != nil {
+			invalidParams.AddNested("EngineTranscribeSettings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEngineTranscribeMedicalSettings sets the EngineTranscribeMedicalSettings field's value.
+func (s *TranscriptionConfiguration) SetEngineTranscribeMedicalSettings(v *EngineTranscribeMedicalSettings) *TranscriptionConfiguration {
+	s.EngineTranscribeMedicalSettings = v
+	return s
+}
+
+// SetEngineTranscribeSettings sets the EngineTranscribeSettings field's value.
+func (s *TranscriptionConfiguration) SetEngineTranscribeSettings(v *EngineTranscribeSettings) *TranscriptionConfiguration {
+	s.EngineTranscribeSettings = v
+	return s
 }
 
 // The client is not currently authorized to make the request.
@@ -42337,6 +42890,226 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAscending,
 		SortOrderDescending,
+	}
+}
+
+const (
+	// TranscribeLanguageCodeEnUs is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeEnUs = "en-US"
+
+	// TranscribeLanguageCodeEnGb is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeEnGb = "en-GB"
+
+	// TranscribeLanguageCodeEsUs is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeEsUs = "es-US"
+
+	// TranscribeLanguageCodeFrCa is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeFrCa = "fr-CA"
+
+	// TranscribeLanguageCodeFrFr is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeFrFr = "fr-FR"
+
+	// TranscribeLanguageCodeEnAu is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeEnAu = "en-AU"
+
+	// TranscribeLanguageCodeItIt is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeItIt = "it-IT"
+
+	// TranscribeLanguageCodeDeDe is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeDeDe = "de-DE"
+
+	// TranscribeLanguageCodePtBr is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodePtBr = "pt-BR"
+
+	// TranscribeLanguageCodeJaJp is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeJaJp = "ja-JP"
+
+	// TranscribeLanguageCodeKoKr is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeKoKr = "ko-KR"
+
+	// TranscribeLanguageCodeZhCn is a TranscribeLanguageCode enum value
+	TranscribeLanguageCodeZhCn = "zh-CN"
+)
+
+// TranscribeLanguageCode_Values returns all elements of the TranscribeLanguageCode enum
+func TranscribeLanguageCode_Values() []string {
+	return []string{
+		TranscribeLanguageCodeEnUs,
+		TranscribeLanguageCodeEnGb,
+		TranscribeLanguageCodeEsUs,
+		TranscribeLanguageCodeFrCa,
+		TranscribeLanguageCodeFrFr,
+		TranscribeLanguageCodeEnAu,
+		TranscribeLanguageCodeItIt,
+		TranscribeLanguageCodeDeDe,
+		TranscribeLanguageCodePtBr,
+		TranscribeLanguageCodeJaJp,
+		TranscribeLanguageCodeKoKr,
+		TranscribeLanguageCodeZhCn,
+	}
+}
+
+const (
+	// TranscribeMedicalLanguageCodeEnUs is a TranscribeMedicalLanguageCode enum value
+	TranscribeMedicalLanguageCodeEnUs = "en-US"
+)
+
+// TranscribeMedicalLanguageCode_Values returns all elements of the TranscribeMedicalLanguageCode enum
+func TranscribeMedicalLanguageCode_Values() []string {
+	return []string{
+		TranscribeMedicalLanguageCodeEnUs,
+	}
+}
+
+const (
+	// TranscribeMedicalRegionUsEast1 is a TranscribeMedicalRegion enum value
+	TranscribeMedicalRegionUsEast1 = "us-east-1"
+
+	// TranscribeMedicalRegionUsEast2 is a TranscribeMedicalRegion enum value
+	TranscribeMedicalRegionUsEast2 = "us-east-2"
+
+	// TranscribeMedicalRegionUsWest2 is a TranscribeMedicalRegion enum value
+	TranscribeMedicalRegionUsWest2 = "us-west-2"
+
+	// TranscribeMedicalRegionApSoutheast2 is a TranscribeMedicalRegion enum value
+	TranscribeMedicalRegionApSoutheast2 = "ap-southeast-2"
+
+	// TranscribeMedicalRegionCaCentral1 is a TranscribeMedicalRegion enum value
+	TranscribeMedicalRegionCaCentral1 = "ca-central-1"
+
+	// TranscribeMedicalRegionEuWest1 is a TranscribeMedicalRegion enum value
+	TranscribeMedicalRegionEuWest1 = "eu-west-1"
+)
+
+// TranscribeMedicalRegion_Values returns all elements of the TranscribeMedicalRegion enum
+func TranscribeMedicalRegion_Values() []string {
+	return []string{
+		TranscribeMedicalRegionUsEast1,
+		TranscribeMedicalRegionUsEast2,
+		TranscribeMedicalRegionUsWest2,
+		TranscribeMedicalRegionApSoutheast2,
+		TranscribeMedicalRegionCaCentral1,
+		TranscribeMedicalRegionEuWest1,
+	}
+}
+
+const (
+	// TranscribeMedicalSpecialtyPrimarycare is a TranscribeMedicalSpecialty enum value
+	TranscribeMedicalSpecialtyPrimarycare = "PRIMARYCARE"
+
+	// TranscribeMedicalSpecialtyCardiology is a TranscribeMedicalSpecialty enum value
+	TranscribeMedicalSpecialtyCardiology = "CARDIOLOGY"
+
+	// TranscribeMedicalSpecialtyNeurology is a TranscribeMedicalSpecialty enum value
+	TranscribeMedicalSpecialtyNeurology = "NEUROLOGY"
+
+	// TranscribeMedicalSpecialtyOncology is a TranscribeMedicalSpecialty enum value
+	TranscribeMedicalSpecialtyOncology = "ONCOLOGY"
+
+	// TranscribeMedicalSpecialtyRadiology is a TranscribeMedicalSpecialty enum value
+	TranscribeMedicalSpecialtyRadiology = "RADIOLOGY"
+
+	// TranscribeMedicalSpecialtyUrology is a TranscribeMedicalSpecialty enum value
+	TranscribeMedicalSpecialtyUrology = "UROLOGY"
+)
+
+// TranscribeMedicalSpecialty_Values returns all elements of the TranscribeMedicalSpecialty enum
+func TranscribeMedicalSpecialty_Values() []string {
+	return []string{
+		TranscribeMedicalSpecialtyPrimarycare,
+		TranscribeMedicalSpecialtyCardiology,
+		TranscribeMedicalSpecialtyNeurology,
+		TranscribeMedicalSpecialtyOncology,
+		TranscribeMedicalSpecialtyRadiology,
+		TranscribeMedicalSpecialtyUrology,
+	}
+}
+
+const (
+	// TranscribeMedicalTypeConversation is a TranscribeMedicalType enum value
+	TranscribeMedicalTypeConversation = "CONVERSATION"
+
+	// TranscribeMedicalTypeDictation is a TranscribeMedicalType enum value
+	TranscribeMedicalTypeDictation = "DICTATION"
+)
+
+// TranscribeMedicalType_Values returns all elements of the TranscribeMedicalType enum
+func TranscribeMedicalType_Values() []string {
+	return []string{
+		TranscribeMedicalTypeConversation,
+		TranscribeMedicalTypeDictation,
+	}
+}
+
+const (
+	// TranscribeRegionUsEast2 is a TranscribeRegion enum value
+	TranscribeRegionUsEast2 = "us-east-2"
+
+	// TranscribeRegionUsEast1 is a TranscribeRegion enum value
+	TranscribeRegionUsEast1 = "us-east-1"
+
+	// TranscribeRegionUsWest2 is a TranscribeRegion enum value
+	TranscribeRegionUsWest2 = "us-west-2"
+
+	// TranscribeRegionApNortheast2 is a TranscribeRegion enum value
+	TranscribeRegionApNortheast2 = "ap-northeast-2"
+
+	// TranscribeRegionApSoutheast2 is a TranscribeRegion enum value
+	TranscribeRegionApSoutheast2 = "ap-southeast-2"
+
+	// TranscribeRegionApNortheast1 is a TranscribeRegion enum value
+	TranscribeRegionApNortheast1 = "ap-northeast-1"
+
+	// TranscribeRegionCaCentral1 is a TranscribeRegion enum value
+	TranscribeRegionCaCentral1 = "ca-central-1"
+
+	// TranscribeRegionEuCentral1 is a TranscribeRegion enum value
+	TranscribeRegionEuCentral1 = "eu-central-1"
+
+	// TranscribeRegionEuWest1 is a TranscribeRegion enum value
+	TranscribeRegionEuWest1 = "eu-west-1"
+
+	// TranscribeRegionEuWest2 is a TranscribeRegion enum value
+	TranscribeRegionEuWest2 = "eu-west-2"
+
+	// TranscribeRegionSaEast1 is a TranscribeRegion enum value
+	TranscribeRegionSaEast1 = "sa-east-1"
+)
+
+// TranscribeRegion_Values returns all elements of the TranscribeRegion enum
+func TranscribeRegion_Values() []string {
+	return []string{
+		TranscribeRegionUsEast2,
+		TranscribeRegionUsEast1,
+		TranscribeRegionUsWest2,
+		TranscribeRegionApNortheast2,
+		TranscribeRegionApSoutheast2,
+		TranscribeRegionApNortheast1,
+		TranscribeRegionCaCentral1,
+		TranscribeRegionEuCentral1,
+		TranscribeRegionEuWest1,
+		TranscribeRegionEuWest2,
+		TranscribeRegionSaEast1,
+	}
+}
+
+const (
+	// TranscribeVocabularyFilterMethodRemove is a TranscribeVocabularyFilterMethod enum value
+	TranscribeVocabularyFilterMethodRemove = "remove"
+
+	// TranscribeVocabularyFilterMethodMask is a TranscribeVocabularyFilterMethod enum value
+	TranscribeVocabularyFilterMethodMask = "mask"
+
+	// TranscribeVocabularyFilterMethodTag is a TranscribeVocabularyFilterMethod enum value
+	TranscribeVocabularyFilterMethodTag = "tag"
+)
+
+// TranscribeVocabularyFilterMethod_Values returns all elements of the TranscribeVocabularyFilterMethod enum
+func TranscribeVocabularyFilterMethod_Values() []string {
+	return []string{
+		TranscribeVocabularyFilterMethodRemove,
+		TranscribeVocabularyFilterMethodMask,
+		TranscribeVocabularyFilterMethodTag,
 	}
 }
 
