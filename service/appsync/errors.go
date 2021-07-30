@@ -56,7 +56,7 @@ const (
 	// ErrCodeInternalFailureException for service response error code
 	// "InternalFailureException".
 	//
-	// An internal AWS AppSync error occurred. Try your request again.
+	// An internal AppSync error occurred. Try your request again.
 	ErrCodeInternalFailureException = "InternalFailureException"
 
 	// ErrCodeLimitExceededException for service response error code

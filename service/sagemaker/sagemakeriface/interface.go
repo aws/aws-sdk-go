@@ -1168,6 +1168,21 @@ type SageMakerAPI interface {
 	WaitUntilEndpointInService(*sagemaker.DescribeEndpointInput) error
 	WaitUntilEndpointInServiceWithContext(aws.Context, *sagemaker.DescribeEndpointInput, ...request.WaiterOption) error
 
+	WaitUntilImageCreated(*sagemaker.DescribeImageInput) error
+	WaitUntilImageCreatedWithContext(aws.Context, *sagemaker.DescribeImageInput, ...request.WaiterOption) error
+
+	WaitUntilImageDeleted(*sagemaker.DescribeImageInput) error
+	WaitUntilImageDeletedWithContext(aws.Context, *sagemaker.DescribeImageInput, ...request.WaiterOption) error
+
+	WaitUntilImageUpdated(*sagemaker.DescribeImageInput) error
+	WaitUntilImageUpdatedWithContext(aws.Context, *sagemaker.DescribeImageInput, ...request.WaiterOption) error
+
+	WaitUntilImageVersionCreated(*sagemaker.DescribeImageVersionInput) error
+	WaitUntilImageVersionCreatedWithContext(aws.Context, *sagemaker.DescribeImageVersionInput, ...request.WaiterOption) error
+
+	WaitUntilImageVersionDeleted(*sagemaker.DescribeImageVersionInput) error
+	WaitUntilImageVersionDeletedWithContext(aws.Context, *sagemaker.DescribeImageVersionInput, ...request.WaiterOption) error
+
 	WaitUntilNotebookInstanceDeleted(*sagemaker.DescribeNotebookInstanceInput) error
 	WaitUntilNotebookInstanceDeletedWithContext(aws.Context, *sagemaker.DescribeNotebookInstanceInput, ...request.WaiterOption) error
 

@@ -203,6 +203,8 @@ func ExampleSecretsManager_DescribeSecret_shared00() {
 				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodeInvalidParameterException:
+				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -274,6 +276,8 @@ func ExampleSecretsManager_GetResourcePolicy_shared00() {
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
 			case secretsmanager.ErrCodeInvalidRequestException:
 				fmt.Println(secretsmanager.ErrCodeInvalidRequestException, aerr.Error())
+			case secretsmanager.ErrCodeInvalidParameterException:
+				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -350,6 +354,8 @@ func ExampleSecretsManager_ListSecretVersionIds_shared00() {
 				fmt.Println(secretsmanager.ErrCodeResourceNotFoundException, aerr.Error())
 			case secretsmanager.ErrCodeInternalServiceError:
 				fmt.Println(secretsmanager.ErrCodeInternalServiceError, aerr.Error())
+			case secretsmanager.ErrCodeInvalidParameterException:
+				fmt.Println(secretsmanager.ErrCodeInvalidParameterException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
