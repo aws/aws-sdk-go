@@ -82,7 +82,7 @@ func (c *AppSync) CreateApiCacheRequest(input *CreateApiCacheInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/CreateApiCache
 func (c *AppSync) CreateApiCache(input *CreateApiCacheInput) (*CreateApiCacheOutput, error) {
@@ -179,7 +179,7 @@ func (c *AppSync) CreateApiKeyRequest(input *CreateApiKeyInput) (req *request.Re
 //   The request exceeded a limit. Try your request again.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * ApiKeyLimitExceededException
 //   The API key exceeded a limit. Try your request again.
@@ -280,7 +280,7 @@ func (c *AppSync) CreateDataSourceRequest(input *CreateDataSourceInput) (req *re
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/CreateDataSource
 func (c *AppSync) CreateDataSource(input *CreateDataSourceInput) (*CreateDataSourceOutput, error) {
@@ -373,7 +373,7 @@ func (c *AppSync) CreateFunctionRequest(input *CreateFunctionInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/CreateFunction
 func (c *AppSync) CreateFunction(input *CreateFunctionInput) (*CreateFunctionOutput, error) {
@@ -466,7 +466,7 @@ func (c *AppSync) CreateGraphqlApiRequest(input *CreateGraphqlApiInput) (req *re
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * ApiLimitExceededException
 //   The GraphQL API exceeded a limit. Try your request again.
@@ -562,7 +562,7 @@ func (c *AppSync) CreateResolverRequest(input *CreateResolverInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/CreateResolver
 func (c *AppSync) CreateResolver(input *CreateResolverInput) (*CreateResolverOutput, error) {
@@ -656,7 +656,7 @@ func (c *AppSync) CreateTypeRequest(input *CreateTypeInput) (req *request.Reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/CreateType
 func (c *AppSync) CreateType(input *CreateTypeInput) (*CreateTypeOutput, error) {
@@ -751,7 +751,7 @@ func (c *AppSync) DeleteApiCacheRequest(input *DeleteApiCacheInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DeleteApiCache
 func (c *AppSync) DeleteApiCache(input *DeleteApiCacheInput) (*DeleteApiCacheOutput, error) {
@@ -842,7 +842,7 @@ func (c *AppSync) DeleteApiKeyRequest(input *DeleteApiKeyInput) (req *request.Re
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DeleteApiKey
 func (c *AppSync) DeleteApiKey(input *DeleteApiKeyInput) (*DeleteApiKeyOutput, error) {
@@ -937,7 +937,7 @@ func (c *AppSync) DeleteDataSourceRequest(input *DeleteDataSourceInput) (req *re
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DeleteDataSource
 func (c *AppSync) DeleteDataSource(input *DeleteDataSourceInput) (*DeleteDataSourceOutput, error) {
@@ -1028,7 +1028,7 @@ func (c *AppSync) DeleteFunctionRequest(input *DeleteFunctionInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DeleteFunction
 func (c *AppSync) DeleteFunction(input *DeleteFunctionInput) (*DeleteFunctionOutput, error) {
@@ -1123,7 +1123,7 @@ func (c *AppSync) DeleteGraphqlApiRequest(input *DeleteGraphqlApiInput) (req *re
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * AccessDeniedException
 //   You do not have access to perform this operation on this resource.
@@ -1217,7 +1217,7 @@ func (c *AppSync) DeleteResolverRequest(input *DeleteResolverInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DeleteResolver
 func (c *AppSync) DeleteResolver(input *DeleteResolverInput) (*DeleteResolverOutput, error) {
@@ -1312,7 +1312,7 @@ func (c *AppSync) DeleteTypeRequest(input *DeleteTypeInput) (req *request.Reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/DeleteType
 func (c *AppSync) DeleteType(input *DeleteTypeInput) (*DeleteTypeOutput, error) {
@@ -1407,7 +1407,7 @@ func (c *AppSync) FlushApiCacheRequest(input *FlushApiCacheInput) (req *request.
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/FlushApiCache
 func (c *AppSync) FlushApiCache(input *FlushApiCacheInput) (*FlushApiCacheOutput, error) {
@@ -1501,7 +1501,7 @@ func (c *AppSync) GetApiCacheRequest(input *GetApiCacheInput) (req *request.Requ
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetApiCache
 func (c *AppSync) GetApiCache(input *GetApiCacheInput) (*GetApiCacheOutput, error) {
@@ -1595,7 +1595,7 @@ func (c *AppSync) GetDataSourceRequest(input *GetDataSourceInput) (req *request.
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetDataSource
 func (c *AppSync) GetDataSource(input *GetDataSourceInput) (*GetDataSourceOutput, error) {
@@ -1772,7 +1772,7 @@ func (c *AppSync) GetGraphqlApiRequest(input *GetGraphqlApiInput) (req *request.
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * AccessDeniedException
 //   You do not have access to perform this operation on this resource.
@@ -1864,7 +1864,7 @@ func (c *AppSync) GetIntrospectionSchemaRequest(input *GetIntrospectionSchemaInp
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetIntrospectionSchema
 func (c *AppSync) GetIntrospectionSchema(input *GetIntrospectionSchemaInput) (*GetIntrospectionSchemaOutput, error) {
@@ -2041,7 +2041,7 @@ func (c *AppSync) GetSchemaCreationStatusRequest(input *GetSchemaCreationStatusI
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetSchemaCreationStatus
 func (c *AppSync) GetSchemaCreationStatus(input *GetSchemaCreationStatusInput) (*GetSchemaCreationStatusOutput, error) {
@@ -2135,7 +2135,7 @@ func (c *AppSync) GetTypeRequest(input *GetTypeInput) (req *request.Request, out
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/GetType
 func (c *AppSync) GetType(input *GetTypeInput) (*GetTypeOutput, error) {
@@ -2230,7 +2230,7 @@ func (c *AppSync) ListApiKeysRequest(input *ListApiKeysInput) (req *request.Requ
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListApiKeys
 func (c *AppSync) ListApiKeys(input *ListApiKeysInput) (*ListApiKeysOutput, error) {
@@ -2320,7 +2320,7 @@ func (c *AppSync) ListDataSourcesRequest(input *ListDataSourcesInput) (req *requ
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListDataSources
 func (c *AppSync) ListDataSources(input *ListDataSourcesInput) (*ListDataSourcesOutput, error) {
@@ -2410,7 +2410,7 @@ func (c *AppSync) ListFunctionsRequest(input *ListFunctionsInput) (req *request.
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListFunctions
 func (c *AppSync) ListFunctions(input *ListFunctionsInput) (*ListFunctionsOutput, error) {
@@ -2496,7 +2496,7 @@ func (c *AppSync) ListGraphqlApisRequest(input *ListGraphqlApisInput) (req *requ
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListGraphqlApis
 func (c *AppSync) ListGraphqlApis(input *ListGraphqlApisInput) (*ListGraphqlApisOutput, error) {
@@ -2586,7 +2586,7 @@ func (c *AppSync) ListResolversRequest(input *ListResolversInput) (req *request.
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListResolvers
 func (c *AppSync) ListResolvers(input *ListResolversInput) (*ListResolversOutput, error) {
@@ -2676,7 +2676,7 @@ func (c *AppSync) ListResolversByFunctionRequest(input *ListResolversByFunctionI
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListResolversByFunction
 func (c *AppSync) ListResolversByFunction(input *ListResolversByFunctionInput) (*ListResolversByFunctionOutput, error) {
@@ -2769,7 +2769,7 @@ func (c *AppSync) ListTagsForResourceRequest(input *ListTagsForResourceInput) (r
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * AccessDeniedException
 //   You do not have access to perform this operation on this resource.
@@ -2866,7 +2866,7 @@ func (c *AppSync) ListTypesRequest(input *ListTypesInput) (req *request.Request,
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/ListTypes
 func (c *AppSync) ListTypes(input *ListTypesInput) (*ListTypesOutput, error) {
@@ -2962,7 +2962,7 @@ func (c *AppSync) StartSchemaCreationRequest(input *StartSchemaCreationInput) (r
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/StartSchemaCreation
 func (c *AppSync) StartSchemaCreation(input *StartSchemaCreationInput) (*StartSchemaCreationOutput, error) {
@@ -3056,7 +3056,7 @@ func (c *AppSync) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * AccessDeniedException
 //   You do not have access to perform this operation on this resource.
@@ -3153,7 +3153,7 @@ func (c *AppSync) UntagResourceRequest(input *UntagResourceInput) (req *request.
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * AccessDeniedException
 //   You do not have access to perform this operation on this resource.
@@ -3250,7 +3250,7 @@ func (c *AppSync) UpdateApiCacheRequest(input *UpdateApiCacheInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateApiCache
 func (c *AppSync) UpdateApiCache(input *UpdateApiCacheInput) (*UpdateApiCacheOutput, error) {
@@ -3343,7 +3343,7 @@ func (c *AppSync) UpdateApiKeyRequest(input *UpdateApiKeyInput) (req *request.Re
 //   The request exceeded a limit. Try your request again.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * ApiKeyValidityOutOfBoundsException
 //   The API key expiration must be set to a value between 1 and 365 days from
@@ -3441,7 +3441,7 @@ func (c *AppSync) UpdateDataSourceRequest(input *UpdateDataSourceInput) (req *re
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateDataSource
 func (c *AppSync) UpdateDataSource(input *UpdateDataSourceInput) (*UpdateDataSourceOutput, error) {
@@ -3531,7 +3531,7 @@ func (c *AppSync) UpdateFunctionRequest(input *UpdateFunctionInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateFunction
 func (c *AppSync) UpdateFunction(input *UpdateFunctionInput) (*UpdateFunctionOutput, error) {
@@ -3625,7 +3625,7 @@ func (c *AppSync) UpdateGraphqlApiRequest(input *UpdateGraphqlApiInput) (req *re
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 //   * AccessDeniedException
 //   You do not have access to perform this operation on this resource.
@@ -3718,7 +3718,7 @@ func (c *AppSync) UpdateResolverRequest(input *UpdateResolverInput) (req *reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateResolver
 func (c *AppSync) UpdateResolver(input *UpdateResolverInput) (*UpdateResolverOutput, error) {
@@ -3812,7 +3812,7 @@ func (c *AppSync) UpdateTypeRequest(input *UpdateTypeInput) (req *request.Reques
 //   You are not authorized to perform this operation.
 //
 //   * InternalFailureException
-//   An internal AWS AppSync error occurred. Try your request again.
+//   An internal AppSync error occurred. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/appsync-2017-07-25/UpdateType
 func (c *AppSync) UpdateType(input *UpdateTypeInput) (*UpdateTypeOutput, error) {
@@ -3896,8 +3896,12 @@ func (s *AccessDeniedException) RequestID() string {
 type AdditionalAuthenticationProvider struct {
 	_ struct{} `type:"structure"`
 
-	// The authentication type: API key, AWS IAM, OIDC, or Amazon Cognito user pools.
+	// The authentication type: API key, Identity and Access Management, OIDC, or
+	// Amazon Cognito user pools.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
+
+	// Configuration for AWS Lambda function authorization.
+	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
 	// The OpenID Connect configuration.
 	OpenIDConnectConfig *OpenIDConnectConfig `locationName:"openIDConnectConfig" type:"structure"`
@@ -3919,6 +3923,11 @@ func (s AdditionalAuthenticationProvider) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *AdditionalAuthenticationProvider) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "AdditionalAuthenticationProvider"}
+	if s.LambdaAuthorizerConfig != nil {
+		if err := s.LambdaAuthorizerConfig.Validate(); err != nil {
+			invalidParams.AddNested("LambdaAuthorizerConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.OpenIDConnectConfig != nil {
 		if err := s.OpenIDConnectConfig.Validate(); err != nil {
 			invalidParams.AddNested("OpenIDConnectConfig", err.(request.ErrInvalidParams))
@@ -3939,6 +3948,12 @@ func (s *AdditionalAuthenticationProvider) Validate() error {
 // SetAuthenticationType sets the AuthenticationType field's value.
 func (s *AdditionalAuthenticationProvider) SetAuthenticationType(v string) *AdditionalAuthenticationProvider {
 	s.AuthenticationType = &v
+	return s
+}
+
+// SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
+func (s *AdditionalAuthenticationProvider) SetLambdaAuthorizerConfig(v *LambdaAuthorizerConfig) *AdditionalAuthenticationProvider {
+	s.LambdaAuthorizerConfig = v
 	return s
 }
 
@@ -4078,7 +4093,7 @@ func (s *ApiCache) SetType(v string) *ApiCache {
 
 // Describes an API key.
 //
-// Customers invoke AWS AppSync GraphQL API operations with API keys as an identity
+// Customers invoke AppSync GraphQL API operations with API keys as an identity
 // mechanism. There are two key versions:
 //
 // da1: This version was introduced at launch in November 2017. These keys always
@@ -4352,7 +4367,7 @@ type AuthorizationConfig struct {
 	// AuthorizationType is a required field
 	AuthorizationType *string `locationName:"authorizationType" type:"string" required:"true" enum:"AuthorizationType"`
 
-	// The AWS IAM settings.
+	// The Identity and Access Management settings.
 	AwsIamConfig *AwsIamConfig `locationName:"awsIamConfig" type:"structure"`
 }
 
@@ -4391,14 +4406,14 @@ func (s *AuthorizationConfig) SetAwsIamConfig(v *AwsIamConfig) *AuthorizationCon
 	return s
 }
 
-// The AWS IAM configuration.
+// The Identity and Access Management configuration.
 type AwsIamConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The signing region for AWS IAM authorization.
+	// The signing region for Identity and Access Management authorization.
 	SigningRegion *string `locationName:"signingRegion" type:"string"`
 
-	// The signing service name for AWS IAM authorization.
+	// The signing service name for Identity and Access Management authorization.
 	SigningServiceName *string `locationName:"signingServiceName" type:"string"`
 }
 
@@ -4527,7 +4542,7 @@ type CognitoUserPoolConfig struct {
 	// app client ID.
 	AppIdClientRegex *string `locationName:"appIdClientRegex" type:"string"`
 
-	// The AWS Region in which the user pool was created.
+	// The Amazon Web Services Region in which the user pool was created.
 	//
 	// AwsRegion is a required field
 	AwsRegion *string `locationName:"awsRegion" type:"string" required:"true"`
@@ -4913,7 +4928,7 @@ type CreateDataSourceInput struct {
 	// HTTP endpoint settings.
 	HttpConfig *HttpDataSourceConfig `locationName:"httpConfig" type:"structure"`
 
-	// AWS Lambda settings.
+	// Amazon Web Services Lambda settings.
 	LambdaConfig *LambdaDataSourceConfig `locationName:"lambdaConfig" type:"structure"`
 
 	// A user-supplied name for the DataSource.
@@ -4924,8 +4939,8 @@ type CreateDataSourceInput struct {
 	// Relational database settings.
 	RelationalDatabaseConfig *RelationalDatabaseDataSourceConfig `locationName:"relationalDatabaseConfig" type:"structure"`
 
-	// The AWS IAM service role ARN for the data source. The system assumes this
-	// role when accessing the data source.
+	// The Identity and Access Management service role ARN for the data source.
+	// The system assumes this role when accessing the data source.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
 	// The type of the DataSource.
@@ -5237,10 +5252,14 @@ type CreateGraphqlApiInput struct {
 	// A list of additional authentication providers for the GraphqlApi API.
 	AdditionalAuthenticationProviders []*AdditionalAuthenticationProvider `locationName:"additionalAuthenticationProviders" type:"list"`
 
-	// The authentication type: API key, AWS IAM, OIDC, or Amazon Cognito user pools.
+	// The authentication type: API key, Identity and Access Management, OIDC, or
+	// Amazon Cognito user pools.
 	//
 	// AuthenticationType is a required field
 	AuthenticationType *string `locationName:"authenticationType" type:"string" required:"true" enum:"AuthenticationType"`
+
+	// Configuration for AWS Lambda function authorization.
+	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
 	// The Amazon CloudWatch Logs configuration.
 	LogConfig *LogConfig `locationName:"logConfig" type:"structure"`
@@ -5295,6 +5314,11 @@ func (s *CreateGraphqlApiInput) Validate() error {
 			}
 		}
 	}
+	if s.LambdaAuthorizerConfig != nil {
+		if err := s.LambdaAuthorizerConfig.Validate(); err != nil {
+			invalidParams.AddNested("LambdaAuthorizerConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LogConfig != nil {
 		if err := s.LogConfig.Validate(); err != nil {
 			invalidParams.AddNested("LogConfig", err.(request.ErrInvalidParams))
@@ -5326,6 +5350,12 @@ func (s *CreateGraphqlApiInput) SetAdditionalAuthenticationProviders(v []*Additi
 // SetAuthenticationType sets the AuthenticationType field's value.
 func (s *CreateGraphqlApiInput) SetAuthenticationType(v string) *CreateGraphqlApiInput {
 	s.AuthenticationType = &v
+	return s
+}
+
+// SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
+func (s *CreateGraphqlApiInput) SetLambdaAuthorizerConfig(v *LambdaAuthorizerConfig) *CreateGraphqlApiInput {
+	s.LambdaAuthorizerConfig = v
 	return s
 }
 
@@ -5687,7 +5717,7 @@ type DataSource struct {
 	// HTTP endpoint settings.
 	HttpConfig *HttpDataSourceConfig `locationName:"httpConfig" type:"structure"`
 
-	// AWS Lambda settings.
+	// Amazon Web Services Lambda settings.
 	LambdaConfig *LambdaDataSourceConfig `locationName:"lambdaConfig" type:"structure"`
 
 	// The name of the data source.
@@ -5696,8 +5726,8 @@ type DataSource struct {
 	// Relational database settings.
 	RelationalDatabaseConfig *RelationalDatabaseDataSourceConfig `locationName:"relationalDatabaseConfig" type:"structure"`
 
-	// The AWS IAM service role ARN for the data source. The system assumes this
-	// role when accessing the data source.
+	// The Identity and Access Management service role ARN for the data source.
+	// The system assumes this role when accessing the data source.
 	ServiceRoleArn *string `locationName:"serviceRoleArn" type:"string"`
 
 	// The type of the data source.
@@ -5707,7 +5737,7 @@ type DataSource struct {
 	//    * AMAZON_ELASTICSEARCH: The data source is an Amazon Elasticsearch Service
 	//    domain.
 	//
-	//    * AWS_LAMBDA: The data source is an AWS Lambda function.
+	//    * AWS_LAMBDA: The data source is an Amazon Web Services Lambda function.
 	//
 	//    * NONE: There is no data source. This type is used when you wish to invoke
 	//    a GraphQL operation without connecting to a data source, such as performing
@@ -6326,7 +6356,7 @@ func (s *DeltaSyncConfig) SetDeltaSyncTableTTL(v int64) *DeltaSyncConfig {
 type DynamodbDataSourceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Region.
+	// The Amazon Web Services Region.
 	//
 	// AwsRegion is a required field
 	AwsRegion *string `locationName:"awsRegion" type:"string" required:"true"`
@@ -6406,7 +6436,7 @@ func (s *DynamodbDataSourceConfig) SetVersioned(v bool) *DynamodbDataSourceConfi
 type ElasticsearchDataSourceConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Region.
+	// The Amazon Web Services Region.
 	//
 	// AwsRegion is a required field
 	AwsRegion *string `locationName:"awsRegion" type:"string" required:"true"`
@@ -7334,6 +7364,9 @@ type GraphqlApi struct {
 	// The authentication type.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
 
+	// Configuration for AWS Lambda function authorization.
+	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
+
 	// The Amazon CloudWatch Logs configuration.
 	LogConfig *LogConfig `locationName:"logConfig" type:"structure"`
 
@@ -7352,8 +7385,7 @@ type GraphqlApi struct {
 	// The Amazon Cognito user pool configuration.
 	UserPoolConfig *UserPoolConfig `locationName:"userPoolConfig" type:"structure"`
 
-	// The ARN of the AWS Web Application Firewall (WAF) ACL associated with this
-	// GraphqlApi, if one exists.
+	// The ARN of the WAF ACL associated with this GraphqlApi, if one exists.
 	WafWebAclArn *string `locationName:"wafWebAclArn" type:"string"`
 
 	// A flag representing whether X-Ray tracing is enabled for this GraphqlApi.
@@ -7391,6 +7423,12 @@ func (s *GraphqlApi) SetArn(v string) *GraphqlApi {
 // SetAuthenticationType sets the AuthenticationType field's value.
 func (s *GraphqlApi) SetAuthenticationType(v string) *GraphqlApi {
 	s.AuthenticationType = &v
+	return s
+}
+
+// SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
+func (s *GraphqlApi) SetLambdaAuthorizerConfig(v *LambdaAuthorizerConfig) *GraphqlApi {
+	s.LambdaAuthorizerConfig = v
 	return s
 }
 
@@ -7451,8 +7489,8 @@ type HttpDataSourceConfig struct {
 
 	// The HTTP URL endpoint. You can either specify the domain name or IP, and
 	// port combination, and the URL scheme must be HTTP or HTTPS. If the port is
-	// not specified, AWS AppSync uses the default port 80 for the HTTP endpoint
-	// and port 443 for HTTPS endpoints.
+	// not specified, AppSync uses the default port 80 for the HTTP endpoint and
+	// port 443 for HTTPS endpoints.
 	Endpoint *string `locationName:"endpoint" type:"string"`
 }
 
@@ -7493,7 +7531,7 @@ func (s *HttpDataSourceConfig) SetEndpoint(v string) *HttpDataSourceConfig {
 	return s
 }
 
-// An internal AWS AppSync error occurred. Try your request again.
+// An internal AppSync error occurred. Try your request again.
 type InternalFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7549,6 +7587,76 @@ func (s *InternalFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A LambdaAuthorizerConfig holds configuration on how to authorize AppSync
+// API access when using the AWS_LAMBDA authorizer mode. Be aware that an AppSync
+// API may have only one Lambda authorizer configured at a time.
+type LambdaAuthorizerConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The number of seconds a response should be cached for. The default is 5 minutes
+	// (300 seconds). The Lambda function can override this by returning a ttlOverride
+	// key in its response. A value of 0 disables caching of responses.
+	AuthorizerResultTtlInSeconds *int64 `locationName:"authorizerResultTtlInSeconds" type:"integer"`
+
+	// The ARN of the lambda function to be called for authorization. This may be
+	// a standard Lambda ARN, a version ARN (.../v3) or alias ARN.
+	//
+	// Note: This Lambda function must have the following resource-based policy
+	// assigned to it. When configuring Lambda authorizers in the Console, this
+	// is done for you. To do so with the AWS CLI, run the following:
+	//
+	// aws lambda add-permission --function-name "arn:aws:lambda:us-east-2:111122223333:function:my-function"
+	// --statement-id "appsync" --principal appsync.amazonaws.com --action lambda:InvokeFunction
+	//
+	// AuthorizerUri is a required field
+	AuthorizerUri *string `locationName:"authorizerUri" type:"string" required:"true"`
+
+	// A regular expression for validation of tokens before the Lambda Function
+	// is called.
+	IdentityValidationExpression *string `locationName:"identityValidationExpression" type:"string"`
+}
+
+// String returns the string representation
+func (s LambdaAuthorizerConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaAuthorizerConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LambdaAuthorizerConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LambdaAuthorizerConfig"}
+	if s.AuthorizerUri == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthorizerUri"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthorizerResultTtlInSeconds sets the AuthorizerResultTtlInSeconds field's value.
+func (s *LambdaAuthorizerConfig) SetAuthorizerResultTtlInSeconds(v int64) *LambdaAuthorizerConfig {
+	s.AuthorizerResultTtlInSeconds = &v
+	return s
+}
+
+// SetAuthorizerUri sets the AuthorizerUri field's value.
+func (s *LambdaAuthorizerConfig) SetAuthorizerUri(v string) *LambdaAuthorizerConfig {
+	s.AuthorizerUri = &v
+	return s
+}
+
+// SetIdentityValidationExpression sets the IdentityValidationExpression field's value.
+func (s *LambdaAuthorizerConfig) SetIdentityValidationExpression(v string) *LambdaAuthorizerConfig {
+	s.IdentityValidationExpression = &v
+	return s
+}
+
 // The LambdaConflictHandlerConfig object when configuring LAMBDA as the Conflict
 // Handler.
 type LambdaConflictHandlerConfig struct {
@@ -7574,7 +7682,7 @@ func (s *LambdaConflictHandlerConfig) SetLambdaConflictHandlerArn(v string) *Lam
 	return s
 }
 
-// Describes an AWS Lambda data source configuration.
+// Describes an Amazon Web Services Lambda data source configuration.
 type LambdaDataSourceConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -8439,7 +8547,7 @@ func (s *ListTypesOutput) SetTypes(v []*Type) *ListTypesOutput {
 type LogConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The service role that AWS AppSync will assume to publish to Amazon CloudWatch
+	// The service role that AppSync will assume to publish to Amazon CloudWatch
 	// logs in your account.
 	//
 	// CloudWatchLogsRoleArn is a required field
@@ -8576,7 +8684,7 @@ type OpenIDConnectConfig struct {
 	// The client identifier of the Relying party at the OpenID identity provider.
 	// This identifier is typically obtained when the Relying party is registered
 	// with the OpenID identity provider. You can specify a regular expression so
-	// the AWS AppSync can validate against multiple client identifiers at a time.
+	// the AppSync can validate against multiple client identifiers at a time.
 	ClientId *string `locationName:"clientId" type:"string"`
 
 	// The number of milliseconds a token is valid after being issued to a user.
@@ -8664,10 +8772,10 @@ func (s *PipelineConfig) SetFunctions(v []*string) *PipelineConfig {
 type RdsHttpEndpointConfig struct {
 	_ struct{} `type:"structure"`
 
-	// AWS Region for RDS HTTP endpoint.
+	// Amazon Web Services Region for RDS HTTP endpoint.
 	AwsRegion *string `locationName:"awsRegion" type:"string"`
 
-	// AWS secret store ARN for database credentials.
+	// Amazon Web Services secret store ARN for database credentials.
 	AwsSecretStoreArn *string `locationName:"awsSecretStoreArn" type:"string"`
 
 	// Logical database name.
@@ -9537,7 +9645,7 @@ type UpdateDataSourceInput struct {
 	// The new HTTP endpoint configuration.
 	HttpConfig *HttpDataSourceConfig `locationName:"httpConfig" type:"structure"`
 
-	// The new AWS Lambda configuration.
+	// The new Amazon Web Services Lambda configuration.
 	LambdaConfig *LambdaDataSourceConfig `locationName:"lambdaConfig" type:"structure"`
 
 	// The new name for the data source.
@@ -9885,6 +9993,9 @@ type UpdateGraphqlApiInput struct {
 	// The new authentication type for the GraphqlApi object.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
 
+	// Configuration for AWS Lambda function authorization.
+	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
+
 	// The Amazon CloudWatch Logs configuration for the GraphqlApi object.
 	LogConfig *LogConfig `locationName:"logConfig" type:"structure"`
 
@@ -9935,6 +10046,11 @@ func (s *UpdateGraphqlApiInput) Validate() error {
 			}
 		}
 	}
+	if s.LambdaAuthorizerConfig != nil {
+		if err := s.LambdaAuthorizerConfig.Validate(); err != nil {
+			invalidParams.AddNested("LambdaAuthorizerConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.LogConfig != nil {
 		if err := s.LogConfig.Validate(); err != nil {
 			invalidParams.AddNested("LogConfig", err.(request.ErrInvalidParams))
@@ -9972,6 +10088,12 @@ func (s *UpdateGraphqlApiInput) SetApiId(v string) *UpdateGraphqlApiInput {
 // SetAuthenticationType sets the AuthenticationType field's value.
 func (s *UpdateGraphqlApiInput) SetAuthenticationType(v string) *UpdateGraphqlApiInput {
 	s.AuthenticationType = &v
+	return s
+}
+
+// SetLambdaAuthorizerConfig sets the LambdaAuthorizerConfig field's value.
+func (s *UpdateGraphqlApiInput) SetLambdaAuthorizerConfig(v *LambdaAuthorizerConfig) *UpdateGraphqlApiInput {
+	s.LambdaAuthorizerConfig = v
 	return s
 }
 
@@ -10326,7 +10448,7 @@ type UserPoolConfig struct {
 	// app client ID.
 	AppIdClientRegex *string `locationName:"appIdClientRegex" type:"string"`
 
-	// The AWS Region in which the user pool was created.
+	// The Amazon Web Services Region in which the user pool was created.
 	//
 	// AwsRegion is a required field
 	AwsRegion *string `locationName:"awsRegion" type:"string" required:"true"`
@@ -10521,6 +10643,9 @@ const (
 
 	// AuthenticationTypeOpenidConnect is a AuthenticationType enum value
 	AuthenticationTypeOpenidConnect = "OPENID_CONNECT"
+
+	// AuthenticationTypeAwsLambda is a AuthenticationType enum value
+	AuthenticationTypeAwsLambda = "AWS_LAMBDA"
 )
 
 // AuthenticationType_Values returns all elements of the AuthenticationType enum
@@ -10530,6 +10655,7 @@ func AuthenticationType_Values() []string {
 		AuthenticationTypeAwsIam,
 		AuthenticationTypeAmazonCognitoUserPools,
 		AuthenticationTypeOpenidConnect,
+		AuthenticationTypeAwsLambda,
 	}
 }
 

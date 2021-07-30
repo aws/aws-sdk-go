@@ -5360,6 +5360,16 @@
         "isRegionalized" : false,
         "partitionEndpoint" : "aws-global"
       },
+      "route53-recovery-control-config" : {
+        "endpoints" : {
+          "aws-global" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "route53-recovery-control-config.us-west-2.amazonaws.com"
+          }
+        }
+      },
       "route53domains" : {
         "endpoints" : {
           "us-east-1" : { }

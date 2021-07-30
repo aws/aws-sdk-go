@@ -116,6 +116,286 @@ func (c *SageMaker) WaitUntilEndpointInServiceWithContext(ctx aws.Context, input
 	return w.WaitWithContext(ctx)
 }
 
+// WaitUntilImageCreated uses the SageMaker API operation
+// DescribeImage to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *SageMaker) WaitUntilImageCreated(input *DescribeImageInput) error {
+	return c.WaitUntilImageCreatedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilImageCreatedWithContext is an extended version of WaitUntilImageCreated.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) WaitUntilImageCreatedWithContext(ctx aws.Context, input *DescribeImageInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilImageCreated",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(60 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "ImageStatus",
+				Expected: "CREATED",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "ImageStatus",
+				Expected: "CREATE_FAILED",
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ValidationException",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *DescribeImageInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeImageRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilImageDeleted uses the SageMaker API operation
+// DescribeImage to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *SageMaker) WaitUntilImageDeleted(input *DescribeImageInput) error {
+	return c.WaitUntilImageDeletedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilImageDeletedWithContext is an extended version of WaitUntilImageDeleted.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) WaitUntilImageDeletedWithContext(ctx aws.Context, input *DescribeImageInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilImageDeleted",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(60 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ResourceNotFoundException",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "ImageStatus",
+				Expected: "DELETE_FAILED",
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ValidationException",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *DescribeImageInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeImageRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilImageUpdated uses the SageMaker API operation
+// DescribeImage to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *SageMaker) WaitUntilImageUpdated(input *DescribeImageInput) error {
+	return c.WaitUntilImageUpdatedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilImageUpdatedWithContext is an extended version of WaitUntilImageUpdated.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) WaitUntilImageUpdatedWithContext(ctx aws.Context, input *DescribeImageInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilImageUpdated",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(60 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "ImageStatus",
+				Expected: "CREATED",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "ImageStatus",
+				Expected: "UPDATE_FAILED",
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ValidationException",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *DescribeImageInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeImageRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilImageVersionCreated uses the SageMaker API operation
+// DescribeImageVersion to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *SageMaker) WaitUntilImageVersionCreated(input *DescribeImageVersionInput) error {
+	return c.WaitUntilImageVersionCreatedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilImageVersionCreatedWithContext is an extended version of WaitUntilImageVersionCreated.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) WaitUntilImageVersionCreatedWithContext(ctx aws.Context, input *DescribeImageVersionInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilImageVersionCreated",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(60 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:   request.SuccessWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "ImageVersionStatus",
+				Expected: "CREATED",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "ImageVersionStatus",
+				Expected: "CREATE_FAILED",
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ValidationException",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *DescribeImageVersionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeImageVersionRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
+// WaitUntilImageVersionDeleted uses the SageMaker API operation
+// DescribeImageVersion to wait for a condition to be met before returning.
+// If the condition is not met within the max attempt window, an error will
+// be returned.
+func (c *SageMaker) WaitUntilImageVersionDeleted(input *DescribeImageVersionInput) error {
+	return c.WaitUntilImageVersionDeletedWithContext(aws.BackgroundContext(), input)
+}
+
+// WaitUntilImageVersionDeletedWithContext is an extended version of WaitUntilImageVersionDeleted.
+// With the support for passing in a context and options to configure the
+// Waiter and the underlying request options.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) WaitUntilImageVersionDeletedWithContext(ctx aws.Context, input *DescribeImageVersionInput, opts ...request.WaiterOption) error {
+	w := request.Waiter{
+		Name:        "WaitUntilImageVersionDeleted",
+		MaxAttempts: 60,
+		Delay:       request.ConstantWaiterDelay(60 * time.Second),
+		Acceptors: []request.WaiterAcceptor{
+			{
+				State:    request.SuccessWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ResourceNotFoundException",
+			},
+			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "ImageVersionStatus",
+				Expected: "DELETE_FAILED",
+			},
+			{
+				State:    request.FailureWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "ValidationException",
+			},
+		},
+		Logger: c.Config.Logger,
+		NewRequest: func(opts []request.Option) (*request.Request, error) {
+			var inCpy *DescribeImageVersionInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeImageVersionRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+	w.ApplyOptions(opts...)
+
+	return w.WaitWithContext(ctx)
+}
+
 // WaitUntilNotebookInstanceDeleted uses the SageMaker API operation
 // DescribeNotebookInstance to wait for a condition to be met before returning.
 // If the condition is not met within the max attempt window, an error will

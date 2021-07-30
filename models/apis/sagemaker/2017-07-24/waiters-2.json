@@ -188,6 +188,124 @@
           "state": "failure"
         }
       ]
+    },
+    "ImageCreated": {
+      "delay": 60,
+      "maxAttempts": 60,
+      "operation": "DescribeImage",
+      "acceptors": [
+        {
+          "expected": "CREATED",
+          "matcher": "path",
+          "state": "success",
+          "argument": "ImageStatus"
+        },
+        {
+          "expected": "CREATE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "ImageStatus"
+        },
+        {
+          "expected": "ValidationException",
+          "matcher": "error",
+          "state": "failure"
+        }
+      ]
+    },
+    "ImageUpdated": {
+      "delay": 60,
+      "maxAttempts": 60,
+      "operation": "DescribeImage",
+      "acceptors": [
+        {
+          "expected": "CREATED",
+          "matcher": "path",
+          "state": "success",
+          "argument": "ImageStatus"
+        },
+        {
+          "expected": "UPDATE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "ImageStatus"
+        },
+        {
+          "expected": "ValidationException",
+          "matcher": "error",
+          "state": "failure"
+        }
+      ]
+    },
+    "ImageDeleted": {
+      "delay": 60,
+      "maxAttempts": 60,
+      "operation": "DescribeImage",
+      "acceptors": [
+        {
+          "expected": "ResourceNotFoundException",
+          "matcher": "error",
+          "state": "success"
+        },
+        {
+          "expected": "DELETE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "ImageStatus"
+        },
+        {
+          "expected": "ValidationException",
+          "matcher": "error",
+          "state": "failure"
+        }
+      ]
+    },
+    "ImageVersionCreated": {
+      "delay": 60,
+      "maxAttempts": 60,
+      "operation": "DescribeImageVersion",
+      "acceptors": [
+        {
+          "expected": "CREATED",
+          "matcher": "path",
+          "state": "success",
+          "argument": "ImageVersionStatus"
+        },
+        {
+          "expected": "CREATE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "ImageVersionStatus"
+        },
+        {
+          "expected": "ValidationException",
+          "matcher": "error",
+          "state": "failure"
+        }
+      ]
+    },
+    "ImageVersionDeleted": {
+      "delay": 60,
+      "maxAttempts": 60,
+      "operation": "DescribeImageVersion",
+      "acceptors": [
+        {
+          "expected": "ResourceNotFoundException",
+          "matcher": "error",
+          "state": "success"
+        },
+        {
+          "expected": "DELETE_FAILED",
+          "matcher": "path",
+          "state": "failure",
+          "argument": "ImageVersionStatus"
+        },
+        {
+          "expected": "ValidationException",
+          "matcher": "error",
+          "state": "failure"
+        }
+      ]
     }
   }
 }

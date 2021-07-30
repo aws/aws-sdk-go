@@ -2907,6 +2907,14 @@
         "ml.m5.12xlarge",
         "ml.m5.16xlarge",
         "ml.m5.24xlarge",
+        "ml.m5d.large",
+        "ml.m5d.xlarge",
+        "ml.m5d.2xlarge",
+        "ml.m5d.4xlarge",
+        "ml.m5d.8xlarge",
+        "ml.m5d.12xlarge",
+        "ml.m5d.16xlarge",
+        "ml.m5d.24xlarge",
         "ml.c5.large",
         "ml.c5.xlarge",
         "ml.c5.2xlarge",
@@ -2918,12 +2926,21 @@
         "ml.p3.2xlarge",
         "ml.p3.8xlarge",
         "ml.p3.16xlarge",
+        "ml.p3dn.24xlarge",
         "ml.g4dn.xlarge",
         "ml.g4dn.2xlarge",
         "ml.g4dn.4xlarge",
         "ml.g4dn.8xlarge",
         "ml.g4dn.12xlarge",
-        "ml.g4dn.16xlarge"
+        "ml.g4dn.16xlarge",
+        "ml.r5.large",
+        "ml.r5.xlarge",
+        "ml.r5.2xlarge",
+        "ml.r5.4xlarge",
+        "ml.r5.8xlarge",
+        "ml.r5.12xlarge",
+        "ml.r5.16xlarge",
+        "ml.r5.24xlarge"
       ]
     },
     "AppList":{
@@ -9122,6 +9139,13 @@
       "max":2048,
       "pattern":"arn:aws[a-z\\-]*:lambda:[a-z0-9\\-]*:[0-9]{12}:function:.*"
     },
+    "LambdaStepMetadata":{
+      "type":"structure",
+      "members":{
+        "Arn":{"shape":"String256"},
+        "OutputParameters":{"shape":"OutputParameterList"}
+      }
+    },
     "LastModifiedTime":{"type":"timestamp"},
     "LineageEntityParameters":{
       "type":"map",
@@ -11839,7 +11863,8 @@
         "Model":{"shape":"ModelStepMetadata"},
         "RegisterModel":{"shape":"RegisterModelStepMetadata"},
         "Condition":{"shape":"ConditionStepMetadata"},
-        "Callback":{"shape":"CallbackStepMetadata"}
+        "Callback":{"shape":"CallbackStepMetadata"},
+        "Lambda":{"shape":"LambdaStepMetadata"}
       }
     },
     "PipelineExecutionSummary":{

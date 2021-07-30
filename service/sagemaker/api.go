@@ -1495,8 +1495,7 @@ func (c *SageMaker) CreateEndpointRequest(input *CreateEndpointInput) (req *requ
 // Use this API to deploy models using Amazon SageMaker hosting services.
 //
 // For an example that calls this method when deploying a model to Amazon SageMaker
-// hosting services, see Deploy the Model to Amazon SageMaker Hosting Services
-// (Amazon Web Services SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
+// hosting services, see the Create Endpoint example notebook. (https://github.com/aws/amazon-sagemaker-examples/blob/master/sagemaker-fundamentals/create-endpoint/create_endpoint.ipynb)
 //
 // You must not delete an EndpointConfig that is in use by an endpoint that
 // is live or while the UpdateEndpoint or CreateEndpoint operations are being
@@ -53439,6 +53438,40 @@ func (s *LabelingJobSummary) SetWorkteamArn(v string) *LabelingJobSummary {
 	return s
 }
 
+// Metadata for a Lambda step.
+type LambdaStepMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Lambda function that was run by this
+	// step execution.
+	Arn *string `type:"string"`
+
+	// A list of the output parameters of the Lambda step.
+	OutputParameters []*OutputParameter `type:"list"`
+}
+
+// String returns the string representation
+func (s LambdaStepMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LambdaStepMetadata) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *LambdaStepMetadata) SetArn(v string) *LambdaStepMetadata {
+	s.Arn = &v
+	return s
+}
+
+// SetOutputParameters sets the OutputParameters field's value.
+func (s *LambdaStepMetadata) SetOutputParameters(v []*OutputParameter) *LambdaStepMetadata {
+	s.OutputParameters = v
+	return s
+}
+
 type ListActionsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -66097,20 +66130,27 @@ func (s *PipelineExecutionStep) SetStepStatus(v string) *PipelineExecutionStep {
 type PipelineExecutionStepMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// Metadata about a callback step.
+	// The URL of the Amazon SQS queue used by this step execution, the pipeline
+	// generated token, and a list of output parameters.
 	Callback *CallbackStepMetadata `type:"structure"`
 
-	// If this is a Condition step metadata object, details on the condition.
+	// The outcome of the condition evaluation that was run by this step execution.
 	Condition *ConditionStepMetadata `type:"structure"`
 
-	// Metadata for the Model step.
+	// The Amazon Resource Name (ARN) of the Lambda function that was run by this
+	// step execution and a list of output parameters.
+	Lambda *LambdaStepMetadata `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the model that was created by this step
+	// execution.
 	Model *ModelStepMetadata `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the processing job that was run by this
 	// step execution.
 	ProcessingJob *ProcessingJobStepMetadata `type:"structure"`
 
-	// Metadata for the RegisterModel step.
+	// The Amazon Resource Name (ARN) of the model package the model was registered
+	// to by this step execution.
 	RegisterModel *RegisterModelStepMetadata `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the training job that was run by this step
@@ -66145,6 +66185,12 @@ func (s *PipelineExecutionStepMetadata) SetCallback(v *CallbackStepMetadata) *Pi
 // SetCondition sets the Condition field's value.
 func (s *PipelineExecutionStepMetadata) SetCondition(v *ConditionStepMetadata) *PipelineExecutionStepMetadata {
 	s.Condition = v
+	return s
+}
+
+// SetLambda sets the Lambda field's value.
+func (s *PipelineExecutionStepMetadata) SetLambda(v *LambdaStepMetadata) *PipelineExecutionStepMetadata {
+	s.Lambda = v
 	return s
 }
 
@@ -71682,9 +71728,10 @@ func (s StopTransformJobOutput) GoString() string {
 // SageMaker ends the training or compilation job. Use this API to cap model
 // training costs.
 //
-// To stop a job, Amazon SageMaker sends the algorithm the SIGTERM signal, which
-// delays job termination for 120 seconds. Algorithms can use this 120-second
-// window to save the model artifacts, so the results of training are not lost.
+// To stop a training job, Amazon SageMaker sends the algorithm the SIGTERM
+// signal, which delays job termination for 120 seconds. Algorithms can use
+// this 120-second window to save the model artifacts, so the results of training
+// are not lost.
 //
 // The training algorithms provided by Amazon SageMaker automatically save the
 // intermediate results of a model training job when possible. This attempt
@@ -71700,13 +71747,17 @@ type StoppingCondition struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum length of time, in seconds, that a training or compilation job
-	// can run. If the job does not complete during this time, Amazon SageMaker
-	// ends the job.
+	// can run.
 	//
-	// When RetryStrategy is specified in the job request, MaxRuntimeInSeconds specifies
-	// the maximum time for all of the attempts in total, not each individual attempt.
+	// For compilation jobs, if the job does not complete during this time, you
+	// will receive a TimeOut error. We recommend starting with 900 seconds and
+	// increase as necessary based on your model.
 	//
-	// The default value is 1 day. The maximum value is 28 days.
+	// For all other jobs, if the job does not complete during this time, Amazon
+	// SageMaker ends the job. When RetryStrategy is specified in the job request,
+	// MaxRuntimeInSeconds specifies the maximum time for all of the attempts in
+	// total, not each individual attempt. The default value is 1 day. The maximum
+	// value is 28 days.
 	MaxRuntimeInSeconds *int64 `min:"1" type:"integer"`
 
 	// The maximum length of time, in seconds, that a managed Spot training job
@@ -78338,6 +78389,30 @@ const (
 	// AppInstanceTypeMlM524xlarge is a AppInstanceType enum value
 	AppInstanceTypeMlM524xlarge = "ml.m5.24xlarge"
 
+	// AppInstanceTypeMlM5dLarge is a AppInstanceType enum value
+	AppInstanceTypeMlM5dLarge = "ml.m5d.large"
+
+	// AppInstanceTypeMlM5dXlarge is a AppInstanceType enum value
+	AppInstanceTypeMlM5dXlarge = "ml.m5d.xlarge"
+
+	// AppInstanceTypeMlM5d2xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlM5d2xlarge = "ml.m5d.2xlarge"
+
+	// AppInstanceTypeMlM5d4xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlM5d4xlarge = "ml.m5d.4xlarge"
+
+	// AppInstanceTypeMlM5d8xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlM5d8xlarge = "ml.m5d.8xlarge"
+
+	// AppInstanceTypeMlM5d12xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlM5d12xlarge = "ml.m5d.12xlarge"
+
+	// AppInstanceTypeMlM5d16xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlM5d16xlarge = "ml.m5d.16xlarge"
+
+	// AppInstanceTypeMlM5d24xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlM5d24xlarge = "ml.m5d.24xlarge"
+
 	// AppInstanceTypeMlC5Large is a AppInstanceType enum value
 	AppInstanceTypeMlC5Large = "ml.c5.large"
 
@@ -78371,6 +78446,9 @@ const (
 	// AppInstanceTypeMlP316xlarge is a AppInstanceType enum value
 	AppInstanceTypeMlP316xlarge = "ml.p3.16xlarge"
 
+	// AppInstanceTypeMlP3dn24xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlP3dn24xlarge = "ml.p3dn.24xlarge"
+
 	// AppInstanceTypeMlG4dnXlarge is a AppInstanceType enum value
 	AppInstanceTypeMlG4dnXlarge = "ml.g4dn.xlarge"
 
@@ -78388,6 +78466,30 @@ const (
 
 	// AppInstanceTypeMlG4dn16xlarge is a AppInstanceType enum value
 	AppInstanceTypeMlG4dn16xlarge = "ml.g4dn.16xlarge"
+
+	// AppInstanceTypeMlR5Large is a AppInstanceType enum value
+	AppInstanceTypeMlR5Large = "ml.r5.large"
+
+	// AppInstanceTypeMlR5Xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlR5Xlarge = "ml.r5.xlarge"
+
+	// AppInstanceTypeMlR52xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlR52xlarge = "ml.r5.2xlarge"
+
+	// AppInstanceTypeMlR54xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlR54xlarge = "ml.r5.4xlarge"
+
+	// AppInstanceTypeMlR58xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlR58xlarge = "ml.r5.8xlarge"
+
+	// AppInstanceTypeMlR512xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlR512xlarge = "ml.r5.12xlarge"
+
+	// AppInstanceTypeMlR516xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlR516xlarge = "ml.r5.16xlarge"
+
+	// AppInstanceTypeMlR524xlarge is a AppInstanceType enum value
+	AppInstanceTypeMlR524xlarge = "ml.r5.24xlarge"
 )
 
 // AppInstanceType_Values returns all elements of the AppInstanceType enum
@@ -78408,6 +78510,14 @@ func AppInstanceType_Values() []string {
 		AppInstanceTypeMlM512xlarge,
 		AppInstanceTypeMlM516xlarge,
 		AppInstanceTypeMlM524xlarge,
+		AppInstanceTypeMlM5dLarge,
+		AppInstanceTypeMlM5dXlarge,
+		AppInstanceTypeMlM5d2xlarge,
+		AppInstanceTypeMlM5d4xlarge,
+		AppInstanceTypeMlM5d8xlarge,
+		AppInstanceTypeMlM5d12xlarge,
+		AppInstanceTypeMlM5d16xlarge,
+		AppInstanceTypeMlM5d24xlarge,
 		AppInstanceTypeMlC5Large,
 		AppInstanceTypeMlC5Xlarge,
 		AppInstanceTypeMlC52xlarge,
@@ -78419,12 +78529,21 @@ func AppInstanceType_Values() []string {
 		AppInstanceTypeMlP32xlarge,
 		AppInstanceTypeMlP38xlarge,
 		AppInstanceTypeMlP316xlarge,
+		AppInstanceTypeMlP3dn24xlarge,
 		AppInstanceTypeMlG4dnXlarge,
 		AppInstanceTypeMlG4dn2xlarge,
 		AppInstanceTypeMlG4dn4xlarge,
 		AppInstanceTypeMlG4dn8xlarge,
 		AppInstanceTypeMlG4dn12xlarge,
 		AppInstanceTypeMlG4dn16xlarge,
+		AppInstanceTypeMlR5Large,
+		AppInstanceTypeMlR5Xlarge,
+		AppInstanceTypeMlR52xlarge,
+		AppInstanceTypeMlR54xlarge,
+		AppInstanceTypeMlR58xlarge,
+		AppInstanceTypeMlR512xlarge,
+		AppInstanceTypeMlR516xlarge,
+		AppInstanceTypeMlR524xlarge,
 	}
 }
 

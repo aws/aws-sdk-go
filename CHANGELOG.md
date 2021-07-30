@@ -1,3 +1,14 @@
+Release v1.40.12 (2021-07-30)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/elasticloadbalancingv2`: Updates service documentation
+* `service/sagemaker`: Updates service API, documentation, and waiters
+  * API changes with respect to Lambda steps in model building pipelines. Adds several waiters to async Sagemaker Image APIs. Add more instance types to AppInstanceType field
+* `service/secretsmanager`: Updates service API and documentation
+  * Add support for KmsKeyIds in the ListSecretVersionIds API response
+
 Release v1.40.11 (2021-07-29)
 ===
 
