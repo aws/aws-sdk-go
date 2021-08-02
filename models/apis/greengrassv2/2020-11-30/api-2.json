@@ -78,7 +78,8 @@
         {"shape":"AccessDeniedException"},
         {"shape":"ConflictException"},
         {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"RequestAlreadyInProgressException"}
       ]
     },
     "CreateDeployment":{
@@ -95,7 +96,8 @@
         {"shape":"ValidationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"ThrottlingException"},
-        {"shape":"InternalServerException"}
+        {"shape":"InternalServerException"},
+        {"shape":"RequestAlreadyInProgressException"}
       ]
     },
     "DeleteComponent":{
@@ -468,6 +470,10 @@
         "errorEntries":{"shape":"DisassociateClientDeviceFromCoreDeviceErrorList"}
       }
     },
+    "CPU":{
+      "type":"double",
+      "min":0
+    },
     "CancelDeploymentRequest":{
       "type":"structure",
       "required":["deploymentId"],
@@ -484,6 +490,12 @@
       "members":{
         "message":{"shape":"NonEmptyString"}
       }
+    },
+    "ClientTokenString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9-]+$"
     },
     "CloudComponentState":{
       "type":"string",
@@ -615,7 +627,8 @@
     "ComponentRunWith":{
       "type":"structure",
       "members":{
-        "posixUser":{"shape":"NonEmptyString"}
+        "posixUser":{"shape":"NonEmptyString"},
+        "systemResourceLimits":{"shape":"SystemResourceLimits"}
       }
     },
     "ComponentVersionARN":{
@@ -706,7 +719,11 @@
       "members":{
         "inlineRecipe":{"shape":"RecipeBlob"},
         "lambdaFunction":{"shape":"LambdaFunctionRecipeSource"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientTokenString",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateComponentVersionResponse":{
@@ -734,7 +751,11 @@
         "components":{"shape":"ComponentDeploymentSpecifications"},
         "iotJobConfiguration":{"shape":"DeploymentIoTJobConfiguration"},
         "deploymentPolicies":{"shape":"DeploymentPolicies"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "clientToken":{
+          "shape":"ClientTokenString",
+          "idempotencyToken":true
+        }
       }
     },
     "CreateDeploymentResponse":{
@@ -1643,6 +1664,11 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "Memory":{
+      "type":"long",
+      "max":9223372036854771712,
+      "min":0
+    },
     "NextTokenString":{"type":"string"},
     "NonEmptyString":{
       "type":"string",
@@ -1665,6 +1691,15 @@
         "JSON",
         "YAML"
       ]
+    },
+    "RequestAlreadyInProgressException":{
+      "type":"structure",
+      "required":["message"],
+      "members":{
+        "message":{"shape":"String"}
+      },
+      "error":{"httpStatusCode":400},
+      "exception":true
     },
     "ResolveComponentCandidatesRequest":{
       "type":"structure",
@@ -1734,6 +1769,13 @@
       "type":"map",
       "key":{"shape":"NonEmptyString"},
       "value":{"shape":"NonEmptyString"}
+    },
+    "SystemResourceLimits":{
+      "type":"structure",
+      "members":{
+        "memory":{"shape":"Memory"},
+        "cpus":{"shape":"CPU"}
+      }
     },
     "TagKey":{
       "type":"string",

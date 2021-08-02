@@ -3,6 +3,17 @@
 // Package ssmcontacts provides the client and types for making API
 // requests to AWS Systems Manager Incident Manager Contacts.
 //
+// AWS Systems Manager Incident Manager is an incident management console designed
+// to help users mitigate and recover from incidents affecting their AWS-hosted
+// applications. An incident is any unplanned interruption or reduction in quality
+// of services.
+//
+// Incident Manager increases incident resolution by notifying responders of
+// impact, highlighting relevant troubleshooting data, and providing collaboration
+// tools to get services back up and running. To achieve the primary goal of
+// reducing the time-to-resolution of critical incidents, Incident Manager automates
+// response plans and enables responder team escalation.
+//
 // See https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03 for more information on this service.
 //
 // See ssmcontacts package documentation for more information.

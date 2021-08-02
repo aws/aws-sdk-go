@@ -2904,6 +2904,16 @@ type AcceptPageInput struct {
 	// AcceptCode is a required field
 	AcceptCode *string `min:"6" type:"string" required:"true"`
 
+	// An optional field that Incident Manager uses to ENFORCE AcceptCode validation
+	// when acknowledging an page. Acknowledgement can occur by replying to a page,
+	// or when entering the AcceptCode in the console. Enforcing AcceptCode validation
+	// causes Incident Manager to verify that the code entered by the user matches
+	// the code sent by Incident Manager with the page.
+	//
+	// Incident Manager can also IGNORE AcceptCode validation. Ignoring AcceptCode
+	// validation causes Incident Manager to accept any value entered for the AcceptCode.
+	AcceptCodeValidation *string `type:"string" enum:"AcceptCodeValidation"`
+
 	// The type indicates if the page was DELIVERED or READ.
 	//
 	// AcceptType is a required field
@@ -2965,6 +2975,12 @@ func (s *AcceptPageInput) Validate() error {
 // SetAcceptCode sets the AcceptCode field's value.
 func (s *AcceptPageInput) SetAcceptCode(v string) *AcceptPageInput {
 	s.AcceptCode = &v
+	return s
+}
+
+// SetAcceptCodeValidation sets the AcceptCodeValidation field's value.
+func (s *AcceptPageInput) SetAcceptCodeValidation(v string) *AcceptPageInput {
+	s.AcceptCodeValidation = &v
 	return s
 }
 
@@ -5876,7 +5892,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type Stage struct {
 	_ struct{} `type:"structure"`
 
-	// The time to wait until beginning the next stage.
+	// The time to wait until beginning the next stage. The duration can only be
+	// set to 0 if a target is specified.
 	//
 	// DurationInMinutes is a required field
 	DurationInMinutes *int64 `type:"integer" required:"true"`
@@ -6767,6 +6784,22 @@ func (s *ValidationExceptionField) SetMessage(v string) *ValidationExceptionFiel
 func (s *ValidationExceptionField) SetName(v string) *ValidationExceptionField {
 	s.Name = &v
 	return s
+}
+
+const (
+	// AcceptCodeValidationIgnore is a AcceptCodeValidation enum value
+	AcceptCodeValidationIgnore = "IGNORE"
+
+	// AcceptCodeValidationEnforce is a AcceptCodeValidation enum value
+	AcceptCodeValidationEnforce = "ENFORCE"
+)
+
+// AcceptCodeValidation_Values returns all elements of the AcceptCodeValidation enum
+func AcceptCodeValidation_Values() []string {
+	return []string{
+		AcceptCodeValidationIgnore,
+		AcceptCodeValidationEnforce,
+	}
 }
 
 const (

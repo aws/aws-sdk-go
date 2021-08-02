@@ -469,6 +469,13 @@
       "min":6,
       "pattern":"^[0-9]*$"
     },
+    "AcceptCodeValidation":{
+      "type":"string",
+      "enum":[
+        "IGNORE",
+        "ENFORCE"
+      ]
+    },
     "AcceptPageRequest":{
       "type":"structure",
       "required":[
@@ -481,7 +488,8 @@
         "ContactChannelId":{"shape":"SsmContactsArn"},
         "AcceptType":{"shape":"AcceptType"},
         "Note":{"shape":"ReceiptInfo"},
-        "AcceptCode":{"shape":"AcceptCode"}
+        "AcceptCode":{"shape":"AcceptCode"},
+        "AcceptCodeValidation":{"shape":"AcceptCodeValidation"}
       }
     },
     "AcceptPageResult":{
@@ -1299,7 +1307,7 @@
     "TagKeyList":{
       "type":"list",
       "member":{"shape":"TagKey"},
-      "max":200,
+      "max":50,
       "min":0
     },
     "TagResourceRequest":{
