@@ -1,3 +1,10 @@
+Release v1.40.13 (2021-08-02)
+===
+
+### Service Client Updates
+* `service/greengrassv2`: Updates service API and documentation
+* `service/ssm-contacts`: Updates service API and documentation
+
 Release v1.40.12 (2021-07-30)
 ===
 

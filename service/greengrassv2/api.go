@@ -59,17 +59,17 @@ func (c *GreengrassV2) BatchAssociateClientDeviceWithCoreDeviceRequest(input *Ba
 //
 // Associate a list of client devices with a core device. Use this API operation
 // to specify which client devices can discover a core device through cloud
-// discovery. With cloud discovery, client devices connect to AWS IoT Greengrass
+// discovery. With cloud discovery, client devices connect to IoT Greengrass
 // to retrieve associated core devices' connectivity information and certificates.
 // For more information, see Configure cloud discovery (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-cloud-discovery.html)
-// in the AWS IoT Greengrass V2 Developer Guide.
+// in the IoT Greengrass V2 Developer Guide.
 //
 // Client devices are local IoT devices that connect to and communicate with
-// an AWS IoT Greengrass core device over MQTT. You can connect client devices
-// to a core device to sync MQTT messages and data to AWS IoT Core and interact
-// with client devices in AWS IoT Greengrass components. For more information,
+// an IoT Greengrass core device over MQTT. You can connect client devices to
+// a core device to sync MQTT messages and data to Amazon Web Services IoT Core
+// and interact with client devices in Greengrass components. For more information,
 // see Interact with local IoT devices (https://docs.aws.amazon.com/greengrass/v2/developerguide/interact-with-local-iot-devices.html)
-// in the AWS IoT Greengrass V2 Developer Guide.
+// in the IoT Greengrass V2 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -90,7 +90,7 @@ func (c *GreengrassV2) BatchAssociateClientDeviceWithCoreDeviceRequest(input *Ba
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -187,7 +187,7 @@ func (c *GreengrassV2) BatchDisassociateClientDeviceFromCoreDeviceRequest(input 
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -283,7 +283,7 @@ func (c *GreengrassV2) CancelDeploymentRequest(input *CancelDeploymentInput) (re
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ConflictException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -360,29 +360,29 @@ func (c *GreengrassV2) CreateComponentVersionRequest(input *CreateComponentVersi
 
 // CreateComponentVersion API operation for AWS IoT Greengrass V2.
 //
-// Creates a component. Components are software that run on AWS IoT Greengrass
-// core devices. After you develop and test a component on your core device,
-// you can use this operation to upload your component to AWS IoT Greengrass.
-// Then, you can deploy the component to other core devices.
+// Creates a component. Components are software that run on Greengrass core
+// devices. After you develop and test a component on your core device, you
+// can use this operation to upload your component to IoT Greengrass. Then,
+// you can deploy the component to other core devices.
 //
 // You can use this operation to do the following:
 //
 //    * Create components from recipes Create a component from a recipe, which
 //    is a file that defines the component's metadata, parameters, dependencies,
 //    lifecycle, artifacts, and platform capability. For more information, see
-//    AWS IoT Greengrass component recipe reference (https://docs.aws.amazon.com/greengrass/v2/developerguide/component-recipe-reference.html)
-//    in the AWS IoT Greengrass V2 Developer Guide. To create a component from
-//    a recipe, specify inlineRecipe when you call this operation.
+//    IoT Greengrass component recipe reference (https://docs.aws.amazon.com/greengrass/v2/developerguide/component-recipe-reference.html)
+//    in the IoT Greengrass V2 Developer Guide. To create a component from a
+//    recipe, specify inlineRecipe when you call this operation.
 //
-//    * Create components from Lambda functions Create a component from an AWS
-//    Lambda function that runs on AWS IoT Greengrass. This creates a recipe
-//    and artifacts from the Lambda function's deployment package. You can use
-//    this operation to migrate Lambda functions from AWS IoT Greengrass V1
-//    to AWS IoT Greengrass V2. This function only accepts Lambda functions
-//    that use the following runtimes: Python 2.7 – python2.7 Python 3.7 –
-//    python3.7 Python 3.8 – python3.8 Java 8 – java8 Node.js 10 – nodejs10.x
-//    Node.js 12 – nodejs12.x To create a component from a Lambda function,
-//    specify lambdaFunction when you call this operation.
+//    * Create components from Lambda functions Create a component from an Lambda
+//    function that runs on IoT Greengrass. This creates a recipe and artifacts
+//    from the Lambda function's deployment package. You can use this operation
+//    to migrate Lambda functions from IoT Greengrass V1 to IoT Greengrass V2.
+//    This function only accepts Lambda functions that use the following runtimes:
+//    Python 2.7 – python2.7 Python 3.7 – python3.7 Python 3.8 – python3.8
+//    Java 8 – java8 Node.js 10 – nodejs10.x Node.js 12 – nodejs12.x To
+//    create a component from a Lambda function, specify lambdaFunction when
+//    you call this operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -413,7 +413,12 @@ func (c *GreengrassV2) CreateComponentVersionRequest(input *CreateComponentVersi
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
+//
+//   * RequestAlreadyInProgressException
+//   The request is already in progress. This exception occurs when you use a
+//   client token for multiple requests while IoT Greengrass is still processing
+//   an earlier request that uses the same client token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/CreateComponentVersion
 func (c *GreengrassV2) CreateComponentVersion(input *CreateComponentVersionInput) (*CreateComponentVersionOutput, error) {
@@ -481,14 +486,14 @@ func (c *GreengrassV2) CreateDeploymentRequest(input *CreateDeploymentInput) (re
 
 // CreateDeployment API operation for AWS IoT Greengrass V2.
 //
-// Creates a continuous deployment for a target, which is a AWS IoT Greengrass
-// core device or group of core devices. When you add a new core device to a
-// group of core devices that has a deployment, AWS IoT Greengrass deploys that
-// group's deployment to the new device.
+// Creates a continuous deployment for a target, which is a Greengrass core
+// device or group of core devices. When you add a new core device to a group
+// of core devices that has a deployment, IoT Greengrass deploys that group's
+// deployment to the new device.
 //
 // You can define one deployment for each target. When you create a new deployment
 // for a target that has an existing deployment, you replace the previous deployment.
-// AWS IoT Greengrass applies the new deployment to the target devices.
+// IoT Greengrass applies the new deployment to the target devices.
 //
 // Every deployment has a revision number that indicates how many deployment
 // revisions you define for a target. Use this operation to create a new revision
@@ -496,7 +501,7 @@ func (c *GreengrassV2) CreateDeploymentRequest(input *CreateDeploymentInput) (re
 // the new deployment when you create it.
 //
 // For more information, see the Create deployments (https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html)
-// in the AWS IoT Greengrass V2 Developer Guide.
+// in the IoT Greengrass V2 Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -522,7 +527,12 @@ func (c *GreengrassV2) CreateDeploymentRequest(input *CreateDeploymentInput) (re
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
+//
+//   * RequestAlreadyInProgressException
+//   The request is already in progress. This exception occurs when you use a
+//   client token for multiple requests while IoT Greengrass is still processing
+//   an earlier request that uses the same client token.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/CreateDeployment
 func (c *GreengrassV2) CreateDeployment(input *CreateDeploymentInput) (*CreateDeploymentOutput, error) {
@@ -591,7 +601,7 @@ func (c *GreengrassV2) DeleteComponentRequest(input *DeleteComponentInput) (req 
 
 // DeleteComponent API operation for AWS IoT Greengrass V2.
 //
-// Deletes a version of a component from AWS IoT Greengrass.
+// Deletes a version of a component from IoT Greengrass.
 //
 // This operation deletes the component's recipe and artifacts. As a result,
 // deployments that refer to this component version will fail. If you have deployments
@@ -626,7 +636,7 @@ func (c *GreengrassV2) DeleteComponentRequest(input *DeleteComponentInput) (req 
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/DeleteComponent
 func (c *GreengrassV2) DeleteComponent(input *DeleteComponentInput) (*DeleteComponentOutput, error) {
@@ -695,11 +705,11 @@ func (c *GreengrassV2) DeleteCoreDeviceRequest(input *DeleteCoreDeviceInput) (re
 
 // DeleteCoreDevice API operation for AWS IoT Greengrass V2.
 //
-// Deletes a AWS IoT Greengrass core device, which is an AWS IoT thing. This
-// operation removes the core device from the list of core devices. This operation
-// doesn't delete the AWS IoT thing. For more information about how to delete
-// the AWS IoT thing, see DeleteThing (https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteThing.html)
-// in the AWS IoT API Reference.
+// Deletes a Greengrass core device, which is an IoT thing. This operation removes
+// the core device from the list of core devices. This operation doesn't delete
+// the IoT thing. For more information about how to delete the IoT thing, see
+// DeleteThing (https://docs.aws.amazon.com/iot/latest/apireference/API_DeleteThing.html)
+// in the IoT API Reference.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -720,7 +730,7 @@ func (c *GreengrassV2) DeleteCoreDeviceRequest(input *DeleteCoreDeviceInput) (re
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -823,7 +833,7 @@ func (c *GreengrassV2) DescribeComponentRequest(input *DescribeComponentInput) (
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/DescribeComponent
 func (c *GreengrassV2) DescribeComponent(input *DescribeComponentInput) (*DescribeComponentOutput, error) {
@@ -918,7 +928,7 @@ func (c *GreengrassV2) GetComponentRequest(input *GetComponentInput) (req *reque
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/GetComponent
 func (c *GreengrassV2) GetComponent(input *GetComponentInput) (*GetComponentOutput, error) {
@@ -1014,7 +1024,7 @@ func (c *GreengrassV2) GetComponentVersionArtifactRequest(input *GetComponentVer
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/GetComponentVersionArtifact
 func (c *GreengrassV2) GetComponentVersionArtifact(input *GetComponentVersionArtifactInput) (*GetComponentVersionArtifactOutput, error) {
@@ -1082,7 +1092,7 @@ func (c *GreengrassV2) GetCoreDeviceRequest(input *GetCoreDeviceInput) (req *req
 
 // GetCoreDevice API operation for AWS IoT Greengrass V2.
 //
-// Retrieves metadata for a AWS IoT Greengrass core device.
+// Retrieves metadata for a Greengrass core device.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1103,7 +1113,7 @@ func (c *GreengrassV2) GetCoreDeviceRequest(input *GetCoreDeviceInput) (req *req
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -1176,8 +1186,8 @@ func (c *GreengrassV2) GetDeploymentRequest(input *GetDeploymentInput) (req *req
 
 // GetDeployment API operation for AWS IoT Greengrass V2.
 //
-// Gets a deployment. Deployments define the components that run on AWS IoT
-// Greengrass core devices.
+// Gets a deployment. Deployments define the components that run on Greengrass
+// core devices.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1198,7 +1208,7 @@ func (c *GreengrassV2) GetDeploymentRequest(input *GetDeploymentInput) (req *req
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -1299,7 +1309,7 @@ func (c *GreengrassV2) ListClientDevicesAssociatedWithCoreDeviceRequest(input *L
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -1457,7 +1467,7 @@ func (c *GreengrassV2) ListComponentVersionsRequest(input *ListComponentVersions
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/ListComponentVersions
 func (c *GreengrassV2) ListComponentVersions(input *ListComponentVersionsInput) (*ListComponentVersionsOutput, error) {
@@ -1607,7 +1617,7 @@ func (c *GreengrassV2) ListComponentsRequest(input *ListComponentsInput) (req *r
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/greengrassv2-2020-11-30/ListComponents
 func (c *GreengrassV2) ListComponents(input *ListComponentsInput) (*ListComponentsOutput, error) {
@@ -1733,7 +1743,7 @@ func (c *GreengrassV2) ListCoreDevicesRequest(input *ListCoreDevicesInput) (req 
 
 // ListCoreDevices API operation for AWS IoT Greengrass V2.
 //
-// Retrieves a paginated list of AWS IoT Greengrass core devices.
+// Retrieves a paginated list of Greengrass core devices.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1751,7 +1761,7 @@ func (c *GreengrassV2) ListCoreDevicesRequest(input *ListCoreDevicesInput) (req 
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -1900,7 +1910,7 @@ func (c *GreengrassV2) ListDeploymentsRequest(input *ListDeploymentsInput) (req 
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -2031,8 +2041,8 @@ func (c *GreengrassV2) ListEffectiveDeploymentsRequest(input *ListEffectiveDeplo
 
 // ListEffectiveDeployments API operation for AWS IoT Greengrass V2.
 //
-// Retrieves a paginated list of deployment jobs that AWS IoT Greengrass sends
-// to AWS IoT Greengrass core devices.
+// Retrieves a paginated list of deployment jobs that IoT Greengrass sends to
+// Greengrass core devices.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2053,7 +2063,7 @@ func (c *GreengrassV2) ListEffectiveDeploymentsRequest(input *ListEffectiveDeplo
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -2184,8 +2194,8 @@ func (c *GreengrassV2) ListInstalledComponentsRequest(input *ListInstalledCompon
 
 // ListInstalledComponents API operation for AWS IoT Greengrass V2.
 //
-// Retrieves a paginated list of the components that a AWS IoT Greengrass core
-// device runs.
+// Retrieves a paginated list of the components that a Greengrass core device
+// runs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2206,7 +2216,7 @@ func (c *GreengrassV2) ListInstalledComponentsRequest(input *ListInstalledCompon
 //   You don't have permission to perform the action.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ThrottlingException
 //   Your request exceeded a request rate quota. For example, you might have exceeded
@@ -2331,7 +2341,7 @@ func (c *GreengrassV2) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 
 // ListTagsForResource API operation for AWS IoT Greengrass V2.
 //
-// Retrieves the list of tags for an AWS IoT Greengrass resource.
+// Retrieves the list of tags for an IoT Greengrass resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2342,7 +2352,7 @@ func (c *GreengrassV2) ListTagsForResourceRequest(input *ListTagsForResourceInpu
 //
 // Returned Error Types:
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ValidationException
 //   The request isn't valid. This can occur if your request contains malformed
@@ -2418,7 +2428,7 @@ func (c *GreengrassV2) ResolveComponentCandidatesRequest(input *ResolveComponent
 // ResolveComponentCandidates API operation for AWS IoT Greengrass V2.
 //
 // Retrieves a list of components that meet the component, version, and platform
-// requirements of a deployment. AWS IoT Greengrass core devices call this operation
+// requirements of a deployment. Greengrass core devices call this operation
 // when they receive a deployment to identify the components to install.
 //
 // This operation identifies components that meet all dependency requirements
@@ -2427,13 +2437,13 @@ func (c *GreengrassV2) ResolveComponentCandidatesRequest(input *ResolveComponent
 // A requires version >2.0.0 and component B requires version <2.0.0 of a component
 // dependency.
 //
-// When you specify the component candidates to resolve, AWS IoT Greengrass
-// compares each component's digest from the core device with the component's
-// digest in the AWS Cloud. If the digests don't match, then AWS IoT Greengrass
-// specifies to use the version from the AWS Cloud.
+// When you specify the component candidates to resolve, IoT Greengrass compares
+// each component's digest from the core device with the component's digest
+// in the Amazon Web Services Cloud. If the digests don't match, then IoT Greengrass
+// specifies to use the version from the Amazon Web Services Cloud.
 //
 // To use this operation, you must use the data plane API endpoint and authenticate
-// with an AWS IoT device certificate. For more information, see AWS IoT Greengrass
+// with an IoT device certificate. For more information, see IoT Greengrass
 // endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/greengrass.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2460,7 +2470,7 @@ func (c *GreengrassV2) ResolveComponentCandidatesRequest(input *ResolveComponent
 //   second.
 //
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ConflictException
 //   Your request has conflicting operations. This can occur if you're trying
@@ -2533,8 +2543,8 @@ func (c *GreengrassV2) TagResourceRequest(input *TagResourceInput) (req *request
 
 // TagResource API operation for AWS IoT Greengrass V2.
 //
-// Adds tags to an AWS IoT Greengrass resource. If a tag already exists for
-// the resource, this operation updates the tag's value.
+// Adds tags to an IoT Greengrass resource. If a tag already exists for the
+// resource, this operation updates the tag's value.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2545,7 +2555,7 @@ func (c *GreengrassV2) TagResourceRequest(input *TagResourceInput) (req *request
 //
 // Returned Error Types:
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ValidationException
 //   The request isn't valid. This can occur if your request contains malformed
@@ -2621,7 +2631,7 @@ func (c *GreengrassV2) UntagResourceRequest(input *UntagResourceInput) (req *req
 
 // UntagResource API operation for AWS IoT Greengrass V2.
 //
-// Removes a tag from an AWS IoT Greengrass resource.
+// Removes a tag from an IoT Greengrass resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2632,7 +2642,7 @@ func (c *GreengrassV2) UntagResourceRequest(input *UntagResourceInput) (req *req
 //
 // Returned Error Types:
 //   * InternalServerException
-//   AWS IoT Greengrass can't process your request right now. Try again later.
+//   IoT Greengrass can't process your request right now. Try again later.
 //
 //   * ValidationException
 //   The request isn't valid. This can occur if your request contains malformed
@@ -2725,7 +2735,7 @@ func (s *AccessDeniedException) RequestID() string {
 type AssociateClientDeviceWithCoreDeviceEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS IoT thing that represents the client device to associate.
+	// The name of the IoT thing that represents the client device to associate.
 	//
 	// ThingName is a required field
 	ThingName *string `locationName:"thingName" min:"1" type:"string" required:"true"`
@@ -2775,7 +2785,7 @@ type AssociateClientDeviceWithCoreDeviceErrorEntry struct {
 	// A message that provides additional information about the error.
 	Message *string `locationName:"message" min:"1" type:"string"`
 
-	// The name of the AWS IoT thing whose associate request failed.
+	// The name of the IoT thing whose associate request failed.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 }
 
@@ -2815,7 +2825,7 @@ type AssociatedClientDevice struct {
 	// The time that the client device was associated, expressed in ISO 8601 format.
 	AssociationTimestamp *time.Time `locationName:"associationTimestamp" type:"timestamp"`
 
-	// The name of the AWS IoT thing that represents the associated client device.
+	// The name of the IoT thing that represents the associated client device.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 }
 
@@ -2844,7 +2854,7 @@ func (s *AssociatedClientDevice) SetThingName(v string) *AssociatedClientDevice 
 type BatchAssociateClientDeviceWithCoreDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	//
 	// CoreDeviceThingName is a required field
 	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
@@ -2908,7 +2918,7 @@ type BatchAssociateClientDeviceWithCoreDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of any errors for the entries in the request. Each error entry contains
-	// the name of the AWS IoT thing that failed to associate.
+	// the name of the IoT thing that failed to associate.
 	ErrorEntries []*AssociateClientDeviceWithCoreDeviceErrorEntry `locationName:"errorEntries" min:"1" type:"list"`
 }
 
@@ -2931,7 +2941,7 @@ func (s *BatchAssociateClientDeviceWithCoreDeviceOutput) SetErrorEntries(v []*As
 type BatchDisassociateClientDeviceFromCoreDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	//
 	// CoreDeviceThingName is a required field
 	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
@@ -2995,7 +3005,7 @@ type BatchDisassociateClientDeviceFromCoreDeviceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The list of errors (if any) for the entries in the request. Each error entry
-	// contains the name of the AWS IoT thing that failed to disassociate.
+	// contains the name of the IoT thing that failed to disassociate.
 	ErrorEntries []*DisassociateClientDeviceFromCoreDeviceErrorEntry `locationName:"errorEntries" min:"1" type:"list"`
 }
 
@@ -3079,7 +3089,7 @@ func (s *CancelDeploymentOutput) SetMessage(v string) *CancelDeploymentOutput {
 	return s
 }
 
-// Contains the status of a component in the AWS IoT Greengrass service.
+// Contains the status of a component in the IoT Greengrass service.
 type CloudComponentStatus struct {
 	_ struct{} `type:"structure"`
 
@@ -3087,9 +3097,9 @@ type CloudComponentStatus struct {
 	ComponentState *string `locationName:"componentState" type:"string" enum:"CloudComponentState"`
 
 	// A dictionary of errors that communicate why the component is in an error
-	// state. For example, if AWS IoT Greengrass can't access an artifact for the
-	// component, then errors contains the artifact's URI as a key, and the error
-	// message as the value for that key.
+	// state. For example, if IoT Greengrass can't access an artifact for the component,
+	// then errors contains the artifact's URI as a key, and the error message as
+	// the value for that key.
 	Errors map[string]*string `locationName:"errors" type:"map"`
 
 	// A message that communicates details, such as errors, about the status of
@@ -3169,7 +3179,7 @@ func (s *Component) SetLatestVersion(v *ComponentLatestVersion) *Component {
 }
 
 // Contains information about a component that is a candidate to deploy to a
-// AWS IoT Greengrass core device.
+// Greengrass core device.
 type ComponentCandidate struct {
 	_ struct{} `type:"structure"`
 
@@ -3179,10 +3189,10 @@ type ComponentCandidate struct {
 	// The version of the component.
 	ComponentVersion *string `locationName:"componentVersion" min:"1" type:"string"`
 
-	// The version requirements for the component's dependencies. AWS IoT Greengrass
-	// core devices get the version requirements from component recipes.
+	// The version requirements for the component's dependencies. Greengrass core
+	// devices get the version requirements from component recipes.
 	//
-	// AWS IoT Greengrass V2 uses semantic version constraints. For more information,
+	// IoT Greengrass V2 uses semantic version constraints. For more information,
 	// see Semantic Versioning (https://semver.org/).
 	VersionRequirements map[string]*string `locationName:"versionRequirements" type:"map"`
 }
@@ -3234,7 +3244,7 @@ func (s *ComponentCandidate) SetVersionRequirements(v map[string]*string) *Compo
 // Contains information about a deployment's update to a component's configuration
 // on Greengrass core devices. For more information, see Update component configurations
 // (https://docs.aws.amazon.com/greengrass/v2/developerguide/update-component-configurations.html)
-// in the AWS IoT Greengrass V2 Developer Guide.
+// in the IoT Greengrass V2 Developer Guide.
 type ComponentConfigurationUpdate struct {
 	_ struct{} `type:"structure"`
 
@@ -3245,7 +3255,7 @@ type ComponentConfigurationUpdate struct {
 	// default configuration. This means that the core device keeps it's existing
 	// configuration for keys and values that you don't specify in this object.
 	// For more information, see Merge configuration updates (https://docs.aws.amazon.com/greengrass/v2/developerguide/update-component-configurations.html#merge-configuration-update)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Merge *string `locationName:"merge" min:"1" type:"string"`
 
 	// The list of configuration nodes to reset to default values on target devices.
@@ -3253,7 +3263,7 @@ type ComponentConfigurationUpdate struct {
 	// a forward slash (/) and use forward slashes to separate the key for each
 	// level in the object. For more information, see the JSON pointer specification
 	// (https://tools.ietf.org/html/rfc6901) and Reset configuration updates (https://docs.aws.amazon.com/greengrass/v2/developerguide/update-component-configurations.html#reset-configuration-update)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Reset []*string `locationName:"reset" type:"list"`
 }
 
@@ -3307,7 +3317,7 @@ type ComponentDependencyRequirement struct {
 
 	// The component version requirement for the component dependency.
 	//
-	// AWS IoT Greengrass V2 uses semantic version constraints. For more information,
+	// IoT Greengrass V2 uses semantic version constraints. For more information,
 	// see Semantic Versioning (https://semver.org/).
 	VersionRequirement *string `locationName:"versionRequirement" min:"1" type:"string"`
 }
@@ -3357,18 +3367,18 @@ type ComponentDeploymentSpecification struct {
 	// The configuration updates to deploy for the component. You can define reset
 	// updates and merge updates. A reset updates the keys that you specify to the
 	// default configuration for the component. A merge updates the core device's
-	// component configuration with the keys and values that you specify. The AWS
-	// IoT Greengrass Core software applies reset updates before it applies merge
-	// updates. For more information, see Update component configurations (https://docs.aws.amazon.com/greengrass/v2/developerguide/update-component-configurations.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// component configuration with the keys and values that you specify. The IoT
+	// Greengrass Core software applies reset updates before it applies merge updates.
+	// For more information, see Update component configurations (https://docs.aws.amazon.com/greengrass/v2/developerguide/update-component-configurations.html)
+	// in the IoT Greengrass V2 Developer Guide.
 	ConfigurationUpdate *ComponentConfigurationUpdate `locationName:"configurationUpdate" type:"structure"`
 
-	// The system user and group that the AWS IoT Greengrass Core software uses
-	// to run component processes on the core device. If you omit this parameter,
-	// the AWS IoT Greengrass Core software uses the system user and group that
-	// you configure for the core device. For more information, see Configure the
-	// user and group that run components (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-greengrass-core-v2.html#configure-component-user)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// The system user and group that the IoT Greengrass Core software uses to run
+	// component processes on the core device. If you omit this parameter, the IoT
+	// Greengrass Core software uses the system user and group that you configure
+	// for the core device. For more information, see Configure the user and group
+	// that run components (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-greengrass-core-v2.html#configure-component-user)
+	// in the IoT Greengrass V2 Developer Guide.
 	RunWith *ComponentRunWith `locationName:"runWith" type:"structure"`
 }
 
@@ -3497,18 +3507,17 @@ func (s *ComponentLatestVersion) SetPublisher(v string) *ComponentLatestVersion 
 type ComponentPlatform struct {
 	_ struct{} `type:"structure"`
 
-	// A dictionary of attributes for the platform. The AWS IoT Greengrass Core
-	// software defines the os and platform by default. You can specify additional
-	// platform attributes for a core device when you deploy the AWS IoT Greengrass
-	// nucleus component. For more information, see the AWS IoT Greengrass nucleus
-	// component (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// A dictionary of attributes for the platform. The IoT Greengrass Core software
+	// defines the os and platform by default. You can specify additional platform
+	// attributes for a core device when you deploy the Greengrass nucleus component.
+	// For more information, see the Greengrass nucleus component (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html)
+	// in the IoT Greengrass V2 Developer Guide.
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
 	// The friendly name of the platform. This name helps you identify the platform.
 	//
-	// If you omit this parameter, AWS IoT Greengrass creates a friendly name from
-	// the os and architecture of the platform.
+	// If you omit this parameter, IoT Greengrass creates a friendly name from the
+	// os and architecture of the platform.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
 
@@ -3547,18 +3556,32 @@ func (s *ComponentPlatform) SetName(v string) *ComponentPlatform {
 	return s
 }
 
-// Contains information system user and group that the AWS IoT Greengrass Core
-// software uses to run component processes on the core device. For more information,
+// Contains information system user and group that the IoT Greengrass Core software
+// uses to run component processes on the core device. For more information,
 // see Configure the user and group that run components (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-greengrass-core-v2.html#configure-component-user)
-// in the AWS IoT Greengrass V2 Developer Guide.
+// in the IoT Greengrass V2 Developer Guide.
 type ComponentRunWith struct {
 	_ struct{} `type:"structure"`
 
 	// The POSIX system user and (optional) group to use to run this component.
 	// Specify the user and group separated by a colon (:) in the following format:
-	// user:group. The group is optional. If you don't specify a group, the AWS
-	// IoT Greengrass Core software uses the primary user for the group.
+	// user:group. The group is optional. If you don't specify a group, the IoT
+	// Greengrass Core software uses the primary user for the group.
+	//
+	// If you omit this parameter, the IoT Greengrass Core software uses the default
+	// system user and group that you configure on the Greengrass nucleus component.
+	// For more information, see Configure the user and group that run components
+	// (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-greengrass-core-v2.html#configure-component-user).
 	PosixUser *string `locationName:"posixUser" min:"1" type:"string"`
+
+	// The system resource limits to apply to this component's process on the core
+	// device.
+	//
+	// If you omit this parameter, the IoT Greengrass Core software uses the default
+	// system resource limits that you configure on the Greengrass nucleus component.
+	// For more information, see Configure system resource limits for components
+	// (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-greengrass-core-v2.html#configure-component-system-resource-limits).
+	SystemResourceLimits *SystemResourceLimits `locationName:"systemResourceLimits" type:"structure"`
 }
 
 // String returns the string representation
@@ -3587,6 +3610,12 @@ func (s *ComponentRunWith) Validate() error {
 // SetPosixUser sets the PosixUser field's value.
 func (s *ComponentRunWith) SetPosixUser(v string) *ComponentRunWith {
 	s.PosixUser = &v
+	return s
+}
+
+// SetSystemResourceLimits sets the SystemResourceLimits field's value.
+func (s *ComponentRunWith) SetSystemResourceLimits(v *SystemResourceLimits) *ComponentRunWith {
+	s.SystemResourceLimits = v
 	return s
 }
 
@@ -3700,12 +3729,12 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Contains information about a AWS IoT Greengrass core device, which is an
-// AWS IoT thing that runs the AWS IoT Greengrass Core software.
+// Contains information about a Greengrass core device, which is an IoT thing
+// that runs the IoT Greengrass Core software.
 type CoreDevice struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	CoreDeviceThingName *string `locationName:"coreDeviceThingName" min:"1" type:"string"`
 
 	// The time at which the core device's status last updated, expressed in ISO
@@ -3714,11 +3743,11 @@ type CoreDevice struct {
 
 	// The status of the core device. Core devices can have the following statuses:
 	//
-	//    * HEALTHY – The AWS IoT Greengrass Core software and all components
-	//    run on the core device without issue.
+	//    * HEALTHY – The IoT Greengrass Core software and all components run
+	//    on the core device without issue.
 	//
-	//    * UNHEALTHY – The AWS IoT Greengrass Core software or a component is
-	//    in a failed state on the core device.
+	//    * UNHEALTHY – The IoT Greengrass Core software or a component is in
+	//    a failed state on the core device.
 	Status *string `locationName:"status" type:"string" enum:"CoreDeviceStatus"`
 }
 
@@ -3753,6 +3782,15 @@ func (s *CoreDevice) SetStatus(v string) *CoreDevice {
 type CreateComponentVersionInput struct {
 	_ struct{} `type:"structure"`
 
+	// A unique, case-sensitive identifier that you can provide to ensure that the
+	// request is idempotent. Idempotency means that the request is successfully
+	// processed only once, even if you send the request multiple times. When a
+	// request succeeds, and you specify the same client token for subsequent successful
+	// requests, the IoT Greengrass V2 service returns the successful response that
+	// it caches from the previous request. IoT Greengrass V2 caches successful
+	// responses for idempotent requests for up to 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
 	// The recipe to use to create the component. The recipe defines the component's
 	// metadata, parameters, dependencies, lifecycle, artifacts, and platform compatibility.
 	//
@@ -3768,7 +3806,7 @@ type CreateComponentVersionInput struct {
 
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -3785,6 +3823,9 @@ func (s CreateComponentVersionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateComponentVersionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateComponentVersionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
@@ -3798,6 +3839,12 @@ func (s *CreateComponentVersionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateComponentVersionInput) SetClientToken(v string) *CreateComponentVersionInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetInlineRecipe sets the InlineRecipe field's value.
@@ -3840,8 +3887,8 @@ type CreateComponentVersionOutput struct {
 	// CreationTimestamp is a required field
 	CreationTimestamp *time.Time `locationName:"creationTimestamp" type:"timestamp" required:"true"`
 
-	// The status of the component version in AWS IoT Greengrass V2. This status
-	// is different from the status of the component on a core device.
+	// The status of the component version in IoT Greengrass V2. This status is
+	// different from the status of the component on a core device.
 	//
 	// Status is a required field
 	Status *CloudComponentStatus `locationName:"status" type:"structure" required:"true"`
@@ -3890,16 +3937,21 @@ func (s *CreateComponentVersionOutput) SetStatus(v *CloudComponentStatus) *Creat
 type CreateDeploymentInput struct {
 	_ struct{} `type:"structure"`
 
+	// A unique, case-sensitive identifier that you can provide to ensure that the
+	// request is idempotent. Idempotency means that the request is successfully
+	// processed only once, even if you send the request multiple times. When a
+	// request succeeds, and you specify the same client token for subsequent successful
+	// requests, the IoT Greengrass V2 service returns the successful response that
+	// it caches from the previous request. IoT Greengrass V2 caches successful
+	// responses for idempotent requests for up to 8 hours.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
 	// The components to deploy. This is a dictionary, where each key is the name
 	// of a component, and each key's value is the version and configuration to
 	// deploy for that component.
 	Components map[string]*ComponentDeploymentSpecification `locationName:"components" type:"map"`
 
 	// The name of the deployment.
-	//
-	// You can create deployments without names. If you create a deployment without
-	// a name, the AWS IoT Greengrass V2 console shows the deployment name as <targetType>:<targetName>,
-	// where targetType and targetName are the type and name of the deployment target.
 	DeploymentName *string `locationName:"deploymentName" min:"1" type:"string"`
 
 	// The deployment policies for the deployment. These policies define how the
@@ -3913,11 +3965,11 @@ type CreateDeploymentInput struct {
 
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the target AWS IoT thing or thing group.
+	// of the target IoT thing or thing group.
 	//
 	// TargetArn is a required field
 	TargetArn *string `locationName:"targetArn" type:"string" required:"true"`
@@ -3936,6 +3988,9 @@ func (s CreateDeploymentInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateDeploymentInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateDeploymentInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
 	if s.DeploymentName != nil && len(*s.DeploymentName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DeploymentName", 1))
 	}
@@ -3965,6 +4020,12 @@ func (s *CreateDeploymentInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateDeploymentInput) SetClientToken(v string) *CreateDeploymentInput {
+	s.ClientToken = &v
+	return s
 }
 
 // SetComponents sets the Components field's value.
@@ -4010,10 +4071,10 @@ type CreateDeploymentOutput struct {
 	DeploymentId *string `locationName:"deploymentId" min:"1" type:"string"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the AWS IoT job that applies the deployment to target devices.
+	// of the IoT job that applies the deployment to target devices.
 	IotJobArn *string `locationName:"iotJobArn" type:"string"`
 
-	// The ID of the AWS IoT job that applies the deployment to target devices.
+	// The ID of the IoT job that applies the deployment to target devices.
 	IotJobId *string `locationName:"iotJobId" min:"1" type:"string"`
 }
 
@@ -4104,7 +4165,7 @@ func (s DeleteComponentOutput) GoString() string {
 type DeleteCoreDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	//
 	// CoreDeviceThingName is a required field
 	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
@@ -4167,10 +4228,6 @@ type Deployment struct {
 	DeploymentId *string `locationName:"deploymentId" min:"1" type:"string"`
 
 	// The name of the deployment.
-	//
-	// You can create deployments without names. If you create a deployment without
-	// a name, the AWS IoT Greengrass V2 console shows the deployment name as <targetType>:<targetName>,
-	// where targetType and targetName are the type and name of the deployment target.
 	DeploymentName *string `locationName:"deploymentName" min:"1" type:"string"`
 
 	// The status of the deployment.
@@ -4183,7 +4240,7 @@ type Deployment struct {
 	RevisionId *string `locationName:"revisionId" min:"1" type:"string"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the target AWS IoT thing or thing group.
+	// of the target IoT thing or thing group.
 	TargetArn *string `locationName:"targetArn" type:"string"`
 }
 
@@ -4259,7 +4316,7 @@ type DeploymentComponentUpdatePolicy struct {
 	//    IPC operation to receive these notifications. Then, components can respond
 	//    with the DeferComponentUpdate (https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-defercomponentupdate)
 	//    IPC operation. For more information, see Create deployments (https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html)
-	//    in the AWS IoT Greengrass V2 Developer Guide.
+	//    in the IoT Greengrass V2 Developer Guide.
 	//
 	//    * SKIP_NOTIFY_COMPONENTS – The deployment doesn't notify components
 	//    or wait for them to be safe to update.
@@ -4304,7 +4361,7 @@ func (s *DeploymentComponentUpdatePolicy) SetTimeoutInSeconds(v int64) *Deployme
 // update. Then, components can respond with the SendConfigurationValidityReport
 // (https://docs.aws.amazon.com/greengrass/v2/developerguide/interprocess-communication.html#ipc-operation-sendconfigurationvalidityreport)
 // IPC operation. For more information, see Create deployments (https://docs.aws.amazon.com/greengrass/v2/developerguide/create-deployments.html)
-// in the AWS IoT Greengrass V2 Developer Guide.
+// in the IoT Greengrass V2 Developer Guide.
 type DeploymentConfigurationValidationPolicy struct {
 	_ struct{} `type:"structure"`
 
@@ -4332,7 +4389,7 @@ func (s *DeploymentConfigurationValidationPolicy) SetTimeoutInSeconds(v int64) *
 	return s
 }
 
-// Contains information about an AWS IoT job configuration.
+// Contains information about an IoT job configuration.
 type DeploymentIoTJobConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4512,13 +4569,13 @@ type DescribeComponentOutput struct {
 	// The publisher of the component version.
 	Publisher *string `locationName:"publisher" type:"string"`
 
-	// The status of the component version in AWS IoT Greengrass V2. This status
-	// is different from the status of the component on a core device.
+	// The status of the component version in IoT Greengrass V2. This status is
+	// different from the status of the component on a core device.
 	Status *CloudComponentStatus `locationName:"status" type:"structure"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -4592,7 +4649,7 @@ func (s *DescribeComponentOutput) SetTags(v map[string]*string) *DescribeCompone
 type DisassociateClientDeviceFromCoreDeviceEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS IoT thing that represents the client device to disassociate.
+	// The name of the IoT thing that represents the client device to disassociate.
 	//
 	// ThingName is a required field
 	ThingName *string `locationName:"thingName" min:"1" type:"string" required:"true"`
@@ -4642,7 +4699,7 @@ type DisassociateClientDeviceFromCoreDeviceErrorEntry struct {
 	// A message that provides additional information about the error.
 	Message *string `locationName:"message" min:"1" type:"string"`
 
-	// The name of the AWS IoT thing whose disassociate request failed.
+	// The name of the IoT thing whose disassociate request failed.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 }
 
@@ -4674,12 +4731,12 @@ func (s *DisassociateClientDeviceFromCoreDeviceErrorEntry) SetThingName(v string
 	return s
 }
 
-// Contains information about a deployment job that AWS IoT Greengrass sends
-// to a AWS IoT Greengrass core device.
+// Contains information about a deployment job that IoT Greengrass sends to
+// a Greengrass core device.
 type EffectiveDeployment struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the deployment job on the AWS IoT Greengrass core device.
+	// The status of the deployment job on the Greengrass core device.
 	//
 	// CoreDeviceExecutionStatus is a required field
 	CoreDeviceExecutionStatus *string `locationName:"coreDeviceExecutionStatus" type:"string" required:"true" enum:"EffectiveDeploymentExecutionStatus"`
@@ -4696,10 +4753,6 @@ type EffectiveDeployment struct {
 
 	// The name of the deployment.
 	//
-	// You can create deployments without names. If you create a deployment without
-	// a name, the AWS IoT Greengrass V2 console shows the deployment name as <targetType>:<targetName>,
-	// where targetType and targetName are the type and name of the deployment target.
-	//
 	// DeploymentName is a required field
 	DeploymentName *string `locationName:"deploymentName" type:"string" required:"true"`
 
@@ -4707,10 +4760,10 @@ type EffectiveDeployment struct {
 	Description *string `locationName:"description" min:"1" type:"string"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the AWS IoT job that applies the deployment to target devices.
+	// of the IoT job that applies the deployment to target devices.
 	IotJobArn *string `locationName:"iotJobArn" type:"string"`
 
-	// The ID of the AWS IoT job that applies the deployment to target devices.
+	// The ID of the IoT job that applies the deployment to target devices.
 	IotJobId *string `locationName:"iotJobId" min:"1" type:"string"`
 
 	// The time at which the deployment job was last modified, expressed in ISO
@@ -4723,7 +4776,7 @@ type EffectiveDeployment struct {
 	Reason *string `locationName:"reason" type:"string"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the target AWS IoT thing or thing group.
+	// of the target IoT thing or thing group.
 	//
 	// TargetArn is a required field
 	TargetArn *string `locationName:"targetArn" type:"string" required:"true"`
@@ -4867,7 +4920,7 @@ type GetComponentOutput struct {
 
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -4992,7 +5045,7 @@ func (s *GetComponentVersionArtifactOutput) SetPreSignedUrl(v string) *GetCompon
 type GetCoreDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	//
 	// CoreDeviceThingName is a required field
 	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
@@ -5036,14 +5089,14 @@ type GetCoreDeviceOutput struct {
 	// The computer architecture of the core device.
 	Architecture *string `locationName:"architecture" min:"1" type:"string"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	CoreDeviceThingName *string `locationName:"coreDeviceThingName" min:"1" type:"string"`
 
-	// The version of the AWS IoT Greengrass Core software that the core device
-	// runs. This version is equivalent to the version of the AWS IoT Greengrass
-	// nucleus component that runs on the core device. For more information, see
-	// the AWS IoT Greengrass nucleus component (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// The version of the IoT Greengrass Core software that the core device runs.
+	// This version is equivalent to the version of the Greengrass nucleus component
+	// that runs on the core device. For more information, see the Greengrass nucleus
+	// component (https://docs.aws.amazon.com/greengrass/v2/developerguide/greengrass-nucleus-component.html)
+	// in the IoT Greengrass V2 Developer Guide.
 	CoreVersion *string `locationName:"coreVersion" min:"1" type:"string"`
 
 	// The time at which the core device's status last updated, expressed in ISO
@@ -5055,16 +5108,16 @@ type GetCoreDeviceOutput struct {
 
 	// The status of the core device. The core device status can be:
 	//
-	//    * HEALTHY – The AWS IoT Greengrass Core software and all components
-	//    run on the core device without issue.
+	//    * HEALTHY – The IoT Greengrass Core software and all components run
+	//    on the core device without issue.
 	//
-	//    * UNHEALTHY – The AWS IoT Greengrass Core software or a component is
-	//    in a failed state on the core device.
+	//    * UNHEALTHY – The IoT Greengrass Core software or a component is in
+	//    a failed state on the core device.
 	Status *string `locationName:"status" type:"string" enum:"CoreDeviceStatus"`
 
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -5176,10 +5229,6 @@ type GetDeploymentOutput struct {
 	DeploymentId *string `locationName:"deploymentId" min:"1" type:"string"`
 
 	// The name of the deployment.
-	//
-	// You can create deployments without names. If you create a deployment without
-	// a name, the AWS IoT Greengrass V2 console shows the deployment name as <targetType>:<targetName>,
-	// where targetType and targetName are the type and name of the deployment target.
 	DeploymentName *string `locationName:"deploymentName" type:"string"`
 
 	// The deployment policies for the deployment. These policies define how the
@@ -5190,7 +5239,7 @@ type GetDeploymentOutput struct {
 	DeploymentStatus *string `locationName:"deploymentStatus" type:"string" enum:"DeploymentStatus"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the AWS IoT job that applies the deployment to target devices.
+	// of the IoT job that applies the deployment to target devices.
 	IotJobArn *string `locationName:"iotJobArn" type:"string"`
 
 	// The job configuration for the deployment configuration. The job configuration
@@ -5198,7 +5247,7 @@ type GetDeploymentOutput struct {
 	// configuration.
 	IotJobConfiguration *DeploymentIoTJobConfiguration `locationName:"iotJobConfiguration" type:"structure"`
 
-	// The ID of the AWS IoT job that applies the deployment to target devices.
+	// The ID of the IoT job that applies the deployment to target devices.
 	IotJobId *string `locationName:"iotJobId" type:"string"`
 
 	// Whether or not the deployment is the latest revision for its target.
@@ -5209,11 +5258,11 @@ type GetDeploymentOutput struct {
 
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the target AWS IoT thing or thing group.
+	// of the target IoT thing or thing group.
 	TargetArn *string `locationName:"targetArn" type:"string"`
 }
 
@@ -5305,7 +5354,7 @@ func (s *GetDeploymentOutput) SetTargetArn(v string) *GetDeploymentOutput {
 	return s
 }
 
-// Contains information about a component on a AWS IoT Greengrass core device.
+// Contains information about a component on a Greengrass core device.
 type InstalledComponent struct {
 	_ struct{} `type:"structure"`
 
@@ -5365,7 +5414,7 @@ func (s *InstalledComponent) SetLifecycleStateDetails(v string) *InstalledCompon
 	return s
 }
 
-// AWS IoT Greengrass can't process your request right now. Try again later.
+// IoT Greengrass can't process your request right now. Try again later.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5792,8 +5841,8 @@ func (s *IoTJobTimeoutConfig) SetInProgressTimeoutInMinutes(v int64) *IoTJobTime
 	return s
 }
 
-// Contains information about a container in which AWS Lambda functions run
-// on AWS IoT Greengrass core devices.
+// Contains information about a container in which Lambda functions run on Greengrass
+// core devices.
 type LambdaContainerParams struct {
 	_ struct{} `type:"structure"`
 
@@ -5941,9 +5990,9 @@ func (s *LambdaDeviceMount) SetPermission(v string) *LambdaDeviceMount {
 	return s
 }
 
-// Contains information about an event source for an AWS Lambda function. The
-// event source defines the topics on which this Lambda function subscribes
-// to receive messages that run the function.
+// Contains information about an event source for an Lambda function. The event
+// source defines the topics on which this Lambda function subscribes to receive
+// messages that run the function.
 type LambdaEventSource struct {
 	_ struct{} `type:"structure"`
 
@@ -5958,8 +6007,9 @@ type LambdaEventSource struct {
 	//    source type doesn't support MQTT wildcards (+ and #) in the event source
 	//    topic.
 	//
-	//    * IOT_CORE – Subscribe to AWS IoT Core MQTT messages. This event source
-	//    type supports MQTT wildcards (+ and #) in the event source topic.
+	//    * IOT_CORE – Subscribe to Amazon Web Services IoT Core MQTT messages.
+	//    This event source type supports MQTT wildcards (+ and #) in the event
+	//    source topic.
 	//
 	// Type is a required field
 	Type *string `locationName:"type" type:"string" required:"true" enum:"LambdaEventSourceType"`
@@ -6003,7 +6053,7 @@ func (s *LambdaEventSource) SetType(v string) *LambdaEventSource {
 	return s
 }
 
-// Contains parameters for a Lambda function that runs on AWS IoT Greengrass.
+// Contains parameters for a Lambda function that runs on IoT Greengrass.
 type LambdaExecutionParameters struct {
 	_ struct{} `type:"structure"`
 
@@ -6013,8 +6063,8 @@ type LambdaExecutionParameters struct {
 
 	// The list of event sources to which to subscribe to receive work messages.
 	// The Lambda function runs when it receives a message from an event source.
-	// You can subscribe this function to local publish/subscribe messages and AWS
-	// IoT Core MQTT messages.
+	// You can subscribe this function to local publish/subscribe messages and Amazon
+	// Web Services IoT Core MQTT messages.
 	EventSources []*LambdaEventSource `locationName:"eventSources" type:"list"`
 
 	// The list of arguments to pass to the Lambda function when it runs.
@@ -6029,7 +6079,7 @@ type LambdaExecutionParameters struct {
 	LinuxProcessParams *LambdaLinuxProcessParams `locationName:"linuxProcessParams" type:"structure"`
 
 	// The maximum amount of time in seconds that a non-pinned Lambda function can
-	// idle before the AWS IoT Greengrass Core software stops its process.
+	// idle before the IoT Greengrass Core software stops its process.
 	MaxIdleTimeInSeconds *int64 `locationName:"maxIdleTimeInSeconds" type:"integer"`
 
 	// The maximum number of instances that a non-pinned Lambda function can run
@@ -6037,18 +6087,18 @@ type LambdaExecutionParameters struct {
 	MaxInstancesCount *int64 `locationName:"maxInstancesCount" type:"integer"`
 
 	// The maximum size of the message queue for the Lambda function component.
-	// The AWS IoT Greengrass core stores messages in a FIFO (first-in-first-out)
-	// queue until it can run the Lambda function to consume each message.
+	// The IoT Greengrass core stores messages in a FIFO (first-in-first-out) queue
+	// until it can run the Lambda function to consume each message.
 	MaxQueueSize *int64 `locationName:"maxQueueSize" type:"integer"`
 
 	// Whether or not the Lambda function is pinned, or long-lived.
 	//
-	//    * A pinned Lambda function starts when AWS IoT Greengrass starts and keeps
+	//    * A pinned Lambda function starts when IoT Greengrass starts and keeps
 	//    running in its own container.
 	//
 	//    * A non-pinned Lambda function starts only when it receives a work item
 	//    and exists after it idles for maxIdleTimeInSeconds. If the function has
-	//    multiple work items, the AWS IoT Greengrass Core software creates multiple
+	//    multiple work items, the IoT Greengrass Core software creates multiple
 	//    instances of the function.
 	//
 	// Default: true
@@ -6164,7 +6214,7 @@ func (s *LambdaExecutionParameters) SetTimeoutInSeconds(v int64) *LambdaExecutio
 	return s
 }
 
-// Contains information about an AWS Lambda function to import to create a component.
+// Contains information about an Lambda function to import to create a component.
 type LambdaFunctionRecipeSource struct {
 	_ struct{} `type:"structure"`
 
@@ -6172,7 +6222,7 @@ type LambdaFunctionRecipeSource struct {
 	ComponentDependencies map[string]*ComponentDependencyRequirement `locationName:"componentDependencies" type:"map"`
 
 	// The system and runtime parameters for the Lambda function as it runs on the
-	// AWS IoT Greengrass core device.
+	// Greengrass core device.
 	ComponentLambdaParameters *LambdaExecutionParameters `locationName:"componentLambdaParameters" type:"structure"`
 
 	// The name of the component.
@@ -6287,7 +6337,7 @@ func (s *LambdaFunctionRecipeSource) SetLambdaArn(v string) *LambdaFunctionRecip
 	return s
 }
 
-// Contains parameters for a Linux process that contains an AWS Lambda function.
+// Contains parameters for a Linux process that contains an Lambda function.
 type LambdaLinuxProcessParams struct {
 	_ struct{} `type:"structure"`
 
@@ -6295,7 +6345,7 @@ type LambdaLinuxProcessParams struct {
 	ContainerParams *LambdaContainerParams `locationName:"containerParams" type:"structure"`
 
 	// The isolation mode for the process that contains the Lambda function. The
-	// process can run in an isolated runtime environment inside the AWS IoT Greengrass
+	// process can run in an isolated runtime environment inside the IoT Greengrass
 	// container, or as a regular process outside any container.
 	//
 	// Default: GreengrassContainer
@@ -6340,13 +6390,12 @@ func (s *LambdaLinuxProcessParams) SetIsolationMode(v string) *LambdaLinuxProces
 }
 
 // Contains information about a volume that Linux processes in a container can
-// access. When you define a volume, the AWS IoT Greengrass Core software mounts
+// access. When you define a volume, the IoT Greengrass Core software mounts
 // the source files to the destination inside the container.
 type LambdaVolumeMount struct {
 	_ struct{} `type:"structure"`
 
-	// Whether or not to add the AWS IoT Greengrass user group as an owner of the
-	// volume.
+	// Whether or not to add the IoT Greengrass user group as an owner of the volume.
 	//
 	// Default: false
 	AddGroupOwner *bool `locationName:"addGroupOwner" type:"boolean"`
@@ -6420,7 +6469,7 @@ func (s *LambdaVolumeMount) SetSourcePath(v string) *LambdaVolumeMount {
 type ListClientDevicesAssociatedWithCoreDeviceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	//
 	// CoreDeviceThingName is a required field
 	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
@@ -6711,15 +6760,15 @@ type ListCoreDevicesInput struct {
 	// the list includes only core devices that have this status. Choose one of
 	// the following options:
 	//
-	//    * HEALTHY – The AWS IoT Greengrass Core software and all components
-	//    run on the core device without issue.
+	//    * HEALTHY – The IoT Greengrass Core software and all components run
+	//    on the core device without issue.
 	//
-	//    * UNHEALTHY – The AWS IoT Greengrass Core software or a component is
-	//    in a failed state on the core device.
+	//    * UNHEALTHY – The IoT Greengrass Core software or a component is in
+	//    a failed state on the core device.
 	Status *string `location:"querystring" locationName:"status" type:"string" enum:"CoreDeviceStatus"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the AWS IoT thing group by which to filter. If you specify this parameter,
+	// of the IoT thing group by which to filter. If you specify this parameter,
 	// the list includes only core devices that are members of this thing group.
 	ThingGroupArn *string `location:"querystring" locationName:"thingGroupArn" type:"string"`
 }
@@ -6823,7 +6872,7 @@ type ListDeploymentsInput struct {
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// of the target AWS IoT thing or thing group.
+	// of the target IoT thing or thing group.
 	TargetArn *string `location:"querystring" locationName:"targetArn" type:"string"`
 }
 
@@ -6910,7 +6959,7 @@ func (s *ListDeploymentsOutput) SetNextToken(v string) *ListDeploymentsOutput {
 type ListEffectiveDeploymentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	//
 	// CoreDeviceThingName is a required field
 	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
@@ -7005,7 +7054,7 @@ func (s *ListEffectiveDeploymentsOutput) SetNextToken(v string) *ListEffectiveDe
 type ListInstalledComponentsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the core device. This is also the name of the AWS IoT thing.
+	// The name of the core device. This is also the name of the IoT thing.
 	//
 	// CoreDeviceThingName is a required field
 	CoreDeviceThingName *string `location:"uri" locationName:"coreDeviceThingName" min:"1" type:"string" required:"true"`
@@ -7144,7 +7193,7 @@ type ListTagsForResourceOutput struct {
 
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -7162,6 +7211,64 @@ func (s ListTagsForResourceOutput) GoString() string {
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
 	return s
+}
+
+// The request is already in progress. This exception occurs when you use a
+// client token for multiple requests while IoT Greengrass is still processing
+// an earlier request that uses the same client token.
+type RequestAlreadyInProgressException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s RequestAlreadyInProgressException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RequestAlreadyInProgressException) GoString() string {
+	return s.String()
+}
+
+func newErrorRequestAlreadyInProgressException(v protocol.ResponseMetadata) error {
+	return &RequestAlreadyInProgressException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *RequestAlreadyInProgressException) Code() string {
+	return "RequestAlreadyInProgressException"
+}
+
+// Message returns the exception's message.
+func (s *RequestAlreadyInProgressException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *RequestAlreadyInProgressException) OrigErr() error {
+	return nil
+}
+
+func (s *RequestAlreadyInProgressException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *RequestAlreadyInProgressException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *RequestAlreadyInProgressException) RequestID() string {
+	return s.RespMetadata.RequestID
 }
 
 type ResolveComponentCandidatesInput struct {
@@ -7257,7 +7364,7 @@ func (s *ResolveComponentCandidatesOutput) SetResolvedComponentVersions(v []*Res
 }
 
 // Contains information about a component version that is compatible to run
-// on a AWS IoT Greengrass core device.
+// on a Greengrass core device.
 type ResolvedComponentVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -7450,6 +7557,49 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains information about system resource limits that the IoT Greengrass
+// Core software applies to a component's processes. For more information, see
+// Configure system resource limits for components (https://docs.aws.amazon.com/greengrass/v2/developerguide/configure-greengrass-core-v2.html#configure-component-system-resource-limits).
+type SystemResourceLimits struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum amount of CPU time that a component's processes can use on the
+	// core device. A core device's total CPU time is equivalent to the device's
+	// number of CPU cores. For example, on a core device with 4 CPU cores, you
+	// can set this value to 2 to limit the component's processes to 50 percent
+	// usage of each CPU core. On a device with 1 CPU core, you can set this value
+	// to 0.25 to limit the component's processes to 25 percent usage of the CPU.
+	// If you set this value to a number greater than the number of CPU cores, the
+	// IoT Greengrass Core software doesn't limit the component's CPU usage.
+	Cpus *float64 `locationName:"cpus" type:"double"`
+
+	// The maximum amount of RAM, expressed in kilobytes, that a component's processes
+	// can use on the core device.
+	Memory *int64 `locationName:"memory" type:"long"`
+}
+
+// String returns the string representation
+func (s SystemResourceLimits) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SystemResourceLimits) GoString() string {
+	return s.String()
+}
+
+// SetCpus sets the Cpus field's value.
+func (s *SystemResourceLimits) SetCpus(v float64) *SystemResourceLimits {
+	s.Cpus = &v
+	return s
+}
+
+// SetMemory sets the Memory field's value.
+func (s *SystemResourceLimits) SetMemory(v int64) *SystemResourceLimits {
+	s.Memory = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7461,7 +7611,7 @@ type TagResourceInput struct {
 
 	// A list of key-value pairs that contain metadata for the resource. For more
 	// information, see Tag your resources (https://docs.aws.amazon.com/greengrass/v2/developerguide/tag-resources.html)
-	// in the AWS IoT Greengrass V2 Developer Guide.
+	// in the IoT Greengrass V2 Developer Guide.
 	//
 	// Tags is a required field
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map" required:"true"`
