@@ -2017,11 +2017,14 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	}
 
 	// Create new session
-	sess, err := session.NewSession(&aws.Config{
+	awsConfig := &aws.Config{
 		Region:      aws.String(region),
 		Credentials: credentials.NewStaticCredentials(accessKeyIdAsString, secretAccessKeyAsString, ""),
-		HTTPClient:  &http.Client{Timeout: time.Duration(timeout) * time.Second},
-	})
+	}
+	if timeout > 0 {
+		awsConfig.HTTPClient = &http.Client{Timeout: time.Duration(timeout) * time.Second}
+	}
+	sess, err := session.NewSession(awsConfig)
 
 	if err != nil {
 		return nil, errors.New("failed to create AWS session using provided credentials")
