@@ -7,7 +7,7 @@ node ("ci") {
 
   def pipeline = new PluginPipeline(this)
   pipeline.projectName = "blink-aws"
-  pipeline.mainBranchName = "main"
+  pipeline.mainBranchName = "master"
   pipeline.dockerImageName = "blink-aws"
   pipeline.dockerRegistry = Constants.PUBLIC_DOCKER_REGISTRY
   pipeline.isMultiImage = false
