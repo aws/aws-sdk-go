@@ -9231,6 +9231,44 @@ func (s *EsamSignalProcessingNotification) SetSccXml(v string) *EsamSignalProces
 	return s
 }
 
+// Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h
+// Content Advisory.
+type ExtendedDataServices struct {
+	_ struct{} `type:"structure"`
+
+	// The action to take on copy and redistribution control XDS packets. If you
+	// select PASSTHROUGH, packets will not be changed. If you select STRIP, any
+	// packets will be removed in output captions.
+	CopyProtectionAction *string `locationName:"copyProtectionAction" type:"string" enum:"CopyProtectionAction"`
+
+	// The action to take on content advisory XDS packets. If you select PASSTHROUGH,
+	// packets will not be changed. If you select STRIP, any packets will be removed
+	// in output captions.
+	VchipAction *string `locationName:"vchipAction" type:"string" enum:"VchipAction"`
+}
+
+// String returns the string representation
+func (s ExtendedDataServices) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExtendedDataServices) GoString() string {
+	return s.String()
+}
+
+// SetCopyProtectionAction sets the CopyProtectionAction field's value.
+func (s *ExtendedDataServices) SetCopyProtectionAction(v string) *ExtendedDataServices {
+	s.CopyProtectionAction = &v
+	return s
+}
+
+// SetVchipAction sets the VchipAction field's value.
+func (s *ExtendedDataServices) SetVchipAction(v string) *ExtendedDataServices {
+	s.VchipAction = &v
+	return s
+}
+
 // Settings for F4v container
 type F4vSettings struct {
 	_ struct{} `type:"structure"`
@@ -13558,6 +13596,10 @@ type JobSettings struct {
 	// you can ignore these settings.
 	Esam *EsamSettings `locationName:"esam" type:"structure"`
 
+	// Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h
+	// Content Advisory.
+	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
+
 	// Use Inputs (inputs) to define source file used in the transcode job. There
 	// can be multiple inputs add in a job. These inputs will be concantenated together
 	// to create the output.
@@ -13693,6 +13735,12 @@ func (s *JobSettings) SetAvailBlanking(v *AvailBlanking) *JobSettings {
 // SetEsam sets the Esam field's value.
 func (s *JobSettings) SetEsam(v *EsamSettings) *JobSettings {
 	s.Esam = v
+	return s
+}
+
+// SetExtendedDataServices sets the ExtendedDataServices field's value.
+func (s *JobSettings) SetExtendedDataServices(v *ExtendedDataServices) *JobSettings {
+	s.ExtendedDataServices = v
 	return s
 }
 
@@ -13906,6 +13954,10 @@ type JobTemplateSettings struct {
 	// you can ignore these settings.
 	Esam *EsamSettings `locationName:"esam" type:"structure"`
 
+	// Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h
+	// Content Advisory.
+	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
+
 	// Use Inputs (inputs) to define the source file used in the transcode job.
 	// There can only be one input in a job template. Using the API, you can include
 	// multiple inputs when referencing a job template.
@@ -14041,6 +14093,12 @@ func (s *JobTemplateSettings) SetAvailBlanking(v *AvailBlanking) *JobTemplateSet
 // SetEsam sets the Esam field's value.
 func (s *JobTemplateSettings) SetEsam(v *EsamSettings) *JobTemplateSettings {
 	s.Esam = v
+	return s
+}
+
+// SetExtendedDataServices sets the ExtendedDataServices field's value.
+func (s *JobTemplateSettings) SetExtendedDataServices(v *ExtendedDataServices) *JobTemplateSettings {
+	s.ExtendedDataServices = v
 	return s
 }
 
@@ -24822,6 +24880,25 @@ func ContainerType_Values() []string {
 	}
 }
 
+// The action to take on copy and redistribution control XDS packets. If you
+// select PASSTHROUGH, packets will not be changed. If you select STRIP, any
+// packets will be removed in output captions.
+const (
+	// CopyProtectionActionPassthrough is a CopyProtectionAction enum value
+	CopyProtectionActionPassthrough = "PASSTHROUGH"
+
+	// CopyProtectionActionStrip is a CopyProtectionAction enum value
+	CopyProtectionActionStrip = "STRIP"
+)
+
+// CopyProtectionAction_Values returns all elements of the CopyProtectionAction enum
+func CopyProtectionAction_Values() []string {
+	return []string{
+		CopyProtectionActionPassthrough,
+		CopyProtectionActionStrip,
+	}
+}
+
 // Use this setting only when your audio codec is a Dolby one (AC3, EAC3, or
 // Atmos) and your downstream workflow requires that your DASH manifest use
 // the Dolby channel configuration tag, rather than the MPEG one. For example,
@@ -31477,6 +31554,25 @@ func Vc3Telecine_Values() []string {
 	return []string{
 		Vc3TelecineNone,
 		Vc3TelecineHard,
+	}
+}
+
+// The action to take on content advisory XDS packets. If you select PASSTHROUGH,
+// packets will not be changed. If you select STRIP, any packets will be removed
+// in output captions.
+const (
+	// VchipActionPassthrough is a VchipAction enum value
+	VchipActionPassthrough = "PASSTHROUGH"
+
+	// VchipActionStrip is a VchipAction enum value
+	VchipActionStrip = "STRIP"
+)
+
+// VchipAction_Values returns all elements of the VchipAction enum
+func VchipAction_Values() []string {
+	return []string{
+		VchipActionPassthrough,
+		VchipActionStrip,
 	}
 }
 

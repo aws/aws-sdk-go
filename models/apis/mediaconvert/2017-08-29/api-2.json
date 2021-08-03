@@ -2571,6 +2571,13 @@
         "RAW"
       ]
     },
+    "CopyProtectionAction": {
+      "type": "string",
+      "enum": [
+        "PASSTHROUGH",
+        "STRIP"
+      ]
+    },
     "CreateJobRequest": {
       "type": "structure",
       "members": {
@@ -3828,6 +3835,19 @@
         "Message": {
           "shape": "__string",
           "locationName": "message"
+        }
+      }
+    },
+    "ExtendedDataServices": {
+      "type": "structure",
+      "members": {
+        "CopyProtectionAction": {
+          "shape": "CopyProtectionAction",
+          "locationName": "copyProtectionAction"
+        },
+        "VchipAction": {
+          "shape": "VchipAction",
+          "locationName": "vchipAction"
         }
       }
     },
@@ -5770,6 +5790,10 @@
           "shape": "EsamSettings",
           "locationName": "esam"
         },
+        "ExtendedDataServices": {
+          "shape": "ExtendedDataServices",
+          "locationName": "extendedDataServices"
+        },
         "Inputs": {
           "shape": "__listOfInput",
           "locationName": "inputs"
@@ -5897,6 +5921,10 @@
         "Esam": {
           "shape": "EsamSettings",
           "locationName": "esam"
+        },
+        "ExtendedDataServices": {
+          "shape": "ExtendedDataServices",
+          "locationName": "extendedDataServices"
         },
         "Inputs": {
           "shape": "__listOfInputTemplate",
@@ -8851,6 +8879,13 @@
       "enum": [
         "NONE",
         "HARD"
+      ]
+    },
+    "VchipAction": {
+      "type": "string",
+      "enum": [
+        "PASSTHROUGH",
+        "STRIP"
       ]
     },
     "VideoCodec": {

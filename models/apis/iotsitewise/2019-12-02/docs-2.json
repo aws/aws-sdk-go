@@ -31,7 +31,7 @@
     "DescribeLoggingOptions": "<p>Retrieves the current IoT SiteWise logging options.</p>",
     "DescribePortal": "<p>Retrieves information about a portal.</p>",
     "DescribeProject": "<p>Retrieves information about a project.</p>",
-    "DescribeStorageConfiguration": "<p>Retrieves information about the storage configuration for IoT SiteWise.</p> <note> <p>Exporting data to Amazon S3 is currently in preview release and is subject to change. We recommend that you use this feature only with test data, and not in production environments.</p> </note>",
+    "DescribeStorageConfiguration": "<p>Retrieves information about the storage configuration for IoT SiteWise.</p>",
     "DisassociateAssets": "<p>Disassociates a child asset from the given parent asset through a hierarchy defined in the parent asset's model.</p>",
     "GetAssetPropertyAggregates": "<p>Gets aggregated values for an asset property. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#aggregates\">Querying aggregates</a> in the <i>IoT SiteWise User Guide</i>.</p> <p>To identify an asset property, you must specify one of the following:</p> <ul> <li> <p>The <code>assetId</code> and <code>propertyId</code> of an asset property.</p> </li> <li> <p>A <code>propertyAlias</code>, which is a data stream alias (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). To define an asset property's alias, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html\">UpdateAssetProperty</a>.</p> </li> </ul>",
     "GetAssetPropertyValue": "<p>Gets an asset property's current value. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/query-industrial-data.html#current-values\">Querying current values</a> in the <i>IoT SiteWise User Guide</i>.</p> <p>To identify an asset property, you must specify one of the following:</p> <ul> <li> <p>The <code>assetId</code> and <code>propertyId</code> of an asset property.</p> </li> <li> <p>A <code>propertyAlias</code>, which is a data stream alias (for example, <code>/company/windfarm/3/turbine/7/temperature</code>). To define an asset property's alias, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/APIReference/API_UpdateAssetProperty.html\">UpdateAssetProperty</a>.</p> </li> </ul>",
@@ -50,7 +50,7 @@
     "ListTagsForResource": "<p>Retrieves the list of tags for an IoT SiteWise resource.</p>",
     "PutDefaultEncryptionConfiguration": "<p>Sets the default encryption configuration for the Amazon Web Services account. For more information, see <a href=\"https://docs.aws.amazon.com/iot-sitewise/latest/userguide/key-management.html\">Key management</a> in the <i>IoT SiteWise User Guide</i>.</p>",
     "PutLoggingOptions": "<p>Sets logging options for IoT SiteWise.</p>",
-    "PutStorageConfiguration": "<p>Configures storage settings for IoT SiteWise.</p> <note> <p>Exporting data to Amazon S3 is currently in preview release and is subject to change. We recommend that you use this feature only with test data, and not in production environments.</p> </note>",
+    "PutStorageConfiguration": "<p>Configures storage settings for IoT SiteWise.</p>",
     "TagResource": "<p>Adds tags to an IoT SiteWise resource. If a tag already exists for the resource, this operation updates the tag's value.</p>",
     "UntagResource": "<p>Removes a tag from an IoT SiteWise resource.</p>",
     "UpdateAccessPolicy": "<p>Updates an existing access policy that specifies an identity's access to an IoT SiteWise Monitor portal or project resource.</p>",
@@ -1355,7 +1355,7 @@
     "Interval": {
       "base": null,
       "refs": {
-        "TumblingWindow$interval": "<p>The time interval for the tumbling window. Note that <code>w</code> represents weeks, <code>d</code> represents days, <code>h</code> represents hours, and <code>m</code> represents minutes. IoT SiteWise computes the <code>1w</code> interval the end of Sunday at midnight each week (UTC), the <code>1d</code> interval at the end of each day at midnight (UTC), the <code>1h</code> interval at the end of each hour, and so on. </p> <p>When IoT SiteWise aggregates data points for metric computations, the start of each interval is exclusive and the end of each interval is inclusive. IoT SiteWise places the computed data point at the end of the interval.</p>"
+        "TumblingWindow$interval": "<p>The time interval for the tumbling window. The interval time must be between 1 minute and 1 week.</p> <p>IoT SiteWise computes the <code>1w</code> interval the end of Sunday at midnight each week (UTC), the <code>1d</code> interval at the end of each day at midnight (UTC), the <code>1h</code> interval at the end of each hour, and so on. </p> <p>When IoT SiteWise aggregates data points for metric computations, the start of each interval is exclusive and the end of each interval is inclusive. IoT SiteWise places the computed data point at the end of the interval.</p>"
       }
     },
     "IntervalInSeconds": {
@@ -1673,6 +1673,12 @@
         "ListProjectAssetsResponse$nextToken": "<p>The token for the next set of results, or null if there are no additional results.</p>",
         "ListProjectsRequest$nextToken": "<p>The token to be used for the next set of paginated results.</p>",
         "ListProjectsResponse$nextToken": "<p>The token for the next set of results, or null if there are no additional results.</p>"
+      }
+    },
+    "Offset": {
+      "base": null,
+      "refs": {
+        "TumblingWindow$offset": "<p>The offset for the tumbling window. The <code>offset</code> parameter accepts the following:</p> <ul> <li> <p>The offset time.</p> <p>For example, if you specify <code>18h</code> for <code>offset</code> and <code>1d</code> for <code>interval</code>, IoT SiteWise aggregates data in one of the following ways:</p> <ul> <li> <p>If you create the metric before or at 6:00 p.m. (UTC), you get the first aggregation result at 6 p.m. (UTC) on the day when you create the metric.</p> </li> <li> <p>If you create the metric after 6:00 p.m. (UTC), you get the first aggregation result at 6 p.m. (UTC) the next day.</p> </li> </ul> </li> <li> <p>The ISO 8601 format.</p> <p>For example, if you specify <code>PT18H</code> for <code>offset</code> and <code>1d</code> for <code>interval</code>, IoT SiteWise aggregates data in one of the following ways:</p> <ul> <li> <p>If you create the metric before or at 6:00 p.m. (UTC), you get the first aggregation result at 6 p.m. (UTC) on the day when you create the metric.</p> </li> <li> <p>If you create the metric after 6:00 p.m. (UTC), you get the first aggregation result at 6 p.m. (UTC) the next day.</p> </li> </ul> </li> <li> <p>The 24-hour clock.</p> <p>For example, if you specify <code>00:03:00</code> for <code>offset</code> and <code>5m</code> for <code>interval</code>, and you create the metric at 2 p.m. (UTC), you get the first aggregation result at 2:03 p.m. (UTC). You get the second aggregation result at 2:08 p.m. (UTC). </p> </li> <li> <p>The offset time zone.</p> <p>For example, if you specify <code>2021-07-23T18:00-08</code> for <code>offset</code> and <code>1d</code> for <code>interval</code>, IoT SiteWise aggregates data in one of the following ways:</p> <ul> <li> <p>If you create the metric before or at 6:00 p.m. (PST), you get the first aggregation result at 6 p.m. (PST) on the day when you create the metric.</p> </li> <li> <p>If you create the metric after 6:00 p.m. (PST), you get the first aggregation result at 6 p.m. (PST) the next day.</p> </li> </ul> </li> </ul>"
       }
     },
     "OffsetInNanos": {
@@ -2105,7 +2111,7 @@
       }
     },
     "TumblingWindow": {
-      "base": "<p>Contains a tumbling window, which is a repeating fixed-sized, non-overlapping, and contiguous time interval. This window is used in metric and aggregation computations.</p>",
+      "base": "<p>Contains a tumbling window, which is a repeating fixed-sized, non-overlapping, and contiguous time window. You use this window in metrics to aggregate data from properties and other assets.</p> <p>You can use <code>m</code>, <code>h</code>, <code>d</code>, and <code>w</code> when you specify an interval or offset. Note that <code>m</code> represents minutes, and <code>w</code> represents weeks. You can also use <code>s</code> to represent seconds in <code>offset</code>.</p> <p>The <code>interval</code> and <code>offset</code> parameters support the <a href=\"https://en.wikipedia.org/wiki/ISO_8601\">ISO 8601 format</a>. For example, <code>PT5S</code> represents five seconds, <code>PT5M</code> represents five minutes, and <code>PT5H</code> represents five hours.</p>",
       "refs": {
         "MetricWindow$tumbling": "<p>The tumbling time interval window.</p>"
       }

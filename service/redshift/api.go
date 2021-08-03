@@ -200,6 +200,91 @@ func (c *Redshift) AddPartnerWithContext(ctx aws.Context, input *AddPartnerInput
 	return out, req.Send()
 }
 
+const opAssociateDataShareConsumer = "AssociateDataShareConsumer"
+
+// AssociateDataShareConsumerRequest generates a "aws/request.Request" representing the
+// client's request for the AssociateDataShareConsumer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AssociateDataShareConsumer for more information on using the AssociateDataShareConsumer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AssociateDataShareConsumerRequest method.
+//    req, resp := client.AssociateDataShareConsumerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AssociateDataShareConsumer
+func (c *Redshift) AssociateDataShareConsumerRequest(input *AssociateDataShareConsumerInput) (req *request.Request, output *AssociateDataShareConsumerOutput) {
+	op := &request.Operation{
+		Name:       opAssociateDataShareConsumer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AssociateDataShareConsumerInput{}
+	}
+
+	output = &AssociateDataShareConsumerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AssociateDataShareConsumer API operation for Amazon Redshift.
+//
+// From a datashare consumer account, associates a datashare with the account
+// (AssociateEntireAccount) or the specified namespace (ConsumerArn). If you
+// make this association, the consumer can consume the datashare.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation AssociateDataShareConsumer for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDataShareFault "InvalidDataShareFault"
+//   There is an error with the datashare.
+//
+//   * ErrCodeInvalidNamespaceFault "InvalidNamespaceFault"
+//   The namespace isn't valid because the namespace doesn't exist. Provide a
+//   valid namespace.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AssociateDataShareConsumer
+func (c *Redshift) AssociateDataShareConsumer(input *AssociateDataShareConsumerInput) (*AssociateDataShareConsumerOutput, error) {
+	req, out := c.AssociateDataShareConsumerRequest(input)
+	return out, req.Send()
+}
+
+// AssociateDataShareConsumerWithContext is the same as AssociateDataShareConsumer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AssociateDataShareConsumer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) AssociateDataShareConsumerWithContext(ctx aws.Context, input *AssociateDataShareConsumerInput, opts ...request.Option) (*AssociateDataShareConsumerOutput, error) {
+	req, out := c.AssociateDataShareConsumerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opAuthorizeClusterSecurityGroupIngress = "AuthorizeClusterSecurityGroupIngress"
 
 // AuthorizeClusterSecurityGroupIngressRequest generates a "aws/request.Request" representing the
@@ -253,7 +338,7 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngressRequest(input *AuthorizeC
 //
 // If you authorize access to an Amazon EC2 security group, specify EC2SecurityGroupName
 // and EC2SecurityGroupOwnerId. The Amazon EC2 security group and Amazon Redshift
-// cluster must be in the same Region.
+// cluster must be in the same Amazon Web Services Region.
 //
 // If you authorize access to a CIDR/IP address range, specify CIDRIP. For an
 // overview of CIDR blocks, see the Wikipedia article on Classless Inter-Domain
@@ -304,6 +389,87 @@ func (c *Redshift) AuthorizeClusterSecurityGroupIngress(input *AuthorizeClusterS
 // for more information on using Contexts.
 func (c *Redshift) AuthorizeClusterSecurityGroupIngressWithContext(ctx aws.Context, input *AuthorizeClusterSecurityGroupIngressInput, opts ...request.Option) (*AuthorizeClusterSecurityGroupIngressOutput, error) {
 	req, out := c.AuthorizeClusterSecurityGroupIngressRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opAuthorizeDataShare = "AuthorizeDataShare"
+
+// AuthorizeDataShareRequest generates a "aws/request.Request" representing the
+// client's request for the AuthorizeDataShare operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See AuthorizeDataShare for more information on using the AuthorizeDataShare
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the AuthorizeDataShareRequest method.
+//    req, resp := client.AuthorizeDataShareRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AuthorizeDataShare
+func (c *Redshift) AuthorizeDataShareRequest(input *AuthorizeDataShareInput) (req *request.Request, output *AuthorizeDataShareOutput) {
+	op := &request.Operation{
+		Name:       opAuthorizeDataShare,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &AuthorizeDataShareInput{}
+	}
+
+	output = &AuthorizeDataShareOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// AuthorizeDataShare API operation for Amazon Redshift.
+//
+// From a data producer account, authorizes the sharing of a datashare with
+// one or more consumer accounts. To authorize a datashare for a data consumer,
+// the producer account must have the correct access privileges.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation AuthorizeDataShare for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDataShareFault "InvalidDataShareFault"
+//   There is an error with the datashare.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/AuthorizeDataShare
+func (c *Redshift) AuthorizeDataShare(input *AuthorizeDataShareInput) (*AuthorizeDataShareOutput, error) {
+	req, out := c.AuthorizeDataShareRequest(input)
+	return out, req.Send()
+}
+
+// AuthorizeDataShareWithContext is the same as AuthorizeDataShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See AuthorizeDataShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) AuthorizeDataShareWithContext(ctx aws.Context, input *AuthorizeDataShareInput, opts ...request.Option) (*AuthorizeDataShareOutput, error) {
+	req, out := c.AuthorizeDataShareRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -447,7 +613,8 @@ func (c *Redshift) AuthorizeSnapshotAccessRequest(input *AuthorizeSnapshotAccess
 
 // AuthorizeSnapshotAccess API operation for Amazon Redshift.
 //
-// Authorizes the specified account to restore the specified snapshot.
+// Authorizes the specified Amazon Web Services account to restore the specified
+// snapshot.
 //
 // For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
@@ -930,7 +1097,7 @@ func (c *Redshift) CreateAuthenticationProfileRequest(input *CreateAuthenticatio
 //   * ErrCodeInvalidAuthenticationProfileRequestFault "InvalidAuthenticationProfileRequestFault"
 //   The authentication profile request is not valid. The profile name can't be
 //   null or empty. The authentication profile API operation must be available
-//   in the Region.
+//   in the Amazon Web Services Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/CreateAuthenticationProfile
 func (c *Redshift) CreateAuthenticationProfile(input *CreateAuthenticationProfileInput) (*CreateAuthenticationProfileOutput, error) {
@@ -1702,10 +1869,11 @@ func (c *Redshift) CreateEventSubscriptionRequest(input *CreateEventSubscription
 // cluster and source identifier = my-cluster-1, notifications will be sent
 // for all the cluster events for my-cluster-1. If you specify a source type
 // but do not specify a source identifier, you will receive notice of the events
-// for the objects of that type in your account. If you do not specify either
-// the SourceType nor the SourceIdentifier, you will be notified of events generated
-// from all Amazon Redshift sources belonging to your account. You must specify
-// a source type if you specify a source ID.
+// for the objects of that type in your Amazon Web Services account. If you
+// do not specify either the SourceType nor the SourceIdentifier, you will be
+// notified of events generated from all Amazon Redshift sources belonging to
+// your Amazon Web Services account. You must specify a source type if you specify
+// a source ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2140,8 +2308,8 @@ func (c *Redshift) CreateSnapshotCopyGrantRequest(input *CreateSnapshotCopyGrant
 //   already exists.
 //
 //   * ErrCodeSnapshotCopyGrantQuotaExceededFault "SnapshotCopyGrantQuotaExceededFault"
-//   The account has exceeded the maximum number of snapshot copy grants in this
-//   region.
+//   The Amazon Web Services account has exceeded the maximum number of snapshot
+//   copy grants in this region.
 //
 //   * ErrCodeLimitExceededFault "LimitExceededFault"
 //   The encryption key has exceeded its grant limit in Amazon Web Services KMS.
@@ -2466,6 +2634,85 @@ func (c *Redshift) CreateUsageLimitWithContext(ctx aws.Context, input *CreateUsa
 	return out, req.Send()
 }
 
+const opDeauthorizeDataShare = "DeauthorizeDataShare"
+
+// DeauthorizeDataShareRequest generates a "aws/request.Request" representing the
+// client's request for the DeauthorizeDataShare operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeauthorizeDataShare for more information on using the DeauthorizeDataShare
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeauthorizeDataShareRequest method.
+//    req, resp := client.DeauthorizeDataShareRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeauthorizeDataShare
+func (c *Redshift) DeauthorizeDataShareRequest(input *DeauthorizeDataShareInput) (req *request.Request, output *DeauthorizeDataShareOutput) {
+	op := &request.Operation{
+		Name:       opDeauthorizeDataShare,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeauthorizeDataShareInput{}
+	}
+
+	output = &DeauthorizeDataShareOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeauthorizeDataShare API operation for Amazon Redshift.
+//
+// From the producer account, removes authorization from the specified datashare.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DeauthorizeDataShare for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDataShareFault "InvalidDataShareFault"
+//   There is an error with the datashare.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeauthorizeDataShare
+func (c *Redshift) DeauthorizeDataShare(input *DeauthorizeDataShareInput) (*DeauthorizeDataShareOutput, error) {
+	req, out := c.DeauthorizeDataShareRequest(input)
+	return out, req.Send()
+}
+
+// DeauthorizeDataShareWithContext is the same as DeauthorizeDataShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeauthorizeDataShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DeauthorizeDataShareWithContext(ctx aws.Context, input *DeauthorizeDataShareInput, opts ...request.Option) (*DeauthorizeDataShareOutput, error) {
+	req, out := c.DeauthorizeDataShareRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAuthenticationProfile = "DeleteAuthenticationProfile"
 
 // DeleteAuthenticationProfileRequest generates a "aws/request.Request" representing the
@@ -2526,7 +2773,7 @@ func (c *Redshift) DeleteAuthenticationProfileRequest(input *DeleteAuthenticatio
 //   * ErrCodeInvalidAuthenticationProfileRequestFault "InvalidAuthenticationProfileRequestFault"
 //   The authentication profile request is not valid. The profile name can't be
 //   null or empty. The authentication profile API operation must be available
-//   in the Region.
+//   in the Amazon Web Services Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DeleteAuthenticationProfile
 func (c *Redshift) DeleteAuthenticationProfile(input *DeleteAuthenticationProfileInput) (*DeleteAuthenticationProfileOutput, error) {
@@ -3999,7 +4246,7 @@ func (c *Redshift) DescribeAuthenticationProfilesRequest(input *DescribeAuthenti
 //   * ErrCodeInvalidAuthenticationProfileRequestFault "InvalidAuthenticationProfileRequestFault"
 //   The authentication profile request is not valid. The profile name can't be
 //   null or empty. The authentication profile API operation must be available
-//   in the Region.
+//   in the Amazon Web Services Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeAuthenticationProfiles
 func (c *Redshift) DescribeAuthenticationProfiles(input *DescribeAuthenticationProfilesInput) (*DescribeAuthenticationProfilesOutput, error) {
@@ -4678,8 +4925,8 @@ func (c *Redshift) DescribeClusterSnapshotsRequest(input *DescribeClusterSnapsho
 //
 // Returns one or more snapshot objects, which contain metadata about your cluster
 // snapshots. By default, this operation returns information about all snapshots
-// of all clusters that are owned by your account. No information is returned
-// for snapshots owned by inactive accounts.
+// of all clusters that are owned by your Amazon Web Services account. No information
+// is returned for snapshots owned by inactive Amazon Web Services accounts.
 //
 // If you specify both tag keys and tag values in the same request, Amazon Redshift
 // returns all snapshots that match any combination of the specified keys and
@@ -4835,7 +5082,8 @@ func (c *Redshift) DescribeClusterSubnetGroupsRequest(input *DescribeClusterSubn
 //
 // Returns one or more cluster subnet group objects, which contain metadata
 // about your cluster subnet groups. By default, this operation returns information
-// about all cluster subnet groups that are defined in your account.
+// about all cluster subnet groups that are defined in your Amazon Web Services
+// account.
 //
 // If you specify both tag keys and tag values in the same request, Amazon Redshift
 // returns all subnet groups that match any combination of the specified keys
@@ -5363,6 +5611,248 @@ func (c *Redshift) DescribeClustersPagesWithContext(ctx aws.Context, input *Desc
 	}
 
 	return p.Err()
+}
+
+const opDescribeDataShares = "DescribeDataShares"
+
+// DescribeDataSharesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataShares operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataShares for more information on using the DescribeDataShares
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDataSharesRequest method.
+//    req, resp := client.DescribeDataSharesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeDataShares
+func (c *Redshift) DescribeDataSharesRequest(input *DescribeDataSharesInput) (req *request.Request, output *DescribeDataSharesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataShares,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDataSharesInput{}
+	}
+
+	output = &DescribeDataSharesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataShares API operation for Amazon Redshift.
+//
+// Shows the status of any inbound or outbound datashares available in the specified
+// account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeDataShares for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDataShareFault "InvalidDataShareFault"
+//   There is an error with the datashare.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeDataShares
+func (c *Redshift) DescribeDataShares(input *DescribeDataSharesInput) (*DescribeDataSharesOutput, error) {
+	req, out := c.DescribeDataSharesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDataSharesWithContext is the same as DescribeDataShares with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataShares for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeDataSharesWithContext(ctx aws.Context, input *DescribeDataSharesInput, opts ...request.Option) (*DescribeDataSharesOutput, error) {
+	req, out := c.DescribeDataSharesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDataSharesForConsumer = "DescribeDataSharesForConsumer"
+
+// DescribeDataSharesForConsumerRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataSharesForConsumer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataSharesForConsumer for more information on using the DescribeDataSharesForConsumer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDataSharesForConsumerRequest method.
+//    req, resp := client.DescribeDataSharesForConsumerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeDataSharesForConsumer
+func (c *Redshift) DescribeDataSharesForConsumerRequest(input *DescribeDataSharesForConsumerInput) (req *request.Request, output *DescribeDataSharesForConsumerOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataSharesForConsumer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDataSharesForConsumerInput{}
+	}
+
+	output = &DescribeDataSharesForConsumerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataSharesForConsumer API operation for Amazon Redshift.
+//
+// Returns a list of datashares where the account identifier being called is
+// a consumer account identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeDataSharesForConsumer for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidNamespaceFault "InvalidNamespaceFault"
+//   The namespace isn't valid because the namespace doesn't exist. Provide a
+//   valid namespace.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeDataSharesForConsumer
+func (c *Redshift) DescribeDataSharesForConsumer(input *DescribeDataSharesForConsumerInput) (*DescribeDataSharesForConsumerOutput, error) {
+	req, out := c.DescribeDataSharesForConsumerRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDataSharesForConsumerWithContext is the same as DescribeDataSharesForConsumer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataSharesForConsumer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeDataSharesForConsumerWithContext(ctx aws.Context, input *DescribeDataSharesForConsumerInput, opts ...request.Option) (*DescribeDataSharesForConsumerOutput, error) {
+	req, out := c.DescribeDataSharesForConsumerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeDataSharesForProducer = "DescribeDataSharesForProducer"
+
+// DescribeDataSharesForProducerRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeDataSharesForProducer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeDataSharesForProducer for more information on using the DescribeDataSharesForProducer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeDataSharesForProducerRequest method.
+//    req, resp := client.DescribeDataSharesForProducerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeDataSharesForProducer
+func (c *Redshift) DescribeDataSharesForProducerRequest(input *DescribeDataSharesForProducerInput) (req *request.Request, output *DescribeDataSharesForProducerOutput) {
+	op := &request.Operation{
+		Name:       opDescribeDataSharesForProducer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeDataSharesForProducerInput{}
+	}
+
+	output = &DescribeDataSharesForProducerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeDataSharesForProducer API operation for Amazon Redshift.
+//
+// Returns a list of datashares when the account identifier being called is
+// a producer account identifier.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DescribeDataSharesForProducer for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidNamespaceFault "InvalidNamespaceFault"
+//   The namespace isn't valid because the namespace doesn't exist. Provide a
+//   valid namespace.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DescribeDataSharesForProducer
+func (c *Redshift) DescribeDataSharesForProducer(input *DescribeDataSharesForProducerInput) (*DescribeDataSharesForProducerOutput, error) {
+	req, out := c.DescribeDataSharesForProducerRequest(input)
+	return out, req.Send()
+}
+
+// DescribeDataSharesForProducerWithContext is the same as DescribeDataSharesForProducer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeDataSharesForProducer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DescribeDataSharesForProducerWithContext(ctx aws.Context, input *DescribeDataSharesForProducerInput, opts ...request.Option) (*DescribeDataSharesForProducerOutput, error) {
+	req, out := c.DescribeDataSharesForProducerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opDescribeDefaultClusterParameters = "DescribeDefaultClusterParameters"
@@ -6200,7 +6690,7 @@ func (c *Redshift) DescribeHsmClientCertificatesRequest(input *DescribeHsmClient
 //
 // Returns information about the specified HSM client certificate. If no certificate
 // ID is specified, returns information about all the HSM certificates owned
-// by your account.
+// by your Amazon Web Services account.
 //
 // If you specify both tag keys and tag values in the same request, Amazon Redshift
 // returns all HSM client certificates that match any combination of the specified
@@ -6352,7 +6842,7 @@ func (c *Redshift) DescribeHsmConfigurationsRequest(input *DescribeHsmConfigurat
 //
 // Returns information about the specified Amazon Redshift HSM configuration.
 // If no configuration ID is specified, returns information about all the HSM
-// configurations owned by your account.
+// configurations owned by your Amazon Web Services account.
 //
 // If you specify both tag keys and tag values in the same request, Amazon Redshift
 // returns all HSM connections that match any combination of the specified keys
@@ -6733,12 +7223,12 @@ func (c *Redshift) DescribeOrderableClusterOptionsRequest(input *DescribeOrderab
 //
 // Returns a list of orderable cluster options. Before you create a new cluster
 // you can use this operation to find what options are available, such as the
-// EC2 Availability Zones (AZ) in the specific Region that you can specify,
-// and the node types you can request. The node types differ by available storage,
-// memory, CPU and price. With the cost involved you might want to obtain a
-// list of cluster options in the specific region and specify values when creating
-// a cluster. For more information about managing clusters, go to Amazon Redshift
-// Clusters (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
+// EC2 Availability Zones (AZ) in the specific Amazon Web Services Region that
+// you can specify, and the node types you can request. The node types differ
+// by available storage, memory, CPU and price. With the cost involved you might
+// want to obtain a list of cluster options in the specific region and specify
+// values when creating a cluster. For more information about managing clusters,
+// go to Amazon Redshift Clusters (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-clusters.html)
 // in the Amazon Redshift Cluster Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -7475,8 +7965,8 @@ func (c *Redshift) DescribeSnapshotCopyGrantsRequest(input *DescribeSnapshotCopy
 
 // DescribeSnapshotCopyGrants API operation for Amazon Redshift.
 //
-// Returns a list of snapshot copy grants owned by the account in the destination
-// region.
+// Returns a list of snapshot copy grants owned by the Amazon Web Services account
+// in the destination region.
 //
 // For more information about managing snapshot copy grants, go to Amazon Redshift
 // Database Encryption (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-db-encryption.html)
@@ -8414,6 +8904,89 @@ func (c *Redshift) DisableSnapshotCopyWithContext(ctx aws.Context, input *Disabl
 	return out, req.Send()
 }
 
+const opDisassociateDataShareConsumer = "DisassociateDataShareConsumer"
+
+// DisassociateDataShareConsumerRequest generates a "aws/request.Request" representing the
+// client's request for the DisassociateDataShareConsumer operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DisassociateDataShareConsumer for more information on using the DisassociateDataShareConsumer
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DisassociateDataShareConsumerRequest method.
+//    req, resp := client.DisassociateDataShareConsumerRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DisassociateDataShareConsumer
+func (c *Redshift) DisassociateDataShareConsumerRequest(input *DisassociateDataShareConsumerInput) (req *request.Request, output *DisassociateDataShareConsumerOutput) {
+	op := &request.Operation{
+		Name:       opDisassociateDataShareConsumer,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DisassociateDataShareConsumerInput{}
+	}
+
+	output = &DisassociateDataShareConsumerOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DisassociateDataShareConsumer API operation for Amazon Redshift.
+//
+// From a consumer account, remove association for the specified datashare.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation DisassociateDataShareConsumer for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDataShareFault "InvalidDataShareFault"
+//   There is an error with the datashare.
+//
+//   * ErrCodeInvalidNamespaceFault "InvalidNamespaceFault"
+//   The namespace isn't valid because the namespace doesn't exist. Provide a
+//   valid namespace.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/DisassociateDataShareConsumer
+func (c *Redshift) DisassociateDataShareConsumer(input *DisassociateDataShareConsumerInput) (*DisassociateDataShareConsumerOutput, error) {
+	req, out := c.DisassociateDataShareConsumerRequest(input)
+	return out, req.Send()
+}
+
+// DisassociateDataShareConsumerWithContext is the same as DisassociateDataShareConsumer with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DisassociateDataShareConsumer for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) DisassociateDataShareConsumerWithContext(ctx aws.Context, input *DisassociateDataShareConsumerInput, opts ...request.Option) (*DisassociateDataShareConsumerOutput, error) {
+	req, out := c.DisassociateDataShareConsumerRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opEnableLogging = "EnableLogging"
 
 // EnableLoggingRequest generates a "aws/request.Request" representing the
@@ -9036,7 +9609,7 @@ func (c *Redshift) ModifyAuthenticationProfileRequest(input *ModifyAuthenticatio
 //   * ErrCodeInvalidAuthenticationProfileRequestFault "InvalidAuthenticationProfileRequestFault"
 //   The authentication profile request is not valid. The profile name can't be
 //   null or empty. The authentication profile API operation must be available
-//   in the Region.
+//   in the Amazon Web Services Region.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/ModifyAuthenticationProfile
 func (c *Redshift) ModifyAuthenticationProfile(input *ModifyAuthenticationProfileInput) (*ModifyAuthenticationProfileOutput, error) {
@@ -9509,7 +10082,8 @@ func (c *Redshift) ModifyClusterParameterGroupRequest(input *ModifyClusterParame
 
 // ModifyClusterParameterGroup API operation for Amazon Redshift.
 //
-// Modifies the parameters of a parameter group.
+// Modifies the parameters of a parameter group. For the parameters parameter,
+// it can't contain ASCII characters.
 //
 // For more information about parameters and parameter groups, go to Amazon
 // Redshift Parameter Groups (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-parameter-groups.html)
@@ -10172,13 +10746,14 @@ func (c *Redshift) ModifySnapshotCopyRetentionPeriodRequest(input *ModifySnapsho
 
 // ModifySnapshotCopyRetentionPeriod API operation for Amazon Redshift.
 //
-// Modifies the number of days to retain snapshots in the destination Region
-// after they are copied from the source Region. By default, this operation
-// only changes the retention period of copied automated snapshots. The retention
-// periods for both new and existing copied automated snapshots are updated
-// with the new retention period. You can set the manual option to change only
-// the retention periods of copied manual snapshots. If you set this option,
-// only newly copied manual snapshots have the new retention period.
+// Modifies the number of days to retain snapshots in the destination Amazon
+// Web Services Region after they are copied from the source Amazon Web Services
+// Region. By default, this operation only changes the retention period of copied
+// automated snapshots. The retention periods for both new and existing copied
+// automated snapshots are updated with the new retention period. You can set
+// the manual option to change only the retention periods of copied manual snapshots.
+// If you set this option, only newly copied manual snapshots have the new retention
+// period.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10662,6 +11237,85 @@ func (c *Redshift) RebootCluster(input *RebootClusterInput) (*RebootClusterOutpu
 // for more information on using Contexts.
 func (c *Redshift) RebootClusterWithContext(ctx aws.Context, input *RebootClusterInput, opts ...request.Option) (*RebootClusterOutput, error) {
 	req, out := c.RebootClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRejectDataShare = "RejectDataShare"
+
+// RejectDataShareRequest generates a "aws/request.Request" representing the
+// client's request for the RejectDataShare operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RejectDataShare for more information on using the RejectDataShare
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RejectDataShareRequest method.
+//    req, resp := client.RejectDataShareRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RejectDataShare
+func (c *Redshift) RejectDataShareRequest(input *RejectDataShareInput) (req *request.Request, output *RejectDataShareOutput) {
+	op := &request.Operation{
+		Name:       opRejectDataShare,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RejectDataShareInput{}
+	}
+
+	output = &RejectDataShareOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RejectDataShare API operation for Amazon Redshift.
+//
+// From the consumer account, rejects the specified datashare.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Redshift's
+// API operation RejectDataShare for usage and error information.
+//
+// Returned Error Codes:
+//   * ErrCodeInvalidDataShareFault "InvalidDataShareFault"
+//   There is an error with the datashare.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/redshift-2012-12-01/RejectDataShare
+func (c *Redshift) RejectDataShare(input *RejectDataShareInput) (*RejectDataShareOutput, error) {
+	req, out := c.RejectDataShareRequest(input)
+	return out, req.Send()
+}
+
+// RejectDataShareWithContext is the same as RejectDataShare with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RejectDataShare for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Redshift) RejectDataShareWithContext(ctx aws.Context, input *RejectDataShareInput, opts ...request.Option) (*RejectDataShareOutput, error) {
+	req, out := c.RejectDataShareRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11477,9 +12131,9 @@ func (c *Redshift) RevokeSnapshotAccessRequest(input *RevokeSnapshotAccessInput)
 
 // RevokeSnapshotAccess API operation for Amazon Redshift.
 //
-// Removes the ability of the specified account to restore the specified snapshot.
-// If the account is currently restoring the snapshot, the restore will run
-// to completion.
+// Removes the ability of the specified Amazon Web Services account to restore
+// the specified snapshot. If the account is currently restoring the snapshot,
+// the restore will run to completion.
 //
 // For more information about working with snapshots, go to Amazon Redshift
 // Snapshots (https://docs.aws.amazon.com/redshift/latest/mgmt/working-with-snapshots.html)
@@ -11808,7 +12462,7 @@ func (s *AccountAttribute) SetAttributeValues(v []*AttributeValueTarget) *Accoun
 	return s
 }
 
-// Describes an account authorized to restore a snapshot.
+// Describes an Amazon Web Services account authorized to restore a snapshot.
 type AccountWithRestoreAccess struct {
 	_ struct{} `type:"structure"`
 
@@ -11816,7 +12470,8 @@ type AccountWithRestoreAccess struct {
 	// a snapshot. For Amazon Web Services Support, the identifier is amazon-redshift-support.
 	AccountAlias *string `type:"string"`
 
-	// The identifier of an account authorized to restore a snapshot.
+	// The identifier of an Amazon Web Services account authorized to restore a
+	// snapshot.
 	AccountId *string `type:"string"`
 }
 
@@ -11845,7 +12500,7 @@ func (s *AccountWithRestoreAccess) SetAccountId(v string) *AccountWithRestoreAcc
 type AddPartnerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Region ID that owns the cluster.
+	// The Amazon Web Services account ID that owns the cluster.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
@@ -11964,8 +12619,8 @@ type AquaConfiguration struct {
 	// The value represents how the cluster is configured to use AQUA. Possible
 	// values include the following.
 	//
-	//    * enabled - Use AQUA if it is available for the current Region and Amazon
-	//    Redshift node type.
+	//    * enabled - Use AQUA if it is available for the current Amazon Web Services
+	//    Region and Amazon Redshift node type.
 	//
 	//    * disabled - Don't use AQUA.
 	//
@@ -12002,6 +12657,120 @@ func (s *AquaConfiguration) SetAquaConfigurationStatus(v string) *AquaConfigurat
 // SetAquaStatus sets the AquaStatus field's value.
 func (s *AquaConfiguration) SetAquaStatus(v string) *AquaConfiguration {
 	s.AquaStatus = &v
+	return s
+}
+
+type AssociateDataShareConsumerInput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies whether the datashare is associated with the entire
+	// account.
+	AssociateEntireAccount *bool `type:"boolean"`
+
+	// The Amazon Resource Name (ARN) of the consumer that is associated with the
+	// datashare.
+	ConsumerArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the datashare that the consumer is to use
+	// with the account or the namespace.
+	//
+	// DataShareArn is a required field
+	DataShareArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AssociateDataShareConsumerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateDataShareConsumerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AssociateDataShareConsumerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AssociateDataShareConsumerInput"}
+	if s.DataShareArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataShareArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociateEntireAccount sets the AssociateEntireAccount field's value.
+func (s *AssociateDataShareConsumerInput) SetAssociateEntireAccount(v bool) *AssociateDataShareConsumerInput {
+	s.AssociateEntireAccount = &v
+	return s
+}
+
+// SetConsumerArn sets the ConsumerArn field's value.
+func (s *AssociateDataShareConsumerInput) SetConsumerArn(v string) *AssociateDataShareConsumerInput {
+	s.ConsumerArn = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *AssociateDataShareConsumerInput) SetDataShareArn(v string) *AssociateDataShareConsumerInput {
+	s.DataShareArn = &v
+	return s
+}
+
+type AssociateDataShareConsumerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies whether the datashare can be shared to a publicly
+	// accessible cluster.
+	AllowPubliclyAccessibleConsumers *bool `type:"boolean"`
+
+	// An Amazon Resource Name (ARN) that references the datashare that is owned
+	// by a specific namespace of the producer cluster. A datashare ARN is in the
+	// arn:aws:redshift:{region}:{account-id}:{datashare}:{namespace-guid}/{datashare-name}
+	// format.
+	DataShareArn *string `type:"string"`
+
+	// A value that specifies when the datashare has an association between a producer
+	// and data consumers.
+	DataShareAssociations []*DataShareAssociation `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the producer.
+	ProducerArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AssociateDataShareConsumerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AssociateDataShareConsumerOutput) GoString() string {
+	return s.String()
+}
+
+// SetAllowPubliclyAccessibleConsumers sets the AllowPubliclyAccessibleConsumers field's value.
+func (s *AssociateDataShareConsumerOutput) SetAllowPubliclyAccessibleConsumers(v bool) *AssociateDataShareConsumerOutput {
+	s.AllowPubliclyAccessibleConsumers = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *AssociateDataShareConsumerOutput) SetDataShareArn(v string) *AssociateDataShareConsumerOutput {
+	s.DataShareArn = &v
+	return s
+}
+
+// SetDataShareAssociations sets the DataShareAssociations field's value.
+func (s *AssociateDataShareConsumerOutput) SetDataShareAssociations(v []*DataShareAssociation) *AssociateDataShareConsumerOutput {
+	s.DataShareAssociations = v
+	return s
+}
+
+// SetProducerArn sets the ProducerArn field's value.
+func (s *AssociateDataShareConsumerOutput) SetProducerArn(v string) *AssociateDataShareConsumerOutput {
+	s.ProducerArn = &v
 	return s
 }
 
@@ -12077,8 +12846,9 @@ type AuthorizeClusterSecurityGroupIngressInput struct {
 	// The EC2 security group to be added the Amazon Redshift security group.
 	EC2SecurityGroupName *string `type:"string"`
 
-	// The account number of the owner of the security group specified by the EC2SecurityGroupName
-	// parameter. The Amazon Web Services Access Key ID is not an acceptable value.
+	// The Amazon Web Services account number of the owner of the security group
+	// specified by the EC2SecurityGroupName parameter. The Amazon Web Services
+	// Access Key ID is not an acceptable value.
 	//
 	// Example: 111122223333
 	EC2SecurityGroupOwnerId *string `type:"string"`
@@ -12154,10 +12924,119 @@ func (s *AuthorizeClusterSecurityGroupIngressOutput) SetClusterSecurityGroup(v *
 	return s
 }
 
+type AuthorizeDataShareInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data consumer that is authorized to access the datashare.
+	// This identifier is an AWS account ID.
+	//
+	// ConsumerIdentifier is a required field
+	ConsumerIdentifier *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the datashare that producers are to authorize
+	// sharing for.
+	//
+	// DataShareArn is a required field
+	DataShareArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AuthorizeDataShareInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeDataShareInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AuthorizeDataShareInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AuthorizeDataShareInput"}
+	if s.ConsumerIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConsumerIdentifier"))
+	}
+	if s.DataShareArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataShareArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerIdentifier sets the ConsumerIdentifier field's value.
+func (s *AuthorizeDataShareInput) SetConsumerIdentifier(v string) *AuthorizeDataShareInput {
+	s.ConsumerIdentifier = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *AuthorizeDataShareInput) SetDataShareArn(v string) *AuthorizeDataShareInput {
+	s.DataShareArn = &v
+	return s
+}
+
+type AuthorizeDataShareOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies whether the datashare can be shared to a publicly
+	// accessible cluster.
+	AllowPubliclyAccessibleConsumers *bool `type:"boolean"`
+
+	// An Amazon Resource Name (ARN) that references the datashare that is owned
+	// by a specific namespace of the producer cluster. A datashare ARN is in the
+	// arn:aws:redshift:{region}:{account-id}:{datashare}:{namespace-guid}/{datashare-name}
+	// format.
+	DataShareArn *string `type:"string"`
+
+	// A value that specifies when the datashare has an association between a producer
+	// and data consumers.
+	DataShareAssociations []*DataShareAssociation `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the producer.
+	ProducerArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AuthorizeDataShareOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AuthorizeDataShareOutput) GoString() string {
+	return s.String()
+}
+
+// SetAllowPubliclyAccessibleConsumers sets the AllowPubliclyAccessibleConsumers field's value.
+func (s *AuthorizeDataShareOutput) SetAllowPubliclyAccessibleConsumers(v bool) *AuthorizeDataShareOutput {
+	s.AllowPubliclyAccessibleConsumers = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *AuthorizeDataShareOutput) SetDataShareArn(v string) *AuthorizeDataShareOutput {
+	s.DataShareArn = &v
+	return s
+}
+
+// SetDataShareAssociations sets the DataShareAssociations field's value.
+func (s *AuthorizeDataShareOutput) SetDataShareAssociations(v []*DataShareAssociation) *AuthorizeDataShareOutput {
+	s.DataShareAssociations = v
+	return s
+}
+
+// SetProducerArn sets the ProducerArn field's value.
+func (s *AuthorizeDataShareOutput) SetProducerArn(v string) *AuthorizeDataShareOutput {
+	s.ProducerArn = &v
+	return s
+}
+
 type AuthorizeEndpointAccessInput struct {
 	_ struct{} `type:"structure"`
 
-	// The account ID to grant access to.
+	// The Amazon Web Services account ID to grant access to.
 	//
 	// Account is a required field
 	Account *string `type:"string" required:"true"`
@@ -12211,7 +13090,7 @@ func (s *AuthorizeEndpointAccessInput) SetVpcIds(v []*string) *AuthorizeEndpoint
 }
 
 // Describes an endpoint authorization for authorizing Redshift-managed VPC
-// endpoint access to a cluster across accounts.
+// endpoint access to a cluster across Amazon Web Services accounts.
 type AuthorizeEndpointAccessOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12234,10 +13113,10 @@ type AuthorizeEndpointAccessOutput struct {
 	// The number of Redshift-managed VPC endpoints created for the authorization.
 	EndpointCount *int64 `type:"integer"`
 
-	// The account ID of the grantee of the cluster.
+	// The Amazon Web Services account ID of the grantee of the cluster.
 	Grantee *string `type:"string"`
 
-	// The account ID of the cluster owner.
+	// The Amazon Web Services account ID of the cluster owner.
 	Grantor *string `type:"string"`
 
 	// The status of the authorization action.
@@ -12311,7 +13190,8 @@ func (s *AuthorizeEndpointAccessOutput) SetStatus(v string) *AuthorizeEndpointAc
 type AuthorizeSnapshotAccessInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the account authorized to restore the specified snapshot.
+	// The identifier of the Amazon Web Services account authorized to restore the
+	// specified snapshot.
 	//
 	// To share a snapshot with Amazon Web Services Support, specify amazon-redshift-support.
 	//
@@ -14071,7 +14951,8 @@ type CopyClusterSnapshotInput struct {
 	//
 	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    * Must be unique for the account that is making the request.
+	//    * Must be unique for the Amazon Web Services account that is making the
+	//    request.
 	//
 	// TargetSnapshotIdentifier is a required field
 	TargetSnapshotIdentifier *string `type:"string" required:"true"`
@@ -14254,8 +15135,8 @@ type CreateClusterInput struct {
 	// The value represents how the cluster is configured to use AQUA (Advanced
 	// Query Accelerator) when it is created. Possible values include the following.
 	//
-	//    * enabled - Use AQUA if it is available for the current Region and Amazon
-	//    Redshift node type.
+	//    * enabled - Use AQUA if it is available for the current Amazon Web Services
+	//    Region and Amazon Redshift node type.
 	//
 	//    * disabled - Don't use AQUA.
 	//
@@ -14306,7 +15187,7 @@ type CreateClusterInput struct {
 	//
 	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    * Must be unique for all clusters within an account.
+	//    * Must be unique for all clusters within an Amazon Web Services account.
 	//
 	// Example: myexamplecluster
 	//
@@ -14799,10 +15680,10 @@ type CreateClusterParameterGroupInput struct {
 	//
 	// To get a list of valid parameter group family names, you can call DescribeClusterParameterGroups.
 	// By default, Amazon Redshift returns a list of all the parameter groups that
-	// are owned by your account, including the default parameter groups for each
-	// Amazon Redshift engine version. The parameter group family names associated
-	// with the default parameter groups provide you the valid values. For example,
-	// a valid family name is "redshift-1.0".
+	// are owned by your Amazon Web Services account, including the default parameter
+	// groups for each Amazon Redshift engine version. The parameter group family
+	// names associated with the default parameter groups provide you the valid
+	// values. For example, a valid family name is "redshift-1.0".
 	//
 	// ParameterGroupFamily is a required field
 	ParameterGroupFamily *string `type:"string" required:"true"`
@@ -14817,7 +15698,7 @@ type CreateClusterParameterGroupInput struct {
 	//
 	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    * Must be unique withing your account.
+	//    * Must be unique withing your Amazon Web Services account.
 	//
 	// This value is stored as a lower-case string.
 	//
@@ -14916,7 +15797,8 @@ type CreateClusterSecurityGroupInput struct {
 	//
 	//    * Must not be "Default".
 	//
-	//    * Must be unique for all security groups that are created by your account.
+	//    * Must be unique for all security groups that are created by your Amazon
+	//    Web Services account.
 	//
 	// Example: examplesecuritygroup
 	//
@@ -15016,7 +15898,7 @@ type CreateClusterSnapshotInput struct {
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
 
 	// A unique identifier for the snapshot that you are requesting. This identifier
-	// must be unique for all snapshots within the account.
+	// must be unique for all snapshots within the Amazon Web Services account.
 	//
 	// Constraints:
 	//
@@ -15122,7 +16004,8 @@ type CreateClusterSubnetGroupInput struct {
 	//
 	//    * Must not be "Default".
 	//
-	//    * Must be unique for all subnet groups that are created by your account.
+	//    * Must be unique for all subnet groups that are created by your Amazon
+	//    Web Services account.
 	//
 	// Example: examplesubnetgroup
 	//
@@ -15235,8 +16118,8 @@ type CreateEndpointAccessInput struct {
 	// EndpointName is a required field
 	EndpointName *string `type:"string" required:"true"`
 
-	// The account ID of the owner of the cluster. This is only required if the
-	// cluster is in another account.
+	// The Amazon Web Services account ID of the owner of the cluster. This is only
+	// required if the cluster is in another Amazon Web Services account.
 	ResourceOwner *string `type:"string"`
 
 	// The subnet group from which Amazon Redshift chooses the subnet to deploy
@@ -15328,7 +16211,7 @@ type CreateEndpointAccessOutput struct {
 	// The port number on which the cluster accepts incoming connections.
 	Port *int64 `type:"integer"`
 
-	// The account ID of the owner of the cluster.
+	// The Amazon Web Services account ID of the owner of the cluster.
 	ResourceOwner *string `type:"string"`
 
 	// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
@@ -15422,7 +16305,7 @@ type CreateEventSubscriptionInput struct {
 	// Specifies the Amazon Redshift event categories to be published by the event
 	// notification subscription.
 	//
-	// Values: configuration, management, monitoring, security
+	// Values: configuration, management, monitoring, security, pending
 	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
 
 	// Specifies the Amazon Redshift event severity to be published by the event
@@ -15452,8 +16335,8 @@ type CreateEventSubscriptionInput struct {
 	// The type of source that will be generating the events. For example, if you
 	// want to be notified of events generated by a cluster, you would set this
 	// parameter to cluster. If this value is not specified, events are returned
-	// for all Amazon Redshift objects in your account. You must specify a source
-	// type in order to specify source IDs.
+	// for all Amazon Redshift objects in your Amazon Web Services account. You
+	// must specify a source type in order to specify source IDs.
 	//
 	// Valid values: cluster, cluster-parameter-group, cluster-security-group, cluster-snapshot,
 	// and scheduled-action.
@@ -16045,7 +16928,7 @@ type CreateSnapshotCopyGrantInput struct {
 	KmsKeyId *string `type:"string"`
 
 	// The name of the snapshot copy grant. This name must be unique in the region
-	// for the account.
+	// for the Amazon Web Services account.
 	//
 	// Constraints:
 	//
@@ -16057,7 +16940,7 @@ type CreateSnapshotCopyGrantInput struct {
 	//
 	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    * Must be unique for all clusters within an account.
+	//    * Must be unique for all clusters within an Amazon Web Services account.
 	//
 	// SnapshotCopyGrantName is a required field
 	SnapshotCopyGrantName *string `type:"string" required:"true"`
@@ -16565,6 +17448,113 @@ func (s *CreateUsageLimitOutput) SetUsageLimitId(v string) *CreateUsageLimitOutp
 	return s
 }
 
+type DataShare struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies whether the datashare can be shared to a publicly
+	// accessible cluster.
+	AllowPubliclyAccessibleConsumers *bool `type:"boolean"`
+
+	// An Amazon Resource Name (ARN) that references the datashare that is owned
+	// by a specific namespace of the producer cluster. A datashare ARN is in the
+	// arn:aws:redshift:{region}:{account-id}:{datashare}:{namespace-guid}/{datashare-name}
+	// format.
+	DataShareArn *string `type:"string"`
+
+	// A value that specifies when the datashare has an association between a producer
+	// and data consumers.
+	DataShareAssociations []*DataShareAssociation `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the producer.
+	ProducerArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DataShare) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataShare) GoString() string {
+	return s.String()
+}
+
+// SetAllowPubliclyAccessibleConsumers sets the AllowPubliclyAccessibleConsumers field's value.
+func (s *DataShare) SetAllowPubliclyAccessibleConsumers(v bool) *DataShare {
+	s.AllowPubliclyAccessibleConsumers = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *DataShare) SetDataShareArn(v string) *DataShare {
+	s.DataShareArn = &v
+	return s
+}
+
+// SetDataShareAssociations sets the DataShareAssociations field's value.
+func (s *DataShare) SetDataShareAssociations(v []*DataShareAssociation) *DataShare {
+	s.DataShareAssociations = v
+	return s
+}
+
+// SetProducerArn sets the ProducerArn field's value.
+func (s *DataShare) SetProducerArn(v string) *DataShare {
+	s.ProducerArn = &v
+	return s
+}
+
+// The association of a datashare from a producer account with a data consumer.
+type DataShareAssociation struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the consumer accounts that have an association with a producer
+	// datashare.
+	ConsumerIdentifier *string `type:"string"`
+
+	// The creation date of the datashare that is associated.
+	CreatedDate *time.Time `type:"timestamp"`
+
+	// The status of the datashare that is associated.
+	Status *string `type:"string" enum:"DataShareStatus"`
+
+	// The status change data of the datashare that is associated.
+	StatusChangeDate *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s DataShareAssociation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DataShareAssociation) GoString() string {
+	return s.String()
+}
+
+// SetConsumerIdentifier sets the ConsumerIdentifier field's value.
+func (s *DataShareAssociation) SetConsumerIdentifier(v string) *DataShareAssociation {
+	s.ConsumerIdentifier = &v
+	return s
+}
+
+// SetCreatedDate sets the CreatedDate field's value.
+func (s *DataShareAssociation) SetCreatedDate(v time.Time) *DataShareAssociation {
+	s.CreatedDate = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DataShareAssociation) SetStatus(v string) *DataShareAssociation {
+	s.Status = &v
+	return s
+}
+
+// SetStatusChangeDate sets the StatusChangeDate field's value.
+func (s *DataShareAssociation) SetStatusChangeDate(v time.Time) *DataShareAssociation {
+	s.StatusChangeDate = &v
+	return s
+}
+
 // Describes the status of a cluster while it is in the process of resizing
 // with an incremental resize.
 type DataTransferProgress struct {
@@ -16633,6 +17623,114 @@ func (s *DataTransferProgress) SetStatus(v string) *DataTransferProgress {
 // SetTotalDataInMegaBytes sets the TotalDataInMegaBytes field's value.
 func (s *DataTransferProgress) SetTotalDataInMegaBytes(v int64) *DataTransferProgress {
 	s.TotalDataInMegaBytes = &v
+	return s
+}
+
+type DeauthorizeDataShareInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the data consumer that is to have authorization removed
+	// from the datashare. This identifier is an AWS account ID.
+	//
+	// ConsumerIdentifier is a required field
+	ConsumerIdentifier *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the datashare to remove authorization from.
+	//
+	// DataShareArn is a required field
+	DataShareArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeauthorizeDataShareInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeauthorizeDataShareInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeauthorizeDataShareInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeauthorizeDataShareInput"}
+	if s.ConsumerIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConsumerIdentifier"))
+	}
+	if s.DataShareArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataShareArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerIdentifier sets the ConsumerIdentifier field's value.
+func (s *DeauthorizeDataShareInput) SetConsumerIdentifier(v string) *DeauthorizeDataShareInput {
+	s.ConsumerIdentifier = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *DeauthorizeDataShareInput) SetDataShareArn(v string) *DeauthorizeDataShareInput {
+	s.DataShareArn = &v
+	return s
+}
+
+type DeauthorizeDataShareOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies whether the datashare can be shared to a publicly
+	// accessible cluster.
+	AllowPubliclyAccessibleConsumers *bool `type:"boolean"`
+
+	// An Amazon Resource Name (ARN) that references the datashare that is owned
+	// by a specific namespace of the producer cluster. A datashare ARN is in the
+	// arn:aws:redshift:{region}:{account-id}:{datashare}:{namespace-guid}/{datashare-name}
+	// format.
+	DataShareArn *string `type:"string"`
+
+	// A value that specifies when the datashare has an association between a producer
+	// and data consumers.
+	DataShareAssociations []*DataShareAssociation `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the producer.
+	ProducerArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeauthorizeDataShareOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeauthorizeDataShareOutput) GoString() string {
+	return s.String()
+}
+
+// SetAllowPubliclyAccessibleConsumers sets the AllowPubliclyAccessibleConsumers field's value.
+func (s *DeauthorizeDataShareOutput) SetAllowPubliclyAccessibleConsumers(v bool) *DeauthorizeDataShareOutput {
+	s.AllowPubliclyAccessibleConsumers = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *DeauthorizeDataShareOutput) SetDataShareArn(v string) *DeauthorizeDataShareOutput {
+	s.DataShareArn = &v
+	return s
+}
+
+// SetDataShareAssociations sets the DataShareAssociations field's value.
+func (s *DeauthorizeDataShareOutput) SetDataShareAssociations(v []*DataShareAssociation) *DeauthorizeDataShareOutput {
+	s.DataShareAssociations = v
+	return s
+}
+
+// SetProducerArn sets the ProducerArn field's value.
+func (s *DeauthorizeDataShareOutput) SetProducerArn(v string) *DeauthorizeDataShareOutput {
+	s.ProducerArn = &v
 	return s
 }
 
@@ -17259,7 +18357,7 @@ type DeleteEndpointAccessOutput struct {
 	// The port number on which the cluster accepts incoming connections.
 	Port *int64 `type:"integer"`
 
-	// The account ID of the owner of the cluster.
+	// The Amazon Web Services account ID of the owner of the cluster.
 	ResourceOwner *string `type:"string"`
 
 	// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
@@ -17502,7 +18600,7 @@ func (s DeleteHsmConfigurationOutput) GoString() string {
 type DeletePartnerInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Region ID that owns the cluster.
+	// The Amazon Web Services account ID that owns the cluster.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
@@ -18492,9 +19590,10 @@ type DescribeClusterSnapshotsInput struct {
 	// Constraints: minimum 20, maximum 100.
 	MaxRecords *int64 `type:"integer"`
 
-	// The account used to create or copy the snapshot. Use this field to filter
-	// the results to snapshots owned by a particular account. To describe snapshots
-	// you own, either specify your account, or do not specify the parameter.
+	// The Amazon Web Services account used to create or copy the snapshot. Use
+	// this field to filter the results to snapshots owned by a particular account.
+	// To describe snapshots you own, either specify your Amazon Web Services account,
+	// or do not specify the parameter.
 	OwnerAccount *string `type:"string"`
 
 	// The snapshot identifier of the snapshot about which to return information.
@@ -19102,6 +20201,286 @@ func (s *DescribeClustersOutput) SetMarker(v string) *DescribeClustersOutput {
 	return s
 }
 
+type DescribeDataSharesForConsumerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the consumer that returns in the list of
+	// datashares.
+	ConsumerArn *string `type:"string"`
+
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeDataSharesForConsumer request
+	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
+	// field of the response. You can retrieve the next set of response records
+	// by providing the returned marker value in the Marker parameter and retrying
+	// the request.
+	Marker *string `type:"string"`
+
+	// The maximum number of response records to return in each call. If the number
+	// of remaining response records exceeds the specified MaxRecords value, a value
+	// is returned in a marker field of the response. You can retrieve the next
+	// set of records by retrying the command with the returned marker value.
+	MaxRecords *int64 `type:"integer"`
+
+	// An identifier giving the status of a datashare in the consumer cluster. If
+	// this field is specified, Amazon Redshift returns the list of datashares that
+	// have the specified status.
+	Status *string `type:"string" enum:"DataShareStatusForConsumer"`
+}
+
+// String returns the string representation
+func (s DescribeDataSharesForConsumerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataSharesForConsumerInput) GoString() string {
+	return s.String()
+}
+
+// SetConsumerArn sets the ConsumerArn field's value.
+func (s *DescribeDataSharesForConsumerInput) SetConsumerArn(v string) *DescribeDataSharesForConsumerInput {
+	s.ConsumerArn = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDataSharesForConsumerInput) SetMarker(v string) *DescribeDataSharesForConsumerInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDataSharesForConsumerInput) SetMaxRecords(v int64) *DescribeDataSharesForConsumerInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeDataSharesForConsumerInput) SetStatus(v string) *DescribeDataSharesForConsumerInput {
+	s.Status = &v
+	return s
+}
+
+type DescribeDataSharesForConsumerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Shows the results of datashares available for consumers.
+	DataShares []*DataShare `type:"list"`
+
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeDataSharesForConsumer request
+	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
+	// field of the response. You can retrieve the next set of response records
+	// by providing the returned marker value in the Marker parameter and retrying
+	// the request.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDataSharesForConsumerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataSharesForConsumerOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataShares sets the DataShares field's value.
+func (s *DescribeDataSharesForConsumerOutput) SetDataShares(v []*DataShare) *DescribeDataSharesForConsumerOutput {
+	s.DataShares = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDataSharesForConsumerOutput) SetMarker(v string) *DescribeDataSharesForConsumerOutput {
+	s.Marker = &v
+	return s
+}
+
+type DescribeDataSharesForProducerInput struct {
+	_ struct{} `type:"structure"`
+
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeDataSharesForProducer request
+	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
+	// field of the response. You can retrieve the next set of response records
+	// by providing the returned marker value in the Marker parameter and retrying
+	// the request.
+	Marker *string `type:"string"`
+
+	// The maximum number of response records to return in each call. If the number
+	// of remaining response records exceeds the specified MaxRecords value, a value
+	// is returned in a marker field of the response. You can retrieve the next
+	// set of records by retrying the command with the returned marker value.
+	MaxRecords *int64 `type:"integer"`
+
+	// The Amazon Resource Name (ARN) of the producer that returns in the list of
+	// datashares.
+	ProducerArn *string `type:"string"`
+
+	// An identifier giving the status of a datashare in the producer. If this field
+	// is specified, Amazon Redshift returns the list of datashares that have the
+	// specified status.
+	Status *string `type:"string" enum:"DataShareStatusForProducer"`
+}
+
+// String returns the string representation
+func (s DescribeDataSharesForProducerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataSharesForProducerInput) GoString() string {
+	return s.String()
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDataSharesForProducerInput) SetMarker(v string) *DescribeDataSharesForProducerInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDataSharesForProducerInput) SetMaxRecords(v int64) *DescribeDataSharesForProducerInput {
+	s.MaxRecords = &v
+	return s
+}
+
+// SetProducerArn sets the ProducerArn field's value.
+func (s *DescribeDataSharesForProducerInput) SetProducerArn(v string) *DescribeDataSharesForProducerInput {
+	s.ProducerArn = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribeDataSharesForProducerInput) SetStatus(v string) *DescribeDataSharesForProducerInput {
+	s.Status = &v
+	return s
+}
+
+type DescribeDataSharesForProducerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Shows the results of datashares available for producers.
+	DataShares []*DataShare `type:"list"`
+
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeDataSharesForProducer request
+	// exceed the value specified in MaxRecords, AWS returns a value in the Marker
+	// field of the response. You can retrieve the next set of response records
+	// by providing the returned marker value in the Marker parameter and retrying
+	// the request.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDataSharesForProducerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataSharesForProducerOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataShares sets the DataShares field's value.
+func (s *DescribeDataSharesForProducerOutput) SetDataShares(v []*DataShare) *DescribeDataSharesForProducerOutput {
+	s.DataShares = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDataSharesForProducerOutput) SetMarker(v string) *DescribeDataSharesForProducerOutput {
+	s.Marker = &v
+	return s
+}
+
+type DescribeDataSharesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the datashare to describe details of.
+	DataShareArn *string `type:"string"`
+
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeDataShares request exceed
+	// the value specified in MaxRecords, AWS returns a value in the Marker field
+	// of the response. You can retrieve the next set of response records by providing
+	// the returned marker value in the Marker parameter and retrying the request.
+	Marker *string `type:"string"`
+
+	// The maximum number of response records to return in each call. If the number
+	// of remaining response records exceeds the specified MaxRecords value, a value
+	// is returned in a marker field of the response. You can retrieve the next
+	// set of records by retrying the command with the returned marker value.
+	MaxRecords *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s DescribeDataSharesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataSharesInput) GoString() string {
+	return s.String()
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *DescribeDataSharesInput) SetDataShareArn(v string) *DescribeDataSharesInput {
+	s.DataShareArn = &v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDataSharesInput) SetMarker(v string) *DescribeDataSharesInput {
+	s.Marker = &v
+	return s
+}
+
+// SetMaxRecords sets the MaxRecords field's value.
+func (s *DescribeDataSharesInput) SetMaxRecords(v int64) *DescribeDataSharesInput {
+	s.MaxRecords = &v
+	return s
+}
+
+type DescribeDataSharesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The results returned from describing datashares.
+	DataShares []*DataShare `type:"list"`
+
+	// An optional parameter that specifies the starting point to return a set of
+	// response records. When the results of a DescribeDataShares request exceed
+	// the value specified in MaxRecords, AWS returns a value in the Marker field
+	// of the response. You can retrieve the next set of response records by providing
+	// the returned marker value in the Marker parameter and retrying the request.
+	Marker *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeDataSharesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeDataSharesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataShares sets the DataShares field's value.
+func (s *DescribeDataSharesOutput) SetDataShares(v []*DataShare) *DescribeDataSharesOutput {
+	s.DataShares = v
+	return s
+}
+
+// SetMarker sets the Marker field's value.
+func (s *DescribeDataSharesOutput) SetMarker(v string) *DescribeDataSharesOutput {
+	s.Marker = &v
+	return s
+}
+
 type DescribeDefaultClusterParametersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -19212,7 +20591,7 @@ type DescribeEndpointAccessInput struct {
 	// is included in the response so that the remaining results can be retrieved.
 	MaxRecords *int64 `type:"integer"`
 
-	// The account ID of the owner of the cluster.
+	// The Amazon Web Services account ID of the owner of the cluster.
 	ResourceOwner *string `type:"string"`
 
 	// The virtual private cloud (VPC) identifier with access to the cluster.
@@ -19302,8 +20681,9 @@ func (s *DescribeEndpointAccessOutput) SetMarker(v string) *DescribeEndpointAcce
 type DescribeEndpointAuthorizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Aaccount ID of either the cluster owner (grantor) or grantee. If Grantee
-	// parameter is true, then the Account value is of the grantor.
+	// The AAmazon Web Services account ID of either the cluster owner (grantor)
+	// or grantee. If Grantee parameter is true, then the Account value is of the
+	// grantor.
 	Account *string `type:"string"`
 
 	// The cluster identifier of the cluster to access.
@@ -19738,7 +21118,7 @@ type DescribeHsmClientCertificatesInput struct {
 
 	// The identifier of a specific HSM client certificate for which you want information.
 	// If no identifier is specified, information is returned for all HSM client
-	// certificates owned by your account.
+	// certificates owned by your Amazon Web Services account.
 	HsmClientCertificateIdentifier *string `type:"string"`
 
 	// An optional parameter that specifies the starting point to return a set of
@@ -19859,7 +21239,7 @@ type DescribeHsmConfigurationsInput struct {
 
 	// The identifier of a specific Amazon Redshift HSM configuration to be described.
 	// If no identifier is specified, information is returned for all HSM configurations
-	// owned by your account.
+	// owned by your Amazon Web Services account.
 	HsmConfigurationIdentifier *string `type:"string"`
 
 	// An optional parameter that specifies the starting point to return a set of
@@ -20049,8 +21429,8 @@ type DescribeNodeConfigurationOptionsInput struct {
 	// Constraints: minimum 100, maximum 500.
 	MaxRecords *int64 `type:"integer"`
 
-	// The account used to create or copy the snapshot. Required if you are restoring
-	// a snapshot you do not own, optional if you own the snapshot.
+	// The Amazon Web Services account used to create or copy the snapshot. Required
+	// if you are restoring a snapshot you do not own, optional if you own the snapshot.
 	OwnerAccount *string `type:"string"`
 
 	// The identifier of the snapshot to evaluate for possible node configurations.
@@ -20267,7 +21647,7 @@ func (s *DescribeOrderableClusterOptionsOutput) SetOrderableClusterOptions(v []*
 type DescribePartnersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Region ID that owns the cluster.
+	// The Amazon Web Services account ID that owns the cluster.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
@@ -20547,8 +21927,8 @@ type DescribeResizeInput struct {
 	// The unique identifier of a cluster whose resize progress you are requesting.
 	// This parameter is case-sensitive.
 	//
-	// By default, resize operations for all clusters defined for an account are
-	// returned.
+	// By default, resize operations for all clusters defined for an Amazon Web
+	// Services account are returned.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -21686,6 +23066,119 @@ func (s *DisableSnapshotCopyOutput) SetCluster(v *Cluster) *DisableSnapshotCopyO
 	return s
 }
 
+type DisassociateDataShareConsumerInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the consumer that association for the datashare
+	// is removed from.
+	ConsumerArn *string `type:"string"`
+
+	// The Amazon Resource Name (ARN) of the datashare to remove association for.
+	//
+	// DataShareArn is a required field
+	DataShareArn *string `type:"string" required:"true"`
+
+	// A value that specifies whether association for the datashare is removed from
+	// the entire account.
+	DisassociateEntireAccount *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s DisassociateDataShareConsumerInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateDataShareConsumerInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DisassociateDataShareConsumerInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DisassociateDataShareConsumerInput"}
+	if s.DataShareArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataShareArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConsumerArn sets the ConsumerArn field's value.
+func (s *DisassociateDataShareConsumerInput) SetConsumerArn(v string) *DisassociateDataShareConsumerInput {
+	s.ConsumerArn = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *DisassociateDataShareConsumerInput) SetDataShareArn(v string) *DisassociateDataShareConsumerInput {
+	s.DataShareArn = &v
+	return s
+}
+
+// SetDisassociateEntireAccount sets the DisassociateEntireAccount field's value.
+func (s *DisassociateDataShareConsumerInput) SetDisassociateEntireAccount(v bool) *DisassociateDataShareConsumerInput {
+	s.DisassociateEntireAccount = &v
+	return s
+}
+
+type DisassociateDataShareConsumerOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies whether the datashare can be shared to a publicly
+	// accessible cluster.
+	AllowPubliclyAccessibleConsumers *bool `type:"boolean"`
+
+	// An Amazon Resource Name (ARN) that references the datashare that is owned
+	// by a specific namespace of the producer cluster. A datashare ARN is in the
+	// arn:aws:redshift:{region}:{account-id}:{datashare}:{namespace-guid}/{datashare-name}
+	// format.
+	DataShareArn *string `type:"string"`
+
+	// A value that specifies when the datashare has an association between a producer
+	// and data consumers.
+	DataShareAssociations []*DataShareAssociation `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the producer.
+	ProducerArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DisassociateDataShareConsumerOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DisassociateDataShareConsumerOutput) GoString() string {
+	return s.String()
+}
+
+// SetAllowPubliclyAccessibleConsumers sets the AllowPubliclyAccessibleConsumers field's value.
+func (s *DisassociateDataShareConsumerOutput) SetAllowPubliclyAccessibleConsumers(v bool) *DisassociateDataShareConsumerOutput {
+	s.AllowPubliclyAccessibleConsumers = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *DisassociateDataShareConsumerOutput) SetDataShareArn(v string) *DisassociateDataShareConsumerOutput {
+	s.DataShareArn = &v
+	return s
+}
+
+// SetDataShareAssociations sets the DataShareAssociations field's value.
+func (s *DisassociateDataShareConsumerOutput) SetDataShareAssociations(v []*DataShareAssociation) *DisassociateDataShareConsumerOutput {
+	s.DataShareAssociations = v
+	return s
+}
+
+// SetProducerArn sets the ProducerArn field's value.
+func (s *DisassociateDataShareConsumerOutput) SetProducerArn(v string) *DisassociateDataShareConsumerOutput {
+	s.ProducerArn = &v
+	return s
+}
+
 // Describes an Amazon EC2 security group.
 type EC2SecurityGroup struct {
 	_ struct{} `type:"structure"`
@@ -21693,8 +23186,8 @@ type EC2SecurityGroup struct {
 	// The name of the EC2 Security Group.
 	EC2SecurityGroupName *string `type:"string"`
 
-	// The account ID of the owner of the EC2 security group specified in the EC2SecurityGroupName
-	// field.
+	// The Amazon Web Services account ID of the owner of the EC2 security group
+	// specified in the EC2SecurityGroupName field.
 	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	// The status of the EC2 security group.
@@ -21859,18 +23352,19 @@ type EnableSnapshotCopyInput struct {
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
 
-	// The destination Region that you want to copy snapshots to.
+	// The destination Amazon Web Services Region that you want to copy snapshots
+	// to.
 	//
-	// Constraints: Must be the name of a valid Region. For more information, see
-	// Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region)
+	// Constraints: Must be the name of a valid Amazon Web Services Region. For
+	// more information, see Regions and Endpoints (https://docs.aws.amazon.com/general/latest/gr/rande.html#redshift_region)
 	// in the Amazon Web Services General Reference.
 	//
 	// DestinationRegion is a required field
 	DestinationRegion *string `type:"string" required:"true"`
 
-	// The number of days to retain newly copied snapshots in the destination Region
-	// after they are copied from the source Region. If the value is -1, the manual
-	// snapshot is retained indefinitely.
+	// The number of days to retain newly copied snapshots in the destination Amazon
+	// Web Services Region after they are copied from the source Amazon Web Services
+	// Region. If the value is -1, the manual snapshot is retained indefinitely.
 	//
 	// The value must be either -1 or an integer between 1 and 3,653.
 	ManualSnapshotRetentionPeriod *int64 `type:"integer"`
@@ -22031,7 +23525,7 @@ type EndpointAccess struct {
 	// The port number on which the cluster accepts incoming connections.
 	Port *int64 `type:"integer"`
 
-	// The account ID of the owner of the cluster.
+	// The Amazon Web Services account ID of the owner of the cluster.
 	ResourceOwner *string `type:"string"`
 
 	// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
@@ -22116,7 +23610,7 @@ func (s *EndpointAccess) SetVpcSecurityGroups(v []*VpcSecurityGroupMembership) *
 }
 
 // Describes an endpoint authorization for authorizing Redshift-managed VPC
-// endpoint access to a cluster across accounts.
+// endpoint access to a cluster across Amazon Web Services accounts.
 type EndpointAuthorization struct {
 	_ struct{} `type:"structure"`
 
@@ -22139,10 +23633,10 @@ type EndpointAuthorization struct {
 	// The number of Redshift-managed VPC endpoints created for the authorization.
 	EndpointCount *int64 `type:"integer"`
 
-	// The account ID of the grantee of the cluster.
+	// The Amazon Web Services account ID of the grantee of the cluster.
 	Grantee *string `type:"string"`
 
-	// The account ID of the cluster owner.
+	// The Amazon Web Services account ID of the cluster owner.
 	Grantor *string `type:"string"`
 
 	// The status of the authorization action.
@@ -22222,7 +23716,7 @@ type Event struct {
 
 	// A list of the event categories.
 	//
-	// Values: Configuration, Management, Monitoring, Security
+	// Values: Configuration, Management, Monitoring, Security, Pending
 	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
 
 	// The identifier of the event.
@@ -22389,7 +23883,8 @@ type EventSubscription struct {
 	// The name of the Amazon Redshift event notification subscription.
 	CustSubscriptionId *string `type:"string"`
 
-	// The account associated with the Amazon Redshift event notification subscription.
+	// The Amazon Web Services account associated with the Amazon Redshift event
+	// notification subscription.
 	CustomerAwsId *string `type:"string"`
 
 	// A boolean value indicating whether the subscription is enabled; true indicates
@@ -22399,7 +23894,7 @@ type EventSubscription struct {
 	// The list of Amazon Redshift event categories specified in the event notification
 	// subscription.
 	//
-	// Values: Configuration, Management, Monitoring, Security
+	// Values: Configuration, Management, Monitoring, Security, Pending
 	EventCategoriesList []*string `locationNameList:"EventCategory" type:"list"`
 
 	// The event severity specified in the Amazon Redshift event notification subscription.
@@ -23128,8 +24623,8 @@ type ModifyAquaConfigurationInput struct {
 
 	// The new value of AQUA configuration status. Possible values include the following.
 	//
-	//    * enabled - Use AQUA if it is available for the current Region and Amazon
-	//    Redshift node type.
+	//    * enabled - Use AQUA if it is available for the current Amazon Web Services
+	//    Region and Amazon Redshift node type.
 	//
 	//    * disabled - Don't use AQUA.
 	//
@@ -23626,7 +25121,7 @@ type ModifyClusterInput struct {
 	//
 	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    * Must be unique for all clusters within an account.
+	//    * Must be unique for all clusters within an Amazon Web Services account.
 	//
 	// Example: examplecluster
 	NewClusterIdentifier *string `type:"string"`
@@ -24360,7 +25855,7 @@ type ModifyEndpointAccessOutput struct {
 	// The port number on which the cluster accepts incoming connections.
 	Port *int64 `type:"integer"`
 
-	// The account ID of the owner of the cluster.
+	// The Amazon Web Services account ID of the owner of the cluster.
 	ResourceOwner *string `type:"string"`
 
 	// The subnet group name where Amazon Redshift chooses to deploy the endpoint.
@@ -24454,7 +25949,7 @@ type ModifyEventSubscriptionInput struct {
 	// Specifies the Amazon Redshift event categories to be published by the event
 	// notification subscription.
 	//
-	// Values: configuration, management, monitoring, security
+	// Values: configuration, management, monitoring, security, pending
 	EventCategories []*string `locationNameList:"EventCategory" type:"list"`
 
 	// Specifies the Amazon Redshift event severity to be published by the event
@@ -24481,8 +25976,8 @@ type ModifyEventSubscriptionInput struct {
 	// The type of source that will be generating the events. For example, if you
 	// want to be notified of events generated by a cluster, you would set this
 	// parameter to cluster. If this value is not specified, events are returned
-	// for all Amazon Redshift objects in your account. You must specify a source
-	// type in order to specify source IDs.
+	// for all Amazon Redshift objects in your Amazon Web Services account. You
+	// must specify a source type in order to specify source IDs.
 	//
 	// Valid values: cluster, cluster-parameter-group, cluster-security-group, cluster-snapshot,
 	// and scheduled-action.
@@ -24815,7 +26310,7 @@ type ModifySnapshotCopyRetentionPeriodInput struct {
 
 	// The unique identifier of the cluster for which you want to change the retention
 	// period for either automated or manual snapshots that are copied to a destination
-	// Region.
+	// Amazon Web Services Region.
 	//
 	// Constraints: Must be the valid name of an existing cluster that has cross-region
 	// snapshot copy enabled.
@@ -24827,15 +26322,16 @@ type ModifySnapshotCopyRetentionPeriodInput struct {
 	// manual snapshots instead of automated snapshots.
 	Manual *bool `type:"boolean"`
 
-	// The number of days to retain automated snapshots in the destination Region
-	// after they are copied from the source Region.
+	// The number of days to retain automated snapshots in the destination Amazon
+	// Web Services Region after they are copied from the source Amazon Web Services
+	// Region.
 	//
 	// By default, this only changes the retention period of copied automated snapshots.
 	//
 	// If you decrease the retention period for automated snapshots that are copied
-	// to a destination Region, Amazon Redshift deletes any existing automated snapshots
-	// that were copied to the destination Region and that fall outside of the new
-	// retention period.
+	// to a destination Amazon Web Services Region, Amazon Redshift deletes any
+	// existing automated snapshots that were copied to the destination Amazon Web
+	// Services Region and that fall outside of the new retention period.
 	//
 	// Constraints: Must be at least 1 and no more than 35 for automated snapshots.
 	//
@@ -25975,6 +27471,99 @@ func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge
 	return s
 }
 
+type RejectDataShareInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the datashare to reject.
+	//
+	// DataShareArn is a required field
+	DataShareArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RejectDataShareInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RejectDataShareInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RejectDataShareInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RejectDataShareInput"}
+	if s.DataShareArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataShareArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *RejectDataShareInput) SetDataShareArn(v string) *RejectDataShareInput {
+	s.DataShareArn = &v
+	return s
+}
+
+type RejectDataShareOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A value that specifies whether the datashare can be shared to a publicly
+	// accessible cluster.
+	AllowPubliclyAccessibleConsumers *bool `type:"boolean"`
+
+	// An Amazon Resource Name (ARN) that references the datashare that is owned
+	// by a specific namespace of the producer cluster. A datashare ARN is in the
+	// arn:aws:redshift:{region}:{account-id}:{datashare}:{namespace-guid}/{datashare-name}
+	// format.
+	DataShareArn *string `type:"string"`
+
+	// A value that specifies when the datashare has an association between a producer
+	// and data consumers.
+	DataShareAssociations []*DataShareAssociation `type:"list"`
+
+	// The Amazon Resource Name (ARN) of the producer.
+	ProducerArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s RejectDataShareOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RejectDataShareOutput) GoString() string {
+	return s.String()
+}
+
+// SetAllowPubliclyAccessibleConsumers sets the AllowPubliclyAccessibleConsumers field's value.
+func (s *RejectDataShareOutput) SetAllowPubliclyAccessibleConsumers(v bool) *RejectDataShareOutput {
+	s.AllowPubliclyAccessibleConsumers = &v
+	return s
+}
+
+// SetDataShareArn sets the DataShareArn field's value.
+func (s *RejectDataShareOutput) SetDataShareArn(v string) *RejectDataShareOutput {
+	s.DataShareArn = &v
+	return s
+}
+
+// SetDataShareAssociations sets the DataShareAssociations field's value.
+func (s *RejectDataShareOutput) SetDataShareAssociations(v []*DataShareAssociation) *RejectDataShareOutput {
+	s.DataShareAssociations = v
+	return s
+}
+
+// SetProducerArn sets the ProducerArn field's value.
+func (s *RejectDataShareOutput) SetProducerArn(v string) *RejectDataShareOutput {
+	s.ProducerArn = &v
+	return s
+}
+
 // Describes a reserved node. You can call the DescribeReservedNodeOfferings
 // API to obtain the available reserved node offerings.
 type ReservedNode struct {
@@ -26518,8 +28107,8 @@ type RestoreFromClusterSnapshotInput struct {
 	// Query Accelerator) after the cluster is restored. Possible values include
 	// the following.
 	//
-	//    * enabled - Use AQUA if it is available for the current Region and Amazon
-	//    Redshift node type.
+	//    * enabled - Use AQUA if it is available for the current Amazon Web Services
+	//    Region and Amazon Redshift node type.
 	//
 	//    * disabled - Don't use AQUA.
 	//
@@ -26561,7 +28150,7 @@ type RestoreFromClusterSnapshotInput struct {
 	//
 	//    * Cannot end with a hyphen or contain two consecutive hyphens.
 	//
-	//    * Must be unique for all clusters within an account.
+	//    * Must be unique for all clusters within an Amazon Web Services account.
 	//
 	// ClusterIdentifier is a required field
 	ClusterIdentifier *string `type:"string" required:"true"`
@@ -26662,8 +28251,8 @@ type RestoreFromClusterSnapshotInput struct {
 	// The number of nodes specified when provisioning the restored cluster.
 	NumberOfNodes *int64 `type:"integer"`
 
-	// The account used to create or copy the snapshot. Required if you are restoring
-	// a snapshot you do not own, optional if you own the snapshot.
+	// The Amazon Web Services account used to create or copy the snapshot. Required
+	// if you are restoring a snapshot you do not own, optional if you own the snapshot.
 	OwnerAccount *string `type:"string"`
 
 	// The port number on which the cluster accepts connections.
@@ -27335,10 +28924,10 @@ type RevokeClusterSecurityGroupIngressInput struct {
 	// be provided.
 	EC2SecurityGroupName *string `type:"string"`
 
-	// The account number of the owner of the security group specified in the EC2SecurityGroupName
-	// parameter. The Amazon Web Services access key ID is not an acceptable value.
-	// If EC2SecurityGroupOwnerId is specified, EC2SecurityGroupName must also be
-	// provided. and CIDRIP cannot be provided.
+	// The Amazon Web Services account number of the owner of the security group
+	// specified in the EC2SecurityGroupName parameter. The Amazon Web Services
+	// access key ID is not an acceptable value. If EC2SecurityGroupOwnerId is specified,
+	// EC2SecurityGroupName must also be provided. and CIDRIP cannot be provided.
 	//
 	// Example: 111122223333
 	EC2SecurityGroupOwnerId *string `type:"string"`
@@ -27417,7 +29006,7 @@ func (s *RevokeClusterSecurityGroupIngressOutput) SetClusterSecurityGroup(v *Clu
 type RevokeEndpointAccessInput struct {
 	_ struct{} `type:"structure"`
 
-	// The account ID whose access is to be revoked.
+	// The Amazon Web Services account ID whose access is to be revoked.
 	Account *string `type:"string"`
 
 	// The cluster to revoke access from.
@@ -27466,7 +29055,7 @@ func (s *RevokeEndpointAccessInput) SetVpcIds(v []*string) *RevokeEndpointAccess
 }
 
 // Describes an endpoint authorization for authorizing Redshift-managed VPC
-// endpoint access to a cluster across accounts.
+// endpoint access to a cluster across Amazon Web Services accounts.
 type RevokeEndpointAccessOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -27489,10 +29078,10 @@ type RevokeEndpointAccessOutput struct {
 	// The number of Redshift-managed VPC endpoints created for the authorization.
 	EndpointCount *int64 `type:"integer"`
 
-	// The account ID of the grantee of the cluster.
+	// The Amazon Web Services account ID of the grantee of the cluster.
 	Grantee *string `type:"string"`
 
-	// The account ID of the cluster owner.
+	// The Amazon Web Services account ID of the cluster owner.
 	Grantor *string `type:"string"`
 
 	// The status of the authorization action.
@@ -27566,7 +29155,8 @@ func (s *RevokeEndpointAccessOutput) SetStatus(v string) *RevokeEndpointAccessOu
 type RevokeSnapshotAccessInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the account that can no longer restore the specified snapshot.
+	// The identifier of the Amazon Web Services account that can no longer restore
+	// the specified snapshot.
 	//
 	// AccountWithRestoreAccess is a required field
 	AccountWithRestoreAccess *string `type:"string" required:"true"`
@@ -27955,8 +29545,9 @@ func (s *ScheduledActionType) SetResumeCluster(v *ResumeClusterMessage) *Schedul
 type Snapshot struct {
 	_ struct{} `type:"structure"`
 
-	// A list of the accounts authorized to restore the snapshot. Returns null if
-	// no accounts are authorized. Visible only to the snapshot owner.
+	// A list of the Amazon Web Services accounts authorized to restore the snapshot.
+	// Returns null if no accounts are authorized. Visible only to the snapshot
+	// owner.
 	AccountsWithRestoreAccess []*AccountWithRestoreAccess `locationNameList:"AccountWithRestoreAccess" type:"list"`
 
 	// The size of the incremental backup.
@@ -28040,9 +29631,9 @@ type Snapshot struct {
 	// The number of nodes in the cluster.
 	NumberOfNodes *int64 `type:"integer"`
 
-	// For manual snapshots, the account used to create or copy the snapshot. For
-	// automatic snapshots, the owner of the cluster. The owner can perform all
-	// snapshot actions, such as sharing a manual snapshot.
+	// For manual snapshots, the Amazon Web Services account used to create or copy
+	// the snapshot. For automatic snapshots, the owner of the cluster. The owner
+	// can perform all snapshot actions, such as sharing a manual snapshot.
 	OwnerAccount *string `type:"string"`
 
 	// The port that the cluster is listening on.
@@ -28869,7 +30460,7 @@ func (s *TaggedResource) SetTag(v *Tag) *TaggedResource {
 type UpdatePartnerStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Region ID that owns the cluster.
+	// The Amazon Web Services account ID that owns the cluster.
 	//
 	// AccountId is a required field
 	AccountId *string `min:"12" type:"string" required:"true"`
@@ -29295,6 +30886,82 @@ func AuthorizationStatus_Values() []string {
 	return []string{
 		AuthorizationStatusAuthorized,
 		AuthorizationStatusRevoking,
+	}
+}
+
+const (
+	// DataShareStatusActive is a DataShareStatus enum value
+	DataShareStatusActive = "ACTIVE"
+
+	// DataShareStatusPendingAuthorization is a DataShareStatus enum value
+	DataShareStatusPendingAuthorization = "PENDING_AUTHORIZATION"
+
+	// DataShareStatusAuthorized is a DataShareStatus enum value
+	DataShareStatusAuthorized = "AUTHORIZED"
+
+	// DataShareStatusDeauthorized is a DataShareStatus enum value
+	DataShareStatusDeauthorized = "DEAUTHORIZED"
+
+	// DataShareStatusRejected is a DataShareStatus enum value
+	DataShareStatusRejected = "REJECTED"
+
+	// DataShareStatusAvailable is a DataShareStatus enum value
+	DataShareStatusAvailable = "AVAILABLE"
+)
+
+// DataShareStatus_Values returns all elements of the DataShareStatus enum
+func DataShareStatus_Values() []string {
+	return []string{
+		DataShareStatusActive,
+		DataShareStatusPendingAuthorization,
+		DataShareStatusAuthorized,
+		DataShareStatusDeauthorized,
+		DataShareStatusRejected,
+		DataShareStatusAvailable,
+	}
+}
+
+const (
+	// DataShareStatusForConsumerActive is a DataShareStatusForConsumer enum value
+	DataShareStatusForConsumerActive = "ACTIVE"
+
+	// DataShareStatusForConsumerAvailable is a DataShareStatusForConsumer enum value
+	DataShareStatusForConsumerAvailable = "AVAILABLE"
+)
+
+// DataShareStatusForConsumer_Values returns all elements of the DataShareStatusForConsumer enum
+func DataShareStatusForConsumer_Values() []string {
+	return []string{
+		DataShareStatusForConsumerActive,
+		DataShareStatusForConsumerAvailable,
+	}
+}
+
+const (
+	// DataShareStatusForProducerActive is a DataShareStatusForProducer enum value
+	DataShareStatusForProducerActive = "ACTIVE"
+
+	// DataShareStatusForProducerAuthorized is a DataShareStatusForProducer enum value
+	DataShareStatusForProducerAuthorized = "AUTHORIZED"
+
+	// DataShareStatusForProducerPendingAuthorization is a DataShareStatusForProducer enum value
+	DataShareStatusForProducerPendingAuthorization = "PENDING_AUTHORIZATION"
+
+	// DataShareStatusForProducerDeauthorized is a DataShareStatusForProducer enum value
+	DataShareStatusForProducerDeauthorized = "DEAUTHORIZED"
+
+	// DataShareStatusForProducerRejected is a DataShareStatusForProducer enum value
+	DataShareStatusForProducerRejected = "REJECTED"
+)
+
+// DataShareStatusForProducer_Values returns all elements of the DataShareStatusForProducer enum
+func DataShareStatusForProducer_Values() []string {
+	return []string{
+		DataShareStatusForProducerActive,
+		DataShareStatusForProducerAuthorized,
+		DataShareStatusForProducerPendingAuthorization,
+		DataShareStatusForProducerDeauthorized,
+		DataShareStatusForProducerRejected,
 	}
 }
 

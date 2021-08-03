@@ -747,6 +747,12 @@
         "ContainerSettings$Container": "Container for this output. Some containers require a container settings object. If not specified, the default object will be created."
       }
     },
+    "CopyProtectionAction": {
+      "base": "The action to take on copy and redistribution control XDS packets.  If you select PASSTHROUGH, packets will not be changed. If you select STRIP, any packets will be removed in output captions.",
+      "refs": {
+        "ExtendedDataServices$CopyProtectionAction": "The action to take on copy and redistribution control XDS packets.  If you select PASSTHROUGH, packets will not be changed. If you select STRIP, any packets will be removed in output captions."
+      }
+    },
     "CreateJobRequest": {
       "base": "Send your create job request with your job settings and IAM role. Optionally, include user metadata and the ARN for the queue.",
       "refs": {
@@ -1265,6 +1271,13 @@
     "ExceptionBody": {
       "base": null,
       "refs": {
+      }
+    },
+    "ExtendedDataServices": {
+      "base": "Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h Content Advisory.",
+      "refs": {
+        "JobSettings$ExtendedDataServices": "Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h Content Advisory.",
+        "JobTemplateSettings$ExtendedDataServices": "Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h Content Advisory."
       }
     },
     "F4vMoovPlacement": {
@@ -3175,6 +3188,12 @@
       "base": "When you do frame rate conversion from 23.976 frames per second (fps) to 29.97 fps, and your output scan type is interlaced, you can optionally enable hard telecine (HARD) to create a smoother picture. When you keep the default value, None (NONE), MediaConvert does a standard frame rate conversion to 29.97 without doing anything with the field polarity to create a smoother picture.",
       "refs": {
         "Vc3Settings$Telecine": "When you do frame rate conversion from 23.976 frames per second (fps) to 29.97 fps, and your output scan type is interlaced, you can optionally enable hard telecine (HARD) to create a smoother picture. When you keep the default value, None (NONE), MediaConvert does a standard frame rate conversion to 29.97 without doing anything with the field polarity to create a smoother picture."
+      }
+    },
+    "VchipAction": {
+      "base": "The action to take on content advisory XDS packets.  If you select PASSTHROUGH, packets will not be changed. If you select STRIP, any packets will be removed in output captions.",
+      "refs": {
+        "ExtendedDataServices$VchipAction": "The action to take on content advisory XDS packets.  If you select PASSTHROUGH, packets will not be changed. If you select STRIP, any packets will be removed in output captions."
       }
     },
     "VideoCodec": {

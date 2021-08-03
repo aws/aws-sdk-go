@@ -3039,10 +3039,6 @@ func (c *IoTSiteWise) DescribeStorageConfigurationRequest(input *DescribeStorage
 //
 // Retrieves information about the storage configuration for IoT SiteWise.
 //
-// Exporting data to Amazon S3 is currently in preview release and is subject
-// to change. We recommend that you use this feature only with test data, and
-// not in production environments.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5720,10 +5716,6 @@ func (c *IoTSiteWise) PutStorageConfigurationRequest(input *PutStorageConfigurat
 // PutStorageConfiguration API operation for AWS IoT SiteWise.
 //
 // Configures storage settings for IoT SiteWise.
-//
-// Exporting data to Amazon S3 is currently in preview release and is subject
-// to change. We recommend that you use this feature only with test data, and
-// not in production environments.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17463,16 +17455,25 @@ func (s *TransformProcessingConfig) SetForwardingConfig(v *ForwardingConfig) *Tr
 }
 
 // Contains a tumbling window, which is a repeating fixed-sized, non-overlapping,
-// and contiguous time interval. This window is used in metric and aggregation
-// computations.
+// and contiguous time window. You use this window in metrics to aggregate data
+// from properties and other assets.
+//
+// You can use m, h, d, and w when you specify an interval or offset. Note that
+// m represents minutes, and w represents weeks. You can also use s to represent
+// seconds in offset.
+//
+// The interval and offset parameters support the ISO 8601 format (https://en.wikipedia.org/wiki/ISO_8601).
+// For example, PT5S represents five seconds, PT5M represents five minutes,
+// and PT5H represents five hours.
 type TumblingWindow struct {
 	_ struct{} `type:"structure"`
 
-	// The time interval for the tumbling window. Note that w represents weeks,
-	// d represents days, h represents hours, and m represents minutes. IoT SiteWise
-	// computes the 1w interval the end of Sunday at midnight each week (UTC), the
-	// 1d interval at the end of each day at midnight (UTC), the 1h interval at
-	// the end of each hour, and so on.
+	// The time interval for the tumbling window. The interval time must be between
+	// 1 minute and 1 week.
+	//
+	// IoT SiteWise computes the 1w interval the end of Sunday at midnight each
+	// week (UTC), the 1d interval at the end of each day at midnight (UTC), the
+	// 1h interval at the end of each hour, and so on.
 	//
 	// When IoT SiteWise aggregates data points for metric computations, the start
 	// of each interval is exclusive and the end of each interval is inclusive.
@@ -17480,6 +17481,35 @@ type TumblingWindow struct {
 	//
 	// Interval is a required field
 	Interval *string `locationName:"interval" min:"2" type:"string" required:"true"`
+
+	// The offset for the tumbling window. The offset parameter accepts the following:
+	//
+	//    * The offset time. For example, if you specify 18h for offset and 1d for
+	//    interval, IoT SiteWise aggregates data in one of the following ways: If
+	//    you create the metric before or at 6:00 p.m. (UTC), you get the first
+	//    aggregation result at 6 p.m. (UTC) on the day when you create the metric.
+	//    If you create the metric after 6:00 p.m. (UTC), you get the first aggregation
+	//    result at 6 p.m. (UTC) the next day.
+	//
+	//    * The ISO 8601 format. For example, if you specify PT18H for offset and
+	//    1d for interval, IoT SiteWise aggregates data in one of the following
+	//    ways: If you create the metric before or at 6:00 p.m. (UTC), you get the
+	//    first aggregation result at 6 p.m. (UTC) on the day when you create the
+	//    metric. If you create the metric after 6:00 p.m. (UTC), you get the first
+	//    aggregation result at 6 p.m. (UTC) the next day.
+	//
+	//    * The 24-hour clock. For example, if you specify 00:03:00 for offset and
+	//    5m for interval, and you create the metric at 2 p.m. (UTC), you get the
+	//    first aggregation result at 2:03 p.m. (UTC). You get the second aggregation
+	//    result at 2:08 p.m. (UTC).
+	//
+	//    * The offset time zone. For example, if you specify 2021-07-23T18:00-08
+	//    for offset and 1d for interval, IoT SiteWise aggregates data in one of
+	//    the following ways: If you create the metric before or at 6:00 p.m. (PST),
+	//    you get the first aggregation result at 6 p.m. (PST) on the day when you
+	//    create the metric. If you create the metric after 6:00 p.m. (PST), you
+	//    get the first aggregation result at 6 p.m. (PST) the next day.
+	Offset *string `locationName:"offset" min:"2" type:"string"`
 }
 
 // String returns the string representation
@@ -17501,6 +17531,9 @@ func (s *TumblingWindow) Validate() error {
 	if s.Interval != nil && len(*s.Interval) < 2 {
 		invalidParams.Add(request.NewErrParamMinLen("Interval", 2))
 	}
+	if s.Offset != nil && len(*s.Offset) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("Offset", 2))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -17511,6 +17544,12 @@ func (s *TumblingWindow) Validate() error {
 // SetInterval sets the Interval field's value.
 func (s *TumblingWindow) SetInterval(v string) *TumblingWindow {
 	s.Interval = &v
+	return s
+}
+
+// SetOffset sets the Offset field's value.
+func (s *TumblingWindow) SetOffset(v string) *TumblingWindow {
+	s.Offset = &v
 	return s
 }
 

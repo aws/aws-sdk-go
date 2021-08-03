@@ -1694,6 +1694,9 @@ func (c *Glue) CreateDatabaseRequest(input *CreateDatabaseInput) (req *request.R
 //   * EncryptionException
 //   An encryption operation failed.
 //
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateDatabase
 func (c *Glue) CreateDatabase(input *CreateDatabaseInput) (*CreateDatabaseOutput, error) {
 	req, out := c.CreateDatabaseRequest(input)
@@ -2670,6 +2673,9 @@ func (c *Glue) CreateTableRequest(input *CreateTableInput) (req *request.Request
 //   * EncryptionException
 //   An encryption operation failed.
 //
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateTable
 func (c *Glue) CreateTable(input *CreateTableInput) (*CreateTableOutput, error) {
 	req, out := c.CreateTableRequest(input)
@@ -3506,6 +3512,9 @@ func (c *Glue) DeleteDatabaseRequest(input *DeleteDatabaseInput) (req *request.R
 //
 //   * OperationTimeoutException
 //   The operation timed out.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteDatabase
 func (c *Glue) DeleteDatabase(input *DeleteDatabaseInput) (*DeleteDatabaseOutput, error) {
@@ -4524,6 +4533,9 @@ func (c *Glue) DeleteTableRequest(input *DeleteTableInput) (req *request.Request
 //
 //   * OperationTimeoutException
 //   The operation timed out.
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteTable
 func (c *Glue) DeleteTable(input *DeleteTableInput) (*DeleteTableOutput, error) {
@@ -15068,6 +15080,9 @@ func (c *Glue) UpdateDatabaseRequest(input *UpdateDatabaseInput) (req *request.R
 //   * EncryptionException
 //   An encryption operation failed.
 //
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateDatabase
 func (c *Glue) UpdateDatabase(input *UpdateDatabaseInput) (*UpdateDatabaseOutput, error) {
 	req, out := c.UpdateDatabaseRequest(input)
@@ -19477,8 +19492,8 @@ type ConnectionInput struct {
 	//    Amazon Virtual Private Cloud environment (Amazon VPC).
 	//
 	//    * MARKETPLACE - Uses configuration settings contained in a connector purchased
-	//    from Marketplace to read from and write to data stores that are not natively
-	//    supported by Glue.
+	//    from Amazon Web Services Marketplace to read from and write to data stores
+	//    that are not natively supported by Glue.
 	//
 	//    * CUSTOM - Uses configuration settings contained in a custom connector
 	//    to read from and write to data stores that are not natively supported
@@ -36435,7 +36450,8 @@ type PutResourcePolicyInput struct {
 	//
 	//    * By directly updating the resource policy with PutResourePolicy
 	//
-	//    * By using the Grant permissions command on the Management Console.
+	//    * By using the Grant permissions command on the Amazon Web Services Management
+	//    Console.
 	//
 	// Must be set to 'TRUE' if you have already used the Management Console to
 	// grant cross-account access, otherwise the call fails. Default is 'FALSE'.

@@ -344,7 +344,7 @@ const (
 	//
 	// The authentication profile request is not valid. The profile name can't be
 	// null or empty. The authentication profile API operation must be available
-	// in the Region.
+	// in the Amazon Web Services Region.
 	ErrCodeInvalidAuthenticationProfileRequestFault = "InvalidAuthenticationProfileRequestFault"
 
 	// ErrCodeInvalidAuthorizationStateFault for service response error code
@@ -404,6 +404,12 @@ const (
 	// The provided cluster track name is not valid.
 	ErrCodeInvalidClusterTrackFault = "InvalidClusterTrack"
 
+	// ErrCodeInvalidDataShareFault for service response error code
+	// "InvalidDataShareFault".
+	//
+	// There is an error with the datashare.
+	ErrCodeInvalidDataShareFault = "InvalidDataShareFault"
+
 	// ErrCodeInvalidElasticIpFault for service response error code
 	// "InvalidElasticIpFault".
 	//
@@ -429,6 +435,13 @@ const (
 	// The specified HSM configuration is not in the available state, or it is still
 	// in use by one or more Amazon Redshift clusters.
 	ErrCodeInvalidHsmConfigurationStateFault = "InvalidHsmConfigurationStateFault"
+
+	// ErrCodeInvalidNamespaceFault for service response error code
+	// "InvalidNamespaceFault".
+	//
+	// The namespace isn't valid because the namespace doesn't exist. Provide a
+	// valid namespace.
+	ErrCodeInvalidNamespaceFault = "InvalidNamespaceFault"
 
 	// ErrCodeInvalidReservedNodeStateFault for service response error code
 	// "InvalidReservedNodeState".
@@ -679,8 +692,8 @@ const (
 	// ErrCodeSnapshotCopyGrantQuotaExceededFault for service response error code
 	// "SnapshotCopyGrantQuotaExceededFault".
 	//
-	// The account has exceeded the maximum number of snapshot copy grants in this
-	// region.
+	// The Amazon Web Services account has exceeded the maximum number of snapshot
+	// copy grants in this region.
 	ErrCodeSnapshotCopyGrantQuotaExceededFault = "SnapshotCopyGrantQuotaExceededFault"
 
 	// ErrCodeSnapshotScheduleAlreadyExistsFault for service response error code

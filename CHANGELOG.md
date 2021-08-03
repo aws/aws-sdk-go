@@ -1,3 +1,16 @@
+Release v1.40.14 (2021-08-03)
+===
+
+### Service Client Updates
+* `service/glue`: Updates service API and documentation
+  * Add ConcurrentModificationException to create-table, delete-table, create-database, update-database, delete-database
+* `service/iotsitewise`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added control over the passthrough of XDS captions metadata to outputs.
+* `service/proton`: Updates service documentation
+* `service/redshift`: Updates service API and documentation
+  * API support for Redshift Data Sharing feature.
+
 Release v1.40.13 (2021-08-02)
 ===
 

@@ -68,9 +68,17 @@ type RedshiftAPI interface {
 	AddPartnerWithContext(aws.Context, *redshift.AddPartnerInput, ...request.Option) (*redshift.AddPartnerOutput, error)
 	AddPartnerRequest(*redshift.AddPartnerInput) (*request.Request, *redshift.AddPartnerOutput)
 
+	AssociateDataShareConsumer(*redshift.AssociateDataShareConsumerInput) (*redshift.AssociateDataShareConsumerOutput, error)
+	AssociateDataShareConsumerWithContext(aws.Context, *redshift.AssociateDataShareConsumerInput, ...request.Option) (*redshift.AssociateDataShareConsumerOutput, error)
+	AssociateDataShareConsumerRequest(*redshift.AssociateDataShareConsumerInput) (*request.Request, *redshift.AssociateDataShareConsumerOutput)
+
 	AuthorizeClusterSecurityGroupIngress(*redshift.AuthorizeClusterSecurityGroupIngressInput) (*redshift.AuthorizeClusterSecurityGroupIngressOutput, error)
 	AuthorizeClusterSecurityGroupIngressWithContext(aws.Context, *redshift.AuthorizeClusterSecurityGroupIngressInput, ...request.Option) (*redshift.AuthorizeClusterSecurityGroupIngressOutput, error)
 	AuthorizeClusterSecurityGroupIngressRequest(*redshift.AuthorizeClusterSecurityGroupIngressInput) (*request.Request, *redshift.AuthorizeClusterSecurityGroupIngressOutput)
+
+	AuthorizeDataShare(*redshift.AuthorizeDataShareInput) (*redshift.AuthorizeDataShareOutput, error)
+	AuthorizeDataShareWithContext(aws.Context, *redshift.AuthorizeDataShareInput, ...request.Option) (*redshift.AuthorizeDataShareOutput, error)
+	AuthorizeDataShareRequest(*redshift.AuthorizeDataShareInput) (*request.Request, *redshift.AuthorizeDataShareOutput)
 
 	AuthorizeEndpointAccess(*redshift.AuthorizeEndpointAccessInput) (*redshift.AuthorizeEndpointAccessOutput, error)
 	AuthorizeEndpointAccessWithContext(aws.Context, *redshift.AuthorizeEndpointAccessInput, ...request.Option) (*redshift.AuthorizeEndpointAccessOutput, error)
@@ -155,6 +163,10 @@ type RedshiftAPI interface {
 	CreateUsageLimit(*redshift.CreateUsageLimitInput) (*redshift.CreateUsageLimitOutput, error)
 	CreateUsageLimitWithContext(aws.Context, *redshift.CreateUsageLimitInput, ...request.Option) (*redshift.CreateUsageLimitOutput, error)
 	CreateUsageLimitRequest(*redshift.CreateUsageLimitInput) (*request.Request, *redshift.CreateUsageLimitOutput)
+
+	DeauthorizeDataShare(*redshift.DeauthorizeDataShareInput) (*redshift.DeauthorizeDataShareOutput, error)
+	DeauthorizeDataShareWithContext(aws.Context, *redshift.DeauthorizeDataShareInput, ...request.Option) (*redshift.DeauthorizeDataShareOutput, error)
+	DeauthorizeDataShareRequest(*redshift.DeauthorizeDataShareInput) (*request.Request, *redshift.DeauthorizeDataShareOutput)
 
 	DeleteAuthenticationProfile(*redshift.DeleteAuthenticationProfileInput) (*redshift.DeleteAuthenticationProfileOutput, error)
 	DeleteAuthenticationProfileWithContext(aws.Context, *redshift.DeleteAuthenticationProfileInput, ...request.Option) (*redshift.DeleteAuthenticationProfileOutput, error)
@@ -290,6 +302,18 @@ type RedshiftAPI interface {
 
 	DescribeClustersPages(*redshift.DescribeClustersInput, func(*redshift.DescribeClustersOutput, bool) bool) error
 	DescribeClustersPagesWithContext(aws.Context, *redshift.DescribeClustersInput, func(*redshift.DescribeClustersOutput, bool) bool, ...request.Option) error
+
+	DescribeDataShares(*redshift.DescribeDataSharesInput) (*redshift.DescribeDataSharesOutput, error)
+	DescribeDataSharesWithContext(aws.Context, *redshift.DescribeDataSharesInput, ...request.Option) (*redshift.DescribeDataSharesOutput, error)
+	DescribeDataSharesRequest(*redshift.DescribeDataSharesInput) (*request.Request, *redshift.DescribeDataSharesOutput)
+
+	DescribeDataSharesForConsumer(*redshift.DescribeDataSharesForConsumerInput) (*redshift.DescribeDataSharesForConsumerOutput, error)
+	DescribeDataSharesForConsumerWithContext(aws.Context, *redshift.DescribeDataSharesForConsumerInput, ...request.Option) (*redshift.DescribeDataSharesForConsumerOutput, error)
+	DescribeDataSharesForConsumerRequest(*redshift.DescribeDataSharesForConsumerInput) (*request.Request, *redshift.DescribeDataSharesForConsumerOutput)
+
+	DescribeDataSharesForProducer(*redshift.DescribeDataSharesForProducerInput) (*redshift.DescribeDataSharesForProducerOutput, error)
+	DescribeDataSharesForProducerWithContext(aws.Context, *redshift.DescribeDataSharesForProducerInput, ...request.Option) (*redshift.DescribeDataSharesForProducerOutput, error)
+	DescribeDataSharesForProducerRequest(*redshift.DescribeDataSharesForProducerInput) (*request.Request, *redshift.DescribeDataSharesForProducerOutput)
 
 	DescribeDefaultClusterParameters(*redshift.DescribeDefaultClusterParametersInput) (*redshift.DescribeDefaultClusterParametersOutput, error)
 	DescribeDefaultClusterParametersWithContext(aws.Context, *redshift.DescribeDefaultClusterParametersInput, ...request.Option) (*redshift.DescribeDefaultClusterParametersOutput, error)
@@ -438,6 +462,10 @@ type RedshiftAPI interface {
 	DisableSnapshotCopyWithContext(aws.Context, *redshift.DisableSnapshotCopyInput, ...request.Option) (*redshift.DisableSnapshotCopyOutput, error)
 	DisableSnapshotCopyRequest(*redshift.DisableSnapshotCopyInput) (*request.Request, *redshift.DisableSnapshotCopyOutput)
 
+	DisassociateDataShareConsumer(*redshift.DisassociateDataShareConsumerInput) (*redshift.DisassociateDataShareConsumerOutput, error)
+	DisassociateDataShareConsumerWithContext(aws.Context, *redshift.DisassociateDataShareConsumerInput, ...request.Option) (*redshift.DisassociateDataShareConsumerOutput, error)
+	DisassociateDataShareConsumerRequest(*redshift.DisassociateDataShareConsumerInput) (*request.Request, *redshift.DisassociateDataShareConsumerOutput)
+
 	EnableLogging(*redshift.EnableLoggingInput) (*redshift.LoggingStatus, error)
 	EnableLoggingWithContext(aws.Context, *redshift.EnableLoggingInput, ...request.Option) (*redshift.LoggingStatus, error)
 	EnableLoggingRequest(*redshift.EnableLoggingInput) (*request.Request, *redshift.LoggingStatus)
@@ -532,6 +560,10 @@ type RedshiftAPI interface {
 	RebootCluster(*redshift.RebootClusterInput) (*redshift.RebootClusterOutput, error)
 	RebootClusterWithContext(aws.Context, *redshift.RebootClusterInput, ...request.Option) (*redshift.RebootClusterOutput, error)
 	RebootClusterRequest(*redshift.RebootClusterInput) (*request.Request, *redshift.RebootClusterOutput)
+
+	RejectDataShare(*redshift.RejectDataShareInput) (*redshift.RejectDataShareOutput, error)
+	RejectDataShareWithContext(aws.Context, *redshift.RejectDataShareInput, ...request.Option) (*redshift.RejectDataShareOutput, error)
+	RejectDataShareRequest(*redshift.RejectDataShareInput) (*request.Request, *redshift.RejectDataShareOutput)
 
 	ResetClusterParameterGroup(*redshift.ResetClusterParameterGroupInput) (*redshift.ClusterParameterGroupNameMessage, error)
 	ResetClusterParameterGroupWithContext(aws.Context, *redshift.ResetClusterParameterGroupInput, ...request.Option) (*redshift.ClusterParameterGroupNameMessage, error)

@@ -90,6 +90,29 @@
 //
 //    * CreateEnvironmentAccountConnection
 //
+// Idempotent create APIs
+//
+// Given a request action that has succeeded:
+//
+// If you retry the request with an API from this group, and the original resource
+// hasn't been modified, the retry succeeds without performing any further actions
+// other than returning the original resource detail data in the response.
+//
+// If the original resource has been modified, the retry throws a ConflictException.
+//
+// If you retry with different input parameters, the retry throws a ValidationException
+// with an IdempotentParameterMismatch error.
+//
+// Idempotent create APIs:
+//
+//    * CreateEnvironmentTemplate
+//
+//    * CreateServiceTemplate
+//
+//    * CreateEnvironment
+//
+//    * CreateService
+//
 // Idempotent delete APIs
 //
 // Given a request action that has succeeded:
