@@ -285,9 +285,11 @@ import (
 	description2 "github.com/blinkops/blink-sdk/plugin/description"
 	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
+	"net/http"
 	"path"
 	"strings"
 	"sync"
+	"time"
 )
 
 const (
@@ -1700,8 +1702,8 @@ func resolvePackage(parameters *PackageParameters) (interface{}, error) {
 	return nil, errors.New("provided package name is not supported: " + parameters.packageName)
 }
 
-func resolvePackageServiceByContext(packageName string, region string, ctx *plugin.ActionContext) (interface{}, error) {
-	awsSession, err := createAWSSessionByContext(region, ctx)
+func resolvePackageServiceByContext(packageName string, region string, ctx *plugin.ActionContext, timeout int32) (interface{}, error) {
+	awsSession, err := createAWSSessionByContext(region, ctx, timeout)
 	if err != nil {
 		return nil, err
 	}
@@ -1712,7 +1714,7 @@ func resolvePackageServiceByContext(packageName string, region string, ctx *plug
 }
 
 func resolvePackageServiceByCredentials(packageName string, region string, awsCredentials map[string]interface{}) (interface{}, error) {
-	awsSession, err := createAWSSessionByCredentials(region, awsCredentials)
+	awsSession, err := createAWSSessionByCredentials(region, awsCredentials, 0)
 	if err != nil {
 		return nil, err
 	}
@@ -1786,7 +1788,7 @@ func executeActionOnRegions(packageName string, ctx *plugin.ActionContext, actio
 		go func(region string, results *sync.Map, group *sync.WaitGroup, parameters ActionParameters) {
 			copiedParameters := NewActionParametersDeepCopy(parameters.Parameters)
 			copiedParameters.Set(awsRegionKey, strings.TrimSpace(region))
-			regionResult, err := executeAction(packageName, ctx, actionExecutor, *copiedParameters)
+			regionResult, err := executeAction(packageName, ctx, actionExecutor, *copiedParameters, 0)
 
 			if err != nil {
 				results.Store(region, map[string]interface{}{
@@ -1818,7 +1820,7 @@ func executeActionOnRegions(packageName string, ctx *plugin.ActionContext, actio
 	return result
 }
 
-func executeAction(packageName string, ctx *plugin.ActionContext, actionExecutor ActionExecutor, actionParameters ActionParameters) (map[string]interface{}, error) {
+func executeAction(packageName string, ctx *plugin.ActionContext, actionExecutor ActionExecutor, actionParameters ActionParameters, timeout int32) (map[string]interface{}, error) {
 	actionRegion := actionParameters.Get(awsRegionKey).(string)
 	if actionRegion == runOnAllRegions {
 		availableRegions := awsutil.GetServiceRegions(packageName)
@@ -1830,7 +1832,7 @@ func executeAction(packageName string, ctx *plugin.ActionContext, actionExecutor
 		return executeActionOnRegions(packageName, ctx, actionExecutor, actionParameters, availableRegions), nil
 	}
 
-	if err := appendServiceToParametersByContext(packageName, ctx, actionParameters.Parameters); err != nil {
+	if err := appendServiceToParametersByContext(packageName, ctx, actionParameters.Parameters, timeout); err != nil {
 		return nil, fmt.Errorf("failed to append service to parameters, error: %v", err)
 	}
 
@@ -1861,7 +1863,7 @@ func (p *AWSPlugin) ExecuteAction(ctx *plugin.ActionContext, request *plugin.Exe
 		return nil, fmt.Errorf("failed to get action executor, error: %v", err)
 	}
 
-	output, err := executeAction(packageName, ctx, actionExecutor, *awsActionParameters)
+	output, err := executeAction(packageName, ctx, actionExecutor, *awsActionParameters, request.Timeout)
 	if err != nil {
 		return nil, err
 	}
@@ -1985,16 +1987,16 @@ func getActionParameters(request *plugin.ExecuteActionRequest) (*ActionParameter
 	return awsActionParameters, nil
 }
 
-func createAWSSessionByContext(region string, context *plugin.ActionContext) (*session.Session, error) {
+func createAWSSessionByContext(region string, context *plugin.ActionContext, timeout int32) (*session.Session, error) {
 	awsCredentials, err := context.GetCredentials("aws")
 	if err != nil {
 		log.Errorf("Failed to get AWS awsCredentials: %v", err)
 		return nil, err
 	}
-	return createAWSSessionByCredentials(region, awsCredentials)
+	return createAWSSessionByCredentials(region, awsCredentials, timeout)
 }
 
-func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}) (*session.Session, error) {
+func createAWSSessionByCredentials(region string, awsCredentials map[string]interface{}, timeout int32) (*session.Session, error) {
 	accessKeyId := awsCredentials[awsAccessKeyId]
 	if accessKeyId == "" {
 		return nil, errors.New("aws access key ID is missing")
@@ -2018,6 +2020,7 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	sess, err := session.NewSession(&aws.Config{
 		Region:      aws.String(region),
 		Credentials: credentials.NewStaticCredentials(accessKeyIdAsString, secretAccessKeyAsString, ""),
+		HTTPClient:  &http.Client{Timeout: time.Duration(timeout) * time.Second},
 	})
 
 	if err != nil {
@@ -2027,13 +2030,13 @@ func createAWSSessionByCredentials(region string, awsCredentials map[string]inte
 	return sess, nil
 }
 
-func appendServiceToParametersByContext(packageName string, context *plugin.ActionContext, awsActionParameters map[string]interface{}) error {
+func appendServiceToParametersByContext(packageName string, context *plugin.ActionContext, awsActionParameters map[string]interface{}, timeout int32) error {
 	region, ok := awsActionParameters[awsRegionKey].(string)
 	if !ok {
 		return fmt.Errorf("failed to get region from action parameters")
 	}
 
-	service, err := resolvePackageServiceByContext(packageName, region, context)
+	service, err := resolvePackageServiceByContext(packageName, region, context, timeout)
 	if err != nil {
 		return err
 	}
