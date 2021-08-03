@@ -43403,7 +43403,7 @@ type Patch struct {
 
 	// The epoch of the patch. For example in pkg-example-EE-20180914-2.2.amzn1.noarch,
 	// the epoch value is 20180914-2. Applies to Linux-based instances only.
-	Epoch *int64 `type:"integer"`
+	Epoch *string `type:"string"`
 
 	// The ID of the patch. Applies to Windows patches only.
 	//
@@ -43515,7 +43515,7 @@ func (s *Patch) SetDescription(v string) *Patch {
 }
 
 // SetEpoch sets the Epoch field's value.
-func (s *Patch) SetEpoch(v int64) *Patch {
+func (s *Patch) SetEpoch(v string) *Patch {
 	s.Epoch = &v
 	return s
 }

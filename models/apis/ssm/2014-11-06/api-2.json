@@ -8328,7 +8328,7 @@
       ]
     },
     "PatchDescription":{"type":"string"},
-    "PatchEpoch":{"type":"integer"},
+    "PatchEpoch":{"type":"string"},
     "PatchFailedCount":{"type":"integer"},
     "PatchFilter":{
       "type":"structure",
