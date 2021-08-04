@@ -5718,7 +5718,7 @@ type Ami struct {
 	// The name of the Amazon EC2 AMI.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
-	// The Region of the Amazon EC2 AMI.
+	// The Amazon Web Services Region of the Amazon EC2 AMI.
 	Region *string `locationName:"region" min:"1" type:"string"`
 
 	// Image state shows the image status and the reason for that status.
@@ -5785,8 +5785,8 @@ type AmiDistributionConfiguration struct {
 	// The KMS key identifier used to encrypt the distributed image.
 	KmsKeyId *string `locationName:"kmsKeyId" min:"1" type:"string"`
 
-	// Launch permissions can be used to configure which accounts can use the AMI
-	// to launch instances.
+	// Launch permissions can be used to configure which Amazon Web Services accounts
+	// can use the AMI to launch instances.
 	LaunchPermission *LaunchPermissionConfiguration `locationName:"launchPermission" type:"structure"`
 
 	// The name of the distribution configuration.
@@ -6523,7 +6523,8 @@ func (s *ComponentSummary) SetVersion(v string) *ComponentSummary {
 	return s
 }
 
-// The defining characteristics of a specific version of an TOE component.
+// The defining characteristics of a specific version of an Amazon Web Services
+// TOE component.
 type ComponentVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -12272,7 +12273,7 @@ type LaunchPermissionConfiguration struct {
 	// The name of the group.
 	UserGroups []*string `locationName:"userGroups" type:"list"`
 
-	// The account ID.
+	// The Amazon Web Services account ID.
 	UserIds []*string `locationName:"userIds" min:"1" type:"list"`
 }
 
@@ -12482,7 +12483,19 @@ type ListComponentsInput struct {
 	// Returns the list of component build versions for the specified name.
 	ByName *bool `locationName:"byName" type:"boolean"`
 
-	// The filters.
+	// Use the following filters to streamline results:
+	//
+	//    * description
+	//
+	//    * name
+	//
+	//    * platform
+	//
+	//    * supportedOsVersion
+	//
+	//    * type
+	//
+	//    * version
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum items to return in a request.
@@ -12617,8 +12630,15 @@ func (s *ListComponentsOutput) SetRequestId(v string) *ListComponentsOutput {
 type ListContainerRecipesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Request filters that are used to narrow the list of container images that
-	// are returned.
+	// Use the following filters to streamline results:
+	//
+	//    * containerType
+	//
+	//    * name
+	//
+	//    * parentImage
+	//
+	//    * platform
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum number of results to return in the list.
@@ -12744,9 +12764,7 @@ func (s *ListContainerRecipesOutput) SetRequestId(v string) *ListContainerRecipe
 type ListDistributionConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filters.
-	//
-	//    * name - The name of this distribution configuration.
+	// You can filter on name to streamline results.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum items to return in a request.
@@ -12860,7 +12878,17 @@ func (s *ListDistributionConfigurationsOutput) SetRequestId(v string) *ListDistr
 type ListImageBuildVersionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filters.
+	// Use the following filters to streamline results:
+	//
+	//    * name
+	//
+	//    * osVersion
+	//
+	//    * platform
+	//
+	//    * type
+	//
+	//    * version
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the image whose build versions you want
@@ -13095,7 +13123,11 @@ func (s *ListImagePackagesOutput) SetRequestId(v string) *ListImagePackagesOutpu
 type ListImagePipelineImagesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filters.
+	// Use the following filters to streamline results:
+	//
+	//    * name
+	//
+	//    * version
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the image pipeline whose images you want
@@ -13224,7 +13256,19 @@ func (s *ListImagePipelineImagesOutput) SetRequestId(v string) *ListImagePipelin
 type ListImagePipelinesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filters.
+	// Use the following filters to streamline results:
+	//
+	//    * description
+	//
+	//    * distributionConfigurationArn
+	//
+	//    * imageRecipeArn
+	//
+	//    * infrastructureConfigurationArn
+	//
+	//    * name
+	//
+	//    * status
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum items to return in a request.
@@ -13338,7 +13382,13 @@ func (s *ListImagePipelinesOutput) SetRequestId(v string) *ListImagePipelinesOut
 type ListImageRecipesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filters.
+	// Use the following filters to streamline results:
+	//
+	//    * name
+	//
+	//    * parentImage
+	//
+	//    * platform
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum items to return in a request.
@@ -13467,7 +13517,17 @@ type ListImagesInput struct {
 	// Requests a list of images with a specific recipe name.
 	ByName *bool `locationName:"byName" type:"boolean"`
 
-	// The filters.
+	// Use the following filters to streamline results:
+	//
+	//    * name
+	//
+	//    * osVersion
+	//
+	//    * platform
+	//
+	//    * type
+	//
+	//    * version
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// Includes deprecated images in the response list.
@@ -13618,7 +13678,7 @@ func (s *ListImagesOutput) SetRequestId(v string) *ListImagesOutput {
 type ListInfrastructureConfigurationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The filters.
+	// You can filter on name to streamline results.
 	Filters []*Filter `locationName:"filters" min:"1" type:"list"`
 
 	// The maximum items to return in a request.

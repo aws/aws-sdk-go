@@ -676,7 +676,6 @@
     "CreateTimelineEventInput":{
       "type":"structure",
       "required":[
-        "clientToken",
         "eventData",
         "eventTime",
         "eventType",
@@ -1370,6 +1369,7 @@
         "status"
       ],
       "members":{
+        "arn":{"shape":"Arn"},
         "createdBy":{"shape":"Arn"},
         "createdTime":{"shape":"Timestamp"},
         "deletionProtected":{"shape":"Boolean"},
@@ -1863,7 +1863,6 @@
     "UpdateTimelineEventInput":{
       "type":"structure",
       "required":[
-        "clientToken",
         "eventId",
         "incidentRecordArn"
       ],

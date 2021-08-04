@@ -1,5 +1,15 @@
 {
   "pagination": {
+    "ListCallAnalyticsCategories": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListCallAnalyticsJobs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListLanguageModels": {
       "input_token": "NextToken",
       "output_token": "NextToken",
