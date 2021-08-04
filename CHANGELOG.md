@@ -1,3 +1,14 @@
+Release v1.40.15 (2021-08-04)
+===
+
+### Service Client Updates
+* `service/eventbridge`: Updates service documentation
+* `service/imagebuilder`: Updates service documentation
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds AutomaticRestartTime to the DescribeDBInstances and DescribeDBClusters operations. AutomaticRestartTime indicates the time when a stopped DB instance or DB cluster is restarted automatically.
+* `service/ssm-incidents`: Updates service API and documentation
+* `service/transcribe`: Updates service API, documentation, and paginators
+
 Release v1.40.14 (2021-08-03)
 ===
 

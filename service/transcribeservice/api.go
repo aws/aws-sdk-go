@@ -13,6 +13,104 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/jsonrpc"
 )
 
+const opCreateCallAnalyticsCategory = "CreateCallAnalyticsCategory"
+
+// CreateCallAnalyticsCategoryRequest generates a "aws/request.Request" representing the
+// client's request for the CreateCallAnalyticsCategory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateCallAnalyticsCategory for more information on using the CreateCallAnalyticsCategory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateCallAnalyticsCategoryRequest method.
+//    req, resp := client.CreateCallAnalyticsCategoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateCallAnalyticsCategory
+func (c *TranscribeService) CreateCallAnalyticsCategoryRequest(input *CreateCallAnalyticsCategoryInput) (req *request.Request, output *CreateCallAnalyticsCategoryOutput) {
+	op := &request.Operation{
+		Name:       opCreateCallAnalyticsCategory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateCallAnalyticsCategoryInput{}
+	}
+
+	output = &CreateCallAnalyticsCategoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateCallAnalyticsCategory API operation for Amazon Transcribe Service.
+//
+// Creates an analytics category. Amazon Transcribe applies the conditions specified
+// by your analytics categories to your call analytics jobs. For each analytics
+// category, you specify one or more rules. For example, you can specify a rule
+// that the customer sentiment was neutral or negative within that category.
+// If you start a call analytics job, Amazon Transcribe applies the category
+// to the analytics job that you've specified.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation CreateCallAnalyticsCategory for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * ConflictException
+//   There is already a resource with that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/CreateCallAnalyticsCategory
+func (c *TranscribeService) CreateCallAnalyticsCategory(input *CreateCallAnalyticsCategoryInput) (*CreateCallAnalyticsCategoryOutput, error) {
+	req, out := c.CreateCallAnalyticsCategoryRequest(input)
+	return out, req.Send()
+}
+
+// CreateCallAnalyticsCategoryWithContext is the same as CreateCallAnalyticsCategory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateCallAnalyticsCategory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) CreateCallAnalyticsCategoryWithContext(ctx aws.Context, input *CreateCallAnalyticsCategoryInput, opts ...request.Option) (*CreateCallAnalyticsCategoryOutput, error) {
+	req, out := c.CreateCallAnalyticsCategoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateLanguageModel = "CreateLanguageModel"
 
 // CreateLanguageModelRequest generates a "aws/request.Request" representing the
@@ -385,6 +483,192 @@ func (c *TranscribeService) CreateVocabularyFilter(input *CreateVocabularyFilter
 // for more information on using Contexts.
 func (c *TranscribeService) CreateVocabularyFilterWithContext(ctx aws.Context, input *CreateVocabularyFilterInput, opts ...request.Option) (*CreateVocabularyFilterOutput, error) {
 	req, out := c.CreateVocabularyFilterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCallAnalyticsCategory = "DeleteCallAnalyticsCategory"
+
+// DeleteCallAnalyticsCategoryRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCallAnalyticsCategory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCallAnalyticsCategory for more information on using the DeleteCallAnalyticsCategory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCallAnalyticsCategoryRequest method.
+//    req, resp := client.DeleteCallAnalyticsCategoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteCallAnalyticsCategory
+func (c *TranscribeService) DeleteCallAnalyticsCategoryRequest(input *DeleteCallAnalyticsCategoryInput) (req *request.Request, output *DeleteCallAnalyticsCategoryOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCallAnalyticsCategory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCallAnalyticsCategoryInput{}
+	}
+
+	output = &DeleteCallAnalyticsCategoryOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCallAnalyticsCategory API operation for Amazon Transcribe Service.
+//
+// Deletes a call analytics category using its name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation DeleteCallAnalyticsCategory for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteCallAnalyticsCategory
+func (c *TranscribeService) DeleteCallAnalyticsCategory(input *DeleteCallAnalyticsCategoryInput) (*DeleteCallAnalyticsCategoryOutput, error) {
+	req, out := c.DeleteCallAnalyticsCategoryRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCallAnalyticsCategoryWithContext is the same as DeleteCallAnalyticsCategory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCallAnalyticsCategory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) DeleteCallAnalyticsCategoryWithContext(ctx aws.Context, input *DeleteCallAnalyticsCategoryInput, opts ...request.Option) (*DeleteCallAnalyticsCategoryOutput, error) {
+	req, out := c.DeleteCallAnalyticsCategoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteCallAnalyticsJob = "DeleteCallAnalyticsJob"
+
+// DeleteCallAnalyticsJobRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteCallAnalyticsJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteCallAnalyticsJob for more information on using the DeleteCallAnalyticsJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteCallAnalyticsJobRequest method.
+//    req, resp := client.DeleteCallAnalyticsJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteCallAnalyticsJob
+func (c *TranscribeService) DeleteCallAnalyticsJobRequest(input *DeleteCallAnalyticsJobInput) (req *request.Request, output *DeleteCallAnalyticsJobOutput) {
+	op := &request.Operation{
+		Name:       opDeleteCallAnalyticsJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteCallAnalyticsJobInput{}
+	}
+
+	output = &DeleteCallAnalyticsJobOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteCallAnalyticsJob API operation for Amazon Transcribe Service.
+//
+// Deletes a call analytics job using its name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation DeleteCallAnalyticsJob for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/DeleteCallAnalyticsJob
+func (c *TranscribeService) DeleteCallAnalyticsJob(input *DeleteCallAnalyticsJobInput) (*DeleteCallAnalyticsJobOutput, error) {
+	req, out := c.DeleteCallAnalyticsJobRequest(input)
+	return out, req.Send()
+}
+
+// DeleteCallAnalyticsJobWithContext is the same as DeleteCallAnalyticsJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteCallAnalyticsJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) DeleteCallAnalyticsJobWithContext(ctx aws.Context, input *DeleteCallAnalyticsJobInput, opts ...request.Option) (*DeleteCallAnalyticsJobOutput, error) {
+	req, out := c.DeleteCallAnalyticsJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -995,12 +1279,12 @@ func (c *TranscribeService) DescribeLanguageModelRequest(input *DescribeLanguage
 // DescribeLanguageModel API operation for Amazon Transcribe Service.
 //
 // Gets information about a single custom language model. Use this information
-// to see details about the language model in your AWS account. You can also
-// see whether the base language model used to create your custom language model
-// has been updated. If Amazon Transcribe has updated the base model, you can
-// create a new custom language model using the updated base model. If the language
-// model wasn't created, you can use this operation to understand why Amazon
-// Transcribe couldn't create it.
+// to see details about the language model in your Amazon Web Services account.
+// You can also see whether the base language model used to create your custom
+// language model has been updated. If Amazon Transcribe has updated the base
+// model, you can create a new custom language model using the updated base
+// model. If the language model wasn't created, you can use this operation to
+// understand why Amazon Transcribe couldn't create it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1045,6 +1329,199 @@ func (c *TranscribeService) DescribeLanguageModel(input *DescribeLanguageModelIn
 // for more information on using Contexts.
 func (c *TranscribeService) DescribeLanguageModelWithContext(ctx aws.Context, input *DescribeLanguageModelInput, opts ...request.Option) (*DescribeLanguageModelOutput, error) {
 	req, out := c.DescribeLanguageModelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCallAnalyticsCategory = "GetCallAnalyticsCategory"
+
+// GetCallAnalyticsCategoryRequest generates a "aws/request.Request" representing the
+// client's request for the GetCallAnalyticsCategory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCallAnalyticsCategory for more information on using the GetCallAnalyticsCategory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCallAnalyticsCategoryRequest method.
+//    req, resp := client.GetCallAnalyticsCategoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetCallAnalyticsCategory
+func (c *TranscribeService) GetCallAnalyticsCategoryRequest(input *GetCallAnalyticsCategoryInput) (req *request.Request, output *GetCallAnalyticsCategoryOutput) {
+	op := &request.Operation{
+		Name:       opGetCallAnalyticsCategory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCallAnalyticsCategoryInput{}
+	}
+
+	output = &GetCallAnalyticsCategoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCallAnalyticsCategory API operation for Amazon Transcribe Service.
+//
+// Retrieves information about a call analytics category.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation GetCallAnalyticsCategory for usage and error information.
+//
+// Returned Error Types:
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetCallAnalyticsCategory
+func (c *TranscribeService) GetCallAnalyticsCategory(input *GetCallAnalyticsCategoryInput) (*GetCallAnalyticsCategoryOutput, error) {
+	req, out := c.GetCallAnalyticsCategoryRequest(input)
+	return out, req.Send()
+}
+
+// GetCallAnalyticsCategoryWithContext is the same as GetCallAnalyticsCategory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCallAnalyticsCategory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) GetCallAnalyticsCategoryWithContext(ctx aws.Context, input *GetCallAnalyticsCategoryInput, opts ...request.Option) (*GetCallAnalyticsCategoryOutput, error) {
+	req, out := c.GetCallAnalyticsCategoryRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetCallAnalyticsJob = "GetCallAnalyticsJob"
+
+// GetCallAnalyticsJobRequest generates a "aws/request.Request" representing the
+// client's request for the GetCallAnalyticsJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetCallAnalyticsJob for more information on using the GetCallAnalyticsJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetCallAnalyticsJobRequest method.
+//    req, resp := client.GetCallAnalyticsJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetCallAnalyticsJob
+func (c *TranscribeService) GetCallAnalyticsJobRequest(input *GetCallAnalyticsJobInput) (req *request.Request, output *GetCallAnalyticsJobOutput) {
+	op := &request.Operation{
+		Name:       opGetCallAnalyticsJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetCallAnalyticsJobInput{}
+	}
+
+	output = &GetCallAnalyticsJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetCallAnalyticsJob API operation for Amazon Transcribe Service.
+//
+// Returns information about a call analytics job. To see the status of the
+// job, check the CallAnalyticsJobStatus field. If the status is COMPLETED,
+// the job is finished and you can find the results at the location specified
+// in the TranscriptFileUri field. If you enable personally identifiable information
+// (PII) redaction, the redacted transcript appears in the RedactedTranscriptFileUri
+// field.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation GetCallAnalyticsJob for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/GetCallAnalyticsJob
+func (c *TranscribeService) GetCallAnalyticsJob(input *GetCallAnalyticsJobInput) (*GetCallAnalyticsJobOutput, error) {
+	req, out := c.GetCallAnalyticsJobRequest(input)
+	return out, req.Send()
+}
+
+// GetCallAnalyticsJobWithContext is the same as GetCallAnalyticsJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetCallAnalyticsJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) GetCallAnalyticsJobWithContext(ctx aws.Context, input *GetCallAnalyticsJobInput, opts ...request.Option) (*GetCallAnalyticsJobOutput, error) {
+	req, out := c.GetCallAnalyticsJobRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1525,6 +2002,305 @@ func (c *TranscribeService) GetVocabularyFilterWithContext(ctx aws.Context, inpu
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListCallAnalyticsCategories = "ListCallAnalyticsCategories"
+
+// ListCallAnalyticsCategoriesRequest generates a "aws/request.Request" representing the
+// client's request for the ListCallAnalyticsCategories operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCallAnalyticsCategories for more information on using the ListCallAnalyticsCategories
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCallAnalyticsCategoriesRequest method.
+//    req, resp := client.ListCallAnalyticsCategoriesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListCallAnalyticsCategories
+func (c *TranscribeService) ListCallAnalyticsCategoriesRequest(input *ListCallAnalyticsCategoriesInput) (req *request.Request, output *ListCallAnalyticsCategoriesOutput) {
+	op := &request.Operation{
+		Name:       opListCallAnalyticsCategories,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCallAnalyticsCategoriesInput{}
+	}
+
+	output = &ListCallAnalyticsCategoriesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCallAnalyticsCategories API operation for Amazon Transcribe Service.
+//
+// Provides more information about the call analytics categories that you've
+// created. You can use the information in this list to find a specific category.
+// You can then use the operation to get more information about it.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation ListCallAnalyticsCategories for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListCallAnalyticsCategories
+func (c *TranscribeService) ListCallAnalyticsCategories(input *ListCallAnalyticsCategoriesInput) (*ListCallAnalyticsCategoriesOutput, error) {
+	req, out := c.ListCallAnalyticsCategoriesRequest(input)
+	return out, req.Send()
+}
+
+// ListCallAnalyticsCategoriesWithContext is the same as ListCallAnalyticsCategories with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCallAnalyticsCategories for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListCallAnalyticsCategoriesWithContext(ctx aws.Context, input *ListCallAnalyticsCategoriesInput, opts ...request.Option) (*ListCallAnalyticsCategoriesOutput, error) {
+	req, out := c.ListCallAnalyticsCategoriesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCallAnalyticsCategoriesPages iterates over the pages of a ListCallAnalyticsCategories operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCallAnalyticsCategories method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCallAnalyticsCategories operation.
+//    pageNum := 0
+//    err := client.ListCallAnalyticsCategoriesPages(params,
+//        func(page *transcribeservice.ListCallAnalyticsCategoriesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *TranscribeService) ListCallAnalyticsCategoriesPages(input *ListCallAnalyticsCategoriesInput, fn func(*ListCallAnalyticsCategoriesOutput, bool) bool) error {
+	return c.ListCallAnalyticsCategoriesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCallAnalyticsCategoriesPagesWithContext same as ListCallAnalyticsCategoriesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListCallAnalyticsCategoriesPagesWithContext(ctx aws.Context, input *ListCallAnalyticsCategoriesInput, fn func(*ListCallAnalyticsCategoriesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCallAnalyticsCategoriesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCallAnalyticsCategoriesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCallAnalyticsCategoriesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListCallAnalyticsJobs = "ListCallAnalyticsJobs"
+
+// ListCallAnalyticsJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListCallAnalyticsJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListCallAnalyticsJobs for more information on using the ListCallAnalyticsJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListCallAnalyticsJobsRequest method.
+//    req, resp := client.ListCallAnalyticsJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListCallAnalyticsJobs
+func (c *TranscribeService) ListCallAnalyticsJobsRequest(input *ListCallAnalyticsJobsInput) (req *request.Request, output *ListCallAnalyticsJobsOutput) {
+	op := &request.Operation{
+		Name:       opListCallAnalyticsJobs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListCallAnalyticsJobsInput{}
+	}
+
+	output = &ListCallAnalyticsJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListCallAnalyticsJobs API operation for Amazon Transcribe Service.
+//
+// List call analytics jobs with a specified status or substring that matches
+// their names.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation ListCallAnalyticsJobs for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListCallAnalyticsJobs
+func (c *TranscribeService) ListCallAnalyticsJobs(input *ListCallAnalyticsJobsInput) (*ListCallAnalyticsJobsOutput, error) {
+	req, out := c.ListCallAnalyticsJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListCallAnalyticsJobsWithContext is the same as ListCallAnalyticsJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListCallAnalyticsJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListCallAnalyticsJobsWithContext(ctx aws.Context, input *ListCallAnalyticsJobsInput, opts ...request.Option) (*ListCallAnalyticsJobsOutput, error) {
+	req, out := c.ListCallAnalyticsJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListCallAnalyticsJobsPages iterates over the pages of a ListCallAnalyticsJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListCallAnalyticsJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListCallAnalyticsJobs operation.
+//    pageNum := 0
+//    err := client.ListCallAnalyticsJobsPages(params,
+//        func(page *transcribeservice.ListCallAnalyticsJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *TranscribeService) ListCallAnalyticsJobsPages(input *ListCallAnalyticsJobsInput, fn func(*ListCallAnalyticsJobsOutput, bool) bool) error {
+	return c.ListCallAnalyticsJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListCallAnalyticsJobsPagesWithContext same as ListCallAnalyticsJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListCallAnalyticsJobsPagesWithContext(ctx aws.Context, input *ListCallAnalyticsJobsInput, fn func(*ListCallAnalyticsJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListCallAnalyticsJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListCallAnalyticsJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListCallAnalyticsJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListLanguageModels = "ListLanguageModels"
@@ -2421,6 +3197,105 @@ func (c *TranscribeService) ListVocabularyFiltersPagesWithContext(ctx aws.Contex
 	return p.Err()
 }
 
+const opStartCallAnalyticsJob = "StartCallAnalyticsJob"
+
+// StartCallAnalyticsJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartCallAnalyticsJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartCallAnalyticsJob for more information on using the StartCallAnalyticsJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartCallAnalyticsJobRequest method.
+//    req, resp := client.StartCallAnalyticsJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartCallAnalyticsJob
+func (c *TranscribeService) StartCallAnalyticsJobRequest(input *StartCallAnalyticsJobInput) (req *request.Request, output *StartCallAnalyticsJobOutput) {
+	op := &request.Operation{
+		Name:       opStartCallAnalyticsJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartCallAnalyticsJobInput{}
+	}
+
+	output = &StartCallAnalyticsJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartCallAnalyticsJob API operation for Amazon Transcribe Service.
+//
+// Starts an asynchronous analytics job that not only transcribes the audio
+// recording of a caller and agent, but also returns additional insights. These
+// insights include how quickly or loudly the caller or agent was speaking.
+// To retrieve additional insights with your analytics jobs, create categories.
+// A category is a way to classify analytics jobs based on attributes, such
+// as a customer's sentiment or a particular phrase being used during the call.
+// For more information, see the operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation StartCallAnalyticsJob for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * ConflictException
+//   There is already a resource with that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/StartCallAnalyticsJob
+func (c *TranscribeService) StartCallAnalyticsJob(input *StartCallAnalyticsJobInput) (*StartCallAnalyticsJobOutput, error) {
+	req, out := c.StartCallAnalyticsJobRequest(input)
+	return out, req.Send()
+}
+
+// StartCallAnalyticsJobWithContext is the same as StartCallAnalyticsJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartCallAnalyticsJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) StartCallAnalyticsJobWithContext(ctx aws.Context, input *StartCallAnalyticsJobInput, opts ...request.Option) (*StartCallAnalyticsJobOutput, error) {
+	req, out := c.StartCallAnalyticsJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartMedicalTranscriptionJob = "StartMedicalTranscriptionJob"
 
 // StartMedicalTranscriptionJobRequest generates a "aws/request.Request" representing the
@@ -2602,6 +3477,105 @@ func (c *TranscribeService) StartTranscriptionJob(input *StartTranscriptionJobIn
 // for more information on using Contexts.
 func (c *TranscribeService) StartTranscriptionJobWithContext(ctx aws.Context, input *StartTranscriptionJobInput, opts ...request.Option) (*StartTranscriptionJobOutput, error) {
 	req, out := c.StartTranscriptionJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateCallAnalyticsCategory = "UpdateCallAnalyticsCategory"
+
+// UpdateCallAnalyticsCategoryRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateCallAnalyticsCategory operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateCallAnalyticsCategory for more information on using the UpdateCallAnalyticsCategory
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateCallAnalyticsCategoryRequest method.
+//    req, resp := client.UpdateCallAnalyticsCategoryRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UpdateCallAnalyticsCategory
+func (c *TranscribeService) UpdateCallAnalyticsCategoryRequest(input *UpdateCallAnalyticsCategoryInput) (req *request.Request, output *UpdateCallAnalyticsCategoryOutput) {
+	op := &request.Operation{
+		Name:       opUpdateCallAnalyticsCategory,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateCallAnalyticsCategoryInput{}
+	}
+
+	output = &UpdateCallAnalyticsCategoryOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateCallAnalyticsCategory API operation for Amazon Transcribe Service.
+//
+// Updates the call analytics category with new values. The UpdateCallAnalyticsCategory
+// operation overwrites all of the existing information with the values that
+// you provide in the request.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation UpdateCallAnalyticsCategory for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * ConflictException
+//   There is already a resource with that name.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UpdateCallAnalyticsCategory
+func (c *TranscribeService) UpdateCallAnalyticsCategory(input *UpdateCallAnalyticsCategoryInput) (*UpdateCallAnalyticsCategoryOutput, error) {
+	req, out := c.UpdateCallAnalyticsCategoryRequest(input)
+	return out, req.Send()
+}
+
+// UpdateCallAnalyticsCategoryWithContext is the same as UpdateCallAnalyticsCategory with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateCallAnalyticsCategory for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) UpdateCallAnalyticsCategoryWithContext(ctx aws.Context, input *UpdateCallAnalyticsCategoryInput, opts ...request.Option) (*UpdateCallAnalyticsCategoryOutput, error) {
+	req, out := c.UpdateCallAnalyticsCategoryRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2900,6 +3874,79 @@ func (c *TranscribeService) UpdateVocabularyFilterWithContext(ctx aws.Context, i
 	return out, req.Send()
 }
 
+// A time range, set in seconds, between two points in the call.
+type AbsoluteTimeRange struct {
+	_ struct{} `type:"structure"`
+
+	// A value that indicates the end of the time range in milliseconds. To set
+	// absolute time range, you must specify a start time and an end time. For example,
+	// if you specify the following values:
+	//
+	//    * StartTime - 10000
+	//
+	//    * Endtime - 50000
+	//
+	// The time range is set between 10,000 milliseconds and 50,000 milliseconds
+	// into the call.
+	EndTime *int64 `type:"long"`
+
+	// A time range from the beginning of the call to the value that you've specified.
+	// For example, if you specify 100000, the time range is set to the first 100,000
+	// milliseconds of the call.
+	First *int64 `type:"long"`
+
+	// A time range from the value that you've specified to the end of the call.
+	// For example, if you specify 100000, the time range is set to the last 100,000
+	// milliseconds of the call.
+	Last *int64 `type:"long"`
+
+	// A value that indicates the beginning of the time range in seconds. To set
+	// absolute time range, you must specify a start time and an end time. For example,
+	// if you specify the following values:
+	//
+	//    * StartTime - 10000
+	//
+	//    * Endtime - 50000
+	//
+	// The time range is set between 10,000 milliseconds and 50,000 milliseconds
+	// into the call.
+	StartTime *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s AbsoluteTimeRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AbsoluteTimeRange) GoString() string {
+	return s.String()
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *AbsoluteTimeRange) SetEndTime(v int64) *AbsoluteTimeRange {
+	s.EndTime = &v
+	return s
+}
+
+// SetFirst sets the First field's value.
+func (s *AbsoluteTimeRange) SetFirst(v int64) *AbsoluteTimeRange {
+	s.First = &v
+	return s
+}
+
+// SetLast sets the Last field's value.
+func (s *AbsoluteTimeRange) SetLast(v int64) *AbsoluteTimeRange {
+	s.Last = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *AbsoluteTimeRange) SetStartTime(v int64) *AbsoluteTimeRange {
+	s.StartTime = &v
+	return s
+}
+
 // Your request didn't pass one or more validation tests. For example, if the
 // entity that you're trying to delete doesn't exist or if it is in a non-terminal
 // state (for example, it's "in progress"). See the exception Message field
@@ -2957,6 +4004,565 @@ func (s *BadRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *BadRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes an asynchronous analytics job that was created with the StartAnalyticsJob
+// operation.
+type CallAnalyticsJob struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the call analytics job.
+	CallAnalyticsJobName *string `min:"1" type:"string"`
+
+	// The status of the analytics job.
+	CallAnalyticsJobStatus *string `type:"string" enum:"CallAnalyticsJobStatus"`
+
+	// Shows numeric values to indicate the channel assigned to the agent's audio
+	// and the channel assigned to the customer's audio.
+	ChannelDefinitions []*ChannelDefinition `min:"2" type:"list"`
+
+	// A timestamp that shows when the analytics job was completed.
+	CompletionTime *time.Time `type:"timestamp"`
+
+	// A timestamp that shows when the analytics job was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Number (ARN) that you use to get access to the analytics
+	// job.
+	DataAccessRoleArn *string `min:"20" type:"string"`
+
+	// If the AnalyticsJobStatus is FAILED, this field contains information about
+	// why the job failed.
+	//
+	// The FailureReason field can contain one of the following values:
+	//
+	//    * Unsupported media format: The media format specified in the MediaFormat
+	//    field of the request isn't valid. See the description of the MediaFormat
+	//    field for a list of valid values.
+	//
+	//    * The media format provided does not match the detected media format:
+	//    The media format of the audio file doesn't match the format specified
+	//    in the MediaFormat field in the request. Check the media format of your
+	//    media file and make sure the two values match.
+	//
+	//    * Invalid sample rate for audio file: The sample rate specified in the
+	//    MediaSampleRateHertz of the request isn't valid. The sample rate must
+	//    be between 8000 and 48000 Hertz.
+	//
+	//    * The sample rate provided does not match the detected sample rate: The
+	//    sample rate in the audio file doesn't match the sample rate specified
+	//    in the MediaSampleRateHertz field in the request. Check the sample rate
+	//    of your media file and make sure that the two values match.
+	//
+	//    * Invalid file size: file size too large: The size of your audio file
+	//    is larger than what Amazon Transcribe Medical can process. For more information,
+	//    see Guidelines and Quotas in the Amazon Transcribe Medical Guide
+	//
+	//    * Invalid number of channels: number of channels too large: Your audio
+	//    contains more channels than Amazon Transcribe Medical is configured to
+	//    process. To request additional channels, see Amazon Transcribe Medical
+	//    Endpoints and Quotas in the Amazon Web Services General Reference (https://docs.aws.amazon.com/general/latest/gr/Welcome.html).
+	FailureReason *string `type:"string"`
+
+	// A value between zero and one that Amazon Transcribe assigned to the language
+	// that it identified in the source audio. This value appears only when you
+	// don't provide a single language code. Larger values indicate that Amazon
+	// Transcribe has higher confidence in the language that it identified
+	IdentifiedLanguageScore *float64 `type:"float"`
+
+	// If you know the language spoken between the customer and the agent, specify
+	// a language code for this field.
+	//
+	// If you don't know the language, you can leave this field blank, and Amazon
+	// Transcribe will use machine learning to automatically identify the language.
+	// To improve the accuracy of language identification, you can provide an array
+	// containing the possible language codes for the language spoken in your audio.
+	//
+	// The following list shows the supported languages and corresponding language
+	// codes for call analytics jobs:
+	//
+	//    * Gulf Arabic (ar-AE)
+	//
+	//    * Mandarin Chinese, Mainland (zh-CN)
+	//
+	//    * Australian English (en-AU)
+	//
+	//    * British English (en-GB)
+	//
+	//    * Indian English (en-IN)
+	//
+	//    * Irish English (en-IE)
+	//
+	//    * Scottish English (en-AB)
+	//
+	//    * US English (en-US)
+	//
+	//    * Welsh English (en-WL)
+	//
+	//    * Spanish (es-ES)
+	//
+	//    * US Spanish (es-US)
+	//
+	//    * French (fr-FR)
+	//
+	//    * Canadian French (fr-CA)
+	//
+	//    * German (de-DE)
+	//
+	//    * Swiss German (de-CH)
+	//
+	//    * Indian Hindi (hi-IN)
+	//
+	//    * Italian (it-IT)
+	//
+	//    * Japanese (ja-JP)
+	//
+	//    * Korean (ko-KR)
+	//
+	//    * Portuguese (pt-PT)
+	//
+	//    * Brazilian Portuguese (pt-BR)
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// Describes the input media file in a transcription request.
+	Media *Media `type:"structure"`
+
+	// The format of the input audio file. Note: for call analytics jobs, only the
+	// following media formats are supported: MP3, MP4, WAV, FLAC, OGG, and WebM.
+	MediaFormat *string `type:"string" enum:"MediaFormat"`
+
+	// The sample rate, in Hertz, of the audio.
+	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
+
+	// Provides information about the settings used to run a transcription job.
+	Settings *CallAnalyticsJobSettings `type:"structure"`
+
+	// A timestamp that shows when the analytics job started processing.
+	StartTime *time.Time `type:"timestamp"`
+
+	// Identifies the location of a transcription.
+	Transcript *Transcript `type:"structure"`
+}
+
+// String returns the string representation
+func (s CallAnalyticsJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CallAnalyticsJob) GoString() string {
+	return s.String()
+}
+
+// SetCallAnalyticsJobName sets the CallAnalyticsJobName field's value.
+func (s *CallAnalyticsJob) SetCallAnalyticsJobName(v string) *CallAnalyticsJob {
+	s.CallAnalyticsJobName = &v
+	return s
+}
+
+// SetCallAnalyticsJobStatus sets the CallAnalyticsJobStatus field's value.
+func (s *CallAnalyticsJob) SetCallAnalyticsJobStatus(v string) *CallAnalyticsJob {
+	s.CallAnalyticsJobStatus = &v
+	return s
+}
+
+// SetChannelDefinitions sets the ChannelDefinitions field's value.
+func (s *CallAnalyticsJob) SetChannelDefinitions(v []*ChannelDefinition) *CallAnalyticsJob {
+	s.ChannelDefinitions = v
+	return s
+}
+
+// SetCompletionTime sets the CompletionTime field's value.
+func (s *CallAnalyticsJob) SetCompletionTime(v time.Time) *CallAnalyticsJob {
+	s.CompletionTime = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CallAnalyticsJob) SetCreationTime(v time.Time) *CallAnalyticsJob {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *CallAnalyticsJob) SetDataAccessRoleArn(v string) *CallAnalyticsJob {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *CallAnalyticsJob) SetFailureReason(v string) *CallAnalyticsJob {
+	s.FailureReason = &v
+	return s
+}
+
+// SetIdentifiedLanguageScore sets the IdentifiedLanguageScore field's value.
+func (s *CallAnalyticsJob) SetIdentifiedLanguageScore(v float64) *CallAnalyticsJob {
+	s.IdentifiedLanguageScore = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CallAnalyticsJob) SetLanguageCode(v string) *CallAnalyticsJob {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetMedia sets the Media field's value.
+func (s *CallAnalyticsJob) SetMedia(v *Media) *CallAnalyticsJob {
+	s.Media = v
+	return s
+}
+
+// SetMediaFormat sets the MediaFormat field's value.
+func (s *CallAnalyticsJob) SetMediaFormat(v string) *CallAnalyticsJob {
+	s.MediaFormat = &v
+	return s
+}
+
+// SetMediaSampleRateHertz sets the MediaSampleRateHertz field's value.
+func (s *CallAnalyticsJob) SetMediaSampleRateHertz(v int64) *CallAnalyticsJob {
+	s.MediaSampleRateHertz = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *CallAnalyticsJob) SetSettings(v *CallAnalyticsJobSettings) *CallAnalyticsJob {
+	s.Settings = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CallAnalyticsJob) SetStartTime(v time.Time) *CallAnalyticsJob {
+	s.StartTime = &v
+	return s
+}
+
+// SetTranscript sets the Transcript field's value.
+func (s *CallAnalyticsJob) SetTranscript(v *Transcript) *CallAnalyticsJob {
+	s.Transcript = v
+	return s
+}
+
+// Provides optional settings for the CallAnalyticsJob operation.
+type CallAnalyticsJobSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Settings for content redaction within a transcription job.
+	ContentRedaction *ContentRedaction `type:"structure"`
+
+	// The structure used to describe a custom language model.
+	LanguageModelName *string `min:"1" type:"string"`
+
+	// When you run a call analytics job, you can specify the language spoken in
+	// the audio, or you can have Amazon Transcribe identify the language for you.
+	//
+	// To specify a language, specify an array with one language code. If you don't
+	// know the language, you can leave this field blank and Amazon Transcribe will
+	// use machine learning to identify the language for you. To improve the ability
+	// of Amazon Transcribe to correctly identify the language, you can provide
+	// an array of the languages that can be present in the audio.
+	//
+	// The following list shows the supported languages and corresponding language
+	// codes for call analytics jobs:
+	//
+	//    * Gulf Arabic (ar-AE)
+	//
+	//    * Mandarin Chinese, Mainland (zh-CN)
+	//
+	//    * Australian English (en-AU)
+	//
+	//    * British English (en-GB)
+	//
+	//    * Indian English (en-IN)
+	//
+	//    * Irish English (en-IE)
+	//
+	//    * Scottish English (en-AB)
+	//
+	//    * US English (en-US)
+	//
+	//    * Welsh English (en-WL)
+	//
+	//    * Spanish (es-ES)
+	//
+	//    * US Spanish (es-US)
+	//
+	//    * French (fr-FR)
+	//
+	//    * Canadian French (fr-CA)
+	//
+	//    * German (de-DE)
+	//
+	//    * Swiss German (de-CH)
+	//
+	//    * Indian Hindi (hi-IN)
+	//
+	//    * Italian (it-IT)
+	//
+	//    * Japanese (ja-JP)
+	//
+	//    * Korean (ko-KR)
+	//
+	//    * Portuguese (pt-PT)
+	//
+	//    * Brazilian Portuguese (pt-BR)
+	LanguageOptions []*string `min:"1" type:"list"`
+
+	// Set to mask to remove filtered text from the transcript and replace it with
+	// three asterisks ("***") as placeholder text. Set to remove to remove filtered
+	// text from the transcript without using placeholder text. Set to tag to mark
+	// the word in the transcription output that matches the vocabulary filter.
+	// When you set the filter method to tag, the words matching your vocabulary
+	// filter are not masked or removed.
+	VocabularyFilterMethod *string `type:"string" enum:"VocabularyFilterMethod"`
+
+	// The name of the vocabulary filter to use when running a call analytics job.
+	// The filter that you specify must have the same language code as the analytics
+	// job.
+	VocabularyFilterName *string `min:"1" type:"string"`
+
+	// The name of a vocabulary to use when processing the call analytics job.
+	VocabularyName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CallAnalyticsJobSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CallAnalyticsJobSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CallAnalyticsJobSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CallAnalyticsJobSettings"}
+	if s.LanguageModelName != nil && len(*s.LanguageModelName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageModelName", 1))
+	}
+	if s.LanguageOptions != nil && len(s.LanguageOptions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageOptions", 1))
+	}
+	if s.VocabularyFilterName != nil && len(*s.VocabularyFilterName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyFilterName", 1))
+	}
+	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+	if s.ContentRedaction != nil {
+		if err := s.ContentRedaction.Validate(); err != nil {
+			invalidParams.AddNested("ContentRedaction", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContentRedaction sets the ContentRedaction field's value.
+func (s *CallAnalyticsJobSettings) SetContentRedaction(v *ContentRedaction) *CallAnalyticsJobSettings {
+	s.ContentRedaction = v
+	return s
+}
+
+// SetLanguageModelName sets the LanguageModelName field's value.
+func (s *CallAnalyticsJobSettings) SetLanguageModelName(v string) *CallAnalyticsJobSettings {
+	s.LanguageModelName = &v
+	return s
+}
+
+// SetLanguageOptions sets the LanguageOptions field's value.
+func (s *CallAnalyticsJobSettings) SetLanguageOptions(v []*string) *CallAnalyticsJobSettings {
+	s.LanguageOptions = v
+	return s
+}
+
+// SetVocabularyFilterMethod sets the VocabularyFilterMethod field's value.
+func (s *CallAnalyticsJobSettings) SetVocabularyFilterMethod(v string) *CallAnalyticsJobSettings {
+	s.VocabularyFilterMethod = &v
+	return s
+}
+
+// SetVocabularyFilterName sets the VocabularyFilterName field's value.
+func (s *CallAnalyticsJobSettings) SetVocabularyFilterName(v string) *CallAnalyticsJobSettings {
+	s.VocabularyFilterName = &v
+	return s
+}
+
+// SetVocabularyName sets the VocabularyName field's value.
+func (s *CallAnalyticsJobSettings) SetVocabularyName(v string) *CallAnalyticsJobSettings {
+	s.VocabularyName = &v
+	return s
+}
+
+// Provides summary information about a call analytics job.
+type CallAnalyticsJobSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the call analytics job.
+	CallAnalyticsJobName *string `min:"1" type:"string"`
+
+	// The status of the call analytics job.
+	CallAnalyticsJobStatus *string `type:"string" enum:"CallAnalyticsJobStatus"`
+
+	// A timestamp that shows when the job was completed.
+	CompletionTime *time.Time `type:"timestamp"`
+
+	// A timestamp that shows when the call analytics job was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// If the CallAnalyticsJobStatus is FAILED, a description of the error.
+	FailureReason *string `type:"string"`
+
+	// The language of the transcript in the source audio file.
+	LanguageCode *string `type:"string" enum:"LanguageCode"`
+
+	// A timestamp that shows when the job began processing.
+	StartTime *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s CallAnalyticsJobSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CallAnalyticsJobSummary) GoString() string {
+	return s.String()
+}
+
+// SetCallAnalyticsJobName sets the CallAnalyticsJobName field's value.
+func (s *CallAnalyticsJobSummary) SetCallAnalyticsJobName(v string) *CallAnalyticsJobSummary {
+	s.CallAnalyticsJobName = &v
+	return s
+}
+
+// SetCallAnalyticsJobStatus sets the CallAnalyticsJobStatus field's value.
+func (s *CallAnalyticsJobSummary) SetCallAnalyticsJobStatus(v string) *CallAnalyticsJobSummary {
+	s.CallAnalyticsJobStatus = &v
+	return s
+}
+
+// SetCompletionTime sets the CompletionTime field's value.
+func (s *CallAnalyticsJobSummary) SetCompletionTime(v time.Time) *CallAnalyticsJobSummary {
+	s.CompletionTime = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CallAnalyticsJobSummary) SetCreationTime(v time.Time) *CallAnalyticsJobSummary {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFailureReason sets the FailureReason field's value.
+func (s *CallAnalyticsJobSummary) SetFailureReason(v string) *CallAnalyticsJobSummary {
+	s.FailureReason = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CallAnalyticsJobSummary) SetLanguageCode(v string) *CallAnalyticsJobSummary {
+	s.LanguageCode = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *CallAnalyticsJobSummary) SetStartTime(v time.Time) *CallAnalyticsJobSummary {
+	s.StartTime = &v
+	return s
+}
+
+// An object that contains the rules and additional information about a call
+// analytics category.
+type CategoryProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the call analytics category.
+	CategoryName *string `min:"1" type:"string"`
+
+	// A timestamp that shows when the call analytics category was created.
+	CreateTime *time.Time `type:"timestamp"`
+
+	// A timestamp that shows when the call analytics category was most recently
+	// updated.
+	LastUpdateTime *time.Time `type:"timestamp"`
+
+	// The rules used to create a call analytics category.
+	Rules []*Rule `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CategoryProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CategoryProperties) GoString() string {
+	return s.String()
+}
+
+// SetCategoryName sets the CategoryName field's value.
+func (s *CategoryProperties) SetCategoryName(v string) *CategoryProperties {
+	s.CategoryName = &v
+	return s
+}
+
+// SetCreateTime sets the CreateTime field's value.
+func (s *CategoryProperties) SetCreateTime(v time.Time) *CategoryProperties {
+	s.CreateTime = &v
+	return s
+}
+
+// SetLastUpdateTime sets the LastUpdateTime field's value.
+func (s *CategoryProperties) SetLastUpdateTime(v time.Time) *CategoryProperties {
+	s.LastUpdateTime = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *CategoryProperties) SetRules(v []*Rule) *CategoryProperties {
+	s.Rules = v
+	return s
+}
+
+// For a call analytics job, an object that indicates the audio channel that
+// belongs to the agent and the audio channel that belongs to the customer.
+type ChannelDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// A value that indicates the audio channel.
+	ChannelId *int64 `type:"integer"`
+
+	// Indicates whether the person speaking on the audio channel is the agent or
+	// customer.
+	ParticipantRole *string `type:"string" enum:"ParticipantRole"`
+}
+
+// String returns the string representation
+func (s ChannelDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ChannelDefinition) GoString() string {
+	return s.String()
+}
+
+// SetChannelId sets the ChannelId field's value.
+func (s *ChannelDefinition) SetChannelId(v int64) *ChannelDefinition {
+	s.ChannelId = &v
+	return s
+}
+
+// SetParticipantRole sets the ParticipantRole field's value.
+func (s *ChannelDefinition) SetParticipantRole(v string) *ChannelDefinition {
+	s.ParticipantRole = &v
+	return s
 }
 
 // There is already a resource with that name.
@@ -3072,6 +4678,100 @@ func (s *ContentRedaction) SetRedactionOutput(v string) *ContentRedaction {
 // SetRedactionType sets the RedactionType field's value.
 func (s *ContentRedaction) SetRedactionType(v string) *ContentRedaction {
 	s.RedactionType = &v
+	return s
+}
+
+type CreateCallAnalyticsCategoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name that you choose for your category when you create it.
+	//
+	// CategoryName is a required field
+	CategoryName *string `min:"1" type:"string" required:"true"`
+
+	// To create a category, you must specify between 1 and 20 rules. For each rule,
+	// you specify a filter to be applied to the attributes of the call. For example,
+	// you can specify a sentiment filter to detect if the customer's sentiment
+	// was negative or neutral.
+	//
+	// Rules is a required field
+	Rules []*Rule `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateCallAnalyticsCategoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCallAnalyticsCategoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateCallAnalyticsCategoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateCallAnalyticsCategoryInput"}
+	if s.CategoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CategoryName"))
+	}
+	if s.CategoryName != nil && len(*s.CategoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CategoryName", 1))
+	}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategoryName sets the CategoryName field's value.
+func (s *CreateCallAnalyticsCategoryInput) SetCategoryName(v string) *CreateCallAnalyticsCategoryInput {
+	s.CategoryName = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *CreateCallAnalyticsCategoryInput) SetRules(v []*Rule) *CreateCallAnalyticsCategoryInput {
+	s.Rules = v
+	return s
+}
+
+type CreateCallAnalyticsCategoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The rules and associated metadata used to create a category.
+	CategoryProperties *CategoryProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateCallAnalyticsCategoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateCallAnalyticsCategoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetCategoryProperties sets the CategoryProperties field's value.
+func (s *CreateCallAnalyticsCategoryOutput) SetCategoryProperties(v *CategoryProperties) *CreateCallAnalyticsCategoryOutput {
+	s.CategoryProperties = v
 	return s
 }
 
@@ -3246,9 +4946,9 @@ type CreateMedicalVocabularyInput struct {
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
 	// The location in Amazon S3 of the text file you use to define your custom
-	// vocabulary. The URI must be in the same AWS Region as the resource that you're
-	// calling. Enter information about your VocabularyFileUri in the following
-	// format:
+	// vocabulary. The URI must be in the same Amazon Web Services Region as the
+	// resource that you're calling. Enter information about your VocabularyFileUri
+	// in the following format:
 	//
 	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
 	//
@@ -3257,18 +4957,19 @@ type CreateMedicalVocabularyInput struct {
 	//
 	// https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt
 	//
-	// For more information about Amazon S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// For more information about Amazon S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
 	// For more information about custom vocabularies, see Medical Custom Vocabularies
-	// (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med).
+	// (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary-med).
 	//
 	// VocabularyFileUri is a required field
 	VocabularyFileUri *string `min:"1" type:"string" required:"true"`
 
 	// The name of the custom vocabulary. This case-sensitive name must be unique
-	// within an AWS account. If you try to create a vocabulary with the same name
-	// as a previous vocabulary, you get a ConflictException error.
+	// within an Amazon Web Services account. If you try to create a vocabulary
+	// with the same name as a previous vocabulary, you get a ConflictException
+	// error.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`
@@ -3341,8 +5042,8 @@ type CreateMedicalVocabularyOutput struct {
 	// The date and time that you created the vocabulary.
 	LastModifiedTime *time.Time `type:"timestamp"`
 
-	// The name of the vocabulary. The name must be unique within an AWS account
-	// and is case sensitive.
+	// The name of the vocabulary. The name must be unique within an Amazon Web
+	// Services account and is case sensitive.
 	VocabularyName *string `min:"1" type:"string"`
 
 	// The processing state of your custom vocabulary in Amazon Transcribe Medical.
@@ -3544,15 +5245,16 @@ type CreateVocabularyInput struct {
 	// vocabulary. The URI must be in the same region as the API endpoint that you
 	// are calling. The general form is
 	//
-	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// For more information about S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
-	// For more information about custom vocabularies, see Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary).
+	// For more information about custom vocabularies, see Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
-	// The name of the vocabulary. The name must be unique within an AWS account.
-	// The name is case sensitive. If you try to create a vocabulary with the same
-	// name as a previous vocabulary you will receive a ConflictException error.
+	// The name of the vocabulary. The name must be unique within an Amazon Web
+	// Services account. The name is case sensitive. If you try to create a vocabulary
+	// with the same name as a previous vocabulary you will receive a ConflictException
+	// error.
 	//
 	// VocabularyName is a required field
 	VocabularyName *string `min:"1" type:"string" required:"true"`
@@ -3673,6 +5375,117 @@ func (s *CreateVocabularyOutput) SetVocabularyName(v string) *CreateVocabularyOu
 func (s *CreateVocabularyOutput) SetVocabularyState(v string) *CreateVocabularyOutput {
 	s.VocabularyState = &v
 	return s
+}
+
+type DeleteCallAnalyticsCategoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the call analytics category that you're choosing to delete. The
+	// value is case sensitive.
+	//
+	// CategoryName is a required field
+	CategoryName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCallAnalyticsCategoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCallAnalyticsCategoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCallAnalyticsCategoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCallAnalyticsCategoryInput"}
+	if s.CategoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CategoryName"))
+	}
+	if s.CategoryName != nil && len(*s.CategoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CategoryName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategoryName sets the CategoryName field's value.
+func (s *DeleteCallAnalyticsCategoryInput) SetCategoryName(v string) *DeleteCallAnalyticsCategoryInput {
+	s.CategoryName = &v
+	return s
+}
+
+type DeleteCallAnalyticsCategoryOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCallAnalyticsCategoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCallAnalyticsCategoryOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteCallAnalyticsJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the call analytics job you want to delete.
+	//
+	// CallAnalyticsJobName is a required field
+	CallAnalyticsJobName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteCallAnalyticsJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCallAnalyticsJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteCallAnalyticsJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteCallAnalyticsJobInput"}
+	if s.CallAnalyticsJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CallAnalyticsJobName"))
+	}
+	if s.CallAnalyticsJobName != nil && len(*s.CallAnalyticsJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CallAnalyticsJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCallAnalyticsJobName sets the CallAnalyticsJobName field's value.
+func (s *DeleteCallAnalyticsJobInput) SetCallAnalyticsJobName(v string) *DeleteCallAnalyticsJobInput {
+	s.CallAnalyticsJobName = &v
+	return s
+}
+
+type DeleteCallAnalyticsJobOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteCallAnalyticsJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteCallAnalyticsJobOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteLanguageModelInput struct {
@@ -4067,6 +5880,135 @@ func (s DescribeLanguageModelOutput) GoString() string {
 // SetLanguageModel sets the LanguageModel field's value.
 func (s *DescribeLanguageModelOutput) SetLanguageModel(v *LanguageModel) *DescribeLanguageModelOutput {
 	s.LanguageModel = v
+	return s
+}
+
+type GetCallAnalyticsCategoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the category you want information about. This value is case sensitive.
+	//
+	// CategoryName is a required field
+	CategoryName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCallAnalyticsCategoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCallAnalyticsCategoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCallAnalyticsCategoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCallAnalyticsCategoryInput"}
+	if s.CategoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CategoryName"))
+	}
+	if s.CategoryName != nil && len(*s.CategoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CategoryName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategoryName sets the CategoryName field's value.
+func (s *GetCallAnalyticsCategoryInput) SetCategoryName(v string) *GetCallAnalyticsCategoryInput {
+	s.CategoryName = &v
+	return s
+}
+
+type GetCallAnalyticsCategoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The rules you've defined for a category.
+	CategoryProperties *CategoryProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCallAnalyticsCategoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCallAnalyticsCategoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetCategoryProperties sets the CategoryProperties field's value.
+func (s *GetCallAnalyticsCategoryOutput) SetCategoryProperties(v *CategoryProperties) *GetCallAnalyticsCategoryOutput {
+	s.CategoryProperties = v
+	return s
+}
+
+type GetCallAnalyticsJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the analytics job you want information about. This value is case
+	// sensitive.
+	//
+	// CallAnalyticsJobName is a required field
+	CallAnalyticsJobName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetCallAnalyticsJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCallAnalyticsJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetCallAnalyticsJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetCallAnalyticsJobInput"}
+	if s.CallAnalyticsJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CallAnalyticsJobName"))
+	}
+	if s.CallAnalyticsJobName != nil && len(*s.CallAnalyticsJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CallAnalyticsJobName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCallAnalyticsJobName sets the CallAnalyticsJobName field's value.
+func (s *GetCallAnalyticsJobInput) SetCallAnalyticsJobName(v string) *GetCallAnalyticsJobInput {
+	s.CallAnalyticsJobName = &v
+	return s
+}
+
+type GetCallAnalyticsJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object that contains the results of your call analytics job.
+	CallAnalyticsJob *CallAnalyticsJob `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetCallAnalyticsJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetCallAnalyticsJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCallAnalyticsJob sets the CallAnalyticsJob field's value.
+func (s *GetCallAnalyticsJobOutput) SetCallAnalyticsJob(v *CallAnalyticsJob) *GetCallAnalyticsJobOutput {
+	s.CallAnalyticsJob = v
 	return s
 }
 
@@ -4650,6 +6592,75 @@ func (s *InternalFailureException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that enables you to configure your category to be applied to call
+// analytics jobs where either the customer or agent was interrupted.
+type InterruptionFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object you can use to specify a time range (in milliseconds) for when
+	// you'd want to find the interruption. For example, you could search for an
+	// interruption between the 30,000 millisecond mark and the 45,000 millisecond
+	// mark. You could also specify the time period as the first 15,000 milliseconds
+	// or the last 15,000 milliseconds.
+	AbsoluteTimeRange *AbsoluteTimeRange `type:"structure"`
+
+	// Set to TRUE to look for a time period where there was no interruption.
+	Negate *bool `type:"boolean"`
+
+	// Indicates whether the caller or customer was interrupting.
+	ParticipantRole *string `type:"string" enum:"ParticipantRole"`
+
+	// An object that allows percentages to specify the proportion of the call where
+	// there was a interruption. For example, you can specify the first half of
+	// the call. You can also specify the period of time between halfway through
+	// to three-quarters of the way through the call. Because the length of conversation
+	// can vary between calls, you can apply relative time ranges across all calls.
+	RelativeTimeRange *RelativeTimeRange `type:"structure"`
+
+	// The duration of the interruption.
+	Threshold *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s InterruptionFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InterruptionFilter) GoString() string {
+	return s.String()
+}
+
+// SetAbsoluteTimeRange sets the AbsoluteTimeRange field's value.
+func (s *InterruptionFilter) SetAbsoluteTimeRange(v *AbsoluteTimeRange) *InterruptionFilter {
+	s.AbsoluteTimeRange = v
+	return s
+}
+
+// SetNegate sets the Negate field's value.
+func (s *InterruptionFilter) SetNegate(v bool) *InterruptionFilter {
+	s.Negate = &v
+	return s
+}
+
+// SetParticipantRole sets the ParticipantRole field's value.
+func (s *InterruptionFilter) SetParticipantRole(v string) *InterruptionFilter {
+	s.ParticipantRole = &v
+	return s
+}
+
+// SetRelativeTimeRange sets the RelativeTimeRange field's value.
+func (s *InterruptionFilter) SetRelativeTimeRange(v *RelativeTimeRange) *InterruptionFilter {
+	s.RelativeTimeRange = v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *InterruptionFilter) SetThreshold(v int64) *InterruptionFilter {
+	s.Threshold = &v
+	return s
+}
+
 // Provides information about when a transcription job should be executed.
 type JobExecutionSettings struct {
 	_ struct{} `type:"structure"`
@@ -4865,6 +6876,208 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListCallAnalyticsCategoriesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of categories to return in the response. If there are
+	// fewer results in the list, the response contains only the actual results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// When included, NextTokenfetches the next set of categories if the result
+	// of the previous request was truncated.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCallAnalyticsCategoriesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCallAnalyticsCategoriesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCallAnalyticsCategoriesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCallAnalyticsCategoriesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCallAnalyticsCategoriesInput) SetMaxResults(v int64) *ListCallAnalyticsCategoriesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCallAnalyticsCategoriesInput) SetNextToken(v string) *ListCallAnalyticsCategoriesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCallAnalyticsCategoriesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects containing information about analytics categories.
+	Categories []*CategoryProperties `type:"list"`
+
+	// The operation returns a page of jobs at a time. The maximum size of the list
+	// is set by the MaxResults parameter. If there are more categories in the list
+	// than the page size, Amazon Transcribe returns the NextPage token. Include
+	// the token in the next request to the operation to return the next page of
+	// analytics categories.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListCallAnalyticsCategoriesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCallAnalyticsCategoriesOutput) GoString() string {
+	return s.String()
+}
+
+// SetCategories sets the Categories field's value.
+func (s *ListCallAnalyticsCategoriesOutput) SetCategories(v []*CategoryProperties) *ListCallAnalyticsCategoriesOutput {
+	s.Categories = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCallAnalyticsCategoriesOutput) SetNextToken(v string) *ListCallAnalyticsCategoriesOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListCallAnalyticsJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// When specified, the jobs returned in the list are limited to jobs whose name
+	// contains the specified string.
+	JobNameContains *string `min:"1" type:"string"`
+
+	// The maximum number of call analytics jobs to return in the response. If there
+	// are fewer results in the list, this response contains only the actual results.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// If you receive a truncated result in the previous request of , include NextToken
+	// to fetch the next set of jobs.
+	NextToken *string `type:"string"`
+
+	// When specified, returns only call analytics jobs with the specified status.
+	// Jobs are ordered by creation date, with the most recent jobs returned first.
+	// If you don't specify a status, Amazon Transcribe returns all analytics jobs
+	// ordered by creation date.
+	Status *string `type:"string" enum:"CallAnalyticsJobStatus"`
+}
+
+// String returns the string representation
+func (s ListCallAnalyticsJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCallAnalyticsJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListCallAnalyticsJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListCallAnalyticsJobsInput"}
+	if s.JobNameContains != nil && len(*s.JobNameContains) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JobNameContains", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJobNameContains sets the JobNameContains field's value.
+func (s *ListCallAnalyticsJobsInput) SetJobNameContains(v string) *ListCallAnalyticsJobsInput {
+	s.JobNameContains = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListCallAnalyticsJobsInput) SetMaxResults(v int64) *ListCallAnalyticsJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCallAnalyticsJobsInput) SetNextToken(v string) *ListCallAnalyticsJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListCallAnalyticsJobsInput) SetStatus(v string) *ListCallAnalyticsJobsInput {
+	s.Status = &v
+	return s
+}
+
+type ListCallAnalyticsJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of objects containing summary information for a transcription job.
+	CallAnalyticsJobSummaries []*CallAnalyticsJobSummary `type:"list"`
+
+	// The operation returns a page of jobs at a time. The maximum size of the page
+	// is set by the MaxResults parameter. If there are more jobs in the list than
+	// the page size, Amazon Transcribe returns the NextPage token. Include the
+	// token in your next request to the operation to return next page of jobs.
+	NextToken *string `type:"string"`
+
+	// When specified, returns only call analytics jobs with that status. Jobs are
+	// ordered by creation date, with the most recent jobs returned first. If you
+	// don't specify a status, Amazon Transcribe returns all transcription jobs
+	// ordered by creation date.
+	Status *string `type:"string" enum:"CallAnalyticsJobStatus"`
+}
+
+// String returns the string representation
+func (s ListCallAnalyticsJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListCallAnalyticsJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetCallAnalyticsJobSummaries sets the CallAnalyticsJobSummaries field's value.
+func (s *ListCallAnalyticsJobsOutput) SetCallAnalyticsJobSummaries(v []*CallAnalyticsJobSummary) *ListCallAnalyticsJobsOutput {
+	s.CallAnalyticsJobSummaries = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListCallAnalyticsJobsOutput) SetNextToken(v string) *ListCallAnalyticsJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListCallAnalyticsJobsOutput) SetStatus(v string) *ListCallAnalyticsJobsOutput {
+	s.Status = &v
+	return s
 }
 
 type ListLanguageModelsInput struct {
@@ -5553,9 +7766,13 @@ type Media struct {
 	//
 	// For example:
 	//
-	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// For more information about S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	MediaFileUri *string `min:"1" type:"string"`
+
+	// The S3 object location for your redacted output media file. This is only
+	// supported for call analytics jobs.
+	RedactedMediaFileUri *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -5574,6 +7791,9 @@ func (s *Media) Validate() error {
 	if s.MediaFileUri != nil && len(*s.MediaFileUri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("MediaFileUri", 1))
 	}
+	if s.RedactedMediaFileUri != nil && len(*s.RedactedMediaFileUri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RedactedMediaFileUri", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5584,6 +7804,12 @@ func (s *Media) Validate() error {
 // SetMediaFileUri sets the MediaFileUri field's value.
 func (s *Media) SetMediaFileUri(v string) *Media {
 	s.MediaFileUri = &v
+	return s
+}
+
+// SetRedactedMediaFileUri sets the RedactedMediaFileUri field's value.
+func (s *Media) SetRedactedMediaFileUri(v string) *Media {
+	s.RedactedMediaFileUri = &v
 	return s
 }
 
@@ -5682,8 +7908,8 @@ type MedicalTranscriptionJob struct {
 	// If you don't specify the sample rate, Amazon Transcribe Medical determines
 	// it for you. If you choose to specify the sample rate, it must match the rate
 	// detected by Amazon Transcribe Medical. In most cases, you should leave the
-	// MediaSampleHertz blank and let Amazon Transcribe Medical determine the sample
-	// rate.
+	// MedicalMediaSampleHertz blank and let Amazon Transcribe Medical determine
+	// the sample rate.
 	MediaSampleRateHertz *int64 `min:"8000" type:"integer"`
 
 	// The name for a given medical transcription job.
@@ -5712,7 +7938,8 @@ type MedicalTranscriptionJob struct {
 
 	// The type of speech in the transcription job. CONVERSATION is generally used
 	// for patient-physician dialogues. DICTATION is the setting for physicians
-	// speaking their notes after seeing a patient. For more information, see how-it-works-med
+	// speaking their notes after seeing a patient. For more information, see What
+	// is Amazon Transcribe Medical? (https://docs.aws.amazon.com/transcribe/latest/dg/what-is-transcribe-med.html).
 	Type *string `type:"string" enum:"Type"`
 }
 
@@ -6087,6 +8314,65 @@ func (s *ModelSettings) SetLanguageModelName(v string) *ModelSettings {
 	return s
 }
 
+// An object that enables you to configure your category to be applied to call
+// analytics jobs where either the customer or agent was interrupted.
+type NonTalkTimeFilter struct {
+	_ struct{} `type:"structure"`
+
+	// An object you can use to specify a time range (in milliseconds) for when
+	// no one is talking. For example, you could specify a time period between the
+	// 30,000 millisecond mark and the 45,000 millisecond mark. You could also specify
+	// the time period as the first 15,000 milliseconds or the last 15,000 milliseconds.
+	AbsoluteTimeRange *AbsoluteTimeRange `type:"structure"`
+
+	// Set to TRUE to look for a time period when people were talking.
+	Negate *bool `type:"boolean"`
+
+	// An object that allows percentages to specify the proportion of the call where
+	// there was silence. For example, you can specify the first half of the call.
+	// You can also specify the period of time between halfway through to three-quarters
+	// of the way through the call. Because the length of conversation can vary
+	// between calls, you can apply relative time ranges across all calls.
+	RelativeTimeRange *RelativeTimeRange `type:"structure"`
+
+	// The duration of the period when neither the customer nor agent was talking.
+	Threshold *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s NonTalkTimeFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s NonTalkTimeFilter) GoString() string {
+	return s.String()
+}
+
+// SetAbsoluteTimeRange sets the AbsoluteTimeRange field's value.
+func (s *NonTalkTimeFilter) SetAbsoluteTimeRange(v *AbsoluteTimeRange) *NonTalkTimeFilter {
+	s.AbsoluteTimeRange = v
+	return s
+}
+
+// SetNegate sets the Negate field's value.
+func (s *NonTalkTimeFilter) SetNegate(v bool) *NonTalkTimeFilter {
+	s.Negate = &v
+	return s
+}
+
+// SetRelativeTimeRange sets the RelativeTimeRange field's value.
+func (s *NonTalkTimeFilter) SetRelativeTimeRange(v *RelativeTimeRange) *NonTalkTimeFilter {
+	s.RelativeTimeRange = v
+	return s
+}
+
+// SetThreshold sets the Threshold field's value.
+func (s *NonTalkTimeFilter) SetThreshold(v int64) *NonTalkTimeFilter {
+	s.Threshold = &v
+	return s
+}
+
 // We can't find the requested resource. Check the name and try your request
 // again.
 type NotFoundException struct {
@@ -6142,6 +8428,249 @@ func (s *NotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// An object that allows percentages to specify the proportion of the call where
+// you would like to apply a filter. For example, you can specify the first
+// half of the call. You can also specify the period of time between halfway
+// through to three-quarters of the way through the call. Because the length
+// of conversation can vary between calls, you can apply relative time ranges
+// across all calls.
+type RelativeTimeRange struct {
+	_ struct{} `type:"structure"`
+
+	// A value that indicates the percentage of the end of the time range. To set
+	// a relative time range, you must specify a start percentage and an end percentage.
+	// For example, if you specify the following values:
+	//
+	//    * StartPercentage - 10
+	//
+	//    * EndPercentage - 50
+	//
+	// This looks at the time range starting from 10% of the way into the call to
+	// 50% of the way through the call. For a call that lasts 100,000 milliseconds,
+	// this example range would apply from the 10,000 millisecond mark to the 50,000
+	// millisecond mark.
+	EndPercentage *int64 `type:"integer"`
+
+	// A range that takes the portion of the call up to the time in milliseconds
+	// set by the value that you've specified. For example, if you specify 120000,
+	// the time range is set for the first 120,000 milliseconds of the call.
+	First *int64 `type:"integer"`
+
+	// A range that takes the portion of the call from the time in milliseconds
+	// set by the value that you've specified to the end of the call. For example,
+	// if you specify 120000, the time range is set for the last 120,000 milliseconds
+	// of the call.
+	Last *int64 `type:"integer"`
+
+	// A value that indicates the percentage of the beginning of the time range.
+	// To set a relative time range, you must specify a start percentage and an
+	// end percentage. For example, if you specify the following values:
+	//
+	//    * StartPercentage - 10
+	//
+	//    * EndPercentage - 50
+	//
+	// This looks at the time range starting from 10% of the way into the call to
+	// 50% of the way through the call. For a call that lasts 100,000 milliseconds,
+	// this example range would apply from the 10,000 millisecond mark to the 50,000
+	// millisecond mark.
+	StartPercentage *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s RelativeTimeRange) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RelativeTimeRange) GoString() string {
+	return s.String()
+}
+
+// SetEndPercentage sets the EndPercentage field's value.
+func (s *RelativeTimeRange) SetEndPercentage(v int64) *RelativeTimeRange {
+	s.EndPercentage = &v
+	return s
+}
+
+// SetFirst sets the First field's value.
+func (s *RelativeTimeRange) SetFirst(v int64) *RelativeTimeRange {
+	s.First = &v
+	return s
+}
+
+// SetLast sets the Last field's value.
+func (s *RelativeTimeRange) SetLast(v int64) *RelativeTimeRange {
+	s.Last = &v
+	return s
+}
+
+// SetStartPercentage sets the StartPercentage field's value.
+func (s *RelativeTimeRange) SetStartPercentage(v int64) *RelativeTimeRange {
+	s.StartPercentage = &v
+	return s
+}
+
+// A condition in the call between the customer and the agent that you want
+// to filter for.
+type Rule struct {
+	_ struct{} `type:"structure"`
+
+	// A condition for a time period when either the customer or agent was interrupting
+	// the other person.
+	InterruptionFilter *InterruptionFilter `type:"structure"`
+
+	// A condition for a time period when neither the customer nor the agent was
+	// talking.
+	NonTalkTimeFilter *NonTalkTimeFilter `type:"structure"`
+
+	// A condition that is applied to a particular customer sentiment.
+	SentimentFilter *SentimentFilter `type:"structure"`
+
+	// A condition that catches particular words or phrases based on a exact match.
+	// For example, if you set the phrase "I want to speak to the manager", only
+	// that exact phrase will be returned.
+	TranscriptFilter *TranscriptFilter `type:"structure"`
+}
+
+// String returns the string representation
+func (s Rule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Rule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Rule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Rule"}
+	if s.SentimentFilter != nil {
+		if err := s.SentimentFilter.Validate(); err != nil {
+			invalidParams.AddNested("SentimentFilter", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TranscriptFilter != nil {
+		if err := s.TranscriptFilter.Validate(); err != nil {
+			invalidParams.AddNested("TranscriptFilter", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInterruptionFilter sets the InterruptionFilter field's value.
+func (s *Rule) SetInterruptionFilter(v *InterruptionFilter) *Rule {
+	s.InterruptionFilter = v
+	return s
+}
+
+// SetNonTalkTimeFilter sets the NonTalkTimeFilter field's value.
+func (s *Rule) SetNonTalkTimeFilter(v *NonTalkTimeFilter) *Rule {
+	s.NonTalkTimeFilter = v
+	return s
+}
+
+// SetSentimentFilter sets the SentimentFilter field's value.
+func (s *Rule) SetSentimentFilter(v *SentimentFilter) *Rule {
+	s.SentimentFilter = v
+	return s
+}
+
+// SetTranscriptFilter sets the TranscriptFilter field's value.
+func (s *Rule) SetTranscriptFilter(v *TranscriptFilter) *Rule {
+	s.TranscriptFilter = v
+	return s
+}
+
+// An object that enables you to specify a particular customer or agent sentiment.
+// If at least 50 percent of the conversation turns (the back-and-forth between
+// two speakers) in a specified time period match the specified sentiment, Amazon
+// Transcribe will consider the sentiment a match.
+type SentimentFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The time range, measured in seconds, of the sentiment.
+	AbsoluteTimeRange *AbsoluteTimeRange `type:"structure"`
+
+	// Set to TRUE to look for sentiments that weren't specified in the request.
+	Negate *bool `type:"boolean"`
+
+	// A value that determines whether the sentiment belongs to the customer or
+	// the agent.
+	ParticipantRole *string `type:"string" enum:"ParticipantRole"`
+
+	// The time range, set in percentages, that correspond to proportion of the
+	// call.
+	RelativeTimeRange *RelativeTimeRange `type:"structure"`
+
+	// An array that enables you to specify sentiments for the customer or agent.
+	// You can specify one or more values.
+	//
+	// Sentiments is a required field
+	Sentiments []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s SentimentFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SentimentFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SentimentFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SentimentFilter"}
+	if s.Sentiments == nil {
+		invalidParams.Add(request.NewErrParamRequired("Sentiments"))
+	}
+	if s.Sentiments != nil && len(s.Sentiments) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Sentiments", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAbsoluteTimeRange sets the AbsoluteTimeRange field's value.
+func (s *SentimentFilter) SetAbsoluteTimeRange(v *AbsoluteTimeRange) *SentimentFilter {
+	s.AbsoluteTimeRange = v
+	return s
+}
+
+// SetNegate sets the Negate field's value.
+func (s *SentimentFilter) SetNegate(v bool) *SentimentFilter {
+	s.Negate = &v
+	return s
+}
+
+// SetParticipantRole sets the ParticipantRole field's value.
+func (s *SentimentFilter) SetParticipantRole(v string) *SentimentFilter {
+	s.ParticipantRole = &v
+	return s
+}
+
+// SetRelativeTimeRange sets the RelativeTimeRange field's value.
+func (s *SentimentFilter) SetRelativeTimeRange(v *RelativeTimeRange) *SentimentFilter {
+	s.RelativeTimeRange = v
+	return s
+}
+
+// SetSentiments sets the Sentiments field's value.
+func (s *SentimentFilter) SetSentiments(v []*string) *SentimentFilter {
+	s.Sentiments = v
+	return s
 }
 
 // Provides optional settings for the StartTranscriptionJob operation.
@@ -6282,6 +8811,207 @@ func (s *Settings) SetVocabularyName(v string) *Settings {
 	return s
 }
 
+type StartCallAnalyticsJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the call analytics job. You can't use the string "." or ".."
+	// by themselves as the job name. The name must also be unique within an AWS
+	// account. If you try to create a call analytics job with the same name as
+	// a previous call analytics job, you get a ConflictException error.
+	//
+	// CallAnalyticsJobName is a required field
+	CallAnalyticsJobName *string `min:"1" type:"string" required:"true"`
+
+	// When you start a call analytics job, you must pass an array that maps the
+	// agent and the customer to specific audio channels. The values you can assign
+	// to a channel are 0 and 1. The agent and the customer must each have their
+	// own channel. You can't assign more than one channel to an agent or customer.
+	ChannelDefinitions []*ChannelDefinition `min:"2" type:"list"`
+
+	// The Amazon Resource Name (ARN) of a role that has access to the S3 bucket
+	// that contains your input files. Amazon Transcribe assumes this role to read
+	// queued audio files. If you have specified an output S3 bucket for your transcription
+	// results, this role should have access to the output bucket as well.
+	//
+	// DataAccessRoleArn is a required field
+	DataAccessRoleArn *string `min:"20" type:"string" required:"true"`
+
+	// Describes the input media file in a transcription request.
+	//
+	// Media is a required field
+	Media *Media `type:"structure" required:"true"`
+
+	// The Amazon Resource Name (ARN) of the AWS Key Management Service key used
+	// to encrypt the output of the call analytics job. The user calling the operation
+	// must have permission to use the specified KMS key.
+	//
+	// You use either of the following to identify an AWS KMS key in the current
+	// account:
+	//
+	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
+	//
+	//    * KMS Key Alias: "alias/ExampleAlias"
+	//
+	// You can use either of the following to identify a KMS key in the current
+	// account or another account:
+	//
+	//    * Amazon Resource Name (ARN) of a KMS key in the current account or another
+	//    account: "arn:aws:kms:region:account ID:key/1234abcd-12ab-34cd-56ef1234567890ab"
+	//
+	//    * ARN of a KMS Key Alias: "arn:aws:kms:region:account ID:alias/ExampleAlias"
+	//
+	// If you don't specify an encryption key, the output of the call analytics
+	// job is encrypted with the default Amazon S3 key (SSE-S3).
+	//
+	// If you specify a KMS key to encrypt your output, you must also specify an
+	// output location in the OutputLocation parameter.
+	OutputEncryptionKMSKeyId *string `min:"1" type:"string"`
+
+	// The Amazon S3 location where the output of the call analytics job is stored.
+	// You can provide the following location types to store the output of call
+	// analytics job:
+	//
+	//    * s3://DOC-EXAMPLE-BUCKET1 If you specify a bucket, Amazon Transcribe
+	//    saves the output of the analytics job as a JSON file at the root level
+	//    of the bucket.
+	//
+	//    * s3://DOC-EXAMPLE-BUCKET1/folder/ f you specify a path, Amazon Transcribe
+	//    saves the output of the analytics job as s3://DOC-EXAMPLE-BUCKET1/folder/your-transcription-job-name.json
+	//    If you specify a folder, you must provide a trailing slash.
+	//
+	//    * s3://DOC-EXAMPLE-BUCKET1/folder/filename.json If you provide a path
+	//    that has the filename specified, Amazon Transcribe saves the output of
+	//    the analytics job as s3://DOC-EXAMPLEBUCKET1/folder/filename.json
+	//
+	// You can specify an AWS Key Management Service key to encrypt the output of
+	// our analytics job using the OutputEncryptionKMSKeyId parameter. If you don't
+	// specify a KMS key, Amazon Transcribe uses the default Amazon S3 key for server-side
+	// encryption of the analytics job output that is placed in your S3 bucket.
+	OutputLocation *string `min:"1" type:"string"`
+
+	// A Settings object that provides optional settings for a call analytics job.
+	Settings *CallAnalyticsJobSettings `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartCallAnalyticsJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartCallAnalyticsJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartCallAnalyticsJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartCallAnalyticsJobInput"}
+	if s.CallAnalyticsJobName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CallAnalyticsJobName"))
+	}
+	if s.CallAnalyticsJobName != nil && len(*s.CallAnalyticsJobName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CallAnalyticsJobName", 1))
+	}
+	if s.ChannelDefinitions != nil && len(s.ChannelDefinitions) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("ChannelDefinitions", 2))
+	}
+	if s.DataAccessRoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataAccessRoleArn"))
+	}
+	if s.DataAccessRoleArn != nil && len(*s.DataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DataAccessRoleArn", 20))
+	}
+	if s.Media == nil {
+		invalidParams.Add(request.NewErrParamRequired("Media"))
+	}
+	if s.OutputEncryptionKMSKeyId != nil && len(*s.OutputEncryptionKMSKeyId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputEncryptionKMSKeyId", 1))
+	}
+	if s.OutputLocation != nil && len(*s.OutputLocation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutputLocation", 1))
+	}
+	if s.Media != nil {
+		if err := s.Media.Validate(); err != nil {
+			invalidParams.AddNested("Media", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Settings != nil {
+		if err := s.Settings.Validate(); err != nil {
+			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCallAnalyticsJobName sets the CallAnalyticsJobName field's value.
+func (s *StartCallAnalyticsJobInput) SetCallAnalyticsJobName(v string) *StartCallAnalyticsJobInput {
+	s.CallAnalyticsJobName = &v
+	return s
+}
+
+// SetChannelDefinitions sets the ChannelDefinitions field's value.
+func (s *StartCallAnalyticsJobInput) SetChannelDefinitions(v []*ChannelDefinition) *StartCallAnalyticsJobInput {
+	s.ChannelDefinitions = v
+	return s
+}
+
+// SetDataAccessRoleArn sets the DataAccessRoleArn field's value.
+func (s *StartCallAnalyticsJobInput) SetDataAccessRoleArn(v string) *StartCallAnalyticsJobInput {
+	s.DataAccessRoleArn = &v
+	return s
+}
+
+// SetMedia sets the Media field's value.
+func (s *StartCallAnalyticsJobInput) SetMedia(v *Media) *StartCallAnalyticsJobInput {
+	s.Media = v
+	return s
+}
+
+// SetOutputEncryptionKMSKeyId sets the OutputEncryptionKMSKeyId field's value.
+func (s *StartCallAnalyticsJobInput) SetOutputEncryptionKMSKeyId(v string) *StartCallAnalyticsJobInput {
+	s.OutputEncryptionKMSKeyId = &v
+	return s
+}
+
+// SetOutputLocation sets the OutputLocation field's value.
+func (s *StartCallAnalyticsJobInput) SetOutputLocation(v string) *StartCallAnalyticsJobInput {
+	s.OutputLocation = &v
+	return s
+}
+
+// SetSettings sets the Settings field's value.
+func (s *StartCallAnalyticsJobInput) SetSettings(v *CallAnalyticsJobSettings) *StartCallAnalyticsJobInput {
+	s.Settings = v
+	return s
+}
+
+type StartCallAnalyticsJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object containing the details of the asynchronous call analytics job.
+	CallAnalyticsJob *CallAnalyticsJob `type:"structure"`
+}
+
+// String returns the string representation
+func (s StartCallAnalyticsJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartCallAnalyticsJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetCallAnalyticsJob sets the CallAnalyticsJob field's value.
+func (s *StartCallAnalyticsJobOutput) SetCallAnalyticsJob(v *CallAnalyticsJob) *StartCallAnalyticsJobOutput {
+	s.CallAnalyticsJob = v
+	return s
+}
+
 type StartMedicalTranscriptionJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6315,9 +9045,9 @@ type StartMedicalTranscriptionJobInput struct {
 
 	// The name of the medical transcription job. You can't use the strings "."
 	// or ".." by themselves as the job name. The name must also be unique within
-	// an AWS account. If you try to create a medical transcription job with the
-	// same name as a previous medical transcription job, you get a ConflictException
-	// error.
+	// an Amazon Web Services account. If you try to create a medical transcription
+	// job with the same name as a previous medical transcription job, you get a
+	// ConflictException error.
 	//
 	// MedicalTranscriptionJobName is a required field
 	MedicalTranscriptionJobName *string `min:"1" type:"string" required:"true"`
@@ -6331,19 +9061,19 @@ type StartMedicalTranscriptionJobInput struct {
 	// that allow Amazon Transcribe Medical to put files in the bucket. For more
 	// information, see Permissions Required for IAM User Roles (https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user).
 	//
-	// You can specify an AWS Key Management Service (KMS) key to encrypt the output
-	// of your transcription using the OutputEncryptionKMSKeyId parameter. If you
-	// don't specify a KMS key, Amazon Transcribe Medical uses the default Amazon
-	// S3 key for server-side encryption of transcripts that are placed in your
-	// S3 bucket.
+	// You can specify an Amazon Web Services Key Management Service (KMS) key to
+	// encrypt the output of your transcription using the OutputEncryptionKMSKeyId
+	// parameter. If you don't specify a KMS key, Amazon Transcribe Medical uses
+	// the default Amazon S3 key for server-side encryption of transcripts that
+	// are placed in your S3 bucket.
 	//
 	// OutputBucketName is a required field
 	OutputBucketName *string `type:"string" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS) key
-	// used to encrypt the output of the transcription job. The user calling the
-	// StartMedicalTranscriptionJob operation must have permission to use the specified
-	// KMS key.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Key Management
+	// Service (KMS) key used to encrypt the output of the transcription job. The
+	// user calling the StartMedicalTranscriptionJob operation must have permission
+	// to use the specified KMS key.
 	//
 	// You use either of the following to identify a KMS key in the current account:
 	//
@@ -6581,7 +9311,10 @@ type StartTranscriptionJobInput struct {
 	// An object containing a list of languages that might be present in your collection
 	// of audio files. Automatic language identification chooses a language that
 	// best matches the source audio from that list.
-	LanguageOptions []*string `min:"2" type:"list"`
+	//
+	// To transcribe speech in Modern Standard Arabic (ar-SA), your audio or video
+	// file must be encoded at a sample rate of 16000 Hz or higher.
+	LanguageOptions []*string `min:"1" type:"list"`
 
 	// An object that describes the input media for a transcription job.
 	//
@@ -6615,20 +9348,21 @@ type StartTranscriptionJobInput struct {
 	// the bucket. For more information, see Permissions Required for IAM User Roles
 	// (https://docs.aws.amazon.com/transcribe/latest/dg/security_iam_id-based-policy-examples.html#auth-role-iam-user).
 	//
-	// You can specify an AWS Key Management Service (KMS) key to encrypt the output
-	// of your transcription using the OutputEncryptionKMSKeyId parameter. If you
-	// don't specify a KMS key, Amazon Transcribe uses the default Amazon S3 key
-	// for server-side encryption of transcripts that are placed in your S3 bucket.
+	// You can specify an Amazon Web Services Key Management Service (KMS) key to
+	// encrypt the output of your transcription using the OutputEncryptionKMSKeyId
+	// parameter. If you don't specify a KMS key, Amazon Transcribe uses the default
+	// Amazon S3 key for server-side encryption of transcripts that are placed in
+	// your S3 bucket.
 	//
 	// If you don't set the OutputBucketName, Amazon Transcribe generates a pre-signed
 	// URL, a shareable URL that provides secure access to your transcription, and
 	// returns it in the TranscriptFileUri field. Use this URL to download the transcription.
 	OutputBucketName *string `type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS Key Management Service (KMS) key
-	// used to encrypt the output of the transcription job. The user calling the
-	// StartTranscriptionJob operation must have permission to use the specified
-	// KMS key.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Key Management
+	// Service (KMS) key used to encrypt the output of the transcription job. The
+	// user calling the StartTranscriptionJob operation must have permission to
+	// use the specified KMS key.
 	//
 	// You can use either of the following to identify a KMS key in the current
 	// account:
@@ -6674,9 +9408,9 @@ type StartTranscriptionJobInput struct {
 	Settings *Settings `type:"structure"`
 
 	// The name of the job. You can't use the strings "." or ".." by themselves
-	// as the job name. The name must also be unique within an AWS account. If you
-	// try to create a transcription job with the same name as a previous transcription
-	// job, you get a ConflictException error.
+	// as the job name. The name must also be unique within an Amazon Web Services
+	// account. If you try to create a transcription job with the same name as a
+	// previous transcription job, you get a ConflictException error.
 	//
 	// TranscriptionJobName is a required field
 	TranscriptionJobName *string `min:"1" type:"string" required:"true"`
@@ -6695,8 +9429,8 @@ func (s StartTranscriptionJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartTranscriptionJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartTranscriptionJobInput"}
-	if s.LanguageOptions != nil && len(s.LanguageOptions) < 2 {
-		invalidParams.Add(request.NewErrParamMinLen("LanguageOptions", 2))
+	if s.LanguageOptions != nil && len(s.LanguageOptions) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageOptions", 1))
 	}
 	if s.Media == nil {
 		invalidParams.Add(request.NewErrParamRequired("Media"))
@@ -6898,6 +9632,108 @@ func (s *Transcript) SetTranscriptFileUri(v string) *Transcript {
 	return s
 }
 
+// Matches the output of the transcription to either the specific phrases that
+// you specify, or the intent of the phrases that you specify.
+type TranscriptFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A time range, set in seconds, between two points in the call.
+	AbsoluteTimeRange *AbsoluteTimeRange `type:"structure"`
+
+	// If TRUE, the rule that you specify is applied to everything except for the
+	// phrases that you specify.
+	Negate *bool `type:"boolean"`
+
+	// Determines whether the customer or the agent is speaking the phrases that
+	// you've specified.
+	ParticipantRole *string `type:"string" enum:"ParticipantRole"`
+
+	// An object that allows percentages to specify the proportion of the call where
+	// you would like to apply a filter. For example, you can specify the first
+	// half of the call. You can also specify the period of time between halfway
+	// through to three-quarters of the way through the call. Because the length
+	// of conversation can vary between calls, you can apply relative time ranges
+	// across all calls.
+	RelativeTimeRange *RelativeTimeRange `type:"structure"`
+
+	// The phrases that you're specifying for the transcript filter to match.
+	//
+	// Targets is a required field
+	Targets []*string `min:"1" type:"list" required:"true"`
+
+	// Matches the phrase to the transcription output in a word for word fashion.
+	// For example, if you specify the phrase "I want to speak to the manager."
+	// Amazon Transcribe attempts to match that specific phrase to the transcription.
+	//
+	// TranscriptFilterType is a required field
+	TranscriptFilterType *string `type:"string" required:"true" enum:"TranscriptFilterType"`
+}
+
+// String returns the string representation
+func (s TranscriptFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TranscriptFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TranscriptFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TranscriptFilter"}
+	if s.Targets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Targets"))
+	}
+	if s.Targets != nil && len(s.Targets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Targets", 1))
+	}
+	if s.TranscriptFilterType == nil {
+		invalidParams.Add(request.NewErrParamRequired("TranscriptFilterType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAbsoluteTimeRange sets the AbsoluteTimeRange field's value.
+func (s *TranscriptFilter) SetAbsoluteTimeRange(v *AbsoluteTimeRange) *TranscriptFilter {
+	s.AbsoluteTimeRange = v
+	return s
+}
+
+// SetNegate sets the Negate field's value.
+func (s *TranscriptFilter) SetNegate(v bool) *TranscriptFilter {
+	s.Negate = &v
+	return s
+}
+
+// SetParticipantRole sets the ParticipantRole field's value.
+func (s *TranscriptFilter) SetParticipantRole(v string) *TranscriptFilter {
+	s.ParticipantRole = &v
+	return s
+}
+
+// SetRelativeTimeRange sets the RelativeTimeRange field's value.
+func (s *TranscriptFilter) SetRelativeTimeRange(v *RelativeTimeRange) *TranscriptFilter {
+	s.RelativeTimeRange = v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *TranscriptFilter) SetTargets(v []*string) *TranscriptFilter {
+	s.Targets = v
+	return s
+}
+
+// SetTranscriptFilterType sets the TranscriptFilterType field's value.
+func (s *TranscriptFilter) SetTranscriptFilterType(v string) *TranscriptFilter {
+	s.TranscriptFilterType = &v
+	return s
+}
+
 // Describes an asynchronous transcription job that was created with the StartTranscriptionJob
 // operation.
 type TranscriptionJob struct {
@@ -6964,7 +9800,7 @@ type TranscriptionJob struct {
 
 	// An object that shows the optional array of languages inputted for transcription
 	// jobs with automatic language identification enabled.
-	LanguageOptions []*string `min:"2" type:"list"`
+	LanguageOptions []*string `min:"1" type:"list"`
 
 	// An object that describes the input media for the transcription job.
 	Media *Media `type:"structure"`
@@ -7251,6 +10087,102 @@ func (s *TranscriptionJobSummary) SetTranscriptionJobStatus(v string) *Transcrip
 	return s
 }
 
+type UpdateCallAnalyticsCategoryInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the analytics category to update. The name is case sensitive.
+	// If you try to update a call analytics category with the same name as a previous
+	// category you will receive a ConflictException error.
+	//
+	// CategoryName is a required field
+	CategoryName *string `min:"1" type:"string" required:"true"`
+
+	// The rules used for the updated analytics category. The rules that you provide
+	// in this field replace the ones that are currently being used.
+	//
+	// Rules is a required field
+	Rules []*Rule `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateCallAnalyticsCategoryInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCallAnalyticsCategoryInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateCallAnalyticsCategoryInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateCallAnalyticsCategoryInput"}
+	if s.CategoryName == nil {
+		invalidParams.Add(request.NewErrParamRequired("CategoryName"))
+	}
+	if s.CategoryName != nil && len(*s.CategoryName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CategoryName", 1))
+	}
+	if s.Rules == nil {
+		invalidParams.Add(request.NewErrParamRequired("Rules"))
+	}
+	if s.Rules != nil && len(s.Rules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
+	}
+	if s.Rules != nil {
+		for i, v := range s.Rules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCategoryName sets the CategoryName field's value.
+func (s *UpdateCallAnalyticsCategoryInput) SetCategoryName(v string) *UpdateCallAnalyticsCategoryInput {
+	s.CategoryName = &v
+	return s
+}
+
+// SetRules sets the Rules field's value.
+func (s *UpdateCallAnalyticsCategoryInput) SetRules(v []*Rule) *UpdateCallAnalyticsCategoryInput {
+	s.Rules = v
+	return s
+}
+
+type UpdateCallAnalyticsCategoryOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The attributes describing the analytics category. You can see information
+	// such as the rules that you've used to update the category and when the category
+	// was originally created.
+	CategoryProperties *CategoryProperties `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateCallAnalyticsCategoryOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateCallAnalyticsCategoryOutput) GoString() string {
+	return s.String()
+}
+
+// SetCategoryProperties sets the CategoryProperties field's value.
+func (s *UpdateCallAnalyticsCategoryOutput) SetCategoryProperties(v *CategoryProperties) *UpdateCallAnalyticsCategoryOutput {
+	s.CategoryProperties = v
+	return s
+}
+
 type UpdateMedicalVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7261,8 +10193,8 @@ type UpdateMedicalVocabularyInput struct {
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
 	// The location in Amazon S3 of the text file that contains the you use for
-	// your custom vocabulary. The URI must be in the same AWS Region as the resource
-	// that you are calling. The following is the format for a URI:
+	// your custom vocabulary. The URI must be in the same Amazon Web Services Region
+	// as the resource that you are calling. The following is the format for a URI:
 	//
 	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
 	//
@@ -7270,11 +10202,11 @@ type UpdateMedicalVocabularyInput struct {
 	//
 	// https://s3.us-east-1.amazonaws.com/AWSDOC-EXAMPLE-BUCKET/vocab.txt
 	//
-	// For more information about Amazon S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// For more information about Amazon S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
 	// For more information about custom vocabularies in Amazon Transcribe Medical,
-	// see Medical Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
+	// see Medical Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary to update. The name is case sensitive. If you
@@ -7528,10 +10460,10 @@ type UpdateVocabularyInput struct {
 	//
 	// For example:
 	//
-	// For more information about S3 object names, see Object Keys (http://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
+	// For more information about S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
-	// For more information about custom vocabularies, see Custom Vocabularies (http://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
+	// For more information about custom vocabularies, see Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html#how-vocabulary).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary to update. The name is case sensitive. If you
@@ -7789,6 +10721,30 @@ func CLMLanguageCode_Values() []string {
 }
 
 const (
+	// CallAnalyticsJobStatusQueued is a CallAnalyticsJobStatus enum value
+	CallAnalyticsJobStatusQueued = "QUEUED"
+
+	// CallAnalyticsJobStatusInProgress is a CallAnalyticsJobStatus enum value
+	CallAnalyticsJobStatusInProgress = "IN_PROGRESS"
+
+	// CallAnalyticsJobStatusFailed is a CallAnalyticsJobStatus enum value
+	CallAnalyticsJobStatusFailed = "FAILED"
+
+	// CallAnalyticsJobStatusCompleted is a CallAnalyticsJobStatus enum value
+	CallAnalyticsJobStatusCompleted = "COMPLETED"
+)
+
+// CallAnalyticsJobStatus_Values returns all elements of the CallAnalyticsJobStatus enum
+func CallAnalyticsJobStatus_Values() []string {
+	return []string{
+		CallAnalyticsJobStatusQueued,
+		CallAnalyticsJobStatusInProgress,
+		CallAnalyticsJobStatusFailed,
+		CallAnalyticsJobStatusCompleted,
+	}
+}
+
+const (
 	// LanguageCodeAfZa is a LanguageCode enum value
 	LanguageCodeAfZa = "af-ZA"
 
@@ -8025,6 +10981,22 @@ func OutputLocationType_Values() []string {
 }
 
 const (
+	// ParticipantRoleAgent is a ParticipantRole enum value
+	ParticipantRoleAgent = "AGENT"
+
+	// ParticipantRoleCustomer is a ParticipantRole enum value
+	ParticipantRoleCustomer = "CUSTOMER"
+)
+
+// ParticipantRole_Values returns all elements of the ParticipantRole enum
+func ParticipantRole_Values() []string {
+	return []string{
+		ParticipantRoleAgent,
+		ParticipantRoleCustomer,
+	}
+}
+
+const (
 	// RedactionOutputRedacted is a RedactionOutput enum value
 	RedactionOutputRedacted = "redacted"
 
@@ -8053,6 +11025,30 @@ func RedactionType_Values() []string {
 }
 
 const (
+	// SentimentValuePositive is a SentimentValue enum value
+	SentimentValuePositive = "POSITIVE"
+
+	// SentimentValueNegative is a SentimentValue enum value
+	SentimentValueNegative = "NEGATIVE"
+
+	// SentimentValueNeutral is a SentimentValue enum value
+	SentimentValueNeutral = "NEUTRAL"
+
+	// SentimentValueMixed is a SentimentValue enum value
+	SentimentValueMixed = "MIXED"
+)
+
+// SentimentValue_Values returns all elements of the SentimentValue enum
+func SentimentValue_Values() []string {
+	return []string{
+		SentimentValuePositive,
+		SentimentValueNegative,
+		SentimentValueNeutral,
+		SentimentValueMixed,
+	}
+}
+
+const (
 	// SpecialtyPrimarycare is a Specialty enum value
 	SpecialtyPrimarycare = "PRIMARYCARE"
 )
@@ -8061,6 +11057,18 @@ const (
 func Specialty_Values() []string {
 	return []string{
 		SpecialtyPrimarycare,
+	}
+}
+
+const (
+	// TranscriptFilterTypeExact is a TranscriptFilterType enum value
+	TranscriptFilterTypeExact = "EXACT"
+)
+
+// TranscriptFilterType_Values returns all elements of the TranscriptFilterType enum
+func TranscriptFilterType_Values() []string {
+	return []string{
+		TranscriptFilterTypeExact,
 	}
 }
 

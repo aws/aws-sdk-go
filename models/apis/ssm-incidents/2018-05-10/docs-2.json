@@ -89,6 +89,7 @@
         "ListTimelineEventsInput$incidentRecordArn": "<p>The Amazon Resource Name (ARN) of the incident that the event is part of.</p>",
         "NotificationTargetItem$snsTopicArn": "<p>The Amazon Resource Name (ARN) of the SNS topic.</p>",
         "PutResourcePolicyInput$resourceArn": "<p>The Amazon Resource Name (ARN) of the response plan you're adding the resource policy to.</p>",
+        "ReplicationSet$arn": "<p>The Amazon Resource Name (ARN) of the replication set.</p>",
         "ReplicationSet$createdBy": "<p>Details about who created the replication set.</p>",
         "ReplicationSet$lastModifiedBy": "<p>Who last modified the replication set.</p>",
         "ReplicationSetArnList$member": null,
@@ -137,7 +138,7 @@
         "GetResponsePlanOutput$chatChannel": "<p>The AWS Chatbot chat channel used for collaboration during an incident.</p>",
         "IncidentRecord$chatChannel": "<p>The chat channel used for collaboration during an incident.</p>",
         "UpdateIncidentRecordInput$chatChannel": "<p>The AWS Chatbot chat channel for responders to collaborate in.</p>",
-        "UpdateResponsePlanInput$chatChannel": "<p>The AWS Chatbot chat channel used for collaboration during an incident.</p>"
+        "UpdateResponsePlanInput$chatChannel": "<p>The AWS Chatbot chat channel used for collaboration during an incident.</p> <p>Use the empty structure to remove the chat channel from the response plan.</p>"
       }
     },
     "ChatbotSnsConfigurationSet": {
@@ -283,7 +284,7 @@
     "EventData": {
       "base": null,
       "refs": {
-        "CreateTimelineEventInput$eventData": "<p>A short description of the event.</p>",
+        "CreateTimelineEventInput$eventData": "<p>A valid JSON string. There is no other schema imposed. A short description of the event.</p>",
         "TimelineEvent$eventData": "<p>A short description of the event.</p>",
         "UpdateTimelineEventInput$eventData": "<p>A short description of the event.</p>"
       }
@@ -590,7 +591,7 @@
       }
     },
     "NotificationTargetItem": {
-      "base": "<p>The SNS topic that's used by AWS Chatbot to notify the incidents chat channel.</p>",
+      "base": "<p>The SNS targets that are notified when updates are made to an incident.</p>",
       "refs": {
         "NotificationTargetSet$member": null
       }
@@ -598,10 +599,10 @@
     "NotificationTargetSet": {
       "base": null,
       "refs": {
-        "IncidentRecord$notificationTargets": "<p>The SNS targets that AWS Chatbot uses to notify the chat channels and perform actions on the incident record.</p>",
-        "IncidentTemplate$notificationTargets": "<p>The SNS targets that AWS Chatbot uses to notify the chat channel of updates to an incident. You can also make updates to the incident through the chat channel using the SNS topics. </p>",
-        "UpdateIncidentRecordInput$notificationTargets": "<p>The SNS targets that AWS Chatbot uses to notify the chat channel of updates to an incident. You can also make updates to the incident through the chat channel using the SNS topics. </p> <p>Using multiple SNS topics creates redundancy in the case that a Region is down during the incident.</p>",
-        "UpdateResponsePlanInput$incidentTemplateNotificationTargets": "<p>The SNS targets that AWS Chatbot uses to notify the chat channels and perform actions on the incident record.</p>"
+        "IncidentRecord$notificationTargets": "<p>The SNS targets that are notified when updates are made to an incident.</p>",
+        "IncidentTemplate$notificationTargets": "<p>The SNS targets that are notified when updates are made to an incident.</p>",
+        "UpdateIncidentRecordInput$notificationTargets": "<p>The SNS targets that are notified when updates are made to an incident.</p> <p>Using multiple SNS topics creates redundancy in the case that a Region is down during the incident.</p>",
+        "UpdateResponsePlanInput$incidentTemplateNotificationTargets": "<p>The SNS targets that are notified when updates are made to an incident.</p>"
       }
     },
     "Policy": {

@@ -64,7 +64,7 @@
       "base": null,
       "refs": {
         "AmiDistributionConfiguration$targetAccountIds": "<p>The ID of an account to which you want to distribute an image.</p>",
-        "LaunchPermissionConfiguration$userIds": "<p>The account ID.</p>"
+        "LaunchPermissionConfiguration$userIds": "<p>The Amazon Web Services account ID.</p>"
       }
     },
     "AdditionalInstanceConfiguration": {
@@ -290,7 +290,7 @@
       }
     },
     "ComponentVersion": {
-      "base": "<p>The defining characteristics of a specific version of an TOE component.</p>",
+      "base": "<p>The defining characteristics of a specific version of an Amazon Web Services TOE component.</p>",
       "refs": {
         "ComponentVersionList$member": null
       }
@@ -667,15 +667,15 @@
     "FilterList": {
       "base": null,
       "refs": {
-        "ListComponentsRequest$filters": "<p>The filters.</p>",
-        "ListContainerRecipesRequest$filters": "<p>Request filters that are used to narrow the list of container images that are returned.</p>",
-        "ListDistributionConfigurationsRequest$filters": "<p>The filters.</p> <ul> <li> <p> <code>name</code> - The name of this distribution configuration.</p> </li> </ul>",
-        "ListImageBuildVersionsRequest$filters": "<p>The filters.</p>",
-        "ListImagePipelineImagesRequest$filters": "<p>The filters.</p>",
-        "ListImagePipelinesRequest$filters": "<p>The filters.</p>",
-        "ListImageRecipesRequest$filters": "<p>The filters.</p>",
-        "ListImagesRequest$filters": "<p>The filters.</p>",
-        "ListInfrastructureConfigurationsRequest$filters": "<p>The filters.</p>"
+        "ListComponentsRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>description</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>supportedOsVersion</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>",
+        "ListContainerRecipesRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>containerType</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>parentImage</code> </p> </li> <li> <p> <code>platform</code> </p> </li> </ul>",
+        "ListDistributionConfigurationsRequest$filters": "<p>You can filter on <code>name</code> to streamline results.</p>",
+        "ListImageBuildVersionsRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>osVersion</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>",
+        "ListImagePipelineImagesRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>",
+        "ListImagePipelinesRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>description</code> </p> </li> <li> <p> <code>distributionConfigurationArn</code> </p> </li> <li> <p> <code>imageRecipeArn</code> </p> </li> <li> <p> <code>infrastructureConfigurationArn</code> </p> </li> <li> <p> <code>name</code> </p> </li> <li> <p> <code>status</code> </p> </li> </ul>",
+        "ListImageRecipesRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>parentImage</code> </p> </li> <li> <p> <code>platform</code> </p> </li> </ul>",
+        "ListImagesRequest$filters": "<p>Use the following filters to streamline results:</p> <ul> <li> <p> <code>name</code> </p> </li> <li> <p> <code>osVersion</code> </p> </li> <li> <p> <code>platform</code> </p> </li> <li> <p> <code>type</code> </p> </li> <li> <p> <code>version</code> </p> </li> </ul>",
+        "ListInfrastructureConfigurationsRequest$filters": "<p>You can filter on <code>name</code> to streamline results.</p>"
       }
     },
     "FilterName": {
@@ -1141,7 +1141,7 @@
     "LaunchPermissionConfiguration": {
       "base": "<p>Describes the configuration for a launch permission. The launch permission modification request is sent to the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html\">Amazon EC2 ModifyImageAttribute</a> API on behalf of the user for each Region they have selected to distribute the AMI. To make an AMI public, set the launch permission authorized accounts to <code>all</code>. See the examples for making an AMI public at <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ModifyImageAttribute.html\">Amazon EC2 ModifyImageAttribute</a>.</p>",
       "refs": {
-        "AmiDistributionConfiguration$launchPermission": "<p> Launch permissions can be used to configure which accounts can use the AMI to launch instances.</p>"
+        "AmiDistributionConfiguration$launchPermission": "<p> Launch permissions can be used to configure which Amazon Web Services accounts can use the AMI to launch instances.</p>"
       }
     },
     "LaunchTemplateConfiguration": {
@@ -1305,7 +1305,7 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
-        "Ami$region": "<p>The Region of the Amazon EC2 AMI.</p>",
+        "Ami$region": "<p>The Amazon Web Services Region of the Amazon EC2 AMI.</p>",
         "Ami$image": "<p>The AMI ID of the Amazon EC2 AMI.</p>",
         "Ami$name": "<p>The name of the Amazon EC2 AMI.</p>",
         "Ami$description": "<p>The description of the Amazon EC2 AMI. Minimum and maximum length are in characters.</p>",

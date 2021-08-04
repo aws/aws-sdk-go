@@ -3664,7 +3664,8 @@ type CreateTimelineEventInput struct {
 	// A token ensuring that the action is called only once with the specified details.
 	ClientToken *string `locationName:"clientToken" type:"string" idempotencyToken:"true"`
 
-	// A short description of the event.
+	// A valid JSON string. There is no other schema imposed. A short description
+	// of the event.
 	//
 	// EventData is a required field
 	EventData *string `locationName:"eventData" type:"string" required:"true"`
@@ -4719,8 +4720,7 @@ type IncidentRecord struct {
 	// LastModifiedTime is a required field
 	LastModifiedTime *time.Time `locationName:"lastModifiedTime" type:"timestamp" required:"true"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channels and perform
-	// actions on the incident record.
+	// The SNS targets that are notified when updates are made to an incident.
 	NotificationTargets []*NotificationTargetItem `locationName:"notificationTargets" type:"list"`
 
 	// The time at which the incident was resolved. This appears as a timeline event.
@@ -4997,9 +4997,7 @@ type IncidentTemplate struct {
 	// Impact is a required field
 	Impact *int64 `locationName:"impact" min:"1" type:"integer" required:"true"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channel of updates
-	// to an incident. You can also make updates to the incident through the chat
-	// channel using the SNS topics.
+	// The SNS targets that are notified when updates are made to an incident.
 	NotificationTargets []*NotificationTargetItem `locationName:"notificationTargets" type:"list"`
 
 	// The summary of the incident. The summary is a brief synopsis of what occurred,
@@ -5796,7 +5794,7 @@ func (s *ListTimelineEventsOutput) SetNextToken(v string) *ListTimelineEventsOut
 	return s
 }
 
-// The SNS topic that's used by AWS Chatbot to notify the incidents chat channel.
+// The SNS targets that are notified when updates are made to an incident.
 type NotificationTargetItem struct {
 	_ struct{} `type:"structure"`
 
@@ -6088,6 +6086,9 @@ func (s *RelatedItemsUpdate) SetItemToRemove(v *ItemIdentifier) *RelatedItemsUpd
 type ReplicationSet struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the replication set.
+	Arn *string `locationName:"arn" type:"string"`
+
 	// Details about who created the replication set.
 	//
 	// CreatedBy is a required field
@@ -6136,6 +6137,12 @@ func (s ReplicationSet) String() string {
 // GoString returns the string representation
 func (s ReplicationSet) GoString() string {
 	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ReplicationSet) SetArn(v string) *ReplicationSet {
+	s.Arn = &v
+	return s
 }
 
 // SetCreatedBy sets the CreatedBy field's value.
@@ -7115,9 +7122,7 @@ type UpdateIncidentRecordInput struct {
 	//    is needed to avoid impact.
 	Impact *int64 `locationName:"impact" min:"1" type:"integer"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channel of updates
-	// to an incident. You can also make updates to the incident through the chat
-	// channel using the SNS topics.
+	// The SNS targets that are notified when updates are made to an incident.
 	//
 	// Using multiple SNS topics creates redundancy in the case that a Region is
 	// down during the incident.
@@ -7460,6 +7465,8 @@ type UpdateResponsePlanInput struct {
 	Arn *string `locationName:"arn" type:"string" required:"true"`
 
 	// The AWS Chatbot chat channel used for collaboration during an incident.
+	//
+	// Use the empty structure to remove the chat channel from the response plan.
 	ChatChannel *ChatChannel `locationName:"chatChannel" type:"structure"`
 
 	// A token ensuring that the action is called only once with the specified details.
@@ -7491,8 +7498,7 @@ type UpdateResponsePlanInput struct {
 	//    * 1 - No impact
 	IncidentTemplateImpact *int64 `locationName:"incidentTemplateImpact" min:"1" type:"integer"`
 
-	// The SNS targets that AWS Chatbot uses to notify the chat channels and perform
-	// actions on the incident record.
+	// The SNS targets that are notified when updates are made to an incident.
 	IncidentTemplateNotificationTargets []*NotificationTargetItem `locationName:"incidentTemplateNotificationTargets" type:"list"`
 
 	// A brief summary of the incident. This typically contains what has happened,
