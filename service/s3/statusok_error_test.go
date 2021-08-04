@@ -32,7 +32,8 @@ func TestCopyObjectNoError(t *testing.T) {
 <?xml version="1.0" encoding="UTF-8"?>
 <CopyObjectResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><LastModified>2009-11-23T0:00:00Z</LastModified><ETag>&quot;1da64c7f13d1e8dbeaea40b905fd586c&quot;</ETag></CopyObjectResult>`
 
-	res, err := newCopyTestSvc(successMsg).CopyObject(&s3.CopyObjectInput{
+	var responseBodyClosed bool
+	res, err := newCopyTestSvc(successMsg, &responseBodyClosed).CopyObject(&s3.CopyObjectInput{
 		Bucket:     aws.String("bucketname"),
 		CopySource: aws.String("bucketname/exists.txt"),
 		Key:        aws.String("destination.txt"),
@@ -47,10 +48,14 @@ func TestCopyObjectNoError(t *testing.T) {
 	if e, a := lastModifiedTime, *res.CopyObjectResult.LastModified; !e.Equal(a) {
 		t.Errorf("expected %v, but received %v", e, a)
 	}
+	if !responseBodyClosed {
+		t.Error("http response body is not closed")
+	}
 }
 
 func TestCopyObjectError(t *testing.T) {
-	_, err := newCopyTestSvc(errMsg).CopyObject(&s3.CopyObjectInput{
+	var responseBodyClosed bool
+	_, err := newCopyTestSvc(errMsg, &responseBodyClosed).CopyObject(&s3.CopyObjectInput{
 		Bucket:     aws.String("bucketname"),
 		CopySource: aws.String("bucketname/doesnotexist.txt"),
 		Key:        aws.String("destination.txt"),
@@ -67,6 +72,9 @@ func TestCopyObjectError(t *testing.T) {
 	if e, a := "message body", e.Message(); e != a {
 		t.Errorf("expected %s, but received %s", e, a)
 	}
+	if !responseBodyClosed {
+		t.Error("http response body is not closed")
+	}
 }
 
 func TestUploadPartCopySuccess(t *testing.T) {
@@ -74,7 +82,8 @@ func TestUploadPartCopySuccess(t *testing.T) {
 <?xml version="1.0" encoding="UTF-8"?>
 <UploadPartCopyResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><LastModified>2009-11-23T0:00:00Z</LastModified><ETag>&quot;1da64c7f13d1e8dbeaea40b905fd586c&quot;</ETag></UploadPartCopyResult>`
 
-	res, err := newCopyTestSvc(successMsg).UploadPartCopy(&s3.UploadPartCopyInput{
+	var responseBodyClosed bool
+	res, err := newCopyTestSvc(successMsg, &responseBodyClosed).UploadPartCopy(&s3.UploadPartCopyInput{
 		Bucket:     aws.String("bucketname"),
 		CopySource: aws.String("bucketname/doesnotexist.txt"),
 		Key:        aws.String("destination.txt"),
@@ -92,10 +101,14 @@ func TestUploadPartCopySuccess(t *testing.T) {
 	if e, a := lastModifiedTime, *res.CopyPartResult.LastModified; !e.Equal(a) {
 		t.Errorf("expected %v, but received %v", e, a)
 	}
+	if !responseBodyClosed {
+		t.Error("http response body is not closed")
+	}
 }
 
 func TestUploadPartCopyError(t *testing.T) {
-	_, err := newCopyTestSvc(errMsg).UploadPartCopy(&s3.UploadPartCopyInput{
+	var responseBodyClosed bool
+	_, err := newCopyTestSvc(errMsg, &responseBodyClosed).UploadPartCopy(&s3.UploadPartCopyInput{
 		Bucket:     aws.String("bucketname"),
 		CopySource: aws.String("bucketname/doesnotexist.txt"),
 		Key:        aws.String("destination.txt"),
@@ -114,6 +127,9 @@ func TestUploadPartCopyError(t *testing.T) {
 	if e, a := "message body", e.Message(); e != a {
 		t.Errorf("expected %s, but received %s", e, a)
 	}
+	if !responseBodyClosed {
+		t.Error("http response body is not closed")
+	}
 }
 
 func TestCompleteMultipartUploadSuccess(t *testing.T) {
@@ -121,7 +137,8 @@ func TestCompleteMultipartUploadSuccess(t *testing.T) {
 <?xml version="1.0" encoding="UTF-8"?>
 <CompleteMultipartUploadResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Location>locationName</Location><Bucket>bucketName</Bucket><Key>keyName</Key><ETag>"etagVal"</ETag></CompleteMultipartUploadResult>`
 
-	res, err := newCopyTestSvc(successMsg).CompleteMultipartUpload(&s3.CompleteMultipartUploadInput{
+	var responseBodyClosed bool
+	res, err := newCopyTestSvc(successMsg, &responseBodyClosed).CompleteMultipartUpload(&s3.CompleteMultipartUploadInput{
 		Bucket:   aws.String("bucketname"),
 		Key:      aws.String("key"),
 		UploadId: aws.String("uploadID"),
@@ -143,10 +160,14 @@ func TestCompleteMultipartUploadSuccess(t *testing.T) {
 	if e, a := "locationName", *res.Location; e != a {
 		t.Errorf("expected %s, but received %s", e, a)
 	}
+	if !responseBodyClosed {
+		t.Error("http response body is not closed")
+	}
 }
 
 func TestCompleteMultipartUploadError(t *testing.T) {
-	_, err := newCopyTestSvc(errMsg).CompleteMultipartUpload(&s3.CompleteMultipartUploadInput{
+	var responseBodyClosed bool
+	_, err := newCopyTestSvc(errMsg, &responseBodyClosed).CompleteMultipartUpload(&s3.CompleteMultipartUploadInput{
 		Bucket:   aws.String("bucketname"),
 		Key:      aws.String("key"),
 		UploadId: aws.String("uploadID"),
@@ -163,15 +184,25 @@ func TestCompleteMultipartUploadError(t *testing.T) {
 	if e, a := "message body", e.Message(); e != a {
 		t.Errorf("expected %s, but received %s", e, a)
 	}
+	if !responseBodyClosed {
+		t.Error("http response body is not closed")
+	}
 }
 
-func newCopyTestSvc(errMsg string) *s3.S3 {
+func newCopyTestSvc(errMsg string, responseBodyClosed *bool) *s3.S3 {
 	const statusCode = http.StatusOK
 
 	svc := s3.New(unit.Session, &aws.Config{
 		MaxRetries: aws.Int(0),
 		SleepDelay: func(time.Duration) {},
 	})
+
+	closeChecker := func() error {
+		if responseBodyClosed != nil {
+			*responseBodyClosed = true
+		}
+		return nil
+	}
 
 	svc.Handlers.Send.Swap(corehandlers.SendHandler.Name,
 		request.NamedHandler{
@@ -183,13 +214,28 @@ func newCopyTestSvc(errMsg string) *s3.S3 {
 					Status:     http.StatusText(statusCode),
 					StatusCode: statusCode,
 					Header:     http.Header{},
-					Body:       ioutil.NopCloser(strings.NewReader(errMsg)),
+					Body:       newFuncCloser(strings.NewReader(errMsg), closeChecker),
 				}
 			},
 		})
 
 	return svc
 }
+
+// funcCloser converts io.Reader into io.ReadCloser by adding a custom function that is called on Close()
+type funcCloser struct {
+	io.Reader
+	closeFn func() error
+}
+
+func newFuncCloser(reader io.Reader, closeFn func() error) *funcCloser {
+	return &funcCloser{Reader: reader, closeFn: closeFn}
+}
+
+func (f funcCloser) Close() error {
+	return f.closeFn()
+}
+
 
 func TestStatusOKPayloadHandling(t *testing.T) {
 	cases := map[string]struct {

@@ -11,7 +11,7 @@ import (
 	"github.com/aws/aws-sdk-go/internal/sdkio"
 )
 
-func copyMultipartStatusOKUnmarhsalError(r *request.Request) {
+func copyMultipartStatusOKUnmarshalError(r *request.Request) {
 	b, err := ioutil.ReadAll(r.HTTPResponse.Body)
 	if err != nil {
 		r.Error = awserr.NewRequestFailure(
@@ -21,6 +21,8 @@ func copyMultipartStatusOKUnmarhsalError(r *request.Request) {
 		)
 		return
 	}
+	r.HTTPResponse.Body.Close()
+
 	body := bytes.NewReader(b)
 	r.HTTPResponse.Body = ioutil.NopCloser(body)
 	defer body.Seek(0, sdkio.SeekStart)
