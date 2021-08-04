@@ -13,15 +13,18 @@ import (
 
 func copyMultipartStatusOKUnmarshalError(r *request.Request) {
 	b, err := ioutil.ReadAll(r.HTTPResponse.Body)
+	r.HTTPResponse.Body.Close()
 	if err != nil {
 		r.Error = awserr.NewRequestFailure(
 			awserr.New(request.ErrCodeSerialization, "unable to read response body", err),
 			r.HTTPResponse.StatusCode,
 			r.RequestID,
 		)
+		// Note, some middleware later in the stack like restxml.Unmarshal expect a valid, non-closed Body
+		// even in case of an error, so we replace it with an empty Reader.
+		r.HTTPResponse.Body = ioutil.NopCloser(bytes.NewBuffer(nil))
 		return
 	}
-	r.HTTPResponse.Body.Close()
 
 	body := bytes.NewReader(b)
 	r.HTTPResponse.Body = ioutil.NopCloser(body)
