@@ -1621,6 +1621,13 @@
         "NextToken":{"shape":"XmlString"}
       }
     },
+    "DesiredConfiguration":{
+      "type":"structure",
+      "members":{
+        "LaunchTemplate":{"shape":"LaunchTemplateSpecification"},
+        "MixedInstancesPolicy":{"shape":"MixedInstancesPolicy"}
+      }
+    },
     "DetachInstancesAnswer":{
       "type":"structure",
       "members":{
@@ -1888,7 +1895,9 @@
         "EndTime":{"shape":"TimestampType"},
         "PercentageComplete":{"shape":"IntPercent"},
         "InstancesToUpdate":{"shape":"InstancesToUpdate"},
-        "ProgressDetails":{"shape":"InstanceRefreshProgressDetails"}
+        "ProgressDetails":{"shape":"InstanceRefreshProgressDetails"},
+        "Preferences":{"shape":"RefreshPreferences"},
+        "DesiredConfiguration":{"shape":"DesiredConfiguration"}
       }
     },
     "InstanceRefreshIds":{
@@ -2606,7 +2615,8 @@
         "MinHealthyPercentage":{"shape":"IntPercent"},
         "InstanceWarmup":{"shape":"RefreshInstanceWarmup"},
         "CheckpointPercentages":{"shape":"CheckpointPercentages"},
-        "CheckpointDelay":{"shape":"CheckpointDelay"}
+        "CheckpointDelay":{"shape":"CheckpointDelay"},
+        "SkipMatching":{"shape":"SkipMatching"}
       }
     },
     "RefreshStrategy":{
@@ -2815,6 +2825,7 @@
     },
     "ShouldDecrementDesiredCapacity":{"type":"boolean"},
     "ShouldRespectGracePeriod":{"type":"boolean"},
+    "SkipMatching":{"type":"boolean"},
     "SpotInstancePools":{"type":"integer"},
     "SpotPrice":{
       "type":"string",
@@ -2833,6 +2844,7 @@
       "members":{
         "AutoScalingGroupName":{"shape":"XmlStringMaxLen255"},
         "Strategy":{"shape":"RefreshStrategy"},
+        "DesiredConfiguration":{"shape":"DesiredConfiguration"},
         "Preferences":{"shape":"RefreshPreferences"}
       }
     },

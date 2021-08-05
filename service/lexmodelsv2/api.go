@@ -5879,7 +5879,7 @@ func (s *BotAliasSummary) SetLastUpdatedDateTime(v time.Time) *BotAliasSummary {
 	return s
 }
 
-// Provided the identity of a the bot that was exported.
+// Provides the identity of a the bot that was exported.
 type BotExportSpecification struct {
 	_ struct{} `type:"structure"`
 
@@ -13636,6 +13636,11 @@ func (s *InputContext) SetName(v string) *InputContext {
 type IntentClosingSetting struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether an intent's closing response is used. When this field is
+	// false, the closing response isn't sent to the user and no closing input from
+	// the user is used. If the active field isn't specified, the default is true.
+	Active *bool `locationName:"active" type:"boolean"`
+
 	// The response that Amazon Lex sends to the user when the intent is complete.
 	//
 	// ClosingResponse is a required field
@@ -13670,6 +13675,12 @@ func (s *IntentClosingSetting) Validate() error {
 	return nil
 }
 
+// SetActive sets the Active field's value.
+func (s *IntentClosingSetting) SetActive(v bool) *IntentClosingSetting {
+	s.Active = &v
+	return s
+}
+
 // SetClosingResponse sets the ClosingResponse field's value.
 func (s *IntentClosingSetting) SetClosingResponse(v *ResponseSpecification) *IntentClosingSetting {
 	s.ClosingResponse = v
@@ -13680,6 +13691,12 @@ func (s *IntentClosingSetting) SetClosingResponse(v *ResponseSpecification) *Int
 // be fulfilled.
 type IntentConfirmationSetting struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies whether the intent's confirmation is sent to the user. When this
+	// field is false, confirmation and declination responses aren't sent and processing
+	// continues as if the responses aren't present. If the active field isn't specified,
+	// the default is true.
+	Active *bool `locationName:"active" type:"boolean"`
 
 	// When the user answers "no" to the question defined in promptSpecification,
 	// Amazon Lex responds with this response to acknowledge that the intent was
@@ -13735,6 +13752,12 @@ func (s *IntentConfirmationSetting) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActive sets the Active field's value.
+func (s *IntentConfirmationSetting) SetActive(v bool) *IntentConfirmationSetting {
+	s.Active = &v
+	return s
 }
 
 // SetDeclinationResponse sets the DeclinationResponse field's value.
@@ -20467,6 +20490,12 @@ func (s *VoiceSettings) SetVoiceId(v string) *VoiceSettings {
 type WaitAndContinueSpecification struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether the bot will wait for a user to respond. When this field
+	// is false, wait and continue responses for a slot aren't used and the bot
+	// expects an appropriate response within the configured timeout. If the active
+	// field isn't specified, the default is true.
+	Active *bool `locationName:"active" type:"boolean"`
+
 	// The response that Amazon Lex sends to indicate that the bot is ready to continue
 	// the conversation.
 	//
@@ -20523,6 +20552,12 @@ func (s *WaitAndContinueSpecification) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetActive sets the Active field's value.
+func (s *WaitAndContinueSpecification) SetActive(v bool) *WaitAndContinueSpecification {
+	s.Active = &v
+	return s
 }
 
 // SetContinueResponse sets the ContinueResponse field's value.

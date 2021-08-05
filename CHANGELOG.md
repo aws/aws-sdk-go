@@ -1,3 +1,11 @@
+Release v1.40.16 (2021-08-05)
+===
+
+### Service Client Updates
+* `service/autoscaling`: Updates service API and documentation
+  * EC2 Auto Scaling adds configuration checks and Launch Template validation to Instance Refresh.
+* `service/models.lex.v2`: Updates service API and documentation
+
 Release v1.40.15 (2021-08-04)
 ===
 
