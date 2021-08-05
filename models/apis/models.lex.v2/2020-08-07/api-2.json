@@ -2887,7 +2887,8 @@
       "type":"structure",
       "required":["closingResponse"],
       "members":{
-        "closingResponse":{"shape":"ResponseSpecification"}
+        "closingResponse":{"shape":"ResponseSpecification"},
+        "active":{"shape":"BoxedBoolean"}
       }
     },
     "IntentConfirmationSetting":{
@@ -2898,7 +2899,8 @@
       ],
       "members":{
         "promptSpecification":{"shape":"PromptSpecification"},
-        "declinationResponse":{"shape":"ResponseSpecification"}
+        "declinationResponse":{"shape":"ResponseSpecification"},
+        "active":{"shape":"BoxedBoolean"}
       }
     },
     "IntentFilter":{
@@ -3487,7 +3489,7 @@
     },
     "PriorityValue":{
       "type":"integer",
-      "max":25,
+      "max":100,
       "min":0
     },
     "PromptMaxRetries":{
@@ -4397,7 +4399,8 @@
       "members":{
         "waitingResponse":{"shape":"ResponseSpecification"},
         "continueResponse":{"shape":"ResponseSpecification"},
-        "stillWaitingResponse":{"shape":"StillWaitingResponseSpecification"}
+        "stillWaitingResponse":{"shape":"StillWaitingResponseSpecification"},
+        "active":{"shape":"BoxedBoolean"}
       }
     }
   }

@@ -188,7 +188,7 @@
       }
     },
     "BotExportSpecification": {
-      "base": "<p>Provided the identity of a the bot that was exported.</p>",
+      "base": "<p>Provides the identity of a the bot that was exported.</p>",
       "refs": {
         "ExportResourceSpecification$botExportSpecification": "<p>Parameters for exporting a bot.</p>"
       }
@@ -421,9 +421,12 @@
     "BoxedBoolean": {
       "base": null,
       "refs": {
+        "IntentClosingSetting$active": "<p>Specifies whether an intent's closing response is used. When this field is false, the closing response isn't sent to the user and no closing input from the user is used. If the <code>active</code> field isn't specified, the default is true.</p>",
+        "IntentConfirmationSetting$active": "<p>Specifies whether the intent's confirmation is sent to the user. When this field is false, confirmation and declination responses aren't sent and processing continues as if the responses aren't present. If the <code>active</code> field isn't specified, the default is true.</p>",
         "PromptSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech prompt from the bot.</p>",
         "ResponseSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech response from Amazon Lex.</p>",
-        "StillWaitingResponseSpecification$allowInterrupt": "<p>Indicates that the user can interrupt the response by speaking while the message is being played.</p>"
+        "StillWaitingResponseSpecification$allowInterrupt": "<p>Indicates that the user can interrupt the response by speaking while the message is being played.</p>",
+        "WaitAndContinueSpecification$active": "<p>Specifies whether the bot will wait for a user to respond. When this field is false, wait and continue responses for a slot aren't used and the bot expects an appropriate response within the configured timeout. If the <code>active</code> field isn't specified, the default is true.</p>"
       }
     },
     "BuildBotLocaleRequest": {
