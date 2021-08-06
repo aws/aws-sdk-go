@@ -807,6 +807,105 @@ func (c *Connect) AssociateSecurityKeyWithContext(ctx aws.Context, input *Associ
 	return out, req.Send()
 }
 
+const opCreateAgentStatus = "CreateAgentStatus"
+
+// CreateAgentStatusRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAgentStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAgentStatus for more information on using the CreateAgentStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAgentStatusRequest method.
+//    req, resp := client.CreateAgentStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateAgentStatus
+func (c *Connect) CreateAgentStatusRequest(input *CreateAgentStatusInput) (req *request.Request, output *CreateAgentStatusOutput) {
+	op := &request.Operation{
+		Name:       opCreateAgentStatus,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/agent-status/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateAgentStatusInput{}
+	}
+
+	output = &CreateAgentStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAgentStatus API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Creates an agent status for the specified Amazon Connect instance.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateAgentStatus for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateAgentStatus
+func (c *Connect) CreateAgentStatus(input *CreateAgentStatusInput) (*CreateAgentStatusOutput, error) {
+	req, out := c.CreateAgentStatusRequest(input)
+	return out, req.Send()
+}
+
+// CreateAgentStatusWithContext is the same as CreateAgentStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAgentStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateAgentStatusWithContext(ctx aws.Context, input *CreateAgentStatusInput, opts ...request.Option) (*CreateAgentStatusOutput, error) {
+	req, out := c.CreateAgentStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateContactFlow = "CreateContactFlow"
 
 // CreateContactFlowRequest generates a "aws/request.Request" representing the
@@ -905,6 +1004,105 @@ func (c *Connect) CreateContactFlow(input *CreateContactFlowInput) (*CreateConta
 // for more information on using Contexts.
 func (c *Connect) CreateContactFlowWithContext(ctx aws.Context, input *CreateContactFlowInput, opts ...request.Option) (*CreateContactFlowOutput, error) {
 	req, out := c.CreateContactFlowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateHoursOfOperation = "CreateHoursOfOperation"
+
+// CreateHoursOfOperationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateHoursOfOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateHoursOfOperation for more information on using the CreateHoursOfOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateHoursOfOperationRequest method.
+//    req, resp := client.CreateHoursOfOperationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateHoursOfOperation
+func (c *Connect) CreateHoursOfOperationRequest(input *CreateHoursOfOperationInput) (req *request.Request, output *CreateHoursOfOperationOutput) {
+	op := &request.Operation{
+		Name:       opCreateHoursOfOperation,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/hours-of-operations/{InstanceId}",
+	}
+
+	if input == nil {
+		input = &CreateHoursOfOperationInput{}
+	}
+
+	output = &CreateHoursOfOperationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Creates hours of operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation CreateHoursOfOperation for usage and error information.
+//
+// Returned Error Types:
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/CreateHoursOfOperation
+func (c *Connect) CreateHoursOfOperation(input *CreateHoursOfOperationInput) (*CreateHoursOfOperationOutput, error) {
+	req, out := c.CreateHoursOfOperationRequest(input)
+	return out, req.Send()
+}
+
+// CreateHoursOfOperationWithContext is the same as CreateHoursOfOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateHoursOfOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) CreateHoursOfOperationWithContext(ctx aws.Context, input *CreateHoursOfOperationInput, opts ...request.Option) (*CreateHoursOfOperationOutput, error) {
+	req, out := c.CreateHoursOfOperationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1685,6 +1883,100 @@ func (c *Connect) CreateUserHierarchyGroupWithContext(ctx aws.Context, input *Cr
 	return out, req.Send()
 }
 
+const opDeleteHoursOfOperation = "DeleteHoursOfOperation"
+
+// DeleteHoursOfOperationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteHoursOfOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteHoursOfOperation for more information on using the DeleteHoursOfOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteHoursOfOperationRequest method.
+//    req, resp := client.DeleteHoursOfOperationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteHoursOfOperation
+func (c *Connect) DeleteHoursOfOperationRequest(input *DeleteHoursOfOperationInput) (req *request.Request, output *DeleteHoursOfOperationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteHoursOfOperation,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+	}
+
+	if input == nil {
+		input = &DeleteHoursOfOperationInput{}
+	}
+
+	output = &DeleteHoursOfOperationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Deletes an hours of operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DeleteHoursOfOperation for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DeleteHoursOfOperation
+func (c *Connect) DeleteHoursOfOperation(input *DeleteHoursOfOperationInput) (*DeleteHoursOfOperationOutput, error) {
+	req, out := c.DeleteHoursOfOperationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteHoursOfOperationWithContext is the same as DeleteHoursOfOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteHoursOfOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DeleteHoursOfOperationWithContext(ctx aws.Context, input *DeleteHoursOfOperationInput, opts ...request.Option) (*DeleteHoursOfOperationOutput, error) {
+	req, out := c.DeleteHoursOfOperationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteInstance = "DeleteInstance"
 
 // DeleteInstanceRequest generates a "aws/request.Request" representing the
@@ -2237,6 +2529,99 @@ func (c *Connect) DeleteUserHierarchyGroup(input *DeleteUserHierarchyGroupInput)
 // for more information on using Contexts.
 func (c *Connect) DeleteUserHierarchyGroupWithContext(ctx aws.Context, input *DeleteUserHierarchyGroupInput, opts ...request.Option) (*DeleteUserHierarchyGroupOutput, error) {
 	req, out := c.DeleteUserHierarchyGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAgentStatus = "DescribeAgentStatus"
+
+// DescribeAgentStatusRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAgentStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAgentStatus for more information on using the DescribeAgentStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAgentStatusRequest method.
+//    req, resp := client.DescribeAgentStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeAgentStatus
+func (c *Connect) DescribeAgentStatusRequest(input *DescribeAgentStatusInput) (req *request.Request, output *DescribeAgentStatusOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAgentStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/agent-status/{InstanceId}/{AgentStatusId}",
+	}
+
+	if input == nil {
+		input = &DescribeAgentStatusInput{}
+	}
+
+	output = &DescribeAgentStatusOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAgentStatus API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Describes an agent status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation DescribeAgentStatus for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/DescribeAgentStatus
+func (c *Connect) DescribeAgentStatus(input *DescribeAgentStatusInput) (*DescribeAgentStatusOutput, error) {
+	req, out := c.DescribeAgentStatusRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAgentStatusWithContext is the same as DescribeAgentStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAgentStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) DescribeAgentStatusWithContext(ctx aws.Context, input *DescribeAgentStatusInput, opts ...request.Option) (*DescribeAgentStatusOutput, error) {
+	req, out := c.DescribeAgentStatusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4495,6 +4880,157 @@ func (c *Connect) GetMetricDataPagesWithContext(ctx aws.Context, input *GetMetri
 
 	for p.Next() {
 		if !fn(p.Page().(*GetMetricDataOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListAgentStatuses = "ListAgentStatuses"
+
+// ListAgentStatusesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAgentStatuses operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAgentStatuses for more information on using the ListAgentStatuses
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAgentStatusesRequest method.
+//    req, resp := client.ListAgentStatusesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListAgentStatuses
+func (c *Connect) ListAgentStatusesRequest(input *ListAgentStatusesInput) (req *request.Request, output *ListAgentStatusesOutput) {
+	op := &request.Operation{
+		Name:       opListAgentStatuses,
+		HTTPMethod: "GET",
+		HTTPPath:   "/agent-status/{InstanceId}",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAgentStatusesInput{}
+	}
+
+	output = &ListAgentStatusesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAgentStatuses API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Lists agent statuses.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation ListAgentStatuses for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/ListAgentStatuses
+func (c *Connect) ListAgentStatuses(input *ListAgentStatusesInput) (*ListAgentStatusesOutput, error) {
+	req, out := c.ListAgentStatusesRequest(input)
+	return out, req.Send()
+}
+
+// ListAgentStatusesWithContext is the same as ListAgentStatuses with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAgentStatuses for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListAgentStatusesWithContext(ctx aws.Context, input *ListAgentStatusesInput, opts ...request.Option) (*ListAgentStatusesOutput, error) {
+	req, out := c.ListAgentStatusesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAgentStatusesPages iterates over the pages of a ListAgentStatuses operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAgentStatuses method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAgentStatuses operation.
+//    pageNum := 0
+//    err := client.ListAgentStatusesPages(params,
+//        func(page *connect.ListAgentStatusesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Connect) ListAgentStatusesPages(input *ListAgentStatusesInput, fn func(*ListAgentStatusesOutput, bool) bool) error {
+	return c.ListAgentStatusesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAgentStatusesPagesWithContext same as ListAgentStatusesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) ListAgentStatusesPagesWithContext(ctx aws.Context, input *ListAgentStatusesInput, fn func(*ListAgentStatusesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAgentStatusesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAgentStatusesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAgentStatusesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -8755,7 +9291,7 @@ func (c *Connect) TagResourceRequest(input *TagResourceInput) (req *request.Requ
 // Adds the specified tags to the specified resource.
 //
 // The supported resource types are users, routing profiles, queues, quick connects,
-// and contact flows.
+// contact flows, agent status, and hours of operation.
 //
 // For sample policies that use tags, see Amazon Connect Identity-Based Policy
 // Examples (https://docs.aws.amazon.com/connect/latest/adminguide/security_iam_id-based-policy-examples.html)
@@ -8893,6 +9429,106 @@ func (c *Connect) UntagResource(input *UntagResourceInput) (*UntagResourceOutput
 // for more information on using Contexts.
 func (c *Connect) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateAgentStatus = "UpdateAgentStatus"
+
+// UpdateAgentStatusRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateAgentStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateAgentStatus for more information on using the UpdateAgentStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateAgentStatusRequest method.
+//    req, resp := client.UpdateAgentStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateAgentStatus
+func (c *Connect) UpdateAgentStatusRequest(input *UpdateAgentStatusInput) (req *request.Request, output *UpdateAgentStatusOutput) {
+	op := &request.Operation{
+		Name:       opUpdateAgentStatus,
+		HTTPMethod: "POST",
+		HTTPPath:   "/agent-status/{InstanceId}/{AgentStatusId}",
+	}
+
+	if input == nil {
+		input = &UpdateAgentStatusInput{}
+	}
+
+	output = &UpdateAgentStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateAgentStatus API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates agent status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateAgentStatus for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * LimitExceededException
+//   The allowed limit for the resource has been exceeded.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateAgentStatus
+func (c *Connect) UpdateAgentStatus(input *UpdateAgentStatusInput) (*UpdateAgentStatusOutput, error) {
+	req, out := c.UpdateAgentStatusRequest(input)
+	return out, req.Send()
+}
+
+// UpdateAgentStatusWithContext is the same as UpdateAgentStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateAgentStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateAgentStatusWithContext(ctx aws.Context, input *UpdateAgentStatusInput, opts ...request.Option) (*UpdateAgentStatusOutput, error) {
+	req, out := c.UpdateAgentStatusRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9201,6 +9837,103 @@ func (c *Connect) UpdateContactFlowName(input *UpdateContactFlowNameInput) (*Upd
 // for more information on using Contexts.
 func (c *Connect) UpdateContactFlowNameWithContext(ctx aws.Context, input *UpdateContactFlowNameInput, opts ...request.Option) (*UpdateContactFlowNameOutput, error) {
 	req, out := c.UpdateContactFlowNameRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateHoursOfOperation = "UpdateHoursOfOperation"
+
+// UpdateHoursOfOperationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateHoursOfOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateHoursOfOperation for more information on using the UpdateHoursOfOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateHoursOfOperationRequest method.
+//    req, resp := client.UpdateHoursOfOperationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateHoursOfOperation
+func (c *Connect) UpdateHoursOfOperationRequest(input *UpdateHoursOfOperationInput) (req *request.Request, output *UpdateHoursOfOperationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateHoursOfOperation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/hours-of-operations/{InstanceId}/{HoursOfOperationId}",
+	}
+
+	if input == nil {
+		input = &UpdateHoursOfOperationInput{}
+	}
+
+	output = &UpdateHoursOfOperationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateHoursOfOperation API operation for Amazon Connect Service.
+//
+// This API is in preview release for Amazon Connect and is subject to change.
+//
+// Updates the hours of operation.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Connect Service's
+// API operation UpdateHoursOfOperation for usage and error information.
+//
+// Returned Error Types:
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * InvalidParameterException
+//   One or more of the specified parameters are not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InternalServiceException
+//   Request processing failed because of an error or failure with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/connect-2017-08-08/UpdateHoursOfOperation
+func (c *Connect) UpdateHoursOfOperation(input *UpdateHoursOfOperationInput) (*UpdateHoursOfOperationOutput, error) {
+	req, out := c.UpdateHoursOfOperationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateHoursOfOperationWithContext is the same as UpdateHoursOfOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateHoursOfOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Connect) UpdateHoursOfOperationWithContext(ctx aws.Context, input *UpdateHoursOfOperationInput, opts ...request.Option) (*UpdateHoursOfOperationOutput, error) {
+	req, out := c.UpdateHoursOfOperationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -11087,6 +11820,144 @@ func (c *Connect) UpdateUserSecurityProfilesWithContext(ctx aws.Context, input *
 	return out, req.Send()
 }
 
+// Contains information about an agent status.
+type AgentStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the agent status.
+	AgentStatusARN *string `type:"string"`
+
+	// The identifier of the agent status.
+	AgentStatusId *string `type:"string"`
+
+	// The description of the agent status.
+	Description *string `min:"1" type:"string"`
+
+	// The display order of the agent status.
+	DisplayOrder *int64 `min:"1" type:"integer"`
+
+	// The name of the agent status.
+	Name *string `min:"1" type:"string"`
+
+	// The state of the agent status.
+	State *string `type:"string" enum:"AgentStatusState"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The type of agent status.
+	Type *string `type:"string" enum:"AgentStatusType"`
+}
+
+// String returns the string representation
+func (s AgentStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AgentStatus) GoString() string {
+	return s.String()
+}
+
+// SetAgentStatusARN sets the AgentStatusARN field's value.
+func (s *AgentStatus) SetAgentStatusARN(v string) *AgentStatus {
+	s.AgentStatusARN = &v
+	return s
+}
+
+// SetAgentStatusId sets the AgentStatusId field's value.
+func (s *AgentStatus) SetAgentStatusId(v string) *AgentStatus {
+	s.AgentStatusId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AgentStatus) SetDescription(v string) *AgentStatus {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayOrder sets the DisplayOrder field's value.
+func (s *AgentStatus) SetDisplayOrder(v int64) *AgentStatus {
+	s.DisplayOrder = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AgentStatus) SetName(v string) *AgentStatus {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AgentStatus) SetState(v string) *AgentStatus {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *AgentStatus) SetTags(v map[string]*string) *AgentStatus {
+	s.Tags = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AgentStatus) SetType(v string) *AgentStatus {
+	s.Type = &v
+	return s
+}
+
+// Summary information for an agent status.
+type AgentStatusSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the agent status.
+	Arn *string `type:"string"`
+
+	// The identifier for an agent status.
+	Id *string `type:"string"`
+
+	// The name of the agent status.
+	Name *string `min:"1" type:"string"`
+
+	// The type of the agent status.
+	Type *string `type:"string" enum:"AgentStatusType"`
+}
+
+// String returns the string representation
+func (s AgentStatusSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AgentStatusSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AgentStatusSummary) SetArn(v string) *AgentStatusSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AgentStatusSummary) SetId(v string) *AgentStatusSummary {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AgentStatusSummary) SetName(v string) *AgentStatusSummary {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AgentStatusSummary) SetType(v string) *AgentStatusSummary {
+	s.Type = &v
+	return s
+}
+
 type AssociateApprovedOriginInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12091,6 +12962,147 @@ func (s *ContactNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateAgentStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The description of the status.
+	Description *string `min:"1" type:"string"`
+
+	// The display order of the status.
+	DisplayOrder *int64 `min:"1" type:"integer"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the status.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The state of the status.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"AgentStatusState"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation
+func (s CreateAgentStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAgentStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAgentStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAgentStatusInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DisplayOrder != nil && *s.DisplayOrder < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DisplayOrder", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateAgentStatusInput) SetDescription(v string) *CreateAgentStatusInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayOrder sets the DisplayOrder field's value.
+func (s *CreateAgentStatusInput) SetDisplayOrder(v int64) *CreateAgentStatusInput {
+	s.DisplayOrder = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateAgentStatusInput) SetInstanceId(v string) *CreateAgentStatusInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateAgentStatusInput) SetName(v string) *CreateAgentStatusInput {
+	s.Name = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *CreateAgentStatusInput) SetState(v string) *CreateAgentStatusInput {
+	s.State = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateAgentStatusInput) SetTags(v map[string]*string) *CreateAgentStatusInput {
+	s.Tags = v
+	return s
+}
+
+type CreateAgentStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the agent status.
+	AgentStatusARN *string `type:"string"`
+
+	// The identifier of the agent status.
+	AgentStatusId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateAgentStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateAgentStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentStatusARN sets the AgentStatusARN field's value.
+func (s *CreateAgentStatusOutput) SetAgentStatusARN(v string) *CreateAgentStatusOutput {
+	s.AgentStatusARN = &v
+	return s
+}
+
+// SetAgentStatusId sets the AgentStatusId field's value.
+func (s *CreateAgentStatusOutput) SetAgentStatusId(v string) *CreateAgentStatusOutput {
+	s.AgentStatusId = &v
+	return s
+}
+
 type CreateContactFlowInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12229,6 +13241,160 @@ func (s *CreateContactFlowOutput) SetContactFlowArn(v string) *CreateContactFlow
 // SetContactFlowId sets the ContactFlowId field's value.
 func (s *CreateContactFlowOutput) SetContactFlowId(v string) *CreateContactFlowOutput {
 	s.ContactFlowId = &v
+	return s
+}
+
+type CreateHoursOfOperationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information for the hours of operation: day, start time, and
+	// end time.
+	//
+	// Config is a required field
+	Config []*HoursOfOperationConfig `type:"list" required:"true"`
+
+	// The description of the hours of operation.
+	Description *string `min:"1" type:"string"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the hours of operation.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+
+	// The time zone of the hours of operation.
+	//
+	// TimeZone is a required field
+	TimeZone *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateHoursOfOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateHoursOfOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateHoursOfOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateHoursOfOperationInput"}
+	if s.Config == nil {
+		invalidParams.Add(request.NewErrParamRequired("Config"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.TimeZone == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeZone"))
+	}
+	if s.Config != nil {
+		for i, v := range s.Config {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Config", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfig sets the Config field's value.
+func (s *CreateHoursOfOperationInput) SetConfig(v []*HoursOfOperationConfig) *CreateHoursOfOperationInput {
+	s.Config = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateHoursOfOperationInput) SetDescription(v string) *CreateHoursOfOperationInput {
+	s.Description = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *CreateHoursOfOperationInput) SetInstanceId(v string) *CreateHoursOfOperationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateHoursOfOperationInput) SetName(v string) *CreateHoursOfOperationInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateHoursOfOperationInput) SetTags(v map[string]*string) *CreateHoursOfOperationInput {
+	s.Tags = v
+	return s
+}
+
+// SetTimeZone sets the TimeZone field's value.
+func (s *CreateHoursOfOperationInput) SetTimeZone(v string) *CreateHoursOfOperationInput {
+	s.TimeZone = &v
+	return s
+}
+
+type CreateHoursOfOperationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the hours of operation.
+	HoursOfOperationArn *string `type:"string"`
+
+	// The identifier for the hours of operation.
+	HoursOfOperationId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateHoursOfOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateHoursOfOperationOutput) GoString() string {
+	return s.String()
+}
+
+// SetHoursOfOperationArn sets the HoursOfOperationArn field's value.
+func (s *CreateHoursOfOperationOutput) SetHoursOfOperationArn(v string) *CreateHoursOfOperationOutput {
+	s.HoursOfOperationArn = &v
+	return s
+}
+
+// SetHoursOfOperationId sets the HoursOfOperationId field's value.
+func (s *CreateHoursOfOperationOutput) SetHoursOfOperationId(v string) *CreateHoursOfOperationOutput {
+	s.HoursOfOperationId = &v
 	return s
 }
 
@@ -13583,6 +14749,79 @@ func (s *CurrentMetricResult) SetDimensions(v *Dimensions) *CurrentMetricResult 
 	return s
 }
 
+type DeleteHoursOfOperationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the hours of operation.
+	//
+	// HoursOfOperationId is a required field
+	HoursOfOperationId *string `location:"uri" locationName:"HoursOfOperationId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteHoursOfOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHoursOfOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteHoursOfOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteHoursOfOperationInput"}
+	if s.HoursOfOperationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HoursOfOperationId"))
+	}
+	if s.HoursOfOperationId != nil && len(*s.HoursOfOperationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HoursOfOperationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHoursOfOperationId sets the HoursOfOperationId field's value.
+func (s *DeleteHoursOfOperationInput) SetHoursOfOperationId(v string) *DeleteHoursOfOperationInput {
+	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DeleteHoursOfOperationInput) SetInstanceId(v string) *DeleteHoursOfOperationInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DeleteHoursOfOperationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteHoursOfOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteHoursOfOperationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteInstanceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14019,6 +15258,88 @@ func (s DeleteUserOutput) String() string {
 // GoString returns the string representation
 func (s DeleteUserOutput) GoString() string {
 	return s.String()
+}
+
+type DescribeAgentStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for the agent status.
+	//
+	// AgentStatusId is a required field
+	AgentStatusId *string `location:"uri" locationName:"AgentStatusId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeAgentStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAgentStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAgentStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAgentStatusInput"}
+	if s.AgentStatusId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentStatusId"))
+	}
+	if s.AgentStatusId != nil && len(*s.AgentStatusId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentStatusId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentStatusId sets the AgentStatusId field's value.
+func (s *DescribeAgentStatusInput) SetAgentStatusId(v string) *DescribeAgentStatusInput {
+	s.AgentStatusId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *DescribeAgentStatusInput) SetInstanceId(v string) *DescribeAgentStatusInput {
+	s.InstanceId = &v
+	return s
+}
+
+type DescribeAgentStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The agent status.
+	AgentStatus *AgentStatus `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeAgentStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeAgentStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentStatus sets the AgentStatus field's value.
+func (s *DescribeAgentStatusOutput) SetAgentStatus(v *AgentStatus) *DescribeAgentStatusOutput {
+	s.AgentStatus = v
+	return s
 }
 
 type DescribeContactFlowInput struct {
@@ -17082,7 +18403,7 @@ type HoursOfOperation struct {
 	Config []*HoursOfOperationConfig `type:"list"`
 
 	// The description for the hours of operation.
-	Description *string `type:"string"`
+	Description *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the hours of operation.
 	HoursOfOperationArn *string `type:"string"`
@@ -17157,13 +18478,19 @@ type HoursOfOperationConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The day that the hours of operation applies to.
-	Day *string `type:"string" enum:"HoursOfOperationDays"`
+	//
+	// Day is a required field
+	Day *string `type:"string" required:"true" enum:"HoursOfOperationDays"`
 
 	// The end time that your contact center is closes.
-	EndTime *HoursOfOperationTimeSlice `type:"structure"`
+	//
+	// EndTime is a required field
+	EndTime *HoursOfOperationTimeSlice `type:"structure" required:"true"`
 
 	// The start time that your contact center is open.
-	StartTime *HoursOfOperationTimeSlice `type:"structure"`
+	//
+	// StartTime is a required field
+	StartTime *HoursOfOperationTimeSlice `type:"structure" required:"true"`
 }
 
 // String returns the string representation
@@ -17174,6 +18501,35 @@ func (s HoursOfOperationConfig) String() string {
 // GoString returns the string representation
 func (s HoursOfOperationConfig) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HoursOfOperationConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HoursOfOperationConfig"}
+	if s.Day == nil {
+		invalidParams.Add(request.NewErrParamRequired("Day"))
+	}
+	if s.EndTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndTime"))
+	}
+	if s.StartTime == nil {
+		invalidParams.Add(request.NewErrParamRequired("StartTime"))
+	}
+	if s.EndTime != nil {
+		if err := s.EndTime.Validate(); err != nil {
+			invalidParams.AddNested("EndTime", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.StartTime != nil {
+		if err := s.StartTime.Validate(); err != nil {
+			invalidParams.AddNested("StartTime", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetDay sets the Day field's value.
@@ -17241,10 +18597,14 @@ type HoursOfOperationTimeSlice struct {
 	_ struct{} `type:"structure"`
 
 	// The hours.
-	Hours *int64 `type:"integer"`
+	//
+	// Hours is a required field
+	Hours *int64 `type:"integer" required:"true"`
 
 	// The minutes.
-	Minutes *int64 `type:"integer"`
+	//
+	// Minutes is a required field
+	Minutes *int64 `type:"integer" required:"true"`
 }
 
 // String returns the string representation
@@ -17255,6 +18615,22 @@ func (s HoursOfOperationTimeSlice) String() string {
 // GoString returns the string representation
 func (s HoursOfOperationTimeSlice) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HoursOfOperationTimeSlice) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HoursOfOperationTimeSlice"}
+	if s.Hours == nil {
+		invalidParams.Add(request.NewErrParamRequired("Hours"))
+	}
+	if s.Minutes == nil {
+		invalidParams.Add(request.NewErrParamRequired("Minutes"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetHours sets the Hours field's value.
@@ -18235,6 +19611,111 @@ func (s *LimitExceededException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListAgentStatusesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Available agent status types.
+	AgentStatusTypes []*string `location:"querystring" locationName:"AgentStatusTypes" type:"list"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListAgentStatusesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAgentStatusesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAgentStatusesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAgentStatusesInput"}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentStatusTypes sets the AgentStatusTypes field's value.
+func (s *ListAgentStatusesInput) SetAgentStatusTypes(v []*string) *ListAgentStatusesInput {
+	s.AgentStatusTypes = v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *ListAgentStatusesInput) SetInstanceId(v string) *ListAgentStatusesInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAgentStatusesInput) SetMaxResults(v int64) *ListAgentStatusesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAgentStatusesInput) SetNextToken(v string) *ListAgentStatusesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListAgentStatusesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A summary of agent statuses.
+	AgentStatusSummaryList []*AgentStatusSummary `type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListAgentStatusesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAgentStatusesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAgentStatusSummaryList sets the AgentStatusSummaryList field's value.
+func (s *ListAgentStatusesOutput) SetAgentStatusSummaryList(v []*AgentStatusSummary) *ListAgentStatusesOutput {
+	s.AgentStatusSummaryList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAgentStatusesOutput) SetNextToken(v string) *ListAgentStatusesOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListApprovedOriginsInput struct {
@@ -23298,6 +24779,130 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateAgentStatusInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the agent status.
+	//
+	// AgentStatusId is a required field
+	AgentStatusId *string `location:"uri" locationName:"AgentStatusId" type:"string" required:"true"`
+
+	// The description of the agent status.
+	Description *string `type:"string"`
+
+	// The display order of the agent status.
+	DisplayOrder *int64 `min:"1" type:"integer"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the agent status.
+	Name *string `min:"1" type:"string"`
+
+	// A number indicating the reset order of the agent status.
+	ResetOrderNumber *bool `type:"boolean"`
+
+	// The state of the agent status.
+	State *string `type:"string" enum:"AgentStatusState"`
+}
+
+// String returns the string representation
+func (s UpdateAgentStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAgentStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateAgentStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateAgentStatusInput"}
+	if s.AgentStatusId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AgentStatusId"))
+	}
+	if s.AgentStatusId != nil && len(*s.AgentStatusId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AgentStatusId", 1))
+	}
+	if s.DisplayOrder != nil && *s.DisplayOrder < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DisplayOrder", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAgentStatusId sets the AgentStatusId field's value.
+func (s *UpdateAgentStatusInput) SetAgentStatusId(v string) *UpdateAgentStatusInput {
+	s.AgentStatusId = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateAgentStatusInput) SetDescription(v string) *UpdateAgentStatusInput {
+	s.Description = &v
+	return s
+}
+
+// SetDisplayOrder sets the DisplayOrder field's value.
+func (s *UpdateAgentStatusInput) SetDisplayOrder(v int64) *UpdateAgentStatusInput {
+	s.DisplayOrder = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateAgentStatusInput) SetInstanceId(v string) *UpdateAgentStatusInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateAgentStatusInput) SetName(v string) *UpdateAgentStatusInput {
+	s.Name = &v
+	return s
+}
+
+// SetResetOrderNumber sets the ResetOrderNumber field's value.
+func (s *UpdateAgentStatusInput) SetResetOrderNumber(v bool) *UpdateAgentStatusInput {
+	s.ResetOrderNumber = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *UpdateAgentStatusInput) SetState(v string) *UpdateAgentStatusInput {
+	s.State = &v
+	return s
+}
+
+type UpdateAgentStatusOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateAgentStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateAgentStatusOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateContactAttributesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -23568,6 +25173,128 @@ func (s UpdateContactFlowNameOutput) String() string {
 
 // GoString returns the string representation
 func (s UpdateContactFlowNameOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateHoursOfOperationInput struct {
+	_ struct{} `type:"structure"`
+
+	// Configuration information of the hours of operation.
+	Config []*HoursOfOperationConfig `type:"list"`
+
+	// The description of the hours of operation.
+	Description *string `type:"string"`
+
+	// The identifier of the hours of operation.
+	//
+	// HoursOfOperationId is a required field
+	HoursOfOperationId *string `location:"uri" locationName:"HoursOfOperationId" type:"string" required:"true"`
+
+	// The identifier of the Amazon Connect instance. You can find the instanceId
+	// in the ARN of the instance.
+	//
+	// InstanceId is a required field
+	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
+
+	// The name of the hours of operation.
+	Name *string `min:"1" type:"string"`
+
+	// The time zone of the hours of operation.
+	TimeZone *string `type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateHoursOfOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHoursOfOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateHoursOfOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateHoursOfOperationInput"}
+	if s.HoursOfOperationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("HoursOfOperationId"))
+	}
+	if s.HoursOfOperationId != nil && len(*s.HoursOfOperationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("HoursOfOperationId", 1))
+	}
+	if s.InstanceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("InstanceId"))
+	}
+	if s.InstanceId != nil && len(*s.InstanceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InstanceId", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Config != nil {
+		for i, v := range s.Config {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Config", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetConfig sets the Config field's value.
+func (s *UpdateHoursOfOperationInput) SetConfig(v []*HoursOfOperationConfig) *UpdateHoursOfOperationInput {
+	s.Config = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateHoursOfOperationInput) SetDescription(v string) *UpdateHoursOfOperationInput {
+	s.Description = &v
+	return s
+}
+
+// SetHoursOfOperationId sets the HoursOfOperationId field's value.
+func (s *UpdateHoursOfOperationInput) SetHoursOfOperationId(v string) *UpdateHoursOfOperationInput {
+	s.HoursOfOperationId = &v
+	return s
+}
+
+// SetInstanceId sets the InstanceId field's value.
+func (s *UpdateHoursOfOperationInput) SetInstanceId(v string) *UpdateHoursOfOperationInput {
+	s.InstanceId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateHoursOfOperationInput) SetName(v string) *UpdateHoursOfOperationInput {
+	s.Name = &v
+	return s
+}
+
+// SetTimeZone sets the TimeZone field's value.
+func (s *UpdateHoursOfOperationInput) SetTimeZone(v string) *UpdateHoursOfOperationInput {
+	s.TimeZone = &v
+	return s
+}
+
+type UpdateHoursOfOperationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateHoursOfOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateHoursOfOperationOutput) GoString() string {
 	return s.String()
 }
 
@@ -25836,6 +27563,42 @@ func (s VoiceRecordingConfiguration) GoString() string {
 func (s *VoiceRecordingConfiguration) SetVoiceRecordingTrack(v string) *VoiceRecordingConfiguration {
 	s.VoiceRecordingTrack = &v
 	return s
+}
+
+const (
+	// AgentStatusStateEnabled is a AgentStatusState enum value
+	AgentStatusStateEnabled = "ENABLED"
+
+	// AgentStatusStateDisabled is a AgentStatusState enum value
+	AgentStatusStateDisabled = "DISABLED"
+)
+
+// AgentStatusState_Values returns all elements of the AgentStatusState enum
+func AgentStatusState_Values() []string {
+	return []string{
+		AgentStatusStateEnabled,
+		AgentStatusStateDisabled,
+	}
+}
+
+const (
+	// AgentStatusTypeRoutable is a AgentStatusType enum value
+	AgentStatusTypeRoutable = "ROUTABLE"
+
+	// AgentStatusTypeCustom is a AgentStatusType enum value
+	AgentStatusTypeCustom = "CUSTOM"
+
+	// AgentStatusTypeOffline is a AgentStatusType enum value
+	AgentStatusTypeOffline = "OFFLINE"
+)
+
+// AgentStatusType_Values returns all elements of the AgentStatusType enum
+func AgentStatusType_Values() []string {
+	return []string{
+		AgentStatusTypeRoutable,
+		AgentStatusTypeCustom,
+		AgentStatusTypeOffline,
+	}
 }
 
 const (

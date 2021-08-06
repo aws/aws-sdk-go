@@ -1,3 +1,16 @@
+Release v1.40.17 (2021-08-06)
+===
+
+### Service Client Updates
+* `service/athena`: Updates service documentation
+  * Documentation updates for Athena.
+* `service/chime-sdk-identity`: Adds new service
+* `service/chime-sdk-messaging`: Adds new service
+* `service/connect`: Updates service API, documentation, and paginators
+* `service/lightsail`: Updates service API and documentation
+  * This release adds support to track when a bucket access key was last used.
+* `service/synthetics`: Updates service documentation
+
 Release v1.40.16 (2021-08-05)
 ===
 

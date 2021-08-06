@@ -240,7 +240,8 @@ func (c *Athena) CreateDataCatalogRequest(input *CreateDataCatalogInput) (req *r
 // CreateDataCatalog API operation for Amazon Athena.
 //
 // Creates (registers) a data catalog with the specified name and properties.
-// Catalogs created are visible to all users of the same AWS account.
+// Catalogs created are visible to all users of the same Amazon Web Services
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -327,9 +328,9 @@ func (c *Athena) CreateNamedQueryRequest(input *CreateNamedQueryInput) (req *req
 // Creates a named query in the specified workgroup. Requires that you have
 // access to the workgroup.
 //
-// For code samples using the AWS SDK for Java, see Examples and Code Samples
-// (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html) in the Amazon
-// Athena User Guide.
+// For code samples using the Amazon Web Services SDK for Java, see Examples
+// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
+// in the Amazon Athena User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -672,9 +673,9 @@ func (c *Athena) DeleteNamedQueryRequest(input *DeleteNamedQueryInput) (req *req
 // Deletes the named query if you have access to the workgroup in which the
 // query was saved.
 //
-// For code samples using the AWS SDK for Java, see Examples and Code Samples
-// (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html) in the Amazon
-// Athena User Guide.
+// For code samples using the Amazon Web Services SDK for Java, see Examples
+// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
+// in the Amazon Athena User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1704,7 +1705,7 @@ func (c *Athena) ListDataCatalogsRequest(input *ListDataCatalogsInput) (req *req
 
 // ListDataCatalogs API operation for Amazon Athena.
 //
-// Lists the data catalogs in the current AWS account.
+// Lists the data catalogs in the current Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2084,9 +2085,9 @@ func (c *Athena) ListNamedQueriesRequest(input *ListNamedQueriesInput) (req *req
 // workgroup. Requires that you have access to the specified workgroup. If a
 // workgroup is not specified, lists the saved queries for the primary workgroup.
 //
-// For code samples using the AWS SDK for Java, see Examples and Code Samples
-// (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html) in the Amazon
-// Athena User Guide.
+// For code samples using the Amazon Web Services SDK for Java, see Examples
+// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
+// in the Amazon Athena User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2375,9 +2376,9 @@ func (c *Athena) ListQueryExecutionsRequest(input *ListQueryExecutionsInput) (re
 // IDs for the primary workgroup. Requires you to have access to the workgroup
 // in which the queries ran.
 //
-// For code samples using the AWS SDK for Java, see Examples and Code Samples
-// (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html) in the Amazon
-// Athena User Guide.
+// For code samples using the Amazon Web Services SDK for Java, see Examples
+// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
+// in the Amazon Athena User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2952,8 +2953,9 @@ func (c *Athena) StartQueryExecutionRequest(input *StartQueryExecutionInput) (re
 // Runs the SQL query statements contained in the Query. Requires you to have
 // access to the workgroup in which the query ran. Running queries against an
 // external catalog requires GetDataCatalog permission to the catalog. For code
-// samples using the AWS SDK for Java, see Examples and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
-// in the Amazon Athena User Guide.
+// samples using the Amazon Web Services SDK for Java, see Examples and Code
+// Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html) in
+// the Amazon Athena User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3044,9 +3046,9 @@ func (c *Athena) StopQueryExecutionRequest(input *StopQueryExecutionInput) (req 
 // Stops a query execution. Requires you to have access to the workgroup in
 // which the query ran.
 //
-// For code samples using the AWS SDK for Java, see Examples and Code Samples
-// (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html) in the Amazon
-// Athena User Guide.
+// For code samples using the Amazon Web Services SDK for Java, see Examples
+// and Code Samples (http://docs.aws.amazon.com/athena/latest/ug/code-samples.html)
+// in the Amazon Athena User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3840,8 +3842,8 @@ type CreateDataCatalogInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The name of the data catalog to create. The catalog name must be unique for
-	// the AWS account and can use a maximum of 128 alphanumeric, underscore, at
-	// sign, or hyphen characters.
+	// the Amazon Web Services account and can use a maximum of 128 alphanumeric,
+	// underscore, at sign, or hyphen characters.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -3859,17 +3861,23 @@ type CreateDataCatalogInput struct {
 	//    Both parameters are required. metadata-function=lambda_arn, record-function=lambda_arn
 	//    If you have a composite Lambda function that processes both metadata and
 	//    data, use the following syntax to specify your Lambda function. function=lambda_arn
+	//
+	//    * The GLUE type takes a catalog ID parameter and is required. The catalog_id
+	//    is the account ID of the Amazon Web Services account to which the Glue
+	//    Data Catalog belongs. catalog-id=catalog_id The GLUE data catalog type
+	//    also applies to the default AwsDataCatalog that already exists in your
+	//    account, of which you can have only one and cannot modify. Queries that
+	//    specify a Glue Data Catalog other than the default AwsDataCatalog must
+	//    be run on Athena engine version 2. In Regions where Athena engine version
+	//    2 is not available, creating new Glue data catalogs results in an INVALID_INPUT
+	//    error.
 	Parameters map[string]*string `type:"map"`
 
 	// A list of comma separated tags to add to the data catalog that is created.
 	Tags []*Tag `type:"list"`
 
-	// The type of data catalog to create: LAMBDA for a federated catalog or HIVE
-	// for an external hive metastore.
-	//
-	// Do not use the GLUE type. This refers to the AwsDataCatalog that already
-	// exists in your account, of which you can have only one. Specifying the GLUE
-	// type will result in an INVALID_INPUT error.
+	// The type of data catalog to create: LAMBDA for a federated catalog, HIVE
+	// for an external hive metastore, or GLUE for an Glue Data Catalog.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataCatalogType"`
@@ -3969,9 +3977,10 @@ type CreateNamedQueryInput struct {
 	// received, the same response is returned and another query is not created.
 	// If a parameter has changed, for example, the QueryString, an error is returned.
 	//
-	// This token is listed as not required because AWS SDKs (for example the AWS
-	// SDK for Java) auto-generate the token for users. If you are not using the
-	// AWS SDK or the AWS CLI, you must provide this token or the action will fail.
+	// This token is listed as not required because Amazon Web Services SDKs (for
+	// example the Amazon Web Services SDK for Java) auto-generate the token for
+	// users. If you are not using the Amazon Web Services SDK or the Amazon Web
+	// Services CLI, you must provide this token or the action will fail.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
 	// The database to which the query belongs.
@@ -4297,16 +4306,16 @@ func (s CreateWorkGroupOutput) GoString() string {
 	return s.String()
 }
 
-// Contains information about a data catalog in an AWS account.
+// Contains information about a data catalog in an Amazon Web Services account.
 type DataCatalog struct {
 	_ struct{} `type:"structure"`
 
 	// An optional description of the data catalog.
 	Description *string `min:"1" type:"string"`
 
-	// The name of the data catalog. The catalog name must be unique for the AWS
-	// account and can use a maximum of 128 alphanumeric, underscore, at sign, or
-	// hyphen characters.
+	// The name of the data catalog. The catalog name must be unique for the Amazon
+	// Web Services account and can use a maximum of 128 alphanumeric, underscore,
+	// at sign, or hyphen characters.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -4324,11 +4333,18 @@ type DataCatalog struct {
 	//    Both parameters are required. metadata-function=lambda_arn, record-function=lambda_arn
 	//    If you have a composite Lambda function that processes both metadata and
 	//    data, use the following syntax to specify your Lambda function. function=lambda_arn
+	//
+	//    * The GLUE type takes a catalog ID parameter and is required. The catalog_id
+	//    is the account ID of the Amazon Web Services account to which the Glue
+	//    catalog belongs. catalog-id=catalog_id The GLUE data catalog type also
+	//    applies to the default AwsDataCatalog that already exists in your account,
+	//    of which you can have only one and cannot modify. Queries that specify
+	//    a Glue Data Catalog other than the default AwsDataCatalog must be run
+	//    on Athena engine version 2.
 	Parameters map[string]*string `type:"map"`
 
-	// The type of data catalog: LAMBDA for a federated catalog or HIVE for an external
-	// hive metastore. GLUE refers to the AwsDataCatalog that already exists in
-	// your account, of which you can have only one.
+	// The type of data catalog to create: LAMBDA for a federated catalog, HIVE
+	// for an external hive metastore, or GLUE for an Glue Data Catalog.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataCatalogType"`
@@ -6667,7 +6683,7 @@ type QueryExecution struct {
 	// The type of query statement that was run. DDL indicates DDL query statements.
 	// DML indicates DML (Data Manipulation Language) query statements, such as
 	// CREATE TABLE AS SELECT. UTILITY indicates query statements other than DDL
-	// and DML, such as SHOW CREATE TABLE, or DESCRIBE <table>.
+	// and DML, such as SHOW CREATE TABLE, or DESCRIBE TABLE.
 	StatementType *string `type:"string" enum:"StatementType"`
 
 	// Query execution statistics, such as the amount of data scanned, the amount
@@ -6754,7 +6770,8 @@ type QueryExecutionContext struct {
 	// The name of the data catalog used in the query execution.
 	Catalog *string `min:"1" type:"string"`
 
-	// The name of the database used in the query execution.
+	// The name of the database used in the query execution. The database must exist
+	// in the catalog.
 	Database *string `min:"1" type:"string"`
 }
 
@@ -7248,9 +7265,10 @@ type StartQueryExecutionInput struct {
 	// is received, the same response is returned and another query is not created.
 	// If a parameter has changed, for example, the QueryString, an error is returned.
 	//
-	// This token is listed as not required because AWS SDKs (for example the AWS
-	// SDK for Java) auto-generate the token for users. If you are not using the
-	// AWS SDK or the AWS CLI, you must provide this token or the action will fail.
+	// This token is listed as not required because Amazon Web Services SDKs (for
+	// example the Amazon Web Services SDK for Java) auto-generate the token for
+	// users. If you are not using the Amazon Web Services SDK or the Amazon Web
+	// Services CLI, you must provide this token or the action will fail.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
 	// The database within which the query executes.
@@ -7847,8 +7865,8 @@ type UpdateDataCatalogInput struct {
 	Description *string `min:"1" type:"string"`
 
 	// The name of the data catalog to update. The catalog name must be unique for
-	// the AWS account and can use a maximum of 128 alphanumeric, underscore, at
-	// sign, or hyphen characters.
+	// the Amazon Web Services account and can use a maximum of 128 alphanumeric,
+	// underscore, at sign, or hyphen characters.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -7869,11 +7887,7 @@ type UpdateDataCatalogInput struct {
 	Parameters map[string]*string `type:"map"`
 
 	// Specifies the type of data catalog to update. Specify LAMBDA for a federated
-	// catalog or HIVE for an external hive metastore.
-	//
-	// Do not use the GLUE type. This refers to the AwsDataCatalog that already
-	// exists in your account, of which you can have only one. Specifying the GLUE
-	// type will result in an INVALID_INPUT error.
+	// catalog, HIVE for an external hive metastore, or GLUE for an Glue Data Catalog.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"DataCatalogType"`

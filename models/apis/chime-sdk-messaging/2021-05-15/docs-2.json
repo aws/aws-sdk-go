@@ -1,0 +1,870 @@
+{
+  "version": "2.0",
+  "service": "<p>The Amazon Chime SDK Messaging APIs in this section allow software developers to send and receive messages in custom messaging applications. These APIs depend on the frameworks provided by the Amazon Chime SDK Identity APIs. For more information about the messaging APIs, see .</p>",
+  "operations": {
+    "BatchCreateChannelMembership": "<p>Adds a specified number of users to a channel. </p>",
+    "CreateChannel": "<p>Creates a channel to which you can add users and send messages.</p> <p> <b>Restriction</b>: You can't change a channel's privacy.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateChannelBan": "<p>Permanently bans a member from a channel. Moderators can't add banned members to a channel. To undo a ban, you first have to <code>DeleteChannelBan</code>, and then <code>CreateChannelMembership</code>. Bans are cleaned up when you delete users or channels.</p> <p>If you ban a user who is already part of a channel, that user is automatically kicked from the channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateChannelMembership": "<p>Adds a user to a channel. The <code>InvitedBy</code> response field is derived from the request header. A channel member can:</p> <ul> <li> <p>List messages</p> </li> <li> <p>Send messages</p> </li> <li> <p>Receive messages</p> </li> <li> <p>Edit their own messages</p> </li> <li> <p>Leave the channel</p> </li> </ul> <p>Privacy settings impact this action as follows:</p> <ul> <li> <p>Public Channels: You do not need to be a member to list messages, but you must be a member to send messages.</p> </li> <li> <p>Private Channels: You must be a member to list or send messages.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "CreateChannelModerator": "<p>Creates a new <code>ChannelModerator</code>. A channel moderator can:</p> <ul> <li> <p>Add and remove other members of the channel.</p> </li> <li> <p>Add and remove other moderators of the channel.</p> </li> <li> <p>Add and remove user bans for the channel.</p> </li> <li> <p>Redact messages in the channel.</p> </li> <li> <p>List messages in the channel.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannel": "<p>Immediately makes a channel and its memberships inaccessible and marks them for deletion. This is an irreversible process.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelBan": "<p>Removes a user from a channel's ban list.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelMembership": "<p>Removes a member from a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelMessage": "<p>Deletes a channel message. Only admins can perform this action. Deletion makes messages inaccessible immediately. A background process deletes any revisions created by <code>UpdateChannelMessage</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DeleteChannelModerator": "<p>Deletes a channel moderator.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannel": "<p>Returns the full details of a channel in an Amazon Chime <code>AppInstance</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelBan": "<p>Returns the full details of a channel ban.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelMembership": "<p>Returns the full details of a user's channel membership.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelMembershipForAppInstanceUser": "<p> Returns the details of a channel based on the membership of the specified <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelModeratedByAppInstanceUser": "<p>Returns the full details of a channel moderated by the specified <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "DescribeChannelModerator": "<p>Returns the full details of a single ChannelModerator.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "GetChannelMessage": "<p>Gets the full details of a channel message.</p> <note> <p>The x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "GetMessagingSessionEndpoint": "<p>The details of the endpoint for the messaging session.</p>",
+    "ListChannelBans": "<p>Lists all the users banned from a particular channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelMemberships": "<p>Lists all channel memberships in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelMembershipsForAppInstanceUser": "<p> Lists all channels that a particular <code>AppInstanceUser</code> is a part of. Only an <code>AppInstanceAdmin</code> can call the API with a user ARN that is not their own. </p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelMessages": "<p>List all the messages in a channel. Returns a paginated list of <code>ChannelMessages</code>. By default, sorted by creation timestamp in descending order.</p> <note> <p>Redacted messages appear in the results as empty, since they are only redacted, not deleted. Deleted messages do not appear in the results. This action always returns the latest version of an edited message.</p> <p>Also, the x-amz-chime-bearer request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelModerators": "<p>Lists all the moderators for a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannels": "<p>Lists all Channels created under a single Chime App as a paginated list. You can specify filters to narrow results.</p> <p class=\"title\"> <b>Functionality &amp; restrictions</b> </p> <ul> <li> <p>Use privacy = <code>PUBLIC</code> to retrieve all public channels in the account.</p> </li> <li> <p>Only an <code>AppInstanceAdmin</code> can set privacy = <code>PRIVATE</code> to list the private channels in an account.</p> </li> </ul> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "ListChannelsModeratedByAppInstanceUser": "<p>A list of the channels moderated by an <code>AppInstanceUser</code>.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "RedactChannelMessage": "<p>Redacts message content, but not metadata. The message exists in the back end, but the action returns null content, and the state shows as redacted.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> <p>Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
+    "UpdateChannel": "<p>Update a channel's attributes.</p> <p> <b>Restriction</b>: You can't change a channel's privacy. </p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "UpdateChannelMessage": "<p>Updates the content of a message.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>",
+    "UpdateChannelReadMarker": "<p>The details of the time when a user last read messages in a channel.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> </note>"
+  },
+  "shapes": {
+    "AppInstanceUserMembershipSummary": {
+      "base": "<p>Summary of the membership details of an <code>AppInstanceUser</code>.</p>",
+      "refs": {
+        "ChannelMembershipForAppInstanceUserSummary$AppInstanceUserMembershipSummary": "<p>Returns the channel membership data for an <code>AppInstance</code>.</p>"
+      }
+    },
+    "BadRequestException": {
+      "base": "<p>The input parameters don't match the service's restrictions.</p>",
+      "refs": {
+      }
+    },
+    "BatchChannelMemberships": {
+      "base": "<p>The membership information, including member ARNs, the channel ARN, and membership types.</p>",
+      "refs": {
+        "BatchCreateChannelMembershipResponse$BatchChannelMemberships": "<p>The list of channel memberships in the response.</p>"
+      }
+    },
+    "BatchCreateChannelMembershipError": {
+      "base": "<p>A list of failed member ARNs, error codes, and error messages.</p>",
+      "refs": {
+        "BatchCreateChannelMembershipErrors$member": null
+      }
+    },
+    "BatchCreateChannelMembershipErrors": {
+      "base": null,
+      "refs": {
+        "BatchCreateChannelMembershipResponse$Errors": "<p>If the action fails for one or more of the memberships in the request, a list of the memberships is returned, along with error codes and error messages.</p>"
+      }
+    },
+    "BatchCreateChannelMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchCreateChannelMembershipResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Channel": {
+      "base": "<p>The details of a channel.</p>",
+      "refs": {
+        "DescribeChannelResponse$Channel": "<p>The channel details.</p>"
+      }
+    },
+    "ChannelBan": {
+      "base": "<p>The details of a channel ban.</p>",
+      "refs": {
+        "DescribeChannelBanResponse$ChannelBan": "<p>The details of the ban.</p>"
+      }
+    },
+    "ChannelBanSummary": {
+      "base": "<p>Summary of the details of a <code>ChannelBan</code>.</p>",
+      "refs": {
+        "ChannelBanSummaryList$member": null
+      }
+    },
+    "ChannelBanSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelBansResponse$ChannelBans": "<p>The information for each requested ban.</p>"
+      }
+    },
+    "ChannelMembership": {
+      "base": "<p>The details of a channel member.</p>",
+      "refs": {
+        "DescribeChannelMembershipResponse$ChannelMembership": "<p>The details of the membership.</p>"
+      }
+    },
+    "ChannelMembershipForAppInstanceUserSummary": {
+      "base": "<p>Summary of the channel membership details of an <code>AppInstanceUser</code>.</p>",
+      "refs": {
+        "ChannelMembershipForAppInstanceUserSummaryList$member": null,
+        "DescribeChannelMembershipForAppInstanceUserResponse$ChannelMembership": "<p>The channel to which a user belongs.</p>"
+      }
+    },
+    "ChannelMembershipForAppInstanceUserSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelMembershipsForAppInstanceUserResponse$ChannelMemberships": "<p>The token passed by previous API calls until all requested users are returned.</p>"
+      }
+    },
+    "ChannelMembershipSummary": {
+      "base": "<p>Summary of the details of a <code>ChannelMembership</code>.</p>",
+      "refs": {
+        "ChannelMembershipSummaryList$member": null
+      }
+    },
+    "ChannelMembershipSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelMembershipsResponse$ChannelMemberships": "<p>The information for the requested channel memberships.</p>"
+      }
+    },
+    "ChannelMembershipType": {
+      "base": null,
+      "refs": {
+        "AppInstanceUserMembershipSummary$Type": "<p>The type of <code>ChannelMembership</code>.</p>",
+        "BatchChannelMemberships$Type": "<p>The membership types set for the channel users.</p>",
+        "BatchCreateChannelMembershipRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are always returned as part of <code>ListChannelMemberships</code>. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>. Otherwise hidden members are not returned. This is only supported by moderators.</p>",
+        "ChannelMembership$Type": "<p>The membership type set for the channel member.</p>",
+        "CreateChannelMembershipRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are always returned as part of <code>ListChannelMemberships</code>. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>. Otherwise hidden members are not returned. This is only supported by moderators.</p>",
+        "ListChannelMembershipsRequest$Type": "<p>The membership type of a user, <code>DEFAULT</code> or <code>HIDDEN</code>. Default members are always returned as part of <code>ListChannelMemberships</code>. Hidden members are only returned if the type filter in <code>ListChannelMemberships</code> equals <code>HIDDEN</code>. Otherwise hidden members are not returned.</p>"
+      }
+    },
+    "ChannelMessage": {
+      "base": "<p>The details of a message in a channel.</p>",
+      "refs": {
+        "GetChannelMessageResponse$ChannelMessage": "<p>The details of and content in the message.</p>"
+      }
+    },
+    "ChannelMessagePersistenceType": {
+      "base": null,
+      "refs": {
+        "ChannelMessage$Persistence": "<p>The persistence setting for a channel message.</p>",
+        "SendChannelMessageRequest$Persistence": "<p>Boolean that controls whether the message is persisted on the back end. Required.</p>"
+      }
+    },
+    "ChannelMessageSummary": {
+      "base": "<p>Summary of the messages in a <code>Channel</code>.</p>",
+      "refs": {
+        "ChannelMessageSummaryList$member": null
+      }
+    },
+    "ChannelMessageSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelMessagesResponse$ChannelMessages": "<p>The information about, and content of, each requested message.</p>"
+      }
+    },
+    "ChannelMessageType": {
+      "base": null,
+      "refs": {
+        "ChannelMessage$Type": "<p>The message type.</p>",
+        "ChannelMessageSummary$Type": "<p>The type of message.</p>",
+        "SendChannelMessageRequest$Type": "<p>The type of message, <code>STANDARD</code> or <code>CONTROL</code>.</p>"
+      }
+    },
+    "ChannelMode": {
+      "base": null,
+      "refs": {
+        "Channel$Mode": "<p>The mode of the channel.</p>",
+        "ChannelSummary$Mode": "<p>The mode of the channel.</p>",
+        "CreateChannelRequest$Mode": "<p>The channel mode: <code>UNRESTRICTED</code> or <code>RESTRICTED</code>. Administrators, moderators, and channel members can add themselves and other members to unrestricted channels. Only administrators and moderators can add members to restricted channels.</p>",
+        "UpdateChannelRequest$Mode": "<p>The mode of the update request.</p>"
+      }
+    },
+    "ChannelModeratedByAppInstanceUserSummary": {
+      "base": "<p>Summary of the details of a moderated channel.</p>",
+      "refs": {
+        "ChannelModeratedByAppInstanceUserSummaryList$member": null,
+        "DescribeChannelModeratedByAppInstanceUserResponse$Channel": "<p>The moderated channel.</p>"
+      }
+    },
+    "ChannelModeratedByAppInstanceUserSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelsModeratedByAppInstanceUserResponse$Channels": "<p>The moderated channels in the request.</p>"
+      }
+    },
+    "ChannelModerator": {
+      "base": "<p>The details of a channel moderator.</p>",
+      "refs": {
+        "DescribeChannelModeratorResponse$ChannelModerator": "<p>The details of the channel moderator.</p>"
+      }
+    },
+    "ChannelModeratorSummary": {
+      "base": "<p>Summary of the details of a <code>ChannelModerator</code>.</p>",
+      "refs": {
+        "ChannelModeratorSummaryList$member": null
+      }
+    },
+    "ChannelModeratorSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelModeratorsResponse$ChannelModerators": "<p>The information about and names of each moderator.</p>"
+      }
+    },
+    "ChannelPrivacy": {
+      "base": null,
+      "refs": {
+        "Channel$Privacy": "<p>The channel's privacy setting.</p>",
+        "ChannelSummary$Privacy": "<p>The privacy setting of the channel.</p>",
+        "CreateChannelRequest$Privacy": "<p>The channel's privacy level: <code>PUBLIC</code> or <code>PRIVATE</code>. Private channels aren't discoverable by users outside the channel. Public channels are discoverable by anyone in the <code>AppInstance</code>.</p>",
+        "ListChannelsRequest$Privacy": "<p>The privacy setting. <code>PUBLIC</code> retrieves all the public channels. <code>PRIVATE</code> retrieves private channels. Only an <code>AppInstanceAdmin</code> can retrieve private channels. </p>"
+      }
+    },
+    "ChannelSummary": {
+      "base": "<p>Summary of the details of a <code>Channel</code>.</p>",
+      "refs": {
+        "ChannelMembershipForAppInstanceUserSummary$ChannelSummary": "<p>Returns the channel data for an <code>AppInstance</code>.</p>",
+        "ChannelModeratedByAppInstanceUserSummary$ChannelSummary": "<p>Summary of the details of a <code>Channel</code>.</p>",
+        "ChannelSummaryList$member": null
+      }
+    },
+    "ChannelSummaryList": {
+      "base": null,
+      "refs": {
+        "ListChannelsResponse$Channels": "<p>The information about each channel.</p>"
+      }
+    },
+    "ChimeArn": {
+      "base": null,
+      "refs": {
+        "BatchChannelMemberships$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
+        "BatchCreateChannelMembershipError$MemberArn": "<p>The ARN of the member that the service couldn't add.</p>",
+        "BatchCreateChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
+        "BatchCreateChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "Channel$ChannelArn": "<p>The ARN of a channel.</p>",
+        "ChannelBan$ChannelArn": "<p>The ARN of the channel from which a member is being banned.</p>",
+        "ChannelMembership$ChannelArn": "<p>The ARN of the member's channel.</p>",
+        "ChannelMessage$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ChannelModerator$ChannelArn": "<p>The ARN of the moderator's channel.</p>",
+        "ChannelSummary$ChannelArn": "<p>The ARN of the channel.</p>",
+        "CreateChannelBanRequest$ChannelArn": "<p>The ARN of the ban request.</p>",
+        "CreateChannelBanRequest$MemberArn": "<p>The ARN of the member being banned.</p>",
+        "CreateChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "CreateChannelBanResponse$ChannelArn": "<p>The ARN of the response to the ban request.</p>",
+        "CreateChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel to which you're adding users.</p>",
+        "CreateChannelMembershipRequest$MemberArn": "<p>The ARN of the member you want to add to the channel.</p>",
+        "CreateChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "CreateChannelMembershipResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "CreateChannelModeratorRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "CreateChannelModeratorRequest$ChannelModeratorArn": "<p>The ARN of the moderator.</p>",
+        "CreateChannelModeratorRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "CreateChannelModeratorResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "CreateChannelRequest$AppInstanceArn": "<p>The ARN of the channel request.</p>",
+        "CreateChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "CreateChannelResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "DeleteChannelBanRequest$ChannelArn": "<p>The ARN of the channel from which the <code>AppInstanceUser</code> was banned.</p>",
+        "DeleteChannelBanRequest$MemberArn": "<p>The ARN of the <code>AppInstanceUser</code> that you want to reinstate.</p>",
+        "DeleteChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DeleteChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel from which you want to remove the user.</p>",
+        "DeleteChannelMembershipRequest$MemberArn": "<p>The ARN of the member that you're removing from the channel.</p>",
+        "DeleteChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DeleteChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "DeleteChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DeleteChannelModeratorRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "DeleteChannelModeratorRequest$ChannelModeratorArn": "<p>The ARN of the moderator being deleted.</p>",
+        "DeleteChannelModeratorRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DeleteChannelRequest$ChannelArn": "<p>The ARN of the channel being deleted.</p>",
+        "DeleteChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DescribeChannelBanRequest$ChannelArn": "<p>The ARN of the channel from which the user is banned.</p>",
+        "DescribeChannelBanRequest$MemberArn": "<p>The ARN of the member being banned.</p>",
+        "DescribeChannelBanRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DescribeChannelMembershipForAppInstanceUserRequest$ChannelArn": "<p>The ARN of the channel to which the user belongs.</p>",
+        "DescribeChannelMembershipForAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the user in a channel.</p>",
+        "DescribeChannelMembershipForAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DescribeChannelMembershipRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "DescribeChannelMembershipRequest$MemberArn": "<p>The ARN of the member.</p>",
+        "DescribeChannelMembershipRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DescribeChannelModeratedByAppInstanceUserRequest$ChannelArn": "<p>The ARN of the moderated channel.</p>",
+        "DescribeChannelModeratedByAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code> in the moderated channel.</p>",
+        "DescribeChannelModeratedByAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DescribeChannelModeratorRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "DescribeChannelModeratorRequest$ChannelModeratorArn": "<p>The ARN of the channel moderator.</p>",
+        "DescribeChannelModeratorRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "DescribeChannelRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "DescribeChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "GetChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "GetChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "Identity$Arn": "<p>The ARN in an Identity.</p>",
+        "ListChannelBansRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelBansRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListChannelBansResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelMembershipsForAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the <code>AppInstanceUser</code>s</p>",
+        "ListChannelMembershipsForAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListChannelMembershipsRequest$ChannelArn": "<p>The maximum number of channel memberships that you want returned.</p>",
+        "ListChannelMembershipsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListChannelMembershipsResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelMessagesRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelMessagesRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListChannelMessagesResponse$ChannelArn": "<p>The ARN of the channel containing the requested messages.</p>",
+        "ListChannelModeratorsRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelModeratorsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListChannelModeratorsResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "ListChannelsModeratedByAppInstanceUserRequest$AppInstanceUserArn": "<p>The ARN of the user in the moderated channel.</p>",
+        "ListChannelsModeratedByAppInstanceUserRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "ListChannelsRequest$AppInstanceArn": "<p>The ARN of the <code>AppInstance</code>.</p>",
+        "ListChannelsRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "MemberArns$member": null,
+        "RedactChannelMessageRequest$ChannelArn": "<p>The ARN of the channel containing the messages that you want to redact.</p>",
+        "RedactChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "RedactChannelMessageResponse$ChannelArn": "<p>The ARN of the channel containing the messages that you want to redact.</p>",
+        "SendChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "SendChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "SendChannelMessageResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelMessageRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelMessageRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "UpdateChannelMessageResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelReadMarkerRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelReadMarkerRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "UpdateChannelReadMarkerResponse$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelRequest$ChannelArn": "<p>The ARN of the channel.</p>",
+        "UpdateChannelRequest$ChimeBearer": "<p>The <code>AppInstanceUserArn</code> of the user that makes the API call.</p>",
+        "UpdateChannelResponse$ChannelArn": "<p>The ARN of the channel.</p>"
+      }
+    },
+    "ClientRequestToken": {
+      "base": null,
+      "refs": {
+        "CreateChannelRequest$ClientRequestToken": "<p>The client token for the request. An <code>Idempotency</code> token.</p>",
+        "SendChannelMessageRequest$ClientRequestToken": "<p>The <code>Idempotency</code> token for each client request.</p>"
+      }
+    },
+    "ConflictException": {
+      "base": "<p>The request could not be processed because of conflict in the current state of the resource.</p>",
+      "refs": {
+      }
+    },
+    "Content": {
+      "base": null,
+      "refs": {
+        "ChannelMessage$Content": "<p>The message content.</p>",
+        "ChannelMessageSummary$Content": "<p>The content of the message.</p>",
+        "UpdateChannelMessageRequest$Content": "<p>The content of the message being updated.</p>"
+      }
+    },
+    "CreateChannelBanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelBanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelMembershipResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelModeratorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelModeratorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateChannelResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteChannelBanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteChannelMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteChannelMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteChannelModeratorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteChannelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelBanRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelBanResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelMembershipForAppInstanceUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelMembershipForAppInstanceUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelMembershipRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelMembershipResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelModeratedByAppInstanceUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelModeratedByAppInstanceUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelModeratorRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelModeratorResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeChannelResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ErrorCode": {
+      "base": null,
+      "refs": {
+        "BadRequestException$Code": null,
+        "BatchCreateChannelMembershipError$ErrorCode": "<p>The error code.</p>",
+        "ConflictException$Code": null,
+        "ForbiddenException$Code": null,
+        "NotFoundException$Code": null,
+        "ResourceLimitExceededException$Code": null,
+        "ServiceFailureException$Code": null,
+        "ServiceUnavailableException$Code": null,
+        "ThrottledClientException$Code": null,
+        "UnauthorizedClientException$Code": null
+      }
+    },
+    "ForbiddenException": {
+      "base": "<p>The client is permanently forbidden from making the request.</p>",
+      "refs": {
+      }
+    },
+    "GetChannelMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetChannelMessageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMessagingSessionEndpointRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetMessagingSessionEndpointResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "Identity": {
+      "base": "<p>The details of a user.</p>",
+      "refs": {
+        "BatchChannelMemberships$InvitedBy": "<p>The identifier of the member who invited another member.</p>",
+        "Channel$CreatedBy": "<p>The <code>AppInstanceUser</code> who created the channel.</p>",
+        "ChannelBan$Member": "<p>The member being banned from the channel.</p>",
+        "ChannelBan$CreatedBy": "<p>The <code>AppInstanceUser</code> who created the ban.</p>",
+        "ChannelBanSummary$Member": "<p>The member being banned from a channel.</p>",
+        "ChannelMembership$InvitedBy": "<p>The identifier of the member who invited another member.</p>",
+        "ChannelMembership$Member": "<p>The data of the channel member.</p>",
+        "ChannelMembershipSummary$Member": "<p>A member's summary data.</p>",
+        "ChannelMessage$Sender": "<p>The message sender.</p>",
+        "ChannelMessageSummary$Sender": "<p>The message sender.</p>",
+        "ChannelModerator$Moderator": "<p>The moderator's data.</p>",
+        "ChannelModerator$CreatedBy": "<p>The <code>AppInstanceUser</code> who created the moderator.</p>",
+        "ChannelModeratorSummary$Moderator": "<p>The data for a moderator.</p>",
+        "CreateChannelBanResponse$Member": "<p>The <code>ChannelArn</code> and <code>BannedIdentity</code> of the member in the ban response.</p>",
+        "CreateChannelMembershipResponse$Member": "<p>The ARN and metadata of the member being added.</p>",
+        "CreateChannelModeratorResponse$ChannelModerator": "<p>The ARNs of the channel and the moderator.</p>",
+        "Members$member": null
+      }
+    },
+    "ListChannelBansRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelBansResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelMembershipsForAppInstanceUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelMembershipsForAppInstanceUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelMembershipsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelMembershipsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelMessagesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelMessagesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelModeratorsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelModeratorsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelsModeratedByAppInstanceUserRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelsModeratedByAppInstanceUserResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListChannelsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "MaxResults": {
+      "base": null,
+      "refs": {
+        "ListChannelBansRequest$MaxResults": "<p>The maximum number of bans that you want returned.</p>",
+        "ListChannelMembershipsForAppInstanceUserRequest$MaxResults": "<p>The maximum number of users that you want returned.</p>",
+        "ListChannelMembershipsRequest$MaxResults": "<p>The maximum number of channel memberships that you want returned.</p>",
+        "ListChannelMessagesRequest$MaxResults": "<p>The maximum number of messages that you want returned.</p>",
+        "ListChannelModeratorsRequest$MaxResults": "<p>The maximum number of moderators that you want returned.</p>",
+        "ListChannelsModeratedByAppInstanceUserRequest$MaxResults": "<p>The maximum number of channels in the request.</p>",
+        "ListChannelsRequest$MaxResults": "<p>The maximum number of channels that you want to return.</p>"
+      }
+    },
+    "MemberArns": {
+      "base": null,
+      "refs": {
+        "BatchCreateChannelMembershipRequest$MemberArns": "<p>The ARNs of the members you want to add to the channel.</p>"
+      }
+    },
+    "Members": {
+      "base": null,
+      "refs": {
+        "BatchChannelMemberships$Members": "<p>The users successfully added to the request.</p>"
+      }
+    },
+    "MessageId": {
+      "base": null,
+      "refs": {
+        "ChannelMessage$MessageId": "<p>The ID of a message.</p>",
+        "ChannelMessageSummary$MessageId": "<p>The ID of the message.</p>",
+        "DeleteChannelMessageRequest$MessageId": "<p>The ID of the message being deleted.</p>",
+        "GetChannelMessageRequest$MessageId": "<p>The ID of the message.</p>",
+        "RedactChannelMessageRequest$MessageId": "<p>The ID of the message being redacted.</p>",
+        "RedactChannelMessageResponse$MessageId": "<p>The ID of the message being redacted.</p>",
+        "SendChannelMessageResponse$MessageId": "<p>The ID string assigned to each message.</p>",
+        "UpdateChannelMessageRequest$MessageId": "<p>The ID string of the message being updated.</p>",
+        "UpdateChannelMessageResponse$MessageId": "<p>The ID string of the message being updated.</p>"
+      }
+    },
+    "MessagingSessionEndpoint": {
+      "base": "<p>The websocket endpoint used to connect to Amazon Chime SDK messaging.</p>",
+      "refs": {
+        "GetMessagingSessionEndpointResponse$Endpoint": "<p>The endpoint returned in the response.</p>"
+      }
+    },
+    "Metadata": {
+      "base": null,
+      "refs": {
+        "Channel$Metadata": "<p>The channel's metadata.</p>",
+        "ChannelMessage$Metadata": "<p>The message metadata.</p>",
+        "ChannelMessageSummary$Metadata": "<p>The metadata of the message.</p>",
+        "ChannelSummary$Metadata": "<p>The metadata of the channel.</p>",
+        "CreateChannelRequest$Metadata": "<p>The metadata of the creation request. Limited to 1KB and UTF-8.</p>",
+        "SendChannelMessageRequest$Metadata": "<p>The optional metadata for each message.</p>",
+        "UpdateChannelMessageRequest$Metadata": "<p>The metadata of the message being updated.</p>",
+        "UpdateChannelRequest$Metadata": "<p>The metadata for the update request.</p>"
+      }
+    },
+    "NextToken": {
+      "base": null,
+      "refs": {
+        "ListChannelBansRequest$NextToken": "<p>The token passed by previous API calls until all requested bans are returned.</p>",
+        "ListChannelBansResponse$NextToken": "<p>The token passed by previous API calls until all requested bans are returned.</p>",
+        "ListChannelMembershipsForAppInstanceUserRequest$NextToken": "<p>The token returned from previous API requests until the number of channel memberships is reached.</p>",
+        "ListChannelMembershipsForAppInstanceUserResponse$NextToken": "<p>The token passed by previous API calls until all requested users are returned.</p>",
+        "ListChannelMembershipsRequest$NextToken": "<p>The token passed by previous API calls until all requested channel memberships are returned.</p>",
+        "ListChannelMembershipsResponse$NextToken": "<p>The token passed by previous API calls until all requested channel memberships are returned.</p>",
+        "ListChannelMessagesRequest$NextToken": "<p>The token passed by previous API calls until all requested messages are returned.</p>",
+        "ListChannelMessagesResponse$NextToken": "<p>The token passed by previous API calls until all requested messages are returned.</p>",
+        "ListChannelModeratorsRequest$NextToken": "<p>The token passed by previous API calls until all requested moderators are returned.</p>",
+        "ListChannelModeratorsResponse$NextToken": "<p>The token passed by previous API calls until all requested moderators are returned.</p>",
+        "ListChannelsModeratedByAppInstanceUserRequest$NextToken": "<p>The token returned from previous API requests until the number of channels moderated by the user is reached.</p>",
+        "ListChannelsModeratedByAppInstanceUserResponse$NextToken": "<p>The token returned from previous API requests until the number of channels moderated by the user is reached.</p>",
+        "ListChannelsRequest$NextToken": "<p>The token passed by previous API calls until all requested channels are returned.</p>",
+        "ListChannelsResponse$NextToken": "<p>The token returned from previous API requests until the number of channels is reached.</p>"
+      }
+    },
+    "NonEmptyContent": {
+      "base": null,
+      "refs": {
+        "SendChannelMessageRequest$Content": "<p>The content of the message.</p>"
+      }
+    },
+    "NonEmptyResourceName": {
+      "base": null,
+      "refs": {
+        "Channel$Name": "<p>The name of a channel.</p>",
+        "ChannelSummary$Name": "<p>The name of the channel.</p>",
+        "CreateChannelRequest$Name": "<p>The name of the channel.</p>",
+        "UpdateChannelRequest$Name": "<p>The name of the channel.</p>"
+      }
+    },
+    "NonNullableBoolean": {
+      "base": null,
+      "refs": {
+        "ChannelMessage$Redacted": "<p>Hides the content of a message.</p>",
+        "ChannelMessageSummary$Redacted": "<p>Indicates whether a message was redacted.</p>"
+      }
+    },
+    "NotFoundException": {
+      "base": "<p>One or more of the resources in the request does not exist in the system.</p>",
+      "refs": {
+      }
+    },
+    "RedactChannelMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RedactChannelMessageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ResourceLimitExceededException": {
+      "base": "<p>The request exceeds the resource limit.</p>",
+      "refs": {
+      }
+    },
+    "ResourceName": {
+      "base": null,
+      "refs": {
+        "Identity$Name": "<p>The name in an Identity.</p>"
+      }
+    },
+    "SendChannelMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "SendChannelMessageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ServiceFailureException": {
+      "base": "<p>The service encountered an unexpected error.</p>",
+      "refs": {
+      }
+    },
+    "ServiceUnavailableException": {
+      "base": "<p>The service is currently unavailable.</p>",
+      "refs": {
+      }
+    },
+    "SortOrder": {
+      "base": null,
+      "refs": {
+        "ListChannelMessagesRequest$SortOrder": "<p>The order in which you want messages sorted. Default is Descending, based on time created.</p>"
+      }
+    },
+    "String": {
+      "base": null,
+      "refs": {
+        "BadRequestException$Message": null,
+        "BatchCreateChannelMembershipError$ErrorMessage": "<p>The error message.</p>",
+        "ConflictException$Message": null,
+        "ForbiddenException$Message": null,
+        "NotFoundException$Message": null,
+        "ResourceLimitExceededException$Message": null,
+        "ServiceFailureException$Message": null,
+        "ServiceUnavailableException$Message": null,
+        "ThrottledClientException$Message": null,
+        "UnauthorizedClientException$Message": null
+      }
+    },
+    "Tag": {
+      "base": "<p>Describes a tag applied to a resource.</p>",
+      "refs": {
+        "TagList$member": null
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "Tag$Key": "<p>The key of the tag.</p>"
+      }
+    },
+    "TagList": {
+      "base": null,
+      "refs": {
+        "CreateChannelRequest$Tags": "<p>The tags for the creation request.</p>"
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "Tag$Value": "<p>The value of the tag.</p>"
+      }
+    },
+    "ThrottledClientException": {
+      "base": "<p>The client exceeded its request rate limit.</p>",
+      "refs": {
+      }
+    },
+    "Timestamp": {
+      "base": null,
+      "refs": {
+        "AppInstanceUserMembershipSummary$ReadMarkerTimestamp": "<p>The time at which a message was last read.</p>",
+        "Channel$CreatedTimestamp": "<p>The time at which the <code>AppInstanceUser</code> created the channel.</p>",
+        "Channel$LastMessageTimestamp": "<p>The time at which a member sent the last message in the channel.</p>",
+        "Channel$LastUpdatedTimestamp": "<p>The time at which a channel was last updated.</p>",
+        "ChannelBan$CreatedTimestamp": "<p>The time at which the ban was created.</p>",
+        "ChannelMembership$CreatedTimestamp": "<p>The time at which the channel membership was created.</p>",
+        "ChannelMembership$LastUpdatedTimestamp": "<p>The time at which a channel membership was last updated.</p>",
+        "ChannelMessage$CreatedTimestamp": "<p>The time at which the message was created.</p>",
+        "ChannelMessage$LastEditedTimestamp": "<p>The time at which a message was edited.</p>",
+        "ChannelMessage$LastUpdatedTimestamp": "<p>The time at which a message was updated.</p>",
+        "ChannelMessageSummary$CreatedTimestamp": "<p>The time at which the message summary was created.</p>",
+        "ChannelMessageSummary$LastUpdatedTimestamp": "<p>The time at which a message was last updated.</p>",
+        "ChannelMessageSummary$LastEditedTimestamp": "<p>The time at which a message was last edited.</p>",
+        "ChannelModerator$CreatedTimestamp": "<p>The time at which the moderator was created.</p>",
+        "ChannelSummary$LastMessageTimestamp": "<p>The time at which the last message in a channel was sent.</p>",
+        "ListChannelMessagesRequest$NotBefore": "<p>The initial or starting time stamp for your requested messages.</p>",
+        "ListChannelMessagesRequest$NotAfter": "<p>The final or ending time stamp for your requested messages.</p>"
+      }
+    },
+    "UnauthorizedClientException": {
+      "base": "<p>The client is not currently authorized to make the request.</p>",
+      "refs": {
+      }
+    },
+    "UpdateChannelMessageRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelMessageResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelReadMarkerRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelReadMarkerResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateChannelResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UrlType": {
+      "base": null,
+      "refs": {
+        "MessagingSessionEndpoint$Url": "<p>The endpoint to which you establish a websocket connection.</p>"
+      }
+    }
+  }
+}

@@ -16402,6 +16402,13 @@ type AccessKey struct {
 	// The timestamp when the access key was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
+	// An object that describes the last time the access key was used.
+	//
+	// This object does not include data in the response of a CreateBucketAccessKey
+	// action. If the access key has not been used, the region and serviceName values
+	// are N/A, and the lastUsedDate value is null.
+	LastUsed *AccessKeyLastUsed `locationName:"lastUsed" type:"structure"`
+
 	// The secret access key used to sign requests.
 	//
 	// You should store the secret access key in a safe location. We recommend that
@@ -16437,6 +16444,12 @@ func (s *AccessKey) SetCreatedAt(v time.Time) *AccessKey {
 	return s
 }
 
+// SetLastUsed sets the LastUsed field's value.
+func (s *AccessKey) SetLastUsed(v *AccessKeyLastUsed) *AccessKey {
+	s.LastUsed = v
+	return s
+}
+
 // SetSecretAccessKey sets the SecretAccessKey field's value.
 func (s *AccessKey) SetSecretAccessKey(v string) *AccessKey {
 	s.SecretAccessKey = &v
@@ -16446,6 +16459,58 @@ func (s *AccessKey) SetSecretAccessKey(v string) *AccessKey {
 // SetStatus sets the Status field's value.
 func (s *AccessKey) SetStatus(v string) *AccessKey {
 	s.Status = &v
+	return s
+}
+
+// Describes the last time an access key was used.
+//
+// This object does not include data in the response of a CreateBucketAccessKey
+// action.
+type AccessKeyLastUsed struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the access key was most recently used.
+	//
+	// This value is null if the access key has not been used.
+	LastUsedDate *time.Time `locationName:"lastUsedDate" type:"timestamp"`
+
+	// The AWS Region where this access key was most recently used.
+	//
+	// This value is N/A if the access key has not been used.
+	Region *string `locationName:"region" type:"string"`
+
+	// The name of the AWS service with which this access key was most recently
+	// used.
+	//
+	// This value is N/A if the access key has not been used.
+	ServiceName *string `locationName:"serviceName" type:"string"`
+}
+
+// String returns the string representation
+func (s AccessKeyLastUsed) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccessKeyLastUsed) GoString() string {
+	return s.String()
+}
+
+// SetLastUsedDate sets the LastUsedDate field's value.
+func (s *AccessKeyLastUsed) SetLastUsedDate(v time.Time) *AccessKeyLastUsed {
+	s.LastUsedDate = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *AccessKeyLastUsed) SetRegion(v string) *AccessKeyLastUsed {
+	s.Region = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *AccessKeyLastUsed) SetServiceName(v string) *AccessKeyLastUsed {
+	s.ServiceName = &v
 	return s
 }
 
@@ -20143,8 +20208,8 @@ type CreateBucketInput struct {
 	// A Boolean value that indicates whether to enable versioning of objects in
 	// the bucket.
 	//
-	// For more information about versioning, see Enabling and suspending bucket
-	// object versioning in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-managing-bucket-object-versioning)
+	// For more information about versioning, see Enabling and suspending object
+	// versioning in a bucket in Amazon Lightsail (https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-managing-bucket-object-versioning)
 	// in the Amazon Lightsail Developer Guide.
 	EnableObjectVersioning *bool `locationName:"enableObjectVersioning" type:"boolean"`
 
