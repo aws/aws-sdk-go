@@ -175,6 +175,12 @@
         "CreateBucketAccessKeyResult$accessKey": "<p>An object that describes the access key that is created.</p>"
       }
     },
+    "AccessKeyLastUsed": {
+      "base": "<p>Describes the last time an access key was used.</p> <note> <p>This object does not include data in the response of a <a>CreateBucketAccessKey</a> action.</p> </note>",
+      "refs": {
+        "AccessKey$lastUsed": "<p>An object that describes the last time the access key was used.</p> <note> <p>This object does not include data in the response of a <a>CreateBucketAccessKey</a> action. If the access key has not been used, the <code>region</code> and <code>serviceName</code> values are <code>N/A</code>, and the <code>lastUsedDate</code> value is null.</p> </note>"
+      }
+    },
     "AccessKeyList": {
       "base": null,
       "refs": {
@@ -2523,6 +2529,7 @@
       "base": null,
       "refs": {
         "AccessKey$createdAt": "<p>The timestamp when the access key was created.</p>",
+        "AccessKeyLastUsed$lastUsedDate": "<p>The date and time when the access key was most recently used.</p> <p>This value is null if the access key has not been used.</p>",
         "Alarm$createdAt": "<p>The timestamp when the alarm was created.</p>",
         "AutoSnapshotDetails$createdAt": "<p>The timestamp when the automatic snapshot was created.</p>",
         "Bucket$createdAt": "<p>The timestamp when the distribution was created.</p>",
@@ -4046,7 +4053,7 @@
         "ContainerService$isDisabled": "<p>A Boolean value indicating whether the container service is disabled.</p>",
         "ContainerServicePower$isActive": "<p>A Boolean value indicating whether the power is active and can be specified for container services.</p>",
         "CopySnapshotRequest$useLatestRestorableAutoSnapshot": "<p>A Boolean value to indicate whether to use the latest available automatic snapshot of the specified source instance or disk.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>restore date</code> parameter. The <code>use latest restorable auto snapshot</code> and <code>restore date</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when copying an automatic snapshot as a manual snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-keeping-automatic-snapshots\">Amazon Lightsail Developer Guide</a>.</p> </li> </ul>",
-        "CreateBucketRequest$enableObjectVersioning": "<p>A Boolean value that indicates whether to enable versioning of objects in the bucket.</p> <p>For more information about versioning, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-managing-bucket-object-versioning\">Enabling and suspending bucket object versioning in Amazon Lightsail</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
+        "CreateBucketRequest$enableObjectVersioning": "<p>A Boolean value that indicates whether to enable versioning of objects in the bucket.</p> <p>For more information about versioning, see <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-managing-bucket-object-versioning\">Enabling and suspending object versioning in a bucket in Amazon Lightsail</a> in the <i>Amazon Lightsail Developer Guide</i>.</p>",
         "CreateDiskFromSnapshotRequest$useLatestRestorableAutoSnapshot": "<p>A Boolean value to indicate whether to use the latest available automatic snapshot.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>restore date</code> parameter. The <code>use latest restorable auto snapshot</code> and <code>restore date</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new disk from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Amazon Lightsail Developer Guide</a>.</p> </li> </ul>",
         "CreateInstancesFromSnapshotRequest$useLatestRestorableAutoSnapshot": "<p>A Boolean value to indicate whether to use the latest available automatic snapshot.</p> <p>Constraints:</p> <ul> <li> <p>This parameter cannot be defined together with the <code>restore date</code> parameter. The <code>use latest restorable auto snapshot</code> and <code>restore date</code> parameters are mutually exclusive.</p> </li> <li> <p>Define this parameter only when creating a new instance from an automatic snapshot. For more information, see the <a href=\"https://lightsail.aws.amazon.com/ls/docs/en_us/articles/amazon-lightsail-configuring-automatic-snapshots\">Amazon Lightsail Developer Guide</a>.</p> </li> </ul>",
         "CreateRelationalDatabaseFromSnapshotRequest$publiclyAccessible": "<p>Specifies the accessibility options for your new database. A value of <code>true</code> specifies a database that is available to resources outside of your Lightsail account. A value of <code>false</code> specifies a database that is available only to your Lightsail resources in the same region as your database.</p>",
@@ -4187,6 +4194,8 @@
         "AccessDeniedException$docs": null,
         "AccessDeniedException$message": null,
         "AccessDeniedException$tip": null,
+        "AccessKeyLastUsed$region": "<p>The AWS Region where this access key was most recently used.</p> <p>This value is <code>N/A</code> if the access key has not been used.</p>",
+        "AccessKeyLastUsed$serviceName": "<p>The name of the AWS service with which this access key was most recently used.</p> <p>This value is <code>N/A</code> if the access key has not been used.</p>",
         "AccountSetupInProgressException$code": null,
         "AccountSetupInProgressException$docs": null,
         "AccountSetupInProgressException$message": null,

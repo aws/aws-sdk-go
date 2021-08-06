@@ -2708,7 +2708,16 @@
         "accessKeyId":{"shape":"IAMAccessKeyId"},
         "secretAccessKey":{"shape":"NonEmptyString"},
         "status":{"shape":"StatusType"},
-        "createdAt":{"shape":"IsoDate"}
+        "createdAt":{"shape":"IsoDate"},
+        "lastUsed":{"shape":"AccessKeyLastUsed"}
+      }
+    },
+    "AccessKeyLastUsed":{
+      "type":"structure",
+      "members":{
+        "lastUsedDate":{"shape":"IsoDate"},
+        "region":{"shape":"string"},
+        "serviceName":{"shape":"string"}
       }
     },
     "AccessKeyList":{

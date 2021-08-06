@@ -1429,11 +1429,20 @@ func (c *Synthetics) UpdateCanaryWithContext(ctx aws.Context, input *UpdateCanar
 	return out, req.Send()
 }
 
+// A structure representing a screenshot that is used as a baseline during visual
+// monitoring comparisons made by the canary.
 type BaseScreenshot struct {
 	_ struct{} `type:"structure"`
 
+	// Coordinates that define the part of a screen to ignore during screenshot
+	// comparisons. To obtain the coordinates to use here, use the CloudWatch Logs
+	// console to draw the boundaries on the screen. For more information, see {LINK}
 	IgnoreCoordinates []*string `type:"list"`
 
+	// The name of the screenshot. This is generated the first time the canary is
+	// run after the UpdateCanary operation that specified for this canary to perform
+	// visual monitoring.
+	//
 	// ScreenshotName is a required field
 	ScreenshotName *string `min:"1" type:"string" required:"true"`
 }
@@ -1530,6 +1539,10 @@ type Canary struct {
 	// modified, and most recently run.
 	Timeline *CanaryTimeline `type:"structure"`
 
+	// If this canary performs visual monitoring by comparing screenshots, this
+	// structure contains the ID of the canary run to use as the baseline for screenshots,
+	// and the coordinates of any parts of the screen to ignore during the visual
+	// monitoring comparison.
 	VisualReference *VisualReferenceOutput_ `type:"structure"`
 
 	// If this canary is to test an endpoint in a VPC, this structure contains information
@@ -1672,7 +1685,7 @@ type CanaryCodeInput struct {
 
 	// If you input your canary script directly into the canary instead of referring
 	// to an S3 location, the value of this parameter is the base64-encoded contents
-	// of the .zip file that contains the script. It can be up to 5 MB.
+	// of the .zip file that contains the script. It must be smaller than 256 Kb.
 	//
 	// ZipFile is automatically base64 encoded/decoded by the SDK.
 	ZipFile []byte `min:"1" type:"blob"`
@@ -3634,6 +3647,14 @@ type UpdateCanaryInput struct {
 	// The number of days to retain data about successful runs of this canary.
 	SuccessRetentionPeriodInDays *int64 `min:"1" type:"integer"`
 
+	// Defines the screenshots to use as the baseline for comparisons during visual
+	// monitoring comparisons during future runs of this canary. If you omit this
+	// parameter, no changes are made to any baseline screenshots that the canary
+	// might be using already.
+	//
+	// Visual monitoring is supported only on canaries running the syn-puppeteer-node-3.2
+	// runtime or later. For more information, see Visual monitoring (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Library_SyntheticsLogger_VisualTesting.html)
+	// and Visual monitoring blueprint (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Blueprints_VisualTesting.html)
 	VisualReference *VisualReferenceInput_ `type:"structure"`
 
 	// If this canary is to test an endpoint in a VPC, this structure contains information
@@ -3830,12 +3851,29 @@ func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// An object that specifies what screenshots to use as a baseline for visual
+// monitoring by this canary, and optionally the parts of the screenshots to
+// ignore during the visual monitoring comparison.
+//
+// Visual monitoring is supported only on canaries running the syn-puppeteer-node-3.2
+// runtime or later. For more information, see Visual monitoring (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Library_SyntheticsLogger_VisualTesting.html)
+// and Visual monitoring blueprint (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Blueprints_VisualTesting.html)
 type VisualReferenceInput_ struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies which canary run to use the screenshots from as the baseline for
+	// future visual monitoring with this canary. Valid values are nextrun to use
+	// the screenshots from the next run after this update is made, lastrun to use
+	// the screenshots from the most recent run before this update was made, or
+	// the value of Id in the CanaryRun (https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_CanaryRun.html)
+	// from any past run of this canary.
+	//
 	// BaseCanaryRunId is a required field
 	BaseCanaryRunId *string `min:"1" type:"string" required:"true"`
 
+	// An array of screenshots that will be used as the baseline for visual monitoring
+	// in future runs of this canary. If there is a screenshot that you don't want
+	// to be used for visual monitoring, remove it from this array.
 	BaseScreenshots []*BaseScreenshot `type:"list"`
 }
 
@@ -3887,11 +3925,22 @@ func (s *VisualReferenceInput_) SetBaseScreenshots(v []*BaseScreenshot) *VisualR
 	return s
 }
 
+// If this canary performs visual monitoring by comparing screenshots, this
+// structure contains the ID of the canary run that is used as the baseline
+// for screenshots, and the coordinates of any parts of those screenshots that
+// are ignored during visual monitoring comparison.
+//
+// Visual monitoring is supported only on canaries running the syn-puppeteer-node-3.2
+// runtime or later.
 type VisualReferenceOutput_ struct {
 	_ struct{} `type:"structure"`
 
+	// The ID of the canary run that produced the screenshots that are used as the
+	// baseline for visual monitoring comparisons during future runs of this canary.
 	BaseCanaryRunId *string `min:"1" type:"string"`
 
+	// An array of screenshots that are used as the baseline for comparisons during
+	// visual monitoring.
 	BaseScreenshots []*BaseScreenshot `type:"list"`
 }
 
