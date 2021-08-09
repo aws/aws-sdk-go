@@ -128,6 +128,10 @@ type WAFV2API interface {
 	GetLoggingConfigurationWithContext(aws.Context, *wafv2.GetLoggingConfigurationInput, ...request.Option) (*wafv2.GetLoggingConfigurationOutput, error)
 	GetLoggingConfigurationRequest(*wafv2.GetLoggingConfigurationInput) (*request.Request, *wafv2.GetLoggingConfigurationOutput)
 
+	GetManagedRuleSet(*wafv2.GetManagedRuleSetInput) (*wafv2.GetManagedRuleSetOutput, error)
+	GetManagedRuleSetWithContext(aws.Context, *wafv2.GetManagedRuleSetInput, ...request.Option) (*wafv2.GetManagedRuleSetOutput, error)
+	GetManagedRuleSetRequest(*wafv2.GetManagedRuleSetInput) (*request.Request, *wafv2.GetManagedRuleSetOutput)
+
 	GetPermissionPolicy(*wafv2.GetPermissionPolicyInput) (*wafv2.GetPermissionPolicyOutput, error)
 	GetPermissionPolicyWithContext(aws.Context, *wafv2.GetPermissionPolicyInput, ...request.Option) (*wafv2.GetPermissionPolicyOutput, error)
 	GetPermissionPolicyRequest(*wafv2.GetPermissionPolicyInput) (*request.Request, *wafv2.GetPermissionPolicyOutput)
@@ -156,6 +160,10 @@ type WAFV2API interface {
 	GetWebACLForResourceWithContext(aws.Context, *wafv2.GetWebACLForResourceInput, ...request.Option) (*wafv2.GetWebACLForResourceOutput, error)
 	GetWebACLForResourceRequest(*wafv2.GetWebACLForResourceInput) (*request.Request, *wafv2.GetWebACLForResourceOutput)
 
+	ListAvailableManagedRuleGroupVersions(*wafv2.ListAvailableManagedRuleGroupVersionsInput) (*wafv2.ListAvailableManagedRuleGroupVersionsOutput, error)
+	ListAvailableManagedRuleGroupVersionsWithContext(aws.Context, *wafv2.ListAvailableManagedRuleGroupVersionsInput, ...request.Option) (*wafv2.ListAvailableManagedRuleGroupVersionsOutput, error)
+	ListAvailableManagedRuleGroupVersionsRequest(*wafv2.ListAvailableManagedRuleGroupVersionsInput) (*request.Request, *wafv2.ListAvailableManagedRuleGroupVersionsOutput)
+
 	ListAvailableManagedRuleGroups(*wafv2.ListAvailableManagedRuleGroupsInput) (*wafv2.ListAvailableManagedRuleGroupsOutput, error)
 	ListAvailableManagedRuleGroupsWithContext(aws.Context, *wafv2.ListAvailableManagedRuleGroupsInput, ...request.Option) (*wafv2.ListAvailableManagedRuleGroupsOutput, error)
 	ListAvailableManagedRuleGroupsRequest(*wafv2.ListAvailableManagedRuleGroupsInput) (*request.Request, *wafv2.ListAvailableManagedRuleGroupsOutput)
@@ -167,6 +175,10 @@ type WAFV2API interface {
 	ListLoggingConfigurations(*wafv2.ListLoggingConfigurationsInput) (*wafv2.ListLoggingConfigurationsOutput, error)
 	ListLoggingConfigurationsWithContext(aws.Context, *wafv2.ListLoggingConfigurationsInput, ...request.Option) (*wafv2.ListLoggingConfigurationsOutput, error)
 	ListLoggingConfigurationsRequest(*wafv2.ListLoggingConfigurationsInput) (*request.Request, *wafv2.ListLoggingConfigurationsOutput)
+
+	ListManagedRuleSets(*wafv2.ListManagedRuleSetsInput) (*wafv2.ListManagedRuleSetsOutput, error)
+	ListManagedRuleSetsWithContext(aws.Context, *wafv2.ListManagedRuleSetsInput, ...request.Option) (*wafv2.ListManagedRuleSetsOutput, error)
+	ListManagedRuleSetsRequest(*wafv2.ListManagedRuleSetsInput) (*request.Request, *wafv2.ListManagedRuleSetsOutput)
 
 	ListRegexPatternSets(*wafv2.ListRegexPatternSetsInput) (*wafv2.ListRegexPatternSetsOutput, error)
 	ListRegexPatternSetsWithContext(aws.Context, *wafv2.ListRegexPatternSetsInput, ...request.Option) (*wafv2.ListRegexPatternSetsOutput, error)
@@ -192,6 +204,10 @@ type WAFV2API interface {
 	PutLoggingConfigurationWithContext(aws.Context, *wafv2.PutLoggingConfigurationInput, ...request.Option) (*wafv2.PutLoggingConfigurationOutput, error)
 	PutLoggingConfigurationRequest(*wafv2.PutLoggingConfigurationInput) (*request.Request, *wafv2.PutLoggingConfigurationOutput)
 
+	PutManagedRuleSetVersions(*wafv2.PutManagedRuleSetVersionsInput) (*wafv2.PutManagedRuleSetVersionsOutput, error)
+	PutManagedRuleSetVersionsWithContext(aws.Context, *wafv2.PutManagedRuleSetVersionsInput, ...request.Option) (*wafv2.PutManagedRuleSetVersionsOutput, error)
+	PutManagedRuleSetVersionsRequest(*wafv2.PutManagedRuleSetVersionsInput) (*request.Request, *wafv2.PutManagedRuleSetVersionsOutput)
+
 	PutPermissionPolicy(*wafv2.PutPermissionPolicyInput) (*wafv2.PutPermissionPolicyOutput, error)
 	PutPermissionPolicyWithContext(aws.Context, *wafv2.PutPermissionPolicyInput, ...request.Option) (*wafv2.PutPermissionPolicyOutput, error)
 	PutPermissionPolicyRequest(*wafv2.PutPermissionPolicyInput) (*request.Request, *wafv2.PutPermissionPolicyOutput)
@@ -207,6 +223,10 @@ type WAFV2API interface {
 	UpdateIPSet(*wafv2.UpdateIPSetInput) (*wafv2.UpdateIPSetOutput, error)
 	UpdateIPSetWithContext(aws.Context, *wafv2.UpdateIPSetInput, ...request.Option) (*wafv2.UpdateIPSetOutput, error)
 	UpdateIPSetRequest(*wafv2.UpdateIPSetInput) (*request.Request, *wafv2.UpdateIPSetOutput)
+
+	UpdateManagedRuleSetVersionExpiryDate(*wafv2.UpdateManagedRuleSetVersionExpiryDateInput) (*wafv2.UpdateManagedRuleSetVersionExpiryDateOutput, error)
+	UpdateManagedRuleSetVersionExpiryDateWithContext(aws.Context, *wafv2.UpdateManagedRuleSetVersionExpiryDateInput, ...request.Option) (*wafv2.UpdateManagedRuleSetVersionExpiryDateOutput, error)
+	UpdateManagedRuleSetVersionExpiryDateRequest(*wafv2.UpdateManagedRuleSetVersionExpiryDateInput) (*request.Request, *wafv2.UpdateManagedRuleSetVersionExpiryDateOutput)
 
 	UpdateRegexPatternSet(*wafv2.UpdateRegexPatternSetInput) (*wafv2.UpdateRegexPatternSetOutput, error)
 	UpdateRegexPatternSetWithContext(aws.Context, *wafv2.UpdateRegexPatternSetInput, ...request.Option) (*wafv2.UpdateRegexPatternSetOutput, error)

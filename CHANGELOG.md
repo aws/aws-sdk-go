@@ -1,3 +1,13 @@
+Release v1.40.18 (2021-08-09)
+===
+
+### Service Client Updates
+* `service/rekognition`: Updates service API and documentation
+  * This release adds support for four new types of segments (opening credits, content segments, slates, and studio logos), improved accuracy for credits and shot detection and new filters to control black frame detection.
+* `service/ssm`: Updates service documentation
+  * Documentation updates for AWS Systems Manager.
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.40.17 (2021-08-06)
 ===
 

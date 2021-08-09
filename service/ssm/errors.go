@@ -643,8 +643,8 @@ const (
 	// ErrCodeParameterLimitExceeded for service response error code
 	// "ParameterLimitExceeded".
 	//
-	// You have exceeded the number of parameters for this account. Delete one or
-	// more parameters and try again.
+	// You have exceeded the number of parameters for this Amazon Web Services account.
+	// Delete one or more parameters and try again.
 	ErrCodeParameterLimitExceeded = "ParameterLimitExceeded"
 
 	// ErrCodeParameterMaxVersionLimitExceeded for service response error code

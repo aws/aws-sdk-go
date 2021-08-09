@@ -44,7 +44,8 @@
         {"shape":"WAFLimitsExceededException"},
         {"shape":"WAFInvalidResourceException"},
         {"shape":"WAFUnavailableEntityException"},
-        {"shape":"WAFSubscriptionNotFoundException"}
+        {"shape":"WAFSubscriptionNotFoundException"},
+        {"shape":"WAFExpiredManagedRuleGroupVersionException"}
       ]
     },
     "CreateIPSet":{
@@ -265,7 +266,8 @@
         {"shape":"WAFInvalidParameterException"},
         {"shape":"WAFInvalidResourceException"},
         {"shape":"WAFNonexistentItemException"},
-        {"shape":"WAFInvalidOperationException"}
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFExpiredManagedRuleGroupVersionException"}
       ]
     },
     "DisassociateWebACL":{
@@ -310,6 +312,21 @@
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "GetManagedRuleSet":{
+      "name":"GetManagedRuleSet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetManagedRuleSetRequest"},
+      "output":{"shape":"GetManagedRuleSetResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFNonexistentItemException"},
         {"shape":"WAFInvalidOperationException"}
       ]
     },
@@ -417,6 +434,20 @@
         {"shape":"WAFInvalidOperationException"}
       ]
     },
+    "ListAvailableManagedRuleGroupVersions":{
+      "name":"ListAvailableManagedRuleGroupVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListAvailableManagedRuleGroupVersionsRequest"},
+      "output":{"shape":"ListAvailableManagedRuleGroupVersionsResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
     "ListAvailableManagedRuleGroups":{
       "name":"ListAvailableManagedRuleGroups",
       "http":{
@@ -453,6 +484,20 @@
       },
       "input":{"shape":"ListLoggingConfigurationsRequest"},
       "output":{"shape":"ListLoggingConfigurationsResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
+    "ListManagedRuleSets":{
+      "name":"ListManagedRuleSets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListManagedRuleSetsRequest"},
+      "output":{"shape":"ListManagedRuleSetsResponse"},
       "errors":[
         {"shape":"WAFInternalErrorException"},
         {"shape":"WAFInvalidParameterException"},
@@ -551,6 +596,22 @@
         {"shape":"WAFLimitsExceededException"}
       ]
     },
+    "PutManagedRuleSetVersions":{
+      "name":"PutManagedRuleSetVersions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutManagedRuleSetVersionsRequest"},
+      "output":{"shape":"PutManagedRuleSetVersionsResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFOptimisticLockException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
     "PutPermissionPolicy":{
       "name":"PutPermissionPolicy",
       "http":{
@@ -619,6 +680,22 @@
         {"shape":"WAFInvalidOperationException"}
       ]
     },
+    "UpdateManagedRuleSetVersionExpiryDate":{
+      "name":"UpdateManagedRuleSetVersionExpiryDate",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateManagedRuleSetVersionExpiryDateRequest"},
+      "output":{"shape":"UpdateManagedRuleSetVersionExpiryDateResponse"},
+      "errors":[
+        {"shape":"WAFInternalErrorException"},
+        {"shape":"WAFInvalidParameterException"},
+        {"shape":"WAFNonexistentItemException"},
+        {"shape":"WAFOptimisticLockException"},
+        {"shape":"WAFInvalidOperationException"}
+      ]
+    },
     "UpdateRegexPatternSet":{
       "name":"UpdateRegexPatternSet",
       "http":{
@@ -675,7 +752,8 @@
         {"shape":"WAFInvalidResourceException"},
         {"shape":"WAFUnavailableEntityException"},
         {"shape":"WAFSubscriptionNotFoundException"},
-        {"shape":"WAFInvalidOperationException"}
+        {"shape":"WAFInvalidOperationException"},
+        {"shape":"WAFExpiredManagedRuleGroupVersionException"}
       ]
     }
   },
@@ -1377,12 +1455,15 @@
       "members":{
         "VendorName":{"shape":"VendorName"},
         "Name":{"shape":"EntityName"},
-        "Scope":{"shape":"Scope"}
+        "Scope":{"shape":"Scope"},
+        "VersionName":{"shape":"VersionKeyString"}
       }
     },
     "DescribeManagedRuleGroupResponse":{
       "type":"structure",
       "members":{
+        "VersionName":{"shape":"VersionKeyString"},
+        "SnsTopicArn":{"shape":"ResourceArn"},
         "Capacity":{"shape":"CapacityUnit"},
         "Rules":{"shape":"RuleSummaries"},
         "LabelNamespace":{"shape":"LabelName"},
@@ -1582,6 +1663,26 @@
       "type":"structure",
       "members":{
         "LoggingConfiguration":{"shape":"LoggingConfiguration"}
+      }
+    },
+    "GetManagedRuleSetRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Scope",
+        "Id"
+      ],
+      "members":{
+        "Name":{"shape":"EntityName"},
+        "Scope":{"shape":"Scope"},
+        "Id":{"shape":"EntityId"}
+      }
+    },
+    "GetManagedRuleSetResponse":{
+      "type":"structure",
+      "members":{
+        "ManagedRuleSet":{"shape":"ManagedRuleSet"},
+        "LockToken":{"shape":"LockToken"}
       }
     },
     "GetPermissionPolicyRequest":{
@@ -1906,6 +2007,28 @@
       "type":"list",
       "member":{"shape":"Label"}
     },
+    "ListAvailableManagedRuleGroupVersionsRequest":{
+      "type":"structure",
+      "required":[
+        "VendorName",
+        "Name",
+        "Scope"
+      ],
+      "members":{
+        "VendorName":{"shape":"VendorName"},
+        "Name":{"shape":"EntityName"},
+        "Scope":{"shape":"Scope"},
+        "NextMarker":{"shape":"NextMarker"},
+        "Limit":{"shape":"PaginationLimit"}
+      }
+    },
+    "ListAvailableManagedRuleGroupVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"NextMarker"},
+        "Versions":{"shape":"ManagedRuleGroupVersions"}
+      }
+    },
     "ListAvailableManagedRuleGroupsRequest":{
       "type":"structure",
       "required":["Scope"],
@@ -1951,6 +2074,22 @@
       "members":{
         "LoggingConfigurations":{"shape":"LoggingConfigurations"},
         "NextMarker":{"shape":"NextMarker"}
+      }
+    },
+    "ListManagedRuleSetsRequest":{
+      "type":"structure",
+      "required":["Scope"],
+      "members":{
+        "Scope":{"shape":"Scope"},
+        "NextMarker":{"shape":"NextMarker"},
+        "Limit":{"shape":"PaginationLimit"}
+      }
+    },
+    "ListManagedRuleSetsResponse":{
+      "type":"structure",
+      "members":{
+        "NextMarker":{"shape":"NextMarker"},
+        "ManagedRuleSets":{"shape":"ManagedRuleSetSummaries"}
       }
     },
     "ListMaxItems":{
@@ -2086,6 +2225,7 @@
       "members":{
         "VendorName":{"shape":"VendorName"},
         "Name":{"shape":"EntityName"},
+        "Version":{"shape":"VersionKeyString"},
         "ExcludedRules":{"shape":"ExcludedRules"},
         "ScopeDownStatement":{"shape":"Statement"}
       }
@@ -2100,6 +2240,60 @@
         "VendorName":{"shape":"VendorName"},
         "Name":{"shape":"EntityName"},
         "Description":{"shape":"EntityDescription"}
+      }
+    },
+    "ManagedRuleGroupVersion":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"VersionKeyString"},
+        "LastUpdateTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "ManagedRuleGroupVersions":{
+      "type":"list",
+      "member":{"shape":"ManagedRuleGroupVersion"}
+    },
+    "ManagedRuleSet":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Id",
+        "ARN"
+      ],
+      "members":{
+        "Name":{"shape":"EntityName"},
+        "Id":{"shape":"EntityId"},
+        "ARN":{"shape":"ResourceArn"},
+        "Description":{"shape":"EntityDescription"},
+        "PublishedVersions":{"shape":"PublishedVersions"},
+        "RecommendedVersion":{"shape":"VersionKeyString"},
+        "LabelNamespace":{"shape":"LabelName"}
+      }
+    },
+    "ManagedRuleSetSummaries":{
+      "type":"list",
+      "member":{"shape":"ManagedRuleSetSummary"}
+    },
+    "ManagedRuleSetSummary":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"EntityName"},
+        "Id":{"shape":"EntityId"},
+        "Description":{"shape":"EntityDescription"},
+        "LockToken":{"shape":"LockToken"},
+        "ARN":{"shape":"ResourceArn"},
+        "LabelNamespace":{"shape":"LabelName"}
+      }
+    },
+    "ManagedRuleSetVersion":{
+      "type":"structure",
+      "members":{
+        "AssociatedRuleGroupArn":{"shape":"ResourceArn"},
+        "Capacity":{"shape":"CapacityUnit"},
+        "ForecastedLifetime":{"shape":"TimeWindowDay"},
+        "PublishTimestamp":{"shape":"Timestamp"},
+        "LastUpdateTimestamp":{"shape":"Timestamp"},
+        "ExpiryTimestamp":{"shape":"Timestamp"}
       }
     },
     "Method":{
@@ -2229,6 +2423,11 @@
         "CONTAINS_WORD"
       ]
     },
+    "PublishedVersions":{
+      "type":"map",
+      "key":{"shape":"VersionKeyString"},
+      "value":{"shape":"ManagedRuleSetVersion"}
+    },
     "PutLoggingConfigurationRequest":{
       "type":"structure",
       "required":["LoggingConfiguration"],
@@ -2240,6 +2439,29 @@
       "type":"structure",
       "members":{
         "LoggingConfiguration":{"shape":"LoggingConfiguration"}
+      }
+    },
+    "PutManagedRuleSetVersionsRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Scope",
+        "Id",
+        "LockToken"
+      ],
+      "members":{
+        "Name":{"shape":"EntityName"},
+        "Scope":{"shape":"Scope"},
+        "Id":{"shape":"EntityId"},
+        "LockToken":{"shape":"LockToken"},
+        "RecommendedVersion":{"shape":"VersionKeyString"},
+        "VersionsToPublish":{"shape":"VersionsToPublish"}
+      }
+    },
+    "PutManagedRuleSetVersionsResponse":{
+      "type":"structure",
+      "members":{
+        "NextLockToken":{"shape":"LockToken"}
       }
     },
     "PutPermissionPolicyRequest":{
@@ -2694,6 +2916,10 @@
         "EndTime":{"shape":"Timestamp"}
       }
     },
+    "TimeWindowDay":{
+      "type":"integer",
+      "min":1
+    },
     "Timestamp":{"type":"timestamp"},
     "URIString":{"type":"string"},
     "UntagResourceRequest":{
@@ -2733,6 +2959,33 @@
     "UpdateIPSetResponse":{
       "type":"structure",
       "members":{
+        "NextLockToken":{"shape":"LockToken"}
+      }
+    },
+    "UpdateManagedRuleSetVersionExpiryDateRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Scope",
+        "Id",
+        "LockToken",
+        "VersionToExpire",
+        "ExpiryTimestamp"
+      ],
+      "members":{
+        "Name":{"shape":"EntityName"},
+        "Scope":{"shape":"Scope"},
+        "Id":{"shape":"EntityId"},
+        "LockToken":{"shape":"LockToken"},
+        "VersionToExpire":{"shape":"VersionKeyString"},
+        "ExpiryTimestamp":{"shape":"Timestamp"}
+      }
+    },
+    "UpdateManagedRuleSetVersionExpiryDateResponse":{
+      "type":"structure",
+      "members":{
+        "ExpiringVersion":{"shape":"VersionKeyString"},
+        "ExpiryTimestamp":{"shape":"Timestamp"},
         "NextLockToken":{"shape":"LockToken"}
       }
     },
@@ -2825,6 +3078,24 @@
       "min":1,
       "pattern":".*\\S.*"
     },
+    "VersionKeyString":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^[\\w#:\\.\\-/]+$"
+    },
+    "VersionToPublish":{
+      "type":"structure",
+      "members":{
+        "AssociatedRuleGroupArn":{"shape":"ResourceArn"},
+        "ForecastedLifetime":{"shape":"TimeWindowDay"}
+      }
+    },
+    "VersionsToPublish":{
+      "type":"map",
+      "key":{"shape":"VersionKeyString"},
+      "value":{"shape":"VersionToPublish"}
+    },
     "VisibilityConfig":{
       "type":"structure",
       "required":[
@@ -2846,6 +3117,13 @@
       "exception":true
     },
     "WAFDuplicateItemException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "WAFExpiredManagedRuleGroupVersionException":{
       "type":"structure",
       "members":{
         "Message":{"shape":"ErrorMessage"}

@@ -1023,6 +1023,13 @@
         "Confidence":{"shape":"Percent"}
       }
     },
+    "BlackFrame":{
+      "type":"structure",
+      "members":{
+        "MaxPixelThreshold":{"shape":"MaxPixelThreshold"},
+        "MinCoveragePercentage":{"shape":"MinCoveragePercentage"}
+      }
+    },
     "BodyPart":{
       "type":"string",
       "enum":[
@@ -2294,9 +2301,19 @@
       "type":"integer",
       "min":1
     },
+    "MaxPixelThreshold":{
+      "type":"float",
+      "max":1,
+      "min":0
+    },
     "MaxResults":{
       "type":"integer",
       "min":1
+    },
+    "MinCoveragePercentage":{
+      "type":"float",
+      "max":100,
+      "min":0
     },
     "ModerationLabel":{
       "type":"structure",
@@ -2761,7 +2778,10 @@
         "EndTimecodeSMPTE":{"shape":"Timecode"},
         "DurationSMPTE":{"shape":"Timecode"},
         "TechnicalCueSegment":{"shape":"TechnicalCueSegment"},
-        "ShotSegment":{"shape":"ShotSegment"}
+        "ShotSegment":{"shape":"ShotSegment"},
+        "StartFrameNumber":{"shape":"ULong"},
+        "EndFrameNumber":{"shape":"ULong"},
+        "DurationFrames":{"shape":"ULong"}
       }
     },
     "SegmentDetections":{
@@ -2981,7 +3001,8 @@
     "StartTechnicalCueDetectionFilter":{
       "type":"structure",
       "members":{
-        "MinSegmentConfidence":{"shape":"SegmentConfidence"}
+        "MinSegmentConfidence":{"shape":"SegmentConfidence"},
+        "BlackFrame":{"shape":"BlackFrame"}
       }
     },
     "StartTextDetectionFilters":{
@@ -3150,7 +3171,11 @@
       "enum":[
         "ColorBars",
         "EndCredits",
-        "BlackFrames"
+        "BlackFrames",
+        "OpeningCredits",
+        "StudioLogo",
+        "Slate",
+        "Content"
       ]
     },
     "TestingData":{
@@ -3288,6 +3313,13 @@
         "S3Object":{"shape":"S3Object"}
       }
     },
+    "VideoColorRange":{
+      "type":"string",
+      "enum":[
+        "FULL",
+        "LIMITED"
+      ]
+    },
     "VideoJobStatus":{
       "type":"string",
       "enum":[
@@ -3304,7 +3336,8 @@
         "Format":{"shape":"String"},
         "FrameRate":{"shape":"Float"},
         "FrameHeight":{"shape":"ULong"},
-        "FrameWidth":{"shape":"ULong"}
+        "FrameWidth":{"shape":"ULong"},
+        "ColorRange":{"shape":"VideoColorRange"}
       }
     },
     "VideoMetadataList":{
