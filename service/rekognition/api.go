@@ -2406,7 +2406,7 @@ func (c *Rekognition) DetectTextRequest(input *DetectTextInput) (req *request.Re
 // word or line of text that was detected in the image.
 //
 // A word is one or more ISO basic latin script characters that are not separated
-// by spaces. DetectText can detect up to 50 words in an image.
+// by spaces. DetectText can detect up to 100 words in an image.
 //
 // A line is a string of equally spaced words. A line isn't necessarily a complete
 // sentence. For example, a driver's license number is detected as a line. A
@@ -2830,24 +2830,26 @@ func (c *Rekognition) GetContentModerationRequest(input *GetContentModerationInp
 
 // GetContentModeration API operation for Amazon Rekognition.
 //
-// Gets the unsafe content analysis results for a Amazon Rekognition Video analysis
-// started by StartContentModeration.
+// Gets the inappropriate, unwanted, or offensive content analysis results for
+// a Amazon Rekognition Video analysis started by StartContentModeration. For
+// a list of moderation labels in Amazon Rekognition, see Using the image and
+// video moderation APIs (https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html#moderation-api).
 //
-// Unsafe content analysis of a video is an asynchronous operation. You start
-// analysis by calling StartContentModeration which returns a job identifier
-// (JobId). When analysis finishes, Amazon Rekognition Video publishes a completion
-// status to the Amazon Simple Notification Service topic registered in the
-// initial call to StartContentModeration. To get the results of the unsafe
-// content analysis, first check that the status value published to the Amazon
-// SNS topic is SUCCEEDED. If so, call GetContentModeration and pass the job
-// identifier (JobId) from the initial call to StartContentModeration.
+// Amazon Rekognition Video inappropriate or offensive content detection in
+// a stored video is an asynchronous operation. You start analysis by calling
+// StartContentModeration which returns a job identifier (JobId). When analysis
+// finishes, Amazon Rekognition Video publishes a completion status to the Amazon
+// Simple Notification Service topic registered in the initial call to StartContentModeration.
+// To get the results of the content analysis, first check that the status value
+// published to the Amazon SNS topic is SUCCEEDED. If so, call GetContentModeration
+// and pass the job identifier (JobId) from the initial call to StartContentModeration.
 //
 // For more information, see Working with Stored Videos in the Amazon Rekognition
 // Devlopers Guide.
 //
-// GetContentModeration returns detected unsafe content labels, and the time
-// they are detected, in an array, ModerationLabels, of ContentModerationDetection
-// objects.
+// GetContentModeration returns detected inappropriate, unwanted, or offensive
+// content moderation labels, and the time they are detected, in an array, ModerationLabels,
+// of ContentModerationDetection objects.
 //
 // By default, the moderated labels are returned sorted by time, in milliseconds
 // from the start of the video. You can also sort them by moderated label by
@@ -2861,8 +2863,8 @@ func (c *Rekognition) GetContentModerationRequest(input *GetContentModerationInp
 // and populate the NextToken request parameter with the value of NextToken
 // returned from the previous call to GetContentModeration.
 //
-// For more information, see Detecting Unsafe Content in the Amazon Rekognition
-// Developer Guide.
+// For more information, see Content moderation in the Amazon Rekognition Developer
+// Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5402,21 +5404,23 @@ func (c *Rekognition) StartContentModerationRequest(input *StartContentModeratio
 
 // StartContentModeration API operation for Amazon Rekognition.
 //
-// Starts asynchronous detection of unsafe content in a stored video.
+// Starts asynchronous detection of inappropriate, unwanted, or offensive content
+// in a stored video. For a list of moderation labels in Amazon Rekognition,
+// see Using the image and video moderation APIs (https://docs.aws.amazon.com/rekognition/latest/dg/moderation.html#moderation-api).
 //
 // Amazon Rekognition Video can moderate content in a video stored in an Amazon
 // S3 bucket. Use Video to specify the bucket name and the filename of the video.
 // StartContentModeration returns a job identifier (JobId) which you use to
-// get the results of the analysis. When unsafe content analysis is finished,
-// Amazon Rekognition Video publishes a completion status to the Amazon Simple
-// Notification Service topic that you specify in NotificationChannel.
+// get the results of the analysis. When content analysis is finished, Amazon
+// Rekognition Video publishes a completion status to the Amazon Simple Notification
+// Service topic that you specify in NotificationChannel.
 //
-// To get the results of the unsafe content analysis, first check that the status
-// value published to the Amazon SNS topic is SUCCEEDED. If so, call GetContentModeration
+// To get the results of the content analysis, first check that the status value
+// published to the Amazon SNS topic is SUCCEEDED. If so, call GetContentModeration
 // and pass the job identifier (JobId) from the initial call to StartContentModeration.
 //
-// For more information, see Detecting Unsafe Content in the Amazon Rekognition
-// Developer Guide.
+// For more information, see Content moderation in the Amazon Rekognition Developer
+// Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7069,6 +7073,60 @@ func (s *Beard) SetValue(v bool) *Beard {
 	return s
 }
 
+// A filter that allows you to control the black frame detection by specifying
+// the black levels and pixel coverage of black pixels in a frame. As videos
+// can come from multiple sources, formats, and time periods, they may contain
+// different standards and varying noise levels for black frames that need to
+// be accounted for. For more information, see StartSegmentDetection.
+type BlackFrame struct {
+	_ struct{} `type:"structure"`
+
+	// A threshold used to determine the maximum luminance value for a pixel to
+	// be considered black. In a full color range video, luminance values range
+	// from 0-255. A pixel value of 0 is pure black, and the most strict filter.
+	// The maximum black pixel value is computed as follows: max_black_pixel_value
+	// = minimum_luminance + MaxPixelThreshold *luminance_range.
+	//
+	// For example, for a full range video with BlackPixelThreshold = 0.1, max_black_pixel_value
+	// is 0 + 0.1 * (255-0) = 25.5.
+	//
+	// The default value of MaxPixelThreshold is 0.2, which maps to a max_black_pixel_value
+	// of 51 for a full range video. You can lower this threshold to be more strict
+	// on black levels.
+	MaxPixelThreshold *float64 `type:"float"`
+
+	// The minimum percentage of pixels in a frame that need to have a luminance
+	// below the max_black_pixel_value for a frame to be considered a black frame.
+	// Luminance is calculated using the BT.709 matrix.
+	//
+	// The default value is 99, which means at least 99% of all pixels in the frame
+	// are black pixels as per the MaxPixelThreshold set. You can reduce this value
+	// to allow more noise on the black frame.
+	MinCoveragePercentage *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s BlackFrame) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BlackFrame) GoString() string {
+	return s.String()
+}
+
+// SetMaxPixelThreshold sets the MaxPixelThreshold field's value.
+func (s *BlackFrame) SetMaxPixelThreshold(v float64) *BlackFrame {
+	s.MaxPixelThreshold = &v
+	return s
+}
+
+// SetMinCoveragePercentage sets the MinCoveragePercentage field's value.
+func (s *BlackFrame) SetMinCoveragePercentage(v float64) *BlackFrame {
+	s.MinCoveragePercentage = &v
+	return s
+}
+
 // Identifies the bounding box around the label, face, text or personal protective
 // equipment. The left (x-coordinate) and top (y-coordinate) are coordinates
 // representing the top and left sides of the bounding box. Note that the upper-left
@@ -7634,14 +7692,15 @@ func (s *ComparedSourceImageFace) SetConfidence(v float64) *ComparedSourceImageF
 	return s
 }
 
-// Information about an unsafe content label detection in a stored video.
+// Information about an inappropriate, unwanted, or offensive content label
+// detection in a stored video.
 type ContentModerationDetection struct {
 	_ struct{} `type:"structure"`
 
-	// The unsafe content label detected by in the stored video.
+	// The content moderation label detected by in the stored video.
 	ModerationLabel *ModerationLabel `type:"structure"`
 
-	// Time, in milliseconds from the beginning of the video, that the unsafe content
+	// Time, in milliseconds from the beginning of the video, that the content moderation
 	// label was detected.
 	Timestamp *int64 `type:"long"`
 }
@@ -7865,16 +7924,29 @@ type CreateProjectVersionInput struct {
 
 	// The identifier for your AWS Key Management Service (AWS KMS) customer master
 	// key (CMK). You can supply the Amazon Resource Name (ARN) of your CMK, the
-	// ID of your CMK, or an alias for your CMK. The key is used to encrypt training
-	// and test images copied into the service for model training. Your source images
-	// are unaffected. The key is also used to encrypt training results and manifest
-	// files written to the output Amazon S3 bucket (OutputConfig).
+	// ID of your CMK, an alias for your CMK, or an alias ARN. The key is used to
+	// encrypt training and test images copied into the service for model training.
+	// Your source images are unaffected. The key is also used to encrypt training
+	// results and manifest files written to the output Amazon S3 bucket (OutputConfig).
+	//
+	// If you choose to use your own CMK, you need the following permissions on
+	// the CMK.
+	//
+	//    * kms:CreateGrant
+	//
+	//    * kms:DescribeKey
+	//
+	//    * kms:GenerateDataKey
+	//
+	//    * kms:Decrypt
 	//
 	// If you don't specify a value for KmsKeyId, images copied into the service
 	// are encrypted using a key that AWS owns and manages.
 	KmsKeyId *string `min:"1" type:"string"`
 
-	// The Amazon S3 location to store the results of training.
+	// The Amazon S3 bucket location to store the results of training. The S3 bucket
+	// can be in any AWS account as long as the caller has s3:PutObject permissions
+	// on the S3 bucket.
 	//
 	// OutputConfig is a required field
 	OutputConfig *OutputConfig `type:"structure" required:"true"`
@@ -10652,8 +10724,8 @@ func (s *GetCelebrityRecognitionOutput) SetVideoMetadata(v *VideoMetadata) *GetC
 type GetContentModerationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the unsafe content job. Use JobId to identify the job
-	// in a subsequent call to GetContentModeration.
+	// The identifier for the inappropriate, unwanted, or offensive content moderation
+	// job. Use JobId to identify the job in a subsequent call to GetContentModeration.
 	//
 	// JobId is a required field
 	JobId *string `min:"1" type:"string" required:"true"`
@@ -10665,7 +10737,7 @@ type GetContentModerationInput struct {
 
 	// If the previous response was incomplete (because there is more data to retrieve),
 	// Amazon Rekognition returns a pagination token in the response. You can use
-	// this pagination token to retrieve the next set of unsafe content labels.
+	// this pagination token to retrieve the next set of content moderation labels.
 	NextToken *string `type:"string"`
 
 	// Sort to use for elements in the ModerationLabelDetections array. Use TIMESTAMP
@@ -10731,19 +10803,20 @@ func (s *GetContentModerationInput) SetSortBy(v string) *GetContentModerationInp
 type GetContentModerationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The current status of the unsafe content analysis job.
+	// The current status of the content moderation analysis job.
 	JobStatus *string `type:"string" enum:"VideoJobStatus"`
 
-	// The detected unsafe content labels and the time(s) they were detected.
+	// The detected inappropriate, unwanted, or offensive content moderation labels
+	// and the time(s) they were detected.
 	ModerationLabels []*ContentModerationDetection `type:"list"`
 
 	// Version number of the moderation detection model that was used to detect
-	// unsafe content.
+	// inappropriate, unwanted, or offensive content.
 	ModerationModelVersion *string `type:"string"`
 
 	// If the response is truncated, Amazon Rekognition Video returns this token
-	// that you can use in the subsequent request to retrieve the next set of unsafe
-	// content labels.
+	// that you can use in the subsequent request to retrieve the next set of content
+	// moderation labels.
 	NextToken *string `type:"string"`
 
 	// If the job fails, StatusMessage provides a descriptive error message.
@@ -13258,10 +13331,10 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Provides information about a single type of unsafe content found in an image
-// or video. Each type of moderated content has a label within a hierarchical
-// taxonomy. For more information, see Detecting Unsafe Content in the Amazon
-// Rekognition Developer Guide.
+// Provides information about a single type of inappropriate, unwanted, or offensive
+// content found in an image or video. Each type of moderated content has a
+// label within a hierarchical taxonomy. For more information, see Content moderation
+// in the Amazon Rekognition Developer Guide.
 type ModerationLabel struct {
 	_ struct{} `type:"structure"`
 
@@ -13379,7 +13452,10 @@ func (s *Mustache) SetValue(v bool) *Mustache {
 
 // The Amazon Simple Notification Service topic to which Amazon Rekognition
 // publishes the completion status of a video analysis operation. For more information,
-// see api-video.
+// see api-video. Note that the Amazon SNS topic must have a topic name that
+// begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole
+// permissions policy to access the topic. For more information, see Giving
+// access to multiple Amazon SNS topics (https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics).
 type NotificationChannel struct {
 	_ struct{} `type:"structure"`
 
@@ -14899,11 +14975,18 @@ func (s *SearchFacesOutput) SetSearchedFaceId(v string) *SearchFacesOutput {
 type SegmentDetection struct {
 	_ struct{} `type:"structure"`
 
+	// The duration of a video segment, expressed in frames.
+	DurationFrames *int64 `type:"long"`
+
 	// The duration of the detected segment in milliseconds.
 	DurationMillis *int64 `type:"long"`
 
 	// The duration of the timecode for the detected segment in SMPTE format.
 	DurationSMPTE *string `type:"string"`
+
+	// The frame number at the end of a video segment, using a frame index that
+	// starts with 0.
+	EndFrameNumber *int64 `type:"long"`
 
 	// The frame-accurate SMPTE timecode, from the start of a video, for the end
 	// of a detected segment. EndTimecode is in HH:MM:SS:fr format (and ;fr for
@@ -14916,6 +14999,10 @@ type SegmentDetection struct {
 
 	// If the segment is a shot detection, contains information about the shot detection.
 	ShotSegment *ShotSegment `type:"structure"`
+
+	// The frame number of the start of a video segment, using a frame index that
+	// starts with 0.
+	StartFrameNumber *int64 `type:"long"`
 
 	// The frame-accurate SMPTE timecode, from the start of a video, for the start
 	// of a detected segment. StartTimecode is in HH:MM:SS:fr format (and ;fr for
@@ -14946,6 +15033,12 @@ func (s SegmentDetection) GoString() string {
 	return s.String()
 }
 
+// SetDurationFrames sets the DurationFrames field's value.
+func (s *SegmentDetection) SetDurationFrames(v int64) *SegmentDetection {
+	s.DurationFrames = &v
+	return s
+}
+
 // SetDurationMillis sets the DurationMillis field's value.
 func (s *SegmentDetection) SetDurationMillis(v int64) *SegmentDetection {
 	s.DurationMillis = &v
@@ -14955,6 +15048,12 @@ func (s *SegmentDetection) SetDurationMillis(v int64) *SegmentDetection {
 // SetDurationSMPTE sets the DurationSMPTE field's value.
 func (s *SegmentDetection) SetDurationSMPTE(v string) *SegmentDetection {
 	s.DurationSMPTE = &v
+	return s
+}
+
+// SetEndFrameNumber sets the EndFrameNumber field's value.
+func (s *SegmentDetection) SetEndFrameNumber(v int64) *SegmentDetection {
+	s.EndFrameNumber = &v
 	return s
 }
 
@@ -14973,6 +15072,12 @@ func (s *SegmentDetection) SetEndTimestampMillis(v int64) *SegmentDetection {
 // SetShotSegment sets the ShotSegment field's value.
 func (s *SegmentDetection) SetShotSegment(v *ShotSegment) *SegmentDetection {
 	s.ShotSegment = v
+	return s
+}
+
+// SetStartFrameNumber sets the StartFrameNumber field's value.
+func (s *SegmentDetection) SetStartFrameNumber(v int64) *SegmentDetection {
+	s.StartFrameNumber = &v
 	return s
 }
 
@@ -15176,7 +15281,9 @@ type StartCelebrityRecognitionInput struct {
 	JobTag *string `min:"1" type:"string"`
 
 	// The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
-	// the completion status of the celebrity recognition analysis to.
+	// the completion status of the celebrity recognition analysis to. The Amazon
+	// SNS topic must have a topic name that begins with AmazonRekognition if you
+	// are using the AmazonRekognitionServiceRole permissions policy.
 	NotificationChannel *NotificationChannel `type:"structure"`
 
 	// The video in which you want to recognize celebrities. The video must be stored
@@ -15298,11 +15405,13 @@ type StartContentModerationInput struct {
 	MinConfidence *float64 `type:"float"`
 
 	// The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish
-	// the completion status of the unsafe content analysis to.
+	// the completion status of the content analysis to. The Amazon SNS topic must
+	// have a topic name that begins with AmazonRekognition if you are using the
+	// AmazonRekognitionServiceRole permissions policy to access the topic.
 	NotificationChannel *NotificationChannel `type:"structure"`
 
-	// The video in which you want to detect unsafe content. The video must be stored
-	// in an Amazon S3 bucket.
+	// The video in which you want to detect inappropriate, unwanted, or offensive
+	// content. The video must be stored in an Amazon S3 bucket.
 	//
 	// Video is a required field
 	Video *Video `type:"structure" required:"true"`
@@ -15380,8 +15489,8 @@ func (s *StartContentModerationInput) SetVideo(v *Video) *StartContentModeration
 type StartContentModerationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier for the unsafe content analysis job. Use JobId to identify
-	// the job in a subsequent call to GetContentModeration.
+	// The identifier for the content analysis job. Use JobId to identify the job
+	// in a subsequent call to GetContentModeration.
 	JobId *string `min:"1" type:"string"`
 }
 
@@ -15425,7 +15534,9 @@ type StartFaceDetectionInput struct {
 	JobTag *string `min:"1" type:"string"`
 
 	// The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video
-	// to publish the completion status of the face detection operation.
+	// to publish the completion status of the face detection operation. The Amazon
+	// SNS topic must have a topic name that begins with AmazonRekognition if you
+	// are using the AmazonRekognitionServiceRole permissions policy.
 	NotificationChannel *NotificationChannel `type:"structure"`
 
 	// The video in which you want to detect faces. The video must be stored in
@@ -15554,7 +15665,9 @@ type StartFaceSearchInput struct {
 	JobTag *string `min:"1" type:"string"`
 
 	// The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video
-	// to publish the completion status of the search.
+	// to publish the completion status of the search. The Amazon SNS topic must
+	// have a topic name that begins with AmazonRekognition if you are using the
+	// AmazonRekognitionServiceRole permissions policy to access the topic.
 	NotificationChannel *NotificationChannel `type:"structure"`
 
 	// The video you want to search. The video must be stored in an Amazon S3 bucket.
@@ -15694,7 +15807,9 @@ type StartLabelDetectionInput struct {
 	MinConfidence *float64 `type:"float"`
 
 	// The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the
-	// completion status of the label detection operation to.
+	// completion status of the label detection operation to. The Amazon SNS topic
+	// must have a topic name that begins with AmazonRekognition if you are using
+	// the AmazonRekognitionServiceRole permissions policy.
 	NotificationChannel *NotificationChannel `type:"structure"`
 
 	// The video in which you want to detect labels. The video must be stored in
@@ -15813,7 +15928,9 @@ type StartPersonTrackingInput struct {
 	JobTag *string `min:"1" type:"string"`
 
 	// The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the
-	// completion status of the people detection operation to.
+	// completion status of the people detection operation to. The Amazon SNS topic
+	// must have a topic name that begins with AmazonRekognition if you are using
+	// the AmazonRekognitionServiceRole permissions policy.
 	NotificationChannel *NotificationChannel `type:"structure"`
 
 	// The video in which you want to detect people. The video must be stored in
@@ -16067,7 +16184,10 @@ type StartSegmentDetectionInput struct {
 	JobTag *string `min:"1" type:"string"`
 
 	// The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video
-	// to publish the completion status of the segment detection operation.
+	// to publish the completion status of the segment detection operation. Note
+	// that the Amazon SNS topic must have a topic name that begins with AmazonRekognition
+	// if you are using the AmazonRekognitionServiceRole permissions policy to access
+	// the topic.
 	NotificationChannel *NotificationChannel `type:"structure"`
 
 	// An array of segment types to detect in the video. Valid values are TECHNICAL_CUE
@@ -16299,6 +16419,12 @@ func (s StartStreamProcessorOutput) GoString() string {
 type StartTechnicalCueDetectionFilter struct {
 	_ struct{} `type:"structure"`
 
+	// A filter that allows you to control the black frame detection by specifying
+	// the black levels and pixel coverage of black pixels in a frame. Videos can
+	// come from multiple sources, formats, and time periods, with different standards
+	// and varying noise levels for black frames that need to be accounted for.
+	BlackFrame *BlackFrame `type:"structure"`
+
 	// Specifies the minimum confidence that Amazon Rekognition Video must have
 	// in order to return a detected segment. Confidence represents how certain
 	// Amazon Rekognition is that a segment is correctly identified. 0 is the lowest
@@ -16331,6 +16457,12 @@ func (s *StartTechnicalCueDetectionFilter) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBlackFrame sets the BlackFrame field's value.
+func (s *StartTechnicalCueDetectionFilter) SetBlackFrame(v *BlackFrame) *StartTechnicalCueDetectionFilter {
+	s.BlackFrame = v
+	return s
 }
 
 // SetMinSegmentConfidence sets the MinSegmentConfidence field's value.
@@ -16396,7 +16528,10 @@ type StartTextDetectionInput struct {
 
 	// The Amazon Simple Notification Service topic to which Amazon Rekognition
 	// publishes the completion status of a video analysis operation. For more information,
-	// see api-video.
+	// see api-video. Note that the Amazon SNS topic must have a topic name that
+	// begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole
+	// permissions policy to access the topic. For more information, see Giving
+	// access to multiple Amazon SNS topics (https://docs.aws.amazon.com/rekognition/latest/dg/api-video-roles.html#api-video-roles-all-topics).
 	NotificationChannel *NotificationChannel `type:"structure"`
 
 	// Video file stored in an Amazon S3 bucket. Amazon Rekognition video start
@@ -17497,6 +17632,10 @@ type VideoMetadata struct {
 	// Type of compression used in the analyzed video.
 	Codec *string `type:"string"`
 
+	// A description of the range of luminance values in a video, either LIMITED
+	// (16 to 235) or FULL (0 to 255).
+	ColorRange *string `type:"string" enum:"VideoColorRange"`
+
 	// Length of the video in milliseconds.
 	DurationMillis *int64 `type:"long"`
 
@@ -17526,6 +17665,12 @@ func (s VideoMetadata) GoString() string {
 // SetCodec sets the Codec field's value.
 func (s *VideoMetadata) SetCodec(v string) *VideoMetadata {
 	s.Codec = &v
+	return s
+}
+
+// SetColorRange sets the ColorRange field's value.
+func (s *VideoMetadata) SetColorRange(v string) *VideoMetadata {
+	s.ColorRange = &v
 	return s
 }
 
@@ -18181,6 +18326,18 @@ const (
 
 	// TechnicalCueTypeBlackFrames is a TechnicalCueType enum value
 	TechnicalCueTypeBlackFrames = "BlackFrames"
+
+	// TechnicalCueTypeOpeningCredits is a TechnicalCueType enum value
+	TechnicalCueTypeOpeningCredits = "OpeningCredits"
+
+	// TechnicalCueTypeStudioLogo is a TechnicalCueType enum value
+	TechnicalCueTypeStudioLogo = "StudioLogo"
+
+	// TechnicalCueTypeSlate is a TechnicalCueType enum value
+	TechnicalCueTypeSlate = "Slate"
+
+	// TechnicalCueTypeContent is a TechnicalCueType enum value
+	TechnicalCueTypeContent = "Content"
 )
 
 // TechnicalCueType_Values returns all elements of the TechnicalCueType enum
@@ -18189,6 +18346,10 @@ func TechnicalCueType_Values() []string {
 		TechnicalCueTypeColorBars,
 		TechnicalCueTypeEndCredits,
 		TechnicalCueTypeBlackFrames,
+		TechnicalCueTypeOpeningCredits,
+		TechnicalCueTypeStudioLogo,
+		TechnicalCueTypeSlate,
+		TechnicalCueTypeContent,
 	}
 }
 
@@ -18205,6 +18366,22 @@ func TextTypes_Values() []string {
 	return []string{
 		TextTypesLine,
 		TextTypesWord,
+	}
+}
+
+const (
+	// VideoColorRangeFull is a VideoColorRange enum value
+	VideoColorRangeFull = "FULL"
+
+	// VideoColorRangeLimited is a VideoColorRange enum value
+	VideoColorRangeLimited = "LIMITED"
+)
+
+// VideoColorRange_Values returns all elements of the VideoColorRange enum
+func VideoColorRange_Values() []string {
+	return []string{
+		VideoColorRangeFull,
+		VideoColorRangeLimited,
 	}
 }
 

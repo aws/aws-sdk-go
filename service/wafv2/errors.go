@@ -22,6 +22,14 @@ const (
 	// to save is a duplicate of an existing one.
 	ErrCodeWAFDuplicateItemException = "WAFDuplicateItemException"
 
+	// ErrCodeWAFExpiredManagedRuleGroupVersionException for service response error code
+	// "WAFExpiredManagedRuleGroupVersionException".
+	//
+	// The operation failed because the specified version for the managed rule group
+	// has expired. You can retrieve the available versions for the managed rule
+	// group by calling ListAvailableManagedRuleGroupVersions.
+	ErrCodeWAFExpiredManagedRuleGroupVersionException = "WAFExpiredManagedRuleGroupVersionException"
+
 	// ErrCodeWAFInternalErrorException for service response error code
 	// "WAFInternalErrorException".
 	//
@@ -87,7 +95,7 @@ const (
 	//
 	// WAF couldn’t perform the operation because you exceeded your resource limit.
 	// For example, the maximum number of WebACL objects that you can create for
-	// an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+	// an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 	// in the WAF Developer Guide.
 	ErrCodeWAFLimitsExceededException = "WAFLimitsExceededException"
 
@@ -146,19 +154,20 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"WAFAssociatedItemException":            newErrorWAFAssociatedItemException,
-	"WAFDuplicateItemException":             newErrorWAFDuplicateItemException,
-	"WAFInternalErrorException":             newErrorWAFInternalErrorException,
-	"WAFInvalidOperationException":          newErrorWAFInvalidOperationException,
-	"WAFInvalidParameterException":          newErrorWAFInvalidParameterException,
-	"WAFInvalidPermissionPolicyException":   newErrorWAFInvalidPermissionPolicyException,
-	"WAFInvalidResourceException":           newErrorWAFInvalidResourceException,
-	"WAFLimitsExceededException":            newErrorWAFLimitsExceededException,
-	"WAFNonexistentItemException":           newErrorWAFNonexistentItemException,
-	"WAFOptimisticLockException":            newErrorWAFOptimisticLockException,
-	"WAFServiceLinkedRoleErrorException":    newErrorWAFServiceLinkedRoleErrorException,
-	"WAFSubscriptionNotFoundException":      newErrorWAFSubscriptionNotFoundException,
-	"WAFTagOperationException":              newErrorWAFTagOperationException,
-	"WAFTagOperationInternalErrorException": newErrorWAFTagOperationInternalErrorException,
-	"WAFUnavailableEntityException":         newErrorWAFUnavailableEntityException,
+	"WAFAssociatedItemException":                 newErrorWAFAssociatedItemException,
+	"WAFDuplicateItemException":                  newErrorWAFDuplicateItemException,
+	"WAFExpiredManagedRuleGroupVersionException": newErrorWAFExpiredManagedRuleGroupVersionException,
+	"WAFInternalErrorException":                  newErrorWAFInternalErrorException,
+	"WAFInvalidOperationException":               newErrorWAFInvalidOperationException,
+	"WAFInvalidParameterException":               newErrorWAFInvalidParameterException,
+	"WAFInvalidPermissionPolicyException":        newErrorWAFInvalidPermissionPolicyException,
+	"WAFInvalidResourceException":                newErrorWAFInvalidResourceException,
+	"WAFLimitsExceededException":                 newErrorWAFLimitsExceededException,
+	"WAFNonexistentItemException":                newErrorWAFNonexistentItemException,
+	"WAFOptimisticLockException":                 newErrorWAFOptimisticLockException,
+	"WAFServiceLinkedRoleErrorException":         newErrorWAFServiceLinkedRoleErrorException,
+	"WAFSubscriptionNotFoundException":           newErrorWAFSubscriptionNotFoundException,
+	"WAFTagOperationException":                   newErrorWAFTagOperationException,
+	"WAFTagOperationInternalErrorException":      newErrorWAFTagOperationInternalErrorException,
+	"WAFUnavailableEntityException":              newErrorWAFUnavailableEntityException,
 }

@@ -214,7 +214,7 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFInvalidResourceException
@@ -227,6 +227,11 @@ func (c *WAFV2) CheckCapacityRequest(input *CheckCapacityInput) (req *request.Re
 //   * WAFSubscriptionNotFoundException
 //   You tried to use a managed rule group that's available by subscription, but
 //   you aren't subscribed to it yet.
+//
+//   * WAFExpiredManagedRuleGroupVersionException
+//   The operation failed because the specified version for the managed rule group
+//   has expired. You can retrieve the available versions for the managed rule
+//   group by calling ListAvailableManagedRuleGroupVersions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/CheckCapacity
 func (c *WAFV2) CheckCapacity(input *CheckCapacityInput) (*CheckCapacityOutput, error) {
@@ -338,7 +343,7 @@ func (c *WAFV2) CreateIPSetRequest(input *CreateIPSetInput) (req *request.Reques
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFTagOperationException
@@ -459,7 +464,7 @@ func (c *WAFV2) CreateRegexPatternSetRequest(input *CreateRegexPatternSetInput) 
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFTagOperationException
@@ -585,7 +590,7 @@ func (c *WAFV2) CreateRuleGroupRequest(input *CreateRuleGroupInput) (req *reques
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFUnavailableEntityException
@@ -725,7 +730,7 @@ func (c *WAFV2) CreateWebACLRequest(input *CreateWebACLInput) (req *request.Requ
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFInvalidResourceException
@@ -1651,6 +1656,11 @@ func (c *WAFV2) DescribeManagedRuleGroupRequest(input *DescribeManagedRuleGroupI
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
 //
+//   * WAFExpiredManagedRuleGroupVersionException
+//   The operation failed because the specified version for the managed rule group
+//   has expired. You can retrieve the available versions for the managed rule
+//   group by calling ListAvailableManagedRuleGroupVersions.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/DescribeManagedRuleGroup
 func (c *WAFV2) DescribeManagedRuleGroup(input *DescribeManagedRuleGroupInput) (*DescribeManagedRuleGroupOutput, error) {
 	req, out := c.DescribeManagedRuleGroupRequest(input)
@@ -1979,6 +1989,115 @@ func (c *WAFV2) GetLoggingConfiguration(input *GetLoggingConfigurationInput) (*G
 // for more information on using Contexts.
 func (c *WAFV2) GetLoggingConfigurationWithContext(ctx aws.Context, input *GetLoggingConfigurationInput, opts ...request.Option) (*GetLoggingConfigurationOutput, error) {
 	req, out := c.GetLoggingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetManagedRuleSet = "GetManagedRuleSet"
+
+// GetManagedRuleSetRequest generates a "aws/request.Request" representing the
+// client's request for the GetManagedRuleSet operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetManagedRuleSet for more information on using the GetManagedRuleSet
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetManagedRuleSetRequest method.
+//    req, resp := client.GetManagedRuleSetRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetManagedRuleSet
+func (c *WAFV2) GetManagedRuleSetRequest(input *GetManagedRuleSetInput) (req *request.Request, output *GetManagedRuleSetOutput) {
+	op := &request.Operation{
+		Name:       opGetManagedRuleSet,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetManagedRuleSetInput{}
+	}
+
+	output = &GetManagedRuleSetOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetManagedRuleSet API operation for AWS WAFV2.
+//
+// Retrieves the specified managed rule set.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation GetManagedRuleSet for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFNonexistentItemException
+//   WAF couldn’t perform the operation because your resource doesn’t exist.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/GetManagedRuleSet
+func (c *WAFV2) GetManagedRuleSet(input *GetManagedRuleSetInput) (*GetManagedRuleSetOutput, error) {
+	req, out := c.GetManagedRuleSetRequest(input)
+	return out, req.Send()
+}
+
+// GetManagedRuleSetWithContext is the same as GetManagedRuleSet with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetManagedRuleSet for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) GetManagedRuleSetWithContext(ctx aws.Context, input *GetManagedRuleSetInput, opts ...request.Option) (*GetManagedRuleSetOutput, error) {
+	req, out := c.GetManagedRuleSetRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2703,6 +2822,104 @@ func (c *WAFV2) GetWebACLForResourceWithContext(ctx aws.Context, input *GetWebAC
 	return out, req.Send()
 }
 
+const opListAvailableManagedRuleGroupVersions = "ListAvailableManagedRuleGroupVersions"
+
+// ListAvailableManagedRuleGroupVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListAvailableManagedRuleGroupVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAvailableManagedRuleGroupVersions for more information on using the ListAvailableManagedRuleGroupVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAvailableManagedRuleGroupVersionsRequest method.
+//    req, resp := client.ListAvailableManagedRuleGroupVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListAvailableManagedRuleGroupVersions
+func (c *WAFV2) ListAvailableManagedRuleGroupVersionsRequest(input *ListAvailableManagedRuleGroupVersionsInput) (req *request.Request, output *ListAvailableManagedRuleGroupVersionsOutput) {
+	op := &request.Operation{
+		Name:       opListAvailableManagedRuleGroupVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListAvailableManagedRuleGroupVersionsInput{}
+	}
+
+	output = &ListAvailableManagedRuleGroupVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAvailableManagedRuleGroupVersions API operation for AWS WAFV2.
+//
+// Returns a list of the available versions for the specified managed rule group.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation ListAvailableManagedRuleGroupVersions for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListAvailableManagedRuleGroupVersions
+func (c *WAFV2) ListAvailableManagedRuleGroupVersions(input *ListAvailableManagedRuleGroupVersionsInput) (*ListAvailableManagedRuleGroupVersionsOutput, error) {
+	req, out := c.ListAvailableManagedRuleGroupVersionsRequest(input)
+	return out, req.Send()
+}
+
+// ListAvailableManagedRuleGroupVersionsWithContext is the same as ListAvailableManagedRuleGroupVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAvailableManagedRuleGroupVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) ListAvailableManagedRuleGroupVersionsWithContext(ctx aws.Context, input *ListAvailableManagedRuleGroupVersionsInput, opts ...request.Option) (*ListAvailableManagedRuleGroupVersionsOutput, error) {
+	req, out := c.ListAvailableManagedRuleGroupVersionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAvailableManagedRuleGroups = "ListAvailableManagedRuleGroups"
 
 // ListAvailableManagedRuleGroupsRequest generates a "aws/request.Request" representing the
@@ -2749,7 +2966,7 @@ func (c *WAFV2) ListAvailableManagedRuleGroupsRequest(input *ListAvailableManage
 //
 // Retrieves an array of managed rule groups that are available for you to use.
 // This list includes all Amazon Web Services Managed Rules rule groups and
-// the Marketplace managed rule groups that you're subscribed to.
+// all of the Marketplace managed rule groups that you're subscribed to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2994,6 +3211,112 @@ func (c *WAFV2) ListLoggingConfigurations(input *ListLoggingConfigurationsInput)
 // for more information on using Contexts.
 func (c *WAFV2) ListLoggingConfigurationsWithContext(ctx aws.Context, input *ListLoggingConfigurationsInput, opts ...request.Option) (*ListLoggingConfigurationsOutput, error) {
 	req, out := c.ListLoggingConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListManagedRuleSets = "ListManagedRuleSets"
+
+// ListManagedRuleSetsRequest generates a "aws/request.Request" representing the
+// client's request for the ListManagedRuleSets operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListManagedRuleSets for more information on using the ListManagedRuleSets
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListManagedRuleSetsRequest method.
+//    req, resp := client.ListManagedRuleSetsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListManagedRuleSets
+func (c *WAFV2) ListManagedRuleSetsRequest(input *ListManagedRuleSetsInput) (req *request.Request, output *ListManagedRuleSetsOutput) {
+	op := &request.Operation{
+		Name:       opListManagedRuleSets,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListManagedRuleSetsInput{}
+	}
+
+	output = &ListManagedRuleSetsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListManagedRuleSets API operation for AWS WAFV2.
+//
+// Retrieves the managed rule sets that you own.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation ListManagedRuleSets for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/ListManagedRuleSets
+func (c *WAFV2) ListManagedRuleSets(input *ListManagedRuleSetsInput) (*ListManagedRuleSetsOutput, error) {
+	req, out := c.ListManagedRuleSetsRequest(input)
+	return out, req.Send()
+}
+
+// ListManagedRuleSetsWithContext is the same as ListManagedRuleSets with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListManagedRuleSets for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) ListManagedRuleSetsWithContext(ctx aws.Context, input *ListManagedRuleSetsInput, opts ...request.Option) (*ListManagedRuleSetsOutput, error) {
+	req, out := c.ListManagedRuleSetsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3640,7 +3963,7 @@ func (c *WAFV2) PutLoggingConfigurationRequest(input *PutLoggingConfigurationInp
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutLoggingConfiguration
@@ -3660,6 +3983,130 @@ func (c *WAFV2) PutLoggingConfiguration(input *PutLoggingConfigurationInput) (*P
 // for more information on using Contexts.
 func (c *WAFV2) PutLoggingConfigurationWithContext(ctx aws.Context, input *PutLoggingConfigurationInput, opts ...request.Option) (*PutLoggingConfigurationOutput, error) {
 	req, out := c.PutLoggingConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutManagedRuleSetVersions = "PutManagedRuleSetVersions"
+
+// PutManagedRuleSetVersionsRequest generates a "aws/request.Request" representing the
+// client's request for the PutManagedRuleSetVersions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutManagedRuleSetVersions for more information on using the PutManagedRuleSetVersions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutManagedRuleSetVersionsRequest method.
+//    req, resp := client.PutManagedRuleSetVersionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutManagedRuleSetVersions
+func (c *WAFV2) PutManagedRuleSetVersionsRequest(input *PutManagedRuleSetVersionsInput) (req *request.Request, output *PutManagedRuleSetVersionsOutput) {
+	op := &request.Operation{
+		Name:       opPutManagedRuleSetVersions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutManagedRuleSetVersionsInput{}
+	}
+
+	output = &PutManagedRuleSetVersionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutManagedRuleSetVersions API operation for AWS WAFV2.
+//
+// Defines the versions of your managed rule set that you are offering to the
+// customers. Customers see your offerings as managed rule groups with versioning.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+//
+// Customers retrieve their managed rule group list by calling ListAvailableManagedRuleGroups.
+// The name that you provide here for your managed rule set is the name the
+// customer sees for the corresponding managed rule group. Customers can retrieve
+// the available versions for a managed rule group by calling ListAvailableManagedRuleGroupVersions.
+// You provide a rule group specification for each version. For each managed
+// rule set, you must specify a version that you recommend using.
+//
+// To initiate the expiration of a managed rule group version, use UpdateManagedRuleSetVersionExpiryDate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation PutManagedRuleSetVersions for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFNonexistentItemException
+//   WAF couldn’t perform the operation because your resource doesn’t exist.
+//
+//   * WAFOptimisticLockException
+//   WAF couldn’t save your changes because you tried to update or delete a
+//   resource that has changed since you last retrieved it. Get the resource again,
+//   make any changes you need to make to the new copy, and retry your operation.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/PutManagedRuleSetVersions
+func (c *WAFV2) PutManagedRuleSetVersions(input *PutManagedRuleSetVersionsInput) (*PutManagedRuleSetVersionsOutput, error) {
+	req, out := c.PutManagedRuleSetVersionsRequest(input)
+	return out, req.Send()
+}
+
+// PutManagedRuleSetVersionsWithContext is the same as PutManagedRuleSetVersions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutManagedRuleSetVersions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) PutManagedRuleSetVersionsWithContext(ctx aws.Context, input *PutManagedRuleSetVersionsInput, opts ...request.Option) (*PutManagedRuleSetVersionsOutput, error) {
+	req, out := c.PutManagedRuleSetVersionsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -3880,7 +4327,7 @@ func (c *WAFV2) TagResourceRequest(input *TagResourceInput) (req *request.Reques
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFNonexistentItemException
@@ -4124,7 +4571,7 @@ func (c *WAFV2) UpdateIPSetRequest(input *UpdateIPSetInput) (req *request.Reques
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFInvalidOperationException
@@ -4147,6 +4594,123 @@ func (c *WAFV2) UpdateIPSet(input *UpdateIPSetInput) (*UpdateIPSetOutput, error)
 // for more information on using Contexts.
 func (c *WAFV2) UpdateIPSetWithContext(ctx aws.Context, input *UpdateIPSetInput, opts ...request.Option) (*UpdateIPSetOutput, error) {
 	req, out := c.UpdateIPSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateManagedRuleSetVersionExpiryDate = "UpdateManagedRuleSetVersionExpiryDate"
+
+// UpdateManagedRuleSetVersionExpiryDateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateManagedRuleSetVersionExpiryDate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateManagedRuleSetVersionExpiryDate for more information on using the UpdateManagedRuleSetVersionExpiryDate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateManagedRuleSetVersionExpiryDateRequest method.
+//    req, resp := client.UpdateManagedRuleSetVersionExpiryDateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateManagedRuleSetVersionExpiryDate
+func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateRequest(input *UpdateManagedRuleSetVersionExpiryDateInput) (req *request.Request, output *UpdateManagedRuleSetVersionExpiryDateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateManagedRuleSetVersionExpiryDate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateManagedRuleSetVersionExpiryDateInput{}
+	}
+
+	output = &UpdateManagedRuleSetVersionExpiryDateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateManagedRuleSetVersionExpiryDate API operation for AWS WAFV2.
+//
+// Updates the expiration information for your managed rule set. Use this to
+// initiate the expiration of a managed rule group version. After you initiate
+// expiration for a version, WAF excludes it from the reponse to ListAvailableManagedRuleGroupVersions
+// for the managed rule group.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS WAFV2's
+// API operation UpdateManagedRuleSetVersionExpiryDate for usage and error information.
+//
+// Returned Error Types:
+//   * WAFInternalErrorException
+//   Your request is valid, but WAF couldn’t perform the operation because of
+//   a system problem. Retry your request.
+//
+//   * WAFInvalidParameterException
+//   The operation failed because WAF didn't recognize a parameter in the request.
+//   For example:
+//
+//      * You specified a parameter name or value that isn't valid.
+//
+//      * Your nested statement isn't valid. You might have tried to nest a statement
+//      that can’t be nested.
+//
+//      * You tried to update a WebACL with a DefaultAction that isn't among the
+//      types available at DefaultAction.
+//
+//      * Your request references an ARN that is malformed, or corresponds to
+//      a resource with which a web ACL can't be associated.
+//
+//   * WAFNonexistentItemException
+//   WAF couldn’t perform the operation because your resource doesn’t exist.
+//
+//   * WAFOptimisticLockException
+//   WAF couldn’t save your changes because you tried to update or delete a
+//   resource that has changed since you last retrieved it. Get the resource again,
+//   make any changes you need to make to the new copy, and retry your operation.
+//
+//   * WAFInvalidOperationException
+//   The operation isn't valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateManagedRuleSetVersionExpiryDate
+func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDate(input *UpdateManagedRuleSetVersionExpiryDateInput) (*UpdateManagedRuleSetVersionExpiryDateOutput, error) {
+	req, out := c.UpdateManagedRuleSetVersionExpiryDateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateManagedRuleSetVersionExpiryDateWithContext is the same as UpdateManagedRuleSetVersionExpiryDate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateManagedRuleSetVersionExpiryDate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateWithContext(ctx aws.Context, input *UpdateManagedRuleSetVersionExpiryDateInput, opts ...request.Option) (*UpdateManagedRuleSetVersionExpiryDateOutput, error) {
+	req, out := c.UpdateManagedRuleSetVersionExpiryDateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4246,7 +4810,7 @@ func (c *WAFV2) UpdateRegexPatternSetRequest(input *UpdateRegexPatternSetInput) 
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFInvalidOperationException
@@ -4374,7 +4938,7 @@ func (c *WAFV2) UpdateRuleGroupRequest(input *UpdateRuleGroupInput) (req *reques
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFUnavailableEntityException
@@ -4512,7 +5076,7 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //   * WAFLimitsExceededException
 //   WAF couldn’t perform the operation because you exceeded your resource limit.
 //   For example, the maximum number of WebACL objects that you can create for
-//   an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+//   an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 //   in the WAF Developer Guide.
 //
 //   * WAFInvalidResourceException
@@ -4528,6 +5092,11 @@ func (c *WAFV2) UpdateWebACLRequest(input *UpdateWebACLInput) (req *request.Requ
 //
 //   * WAFInvalidOperationException
 //   The operation isn't valid.
+//
+//   * WAFExpiredManagedRuleGroupVersionException
+//   The operation failed because the specified version for the managed rule group
+//   has expired. You can retrieve the available versions for the managed rule
+//   group by calling ListAvailableManagedRuleGroupVersions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/wafv2-2019-07-29/UpdateWebACL
 func (c *WAFV2) UpdateWebACL(input *UpdateWebACLInput) (*UpdateWebACLOutput, error) {
@@ -5264,7 +5833,7 @@ type CreateIPSetInput struct {
 	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
-	// Specify IPV4 or IPV6.
+	// The version of the IP addresses, either IPV4 or IPV6.
 	//
 	// IPAddressVersion is a required field
 	IPAddressVersion *string `type:"string" required:"true" enum:"IPAddressVersion"`
@@ -7071,6 +7640,11 @@ type DescribeManagedRuleGroupInput struct {
 	//
 	// VendorName is a required field
 	VendorName *string `min:"1" type:"string" required:"true"`
+
+	// The version of the rule group. You can only use a version that is not scheduled
+	// for expiration. If you don't provide this, WAF uses the vendor's default
+	// version.
+	VersionName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -7101,6 +7675,9 @@ func (s *DescribeManagedRuleGroupInput) Validate() error {
 	if s.VendorName != nil && len(*s.VendorName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VendorName", 1))
 	}
+	if s.VersionName != nil && len(*s.VersionName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionName", 1))
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7123,6 +7700,12 @@ func (s *DescribeManagedRuleGroupInput) SetScope(v string) *DescribeManagedRuleG
 // SetVendorName sets the VendorName field's value.
 func (s *DescribeManagedRuleGroupInput) SetVendorName(v string) *DescribeManagedRuleGroupInput {
 	s.VendorName = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *DescribeManagedRuleGroupInput) SetVersionName(v string) *DescribeManagedRuleGroupInput {
+	s.VersionName = &v
 	return s
 }
 
@@ -7160,6 +7743,17 @@ type DescribeManagedRuleGroupOutput struct {
 	LabelNamespace *string `min:"1" type:"string"`
 
 	Rules []*RuleSummary `type:"list"`
+
+	// The Amazon resource name (ARN) of the Amazon Simple Notification Service
+	// SNS topic that's used to record changes to the managed rule group. You can
+	// subscribe to the SNS topic to receive notifications when the managed rule
+	// group is modified, such as for new versions and for version expiration. For
+	// more information, see the Amazon Simple Notification Service Developer Guide
+	// (https://docs.aws.amazon.com/sns/latest/dg/welcome.html).
+	SnsTopicArn *string `min:"20" type:"string"`
+
+	// The managed rule group's version.
+	VersionName *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -7199,6 +7793,18 @@ func (s *DescribeManagedRuleGroupOutput) SetLabelNamespace(v string) *DescribeMa
 // SetRules sets the Rules field's value.
 func (s *DescribeManagedRuleGroupOutput) SetRules(v []*RuleSummary) *DescribeManagedRuleGroupOutput {
 	s.Rules = v
+	return s
+}
+
+// SetSnsTopicArn sets the SnsTopicArn field's value.
+func (s *DescribeManagedRuleGroupOutput) SetSnsTopicArn(v string) *DescribeManagedRuleGroupOutput {
+	s.SnsTopicArn = &v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *DescribeManagedRuleGroupOutput) SetVersionName(v string) *DescribeManagedRuleGroupOutput {
+	s.VersionName = &v
 	return s
 }
 
@@ -8012,6 +8618,132 @@ func (s GetLoggingConfigurationOutput) GoString() string {
 // SetLoggingConfiguration sets the LoggingConfiguration field's value.
 func (s *GetLoggingConfigurationOutput) SetLoggingConfiguration(v *LoggingConfiguration) *GetLoggingConfigurationOutput {
 	s.LoggingConfiguration = v
+	return s
+}
+
+type GetManagedRuleSetInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, or an AppSync GraphQL API.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+}
+
+// String returns the string representation
+func (s GetManagedRuleSetInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetManagedRuleSetInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetManagedRuleSetInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetManagedRuleSetInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *GetManagedRuleSetInput) SetId(v string) *GetManagedRuleSetInput {
+	s.Id = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetManagedRuleSetInput) SetName(v string) *GetManagedRuleSetInput {
+	s.Name = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *GetManagedRuleSetInput) SetScope(v string) *GetManagedRuleSetInput {
+	s.Scope = &v
+	return s
+}
+
+type GetManagedRuleSetOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	LockToken *string `min:"1" type:"string"`
+
+	// The managed rule set that you requested.
+	ManagedRuleSet *ManagedRuleSet `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetManagedRuleSetOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetManagedRuleSetOutput) GoString() string {
+	return s.String()
+}
+
+// SetLockToken sets the LockToken field's value.
+func (s *GetManagedRuleSetOutput) SetLockToken(v string) *GetManagedRuleSetOutput {
+	s.LockToken = &v
+	return s
+}
+
+// SetManagedRuleSet sets the ManagedRuleSet field's value.
+func (s *GetManagedRuleSetOutput) SetManagedRuleSet(v *ManagedRuleSet) *GetManagedRuleSetOutput {
+	s.ManagedRuleSet = v
 	return s
 }
 
@@ -8992,7 +9724,7 @@ type IPSet struct {
 	// A description of the IP set that helps with identification.
 	Description *string `min:"1" type:"string"`
 
-	// Specify IPV4 or IPV6.
+	// The version of the IP addresses, either IPV4 or IPV6.
 	//
 	// IPAddressVersion is a required field
 	IPAddressVersion *string `type:"string" required:"true" enum:"IPAddressVersion"`
@@ -9332,8 +10064,8 @@ type JsonBody struct {
 	// up to the first parsing failure that it encounters.
 	//
 	// WAF does its best to parse the entire JSON body, but might be forced to stop
-	// for reasons such as characters that aren't valid, duplicate keys, truncation,
-	// and any content whose root node isn't an object or an array.
+	// for reasons such as invalid characters, duplicate keys, truncation, and any
+	// content whose root node isn't an object or an array.
 	//
 	// WAF parses the JSON in the following examples as two valid key, value pairs:
 	//
@@ -9666,6 +10398,155 @@ func (s *LabelSummary) SetName(v string) *LabelSummary {
 	return s
 }
 
+type ListAvailableManagedRuleGroupVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
+	// value that you can use in a subsequent call to get the next batch of objects.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// The name of the managed rule group. You use this, along with the vendor name,
+	// to identify the rule group.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, or an AppSync GraphQL API.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+
+	// The name of the managed rule group vendor. You use this, along with the rule
+	// group name, to identify the rule group.
+	//
+	// VendorName is a required field
+	VendorName *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListAvailableManagedRuleGroupVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAvailableManagedRuleGroupVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAvailableManagedRuleGroupVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAvailableManagedRuleGroupVersionsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+	if s.VendorName == nil {
+		invalidParams.Add(request.NewErrParamRequired("VendorName"))
+	}
+	if s.VendorName != nil && len(*s.VendorName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VendorName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetLimit(v int64) *ListAvailableManagedRuleGroupVersionsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetName(v string) *ListAvailableManagedRuleGroupVersionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetNextMarker(v string) *ListAvailableManagedRuleGroupVersionsInput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetScope(v string) *ListAvailableManagedRuleGroupVersionsInput {
+	s.Scope = &v
+	return s
+}
+
+// SetVendorName sets the VendorName field's value.
+func (s *ListAvailableManagedRuleGroupVersionsInput) SetVendorName(v string) *ListAvailableManagedRuleGroupVersionsInput {
+	s.VendorName = &v
+	return s
+}
+
+type ListAvailableManagedRuleGroupVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// The versions that are currently available for the specified managed rule
+	// group.
+	Versions []*ManagedRuleGroupVersion `type:"list"`
+}
+
+// String returns the string representation
+func (s ListAvailableManagedRuleGroupVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListAvailableManagedRuleGroupVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListAvailableManagedRuleGroupVersionsOutput) SetNextMarker(v string) *ListAvailableManagedRuleGroupVersionsOutput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetVersions sets the Versions field's value.
+func (s *ListAvailableManagedRuleGroupVersionsOutput) SetVersions(v []*ManagedRuleGroupVersion) *ListAvailableManagedRuleGroupVersionsOutput {
+	s.Versions = v
+	return s
+}
+
 type ListAvailableManagedRuleGroupsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9992,6 +10873,118 @@ func (s *ListLoggingConfigurationsOutput) SetLoggingConfigurations(v []*LoggingC
 
 // SetNextMarker sets the NextMarker field's value.
 func (s *ListLoggingConfigurationsOutput) SetNextMarker(v string) *ListLoggingConfigurationsOutput {
+	s.NextMarker = &v
+	return s
+}
+
+type ListManagedRuleSetsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of objects that you want WAF to return for this request.
+	// If more objects are available, in the response, WAF provides a NextMarker
+	// value that you can use in a subsequent call to get the next batch of objects.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, or an AppSync GraphQL API.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+}
+
+// String returns the string representation
+func (s ListManagedRuleSetsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListManagedRuleSetsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListManagedRuleSetsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListManagedRuleSetsInput"}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+	if s.NextMarker != nil && len(*s.NextMarker) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextMarker", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLimit sets the Limit field's value.
+func (s *ListManagedRuleSetsInput) SetLimit(v int64) *ListManagedRuleSetsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListManagedRuleSetsInput) SetNextMarker(v string) *ListManagedRuleSetsInput {
+	s.NextMarker = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *ListManagedRuleSetsInput) SetScope(v string) *ListManagedRuleSetsInput {
+	s.Scope = &v
+	return s
+}
+
+type ListManagedRuleSetsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Your managed rule sets.
+	ManagedRuleSets []*ManagedRuleSetSummary `type:"list"`
+
+	// When you request a list of objects with a Limit setting, if the number of
+	// objects that are still available for retrieval exceeds the limit, WAF returns
+	// a NextMarker value in the response. To retrieve the next batch of objects,
+	// provide the marker from the prior call in your next request.
+	NextMarker *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListManagedRuleSetsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListManagedRuleSetsOutput) GoString() string {
+	return s.String()
+}
+
+// SetManagedRuleSets sets the ManagedRuleSets field's value.
+func (s *ListManagedRuleSetsOutput) SetManagedRuleSets(v []*ManagedRuleSetSummary) *ListManagedRuleSetsOutput {
+	s.ManagedRuleSets = v
+	return s
+}
+
+// SetNextMarker sets the NextMarker field's value.
+func (s *ListManagedRuleSetsOutput) SetNextMarker(v string) *ListManagedRuleSetsOutput {
 	s.NextMarker = &v
 	return s
 }
@@ -10728,6 +11721,12 @@ type ManagedRuleGroupStatement struct {
 	//
 	// VendorName is a required field
 	VendorName *string `min:"1" type:"string" required:"true"`
+
+	// The version of the managed rule group to use. If you specify this, the version
+	// setting is fixed until you change it. If you don't specify this, WAF uses
+	// the vendor's default version, and then keeps the version at the vendor's
+	// default when the vendor updates the managed rule group settings.
+	Version *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -10754,6 +11753,9 @@ func (s *ManagedRuleGroupStatement) Validate() error {
 	}
 	if s.VendorName != nil && len(*s.VendorName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VendorName", 1))
+	}
+	if s.Version != nil && len(*s.Version) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Version", 1))
 	}
 	if s.ExcludedRules != nil {
 		for i, v := range s.ExcludedRules {
@@ -10798,6 +11800,12 @@ func (s *ManagedRuleGroupStatement) SetScopeDownStatement(v *Statement) *Managed
 // SetVendorName sets the VendorName field's value.
 func (s *ManagedRuleGroupStatement) SetVendorName(v string) *ManagedRuleGroupStatement {
 	s.VendorName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *ManagedRuleGroupStatement) SetVersion(v string) *ManagedRuleGroupStatement {
+	s.Version = &v
 	return s
 }
 
@@ -10848,6 +11856,345 @@ func (s *ManagedRuleGroupSummary) SetName(v string) *ManagedRuleGroupSummary {
 // SetVendorName sets the VendorName field's value.
 func (s *ManagedRuleGroupSummary) SetVendorName(v string) *ManagedRuleGroupSummary {
 	s.VendorName = &v
+	return s
+}
+
+// Describes a single version of a managed rule group.
+type ManagedRuleGroupVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that the managed rule group owner updated the rule group
+	// version information.
+	LastUpdateTimestamp *time.Time `type:"timestamp"`
+
+	// The version name.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ManagedRuleGroupVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ManagedRuleGroupVersion) GoString() string {
+	return s.String()
+}
+
+// SetLastUpdateTimestamp sets the LastUpdateTimestamp field's value.
+func (s *ManagedRuleGroupVersion) SetLastUpdateTimestamp(v time.Time) *ManagedRuleGroupVersion {
+	s.LastUpdateTimestamp = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ManagedRuleGroupVersion) SetName(v string) *ManagedRuleGroupVersion {
+	s.Name = &v
+	return s
+}
+
+// A set of rules that is managed by Amazon Web Services and Marketplace sellers
+// to provide versioned managed rule groups for customers of WAF.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+type ManagedRuleSet struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the entity.
+	//
+	// ARN is a required field
+	ARN *string `min:"20" type:"string" required:"true"`
+
+	// A description of the set that helps with identification.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// The label namespace prefix for the managed rule groups that are offered to
+	// customers from this managed rule set. All labels that are added by rules
+	// in the managed rule group have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for a managed rule group is
+	//    the following: awswaf:managed:<vendor>:<rule group name>:
+	//
+	//    * When a rule with a label matches a web request, WAF adds the fully qualified
+	//    label to the request. A fully qualified label is made up of the label
+	//    namespace from the rule group or web ACL where the rule is defined and
+	//    the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The versions of this managed rule set that are available for use by customers.
+	PublishedVersions map[string]*ManagedRuleSetVersion `type:"map"`
+
+	// The version that you would like your customers to use.
+	RecommendedVersion *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ManagedRuleSet) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ManagedRuleSet) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *ManagedRuleSet) SetARN(v string) *ManagedRuleSet {
+	s.ARN = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ManagedRuleSet) SetDescription(v string) *ManagedRuleSet {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ManagedRuleSet) SetId(v string) *ManagedRuleSet {
+	s.Id = &v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *ManagedRuleSet) SetLabelNamespace(v string) *ManagedRuleSet {
+	s.LabelNamespace = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ManagedRuleSet) SetName(v string) *ManagedRuleSet {
+	s.Name = &v
+	return s
+}
+
+// SetPublishedVersions sets the PublishedVersions field's value.
+func (s *ManagedRuleSet) SetPublishedVersions(v map[string]*ManagedRuleSetVersion) *ManagedRuleSet {
+	s.PublishedVersions = v
+	return s
+}
+
+// SetRecommendedVersion sets the RecommendedVersion field's value.
+func (s *ManagedRuleSet) SetRecommendedVersion(v string) *ManagedRuleSet {
+	s.RecommendedVersion = &v
+	return s
+}
+
+// High-level information for a managed rule set.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+type ManagedRuleSetSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the entity.
+	ARN *string `min:"20" type:"string"`
+
+	// A description of the set that helps with identification.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	Id *string `min:"1" type:"string"`
+
+	// The label namespace prefix for the managed rule groups that are offered to
+	// customers from this managed rule set. All labels that are added by rules
+	// in the managed rule group have this prefix.
+	//
+	//    * The syntax for the label namespace prefix for a managed rule group is
+	//    the following: awswaf:managed:<vendor>:<rule group name>:
+	//
+	//    * When a rule with a label matches a web request, WAF adds the fully qualified
+	//    label to the request. A fully qualified label is made up of the label
+	//    namespace from the rule group or web ACL where the rule is defined and
+	//    the label from the rule, separated by a colon: <label namespace>:<label
+	//    from rule>
+	LabelNamespace *string `min:"1" type:"string"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	LockToken *string `min:"1" type:"string"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ManagedRuleSetSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ManagedRuleSetSummary) GoString() string {
+	return s.String()
+}
+
+// SetARN sets the ARN field's value.
+func (s *ManagedRuleSetSummary) SetARN(v string) *ManagedRuleSetSummary {
+	s.ARN = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ManagedRuleSetSummary) SetDescription(v string) *ManagedRuleSetSummary {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ManagedRuleSetSummary) SetId(v string) *ManagedRuleSetSummary {
+	s.Id = &v
+	return s
+}
+
+// SetLabelNamespace sets the LabelNamespace field's value.
+func (s *ManagedRuleSetSummary) SetLabelNamespace(v string) *ManagedRuleSetSummary {
+	s.LabelNamespace = &v
+	return s
+}
+
+// SetLockToken sets the LockToken field's value.
+func (s *ManagedRuleSetSummary) SetLockToken(v string) *ManagedRuleSetSummary {
+	s.LockToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ManagedRuleSetSummary) SetName(v string) *ManagedRuleSetSummary {
+	s.Name = &v
+	return s
+}
+
+// Information for a single version of a managed rule set.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+type ManagedRuleSetVersion struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the vendor rule group that's used to define
+	// the published version of your managed rule group.
+	AssociatedRuleGroupArn *string `min:"20" type:"string"`
+
+	// The web ACL capacity units (WCUs) required for this rule group.
+	//
+	// WAF uses WCUs to calculate and control the operating resources that are used
+	// to run your rules, rule groups, and web ACLs. WAF calculates capacity differently
+	// for each rule type, to reflect the relative cost of each rule. Simple rules
+	// that cost little to run use fewer WCUs than more complex rules that use more
+	// processing power. Rule group capacity is fixed at creation, which helps users
+	// plan their web ACL WCU usage when they use a rule group. The WCU limit for
+	// web ACLs is 1,500.
+	Capacity *int64 `min:"1" type:"long"`
+
+	// The time that this version is set to expire.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	ExpiryTimestamp *time.Time `type:"timestamp"`
+
+	// The amount of time you expect this version of your managed rule group to
+	// last, in days.
+	ForecastedLifetime *int64 `min:"1" type:"integer"`
+
+	// The last time that you updated this version.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	LastUpdateTimestamp *time.Time `type:"timestamp"`
+
+	// The time that you first published this version.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	PublishTimestamp *time.Time `type:"timestamp"`
+}
+
+// String returns the string representation
+func (s ManagedRuleSetVersion) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ManagedRuleSetVersion) GoString() string {
+	return s.String()
+}
+
+// SetAssociatedRuleGroupArn sets the AssociatedRuleGroupArn field's value.
+func (s *ManagedRuleSetVersion) SetAssociatedRuleGroupArn(v string) *ManagedRuleSetVersion {
+	s.AssociatedRuleGroupArn = &v
+	return s
+}
+
+// SetCapacity sets the Capacity field's value.
+func (s *ManagedRuleSetVersion) SetCapacity(v int64) *ManagedRuleSetVersion {
+	s.Capacity = &v
+	return s
+}
+
+// SetExpiryTimestamp sets the ExpiryTimestamp field's value.
+func (s *ManagedRuleSetVersion) SetExpiryTimestamp(v time.Time) *ManagedRuleSetVersion {
+	s.ExpiryTimestamp = &v
+	return s
+}
+
+// SetForecastedLifetime sets the ForecastedLifetime field's value.
+func (s *ManagedRuleSetVersion) SetForecastedLifetime(v int64) *ManagedRuleSetVersion {
+	s.ForecastedLifetime = &v
+	return s
+}
+
+// SetLastUpdateTimestamp sets the LastUpdateTimestamp field's value.
+func (s *ManagedRuleSetVersion) SetLastUpdateTimestamp(v time.Time) *ManagedRuleSetVersion {
+	s.LastUpdateTimestamp = &v
+	return s
+}
+
+// SetPublishTimestamp sets the PublishTimestamp field's value.
+func (s *ManagedRuleSetVersion) SetPublishTimestamp(v time.Time) *ManagedRuleSetVersion {
+	s.PublishTimestamp = &v
 	return s
 }
 
@@ -11121,6 +12468,180 @@ func (s *PutLoggingConfigurationOutput) SetLoggingConfiguration(v *LoggingConfig
 	return s
 }
 
+type PutManagedRuleSetVersionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	//
+	// LockToken is a required field
+	LockToken *string `min:"1" type:"string" required:"true"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The version of the named managed rule group that you'd like your customers
+	// to choose, from among your version offerings.
+	RecommendedVersion *string `min:"1" type:"string"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, or an AppSync GraphQL API.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+
+	// The versions of the named managed rule group that you want to offer to your
+	// customers.
+	VersionsToPublish map[string]*VersionToPublish `type:"map"`
+}
+
+// String returns the string representation
+func (s PutManagedRuleSetVersionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutManagedRuleSetVersionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutManagedRuleSetVersionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutManagedRuleSetVersionsInput"}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.LockToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("LockToken"))
+	}
+	if s.LockToken != nil && len(*s.LockToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LockToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.RecommendedVersion != nil && len(*s.RecommendedVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RecommendedVersion", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+	if s.VersionsToPublish != nil {
+		for i, v := range s.VersionsToPublish {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "VersionsToPublish", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetId sets the Id field's value.
+func (s *PutManagedRuleSetVersionsInput) SetId(v string) *PutManagedRuleSetVersionsInput {
+	s.Id = &v
+	return s
+}
+
+// SetLockToken sets the LockToken field's value.
+func (s *PutManagedRuleSetVersionsInput) SetLockToken(v string) *PutManagedRuleSetVersionsInput {
+	s.LockToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutManagedRuleSetVersionsInput) SetName(v string) *PutManagedRuleSetVersionsInput {
+	s.Name = &v
+	return s
+}
+
+// SetRecommendedVersion sets the RecommendedVersion field's value.
+func (s *PutManagedRuleSetVersionsInput) SetRecommendedVersion(v string) *PutManagedRuleSetVersionsInput {
+	s.RecommendedVersion = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *PutManagedRuleSetVersionsInput) SetScope(v string) *PutManagedRuleSetVersionsInput {
+	s.Scope = &v
+	return s
+}
+
+// SetVersionsToPublish sets the VersionsToPublish field's value.
+func (s *PutManagedRuleSetVersionsInput) SetVersionsToPublish(v map[string]*VersionToPublish) *PutManagedRuleSetVersionsInput {
+	s.VersionsToPublish = v
+	return s
+}
+
+type PutManagedRuleSetVersionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	NextLockToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutManagedRuleSetVersionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutManagedRuleSetVersionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextLockToken sets the NextLockToken field's value.
+func (s *PutManagedRuleSetVersionsOutput) SetNextLockToken(v string) *PutManagedRuleSetVersionsOutput {
+	s.NextLockToken = &v
+	return s
+}
+
 type PutPermissionPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -11370,6 +12891,7 @@ type RateBasedStatementManagedKeysIPSet struct {
 	// The IP addresses that are currently blocked.
 	Addresses []*string `type:"list"`
 
+	// The version of the IP addresses, either IPV4 or IPV6.
 	IPAddressVersion *string `type:"string" enum:"IPAddressVersion"`
 }
 
@@ -13309,9 +14831,8 @@ type TextTransformation struct {
 	// REPLACE_NULLS - Replace NULL bytes in the input with space characters (ASCII
 	// 0x20).
 	//
-	// SQL_HEX_DECODE - Decode the following ANSI C escape sequences: \a, \b, \f,
-	// \n, \r, \t, \v, \\, \?, \', \", \xHH (hexadecimal), \0OOO (octal). Encodings
-	// that aren't valid remain in the output.
+	// SQL_HEX_DECODE - Decode SQL hex data. Example (0x414243) will be decoded
+	// to (ABC).
 	//
 	// URL_DECODE - Decode a URL-encoded value.
 	//
@@ -13686,6 +15207,203 @@ func (s UpdateIPSetOutput) GoString() string {
 
 // SetNextLockToken sets the NextLockToken field's value.
 func (s *UpdateIPSetOutput) SetNextLockToken(v string) *UpdateIPSetOutput {
+	s.NextLockToken = &v
+	return s
+}
+
+type UpdateManagedRuleSetVersionExpiryDateInput struct {
+	_ struct{} `type:"structure"`
+
+	// The time that you want the version to expire.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	//
+	// ExpiryTimestamp is a required field
+	ExpiryTimestamp *time.Time `type:"timestamp" required:"true"`
+
+	// A unique identifier for the managed rule set. The ID is returned in the responses
+	// to commands like list. You provide it to operations like get and update.
+	//
+	// Id is a required field
+	Id *string `min:"1" type:"string" required:"true"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	//
+	// LockToken is a required field
+	LockToken *string `min:"1" type:"string" required:"true"`
+
+	// The name of the managed rule set. You use this, along with the rule set ID,
+	// to identify the rule set.
+	//
+	// This name is assigned to the corresponding managed rule group, which your
+	// customers can access and use.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies whether this is for an Amazon CloudFront distribution or for a
+	// regional application. A regional application can be an Application Load Balancer
+	// (ALB), an Amazon API Gateway REST API, or an AppSync GraphQL API.
+	//
+	// To work with CloudFront, you must also specify the Region US East (N. Virginia)
+	// as follows:
+	//
+	//    * CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT
+	//    --region=us-east-1.
+	//
+	//    * API and SDKs - For all calls, use the Region endpoint us-east-1.
+	//
+	// Scope is a required field
+	Scope *string `type:"string" required:"true" enum:"Scope"`
+
+	// The version that you want to remove from your list of offerings for the named
+	// managed rule group.
+	//
+	// VersionToExpire is a required field
+	VersionToExpire *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateManagedRuleSetVersionExpiryDateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateManagedRuleSetVersionExpiryDateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateManagedRuleSetVersionExpiryDateInput"}
+	if s.ExpiryTimestamp == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExpiryTimestamp"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Id != nil && len(*s.Id) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Id", 1))
+	}
+	if s.LockToken == nil {
+		invalidParams.Add(request.NewErrParamRequired("LockToken"))
+	}
+	if s.LockToken != nil && len(*s.LockToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LockToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Scope == nil {
+		invalidParams.Add(request.NewErrParamRequired("Scope"))
+	}
+	if s.VersionToExpire == nil {
+		invalidParams.Add(request.NewErrParamRequired("VersionToExpire"))
+	}
+	if s.VersionToExpire != nil && len(*s.VersionToExpire) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("VersionToExpire", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpiryTimestamp sets the ExpiryTimestamp field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetExpiryTimestamp(v time.Time) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.ExpiryTimestamp = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetId(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.Id = &v
+	return s
+}
+
+// SetLockToken sets the LockToken field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetLockToken(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.LockToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetName(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.Name = &v
+	return s
+}
+
+// SetScope sets the Scope field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetScope(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.Scope = &v
+	return s
+}
+
+// SetVersionToExpire sets the VersionToExpire field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateInput) SetVersionToExpire(v string) *UpdateManagedRuleSetVersionExpiryDateInput {
+	s.VersionToExpire = &v
+	return s
+}
+
+type UpdateManagedRuleSetVersionExpiryDateOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The version that is set to expire.
+	ExpiringVersion *string `min:"1" type:"string"`
+
+	// The time that the version will expire.
+	//
+	// Times are in Coordinated Universal Time (UTC) format. UTC format includes
+	// the special designator, Z. For example, "2016-09-27T14:50Z".
+	ExpiryTimestamp *time.Time `type:"timestamp"`
+
+	// A token used for optimistic locking. WAF returns a token to your get and
+	// list requests, to mark the state of the entity at the time of the request.
+	// To make changes to the entity associated with the token, you provide the
+	// token to operations like update and delete. WAF uses the token to ensure
+	// that no changes have been made to the entity since you last retrieved it.
+	// If a change has been made, the update fails with a WAFOptimisticLockException.
+	// If this happens, perform another get, and use the new token returned by that
+	// operation.
+	NextLockToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateManagedRuleSetVersionExpiryDateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateManagedRuleSetVersionExpiryDateOutput) GoString() string {
+	return s.String()
+}
+
+// SetExpiringVersion sets the ExpiringVersion field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateOutput) SetExpiringVersion(v string) *UpdateManagedRuleSetVersionExpiryDateOutput {
+	s.ExpiringVersion = &v
+	return s
+}
+
+// SetExpiryTimestamp sets the ExpiryTimestamp field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateOutput) SetExpiryTimestamp(v time.Time) *UpdateManagedRuleSetVersionExpiryDateOutput {
+	s.ExpiryTimestamp = &v
+	return s
+}
+
+// SetNextLockToken sets the NextLockToken field's value.
+func (s *UpdateManagedRuleSetVersionExpiryDateOutput) SetNextLockToken(v string) *UpdateManagedRuleSetVersionExpiryDateOutput {
 	s.NextLockToken = &v
 	return s
 }
@@ -14331,6 +16049,66 @@ func (s UriPath) GoString() string {
 	return s.String()
 }
 
+// A version of the named managed rule group, that the rule group's vendor publishes
+// for use by customers.
+//
+// This is intended for use only by vendors of managed rule sets. Vendors are
+// Amazon Web Services and Marketplace sellers.
+//
+// Vendors, you can use the managed rule set APIs to provide controlled rollout
+// of your versioned managed rule group offerings for your customers. The APIs
+// are ListManagedRuleSets, GetManagedRuleSet, PutManagedRuleSetVersions, and
+// UpdateManagedRuleSetVersionExpiryDate.
+type VersionToPublish struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the vendor's rule group that's used in
+	// the published managed rule group version.
+	AssociatedRuleGroupArn *string `min:"20" type:"string"`
+
+	// The amount of time the vendor expects this version of the managed rule group
+	// to last, in days.
+	ForecastedLifetime *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s VersionToPublish) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VersionToPublish) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VersionToPublish) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VersionToPublish"}
+	if s.AssociatedRuleGroupArn != nil && len(*s.AssociatedRuleGroupArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("AssociatedRuleGroupArn", 20))
+	}
+	if s.ForecastedLifetime != nil && *s.ForecastedLifetime < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ForecastedLifetime", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAssociatedRuleGroupArn sets the AssociatedRuleGroupArn field's value.
+func (s *VersionToPublish) SetAssociatedRuleGroupArn(v string) *VersionToPublish {
+	s.AssociatedRuleGroupArn = &v
+	return s
+}
+
+// SetForecastedLifetime sets the ForecastedLifetime field's value.
+func (s *VersionToPublish) SetForecastedLifetime(v int64) *VersionToPublish {
+	s.ForecastedLifetime = &v
+	return s
+}
+
 // Defines and enables Amazon CloudWatch metrics and web request sample collection.
 type VisibilityConfig struct {
 	_ struct{} `type:"structure"`
@@ -14520,6 +16298,64 @@ func (s *WAFDuplicateItemException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The operation failed because the specified version for the managed rule group
+// has expired. You can retrieve the available versions for the managed rule
+// group by calling ListAvailableManagedRuleGroupVersions.
+type WAFExpiredManagedRuleGroupVersionException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s WAFExpiredManagedRuleGroupVersionException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WAFExpiredManagedRuleGroupVersionException) GoString() string {
+	return s.String()
+}
+
+func newErrorWAFExpiredManagedRuleGroupVersionException(v protocol.ResponseMetadata) error {
+	return &WAFExpiredManagedRuleGroupVersionException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *WAFExpiredManagedRuleGroupVersionException) Code() string {
+	return "WAFExpiredManagedRuleGroupVersionException"
+}
+
+// Message returns the exception's message.
+func (s *WAFExpiredManagedRuleGroupVersionException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *WAFExpiredManagedRuleGroupVersionException) OrigErr() error {
+	return nil
+}
+
+func (s *WAFExpiredManagedRuleGroupVersionException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *WAFExpiredManagedRuleGroupVersionException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *WAFExpiredManagedRuleGroupVersionException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // Your request is valid, but WAF couldn’t perform the operation because of
 // a system problem. Retry your request.
 type WAFInternalErrorException struct {
@@ -14650,12 +16486,15 @@ type WAFInvalidParameterException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The settings where the invalid parameter was found.
 	Field *string `type:"string" enum:"ParameterExceptionField"`
 
 	Message_ *string `locationName:"message" type:"string"`
 
+	// The invalid parameter that resulted in the exception.
 	Parameter *string `min:"1" type:"string"`
 
+	// Additional information about the exception.
 	Reason *string `type:"string"`
 }
 
@@ -14838,7 +16677,7 @@ func (s *WAFInvalidResourceException) RequestID() string {
 
 // WAF couldn’t perform the operation because you exceeded your resource limit.
 // For example, the maximum number of WebACL objects that you can create for
-// an account. For more information, see Limits (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
+// an Amazon Web Services account. For more information, see WAF quotas (https://docs.aws.amazon.com/waf/latest/developerguide/limits.html)
 // in the WAF Developer Guide.
 type WAFLimitsExceededException struct {
 	_            struct{}                  `type:"structure"`

@@ -1321,17 +1321,18 @@ func (c *SSM) CreateResourceDataSyncRequest(input *CreateResourceDataSyncInput) 
 // data sync: SyncToDestination and SyncFromSource.
 //
 // You can configure Systems Manager Inventory to use the SyncToDestination
-// type to synchronize Inventory data from multiple Regions to a single Amazon
-// Simple Storage Service (Amazon S3) bucket. For more information, see Configuring
-// resource data sync for Inventory (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-datasync.html)
+// type to synchronize Inventory data from multiple Amazon Web Services Regions
+// to a single Amazon Simple Storage Service (Amazon S3) bucket. For more information,
+// see Configuring resource data sync for Inventory (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-inventory-datasync.html)
 // in the Amazon Web Services Systems Manager User Guide.
 //
 // You can configure Systems Manager Explorer to use the SyncFromSource type
 // to synchronize operational work items (OpsItems) and operational data (OpsData)
-// from multiple Regions to a single Amazon S3 bucket. This type can synchronize
-// OpsItems and OpsData from multiple accounts and Regions or EntireOrganization
-// by using Organizations. For more information, see Setting up Systems Manager
-// Explorer to display data from multiple accounts and Regions (https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resource-data-sync.html)
+// from multiple Amazon Web Services Regions to a single Amazon S3 bucket. This
+// type can synchronize OpsItems and OpsData from multiple Amazon Web Services
+// accounts and Amazon Web Services Regions or EntireOrganization by using Organizations.
+// For more information, see Setting up Systems Manager Explorer to display
+// data from multiple accounts and Regions (https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resource-data-sync.html)
 // in the Amazon Web Services Systems Manager User Guide.
 //
 // A resource data sync is an asynchronous operation that returns immediately.
@@ -1526,7 +1527,9 @@ func (c *SSM) DeleteAssociationRequest(input *DeleteAssociationInput) (req *requ
 // DeleteAssociation API operation for Amazon Simple Systems Manager (SSM).
 //
 // Disassociates the specified Amazon Web Services Systems Manager document
-// (SSM document) from the specified instance.
+// (SSM document) from the specified instance. If you created the association
+// by using the Targets parameter, then you must delete the association by using
+// the association ID.
 //
 // When you disassociate a document from an instance, it doesn't change the
 // configuration of the instance. To change the configuration state of an instance
@@ -1990,7 +1993,8 @@ func (c *SSM) DeleteParameterRequest(input *DeleteParameterInput) (req *request.
 
 // DeleteParameter API operation for Amazon Simple Systems Manager (SSM).
 //
-// Delete a parameter from the system.
+// Delete a parameter from the system. After deleting a parameter, wait for
+// at least 30 seconds to create a parameter with the same name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2072,7 +2076,8 @@ func (c *SSM) DeleteParametersRequest(input *DeleteParametersInput) (req *reques
 
 // DeleteParameters API operation for Amazon Simple Systems Manager (SSM).
 //
-// Delete a list of parameters.
+// Delete a list of parameters. After deleting a parameter, wait for at least
+// 30 seconds to create a parameter with the same name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2828,10 +2833,7 @@ func (c *SSM) DescribeAssociationRequest(input *DescribeAssociationInput) (req *
 //
 // Describes the association for the specified target or instance. If you created
 // the association by using the Targets parameter, then you must retrieve the
-// association by using the association ID. If you created the association by
-// specifying an instance ID and an Amazon Web Services Systems Manager document
-// (SSM document), then you retrieve the association by specifying the document
-// name and the instance ID.
+// association by using the association ID.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3746,8 +3748,8 @@ func (c *SSM) DescribeDocumentPermissionRequest(input *DescribeDocumentPermissio
 //
 // Describes the permissions for a Amazon Web Services Systems Manager document
 // (SSM document). If you created the document, you are the owner. If a document
-// is shared, it can either be shared privately (by specifying a user's account
-// ID) or publicly (All).
+// is shared, it can either be shared privately (by specifying a user's Amazon
+// Web Services account ID) or publicly (All).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5938,7 +5940,7 @@ func (c *SSM) DescribeMaintenanceWindowsRequest(input *DescribeMaintenanceWindow
 
 // DescribeMaintenanceWindows API operation for Amazon Simple Systems Manager (SSM).
 //
-// Retrieves the maintenance windows in an account.
+// Retrieves the maintenance windows in an Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6517,7 +6519,7 @@ func (c *SSM) DescribePatchBaselinesRequest(input *DescribePatchBaselinesInput) 
 
 // DescribePatchBaselines API operation for Amazon Simple Systems Manager (SSM).
 //
-// Lists the patch baselines in your account.
+// Lists the patch baselines in your Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7752,12 +7754,12 @@ func (c *SSM) GetDeployablePatchSnapshotForInstanceRequest(input *GetDeployableP
 // (SSM document).
 //
 // If you run the command locally, such as with the Command Line Interface (CLI),
-// the system attempts to use your local AWS credentials and the operation fails.
-// To avoid this, you can run the command in the Amazon Web Services Systems
-// Manager console. Use Run Command, a capability of Amazon Web Services Systems
-// Manager, with an SSM document that enables you to target an instance with
-// a script or command. For example, run the command using the AWS-RunShellScript
-// document or the AWS-RunPowerShellScript document.
+// the system attempts to use your local Amazon Web Services credentials and
+// the operation fails. To avoid this, you can run the command in the Amazon
+// Web Services Systems Manager console. Use Run Command, a capability of Amazon
+// Web Services Systems Manager, with an SSM document that enables you to target
+// an instance with a script or command. For example, run the command using
+// the AWS-RunShellScript document or the AWS-RunPowerShellScript document.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7939,7 +7941,8 @@ func (c *SSM) GetInventoryRequest(input *GetInventoryInput) (req *request.Reques
 
 // GetInventory API operation for Amazon Simple Systems Manager (SSM).
 //
-// Query inventory information.
+// Query inventory information. This includes instance status, such as Stopped
+// or Terminated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9009,8 +9012,10 @@ func (c *SSM) GetParameterRequest(input *GetParameterInput) (req *request.Reques
 
 // GetParameter API operation for Amazon Simple Systems Manager (SSM).
 //
-// Get information about a parameter by using the parameter name. Don't confuse
-// this API operation with the GetParameters API operation.
+// Get information about a single parameter by specifying the parameter name.
+//
+// To get information about more than one parameter at a time, use the GetParameters
+// operation.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9245,8 +9250,11 @@ func (c *SSM) GetParametersRequest(input *GetParametersInput) (req *request.Requ
 
 // GetParameters API operation for Amazon Simple Systems Manager (SSM).
 //
-// Get details of a parameter. Don't confuse this API operation with the GetParameter
-// API operation.
+// Get information about one or more parameters by specifying multiple parameter
+// names.
+//
+// To get information about a single parameter, you can use the GetParameter
+// operation instead.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9676,7 +9684,7 @@ func (c *SSM) GetServiceSettingRequest(input *GetServiceSettingInput) (req *requ
 // value back to the original value defined by the Amazon Web Services service
 // team.
 //
-// Query the current service setting for the account.
+// Query the current service setting for the Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10030,10 +10038,10 @@ func (c *SSM) ListAssociationsRequest(input *ListAssociationsInput) (req *reques
 
 // ListAssociations API operation for Amazon Simple Systems Manager (SSM).
 //
-// Returns all State Manager associations in the current account and Region.
-// You can limit the results to a specific State Manager association document
-// or instance by specifying a filter. State Manager is a capability of Amazon
-// Web Services Systems Manager.
+// Returns all State Manager associations in the current Amazon Web Services
+// account and Amazon Web Services Region. You can limit the results to a specific
+// State Manager association document or instance by specifying a filter. State
+// Manager is a capability of Amazon Web Services Systems Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10337,7 +10345,7 @@ func (c *SSM) ListCommandsRequest(input *ListCommandsInput) (req *request.Reques
 
 // ListCommands API operation for Amazon Simple Systems Manager (SSM).
 //
-// Lists the commands requested by users of the account.
+// Lists the commands requested by users of the Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10792,7 +10800,8 @@ func (c *SSM) ListDocumentMetadataHistoryRequest(input *ListDocumentMetadataHist
 
 // ListDocumentMetadataHistory API operation for Amazon Simple Systems Manager (SSM).
 //
-// Information about approval reviews for a version of an SSM document.
+// Information about approval reviews for a version of a change template in
+// Change Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11029,8 +11038,9 @@ func (c *SSM) ListDocumentsRequest(input *ListDocumentsInput) (req *request.Requ
 
 // ListDocuments API operation for Amazon Simple Systems Manager (SSM).
 //
-// Returns all Systems Manager (SSM) documents in the current account and Region.
-// You can limit the results of this request by using a filter.
+// Returns all Systems Manager (SSM) documents in the current Amazon Web Services
+// account and Amazon Web Services Region. You can limit the results of this
+// request by using a filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11276,9 +11286,9 @@ func (c *SSM) ListOpsItemEventsRequest(input *ListOpsItemEventsInput) (req *requ
 
 // ListOpsItemEvents API operation for Amazon Simple Systems Manager (SSM).
 //
-// Returns a list of all OpsItem events in the current Region and account. You
-// can limit the results to events associated with specific OpsItems by specifying
-// a filter.
+// Returns a list of all OpsItem events in the current Amazon Web Services Region
+// and Amazon Web Services account. You can limit the results to events associated
+// with specific OpsItems by specifying a filter.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12479,8 +12489,8 @@ func (c *SSM) PutParameterRequest(input *PutParameterInput) (req *request.Reques
 //   The query key ID isn't valid.
 //
 //   * ParameterLimitExceeded
-//   You have exceeded the number of parameters for this account. Delete one or
-//   more parameters and try again.
+//   You have exceeded the number of parameters for this Amazon Web Services account.
+//   Delete one or more parameters and try again.
 //
 //   * TooManyUpdates
 //   There are concurrent updates for a resource that supports one update at a
@@ -14310,6 +14320,10 @@ func (c *SSM) UpdateAssociationStatusRequest(input *UpdateAssociationStatusInput
 // Updates the status of the Amazon Web Services Systems Manager document (SSM
 // document) associated with the specified instance.
 //
+// UpdateAssociationStatus is primarily used by the Amazon Web Services Systems
+// Manager Agent (SSM Agent) to report status updates about your associations
+// and is only used for associations created with the InstanceId legacy parameter.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14614,7 +14628,7 @@ func (c *SSM) UpdateDocumentMetadataRequest(input *UpdateDocumentMetadataInput) 
 // UpdateDocumentMetadata API operation for Amazon Simple Systems Manager (SSM).
 //
 // Updates information related to approval reviews for a specific version of
-// a document.
+// a change template in Change Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15565,12 +15579,12 @@ func (c *SSM) UpdateServiceSettingWithContext(ctx aws.Context, input *UpdateServ
 	return out, req.Send()
 }
 
-// Information includes the account ID where the current document is shared
-// and the version shared with that account.
+// Information includes the Amazon Web Services account ID where the current
+// document is shared and the version shared with that account.
 type AccountSharingInfo struct {
 	_ struct{} `type:"structure"`
 
-	// The account ID where the current document is shared.
+	// The Amazon Web Services account ID where the current document is shared.
 	AccountId *string `type:"string"`
 
 	// The version of the current document shared with the account.
@@ -16068,7 +16082,7 @@ type Association struct {
 	// The version of the document used in the association.
 	DocumentVersion *string `type:"string"`
 
-	// The ID of the instance.
+	// The instance ID.
 	InstanceId *string `type:"string"`
 
 	// The date on which the association was last run.
@@ -16253,7 +16267,7 @@ type AssociationDescription struct {
 	// The document version.
 	DocumentVersion *string `type:"string"`
 
-	// The ID of the instance.
+	// The instance ID.
 	InstanceId *string `type:"string"`
 
 	// The date on which the association was last run.
@@ -16323,7 +16337,8 @@ type AssociationDescription struct {
 	// By default, all associations use AUTO mode.
 	SyncCompliance *string `type:"string" enum:"AssociationSyncCompliance"`
 
-	// The combination of Regions and accounts where you want to run the association.
+	// The combination of Amazon Web Services Regions and Amazon Web Services accounts
+	// where you want to run the association.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
 	// The instances targeted by the request.
@@ -17233,8 +17248,9 @@ type AssociationVersionInfo struct {
 	// By default, all associations use AUTO mode.
 	SyncCompliance *string `type:"string" enum:"AssociationSyncCompliance"`
 
-	// The combination of Regions and accounts where you wanted to run the association
-	// when this association version was created.
+	// The combination of Amazon Web Services Regions and Amazon Web Services accounts
+	// where you wanted to run the association when this association version was
+	// created.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
 	// The targets specified for the association when the association version was
@@ -17835,7 +17851,8 @@ type AutomationExecution struct {
 	// The target of the execution.
 	Target *string `type:"string"`
 
-	// The combination of Regions and/or accounts where you want to run the Automation.
+	// The combination of Amazon Web Services Regions and/or Amazon Web Services
+	// accounts where you want to run the Automation.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
 	// The specified key-value mapping of document parameters to target resources.
@@ -18177,9 +18194,10 @@ type AutomationExecutionMetadata struct {
 	AutomationSubtype *string `type:"string" enum:"AutomationSubtype"`
 
 	// Use this filter with DescribeAutomationExecutions. Specify either Local or
-	// CrossAccount. CrossAccount is an Automation that runs in multiple Regions
-	// and accounts. For more information, see Running Automation workflows in multiple
-	// Regions and accounts (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html)
+	// CrossAccount. CrossAccount is an Automation that runs in multiple Amazon
+	// Web Services Regions and Amazon Web Services accounts. For more information,
+	// see Running Automation workflows in multiple Amazon Web Services Regions
+	// and accounts (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	AutomationType *string `type:"string" enum:"AutomationType"`
 
@@ -18945,8 +18963,8 @@ type Command struct {
 	OutputS3KeyPrefix *string `type:"string"`
 
 	// (Deprecated) You can no longer specify this parameter. The system ignores
-	// it. Instead, Systems Manager automatically determines the Region of the S3
-	// bucket.
+	// it. Instead, Systems Manager automatically determines the Amazon Web Services
+	// Region of the S3 bucket.
 	OutputS3Region *string `min:"3" type:"string"`
 
 	// The parameter values to be inserted in the document when running the command.
@@ -20126,9 +20144,9 @@ type CreateActivationInput struct {
 	// hours.
 	ExpirationDate *time.Time `type:"timestamp"`
 
-	// The Identity and Access Management (IAM) role that you want to assign to
-	// the managed instance. This IAMrole must provide AssumeRole permissions for
-	// the Amazon Web Services Systems Manager service principal ssm.amazonaws.com.
+	// The name of the Identity and Access Management (IAM) role that you want to
+	// assign to the managed instance. This IAM role must provide AssumeRole permissions
+	// for the Amazon Web Services Systems Manager service principal ssm.amazonaws.com.
 	// For more information, see Create an IAM service role for a hybrid environment
 	// (https://docs.aws.amazon.com/systems-manager/latest/userguide/sysman-service-role.html)
 	// in the Amazon Web Services Systems Manager User Guide.
@@ -20385,7 +20403,15 @@ type CreateAssociationBatchRequestEntry struct {
 	// The document version.
 	DocumentVersion *string `type:"string"`
 
-	// The ID of the instance.
+	// The instance ID.
+	//
+	// InstanceId has been deprecated. To specify an instance ID for an association,
+	// use the Targets parameter. Requests that include the parameter InstanceID
+	// with Systems Manager documents (SSM documents) that use schema version 2.0
+	// or later will fail. In addition, if you use the parameter InstanceId, you
+	// can't use the parameters AssociationName, DocumentVersion, MaxErrors, MaxConcurrency,
+	// OutputLocation, or ScheduleExpression. To use these parameters, you must
+	// use the Targets parameter.
 	InstanceId *string `type:"string"`
 
 	// The maximum number of targets allowed to run the association at the same
@@ -20420,8 +20446,9 @@ type CreateAssociationBatchRequestEntry struct {
 	// You can specify Amazon Web Services-predefined documents, documents you created,
 	// or a document that is shared with you from another account.
 	//
-	// For SSM documents that are shared with you from other accounts, you must
-	// specify the complete SSM document ARN, in the following format:
+	// For SSM documents that are shared with you from other Amazon Web Services
+	// accounts, you must specify the complete SSM document ARN, in the following
+	// format:
 	//
 	// arn:aws:ssm:region:account-id:document/document-name
 	//
@@ -20700,8 +20727,8 @@ type CreateAssociationInput struct {
 	// or a document that is shared with you from another account.
 	//
 	// For Systems Manager documents (SSM documents) that are shared with you from
-	// other accounts, you must specify the complete SSM document ARN, in the following
-	// format:
+	// other Amazon Web Services accounts, you must specify the complete SSM document
+	// ARN, in the following format:
 	//
 	// arn:partition:ssm:region:account-id:document/document-name
 	//
@@ -20740,15 +20767,16 @@ type CreateAssociationInput struct {
 	// By default, all associations use AUTO mode.
 	SyncCompliance *string `type:"string" enum:"AssociationSyncCompliance"`
 
-	// A location is a combination of Regions and accounts where you want to run
-	// the association. Use this action to create an association in multiple Regions
-	// and multiple accounts.
+	// A location is a combination of Amazon Web Services Regions and Amazon Web
+	// Services accounts where you want to run the association. Use this action
+	// to create an association in multiple Regions and multiple accounts.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
 	// The targets for the association. You can target instances by using tags,
-	// Amazon Web Services resource groups, all instances in an account, or individual
-	// instance IDs. For more information about choosing targets for an association,
-	// see Using targets and rate controls with State Manager associations (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-state-manager-targets-and-rate-controls.html)
+	// Amazon Web Services resource groups, all instances in an Amazon Web Services
+	// account, or individual instance IDs. For more information about choosing
+	// targets for an association, see Using targets and rate controls with State
+	// Manager associations (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-state-manager-targets-and-rate-controls.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	Targets []*Target `type:"list"`
 }
@@ -21702,7 +21730,8 @@ type CreateOpsMetadataInput struct {
 	// of five tags for an OpsMetadata object. Tags enable you to categorize a resource
 	// in different ways, such as by purpose, owner, or environment. For example,
 	// you might want to tag an OpsMetadata object to identify an environment or
-	// target Region. In this case, you could specify the following key-value pairs:
+	// target Amazon Web Services Region. In this case, you could specify the following
+	// key-value pairs:
 	//
 	//    * Key=Environment,Value=Production
 	//
@@ -22066,9 +22095,10 @@ type CreateResourceDataSyncInput struct {
 	// Specify SyncToDestination to create a resource data sync that synchronizes
 	// data to an S3 bucket for Inventory. If you specify SyncToDestination, you
 	// must provide a value for S3Destination. Specify SyncFromSource to synchronize
-	// data from a single account and multiple Regions, or multiple accounts and
-	// Regions, as listed in Organizations for Explorer. If you specify SyncFromSource,
-	// you must provide a value for SyncSource. The default value is SyncToDestination.
+	// data from a single account and multiple Regions, or multiple Amazon Web Services
+	// accounts and Amazon Web Services Regions, as listed in Organizations for
+	// Explorer. If you specify SyncFromSource, you must provide a value for SyncSource.
+	// The default value is SyncToDestination.
 	SyncType *string `min:"1" type:"string"`
 }
 
@@ -22264,7 +22294,15 @@ type DeleteAssociationInput struct {
 	// The association ID that you want to delete.
 	AssociationId *string `type:"string"`
 
-	// The ID of the instance.
+	// The instance ID.
+	//
+	// InstanceId has been deprecated. To specify an instance ID for an association,
+	// use the Targets parameter. Requests that include the parameter InstanceID
+	// with Systems Manager documents (SSM documents) that use schema version 2.0
+	// or later will fail. In addition, if you use the parameter InstanceId, you
+	// can't use the parameters AssociationName, DocumentVersion, MaxErrors, MaxConcurrency,
+	// OutputLocation, or ScheduleExpression. To use these parameters, you must
+	// use the Targets parameter.
 	InstanceId *string `type:"string"`
 
 	// The name of the SSM document.
@@ -22704,7 +22742,8 @@ func (s DeleteParameterOutput) GoString() string {
 type DeleteParametersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The names of the parameters to delete.
+	// The names of the parameters to delete. After deleting a parameter, wait for
+	// at least 30 seconds to create a parameter with the same name.
 	//
 	// Names is a required field
 	Names []*string `min:"1" type:"list" required:"true"`
@@ -23332,7 +23371,7 @@ func (s *DescribeActivationsInput) SetNextToken(v string) *DescribeActivationsIn
 type DescribeActivationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of activations for your account.
+	// A list of activations for your Amazon Web Services account.
 	ActivationList []*Activation `type:"list"`
 
 	// The token for the next set of items to return. Use this token to get the
@@ -24245,11 +24284,11 @@ type DescribeDocumentPermissionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The account IDs that have permission to use this document. The ID can be
-	// either an account or All.
+	// either an Amazon Web Services account or All.
 	AccountIds []*string `type:"list"`
 
-	// A list of accounts where the current document is shared and the version shared
-	// with each account.
+	// A list of Amazon Web Services accounts where the current document is shared
+	// and the version shared with each account.
 	AccountSharingInfoList []*AccountSharingInfo `type:"list"`
 
 	// The token for the next set of items to return. Use this token to get the
@@ -29270,7 +29309,7 @@ func (s *GetCommandInvocationOutput) SetStatusDetails(v string) *GetCommandInvoc
 type GetConnectionStatusInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the instance.
+	// The instance ID.
 	//
 	// Target is a required field
 	Target *string `min:"1" type:"string" required:"true"`
@@ -29469,7 +29508,7 @@ func (s *GetDeployablePatchSnapshotForInstanceInput) SetSnapshotId(v string) *Ge
 type GetDeployablePatchSnapshotForInstanceOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the instance.
+	// The instance ID.
 	InstanceId *string `type:"string"`
 
 	// Returns the specific operating system (for example Windows Server 2012 or
@@ -31229,7 +31268,7 @@ func (s *GetOpsSummaryInput) SetSyncName(v string) *GetOpsSummaryInput {
 type GetOpsSummaryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The list of aggregated and filtered OpsData.
+	// The list of aggregated details and filtered OpsData.
 	Entities []*OpsEntity `type:"list"`
 
 	// The token for the next set of items to return. Use this token to get the
@@ -31371,6 +31410,9 @@ type GetParameterInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the parameter you want to query.
+	//
+	// To query by parameter label, use "Name": "name:label". To query by parameter
+	// version, use "Name": "name:version".
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -31596,6 +31638,9 @@ type GetParametersInput struct {
 
 	// Names of the parameters for which you want to query information.
 	//
+	// To query by parameter label, use "Name": "name:label". To query by parameter
+	// version, use "Name": "name:version".
+	//
 	// Names is a required field
 	Names []*string `min:"1" type:"list" required:"true"`
 
@@ -31772,6 +31817,11 @@ type GetPatchBaselineInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the patch baseline to retrieve.
+	//
+	// To retrieve information about an Amazon Web Services managed patch baseline,
+	// specify the full Amazon Resource Name (ARN) of the baseline. For example,
+	// for the baseline AWS-AmazonLinuxDefaultPatchBaseline, specify arn:aws:ssm:us-east-2:733109147000:patchbaseline/pb-0e392de35e7c563b7
+	// instead of pb-0e392de35e7c563b7.
 	//
 	// BaselineId is a required field
 	BaselineId *string `min:"20" type:"string" required:"true"`
@@ -37679,7 +37729,7 @@ func (s *ListComplianceSummariesOutput) SetNextToken(v string) *ListComplianceSu
 type ListDocumentMetadataHistoryInput struct {
 	_ struct{} `type:"structure"`
 
-	// The version of the document.
+	// The version of the change template.
 	DocumentVersion *string `type:"string"`
 
 	// The maximum number of items to return for this call. The call also returns
@@ -37693,7 +37743,7 @@ type ListDocumentMetadataHistoryInput struct {
 	// Metadata is a required field
 	Metadata *string `type:"string" required:"true" enum:"DocumentMetadataEnum"`
 
-	// The name of the document.
+	// The name of the change template.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -37765,17 +37815,17 @@ func (s *ListDocumentMetadataHistoryInput) SetNextToken(v string) *ListDocumentM
 type ListDocumentMetadataHistoryOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The user ID of the person in the organization who requested the document
-	// review.
+	// The user ID of the person in the organization who requested the review of
+	// the change template.
 	Author *string `type:"string"`
 
-	// The version of the document.
+	// The version of the change template.
 	DocumentVersion *string `type:"string"`
 
-	// Information about the response to the document approval request.
+	// Information about the response to the change template approval request.
 	Metadata *DocumentMetadataResponseInfo `type:"structure"`
 
-	// The name of the document.
+	// The name of the change template.
 	Name *string `type:"string"`
 
 	// The maximum number of items to return for this call. The call also returns
@@ -38644,7 +38694,7 @@ type ListResourceDataSyncInput struct {
 	// View a list of resource data syncs according to the sync type. Specify SyncToDestination
 	// to view resource data syncs that synchronize data to an Amazon S3 bucket.
 	// Specify SyncFromSource to view resource data syncs from Organizations or
-	// from multiple Regions.
+	// from multiple Amazon Web Services Regions.
 	SyncType *string `min:"1" type:"string"`
 }
 
@@ -38819,7 +38869,7 @@ type LoggingInfo struct {
 	// (Optional) The S3 bucket subfolder.
 	S3KeyPrefix *string `type:"string"`
 
-	// The Region where the S3 bucket is located.
+	// The Amazon Web Services Region where the S3 bucket is located.
 	//
 	// S3Region is a required field
 	S3Region *string `min:"3" type:"string" required:"true"`
@@ -40633,9 +40683,23 @@ func (s *OpsFilter) SetValues(v []*string) *OpsFilter {
 }
 
 // Operations engineers and IT professionals use Amazon Web Services Systems
-// Manager OpsCenter to view, investigate, and remediate operational issues
-// impacting the performance and health of their Amazon Web Services resources.
-// For more information, see OpsCenter (https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html)
+// Manager OpsCenter to view, investigate, and remediate operational work items
+// (OpsItems) impacting the performance and health of their Amazon Web Services
+// resources. OpsCenter is integrated with Amazon EventBridge and Amazon CloudWatch.
+// This means you can configure these services to automatically create an OpsItem
+// in OpsCenter when a CloudWatch alarm enters the ALARM state or when EventBridge
+// processes an event from any Amazon Web Services service that publishes events.
+// Configuring Amazon CloudWatch alarms and EventBridge events to automatically
+// create OpsItems allows you to quickly diagnose and remediate issues with
+// Amazon Web Services resources from a single console.
+//
+// To help you diagnose issues, each OpsItem includes contextually relevant
+// information such as the name and ID of the Amazon Web Services resource that
+// generated the OpsItem, alarm or event details, alarm history, and an alarm
+// timeline graph. For the Amazon Web Services resource, OpsCenter aggregates
+// information from Config, CloudTrail logs, and EventBridge, so you don't have
+// to navigate across multiple console pages during your investigation. For
+// more information, see OpsCenter (https://docs.aws.amazon.com/systems-manager/latest/userguide/OpsCenter.html)
 // in the Amazon Web Services Systems Manager User Guide.
 type OpsItem struct {
 	_ struct{} `type:"structure"`
@@ -40652,7 +40716,7 @@ type OpsItem struct {
 	// Recovery, Security.
 	Category *string `min:"1" type:"string"`
 
-	// The ARN of the account that created the OpsItem.
+	// The ARN of the Amazon Web Services account that created the OpsItem.
 	CreatedBy *string `type:"string"`
 
 	// The date and time the OpsItem was created.
@@ -40661,7 +40725,7 @@ type OpsItem struct {
 	// The OpsItem description.
 	Description *string `min:"1" type:"string"`
 
-	// The ARN of the account that last updated the OpsItem.
+	// The ARN of the Amazon Web Services account that last updated the OpsItem.
 	LastModifiedBy *string `type:"string"`
 
 	// The date and time the OpsItem was last updated.
@@ -42750,8 +42814,8 @@ func (s *ParameterInlinePolicy) SetPolicyType(v string) *ParameterInlinePolicy {
 	return s
 }
 
-// You have exceeded the number of parameters for this account. Delete one or
-// more parameters and try again.
+// You have exceeded the number of parameters for this Amazon Web Services account.
+// Delete one or more parameters and try again.
 type ParameterLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -44317,24 +44381,27 @@ func (s *PoliciesLimitExceededException) RequestID() string {
 type ProgressCounters struct {
 	_ struct{} `type:"structure"`
 
-	// The total number of steps that the system cancelled in all specified Regions
-	// and accounts for the current Automation execution.
+	// The total number of steps that the system cancelled in all specified Amazon
+	// Web Services Regions and Amazon Web Services accounts for the current Automation
+	// execution.
 	CancelledSteps *int64 `type:"integer"`
 
-	// The total number of steps that failed to run in all specified Regions and
-	// accounts for the current Automation execution.
+	// The total number of steps that failed to run in all specified Amazon Web
+	// Services Regions and Amazon Web Services accounts for the current Automation
+	// execution.
 	FailedSteps *int64 `type:"integer"`
 
-	// The total number of steps that successfully completed in all specified Regions
-	// and accounts for the current Automation execution.
+	// The total number of steps that successfully completed in all specified Amazon
+	// Web Services Regions and Amazon Web Services accounts for the current Automation
+	// execution.
 	SuccessSteps *int64 `type:"integer"`
 
-	// The total number of steps that timed out in all specified Regions and accounts
-	// for the current Automation execution.
+	// The total number of steps that timed out in all specified Amazon Web Services
+	// Regions and Amazon Web Services accounts for the current Automation execution.
 	TimedOutSteps *int64 `type:"integer"`
 
-	// The total number of steps run in all specified Regions and accounts for the
-	// current Automation execution.
+	// The total number of steps run in all specified Amazon Web Services Regions
+	// and Amazon Web Services accounts for the current Automation execution.
 	TotalSteps *int64 `type:"integer"`
 }
 
@@ -44654,8 +44721,8 @@ type PutParameterInput struct {
 	// When you create a String parameter and specify aws:ec2:image, Amazon Web
 	// Services Systems Manager validates the parameter value is in the required
 	// format, such as ami-12345abcdeEXAMPLE, and that the specified AMI is available
-	// in your account. For more information, see Native parameter support for Amazon
-	// Machine Image (AMI) IDs (https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html)
+	// in your Amazon Web Services account. For more information, see Native parameter
+	// support for Amazon Machine Image (AMI) IDs (https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	DataType *string `type:"string"`
 
@@ -44666,11 +44733,12 @@ type PutParameterInput struct {
 	Description *string `type:"string"`
 
 	// The Key Management Service (KMS) ID that you want to use to encrypt a parameter.
-	// Either the default KMS key automatically assigned to your account or a custom
-	// key. Required for parameters that use the SecureString data type.
+	// Either the default KMS key automatically assigned to your Amazon Web Services
+	// account or a custom key. Required for parameters that use the SecureString
+	// data type.
 	//
 	// If you don't specify a key ID, the system uses the default key associated
-	// with your account.
+	// with your Amazon Web Services account.
 	//
 	//    * To use your default KMS key, choose the SecureString data type, and
 	//    do not specify the Key ID when you create the parameter. The system automatically
@@ -44690,7 +44758,7 @@ type PutParameterInput struct {
 	//
 	//    * Parameter names are case sensitive.
 	//
-	//    * A parameter name must be unique within an Region
+	//    * A parameter name must be unique within an Amazon Web Services Region
 	//
 	//    * A parameter name can't be prefixed with "aws" or "ssm" (case-insensitive).
 	//
@@ -44767,13 +44835,14 @@ type PutParameterInput struct {
 	// Parameter Store offers a standard tier and an advanced tier for parameters.
 	// Standard parameters have a content size limit of 4 KB and can't be configured
 	// to use parameter policies. You can create a maximum of 10,000 standard parameters
-	// for each Region in an account. Standard parameters are offered at no additional
-	// cost.
+	// for each Region in an Amazon Web Services account. Standard parameters are
+	// offered at no additional cost.
 	//
 	// Advanced parameters have a content size limit of 8 KB and can be configured
 	// to use parameter policies. You can create a maximum of 100,000 advanced parameters
-	// for each Region in an account. Advanced parameters incur a charge. For more
-	// information, see Standard and advanced parameter tiers (https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html)
+	// for each Region in an Amazon Web Services account. Advanced parameters incur
+	// a charge. For more information, see Standard and advanced parameter tiers
+	// (https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-advanced-parameters.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	//
 	// You can change a standard parameter to an advanced parameter any time. But
@@ -44817,8 +44886,8 @@ type PutParameterInput struct {
 	//
 	//    * The parameter uses a parameter policy.
 	//
-	//    * More than 10,000 parameters already exist in your account in the current
-	//    Region.
+	//    * More than 10,000 parameters already exist in your Amazon Web Services
+	//    account in the current Amazon Web Services Region.
 	//
 	// For more information about configuring the default tier option, see Specifying
 	// a default parameter tier (https://docs.aws.amazon.com/systems-manager/latest/userguide/ps-default-tier.html)
@@ -46023,7 +46092,8 @@ func (s *ResourceDataSyncAlreadyExistsException) RequestID() string {
 
 // Information about the AwsOrganizationsSource resource data sync source. A
 // sync source of this type can synchronize data from Organizations or, if an
-// Amazon Web Services organization isn't present, from multiple Regions.
+// Amazon Web Services organization isn't present, from multiple Amazon Web
+// Services Regions.
 type ResourceDataSyncAwsOrganizationsSource struct {
 	_ struct{} `type:"structure"`
 
@@ -46204,9 +46274,10 @@ func (s *ResourceDataSyncCountExceededException) RequestID() string {
 }
 
 // Synchronize Amazon Web Services Systems Manager Inventory data from multiple
-// accounts defined in Organizations to a centralized Amazon S3 bucket. Data
-// is synchronized to individual key prefixes in the central bucket. Each key
-// prefix represents a different account ID.
+// Amazon Web Services accounts defined in Organizations to a centralized Amazon
+// S3 bucket. Data is synchronized to individual key prefixes in the central
+// bucket. Each key prefix represents a different Amazon Web Services account
+// ID.
 type ResourceDataSyncDestinationDataSharing struct {
 	_ struct{} `type:"structure"`
 
@@ -46334,7 +46405,7 @@ type ResourceDataSyncItem struct {
 	// The type of resource data sync. If SyncType is SyncToDestination, then the
 	// resource data sync synchronizes data to an S3 bucket. If the SyncType is
 	// SyncFromSource then the resource data sync synchronizes data from Organizations
-	// or from multiple Regions.
+	// or from multiple Amazon Web Services Regions.
 	SyncType *string `min:"1" type:"string"`
 }
 
@@ -46524,7 +46595,8 @@ type ResourceDataSyncS3Destination struct {
 	// An Amazon S3 prefix for the bucket.
 	Prefix *string `min:"1" type:"string"`
 
-	// The Region with the S3 bucket targeted by the resource data sync.
+	// The Amazon Web Services Region with the S3 bucket targeted by the resource
+	// data sync.
 	//
 	// Region is a required field
 	Region *string `min:"1" type:"string" required:"true"`
@@ -46627,17 +46699,18 @@ type ResourceDataSyncSource struct {
 
 	// When you create a resource data sync, if you choose one of the Organizations
 	// options, then Systems Manager automatically enables all OpsData sources in
-	// the selected Regions for all accounts in your organization (or in the selected
-	// organization units). For more information, see About multiple account and
-	// Region resource data syncs (https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html)
+	// the selected Amazon Web Services Regions for all Amazon Web Services accounts
+	// in your organization (or in the selected organization units). For more information,
+	// see About multiple account and Region resource data syncs (https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	EnableAllOpsDataSources *bool `type:"boolean"`
 
-	// Whether to automatically synchronize and aggregate data from new Regions
-	// when those Regions come online.
+	// Whether to automatically synchronize and aggregate data from new Amazon Web
+	// Services Regions when those Regions come online.
 	IncludeFutureRegions *bool `type:"boolean"`
 
-	// The SyncSource Regions included in the resource data sync.
+	// The SyncSource Amazon Web Services Regions included in the resource data
+	// sync.
 	//
 	// SourceRegions is a required field
 	SourceRegions []*string `type:"list" required:"true"`
@@ -46736,17 +46809,18 @@ type ResourceDataSyncSourceWithState struct {
 
 	// When you create a resource data sync, if you choose one of the Organizations
 	// options, then Systems Manager automatically enables all OpsData sources in
-	// the selected Regions for all accounts in your organization (or in the selected
-	// organization units). For more information, see About multiple account and
-	// Region resource data syncs (https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html)
+	// the selected Amazon Web Services Regions for all Amazon Web Services accounts
+	// in your organization (or in the selected organization units). For more information,
+	// see About multiple account and Region resource data syncs (https://docs.aws.amazon.com/systems-manager/latest/userguide/Explorer-resouce-data-sync-multiple-accounts-and-regions.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	EnableAllOpsDataSources *bool `type:"boolean"`
 
-	// Whether to automatically synchronize and aggregate data from new Regions
-	// when those Regions come online.
+	// Whether to automatically synchronize and aggregate data from new Amazon Web
+	// Services Regions when those Regions come online.
 	IncludeFutureRegions *bool `type:"boolean"`
 
-	// The SyncSource Regions included in the resource data sync.
+	// The SyncSource Amazon Web Services Regions included in the resource data
+	// sync.
 	SourceRegions []*string `type:"list"`
 
 	// The type of data source for the resource data sync. SourceType is either
@@ -47026,10 +47100,10 @@ type ResumeSessionOutput struct {
 	// A URL back to SSM Agent on the instance that the Session Manager client uses
 	// to send commands and receive output from the instance. Format: wss://ssmmessages.region.amazonaws.com/v1/data-channel/session-id?stream=(input|output).
 	//
-	// region represents the Region identifier for an Region supported by Amazon
-	// Web Services Systems Manager, such as us-east-2 for the US East (Ohio) Region.
-	// For a list of supported region values, see the Region column in Systems Manager
-	// service endpoints (https://docs.aws.amazon.com/general/latest/gr/ssm.html#ssm_region)
+	// region represents the Region identifier for an Amazon Web Services Region
+	// supported by Amazon Web Services Systems Manager, such as us-east-2 for the
+	// US East (Ohio) Region. For a list of supported region values, see the Region
+	// column in Systems Manager service endpoints (https://docs.aws.amazon.com/general/latest/gr/ssm.html#ssm_region)
 	// in the Amazon Web Services General Reference.
 	//
 	// session-id represents the ID of a Session Manager session, such as 1a2b3c4dEXAMPLE.
@@ -47140,8 +47214,8 @@ type Runbook struct {
 	// StartChangeRequestExecution.
 	Parameters map[string][]*string `min:"1" type:"map"`
 
-	// Information about the Regions and accounts targeted by the current Runbook
-	// operation.
+	// Information about the Amazon Web Services Regions and Amazon Web Services
+	// accounts targeted by the current Runbook operation.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
 	// The name of the parameter used as the target resource for the rate-controlled
@@ -47571,8 +47645,8 @@ type SendCommandInput struct {
 	OutputS3KeyPrefix *string `type:"string"`
 
 	// (Deprecated) You can no longer specify this parameter. The system ignores
-	// it. Instead, Systems Manager automatically determines the Region of the S3
-	// bucket.
+	// it. Instead, Systems Manager automatically determines the Amazon Web Services
+	// Region of the S3 bucket.
 	OutputS3Region *string `min:"3" type:"string"`
 
 	// The required and optional parameters specified in the document being run.
@@ -48337,10 +48411,12 @@ type StartAutomationExecutionInput struct {
 	// To add tags to an existing patch baseline, use the AddTagsToResource operation.
 	Tags []*Tag `type:"list"`
 
-	// A location is a combination of Regions and/or accounts where you want to
-	// run the automation. Use this operation to start an automation in multiple
-	// Regions and multiple accounts. For more information, see Running Automation
-	// workflows in multiple Regions and accounts (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html)
+	// A location is a combination of Amazon Web Services Regions and/or Amazon
+	// Web Services accounts where you want to run the automation. Use this operation
+	// to start an automation in multiple Amazon Web Services Regions and multiple
+	// Amazon Web Services accounts. For more information, see Running Automation
+	// workflows in multiple Amazon Web Services Regions and Amazon Web Services
+	// accounts (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-automation-multiple-accounts-and-regions.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
@@ -48574,7 +48650,8 @@ type StartChangeRequestExecutionInput struct {
 	// of five tags for a change request. Tags enable you to categorize a resource
 	// in different ways, such as by purpose, owner, or environment. For example,
 	// you might want to tag a change request to identify an environment or target
-	// Region. In this case, you could specify the following key-value pairs:
+	// Amazon Web Services Region. In this case, you could specify the following
+	// key-value pairs:
 	//
 	//    * Key=Environment,Value=Production
 	//
@@ -48799,10 +48876,10 @@ type StartSessionOutput struct {
 	// A URL back to SSM Agent on the instance that the Session Manager client uses
 	// to send commands and receive output from the instance. Format: wss://ssmmessages.region.amazonaws.com/v1/data-channel/session-id?stream=(input|output)
 	//
-	// region represents the Region identifier for an Region supported by Amazon
-	// Web Services Systems Manager, such as us-east-2 for the US East (Ohio) Region.
-	// For a list of supported region values, see the Region column in Systems Manager
-	// service endpoints (https://docs.aws.amazon.com/general/latest/gr/ssm.html#ssm_region)
+	// region represents the Region identifier for an Amazon Web Services Region
+	// supported by Amazon Web Services Systems Manager, such as us-east-2 for the
+	// US East (Ohio) Region. For a list of supported region values, see the Region
+	// column in Systems Manager service endpoints (https://docs.aws.amazon.com/general/latest/gr/ssm.html#ssm_region)
 	// in the Amazon Web Services General Reference.
 	//
 	// session-id represents the ID of a Session Manager session, such as 1a2b3c4dEXAMPLE.
@@ -48961,8 +49038,8 @@ type StepExecution struct {
 	// The execution status for this step.
 	StepStatus *string `type:"string" enum:"AutomationExecutionStatus"`
 
-	// The combination of Regions and accounts targeted by the current Automation
-	// execution.
+	// The combination of Amazon Web Services Regions and Amazon Web Services accounts
+	// targeted by the current Automation execution.
 	TargetLocation *TargetLocation `type:"structure"`
 
 	// The targets for the step execution.
@@ -49407,8 +49484,8 @@ func (s *Tag) SetValue(v string) *Tag {
 //    * Automation targets only: Key=ResourceGroup,Values=MyResourceGroup
 //
 //    * State Manager association targets only: Key=InstanceIds,Values=* This
-//    example demonstrates how to target all managed instances in the Region
-//    where the association was created.
+//    example demonstrates how to target all managed instances in the Amazon
+//    Web Services Region where the association was created.
 //
 // For more information about how to send commands that target instances using
 // Key,Value parameters, see Targeting multiple instances (https://docs.aws.amazon.com/systems-manager/latest/userguide/send-commands-multiple.html#send-commands-targeting)
@@ -49521,23 +49598,23 @@ func (s *TargetInUseException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The combination of Regions and accounts targeted by the current Automation
-// execution.
+// The combination of Amazon Web Services Regions and Amazon Web Services accounts
+// targeted by the current Automation execution.
 type TargetLocation struct {
 	_ struct{} `type:"structure"`
 
-	// The accounts targeted by the current Automation execution.
+	// The Amazon Web Services accounts targeted by the current Automation execution.
 	Accounts []*string `min:"1" type:"list"`
 
 	// The Automation execution role used by the currently running Automation. If
 	// not specified, the default value is AWS-SystemsManager-AutomationExecutionRole.
 	ExecutionRoleName *string `min:"1" type:"string"`
 
-	// The Regions targeted by the current Automation execution.
+	// The Amazon Web Services Regions targeted by the current Automation execution.
 	Regions []*string `min:"1" type:"list"`
 
-	// The maximum number of Regions and accounts allowed to run the Automation
-	// concurrently.
+	// The maximum number of Amazon Web Services Regions and Amazon Web Services
+	// accounts allowed to run the Automation concurrently.
 	TargetLocationMaxConcurrency *string `min:"1" type:"string"`
 
 	// The maximum number of errors allowed before the system stops queueing additional
@@ -50492,8 +50569,8 @@ type UpdateAssociationInput struct {
 	// or a document that is shared with you from another account.
 	//
 	// For Systems Manager document (SSM document) that are shared with you from
-	// other accounts, you must specify the complete SSM document ARN, in the following
-	// format:
+	// other Amazon Web Services accounts, you must specify the complete SSM document
+	// ARN, in the following format:
 	//
 	// arn:aws:ssm:region:account-id:document/document-name
 	//
@@ -50531,9 +50608,9 @@ type UpdateAssociationInput struct {
 	// By default, all associations use AUTO mode.
 	SyncCompliance *string `type:"string" enum:"AssociationSyncCompliance"`
 
-	// A location is a combination of Regions and accounts where you want to run
-	// the association. Use this action to update an association in multiple Regions
-	// and multiple accounts.
+	// A location is a combination of Amazon Web Services Regions and Amazon Web
+	// Services accounts where you want to run the association. Use this action
+	// to update an association in multiple Regions and multiple accounts.
 	TargetLocations []*TargetLocation `min:"1" type:"list"`
 
 	// The targets of the association.
@@ -50736,7 +50813,7 @@ type UpdateAssociationStatusInput struct {
 	// AssociationStatus is a required field
 	AssociationStatus *AssociationStatus `type:"structure" required:"true"`
 
-	// The ID of the instance.
+	// The instance ID.
 	//
 	// InstanceId is a required field
 	InstanceId *string `type:"string" required:"true"`
@@ -51028,15 +51105,15 @@ func (s *UpdateDocumentInput) SetVersionName(v string) *UpdateDocumentInput {
 type UpdateDocumentMetadataInput struct {
 	_ struct{} `type:"structure"`
 
-	// The document review details to update.
+	// The change template review details to update.
 	//
 	// DocumentReviews is a required field
 	DocumentReviews *DocumentReviews `type:"structure" required:"true"`
 
-	// The version of a document to update.
+	// The version of a change template in which to update approval metadata.
 	DocumentVersion *string `type:"string"`
 
-	// The name of the document for which a version is to be updated.
+	// The name of the change template for which a version's metadata is to be updated.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
