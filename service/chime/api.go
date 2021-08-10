@@ -6803,7 +6803,7 @@ func (c *Chime) DescribeAppInstanceUserRequest(input *DescribeAppInstanceUserInp
 
 // DescribeAppInstanceUser API operation for Amazon Chime.
 //
-// Returns the full details of an AppInstanceUser .
+// Returns the full details of an AppInstanceUser.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21624,7 +21624,7 @@ type BatchChannelMemberships struct {
 	// The ARN of the channel to which you're adding users.
 	ChannelArn *string `min:"5" type:"string"`
 
-	// The details of a user.
+	// The identifier of the member who invited another member.
 	InvitedBy *Identity `type:"structure"`
 
 	// The users successfully added to the request.
@@ -22776,7 +22776,7 @@ func (s *ChannelMembership) SetType(v string) *ChannelMembership {
 type ChannelMembershipForAppInstanceUserSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Returns the channel membership data for an AppInstance.
+	// Summary of the membership details of an AppInstanceUser.
 	AppInstanceUserMembershipSummary *AppInstanceUserMembershipSummary `type:"structure"`
 
 	// Summary of the details of a Channel.
@@ -29095,7 +29095,7 @@ type EngineTranscribeMedicalSettings struct {
 	LanguageCode *string `type:"string" required:"true" enum:"TranscribeMedicalLanguageCode"`
 
 	// The AWS Region passed to Amazon Transcribe Medical. If you don't specify
-	// a Region, Amazon Chime uses the Region closest to the meeting's Region.
+	// a Region, Amazon Chime uses the meeting's Region.
 	Region *string `type:"string" enum:"TranscribeMedicalRegion"`
 
 	// The specialty specified for the Amazon Transcribe Medical engine.
@@ -29181,7 +29181,7 @@ type EngineTranscribeSettings struct {
 	LanguageCode *string `type:"string" required:"true" enum:"TranscribeLanguageCode"`
 
 	// The AWS Region passed to Amazon Transcribe. If you don't specify a Region,
-	// Amazon Chime uses the Region closest to the meeting's Region.
+	// Amazon Chime uses the meeting's Region.
 	Region *string `type:"string" enum:"TranscribeRegion"`
 
 	// The filtering method passed to Amazon Transcribe.
@@ -42979,6 +42979,9 @@ const (
 
 	// TranscribeMedicalRegionEuWest1 is a TranscribeMedicalRegion enum value
 	TranscribeMedicalRegionEuWest1 = "eu-west-1"
+
+	// TranscribeMedicalRegionAuto is a TranscribeMedicalRegion enum value
+	TranscribeMedicalRegionAuto = "auto"
 )
 
 // TranscribeMedicalRegion_Values returns all elements of the TranscribeMedicalRegion enum
@@ -42990,6 +42993,7 @@ func TranscribeMedicalRegion_Values() []string {
 		TranscribeMedicalRegionApSoutheast2,
 		TranscribeMedicalRegionCaCentral1,
 		TranscribeMedicalRegionEuWest1,
+		TranscribeMedicalRegionAuto,
 	}
 }
 
@@ -43074,6 +43078,9 @@ const (
 
 	// TranscribeRegionSaEast1 is a TranscribeRegion enum value
 	TranscribeRegionSaEast1 = "sa-east-1"
+
+	// TranscribeRegionAuto is a TranscribeRegion enum value
+	TranscribeRegionAuto = "auto"
 )
 
 // TranscribeRegion_Values returns all elements of the TranscribeRegion enum
@@ -43090,6 +43097,7 @@ func TranscribeRegion_Values() []string {
 		TranscribeRegionEuWest1,
 		TranscribeRegionEuWest2,
 		TranscribeRegionSaEast1,
+		TranscribeRegionAuto,
 	}
 }
 
