@@ -1,3 +1,10 @@
+Release v1.40.19 (2021-08-10)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Add support for "auto" in Region field of StartMeetingTranscription API request.
+
 Release v1.40.18 (2021-08-09)
 ===
 
