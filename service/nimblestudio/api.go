@@ -528,13 +528,13 @@ func (c *NimbleStudio) CreateStudioRequest(input *CreateStudioInput) (req *reque
 // You may optionally specify a KMS key in the StudioEncryptionConfiguration.
 //
 // In Nimble Studio, resource names, descriptions, initialization scripts, and
-// other data you provide are always encrypted at rest using an AWS KMS key.
-// By default, this key is owned by AWS and managed on your behalf. You may
-// provide your own AWS KMS key when calling CreateStudio to encrypt this data
-// using a key you own and manage.
+// other data you provide are always encrypted at rest using an KMS key. By
+// default, this key is owned by Amazon Web Services and managed on your behalf.
+// You may provide your own KMS key when calling CreateStudio to encrypt this
+// data using a key you own and manage.
 //
-// When providing an AWS KMS key during studio creation, Nimble Studio creates
-// KMS grants in your account to provide your studio user and admin roles access
+// When providing an KMS key during studio creation, Nimble Studio creates KMS
+// grants in your account to provide your studio user and admin roles access
 // to these KMS keys.
 //
 // If you delete this grant, the studio will no longer be accessible to your
@@ -2960,8 +2960,8 @@ func (c *NimbleStudio) ListStreamingImagesRequest(input *ListStreamingImagesInpu
 //
 // List the streaming image resources available to this studio.
 //
-// This list will contain both images provided by AWS, as well as streaming
-// images that you have created in your studio.
+// This list will contain both images provided by Amazon Web Services, as well
+// as streaming images that you have created in your studio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3553,7 +3553,8 @@ func (c *NimbleStudio) ListStudiosRequest(input *ListStudiosInput) (req *request
 
 // ListStudios API operation for AmazonNimbleStudio.
 //
-// List studios in your AWS account in the requested AWS Region.
+// List studios in your Amazon Web Services account in the requested Amazon
+// Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3974,15 +3975,15 @@ func (c *NimbleStudio) StartStudioSSOConfigurationRepairRequest(input *StartStud
 //
 // Repairs the SSO configuration for a given studio.
 //
-// If the studio has a valid AWS SSO configuration currently associated with
-// it, this operation will fail with a validation error.
+// If the studio has a valid Amazon Web Services SSO configuration currently
+// associated with it, this operation will fail with a validation error.
 //
-// If the studio does not have a valid AWS SSO configuration currently associated
-// with it, then a new AWS SSO application is created for the studio and the
-// studio is changed to the READY state.
+// If the studio does not have a valid Amazon Web Services SSO configuration
+// currently associated with it, then a new Amazon Web Services SSO application
+// is created for the studio and the studio is changed to the READY state.
 //
-// After the AWS SSO application is repaired, you must use the Amazon Nimble
-// Studio console to add administrators and users to your studio.
+// After the Amazon Web Services SSO application is repaired, you must use the
+// Amazon Nimble Studio console to add administrators and users to your studio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5303,6 +5304,8 @@ type CreateStreamingSessionInput struct {
 
 	LaunchProfileId *string `locationName:"launchProfileId" type:"string"`
 
+	OwnedBy *string `locationName:"ownedBy" type:"string"`
+
 	StreamingImageId *string `locationName:"streamingImageId" type:"string"`
 
 	// StudioId is a required field
@@ -5355,6 +5358,12 @@ func (s *CreateStreamingSessionInput) SetEc2InstanceType(v string) *CreateStream
 // SetLaunchProfileId sets the LaunchProfileId field's value.
 func (s *CreateStreamingSessionInput) SetLaunchProfileId(v string) *CreateStreamingSessionInput {
 	s.LaunchProfileId = &v
+	return s
+}
+
+// SetOwnedBy sets the OwnedBy field's value.
+func (s *CreateStreamingSessionInput) SetOwnedBy(v string) *CreateStreamingSessionInput {
+	s.OwnedBy = &v
 	return s
 }
 
@@ -8323,6 +8332,8 @@ type ListStreamingSessionsInput struct {
 
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
+	OwnedBy *string `location:"querystring" locationName:"ownedBy" type:"string"`
+
 	SessionIds *string `location:"querystring" locationName:"sessionIds" type:"string"`
 
 	// StudioId is a required field
@@ -8364,6 +8375,12 @@ func (s *ListStreamingSessionsInput) SetCreatedBy(v string) *ListStreamingSessio
 // SetNextToken sets the NextToken field's value.
 func (s *ListStreamingSessionsInput) SetNextToken(v string) *ListStreamingSessionsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetOwnedBy sets the OwnedBy field's value.
+func (s *ListStreamingSessionsInput) SetOwnedBy(v string) *ListStreamingSessionsInput {
+	s.OwnedBy = &v
 	return s
 }
 
@@ -8822,7 +8839,7 @@ type PutLaunchProfileMembersInput struct {
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
 
 	// Members is a required field
-	Members []*NewLaunchProfileMember `locationName:"members" type:"list" required:"true"`
+	Members []*NewLaunchProfileMember `locationName:"members" min:"1" type:"list" required:"true"`
 
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
@@ -8855,6 +8872,9 @@ func (s *PutLaunchProfileMembersInput) Validate() error {
 	}
 	if s.Members == nil {
 		invalidParams.Add(request.NewErrParamRequired("Members"))
+	}
+	if s.Members != nil && len(s.Members) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Members", 1))
 	}
 	if s.StudioId == nil {
 		invalidParams.Add(request.NewErrParamRequired("StudioId"))
@@ -8932,7 +8952,7 @@ type PutStudioMembersInput struct {
 	IdentityStoreId *string `locationName:"identityStoreId" type:"string" required:"true"`
 
 	// Members is a required field
-	Members []*NewStudioMember `locationName:"members" type:"list" required:"true"`
+	Members []*NewStudioMember `locationName:"members" min:"1" type:"list" required:"true"`
 
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
@@ -8959,6 +8979,9 @@ func (s *PutStudioMembersInput) Validate() error {
 	}
 	if s.Members == nil {
 		invalidParams.Add(request.NewErrParamRequired("Members"))
+	}
+	if s.Members != nil && len(s.Members) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Members", 1))
 	}
 	if s.StudioId == nil {
 		invalidParams.Add(request.NewErrParamRequired("StudioId"))
@@ -9631,7 +9654,8 @@ type StreamingSession struct {
 
 	LaunchProfileId *string `locationName:"launchProfileId" type:"string"`
 
-	// The streaming image session ID.
+	OwnedBy *string `locationName:"ownedBy" type:"string"`
+
 	SessionId *string `locationName:"sessionId" type:"string"`
 
 	// The streaming session state.
@@ -9689,6 +9713,12 @@ func (s *StreamingSession) SetEc2InstanceType(v string) *StreamingSession {
 // SetLaunchProfileId sets the LaunchProfileId field's value.
 func (s *StreamingSession) SetLaunchProfileId(v string) *StreamingSession {
 	s.LaunchProfileId = &v
+	return s
+}
+
+// SetOwnedBy sets the OwnedBy field's value.
+func (s *StreamingSession) SetOwnedBy(v string) *StreamingSession {
+	s.OwnedBy = &v
 	return s
 }
 
@@ -9755,6 +9785,8 @@ type StreamingSessionStream struct {
 
 	ExpiresAt *time.Time `locationName:"expiresAt" type:"timestamp" timestampFormat:"iso8601"`
 
+	OwnedBy *string `locationName:"ownedBy" type:"string"`
+
 	State *string `locationName:"state" type:"string" enum:"StreamingSessionStreamState"`
 
 	StatusCode *string `locationName:"statusCode" type:"string" enum:"StreamingSessionStreamStatusCode"`
@@ -9789,6 +9821,12 @@ func (s *StreamingSessionStream) SetCreatedBy(v string) *StreamingSessionStream 
 // SetExpiresAt sets the ExpiresAt field's value.
 func (s *StreamingSessionStream) SetExpiresAt(v time.Time) *StreamingSessionStream {
 	s.ExpiresAt = &v
+	return s
+}
+
+// SetOwnedBy sets the OwnedBy field's value.
+func (s *StreamingSessionStream) SetOwnedBy(v string) *StreamingSessionStream {
+	s.OwnedBy = &v
 	return s
 }
 
