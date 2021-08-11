@@ -1,3 +1,17 @@
+Release v1.40.20 (2021-08-11)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API, documentation, and examples
+  * CodeBuild now allows you to make the build results for your build projects available to the public without requiring access to an AWS account.
+* `service/ebs`: Updates service documentation
+* `service/ecs`: Updates service documentation
+  * Documentation updates for ECS.
+* `service/nimble`: Updates service API and documentation
+* `service/route53`: Updates service documentation
+  * Documentation updates for route53
+* `service/snow-device-management`: Adds new service
+
 Release v1.40.19 (2021-08-10)
 ===
 
