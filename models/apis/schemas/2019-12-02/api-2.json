@@ -2563,7 +2563,8 @@
     "Type": {
       "type": "string",
       "enum": [
-        "OpenApi3"
+        "OpenApi3",
+        "JSONSchemaDraft4"
       ]
     },
     "UnauthorizedException": {

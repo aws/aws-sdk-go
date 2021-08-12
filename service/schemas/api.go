@@ -6784,14 +6784,14 @@ const (
 	// TypeOpenApi3 is a Type enum value
 	TypeOpenApi3 = "OpenApi3"
 
-	// TypeJSONSchemaDraft4 is a Type enum value
-	TypeJSONSchemaDraft4 = "JSONSchemaDraft4"
+	// TypeJsonschemaDraft4 is a Type enum value
+	TypeJsonschemaDraft4 = "JSONSchemaDraft4"
 )
 
 // Type_Values returns all elements of the Type enum
 func Type_Values() []string {
 	return []string{
 		TypeOpenApi3,
-		TypeJSONSchemaDraft4,
+		TypeJsonschemaDraft4,
 	}
 }
