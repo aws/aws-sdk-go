@@ -556,7 +556,7 @@
     "DomainNameStatus": {
       "base": null,
       "refs": {
-        "DomainName$domainNameStatus": "<p>The status of the <a>DomainName</a> migration. The valid values are <code>AVAILABLE</code> and <code>UPDATING</code>. If the status is <code>UPDATING</code>, the domain cannot be modified further until the existing operation is complete. If it is <code>AVAILABLE</code>, the domain can be updated.</p>"
+        "DomainName$domainNameStatus": "<p>The status of the <a>DomainName</a> migration. The valid values are <code>AVAILABLE</code>, <code>UPDATING</code>, <code>PENDING_CERTIFICATE_REIMPORT</code>, and <code>PENDING_OWNERSHIP_VERIFICATION</code>. If the status is <code>UPDATING</code>, the domain cannot be modified further until the existing operation is complete. If it is <code>AVAILABLE</code>, the domain can be updated.</p>"
       }
     },
     "DomainNames": {
@@ -1579,6 +1579,7 @@
         "CreateDomainNameRequest$certificateArn": "<p>The reference to an AWS-managed certificate that will be used by edge-optimized endpoint for this domain name. AWS Certificate Manager is the only supported source.</p>",
         "CreateDomainNameRequest$regionalCertificateName": "<p>The user-friendly name of the certificate that will be used by regional endpoint for this domain name.</p>",
         "CreateDomainNameRequest$regionalCertificateArn": "<p>The reference to an AWS-managed certificate that will be used by regional endpoint for this domain name. AWS Certificate Manager is the only supported source.</p>",
+        "CreateDomainNameRequest$ownershipVerificationCertificateArn": "<p>The ARN of the public certificate issued by ACM to validate ownership of your custom domain. Only required when configuring mutual TLS and using an ACM imported or private CA certificate ARN as the regionalCertificateArn.</p>",
         "CreateModelRequest$restApiId": "<p>[Required] The <a>RestApi</a> identifier under which the <a>Model</a> will be created.</p>",
         "CreateModelRequest$name": "<p>[Required] The name of the model. Must be alphanumeric.</p>",
         "CreateModelRequest$description": "<p>The description of the model.</p>",
@@ -1667,6 +1668,7 @@
         "DomainName$distributionDomainName": "<p>The domain name of the Amazon CloudFront distribution associated with this custom domain name for an edge-optimized endpoint. You set up this association when adding a DNS record pointing the custom domain name to this distribution name. For more information about CloudFront distributions, see the <a href=\"https://aws.amazon.com/documentation/cloudfront/\" target=\"_blank\">Amazon CloudFront documentation</a>.</p>",
         "DomainName$distributionHostedZoneId": "<p>The region-agnostic Amazon Route 53 Hosted Zone ID of the edge-optimized endpoint. The valid value is <code>Z2FDTNDATAQYW2</code> for all the regions. For more information, see <a href=\"https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-regional-api-custom-domain-create.html\">Set up a Regional Custom Domain Name</a> and <a href=\"https://docs.aws.amazon.com/general/latest/gr/rande.html#apigateway_region\">AWS Regions and Endpoints for API Gateway</a>. </p>",
         "DomainName$domainNameStatusMessage": "<p>An optional text message containing detailed information about status of the <a>DomainName</a> migration.</p>",
+        "DomainName$ownershipVerificationCertificateArn": "<p>The ARN of the public certificate issued by ACM to validate ownership of your custom domain. Only required when configuring mutual TLS and using an ACM imported or private CA certificate ARN as the regionalCertificateArn.</p>",
         "DomainNames$position": null,
         "ExportResponse$contentType": "<p>The content-type header value in the HTTP response. This will correspond to a valid 'accept' type in the request.</p>",
         "ExportResponse$contentDisposition": "<p>The content-disposition header value in the HTTP response.</p>",
