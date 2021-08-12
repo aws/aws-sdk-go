@@ -746,7 +746,7 @@ func (c *SageMaker) CreateAutoMLJobRequest(input *CreateAutoMLJobInput) (req *re
 //
 // Creates an Autopilot job.
 //
-// Find the best performing model after you run an Autopilot job by calling .
+// Find the best-performing model after you run an Autopilot job by calling .
 //
 // For information about how to use Autopilot, see Automate Model Development
 // with Amazon SageMaker Autopilot (https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html).
@@ -20162,6 +20162,8 @@ func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInp
 //
 // Stops a pipeline execution.
 //
+// Callback Step
+//
 // A pipeline execution won't stop while a callback step is running. When you
 // call StopPipelineExecution on a pipeline execution with a running callback
 // step, SageMaker Pipelines sends an additional Amazon SQS message to the specified
@@ -20174,6 +20176,16 @@ func (c *SageMaker) StopPipelineExecutionRequest(input *StopPipelineExecutionInp
 //
 // Only when SageMaker Pipelines receives one of these calls will it stop the
 // pipeline execution.
+//
+// Lambda Step
+//
+// A pipeline execution can't be stopped while a lambda step is running because
+// the Lambda function invoked by the lambda step can't be stopped. If you attempt
+// to stop the execution while the Lambda function is running, the pipeline
+// waits for the Lambda function to finish or until the timeout is hit, whichever
+// occurs first, and then stops. If the Lambda function finishes, the pipeline
+// execution status is Stopped. If the timeout is hit the pipeline execution
+// status is Failed.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23402,7 +23414,7 @@ type AnnotationConsolidationConfig struct {
 	// Text classification - Uses a variant of the Expectation Maximization approach
 	// to estimate the true class of text based on annotations from individual workers.
 	//
-	//    * rn:aws:lambda:us-east-1:432418664414:function:ACS-TextMultiClass
+	//    * arn:aws:lambda:us-east-1:432418664414:function:ACS-TextMultiClass
 	//
 	//    * arn:aws:lambda:us-east-2:266458841044:function:ACS-TextMultiClass
 	//
@@ -24643,8 +24655,8 @@ func (s *AthenaDatasetDefinition) SetWorkGroup(v string) *AthenaDatasetDefinitio
 	return s
 }
 
-// An Autopilot job returns recommendations, or candidates. Each candidate has
-// futher details about the steps involved and the status.
+// Information about a candidate produced by an AutoML training job, including
+// its status, steps, and other properties.
 type AutoMLCandidate struct {
 	_ struct{} `type:"structure"`
 
@@ -24653,7 +24665,7 @@ type AutoMLCandidate struct {
 	// CandidateName is a required field
 	CandidateName *string `min:"1" type:"string" required:"true"`
 
-	// The AutoML candidate's properties.
+	// The properties of an AutoML candidate job.
 	CandidateProperties *CandidateProperties `type:"structure"`
 
 	// The candidate's status.
@@ -24899,7 +24911,8 @@ type AutoMLContainerDefinition struct {
 	// see .
 	Environment map[string]*string `type:"map"`
 
-	// The ECR path of the container. For more information, see .
+	// The Amazon Elastic Container Registry (Amazon ECR) path of the container.
+	// For more information, see .
 	//
 	// Image is a required field
 	Image *string `type:"string" required:"true"`
@@ -25147,8 +25160,8 @@ type AutoMLJobObjective struct {
 	//    * MSE: The mean squared error (MSE) is the average of the squared differences
 	//    between the predicted and actual values. It is used for regression. MSE
 	//    values are always positive: the better a model is at predicting the actual
-	//    values, the smaller the MSE value. When the data contains outliers, they
-	//    tend to dominate the MSE, which might cause subpar prediction performance.
+	//    values, the smaller the MSE value is. When the data contains outliers,
+	//    they tend to dominate the MSE, which might cause subpar prediction performance.
 	//
 	//    * Accuracy: The ratio of the number of correctly classified items to the
 	//    total number of (correctly and incorrectly) classified items. It is used
@@ -25248,7 +25261,7 @@ type AutoMLJobSummary struct {
 	// AutoMLJobArn is a required field
 	AutoMLJobArn *string `min:"1" type:"string" required:"true"`
 
-	// The name of the AutoML you are requesting.
+	// The name of the AutoML job you are requesting.
 	//
 	// AutoMLJobName is a required field
 	AutoMLJobName *string `min:"1" type:"string" required:"true"`
@@ -25777,6 +25790,9 @@ type CandidateProperties struct {
 
 	// The Amazon S3 prefix to the artifacts generated for an AutoML candidate.
 	CandidateArtifactLocations *CandidateArtifactLocations `type:"structure"`
+
+	// Information about the candidate metrics for an AutoML job.
+	CandidateMetrics []*MetricDatum `type:"list"`
 }
 
 // String returns the string representation
@@ -25792,6 +25808,12 @@ func (s CandidateProperties) GoString() string {
 // SetCandidateArtifactLocations sets the CandidateArtifactLocations field's value.
 func (s *CandidateProperties) SetCandidateArtifactLocations(v *CandidateArtifactLocations) *CandidateProperties {
 	s.CandidateArtifactLocations = v
+	return s
+}
+
+// SetCandidateMetrics sets the CandidateMetrics field's value.
+func (s *CandidateProperties) SetCandidateMetrics(v []*MetricDatum) *CandidateProperties {
+	s.CandidateMetrics = v
 	return s
 }
 
@@ -28120,7 +28142,7 @@ func (s *CreateAutoMLJobInput) SetTags(v []*Tag) *CreateAutoMLJobInput {
 type CreateAutoMLJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique ARN that is assigned to the AutoML job when it is created.
+	// The unique ARN assigned to the AutoML job when it is created.
 	//
 	// AutoMLJobArn is a required field
 	AutoMLJobArn *string `min:"1" type:"string" required:"true"`
@@ -30696,6 +30718,13 @@ type CreateLabelingJobInput struct {
 	// attributes and frame attributes to your label category configuration file.
 	// To learn how, see Create a Labeling Category Configuration File for 3D Point
 	// Cloud Labeling Jobs (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-point-cloud-label-category-config.html).
+	//
+	// For named entity recognition jobs, in addition to "labels", you must provide
+	// worker instructions in the label category configuration file using the "instructions"
+	// parameter: "instructions": {"shortInstruction":"<h1>Add header</h1><p>Add
+	// Instructions</p>", "fullInstruction":"<p>Add additional instructions.</p>"}.
+	// For details and an example, see Create a Named Entity Recognition Labeling
+	// Job (API) (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-named-entity-recg.html#sms-creating-ner-api).
 	//
 	// For all other built-in task types (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-task-types.html)
 	// and custom tasks (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-custom-templates.html),
@@ -39042,7 +39071,7 @@ type DescribeAutoMLJobOutput struct {
 	// Returns the job's problem type.
 	ProblemType *string `type:"string" enum:"ProblemType"`
 
-	// This contains ProblemType, AutoMLJobObjective and CompletionCriteria. If
+	// This contains ProblemType, AutoMLJobObjective, and CompletionCriteria. If
 	// you do not provide these values, they are auto-inferred. If you do provide
 	// them, the values used are the ones you provide.
 	ResolvedAttributes *ResolvedAttributes `type:"structure"`
@@ -60954,6 +60983,48 @@ func (s *MetricData) SetValue(v float64) *MetricData {
 	return s
 }
 
+// Information about the metric for a candidate produced by an AutoML job.
+type MetricDatum struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the metric.
+	MetricName *string `type:"string" enum:"AutoMLMetricEnum"`
+
+	// The dataset split from which the AutoML job produced the metric.
+	Set *string `type:"string" enum:"MetricSetSource"`
+
+	// The value of the metric.
+	Value *float64 `type:"float"`
+}
+
+// String returns the string representation
+func (s MetricDatum) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MetricDatum) GoString() string {
+	return s.String()
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *MetricDatum) SetMetricName(v string) *MetricDatum {
+	s.MetricName = &v
+	return s
+}
+
+// SetSet sets the Set field's value.
+func (s *MetricDatum) SetSet(v string) *MetricDatum {
+	s.Set = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *MetricDatum) SetValue(v float64) *MetricDatum {
+	s.Value = &v
+	return s
+}
+
 // Specifies a metric that the training algorithm writes to stderr or stdout.
 // Amazon SageMakerhyperparameter tuning captures all defined metrics. You specify
 // one metric that a hyperparameter tuning job uses as its objective metric
@@ -75089,17 +75160,32 @@ func (s *USD) SetTenthFractionsOfACent(v int64) *USD {
 }
 
 // Provided configuration information for the worker UI for a labeling job.
+// Provide either HumanTaskUiArn or UiTemplateS3Uri.
+//
+// For named entity recognition, 3D point cloud and video frame labeling jobs,
+// use HumanTaskUiArn.
+//
+// For all other Ground Truth built-in task types and custom task types, use
+// UiTemplateS3Uri to specify the location of a worker task template in Amazon
+// S3.
 type UiConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The ARN of the worker task template used to render the worker UI and tools
 	// for labeling job tasks.
 	//
-	// Use this parameter when you are creating a labeling job for 3D point cloud
-	// and video fram labeling jobs. Use your labeling job task type to select one
-	// of the following ARNs and use it with this parameter when you create a labeling
-	// job. Replace aws-region with the Amazon Web Services region you are creating
-	// your labeling job in.
+	// Use this parameter when you are creating a labeling job for named entity
+	// recognition, 3D point cloud and video frame labeling jobs. Use your labeling
+	// job task type to select one of the following ARNs and use it with this parameter
+	// when you create a labeling job. Replace aws-region with the Amazon Web Services
+	// Region you are creating your labeling job in. For example, replace aws-region
+	// with us-west-1 if you create a labeling job in US West (N. California).
+	//
+	// Named Entity Recognition
+	//
+	// Use the following HumanTaskUiArn for named entity recognition labeling jobs:
+	//
+	// arn:aws:sagemaker:aws-region:394669845002:human-task-ui/NamedEntityRecognition
 	//
 	// 3D Point Cloud HumanTaskUiArns
 	//
@@ -80340,6 +80426,26 @@ func ListWorkteamsSortByOptions_Values() []string {
 	return []string{
 		ListWorkteamsSortByOptionsName,
 		ListWorkteamsSortByOptionsCreateDate,
+	}
+}
+
+const (
+	// MetricSetSourceTrain is a MetricSetSource enum value
+	MetricSetSourceTrain = "Train"
+
+	// MetricSetSourceValidation is a MetricSetSource enum value
+	MetricSetSourceValidation = "Validation"
+
+	// MetricSetSourceTest is a MetricSetSource enum value
+	MetricSetSourceTest = "Test"
+)
+
+// MetricSetSource_Values returns all elements of the MetricSetSource enum
+func MetricSetSource_Values() []string {
+	return []string{
+		MetricSetSourceTrain,
+		MetricSetSourceValidation,
+		MetricSetSourceTest,
 	}
 }
 

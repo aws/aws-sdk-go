@@ -1,1220 +1,1216 @@
 {
-  "version": "2.0",
-  "service": null,
-  "operations": {
-    "AcceptEulas": "<p>Accept EULAs.</p>",
-    "CreateLaunchProfile": "<p>Create a launch profile.</p>",
-    "CreateStreamingImage": "<p>Creates a streaming image resource in a studio.</p>",
-    "CreateStreamingSession": "<p>Creates a streaming session in a studio.</p> <p>After invoking this operation, you must poll GetStreamingSession until the streaming session is in state READY.</p>",
-    "CreateStreamingSessionStream": "<p>Creates a streaming session stream for a streaming session.</p> <p>After invoking this API, invoke GetStreamingSessionStream with the returned streamId to poll the resource until it is in state READY.</p>",
-    "CreateStudio": "<p>Create a new Studio.</p> <p>When creating a Studio, two IAM roles must be provided: the admin role and the user Role. These roles are assumed by your users when they log in to the Nimble Studio portal.</p> <p>The user role must have the AmazonNimbleStudio-StudioUser managed policy attached for the portal to function properly.</p> <p>The Admin Role must have the AmazonNimbleStudio-StudioAdmin managed policy attached for the portal to function properly.</p> <p>You may optionally specify a KMS key in the StudioEncryptionConfiguration.</p> <p>In Nimble Studio, resource names, descriptions, initialization scripts, and other data you provide are always encrypted at rest using an AWS KMS key. By default, this key is owned by AWS and managed on your behalf. You may provide your own AWS KMS key when calling CreateStudio to encrypt this data using a key you own and manage.</p> <p>When providing an AWS KMS key during studio creation, Nimble Studio creates KMS grants in your account to provide your studio user and admin roles access to these KMS keys.</p> <p>If you delete this grant, the studio will no longer be accessible to your portal users.</p> <p>If you delete the studio KMS key, your studio will no longer be accessible.</p>",
-    "CreateStudioComponent": "<p>Creates a studio component resource.</p>",
-    "DeleteLaunchProfile": "<p>Permanently delete a launch profile.</p>",
-    "DeleteLaunchProfileMember": "<p>Delete a user from launch profile membership.</p>",
-    "DeleteStreamingImage": "<p>Delete streaming image.</p>",
-    "DeleteStreamingSession": "<p>Deletes streaming session resource.</p> <p>After invoking this operation, use GetStreamingSession to poll the resource until it transitions to a DELETED state.</p> <p>A streaming session will count against your streaming session quota until it is marked DELETED.</p>",
-    "DeleteStudio": "<p>Delete a studio resource.</p>",
-    "DeleteStudioComponent": "<p>Deletes a studio component resource.</p>",
-    "DeleteStudioMember": "<p>Delete a user from studio membership.</p>",
-    "GetEula": "<p>Get Eula.</p>",
-    "GetLaunchProfile": "<p>Get a launch profile.</p>",
-    "GetLaunchProfileDetails": "<p>Launch profile details include the launch profile resource and summary information of resources that are used by, or available to, the launch profile. This includes the name and description of all studio components used by the launch profiles, and the name and description of streaming images that can be used with this launch profile.</p>",
-    "GetLaunchProfileInitialization": "<p>Get a launch profile initialization.</p>",
-    "GetLaunchProfileMember": "<p>Get a user persona in launch profile membership.</p>",
-    "GetStreamingImage": "<p>Get streaming image.</p>",
-    "GetStreamingSession": "<p>Gets StreamingSession resource.</p> <p>Invoke this operation to poll for a streaming session state while creating or deleting a session.</p>",
-    "GetStreamingSessionStream": "<p>Gets a StreamingSessionStream for a streaming session.</p> <p>Invoke this operation to poll the resource after invoking CreateStreamingSessionStream.</p> <p>After the StreamingSessionStream changes to the state READY, the url property will contain a stream to be used with the DCV streaming client.</p>",
-    "GetStudio": "<p>Get a Studio resource.</p>",
-    "GetStudioComponent": "<p>Gets a studio component resource.</p>",
-    "GetStudioMember": "<p>Get a user's membership in a studio.</p>",
-    "ListEulaAcceptances": "<p>List Eula Acceptances.</p>",
-    "ListEulas": "<p>List Eulas.</p>",
-    "ListLaunchProfileMembers": "<p>Get all users in a given launch profile membership.</p>",
-    "ListLaunchProfiles": "<p>List all the launch profiles a studio.</p>",
-    "ListStreamingImages": "<p>List the streaming image resources available to this studio.</p> <p>This list will contain both images provided by AWS, as well as streaming images that you have created in your studio.</p>",
-    "ListStreamingSessions": "<p>Lists the streaming image resources in a studio.</p>",
-    "ListStudioComponents": "<p>Lists the StudioComponents in a studio.</p>",
-    "ListStudioMembers": "<p>Get all users in a given studio membership.</p>",
-    "ListStudios": "<p>List studios in your AWS account in the requested AWS Region.</p>",
-    "ListTagsForResource": "<p>Gets the tags for a resource, given its Amazon Resource Names (ARN).</p> <p>This operation supports ARNs for all resource types in Nimble Studio that support tags, including studio, studio component, launch profile, streaming image, and streaming session. All resources that can be tagged will contain an ARN property, so you do not have to create this ARN yourself.</p>",
-    "PutLaunchProfileMembers": "<p>Add/update users with given persona to launch profile membership.</p>",
-    "PutStudioMembers": "<p>Add/update users with given persona to studio membership.</p>",
-    "StartStudioSSOConfigurationRepair": "<p>Repairs the SSO configuration for a given studio.</p> <p>If the studio has a valid AWS SSO configuration currently associated with it, this operation will fail with a validation error.</p> <p>If the studio does not have a valid AWS SSO configuration currently associated with it, then a new AWS SSO application is created for the studio and the studio is changed to the READY state.</p> <p>After the AWS SSO application is repaired, you must use the Amazon Nimble Studio console to add administrators and users to your studio.</p>",
-    "TagResource": "<p>Creates tags for a resource, given its ARN.</p>",
-    "UntagResource": "<p>Deletes the tags for a resource.</p>",
-    "UpdateLaunchProfile": "<p>Update a launch profile.</p>",
-    "UpdateLaunchProfileMember": "<p>Update a user persona in launch profile membership.</p>",
-    "UpdateStreamingImage": "<p>Update streaming image.</p>",
-    "UpdateStudio": "<p>Update a Studio resource.</p> <p>Currently, this operation only supports updating the displayName of your studio.</p>",
-    "UpdateStudioComponent": "<p>Updates a studio component resource.</p>"
+  "version" : "2.0",
+  "service" : null,
+  "operations" : {
+    "AcceptEulas" : "<p>Accept EULAs.</p>",
+    "CreateLaunchProfile" : "<p>Create a launch profile.</p>",
+    "CreateStreamingImage" : "<p>Creates a streaming image resource in a studio.</p>",
+    "CreateStreamingSession" : "<p>Creates a streaming session in a studio.</p> <p>After invoking this operation, you must poll GetStreamingSession until the streaming session is in state READY.</p>",
+    "CreateStreamingSessionStream" : "<p>Creates a streaming session stream for a streaming session.</p> <p>After invoking this API, invoke GetStreamingSessionStream with the returned streamId to poll the resource until it is in state READY.</p>",
+    "CreateStudio" : "<p>Create a new Studio.</p> <p>When creating a Studio, two IAM roles must be provided: the admin role and the user Role. These roles are assumed by your users when they log in to the Nimble Studio portal.</p> <p>The user role must have the AmazonNimbleStudio-StudioUser managed policy attached for the portal to function properly.</p> <p>The Admin Role must have the AmazonNimbleStudio-StudioAdmin managed policy attached for the portal to function properly.</p> <p>You may optionally specify a KMS key in the StudioEncryptionConfiguration.</p> <p>In Nimble Studio, resource names, descriptions, initialization scripts, and other data you provide are always encrypted at rest using an KMS key. By default, this key is owned by Amazon Web Services and managed on your behalf. You may provide your own KMS key when calling CreateStudio to encrypt this data using a key you own and manage.</p> <p>When providing an KMS key during studio creation, Nimble Studio creates KMS grants in your account to provide your studio user and admin roles access to these KMS keys.</p> <p>If you delete this grant, the studio will no longer be accessible to your portal users.</p> <p>If you delete the studio KMS key, your studio will no longer be accessible.</p>",
+    "CreateStudioComponent" : "<p>Creates a studio component resource.</p>",
+    "DeleteLaunchProfile" : "<p>Permanently delete a launch profile.</p>",
+    "DeleteLaunchProfileMember" : "<p>Delete a user from launch profile membership.</p>",
+    "DeleteStreamingImage" : "<p>Delete streaming image.</p>",
+    "DeleteStreamingSession" : "<p>Deletes streaming session resource.</p> <p>After invoking this operation, use GetStreamingSession to poll the resource until it transitions to a DELETED state.</p> <p>A streaming session will count against your streaming session quota until it is marked DELETED.</p>",
+    "DeleteStudio" : "<p>Delete a studio resource.</p>",
+    "DeleteStudioComponent" : "<p>Deletes a studio component resource.</p>",
+    "DeleteStudioMember" : "<p>Delete a user from studio membership.</p>",
+    "GetEula" : "<p>Get Eula.</p>",
+    "GetLaunchProfile" : "<p>Get a launch profile.</p>",
+    "GetLaunchProfileDetails" : "<p>Launch profile details include the launch profile resource and summary information of resources that are used by, or available to, the launch profile. This includes the name and description of all studio components used by the launch profiles, and the name and description of streaming images that can be used with this launch profile.</p>",
+    "GetLaunchProfileInitialization" : "<p>Get a launch profile initialization.</p>",
+    "GetLaunchProfileMember" : "<p>Get a user persona in launch profile membership.</p>",
+    "GetStreamingImage" : "<p>Get streaming image.</p>",
+    "GetStreamingSession" : "<p>Gets StreamingSession resource.</p> <p>Invoke this operation to poll for a streaming session state while creating or deleting a session.</p>",
+    "GetStreamingSessionStream" : "<p>Gets a StreamingSessionStream for a streaming session.</p> <p>Invoke this operation to poll the resource after invoking CreateStreamingSessionStream.</p> <p>After the StreamingSessionStream changes to the state READY, the url property will contain a stream to be used with the DCV streaming client.</p>",
+    "GetStudio" : "<p>Get a Studio resource.</p>",
+    "GetStudioComponent" : "<p>Gets a studio component resource.</p>",
+    "GetStudioMember" : "<p>Get a user's membership in a studio.</p>",
+    "ListEulaAcceptances" : "<p>List Eula Acceptances.</p>",
+    "ListEulas" : "<p>List Eulas.</p>",
+    "ListLaunchProfileMembers" : "<p>Get all users in a given launch profile membership.</p>",
+    "ListLaunchProfiles" : "<p>List all the launch profiles a studio.</p>",
+    "ListStreamingImages" : "<p>List the streaming image resources available to this studio.</p> <p>This list will contain both images provided by Amazon Web Services, as well as streaming images that you have created in your studio.</p>",
+    "ListStreamingSessions" : "<p>Lists the streaming image resources in a studio.</p>",
+    "ListStudioComponents" : "<p>Lists the StudioComponents in a studio.</p>",
+    "ListStudioMembers" : "<p>Get all users in a given studio membership.</p>",
+    "ListStudios" : "<p>List studios in your Amazon Web Services account in the requested Amazon Web Services Region.</p>",
+    "ListTagsForResource" : "<p>Gets the tags for a resource, given its Amazon Resource Names (ARN).</p> <p>This operation supports ARNs for all resource types in Nimble Studio that support tags, including studio, studio component, launch profile, streaming image, and streaming session. All resources that can be tagged will contain an ARN property, so you do not have to create this ARN yourself.</p>",
+    "PutLaunchProfileMembers" : "<p>Add/update users with given persona to launch profile membership.</p>",
+    "PutStudioMembers" : "<p>Add/update users with given persona to studio membership.</p>",
+    "StartStudioSSOConfigurationRepair" : "<p>Repairs the SSO configuration for a given studio.</p> <p>If the studio has a valid Amazon Web Services SSO configuration currently associated with it, this operation will fail with a validation error.</p> <p>If the studio does not have a valid Amazon Web Services SSO configuration currently associated with it, then a new Amazon Web Services SSO application is created for the studio and the studio is changed to the READY state.</p> <p>After the Amazon Web Services SSO application is repaired, you must use the Amazon Nimble Studio console to add administrators and users to your studio.</p>",
+    "TagResource" : "<p>Creates tags for a resource, given its ARN.</p>",
+    "UntagResource" : "<p>Deletes the tags for a resource.</p>",
+    "UpdateLaunchProfile" : "<p>Update a launch profile.</p>",
+    "UpdateLaunchProfileMember" : "<p>Update a user persona in launch profile membership.</p>",
+    "UpdateStreamingImage" : "<p>Update streaming image.</p>",
+    "UpdateStudio" : "<p>Update a Studio resource.</p> <p>Currently, this operation only supports updating the displayName of your studio.</p>",
+    "UpdateStudioComponent" : "<p>Updates a studio component resource.</p>"
   },
-  "shapes": {
-    "AcceptEulasInput": {
-      "base": "",
-      "refs": {}
+  "shapes" : {
+    "AcceptEulasInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "AcceptEulasOutput": {
-      "base": "",
-      "refs": {}
+    "AcceptEulasOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "AccessDeniedException": {
-      "base": "",
-      "refs": {}
+    "AccessDeniedException" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ActiveDirectoryComputerAttribute": {
-      "base": "<p>An LDAP attribute of an Active Directory computer account, in the form of a name:value pair.</p>",
-      "refs": {
-        "ActiveDirectoryComputerAttributeList$member": null
+    "ActiveDirectoryComputerAttribute" : {
+      "base" : "<p>An LDAP attribute of an Active Directory computer account, in the form of a name:value pair.</p>",
+      "refs" : {
+        "ActiveDirectoryComputerAttributeList$member" : null
       }
     },
-    "ActiveDirectoryComputerAttributeList": {
-      "base": "<p>A collection of LDAP attributes to apply to Active Directory computer accounts that are created for streaming sessions.</p>",
-      "refs": {
-        "ActiveDirectoryConfiguration$ComputerAttributes": "<p>A collection of custom attributes for an Active Directory computer.</p>",
-        "LaunchProfileInitializationActiveDirectory$ComputerAttributes": "<p>A collection of custom attributes for an Active Directory computer.</p>"
+    "ActiveDirectoryComputerAttributeList" : {
+      "base" : "<p>A collection of LDAP attributes to apply to Active Directory computer accounts that are created for streaming sessions.</p>",
+      "refs" : {
+        "ActiveDirectoryConfiguration$ComputerAttributes" : "<p>A collection of custom attributes for an Active Directory computer.</p>",
+        "LaunchProfileInitializationActiveDirectory$ComputerAttributes" : "<p>A collection of custom attributes for an Active Directory computer.</p>"
       }
     },
-    "ActiveDirectoryComputerAttributeName": {
-      "base": "<p>The name for the LDAP attribute.</p>",
-      "refs": {
-        "ActiveDirectoryComputerAttribute$Name": "<p>The name for the LDAP attribute.</p>"
+    "ActiveDirectoryComputerAttributeName" : {
+      "base" : "<p>The name for the LDAP attribute.</p>",
+      "refs" : {
+        "ActiveDirectoryComputerAttribute$Name" : "<p>The name for the LDAP attribute.</p>"
       }
     },
-    "ActiveDirectoryComputerAttributeValue": {
-      "base": "<p>The value for the LDAP attribute.</p>",
-      "refs": {
-        "ActiveDirectoryComputerAttribute$Value": "<p>The value for the LDAP attribute.</p>"
+    "ActiveDirectoryComputerAttributeValue" : {
+      "base" : "<p>The value for the LDAP attribute.</p>",
+      "refs" : {
+        "ActiveDirectoryComputerAttribute$Value" : "<p>The value for the LDAP attribute.</p>"
       }
     },
-    "ActiveDirectoryConfiguration": {
-      "base": "<p>The configuration for a Microsoft Active Directory (Microsoft AD) studio resource.</p>",
-      "refs": {
-        "StudioComponentConfiguration$ActiveDirectoryConfiguration": "<p>The configuration for a Microsoft Active Directory (Microsoft AD) studio resource.</p>"
+    "ActiveDirectoryConfiguration" : {
+      "base" : "<p>The configuration for a Microsoft Active Directory (Microsoft AD) studio resource.</p>",
+      "refs" : {
+        "StudioComponentConfiguration$ActiveDirectoryConfiguration" : "<p>The configuration for a Microsoft Active Directory (Microsoft AD) studio resource.</p>"
       }
     },
-    "ActiveDirectoryDnsIpAddress": {
-      "base": null,
-      "refs": {
-        "ActiveDirectoryDnsIpAddressList$member": null
+    "ActiveDirectoryDnsIpAddress" : {
+      "base" : null,
+      "refs" : {
+        "ActiveDirectoryDnsIpAddressList$member" : null
       }
     },
-    "ActiveDirectoryDnsIpAddressList": {
-      "base": "",
-      "refs": {
-        "LaunchProfileInitializationActiveDirectory$DnsIpAddresses": "<p>The DNS IP address.</p>"
+    "ActiveDirectoryDnsIpAddressList" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileInitializationActiveDirectory$DnsIpAddresses" : "<p>The DNS IP address.</p>"
       }
     },
-    "ActiveDirectoryOrganizationalUnitDistinguishedName": {
-      "base": "<p>The fully-qualified distinguished name of the organizational unit to place the computer account in.</p>",
-      "refs": {
-        "ActiveDirectoryConfiguration$OrganizationalUnitDistinguishedName": "<p>The distinguished name (DN) and organizational unit (OU) of an Active Directory computer.</p>",
-        "LaunchProfileInitializationActiveDirectory$OrganizationalUnitDistinguishedName": "<p>The name for the organizational unit distinguished name.</p>"
+    "ActiveDirectoryOrganizationalUnitDistinguishedName" : {
+      "base" : "<p>The fully-qualified distinguished name of the organizational unit to place the computer account in.</p>",
+      "refs" : {
+        "ActiveDirectoryConfiguration$OrganizationalUnitDistinguishedName" : "<p>The distinguished name (DN) and organizational unit (OU) of an Active Directory computer.</p>",
+        "LaunchProfileInitializationActiveDirectory$OrganizationalUnitDistinguishedName" : "<p>The name for the organizational unit distinguished name.</p>"
       }
     },
-    "ComputeFarmConfiguration": {
-      "base": "<p>The configuration for a render farm that is associated with a studio resource.</p>",
-      "refs": {
-        "StudioComponentConfiguration$ComputeFarmConfiguration": "<p>The configuration for a render farm that is associated with a studio resource.</p>"
+    "ComputeFarmConfiguration" : {
+      "base" : "<p>The configuration for a render farm that is associated with a studio resource.</p>",
+      "refs" : {
+        "StudioComponentConfiguration$ComputeFarmConfiguration" : "<p>The configuration for a render farm that is associated with a studio resource.</p>"
       }
     },
-    "ConflictException": {
-      "base": "",
-      "refs": {}
+    "ConflictException" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateLaunchProfileInput": {
-      "base": "",
-      "refs": {}
+    "CreateLaunchProfileInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateLaunchProfileOutput": {
-      "base": "",
-      "refs": {}
+    "CreateLaunchProfileOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStreamingImageInput": {
-      "base": "",
-      "refs": {}
+    "CreateStreamingImageInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStreamingImageOutput": {
-      "base": "",
-      "refs": {}
+    "CreateStreamingImageOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStreamingSessionInput": {
-      "base": "",
-      "refs": {}
+    "CreateStreamingSessionInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStreamingSessionOutput": {
-      "base": "",
-      "refs": {}
+    "CreateStreamingSessionOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStreamingSessionStreamInput": {
-      "base": "",
-      "refs": {}
+    "CreateStreamingSessionStreamInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStreamingSessionStreamOutput": {
-      "base": "",
-      "refs": {}
+    "CreateStreamingSessionStreamOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStudioComponentInput": {
-      "base": "",
-      "refs": {}
+    "CreateStudioComponentInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStudioComponentOutput": {
-      "base": "<p></p>",
-      "refs": {}
+    "CreateStudioComponentOutput" : {
+      "base" : "<p></p>",
+      "refs" : { }
     },
-    "CreateStudioInput": {
-      "base": "",
-      "refs": {}
+    "CreateStudioInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "CreateStudioOutput": {
-      "base": "",
-      "refs": {}
+    "CreateStudioOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "DeleteLaunchProfileMemberOutput": {
-      "base": "",
-      "refs": {}
+    "DeleteLaunchProfileMemberOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "DeleteLaunchProfileOutput": {
-      "base": "",
-      "refs": {}
+    "DeleteLaunchProfileOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "DeleteStreamingImageOutput": {
-      "base": "",
-      "refs": {}
+    "DeleteStreamingImageOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "DeleteStreamingSessionOutput": {
-      "base": "",
-      "refs": {}
+    "DeleteStreamingSessionOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "DeleteStudioComponentOutput": {
-      "base": "",
-      "refs": {}
+    "DeleteStudioComponentOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "DeleteStudioMemberOutput": {
-      "base": "",
-      "refs": {}
+    "DeleteStudioMemberOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "DeleteStudioOutput": {
-      "base": "",
-      "refs": {}
+    "DeleteStudioOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "DirectoryId": {
-      "base": null,
-      "refs": {
-        "ActiveDirectoryConfiguration$DirectoryId": "<p>The directory ID of the AWS Directory Service for Microsoft AD to access using this studio component.</p>",
-        "LaunchProfileInitializationActiveDirectory$DirectoryId": "<p>The directory ID of the AWS Directory Service for Microsoft AD to access using this launch profile.</p>"
+    "DirectoryId" : {
+      "base" : null,
+      "refs" : {
+        "ActiveDirectoryConfiguration$DirectoryId" : "<p>The directory ID of the Directory Service for Microsoft Active Directory to access using this studio component.</p>",
+        "LaunchProfileInitializationActiveDirectory$DirectoryId" : "<p>The directory ID of the Directory Service for Microsoft Active Directory to access using this launch profile.</p>"
       }
     },
-    "EC2ImageId": {
-      "base": "",
-      "refs": {
-        "CreateStreamingImageInput$Ec2ImageId": "<p>The ID of an EC2 machine image with which to create this streaming image.</p>",
-        "StreamingImage$Ec2ImageId": "<p>The ID of an EC2 machine image with which to create the streaming image.</p>"
+    "EC2ImageId" : {
+      "base" : "",
+      "refs" : {
+        "CreateStreamingImageInput$Ec2ImageId" : "<p>The ID of an EC2 machine image with which to create this streaming image.</p>",
+        "StreamingImage$Ec2ImageId" : "<p>The ID of an EC2 machine image with which to create the streaming image.</p>"
       }
     },
-    "EC2SubnetId": {
-      "base": null,
-      "refs": {
-        "EC2SubnetIdList$member": null
+    "EC2SubnetId" : {
+      "base" : null,
+      "refs" : {
+        "EC2SubnetIdList$member" : null
       }
     },
-    "EC2SubnetIdList": {
-      "base": "",
-      "refs": {
-        "CreateLaunchProfileInput$Ec2SubnetIds": "",
-        "LaunchProfile$Ec2SubnetIds": "<p>Unique identifiers for a collection of EC2 subnets.</p>"
+    "EC2SubnetIdList" : {
+      "base" : "",
+      "refs" : {
+        "CreateLaunchProfileInput$Ec2SubnetIds" : "",
+        "LaunchProfile$Ec2SubnetIds" : "<p>Unique identifiers for a collection of EC2 subnets.</p>"
       }
     },
-    "Empty": {
-      "base": "",
-      "refs": {}
+    "Empty" : {
+      "base" : "",
+      "refs" : { }
     },
-    "Eula": {
-      "base": "<p>Represents a EULA resource.</p>",
-      "refs": {
-        "EulaList$member": null,
-        "GetEulaOutput$Eula": "<p>The EULA.</p>"
+    "Eula" : {
+      "base" : "<p>Represents a EULA resource.</p>",
+      "refs" : {
+        "EulaList$member" : null,
+        "GetEulaOutput$Eula" : "<p>The EULA.</p>"
       }
     },
-    "EulaAcceptance": {
-      "base": "",
-      "refs": {
-        "EulaAcceptanceList$member": null
+    "EulaAcceptance" : {
+      "base" : "",
+      "refs" : {
+        "EulaAcceptanceList$member" : null
       }
     },
-    "EulaAcceptanceId": {
-      "base": "<p>The EULA acceptance ID.</p>",
-      "refs": {
-        "EulaAcceptance$EulaAcceptanceId": "<p>The EULA acceptance ID.</p>"
+    "EulaAcceptanceId" : {
+      "base" : "<p>The EULA acceptance ID.</p>",
+      "refs" : {
+        "EulaAcceptance$EulaAcceptanceId" : "<p>The EULA acceptance ID.</p>"
       }
     },
-    "EulaAcceptanceList": {
-      "base": "",
-      "refs": {
-        "AcceptEulasOutput$EulaAcceptances": "<p>A collection of EULA acceptances.</p>",
-        "ListEulaAcceptancesOutput$EulaAcceptances": "<p>A collection of EULA acceptances.</p>"
+    "EulaAcceptanceList" : {
+      "base" : "",
+      "refs" : {
+        "AcceptEulasOutput$EulaAcceptances" : "<p>A collection of EULA acceptances.</p>",
+        "ListEulaAcceptancesOutput$EulaAcceptances" : "<p>A collection of EULA acceptances.</p>"
       }
     },
-    "EulaId": {
-      "base": "<p>Represents a EULA resource.</p>",
-      "refs": {
-        "Eula$EulaId": "<p>The EULA ID.</p>",
-        "EulaAcceptance$EulaId": "<p>The EULA ID.</p>"
+    "EulaId" : {
+      "base" : "<p>Represents a EULA resource.</p>",
+      "refs" : {
+        "Eula$EulaId" : "<p>The EULA ID.</p>",
+        "EulaAcceptance$EulaId" : "<p>The EULA ID.</p>"
       }
     },
-    "EulaIdList": {
-      "base": "",
-      "refs": {
-        "AcceptEulasInput$EulaIds": "<p>The EULA ID.</p>",
-        "StreamingImage$EulaIds": "<p>The list of EULAs that must be accepted before a Streaming Session can be started using this streaming image.</p>"
+    "EulaIdList" : {
+      "base" : "",
+      "refs" : {
+        "AcceptEulasInput$EulaIds" : "<p>The EULA ID.</p>",
+        "StreamingImage$EulaIds" : "<p>The list of EULAs that must be accepted before a Streaming Session can be started using this streaming image.</p>"
       }
     },
-    "EulaList": {
-      "base": "",
-      "refs": {
-        "ListEulasOutput$Eulas": "<p>A collection of EULA resources.</p>"
+    "EulaList" : {
+      "base" : "",
+      "refs" : {
+        "ListEulasOutput$Eulas" : "<p>A collection of EULA resources.</p>"
       }
     },
-    "EulaName": {
-      "base": null,
-      "refs": {
-        "Eula$Name": "<p>The name for the EULA.</p>"
+    "EulaName" : {
+      "base" : null,
+      "refs" : {
+        "Eula$Name" : "<p>The name for the EULA.</p>"
       }
     },
-    "ExceptionContext": {
-      "base": "<p>ExceptionContext is a set of key-value pairs that provide you with more information about the error that occurred. For example, when the service returns a 404 ResourceNotFound error, ExceptionContext will contain the key `resourceId` with the value of resource that was not found.</p> <p>ExceptionContext enables scripts and other programmatic clients to provide for better error handling.</p>",
-      "refs": {
-        "AccessDeniedException$Context": "<p>The exception context.</p>",
-        "ConflictException$Context": "<p>The exception context.</p>",
-        "InternalServerException$Context": "<p>The exception context.</p>",
-        "ResourceNotFoundException$Context": "<p>The exception context.</p>",
-        "ServiceQuotaExceededException$Context": "<p>The exception context.</p>",
-        "ThrottlingException$Context": "<p>The exception context.</p>",
-        "ValidationException$Context": "<p>The exception context.</p>"
+    "ExceptionContext" : {
+      "base" : "<p>ExceptionContext is a set of key-value pairs that provide you with more information about the error that occurred. For example, when the service returns a 404 ResourceNotFound error, ExceptionContext will contain the key `resourceId` with the value of resource that was not found.</p> <p>ExceptionContext enables scripts and other programmatic clients to provide for better error handling.</p>",
+      "refs" : {
+        "AccessDeniedException$Context" : "<p>The exception context.</p>",
+        "ConflictException$Context" : "<p>The exception context.</p>",
+        "InternalServerException$Context" : "<p>The exception context.</p>",
+        "ResourceNotFoundException$Context" : "<p>The exception context.</p>",
+        "ServiceQuotaExceededException$Context" : "<p>The exception context.</p>",
+        "ThrottlingException$Context" : "<p>The exception context.</p>",
+        "ValidationException$Context" : "<p>The exception context.</p>"
       }
     },
-    "GetEulaOutput": {
-      "base": "",
-      "refs": {}
+    "GetEulaOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetLaunchProfileDetailsOutput": {
-      "base": "",
-      "refs": {}
+    "GetLaunchProfileDetailsOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetLaunchProfileInitializationOutput": {
-      "base": "",
-      "refs": {}
+    "GetLaunchProfileInitializationOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetLaunchProfileMemberOutput": {
-      "base": "",
-      "refs": {}
+    "GetLaunchProfileMemberOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetLaunchProfileOutput": {
-      "base": "",
-      "refs": {}
+    "GetLaunchProfileOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetStreamingImageOutput": {
-      "base": "",
-      "refs": {}
+    "GetStreamingImageOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetStreamingSessionOutput": {
-      "base": "",
-      "refs": {}
+    "GetStreamingSessionOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetStreamingSessionStreamOutput": {
-      "base": "",
-      "refs": {}
+    "GetStreamingSessionStreamOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetStudioComponentOutput": {
-      "base": "",
-      "refs": {}
+    "GetStudioComponentOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetStudioMemberOutput": {
-      "base": "",
-      "refs": {}
+    "GetStudioMemberOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "GetStudioOutput": {
-      "base": "",
-      "refs": {}
+    "GetStudioOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "InternalServerErrorException": {
-      "base": "",
-      "refs": {}
+    "InternalServerErrorException" : {
+      "base" : "",
+      "refs" : { }
     },
-    "InternalServerException": {
-      "base": "",
-      "refs": {}
+    "InternalServerException" : {
+      "base" : "",
+      "refs" : { }
     },
-    "LaunchProfile": {
-      "base": "",
-      "refs": {
-        "CreateLaunchProfileOutput$LaunchProfile": "<p>The created launch profile.</p>",
-        "DeleteLaunchProfileOutput$LaunchProfile": "<p>The launch profile.</p>",
-        "GetLaunchProfileDetailsOutput$LaunchProfile": "<p>The launch profile.</p>",
-        "GetLaunchProfileOutput$LaunchProfile": "<p>The launch profile.</p>",
-        "LaunchProfileList$member": null,
-        "UpdateLaunchProfileOutput$LaunchProfile": "<p>The launch profile.</p>"
+    "LaunchProfile" : {
+      "base" : "",
+      "refs" : {
+        "CreateLaunchProfileOutput$LaunchProfile" : "<p>The launch profile.</p>",
+        "DeleteLaunchProfileOutput$LaunchProfile" : "<p>The launch profile.</p>",
+        "GetLaunchProfileDetailsOutput$LaunchProfile" : "<p>The launch profile.</p>",
+        "GetLaunchProfileOutput$LaunchProfile" : "<p>The launch profile.</p>",
+        "LaunchProfileList$member" : null,
+        "UpdateLaunchProfileOutput$LaunchProfile" : "<p>The launch profile.</p>"
       }
     },
-    "LaunchProfileDescription": {
-      "base": null,
-      "refs": {
-        "CreateLaunchProfileInput$Description": "<p>The description.</p>",
-        "LaunchProfile$Description": "<p>A human-readable description of the launch profile.</p>",
-        "UpdateLaunchProfileInput$Description": "<p>The description.</p>"
+    "LaunchProfileDescription" : {
+      "base" : null,
+      "refs" : {
+        "CreateLaunchProfileInput$Description" : "<p>The description.</p>",
+        "LaunchProfile$Description" : "<p>A human-readable description of the launch profile.</p>",
+        "UpdateLaunchProfileInput$Description" : "<p>The description.</p>"
       }
     },
-    "LaunchProfileId": {
-      "base": null,
-      "refs": {
-        "LaunchProfile$LaunchProfileId": "<p>The launch profile ID.</p>",
-        "LaunchProfileInitialization$LaunchProfileId": "<p>The launch profile ID.</p>"
+    "LaunchProfileId" : {
+      "base" : null,
+      "refs" : {
+        "LaunchProfile$LaunchProfileId" : "<p>The launch profile ID.</p>",
+        "LaunchProfileInitialization$LaunchProfileId" : "<p>The launch profile ID.</p>"
       }
     },
-    "LaunchProfileInitialization": {
-      "base": "",
-      "refs": {
-        "GetLaunchProfileInitializationOutput$LaunchProfileInitialization": "<p>The launch profile initialization.</p>"
+    "LaunchProfileInitialization" : {
+      "base" : "",
+      "refs" : {
+        "GetLaunchProfileInitializationOutput$LaunchProfileInitialization" : "<p>The launch profile initialization.</p>"
       }
     },
-    "LaunchProfileInitializationActiveDirectory": {
-      "base": "",
-      "refs": {
-        "LaunchProfileInitialization$ActiveDirectory": "<p>A LaunchProfileInitializationActiveDirectory resource.</p>"
+    "LaunchProfileInitializationActiveDirectory" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileInitialization$ActiveDirectory" : "<p>A LaunchProfileInitializationActiveDirectory resource.</p>"
       }
     },
-    "LaunchProfileInitializationScript": {
-      "base": "",
-      "refs": {
-        "LaunchProfileInitializationScriptList$member": null
+    "LaunchProfileInitializationScript" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileInitializationScriptList$member" : null
       }
     },
-    "LaunchProfileInitializationScriptList": {
-      "base": "",
-      "refs": {
-        "LaunchProfileInitialization$SystemInitializationScripts": "<p>The system initializtion scripts.</p>",
-        "LaunchProfileInitialization$UserInitializationScripts": "<p>The user initializtion scripts.</p>"
+    "LaunchProfileInitializationScriptList" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileInitialization$SystemInitializationScripts" : "<p>The system initializtion scripts.</p>",
+        "LaunchProfileInitialization$UserInitializationScripts" : "<p>The user initializtion scripts.</p>"
       }
     },
-    "LaunchProfileList": {
-      "base": "",
-      "refs": {
-        "ListLaunchProfilesOutput$LaunchProfiles": "<p>A collection of launch profiles.</p>"
+    "LaunchProfileList" : {
+      "base" : "",
+      "refs" : {
+        "ListLaunchProfilesOutput$LaunchProfiles" : "<p>A collection of launch profiles.</p>"
       }
     },
-    "LaunchProfileMembership": {
-      "base": "",
-      "refs": {
-        "GetLaunchProfileMemberOutput$Member": "<p>The member.</p>",
-        "LaunchProfileMembershipList$member": null
+    "LaunchProfileMembership" : {
+      "base" : "",
+      "refs" : {
+        "GetLaunchProfileMemberOutput$Member" : "<p>The member.</p>",
+        "LaunchProfileMembershipList$member" : null
       }
     },
-    "LaunchProfileMembershipList": {
-      "base": "<p></p>",
-      "refs": {
-        "ListLaunchProfileMembersOutput$Members": "<p>A list of members.</p>"
+    "LaunchProfileMembershipList" : {
+      "base" : "<p></p>",
+      "refs" : {
+        "ListLaunchProfileMembersOutput$Members" : "<p>A list of members.</p>"
       }
     },
-    "LaunchProfileName": {
-      "base": null,
-      "refs": {
-        "CreateLaunchProfileInput$Name": "<p>The name for the launch profile.</p>",
-        "LaunchProfile$Name": "<p>A friendly name for the launch profile.</p>",
-        "LaunchProfileInitialization$Name": "<p>The name for the launch profile.</p>",
-        "UpdateLaunchProfileInput$Name": "<p>The name for the launch profile.</p>"
+    "LaunchProfileName" : {
+      "base" : null,
+      "refs" : {
+        "CreateLaunchProfileInput$Name" : "<p>The name for the launch profile.</p>",
+        "LaunchProfile$Name" : "<p>A friendly name for the launch profile.</p>",
+        "LaunchProfileInitialization$Name" : "<p>The name for the launch profile.</p>",
+        "UpdateLaunchProfileInput$Name" : "<p>The name for the launch profile.</p>"
       }
     },
-    "LaunchProfilePersona": {
-      "base": "",
-      "refs": {
-        "LaunchProfileMembership$Persona": "<p>The persona.</p>",
-        "NewLaunchProfileMember$Persona": "<p>The persona.</p>",
-        "UpdateLaunchProfileMemberInput$Persona": "<p>The persona.</p>"
+    "LaunchProfilePersona" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileMembership$Persona" : "<p>The persona.</p>",
+        "NewLaunchProfileMember$Persona" : "<p>The persona.</p>",
+        "UpdateLaunchProfileMemberInput$Persona" : "<p>The persona.</p>"
       }
     },
-    "LaunchProfilePlatform": {
-      "base": "",
-      "refs": {
-        "LaunchProfileInitialization$Platform": "<p>The platform of the launch platform, either WINDOWS or LINUX.</p>",
-        "StudioComponentInitializationScript$Platform": "<p>The platform of the initialization script, either WINDOWS or LINUX.</p>"
+    "LaunchProfilePlatform" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileInitialization$Platform" : "<p>The platform of the launch platform, either WINDOWS or LINUX.</p>",
+        "StudioComponentInitializationScript$Platform" : "<p>The platform of the initialization script, either WINDOWS or LINUX.</p>"
       }
     },
-    "LaunchProfileProtocolVersion": {
-      "base": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
-      "refs": {
-        "LaunchProfileInitialization$LaunchProfileProtocolVersion": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
-        "LaunchProfileProtocolVersionList$member": null,
-        "StudioComponentInitializationScript$LaunchProfileProtocolVersion": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>"
+    "LaunchProfileProtocolVersion" : {
+      "base" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
+      "refs" : {
+        "LaunchProfileInitialization$LaunchProfileProtocolVersion" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
+        "LaunchProfileProtocolVersionList$member" : null,
+        "StudioComponentInitializationScript$LaunchProfileProtocolVersion" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>"
       }
     },
-    "LaunchProfileProtocolVersionList": {
-      "base": "",
-      "refs": {
-        "CreateLaunchProfileInput$LaunchProfileProtocolVersions": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
-        "LaunchProfile$LaunchProfileProtocolVersions": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
-        "UpdateLaunchProfileInput$LaunchProfileProtocolVersions": "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>"
+    "LaunchProfileProtocolVersionList" : {
+      "base" : "",
+      "refs" : {
+        "CreateLaunchProfileInput$LaunchProfileProtocolVersions" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
+        "LaunchProfile$LaunchProfileProtocolVersions" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>",
+        "UpdateLaunchProfileInput$LaunchProfileProtocolVersions" : "<p>The version number of the protocol that is used by the launch profile. The only valid version is \"2021-03-31\".</p>"
       }
     },
-    "LaunchProfileSecurityGroupIdList": {
-      "base": "",
-      "refs": {
-        "LaunchProfileInitialization$Ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>"
+    "LaunchProfileSecurityGroupIdList" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileInitialization$Ec2SecurityGroupIds" : "<p>The EC2 security groups that control access to the studio component.</p>"
       }
     },
-    "LaunchProfileState": {
-      "base": "",
-      "refs": {
-        "LaunchProfile$State": "<p>The current state.</p>"
+    "LaunchProfileState" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfile$State" : "<p>The current state.</p>"
       }
     },
-    "LaunchProfileStatusCode": {
-      "base": "",
-      "refs": {
-        "LaunchProfile$StatusCode": "<p>The status code.</p>"
+    "LaunchProfileStatusCode" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfile$StatusCode" : "<p>The status code.</p>"
       }
     },
-    "LaunchProfileStudioComponentIdList": {
-      "base": "",
-      "refs": {
-        "CreateLaunchProfileInput$StudioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
-        "LaunchProfile$StudioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
-        "UpdateLaunchProfileInput$StudioComponentIds": "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>"
+    "LaunchProfileStudioComponentIdList" : {
+      "base" : "",
+      "refs" : {
+        "CreateLaunchProfileInput$StudioComponentIds" : "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
+        "LaunchProfile$StudioComponentIds" : "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>",
+        "UpdateLaunchProfileInput$StudioComponentIds" : "<p>Unique identifiers for a collection of studio components that can be used with this launch profile.</p>"
       }
     },
-    "LaunchPurpose": {
-      "base": "<p>The launch purpose.</p>",
-      "refs": {
-        "LaunchProfileInitialization$LaunchPurpose": "<p>The launch purpose.</p>"
+    "LaunchPurpose" : {
+      "base" : "<p>The launch purpose.</p>",
+      "refs" : {
+        "LaunchProfileInitialization$LaunchPurpose" : "<p>The launch purpose.</p>"
       }
     },
-    "LicenseServiceConfiguration": {
-      "base": "<p>The configuration for a license service that is associated with a studio resource.</p>",
-      "refs": {
-        "StudioComponentConfiguration$LicenseServiceConfiguration": "<p>The configuration for a license service that is associated with a studio resource.</p>"
+    "LicenseServiceConfiguration" : {
+      "base" : "<p>The configuration for a license service that is associated with a studio resource.</p>",
+      "refs" : {
+        "StudioComponentConfiguration$LicenseServiceConfiguration" : "<p>The configuration for a license service that is associated with a studio resource.</p>"
       }
     },
-    "LinuxMountPoint": {
-      "base": "",
-      "refs": {
-        "SharedFileSystemConfiguration$LinuxMountPoint": "<p>The mount location for a shared file system on a Linux virtual workstation.</p>"
+    "LinuxMountPoint" : {
+      "base" : "",
+      "refs" : {
+        "SharedFileSystemConfiguration$LinuxMountPoint" : "<p>The mount location for a shared file system on a Linux virtual workstation.</p>"
       }
     },
-    "ListEulaAcceptancesOutput": {
-      "base": "<p></p>",
-      "refs": {}
+    "ListEulaAcceptancesOutput" : {
+      "base" : "<p></p>",
+      "refs" : { }
     },
-    "ListEulasOutput": {
-      "base": "",
-      "refs": {}
+    "ListEulasOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ListLaunchProfileMembersOutput": {
-      "base": "",
-      "refs": {}
+    "ListLaunchProfileMembersOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ListLaunchProfilesOutput": {
-      "base": "",
-      "refs": {}
+    "ListLaunchProfilesOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ListStreamingImagesOutput": {
-      "base": "",
-      "refs": {}
+    "ListStreamingImagesOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ListStreamingSessionsOutput": {
-      "base": "",
-      "refs": {}
+    "ListStreamingSessionsOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ListStudioComponentsOutput": {
-      "base": "",
-      "refs": {}
+    "ListStudioComponentsOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ListStudioMembersOutput": {
-      "base": "",
-      "refs": {}
+    "ListStudioMembersOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ListStudiosOutput": {
-      "base": "",
-      "refs": {}
+    "ListStudiosOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ListTagsOutput": {
-      "base": "",
-      "refs": {}
+    "ListTagsOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "NewLaunchProfileMember": {
-      "base": "",
-      "refs": {
-        "NewLaunchProfileMemberList$member": null
+    "NewLaunchProfileMember" : {
+      "base" : "",
+      "refs" : {
+        "NewLaunchProfileMemberList$member" : null
       }
     },
-    "NewLaunchProfileMemberList": {
-      "base": "",
-      "refs": {
-        "PutLaunchProfileMembersInput$Members": "<p>A list of members.</p>"
+    "NewLaunchProfileMemberList" : {
+      "base" : "",
+      "refs" : {
+        "PutLaunchProfileMembersInput$Members" : "<p>A list of members.</p>"
       }
     },
-    "NewStudioMember": {
-      "base": "",
-      "refs": {
-        "NewStudioMemberList$member": null
+    "NewStudioMember" : {
+      "base" : "",
+      "refs" : {
+        "NewStudioMemberList$member" : null
       }
     },
-    "NewStudioMemberList": {
-      "base": "",
-      "refs": {
-        "PutStudioMembersInput$Members": "<p>A list of members.</p>"
+    "NewStudioMemberList" : {
+      "base" : "",
+      "refs" : {
+        "PutStudioMembersInput$Members" : "<p>A list of members.</p>"
       }
     },
-    "PutLaunchProfileMembersInput": {
-      "base": "",
-      "refs": {}
+    "PutLaunchProfileMembersInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "PutStudioMembersInput": {
-      "base": "",
-      "refs": {}
+    "PutStudioMembersInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "PutStudioMembersOutput": {
-      "base": "",
-      "refs": {}
+    "PutStudioMembersOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "Region": {
-      "base": "",
-      "refs": {
-        "Studio$HomeRegion": "<p>The AWS region where the studio resource is located.</p>"
+    "Region" : {
+      "base" : "",
+      "refs" : {
+        "Studio$HomeRegion" : "<p>The Amazon Web Services Region where the studio resource is located.</p>"
       }
     },
-    "ResourceNotFoundException": {
-      "base": "",
-      "refs": {}
+    "ResourceNotFoundException" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ScriptParameterKey": {
-      "base": "<p>A script parameter key.</p>",
-      "refs": {
-        "ScriptParameterKeyValue$Key": "<p>A script parameter key.</p>"
+    "ScriptParameterKey" : {
+      "base" : "<p>A script parameter key.</p>",
+      "refs" : {
+        "ScriptParameterKeyValue$Key" : "<p>A script parameter key.</p>"
       }
     },
-    "ScriptParameterKeyValue": {
-      "base": "<p>A parameter for a studio component script, in the form of a key:value pair.</p>",
-      "refs": {
-        "StudioComponentScriptParameterKeyValueList$member": null
+    "ScriptParameterKeyValue" : {
+      "base" : "<p>A parameter for a studio component script, in the form of a key:value pair.</p>",
+      "refs" : {
+        "StudioComponentScriptParameterKeyValueList$member" : null
       }
     },
-    "ScriptParameterValue": {
-      "base": "<p>A script parameter value.</p>",
-      "refs": {
-        "ScriptParameterKeyValue$Value": "<p>A script parameter value.</p>"
+    "ScriptParameterValue" : {
+      "base" : "<p>A script parameter value.</p>",
+      "refs" : {
+        "ScriptParameterKeyValue$Value" : "<p>A script parameter value.</p>"
       }
     },
-    "SecurityGroupId": {
-      "base": "",
-      "refs": {
-        "LaunchProfileSecurityGroupIdList$member": null,
-        "StudioComponentSecurityGroupIdList$member": null
+    "SecurityGroupId" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileSecurityGroupIdList$member" : null,
+        "StudioComponentSecurityGroupIdList$member" : null
       }
     },
-    "ServiceQuotaExceededException": {
-      "base": "",
-      "refs": {}
+    "ServiceQuotaExceededException" : {
+      "base" : "",
+      "refs" : { }
     },
-    "SharedFileSystemConfiguration": {
-      "base": "<p>The configuration for a shared file storage system that is associated with a studio resource.</p>",
-      "refs": {
-        "StudioComponentConfiguration$SharedFileSystemConfiguration": "<p>The configuration for a shared file storage system that is associated with a studio resource.</p>"
+    "SharedFileSystemConfiguration" : {
+      "base" : "<p>The configuration for a shared file storage system that is associated with a studio resource.</p>",
+      "refs" : {
+        "StudioComponentConfiguration$SharedFileSystemConfiguration" : "<p>The configuration for a shared file storage system that is associated with a studio resource.</p>"
       }
     },
-    "StartStudioSSOConfigurationRepairOutput": {
-      "base": "",
-      "refs": {}
+    "StartStudioSSOConfigurationRepairOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "StreamConfiguration": {
-      "base": "<p>A configuration for a streaming session.</p>",
-      "refs": {
-        "LaunchProfile$StreamConfiguration": "<p>A configuration for a streaming session.</p>"
+    "StreamConfiguration" : {
+      "base" : "<p>A configuration for a streaming session.</p>",
+      "refs" : {
+        "LaunchProfile$StreamConfiguration" : "<p>A configuration for a streaming session.</p>"
       }
     },
-    "StreamConfigurationCreate": {
-      "base": "",
-      "refs": {
-        "CreateLaunchProfileInput$StreamConfiguration": "<p>A configuration for a streaming session.</p>",
-        "UpdateLaunchProfileInput$StreamConfiguration": "<p>A configuration for a streaming session.</p>"
+    "StreamConfigurationCreate" : {
+      "base" : "",
+      "refs" : {
+        "CreateLaunchProfileInput$StreamConfiguration" : "<p>A configuration for a streaming session.</p>",
+        "UpdateLaunchProfileInput$StreamConfiguration" : "<p>A configuration for a streaming session.</p>"
       }
     },
-    "StreamConfigurationMaxSessionLengthInMinutes": {
-      "base": "",
-      "refs": {
-        "StreamConfiguration$MaxSessionLengthInMinutes": "<p>The length of time, in minutes, that a streaming session can run. After this point, Nimble Studio automatically terminates the session.</p>",
-        "StreamConfigurationCreate$MaxSessionLengthInMinutes": "<p>The length of time, in minutes, that a streaming session can run. After this point, Nimble Studio automatically terminates the session.</p>"
+    "StreamConfigurationMaxSessionLengthInMinutes" : {
+      "base" : "",
+      "refs" : {
+        "StreamConfiguration$MaxSessionLengthInMinutes" : "<p>The length of time, in minutes, that a streaming session can run. After this point, Nimble Studio automatically terminates the session.</p>",
+        "StreamConfigurationCreate$MaxSessionLengthInMinutes" : "<p>The length of time, in minutes, that a streaming session can run. After this point, Nimble Studio automatically terminates the session.</p>"
       }
     },
-    "StreamingClipboardMode": {
-      "base": "",
-      "refs": {
-        "StreamConfiguration$ClipboardMode": "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>",
-        "StreamConfigurationCreate$ClipboardMode": "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>"
+    "StreamingClipboardMode" : {
+      "base" : "",
+      "refs" : {
+        "StreamConfiguration$ClipboardMode" : "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>",
+        "StreamConfigurationCreate$ClipboardMode" : "<p>Enable or disable the use of the system clipboard to copy and paste between the streaming session and streaming client.</p>"
       }
     },
-    "StreamingImage": {
-      "base": "",
-      "refs": {
-        "CreateStreamingImageOutput$StreamingImage": "",
-        "DeleteStreamingImageOutput$StreamingImage": "<p>The streaming image.</p>",
-        "GetStreamingImageOutput$StreamingImage": "<p>The streaming image.</p>",
-        "StreamingImageList$member": null,
-        "UpdateStreamingImageOutput$StreamingImage": "<p></p>"
+    "StreamingImage" : {
+      "base" : "",
+      "refs" : {
+        "CreateStreamingImageOutput$StreamingImage" : "",
+        "DeleteStreamingImageOutput$StreamingImage" : "<p>The streaming image.</p>",
+        "GetStreamingImageOutput$StreamingImage" : "<p>The streaming image.</p>",
+        "StreamingImageList$member" : null,
+        "UpdateStreamingImageOutput$StreamingImage" : "<p></p>"
       }
     },
-    "StreamingImageDescription": {
-      "base": "<p>The description.</p>",
-      "refs": {
-        "CreateStreamingImageInput$Description": "<p>A human-readable description of the streaming image.</p>",
-        "StreamingImage$Description": "<p>A human-readable description of the streaming image.</p>",
-        "UpdateStreamingImageInput$Description": "<p>The description.</p>"
+    "StreamingImageDescription" : {
+      "base" : "<p>The description.</p>",
+      "refs" : {
+        "CreateStreamingImageInput$Description" : "<p>A human-readable description of the streaming image.</p>",
+        "StreamingImage$Description" : "<p>A human-readable description of the streaming image.</p>",
+        "UpdateStreamingImageInput$Description" : "<p>The description.</p>"
       }
     },
-    "StreamingImageEncryptionConfiguration": {
-      "base": "",
-      "refs": {
-        "StreamingImage$EncryptionConfiguration": "<p>The encryption configuration.</p>"
+    "StreamingImageEncryptionConfiguration" : {
+      "base" : "",
+      "refs" : {
+        "StreamingImage$EncryptionConfiguration" : "<p>The encryption configuration.</p>"
       }
     },
-    "StreamingImageEncryptionConfigurationKeyArn": {
-      "base": "",
-      "refs": {
-        "StreamingImageEncryptionConfiguration$KeyArn": "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
+    "StreamingImageEncryptionConfigurationKeyArn" : {
+      "base" : "",
+      "refs" : {
+        "StreamingImageEncryptionConfiguration$KeyArn" : "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
       }
     },
-    "StreamingImageEncryptionConfigurationKeyType": {
-      "base": "<p></p>",
-      "refs": {
-        "StreamingImageEncryptionConfiguration$KeyType": "<p>The type of KMS key that is used to encrypt studio data.</p>"
+    "StreamingImageEncryptionConfigurationKeyType" : {
+      "base" : "<p></p>",
+      "refs" : {
+        "StreamingImageEncryptionConfiguration$KeyType" : "<p>The type of KMS key that is used to encrypt studio data.</p>"
       }
     },
-    "StreamingImageId": {
-      "base": "",
-      "refs": {
-        "CreateStreamingSessionInput$StreamingImageId": "<p>The ID of the streaming image.</p>",
-        "StreamingImage$StreamingImageId": "<p>The ID of the streaming image.</p>",
-        "StreamingImageIdList$member": null,
-        "StreamingSession$StreamingImageId": "<p>The ID of the streaming image.</p>"
+    "StreamingImageId" : {
+      "base" : "",
+      "refs" : {
+        "CreateStreamingSessionInput$StreamingImageId" : "<p>The ID of the streaming image.</p>",
+        "StreamingImage$StreamingImageId" : "<p>The ID of the streaming image.</p>",
+        "StreamingImageIdList$member" : null,
+        "StreamingSession$StreamingImageId" : "<p>The ID of the streaming image.</p>"
       }
     },
-    "StreamingImageIdList": {
-      "base": "<p>A list of streaming image IDs that users can select from when launching a streaming session with this launch profile.</p>",
-      "refs": {
-        "StreamConfiguration$StreamingImageIds": "<p>The streaming images that users can select from when launching a streaming session with this launch profile.</p>",
-        "StreamConfigurationCreate$StreamingImageIds": "<p>The streaming images that users can select from when launching a streaming session with this launch profile.</p>"
+    "StreamingImageIdList" : {
+      "base" : "<p>A list of streaming image IDs that users can select from when launching a streaming session with this launch profile.</p>",
+      "refs" : {
+        "StreamConfiguration$StreamingImageIds" : "<p>The streaming images that users can select from when launching a streaming session with this launch profile.</p>",
+        "StreamConfigurationCreate$StreamingImageIds" : "<p>The streaming images that users can select from when launching a streaming session with this launch profile.</p>"
       }
     },
-    "StreamingImageList": {
-      "base": "",
-      "refs": {
-        "GetLaunchProfileDetailsOutput$StreamingImages": "<p>A collection of streaming images.</p>",
-        "ListStreamingImagesOutput$StreamingImages": "<p>A collection of streaming images.</p>"
+    "StreamingImageList" : {
+      "base" : "",
+      "refs" : {
+        "GetLaunchProfileDetailsOutput$StreamingImages" : "<p>A collection of streaming images.</p>",
+        "ListStreamingImagesOutput$StreamingImages" : "<p>A collection of streaming images.</p>"
       }
     },
-    "StreamingImageName": {
-      "base": "<p>A friendly name for a streaming image resource.</p>",
-      "refs": {
-        "CreateStreamingImageInput$Name": "<p>A friendly name for a streaming image resource.</p>",
-        "StreamingImage$Name": "<p>A friendly name for a streaming image resource.</p>",
-        "UpdateStreamingImageInput$Name": "<p>The name for the streaming image.</p>"
+    "StreamingImageName" : {
+      "base" : "<p>A friendly name for a streaming image resource.</p>",
+      "refs" : {
+        "CreateStreamingImageInput$Name" : "<p>A friendly name for a streaming image resource.</p>",
+        "StreamingImage$Name" : "<p>A friendly name for a streaming image resource.</p>",
+        "UpdateStreamingImageInput$Name" : "<p>The name for the streaming image.</p>"
       }
     },
-    "StreamingImageOwner": {
-      "base": "<p>StreamingImageOwner is the owner of a particular streaming image.</p> <p>This string is either the studioId that contains the streaming image, or the word 'AMAZON' for images provided by Nimble Studio.</p>",
-      "refs": {
-        "StreamingImage$Owner": "<p>The owner of the streaming image, either the studioId that contains the streaming image, or 'amazon' for images that are provided by Amazon Nimble Studio.</p>"
+    "StreamingImageOwner" : {
+      "base" : "<p>StreamingImageOwner is the owner of a particular streaming image.</p> <p>This string is either the studioId that contains the streaming image, or the word 'AMAZON' for images provided by Nimble Studio.</p>",
+      "refs" : {
+        "StreamingImage$Owner" : "<p>The owner of the streaming image, either the studioId that contains the streaming image, or 'amazon' for images that are provided by Amazon Nimble Studio.</p>"
       }
     },
-    "StreamingImagePlatform": {
-      "base": "<p>The platform of this Streaming Image, either WINDOWS or LINUX.</p>",
-      "refs": {
-        "StreamingImage$Platform": "<p>The platform of the streaming image, either WINDOWS or LINUX.</p>"
+    "StreamingImagePlatform" : {
+      "base" : "<p>The platform of this Streaming Image, either WINDOWS or LINUX.</p>",
+      "refs" : {
+        "StreamingImage$Platform" : "<p>The platform of the streaming image, either WINDOWS or LINUX.</p>"
       }
     },
-    "StreamingImageSessionId": {
-      "base": "<p>The streaming image session ID.</p>",
-      "refs": {
-        "StreamingSession$SessionId": "<p>The session ID.</p>"
+    "StreamingImageState" : {
+      "base" : "",
+      "refs" : {
+        "StreamingImage$State" : "<p>The current state.</p>"
       }
     },
-    "StreamingImageState": {
-      "base": "",
-      "refs": {
-        "StreamingImage$State": "<p>The current state.</p>"
+    "StreamingImageStatusCode" : {
+      "base" : "<p>The status code.</p>",
+      "refs" : {
+        "StreamingImage$StatusCode" : "<p>The status code.</p>"
       }
     },
-    "StreamingImageStatusCode": {
-      "base": "<p>The status code.</p>",
-      "refs": {
-        "StreamingImage$StatusCode": "<p>The status code.</p>"
+    "StreamingInstanceType" : {
+      "base" : "",
+      "refs" : {
+        "CreateStreamingSessionInput$Ec2InstanceType" : "<p>The EC2 Instance type used for the streaming session.</p>",
+        "StreamingInstanceTypeList$member" : null
       }
     },
-    "StreamingInstanceType": {
-      "base": "",
-      "refs": {
-        "CreateStreamingSessionInput$Ec2InstanceType": "<p>The EC2 Instance type used for the streaming session.</p>",
-        "StreamingInstanceTypeList$member": null
+    "StreamingInstanceTypeList" : {
+      "base" : "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>",
+      "refs" : {
+        "StreamConfiguration$Ec2InstanceTypes" : "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>",
+        "StreamConfigurationCreate$Ec2InstanceTypes" : "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>"
       }
     },
-    "StreamingInstanceTypeList": {
-      "base": "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>",
-      "refs": {
-        "StreamConfiguration$Ec2InstanceTypes": "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>",
-        "StreamConfigurationCreate$Ec2InstanceTypes": "<p>The EC2 instance types that users can select from when launching a streaming session with this launch profile.</p>"
+    "StreamingSession" : {
+      "base" : "",
+      "refs" : {
+        "CreateStreamingSessionOutput$Session" : "<p>The session.</p>",
+        "DeleteStreamingSessionOutput$Session" : "<p>The session.</p>",
+        "GetStreamingSessionOutput$Session" : "<p>The session.</p>",
+        "StreamingSessionList$member" : null
       }
     },
-    "StreamingSession": {
-      "base": "",
-      "refs": {
-        "CreateStreamingSessionOutput$Session": "<p>The session.</p>",
-        "DeleteStreamingSessionOutput$Session": "<p>The session.</p>",
-        "GetStreamingSessionOutput$Session": "<p>The session.</p>",
-        "StreamingSessionList$member": null
+    "StreamingSessionId" : {
+      "base" : null,
+      "refs" : {
+        "StreamingSession$SessionId" : "<p>The session ID.</p>"
       }
     },
-    "StreamingSessionList": {
-      "base": "",
-      "refs": {
-        "ListStreamingSessionsOutput$Sessions": "<p>A collection of streaming sessions.</p>"
+    "StreamingSessionList" : {
+      "base" : "",
+      "refs" : {
+        "ListStreamingSessionsOutput$Sessions" : "<p>A collection of streaming sessions.</p>"
       }
     },
-    "StreamingSessionState": {
-      "base": "<p>The streaming session state.</p>",
-      "refs": {
-        "StreamingSession$State": "<p>The current state.</p>"
+    "StreamingSessionState" : {
+      "base" : "<p>The streaming session state.</p>",
+      "refs" : {
+        "StreamingSession$State" : "<p>The current state.</p>"
       }
     },
-    "StreamingSessionStatusCode": {
-      "base": "",
-      "refs": {
-        "StreamingSession$StatusCode": "<p>The status code.</p>"
+    "StreamingSessionStatusCode" : {
+      "base" : "",
+      "refs" : {
+        "StreamingSession$StatusCode" : "<p>The status code.</p>"
       }
     },
-    "StreamingSessionStream": {
-      "base": "",
-      "refs": {
-        "CreateStreamingSessionStreamOutput$Stream": "<p>The stream.</p>",
-        "GetStreamingSessionStreamOutput$Stream": "<p>The stream.</p>"
+    "StreamingSessionStream" : {
+      "base" : "",
+      "refs" : {
+        "CreateStreamingSessionStreamOutput$Stream" : "<p>The stream.</p>",
+        "GetStreamingSessionStreamOutput$Stream" : "<p>The stream.</p>"
       }
     },
-    "StreamingSessionStreamExpirationInSeconds": {
-      "base": "",
-      "refs": {
-        "CreateStreamingSessionStreamInput$ExpirationInSeconds": "<p>The expiration time in seconds.</p>"
+    "StreamingSessionStreamExpirationInSeconds" : {
+      "base" : "",
+      "refs" : {
+        "CreateStreamingSessionStreamInput$ExpirationInSeconds" : "<p>The expiration time in seconds.</p>"
       }
     },
-    "StreamingSessionStreamState": {
-      "base": "",
-      "refs": {
-        "StreamingSessionStream$State": "<p>The current state.</p>"
+    "StreamingSessionStreamState" : {
+      "base" : "",
+      "refs" : {
+        "StreamingSessionStream$State" : "<p>The current state.</p>"
       }
     },
-    "StreamingSessionStreamStatusCode": {
-      "base": null,
-      "refs": {
-        "StreamingSessionStream$StatusCode": "<p>The streaming session stream status code.</p>"
+    "StreamingSessionStreamStatusCode" : {
+      "base" : null,
+      "refs" : {
+        "StreamingSessionStream$StatusCode" : "<p>The streaming session stream status code.</p>"
       }
     },
-    "Studio": {
-      "base": "",
-      "refs": {
-        "CreateStudioOutput$Studio": "<p>Information about a studio.</p>",
-        "DeleteStudioOutput$Studio": "<p>Information about a studio.</p>",
-        "GetStudioOutput$Studio": "<p>Information about a studio.</p>",
-        "StartStudioSSOConfigurationRepairOutput$Studio": "<p>Information about a studio.</p>",
-        "StudioList$member": null,
-        "UpdateStudioOutput$Studio": "<p>Information about a studio.</p>"
+    "Studio" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioOutput$Studio" : "<p>Information about a studio.</p>",
+        "DeleteStudioOutput$Studio" : "<p>Information about a studio.</p>",
+        "GetStudioOutput$Studio" : "<p>Information about a studio.</p>",
+        "StartStudioSSOConfigurationRepairOutput$Studio" : "<p>Information about a studio.</p>",
+        "StudioList$member" : null,
+        "UpdateStudioOutput$Studio" : "<p>Information about a studio.</p>"
       }
     },
-    "StudioComponent": {
-      "base": "<p>A network that is used by a studio’s users and workflows, including render farm, Active Directory, licensing, and file system.</p>",
-      "refs": {
-        "CreateStudioComponentOutput$StudioComponent": "<p>Information about the studio component.</p>",
-        "DeleteStudioComponentOutput$StudioComponent": "<p>Information about the studio component.</p>",
-        "GetStudioComponentOutput$StudioComponent": "<p>Information about the studio component.</p>",
-        "StudioComponentList$member": null,
-        "UpdateStudioComponentOutput$StudioComponent": "<p>Information about the studio component.</p>"
+    "StudioComponent" : {
+      "base" : "<p>A network that is used by a studio’s users and workflows, including render farm, Active Directory, licensing, and file system.</p>",
+      "refs" : {
+        "CreateStudioComponentOutput$StudioComponent" : "<p>Information about the studio component.</p>",
+        "DeleteStudioComponentOutput$StudioComponent" : "<p>Information about the studio component.</p>",
+        "GetStudioComponentOutput$StudioComponent" : "<p>Information about the studio component.</p>",
+        "StudioComponentList$member" : null,
+        "UpdateStudioComponentOutput$StudioComponent" : "<p>Information about the studio component.</p>"
       }
     },
-    "StudioComponentConfiguration": {
-      "base": "<p>The configuration of the studio component, based on component type.</p>",
-      "refs": {
-        "CreateStudioComponentInput$Configuration": "<p>The configuration of the studio component, based on component type.</p>",
-        "StudioComponent$Configuration": "<p>The configuration of the studio component, based on component type.</p>",
-        "UpdateStudioComponentInput$Configuration": "<p>The configuration of the studio component, based on component type.</p>"
+    "StudioComponentConfiguration" : {
+      "base" : "<p>The configuration of the studio component, based on component type.</p>",
+      "refs" : {
+        "CreateStudioComponentInput$Configuration" : "<p>The configuration of the studio component, based on component type.</p>",
+        "StudioComponent$Configuration" : "<p>The configuration of the studio component, based on component type.</p>",
+        "UpdateStudioComponentInput$Configuration" : "<p>The configuration of the studio component, based on component type.</p>"
       }
     },
-    "StudioComponentDescription": {
-      "base": "",
-      "refs": {
-        "CreateStudioComponentInput$Description": "<p>The description.</p>",
-        "StudioComponent$Description": "<p>A human-readable description for the studio component resource.</p>",
-        "StudioComponentSummary$Description": "<p>The description.</p>",
-        "UpdateStudioComponentInput$Description": "<p>The description.</p>"
+    "StudioComponentDescription" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioComponentInput$Description" : "<p>The description.</p>",
+        "StudioComponent$Description" : "<p>A human-readable description for the studio component resource.</p>",
+        "StudioComponentSummary$Description" : "<p>The description.</p>",
+        "UpdateStudioComponentInput$Description" : "<p>The description.</p>"
       }
     },
-    "StudioComponentId": {
-      "base": null,
-      "refs": {
-        "LaunchProfileInitializationActiveDirectory$StudioComponentId": "<p>The unique identifier for a studio component resource.</p>",
-        "LaunchProfileInitializationScript$StudioComponentId": "<p>The unique identifier for a studio component resource.</p>",
-        "StudioComponent$StudioComponentId": "<p>The unique identifier for a studio component resource.</p>",
-        "StudioComponentSummary$StudioComponentId": "<p>The unique identifier for a studio component resource.</p>"
+    "StudioComponentId" : {
+      "base" : null,
+      "refs" : {
+        "LaunchProfileInitializationActiveDirectory$StudioComponentId" : "<p>The unique identifier for a studio component resource.</p>",
+        "LaunchProfileInitializationScript$StudioComponentId" : "<p>The unique identifier for a studio component resource.</p>",
+        "StudioComponent$StudioComponentId" : "<p>The unique identifier for a studio component resource.</p>",
+        "StudioComponentSummary$StudioComponentId" : "<p>The unique identifier for a studio component resource.</p>"
       }
     },
-    "StudioComponentInitializationScript": {
-      "base": "<p>Initialization scripts for studio components.</p>",
-      "refs": {
-        "StudioComponentInitializationScriptList$member": null
+    "StudioComponentInitializationScript" : {
+      "base" : "<p>Initialization scripts for studio components.</p>",
+      "refs" : {
+        "StudioComponentInitializationScriptList$member" : null
       }
     },
-    "StudioComponentInitializationScriptContent": {
-      "base": "",
-      "refs": {
-        "LaunchProfileInitializationScript$Script": "<p>The initialization script.</p>",
-        "StudioComponentInitializationScript$Script": "<p>The initialization script.</p>"
+    "StudioComponentInitializationScriptContent" : {
+      "base" : "",
+      "refs" : {
+        "LaunchProfileInitializationScript$Script" : "<p>The initialization script.</p>",
+        "StudioComponentInitializationScript$Script" : "<p>The initialization script.</p>"
       }
     },
-    "StudioComponentInitializationScriptList": {
-      "base": "",
-      "refs": {
-        "CreateStudioComponentInput$InitializationScripts": "<p>Initialization scripts for studio components.</p>",
-        "StudioComponent$InitializationScripts": "<p>Initialization scripts for studio components.</p>",
-        "UpdateStudioComponentInput$InitializationScripts": "<p>Initialization scripts for studio components.</p>"
+    "StudioComponentInitializationScriptList" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioComponentInput$InitializationScripts" : "<p>Initialization scripts for studio components.</p>",
+        "StudioComponent$InitializationScripts" : "<p>Initialization scripts for studio components.</p>",
+        "UpdateStudioComponentInput$InitializationScripts" : "<p>Initialization scripts for studio components.</p>"
       }
     },
-    "StudioComponentInitializationScriptRunContext": {
-      "base": "",
-      "refs": {
-        "StudioComponentInitializationScript$RunContext": "<p>The method to use when running the initialization script.</p>"
+    "StudioComponentInitializationScriptRunContext" : {
+      "base" : "",
+      "refs" : {
+        "StudioComponentInitializationScript$RunContext" : "<p>The method to use when running the initialization script.</p>"
       }
     },
-    "StudioComponentList": {
-      "base": "",
-      "refs": {
-        "ListStudioComponentsOutput$StudioComponents": "<p>A collection of studio components.</p>"
+    "StudioComponentList" : {
+      "base" : "",
+      "refs" : {
+        "ListStudioComponentsOutput$StudioComponents" : "<p>A collection of studio components.</p>"
       }
     },
-    "StudioComponentName": {
-      "base": "",
-      "refs": {
-        "CreateStudioComponentInput$Name": "<p>The name for the studio component.</p>",
-        "LaunchProfileInitializationActiveDirectory$StudioComponentName": "<p>The name for the studio component.</p>",
-        "LaunchProfileInitializationScript$StudioComponentName": "<p>The name for the studio component.</p>",
-        "StudioComponent$Name": "<p>A friendly name for the studio component resource.</p>",
-        "StudioComponentSummary$Name": "<p>The name for the studio component.</p>",
-        "UpdateStudioComponentInput$Name": "<p>The name for the studio component.</p>"
+    "StudioComponentName" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioComponentInput$Name" : "<p>The name for the studio component.</p>",
+        "LaunchProfileInitializationActiveDirectory$StudioComponentName" : "<p>The name for the studio component.</p>",
+        "LaunchProfileInitializationScript$StudioComponentName" : "<p>The name for the studio component.</p>",
+        "StudioComponent$Name" : "<p>A friendly name for the studio component resource.</p>",
+        "StudioComponentSummary$Name" : "<p>The name for the studio component.</p>",
+        "UpdateStudioComponentInput$Name" : "<p>The name for the studio component.</p>"
       }
     },
-    "StudioComponentScriptParameterKeyValueList": {
-      "base": "",
-      "refs": {
-        "CreateStudioComponentInput$ScriptParameters": "<p>Parameters for the studio component scripts.</p>",
-        "StudioComponent$ScriptParameters": "<p>Parameters for the studio component scripts.</p>",
-        "UpdateStudioComponentInput$ScriptParameters": "<p>Parameters for the studio component scripts.</p>"
+    "StudioComponentScriptParameterKeyValueList" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioComponentInput$ScriptParameters" : "<p>Parameters for the studio component scripts.</p>",
+        "StudioComponent$ScriptParameters" : "<p>Parameters for the studio component scripts.</p>",
+        "UpdateStudioComponentInput$ScriptParameters" : "<p>Parameters for the studio component scripts.</p>"
       }
     },
-    "StudioComponentSecurityGroupIdList": {
-      "base": "",
-      "refs": {
-        "CreateStudioComponentInput$Ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>",
-        "StudioComponent$Ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>",
-        "UpdateStudioComponentInput$Ec2SecurityGroupIds": "<p>The EC2 security groups that control access to the studio component.</p>"
+    "StudioComponentSecurityGroupIdList" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioComponentInput$Ec2SecurityGroupIds" : "<p>The EC2 security groups that control access to the studio component.</p>",
+        "StudioComponent$Ec2SecurityGroupIds" : "<p>The EC2 security groups that control access to the studio component.</p>",
+        "UpdateStudioComponentInput$Ec2SecurityGroupIds" : "<p>The EC2 security groups that control access to the studio component.</p>"
       }
     },
-    "StudioComponentState": {
-      "base": "<p>The current state of the studio component resource.</p> <p>While a studio component is being created, modified, or deleted, its state will equal \"CREATE_IN_PROGRESS\", \"UPDATE_IN_PROGRESS\", or \"DELETE_IN_PROGRESS\"</p> <p>These are called 'transition states'.</p> <p>No modifications may be made to the studio component while it is in a transition state.</p> <p>If creation of the resource fails, the state will change to `CREATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why creation failed. The resource in this state will automatically be deleted from your account after a period of time.</p> <p>If updating the resource fails, the state will change to `UPDATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked.</p> <p>If deleting the resource fails, the state will change to `DELETE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked. After the resource is deleted successfully, it will change to the \"DELETED\" state. The resource will no longer count against service quotas and cannot be used or acted upon any futher. It will be removed from your account after a period of time.</p>",
-      "refs": {
-        "StudioComponent$State": "<p>The current state.</p>"
+    "StudioComponentState" : {
+      "base" : "<p>The current state of the studio component resource.</p> <p>While a studio component is being created, modified, or deleted, its state will equal \"CREATE_IN_PROGRESS\", \"UPDATE_IN_PROGRESS\", or \"DELETE_IN_PROGRESS\"</p> <p>These are called 'transition states'.</p> <p>No modifications may be made to the studio component while it is in a transition state.</p> <p>If creation of the resource fails, the state will change to `CREATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why creation failed. The resource in this state will automatically be deleted from your account after a period of time.</p> <p>If updating the resource fails, the state will change to `UPDATE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked.</p> <p>If deleting the resource fails, the state will change to `DELETE_FAILED`. The resource StatusCode and StatusMessage will provide more information of why the update failed. The resource will be returned to the state it was in when the update request was invoked. After the resource is deleted successfully, it will change to the \"DELETED\" state. The resource will no longer count against service quotas and cannot be used or acted upon any futher. It will be removed from your account after a period of time.</p>",
+      "refs" : {
+        "StudioComponent$State" : "<p>The current state.</p>"
       }
     },
-    "StudioComponentStatusCode": {
-      "base": "<p>The current status of the studio component resource.</p> <p>When the resource is in the 'READY' state, the status code signals what the last mutation made to the resource was.</p> <p>When the resource is in a CREATE_FAILED/UPDATE_FAILED/DELETE_FAILED state, the status code signals what went wrong and why the mutation failed.</p>",
-      "refs": {
-        "StudioComponent$StatusCode": "<p>The status code.</p>"
+    "StudioComponentStatusCode" : {
+      "base" : "<p>The current status of the studio component resource.</p> <p>When the resource is in the 'READY' state, the status code signals what the last mutation made to the resource was.</p> <p>When the resource is in a CREATE_FAILED/UPDATE_FAILED/DELETE_FAILED state, the status code signals what went wrong and why the mutation failed.</p>",
+      "refs" : {
+        "StudioComponent$StatusCode" : "<p>The status code.</p>"
       }
     },
-    "StudioComponentSubtype": {
-      "base": "",
-      "refs": {
-        "CreateStudioComponentInput$Subtype": "<p>The specific subtype of a studio component.</p>",
-        "StudioComponent$Subtype": "<p>The specific subtype of a studio component.</p>",
-        "StudioComponentSummary$Subtype": "<p>The specific subtype of a studio component.</p>",
-        "UpdateStudioComponentInput$Subtype": "<p>The specific subtype of a studio component.</p>"
+    "StudioComponentSubtype" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioComponentInput$Subtype" : "<p>The specific subtype of a studio component.</p>",
+        "StudioComponent$Subtype" : "<p>The specific subtype of a studio component.</p>",
+        "StudioComponentSummary$Subtype" : "<p>The specific subtype of a studio component.</p>",
+        "UpdateStudioComponentInput$Subtype" : "<p>The specific subtype of a studio component.</p>"
       }
     },
-    "StudioComponentSummary": {
-      "base": "<p></p>",
-      "refs": {
-        "StudioComponentSummaryList$member": null
+    "StudioComponentSummary" : {
+      "base" : "<p></p>",
+      "refs" : {
+        "StudioComponentSummaryList$member" : null
       }
     },
-    "StudioComponentSummaryList": {
-      "base": "",
-      "refs": {
-        "GetLaunchProfileDetailsOutput$StudioComponentSummaries": "<p>A collection of studio component summaries.</p>"
+    "StudioComponentSummaryList" : {
+      "base" : "",
+      "refs" : {
+        "GetLaunchProfileDetailsOutput$StudioComponentSummaries" : "<p>A collection of studio component summaries.</p>"
       }
     },
-    "StudioComponentType": {
-      "base": "",
-      "refs": {
-        "CreateStudioComponentInput$Type": "<p>The type of the studio component.</p>",
-        "StudioComponent$Type": "<p>The type of the studio component.</p>",
-        "StudioComponentSummary$Type": "<p>The type of the studio component.</p>",
-        "UpdateStudioComponentInput$Type": "<p>The type of the studio component.</p>"
+    "StudioComponentType" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioComponentInput$Type" : "<p>The type of the studio component.</p>",
+        "StudioComponent$Type" : "<p>The type of the studio component.</p>",
+        "StudioComponentSummary$Type" : "<p>The type of the studio component.</p>",
+        "UpdateStudioComponentInput$Type" : "<p>The type of the studio component.</p>"
       }
     },
-    "StudioDisplayName": {
-      "base": null,
-      "refs": {
-        "CreateStudioInput$DisplayName": "<p>A friendly name for the studio.</p>",
-        "Studio$DisplayName": "<p>A friendly name for the studio.</p>",
-        "UpdateStudioInput$DisplayName": "<p>A friendly name for the studio.</p>"
+    "StudioDisplayName" : {
+      "base" : null,
+      "refs" : {
+        "CreateStudioInput$DisplayName" : "<p>A friendly name for the studio.</p>",
+        "Studio$DisplayName" : "<p>A friendly name for the studio.</p>",
+        "UpdateStudioInput$DisplayName" : "<p>A friendly name for the studio.</p>"
       }
     },
-    "StudioEncryptionConfiguration": {
-      "base": "<p>Configuration of the encryption method that is used for the studio.</p>",
-      "refs": {
-        "CreateStudioInput$StudioEncryptionConfiguration": "<p>The studio encryption configuration.</p>",
-        "Studio$StudioEncryptionConfiguration": "<p>Configuration of the encryption method that is used for the studio.</p>"
+    "StudioEncryptionConfiguration" : {
+      "base" : "<p>Configuration of the encryption method that is used for the studio.</p>",
+      "refs" : {
+        "CreateStudioInput$StudioEncryptionConfiguration" : "<p>The studio encryption configuration.</p>",
+        "Studio$StudioEncryptionConfiguration" : "<p>Configuration of the encryption method that is used for the studio.</p>"
       }
     },
-    "StudioEncryptionConfigurationKeyArn": {
-      "base": "<p>The Amazon Resource Name (ARN) for a KMS key that is used to encrypt studio data.</p>",
-      "refs": {
-        "StudioEncryptionConfiguration$KeyArn": "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
+    "StudioEncryptionConfigurationKeyArn" : {
+      "base" : "<p>The Amazon Resource Name (ARN) for a KMS key that is used to encrypt studio data.</p>",
+      "refs" : {
+        "StudioEncryptionConfiguration$KeyArn" : "<p>The ARN for a KMS key that is used to encrypt studio data.</p>"
       }
     },
-    "StudioEncryptionConfigurationKeyType": {
-      "base": "<p>The type of KMS key that is used to encrypt studio data.</p>",
-      "refs": {
-        "StudioEncryptionConfiguration$KeyType": "<p>The type of KMS key that is used to encrypt studio data.</p>"
+    "StudioEncryptionConfigurationKeyType" : {
+      "base" : "<p>The type of KMS key that is used to encrypt studio data.</p>",
+      "refs" : {
+        "StudioEncryptionConfiguration$KeyType" : "<p>The type of KMS key that is used to encrypt studio data.</p>"
       }
     },
-    "StudioList": {
-      "base": "",
-      "refs": {
-        "ListStudiosOutput$Studios": "<p>A collection of studios.</p>"
+    "StudioList" : {
+      "base" : "",
+      "refs" : {
+        "ListStudiosOutput$Studios" : "<p>A collection of studios.</p>"
       }
     },
-    "StudioMembership": {
-      "base": "",
-      "refs": {
-        "GetStudioMemberOutput$Member": "<p>The member.</p>",
-        "StudioMembershipList$member": null
+    "StudioMembership" : {
+      "base" : "",
+      "refs" : {
+        "GetStudioMemberOutput$Member" : "<p>The member.</p>",
+        "StudioMembershipList$member" : null
       }
     },
-    "StudioMembershipList": {
-      "base": "",
-      "refs": {
-        "ListStudioMembersOutput$Members": "<p>A list of members.</p>"
+    "StudioMembershipList" : {
+      "base" : "",
+      "refs" : {
+        "ListStudioMembersOutput$Members" : "<p>A list of members.</p>"
       }
     },
-    "StudioName": {
-      "base": "",
-      "refs": {
-        "CreateStudioInput$StudioName": "<p>The studio name that is used in the URL of the Nimble Studio portal when accessed by Nimble Studio users.</p>",
-        "Studio$StudioName": "<p>The name of the studio, as included in the URL when accessing it in the Nimble Studio portal.</p>"
+    "StudioName" : {
+      "base" : "",
+      "refs" : {
+        "CreateStudioInput$StudioName" : "<p>The studio name that is used in the URL of the Nimble Studio portal when accessed by Nimble Studio users.</p>",
+        "Studio$StudioName" : "<p>The name of the studio, as included in the URL when accessing it in the Nimble Studio portal.</p>"
       }
     },
-    "StudioPersona": {
-      "base": "",
-      "refs": {
-        "NewStudioMember$Persona": "<p>The persona.</p>",
-        "StudioMembership$Persona": "<p>The persona.</p>"
+    "StudioPersona" : {
+      "base" : "",
+      "refs" : {
+        "NewStudioMember$Persona" : "<p>The persona.</p>",
+        "StudioMembership$Persona" : "<p>The persona.</p>"
       }
     },
-    "StudioState": {
-      "base": "",
-      "refs": {
-        "Studio$State": "<p>The current state of the studio resource.</p>"
+    "StudioState" : {
+      "base" : "",
+      "refs" : {
+        "Studio$State" : "<p>The current state of the studio resource.</p>"
       }
     },
-    "StudioStatusCode": {
-      "base": "<p>The status code.</p>",
-      "refs": {
-        "Studio$StatusCode": "<p>Status codes that provide additional detail on the studio state.</p>"
+    "StudioStatusCode" : {
+      "base" : "<p>The status code.</p>",
+      "refs" : {
+        "Studio$StatusCode" : "<p>Status codes that provide additional detail on the studio state.</p>"
       }
     },
-    "TagResourceInput": {
-      "base": "<p></p>",
-      "refs": {}
+    "TagResourceInput" : {
+      "base" : "<p></p>",
+      "refs" : { }
     },
-    "Tags": {
-      "base": "",
-      "refs": {
-        "CreateLaunchProfileInput$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "CreateStreamingImageInput$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "CreateStreamingSessionInput$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "CreateStudioComponentInput$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "CreateStudioInput$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "LaunchProfile$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "ListTagsOutput$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "StreamingImage$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "StreamingSession$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "Studio$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "StudioComponent$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
-        "TagResourceInput$Tags": "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>"
+    "Tags" : {
+      "base" : "",
+      "refs" : {
+        "CreateLaunchProfileInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "CreateStreamingImageInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "CreateStreamingSessionInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "CreateStudioComponentInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "CreateStudioInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "LaunchProfile$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "ListTagsOutput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "StreamingImage$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "StreamingSession$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "Studio$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "StudioComponent$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>",
+        "TagResourceInput$Tags" : "<p>A collection of labels, in the form of key:value pairs, that apply to this resource.</p>"
       }
     },
-    "ThrottlingException": {
-      "base": "",
-      "refs": {}
+    "ThrottlingException" : {
+      "base" : "",
+      "refs" : { }
     },
-    "Timestamp": {
-      "base": "",
-      "refs": {
-        "Eula$CreatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "Eula$UpdatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "EulaAcceptance$AcceptedAt": "<p>The Unix epoch timestamp in seconds for when the EULA was accepted.</p>",
-        "EulaAcceptance$AcceptedOn": null,
-        "LaunchProfile$CreatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "LaunchProfile$UpdatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "StreamingSession$CreatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "StreamingSession$TerminateAt": "<p>The time the streaming session will automatically terminate if not terminated by the user.</p>",
-        "StreamingSession$UpdatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "StreamingSessionStream$CreatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "StreamingSessionStream$ExpiresAt": "<p>The Unix epoch timestamp in seconds for when the resource expires.</p>",
-        "Studio$CreatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "Studio$UpdatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "StudioComponent$CreatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "StudioComponent$UpdatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
-        "StudioComponentSummary$CreatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
-        "StudioComponentSummary$UpdatedAt": "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>"
+    "Timestamp" : {
+      "base" : "",
+      "refs" : {
+        "Eula$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "Eula$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "EulaAcceptance$AcceptedAt" : "<p>The Unix epoch timestamp in seconds for when the EULA was accepted.</p>",
+        "LaunchProfile$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "LaunchProfile$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "StreamingSession$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "StreamingSession$TerminateAt" : "<p>The time the streaming session will automatically terminate if not terminated by the user.</p>",
+        "StreamingSession$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "StreamingSessionStream$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "StreamingSessionStream$ExpiresAt" : "<p>The Unix epoch timestamp in seconds for when the resource expires.</p>",
+        "Studio$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "Studio$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "StudioComponent$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "StudioComponent$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>",
+        "StudioComponentSummary$CreatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was created.</p>",
+        "StudioComponentSummary$UpdatedAt" : "<p>The Unix epoch timestamp in seconds for when the resource was updated.</p>"
       }
     },
-    "UpdateLaunchProfileInput": {
-      "base": "",
-      "refs": {}
+    "UpdateLaunchProfileInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "UpdateLaunchProfileMemberInput": {
-      "base": "<p></p>",
-      "refs": {}
+    "UpdateLaunchProfileMemberInput" : {
+      "base" : "<p></p>",
+      "refs" : { }
     },
-    "UpdateLaunchProfileOutput": {
-      "base": "",
-      "refs": {}
+    "UpdateLaunchProfileOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "UpdateStreamingImageInput": {
-      "base": "",
-      "refs": {}
+    "UpdateStreamingImageInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "UpdateStreamingImageOutput": {
-      "base": "<p></p>",
-      "refs": {}
+    "UpdateStreamingImageOutput" : {
+      "base" : "<p></p>",
+      "refs" : { }
     },
-    "UpdateStudioComponentInput": {
-      "base": "",
-      "refs": {}
+    "UpdateStudioComponentInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "UpdateStudioComponentOutput": {
-      "base": "",
-      "refs": {}
+    "UpdateStudioComponentOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "UpdateStudioInput": {
-      "base": "",
-      "refs": {}
+    "UpdateStudioInput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "UpdateStudioOutput": {
-      "base": "",
-      "refs": {}
+    "UpdateStudioOutput" : {
+      "base" : "",
+      "refs" : { }
     },
-    "ValidationException": {
-      "base": "",
-      "refs": {}
+    "ValidationException" : {
+      "base" : "",
+      "refs" : { }
     },
-    "WindowsMountDrive": {
-      "base": "",
-      "refs": {
-        "SharedFileSystemConfiguration$WindowsMountDrive": "<p>The mount location for a shared file system on a Windows virtual workstation.</p>"
+    "WindowsMountDrive" : {
+      "base" : "",
+      "refs" : {
+        "SharedFileSystemConfiguration$WindowsMountDrive" : "<p>The mount location for a shared file system on a Windows virtual workstation.</p>"
       }
     },
-    "__string": {
-      "base": null,
-      "refs": {
-        "AccessDeniedException$Code": "<p>A more specific error code.</p>",
-        "AccessDeniedException$Message": "<p>A human-readable description of the error.</p>",
-        "ComputeFarmConfiguration$ActiveDirectoryUser": "<p>The name of an Active Directory user that is used on ComputeFarm worker instances.</p>",
-        "ComputeFarmConfiguration$Endpoint": "<p>The endpoint of the ComputeFarm that is accessed by the studio component resource.</p>",
-        "ConflictException$Code": "<p>A more specific error code.</p>",
-        "ConflictException$Message": "<p>A human-readable description of the error.</p>",
-        "CreateStreamingSessionInput$LaunchProfileId": "<p>The launch profile ID.</p>",
-        "CreateStudioInput$AdminRoleArn": "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
-        "CreateStudioInput$UserRoleArn": "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
-        "Eula$Content": "<p>The EULA content.</p>",
-        "EulaAcceptance$AcceptedBy": "<p>The ID of the person who accepted the EULA.</p>",
-        "EulaAcceptance$AccepteeId": "<p>The ID of the acceptee.</p>",
-        "EulaIdList$member": null,
-        "ExceptionContext$member": null,
-        "InternalServerException$Code": "<p>A more specific error code.</p>",
-        "InternalServerException$Message": "<p>A human-readable description of the error.</p>",
-        "LaunchProfile$Arn": "<p>The ARN of the resource.</p>",
-        "LaunchProfile$CreatedBy": "<p>The user ID of the user that created the launch profile.</p>",
-        "LaunchProfile$StatusMessage": "<p>The status message for the launch profile.</p>",
-        "LaunchProfile$UpdatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
-        "LaunchProfileInitializationActiveDirectory$DirectoryName": "<p>The directory name.</p>",
-        "LaunchProfileMembership$IdentityStoreId": "<p>The ID of the identity store.</p>",
-        "LaunchProfileMembership$PrincipalId": "<p>The principal ID.</p>",
-        "LaunchProfileStudioComponentIdList$member": null,
-        "LicenseServiceConfiguration$Endpoint": "<p>The endpoint of the license service that is accessed by the studio component resource.</p>",
-        "ListEulaAcceptancesOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListEulasOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListLaunchProfileMembersOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListLaunchProfilesOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStreamingImagesOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStreamingSessionsOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStudioComponentsOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStudioMembersOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "ListStudiosOutput$NextToken": "<p>The token for the next set of results, or null if there are no more results.</p>",
-        "NewLaunchProfileMember$PrincipalId": "<p>The principal ID.</p>",
-        "NewStudioMember$PrincipalId": "<p>The principal ID.</p>",
-        "PutLaunchProfileMembersInput$IdentityStoreId": "<p>The ID of the identity store.</p>",
-        "PutStudioMembersInput$IdentityStoreId": "<p>The ID of the identity store.</p>",
-        "ResourceNotFoundException$Code": "<p>A more specific error code.</p>",
-        "ResourceNotFoundException$Message": "<p>A human-readable description of the error.</p>",
-        "ServiceQuotaExceededException$Code": "<p>A more specific error code.</p>",
-        "ServiceQuotaExceededException$Message": "<p>A human-readable description of the error.</p>",
-        "SharedFileSystemConfiguration$Endpoint": "<p>The endpoint of the shared file system that is accessed by the studio component resource.</p>",
-        "SharedFileSystemConfiguration$FileSystemId": "<p>The unique identifier for a file system.</p>",
-        "SharedFileSystemConfiguration$ShareName": "<p>The name of the file share.</p>",
-        "StreamingImage$Arn": "<p>The ARN of the resource.</p>",
-        "StreamingImage$StatusMessage": "<p>The status message for the streaming image.</p>",
-        "StreamingSession$Arn": "<p>The ARN of the resource.</p>",
-        "StreamingSession$CreatedBy": "<p>The user ID of the user that created the streaming session.</p>",
-        "StreamingSession$Ec2InstanceType": "<p>The EC2 Instance type used for the streaming session.</p>",
-        "StreamingSession$LaunchProfileId": "<p>The ID of the launch profile used to control access from the streaming session.</p>",
-        "StreamingSession$StatusMessage": "<p>The status message for the streaming session.</p>",
-        "StreamingSession$UpdatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
-        "StreamingSessionStream$CreatedBy": "<p>The user ID of the user that created the streaming session stream.</p>",
-        "StreamingSessionStream$StreamId": "<p>The stream ID.</p>",
-        "StreamingSessionStream$Url": "<p>The URL to connect to this stream using the DCV client.</p>",
-        "Studio$AdminRoleArn": "<p>The IAM role that studio admins assume when logging in to the Nimble Studio portal.</p>",
-        "Studio$Arn": "<p>The Amazon Resource Name (ARN) that is assigned to a studio resource and uniquely identifies it. ARNs are unique across all Regions.</p>",
-        "Studio$SsoClientId": "<p>The AWS SSO application client ID used to integrate with AWS SSO to enable AWS SSO users to log in to Nimble portal.</p>",
-        "Studio$StatusMessage": "<p>Additional detail on the studio state.</p>",
-        "Studio$StudioId": "<p>The unique identifier for a studio resource. In Nimble Studio, all other resources are contained in a studio resource.</p>",
-        "Studio$StudioUrl": "<p>The address of the web page for the studio.</p>",
-        "Studio$UserRoleArn": "<p>The IAM role that studio users assume when logging in to the Nimble Studio portal.</p>",
-        "StudioComponent$Arn": "<p>The ARN of the resource.</p>",
-        "StudioComponent$CreatedBy": "<p>The user ID of the user that created the studio component.</p>",
-        "StudioComponent$StatusMessage": "<p>The status message for the studio component.</p>",
-        "StudioComponent$UpdatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
-        "StudioComponentSummary$CreatedBy": "<p>The user ID of the user that created the studio component.</p>",
-        "StudioComponentSummary$UpdatedBy": "<p>The user ID of the user that most recently updated the resource.</p>",
-        "StudioMembership$IdentityStoreId": "<p>The ID of the identity store.</p>",
-        "StudioMembership$PrincipalId": "<p>The principal ID.</p>",
-        "Tags$member": null,
-        "ThrottlingException$Code": "<p>A more specific error code.</p>",
-        "ThrottlingException$Message": "<p>A human-readable description of the error.</p>",
-        "UpdateStudioInput$AdminRoleArn": "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
-        "UpdateStudioInput$UserRoleArn": "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
-        "ValidationException$Code": "<p>A more specific error code.</p>",
-        "ValidationException$Message": "<p>A human-readable description of the error.</p>"
+    "__string" : {
+      "base" : null,
+      "refs" : {
+        "AccessDeniedException$Code" : "<p>A more specific error code.</p>",
+        "AccessDeniedException$Message" : "<p>A human-readable description of the error.</p>",
+        "ComputeFarmConfiguration$ActiveDirectoryUser" : "<p>The name of an Active Directory user that is used on ComputeFarm worker instances.</p>",
+        "ComputeFarmConfiguration$Endpoint" : "<p>The endpoint of the ComputeFarm that is accessed by the studio component resource.</p>",
+        "ConflictException$Code" : "<p>A more specific error code.</p>",
+        "ConflictException$Message" : "<p>A human-readable description of the error.</p>",
+        "CreateStreamingSessionInput$LaunchProfileId" : "<p>The launch profile ID.</p>",
+        "CreateStreamingSessionInput$OwnedBy" : "<p>The user ID of the user that owns the streaming session.</p>",
+        "CreateStudioInput$AdminRoleArn" : "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
+        "CreateStudioInput$UserRoleArn" : "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
+        "Eula$Content" : "<p>The EULA content.</p>",
+        "EulaAcceptance$AcceptedBy" : "<p>The ID of the person who accepted the EULA.</p>",
+        "EulaAcceptance$AccepteeId" : "<p>The ID of the acceptee.</p>",
+        "EulaIdList$member" : null,
+        "ExceptionContext$member" : null,
+        "InternalServerException$Code" : "<p>A more specific error code.</p>",
+        "InternalServerException$Message" : "<p>A human-readable description of the error.</p>",
+        "LaunchProfile$Arn" : "<p>The ARN of the resource.</p>",
+        "LaunchProfile$CreatedBy" : "<p>The user ID of the user that created the launch profile.</p>",
+        "LaunchProfile$StatusMessage" : "<p>The status message for the launch profile.</p>",
+        "LaunchProfile$UpdatedBy" : "<p>The user ID of the user that most recently updated the resource.</p>",
+        "LaunchProfileInitializationActiveDirectory$DirectoryName" : "<p>The directory name.</p>",
+        "LaunchProfileMembership$IdentityStoreId" : "<p>The ID of the identity store.</p>",
+        "LaunchProfileMembership$PrincipalId" : "<p>The principal ID.</p>",
+        "LaunchProfileStudioComponentIdList$member" : null,
+        "LicenseServiceConfiguration$Endpoint" : "<p>The endpoint of the license service that is accessed by the studio component resource.</p>",
+        "ListEulaAcceptancesOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListEulasOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListLaunchProfileMembersOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListLaunchProfilesOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStreamingImagesOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStreamingSessionsOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStudioComponentsOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStudioMembersOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "ListStudiosOutput$NextToken" : "<p>The token for the next set of results, or null if there are no more results.</p>",
+        "NewLaunchProfileMember$PrincipalId" : "<p>The principal ID.</p>",
+        "NewStudioMember$PrincipalId" : "<p>The principal ID.</p>",
+        "PutLaunchProfileMembersInput$IdentityStoreId" : "<p>The ID of the identity store.</p>",
+        "PutStudioMembersInput$IdentityStoreId" : "<p>The ID of the identity store.</p>",
+        "ResourceNotFoundException$Code" : "<p>A more specific error code.</p>",
+        "ResourceNotFoundException$Message" : "<p>A human-readable description of the error.</p>",
+        "ServiceQuotaExceededException$Code" : "<p>A more specific error code.</p>",
+        "ServiceQuotaExceededException$Message" : "<p>A human-readable description of the error.</p>",
+        "SharedFileSystemConfiguration$Endpoint" : "<p>The endpoint of the shared file system that is accessed by the studio component resource.</p>",
+        "SharedFileSystemConfiguration$FileSystemId" : "<p>The unique identifier for a file system.</p>",
+        "SharedFileSystemConfiguration$ShareName" : "<p>The name of the file share.</p>",
+        "StreamingImage$Arn" : "<p>The ARN of the resource.</p>",
+        "StreamingImage$StatusMessage" : "<p>The status message for the streaming image.</p>",
+        "StreamingSession$Arn" : "<p>The ARN of the resource.</p>",
+        "StreamingSession$CreatedBy" : "<p>The user ID of the user that created the streaming session.</p>",
+        "StreamingSession$Ec2InstanceType" : "<p>The EC2 Instance type used for the streaming session.</p>",
+        "StreamingSession$LaunchProfileId" : "<p>The ID of the launch profile used to control access from the streaming session.</p>",
+        "StreamingSession$OwnedBy" : "<p>The user ID of the user that owns the streaming session.</p>",
+        "StreamingSession$StatusMessage" : "<p>The status message for the streaming session.</p>",
+        "StreamingSession$UpdatedBy" : "<p>The user ID of the user that most recently updated the resource.</p>",
+        "StreamingSessionStream$CreatedBy" : "<p>The user ID of the user that created the streaming session stream.</p>",
+        "StreamingSessionStream$OwnedBy" : "<p>The user ID of the user that owns the streaming session.</p>",
+        "StreamingSessionStream$StreamId" : "<p>The stream ID.</p>",
+        "StreamingSessionStream$Url" : "<p>The URL to connect to this stream using the DCV client.</p>",
+        "Studio$AdminRoleArn" : "<p>The IAM role that studio admins assume when logging in to the Nimble Studio portal.</p>",
+        "Studio$Arn" : "<p>The Amazon Resource Name (ARN) that is assigned to a studio resource and uniquely identifies it. ARNs are unique across all Regions.</p>",
+        "Studio$SsoClientId" : "<p>The Amazon Web Services SSO application client ID used to integrate with Amazon Web Services SSO to enable Amazon Web Services SSO users to log in to Nimble portal.</p>",
+        "Studio$StatusMessage" : "<p>Additional detail on the studio state.</p>",
+        "Studio$StudioId" : "<p>The unique identifier for a studio resource. In Nimble Studio, all other resources are contained in a studio resource.</p>",
+        "Studio$StudioUrl" : "<p>The address of the web page for the studio.</p>",
+        "Studio$UserRoleArn" : "<p>The IAM role that studio users assume when logging in to the Nimble Studio portal.</p>",
+        "StudioComponent$Arn" : "<p>The ARN of the resource.</p>",
+        "StudioComponent$CreatedBy" : "<p>The user ID of the user that created the studio component.</p>",
+        "StudioComponent$StatusMessage" : "<p>The status message for the studio component.</p>",
+        "StudioComponent$UpdatedBy" : "<p>The user ID of the user that most recently updated the resource.</p>",
+        "StudioComponentSummary$CreatedBy" : "<p>The user ID of the user that created the studio component.</p>",
+        "StudioComponentSummary$UpdatedBy" : "<p>The user ID of the user that most recently updated the resource.</p>",
+        "StudioMembership$IdentityStoreId" : "<p>The ID of the identity store.</p>",
+        "StudioMembership$PrincipalId" : "<p>The principal ID.</p>",
+        "Tags$member" : null,
+        "ThrottlingException$Code" : "<p>A more specific error code.</p>",
+        "ThrottlingException$Message" : "<p>A human-readable description of the error.</p>",
+        "UpdateStudioInput$AdminRoleArn" : "<p>The IAM role that Studio Admins will assume when logging in to the Nimble Studio portal.</p>",
+        "UpdateStudioInput$UserRoleArn" : "<p>The IAM role that Studio Users will assume when logging in to the Nimble Studio portal.</p>",
+        "ValidationException$Code" : "<p>A more specific error code.</p>",
+        "ValidationException$Message" : "<p>A human-readable description of the error.</p>"
       }
     }
-  },
-  "metadata": {
-    "endpointPrefix": "nimble",
-    "serviceFullName": "AmazonNimbleStudio",
-    "serviceId": "nimble",
-    "uid": "nimble-2020-08-01"
   }
 }

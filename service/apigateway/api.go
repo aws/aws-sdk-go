@@ -12724,6 +12724,11 @@ type CreateDomainNameInput struct {
 	// custom domain name.
 	MutualTlsAuthentication *MutualTlsAuthenticationInput `locationName:"mutualTlsAuthentication" type:"structure"`
 
+	// The ARN of the public certificate issued by ACM to validate ownership of
+	// your custom domain. Only required when configuring mutual TLS and using an
+	// ACM imported or private CA certificate ARN as the regionalCertificateArn.
+	OwnershipVerificationCertificateArn *string `locationName:"ownershipVerificationCertificateArn" type:"string"`
+
 	// The reference to an AWS-managed certificate that will be used by regional
 	// endpoint for this domain name. AWS Certificate Manager is the only supported
 	// source.
@@ -12811,6 +12816,12 @@ func (s *CreateDomainNameInput) SetEndpointConfiguration(v *EndpointConfiguratio
 // SetMutualTlsAuthentication sets the MutualTlsAuthentication field's value.
 func (s *CreateDomainNameInput) SetMutualTlsAuthentication(v *MutualTlsAuthenticationInput) *CreateDomainNameInput {
 	s.MutualTlsAuthentication = v
+	return s
+}
+
+// SetOwnershipVerificationCertificateArn sets the OwnershipVerificationCertificateArn field's value.
+func (s *CreateDomainNameInput) SetOwnershipVerificationCertificateArn(v string) *CreateDomainNameInput {
+	s.OwnershipVerificationCertificateArn = &v
 	return s
 }
 
@@ -15548,10 +15559,10 @@ type DomainName struct {
 	// The custom domain name as an API host name, for example, my-api.example.com.
 	DomainName *string `locationName:"domainName" type:"string"`
 
-	// The status of the DomainName migration. The valid values are AVAILABLE and
-	// UPDATING. If the status is UPDATING, the domain cannot be modified further
-	// until the existing operation is complete. If it is AVAILABLE, the domain
-	// can be updated.
+	// The status of the DomainName migration. The valid values are AVAILABLE, UPDATING,
+	// PENDING_CERTIFICATE_REIMPORT, and PENDING_OWNERSHIP_VERIFICATION. If the
+	// status is UPDATING, the domain cannot be modified further until the existing
+	// operation is complete. If it is AVAILABLE, the domain can be updated.
 	DomainNameStatus *string `locationName:"domainNameStatus" type:"string" enum:"DomainNameStatus"`
 
 	// An optional text message containing detailed information about status of
@@ -15567,6 +15578,11 @@ type DomainName struct {
 	// and the server. Clients must present a trusted certificate to access your
 	// API.
 	MutualTlsAuthentication *MutualTlsAuthentication `locationName:"mutualTlsAuthentication" type:"structure"`
+
+	// The ARN of the public certificate issued by ACM to validate ownership of
+	// your custom domain. Only required when configuring mutual TLS and using an
+	// ACM imported or private CA certificate ARN as the regionalCertificateArn.
+	OwnershipVerificationCertificateArn *string `locationName:"ownershipVerificationCertificateArn" type:"string"`
 
 	// The reference to an AWS-managed certificate that will be used for validating
 	// the regional domain name. AWS Certificate Manager is the only supported source.
@@ -15662,6 +15678,12 @@ func (s *DomainName) SetEndpointConfiguration(v *EndpointConfiguration) *DomainN
 // SetMutualTlsAuthentication sets the MutualTlsAuthentication field's value.
 func (s *DomainName) SetMutualTlsAuthentication(v *MutualTlsAuthentication) *DomainName {
 	s.MutualTlsAuthentication = v
+	return s
+}
+
+// SetOwnershipVerificationCertificateArn sets the OwnershipVerificationCertificateArn field's value.
+func (s *DomainName) SetOwnershipVerificationCertificateArn(v string) *DomainName {
+	s.OwnershipVerificationCertificateArn = &v
 	return s
 }
 
@@ -25810,6 +25832,12 @@ const (
 
 	// DomainNameStatusPending is a DomainNameStatus enum value
 	DomainNameStatusPending = "PENDING"
+
+	// DomainNameStatusPendingCertificateReimport is a DomainNameStatus enum value
+	DomainNameStatusPendingCertificateReimport = "PENDING_CERTIFICATE_REIMPORT"
+
+	// DomainNameStatusPendingOwnershipVerification is a DomainNameStatus enum value
+	DomainNameStatusPendingOwnershipVerification = "PENDING_OWNERSHIP_VERIFICATION"
 )
 
 // DomainNameStatus_Values returns all elements of the DomainNameStatus enum
@@ -25818,6 +25846,8 @@ func DomainNameStatus_Values() []string {
 		DomainNameStatusAvailable,
 		DomainNameStatusUpdating,
 		DomainNameStatusPending,
+		DomainNameStatusPendingCertificateReimport,
+		DomainNameStatusPendingOwnershipVerification,
 	}
 }
 

@@ -6617,6 +6617,8 @@ func (s *CapacityProvider) SetUpdateStatusReason(v string) *CapacityProvider {
 // capacity providers. The Fargate capacity providers are available to all accounts
 // and only need to be associated with a cluster to be used in a capacity provider
 // strategy.
+//
+// A capacity provider strategy may contain a maximum of 6 capacity providers.
 type CapacityProviderStrategyItem struct {
 	_ struct{} `type:"structure"`
 
@@ -6788,9 +6790,9 @@ type Cluster struct {
 	CapacityProviders []*string `locationName:"capacityProviders" type:"list"`
 
 	// The Amazon Resource Name (ARN) that identifies the cluster. The ARN contains
-	// the arn:aws:ecs namespace, followed by the Region of the cluster, the account
-	// ID of the cluster owner, the cluster namespace, and then the cluster name.
-	// For example, arn:aws:ecs:region:012345678910:cluster/test.
+	// the arn:aws:ecs namespace, followed by the Region of the cluster, the Amazon
+	// Web Services account ID of the cluster owner, the cluster namespace, and
+	// then the cluster name. For example, arn:aws:ecs:region:012345678910:cluster/test.
 	ClusterArn *string `locationName:"clusterArn" type:"string"`
 
 	// A user-generated string that you use to identify your cluster.
@@ -8500,8 +8502,8 @@ type ContainerInstance struct {
 
 	// The Amazon Resource Name (ARN) of the container instance. The ARN contains
 	// the arn:aws:ecs namespace, followed by the Region of the container instance,
-	// the account ID of the container instance owner, the container-instance namespace,
-	// and then the container instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
+	// the Amazon Web Services account ID of the container instance owner, the container-instance
+	// namespace, and then the container instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	ContainerInstanceArn *string `locationName:"containerInstanceArn" type:"string"`
 
 	// The ID of the container instance. For Amazon EC2 instances, this value is
@@ -9085,7 +9087,7 @@ type CreateClusterInput struct {
 
 	// The capacity provider strategy to set as the default for the cluster. When
 	// a default capacity provider strategy is set for a cluster, when calling the
-	// RunTask or CreateService APIs wtih no capacity provider strategy or launch
+	// RunTask or CreateService APIs with no capacity provider strategy or launch
 	// type specified, the default capacity provider strategy for the cluster is
 	// used.
 	//
@@ -9236,6 +9238,8 @@ type CreateServiceInput struct {
 	// If a capacityProviderStrategy is specified, the launchType parameter must
 	// be omitted. If no capacityProviderStrategy or launchType is specified, the
 	// defaultCapacityProviderStrategy for the cluster is used.
+	//
+	// A capacity provider strategy may contain a maximum of 6 capacity providers.
 	CapacityProviderStrategy []*CapacityProviderStrategyItem `locationName:"capacityProviderStrategy" type:"list"`
 
 	// Unique, case-sensitive identifier that you provide to ensure the idempotency
@@ -9371,7 +9375,7 @@ type CreateServiceInput struct {
 	PlacementConstraints []*PlacementConstraint `locationName:"placementConstraints" type:"list"`
 
 	// The placement strategy objects to use for tasks in your service. You can
-	// specify a maximum of five strategy rules per service.
+	// specify a maximum of 5 strategy rules per service.
 	PlacementStrategy []*PlacementStrategy `locationName:"placementStrategy" type:"list"`
 
 	// The platform version that your tasks in the service are running on. A platform
@@ -10881,8 +10885,9 @@ type DeregisterContainerInstanceInput struct {
 
 	// The container instance ID or full ARN of the container instance to deregister.
 	// The ARN contains the arn:aws:ecs namespace, followed by the Region of the
-	// container instance, the account ID of the container instance owner, the container-instance
-	// namespace, and then the container instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
+	// container instance, the Amazon Web Services account ID of the container instance
+	// owner, the container-instance namespace, and then the container instance
+	// ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	//
 	// ContainerInstance is a required field
 	ContainerInstance *string `locationName:"containerInstance" type:"string" required:"true"`
@@ -11151,6 +11156,8 @@ type DescribeClustersInput struct {
 	// or tasks within the cluster are included.
 	//
 	// If SETTINGS is specified, the settings for the cluster are included.
+	//
+	// If CONFIGURATIONS is specified, the configuration for the cluster is included.
 	//
 	// If STATISTICS is specified, the task and service count is included, separated
 	// by launch type.
@@ -11776,8 +11783,9 @@ type DiscoverPollEndpointInput struct {
 
 	// The container instance ID or full ARN of the container instance. The ARN
 	// contains the arn:aws:ecs namespace, followed by the Region of the container
-	// instance, the account ID of the container instance owner, the container-instance
-	// namespace, and then the container instance ID. For example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
+	// instance, the Amazon Web Services account ID of the container instance owner,
+	// the container-instance namespace, and then the container instance ID. For
+	// example, arn:aws:ecs:region:aws_account_id:container-instance/container_instance_ID.
 	ContainerInstance *string `locationName:"containerInstance" type:"string"`
 }
 
@@ -12749,9 +12757,18 @@ type HealthCheck struct {
 	// A string array representing the command that the container runs to determine
 	// if it is healthy. The string array must start with CMD to execute the command
 	// arguments directly, or CMD-SHELL to run the command with the container's
-	// default shell. For example:
+	// default shell.
+	//
+	// When you use the Amazon Web Services Management Console JSON panel, the Command
+	// Line Interface, or the APIs, you should enclose the list of commands in brackets,
+	// as shown below.
 	//
 	// [ "CMD-SHELL", "curl -f http://localhost/ || exit 1" ]
+	//
+	// You do not need to include the brackets when you use the Amazon Web Services
+	// Management Consoleas shown below.
+	//
+	// "CMD-SHELL", "curl -f http://localhost/ || exit 1"
 	//
 	// An exit code of 0 indicates success, and non-zero exit code indicates failure.
 	// For more information, see HealthCheck in the Create a container (https://docs.docker.com/engine/api/v1.35/#operation/ContainerCreate)
@@ -15144,9 +15161,10 @@ func (s *NoUpdateAvailableException) RequestID() string {
 type PlacementConstraint struct {
 	_ struct{} `type:"structure"`
 
-	// A cluster query language expression to apply to the constraint. You cannot
-	// specify an expression if the constraint type is distinctInstance. For more
-	// information, see Cluster Query Language (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html)
+	// A cluster query language expression to apply to the constraint. The expression
+	// can have a maximum length of 2000 characters. You can't specify an expression
+	// if the constraint type is distinctInstance. For more information, see Cluster
+	// query language (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/cluster-query-language.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	Expression *string `locationName:"expression" type:"string"`
 
@@ -16918,6 +16936,8 @@ type RunTaskInput struct {
 	//
 	// When you use cluster auto scaling, you must specify capacityProviderStrategy
 	// and not launchType.
+	//
+	// A capacity provider strategy may contain a maximum of 6 capacity providers.
 	CapacityProviderStrategy []*CapacityProviderStrategyItem `locationName:"capacityProviderStrategy" type:"list"`
 
 	// The short name or full Amazon Resource Name (ARN) of the cluster on which
@@ -16970,7 +16990,7 @@ type RunTaskInput struct {
 	// The network configuration for the task. This parameter is required for task
 	// definitions that use the awsvpc network mode to receive their own elastic
 	// network interface, and it is not supported for other network modes. For more
-	// information, see Task Networking (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)
+	// information, see Task networking (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-networking.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	NetworkConfiguration *NetworkConfiguration `locationName:"networkConfiguration" type:"structure"`
 
@@ -16992,13 +17012,13 @@ type RunTaskInput struct {
 	PlacementConstraints []*PlacementConstraint `locationName:"placementConstraints" type:"list"`
 
 	// The placement strategy objects to use for the task. You can specify a maximum
-	// of five strategy rules per task.
+	// of 5 strategy rules per task.
 	PlacementStrategy []*PlacementStrategy `locationName:"placementStrategy" type:"list"`
 
-	// The platform version the task should run. A platform version is only specified
-	// for tasks using the Fargate launch type. If one is not specified, the LATEST
-	// platform version is used by default. For more information, see Fargate Platform
-	// Versions (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)
+	// The platform version the task should use. A platform version is only specified
+	// for tasks hosted on Fargate. If one is not specified, the LATEST platform
+	// version is used by default. For more information, see Fargate platform versions
+	// (https://docs.aws.amazon.com/AmazonECS/latest/developerguide/platform_versions.html)
 	// in the Amazon Elastic Container Service Developer Guide.
 	PlatformVersion *string `locationName:"platformVersion" type:"string"`
 
@@ -17011,7 +17031,8 @@ type RunTaskInput struct {
 	// a task.
 	PropagateTags *string `locationName:"propagateTags" type:"string" enum:"PropagateTags"`
 
-	// The reference ID to use for the task.
+	// The reference ID to use for the task. The reference ID can have a maximum
+	// length of 1024 characters.
 	ReferenceId *string `locationName:"referenceId" type:"string"`
 
 	// An optional tag specified when a task is started. For example, if you automatically
@@ -17523,8 +17544,9 @@ type Service struct {
 	SchedulingStrategy *string `locationName:"schedulingStrategy" type:"string" enum:"SchedulingStrategy"`
 
 	// The ARN that identifies the service. The ARN contains the arn:aws:ecs namespace,
-	// followed by the Region of the service, the account ID of the service owner,
-	// the service namespace, and then the service name. For example, arn:aws:ecs:region:012345678910:service/my-service.
+	// followed by the Region of the service, the Amazon Web Services account ID
+	// of the service owner, the service namespace, and then the service name. For
+	// example, arn:aws:ecs:region:012345678910:service/my-service.
 	ServiceArn *string `locationName:"serviceArn" type:"string"`
 
 	// The name of your service. Up to 255 letters (uppercase and lowercase), numbers,
