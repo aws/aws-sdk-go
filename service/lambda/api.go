@@ -13063,10 +13063,10 @@ type ListFunctionsInput struct {
 	// the next page of results.
 	Marker *string `location:"querystring" locationName:"Marker" type:"string"`
 
-	// For Lambda@Edge functions, the Region of the master function. For example,
-	// us-east-1 filters the list of functions to only include Lambda@Edge functions
-	// replicated from a master function in US East (N. Virginia). If specified,
-	// you must set FunctionVersion to ALL.
+	// For Lambda@Edge functions, the Amazon Web Services Region of the master function.
+	// For example, us-east-1 filters the list of functions to only include Lambda@Edge
+	// functions replicated from a master function in US East (N. Virginia). If
+	// specified, you must set FunctionVersion to ALL.
 	MasterRegion *string `location:"querystring" locationName:"MasterRegion" type:"string"`
 
 	// The maximum number of functions to return in the response. Note that ListFunctions
@@ -17051,6 +17051,9 @@ const (
 	// RuntimePython38 is a Runtime enum value
 	RuntimePython38 = "python3.8"
 
+	// RuntimePython39 is a Runtime enum value
+	RuntimePython39 = "python3.9"
+
 	// RuntimeDotnetcore10 is a Runtime enum value
 	RuntimeDotnetcore10 = "dotnetcore1.0"
 
@@ -17099,6 +17102,7 @@ func Runtime_Values() []string {
 		RuntimePython36,
 		RuntimePython37,
 		RuntimePython38,
+		RuntimePython39,
 		RuntimeDotnetcore10,
 		RuntimeDotnetcore20,
 		RuntimeDotnetcore21,

@@ -12176,6 +12176,9 @@ const (
 
 	// OutputFormatXml is a OutputFormat enum value
 	OutputFormatXml = "XML"
+
+	// OutputFormatTableauhyper is a OutputFormat enum value
+	OutputFormatTableauhyper = "TABLEAUHYPER"
 )
 
 // OutputFormat_Values returns all elements of the OutputFormat enum
@@ -12188,6 +12191,7 @@ func OutputFormat_Values() []string {
 		OutputFormatAvro,
 		OutputFormatOrc,
 		OutputFormatXml,
+		OutputFormatTableauhyper,
 	}
 }
 

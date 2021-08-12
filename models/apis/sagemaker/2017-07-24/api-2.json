@@ -3564,7 +3564,8 @@
     "CandidateProperties":{
       "type":"structure",
       "members":{
-        "CandidateArtifactLocations":{"shape":"CandidateArtifactLocations"}
+        "CandidateArtifactLocations":{"shape":"CandidateArtifactLocations"},
+        "CandidateMetrics":{"shape":"MetricDataList"}
       }
     },
     "CandidateSortBy":{
@@ -10459,6 +10460,20 @@
         "Timestamp":{"shape":"Timestamp"}
       }
     },
+    "MetricDataList":{
+      "type":"list",
+      "member":{"shape":"MetricDatum"},
+      "max":40,
+      "min":0
+    },
+    "MetricDatum":{
+      "type":"structure",
+      "members":{
+        "MetricName":{"shape":"AutoMLMetricEnum"},
+        "Value":{"shape":"Float"},
+        "Set":{"shape":"MetricSetSource"}
+      }
+    },
     "MetricDefinition":{
       "type":"structure",
       "required":[
@@ -10487,6 +10502,14 @@
       "max":500,
       "min":1,
       "pattern":".+"
+    },
+    "MetricSetSource":{
+      "type":"string",
+      "enum":[
+        "Train",
+        "Validation",
+        "Test"
+      ]
     },
     "MetricValue":{"type":"float"},
     "MetricsSource":{
