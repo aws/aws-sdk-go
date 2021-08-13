@@ -18,6 +18,8 @@ const (
 	accountIDPrefixLabel   = "accountID"
 
 	outpostPrefixLabel = "outpost"
+
+	fipsLabel = "-fips"
 )
 
 // hasCustomEndpoint returns true if endpoint is a custom endpoint
@@ -31,14 +33,15 @@ type outpostAccessPointEndpointBuilder arn.OutpostAccessPointARN
 // build builds an endpoint corresponding to the outpost access point arn.
 //
 // For building an endpoint from outpost access point arn, format used is:
-// - Outpost access point endpoint format : s3-outposts.{region}.{dnsSuffix}
-// - example : s3-outposts.us-west-2.amazonaws.com
+// - Outpost access point endpoint format : s3-outposts[-fips].{region}.{dnsSuffix}
+// - example : s3-outposts[-fips].us-west-2.amazonaws.com
 //
 // Outpost AccessPoint Endpoint request are signed using "s3-outposts" as signing name.
 //
 func (o outpostAccessPointEndpointBuilder) build(req *request.Request) error {
 	resolveRegion := o.Region
 	resolveService := o.Service
+	cfgRegion := aws.StringValue(req.Config.Region)
 
 	endpointsID := resolveService
 	if resolveService == "s3-outposts" {
@@ -60,7 +63,14 @@ func (o outpostAccessPointEndpointBuilder) build(req *request.Request) error {
 		// add url host as s3-outposts
 		cfgHost := req.HTTPRequest.URL.Host
 		if strings.HasPrefix(cfgHost, endpointsID) {
-			req.HTTPRequest.URL.Host = resolveService + cfgHost[len(endpointsID):]
+			req.HTTPRequest.URL.Host = resolveService
+
+			// if configured region is fips, add fips label.
+			if s3shared.IsFIPS(cfgRegion) {
+				req.HTTPRequest.URL.Host += fipsLabel
+			}
+
+			req.HTTPRequest.URL.Host += cfgHost[len(endpointsID):]
 		}
 	}
 
@@ -89,8 +99,8 @@ type outpostBucketResourceEndpointBuilder arn.OutpostBucketARN
 // build builds the endpoint for corresponding outpost bucket arn
 //
 // For building an endpoint from outpost bucket arn, format used is:
-// - Outpost bucket arn endpoint format : s3-outposts.{region}.{dnsSuffix}
-// - example : s3-outposts.us-west-2.amazonaws.com
+// - Outpost bucket arn endpoint format : s3-outposts[-fips].{region}.{dnsSuffix}
+// - example : s3-outposts[-fips].us-west-2.amazonaws.com
 //
 // Outpost bucket arn endpoint request are signed using "s3-outposts" as signing name
 //
@@ -118,7 +128,14 @@ func (o outpostBucketResourceEndpointBuilder) build(req *request.Request) error 
 		// add url host as s3-outposts
 		cfgHost := req.HTTPRequest.URL.Host
 		if strings.HasPrefix(cfgHost, endpointsID) {
-			req.HTTPRequest.URL.Host = resolveService + cfgHost[len(endpointsID):]
+			req.HTTPRequest.URL.Host = resolveService
+
+			// if configured region is fips, add fips label.
+			if s3shared.IsFIPS(cfgRegion) {
+				req.HTTPRequest.URL.Host += fipsLabel
+			}
+
+			req.HTTPRequest.URL.Host += cfgHost[len(endpointsID):]
 		}
 	}
 

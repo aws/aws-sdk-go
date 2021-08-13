@@ -6,6 +6,7 @@ import (
 
 	"github.com/aws/aws-sdk-go/aws"
 	awsarn "github.com/aws/aws-sdk-go/aws/arn"
+	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/aws/aws-sdk-go/aws/request"
 	"github.com/aws/aws-sdk-go/internal/s3shared"
 	"github.com/aws/aws-sdk-go/internal/s3shared/arn"
@@ -119,21 +120,45 @@ func endpointHandler(req *request.Request) {
 // CreateBucket, ListRegionalBuckets which must resolve endpoint to s3-outposts.{region}.amazonaws.com
 // with region as client region and signed by s3-control if an outpost id is provided.
 func updateRequestOutpostIDEndpoint(request *request.Request) {
-	cfgRegion := aws.StringValue(request.Config.Region)
+	// signing name and resolved service for outpost id
+	resolveService := "s3-outposts"
 
-	if !hasCustomEndpoint(request) {
-		serviceEndpointLabel := "s3-outposts."
-
-		// request url
-		request.HTTPRequest.URL.Host = serviceEndpointLabel + cfgRegion + ".amazonaws.com"
-
-		// disable the host prefix for outpost access points
-		request.Config.DisableEndpointHostPrefix = aws.Bool(true)
+	if hasCustomEndpoint(request) {
+		// redirect signer even for custom endpoint
+		request.ClientInfo.SigningName = resolveService
+		return
 	}
 
+	cfgRegion := aws.StringValue(request.Config.Region)
+
+	// endpoint id to replace from the resolved endpoint
+	endpointsID := "s3-control"
+
+	// resolve regional s3 control endpoint
+	endpoint, err := resolveRegionalEndpoint(request, cfgRegion, endpointsID)
+	if err != nil {
+		request.Error = fmt.Errorf("endpoint resolver failed to find an endpoint, %v", err.Error())
+		return
+	}
+
+	endpoint.URL = endpoints.AddScheme(endpoint.URL, aws.BoolValue(request.Config.DisableSSL))
+
+	if err = updateRequestEndpoint(request, endpoint.URL); err != nil {
+		request.Error = err
+		return
+	}
+
+	// add url host as s3-outposts
+	cfgHost := request.HTTPRequest.URL.Host
+	if strings.HasPrefix(cfgHost, endpointsID) {
+		request.HTTPRequest.URL.Host = resolveService + cfgHost[len(endpointsID):]
+	}
+
+	// disable the host prefix for outpost access points
+	request.Config.DisableEndpointHostPrefix = aws.Bool(true)
+
 	// signer redirection
-	request.ClientInfo.SigningName = "s3-outposts"
-	request.ClientInfo.SigningRegion = cfgRegion
+	request.ClientInfo.SigningName = resolveService
 }
 
 func updateRequestOutpostAccessPointEndpoint(req *request.Request, accessPoint arn.OutpostAccessPointARN) error {
@@ -202,8 +227,8 @@ func validateOutpostEndpoint(req *request.Request, resource arn.Resource) error 
 	}
 
 	// resource configured with FIPS as region is not supported by outposts
-	if resReq.UseFIPS() {
-		return s3shared.NewFIPSConfigurationError(resource, req.ClientInfo.PartitionID,
+	if resReq.UseFIPS() && resReq.IsCrossRegion() {
+		return s3shared.NewClientConfiguredForFIPSError(resource, req.ClientInfo.PartitionID,
 			aws.StringValue(req.Config.Region), nil)
 	}
 
