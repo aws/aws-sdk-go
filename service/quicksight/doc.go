@@ -4,9 +4,9 @@
 // requests to Amazon QuickSight.
 //
 // Amazon QuickSight is a fully managed, serverless business intelligence service
-// for the Cloud that makes it easy to extend data and insights to every user
-// in your organization. This API reference contains documentation for a programming
-// interface that you can use to manage Amazon QuickSight.
+// for the Amazon Web Services Cloud that makes it easy to extend data and insights
+// to every user in your organization. This API reference contains documentation
+// for a programming interface that you can use to manage Amazon QuickSight.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/quicksight-2018-04-01 for more information on this service.
 //

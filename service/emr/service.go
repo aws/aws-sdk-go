@@ -13,7 +13,7 @@ import (
 )
 
 // EMR provides the API operation methods for making requests to
-// Amazon Elastic MapReduce. See this package's package overview docs
+// Amazon EMR. See this package's package overview docs
 // for details on the service.
 //
 // EMR methods are safe to use concurrently. It is not safe to

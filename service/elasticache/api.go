@@ -64,10 +64,10 @@ func (c *ElastiCache) AddTagsToResourceRequest(input *AddTagsToResourceInput) (r
 // replication group. For more information, see Resource-level permissions (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/IAM.ResourceLevelPermissions.html).
 //
 // For example, you can use cost-allocation tags to your ElastiCache resources,
-// AWS generates a cost allocation report as a comma-separated value (CSV) file
-// with your usage and costs aggregated by your tags. You can apply tags that
-// represent business categories (such as cost centers, application names, or
-// owners) to organize your costs across multiple services.
+// Amazon generates a cost allocation report as a comma-separated value (CSV)
+// file with your usage and costs aggregated by your tags. You can apply tags
+// that represent business categories (such as cost centers, application names,
+// or owners) to organize your costs across multiple services.
 //
 // For more information, see Using Cost Allocation Tags in Amazon ElastiCache
 // (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Tagging.html)
@@ -1265,7 +1265,7 @@ func (c *ElastiCache) CreateReplicationGroupRequest(input *CreateReplicationGrou
 // For more information, see Creating a Subnet Group (https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/SubnetGroups.Creating.html).
 // For versions below 5.0.6, the limit is 250 per cluster.
 //
-// To request a limit increase, see AWS Service Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
+// To request a limit increase, see Amazon Service Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html)
 // and choose the limit type Nodes per cluster per instance type.
 //
 // When a Redis (cluster mode disabled) replication group has been successfully
@@ -5282,7 +5282,7 @@ func (c *ElastiCache) DisassociateGlobalReplicationGroupRequest(input *Disassoci
 //
 // Remove a secondary cluster from the Global datastore using the Global datastore
 // name. The secondary cluster will no longer receive updates from the primary
-// cluster, but will remain as a standalone cluster in that AWS region.
+// cluster, but will remain as a standalone cluster in that Amazon region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7398,8 +7398,8 @@ func (c *ElastiCache) TestFailoverRequest(input *TestFailoverInput) (req *reques
 // Note the following
 //
 //    * A customer can use this operation to test automatic failover on up to
-//    5 shards (called node groups in the ElastiCache API and AWS CLI) in any
-//    rolling 24-hour period.
+//    5 shards (called node groups in the ElastiCache API and Amazon CLI) in
+//    any rolling 24-hour period.
 //
 //    * If calling this operation on shards in different clusters (called replication
 //    groups in the API and CLI), the calls can be made concurrently.
@@ -7409,7 +7409,7 @@ func (c *ElastiCache) TestFailoverRequest(input *TestFailoverInput) (req *reques
 //    must complete before a subsequent call can be made.
 //
 //    * To determine whether the node replacement is complete you can check
-//    Events using the Amazon ElastiCache console, the AWS CLI, or the ElastiCache
+//    Events using the Amazon ElastiCache console, the Amazon CLI, or the ElastiCache
 //    API. Look for the following automatic failover related events, listed
 //    here in order of occurrance: Replication group message: Test Failover
 //    API called for node group <node-group-id> Cache cluster message: Failover
@@ -7492,7 +7492,7 @@ type AddTagsToResourceInput struct {
 	// or arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot. ElastiCache
 	// resources are cluster and snapshot.
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and Amazon
 	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// ResourceName is a required field
@@ -7591,9 +7591,9 @@ type AuthorizeCacheSecurityGroupIngressInput struct {
 	// EC2SecurityGroupName is a required field
 	EC2SecurityGroupName *string `type:"string" required:"true"`
 
-	// The AWS account number of the Amazon EC2 security group owner. Note that
-	// this is not the same thing as an AWS access key ID - you must provide a valid
-	// AWS account number for this parameter.
+	// The Amazon account number of the Amazon EC2 security group owner. Note that
+	// this is not the same thing as an Amazon access key ID - you must provide
+	// a valid Amazon account number for this parameter.
 	//
 	// EC2SecurityGroupOwnerId is a required field
 	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`
@@ -8387,7 +8387,7 @@ type CacheNode struct {
 
 	// The cache node identifier. A node ID is a numeric identifier (0001, 0002,
 	// etc.). The combination of cluster ID and node ID uniquely identifies every
-	// cache node used in a customer's AWS account.
+	// cache node used in a customer's Amazon account.
 	CacheNodeId *string `type:"string"`
 
 	// The current state of this cache node, one of the following values: available,
@@ -8851,7 +8851,7 @@ type CacheSecurityGroup struct {
 	// security group.
 	EC2SecurityGroups []*EC2SecurityGroup `locationNameList:"EC2SecurityGroup" type:"list"`
 
-	// The AWS account ID of the cache security group owner.
+	// The Amazon account ID of the cache security group owner.
 	OwnerId *string `type:"string"`
 }
 
@@ -10079,14 +10079,14 @@ type CreateGlobalReplicationGroupInput struct {
 	GlobalReplicationGroupDescription *string `type:"string"`
 
 	// The suffix name of a Global datastore. Amazon ElastiCache automatically applies
-	// a prefix to the Global datastore ID when it is created. Each AWS Region has
-	// its own prefix. For instance, a Global datastore ID created in the US-West-1
+	// a prefix to the Global datastore ID when it is created. Each Amazon Region
+	// has its own prefix. For instance, a Global datastore ID created in the US-West-1
 	// region will begin with "dsdfu" along with the suffix name you provide. The
 	// suffix, combined with the auto-generated prefix, guarantees uniqueness of
 	// the Global datastore name across multiple regions.
 	//
-	// For a full list of AWS Regions and their respective Global datastore iD prefixes,
-	// see Using the AWS CLI with Global datastores (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores-CLI.html).
+	// For a full list of Amazon Regions and their respective Global datastore iD
+	// prefixes, see Using the Amazon CLI with Global datastores (http://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/Redis-Global-Datastores-CLI.html).
 	//
 	// GlobalReplicationGroupIdSuffix is a required field
 	GlobalReplicationGroupIdSuffix *string `type:"string" required:"true"`
@@ -10146,9 +10146,9 @@ type CreateGlobalReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Consists of a primary cluster that accepts writes and an associated secondary
-	// cluster that resides in a different AWS region. The secondary cluster accepts
-	// only reads. The primary cluster automatically replicates updates to the secondary
-	// cluster.
+	// cluster that resides in a different Amazon region. The secondary cluster
+	// accepts only reads. The primary cluster automatically replicates updates
+	// to the secondary cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 	//    datastore, which is what you use to associate a secondary cluster.
@@ -11354,9 +11354,9 @@ type DecreaseNodeGroupsInGlobalReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Consists of a primary cluster that accepts writes and an associated secondary
-	// cluster that resides in a different AWS region. The secondary cluster accepts
-	// only reads. The primary cluster automatically replicates updates to the secondary
-	// cluster.
+	// cluster that resides in a different Amazon region. The secondary cluster
+	// accepts only reads. The primary cluster automatically replicates updates
+	// to the secondary cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 	//    datastore, which is what you use to associate a secondary cluster.
@@ -11802,9 +11802,9 @@ type DeleteGlobalReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Consists of a primary cluster that accepts writes and an associated secondary
-	// cluster that resides in a different AWS region. The secondary cluster accepts
-	// only reads. The primary cluster automatically replicates updates to the secondary
-	// cluster.
+	// cluster that resides in a different Amazon region. The secondary cluster
+	// accepts only reads. The primary cluster automatically replicates updates
+	// to the secondary cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 	//    datastore, which is what you use to associate a secondary cluster.
@@ -14182,7 +14182,8 @@ type DisassociateGlobalReplicationGroupInput struct {
 	// ReplicationGroupId is a required field
 	ReplicationGroupId *string `type:"string" required:"true"`
 
-	// The AWS region of secondary cluster you wish to remove from the Global datastore
+	// The Amazon region of secondary cluster you wish to remove from the Global
+	// datastore
 	//
 	// ReplicationGroupRegion is a required field
 	ReplicationGroupRegion *string `type:"string" required:"true"`
@@ -14239,9 +14240,9 @@ type DisassociateGlobalReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Consists of a primary cluster that accepts writes and an associated secondary
-	// cluster that resides in a different AWS region. The secondary cluster accepts
-	// only reads. The primary cluster automatically replicates updates to the secondary
-	// cluster.
+	// cluster that resides in a different Amazon region. The secondary cluster
+	// accepts only reads. The primary cluster automatically replicates updates
+	// to the secondary cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 	//    datastore, which is what you use to associate a secondary cluster.
@@ -14271,7 +14272,7 @@ type EC2SecurityGroup struct {
 	// The name of the Amazon EC2 security group.
 	EC2SecurityGroupName *string `type:"string"`
 
-	// The AWS account ID of the Amazon EC2 security group owner.
+	// The Amazon account ID of the Amazon EC2 security group owner.
 	EC2SecurityGroupOwnerId *string `type:"string"`
 
 	// The status of the Amazon EC2 security group.
@@ -14459,7 +14460,7 @@ type FailoverGlobalReplicationGroupInput struct {
 	// GlobalReplicationGroupId is a required field
 	GlobalReplicationGroupId *string `type:"string" required:"true"`
 
-	// The AWS region of the primary cluster of the Global datastore
+	// The Amazon region of the primary cluster of the Global datastore
 	//
 	// PrimaryRegion is a required field
 	PrimaryRegion *string `type:"string" required:"true"`
@@ -14521,9 +14522,9 @@ type FailoverGlobalReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Consists of a primary cluster that accepts writes and an associated secondary
-	// cluster that resides in a different AWS region. The secondary cluster accepts
-	// only reads. The primary cluster automatically replicates updates to the secondary
-	// cluster.
+	// cluster that resides in a different Amazon region. The secondary cluster
+	// accepts only reads. The primary cluster automatically replicates updates
+	// to the secondary cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 	//    datastore, which is what you use to associate a secondary cluster.
@@ -14636,9 +14637,9 @@ func (s *GlobalNodeGroup) SetSlots(v string) *GlobalNodeGroup {
 }
 
 // Consists of a primary cluster that accepts writes and an associated secondary
-// cluster that resides in a different AWS region. The secondary cluster accepts
-// only reads. The primary cluster automatically replicates updates to the secondary
-// cluster.
+// cluster that resides in a different Amazon region. The secondary cluster
+// accepts only reads. The primary cluster automatically replicates updates
+// to the secondary cluster.
 //
 //    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 //    datastore, which is what you use to associate a secondary cluster.
@@ -14825,7 +14826,7 @@ func (s *GlobalReplicationGroupInfo) SetGlobalReplicationGroupMemberRole(v strin
 }
 
 // A member of a Global datastore. It contains the Replication Group Id, the
-// AWS region and the role of the replication group.
+// Amazon region and the role of the replication group.
 type GlobalReplicationGroupMember struct {
 	_ struct{} `type:"structure"`
 
@@ -14835,7 +14836,7 @@ type GlobalReplicationGroupMember struct {
 	// The replication group id of the Global datastore member.
 	ReplicationGroupId *string `type:"string"`
 
-	// The AWS region of the Global datastore member.
+	// The Amazon region of the Global datastore member.
 	ReplicationGroupRegion *string `type:"string"`
 
 	// Indicates the role of the replication group, primary or secondary.
@@ -14904,7 +14905,7 @@ type IncreaseNodeGroupsInGlobalReplicationGroupInput struct {
 	// NodeGroupCount is a required field
 	NodeGroupCount *int64 `type:"integer" required:"true"`
 
-	// Describes the replication group IDs, the AWS regions where they are stored
+	// Describes the replication group IDs, the Amazon regions where they are stored
 	// and the shard configuration for each that comprise the Global datastore
 	RegionalConfigurations []*RegionalConfiguration `locationNameList:"RegionalConfiguration" type:"list"`
 }
@@ -14976,9 +14977,9 @@ type IncreaseNodeGroupsInGlobalReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Consists of a primary cluster that accepts writes and an associated secondary
-	// cluster that resides in a different AWS region. The secondary cluster accepts
-	// only reads. The primary cluster automatically replicates updates to the secondary
-	// cluster.
+	// cluster that resides in a different Amazon region. The secondary cluster
+	// accepts only reads. The primary cluster automatically replicates updates
+	// to the secondary cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 	//    datastore, which is what you use to associate a secondary cluster.
@@ -15227,8 +15228,8 @@ type ListTagsForResourceInput struct {
 	// of tags, for example arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster
 	// or arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot.
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
-	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and Amazon
+	// Web Services Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// ResourceName is a required field
 	ResourceName *string `type:"string" required:"true"`
@@ -16055,9 +16056,9 @@ type ModifyGlobalReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Consists of a primary cluster that accepts writes and an associated secondary
-	// cluster that resides in a different AWS region. The secondary cluster accepts
-	// only reads. The primary cluster automatically replicates updates to the secondary
-	// cluster.
+	// cluster that resides in a different Amazon region. The secondary cluster
+	// accepts only reads. The primary cluster automatically replicates updates
+	// to the secondary cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 	//    datastore, which is what you use to associate a secondary cluster.
@@ -16161,8 +16162,7 @@ type ModifyReplicationGroupInput struct {
 	// Specifies the destination, format and type of the logs.
 	LogDeliveryConfigurations []*LogDeliveryConfigurationRequest `locationNameList:"LogDeliveryConfigurationRequest" type:"list"`
 
-	// A list of tags to be added to this resource. A tag is a key-value pair. A
-	// tag key must be accompanied by a tag value, although null is accepted.
+	// A flag to indicate MultiAZ is enabled.
 	MultiAZEnabled *bool `type:"boolean"`
 
 	// Deprecated. This parameter is not used.
@@ -17872,9 +17872,9 @@ type RebalanceSlotsInGlobalReplicationGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Consists of a primary cluster that accepts writes and an associated secondary
-	// cluster that resides in a different AWS region. The secondary cluster accepts
-	// only reads. The primary cluster automatically replicates updates to the secondary
-	// cluster.
+	// cluster that resides in a different Amazon region. The secondary cluster
+	// accepts only reads. The primary cluster automatically replicates updates
+	// to the secondary cluster.
 	//
 	//    * The GlobalReplicationGroupIdSuffix represents the name of the Global
 	//    datastore, which is what you use to associate a secondary cluster.
@@ -18017,7 +18017,7 @@ type RegionalConfiguration struct {
 	// ReplicationGroupId is a required field
 	ReplicationGroupId *string `type:"string" required:"true"`
 
-	// The AWS region where the cluster is stored
+	// The Amazon region where the cluster is stored
 	//
 	// ReplicationGroupRegion is a required field
 	ReplicationGroupRegion *string `type:"string" required:"true"`
@@ -18094,7 +18094,7 @@ type RemoveTagsFromResourceInput struct {
 	// removed, for example arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster
 	// or arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot.
 	//
-	// For more information about ARNs, see Amazon Resource Names (ARNs) and AWS
+	// For more information about ARNs, see Amazon Resource Names (ARNs) and Amazon
 	// Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html).
 	//
 	// ResourceName is a required field
@@ -18221,6 +18221,9 @@ type ReplicationGroup struct {
 	// A group of settings to be applied to the replication group, either immediately
 	// or during the next maintenance window.
 	PendingModifiedValues *ReplicationGroupPendingModifiedValues `type:"structure"`
+
+	// The date and time when the cluster was created.
+	ReplicationGroupCreateTime *time.Time `type:"timestamp"`
 
 	// The identifier for the replication group.
 	ReplicationGroupId *string `type:"string"`
@@ -18377,6 +18380,12 @@ func (s *ReplicationGroup) SetNodeGroups(v []*NodeGroup) *ReplicationGroup {
 // SetPendingModifiedValues sets the PendingModifiedValues field's value.
 func (s *ReplicationGroup) SetPendingModifiedValues(v *ReplicationGroupPendingModifiedValues) *ReplicationGroup {
 	s.PendingModifiedValues = v
+	return s
+}
+
+// SetReplicationGroupCreateTime sets the ReplicationGroupCreateTime field's value.
+func (s *ReplicationGroup) SetReplicationGroupCreateTime(v time.Time) *ReplicationGroup {
+	s.ReplicationGroupCreateTime = &v
 	return s
 }
 
@@ -18951,9 +18960,9 @@ type RevokeCacheSecurityGroupIngressInput struct {
 	// EC2SecurityGroupName is a required field
 	EC2SecurityGroupName *string `type:"string" required:"true"`
 
-	// The AWS account number of the Amazon EC2 security group owner. Note that
-	// this is not the same thing as an AWS access key ID - you must provide a valid
-	// AWS account number for this parameter.
+	// The Amazon account number of the Amazon EC2 security group owner. Note that
+	// this is not the same thing as an Amazon access key ID - you must provide
+	// a valid Amazon account number for this parameter.
 	//
 	// EC2SecurityGroupOwnerId is a required field
 	EC2SecurityGroupOwnerId *string `type:"string" required:"true"`

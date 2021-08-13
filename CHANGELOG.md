@@ -1,3 +1,15 @@
+Release v1.40.22 (2021-08-13)
+===
+
+### Service Client Updates
+* `service/customer-profiles`: Updates service API and documentation
+* `service/elasticache`: Updates service API and documentation
+  * This release adds ReplicationGroupCreateTime field to ReplicationGroup which indicates the UTC time when ElastiCache ReplicationGroup is created
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR customers can now specify custom AMIs at the instance level in their clusters. This allows using custom AMIs in clusters that have instances with different instruction set architectures, e.g. m5.xlarge (x86) and m6g.xlarge (ARM).
+* `service/quicksight`: Updates service documentation
+  * Documentation updates for QuickSight.
+
 Release v1.40.21 (2021-08-12)
 ===
 

@@ -3665,7 +3665,8 @@
         "KmsKeyId":{"shape":"String"},
         "ARN":{"shape":"String"},
         "UserGroupIds":{"shape":"UserGroupIdList"},
-        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"}
+        "LogDeliveryConfigurations":{"shape":"LogDeliveryConfigurationList"},
+        "ReplicationGroupCreateTime":{"shape":"TStamp"}
       },
       "wrapper":true
     },

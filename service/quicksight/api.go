@@ -154,8 +154,8 @@ func (c *QuickSight) CreateAccountCustomizationRequest(input *CreateAccountCusto
 
 // CreateAccountCustomization API operation for Amazon QuickSight.
 //
-// Creates Amazon QuickSight customizations the current Region;. Currently,
-// you can add a custom default theme by using the CreateAccountCustomization
+// Creates Amazon QuickSight customizations the current Amazon Web Services
+// Region;. Currently, you can add a custom default theme by using the CreateAccountCustomization
 // or UpdateAccountCustomization API operation. To further customize QuickSight
 // by removing QuickSight sample assets and videos for all new users, see Customizing
 // QuickSight (https://docs.aws.amazon.com/quicksight/latest/user/customizing-quicksight.html)
@@ -1893,8 +1893,8 @@ func (c *QuickSight) DeleteAccountCustomizationRequest(input *DeleteAccountCusto
 
 // DeleteAccountCustomization API operation for Amazon QuickSight.
 //
-// Deletes all Amazon QuickSight customizations in this Region; for the specified
-// Amazon Web Services account; and QuickSight namespace.
+// Deletes all Amazon QuickSight customizations in this Amazon Web Services
+// Region; for the specified Amazon Web Services account; and QuickSight namespace.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3612,44 +3612,48 @@ func (c *QuickSight) DescribeAccountCustomizationRequest(input *DescribeAccountC
 // DescribeAccountCustomization API operation for Amazon QuickSight.
 //
 // Describes the customizations associated with the provided Amazon Web Services
-// account; and Amazon QuickSight namespace in an Region;. The QuickSight console
-// evaluates which customizations to apply by running this API operation with
-// the Resolved flag included.
+// account; and Amazon QuickSight namespace in an Amazon Web Services Region;.
+// The QuickSight console evaluates which customizations to apply by running
+// this API operation with the Resolved flag included.
 //
 // To determine what customizations display when you run this command, it can
 // help to visualize the relationship of the entities involved.
 //
 //    * Amazon Web Services account; - The Amazon Web Services account; exists
-//    at the top of the hierarchy. It has the potential to use all of the Regions;
-//    and AWS Services. When you subscribe to QuickSight, you choose one Region;
-//    to use as your home Region. That's where your free SPICE capacity is located.
-//    You can use QuickSight in any supported Region;.
+//    at the top of the hierarchy. It has the potential to use all of the Amazon
+//    Web Services Regions; and AWS Services. When you subscribe to QuickSight,
+//    you choose one Amazon Web Services Region; to use as your home Region.
+//    That's where your free SPICE capacity is located. You can use QuickSight
+//    in any supported Amazon Web Services Region;.
 //
-//    * Region; - In each Region; where you sign in to QuickSight at least once,
-//    QuickSight acts as a separate instance of the same service. If you have
-//    a user directory, it resides in us-east-1, which is the US East (N. Virginia).
-//    Generally speaking, these users have access to QuickSight in any Region;,
+//    * Amazon Web Services Region; - In each Amazon Web Services Region; where
+//    you sign in to QuickSight at least once, QuickSight acts as a separate
+//    instance of the same service. If you have a user directory, it resides
+//    in us-east-1, which is the US East (N. Virginia). Generally speaking,
+//    these users have access to QuickSight in any Amazon Web Services Region;,
 //    unless they are constrained to a namespace. To run the command in a different
-//    Region;, you change your Region settings. If you're using the AWS CLI,
-//    you can use one of the following options: Use command line options (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html).
+//    Amazon Web Services Region;, you change your Region settings. If you're
+//    using the AWS CLI, you can use one of the following options: Use command
+//    line options (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-options.html).
 //    Use named profiles (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html).
-//    Run aws configure to change your default Region;. Use Enter to key the
-//    same settings for your keys. For more information, see Configuring the
-//    AWS CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
+//    Run aws configure to change your default Amazon Web Services Region;.
+//    Use Enter to key the same settings for your keys. For more information,
+//    see Configuring the AWS CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html).
 //
 //    * Namespace - A QuickSight namespace is a partition that contains users
 //    and assets (data sources, datasets, dashboards, and so on). To access
 //    assets that are in a specific namespace, users and groups must also be
 //    part of the same namespace. People who share a namespace are completely
 //    isolated from users and assets in other namespaces, even if they are in
-//    the same Amazon Web Services account; and Region;.
+//    the same Amazon Web Services account; and Amazon Web Services Region;.
 //
-//    * Applied customizations - Within an Region;, a set of QuickSight customizations
-//    can apply to an Amazon Web Services account; or to a namespace. Settings
-//    that you apply to a namespace override settings that you apply to an Amazon
-//    Web Services account;. All settings are isolated to a single Region;.
-//    To apply them in other Regions;, run the CreateAccountCustomization command
-//    in each Region; where you want to apply the same customizations.
+//    * Applied customizations - Within an Amazon Web Services Region;, a set
+//    of QuickSight customizations can apply to an Amazon Web Services account;
+//    or to a namespace. Settings that you apply to a namespace override settings
+//    that you apply to an Amazon Web Services account;. All settings are isolated
+//    to a single Amazon Web Services Region;. To apply them in other Amazon
+//    Web Services Regions;, run the CreateAccountCustomization command in each
+//    Amazon Web Services Region; where you want to apply the same customizations.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6316,7 +6320,8 @@ func (c *QuickSight) GetDashboardEmbedUrlRequest(input *GetDashboardEmbedUrlInpu
 //
 //    * The resulting user session is valid for 10 hours.
 //
-// For more information, see Embedded Analytics (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics.html)
+// For more information, see Embedding Analytics Using GetDashboardEmbedUrl
+// (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-deprecated.html)
 // in the Amazon QuickSight User Guide.
 //
 // For more information about the high-level steps for embedding and for an
@@ -6463,7 +6468,7 @@ func (c *QuickSight) GetSessionEmbedUrlRequest(input *GetSessionEmbedUrlInput) (
 // For more information, see the following sections in the Amazon QuickSight
 // User Guide:
 //
-//    * Embedding the Amazon QuickSight Console (https://docs.aws.amazon.com/quicksight/latest/user/embedding-the-quicksight-console.html)
+//    * Embedding the Amazon QuickSight Console Using GetSessionEmbedUrl (https://docs.aws.amazon.com/quicksight/latest/user/embedded-analytics-full-console-for-authenticated-users-get.html)
 //
 //    * Customizing Access to the Amazon QuickSight Console (https://docs.aws.amazon.com/quicksight/latest/user/customizing-permissions-to-the-quicksight-console.html)
 //
@@ -7039,7 +7044,7 @@ func (c *QuickSight) ListDataSetsRequest(input *ListDataSetsInput) (req *request
 // ListDataSets API operation for Amazon QuickSight.
 //
 // Lists all of the datasets belonging to the current Amazon Web Services account;
-// in an Region;.
+// in an Amazon Web Services Region;.
 //
 // The permissions resource is arn:aws:quicksight:region:aws-account-id:dataset/*.
 //
@@ -7194,8 +7199,8 @@ func (c *QuickSight) ListDataSourcesRequest(input *ListDataSourcesInput) (req *r
 
 // ListDataSources API operation for Amazon QuickSight.
 //
-// Lists data sources in current Region; that belong to this Amazon Web Services
-// account;.
+// Lists data sources in current Amazon Web Services Region; that belong to
+// this Amazon Web Services account;.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10309,8 +10314,8 @@ func (c *QuickSight) UpdateAccountCustomizationRequest(input *UpdateAccountCusto
 
 // UpdateAccountCustomization API operation for Amazon QuickSight.
 //
-// Updates Amazon QuickSight customizations the current Region;. Currently,
-// the only customization you can use is a theme.
+// Updates Amazon QuickSight customizations the current Amazon Web Services
+// Region;. Currently, the only customization you can use is a theme.
 //
 // You can use customizations for your Amazon Web Services account; or, if you
 // specify a namespace, for a QuickSight namespace instead. Customizations that
@@ -12567,7 +12572,7 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 // The Amazon QuickSight customizations associated with your Amazon Web Services
-// account; or a QuickSight namespace in a specific Region;.
+// account; or a QuickSight namespace in a specific Amazon Web Services Region;.
 type AccountCustomization struct {
 	_ struct{} `type:"structure"`
 
@@ -14087,8 +14092,9 @@ func (s *ConflictException) RequestID() string {
 type CreateAccountCustomizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations you're adding in the current Region;. You can
-	// add these to an Amazon Web Services account; and a QuickSight namespace.
+	// The QuickSight customizations you're adding in the current Amazon Web Services
+	// Region;. You can add these to an Amazon Web Services account; and a QuickSight
+	// namespace.
 	//
 	// For example, you can add a default theme by setting AccountCustomization
 	// to the midnight theme: "AccountCustomization": { "DefaultTheme": "arn:aws:quicksight::aws:theme/MIDNIGHT"
@@ -14181,7 +14187,8 @@ func (s *CreateAccountCustomizationInput) SetTags(v []*Tag) *CreateAccountCustom
 type CreateAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations you're adding in the current Region;.
+	// The QuickSight customizations you're adding in the current Amazon Web Services
+	// Region;.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the customization that you created for
@@ -14585,7 +14592,7 @@ type CreateDashboardInput struct {
 	// the analysis to a template by using the CreateTemplate API operation. For
 	// SourceTemplate, specify the Amazon Resource Name (ARN) of the source template.
 	// The SourceTemplateARN can contain any Amazon Web Services account; and any
-	// QuickSight-supported Region;.
+	// QuickSight-supported Amazon Web Services Region;.
 	//
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
@@ -14832,8 +14839,8 @@ type CreateDataSetInput struct {
 	// A set of one or more definitions of a ColumnLevelPermissionRule .
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
-	// An ID for the dataset that you want to create. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// An ID for the dataset that you want to create. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	//
 	// DataSetId is a required field
 	DataSetId *string `type:"string" required:"true"`
@@ -15088,8 +15095,8 @@ type CreateDataSetOutput struct {
 	// The Amazon Resource Name (ARN) of the dataset.
 	Arn *string `type:"string"`
 
-	// The ID for the dataset that you want to create. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// The ID for the dataset that you want to create. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	DataSetId *string `type:"string"`
 
 	// The ARN for the ingestion, which is triggered as a result of dataset creation
@@ -15165,8 +15172,8 @@ type CreateDataSourceInput struct {
 	// Currently, only credentials based on user name and password are supported.
 	Credentials *DataSourceCredentials `type:"structure" sensitive:"true"`
 
-	// An ID for the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// An ID for the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `type:"string" required:"true"`
@@ -15353,8 +15360,8 @@ type CreateDataSourceOutput struct {
 	// The status of creating the data source.
 	CreationStatus *string `type:"string" enum:"ResourceStatus"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	DataSourceId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -16432,8 +16439,9 @@ type CreateNamespaceOutput struct {
 	// The ARN of the QuickSight namespace you created.
 	Arn *string `type:"string"`
 
-	// The Region; that you want to use for the free SPICE capacity for the new
-	// namespace. This is set to the region that you run CreateNamespace in.
+	// The Amazon Web Services Region; that you want to use for the free SPICE capacity
+	// for the new namespace. This is set to the region that you run CreateNamespace
+	// in.
 	CapacityRegion *string `type:"string"`
 
 	// The status of the creation of the namespace. This is an asynchronous process.
@@ -16666,7 +16674,7 @@ type CreateTemplateInput struct {
 	// Amazon Resource Name (ARN). For SourceTemplate, specify the ARN of the source
 	// template. For SourceAnalysis, specify the ARN of the source analysis. The
 	// SourceTemplate ARN can contain any Amazon Web Services account; and any QuickSight-supported
-	// Region;.
+	// Amazon Web Services Region;.
 	//
 	// Use the DataSetReferences entity within SourceTemplate or SourceAnalysis
 	// to list the replacement datasets for the placeholders listed in the original.
@@ -16680,7 +16688,7 @@ type CreateTemplateInput struct {
 	Tags []*Tag `min:"1" type:"list"`
 
 	// An ID for the template that you want to create. This template is unique per
-	// Region; in each Amazon Web Services account;.
+	// Amazon Web Services Region; in each Amazon Web Services account;.
 	//
 	// TemplateId is a required field
 	TemplateId *string `location:"uri" locationName:"TemplateId" min:"1" type:"string" required:"true"`
@@ -17045,8 +17053,8 @@ type CreateThemeInput struct {
 	// add to the resource.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// An ID for the theme that you want to create. The theme ID is unique per Region;
-	// in each Amazon Web Services account;.
+	// An ID for the theme that you want to create. The theme ID is unique per Amazon
+	// Web Services Region; in each Amazon Web Services account;.
 	//
 	// ThemeId is a required field
 	ThemeId *string `location:"uri" locationName:"ThemeId" min:"1" type:"string" required:"true"`
@@ -18440,8 +18448,8 @@ type DataSource struct {
 	// The time that this data source was created.
 	CreatedTime *time.Time `type:"timestamp"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	DataSourceId *string `type:"string"`
 
 	// The parameters that Amazon QuickSight uses to connect to your underlying
@@ -19059,7 +19067,7 @@ type DeleteAccountCustomizationInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID for the Amazon Web Services account; that you want to delete QuickSight
-	// customizations from in this Region;.
+	// customizations from in this Amazon Web Services Region;.
 	//
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
@@ -19410,8 +19418,8 @@ type DeleteDataSetInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID for the dataset that you want to create. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// The ID for the dataset that you want to create. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -19467,8 +19475,8 @@ type DeleteDataSetOutput struct {
 	// The Amazon Resource Name (ARN) of the dataset.
 	Arn *string `type:"string"`
 
-	// The ID for the dataset that you want to create. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// The ID for the dataset that you want to create. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	DataSetId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -19520,8 +19528,8 @@ type DeleteDataSourceInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
@@ -19577,8 +19585,8 @@ type DeleteDataSourceOutput struct {
 	// The Amazon Resource Name (ARN) of the data source that you deleted.
 	Arn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	DataSourceId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -21102,7 +21110,8 @@ func (s *DescribeAccountCustomizationInput) SetResolved(v bool) *DescribeAccount
 type DescribeAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations that exist in the current Region;.
+	// The QuickSight customizations that exist in the current Amazon Web Services
+	// Region;.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the customization that's associated with
@@ -21220,7 +21229,7 @@ type DescribeAccountSettingsOutput struct {
 	// to as a QuickSight "account" even though it's technically not an account
 	// by itself. Instead, it's a subscription to the QuickSight service for your
 	// Amazon Web Services account;. The edition that you subscribe to applies to
-	// QuickSight in every Region; where you use it.
+	// QuickSight in every Amazon Web Services Region; where you use it.
 	AccountSettings *AccountSettings `type:"structure"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -21732,8 +21741,8 @@ type DescribeDataSetInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID for the dataset that you want to create. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// The ID for the dataset that you want to create. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -21832,8 +21841,8 @@ type DescribeDataSetPermissionsInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID for the dataset that you want to create. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// The ID for the dataset that you want to create. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -21889,8 +21898,8 @@ type DescribeDataSetPermissionsOutput struct {
 	// The Amazon Resource Name (ARN) of the dataset.
 	DataSetArn *string `type:"string"`
 
-	// The ID for the dataset that you want to create. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// The ID for the dataset that you want to create. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	DataSetId *string `type:"string"`
 
 	// A list of resource permissions on the dataset.
@@ -21951,8 +21960,8 @@ type DescribeDataSourceInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
@@ -22051,8 +22060,8 @@ type DescribeDataSourcePermissionsInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
@@ -22108,8 +22117,8 @@ type DescribeDataSourcePermissionsOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	DataSourceArn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	DataSourceId *string `type:"string"`
 
 	// A list of resource permissions on the data source.
@@ -22909,10 +22918,11 @@ type DescribeNamespaceOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The information about the namespace that you're describing. The response
-	// includes the namespace ARN, name, Region;, creation status, and identity
-	// store. DescribeNamespace also works for namespaces that are in the process
-	// of being created. For incomplete namespaces, this API operation lists the
-	// namespace error types and messages associated with the creation process.
+	// includes the namespace ARN, name, Amazon Web Services Region;, creation status,
+	// and identity store. DescribeNamespace also works for namespaces that are
+	// in the process of being created. For incomplete namespaces, this API operation
+	// lists the namespace error types and messages associated with the creation
+	// process.
 	Namespace *NamespaceInfoV2 `type:"structure"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -27468,8 +27478,8 @@ type ListNamespacesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The information about the namespaces in this Amazon Web Services account;.
-	// The response includes the namespace ARN, name, Region;, notification email
-	// address, creation status, and identity store.
+	// The response includes the namespace ARN, name, Amazon Web Services Region;,
+	// notification email address, creation status, and identity store.
 	Namespaces []*NamespaceInfoV2 `type:"list"`
 
 	// A pagination token that can be used in a subsequent request.
@@ -29087,7 +29097,7 @@ type NamespaceInfoV2 struct {
 	// The namespace ARN.
 	Arn *string `type:"string"`
 
-	// The namespace Region;.
+	// The namespace Amazon Web Services Region;.
 	CapacityRegion *string `type:"string"`
 
 	// The creation status of a namespace that is not yet completely created.
@@ -32442,8 +32452,8 @@ type Template struct {
 	// The display name of the template.
 	Name *string `min:"1" type:"string"`
 
-	// The ID for the template. This is unique per Region; for each Amazon Web Services
-	// account;.
+	// The ID for the template. This is unique per Amazon Web Services Region; for
+	// each Amazon Web Services account;.
 	TemplateId *string `min:"1" type:"string"`
 
 	// A structure describing the versions of the template.
@@ -32749,8 +32759,8 @@ type TemplateSummary struct {
 	// A display name for the template.
 	Name *string `min:"1" type:"string"`
 
-	// The ID of the template. This ID is unique per Region; for each Amazon Web
-	// Services account;.
+	// The ID of the template. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	TemplateId *string `min:"1" type:"string"`
 }
 
@@ -33253,8 +33263,8 @@ type ThemeSummary struct {
 	// the display name for the theme.
 	Name *string `min:"1" type:"string"`
 
-	// The ID of the theme. This ID is unique per Region; for each Amazon Web Services
-	// account;.
+	// The ID of the theme. This ID is unique per Amazon Web Services Region; for
+	// each Amazon Web Services account;.
 	ThemeId *string `min:"1" type:"string"`
 }
 
@@ -34134,7 +34144,8 @@ func (s *UntagResourceOutput) SetStatus(v int64) *UntagResourceOutput {
 type UpdateAccountCustomizationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations you're updating in the current Region;.
+	// The QuickSight customizations you're updating in the current Amazon Web Services
+	// Region;.
 	//
 	// AccountCustomization is a required field
 	AccountCustomization *AccountCustomization `type:"structure" required:"true"`
@@ -34199,7 +34210,8 @@ func (s *UpdateAccountCustomizationInput) SetNamespace(v string) *UpdateAccountC
 type UpdateAccountCustomizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The QuickSight customizations you're updating in the current Region;.
+	// The QuickSight customizations you're updating in the current Amazon Web Services
+	// Region;.
 	AccountCustomization *AccountCustomization `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for the updated customization for this Amazon
@@ -34758,7 +34770,7 @@ type UpdateDashboardInput struct {
 	// the analysis to a template by using the CreateTemplate API operation. For
 	// SourceTemplate, specify the Amazon Resource Name (ARN) of the source template.
 	// The SourceTemplate ARN can contain any Amazon Web Services account; and any
-	// QuickSight-supported Region;.
+	// QuickSight-supported Amazon Web Services Region;.
 	//
 	// Use the DataSetReferences entity within SourceTemplate to list the replacement
 	// datasets for the placeholders listed in the original. The schema in each
@@ -35244,8 +35256,8 @@ type UpdateDataSetInput struct {
 	// A set of one or more definitions of a ColumnLevelPermissionRule .
 	ColumnLevelPermissionRules []*ColumnLevelPermissionRule `min:"1" type:"list"`
 
-	// The ID for the dataset that you want to update. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// The ID for the dataset that you want to update. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -35458,8 +35470,8 @@ type UpdateDataSetOutput struct {
 	// The Amazon Resource Name (ARN) of the dataset.
 	Arn *string `type:"string"`
 
-	// The ID for the dataset that you want to create. This ID is unique per Region;
-	// for each Amazon Web Services account;.
+	// The ID for the dataset that you want to create. This ID is unique per Amazon
+	// Web Services Region; for each Amazon Web Services account;.
 	DataSetId *string `type:"string"`
 
 	// The ARN for the ingestion, which is triggered as a result of dataset creation
@@ -35532,7 +35544,7 @@ type UpdateDataSetPermissionsInput struct {
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
 	// The ID for the dataset whose permissions you want to update. This ID is unique
-	// per Region; for each Amazon Web Services account;.
+	// per Amazon Web Services Region; for each Amazon Web Services account;.
 	//
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -35633,7 +35645,7 @@ type UpdateDataSetPermissionsOutput struct {
 	DataSetArn *string `type:"string"`
 
 	// The ID for the dataset whose permissions you want to update. This ID is unique
-	// per Region; for each Amazon Web Services account;.
+	// per Amazon Web Services Region; for each Amazon Web Services account;.
 	DataSetId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -35689,8 +35701,8 @@ type UpdateDataSourceInput struct {
 	// Currently, only credentials based on user name and password are supported.
 	Credentials *DataSourceCredentials `type:"structure" sensitive:"true"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
@@ -35813,8 +35825,8 @@ type UpdateDataSourceOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	Arn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	DataSourceId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -35875,8 +35887,8 @@ type UpdateDataSourcePermissionsInput struct {
 	// AwsAccountId is a required field
 	AwsAccountId *string `location:"uri" locationName:"AwsAccountId" min:"12" type:"string" required:"true"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	//
 	// DataSourceId is a required field
 	DataSourceId *string `location:"uri" locationName:"DataSourceId" type:"string" required:"true"`
@@ -35976,8 +35988,8 @@ type UpdateDataSourcePermissionsOutput struct {
 	// The Amazon Resource Name (ARN) of the data source.
 	DataSourceArn *string `type:"string"`
 
-	// The ID of the data source. This ID is unique per Region; for each Amazon
-	// Web Services account;.
+	// The ID of the data source. This ID is unique per Amazon Web Services Region;
+	// for each Amazon Web Services account;.
 	DataSourceId *string `type:"string"`
 
 	// The Amazon Web Services request ID for this operation.
@@ -36791,7 +36803,7 @@ type UpdateTemplateInput struct {
 	// Amazon Resource Name (ARN). For SourceTemplate, specify the ARN of the source
 	// template. For SourceAnalysis, specify the ARN of the source analysis. The
 	// SourceTemplate ARN can contain any Amazon Web Services account; and any QuickSight-supported
-	// Region;.
+	// Amazon Web Services Region;.
 	//
 	// Use the DataSetReferences entity within SourceTemplate or SourceAnalysis
 	// to list the replacement datasets for the placeholders listed in the original.
