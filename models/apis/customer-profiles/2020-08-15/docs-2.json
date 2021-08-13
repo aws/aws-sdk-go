@@ -3,7 +3,7 @@
   "service": "<fullname>Amazon Connect Customer Profiles</fullname> <p>Welcome to the Amazon Connect Customer Profiles API Reference. This guide provides information about the Amazon Connect Customer Profiles API, including supported operations, data types, parameters, and schemas.</p> <p>Amazon Connect Customer Profiles is a unified customer profile for your contact center that has pre-built connectors powered by AppFlow that make it easy to combine customer information from third party applications, such as Salesforce (CRM), ServiceNow (ITSM), and your enterprise resource planning (ERP), with contact history from your Amazon Connect contact center.</p> <p>If you're new to Amazon Connect , you might find it helpful to also review the <a href=\"https://docs.aws.amazon.com/connect/latest/adminguide/what-is-amazon-connect.html\">Amazon Connect Administrator Guide</a>.</p>",
   "operations": {
     "AddProfileKey": "<p>Associates a new key value with a specific profile, such as a Contact Trace Record (CTR) ContactId.</p> <p>A profile object can have a single unique key and any number of additional keys that can be used to identify the profile that it belongs to.</p>",
-    "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p>",
+    "CreateDomain": "<p>Creates a domain, which is a container for all customer data, such as customer profile attributes, object types, profile keys, and encryption keys. You can create multiple domains, and each domain can have multiple third-party integrations.</p> <p>Each Amazon Connect instance can be associated with only one domain. Multiple Amazon Connect instances can be associated with one domain.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p>",
     "CreateProfile": "<p>Creates a standard profile.</p> <p>A standard profile represents the following attributes for a customer profile in a domain.</p>",
     "DeleteDomain": "<p>Deletes a specific domain and all of its customer data, such as customer profile attributes and their related objects.</p>",
     "DeleteIntegration": "<p>Removes an integration from a specific domain.</p>",
@@ -13,7 +13,7 @@
     "DeleteProfileObjectType": "<p>Removes a ProfileObjectType from a specific domain as well as removes all the ProfileObjects of that type. It also disables integrations from this specific ProfileObjectType. In addition, it scrubs all of the fields of the standard profile that were populated from this ProfileObjectType.</p>",
     "GetDomain": "<p>Returns information about a specific domain.</p>",
     "GetIntegration": "<p>Returns an integration for a domain.</p>",
-    "GetMatches": "<p>This API is in preview release for Amazon Connect and subject to change.</p> <p>Before calling this API, use <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable identity resolution: set <code>Matching</code> to true.</p> <p>GetMatches returns potentially matching profiles, based on the results of the latest run of a machine learning process. </p> <important> <p>Amazon Connect runs a batch process every Saturday at 12AM UTC to identify matching profiles. The results are returned up to seven days after the Saturday run.</p> </important> <p>Amazon Connect uses the following profile attributes to identify matches:</p> <ul> <li> <p>PhoneNumber</p> </li> <li> <p>HomePhoneNumber</p> </li> <li> <p>BusinessPhoneNumber</p> </li> <li> <p>MobilePhoneNumber</p> </li> <li> <p>EmailAddress</p> </li> <li> <p>PersonalEmailAddress</p> </li> <li> <p>BusinessEmailAddress</p> </li> <li> <p>FullName</p> </li> <li> <p>BusinessName</p> </li> </ul>",
+    "GetMatches": "<p>This API is in preview release for Amazon Connect and subject to change.</p> <p>Before calling this API, use <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html\">UpdateDomain</a> to enable identity resolution: set <code>Matching</code> to true.</p> <p>GetMatches returns potentially matching profiles, based on the results of the latest run of a machine learning process. </p> <important> <p>Amazon Connect starts a batch process every Saturday at 12AM UTC to identify matching profiles. The results are returned up to seven days after the Saturday run.</p> </important> <p>Amazon Connect uses the following profile attributes to identify matches:</p> <ul> <li> <p>PhoneNumber</p> </li> <li> <p>HomePhoneNumber</p> </li> <li> <p>BusinessPhoneNumber</p> </li> <li> <p>MobilePhoneNumber</p> </li> <li> <p>EmailAddress</p> </li> <li> <p>PersonalEmailAddress</p> </li> <li> <p>BusinessEmailAddress</p> </li> <li> <p>FullName</p> </li> <li> <p>BusinessName</p> </li> </ul> <p>For example, two or more profiles—with spelling mistakes such as <b>John Doe</b> and <b>Jhn Doe</b>, or different casing email addresses such as <b>JOHN_DOE@ANYCOMPANY.COM</b> and <b>johndoe@anycompany.com</b>, or different phone number formats such as <b>555-010-0000</b> and <b>+1-555-010-0000</b>—can be detected as belonging to the same customer <b>John Doe</b> and merged into a unified profile.</p>",
     "GetProfileObjectType": "<p>Returns the object types for a specific domain.</p>",
     "GetProfileObjectTypeTemplate": "<p>Returns the template information for a specific object type.</p> <p>A template is a predefined ProfileObjectType, such as “Salesforce-Account” or “Salesforce-Contact.” When a user sends a ProfileObject, using the PutProfileObject API, with an ObjectTypeName that matches one of the TemplateIds, it uses the mappings from the template.</p>",
     "ListAccountIntegrations": "<p>Lists all of the integrations associated to a specific URI in the AWS account.</p>",
@@ -30,7 +30,7 @@
     "SearchProfiles": "<p>Searches for profiles within a specific domain name using name, phone number, email address, account number, or a custom defined index.</p>",
     "TagResource": "<p>Assigns one or more tags (key-value pairs) to the specified Amazon Connect Customer Profiles resource. Tags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p> <p>Tags don't have any semantic meaning to AWS and are interpreted strictly as strings of characters.</p> <p>You can use the TagResource action with a resource that already has tags. If you specify a new tag key, this tag is appended to the list of tags associated with the resource. If you specify a tag key that is already associated with the resource, the new tag value that you specify replaces the previous value for that tag.</p> <p>You can associate as many as 50 tags with a resource.</p>",
     "UntagResource": "<p>Removes one or more tags from the specified Amazon Connect Customer Profiles resource. In Connect Customer Profiles, domains, profile object types, and integrations can be tagged.</p>",
-    "UpdateDomain": "<p>Updates the properties of a domain, including creating or selecting a dead letter queue or an encryption key.</p> <p>After a domain is created, the name can’t be changed.</p>",
+    "UpdateDomain": "<p>Updates the properties of a domain, including creating or selecting a dead letter queue or an encryption key.</p> <p>After a domain is created, the name can’t be changed.</p> <p>Use this API or <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html\">CreateDomain</a> to enable <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">identity resolution</a>: set <code>Matching</code> to true. </p>",
     "UpdateProfile": "<p>Updates the properties of a profile. The ProfileId is required for updating a customer profile.</p> <p>When calling the UpdateProfile API, specifying an empty string value means that any existing value will be removed. Not specifying a string value means that any value already there will be kept.</p>"
   },
   "shapes": {
@@ -73,6 +73,7 @@
         "ListProfileObjectTypesRequest$DomainName": "<p>The unique name of the domain.</p>",
         "ListProfileObjectsRequest$DomainName": "<p>The unique name of the domain.</p>",
         "MergeProfilesRequest$DomainName": "<p>The unique name of the domain.</p>",
+        "ObjectFilter$KeyName": "<p>A searchable identifier of a standard profile object. The predefined keys you can use to search for _asset include: _assetId, _assetName, _serialNumber. The predefined keys you can use to search for _case include: _caseId.</p>",
         "PutIntegrationRequest$DomainName": "<p>The unique name of the domain.</p>",
         "PutIntegrationResponse$DomainName": "<p>The unique name of the domain.</p>",
         "PutProfileObjectRequest$DomainName": "<p>The unique name of the domain.</p>",
@@ -537,16 +538,16 @@
     "MatchingRequest": {
       "base": "<p>The flag that enables the matching process of duplicate profiles.</p>",
       "refs": {
-        "CreateDomainRequest$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>",
-        "UpdateDomainRequest$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>"
+        "CreateDomainRequest$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>",
+        "UpdateDomainRequest$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>"
       }
     },
     "MatchingResponse": {
       "base": "<p>The flag that enables the matching process of duplicate profiles.</p>",
       "refs": {
-        "CreateDomainResponse$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>",
-        "GetDomainResponse$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>",
-        "UpdateDomainResponse$Matching": "<p>The process of matching duplicate profiles. This process runs every Saturday at 12AM.</p>"
+        "CreateDomainResponse$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>",
+        "GetDomainResponse$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>",
+        "UpdateDomainResponse$Matching": "<p>The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process every Saturday at 12AM UTC to detect duplicate profiles in your domains. After that batch process completes, use the <a href=\"https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html\">GetMatches</a> API to return and review the results. </p>"
       }
     },
     "MergeProfilesRequest": {
@@ -566,6 +567,12 @@
         "SalesforceSourceProperties$Object": "<p>The object specified in the Salesforce flow source.</p>",
         "ServiceNowSourceProperties$Object": "<p>The object specified in the ServiceNow flow source.</p>",
         "ZendeskSourceProperties$Object": "<p>The object specified in the Zendesk flow source.</p>"
+      }
+    },
+    "ObjectFilter": {
+      "base": "<p>The filter applied to ListProfileObjects response to include profile objects with the specified index values. This filter is only supported for ObjectTypeName _asset and _case.</p>",
+      "refs": {
+        "ListProfileObjectsRequest$ObjectFilter": "<p>Applies a filter to the response to include profile objects with the specified index values. This filter is only supported for ObjectTypeName _asset and _case.</p>"
       }
     },
     "ObjectTypeField": {
@@ -780,7 +787,7 @@
     "StandardIdentifierList": {
       "base": null,
       "refs": {
-        "ObjectTypeKey$StandardIdentifiers": "<p>The types of keys that a ProfileObject can have. Each ProfileObject can have only 1 UNIQUE key but multiple PROFILE keys. PROFILE means that this key can be used to tie an object to a PROFILE. UNIQUE means that it can be used to uniquely identify an object. If a key a is marked as SECONDARY, it will be used to search for profiles after all other PROFILE keys have been searched. A LOOKUP_ONLY key is only used to match a profile but is not persisted to be used for searching of the profile. A NEW_ONLY key is only used if the profile does not already exist before the object is ingested, otherwise it is only used for matching objects to profiles.</p>"
+        "ObjectTypeKey$StandardIdentifiers": "<p>The types of keys that a ProfileObject can have. Each ProfileObject can have only 1 UNIQUE key but multiple PROFILE keys. PROFILE, ASSET or CASE means that this key can be used to tie an object to a PROFILE, ASSET or CASE respectively. UNIQUE means that it can be used to uniquely identify an object. If a key a is marked as SECONDARY, it will be used to search for profiles after all other PROFILE keys have been searched. A LOOKUP_ONLY key is only used to match a profile but is not persisted to be used for searching of the profile. A NEW_ONLY key is only used if the profile does not already exist before the object is ingested, otherwise it is only used for matching objects to profiles.</p>"
       }
     },
     "TagArn": {
@@ -1046,6 +1053,7 @@
         "AddProfileKeyRequest$Values": "<p>A list of key values.</p>",
         "AddProfileKeyResponse$Values": "<p>A list of key values.</p>",
         "DeleteProfileKeyRequest$Values": "<p>A list of key values.</p>",
+        "ObjectFilter$Values": "<p>A list of key values.</p>",
         "SearchProfilesRequest$Values": "<p>A list of key values.</p>"
       }
     },

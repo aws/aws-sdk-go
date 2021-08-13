@@ -55,7 +55,7 @@ func (c *EMR) AddInstanceFleetRequest(input *AddInstanceFleetInput) (req *reques
 	return
 }
 
-// AddInstanceFleet API operation for Amazon Elastic MapReduce.
+// AddInstanceFleet API operation for Amazon EMR.
 //
 // Adds an instance fleet to a running cluster.
 //
@@ -66,7 +66,7 @@ func (c *EMR) AddInstanceFleetRequest(input *AddInstanceFleetInput) (req *reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation AddInstanceFleet for usage and error information.
 //
 // Returned Error Types:
@@ -141,7 +141,7 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *requ
 	return
 }
 
-// AddInstanceGroups API operation for Amazon Elastic MapReduce.
+// AddInstanceGroups API operation for Amazon EMR.
 //
 // Adds one or more instance groups to a running cluster.
 //
@@ -149,7 +149,7 @@ func (c *EMR) AddInstanceGroupsRequest(input *AddInstanceGroupsInput) (req *requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation AddInstanceGroups for usage and error information.
 //
 // Returned Error Types:
@@ -221,7 +221,7 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 	return
 }
 
-// AddJobFlowSteps API operation for Amazon Elastic MapReduce.
+// AddJobFlowSteps API operation for Amazon EMR.
 //
 // AddJobFlowSteps adds new steps to a running cluster. A maximum of 256 steps
 // are allowed in each job flow.
@@ -251,7 +251,7 @@ func (c *EMR) AddJobFlowStepsRequest(input *AddJobFlowStepsInput) (req *request.
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation AddJobFlowSteps for usage and error information.
 //
 // Returned Error Types:
@@ -324,7 +324,7 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 	return
 }
 
-// AddTags API operation for Amazon Elastic MapReduce.
+// AddTags API operation for Amazon EMR.
 //
 // Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters
 // in various ways, such as grouping clusters to track your Amazon EMR resource
@@ -334,7 +334,7 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation AddTags for usage and error information.
 //
 // Returned Error Types:
@@ -409,7 +409,7 @@ func (c *EMR) CancelStepsRequest(input *CancelStepsInput) (req *request.Request,
 	return
 }
 
-// CancelSteps API operation for Amazon Elastic MapReduce.
+// CancelSteps API operation for Amazon EMR.
 //
 // Cancels a pending step or steps in a running cluster. Available only in Amazon
 // EMR versions 4.8.0 and later, excluding version 5.0.0. A maximum of 256 steps
@@ -423,7 +423,7 @@ func (c *EMR) CancelStepsRequest(input *CancelStepsInput) (req *request.Request,
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation CancelSteps for usage and error information.
 //
 // Returned Error Types:
@@ -498,7 +498,7 @@ func (c *EMR) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurat
 	return
 }
 
-// CreateSecurityConfiguration API operation for Amazon Elastic MapReduce.
+// CreateSecurityConfiguration API operation for Amazon EMR.
 //
 // Creates a security configuration, which is stored in the service and can
 // be specified when a cluster is created.
@@ -507,7 +507,7 @@ func (c *EMR) CreateSecurityConfigurationRequest(input *CreateSecurityConfigurat
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation CreateSecurityConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -582,7 +582,7 @@ func (c *EMR) CreateStudioRequest(input *CreateStudioInput) (req *request.Reques
 	return
 }
 
-// CreateStudio API operation for Amazon Elastic MapReduce.
+// CreateStudio API operation for Amazon EMR.
 //
 // Creates a new Amazon EMR Studio.
 //
@@ -590,7 +590,7 @@ func (c *EMR) CreateStudioRequest(input *CreateStudioInput) (req *request.Reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation CreateStudio for usage and error information.
 //
 // Returned Error Types:
@@ -666,7 +666,7 @@ func (c *EMR) CreateStudioSessionMappingRequest(input *CreateStudioSessionMappin
 	return
 }
 
-// CreateStudioSessionMapping API operation for Amazon Elastic MapReduce.
+// CreateStudioSessionMapping API operation for Amazon EMR.
 //
 // Maps a user or group to the Amazon EMR Studio specified by StudioId, and
 // applies a session policy to refine Studio permissions for that user or group.
@@ -675,7 +675,7 @@ func (c *EMR) CreateStudioSessionMappingRequest(input *CreateStudioSessionMappin
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation CreateStudioSessionMapping for usage and error information.
 //
 // Returned Error Types:
@@ -751,7 +751,7 @@ func (c *EMR) DeleteSecurityConfigurationRequest(input *DeleteSecurityConfigurat
 	return
 }
 
-// DeleteSecurityConfiguration API operation for Amazon Elastic MapReduce.
+// DeleteSecurityConfiguration API operation for Amazon EMR.
 //
 // Deletes a security configuration.
 //
@@ -759,7 +759,7 @@ func (c *EMR) DeleteSecurityConfigurationRequest(input *DeleteSecurityConfigurat
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DeleteSecurityConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -835,7 +835,7 @@ func (c *EMR) DeleteStudioRequest(input *DeleteStudioInput) (req *request.Reques
 	return
 }
 
-// DeleteStudio API operation for Amazon Elastic MapReduce.
+// DeleteStudio API operation for Amazon EMR.
 //
 // Removes an Amazon EMR Studio from the Studio metadata store.
 //
@@ -843,7 +843,7 @@ func (c *EMR) DeleteStudioRequest(input *DeleteStudioInput) (req *request.Reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DeleteStudio for usage and error information.
 //
 // Returned Error Types:
@@ -919,7 +919,7 @@ func (c *EMR) DeleteStudioSessionMappingRequest(input *DeleteStudioSessionMappin
 	return
 }
 
-// DeleteStudioSessionMapping API operation for Amazon Elastic MapReduce.
+// DeleteStudioSessionMapping API operation for Amazon EMR.
 //
 // Removes a user or group from an Amazon EMR Studio.
 //
@@ -927,7 +927,7 @@ func (c *EMR) DeleteStudioSessionMappingRequest(input *DeleteStudioSessionMappin
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DeleteStudioSessionMapping for usage and error information.
 //
 // Returned Error Types:
@@ -1002,7 +1002,7 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.
 	return
 }
 
-// DescribeCluster API operation for Amazon Elastic MapReduce.
+// DescribeCluster API operation for Amazon EMR.
 //
 // Provides cluster-level details including status, hardware and software configuration,
 // VPC settings, and so on.
@@ -1011,7 +1011,7 @@ func (c *EMR) DescribeClusterRequest(input *DescribeClusterInput) (req *request.
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeCluster for usage and error information.
 //
 // Returned Error Types:
@@ -1091,7 +1091,7 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 	return
 }
 
-// DescribeJobFlows API operation for Amazon Elastic MapReduce.
+// DescribeJobFlows API operation for Amazon EMR.
 //
 // This API is no longer supported and will eventually be removed. We recommend
 // you use ListClusters, DescribeCluster, ListSteps, ListInstanceGroups and
@@ -1118,7 +1118,7 @@ func (c *EMR) DescribeJobFlowsRequest(input *DescribeJobFlowsInput) (req *reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeJobFlows for usage and error information.
 //
 // Returned Error Types:
@@ -1194,7 +1194,7 @@ func (c *EMR) DescribeNotebookExecutionRequest(input *DescribeNotebookExecutionI
 	return
 }
 
-// DescribeNotebookExecution API operation for Amazon Elastic MapReduce.
+// DescribeNotebookExecution API operation for Amazon EMR.
 //
 // Provides details of a notebook execution.
 //
@@ -1202,7 +1202,7 @@ func (c *EMR) DescribeNotebookExecutionRequest(input *DescribeNotebookExecutionI
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeNotebookExecution for usage and error information.
 //
 // Returned Error Types:
@@ -1277,7 +1277,7 @@ func (c *EMR) DescribeReleaseLabelRequest(input *DescribeReleaseLabelInput) (req
 	return
 }
 
-// DescribeReleaseLabel API operation for Amazon Elastic MapReduce.
+// DescribeReleaseLabel API operation for Amazon EMR.
 //
 // Provides EMR release label details, such as releases available the region
 // where the API request is run, and the available applications for a specific
@@ -1288,7 +1288,7 @@ func (c *EMR) DescribeReleaseLabelRequest(input *DescribeReleaseLabelInput) (req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeReleaseLabel for usage and error information.
 //
 // Returned Error Types:
@@ -1363,7 +1363,7 @@ func (c *EMR) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfig
 	return
 }
 
-// DescribeSecurityConfiguration API operation for Amazon Elastic MapReduce.
+// DescribeSecurityConfiguration API operation for Amazon EMR.
 //
 // Provides the details of a security configuration by returning the configuration
 // JSON.
@@ -1372,7 +1372,7 @@ func (c *EMR) DescribeSecurityConfigurationRequest(input *DescribeSecurityConfig
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeSecurityConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -1447,7 +1447,7 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Reques
 	return
 }
 
-// DescribeStep API operation for Amazon Elastic MapReduce.
+// DescribeStep API operation for Amazon EMR.
 //
 // Provides more detail about the cluster step.
 //
@@ -1455,7 +1455,7 @@ func (c *EMR) DescribeStepRequest(input *DescribeStepInput) (req *request.Reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeStep for usage and error information.
 //
 // Returned Error Types:
@@ -1530,7 +1530,7 @@ func (c *EMR) DescribeStudioRequest(input *DescribeStudioInput) (req *request.Re
 	return
 }
 
-// DescribeStudio API operation for Amazon Elastic MapReduce.
+// DescribeStudio API operation for Amazon EMR.
 //
 // Returns details for the specified Amazon EMR Studio including ID, Name, VPC,
 // Studio access URL, and so on.
@@ -1539,7 +1539,7 @@ func (c *EMR) DescribeStudioRequest(input *DescribeStudioInput) (req *request.Re
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation DescribeStudio for usage and error information.
 //
 // Returned Error Types:
@@ -1614,7 +1614,7 @@ func (c *EMR) GetBlockPublicAccessConfigurationRequest(input *GetBlockPublicAcce
 	return
 }
 
-// GetBlockPublicAccessConfiguration API operation for Amazon Elastic MapReduce.
+// GetBlockPublicAccessConfiguration API operation for Amazon EMR.
 //
 // Returns the Amazon EMR block public access configuration for your account
 // in the current Region. For more information see Configure Block Public Access
@@ -1625,7 +1625,7 @@ func (c *EMR) GetBlockPublicAccessConfigurationRequest(input *GetBlockPublicAcce
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation GetBlockPublicAccessConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -1700,7 +1700,7 @@ func (c *EMR) GetManagedScalingPolicyRequest(input *GetManagedScalingPolicyInput
 	return
 }
 
-// GetManagedScalingPolicy API operation for Amazon Elastic MapReduce.
+// GetManagedScalingPolicy API operation for Amazon EMR.
 //
 // Fetches the attached managed scaling policy for an Amazon EMR cluster.
 //
@@ -1708,7 +1708,7 @@ func (c *EMR) GetManagedScalingPolicyRequest(input *GetManagedScalingPolicyInput
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation GetManagedScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetManagedScalingPolicy
 func (c *EMR) GetManagedScalingPolicy(input *GetManagedScalingPolicyInput) (*GetManagedScalingPolicyOutput, error) {
@@ -1774,7 +1774,7 @@ func (c *EMR) GetStudioSessionMappingRequest(input *GetStudioSessionMappingInput
 	return
 }
 
-// GetStudioSessionMapping API operation for Amazon Elastic MapReduce.
+// GetStudioSessionMapping API operation for Amazon EMR.
 //
 // Fetches mapping details for the specified Amazon EMR Studio and identity
 // (user or group).
@@ -1783,7 +1783,7 @@ func (c *EMR) GetStudioSessionMappingRequest(input *GetStudioSessionMappingInput
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation GetStudioSessionMapping for usage and error information.
 //
 // Returned Error Types:
@@ -1864,7 +1864,7 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 	return
 }
 
-// ListBootstrapActions API operation for Amazon Elastic MapReduce.
+// ListBootstrapActions API operation for Amazon EMR.
 //
 // Provides information about the bootstrap actions associated with a cluster.
 //
@@ -1872,7 +1872,7 @@ func (c *EMR) ListBootstrapActionsRequest(input *ListBootstrapActionsInput) (req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListBootstrapActions for usage and error information.
 //
 // Returned Error Types:
@@ -2005,7 +2005,7 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 	return
 }
 
-// ListClusters API operation for Amazon Elastic MapReduce.
+// ListClusters API operation for Amazon EMR.
 //
 // Provides the status of all clusters visible to this account. Allows you to
 // filter the list of clusters based on certain criteria; for example, filtering
@@ -2017,7 +2017,7 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListClusters for usage and error information.
 //
 // Returned Error Types:
@@ -2150,7 +2150,7 @@ func (c *EMR) ListInstanceFleetsRequest(input *ListInstanceFleetsInput) (req *re
 	return
 }
 
-// ListInstanceFleets API operation for Amazon Elastic MapReduce.
+// ListInstanceFleets API operation for Amazon EMR.
 //
 // Lists all available details about the instance fleets in a cluster.
 //
@@ -2161,7 +2161,7 @@ func (c *EMR) ListInstanceFleetsRequest(input *ListInstanceFleetsInput) (req *re
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListInstanceFleets for usage and error information.
 //
 // Returned Error Types:
@@ -2294,7 +2294,7 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *re
 	return
 }
 
-// ListInstanceGroups API operation for Amazon Elastic MapReduce.
+// ListInstanceGroups API operation for Amazon EMR.
 //
 // Provides all available details about the instance groups in a cluster.
 //
@@ -2302,7 +2302,7 @@ func (c *EMR) ListInstanceGroupsRequest(input *ListInstanceGroupsInput) (req *re
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListInstanceGroups for usage and error information.
 //
 // Returned Error Types:
@@ -2435,7 +2435,7 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Requ
 	return
 }
 
-// ListInstances API operation for Amazon Elastic MapReduce.
+// ListInstances API operation for Amazon EMR.
 //
 // Provides information for all active EC2 instances and EC2 instances terminated
 // in the last 30 days, up to a maximum of 2,000. EC2 instances in any of the
@@ -2446,7 +2446,7 @@ func (c *EMR) ListInstancesRequest(input *ListInstancesInput) (req *request.Requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListInstances for usage and error information.
 //
 // Returned Error Types:
@@ -2579,7 +2579,7 @@ func (c *EMR) ListNotebookExecutionsRequest(input *ListNotebookExecutionsInput) 
 	return
 }
 
-// ListNotebookExecutions API operation for Amazon Elastic MapReduce.
+// ListNotebookExecutions API operation for Amazon EMR.
 //
 // Provides summaries of all notebook executions. You can filter the list based
 // on multiple criteria such as status, time range, and editor id. Returns a
@@ -2590,7 +2590,7 @@ func (c *EMR) ListNotebookExecutionsRequest(input *ListNotebookExecutionsInput) 
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListNotebookExecutions for usage and error information.
 //
 // Returned Error Types:
@@ -2723,7 +2723,7 @@ func (c *EMR) ListReleaseLabelsRequest(input *ListReleaseLabelsInput) (req *requ
 	return
 }
 
-// ListReleaseLabels API operation for Amazon Elastic MapReduce.
+// ListReleaseLabels API operation for Amazon EMR.
 //
 // Retrieves release labels of EMR services in the region where the API is called.
 //
@@ -2731,7 +2731,7 @@ func (c *EMR) ListReleaseLabelsRequest(input *ListReleaseLabelsInput) (req *requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListReleaseLabels for usage and error information.
 //
 // Returned Error Types:
@@ -2864,7 +2864,7 @@ func (c *EMR) ListSecurityConfigurationsRequest(input *ListSecurityConfiguration
 	return
 }
 
-// ListSecurityConfigurations API operation for Amazon Elastic MapReduce.
+// ListSecurityConfigurations API operation for Amazon EMR.
 //
 // Lists all the security configurations visible to this account, providing
 // their creation dates and times, and their names. This call returns a maximum
@@ -2875,7 +2875,7 @@ func (c *EMR) ListSecurityConfigurationsRequest(input *ListSecurityConfiguration
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListSecurityConfigurations for usage and error information.
 //
 // Returned Error Types:
@@ -3008,7 +3008,7 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, out
 	return
 }
 
-// ListSteps API operation for Amazon Elastic MapReduce.
+// ListSteps API operation for Amazon EMR.
 //
 // Provides a list of steps for the cluster in reverse order unless you specify
 // stepIds with the request or filter by StepStates. You can specify a maximum
@@ -3020,7 +3020,7 @@ func (c *EMR) ListStepsRequest(input *ListStepsInput) (req *request.Request, out
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListSteps for usage and error information.
 //
 // Returned Error Types:
@@ -3153,7 +3153,7 @@ func (c *EMR) ListStudioSessionMappingsRequest(input *ListStudioSessionMappingsI
 	return
 }
 
-// ListStudioSessionMappings API operation for Amazon Elastic MapReduce.
+// ListStudioSessionMappings API operation for Amazon EMR.
 //
 // Returns a list of all user or group session mappings for the Amazon EMR Studio
 // specified by StudioId.
@@ -3162,7 +3162,7 @@ func (c *EMR) ListStudioSessionMappingsRequest(input *ListStudioSessionMappingsI
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListStudioSessionMappings for usage and error information.
 //
 // Returned Error Types:
@@ -3295,7 +3295,7 @@ func (c *EMR) ListStudiosRequest(input *ListStudiosInput) (req *request.Request,
 	return
 }
 
-// ListStudios API operation for Amazon Elastic MapReduce.
+// ListStudios API operation for Amazon EMR.
 //
 // Returns a list of all Amazon EMR Studios associated with the account. The
 // list includes details such as ID, Studio Access URL, and creation time for
@@ -3305,7 +3305,7 @@ func (c *EMR) ListStudiosRequest(input *ListStudiosInput) (req *request.Request,
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ListStudios for usage and error information.
 //
 // Returned Error Types:
@@ -3432,7 +3432,7 @@ func (c *EMR) ModifyClusterRequest(input *ModifyClusterInput) (req *request.Requ
 	return
 }
 
-// ModifyCluster API operation for Amazon Elastic MapReduce.
+// ModifyCluster API operation for Amazon EMR.
 //
 // Modifies the number of steps that can be executed concurrently for the cluster
 // specified using ClusterID.
@@ -3441,7 +3441,7 @@ func (c *EMR) ModifyClusterRequest(input *ModifyClusterInput) (req *request.Requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ModifyCluster for usage and error information.
 //
 // Returned Error Types:
@@ -3517,7 +3517,7 @@ func (c *EMR) ModifyInstanceFleetRequest(input *ModifyInstanceFleetInput) (req *
 	return
 }
 
-// ModifyInstanceFleet API operation for Amazon Elastic MapReduce.
+// ModifyInstanceFleet API operation for Amazon EMR.
 //
 // Modifies the target On-Demand and target Spot capacities for the instance
 // fleet with the specified InstanceFleetID within the cluster specified using
@@ -3530,7 +3530,7 @@ func (c *EMR) ModifyInstanceFleetRequest(input *ModifyInstanceFleetInput) (req *
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ModifyInstanceFleet for usage and error information.
 //
 // Returned Error Types:
@@ -3606,7 +3606,7 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 	return
 }
 
-// ModifyInstanceGroups API operation for Amazon Elastic MapReduce.
+// ModifyInstanceGroups API operation for Amazon EMR.
 //
 // ModifyInstanceGroups modifies the number of nodes and configuration settings
 // of an instance group. The input parameters include the new target instance
@@ -3617,7 +3617,7 @@ func (c *EMR) ModifyInstanceGroupsRequest(input *ModifyInstanceGroupsInput) (req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation ModifyInstanceGroups for usage and error information.
 //
 // Returned Error Types:
@@ -3689,7 +3689,7 @@ func (c *EMR) PutAutoScalingPolicyRequest(input *PutAutoScalingPolicyInput) (req
 	return
 }
 
-// PutAutoScalingPolicy API operation for Amazon Elastic MapReduce.
+// PutAutoScalingPolicy API operation for Amazon EMR.
 //
 // Creates or updates an automatic scaling policy for a core instance group
 // or task instance group in an Amazon EMR cluster. The automatic scaling policy
@@ -3700,7 +3700,7 @@ func (c *EMR) PutAutoScalingPolicyRequest(input *PutAutoScalingPolicyInput) (req
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation PutAutoScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoScalingPolicy
 func (c *EMR) PutAutoScalingPolicy(input *PutAutoScalingPolicyInput) (*PutAutoScalingPolicyOutput, error) {
@@ -3767,7 +3767,7 @@ func (c *EMR) PutBlockPublicAccessConfigurationRequest(input *PutBlockPublicAcce
 	return
 }
 
-// PutBlockPublicAccessConfiguration API operation for Amazon Elastic MapReduce.
+// PutBlockPublicAccessConfiguration API operation for Amazon EMR.
 //
 // Creates or updates an Amazon EMR block public access configuration for your
 // account in the current Region. For more information see Configure Block Public
@@ -3778,7 +3778,7 @@ func (c *EMR) PutBlockPublicAccessConfigurationRequest(input *PutBlockPublicAcce
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation PutBlockPublicAccessConfiguration for usage and error information.
 //
 // Returned Error Types:
@@ -3854,7 +3854,7 @@ func (c *EMR) PutManagedScalingPolicyRequest(input *PutManagedScalingPolicyInput
 	return
 }
 
-// PutManagedScalingPolicy API operation for Amazon Elastic MapReduce.
+// PutManagedScalingPolicy API operation for Amazon EMR.
 //
 // Creates or updates a managed scaling policy for an Amazon EMR cluster. The
 // managed scaling policy defines the limits for resources, such as EC2 instances
@@ -3865,7 +3865,7 @@ func (c *EMR) PutManagedScalingPolicyRequest(input *PutManagedScalingPolicyInput
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation PutManagedScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutManagedScalingPolicy
 func (c *EMR) PutManagedScalingPolicy(input *PutManagedScalingPolicyInput) (*PutManagedScalingPolicyOutput, error) {
@@ -3932,7 +3932,7 @@ func (c *EMR) RemoveAutoScalingPolicyRequest(input *RemoveAutoScalingPolicyInput
 	return
 }
 
-// RemoveAutoScalingPolicy API operation for Amazon Elastic MapReduce.
+// RemoveAutoScalingPolicy API operation for Amazon EMR.
 //
 // Removes an automatic scaling policy from a specified instance group within
 // an EMR cluster.
@@ -3941,7 +3941,7 @@ func (c *EMR) RemoveAutoScalingPolicyRequest(input *RemoveAutoScalingPolicyInput
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation RemoveAutoScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoScalingPolicy
 func (c *EMR) RemoveAutoScalingPolicy(input *RemoveAutoScalingPolicyInput) (*RemoveAutoScalingPolicyOutput, error) {
@@ -4008,7 +4008,7 @@ func (c *EMR) RemoveManagedScalingPolicyRequest(input *RemoveManagedScalingPolic
 	return
 }
 
-// RemoveManagedScalingPolicy API operation for Amazon Elastic MapReduce.
+// RemoveManagedScalingPolicy API operation for Amazon EMR.
 //
 // Removes a managed scaling policy from a specified EMR cluster.
 //
@@ -4016,7 +4016,7 @@ func (c *EMR) RemoveManagedScalingPolicyRequest(input *RemoveManagedScalingPolic
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation RemoveManagedScalingPolicy for usage and error information.
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveManagedScalingPolicy
 func (c *EMR) RemoveManagedScalingPolicy(input *RemoveManagedScalingPolicyInput) (*RemoveManagedScalingPolicyOutput, error) {
@@ -4083,7 +4083,7 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 	return
 }
 
-// RemoveTags API operation for Amazon Elastic MapReduce.
+// RemoveTags API operation for Amazon EMR.
 //
 // Removes tags from an Amazon EMR resource. Tags make it easier to associate
 // clusters in various ways, such as grouping clusters to track your Amazon
@@ -4095,7 +4095,7 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation RemoveTags for usage and error information.
 //
 // Returned Error Types:
@@ -4170,7 +4170,7 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 	return
 }
 
-// RunJobFlow API operation for Amazon Elastic MapReduce.
+// RunJobFlow API operation for Amazon EMR.
 //
 // RunJobFlow creates and starts running a new cluster (job flow). The cluster
 // runs the steps specified. After the steps complete, the cluster stops and
@@ -4204,7 +4204,7 @@ func (c *EMR) RunJobFlowRequest(input *RunJobFlowInput) (req *request.Request, o
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation RunJobFlow for usage and error information.
 //
 // Returned Error Types:
@@ -4277,7 +4277,7 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 	return
 }
 
-// SetTerminationProtection API operation for Amazon Elastic MapReduce.
+// SetTerminationProtection API operation for Amazon EMR.
 //
 // SetTerminationProtection locks a cluster (job flow) so the EC2 instances
 // in the cluster cannot be terminated by user intervention, an API call, or
@@ -4301,7 +4301,7 @@ func (c *EMR) SetTerminationProtectionRequest(input *SetTerminationProtectionInp
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation SetTerminationProtection for usage and error information.
 //
 // Returned Error Types:
@@ -4374,7 +4374,7 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 	return
 }
 
-// SetVisibleToAllUsers API operation for Amazon Elastic MapReduce.
+// SetVisibleToAllUsers API operation for Amazon EMR.
 //
 // Sets the Cluster$VisibleToAllUsers value for an EMR cluster. When true, IAM
 // principals in the account can perform EMR cluster actions that their IAM
@@ -4387,13 +4387,13 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 //
 // For more information, see Understanding the EMR Cluster VisibleToAllUsers
 // Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
-// in the Amazon EMR Management Guide.
+// in the Amazon EMRManagement Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation SetVisibleToAllUsers for usage and error information.
 //
 // Returned Error Types:
@@ -4465,7 +4465,7 @@ func (c *EMR) StartNotebookExecutionRequest(input *StartNotebookExecutionInput) 
 	return
 }
 
-// StartNotebookExecution API operation for Amazon Elastic MapReduce.
+// StartNotebookExecution API operation for Amazon EMR.
 //
 // Starts a notebook execution.
 //
@@ -4473,7 +4473,7 @@ func (c *EMR) StartNotebookExecutionRequest(input *StartNotebookExecutionInput) 
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation StartNotebookExecution for usage and error information.
 //
 // Returned Error Types:
@@ -4549,7 +4549,7 @@ func (c *EMR) StopNotebookExecutionRequest(input *StopNotebookExecutionInput) (r
 	return
 }
 
-// StopNotebookExecution API operation for Amazon Elastic MapReduce.
+// StopNotebookExecution API operation for Amazon EMR.
 //
 // Stops a notebook execution.
 //
@@ -4557,7 +4557,7 @@ func (c *EMR) StopNotebookExecutionRequest(input *StopNotebookExecutionInput) (r
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation StopNotebookExecution for usage and error information.
 //
 // Returned Error Types:
@@ -4633,7 +4633,7 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *requ
 	return
 }
 
-// TerminateJobFlows API operation for Amazon Elastic MapReduce.
+// TerminateJobFlows API operation for Amazon EMR.
 //
 // TerminateJobFlows shuts a list of clusters (job flows) down. When a job flow
 // is shut down, any step not yet completed is canceled and the EC2 instances
@@ -4650,7 +4650,7 @@ func (c *EMR) TerminateJobFlowsRequest(input *TerminateJobFlowsInput) (req *requ
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation TerminateJobFlows for usage and error information.
 //
 // Returned Error Types:
@@ -4723,7 +4723,7 @@ func (c *EMR) UpdateStudioRequest(input *UpdateStudioInput) (req *request.Reques
 	return
 }
 
-// UpdateStudio API operation for Amazon Elastic MapReduce.
+// UpdateStudio API operation for Amazon EMR.
 //
 // Updates an Amazon EMR Studio configuration, including attributes such as
 // name, description, and subnets.
@@ -4732,7 +4732,7 @@ func (c *EMR) UpdateStudioRequest(input *UpdateStudioInput) (req *request.Reques
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation UpdateStudio for usage and error information.
 //
 // Returned Error Types:
@@ -4808,7 +4808,7 @@ func (c *EMR) UpdateStudioSessionMappingRequest(input *UpdateStudioSessionMappin
 	return
 }
 
-// UpdateStudioSessionMapping API operation for Amazon Elastic MapReduce.
+// UpdateStudioSessionMapping API operation for Amazon EMR.
 //
 // Updates the session policy attached to the user or group for the specified
 // Amazon EMR Studio.
@@ -4817,7 +4817,7 @@ func (c *EMR) UpdateStudioSessionMappingRequest(input *UpdateStudioSessionMappin
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
 //
-// See the AWS API reference guide for Amazon Elastic MapReduce's
+// See the AWS API reference guide for Amazon EMR's
 // API operation UpdateStudioSessionMapping for usage and error information.
 //
 // Returned Error Types:
@@ -6070,14 +6070,13 @@ type Cluster struct {
 	// root user can perform EMR actions, regardless of IAM permissions policies
 	// attached to other IAM principals.
 	//
-	// The default value is false if a value is not provided when creating a cluster
-	// using the EMR API RunJobFlow command or the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
-	// command. The default value is true when a cluster is created using the Management
-	// Console. IAM principals that are allowed to perform actions on the cluster
-	// can use the SetVisibleToAllUsers action to change the value on a running
-	// cluster. For more information, see Understanding the EMR Cluster VisibleToAllUsers
-	// Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
-	// in the Amazon EMR Management Guide.
+	// The default value is true if a value is not provided when creating a cluster
+	// using the EMR API RunJobFlow command, the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
+	// command, or the Management Console. IAM principals that are allowed to perform
+	// actions on the cluster can use the SetVisibleToAllUsers action to change
+	// the value on a running cluster. For more information, see Understanding the
+	// EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
+	// in the Amazon EMRManagement Guide.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
 
@@ -6971,13 +6970,13 @@ type CreateStudioSessionMappingInput struct {
 	// Web Services SSO Identity Store. For more information, see UserId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId)
 	// and GroupId (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId)
 	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
-	// or IdentityId must be specified.
+	// or IdentityId must be specified, but not both.
 	IdentityId *string `type:"string"`
 
 	// The name of the user or group. For more information, see UserName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserName)
 	// and DisplayName (https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-DisplayName)
 	// in the Amazon Web Services SSO Identity Store API Reference. Either IdentityName
-	// or IdentityId must be specified.
+	// or IdentityId must be specified, but not both.
 	IdentityName *string `type:"string"`
 
 	// Specifies whether the identity to map to the Amazon EMR Studio is a user
@@ -9273,6 +9272,9 @@ type InstanceGroup struct {
 	// instance group.
 	ConfigurationsVersion *int64 `type:"long"`
 
+	// The custom AMI ID to use for the provisioned instance group.
+	CustomAmiId *string `type:"string"`
+
 	// The EBS block devices that are mapped to this instance group.
 	EbsBlockDevices []*EbsBlockDevice `type:"list"`
 
@@ -9349,6 +9351,12 @@ func (s *InstanceGroup) SetConfigurations(v []*Configuration) *InstanceGroup {
 // SetConfigurationsVersion sets the ConfigurationsVersion field's value.
 func (s *InstanceGroup) SetConfigurationsVersion(v int64) *InstanceGroup {
 	s.ConfigurationsVersion = &v
+	return s
+}
+
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceGroup) SetCustomAmiId(v string) *InstanceGroup {
+	s.CustomAmiId = &v
 	return s
 }
 
@@ -9453,6 +9461,9 @@ type InstanceGroupConfig struct {
 	// and task).
 	Configurations []*Configuration `type:"list"`
 
+	// The custom AMI ID to use for the provisioned instance group.
+	CustomAmiId *string `type:"string"`
+
 	// EBS configurations that will be attached to each EC2 instance in the instance
 	// group.
 	EbsConfiguration *EbsConfiguration `type:"structure"`
@@ -9539,6 +9550,12 @@ func (s *InstanceGroupConfig) SetConfigurations(v []*Configuration) *InstanceGro
 	return s
 }
 
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceGroupConfig) SetCustomAmiId(v string) *InstanceGroupConfig {
+	s.CustomAmiId = &v
+	return s
+}
+
 // SetEbsConfiguration sets the EbsConfiguration field's value.
 func (s *InstanceGroupConfig) SetEbsConfiguration(v *EbsConfiguration) *InstanceGroupConfig {
 	s.EbsConfiguration = v
@@ -9588,6 +9605,9 @@ type InstanceGroupDetail struct {
 	//
 	// CreationDateTime is a required field
 	CreationDateTime *time.Time `type:"timestamp" required:"true"`
+
+	// The custom AMI ID to use for the provisioned instance group.
+	CustomAmiId *string `type:"string"`
 
 	// The date/time the instance group was terminated.
 	EndDateTime *time.Time `type:"timestamp"`
@@ -9658,6 +9678,12 @@ func (s *InstanceGroupDetail) SetBidPrice(v string) *InstanceGroupDetail {
 // SetCreationDateTime sets the CreationDateTime field's value.
 func (s *InstanceGroupDetail) SetCreationDateTime(v time.Time) *InstanceGroupDetail {
 	s.CreationDateTime = &v
+	return s
+}
+
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceGroupDetail) SetCustomAmiId(v string) *InstanceGroupDetail {
+	s.CustomAmiId = &v
 	return s
 }
 
@@ -10117,6 +10143,9 @@ type InstanceTypeConfig struct {
 	// the cluster.
 	Configurations []*Configuration `type:"list"`
 
+	// The custom AMI ID to use for the instance type.
+	CustomAmiId *string `type:"string"`
+
 	// The configuration of Amazon Elastic Block Store (Amazon EBS) attached to
 	// each instance as defined by InstanceType.
 	EbsConfiguration *EbsConfiguration `type:"structure"`
@@ -10182,6 +10211,12 @@ func (s *InstanceTypeConfig) SetConfigurations(v []*Configuration) *InstanceType
 	return s
 }
 
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceTypeConfig) SetCustomAmiId(v string) *InstanceTypeConfig {
+	s.CustomAmiId = &v
+	return s
+}
+
 // SetEbsConfiguration sets the EbsConfiguration field's value.
 func (s *InstanceTypeConfig) SetEbsConfiguration(v *EbsConfiguration) *InstanceTypeConfig {
 	s.EbsConfiguration = v
@@ -10220,6 +10255,9 @@ type InstanceTypeSpecification struct {
 	// which can include configurations for applications and software bundled with
 	// Amazon EMR.
 	Configurations []*Configuration `type:"list"`
+
+	// The custom AMI ID to use for the instance type.
+	CustomAmiId *string `type:"string"`
 
 	// The configuration of Amazon Elastic Block Store (Amazon EBS) attached to
 	// each instance as defined by InstanceType.
@@ -10263,6 +10301,12 @@ func (s *InstanceTypeSpecification) SetBidPriceAsPercentageOfOnDemandPrice(v flo
 // SetConfigurations sets the Configurations field's value.
 func (s *InstanceTypeSpecification) SetConfigurations(v []*Configuration) *InstanceTypeSpecification {
 	s.Configurations = v
+	return s
+}
+
+// SetCustomAmiId sets the CustomAmiId field's value.
+func (s *InstanceTypeSpecification) SetCustomAmiId(v string) *InstanceTypeSpecification {
+	s.CustomAmiId = &v
 	return s
 }
 
@@ -10546,14 +10590,13 @@ type JobFlowDetail struct {
 	// perform EMR actions, regardless of IAM permissions policies attached to other
 	// IAM principals.
 	//
-	// The default value is false if a value is not provided when creating a cluster
-	// using the EMR API RunJobFlow command or the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
-	// command. The default value is true when a cluster is created using the Management
-	// Console. IAM principals that are authorized to perform actions on the cluster
-	// can use the SetVisibleToAllUsers action to change the value on a running
-	// cluster. For more information, see Understanding the EMR Cluster VisibleToAllUsers
-	// Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
-	// in the Amazon EMR Management Guide.
+	// The default value is true if a value is not provided when creating a cluster
+	// using the EMR API RunJobFlow command, the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
+	// command, or the Management Console. IAM principals that are authorized to
+	// perform actions on the cluster can use the SetVisibleToAllUsers action to
+	// change the value on a running cluster. For more information, see Understanding
+	// the EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
+	// in the Amazon EMRManagement Guide.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
 
@@ -11834,7 +11877,7 @@ type ListReleaseLabelsInput struct {
 	// Specifies the next page of results. If NextToken is not specified, which
 	// is usually the case for the first request of ListReleaseLabels, the first
 	// page of results are determined by other filtering parameters or by the latest
-	// version. The ListReleaseLabels request fails if the identity (AWS AccountID)
+	// version. The ListReleaseLabels request fails if the identity (account ID)
 	// and all filtering parameters are different from the original request, or
 	// if the NextToken is expired or tampered with.
 	NextToken *string `type:"string"`
@@ -13702,7 +13745,7 @@ type RunJobFlowInput struct {
 
 	// Set this value to true so that IAM principals in the account associated with
 	// the cluster can perform EMR actions on the cluster that their IAM policies
-	// allow. This value defaults to false for clusters created using the EMR API
+	// allow. This value defaults to true for clusters created using the EMR API
 	// or the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
 	// command.
 	//
@@ -13710,7 +13753,7 @@ type RunJobFlowInput struct {
 	// account root user can perform EMR actions for the cluster, regardless of
 	// the IAM permissions policies attached to other IAM principals. For more information,
 	// see Understanding the EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
-	// in the Amazon EMR Management Guide.
+	// in the Amazon EMRManagement Guide.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
 

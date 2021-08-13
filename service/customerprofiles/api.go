@@ -160,6 +160,10 @@ func (c *CustomerProfiles) CreateDomainRequest(input *CreateDomainInput) (req *r
 // Each Amazon Connect instance can be associated with only one domain. Multiple
 // Amazon Connect instances can be associated with one domain.
 //
+// Use this API or UpdateDomain (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_UpdateDomain.html)
+// to enable identity resolution (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html):
+// set Matching to true.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1084,7 +1088,7 @@ func (c *CustomerProfiles) GetMatchesRequest(input *GetMatchesInput) (req *reque
 // GetMatches returns potentially matching profiles, based on the results of
 // the latest run of a machine learning process.
 //
-// Amazon Connect runs a batch process every Saturday at 12AM UTC to identify
+// Amazon Connect starts a batch process every Saturday at 12AM UTC to identify
 // matching profiles. The results are returned up to seven days after the Saturday
 // run.
 //
@@ -1107,6 +1111,12 @@ func (c *CustomerProfiles) GetMatchesRequest(input *GetMatchesInput) (req *reque
 //    * FullName
 //
 //    * BusinessName
+//
+// For example, two or more profiles—with spelling mistakes such as John Doe
+// and Jhn Doe, or different casing email addresses such as JOHN_DOE@ANYCOMPANY.COM
+// and johndoe@anycompany.com, or different phone number formats such as 555-010-0000
+// and +1-555-010-0000—can be detected as belonging to the same customer John
+// Doe and merged into a unified profile.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2709,6 +2719,10 @@ func (c *CustomerProfiles) UpdateDomainRequest(input *UpdateDomainInput) (req *r
 //
 // After a domain is created, the name can’t be changed.
 //
+// Use this API or CreateDomain (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_CreateDomain.html)
+// to enable identity resolution (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html):
+// set Matching to true.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3310,8 +3324,11 @@ type CreateDomainInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
-	// The process of matching duplicate profiles. This process runs every Saturday
-	// at 12AM.
+	// The process of matching duplicate profiles. If Matching = true, Amazon Connect
+	// Customer Profiles starts a weekly batch process every Saturday at 12AM UTC
+	// to detect duplicate profiles in your domains. After that batch process completes,
+	// use the GetMatches (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html)
+	// API to return and review the results.
 	Matching *MatchingRequest `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
@@ -3426,8 +3443,11 @@ type CreateDomainOutput struct {
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
 
-	// The process of matching duplicate profiles. This process runs every Saturday
-	// at 12AM.
+	// The process of matching duplicate profiles. If Matching = true, Amazon Connect
+	// Customer Profiles starts a weekly batch process every Saturday at 12AM UTC
+	// to detect duplicate profiles in your domains. After that batch process completes,
+	// use the GetMatches (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html)
+	// API to return and review the results.
 	Matching *MatchingResponse `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
@@ -4805,8 +4825,11 @@ type GetDomainOutput struct {
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
 
-	// The process of matching duplicate profiles. This process runs every Saturday
-	// at 12AM.
+	// The process of matching duplicate profiles. If Matching = true, Amazon Connect
+	// Customer Profiles starts a weekly batch process every Saturday at 12AM UTC
+	// to detect duplicate profiles in your domains. After that batch process completes,
+	// use the GetMatches (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html)
+	// API to return and review the results.
 	Matching *MatchingResponse `type:"structure"`
 
 	// Usage-specific statistics about the domain.
@@ -6216,6 +6239,11 @@ type ListProfileObjectsInput struct {
 	// The pagination token from the previous call to ListProfileObjects.
 	NextToken *string `location:"querystring" locationName:"next-token" min:"1" type:"string"`
 
+	// Applies a filter to the response to include profile objects with the specified
+	// index values. This filter is only supported for ObjectTypeName _asset and
+	// _case.
+	ObjectFilter *ObjectFilter `type:"structure"`
+
 	// The name of the profile object type.
 	//
 	// ObjectTypeName is a required field
@@ -6261,6 +6289,11 @@ func (s *ListProfileObjectsInput) Validate() error {
 	if s.ProfileId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ProfileId"))
 	}
+	if s.ObjectFilter != nil {
+		if err := s.ObjectFilter.Validate(); err != nil {
+			invalidParams.AddNested("ObjectFilter", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6283,6 +6316,12 @@ func (s *ListProfileObjectsInput) SetMaxResults(v int64) *ListProfileObjectsInpu
 // SetNextToken sets the NextToken field's value.
 func (s *ListProfileObjectsInput) SetNextToken(v string) *ListProfileObjectsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetObjectFilter sets the ObjectFilter field's value.
+func (s *ListProfileObjectsInput) SetObjectFilter(v *ObjectFilter) *ListProfileObjectsInput {
+	s.ObjectFilter = v
 	return s
 }
 
@@ -6678,6 +6717,66 @@ func (s *MergeProfilesOutput) SetMessage(v string) *MergeProfilesOutput {
 	return s
 }
 
+// The filter applied to ListProfileObjects response to include profile objects
+// with the specified index values. This filter is only supported for ObjectTypeName
+// _asset and _case.
+type ObjectFilter struct {
+	_ struct{} `type:"structure"`
+
+	// A searchable identifier of a standard profile object. The predefined keys
+	// you can use to search for _asset include: _assetId, _assetName, _serialNumber.
+	// The predefined keys you can use to search for _case include: _caseId.
+	//
+	// KeyName is a required field
+	KeyName *string `min:"1" type:"string" required:"true"`
+
+	// A list of key values.
+	//
+	// Values is a required field
+	Values []*string `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ObjectFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ObjectFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ObjectFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ObjectFilter"}
+	if s.KeyName == nil {
+		invalidParams.Add(request.NewErrParamRequired("KeyName"))
+	}
+	if s.KeyName != nil && len(*s.KeyName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KeyName", 1))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *ObjectFilter) SetKeyName(v string) *ObjectFilter {
+	s.KeyName = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *ObjectFilter) SetValues(v []*string) *ObjectFilter {
+	s.Values = v
+	return s
+}
+
 // Represents a field in a ProfileObjectType.
 type ObjectTypeField struct {
 	_ struct{} `type:"structure"`
@@ -6748,14 +6847,15 @@ type ObjectTypeKey struct {
 	FieldNames []*string `type:"list"`
 
 	// The types of keys that a ProfileObject can have. Each ProfileObject can have
-	// only 1 UNIQUE key but multiple PROFILE keys. PROFILE means that this key
-	// can be used to tie an object to a PROFILE. UNIQUE means that it can be used
-	// to uniquely identify an object. If a key a is marked as SECONDARY, it will
-	// be used to search for profiles after all other PROFILE keys have been searched.
-	// A LOOKUP_ONLY key is only used to match a profile but is not persisted to
-	// be used for searching of the profile. A NEW_ONLY key is only used if the
-	// profile does not already exist before the object is ingested, otherwise it
-	// is only used for matching objects to profiles.
+	// only 1 UNIQUE key but multiple PROFILE keys. PROFILE, ASSET or CASE means
+	// that this key can be used to tie an object to a PROFILE, ASSET or CASE respectively.
+	// UNIQUE means that it can be used to uniquely identify an object. If a key
+	// a is marked as SECONDARY, it will be used to search for profiles after all
+	// other PROFILE keys have been searched. A LOOKUP_ONLY key is only used to
+	// match a profile but is not persisted to be used for searching of the profile.
+	// A NEW_ONLY key is only used if the profile does not already exist before
+	// the object is ingested, otherwise it is only used for matching objects to
+	// profiles.
 	StandardIdentifiers []*string `type:"list"`
 }
 
@@ -8677,8 +8777,11 @@ type UpdateDomainInput struct {
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"DomainName" min:"1" type:"string" required:"true"`
 
-	// The process of matching duplicate profiles. This process runs every Saturday
-	// at 12AM.
+	// The process of matching duplicate profiles. If Matching = true, Amazon Connect
+	// Customer Profiles starts a weekly batch process every Saturday at 12AM UTC
+	// to detect duplicate profiles in your domains. After that batch process completes,
+	// use the GetMatches (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html)
+	// API to return and review the results.
 	Matching *MatchingRequest `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
@@ -8788,8 +8891,11 @@ type UpdateDomainOutput struct {
 	// LastUpdatedAt is a required field
 	LastUpdatedAt *time.Time `type:"timestamp" required:"true"`
 
-	// The process of matching duplicate profiles. This process runs every Saturday
-	// at 12AM.
+	// The process of matching duplicate profiles. If Matching = true, Amazon Connect
+	// Customer Profiles starts a weekly batch process every Saturday at 12AM UTC
+	// to detect duplicate profiles in your domains. After that batch process completes,
+	// use the GetMatches (https://docs.aws.amazon.com/customerprofiles/latest/APIReference/API_GetMatches.html)
+	// API to return and review the results.
 	Matching *MatchingResponse `type:"structure"`
 
 	// The tags used to organize, track, or control access for this resource.
@@ -9689,6 +9795,12 @@ const (
 	// StandardIdentifierProfile is a StandardIdentifier enum value
 	StandardIdentifierProfile = "PROFILE"
 
+	// StandardIdentifierAsset is a StandardIdentifier enum value
+	StandardIdentifierAsset = "ASSET"
+
+	// StandardIdentifierCase is a StandardIdentifier enum value
+	StandardIdentifierCase = "CASE"
+
 	// StandardIdentifierUnique is a StandardIdentifier enum value
 	StandardIdentifierUnique = "UNIQUE"
 
@@ -9706,6 +9818,8 @@ const (
 func StandardIdentifier_Values() []string {
 	return []string{
 		StandardIdentifierProfile,
+		StandardIdentifierAsset,
+		StandardIdentifierCase,
 		StandardIdentifierUnique,
 		StandardIdentifierSecondary,
 		StandardIdentifierLookupOnly,
