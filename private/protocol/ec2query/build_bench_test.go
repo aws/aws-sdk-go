@@ -1,3 +1,4 @@
+//go:build bench
 // +build bench
 
 package ec2query_test

@@ -1,3 +1,4 @@
+//go:build example
 // +build example
 
 package rdsutils_test

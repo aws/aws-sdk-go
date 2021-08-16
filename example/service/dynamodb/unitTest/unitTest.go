@@ -1,3 +1,4 @@
+//go:build example
 // +build example
 
 // Package unitTest demonstrates how to unit test, without needing to pass a

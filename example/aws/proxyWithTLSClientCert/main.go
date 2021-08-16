@@ -1,3 +1,4 @@
+//go:build example && go1.15
 // +build example,go1.15
 
 package main

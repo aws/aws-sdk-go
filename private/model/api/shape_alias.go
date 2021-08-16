@@ -1,19 +1,19 @@
 package api
 
 var shapeNameAliases = map[string]map[string]string{
-	"APIGateway": map[string]string{
+	"APIGateway": {
 		"RequestValidator": "UpdateRequestValidatorOutput",
 		"VpcLink":          "UpdateVpcLinkOutput",
 		"GatewayResponse":  "UpdateGatewayResponseOutput",
 	},
-	"Lambda": map[string]string{
+	"Lambda": {
 		"Concurrency": "PutFunctionConcurrencyOutput",
 	},
-	"Neptune": map[string]string{
+	"Neptune": {
 		"DBClusterParameterGroupNameMessage": "ResetDBClusterParameterGroupOutput",
 		"DBParameterGroupNameMessage":        "ResetDBParameterGroupOutput",
 	},
-	"RDS": map[string]string{
+	"RDS": {
 		"DBClusterBacktrack": "BacktrackDBClusterOutput",
 	},
 }

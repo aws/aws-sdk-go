@@ -1,3 +1,4 @@
+//go:build integration && go1.14
 // +build integration,go1.14
 
 package integration

@@ -1,3 +1,4 @@
+//go:build go1.13 && integration && perftest
 // +build go1.13,integration,perftest
 
 package main
@@ -51,7 +52,7 @@ func (b *BenchmarkConfig) SetupFlags(prefix string, flagSet *flag.FlagSet) {
 			s3manager.DefaultDownloadConcurrency,
 			2*s3manager.DefaultDownloadConcurrency,
 			100),
-			"part sizes to benchmark separated comma")
+		"part sizes to benchmark separated comma")
 
 	flagSet.StringVar(&b.bufferSize, "buffer", fmt.Sprintf("%d,%d", 0, 1*sdkio.MebiByte), "part sizes to benchmark separated comma")
 	flagSet.Int64Var(&b.uploadPartSize, "upload-part-size", 0, "upload part size, defaults to download part size if not specified")

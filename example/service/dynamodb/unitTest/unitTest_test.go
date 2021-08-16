@@ -1,3 +1,4 @@
+//go:build example
 // +build example
 
 // Unit tests for package unitTest.

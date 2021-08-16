@@ -1,3 +1,4 @@
+//go:build go1.10 && codegen
 // +build go1.10,codegen
 
 package api
