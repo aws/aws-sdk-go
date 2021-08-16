@@ -13505,6 +13505,28 @@ type GetInterpolatedAssetPropertyValuesInput struct {
 	// IntervalInSeconds is a required field
 	IntervalInSeconds *int64 `location:"querystring" locationName:"intervalInSeconds" min:"1" type:"long" required:"true"`
 
+	// The query interval for the window in seconds. IoT SiteWise computes each
+	// interpolated value by using data points from the timestamp of each interval
+	// minus the window to the timestamp of each interval plus the window. If not
+	// specified, the window is between the start time minus the interval and the
+	// end time plus the interval.
+	//
+	//    * If you specify a value for the intervalWindowInSeconds parameter, the
+	//    type parameter must be LINEAR_INTERPOLATION.
+	//
+	//    * If no data point is found during the specified query window, IoT SiteWise
+	//    won't return an interpolated value for the interval. This indicates that
+	//    there's a gap in the ingested data points.
+	//
+	// For example, you can get the interpolated temperature values for a wind turbine
+	// every 24 hours over a duration of 7 days. If the interpolation starts on
+	// July 1, 2021, at 9 AM with a window of 2 hours, IoT SiteWise uses the data
+	// points from 7 AM (9 AM - 2 hours) to 11 AM (9 AM + 2 hours) on July 2, 2021
+	// to compute the first interpolated value, uses the data points from 7 AM (9
+	// AM - 2 hours) to 11 AM (9 AM + 2 hours) on July 3, 2021 to compute the second
+	// interpolated value, and so on.
+	IntervalWindowInSeconds *int64 `location:"querystring" locationName:"intervalWindowInSeconds" min:"1" type:"long"`
+
 	// The maximum number of results to return for each paginated request. If not
 	// specified, the default value is 10.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -13538,7 +13560,19 @@ type GetInterpolatedAssetPropertyValuesInput struct {
 
 	// The interpolation type.
 	//
-	// Valid values: LINEAR_INTERPOLATION
+	// Valid values: LINEAR_INTERPOLATION | LOCF_INTERPOLATION
+	//
+	// For the LOCF_INTERPOLATION interpolation, if no data point is found for an
+	// interval, IoT SiteWise returns the same interpolated value calculated for
+	// the previous interval and carries forward this interpolated value until a
+	// new data point is found.
+	//
+	// For example, you can get the interpolated temperature values for a wind turbine
+	// every 24 hours over a duration of 7 days. If the LOCF_INTERPOLATION interpolation
+	// starts on July 1, 2021, at 9 AM, IoT SiteWise uses the data points from July
+	// 1, 2021, at 9 AM to July 2, 2021, at 9 AM to compute the first interpolated
+	// value. If no data points is found after 9 A.M. on July 2, 2021, IoT SiteWise
+	// uses the same interpolated value for the rest of the days.
 	//
 	// Type is a required field
 	Type *string `location:"querystring" locationName:"type" min:"1" type:"string" required:"true"`
@@ -13571,6 +13605,9 @@ func (s *GetInterpolatedAssetPropertyValuesInput) Validate() error {
 	}
 	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 1))
+	}
+	if s.IntervalWindowInSeconds != nil && *s.IntervalWindowInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("IntervalWindowInSeconds", 1))
 	}
 	if s.MaxResults != nil && *s.MaxResults < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
@@ -13627,6 +13664,12 @@ func (s *GetInterpolatedAssetPropertyValuesInput) SetEndTimeOffsetInNanos(v int6
 // SetIntervalInSeconds sets the IntervalInSeconds field's value.
 func (s *GetInterpolatedAssetPropertyValuesInput) SetIntervalInSeconds(v int64) *GetInterpolatedAssetPropertyValuesInput {
 	s.IntervalInSeconds = &v
+	return s
+}
+
+// SetIntervalWindowInSeconds sets the IntervalWindowInSeconds field's value.
+func (s *GetInterpolatedAssetPropertyValuesInput) SetIntervalWindowInSeconds(v int64) *GetInterpolatedAssetPropertyValuesInput {
+	s.IntervalWindowInSeconds = &v
 	return s
 }
 
@@ -17486,29 +17529,29 @@ type TumblingWindow struct {
 	//
 	//    * The offset time. For example, if you specify 18h for offset and 1d for
 	//    interval, IoT SiteWise aggregates data in one of the following ways: If
-	//    you create the metric before or at 6:00 p.m. (UTC), you get the first
-	//    aggregation result at 6 p.m. (UTC) on the day when you create the metric.
-	//    If you create the metric after 6:00 p.m. (UTC), you get the first aggregation
-	//    result at 6 p.m. (UTC) the next day.
+	//    you create the metric before or at 6:00 PM (UTC), you get the first aggregation
+	//    result at 6 PM (UTC) on the day when you create the metric. If you create
+	//    the metric after 6:00 PM (UTC), you get the first aggregation result at
+	//    6 PM (UTC) the next day.
 	//
 	//    * The ISO 8601 format. For example, if you specify PT18H for offset and
 	//    1d for interval, IoT SiteWise aggregates data in one of the following
-	//    ways: If you create the metric before or at 6:00 p.m. (UTC), you get the
-	//    first aggregation result at 6 p.m. (UTC) on the day when you create the
-	//    metric. If you create the metric after 6:00 p.m. (UTC), you get the first
-	//    aggregation result at 6 p.m. (UTC) the next day.
+	//    ways: If you create the metric before or at 6:00 PM (UTC), you get the
+	//    first aggregation result at 6 PM (UTC) on the day when you create the
+	//    metric. If you create the metric after 6:00 PM (UTC), you get the first
+	//    aggregation result at 6 PM (UTC) the next day.
 	//
 	//    * The 24-hour clock. For example, if you specify 00:03:00 for offset and
-	//    5m for interval, and you create the metric at 2 p.m. (UTC), you get the
-	//    first aggregation result at 2:03 p.m. (UTC). You get the second aggregation
-	//    result at 2:08 p.m. (UTC).
+	//    5m for interval, and you create the metric at 2 PM (UTC), you get the
+	//    first aggregation result at 2:03 PM (UTC). You get the second aggregation
+	//    result at 2:08 PM (UTC).
 	//
 	//    * The offset time zone. For example, if you specify 2021-07-23T18:00-08
 	//    for offset and 1d for interval, IoT SiteWise aggregates data in one of
-	//    the following ways: If you create the metric before or at 6:00 p.m. (PST),
-	//    you get the first aggregation result at 6 p.m. (PST) on the day when you
-	//    create the metric. If you create the metric after 6:00 p.m. (PST), you
-	//    get the first aggregation result at 6 p.m. (PST) the next day.
+	//    the following ways: If you create the metric before or at 6:00 PM (PST),
+	//    you get the first aggregation result at 6 PM (PST) on the day when you
+	//    create the metric. If you create the metric after 6:00 PM (PST), you get
+	//    the first aggregation result at 6 PM (PST) the next day.
 	Offset *string `locationName:"offset" min:"2" type:"string"`
 }
 

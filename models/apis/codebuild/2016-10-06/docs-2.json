@@ -140,6 +140,12 @@
       "refs": {
       }
     },
+    "BatchReportModeType": {
+      "base": null,
+      "refs": {
+        "ProjectBuildBatchConfig$batchReportMode": "<p>Specifies how build status reports are sent to the source provider for the batch build. This property is only used when the source provider for your project is Bitbucket, GitHub, or GitHub Enterprise, and your project is configured to report build statuses to the source provider.</p> <dl> <dt>REPORT_AGGREGATED_BATCH</dt> <dd> <p>(Default) Aggregate all of the build statuses into a single status report.</p> </dd> <dt>REPORT_INDIVIDUAL_BUILDS</dt> <dd> <p>Send a separate status report for each individual build.</p> </dd> </dl>"
+      }
+    },
     "BatchRestrictions": {
       "base": "<p>Specifies restrictions for the batch build.</p>",
       "refs": {

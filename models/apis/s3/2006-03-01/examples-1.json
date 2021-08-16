@@ -84,6 +84,23 @@
     "CreateBucket": [
       {
         "input": {
+          "Bucket": "examplebucket"
+        },
+        "output": {
+          "Location": "/examplebucket"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example creates a bucket.",
+        "id": "to-create-a-bucket--1472851826060",
+        "title": "To create a bucket "
+      },
+      {
+        "input": {
           "Bucket": "examplebucket",
           "CreateBucketConfiguration": {
             "LocationConstraint": "eu-west-1"
@@ -101,23 +118,6 @@
         "description": "The following example creates a bucket. The request specifies an AWS region where to create the bucket.",
         "id": "to-create-a-bucket-in-a-specific-region-1483399072992",
         "title": "To create a bucket in a specific region"
-      },
-      {
-        "input": {
-          "Bucket": "examplebucket"
-        },
-        "output": {
-          "Location": "/examplebucket"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example creates a bucket.",
-        "id": "to-create-a-bucket--1472851826060",
-        "title": "To create a bucket "
       }
     ],
     "CreateMultipartUpload": [
@@ -1567,6 +1567,47 @@
     "PutObject": [
       {
         "input": {
+          "Body": "filetoupload",
+          "Bucket": "examplebucket",
+          "Key": "objectkey"
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "VersionId": "Bvq0EDKxOcXLJXNo_Lkz37eM3R4pfzyQ"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example creates an object. If the bucket is versioning enabled, S3 returns version ID in response.",
+        "id": "to-create-an-object-1483147613675",
+        "title": "To create an object."
+      },
+      {
+        "input": {
+          "Body": "c:\\HappyFace.jpg",
+          "Bucket": "examplebucket",
+          "Key": "HappyFace.jpg",
+          "Tagging": "key1=value1&key2=value2"
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "VersionId": "psM2sYY4.o1501dSx8wMvnkOzSBB.V4a"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example uploads an object. The request specifies optional object tags. The bucket is versioned, therefore S3 returns version ID of the newly created object.",
+        "id": "to-upload-an-object-and-specify-optional-tags-1481762310955",
+        "title": "To upload an object and specify optional tags"
+      },
+      {
+        "input": {
           "Body": "HappyFace.jpg",
           "Bucket": "examplebucket",
           "Key": "HappyFace.jpg"
@@ -1584,30 +1625,6 @@
         "description": "The following example uploads an object to a versioning-enabled bucket. The source file is specified using Windows file syntax. S3 returns VersionId of the newly created object.",
         "id": "to-upload-an-object-1481760101010",
         "title": "To upload an object"
-      },
-      {
-        "input": {
-          "Body": "filetoupload",
-          "Bucket": "examplebucket",
-          "Key": "exampleobject",
-          "Metadata": {
-            "metadata1": "value1",
-            "metadata2": "value2"
-          }
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "VersionId": "pSKidl4pHBiNwukdbcPXAIs.sshFFOc0"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example creates an object. The request also specifies optional metadata. If the bucket is versioning enabled, S3 returns version ID in response.",
-        "id": "to-upload-object-and-specify-user-defined-metadata-1483396974757",
-        "title": "To upload object and specify user-defined metadata"
       },
       {
         "input": {
@@ -1636,26 +1653,6 @@
         "input": {
           "Body": "filetoupload",
           "Bucket": "examplebucket",
-          "Key": "objectkey"
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "VersionId": "Bvq0EDKxOcXLJXNo_Lkz37eM3R4pfzyQ"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example creates an object. If the bucket is versioning enabled, S3 returns version ID in response.",
-        "id": "to-create-an-object-1483147613675",
-        "title": "To create an object."
-      },
-      {
-        "input": {
-          "Body": "filetoupload",
-          "Bucket": "examplebucket",
           "Key": "exampleobject",
           "ServerSideEncryption": "AES256",
           "Tagging": "key1=value1&key2=value2"
@@ -1677,27 +1674,6 @@
       },
       {
         "input": {
-          "Body": "c:\\HappyFace.jpg",
-          "Bucket": "examplebucket",
-          "Key": "HappyFace.jpg",
-          "Tagging": "key1=value1&key2=value2"
-        },
-        "output": {
-          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
-          "VersionId": "psM2sYY4.o1501dSx8wMvnkOzSBB.V4a"
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example uploads an object. The request specifies optional object tags. The bucket is versioned, therefore S3 returns version ID of the newly created object.",
-        "id": "to-upload-an-object-and-specify-optional-tags-1481762310955",
-        "title": "To upload an object and specify optional tags"
-      },
-      {
-        "input": {
           "ACL": "authenticated-read",
           "Body": "filetoupload",
           "Bucket": "examplebucket",
@@ -1716,6 +1692,30 @@
         "description": "The following example uploads and object. The request specifies optional canned ACL (access control list) to all READ access to authenticated users. If the bucket is versioning enabled, S3 returns version ID in response.",
         "id": "to-upload-an-object-and-specify-canned-acl-1483397779571",
         "title": "To upload an object and specify canned ACL."
+      },
+      {
+        "input": {
+          "Body": "filetoupload",
+          "Bucket": "examplebucket",
+          "Key": "exampleobject",
+          "Metadata": {
+            "metadata1": "value1",
+            "metadata2": "value2"
+          }
+        },
+        "output": {
+          "ETag": "\"6805f2cfc46c0f04559748bb039d69ae\"",
+          "VersionId": "pSKidl4pHBiNwukdbcPXAIs.sshFFOc0"
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example creates an object. The request also specifies optional metadata. If the bucket is versioning enabled, S3 returns version ID in response.",
+        "id": "to-upload-object-and-specify-user-defined-metadata-1483396974757",
+        "title": "To upload object and specify user-defined metadata"
       }
     ],
     "PutObjectAcl": [
@@ -1826,6 +1826,30 @@
         "input": {
           "Bucket": "examplebucket",
           "CopySource": "/bucketname/sourceobjectkey",
+          "Key": "examplelargeobject",
+          "PartNumber": "1",
+          "UploadId": "exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--"
+        },
+        "output": {
+          "CopyPartResult": {
+            "ETag": "\"b0c6f0e7e054ab8fa2536a2677f8734d\"",
+            "LastModified": "2016-12-29T21:24:43.000Z"
+          }
+        },
+        "comments": {
+          "input": {
+          },
+          "output": {
+          }
+        },
+        "description": "The following example uploads a part of a multipart upload by copying data from an existing object as data source.",
+        "id": "to-upload-a-part-by-copying-data-from-an-existing-object-as-data-source-1483046746348",
+        "title": "To upload a part by copying data from an existing object as data source"
+      },
+      {
+        "input": {
+          "Bucket": "examplebucket",
+          "CopySource": "/bucketname/sourceobjectkey",
           "CopySourceRange": "bytes=1-100000",
           "Key": "examplelargeobject",
           "PartNumber": "2",
@@ -1846,30 +1870,6 @@
         "description": "The following example uploads a part of a multipart upload by copying a specified byte range from an existing object as data source.",
         "id": "to-upload-a-part-by-copying-byte-range-from-an-existing-object-as-data-source-1483048068594",
         "title": "To upload a part by copying byte range from an existing object as data source"
-      },
-      {
-        "input": {
-          "Bucket": "examplebucket",
-          "CopySource": "/bucketname/sourceobjectkey",
-          "Key": "examplelargeobject",
-          "PartNumber": "1",
-          "UploadId": "exampleuoh_10OhKhT7YukE9bjzTPRiuaCotmZM_pFngJFir9OZNrSr5cWa3cq3LZSUsfjI4FI7PkP91We7Nrw--"
-        },
-        "output": {
-          "CopyPartResult": {
-            "ETag": "\"b0c6f0e7e054ab8fa2536a2677f8734d\"",
-            "LastModified": "2016-12-29T21:24:43.000Z"
-          }
-        },
-        "comments": {
-          "input": {
-          },
-          "output": {
-          }
-        },
-        "description": "The following example uploads a part of a multipart upload by copying data from an existing object as data source.",
-        "id": "to-upload-a-part-by-copying-data-from-an-existing-object-as-data-source-1483046746348",
-        "title": "To upload a part by copying data from an existing object as data source"
       }
     ]
   }

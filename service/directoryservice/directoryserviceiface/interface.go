@@ -148,6 +148,10 @@ type DirectoryServiceAPI interface {
 	DescribeCertificateWithContext(aws.Context, *directoryservice.DescribeCertificateInput, ...request.Option) (*directoryservice.DescribeCertificateOutput, error)
 	DescribeCertificateRequest(*directoryservice.DescribeCertificateInput) (*request.Request, *directoryservice.DescribeCertificateOutput)
 
+	DescribeClientAuthenticationSettings(*directoryservice.DescribeClientAuthenticationSettingsInput) (*directoryservice.DescribeClientAuthenticationSettingsOutput, error)
+	DescribeClientAuthenticationSettingsWithContext(aws.Context, *directoryservice.DescribeClientAuthenticationSettingsInput, ...request.Option) (*directoryservice.DescribeClientAuthenticationSettingsOutput, error)
+	DescribeClientAuthenticationSettingsRequest(*directoryservice.DescribeClientAuthenticationSettingsInput) (*request.Request, *directoryservice.DescribeClientAuthenticationSettingsOutput)
+
 	DescribeConditionalForwarders(*directoryservice.DescribeConditionalForwardersInput) (*directoryservice.DescribeConditionalForwardersOutput, error)
 	DescribeConditionalForwardersWithContext(aws.Context, *directoryservice.DescribeConditionalForwardersInput, ...request.Option) (*directoryservice.DescribeConditionalForwardersOutput, error)
 	DescribeConditionalForwardersRequest(*directoryservice.DescribeConditionalForwardersInput) (*request.Request, *directoryservice.DescribeConditionalForwardersOutput)

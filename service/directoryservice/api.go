@@ -75,13 +75,14 @@ func (c *DirectoryService) AcceptSharedDirectoryRequest(input *AcceptSharedDirec
 //   The specified entity could not be found.
 //
 //   * DirectoryAlreadySharedException
-//   The specified directory has already been shared with this AWS account.
+//   The specified directory has already been shared with this Amazon Web Services
+//   account.
 //
 //   * ClientException
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/AcceptSharedDirectory
 func (c *DirectoryService) AcceptSharedDirectory(input *AcceptSharedDirectoryInput) (*AcceptSharedDirectoryOutput, error) {
@@ -150,16 +151,17 @@ func (c *DirectoryService) AddIpRoutesRequest(input *AddIpRoutesInput) (req *req
 
 // AddIpRoutes API operation for AWS Directory Service.
 //
-// If the DNS server for your on-premises domain uses a publicly addressable
+// If the DNS server for your self-managed domain uses a publicly addressable
 // IP address, you must add a CIDR address block to correctly route traffic
 // to and from your Microsoft AD on Amazon Web Services. AddIpRoutes adds this
 // address block. You can also use AddIpRoutes to facilitate routing traffic
-// that uses public IP ranges from your Microsoft AD on AWS to a peer VPC.
+// that uses public IP ranges from your Microsoft AD on Amazon Web Services
+// to a peer VPC.
 //
 // Before you call AddIpRoutes, ensure that all of the required permissions
 // have been explicitly granted through a policy. For details about what permissions
-// are required to run the AddIpRoutes operation, see AWS Directory Service
-// API Permissions: Actions, Resources, and Conditions Reference (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html).
+// are required to run the AddIpRoutes operation, see Directory Service API
+// Permissions: Actions, Resources, and Conditions Reference (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -189,7 +191,7 @@ func (c *DirectoryService) AddIpRoutesRequest(input *AddIpRoutesInput) (req *req
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/AddIpRoutes
 func (c *DirectoryService) AddIpRoutes(input *AddIpRoutesInput) (*AddIpRoutesOutput, error) {
@@ -278,8 +280,8 @@ func (c *DirectoryService) AddRegionRequest(input *AddRegionInput) (req *request
 //   The specified entity could not be found.
 //
 //   * DirectoryAlreadyInRegionException
-//   The Region you specified is the same Region where the AWS Managed Microsoft
-//   AD directory was created. Specify a different Region and try again.
+//   The Region you specified is the same Region where the Managed Microsoft AD
+//   directory was created. Specify a different Region and try again.
 //
 //   * UnsupportedOperationException
 //   The operation is not supported.
@@ -298,7 +300,7 @@ func (c *DirectoryService) AddRegionRequest(input *AddRegionInput) (req *request
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/AddRegion
 func (c *DirectoryService) AddRegion(input *AddRegionInput) (*AddRegionOutput, error) {
@@ -392,7 +394,7 @@ func (c *DirectoryService) AddTagsToResourceRequest(input *AddTagsToResourceInpu
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/AddTagsToResource
 func (c *DirectoryService) AddTagsToResource(input *AddTagsToResourceInput) (*AddTagsToResourceOutput, error) {
@@ -481,7 +483,7 @@ func (c *DirectoryService) CancelSchemaExtensionRequest(input *CancelSchemaExten
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CancelSchemaExtension
 func (c *DirectoryService) CancelSchemaExtension(input *CancelSchemaExtensionInput) (*CancelSchemaExtensionOutput, error) {
@@ -549,11 +551,11 @@ func (c *DirectoryService) ConnectDirectoryRequest(input *ConnectDirectoryInput)
 
 // ConnectDirectory API operation for AWS Directory Service.
 //
-// Creates an AD Connector to connect to an on-premises directory.
+// Creates an AD Connector to connect to a self-managed directory.
 //
 // Before you call ConnectDirectory, ensure that all of the required permissions
 // have been explicitly granted through a policy. For details about what permissions
-// are required to run the ConnectDirectory operation, see AWS Directory Service
+// are required to run the ConnectDirectory operation, see Directory Service
 // API Permissions: Actions, Resources, and Conditions Reference (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -576,7 +578,7 @@ func (c *DirectoryService) ConnectDirectoryRequest(input *ConnectDirectoryInput)
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ConnectDirectory
 func (c *DirectoryService) ConnectDirectory(input *ConnectDirectoryInput) (*ConnectDirectoryOutput, error) {
@@ -672,7 +674,7 @@ func (c *DirectoryService) CreateAliasRequest(input *CreateAliasInput) (req *req
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateAlias
 func (c *DirectoryService) CreateAlias(input *CreateAliasInput) (*CreateAliasOutput, error) {
@@ -772,7 +774,7 @@ func (c *DirectoryService) CreateComputerRequest(input *CreateComputerInput) (re
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateComputer
 func (c *DirectoryService) CreateComputer(input *CreateComputerInput) (*CreateComputerOutput, error) {
@@ -841,9 +843,10 @@ func (c *DirectoryService) CreateConditionalForwarderRequest(input *CreateCondit
 
 // CreateConditionalForwarder API operation for AWS Directory Service.
 //
-// Creates a conditional forwarder associated with your AWS directory. Conditional
-// forwarders are required in order to set up a trust relationship with another
-// domain. The conditional forwarder points to the trusted domain.
+// Creates a conditional forwarder associated with your Amazon Web Services
+// directory. Conditional forwarders are required in order to set up a trust
+// relationship with another domain. The conditional forwarder points to the
+// trusted domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -872,7 +875,7 @@ func (c *DirectoryService) CreateConditionalForwarderRequest(input *CreateCondit
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateConditionalForwarder
 func (c *DirectoryService) CreateConditionalForwarder(input *CreateConditionalForwarderInput) (*CreateConditionalForwarderOutput, error) {
@@ -942,11 +945,11 @@ func (c *DirectoryService) CreateDirectoryRequest(input *CreateDirectoryInput) (
 //
 // Creates a Simple AD directory. For more information, see Simple Active Directory
 // (https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_simple_ad.html)
-// in the AWS Directory Service Admin Guide.
+// in the Directory Service Admin Guide.
 //
 // Before you call CreateDirectory, ensure that all of the required permissions
 // have been explicitly granted through a policy. For details about what permissions
-// are required to run the CreateDirectory operation, see AWS Directory Service
+// are required to run the CreateDirectory operation, see Directory Service
 // API Permissions: Actions, Resources, and Conditions Reference (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -969,7 +972,7 @@ func (c *DirectoryService) CreateDirectoryRequest(input *CreateDirectoryInput) (
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateDirectory
 func (c *DirectoryService) CreateDirectory(input *CreateDirectoryInput) (*CreateDirectoryOutput, error) {
@@ -1039,7 +1042,8 @@ func (c *DirectoryService) CreateLogSubscriptionRequest(input *CreateLogSubscrip
 // CreateLogSubscription API operation for AWS Directory Service.
 //
 // Creates a subscription to forward real-time Directory Service domain controller
-// security logs to the specified Amazon CloudWatch log group in your AWS account.
+// security logs to the specified Amazon CloudWatch log group in your Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1065,7 +1069,7 @@ func (c *DirectoryService) CreateLogSubscriptionRequest(input *CreateLogSubscrip
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateLogSubscription
 func (c *DirectoryService) CreateLogSubscription(input *CreateLogSubscriptionInput) (*CreateLogSubscriptionOutput, error) {
@@ -1133,13 +1137,13 @@ func (c *DirectoryService) CreateMicrosoftADRequest(input *CreateMicrosoftADInpu
 
 // CreateMicrosoftAD API operation for AWS Directory Service.
 //
-// Creates a Microsoft AD directory in the AWS Cloud. For more information,
-// see AWS Managed Microsoft AD (https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html)
-// in the AWS Directory Service Admin Guide.
+// Creates a Microsoft AD directory in the Amazon Web Services Cloud. For more
+// information, see Managed Microsoft AD (https://docs.aws.amazon.com/directoryservice/latest/admin-guide/directory_microsoft_ad.html)
+// in the Directory Service Admin Guide.
 //
 // Before you call CreateMicrosoftAD, ensure that all of the required permissions
 // have been explicitly granted through a policy. For details about what permissions
-// are required to run the CreateMicrosoftAD operation, see AWS Directory Service
+// are required to run the CreateMicrosoftAD operation, see Directory Service
 // API Permissions: Actions, Resources, and Conditions Reference (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1162,7 +1166,7 @@ func (c *DirectoryService) CreateMicrosoftADRequest(input *CreateMicrosoftADInpu
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 //   * UnsupportedOperationException
 //   The operation is not supported.
@@ -1233,7 +1237,8 @@ func (c *DirectoryService) CreateSnapshotRequest(input *CreateSnapshotInput) (re
 
 // CreateSnapshot API operation for AWS Directory Service.
 //
-// Creates a snapshot of a Simple AD or Microsoft AD directory in the AWS cloud.
+// Creates a snapshot of a Simple AD or Microsoft AD directory in the Amazon
+// Web Services cloud.
 //
 // You cannot take snapshots of AD Connector directories.
 //
@@ -1260,7 +1265,7 @@ func (c *DirectoryService) CreateSnapshotRequest(input *CreateSnapshotInput) (re
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/CreateSnapshot
 func (c *DirectoryService) CreateSnapshot(input *CreateSnapshotInput) (*CreateSnapshotOutput, error) {
@@ -1328,15 +1333,15 @@ func (c *DirectoryService) CreateTrustRequest(input *CreateTrustInput) (req *req
 
 // CreateTrust API operation for AWS Directory Service.
 //
-// AWS Directory Service for Microsoft Active Directory allows you to configure
+// Directory Service for Microsoft Active Directory allows you to configure
 // trust relationships. For example, you can establish a trust between your
-// AWS Managed Microsoft AD directory, and your existing on-premises Microsoft
+// Managed Microsoft AD directory, and your existing self-managed Microsoft
 // Active Directory. This would allow you to provide users and groups access
 // to resources in either domain, with a single set of credentials.
 //
-// This action initiates the creation of the AWS side of a trust relationship
-// between an AWS Managed Microsoft AD directory and an external domain. You
-// can create either a forest trust or an external trust.
+// This action initiates the creation of the Amazon Web Services side of a trust
+// relationship between an Managed Microsoft AD directory and an external domain.
+// You can create either a forest trust or an external trust.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1359,7 +1364,7 @@ func (c *DirectoryService) CreateTrustRequest(input *CreateTrustInput) (req *req
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 //   * UnsupportedOperationException
 //   The operation is not supported.
@@ -1431,7 +1436,8 @@ func (c *DirectoryService) DeleteConditionalForwarderRequest(input *DeleteCondit
 
 // DeleteConditionalForwarder API operation for AWS Directory Service.
 //
-// Deletes a conditional forwarder that has been set up for your AWS directory.
+// Deletes a conditional forwarder that has been set up for your Amazon Web
+// Services directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1457,7 +1463,7 @@ func (c *DirectoryService) DeleteConditionalForwarderRequest(input *DeleteCondit
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeleteConditionalForwarder
 func (c *DirectoryService) DeleteConditionalForwarder(input *DeleteConditionalForwarderInput) (*DeleteConditionalForwarderOutput, error) {
@@ -1525,11 +1531,11 @@ func (c *DirectoryService) DeleteDirectoryRequest(input *DeleteDirectoryInput) (
 
 // DeleteDirectory API operation for AWS Directory Service.
 //
-// Deletes an AWS Directory Service directory.
+// Deletes an Directory Service directory.
 //
 // Before you call DeleteDirectory, ensure that all of the required permissions
 // have been explicitly granted through a policy. For details about what permissions
-// are required to run the DeleteDirectory operation, see AWS Directory Service
+// are required to run the DeleteDirectory operation, see Directory Service
 // API Permissions: Actions, Resources, and Conditions Reference (http://docs.aws.amazon.com/directoryservice/latest/admin-guide/UsingWithDS_IAM_ResourcePermissions.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1547,7 +1553,7 @@ func (c *DirectoryService) DeleteDirectoryRequest(input *DeleteDirectoryInput) (
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeleteDirectory
 func (c *DirectoryService) DeleteDirectory(input *DeleteDirectoryInput) (*DeleteDirectoryOutput, error) {
@@ -1636,7 +1642,7 @@ func (c *DirectoryService) DeleteLogSubscriptionRequest(input *DeleteLogSubscrip
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeleteLogSubscription
 func (c *DirectoryService) DeleteLogSubscription(input *DeleteLogSubscriptionInput) (*DeleteLogSubscriptionOutput, error) {
@@ -1724,7 +1730,7 @@ func (c *DirectoryService) DeleteSnapshotRequest(input *DeleteSnapshotInput) (re
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeleteSnapshot
 func (c *DirectoryService) DeleteSnapshot(input *DeleteSnapshotInput) (*DeleteSnapshotOutput, error) {
@@ -1792,8 +1798,8 @@ func (c *DirectoryService) DeleteTrustRequest(input *DeleteTrustInput) (req *req
 
 // DeleteTrust API operation for AWS Directory Service.
 //
-// Deletes an existing trust relationship between your AWS Managed Microsoft
-// AD directory and an external domain.
+// Deletes an existing trust relationship between your Managed Microsoft AD
+// directory and an external domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1813,7 +1819,7 @@ func (c *DirectoryService) DeleteTrustRequest(input *DeleteTrustInput) (req *req
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 //   * UnsupportedOperationException
 //   The operation is not supported.
@@ -1919,7 +1925,7 @@ func (c *DirectoryService) DeregisterCertificateRequest(input *DeregisterCertifi
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeregisterCertificate
 func (c *DirectoryService) DeregisterCertificate(input *DeregisterCertificateInput) (*DeregisterCertificateOutput, error) {
@@ -1988,7 +1994,8 @@ func (c *DirectoryService) DeregisterEventTopicRequest(input *DeregisterEventTop
 
 // DeregisterEventTopic API operation for AWS Directory Service.
 //
-// Removes the specified directory as a publisher to the specified SNS topic.
+// Removes the specified directory as a publisher to the specified Amazon SNS
+// topic.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2008,7 +2015,7 @@ func (c *DirectoryService) DeregisterEventTopicRequest(input *DeregisterEventTop
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DeregisterEventTopic
 func (c *DirectoryService) DeregisterEventTopic(input *DeregisterEventTopicInput) (*DeregisterEventTopicOutput, error) {
@@ -2103,7 +2110,7 @@ func (c *DirectoryService) DescribeCertificateRequest(input *DescribeCertificate
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeCertificate
 func (c *DirectoryService) DescribeCertificate(input *DescribeCertificateInput) (*DescribeCertificateOutput, error) {
@@ -2122,6 +2129,103 @@ func (c *DirectoryService) DescribeCertificate(input *DescribeCertificateInput) 
 // for more information on using Contexts.
 func (c *DirectoryService) DescribeCertificateWithContext(ctx aws.Context, input *DescribeCertificateInput, opts ...request.Option) (*DescribeCertificateOutput, error) {
 	req, out := c.DescribeCertificateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeClientAuthenticationSettings = "DescribeClientAuthenticationSettings"
+
+// DescribeClientAuthenticationSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeClientAuthenticationSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeClientAuthenticationSettings for more information on using the DescribeClientAuthenticationSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeClientAuthenticationSettingsRequest method.
+//    req, resp := client.DescribeClientAuthenticationSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeClientAuthenticationSettings
+func (c *DirectoryService) DescribeClientAuthenticationSettingsRequest(input *DescribeClientAuthenticationSettingsInput) (req *request.Request, output *DescribeClientAuthenticationSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeClientAuthenticationSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeClientAuthenticationSettingsInput{}
+	}
+
+	output = &DescribeClientAuthenticationSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeClientAuthenticationSettings API operation for AWS Directory Service.
+//
+// Retrieves information about the type of client authentication for the specified
+// directory, if the type is specified. If no type is specified, information
+// about all client authentication types that are supported for the specified
+// directory is retrieved. Currently, only SmartCard is supported.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Directory Service's
+// API operation DescribeClientAuthenticationSettings for usage and error information.
+//
+// Returned Error Types:
+//   * DirectoryDoesNotExistException
+//   The specified directory does not exist in the system.
+//
+//   * UnsupportedOperationException
+//   The operation is not supported.
+//
+//   * AccessDeniedException
+//   Client authentication is not available in this region at this time.
+//
+//   * InvalidParameterException
+//   One or more parameters are not valid.
+//
+//   * ClientException
+//   A client exception has occurred.
+//
+//   * ServiceException
+//   An exception has occurred in Directory Service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeClientAuthenticationSettings
+func (c *DirectoryService) DescribeClientAuthenticationSettings(input *DescribeClientAuthenticationSettingsInput) (*DescribeClientAuthenticationSettingsOutput, error) {
+	req, out := c.DescribeClientAuthenticationSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeClientAuthenticationSettingsWithContext is the same as DescribeClientAuthenticationSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeClientAuthenticationSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DirectoryService) DescribeClientAuthenticationSettingsWithContext(ctx aws.Context, input *DescribeClientAuthenticationSettingsInput, opts ...request.Option) (*DescribeClientAuthenticationSettingsOutput, error) {
+	req, out := c.DescribeClientAuthenticationSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2200,7 +2304,7 @@ func (c *DirectoryService) DescribeConditionalForwardersRequest(input *DescribeC
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeConditionalForwarders
 func (c *DirectoryService) DescribeConditionalForwarders(input *DescribeConditionalForwardersInput) (*DescribeConditionalForwardersOutput, error) {
@@ -2302,7 +2406,7 @@ func (c *DirectoryService) DescribeDirectoriesRequest(input *DescribeDirectories
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeDirectories
 func (c *DirectoryService) DescribeDirectories(input *DescribeDirectoriesInput) (*DescribeDirectoriesOutput, error) {
@@ -2399,7 +2503,7 @@ func (c *DirectoryService) DescribeDomainControllersRequest(input *DescribeDomai
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 //   * UnsupportedOperationException
 //   The operation is not supported.
@@ -2522,8 +2626,8 @@ func (c *DirectoryService) DescribeEventTopicsRequest(input *DescribeEventTopics
 
 // DescribeEventTopics API operation for AWS Directory Service.
 //
-// Obtains information about which SNS topics receive status messages from the
-// specified directory.
+// Obtains information about which Amazon SNS topics receive status messages
+// from the specified directory.
 //
 // If no input parameters are provided, such as DirectoryId or TopicName, this
 // request describes all of the associations in the account.
@@ -2546,7 +2650,7 @@ func (c *DirectoryService) DescribeEventTopicsRequest(input *DescribeEventTopics
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeEventTopics
 func (c *DirectoryService) DescribeEventTopics(input *DescribeEventTopicsInput) (*DescribeEventTopicsOutput, error) {
@@ -2640,7 +2744,7 @@ func (c *DirectoryService) DescribeLDAPSSettingsRequest(input *DescribeLDAPSSett
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeLDAPSSettings
 func (c *DirectoryService) DescribeLDAPSSettings(input *DescribeLDAPSSettingsInput) (*DescribeLDAPSSettingsOutput, error) {
@@ -2738,7 +2842,7 @@ func (c *DirectoryService) DescribeRegionsRequest(input *DescribeRegionsInput) (
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeRegions
 func (c *DirectoryService) DescribeRegions(input *DescribeRegionsInput) (*DescribeRegionsOutput, error) {
@@ -2832,7 +2936,7 @@ func (c *DirectoryService) DescribeSharedDirectoriesRequest(input *DescribeShare
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeSharedDirectories
 func (c *DirectoryService) DescribeSharedDirectories(input *DescribeSharedDirectoriesInput) (*DescribeSharedDirectoriesOutput, error) {
@@ -2930,7 +3034,7 @@ func (c *DirectoryService) DescribeSnapshotsRequest(input *DescribeSnapshotsInpu
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DescribeSnapshots
 func (c *DirectoryService) DescribeSnapshots(input *DescribeSnapshotsInput) (*DescribeSnapshotsOutput, error) {
@@ -3024,7 +3128,7 @@ func (c *DirectoryService) DescribeTrustsRequest(input *DescribeTrustsInput) (re
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 //   * UnsupportedOperationException
 //   The operation is not supported.
@@ -3122,7 +3226,7 @@ func (c *DirectoryService) DisableClientAuthenticationRequest(input *DisableClie
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DisableClientAuthentication
 func (c *DirectoryService) DisableClientAuthentication(input *DisableClientAuthenticationInput) (*DisableClientAuthenticationOutput, error) {
@@ -3221,7 +3325,7 @@ func (c *DirectoryService) DisableLDAPSRequest(input *DisableLDAPSInput) (req *r
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DisableLDAPS
 func (c *DirectoryService) DisableLDAPS(input *DisableLDAPSInput) (*DisableLDAPSOutput, error) {
@@ -3309,7 +3413,7 @@ func (c *DirectoryService) DisableRadiusRequest(input *DisableRadiusInput) (req 
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DisableRadius
 func (c *DirectoryService) DisableRadius(input *DisableRadiusInput) (*DisableRadiusOutput, error) {
@@ -3401,7 +3505,7 @@ func (c *DirectoryService) DisableSsoRequest(input *DisableSsoInput) (req *reque
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/DisableSso
 func (c *DirectoryService) DisableSso(input *DisableSsoInput) (*DisableSsoOutput, error) {
@@ -3500,7 +3604,7 @@ func (c *DirectoryService) EnableClientAuthenticationRequest(input *EnableClient
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EnableClientAuthentication
 func (c *DirectoryService) EnableClientAuthentication(input *EnableClientAuthenticationInput) (*EnableClientAuthenticationOutput, error) {
@@ -3604,7 +3708,7 @@ func (c *DirectoryService) EnableLDAPSRequest(input *EnableLDAPSInput) (req *req
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EnableLDAPS
 func (c *DirectoryService) EnableLDAPS(input *EnableLDAPSInput) (*EnableLDAPSOutput, error) {
@@ -3698,7 +3802,7 @@ func (c *DirectoryService) EnableRadiusRequest(input *EnableRadiusInput) (req *r
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EnableRadius
 func (c *DirectoryService) EnableRadius(input *EnableRadiusInput) (*EnableRadiusOutput, error) {
@@ -3768,8 +3872,8 @@ func (c *DirectoryService) EnableSsoRequest(input *EnableSsoInput) (req *request
 // EnableSso API operation for AWS Directory Service.
 //
 // Enables single sign-on for a directory. Single sign-on allows users in your
-// directory to access certain AWS services from a computer joined to the directory
-// without having to enter their credentials separately.
+// directory to access certain Amazon Web Services services from a computer
+// joined to the directory without having to enter their credentials separately.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3792,7 +3896,7 @@ func (c *DirectoryService) EnableSsoRequest(input *EnableSsoInput) (req *request
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/EnableSso
 func (c *DirectoryService) EnableSso(input *EnableSsoInput) (*EnableSsoOutput, error) {
@@ -3877,7 +3981,7 @@ func (c *DirectoryService) GetDirectoryLimitsRequest(input *GetDirectoryLimitsIn
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/GetDirectoryLimits
 func (c *DirectoryService) GetDirectoryLimits(input *GetDirectoryLimitsInput) (*GetDirectoryLimitsOutput, error) {
@@ -3962,7 +4066,7 @@ func (c *DirectoryService) GetSnapshotLimitsRequest(input *GetSnapshotLimitsInpu
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/GetSnapshotLimits
 func (c *DirectoryService) GetSnapshotLimits(input *GetSnapshotLimitsInput) (*GetSnapshotLimitsOutput, error) {
@@ -4057,7 +4161,7 @@ func (c *DirectoryService) ListCertificatesRequest(input *ListCertificatesInput)
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ListCertificates
 func (c *DirectoryService) ListCertificates(input *ListCertificatesInput) (*ListCertificatesOutput, error) {
@@ -4148,7 +4252,7 @@ func (c *DirectoryService) ListIpRoutesRequest(input *ListIpRoutesInput) (req *r
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ListIpRoutes
 func (c *DirectoryService) ListIpRoutes(input *ListIpRoutesInput) (*ListIpRoutesOutput, error) {
@@ -4216,7 +4320,7 @@ func (c *DirectoryService) ListLogSubscriptionsRequest(input *ListLogSubscriptio
 
 // ListLogSubscriptions API operation for AWS Directory Service.
 //
-// Lists the active log subscriptions for the AWS account.
+// Lists the active log subscriptions for the Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4236,7 +4340,7 @@ func (c *DirectoryService) ListLogSubscriptionsRequest(input *ListLogSubscriptio
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ListLogSubscriptions
 func (c *DirectoryService) ListLogSubscriptions(input *ListLogSubscriptionsInput) (*ListLogSubscriptionsOutput, error) {
@@ -4324,7 +4428,7 @@ func (c *DirectoryService) ListSchemaExtensionsRequest(input *ListSchemaExtensio
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ListSchemaExtensions
 func (c *DirectoryService) ListSchemaExtensions(input *ListSchemaExtensionsInput) (*ListSchemaExtensionsOutput, error) {
@@ -4415,7 +4519,7 @@ func (c *DirectoryService) ListTagsForResourceRequest(input *ListTagsForResource
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ListTagsForResource
 func (c *DirectoryService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -4519,7 +4623,7 @@ func (c *DirectoryService) RegisterCertificateRequest(input *RegisterCertificate
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RegisterCertificate
 func (c *DirectoryService) RegisterCertificate(input *RegisterCertificateInput) (*RegisterCertificateOutput, error) {
@@ -4588,10 +4692,10 @@ func (c *DirectoryService) RegisterEventTopicRequest(input *RegisterEventTopicIn
 
 // RegisterEventTopic API operation for AWS Directory Service.
 //
-// Associates a directory with an SNS topic. This establishes the directory
-// as a publisher to the specified SNS topic. You can then receive email or
-// text (SMS) messages when the status of your directory changes. You get notified
-// if your directory goes from an Active status to an Impaired or Inoperable
+// Associates a directory with an Amazon SNS topic. This establishes the directory
+// as a publisher to the specified Amazon SNS topic. You can then receive email
+// or text (SMS) messages when the status of your directory changes. You get
+// notified if your directory goes from an Active status to an Impaired or Inoperable
 // status. You also receive a notification when the directory returns to an
 // Active status.
 //
@@ -4613,7 +4717,7 @@ func (c *DirectoryService) RegisterEventTopicRequest(input *RegisterEventTopicIn
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RegisterEventTopic
 func (c *DirectoryService) RegisterEventTopic(input *RegisterEventTopicInput) (*RegisterEventTopicOutput, error) {
@@ -4699,13 +4803,14 @@ func (c *DirectoryService) RejectSharedDirectoryRequest(input *RejectSharedDirec
 //   The specified entity could not be found.
 //
 //   * DirectoryAlreadySharedException
-//   The specified directory has already been shared with this AWS account.
+//   The specified directory has already been shared with this Amazon Web Services
+//   account.
 //
 //   * ClientException
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RejectSharedDirectory
 func (c *DirectoryService) RejectSharedDirectory(input *RejectSharedDirectoryInput) (*RejectSharedDirectoryOutput, error) {
@@ -4797,7 +4902,7 @@ func (c *DirectoryService) RemoveIpRoutesRequest(input *RemoveIpRoutesInput) (re
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RemoveIpRoutes
 func (c *DirectoryService) RemoveIpRoutes(input *RemoveIpRoutesInput) (*RemoveIpRoutesOutput, error) {
@@ -4894,7 +4999,7 @@ func (c *DirectoryService) RemoveRegionRequest(input *RemoveRegionInput) (req *r
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RemoveRegion
 func (c *DirectoryService) RemoveRegion(input *RemoveRegionInput) (*RemoveRegionOutput, error) {
@@ -4983,7 +5088,7 @@ func (c *DirectoryService) RemoveTagsFromResourceRequest(input *RemoveTagsFromRe
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RemoveTagsFromResource
 func (c *DirectoryService) RemoveTagsFromResource(input *RemoveTagsFromResourceInput) (*RemoveTagsFromResourceOutput, error) {
@@ -5052,8 +5157,8 @@ func (c *DirectoryService) ResetUserPasswordRequest(input *ResetUserPasswordInpu
 
 // ResetUserPassword API operation for AWS Directory Service.
 //
-// Resets the password for any user in your AWS Managed Microsoft AD or Simple
-// AD directory.
+// Resets the password for any user in your Managed Microsoft AD or Simple AD
+// directory.
 //
 // You can reset the password for any user in your directory with the following
 // exceptions:
@@ -5062,12 +5167,13 @@ func (c *DirectoryService) ResetUserPasswordRequest(input *ResetUserPasswordInpu
 //    member of either the Domain Admins or Enterprise Admins group except for
 //    the administrator user.
 //
-//    * For AWS Managed Microsoft AD, you can only reset the password for a
-//    user that is in an OU based off of the NetBIOS name that you typed when
-//    you created your directory. For example, you cannot reset the password
-//    for a user in the AWS Reserved OU. For more information about the OU structure
-//    for an AWS Managed Microsoft AD directory, see What Gets Created (https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started_what_gets_created.html)
-//    in the AWS Directory Service Administration Guide.
+//    * For Managed Microsoft AD, you can only reset the password for a user
+//    that is in an OU based off of the NetBIOS name that you typed when you
+//    created your directory. For example, you cannot reset the password for
+//    a user in the Amazon Web Services Reserved OU. For more information about
+//    the OU structure for an Managed Microsoft AD directory, see What Gets
+//    Created (https://docs.aws.amazon.com/directoryservice/latest/admin-guide/ms_ad_getting_started_what_gets_created.html)
+//    in the Directory Service Administration Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5097,7 +5203,7 @@ func (c *DirectoryService) ResetUserPasswordRequest(input *ResetUserPasswordInpu
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ResetUserPassword
 func (c *DirectoryService) ResetUserPassword(input *ResetUserPasswordInput) (*ResetUserPasswordOutput, error) {
@@ -5194,7 +5300,7 @@ func (c *DirectoryService) RestoreFromSnapshotRequest(input *RestoreFromSnapshot
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/RestoreFromSnapshot
 func (c *DirectoryService) RestoreFromSnapshot(input *RestoreFromSnapshotInput) (*RestoreFromSnapshotOutput, error) {
@@ -5262,21 +5368,22 @@ func (c *DirectoryService) ShareDirectoryRequest(input *ShareDirectoryInput) (re
 
 // ShareDirectory API operation for AWS Directory Service.
 //
-// Shares a specified directory (DirectoryId) in your AWS account (directory
-// owner) with another AWS account (directory consumer). With this operation
-// you can use your directory from any AWS account and from any Amazon VPC within
-// an AWS Region.
+// Shares a specified directory (DirectoryId) in your Amazon Web Services account
+// (directory owner) with another Amazon Web Services account (directory consumer).
+// With this operation you can use your directory from any Amazon Web Services
+// account and from any Amazon VPC within an Amazon Web Services Region.
 //
-// When you share your AWS Managed Microsoft AD directory, AWS Directory Service
-// creates a shared directory in the directory consumer account. This shared
-// directory contains the metadata to provide access to the directory within
-// the directory owner account. The shared directory is visible in all VPCs
-// in the directory consumer account.
+// When you share your Managed Microsoft AD directory, Directory Service creates
+// a shared directory in the directory consumer account. This shared directory
+// contains the metadata to provide access to the directory within the directory
+// owner account. The shared directory is visible in all VPCs in the directory
+// consumer account.
 //
 // The ShareMethod parameter determines whether the specified directory can
-// be shared between AWS accounts inside the same AWS organization (ORGANIZATIONS).
-// It also determines whether you can share the directory with any other AWS
-// account either inside or outside of the organization (HANDSHAKE).
+// be shared between Amazon Web Services accounts inside the same Amazon Web
+// Services organization (ORGANIZATIONS). It also determines whether you can
+// share the directory with any other Amazon Web Services account either inside
+// or outside of the organization (HANDSHAKE).
 //
 // The ShareNotes parameter is only used when HANDSHAKE is called, which sends
 // a directory sharing request to the directory consumer.
@@ -5290,7 +5397,8 @@ func (c *DirectoryService) ShareDirectoryRequest(input *ShareDirectoryInput) (re
 //
 // Returned Error Types:
 //   * DirectoryAlreadySharedException
-//   The specified directory has already been shared with this AWS account.
+//   The specified directory has already been shared with this Amazon Web Services
+//   account.
 //
 //   * EntityDoesNotExistException
 //   The specified entity could not be found.
@@ -5305,11 +5413,11 @@ func (c *DirectoryService) ShareDirectoryRequest(input *ShareDirectoryInput) (re
 //   A client exception has occurred.
 //
 //   * ShareLimitExceededException
-//   The maximum number of AWS accounts that you can share with this directory
-//   has been reached.
+//   The maximum number of Amazon Web Services accounts that you can share with
+//   this directory has been reached.
 //
 //   * OrganizationsException
-//   Exception encountered while trying to access your AWS organization.
+//   Exception encountered while trying to access your Amazon Web Services organization.
 //
 //   * AccessDeniedException
 //   Client authentication is not available in this region at this time.
@@ -5318,7 +5426,7 @@ func (c *DirectoryService) ShareDirectoryRequest(input *ShareDirectoryInput) (re
 //   The operation is not supported.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/ShareDirectory
 func (c *DirectoryService) ShareDirectory(input *ShareDirectoryInput) (*ShareDirectoryOutput, error) {
@@ -5414,7 +5522,7 @@ func (c *DirectoryService) StartSchemaExtensionRequest(input *StartSchemaExtensi
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/StartSchemaExtension
 func (c *DirectoryService) StartSchemaExtension(input *StartSchemaExtensionInput) (*StartSchemaExtensionOutput, error) {
@@ -5499,13 +5607,14 @@ func (c *DirectoryService) UnshareDirectoryRequest(input *UnshareDirectoryInput)
 //   The specified shared target is not valid.
 //
 //   * DirectoryNotSharedException
-//   The specified directory has not been shared with this AWS account.
+//   The specified directory has not been shared with this Amazon Web Services
+//   account.
 //
 //   * ClientException
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UnshareDirectory
 func (c *DirectoryService) UnshareDirectory(input *UnshareDirectoryInput) (*UnshareDirectoryOutput, error) {
@@ -5574,7 +5683,8 @@ func (c *DirectoryService) UpdateConditionalForwarderRequest(input *UpdateCondit
 
 // UpdateConditionalForwarder API operation for AWS Directory Service.
 //
-// Updates a conditional forwarder that has been set up for your AWS directory.
+// Updates a conditional forwarder that has been set up for your Amazon Web
+// Services directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5600,7 +5710,7 @@ func (c *DirectoryService) UpdateConditionalForwarderRequest(input *UpdateCondit
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateConditionalForwarder
 func (c *DirectoryService) UpdateConditionalForwarder(input *UpdateConditionalForwarderInput) (*UpdateConditionalForwarderOutput, error) {
@@ -5704,7 +5814,7 @@ func (c *DirectoryService) UpdateNumberOfDomainControllersRequest(input *UpdateN
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateNumberOfDomainControllers
 func (c *DirectoryService) UpdateNumberOfDomainControllers(input *UpdateNumberOfDomainControllersInput) (*UpdateNumberOfDomainControllersOutput, error) {
@@ -5794,7 +5904,7 @@ func (c *DirectoryService) UpdateRadiusRequest(input *UpdateRadiusInput) (req *r
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateRadius
 func (c *DirectoryService) UpdateRadius(input *UpdateRadiusInput) (*UpdateRadiusOutput, error) {
@@ -5862,8 +5972,8 @@ func (c *DirectoryService) UpdateTrustRequest(input *UpdateTrustInput) (req *req
 
 // UpdateTrust API operation for AWS Directory Service.
 //
-// Updates the trust that has been set up between your AWS Managed Microsoft
-// AD directory and an on-premises Active Directory.
+// Updates the trust that has been set up between your Managed Microsoft AD
+// directory and an self-managed Active Directory.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5883,7 +5993,7 @@ func (c *DirectoryService) UpdateTrustRequest(input *UpdateTrustInput) (req *req
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ds-2015-04-16/UpdateTrust
 func (c *DirectoryService) UpdateTrust(input *UpdateTrustInput) (*UpdateTrustOutput, error) {
@@ -5951,10 +6061,10 @@ func (c *DirectoryService) VerifyTrustRequest(input *VerifyTrustInput) (req *req
 
 // VerifyTrust API operation for AWS Directory Service.
 //
-// AWS Directory Service for Microsoft Active Directory allows you to configure
+// Directory Service for Microsoft Active Directory allows you to configure
 // and verify trust relationships.
 //
-// This action verifies a trust relationship between your AWS Managed Microsoft
+// This action verifies a trust relationship between your Managed Microsoft
 // AD directory and an external domain.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -5975,7 +6085,7 @@ func (c *DirectoryService) VerifyTrustRequest(input *VerifyTrustInput) (req *req
 //   A client exception has occurred.
 //
 //   * ServiceException
-//   An exception has occurred in AWS Directory Service.
+//   An exception has occurred in Directory Service.
 //
 //   * UnsupportedOperationException
 //   The operation is not supported.
@@ -6072,7 +6182,7 @@ type AccessDeniedException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -6133,14 +6243,14 @@ type AddIpRoutesInput struct {
 	DirectoryId *string `type:"string" required:"true"`
 
 	// IP address blocks, using CIDR format, of the traffic to route. This is often
-	// the IP address block of the DNS server used for your on-premises domain.
+	// the IP address block of the DNS server used for your self-managed domain.
 	//
 	// IpRoutes is a required field
 	IpRoutes []*IpRoute `type:"list" required:"true"`
 
 	// If set to true, updates the inbound and outbound rules of the security group
-	// that has the description: "AWS created security group for directory ID directory
-	// controllers." Following are the new rules:
+	// that has the description: "Amazon Web Services created security group for
+	// directory ID directory controllers." Following are the new rules:
 	//
 	// Inbound:
 	//
@@ -6679,7 +6789,7 @@ type CertificateAlreadyExistsException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -6739,7 +6849,7 @@ type CertificateDoesNotExistException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -6800,7 +6910,7 @@ type CertificateInUseException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -6922,7 +7032,7 @@ type CertificateLimitExceededException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -6974,6 +7084,52 @@ func (s *CertificateLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Contains information about a client authentication method for a directory.
+type ClientAuthenticationSettingInfo struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time when the status of the client authentication type was last
+	// updated.
+	LastUpdatedDateTime *time.Time `type:"timestamp"`
+
+	// Whether the client authentication type is enabled or disabled for the specified
+	// directory.
+	Status *string `type:"string" enum:"ClientAuthenticationStatus"`
+
+	// The type of client authentication for the specified directory. If no type
+	// is specified, a list of all client authentication types that are supported
+	// for the directory is retrieved.
+	Type *string `type:"string" enum:"ClientAuthenticationType"`
+}
+
+// String returns the string representation
+func (s ClientAuthenticationSettingInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ClientAuthenticationSettingInfo) GoString() string {
+	return s.String()
+}
+
+// SetLastUpdatedDateTime sets the LastUpdatedDateTime field's value.
+func (s *ClientAuthenticationSettingInfo) SetLastUpdatedDateTime(v time.Time) *ClientAuthenticationSettingInfo {
+	s.LastUpdatedDateTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ClientAuthenticationSettingInfo) SetStatus(v string) *ClientAuthenticationSettingInfo {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ClientAuthenticationSettingInfo) SetType(v string) *ClientAuthenticationSettingInfo {
+	s.Type = &v
+	return s
+}
+
 // Contains information about the client certificate authentication settings
 // for the RegisterCertificate and DescribeCertificate operations.
 type ClientCertAuthSettings struct {
@@ -7022,7 +7178,7 @@ type ClientException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -7134,7 +7290,7 @@ type ConditionalForwarder struct {
 
 	// The replication scope of the conditional forwarder. The only allowed value
 	// is Domain, which will replicate the conditional forwarder to all of the domain
-	// controllers for your AWS directory.
+	// controllers for your Amazon Web Services directory.
 	ReplicationScope *string `type:"string" enum:"ReplicationScope"`
 }
 
@@ -7179,17 +7335,17 @@ type ConnectDirectoryInput struct {
 	// A description for the directory.
 	Description *string `type:"string"`
 
-	// The fully qualified name of the on-premises directory, such as corp.example.com.
+	// The fully qualified name of your self-managed directory, such as corp.example.com.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The password for the on-premises user account.
+	// The password for your self-managed user account.
 	//
 	// Password is a required field
 	Password *string `min:"1" type:"string" required:"true" sensitive:"true"`
 
-	// The NetBIOS name of the on-premises directory, such as CORP.
+	// The NetBIOS name of your self-managed directory, such as CORP.
 	ShortName *string `type:"string"`
 
 	// The size of the directory.
@@ -7323,8 +7479,9 @@ type CreateAliasInput struct {
 
 	// The requested alias.
 	//
-	// The alias must be unique amongst all aliases in AWS. This operation throws
-	// an EntityAlreadyExistsException error if the alias already exists.
+	// The alias must be unique amongst all aliases in Amazon Web Services. This
+	// operation throws an EntityAlreadyExistsException error if the alias already
+	// exists.
 	//
 	// Alias is a required field
 	Alias *string `min:"1" type:"string" required:"true"`
@@ -7540,14 +7697,14 @@ func (s *CreateComputerOutput) SetComputer(v *Computer) *CreateComputerOutput {
 	return s
 }
 
-// Initiates the creation of a conditional forwarder for your AWS Directory
-// Service for Microsoft Active Directory. Conditional forwarders are required
-// in order to set up a trust relationship with another domain.
+// Initiates the creation of a conditional forwarder for your Directory Service
+// for Microsoft Active Directory. Conditional forwarders are required in order
+// to set up a trust relationship with another domain.
 type CreateConditionalForwarderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The directory ID of the AWS directory for which you are creating the conditional
-	// forwarder.
+	// The directory ID of the Amazon Web Services directory for which you are creating
+	// the conditional forwarder.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
@@ -7863,21 +8020,21 @@ func (s CreateLogSubscriptionOutput) GoString() string {
 	return s.String()
 }
 
-// Creates an AWS Managed Microsoft AD directory.
+// Creates an Managed Microsoft AD directory.
 type CreateMicrosoftADInput struct {
 	_ struct{} `type:"structure"`
 
-	// A description for the directory. This label will appear on the AWS console
-	// Directory Details page after the directory is created.
+	// A description for the directory. This label will appear on the Amazon Web
+	// Services console Directory Details page after the directory is created.
 	Description *string `type:"string"`
 
-	// AWS Managed Microsoft AD is available in two editions: Standard and Enterprise.
+	// Managed Microsoft AD is available in two editions: Standard and Enterprise.
 	// Enterprise is the default.
 	Edition *string `type:"string" enum:"DirectoryEdition"`
 
-	// The fully qualified domain name for the AWS Managed Microsoft AD directory,
-	// such as corp.example.com. This name will resolve inside your VPC only. It
-	// does not need to be publicly resolvable.
+	// The fully qualified domain name for the Managed Microsoft AD directory, such
+	// as corp.example.com. This name will resolve inside your VPC only. It does
+	// not need to be publicly resolvable.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
@@ -7895,7 +8052,7 @@ type CreateMicrosoftADInput struct {
 	// CORP for the directory DNS corp.example.com.
 	ShortName *string `type:"string"`
 
-	// The tags to be assigned to the AWS Managed Microsoft AD directory.
+	// The tags to be assigned to the Managed Microsoft AD directory.
 	Tags []*Tag `type:"list"`
 
 	// Contains VPC information for the CreateDirectory or CreateMicrosoftAD operation.
@@ -8086,21 +8243,21 @@ func (s *CreateSnapshotOutput) SetSnapshotId(v string) *CreateSnapshotOutput {
 	return s
 }
 
-// AWS Directory Service for Microsoft Active Directory allows you to configure
+// Directory Service for Microsoft Active Directory allows you to configure
 // trust relationships. For example, you can establish a trust between your
-// AWS Managed Microsoft AD directory, and your existing on-premises Microsoft
+// Managed Microsoft AD directory, and your existing self-managed Microsoft
 // Active Directory. This would allow you to provide users and groups access
 // to resources in either domain, with a single set of credentials.
 //
-// This action initiates the creation of the AWS side of a trust relationship
-// between an AWS Managed Microsoft AD directory and an external domain.
+// This action initiates the creation of the Amazon Web Services side of a trust
+// relationship between an Managed Microsoft AD directory and an external domain.
 type CreateTrustInput struct {
 	_ struct{} `type:"structure"`
 
 	// The IP addresses of the remote DNS server associated with RemoteDomainName.
 	ConditionalForwarderIpAddrs []*string `type:"list"`
 
-	// The Directory ID of the AWS Managed Microsoft AD directory for which to establish
+	// The Directory ID of the Managed Microsoft AD directory for which to establish
 	// the trust relationship.
 	//
 	// DirectoryId is a required field
@@ -8478,8 +8635,8 @@ func (s *DeleteSnapshotOutput) SetSnapshotId(v string) *DeleteSnapshotOutput {
 	return s
 }
 
-// Deletes the local side of an existing trust relationship between the AWS
-// Managed Microsoft AD directory and the external domain.
+// Deletes the local side of an existing trust relationship between the Managed
+// Microsoft AD directory and the external domain.
 type DeleteTrustInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8617,17 +8774,19 @@ func (s DeregisterCertificateOutput) GoString() string {
 	return s.String()
 }
 
-// Removes the specified directory as a publisher to the specified SNS topic.
+// Removes the specified directory as a publisher to the specified Amazon SNS
+// topic.
 type DeregisterEventTopicInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Directory ID to remove as a publisher. This directory will no longer
-	// send messages to the specified SNS topic.
+	// send messages to the specified Amazon SNS topic.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
-	// The name of the SNS topic from which to remove the directory as a publisher.
+	// The name of the Amazon SNS topic from which to remove the directory as a
+	// publisher.
 	//
 	// TopicName is a required field
 	TopicName *string `min:"1" type:"string" required:"true"`
@@ -8763,6 +8922,115 @@ func (s DescribeCertificateOutput) GoString() string {
 // SetCertificate sets the Certificate field's value.
 func (s *DescribeCertificateOutput) SetCertificate(v *Certificate) *DescribeCertificateOutput {
 	s.Certificate = v
+	return s
+}
+
+type DescribeClientAuthenticationSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the directory for which to retrieve information.
+	//
+	// DirectoryId is a required field
+	DirectoryId *string `type:"string" required:"true"`
+
+	// The maximum number of items to return. If this value is zero, the maximum
+	// number of items is specified by the limitations of the operation.
+	Limit *int64 `min:"1" type:"integer"`
+
+	// The DescribeClientAuthenticationSettingsResult.NextToken value from a previous
+	// call to DescribeClientAuthenticationSettings. Pass null if this is the first
+	// call.
+	NextToken *string `type:"string"`
+
+	// The type of client authentication for which to retrieve information. If no
+	// type is specified, a list of all client authentication types that are supported
+	// for the specified directory is retrieved.
+	Type *string `type:"string" enum:"ClientAuthenticationType"`
+}
+
+// String returns the string representation
+func (s DescribeClientAuthenticationSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClientAuthenticationSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeClientAuthenticationSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeClientAuthenticationSettingsInput"}
+	if s.DirectoryId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DirectoryId"))
+	}
+	if s.Limit != nil && *s.Limit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Limit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDirectoryId sets the DirectoryId field's value.
+func (s *DescribeClientAuthenticationSettingsInput) SetDirectoryId(v string) *DescribeClientAuthenticationSettingsInput {
+	s.DirectoryId = &v
+	return s
+}
+
+// SetLimit sets the Limit field's value.
+func (s *DescribeClientAuthenticationSettingsInput) SetLimit(v int64) *DescribeClientAuthenticationSettingsInput {
+	s.Limit = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeClientAuthenticationSettingsInput) SetNextToken(v string) *DescribeClientAuthenticationSettingsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *DescribeClientAuthenticationSettingsInput) SetType(v string) *DescribeClientAuthenticationSettingsInput {
+	s.Type = &v
+	return s
+}
+
+type DescribeClientAuthenticationSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the type of client authentication for the specified directory.
+	// The following information is retrieved: The date and time when the status
+	// of the client authentication type was last updated, whether the client authentication
+	// type is enabled or disabled, and the type of client authentication.
+	ClientAuthenticationSettingsInfo []*ClientAuthenticationSettingInfo `type:"list"`
+
+	// The next token used to retrieve the client authentication settings if the
+	// number of setting types exceeds page limit and there is another page.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeClientAuthenticationSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeClientAuthenticationSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetClientAuthenticationSettingsInfo sets the ClientAuthenticationSettingsInfo field's value.
+func (s *DescribeClientAuthenticationSettingsOutput) SetClientAuthenticationSettingsInfo(v []*ClientAuthenticationSettingInfo) *DescribeClientAuthenticationSettingsOutput {
+	s.ClientAuthenticationSettingsInfo = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeClientAuthenticationSettingsOutput) SetNextToken(v string) *DescribeClientAuthenticationSettingsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -9033,12 +9301,13 @@ func (s *DescribeDomainControllersOutput) SetNextToken(v string) *DescribeDomain
 type DescribeEventTopicsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Directory ID for which to get the list of associated SNS topics. If this
-	// member is null, associations for all Directory IDs are returned.
+	// The Directory ID for which to get the list of associated Amazon SNS topics.
+	// If this member is null, associations for all Directory IDs are returned.
 	DirectoryId *string `type:"string"`
 
-	// A list of SNS topic names for which to obtain the information. If this member
-	// is null, all associations for the specified Directory ID are returned.
+	// A list of Amazon SNS topic names for which to obtain the information. If
+	// this member is null, all associations for the specified Directory ID are
+	// returned.
 	//
 	// An empty list results in an InvalidParameterException being thrown.
 	TopicNames []*string `type:"list"`
@@ -9070,7 +9339,7 @@ func (s *DescribeEventTopicsInput) SetTopicNames(v []*string) *DescribeEventTopi
 type DescribeEventTopicsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of SNS topic names that receive status messages from the specified
+	// A list of Amazon SNS topic names that receive status messages from the specified
 	// Directory ID.
 	EventTopics []*EventTopic `type:"list"`
 }
@@ -9480,14 +9749,14 @@ func (s *DescribeSnapshotsOutput) SetSnapshots(v []*Snapshot) *DescribeSnapshots
 	return s
 }
 
-// Describes the trust relationships for a particular AWS Managed Microsoft
-// AD directory. If no input parameters are are provided, such as directory
-// ID or trust ID, this request describes all the trust relationships.
+// Describes the trust relationships for a particular Managed Microsoft AD directory.
+// If no input parameters are provided, such as directory ID or trust ID, this
+// request describes all the trust relationships.
 type DescribeTrustsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Directory ID of the AWS directory that is a part of the requested trust
-	// relationship.
+	// The Directory ID of the Amazon Web Services directory that is a part of the
+	// requested trust relationship.
 	DirectoryId *string `type:"string"`
 
 	// The maximum number of objects to return.
@@ -9579,8 +9848,8 @@ func (s *DescribeTrustsOutput) SetTrusts(v []*Trust) *DescribeTrustsOutput {
 	return s
 }
 
-// The Region you specified is the same Region where the AWS Managed Microsoft
-// AD directory was created. Specify a different Region and try again.
+// The Region you specified is the same Region where the Managed Microsoft AD
+// directory was created. Specify a different Region and try again.
 type DirectoryAlreadyInRegionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9588,7 +9857,7 @@ type DirectoryAlreadyInRegionException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -9640,7 +9909,8 @@ func (s *DirectoryAlreadyInRegionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The specified directory has already been shared with this AWS account.
+// The specified directory has already been shared with this Amazon Web Services
+// account.
 type DirectoryAlreadySharedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9648,7 +9918,7 @@ type DirectoryAlreadySharedException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -9706,12 +9976,12 @@ type DirectoryConnectSettings struct {
 	_ struct{} `type:"structure"`
 
 	// A list of one or more IP addresses of DNS servers or domain controllers in
-	// the on-premises directory.
+	// your self-managed directory.
 	//
 	// CustomerDnsIps is a required field
 	CustomerDnsIps []*string `type:"list" required:"true"`
 
-	// The user name of an account in the on-premises directory that is used to
+	// The user name of an account in your self-managed directory that is used to
 	// connect to the directory. This account must have the following permissions:
 	//
 	//    * Read users and groups
@@ -9803,7 +10073,7 @@ type DirectoryConnectSettingsDescription struct {
 	// The IP addresses of the AD Connector servers.
 	ConnectIps []*string `type:"list"`
 
-	// The user name of the service account in the on-premises directory.
+	// The user name of the service account in your self-managed directory.
 	CustomerUserName *string `min:"1" type:"string"`
 
 	// The security group identifier for the AD Connector directory.
@@ -9862,7 +10132,7 @@ func (s *DirectoryConnectSettingsDescription) SetVpcId(v string) *DirectoryConne
 	return s
 }
 
-// Contains information about an AWS Directory Service directory.
+// Contains information about an Directory Service directory.
 type DirectoryDescription struct {
 	_ struct{} `type:"structure"`
 
@@ -9893,7 +10163,7 @@ type DirectoryDescription struct {
 	// The IP addresses of the DNS servers for the directory. For a Simple AD or
 	// Microsoft AD directory, these are the IP addresses of the Simple AD or Microsoft
 	// AD directory servers. For an AD Connector directory, these are the IP addresses
-	// of the DNS servers or domain controllers in the on-premises directory to
+	// of the DNS servers or domain controllers in your self-managed directory to
 	// which the AD Connector is connected.
 	DnsIpAddrs []*string `type:"list"`
 
@@ -9906,7 +10176,7 @@ type DirectoryDescription struct {
 	// The fully qualified name of the directory.
 	Name *string `type:"string"`
 
-	// Describes the AWS Managed Microsoft AD directory in the directory owner account.
+	// Describes the Managed Microsoft AD directory in the directory owner account.
 	OwnerDirectoryDescription *OwnerDirectoryDescription `type:"structure"`
 
 	// A RadiusSettings object that contains information about the RADIUS server
@@ -9920,8 +10190,9 @@ type DirectoryDescription struct {
 	RegionsInfo *RegionsInfo `type:"structure"`
 
 	// The method used when sharing a directory to determine whether the directory
-	// should be shared within your AWS organization (ORGANIZATIONS) or with any
-	// AWS account by sending a shared directory request (HANDSHAKE).
+	// should be shared within your Amazon Web Services organization (ORGANIZATIONS)
+	// or with any Amazon Web Services account by sending a shared directory request
+	// (HANDSHAKE).
 	ShareMethod *string `type:"string" enum:"ShareMethod"`
 
 	// A directory share request that is sent by the directory owner to the directory
@@ -9929,7 +10200,7 @@ type DirectoryDescription struct {
 	// administrator determine whether to approve or reject the share invitation.
 	ShareNotes *string `type:"string" sensitive:"true"`
 
-	// Current directory status of the shared AWS Managed Microsoft AD directory.
+	// Current directory status of the shared Managed Microsoft AD directory.
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
 
 	// The short name of the directory.
@@ -9956,7 +10227,7 @@ type DirectoryDescription struct {
 
 	// A DirectoryVpcSettingsDescription object that contains additional information
 	// about a directory. This member is only present if the directory is a Simple
-	// AD or Managed AD directory.
+	// AD or Managed Microsoft AD directory.
 	VpcSettings *DirectoryVpcSettingsDescription `type:"structure"`
 }
 
@@ -10128,7 +10399,7 @@ type DirectoryDoesNotExistException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -10190,7 +10461,7 @@ type DirectoryLimitExceededException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -10255,14 +10526,13 @@ type DirectoryLimits struct {
 	// Indicates if the cloud directory limit has been reached.
 	CloudOnlyDirectoriesLimitReached *bool `type:"boolean"`
 
-	// The current number of AWS Managed Microsoft AD directories in the region.
+	// The current number of Managed Microsoft AD directories in the region.
 	CloudOnlyMicrosoftADCurrentCount *int64 `type:"integer"`
 
-	// The maximum number of AWS Managed Microsoft AD directories allowed in the
-	// region.
+	// The maximum number of Managed Microsoft AD directories allowed in the region.
 	CloudOnlyMicrosoftADLimit *int64 `type:"integer"`
 
-	// Indicates if the AWS Managed Microsoft AD directory limit has been reached.
+	// Indicates if the Managed Microsoft AD directory limit has been reached.
 	CloudOnlyMicrosoftADLimitReached *bool `type:"boolean"`
 
 	// The current number of connected directories in the Region.
@@ -10339,7 +10609,8 @@ func (s *DirectoryLimits) SetConnectedDirectoriesLimitReached(v bool) *Directory
 	return s
 }
 
-// The specified directory has not been shared with this AWS account.
+// The specified directory has not been shared with this Amazon Web Services
+// account.
 type DirectoryNotSharedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -10347,7 +10618,7 @@ type DirectoryNotSharedException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -10407,7 +10678,7 @@ type DirectoryUnavailableException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -10464,8 +10735,8 @@ type DirectoryVpcSettings struct {
 	_ struct{} `type:"structure"`
 
 	// The identifiers of the subnets for the directory servers. The two subnets
-	// must be in different Availability Zones. AWS Directory Service creates a
-	// directory server and a DNS server in each of these subnets.
+	// must be in different Availability Zones. Directory Service creates a directory
+	// server and a DNS server in each of these subnets.
 	//
 	// SubnetIds is a required field
 	SubnetIds []*string `type:"list" required:"true"`
@@ -10954,7 +11225,7 @@ type DomainControllerLimitExceededException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11017,7 +11288,7 @@ type EnableClientAuthenticationInput struct {
 	// The type of client authentication to enable. Currently only the value SmartCard
 	// is supported. Smart card authentication in AD Connector requires that you
 	// enable Kerberos Constrained Delegation for the Service User to the LDAP service
-	// in the on-premises AD.
+	// in your self-managed AD.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"ClientAuthenticationType"`
@@ -11310,7 +11581,7 @@ type EntityAlreadyExistsException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11370,7 +11641,7 @@ type EntityDoesNotExistException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11422,24 +11693,25 @@ func (s *EntityDoesNotExistException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about SNS topic and AWS Directory Service directory associations.
+// Information about Amazon SNS topic and Directory Service directory associations.
 type EventTopic struct {
 	_ struct{} `type:"structure"`
 
-	// The date and time of when you associated your directory with the SNS topic.
+	// The date and time of when you associated your directory with the Amazon SNS
+	// topic.
 	CreatedDateTime *time.Time `type:"timestamp"`
 
-	// The Directory ID of an AWS Directory Service directory that will publish
-	// status messages to an SNS topic.
+	// The Directory ID of an Directory Service directory that will publish status
+	// messages to an Amazon SNS topic.
 	DirectoryId *string `type:"string"`
 
 	// The topic registration status.
 	Status *string `type:"string" enum:"TopicStatus"`
 
-	// The SNS topic ARN (Amazon Resource Name).
+	// The Amazon SNS topic ARN (Amazon Resource Name).
 	TopicArn *string `type:"string"`
 
-	// The name of an AWS SNS topic the receives status messages from the directory.
+	// The name of an Amazon SNS topic the receives status messages from the directory.
 	TopicName *string `min:"1" type:"string"`
 }
 
@@ -11503,7 +11775,7 @@ type GetDirectoryLimitsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A DirectoryLimits object that contains the directory limits for the current
-	// rRegion.
+	// Region.
 	DirectoryLimits *DirectoryLimits `type:"structure"`
 }
 
@@ -11595,7 +11867,7 @@ type InsufficientPermissionsException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11655,7 +11927,7 @@ type InvalidCertificateException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11715,7 +11987,7 @@ type InvalidClientAuthStatusException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11776,7 +12048,7 @@ type InvalidLDAPSStatusException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11836,7 +12108,7 @@ type InvalidNextTokenException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11896,7 +12168,7 @@ type InvalidParameterException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -11957,7 +12229,7 @@ type InvalidPasswordException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -12017,7 +12289,7 @@ type InvalidTargetException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -12070,12 +12342,12 @@ func (s *InvalidTargetException) RequestID() string {
 }
 
 // IP address block. This is often the address block of the DNS server used
-// for your on-premises domain.
+// for your self-managed domain.
 type IpRoute struct {
 	_ struct{} `type:"structure"`
 
 	// IP address block using CIDR format, for example 10.0.0.0/24. This is often
-	// the address block of the DNS server used for your on-premises domain. For
+	// the address block of the DNS server used for your self-managed domain. For
 	// a single IP address use a CIDR address block with /32. For example 10.0.0.0/32.
 	CidrIp *string `type:"string"`
 
@@ -12183,7 +12455,7 @@ type IpRouteLimitExceededException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -12470,8 +12742,9 @@ type ListLogSubscriptionsInput struct {
 
 	// If a DirectoryID is provided, lists only the log subscription associated
 	// with that directory. If no DirectoryId is provided, lists all log subscriptions
-	// associated with your AWS account. If there are no log subscriptions for the
-	// AWS account or the directory, an empty list will be returned.
+	// associated with your Amazon Web Services account. If there are no log subscriptions
+	// for the Amazon Web Services account or the directory, an empty list will
+	// be returned.
 	DirectoryId *string `type:"string"`
 
 	// The maximum number of items returned.
@@ -12512,7 +12785,8 @@ func (s *ListLogSubscriptionsInput) SetNextToken(v string) *ListLogSubscriptions
 type ListLogSubscriptionsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of active LogSubscription objects for calling the AWS account.
+	// A list of active LogSubscription objects for calling the Amazon Web Services
+	// account.
 	LogSubscriptions []*LogSubscription `type:"list"`
 
 	// The token for the next set of items to return.
@@ -12774,7 +13048,7 @@ type NoAvailableCertificateException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -12826,7 +13100,7 @@ func (s *NoAvailableCertificateException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Exception encountered while trying to access your AWS organization.
+// Exception encountered while trying to access your Amazon Web Services organization.
 type OrganizationsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12834,7 +13108,7 @@ type OrganizationsException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -12894,8 +13168,7 @@ type OwnerDirectoryDescription struct {
 	// Identifier of the directory owner account.
 	AccountId *string `type:"string"`
 
-	// Identifier of the AWS Managed Microsoft AD directory in the directory owner
-	// account.
+	// Identifier of the Managed Microsoft AD directory in the directory owner account.
 	DirectoryId *string `type:"string"`
 
 	// IP address of the directory’s domain controllers.
@@ -12968,9 +13241,9 @@ type RadiusSettings struct {
 	// Not currently used.
 	DisplayLabel *string `min:"1" type:"string"`
 
-	// The port that your RADIUS server is using for communications. Your on-premises
-	// network must allow inbound traffic over this port from the AWS Directory
-	// Service servers.
+	// The port that your RADIUS server is using for communications. Your self-managed
+	// network must allow inbound traffic over this port from the Directory Service
+	// servers.
 	RadiusPort *int64 `min:"1025" type:"integer"`
 
 	// The maximum number of times that communication with the RADIUS server is
@@ -13178,7 +13451,7 @@ type RegionLimitExceededException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -13239,7 +13512,7 @@ type RegionsInfo struct {
 	// primary Region.
 	AdditionalRegions []*string `type:"list"`
 
-	// The Region where the AWS Managed Microsoft AD directory was originally created.
+	// The Region where the Managed Microsoft AD directory was originally created.
 	PrimaryRegion *string `min:"8" type:"string"`
 }
 
@@ -13372,13 +13645,14 @@ func (s *RegisterCertificateOutput) SetCertificateId(v string) *RegisterCertific
 type RegisterEventTopicInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Directory ID that will publish status messages to the SNS topic.
+	// The Directory ID that will publish status messages to the Amazon SNS topic.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
-	// The SNS topic name to which the directory will publish status messages. This
-	// SNS topic must be in the same region as the specified Directory ID.
+	// The Amazon SNS topic name to which the directory will publish status messages.
+	// This Amazon SNS topic must be in the same region as the specified Directory
+	// ID.
 	//
 	// TopicName is a required field
 	TopicName *string `min:"1" type:"string" required:"true"`
@@ -13689,8 +13963,8 @@ func (s RemoveTagsFromResourceOutput) GoString() string {
 type ResetUserPasswordInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the AWS Managed Microsoft AD or Simple AD directory in which
-	// the user resides.
+	// Identifier of the Managed Microsoft AD or Simple AD directory in which the
+	// user resides.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
@@ -13906,7 +14180,7 @@ func (s *SchemaExtensionInfo) SetStartDateTime(v time.Time) *SchemaExtensionInfo
 	return s
 }
 
-// An exception has occurred in AWS Directory Service.
+// An exception has occurred in Directory Service.
 type ServiceException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -13914,7 +14188,7 @@ type ServiceException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -13969,15 +14243,16 @@ func (s *ServiceException) RequestID() string {
 type ShareDirectoryInput struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the AWS Managed Microsoft AD directory that you want to share
-	// with other AWS accounts.
+	// Identifier of the Managed Microsoft AD directory that you want to share with
+	// other Amazon Web Services accounts.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
 
 	// The method used when sharing a directory to determine whether the directory
-	// should be shared within your AWS organization (ORGANIZATIONS) or with any
-	// AWS account by sending a directory sharing request (HANDSHAKE).
+	// should be shared within your Amazon Web Services organization (ORGANIZATIONS)
+	// or with any Amazon Web Services account by sending a directory sharing request
+	// (HANDSHAKE).
 	//
 	// ShareMethod is a required field
 	ShareMethod *string `type:"string" required:"true" enum:"ShareMethod"`
@@ -14076,8 +14351,8 @@ func (s *ShareDirectoryOutput) SetSharedDirectoryId(v string) *ShareDirectoryOut
 	return s
 }
 
-// The maximum number of AWS accounts that you can share with this directory
-// has been reached.
+// The maximum number of Amazon Web Services accounts that you can share with
+// this directory has been reached.
 type ShareLimitExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -14085,7 +14360,7 @@ type ShareLimitExceededException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -14212,8 +14487,9 @@ type SharedDirectory struct {
 	OwnerDirectoryId *string `type:"string"`
 
 	// The method used when sharing a directory to determine whether the directory
-	// should be shared within your AWS organization (ORGANIZATIONS) or with any
-	// AWS account by sending a shared directory request (HANDSHAKE).
+	// should be shared within your Amazon Web Services organization (ORGANIZATIONS)
+	// or with any Amazon Web Services account by sending a shared directory request
+	// (HANDSHAKE).
 	ShareMethod *string `type:"string" enum:"ShareMethod"`
 
 	// A directory share request that is sent by the directory owner to the directory
@@ -14221,7 +14497,7 @@ type SharedDirectory struct {
 	// administrator determine whether to approve or reject the share invitation.
 	ShareNotes *string `type:"string" sensitive:"true"`
 
-	// Current directory status of the shared AWS Managed Microsoft AD directory.
+	// Current directory status of the shared Managed Microsoft AD directory.
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
 
 	// Identifier of the directory consumer account that has access to the shared
@@ -14376,7 +14652,7 @@ type SnapshotLimitExceededException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -14648,7 +14924,7 @@ type TagLimitExceededException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -14700,7 +14976,7 @@ func (s *TagLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a trust relationship between an AWS Managed Microsoft AD directory
+// Describes a trust relationship between an Managed Microsoft AD directory
 // and an external domain.
 type Trust struct {
 	_ struct{} `type:"structure"`
@@ -14708,7 +14984,8 @@ type Trust struct {
 	// The date and time that the trust relationship was created.
 	CreatedDateTime *time.Time `type:"timestamp"`
 
-	// The Directory ID of the AWS directory involved in the trust relationship.
+	// The Directory ID of the Amazon Web Services directory involved in the trust
+	// relationship.
 	DirectoryId *string `type:"string"`
 
 	// The date and time that the trust relationship was last updated.
@@ -14819,8 +15096,8 @@ func (s *Trust) SetTrustType(v string) *Trust {
 type UnshareDirectoryInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS Managed Microsoft AD directory that you want to
-	// stop sharing.
+	// The identifier of the Managed Microsoft AD directory that you want to stop
+	// sharing.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
@@ -14964,7 +15241,7 @@ type UnsupportedOperationException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -15020,8 +15297,8 @@ func (s *UnsupportedOperationException) RequestID() string {
 type UpdateConditionalForwarderInput struct {
 	_ struct{} `type:"structure"`
 
-	// The directory ID of the AWS directory for which to update the conditional
-	// forwarder.
+	// The directory ID of the Amazon Web Services directory for which to update
+	// the conditional forwarder.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `type:"string" required:"true"`
@@ -15294,7 +15571,7 @@ func (s *UpdateTrustInput) SetTrustId(v string) *UpdateTrustInput {
 type UpdateTrustOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 
 	// Identifier of the trust relationship.
@@ -15331,7 +15608,7 @@ type UserDoesNotExistException struct {
 	// The descriptive message for the exception.
 	Message_ *string `locationName:"Message" type:"string"`
 
-	// The AWS request identifier.
+	// The Amazon Web Services request identifier.
 	RequestId *string `type:"string"`
 }
 
@@ -15383,8 +15660,8 @@ func (s *UserDoesNotExistException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Initiates the verification of an existing trust relationship between an AWS
-// Managed Microsoft AD directory and an external domain.
+// Initiates the verification of an existing trust relationship between an Managed
+// Microsoft AD directory and an external domain.
 type VerifyTrustInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15492,6 +15769,22 @@ func CertificateType_Values() []string {
 	return []string{
 		CertificateTypeClientCertAuth,
 		CertificateTypeClientLdaps,
+	}
+}
+
+const (
+	// ClientAuthenticationStatusEnabled is a ClientAuthenticationStatus enum value
+	ClientAuthenticationStatusEnabled = "Enabled"
+
+	// ClientAuthenticationStatusDisabled is a ClientAuthenticationStatus enum value
+	ClientAuthenticationStatusDisabled = "Disabled"
+)
+
+// ClientAuthenticationStatus_Values returns all elements of the ClientAuthenticationStatus enum
+func ClientAuthenticationStatus_Values() []string {
+	return []string{
+		ClientAuthenticationStatusEnabled,
+		ClientAuthenticationStatusDisabled,
 	}
 }
 
