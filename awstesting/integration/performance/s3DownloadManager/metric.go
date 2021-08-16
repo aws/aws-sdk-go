@@ -1,3 +1,4 @@
+//go:build go1.13 && integration && perftest
 // +build go1.13,integration,perftest
 
 package main

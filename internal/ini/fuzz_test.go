@@ -1,3 +1,4 @@
+//go:build fuzz
 // +build fuzz
 
 // fuzz test data is stored in Amazon S3.

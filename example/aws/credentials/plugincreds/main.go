@@ -1,3 +1,4 @@
+//go:build example && go18
 // +build example,go18
 
 package main

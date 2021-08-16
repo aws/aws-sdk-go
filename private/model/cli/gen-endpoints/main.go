@@ -1,3 +1,4 @@
+//go:build codegen
 // +build codegen
 
 // Command gen-endpoints parses a JSON description of the AWS endpoint

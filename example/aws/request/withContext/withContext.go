@@ -1,3 +1,4 @@
+//go:build example && go1.7
 // +build example,go1.7
 
 package main

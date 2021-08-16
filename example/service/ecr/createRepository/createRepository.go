@@ -1,3 +1,4 @@
+//go:build example
 // +build example
 
 package main
@@ -29,7 +30,7 @@ func main() {
 	input := &ecr.CreateRepositoryInput{
 		RepositoryName: aws.String(repoName),
 	}
-	
+
 	output, err := svc.CreateRepository(input)
 	if err != nil {
 		fmt.Printf("\nError creating the repo %v in region %v\n%v\n", repoName, aws.StringValue(config.Region), err.Error())

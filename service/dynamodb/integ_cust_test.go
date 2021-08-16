@@ -1,3 +1,4 @@
+//go:build go1.10 && integration
 // +build go1.10,integration
 
 package dynamodb

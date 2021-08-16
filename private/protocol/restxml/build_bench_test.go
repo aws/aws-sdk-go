@@ -1,3 +1,4 @@
+//go:build bench
 // +build bench
 
 package restxml_test

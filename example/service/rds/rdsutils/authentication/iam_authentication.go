@@ -1,3 +1,4 @@
+//go:build example && skip
 // +build example,skip
 
 package main

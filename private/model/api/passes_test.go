@@ -1,3 +1,4 @@
+//go:build go1.8 && codegen
 // +build go1.8,codegen
 
 package api

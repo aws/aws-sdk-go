@@ -1,3 +1,4 @@
+//go:build go1.9 && s3crypto_integ
 // +build go1.9,s3crypto_integ
 
 package s3crypto_test

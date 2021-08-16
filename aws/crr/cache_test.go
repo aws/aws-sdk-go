@@ -63,7 +63,7 @@ func TestCacheAdd(t *testing.T) {
 				},
 			},
 			validKeys: map[string]Endpoint{
-				"foo": Endpoint{
+				"foo": {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
@@ -71,7 +71,7 @@ func TestCacheAdd(t *testing.T) {
 						},
 					},
 				},
-				"bar": Endpoint{
+				"bar": {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
@@ -79,7 +79,7 @@ func TestCacheAdd(t *testing.T) {
 						},
 					},
 				},
-				"baz": Endpoint{
+				"baz": {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
@@ -87,7 +87,7 @@ func TestCacheAdd(t *testing.T) {
 						},
 					},
 				},
-				"qux": Endpoint{
+				"qux": {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
@@ -95,7 +95,7 @@ func TestCacheAdd(t *testing.T) {
 						},
 					},
 				},
-				"moo": Endpoint{
+				"moo": {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
@@ -151,7 +151,7 @@ func TestCacheAdd(t *testing.T) {
 				},
 			},
 			validKeys: map[string]Endpoint{
-				"foo": Endpoint{
+				"foo": {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
@@ -159,7 +159,7 @@ func TestCacheAdd(t *testing.T) {
 						},
 					},
 				},
-				"bar": Endpoint{
+				"bar": {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
@@ -167,7 +167,7 @@ func TestCacheAdd(t *testing.T) {
 						},
 					},
 				},
-				"baz": Endpoint{
+				"baz": {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
@@ -175,7 +175,7 @@ func TestCacheAdd(t *testing.T) {
 						},
 					},
 				},
-				"qux": Endpoint{
+				"qux": {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
@@ -183,7 +183,7 @@ func TestCacheAdd(t *testing.T) {
 						},
 					},
 				},
-				"moo": Endpoint{
+				"moo": {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
@@ -283,7 +283,7 @@ func TestCacheGet(t *testing.T) {
 				},
 			},
 			validKeys: map[string]Endpoint{
-				"foo": Endpoint{
+				"foo": {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
@@ -291,7 +291,7 @@ func TestCacheGet(t *testing.T) {
 						},
 					},
 				},
-				"bar": Endpoint{
+				"bar": {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
@@ -299,7 +299,7 @@ func TestCacheGet(t *testing.T) {
 						},
 					},
 				},
-				"baz": Endpoint{
+				"baz": {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
@@ -307,7 +307,7 @@ func TestCacheGet(t *testing.T) {
 						},
 					},
 				},
-				"qux": Endpoint{
+				"qux": {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
@@ -315,7 +315,7 @@ func TestCacheGet(t *testing.T) {
 						},
 					},
 				},
-				"moo": Endpoint{
+				"moo": {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
@@ -370,7 +370,7 @@ func TestCacheGet(t *testing.T) {
 				},
 			},
 			validKeys: map[string]Endpoint{
-				"foo": Endpoint{
+				"foo": {
 					Key: "foo",
 					Addresses: []WeightedAddress{
 						{
@@ -378,7 +378,7 @@ func TestCacheGet(t *testing.T) {
 						},
 					},
 				},
-				"bar": Endpoint{
+				"bar": {
 					Key: "bar",
 					Addresses: []WeightedAddress{
 						{
@@ -386,7 +386,7 @@ func TestCacheGet(t *testing.T) {
 						},
 					},
 				},
-				"baz": Endpoint{
+				"baz": {
 					Key: "baz",
 					Addresses: []WeightedAddress{
 						{
@@ -394,7 +394,7 @@ func TestCacheGet(t *testing.T) {
 						},
 					},
 				},
-				"qux": Endpoint{
+				"qux": {
 					Key: "qux",
 					Addresses: []WeightedAddress{
 						{
@@ -402,7 +402,7 @@ func TestCacheGet(t *testing.T) {
 						},
 					},
 				},
-				"moo": Endpoint{
+				"moo": {
 					Key: "moo",
 					Addresses: []WeightedAddress{
 						{
