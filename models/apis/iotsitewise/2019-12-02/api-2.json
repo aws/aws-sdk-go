@@ -2865,6 +2865,11 @@
           "shape":"InterpolationType",
           "location":"querystring",
           "locationName":"type"
+        },
+        "intervalWindowInSeconds":{
+          "shape":"IntervalWindowInSeconds",
+          "location":"querystring",
+          "locationName":"intervalWindowInSeconds"
         }
       }
     },
@@ -3020,6 +3025,11 @@
       "min":2
     },
     "IntervalInSeconds":{
+      "type":"long",
+      "max":320000000,
+      "min":1
+    },
+    "IntervalWindowInSeconds":{
       "type":"long",
       "max":320000000,
       "min":1

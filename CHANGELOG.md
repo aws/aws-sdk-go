@@ -1,3 +1,17 @@
+Release v1.40.23 (2021-08-16)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * CodeBuild now allows you to select how batch build statuses are sent to the source provider for a project.
+* `service/config`: Updates service API
+* `service/ds`: Updates service API and documentation
+  * This release adds support for describing client authentication settings.
+* `service/iotsitewise`: Updates service API and documentation
+* `service/license-manager`: Updates service API
+* `service/s3`: Updates service documentation and examples
+  * Documentation updates for Amazon S3
+
 Release v1.40.22 (2021-08-13)
 ===
 

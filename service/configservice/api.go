@@ -28512,6 +28512,39 @@ const (
 
 	// ResourceTypeAwsSsmFileData is a ResourceType enum value
 	ResourceTypeAwsSsmFileData = "AWS::SSM::FileData"
+
+	// ResourceTypeAwsBackupBackupPlan is a ResourceType enum value
+	ResourceTypeAwsBackupBackupPlan = "AWS::Backup::BackupPlan"
+
+	// ResourceTypeAwsBackupBackupSelection is a ResourceType enum value
+	ResourceTypeAwsBackupBackupSelection = "AWS::Backup::BackupSelection"
+
+	// ResourceTypeAwsBackupBackupVault is a ResourceType enum value
+	ResourceTypeAwsBackupBackupVault = "AWS::Backup::BackupVault"
+
+	// ResourceTypeAwsBackupRecoveryPoint is a ResourceType enum value
+	ResourceTypeAwsBackupRecoveryPoint = "AWS::Backup::RecoveryPoint"
+
+	// ResourceTypeAwsEcrRepository is a ResourceType enum value
+	ResourceTypeAwsEcrRepository = "AWS::ECR::Repository"
+
+	// ResourceTypeAwsEcsCluster is a ResourceType enum value
+	ResourceTypeAwsEcsCluster = "AWS::ECS::Cluster"
+
+	// ResourceTypeAwsEcsService is a ResourceType enum value
+	ResourceTypeAwsEcsService = "AWS::ECS::Service"
+
+	// ResourceTypeAwsEcsTaskDefinition is a ResourceType enum value
+	ResourceTypeAwsEcsTaskDefinition = "AWS::ECS::TaskDefinition"
+
+	// ResourceTypeAwsEfsAccessPoint is a ResourceType enum value
+	ResourceTypeAwsEfsAccessPoint = "AWS::EFS::AccessPoint"
+
+	// ResourceTypeAwsEfsFileSystem is a ResourceType enum value
+	ResourceTypeAwsEfsFileSystem = "AWS::EFS::FileSystem"
+
+	// ResourceTypeAwsEksCluster is a ResourceType enum value
+	ResourceTypeAwsEksCluster = "AWS::EKS::Cluster"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -28614,6 +28647,17 @@ func ResourceType_Values() []string {
 		ResourceTypeAwsSecretsManagerSecret,
 		ResourceTypeAwsSnsTopic,
 		ResourceTypeAwsSsmFileData,
+		ResourceTypeAwsBackupBackupPlan,
+		ResourceTypeAwsBackupBackupSelection,
+		ResourceTypeAwsBackupBackupVault,
+		ResourceTypeAwsBackupRecoveryPoint,
+		ResourceTypeAwsEcrRepository,
+		ResourceTypeAwsEcsCluster,
+		ResourceTypeAwsEcsService,
+		ResourceTypeAwsEcsTaskDefinition,
+		ResourceTypeAwsEfsAccessPoint,
+		ResourceTypeAwsEfsFileSystem,
+		ResourceTypeAwsEksCluster,
 	}
 }
 

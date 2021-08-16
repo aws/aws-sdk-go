@@ -12489,12 +12489,16 @@ func AllowedOperation_Values() []string {
 const (
 	// CheckoutTypeProvisional is a CheckoutType enum value
 	CheckoutTypeProvisional = "PROVISIONAL"
+
+	// CheckoutTypePerpetual is a CheckoutType enum value
+	CheckoutTypePerpetual = "PERPETUAL"
 )
 
 // CheckoutType_Values returns all elements of the CheckoutType enum
 func CheckoutType_Values() []string {
 	return []string{
 		CheckoutTypeProvisional,
+		CheckoutTypePerpetual,
 	}
 }
 

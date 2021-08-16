@@ -375,6 +375,23 @@
         {"shape":"ServiceException"}
       ]
     },
+    "DescribeClientAuthenticationSettings":{
+      "name":"DescribeClientAuthenticationSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeClientAuthenticationSettingsRequest"},
+      "output":{"shape":"DescribeClientAuthenticationSettingsResult"},
+      "errors":[
+        {"shape":"DirectoryDoesNotExistException"},
+        {"shape":"UnsupportedOperationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ClientException"},
+        {"shape":"ServiceException"}
+      ]
+    },
     "DescribeConditionalForwarders":{
       "name":"DescribeConditionalForwarders",
       "http":{
@@ -1121,7 +1138,7 @@
       "type":"string",
       "max":62,
       "min":1,
-      "pattern":"^(?!d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*"
+      "pattern":"^(?!D-|d-)([\\da-zA-Z]+)([-]*[\\da-zA-Z])*"
     },
     "Attribute":{
       "type":"structure",
@@ -1265,6 +1282,25 @@
     "CidrIps":{
       "type":"list",
       "member":{"shape":"CidrIp"}
+    },
+    "ClientAuthenticationSettingInfo":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"ClientAuthenticationType"},
+        "Status":{"shape":"ClientAuthenticationStatus"},
+        "LastUpdatedDateTime":{"shape":"LastUpdatedDateTime"}
+      }
+    },
+    "ClientAuthenticationSettingsInfo":{
+      "type":"list",
+      "member":{"shape":"ClientAuthenticationSettingInfo"}
+    },
+    "ClientAuthenticationStatus":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
     },
     "ClientAuthenticationType":{
       "type":"string",
@@ -1633,6 +1669,23 @@
       "type":"structure",
       "members":{
         "Certificate":{"shape":"Certificate"}
+      }
+    },
+    "DescribeClientAuthenticationSettingsRequest":{
+      "type":"structure",
+      "required":["DirectoryId"],
+      "members":{
+        "DirectoryId":{"shape":"DirectoryId"},
+        "Type":{"shape":"ClientAuthenticationType"},
+        "NextToken":{"shape":"NextToken"},
+        "Limit":{"shape":"PageLimit"}
+      }
+    },
+    "DescribeClientAuthenticationSettingsResult":{
+      "type":"structure",
+      "members":{
+        "ClientAuthenticationSettingsInfo":{"shape":"ClientAuthenticationSettingsInfo"},
+        "NextToken":{"shape":"NextToken"}
       }
     },
     "DescribeConditionalForwardersRequest":{
@@ -2559,6 +2612,7 @@
       "type":"string",
       "max":512,
       "min":8,
+      "pattern":"^(\\p{LD}|\\p{Punct}| )+$",
       "sensitive":true
     },
     "RadiusStatus":{
