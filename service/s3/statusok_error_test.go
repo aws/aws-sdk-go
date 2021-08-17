@@ -236,7 +236,6 @@ func (f funcCloser) Close() error {
 	return f.closeFn()
 }
 
-
 func TestStatusOKPayloadHandling(t *testing.T) {
 	cases := map[string]struct {
 		Header   http.Header
