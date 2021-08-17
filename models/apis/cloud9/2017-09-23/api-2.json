@@ -300,7 +300,8 @@
         "automaticStopTimeMinutes":{"shape":"AutomaticStopTimeMinutes"},
         "ownerArn":{"shape":"UserArn"},
         "tags":{"shape":"TagList"},
-        "connectionType":{"shape":"ConnectionType"}
+        "connectionType":{"shape":"ConnectionType"},
+        "dryRun":{"shape":"NullableBoolean"}
       }
     },
     "CreateEnvironmentEC2Result":{
@@ -563,6 +564,13 @@
         "Tags":{"shape":"TagList"}
       }
     },
+    "ManagedCredentialsAction":{
+      "type":"string",
+      "enum":[
+        "ENABLE",
+        "DISABLE"
+      ]
+    },
     "ManagedCredentialsStatus":{
       "type":"string",
       "enum":[
@@ -598,6 +606,7 @@
       },
       "exception":true
     },
+    "NullableBoolean":{"type":"boolean"},
     "Permissions":{
       "type":"string",
       "enum":[
@@ -719,7 +728,8 @@
       "members":{
         "environmentId":{"shape":"EnvironmentId"},
         "name":{"shape":"EnvironmentName"},
-        "description":{"shape":"EnvironmentDescription"}
+        "description":{"shape":"EnvironmentDescription"},
+        "managedCredentialsAction":{"shape":"ManagedCredentialsAction"}
       }
     },
     "UpdateEnvironmentResult":{

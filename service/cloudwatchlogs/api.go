@@ -57,15 +57,15 @@ func (c *CloudWatchLogs) AssociateKmsKeyRequest(input *AssociateKmsKeyInput) (re
 
 // AssociateKmsKey API operation for Amazon CloudWatch Logs.
 //
-// Associates the specified AWS Key Management Service (AWS KMS) customer master
-// key (CMK) with the specified log group.
+// Associates the specified Key Management Service customer master key (CMK)
+// with the specified log group.
 //
-// Associating an AWS KMS CMK with a log group overrides any existing associations
+// Associating an KMS CMK with a log group overrides any existing associations
 // between the log group and a CMK. After a CMK is associated with a log group,
 // all newly ingested data for the log group is encrypted using the CMK. This
 // association is stored as long as the data encrypted with the CMK is still
-// within Amazon CloudWatch Logs. This enables Amazon CloudWatch Logs to decrypt
-// this data whenever it is requested.
+// within CloudWatch Logs. This enables CloudWatch Logs to decrypt this data
+// whenever it is requested.
 //
 // CloudWatch Logs supports only symmetric CMKs. Do not use an associate an
 // asymmetric CMK with your log group. For more information, see Using Symmetric
@@ -370,7 +370,8 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 //
 // You must use the following guidelines when naming a log group:
 //
-//    * Log group names must be unique within a region for an AWS account.
+//    * Log group names must be unique within a region for an Amazon Web Services
+//    account.
 //
 //    * Log group names can be between 1 and 512 characters long.
 //
@@ -382,11 +383,10 @@ func (c *CloudWatchLogs) CreateLogGroupRequest(input *CreateLogGroupInput) (req 
 // expire. To set a retention policy so that events expire and are deleted after
 // a specified time, use PutRetentionPolicy (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_PutRetentionPolicy.html).
 //
-// If you associate a AWS Key Management Service (AWS KMS) customer master key
-// (CMK) with the log group, ingested data is encrypted using the CMK. This
-// association is stored as long as the data encrypted with the CMK is still
-// within Amazon CloudWatch Logs. This enables Amazon CloudWatch Logs to decrypt
-// this data whenever it is requested.
+// If you associate a Key Management Service customer master key (CMK) with
+// the log group, ingested data is encrypted using the CMK. This association
+// is stored as long as the data encrypted with the CMK is still within CloudWatch
+// Logs. This enables CloudWatch Logs to decrypt this data whenever it is requested.
 //
 // If you attempt to associate a CMK with the log group but the CMK does not
 // exist or the CMK is disabled, you receive an InvalidParameterException error.
@@ -1540,6 +1540,13 @@ func (c *CloudWatchLogs) DescribeLogGroupsRequest(input *DescribeLogGroupsInput)
 // Lists the specified log groups. You can list all your log groups or filter
 // the results by prefix. The results are ASCII-sorted by log group name.
 //
+// CloudWatch Logs doesn’t support IAM policies that control access to the
+// DescribeLogGroups action by using the aws:ResourceTag/key-name condition
+// key. Other CloudWatch Logs actions do support the use of the aws:ResourceTag/key-name
+// condition key to control access. For more information about using tags to
+// control access, see Controlling access to Amazon Web Services resources using
+// tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2371,13 +2378,13 @@ func (c *CloudWatchLogs) DisassociateKmsKeyRequest(input *DisassociateKmsKeyInpu
 
 // DisassociateKmsKey API operation for Amazon CloudWatch Logs.
 //
-// Disassociates the associated AWS Key Management Service (AWS KMS) customer
-// master key (CMK) from the specified log group.
+// Disassociates the associated Key Management Service customer master key (CMK)
+// from the specified log group.
 //
-// After the AWS KMS CMK is disassociated from the log group, AWS CloudWatch
-// Logs stops encrypting newly ingested data for the log group. All previously
-// ingested data remains encrypted, and AWS CloudWatch Logs requires permissions
-// for the CMK whenever the encrypted data is requested.
+// After the KMS CMK is disassociated from the log group, CloudWatch Logs stops
+// encrypting newly ingested data for the log group. All previously ingested
+// data remains encrypted, and CloudWatch Logs requires permissions for the
+// CMK whenever the encrypted data is requested.
 //
 // Note that it can take up to 5 minutes for this operation to take effect.
 //
@@ -3251,10 +3258,10 @@ func (c *CloudWatchLogs) PutDestinationPolicyRequest(input *PutDestinationPolicy
 // that is used to authorize claims to register a subscription filter against
 // a given destination.
 //
-// If multiple AWS accounts are sending logs to this destination, each sender
-// account must be listed separately in the policy. The policy does not support
-// specifying * as the Principal or the use of the aws:PrincipalOrgId global
-// key.
+// If multiple Amazon Web Services accounts are sending logs to this destination,
+// each sender account must be listed separately in the policy. The policy does
+// not support specifying * as the Principal or the use of the aws:PrincipalOrgId
+// global key.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3361,9 +3368,10 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //
 //    * The log events in the batch must be in chronological order by their
 //    timestamp. The timestamp is the time the event occurred, expressed as
-//    the number of milliseconds after Jan 1, 1970 00:00:00 UTC. (In AWS Tools
-//    for PowerShell and the AWS SDK for .NET, the timestamp is specified in
-//    .NET format: yyyy-mm-ddThh:mm:ss. For example, 2017-09-15T13:45:30.)
+//    the number of milliseconds after Jan 1, 1970 00:00:00 UTC. (In Amazon
+//    Web Services Tools for PowerShell and the Amazon Web Services SDK for
+//    .NET, the timestamp is specified in .NET format: yyyy-mm-ddThh:mm:ss.
+//    For example, 2017-09-15T13:45:30.)
 //
 //    * A batch of log events in a single request cannot span more than 24 hours.
 //    Otherwise, the operation fails.
@@ -3374,7 +3382,7 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //    requests are throttled. This quota can't be changed.
 //
 // If a call to PutLogEvents returns "UnrecognizedClientException" the most
-// likely cause is an invalid AWS access key ID or secret key.
+// likely cause is an invalid Amazon Web Services access key ID or secret key.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3401,7 +3409,8 @@ func (c *CloudWatchLogs) PutLogEventsRequest(input *PutLogEventsInput) (req *req
 //   The service cannot complete the request.
 //
 //   * UnrecognizedClientException
-//   The most likely cause is an invalid AWS access key ID or secret key.
+//   The most likely cause is an invalid Amazon Web Services access key ID or
+//   secret key.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/logs-2014-03-28/PutLogEvents
 func (c *CloudWatchLogs) PutLogEvents(input *PutLogEventsInput) (*PutLogEventsOutput, error) {
@@ -3491,7 +3500,7 @@ func (c *CloudWatchLogs) PutMetricFilterRequest(input *PutMetricFilterInput) (re
 //
 // You can also set up a billing alarm to alert you if your charges are higher
 // than expected. For more information, see Creating a Billing Alarm to Monitor
-// Your Estimated AWS Charges (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
+// Your Estimated Amazon Web Services Charges (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3679,9 +3688,9 @@ func (c *CloudWatchLogs) PutResourcePolicyRequest(input *PutResourcePolicyInput)
 
 // PutResourcePolicy API operation for Amazon CloudWatch Logs.
 //
-// Creates or updates a resource policy allowing other AWS services to put log
-// events to this account, such as Amazon Route 53. An account can have up to
-// 10 resource policies per AWS Region.
+// Creates or updates a resource policy allowing other Amazon Web Services services
+// to put log events to this account, such as Amazon Route 53. An account can
+// have up to 10 resource policies per Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3876,7 +3885,7 @@ func (c *CloudWatchLogs) PutSubscriptionFilterRequest(input *PutSubscriptionFilt
 //    * An Amazon Kinesis Firehose delivery stream that belongs to the same
 //    account as the subscription filter, for same-account delivery.
 //
-//    * An AWS Lambda function that belongs to the same account as the subscription
+//    * An Lambda function that belongs to the same account as the subscription
 //    filter, for same-account delivery.
 //
 // Each log group can have up to two subscription filters associated with it.
@@ -4174,6 +4183,11 @@ func (c *CloudWatchLogs) TagLogGroupRequest(input *TagLogGroupInput) (req *reque
 // Logs (https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/Working-with-log-groups-and-streams.html#log-group-tagging)
 // in the Amazon CloudWatch Logs User Guide.
 //
+// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning
+// specified tags to log groups using the aws:Resource/key-name or aws:TagKeys
+// condition keys. For more information about using tags to control access,
+// see Controlling access to Amazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4344,6 +4358,10 @@ func (c *CloudWatchLogs) UntagLogGroupRequest(input *UntagLogGroupInput) (req *r
 // To list the tags for a log group, use ListTagsLogGroup (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_ListTagsLogGroup.html).
 // To add tags, use TagLogGroup (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_TagLogGroup.html).
 //
+// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning
+// specified tags to log groups using the aws:Resource/key-name or aws:TagKeys
+// condition keys.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4382,7 +4400,7 @@ type AssociateKmsKeyInput struct {
 
 	// The Amazon Resource Name (ARN) of the CMK to use when encrypting log data.
 	// This must be a symmetric CMK. For more information, see Amazon Resource Names
-	// - AWS Key Management Service (AWS KMS) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms)
+	// - Key Management Service (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms)
 	// and Using Symmetric and Asymmetric Keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html).
 	//
 	// KmsKeyId is a required field
@@ -4508,7 +4526,7 @@ type CreateExportTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of S3 bucket for the exported log data. The bucket must be in the
-	// same AWS region.
+	// same Amazon Web Services region.
 	//
 	// Destination is a required field
 	Destination *string `locationName:"destination" min:"1" type:"string" required:"true"`
@@ -4657,8 +4675,8 @@ type CreateLogGroupInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the CMK to use when encrypting log data.
-	// For more information, see Amazon Resource Names - AWS Key Management Service
-	// (AWS KMS) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms).
+	// For more information, see Amazon Resource Names - Key Management Service
+	// (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html#arn-syntax-kms).
 	KmsKeyId *string `locationName:"kmsKeyId" type:"string"`
 
 	// The name of the log group.
@@ -4667,6 +4685,11 @@ type CreateLogGroupInput struct {
 	LogGroupName *string `locationName:"logGroupName" min:"1" type:"string" required:"true"`
 
 	// The key-value pairs to use for the tags.
+	//
+	// CloudWatch Logs doesn’t support IAM policies that prevent users from assigning
+	// specified tags to log groups using the aws:Resource/key-name or aws:TagKeys
+	// condition keys. For more information about using tags to control access,
+	// see Controlling access to Amazon Web Services resources using tags (https://docs.aws.amazon.com/IAM/latest/UserGuide/access_tags.html).
 	Tags map[string]*string `locationName:"tags" min:"1" type:"map"`
 }
 
@@ -6315,8 +6338,8 @@ func (s *DescribeSubscriptionFiltersOutput) SetSubscriptionFilters(v []*Subscrip
 type Destination struct {
 	_ struct{} `type:"structure"`
 
-	// An IAM policy document that governs which AWS accounts can create subscription
-	// filters against this destination.
+	// An IAM policy document that governs which Amazon Web Services accounts can
+	// create subscription filters against this destination.
 	AccessPolicy *string `locationName:"accessPolicy" min:"1" type:"string"`
 
 	// The ARN of this destination.
@@ -6888,15 +6911,14 @@ type GetLogEventsInput struct {
 
 	// The token for the next set of items to return. (You received this token from
 	// a previous call.)
-	//
-	// Using this token works only when you specify true for startFromHead.
 	NextToken *string `locationName:"nextToken" min:"1" type:"string"`
 
 	// If the value is true, the earliest log events are returned first. If the
 	// value is false, the latest log events are returned first. The default value
 	// is false.
 	//
-	// If you are using nextToken in this operation, you must specify true for startFromHead.
+	// If you are using a previous nextForwardToken value as the nextToken in this
+	// operation, you must specify true for startFromHead.
 	StartFromHead *bool `locationName:"startFromHead" type:"boolean"`
 
 	// The start of the time range, expressed as the number of milliseconds after
@@ -7640,8 +7662,8 @@ type LogGroup struct {
 	// values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731,
 	// 1827, and 3653.
 	//
-	// If you omit retentionInDays in a PutRetentionPolicy operation, the events
-	// in the log group are always retained and never expire.
+	// To set a log group to never have log events expire, use DeleteRetentionPolicy
+	// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteRetentionPolicy.html).
 	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer"`
 
 	// The number of bytes stored.
@@ -8029,7 +8051,7 @@ type MetricTransformation struct {
 	//
 	// You can also set up a billing alarm to alert you if your charges are higher
 	// than expected. For more information, see Creating a Billing Alarm to Monitor
-	// Your Estimated AWS Charges (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
+	// Your Estimated Amazon Web Services Charges (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/monitor_estimated_charges_with_cloudwatch.html).
 	Dimensions map[string]*string `locationName:"dimensions" type:"map"`
 
 	// The name of the CloudWatch metric.
@@ -8761,9 +8783,20 @@ type PutResourcePolicyInput struct {
 	// to put DNS query logs in to the specified log group. Replace "logArn" with
 	// the ARN of your CloudWatch Logs resource, such as a log group or log stream.
 	//
+	// CloudWatch Logs also supports aws:SourceArn (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourcearn)
+	// and aws:SourceAccount (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-sourceaccount)
+	// condition context keys.
+	//
+	// In the example resource policy, you would replace the value of SourceArn
+	// with the resource making the call from Route 53 to CloudWatch Logs and replace
+	// the value of SourceAccount with the Amazon Web Services account ID making
+	// that call.
+	//
 	// { "Version": "2012-10-17", "Statement": [ { "Sid": "Route53LogsToCloudWatchLogs",
 	// "Effect": "Allow", "Principal": { "Service": [ "route53.amazonaws.com" ]
-	// }, "Action":"logs:PutLogEvents", "Resource": "logArn" } ] }
+	// }, "Action": "logs:PutLogEvents", "Resource": "logArn", "Condition": { "ArnLike":
+	// { "aws:SourceArn": "myRoute53ResourceArn" }, "StringEquals": { "aws:SourceAccount":
+	// "myAwsAccountId" } } } ] }
 	PolicyDocument *string `locationName:"policyDocument" min:"1" type:"string"`
 
 	// Name of the new policy. This parameter is required.
@@ -8840,8 +8873,8 @@ type PutRetentionPolicyInput struct {
 	// values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731,
 	// 1827, and 3653.
 	//
-	// If you omit retentionInDays in a PutRetentionPolicy operation, the events
-	// in the log group are always retained and never expire.
+	// To set a log group to never have log events expire, use DeleteRetentionPolicy
+	// (https://docs.aws.amazon.com/AmazonCloudWatchLogs/latest/APIReference/API_DeleteRetentionPolicy.html).
 	//
 	// RetentionInDays is a required field
 	RetentionInDays *int64 `locationName:"retentionInDays" type:"integer" required:"true"`
@@ -8920,7 +8953,7 @@ type PutSubscriptionFilterInput struct {
 	//    * An Amazon Kinesis Firehose delivery stream belonging to the same account
 	//    as the subscription filter, for same-account delivery.
 	//
-	//    * An AWS Lambda function belonging to the same account as the subscription
+	//    * A Lambda function belonging to the same account as the subscription
 	//    filter, for same-account delivery.
 	//
 	// DestinationArn is a required field
@@ -10041,7 +10074,8 @@ func (s *TestMetricFilterOutput) SetMatches(v []*MetricFilterMatchRecord) *TestM
 	return s
 }
 
-// The most likely cause is an invalid AWS access key ID or secret key.
+// The most likely cause is an invalid Amazon Web Services access key ID or
+// secret key.
 type UnrecognizedClientException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

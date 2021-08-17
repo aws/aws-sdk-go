@@ -1565,6 +1565,12 @@ type CreateEnvironmentEC2Input struct {
 	// The description of the environment to create.
 	Description *string `locationName:"description" type:"string" sensitive:"true"`
 
+	// Checks whether you have the required permissions for the action, without
+	// actually making the request, and provides an error response. If you have
+	// the required permissions, the error response is DryRunOperation. Otherwise,
+	// it is UnauthorizedOperation.
+	DryRun *bool `locationName:"dryRun" type:"boolean"`
+
 	// The identifier for the Amazon Machine Image (AMI) that's used to create the
 	// EC2 instance. To choose an AMI for the instance, you must specify a valid
 	// AMI alias or a valid Amazon EC2 Systems Manager (SSM) path.
@@ -1683,6 +1689,12 @@ func (s *CreateEnvironmentEC2Input) SetConnectionType(v string) *CreateEnvironme
 // SetDescription sets the Description field's value.
 func (s *CreateEnvironmentEC2Input) SetDescription(v string) *CreateEnvironmentEC2Input {
 	s.Description = &v
+	return s
+}
+
+// SetDryRun sets the DryRun field's value.
+func (s *CreateEnvironmentEC2Input) SetDryRun(v bool) *CreateEnvironmentEC2Input {
+	s.DryRun = &v
 	return s
 }
 
@@ -3112,6 +3124,19 @@ type UpdateEnvironmentInput struct {
 	// EnvironmentId is a required field
 	EnvironmentId *string `locationName:"environmentId" type:"string" required:"true"`
 
+	// Allows the environment owner to turn on or turn off the Amazon Web Services
+	// managed temporary credentials for an Cloud9 environment by using one of the
+	// following values:
+	//
+	//    * ENABLE
+	//
+	//    * DISABLE
+	//
+	// Only the environment owner can change the status of managed temporary credentials.
+	// An AccessDeniedException is thrown if an attempt to turn on or turn off managed
+	// temporary credentials is made by an account that's not the environment owner.
+	ManagedCredentialsAction *string `locationName:"managedCredentialsAction" type:"string" enum:"ManagedCredentialsAction"`
+
 	// A replacement name for the environment.
 	Name *string `locationName:"name" min:"1" type:"string"`
 }
@@ -3151,6 +3176,12 @@ func (s *UpdateEnvironmentInput) SetDescription(v string) *UpdateEnvironmentInpu
 // SetEnvironmentId sets the EnvironmentId field's value.
 func (s *UpdateEnvironmentInput) SetEnvironmentId(v string) *UpdateEnvironmentInput {
 	s.EnvironmentId = &v
+	return s
+}
+
+// SetManagedCredentialsAction sets the ManagedCredentialsAction field's value.
+func (s *UpdateEnvironmentInput) SetManagedCredentialsAction(v string) *UpdateEnvironmentInput {
+	s.ManagedCredentialsAction = &v
 	return s
 }
 
@@ -3363,6 +3394,22 @@ func EnvironmentType_Values() []string {
 	return []string{
 		EnvironmentTypeSsh,
 		EnvironmentTypeEc2,
+	}
+}
+
+const (
+	// ManagedCredentialsActionEnable is a ManagedCredentialsAction enum value
+	ManagedCredentialsActionEnable = "ENABLE"
+
+	// ManagedCredentialsActionDisable is a ManagedCredentialsAction enum value
+	ManagedCredentialsActionDisable = "DISABLE"
+)
+
+// ManagedCredentialsAction_Values returns all elements of the ManagedCredentialsAction enum
+func ManagedCredentialsAction_Values() []string {
+	return []string{
+		ManagedCredentialsActionEnable,
+		ManagedCredentialsActionDisable,
 	}
 }
 

@@ -95,7 +95,9 @@ func (c *CloudDirectory) AddFacetToObjectRequest(input *AddFacetToObjectInput) (
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -210,7 +212,9 @@ func (c *CloudDirectory) ApplySchemaRequest(input *ApplySchemaInput) (req *reque
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * SchemaAlreadyExistsException
 //   Indicates that a schema could not be created due to a naming conflict. Please
@@ -331,7 +335,9 @@ func (c *CloudDirectory) AttachObjectRequest(input *AttachObjectInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -460,7 +466,9 @@ func (c *CloudDirectory) AttachPolicyRequest(input *AttachPolicyInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -573,7 +581,9 @@ func (c *CloudDirectory) AttachToIndexRequest(input *AttachToIndexInput) (req *r
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -700,7 +710,9 @@ func (c *CloudDirectory) AttachTypedLinkRequest(input *AttachTypedLinkInput) (re
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -823,7 +835,9 @@ func (c *CloudDirectory) BatchReadRequest(input *BatchReadInput) (req *request.R
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -931,7 +945,9 @@ func (c *CloudDirectory) BatchWriteRequest(input *BatchWriteInput) (req *request
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -1046,7 +1062,9 @@ func (c *CloudDirectory) CreateDirectoryRequest(input *CreateDirectoryInput) (re
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryAlreadyExistsException
 //   Indicates that a Directory could not be created due to a naming conflict.
@@ -1159,7 +1177,9 @@ func (c *CloudDirectory) CreateFacetRequest(input *CreateFacetInput) (req *reque
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -1277,7 +1297,9 @@ func (c *CloudDirectory) CreateIndexRequest(input *CreateIndexInput) (req *reque
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -1401,7 +1423,9 @@ func (c *CloudDirectory) CreateObjectRequest(input *CreateObjectInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -1534,14 +1558,18 @@ func (c *CloudDirectory) CreateSchemaRequest(input *CreateSchemaInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * SchemaAlreadyExistsException
 //   Indicates that a schema could not be created due to a naming conflict. Please
 //   select a different name and then try again.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2017-01-11/CreateSchema
 func (c *CloudDirectory) CreateSchema(input *CreateSchemaInput) (*CreateSchemaOutput, error) {
@@ -1646,7 +1674,9 @@ func (c *CloudDirectory) CreateTypedLinkFacetRequest(input *CreateTypedLinkFacet
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -1759,7 +1789,9 @@ func (c *CloudDirectory) DeleteDirectoryRequest(input *DeleteDirectoryInput) (re
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryDeletedException
 //   A directory that has been deleted and to which access has been attempted.
@@ -1880,7 +1912,9 @@ func (c *CloudDirectory) DeleteFacetRequest(input *DeleteFacetInput) (req *reque
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -1998,7 +2032,9 @@ func (c *CloudDirectory) DeleteObjectRequest(input *DeleteObjectInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -2113,7 +2149,9 @@ func (c *CloudDirectory) DeleteSchemaRequest(input *DeleteSchemaInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -2225,7 +2263,9 @@ func (c *CloudDirectory) DeleteTypedLinkFacetRequest(input *DeleteTypedLinkFacet
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -2335,7 +2375,9 @@ func (c *CloudDirectory) DetachFromIndexRequest(input *DetachFromIndexInput) (re
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -2452,7 +2494,9 @@ func (c *CloudDirectory) DetachObjectRequest(input *DetachObjectInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -2567,7 +2611,9 @@ func (c *CloudDirectory) DetachPolicyRequest(input *DetachPolicyInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -2682,7 +2728,9 @@ func (c *CloudDirectory) DetachTypedLinkRequest(input *DetachTypedLinkInput) (re
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -2794,7 +2842,9 @@ func (c *CloudDirectory) DisableDirectoryRequest(input *DisableDirectoryInput) (
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * RetryableConflictException
 //   Occurs when a conflict with a previous successful write is detected. For
@@ -2906,7 +2956,9 @@ func (c *CloudDirectory) EnableDirectoryRequest(input *EnableDirectoryInput) (re
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * RetryableConflictException
 //   Occurs when a conflict with a previous successful write is detected. For
@@ -3022,7 +3074,9 @@ func (c *CloudDirectory) GetAppliedSchemaVersionRequest(input *GetAppliedSchemaV
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -3129,7 +3183,9 @@ func (c *CloudDirectory) GetDirectoryRequest(input *GetDirectoryInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/clouddirectory-2017-01-11/GetDirectory
 func (c *CloudDirectory) GetDirectory(input *GetDirectoryInput) (*GetDirectoryOutput, error) {
@@ -3235,7 +3291,9 @@ func (c *CloudDirectory) GetFacetRequest(input *GetFacetInput) (req *request.Req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -3345,7 +3403,9 @@ func (c *CloudDirectory) GetLinkAttributesRequest(input *GetLinkAttributesInput)
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -3459,7 +3519,9 @@ func (c *CloudDirectory) GetObjectAttributesRequest(input *GetObjectAttributesIn
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -3573,7 +3635,9 @@ func (c *CloudDirectory) GetObjectInformationRequest(input *GetObjectInformation
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -3684,7 +3748,9 @@ func (c *CloudDirectory) GetSchemaAsJsonRequest(input *GetSchemaAsJsonInput) (re
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -3796,7 +3862,9 @@ func (c *CloudDirectory) GetTypedLinkFacetInformationRequest(input *GetTypedLink
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -3916,7 +3984,9 @@ func (c *CloudDirectory) ListAppliedSchemaArnsRequest(input *ListAppliedSchemaAr
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -4084,7 +4154,9 @@ func (c *CloudDirectory) ListAttachedIndicesRequest(input *ListAttachedIndicesIn
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -4252,7 +4324,9 @@ func (c *CloudDirectory) ListDevelopmentSchemaArnsRequest(input *ListDevelopment
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -4420,7 +4494,9 @@ func (c *CloudDirectory) ListDirectoriesRequest(input *ListDirectoriesInput) (re
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * InvalidNextTokenException
 //   Indicates that the NextToken value is not valid.
@@ -4585,7 +4661,9 @@ func (c *CloudDirectory) ListFacetAttributesRequest(input *ListFacetAttributesIn
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -4756,7 +4834,9 @@ func (c *CloudDirectory) ListFacetNamesRequest(input *ListFacetNamesInput) (req 
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -4920,7 +5000,9 @@ func (c *CloudDirectory) ListIncomingTypedLinksRequest(input *ListIncomingTypedL
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -5047,7 +5129,9 @@ func (c *CloudDirectory) ListIndexRequest(input *ListIndexInput) (req *request.R
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -5211,7 +5295,9 @@ func (c *CloudDirectory) ListManagedSchemaArnsRequest(input *ListManagedSchemaAr
 //   message.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -5379,7 +5465,9 @@ func (c *CloudDirectory) ListObjectAttributesRequest(input *ListObjectAttributes
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -5555,7 +5643,9 @@ func (c *CloudDirectory) ListObjectChildrenRequest(input *ListObjectChildrenInpu
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -5740,7 +5830,9 @@ func (c *CloudDirectory) ListObjectParentPathsRequest(input *ListObjectParentPat
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -5912,7 +6004,9 @@ func (c *CloudDirectory) ListObjectParentsRequest(input *ListObjectParentsInput)
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -6086,7 +6180,9 @@ func (c *CloudDirectory) ListObjectPoliciesRequest(input *ListObjectPoliciesInpu
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -6253,7 +6349,9 @@ func (c *CloudDirectory) ListOutgoingTypedLinksRequest(input *ListOutgoingTypedL
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -6376,7 +6474,9 @@ func (c *CloudDirectory) ListPolicyAttachmentsRequest(input *ListPolicyAttachmen
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -6552,7 +6652,9 @@ func (c *CloudDirectory) ListPublishedSchemaArnsRequest(input *ListPublishedSche
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -6722,7 +6824,9 @@ func (c *CloudDirectory) ListTagsForResourceRequest(input *ListTagsForResourceIn
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -6893,7 +6997,9 @@ func (c *CloudDirectory) ListTypedLinkFacetAttributesRequest(input *ListTypedLin
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -7065,7 +7171,9 @@ func (c *CloudDirectory) ListTypedLinkFacetNamesRequest(input *ListTypedLinkFace
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -7239,7 +7347,9 @@ func (c *CloudDirectory) LookupPolicyRequest(input *LookupPolicyInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -7405,7 +7515,9 @@ func (c *CloudDirectory) PublishSchemaRequest(input *PublishSchemaInput) (req *r
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -7517,7 +7629,9 @@ func (c *CloudDirectory) PutSchemaFromJsonRequest(input *PutSchemaFromJsonInput)
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * InvalidSchemaDocException
 //   Indicates that the provided SchemaDoc value is not valid.
@@ -7628,7 +7742,9 @@ func (c *CloudDirectory) RemoveFacetFromObjectRequest(input *RemoveFacetFromObje
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -7743,7 +7859,9 @@ func (c *CloudDirectory) TagResourceRequest(input *TagResourceInput) (req *reque
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -7856,7 +7974,9 @@ func (c *CloudDirectory) UntagResourceRequest(input *UntagResourceInput) (req *r
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -7975,7 +8095,9 @@ func (c *CloudDirectory) UpdateFacetRequest(input *UpdateFacetInput) (req *reque
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * InvalidFacetUpdateException
 //   An attempt to modify a Facet resulted in an invalid schema exception.
@@ -8097,7 +8219,9 @@ func (c *CloudDirectory) UpdateLinkAttributesRequest(input *UpdateLinkAttributes
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -8211,7 +8335,9 @@ func (c *CloudDirectory) UpdateObjectAttributesRequest(input *UpdateObjectAttrib
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * DirectoryNotEnabledException
 //   Operations are only permitted on enabled directories.
@@ -8330,7 +8456,9 @@ func (c *CloudDirectory) UpdateSchemaRequest(input *UpdateSchemaInput) (req *req
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -8438,7 +8566,9 @@ func (c *CloudDirectory) UpdateTypedLinkFacetRequest(input *UpdateTypedLinkFacet
 //   for more information.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * FacetValidationException
 //   The Facet that you provided was not well formed or could not be validated
@@ -8564,7 +8694,9 @@ func (c *CloudDirectory) UpgradeAppliedSchemaRequest(input *UpgradeAppliedSchema
 //   the directory.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -8682,7 +8814,9 @@ func (c *CloudDirectory) UpgradePublishedSchemaRequest(input *UpgradePublishedSc
 //   the directory.
 //
 //   * AccessDeniedException
-//   Access denied. Check your permissions.
+//   Access denied or directory not found. Either you don't have permissions for
+//   this directory or the directory does not exist. Try calling ListDirectories
+//   and check your permissions.
 //
 //   * ResourceNotFoundException
 //   The specified resource could not be found.
@@ -8718,7 +8852,9 @@ func (c *CloudDirectory) UpgradePublishedSchemaWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
-// Access denied. Check your permissions.
+// Access denied or directory not found. Either you don't have permissions for
+// this directory or the directory does not exist. Try calling ListDirectories
+// and check your permissions.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11523,11 +11659,16 @@ func (s *BatchListObjectParentPathsResponse) SetPathToObjectIdentifiersList(v []
 	return s
 }
 
+// Lists parent objects that are associated with a given object in pagination
+// fashion.
 type BatchListObjectParents struct {
 	_ struct{} `type:"structure"`
 
+	// The maximum number of items to be retrieved in a single call. This is an
+	// approximate number.
 	MaxResults *int64 `min:"1" type:"integer"`
 
+	// The pagination token.
 	NextToken *string `type:"string"`
 
 	// The reference that identifies an object.
@@ -11580,11 +11721,14 @@ func (s *BatchListObjectParents) SetObjectReference(v *ObjectReference) *BatchLi
 	return s
 }
 
+// Represents the output of a ListObjectParents response operation.
 type BatchListObjectParentsResponse struct {
 	_ struct{} `type:"structure"`
 
+	// The pagination token.
 	NextToken *string `type:"string"`
 
+	// Returns a list of parent reference and LinkName Tuples.
 	ParentLinks []*ObjectIdentifierAndLinkNameTuple `type:"list"`
 }
 
@@ -12170,6 +12314,8 @@ type BatchReadOperation struct {
 	// see Directory Structure (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directorystructure.html).
 	ListObjectParentPaths *BatchListObjectParentPaths `type:"structure"`
 
+	// Lists parent objects that are associated with a given object in pagination
+	// fashion.
 	ListObjectParents *BatchListObjectParents `type:"structure"`
 
 	// Returns policies attached to an object in pagination fashion.
@@ -12459,6 +12605,7 @@ type BatchReadSuccessfulResponse struct {
 	// see Directory Structure (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/key_concepts_directorystructure.html).
 	ListObjectParentPaths *BatchListObjectParentPathsResponse `type:"structure"`
 
+	// The list of parent objects to retrieve.
 	ListObjectParents *BatchListObjectParentsResponse `type:"structure"`
 
 	// Returns policies attached to an object in pagination fashion.
@@ -19912,7 +20059,9 @@ type ObjectReference struct {
 	//    * $ObjectIdentifier - An object identifier is an opaque string provided
 	//    by Amazon Cloud Directory. When creating objects, the system will provide
 	//    you with the identifier of the created object. An object’s identifier
-	//    is immutable and no two objects will ever share the same object identifier
+	//    is immutable and no two objects will ever share the same object identifier.
+	//    To identify an object with ObjectIdentifier, the ObjectIdentifier must
+	//    be wrapped in double quotes.
 	//
 	//    * /some/path - Identifies the object based on path
 	//
@@ -20584,12 +20733,13 @@ func (s *SchemaAlreadyPublishedException) RequestID() string {
 type SchemaFacet struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the facet.
+	// The name of the facet. If this value is set, SchemaArn must also be set.
 	FacetName *string `min:"1" type:"string"`
 
 	// The ARN of the schema that contains the facet with no minor component. See
 	// arns and In-Place Schema Upgrade (https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html)
-	// for a description of when to provide minor versions.
+	// for a description of when to provide minor versions. If this value is set,
+	// FacetName must also be set.
 	SchemaArn *string `type:"string"`
 }
 

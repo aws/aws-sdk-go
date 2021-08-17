@@ -585,6 +585,7 @@
         "Name":{"shape":"CostCategoryName"},
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
         "Rules":{"shape":"CostCategoryRulesList"},
+        "SplitChargeRules":{"shape":"CostCategorySplitChargeRulesList"},
         "ProcessingStatus":{"shape":"CostCategoryProcessingStatusList"},
         "DefaultValue":{"shape":"CostCategoryValue"}
       }
@@ -670,6 +671,67 @@
       "type":"list",
       "member":{"shape":"CostCategoryRule"},
       "max":500,
+      "min":1
+    },
+    "CostCategorySplitChargeMethod":{
+      "type":"string",
+      "enum":[
+        "FIXED",
+        "PROPORTIONAL",
+        "EVEN"
+      ]
+    },
+    "CostCategorySplitChargeRule":{
+      "type":"structure",
+      "required":[
+        "Source",
+        "Targets",
+        "Method"
+      ],
+      "members":{
+        "Source":{"shape":"GenericString"},
+        "Targets":{"shape":"CostCategorySplitChargeRuleTargetsList"},
+        "Method":{"shape":"CostCategorySplitChargeMethod"},
+        "Parameters":{"shape":"CostCategorySplitChargeRuleParametersList"}
+      }
+    },
+    "CostCategorySplitChargeRuleParameter":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "Values"
+      ],
+      "members":{
+        "Type":{"shape":"CostCategorySplitChargeRuleParameterType"},
+        "Values":{"shape":"CostCategorySplitChargeRuleParameterValuesList"}
+      }
+    },
+    "CostCategorySplitChargeRuleParameterType":{
+      "type":"string",
+      "enum":["ALLOCATION_PERCENTAGES"]
+    },
+    "CostCategorySplitChargeRuleParameterValuesList":{
+      "type":"list",
+      "member":{"shape":"GenericString"},
+      "max":500,
+      "min":1
+    },
+    "CostCategorySplitChargeRuleParametersList":{
+      "type":"list",
+      "member":{"shape":"CostCategorySplitChargeRuleParameter"},
+      "max":10,
+      "min":1
+    },
+    "CostCategorySplitChargeRuleTargetsList":{
+      "type":"list",
+      "member":{"shape":"GenericString"},
+      "max":500,
+      "min":1
+    },
+    "CostCategorySplitChargeRulesList":{
+      "type":"list",
+      "member":{"shape":"CostCategorySplitChargeRule"},
+      "max":10,
       "min":1
     },
     "CostCategoryStatus":{
@@ -786,7 +848,8 @@
         "Name":{"shape":"CostCategoryName"},
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
         "Rules":{"shape":"CostCategoryRulesList"},
-        "DefaultValue":{"shape":"CostCategoryValue"}
+        "DefaultValue":{"shape":"CostCategoryValue"},
+        "SplitChargeRules":{"shape":"CostCategorySplitChargeRulesList"}
       }
     },
     "CreateCostCategoryDefinitionResponse":{
@@ -2427,7 +2490,8 @@
         "CostCategoryArn":{"shape":"Arn"},
         "RuleVersion":{"shape":"CostCategoryRuleVersion"},
         "Rules":{"shape":"CostCategoryRulesList"},
-        "DefaultValue":{"shape":"CostCategoryValue"}
+        "DefaultValue":{"shape":"CostCategoryValue"},
+        "SplitChargeRules":{"shape":"CostCategorySplitChargeRulesList"}
       }
     },
     "UpdateCostCategoryDefinitionResponse":{
