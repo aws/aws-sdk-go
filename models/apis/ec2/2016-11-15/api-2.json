@@ -8173,6 +8173,7 @@
           "shape":"Boolean",
           "locationName":"dryRun"
         },
+        "KeyType":{"shape":"KeyType"},
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
@@ -21984,6 +21985,10 @@
           "shape":"String",
           "locationName":"keyName"
         },
+        "KeyType":{
+          "shape":"KeyType",
+          "locationName":"keyType"
+        },
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
@@ -21998,6 +22003,13 @@
       }
     },
     "KeyPairName":{"type":"string"},
+    "KeyType":{
+      "type":"string",
+      "enum":[
+        "rsa",
+        "ed25519"
+      ]
+    },
     "KmsKeyId":{"type":"string"},
     "LastError":{
       "type":"structure",

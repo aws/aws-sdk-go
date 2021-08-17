@@ -71,7 +71,7 @@
   },
   "shapes": {
     "AccessDeniedException": {
-      "base": "<p>Access denied. Check your permissions.</p>",
+      "base": "<p>Access denied or directory not found. Either you don't have permissions for this directory or the directory does not exist. Try calling <a>ListDirectories</a> and check your permissions.</p>",
       "refs": {
       }
     },
@@ -166,7 +166,7 @@
         "PutSchemaFromJsonRequest$SchemaArn": "<p>The ARN of the schema to update.</p>",
         "PutSchemaFromJsonResponse$Arn": "<p>The ARN of the schema to update.</p>",
         "RemoveFacetFromObjectRequest$DirectoryArn": "<p>The ARN of the directory in which the object resides.</p>",
-        "SchemaFacet$SchemaArn": "<p>The ARN of the schema that contains the facet with no minor component. See <a>arns</a> and <a href=\"https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html\">In-Place Schema Upgrade</a> for a description of when to provide minor versions.</p>",
+        "SchemaFacet$SchemaArn": "<p>The ARN of the schema that contains the facet with no minor component. See <a>arns</a> and <a href=\"https://docs.aws.amazon.com/clouddirectory/latest/developerguide/schemas_inplaceschemaupgrade.html\">In-Place Schema Upgrade</a> for a description of when to provide minor versions. If this value is set, FacetName must also be set.</p>",
         "TagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource. Tagging is only supported for directories.</p>",
         "TypedLinkSchemaAndFacetName$SchemaArn": "<p>The Amazon Resource Name (ARN) that is associated with the schema. For more information, see <a>arns</a>.</p>",
         "UntagResourceRequest$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource. Tagging is only supported for directories.</p>",
@@ -564,15 +564,15 @@
       }
     },
     "BatchListObjectParents": {
-      "base": null,
+      "base": "<p>Lists parent objects that are associated with a given object in pagination fashion.</p>",
       "refs": {
-        "BatchReadOperation$ListObjectParents": null
+        "BatchReadOperation$ListObjectParents": "<p>Lists parent objects that are associated with a given object in pagination fashion.</p>"
       }
     },
     "BatchListObjectParentsResponse": {
-      "base": null,
+      "base": "<p>Represents the output of a <a>ListObjectParents</a> response operation.</p>",
       "refs": {
-        "BatchReadSuccessfulResponse$ListObjectParents": null
+        "BatchReadSuccessfulResponse$ListObjectParents": "<p>The list of parent objects to retrieve.</p>"
       }
     },
     "BatchListObjectPolicies": {
@@ -1163,7 +1163,7 @@
         "FacetNameList$member": null,
         "GetFacetRequest$Name": "<p>The name of the facet to retrieve.</p>",
         "ListFacetAttributesRequest$Name": "<p>The name of the facet whose attributes will be retrieved.</p>",
-        "SchemaFacet$FacetName": "<p>The name of the facet.</p>",
+        "SchemaFacet$FacetName": "<p>The name of the facet. If this value is set, SchemaArn must also be set.</p>",
         "UpdateFacetRequest$Name": "<p>The name of the facet.</p>"
       }
     },
@@ -1612,8 +1612,8 @@
         "BatchListObjectChildrenResponse$NextToken": "<p>The pagination token.</p>",
         "BatchListObjectParentPaths$NextToken": "<p>The pagination token.</p>",
         "BatchListObjectParentPathsResponse$NextToken": "<p>The pagination token.</p>",
-        "BatchListObjectParents$NextToken": null,
-        "BatchListObjectParentsResponse$NextToken": null,
+        "BatchListObjectParents$NextToken": "<p>The pagination token.</p>",
+        "BatchListObjectParentsResponse$NextToken": "<p>The pagination token.</p>",
         "BatchListObjectPolicies$NextToken": "<p>The pagination token.</p>",
         "BatchListObjectPoliciesResponse$NextToken": "<p>The pagination token.</p>",
         "BatchListOutgoingTypedLinks$NextToken": "<p>The pagination token.</p>",
@@ -1696,7 +1696,7 @@
         "BatchListObjectAttributes$MaxResults": "<p>The maximum number of items to be retrieved in a single call. This is an approximate number.</p>",
         "BatchListObjectChildren$MaxResults": "<p>Maximum number of items to be retrieved in a single call. This is an approximate number.</p>",
         "BatchListObjectParentPaths$MaxResults": "<p>The maximum number of results to retrieve.</p>",
-        "BatchListObjectParents$MaxResults": null,
+        "BatchListObjectParents$MaxResults": "<p>The maximum number of items to be retrieved in a single call. This is an approximate number.</p>",
         "BatchListObjectPolicies$MaxResults": "<p>The maximum number of results to retrieve.</p>",
         "BatchListOutgoingTypedLinks$MaxResults": "<p>The maximum number of results to retrieve.</p>",
         "BatchListPolicyAttachments$MaxResults": "<p>The maximum number of results to retrieve.</p>",
@@ -1792,7 +1792,7 @@
     "ObjectIdentifierAndLinkNameList": {
       "base": null,
       "refs": {
-        "BatchListObjectParentsResponse$ParentLinks": null,
+        "BatchListObjectParentsResponse$ParentLinks": "<p>Returns a list of parent reference and LinkName Tuples.</p>",
         "ListObjectParentsResponse$ParentLinks": "<p>Returns a list of parent reference and LinkName Tuples.</p>"
       }
     },
@@ -2102,7 +2102,7 @@
     "SelectorObjectReference": {
       "base": null,
       "refs": {
-        "ObjectReference$Selector": "<p>A path selector supports easy selection of an object by the parent/child links leading to it from the directory root. Use the link names from each parent/child link to construct the path. Path selectors start with a slash (/) and link names are separated by slashes. For more information about paths, see <a href=\"https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_access_objects.html\">Access Objects</a>. You can identify an object in one of the following ways:</p> <ul> <li> <p> <i>$ObjectIdentifier</i> - An object identifier is an opaque string provided by Amazon Cloud Directory. When creating objects, the system will provide you with the identifier of the created object. An object’s identifier is immutable and no two objects will ever share the same object identifier</p> </li> <li> <p> <i>/some/path</i> - Identifies the object based on path</p> </li> <li> <p> <i>#SomeBatchReference</i> - Identifies the object in a batch call</p> </li> </ul>"
+        "ObjectReference$Selector": "<p>A path selector supports easy selection of an object by the parent/child links leading to it from the directory root. Use the link names from each parent/child link to construct the path. Path selectors start with a slash (/) and link names are separated by slashes. For more information about paths, see <a href=\"https://docs.aws.amazon.com/clouddirectory/latest/developerguide/directory_objects_access_objects.html\">Access Objects</a>. You can identify an object in one of the following ways:</p> <ul> <li> <p> <i>$ObjectIdentifier</i> - An object identifier is an opaque string provided by Amazon Cloud Directory. When creating objects, the system will provide you with the identifier of the created object. An object’s identifier is immutable and no two objects will ever share the same object identifier. To identify an object with ObjectIdentifier, the ObjectIdentifier must be wrapped in double quotes. </p> </li> <li> <p> <i>/some/path</i> - Identifies the object based on path</p> </li> <li> <p> <i>#SomeBatchReference</i> - Identifies the object in a batch call</p> </li> </ul>"
       }
     },
     "StillContainsLinksException": {

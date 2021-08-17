@@ -641,8 +641,8 @@ func (c *CostExplorer) GetAnomaliesRequest(input *GetAnomaliesInput) (req *reque
 
 // GetAnomalies API operation for AWS Cost Explorer Service.
 //
-// Retrieves all of the cost anomalies detected on your account, during the
-// time period specified by the DateInterval object.
+// Retrieves all of the cost anomalies detected on your account during the time
+// period that's specified by the DateInterval object.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -897,12 +897,13 @@ func (c *CostExplorer) GetCostAndUsageRequest(input *GetCostAndUsageInput) (req 
 // GetCostAndUsage API operation for AWS Cost Explorer Service.
 //
 // Retrieves cost and usage metrics for your account. You can specify which
-// cost and usage-related metric, such as BlendedCosts or UsageQuantity, that
-// you want the request to return. You can also filter and group your data by
-// various dimensions, such as SERVICE or AZ, in a specific time range. For
-// a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
-// operation. Management account in an organization in AWS Organizations have
-// access to all member accounts.
+// cost and usage-related metric that you want the request to return. For example,
+// you can specify BlendedCosts or UsageQuantity. You can also filter and group
+// your data by various dimensions, such as SERVICE or AZ, in a specific time
+// range. For a complete list of valid dimensions, see the GetDimensionValues
+// (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
+// operation. Management account in an organization in Organizations have access
+// to all member accounts.
 //
 // For information about filter limitations, see Quotas and restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/billing-limits.html)
 // in the Billing and Cost Management User Guide.
@@ -1002,14 +1003,14 @@ func (c *CostExplorer) GetCostAndUsageWithResourcesRequest(input *GetCostAndUsag
 // that you want the request to return. You can also filter and group your data
 // by various dimensions, such as SERVICE or AZ, in a specific time range. For
 // a complete list of valid dimensions, see the GetDimensionValues (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_GetDimensionValues.html)
-// operation. Management account in an organization in AWS Organizations have
-// access to all member accounts. This API is currently available for the Amazon
-// Elastic Compute Cloud – Compute service only.
+// operation. Management account in an organization in Organizations have access
+// to all member accounts. This API is currently available for the Amazon Elastic
+// Compute Cloud – Compute service only.
 //
 // This is an opt-in only feature. You can enable this feature from the Cost
 // Explorer Settings page. For information on how to access the Settings page,
 // see Controlling Access for Cost Explorer (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-access.html)
-// in the AWS Billing and Cost Management User Guide.
+// in the Billing and Cost Management User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1493,20 +1494,22 @@ func (c *CostExplorer) GetReservationPurchaseRecommendationRequest(input *GetRes
 // could help you reduce your costs. Reservations provide a discounted hourly
 // rate (up to 75%) compared to On-Demand pricing.
 //
-// AWS generates your recommendations by identifying your On-Demand usage during
-// a specific time period and collecting your usage into categories that are
-// eligible for a reservation. After AWS has these categories, it simulates
-// every combination of reservations in each category of usage to identify the
-// best number of each type of RI to purchase to maximize your estimated savings.
+// Amazon Web Services generates your recommendations by identifying your On-Demand
+// usage during a specific time period and collecting your usage into categories
+// that are eligible for a reservation. After Amazon Web Services has these
+// categories, it simulates every combination of reservations in each category
+// of usage to identify the best number of each type of RI to purchase to maximize
+// your estimated savings.
 //
-// For example, AWS automatically aggregates your Amazon EC2 Linux, shared tenancy,
-// and c4 family usage in the US West (Oregon) Region and recommends that you
-// buy size-flexible regional reservations to apply to the c4 family usage.
-// AWS recommends the smallest size instance in an instance family. This makes
-// it easier to purchase a size-flexible RI. AWS also shows the equal number
-// of normalized units so that you can purchase any instance size that you want.
-// For this example, your RI recommendation would be for c4.large because that
-// is the smallest size instance in the c4 instance family.
+// For example, Amazon Web Services automatically aggregates your Amazon EC2
+// Linux, shared tenancy, and c4 family usage in the US West (Oregon) Region
+// and recommends that you buy size-flexible regional reservations to apply
+// to the c4 family usage. Amazon Web Services recommends the smallest size
+// instance in an instance family. This makes it easier to purchase a size-flexible
+// RI. Amazon Web Services also shows the equal number of normalized units so
+// that you can purchase any instance size that you want. For this example,
+// your RI recommendation would be for c4.large because that is the smallest
+// size instance in the c4 instance family.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1685,7 +1688,7 @@ func (c *CostExplorer) GetRightsizingRecommendationRequest(input *GetRightsizing
 // Recommendations are generated to either downsize or terminate instances,
 // along with providing savings detail and metrics. For details on calculation
 // and function, see Optimizing Your Cost with Rightsizing Recommendations (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/ce-rightsizing.html)
-// in the AWS Billing and Cost Management User Guide.
+// in the Billing and Cost Management User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2649,7 +2652,7 @@ func (c *CostExplorer) UpdateAnomalyMonitorRequest(input *UpdateAnomalyMonitorIn
 // UpdateAnomalyMonitor API operation for AWS Cost Explorer Service.
 //
 // Updates an existing cost anomaly monitor. The changes made are applied going
-// forward, and does not change anomalies detected in the past.
+// forward, and doesn'tt change anomalies detected in the past.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2881,7 +2884,8 @@ type Anomaly struct {
 	// The first day the anomaly is detected.
 	AnomalyStartDate *string `type:"string"`
 
-	// The dimension for the anomaly. For example, an AWS service in a service monitor.
+	// The dimension for the anomaly (for example, an Amazon Web Services service
+	// in a service monitor).
 	DimensionValue *string `type:"string"`
 
 	// The feedback value.
@@ -3013,9 +3017,9 @@ func (s *AnomalyDateInterval) SetStartDate(v string) *AnomalyDateInterval {
 	return s
 }
 
-// This object continuously inspects your account's cost data for anomalies,
-// based on MonitorType and MonitorSpecification. The content consists of detailed
-// metadata and the current status of the monitor object.
+// This object continuously inspects your account's cost data for anomalies.
+// It's based on MonitorType and MonitorSpecification. The content consists
+// of detailed metadata and the current status of the monitor object.
 type AnomalyMonitor struct {
 	_ struct{} `type:"structure"`
 
@@ -3048,7 +3052,7 @@ type AnomalyMonitor struct {
 	//    for the filters that you plan to use. For example, you can filter for
 	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
 	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
 	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
 	//    are OR'd together to retrieve cost or usage data. You can create Expression
 	//    and DimensionValues objects using either with* methods or set* methods
@@ -3056,10 +3060,10 @@ type AnomalyMonitor struct {
 	//
 	//    * Compound dimension values with logical operations - You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. This allows you to filter on more advanced
-	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
-	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    of one or more Expression objects. By doing this, you can filter on more
+	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
 	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
 	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
 	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
@@ -3069,12 +3073,12 @@ type AnomalyMonitor struct {
 	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
-	// is not supported. OR is not supported between different dimensions, or dimensions
+	// isn't supported. OR isn't supported between different dimensions, or dimensions
 	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 	//
 	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
-	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	// AND and OR aren't supported. Dimensions are limited to LINKED_ACCOUNT.
 	MonitorSpecification *Expression `type:"structure"`
 
 	// The possible type values.
@@ -3168,7 +3172,7 @@ func (s *AnomalyMonitor) SetMonitorType(v string) *AnomalyMonitor {
 	return s
 }
 
-// Quantifies the anomaly. The higher score means that it is more anomalous.
+// Quantifies the anomaly. The higher score means that it's more anomalous.
 type AnomalyScore struct {
 	_ struct{} `type:"structure"`
 
@@ -3177,7 +3181,7 @@ type AnomalyScore struct {
 	// CurrentScore is a required field
 	CurrentScore *float64 `type:"double" required:"true"`
 
-	// The maximum score observed during the AnomalyDateInterval.
+	// The maximum score that's observed during the AnomalyDateInterval.
 	//
 	// MaxScore is a required field
 	MaxScore *float64 `type:"double" required:"true"`
@@ -3215,7 +3219,7 @@ type AnomalySubscription struct {
 	// Your unique account identifier.
 	AccountId *string `type:"string"`
 
-	// The frequency at which anomaly reports are sent over email.
+	// The frequency that anomaly reports are sent over email.
 	//
 	// Frequency is a required field
 	Frequency *string `type:"string" required:"true" enum:"AnomalySubscriptionFrequency"`
@@ -3400,10 +3404,10 @@ type CostCategory struct {
 	// The default value for the cost category.
 	DefaultValue *string `min:"1" type:"string"`
 
-	// The Cost Category's effective end date.
+	// The effective end data of your Cost Category.
 	EffectiveEnd *string `min:"20" type:"string"`
 
-	// The Cost Category's effective start date.
+	// The effective state data of your Cost Category.
 	//
 	// EffectiveStart is a required field
 	EffectiveStart *string `min:"20" type:"string" required:"true"`
@@ -3422,12 +3426,16 @@ type CostCategory struct {
 	// RuleVersion is a required field
 	RuleVersion *string `type:"string" required:"true" enum:"CostCategoryRuleVersion"`
 
-	// Rules are processed in order. If there are multiple rules that match the
-	// line item, then the first rule to match is used to determine that Cost Category
-	// value.
+	// The rules are processed in order. If there are multiple rules that match
+	// the line item, then the first rule to match is used to determine that Cost
+	// Category value.
 	//
 	// Rules is a required field
 	Rules []*CostCategoryRule `min:"1" type:"list" required:"true"`
+
+	// The split charge rules that are used to allocate your charges between your
+	// Cost Category values.
+	SplitChargeRules []*CostCategorySplitChargeRule `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -3488,24 +3496,30 @@ func (s *CostCategory) SetRules(v []*CostCategoryRule) *CostCategory {
 	return s
 }
 
+// SetSplitChargeRules sets the SplitChargeRules field's value.
+func (s *CostCategory) SetSplitChargeRules(v []*CostCategorySplitChargeRule) *CostCategory {
+	s.SplitChargeRules = v
+	return s
+}
+
 // When creating or updating a cost category, you can define the CostCategoryRule
 // rule type as INHERITED_VALUE. This rule type adds the flexibility of defining
 // a rule that dynamically inherits the cost category value from the dimension
 // value defined by CostCategoryInheritedValueDimension. For example, if you
-// wanted to dynamically group costs based on the value of a specific tag key,
-// you would first choose an inherited value rule type, then choose the tag
-// dimension and specify the tag key to use.
+// want to dynamically group costs that are based on the value of a specific
+// tag key, first choose an inherited value rule type, then choose the tag dimension
+// and specify the tag key to use.
 type CostCategoryInheritedValueDimension struct {
 	_ struct{} `type:"structure"`
 
 	// The key to extract cost category values.
 	DimensionKey *string `type:"string"`
 
-	// The name of dimension for which to group costs.
+	// The name of the dimension that's used to group costs.
 	//
-	// If you specify LINKED_ACCOUNT_NAME, the cost category value will be based
-	// on account name. If you specify TAG, the cost category value will be based
-	// on the value of the specified tag key.
+	// If you specify LINKED_ACCOUNT_NAME, the cost category value is based on account
+	// name. If you specify TAG, the cost category value will be based on the value
+	// of the specified tag key.
 	DimensionName *string `type:"string" enum:"CostCategoryInheritedValueDimensionName"`
 }
 
@@ -3588,7 +3602,7 @@ type CostCategoryReference struct {
 	// The unique name of the Cost Category.
 	Name *string `min:"1" type:"string"`
 
-	// The number of rules associated with a specific Cost Category.
+	// The number of rules that are associated with a specific Cost Category.
 	NumberOfRules *int64 `type:"integer"`
 
 	// The list of processing statuses for Cost Management products for a specific
@@ -3663,8 +3677,8 @@ func (s *CostCategoryReference) SetValues(v []*string) *CostCategoryReference {
 type CostCategoryRule struct {
 	_ struct{} `type:"structure"`
 
-	// The value the line item will be categorized as, if the line item contains
-	// the matched dimension.
+	// The value the line item is categorized as if the line item contains the matched
+	// dimension.
 	InheritedValue *CostCategoryInheritedValueDimension `type:"structure"`
 
 	// An Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html)
@@ -3672,23 +3686,23 @@ type CostCategoryRule struct {
 	// expressions. Currently the only dimensions supported are LINKED_ACCOUNT,
 	// SERVICE_CODE, RECORD_TYPE, and LINKED_ACCOUNT_NAME.
 	//
-	// Root level OR is not supported. We recommend that you create a separate rule
+	// Root level OR isn't supported. We recommend that you create a separate rule
 	// instead.
 	//
 	// RECORD_TYPE is a dimension used for Cost Explorer APIs, and is also supported
 	// for Cost Category expressions. This dimension uses different terms, depending
 	// on whether you're using the console or API/JSON editor. For a detailed comparison,
 	// see Term Comparisons (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/manage-cost-categories.html#cost-categories-terms)
-	// in the AWS Billing and Cost Management User Guide.
+	// in the Billing and Cost Management User Guide.
 	Rule *Expression `type:"structure"`
 
 	// You can define the CostCategoryRule rule type as either REGULAR or INHERITED_VALUE.
 	// The INHERITED_VALUE rule type adds the flexibility of defining a rule that
 	// dynamically inherits the cost category value from the dimension value defined
-	// by CostCategoryInheritedValueDimension. For example, if you wanted to dynamically
-	// group costs based on the value of a specific tag key, you would first choose
-	// an inherited value rule type, then choose the tag dimension and specify the
-	// tag key to use.
+	// by CostCategoryInheritedValueDimension. For example, if you want to dynamically
+	// group costs based on the value of a specific tag key, first choose an inherited
+	// value rule type, then choose the tag dimension and specify the tag key to
+	// use.
 	Type *string `type:"string" enum:"CostCategoryRuleType"`
 
 	// The default value for the cost category.
@@ -3747,14 +3761,176 @@ func (s *CostCategoryRule) SetValue(v string) *CostCategoryRule {
 	return s
 }
 
+// Use the split charge rule to split the cost of one Cost Category value across
+// several other target values.
+type CostCategorySplitChargeRule struct {
+	_ struct{} `type:"structure"`
+
+	// The method that's used to define how to split your source costs across your
+	// targets.
+	//
+	// Proportional - Allocates charges across your targets based on the proportional
+	// weighted cost of each target.
+	//
+	// Fixed - Allocates charges across your targets based on your defined allocation
+	// percentage.
+	//
+	// >Even - Allocates costs evenly across all targets.
+	//
+	// Method is a required field
+	Method *string `type:"string" required:"true" enum:"CostCategorySplitChargeMethod"`
+
+	// The parameters for a split charge method. This is only required for the FIXED
+	// method.
+	Parameters []*CostCategorySplitChargeRuleParameter `min:"1" type:"list"`
+
+	// The Cost Category value that you want to split. That value can't be used
+	// as a source or a target in other split charge rules. To indicate uncategorized
+	// costs, you can use an empty string as the source.
+	//
+	// Source is a required field
+	Source *string `type:"string" required:"true"`
+
+	// The Cost Category values that you want to split costs across. These values
+	// can't be used as a source in other split charge rules.
+	//
+	// Targets is a required field
+	Targets []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CostCategorySplitChargeRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostCategorySplitChargeRule) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CostCategorySplitChargeRule) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CostCategorySplitChargeRule"}
+	if s.Method == nil {
+		invalidParams.Add(request.NewErrParamRequired("Method"))
+	}
+	if s.Parameters != nil && len(s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+	if s.Source == nil {
+		invalidParams.Add(request.NewErrParamRequired("Source"))
+	}
+	if s.Targets == nil {
+		invalidParams.Add(request.NewErrParamRequired("Targets"))
+	}
+	if s.Targets != nil && len(s.Targets) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Targets", 1))
+	}
+	if s.Parameters != nil {
+		for i, v := range s.Parameters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Parameters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMethod sets the Method field's value.
+func (s *CostCategorySplitChargeRule) SetMethod(v string) *CostCategorySplitChargeRule {
+	s.Method = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *CostCategorySplitChargeRule) SetParameters(v []*CostCategorySplitChargeRuleParameter) *CostCategorySplitChargeRule {
+	s.Parameters = v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *CostCategorySplitChargeRule) SetSource(v string) *CostCategorySplitChargeRule {
+	s.Source = &v
+	return s
+}
+
+// SetTargets sets the Targets field's value.
+func (s *CostCategorySplitChargeRule) SetTargets(v []*string) *CostCategorySplitChargeRule {
+	s.Targets = v
+	return s
+}
+
+// The parameters for a split charge method.
+type CostCategorySplitChargeRuleParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The parameter type.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"CostCategorySplitChargeRuleParameterType"`
+
+	// The parameter values.
+	//
+	// Values is a required field
+	Values []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CostCategorySplitChargeRuleParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CostCategorySplitChargeRuleParameter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CostCategorySplitChargeRuleParameter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CostCategorySplitChargeRuleParameter"}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetType sets the Type field's value.
+func (s *CostCategorySplitChargeRuleParameter) SetType(v string) *CostCategorySplitChargeRuleParameter {
+	s.Type = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *CostCategorySplitChargeRuleParameter) SetValues(v []*string) *CostCategorySplitChargeRuleParameter {
+	s.Values = v
+	return s
+}
+
 // The Cost Categories values used for filtering the costs.
 //
 // If Values and Key are not specified, the ABSENT MatchOption is applied to
-// all Cost Categories. That is, filtering on resources that are not mapped
+// all Cost Categories. That is, it filters on resources that aren't mapped
 // to any Cost Categories.
 //
-// If Values is provided and Key is not specified, the ABSENT MatchOption is
-// applied to the Cost Categories Key only. That is, filtering on resources
+// If Values is provided and Key isn't specified, the ABSENT MatchOption is
+// applied to the Cost Categories Key only. That is, it filters on resources
 // without the given Cost Categories key.
 type CostCategoryValues struct {
 	_ struct{} `type:"structure"`
@@ -3972,14 +4148,14 @@ func (s *CoverageHours) SetTotalRunningHours(v string) *CoverageHours {
 	return s
 }
 
-// The amount of instance usage, in normalized units. Normalized units enable
-// you to see your EC2 usage for multiple sizes of instances in a uniform way.
-// For example, suppose you run an xlarge instance and a 2xlarge instance. If
-// you run both instances for the same amount of time, the 2xlarge instance
+// The amount of instance usage, in normalized units. You can use normalized
+// units to see your EC2 usage for multiple sizes of instances in a uniform
+// way. For example, suppose that you run an xlarge instance and a 2xlarge instance.
+// If you run both instances for the same amount of time, the 2xlarge instance
 // uses twice as much of your reservation as the xlarge instance, even though
-// both instances show only one instance-hour. Using normalized units instead
-// of instance-hours, the xlarge instance used 8 normalized units, and the 2xlarge
-// instance used 16 normalized units.
+// both instances show only one instance-hour. When you use normalized units
+// instead of instance-hours, the xlarge instance used 8 normalized units, and
+// the 2xlarge instance used 16 normalized units.
 //
 // For more information, see Modifying Reserved Instances (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ri-modifying.html)
 // in the Amazon Elastic Compute Cloud User Guide for Linux Instances.
@@ -4192,6 +4368,10 @@ type CreateCostCategoryDefinitionInput struct {
 	//
 	// Rules is a required field
 	Rules []*CostCategoryRule `min:"1" type:"list" required:"true"`
+
+	// The split charge rules used to allocate your charges between your Cost Category
+	// values.
+	SplitChargeRules []*CostCategorySplitChargeRule `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -4225,6 +4405,9 @@ func (s *CreateCostCategoryDefinitionInput) Validate() error {
 	if s.Rules != nil && len(s.Rules) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
 	}
+	if s.SplitChargeRules != nil && len(s.SplitChargeRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SplitChargeRules", 1))
+	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
 			if v == nil {
@@ -4232,6 +4415,16 @@ func (s *CreateCostCategoryDefinitionInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SplitChargeRules != nil {
+		for i, v := range s.SplitChargeRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SplitChargeRules", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -4263,6 +4456,12 @@ func (s *CreateCostCategoryDefinitionInput) SetRuleVersion(v string) *CreateCost
 // SetRules sets the Rules field's value.
 func (s *CreateCostCategoryDefinitionInput) SetRules(v []*CostCategoryRule) *CreateCostCategoryDefinitionInput {
 	s.Rules = v
+	return s
+}
+
+// SetSplitChargeRules sets the SplitChargeRules field's value.
+func (s *CreateCostCategoryDefinitionInput) SetSplitChargeRules(v []*CostCategorySplitChargeRule) *CreateCostCategoryDefinitionInput {
+	s.SplitChargeRules = v
 	return s
 }
 
@@ -4302,20 +4501,22 @@ func (s *CreateCostCategoryDefinitionOutput) SetEffectiveStart(v string) *Create
 type CurrentInstance struct {
 	_ struct{} `type:"structure"`
 
-	// The currency code that AWS used to calculate the costs for this instance.
+	// The currency code that Amazon Web Services used to calculate the costs for
+	// this instance.
 	CurrencyCode *string `type:"string"`
 
-	// The name you've given an instance. This field will show as blank if you haven't
+	// The name that you given an instance. This field shows as blank if you haven't
 	// given the instance a name.
 	InstanceName *string `type:"string"`
 
-	// Current On-Demand cost of operating this instance on a monthly basis.
+	// The current On-Demand cost of operating this instance on a monthly basis.
 	MonthlyCost *string `type:"string"`
 
-	// Number of hours during the lookback period billed at On-Demand rates.
+	// The number of hours during the lookback period that's billed at On-Demand
+	// rates.
 	OnDemandHoursInLookbackPeriod *string `type:"string"`
 
-	// Number of hours during the lookback period covered by reservations.
+	// The number of hours during the lookback period that's covered by reservations.
 	ReservationCoveredHoursInLookbackPeriod *string `type:"string"`
 
 	// Details about the resource and utilization.
@@ -4327,13 +4528,14 @@ type CurrentInstance struct {
 	// Utilization information of the current instance during the lookback period.
 	ResourceUtilization *ResourceUtilization `type:"structure"`
 
-	// Number of hours during the lookback period covered by Savings Plans.
+	// The number of hours during the lookback period that's covered by Savings
+	// Plans.
 	SavingsPlansCoveredHoursInLookbackPeriod *string `type:"string"`
 
-	// Cost allocation resource tags applied to the instance.
+	// Cost allocation resource tags that are applied to the instance.
 	Tags []*TagValues `type:"list"`
 
-	// The total number of hours the instance ran during the lookback period.
+	// The total number of hours that the instance ran during the lookback period.
 	TotalRunningHoursInLookbackPeriod *string `type:"string"`
 }
 
@@ -4474,16 +4676,16 @@ type DateInterval struct {
 	_ struct{} `type:"structure"`
 
 	// The end of the time period. The end date is exclusive. For example, if end
-	// is 2017-05-01, AWS retrieves cost and usage data from the start date up to,
-	// but not including, 2017-05-01.
+	// is 2017-05-01, Amazon Web Services retrieves cost and usage data from the
+	// start date up to, but not including, 2017-05-01.
 	//
 	// End is a required field
 	End *string `type:"string" required:"true"`
 
 	// The beginning of the time period. The start date is inclusive. For example,
-	// if start is 2017-01-01, AWS retrieves cost and usage data starting at 2017-01-01
-	// up to the end date. The start date must be equal to or no later than the
-	// current date to avoid a validation error.
+	// if start is 2017-01-01, Amazon Web Services retrieves cost and usage data
+	// starting at 2017-01-01 up to the end date. The start date must be equal to
+	// or no later than the current date to avoid a validation error.
 	//
 	// Start is a required field
 	Start *string `type:"string" required:"true"`
@@ -4863,7 +5065,7 @@ func (s *DimensionValuesWithAttributes) SetValue(v string) *DimensionValuesWithA
 	return s
 }
 
-// The field that contains a list of disk (local storage) metrics associated
+// The field that contains a list of disk (local storage) metrics that are associated
 // with the current instance.
 type DiskResourceUtilization struct {
 	_ struct{} `type:"structure"`
@@ -4915,8 +5117,8 @@ func (s *DiskResourceUtilization) SetDiskWriteOpsPerSecond(v string) *DiskResour
 	return s
 }
 
-// The EBS field that contains a list of EBS metrics associated with the current
-// instance.
+// The EBS field that contains a list of EBS metrics that are associated with
+// the current instance.
 type EBSResourceUtilization struct {
 	_ struct{} `type:"structure"`
 
@@ -4967,33 +5169,34 @@ func (s *EBSResourceUtilization) SetEbsWriteOpsPerSecond(v string) *EBSResourceU
 	return s
 }
 
-// Details about the Amazon EC2 instances that AWS recommends that you purchase.
+// Details about the Amazon EC2 instances that Amazon Web Services recommends
+// that you purchase.
 type EC2InstanceDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The Availability Zone of the recommended reservation.
 	AvailabilityZone *string `type:"string"`
 
-	// Whether the recommendation is for a current-generation instance.
+	// Determines whether the recommendation is for a current-generation instance.
 	CurrentGeneration *bool `type:"boolean"`
 
 	// The instance family of the recommended reservation.
 	Family *string `type:"string"`
 
-	// The type of instance that AWS recommends.
+	// The type of instance that Amazon Web Services recommends.
 	InstanceType *string `type:"string"`
 
 	// The platform of the recommended reservation. The platform is the specific
 	// combination of operating system, license model, and software on an instance.
 	Platform *string `type:"string"`
 
-	// The AWS Region of the recommended reservation.
+	// The Amazon Web Services Region of the recommended reservation.
 	Region *string `type:"string"`
 
-	// Whether the recommended reservation is size flexible.
+	// Determines whether the recommended reservation is size flexible.
 	SizeFlexEligible *bool `type:"boolean"`
 
-	// Whether the recommended reservation is dedicated or shared.
+	// Determines whether the recommended reservation is dedicated or shared.
 	Tenancy *string `type:"string"`
 }
 
@@ -5059,32 +5262,33 @@ func (s *EC2InstanceDetails) SetTenancy(v string) *EC2InstanceDetails {
 type EC2ResourceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Hourly public On-Demand rate for the instance type.
+	// The hourly public On-Demand rate for the instance type.
 	HourlyOnDemandRate *string `type:"string"`
 
-	// The type of AWS instance.
+	// The type of Amazon Web Services instance.
 	InstanceType *string `type:"string"`
 
-	// Memory capacity of the AWS instance.
+	// The memory capacity of the Amazon Web Services instance.
 	Memory *string `type:"string"`
 
-	// Network performance capacity of the AWS instance.
+	// The network performance capacity of the Amazon Web Services instance.
 	NetworkPerformance *string `type:"string"`
 
-	// The platform of the AWS instance. The platform is the specific combination
-	// of operating system, license model, and software on an instance.
+	// The platform of the Amazon Web Services instance. The platform is the specific
+	// combination of operating system, license model, and software on an instance.
 	Platform *string `type:"string"`
 
-	// The AWS Region of the instance.
+	// The Amazon Web Services Region of the instance.
 	Region *string `type:"string"`
 
 	// The SKU of the product.
 	Sku *string `type:"string"`
 
-	// The disk storage of the AWS instance (not EBS storage).
+	// The disk storage of the Amazon Web Services instance. This doesn't include
+	// EBS storage.
 	Storage *string `type:"string"`
 
-	// Number of VCPU cores in the AWS instance type.
+	// The number of VCPU cores in the Amazon Web Services instance type.
 	Vcpu *string `type:"string"`
 }
 
@@ -5156,26 +5360,26 @@ func (s *EC2ResourceDetails) SetVcpu(v string) *EC2ResourceDetails {
 type EC2ResourceUtilization struct {
 	_ struct{} `type:"structure"`
 
-	// The field that contains a list of disk (local storage) metrics associated
+	// The field that contains a list of disk (local storage) metrics that are associated
 	// with the current instance.
 	DiskResourceUtilization *DiskResourceUtilization `type:"structure"`
 
-	// The EBS field that contains a list of EBS metrics associated with the current
-	// instance.
+	// The EBS field that contains a list of EBS metrics that are associated with
+	// the current instance.
 	EBSResourceUtilization *EBSResourceUtilization `type:"structure"`
 
-	// Maximum observed or expected CPU utilization of the instance.
+	// The maximum observed or expected CPU utilization of the instance.
 	MaxCpuUtilizationPercentage *string `type:"string"`
 
-	// Maximum observed or expected memory utilization of the instance.
+	// The maximum observed or expected memory utilization of the instance.
 	MaxMemoryUtilizationPercentage *string `type:"string"`
 
-	// Maximum observed or expected storage utilization of the instance (does not
-	// measure EBS storage).
+	// The maximum observed or expected storage utilization of the instance. This
+	// doesn't include EBS storage.
 	MaxStorageUtilizationPercentage *string `type:"string"`
 
-	// The network field that contains a list of network metrics associated with
-	// the current instance.
+	// The network field that contains a list of network metrics that are associated
+	// with the current instance.
 	NetworkResourceUtilization *NetworkResourceUtilization `type:"structure"`
 }
 
@@ -5225,12 +5429,12 @@ func (s *EC2ResourceUtilization) SetNetworkResourceUtilization(v *NetworkResourc
 	return s
 }
 
-// The Amazon EC2 hardware specifications that you want AWS to provide recommendations
-// for.
+// The Amazon EC2 hardware specifications that you want Amazon Web Services
+// to provide recommendations for.
 type EC2Specification struct {
 	_ struct{} `type:"structure"`
 
-	// Whether you want a recommendation for standard or convertible reservations.
+	// Indicates whether you want a recommendation for standard or convertible reservations.
 	OfferingClass *string `type:"string" enum:"OfferingClass"`
 }
 
@@ -5250,23 +5454,24 @@ func (s *EC2Specification) SetOfferingClass(v string) *EC2Specification {
 	return s
 }
 
-// Details about the Amazon ES instances that AWS recommends that you purchase.
+// Details about the Amazon ES instances that Amazon Web Services recommends
+// that you purchase.
 type ESInstanceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Whether the recommendation is for a current-generation instance.
+	// Determines whether the recommendation is for a current-generation instance.
 	CurrentGeneration *bool `type:"boolean"`
 
-	// The class of instance that AWS recommends.
+	// The class of instance that Amazon Web Services recommends.
 	InstanceClass *string `type:"string"`
 
-	// The size of instance that AWS recommends.
+	// The size of instance that Amazon Web Services recommends.
 	InstanceSize *string `type:"string"`
 
-	// The AWS Region of the recommended reservation.
+	// The Amazon Web Services Region of the recommended reservation.
 	Region *string `type:"string"`
 
-	// Whether the recommended reservation is size flexible.
+	// Determines whether the recommended reservation is size flexible.
 	SizeFlexEligible *bool `type:"boolean"`
 }
 
@@ -5310,27 +5515,27 @@ func (s *ESInstanceDetails) SetSizeFlexEligible(v bool) *ESInstanceDetails {
 	return s
 }
 
-// Details about the Amazon ElastiCache instances that AWS recommends that you
-// purchase.
+// Details about the Amazon ElastiCache instances that Amazon Web Services recommends
+// that you purchase.
 type ElastiCacheInstanceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Whether the recommendation is for a current generation instance.
+	// Determines whether the recommendation is for a current generation instance.
 	CurrentGeneration *bool `type:"boolean"`
 
 	// The instance family of the recommended reservation.
 	Family *string `type:"string"`
 
-	// The type of node that AWS recommends.
+	// The type of node that Amazon Web Services recommends.
 	NodeType *string `type:"string"`
 
 	// The description of the recommended reservation.
 	ProductDescription *string `type:"string"`
 
-	// The AWS Region of the recommended reservation.
+	// The Amazon Web Services Region of the recommended reservation.
 	Region *string `type:"string"`
 
-	// Whether the recommended reservation is size flexible.
+	// Determines whether the recommended reservation is size flexible.
 	SizeFlexEligible *bool `type:"boolean"`
 }
 
@@ -5386,7 +5591,7 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //    for the filters that you plan to use. For example, you can filter for
 //    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
 //    the Region is a full name (for example, REGION==US East (N. Virginia).
-//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
 //    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
 //    are OR'd together to retrieve cost or usage data. You can create Expression
 //    and DimensionValues objects using either with* methods or set* methods
@@ -5394,10 +5599,10 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //
 //    * Compound dimension values with logical operations - You can use multiple
 //    Expression types and the logical operators AND/OR/NOT to create a list
-//    of one or more Expression objects. This allows you to filter on more advanced
-//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
-//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+//    of one or more Expression objects. By doing this, you can filter on more
+//    advanced options. For example, you can filter on ((REGION == us-east-1
+//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
 //    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
 //    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
 //    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
@@ -5407,19 +5612,19 @@ func (s *ElastiCacheInstanceDetails) SetSizeFlexEligible(v bool) *ElastiCacheIns
 //    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 //
 // For the GetRightsizingRecommendation action, a combination of OR and NOT
-// is not supported. OR is not supported between different dimensions, or dimensions
+// isn't supported. OR isn't supported between different dimensions, or dimensions
 // and tags. NOT operators aren't supported. Dimensions are also limited to
 // LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 //
 // For the GetReservationPurchaseRecommendation action, only NOT is supported.
-// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+// AND and OR aren't supported. Dimensions are limited to LINKED_ACCOUNT.
 type Expression struct {
 	_ struct{} `type:"structure"`
 
 	// Return results that match both Dimension objects.
 	And []*Expression `type:"list"`
 
-	// The filter based on CostCategory values.
+	// The filter that's based on CostCategory values.
 	CostCategories *CostCategoryValues `type:"structure"`
 
 	// The specific Dimension to use for Expression.
@@ -5511,7 +5716,7 @@ func (s *Expression) SetTags(v *TagValues) *Expression {
 	return s
 }
 
-// The forecast created for your query.
+// The forecast that's created for your query.
 type ForecastResult struct {
 	_ struct{} `type:"structure"`
 
@@ -5581,9 +5786,9 @@ type GetAnomaliesInput struct {
 	// monitor Amazon Resource Name (ARN).
 	MonitorArn *string `type:"string"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// Filters anomaly results by the total impact field on the anomaly object.
@@ -5669,9 +5874,9 @@ type GetAnomaliesOutput struct {
 	// Anomalies is a required field
 	Anomalies []*Anomaly `type:"list" required:"true"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 }
 
@@ -5700,15 +5905,15 @@ func (s *GetAnomaliesOutput) SetNextPageToken(v string) *GetAnomaliesOutput {
 type GetAnomalyMonitorsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The number of entries a paginated response contains.
+	// The number of entries that a paginated response contains.
 	MaxResults *int64 `type:"integer"`
 
 	// A list of cost anomaly monitor ARNs.
 	MonitorArnList []*string `type:"list"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 }
 
@@ -5749,9 +5954,9 @@ type GetAnomalyMonitorsOutput struct {
 	// AnomalyMonitors is a required field
 	AnomalyMonitors []*AnomalyMonitor `type:"list" required:"true"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 }
 
@@ -5786,9 +5991,9 @@ type GetAnomalySubscriptionsInput struct {
 	// Cost anomaly monitor ARNs.
 	MonitorArn *string `type:"string"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// A list of cost anomaly subscription ARNs.
@@ -5838,9 +6043,9 @@ type GetAnomalySubscriptionsOutput struct {
 	// AnomalySubscriptions is a required field
 	AnomalySubscriptions []*AnomalySubscription `type:"list" required:"true"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 }
 
@@ -5869,26 +6074,29 @@ func (s *GetAnomalySubscriptionsOutput) SetNextPageToken(v string) *GetAnomalySu
 type GetCostAndUsageInput struct {
 	_ struct{} `type:"structure"`
 
-	// Filters AWS costs by different dimensions. For example, you can specify SERVICE
-	// and LINKED_ACCOUNT and get the costs that are associated with that account's
-	// usage of that service. You can nest Expression objects to define any combination
-	// of dimension filters. For more information, see Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
+	// Filters Amazon Web Services costs by different dimensions. For example, you
+	// can specify SERVICE and LINKED_ACCOUNT and get the costs that are associated
+	// with that account's usage of that service. You can nest Expression objects
+	// to define any combination of dimension filters. For more information, see
+	// Expression (https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_Expression.html).
 	Filter *Expression `type:"structure"`
 
-	// Sets the AWS cost granularity to MONTHLY or DAILY, or HOURLY. If Granularity
-	// isn't set, the response object doesn't include the Granularity, either MONTHLY
-	// or DAILY, or HOURLY.
+	// Sets the Amazon Web Services cost granularity to MONTHLY or DAILY, or HOURLY.
+	// If Granularity isn't set, the response object doesn't include the Granularity,
+	// either MONTHLY or DAILY, or HOURLY.
 	//
 	// Granularity is a required field
 	Granularity *string `type:"string" required:"true" enum:"Granularity"`
 
-	// You can group AWS costs using up to two different groups, either dimensions,
-	// tag keys, cost categories, or any two group by types.
+	// You can group Amazon Web Services costs using up to two different groups,
+	// either dimensions, tag keys, cost categories, or any two group by types.
 	//
-	// When you group by tag key, you get all tag values, including empty strings.
+	// Valid values for the DIMENSION type are AZ, INSTANCE_TYPE, LEGAL_ENTITY_NAME,
+	// LINKED_ACCOUNT, OPERATION, PLATFORM, PURCHASE_TYPE, SERVICE, TENANCY, RECORD_TYPE,
+	// and USAGE_TYPE.
 	//
-	// Valid values are AZ, INSTANCE_TYPE, LEGAL_ENTITY_NAME, LINKED_ACCOUNT, OPERATION,
-	// PLATFORM, PURCHASE_TYPE, SERVICE, TAGS, TENANCY, RECORD_TYPE, and USAGE_TYPE.
+	// When you group by the TAG type and include a valid tag key, you get all tag
+	// values, including empty strings.
 	GroupBy []*GroupDefinition `type:"list"`
 
 	// Which metrics are returned in the query. For more information about blended
@@ -5902,7 +6110,7 @@ type GetCostAndUsageInput struct {
 	// numbers without taking into account the units. For example, if you aggregate
 	// usageQuantity across all of Amazon EC2, the results aren't meaningful because
 	// Amazon EC2 compute hours and data transfer are measured in different units
-	// (for example, hours vs. GB). To get more meaningful UsageQuantity metrics,
+	// (for example, hours and GB). To get more meaningful UsageQuantity metrics,
 	// filter by UsageType or UsageTypeGroups.
 	//
 	// Metrics is required for GetCostAndUsage requests.
@@ -5910,15 +6118,16 @@ type GetCostAndUsageInput struct {
 	// Metrics is a required field
 	Metrics []*string `type:"list" required:"true"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
-	// Sets the start and end dates for retrieving AWS costs. The start date is
-	// inclusive, but the end date is exclusive. For example, if start is 2017-01-01
-	// and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01
-	// up to and including 2017-04-30 but not including 2017-05-01.
+	// Sets the start date and end date for retrieving Amazon Web Services costs.
+	// The start date is inclusive, but the end date is exclusive. For example,
+	// if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data
+	// is retrieved from 2017-01-01 up to and including 2017-04-30 but not including
+	// 2017-05-01.
 	//
 	// TimePeriod is a required field
 	TimePeriod *DateInterval `type:"structure" required:"true"`
@@ -6010,12 +6219,12 @@ type GetCostAndUsageOutput struct {
 	// request.
 	GroupDefinitions []*GroupDefinition `type:"list"`
 
-	// The token for the next set of retrievable results. AWS provides the token
-	// when the response from a previous call has more results than the maximum
-	// page size.
+	// The token for the next set of retrievable results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
-	// The time period that is covered by the results in the response.
+	// The time period that's covered by the results in the response.
 	ResultsByTime []*ResultByTime `type:"list"`
 }
 
@@ -6069,9 +6278,9 @@ type GetCostAndUsageWithResourcesInput struct {
 	// Filter is a required field
 	Filter *Expression `type:"structure" required:"true"`
 
-	// Sets the AWS cost granularity to MONTHLY, DAILY, or HOURLY. If Granularity
-	// isn't set, the response object doesn't include the Granularity, MONTHLY,
-	// DAILY, or HOURLY.
+	// Sets the Amazon Web Services cost granularity to MONTHLY, DAILY, or HOURLY.
+	// If Granularity isn't set, the response object doesn't include the Granularity,
+	// MONTHLY, DAILY, or HOURLY.
 	//
 	// Granularity is a required field
 	Granularity *string `type:"string" required:"true" enum:"Granularity"`
@@ -6097,9 +6306,9 @@ type GetCostAndUsageWithResourcesInput struct {
 	// Metrics is required for GetCostAndUsageWithResources requests.
 	Metrics []*string `type:"list"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// Sets the start and end dates for retrieving Amazon Web Services costs. The
@@ -6199,9 +6408,9 @@ type GetCostAndUsageWithResourcesOutput struct {
 	// request.
 	GroupDefinitions []*GroupDefinition `type:"list"`
 
-	// The token for the next set of retrievable results. AWS provides the token
-	// when the response from a previous call has more results than the maximum
-	// page size.
+	// The token for the next set of retrievable results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// The time period that is covered by the results in the response.
@@ -6254,7 +6463,7 @@ type GetCostCategoriesInput struct {
 	//    for the filters that you plan to use. For example, you can filter for
 	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
 	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
 	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
 	//    are OR'd together to retrieve cost or usage data. You can create Expression
 	//    and DimensionValues objects using either with* methods or set* methods
@@ -6262,10 +6471,10 @@ type GetCostCategoriesInput struct {
 	//
 	//    * Compound dimension values with logical operations - You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. This allows you to filter on more advanced
-	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
-	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    of one or more Expression objects. By doing this, you can filter on more
+	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
 	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
 	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
 	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
@@ -6275,12 +6484,12 @@ type GetCostCategoriesInput struct {
 	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
-	// is not supported. OR is not supported between different dimensions, or dimensions
+	// isn't supported. OR isn't supported between different dimensions, or dimensions
 	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 	//
 	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
-	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	// AND and OR aren't supported. Dimensions are limited to LINKED_ACCOUNT.
 	Filter *Expression `type:"structure"`
 
 	// This field is only used when SortBy is provided in the request.
@@ -6293,9 +6502,9 @@ type GetCostCategoriesInput struct {
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the number of objects that are still available for retrieval exceeds the
-	// limit, AWS returns a NextPageToken value in the response. To retrieve the
-	// next batch of objects, provide the NextPageToken from the prior call in your
-	// next request.
+	// limit, Amazon Web Services returns a NextPageToken value in the response.
+	// To retrieve the next batch of objects, provide the NextPageToken from the
+	// prior call in your next request.
 	NextPageToken *string `type:"string"`
 
 	// The value that you want to search the filter values for.
@@ -6439,9 +6648,9 @@ type GetCostCategoriesOutput struct {
 	CostCategoryValues []*string `type:"list"`
 
 	// If the number of objects that are still available for retrieval exceeds the
-	// limit, AWS returns a NextPageToken value in the response. To retrieve the
-	// next batch of objects, provide the marker from the prior call in your next
-	// request.
+	// limit, Amazon Web Services returns a NextPageToken value in the response.
+	// To retrieve the next batch of objects, provide the marker from the prior
+	// call in your next request.
 	NextPageToken *string `type:"string"`
 
 	// The number of objects returned.
@@ -6713,12 +6922,12 @@ type GetDimensionValuesInput struct {
 	//
 	//    * INSTANCE_TYPE - The type of Amazon EC2 instance. An example is m4.xlarge.
 	//
-	//    * LEGAL_ENTITY_NAME - The name of the organization that sells you AWS
-	//    services, such as Amazon Web Services.
+	//    * LEGAL_ENTITY_NAME - The name of the organization that sells you Amazon
+	//    Web Services services, such as Amazon Web Services.
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
-	//    the full name of the member account. The value field contains the AWS
-	//    ID of the member account.
+	//    the full name of the member account. The value field contains the Amazon
+	//    Web Services ID of the member account.
 	//
 	//    * OPERATING_SYSTEM - The operating system. Examples are Windows or Linux.
 	//
@@ -6731,7 +6940,7 @@ type GetDimensionValuesInput struct {
 	//    is related. Examples include On-Demand Instances and Standard Reserved
 	//    Instances.
 	//
-	//    * SERVICE - The AWS service such as Amazon DynamoDB.
+	//    * SERVICE - The Amazon Web Services service such as Amazon DynamoDB.
 	//
 	//    * USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes.
 	//    The response for the GetDimensionValues operation includes a unit attribute.
@@ -6741,7 +6950,7 @@ type GetDimensionValuesInput struct {
 	//    Amazon EC2: CloudWatch – Alarms. The response for this operation includes
 	//    a unit attribute.
 	//
-	//    * REGION - The AWS Region.
+	//    * REGION - The Amazon Web Services Region.
 	//
 	//    * RECORD_TYPE - The different types of charges such as RI fees, usage
 	//    costs, tax refunds, and credits.
@@ -6763,13 +6972,13 @@ type GetDimensionValuesInput struct {
 	//    * INSTANCE_TYPE - The type of Amazon EC2 instance. An example is m4.xlarge.
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
-	//    the full name of the member account. The value field contains the AWS
-	//    ID of the member account.
+	//    the full name of the member account. The value field contains the Amazon
+	//    Web Services ID of the member account.
 	//
 	//    * PLATFORM - The Amazon EC2 operating system. Examples are Windows or
 	//    Linux.
 	//
-	//    * REGION - The AWS Region.
+	//    * REGION - The Amazon Web Services Region.
 	//
 	//    * SCOPE (Utilization only) - The scope of a Reserved Instance (RI). Values
 	//    are regional or a single Availability Zone.
@@ -6787,13 +6996,13 @@ type GetDimensionValuesInput struct {
 	//    * PAYMENT_OPTION - Payment option for the given Savings Plans (for example,
 	//    All Upfront)
 	//
-	//    * REGION - The AWS Region.
+	//    * REGION - The Amazon Web Services Region.
 	//
 	//    * INSTANCE_TYPE_FAMILY - The family of instances (For example, m5)
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
-	//    the full name of the member account. The value field contains the AWS
-	//    ID of the member account.
+	//    the full name of the member account. The value field contains the Amazon
+	//    Web Services ID of the member account.
 	//
 	//    * SAVINGS_PLAN_ARN - The unique identifier for your Savings Plan
 	Context *string `type:"string" enum:"Context"`
@@ -6810,7 +7019,7 @@ type GetDimensionValuesInput struct {
 	//    for the filters that you plan to use. For example, you can filter for
 	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
 	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
 	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
 	//    are OR'd together to retrieve cost or usage data. You can create Expression
 	//    and DimensionValues objects using either with* methods or set* methods
@@ -6818,10 +7027,10 @@ type GetDimensionValuesInput struct {
 	//
 	//    * Compound dimension values with logical operations - You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. This allows you to filter on more advanced
-	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
-	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    of one or more Expression objects. By doing this, you can filter on more
+	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
 	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
 	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
 	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
@@ -6831,12 +7040,12 @@ type GetDimensionValuesInput struct {
 	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
-	// is not supported. OR is not supported between different dimensions, or dimensions
+	// isn't supported. OR isn't supported between different dimensions, or dimensions
 	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 	//
 	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
-	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	// AND and OR aren't supported. Dimensions are limited to LINKED_ACCOUNT.
 	Filter *Expression `type:"structure"`
 
 	// This field is only used when SortBy is provided in the request. The maximum
@@ -6847,9 +7056,9 @@ type GetDimensionValuesInput struct {
 	// For GetDimensionValues, MaxResults has an upper limit of 1000.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// The value that you want to search the filter values for.
@@ -6879,10 +7088,10 @@ type GetDimensionValuesInput struct {
 	// Further, when using SortBy, NextPageToken and SearchString are not supported.
 	SortBy []*SortDefinition `type:"list"`
 
-	// The start and end dates for retrieving the dimension values. The start date
-	// is inclusive, but the end date is exclusive. For example, if start is 2017-01-01
-	// and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01
-	// up to and including 2017-04-30 but not including 2017-05-01.
+	// The start date and end date for retrieving the dimension values. The start
+	// date is inclusive, but the end date is exclusive. For example, if start is
+	// 2017-01-01 and end is 2017-05-01, then the cost and usage data is retrieved
+	// from 2017-01-01 up to and including 2017-04-30 but not including 2017-05-01.
 	//
 	// TimePeriod is a required field
 	TimePeriod *DateInterval `type:"structure" required:"true"`
@@ -7001,12 +7210,12 @@ type GetDimensionValuesOutput struct {
 	//
 	//    * INSTANCE_TYPE - The type of Amazon EC2 instance. An example is m4.xlarge.
 	//
-	//    * LEGAL_ENTITY_NAME - The name of the organization that sells you AWS
-	//    services, such as Amazon Web Services.
+	//    * LEGAL_ENTITY_NAME - The name of the organization that sells you Amazon
+	//    Web Services services, such as Amazon Web Services.
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
-	//    the full name of the member account. The value field contains the AWS
-	//    ID of the member account.
+	//    the full name of the member account. The value field contains the Amazon
+	//    Web Services ID of the member account.
 	//
 	//    * OPERATING_SYSTEM - The operating system. Examples are Windows or Linux.
 	//
@@ -7019,7 +7228,7 @@ type GetDimensionValuesOutput struct {
 	//    is related. Examples include On-Demand Instances and Standard Reserved
 	//    Instances.
 	//
-	//    * SERVICE - The AWS service such as Amazon DynamoDB.
+	//    * SERVICE - The Amazon Web Services service such as Amazon DynamoDB.
 	//
 	//    * USAGE_TYPE - The type of usage. An example is DataTransfer-In-Bytes.
 	//    The response for the GetDimensionValues operation includes a unit attribute.
@@ -7049,13 +7258,13 @@ type GetDimensionValuesOutput struct {
 	//    * INSTANCE_TYPE - The type of Amazon EC2 instance. An example is m4.xlarge.
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
-	//    the full name of the member account. The value field contains the AWS
-	//    ID of the member account.
+	//    the full name of the member account. The value field contains the Amazon
+	//    Web Services ID of the member account.
 	//
 	//    * PLATFORM - The Amazon EC2 operating system. Examples are Windows or
 	//    Linux.
 	//
-	//    * REGION - The AWS Region.
+	//    * REGION - The Amazon Web Services Region.
 	//
 	//    * SCOPE (Utilization only) - The scope of a Reserved Instance (RI). Values
 	//    are regional or a single Availability Zone.
@@ -7073,25 +7282,25 @@ type GetDimensionValuesOutput struct {
 	//    * PAYMENT_OPTION - Payment option for the given Savings Plans (for example,
 	//    All Upfront)
 	//
-	//    * REGION - The AWS Region.
+	//    * REGION - The Amazon Web Services Region.
 	//
 	//    * INSTANCE_TYPE_FAMILY - The family of instances (For example, m5)
 	//
 	//    * LINKED_ACCOUNT - The description in the attribute map that includes
-	//    the full name of the member account. The value field contains the AWS
-	//    ID of the member account.
+	//    the full name of the member account. The value field contains the Amazon
+	//    Web Services ID of the member account.
 	//
 	//    * SAVINGS_PLAN_ARN - The unique identifier for your Savings Plan
 	//
 	// DimensionValues is a required field
 	DimensionValues []*DimensionValuesWithAttributes `type:"list" required:"true"`
 
-	// The token for the next set of retrievable results. AWS provides the token
-	// when the response from a previous call has more results than the maximum
-	// page size.
+	// The token for the next set of retrievable results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
-	// The number of results that AWS returned at one time.
+	// The number of results that Amazon Web Services returned at one time.
 	//
 	// ReturnSize is a required field
 	ReturnSize *int64 `type:"integer" required:"true"`
@@ -7177,8 +7386,8 @@ type GetReservationCoverageInput struct {
 	// Cost category is also supported.
 	Filter *Expression `type:"structure"`
 
-	// The granularity of the AWS cost data for the reservation. Valid values are
-	// MONTHLY and DAILY.
+	// The granularity of the Amazon Web Services cost data for the reservation.
+	// Valid values are MONTHLY and DAILY.
 	//
 	// If GroupBy is set, Granularity can't be set. If Granularity isn't set, the
 	// response object doesn't include Granularity, either MONTHLY or DAILY.
@@ -7210,8 +7419,8 @@ type GetReservationCoverageInput struct {
 	GroupBy []*GroupDefinition `type:"list"`
 
 	// The maximum number of objects that you returned for this request. If more
-	// objects are available, in the response, AWS provides a NextPageToken value
-	// that you can use in a subsequent call to get the next batch of objects.
+	// objects are available, in the response, Amazon Web Services provides a NextPageToken
+	// value that you can use in a subsequent call to get the next batch of objects.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// The measurement that you want your reservation coverage reported in.
@@ -7219,9 +7428,9 @@ type GetReservationCoverageInput struct {
 	// Valid values are Hour, Unit, and Cost. You can use multiple values in a request.
 	Metrics []*string `type:"list"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// The value by which you want to sort the data.
@@ -7359,9 +7568,9 @@ type GetReservationCoverageOutput struct {
 	// CoveragesByTime is a required field
 	CoveragesByTime []*CoverageByTime `type:"list" required:"true"`
 
-	// The token for the next set of retrievable results. AWS provides the token
-	// when the response from a previous call has more results than the maximum
-	// page size.
+	// The token for the next set of retrievable results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// The total amount of instance usage that a reservation covered.
@@ -7414,7 +7623,7 @@ type GetReservationPurchaseRecommendationInput struct {
 	//    for the filters that you plan to use. For example, you can filter for
 	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
 	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
 	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
 	//    are OR'd together to retrieve cost or usage data. You can create Expression
 	//    and DimensionValues objects using either with* methods or set* methods
@@ -7422,10 +7631,10 @@ type GetReservationPurchaseRecommendationInput struct {
 	//
 	//    * Compound dimension values with logical operations - You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. This allows you to filter on more advanced
-	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
-	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    of one or more Expression objects. By doing this, you can filter on more
+	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
 	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
 	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
 	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
@@ -7435,16 +7644,16 @@ type GetReservationPurchaseRecommendationInput struct {
 	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
-	// is not supported. OR is not supported between different dimensions, or dimensions
+	// isn't supported. OR isn't supported between different dimensions, or dimensions
 	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 	//
 	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
-	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	// AND and OR aren't supported. Dimensions are limited to LINKED_ACCOUNT.
 	Filter *Expression `type:"structure"`
 
-	// The number of previous days that you want AWS to consider when it calculates
-	// your recommendations.
+	// The number of previous days that you want Amazon Web Services to consider
+	// when it calculates your recommendations.
 	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
 
 	// The pagination token that indicates the next set of results that you want
@@ -7646,13 +7855,13 @@ type GetReservationUtilizationInput struct {
 	GroupBy []*GroupDefinition `type:"list"`
 
 	// The maximum number of objects that you returned for this request. If more
-	// objects are available, in the response, AWS provides a NextPageToken value
-	// that you can use in a subsequent call to get the next batch of objects.
+	// objects are available, in the response, Amazon Web Services provides a NextPageToken
+	// value that you can use in a subsequent call to get the next batch of objects.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// The value by which you want to sort the data.
@@ -7791,9 +8000,9 @@ func (s *GetReservationUtilizationInput) SetTimePeriod(v *DateInterval) *GetRese
 type GetReservationUtilizationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of retrievable results. AWS provides the token
-	// when the response from a previous call has more results than the maximum
-	// page size.
+	// The token for the next set of retrievable results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// The total amount of time that you used your RIs.
@@ -7849,7 +8058,7 @@ type GetRightsizingRecommendationInput struct {
 	//    for the filters that you plan to use. For example, you can filter for
 	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
 	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
 	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
 	//    are OR'd together to retrieve cost or usage data. You can create Expression
 	//    and DimensionValues objects using either with* methods or set* methods
@@ -7857,10 +8066,10 @@ type GetRightsizingRecommendationInput struct {
 	//
 	//    * Compound dimension values with logical operations - You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. This allows you to filter on more advanced
-	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
-	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    of one or more Expression objects. By doing this, you can filter on more
+	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
 	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
 	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
 	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
@@ -7870,12 +8079,12 @@ type GetRightsizingRecommendationInput struct {
 	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
-	// is not supported. OR is not supported between different dimensions, or dimensions
+	// isn't supported. OR isn't supported between different dimensions, or dimensions
 	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 	//
 	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
-	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	// AND and OR aren't supported. Dimensions are limited to LINKED_ACCOUNT.
 	Filter *Expression `type:"structure"`
 
 	// The pagination token that indicates the next set of results that you want
@@ -8358,9 +8567,9 @@ type GetSavingsPlansPurchaseRecommendationOutput struct {
 	// Information regarding this specific recommendation set.
 	Metadata *SavingsPlansPurchaseRecommendationMetadata `type:"structure"`
 
-	// The token for the next set of retrievable results. AWS provides the token
-	// when the response from a previous call has more results than the maximum
-	// page size.
+	// The token for the next set of retrievable results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// Contains your request parameters, Savings Plan Recommendations Summary, and
@@ -8752,7 +8961,7 @@ type GetTagsInput struct {
 	//    for the filters that you plan to use. For example, you can filter for
 	//    REGION==us-east-1 OR REGION==us-west-1. For GetRightsizingRecommendation,
 	//    the Region is a full name (for example, REGION==US East (N. Virginia).
-	//    The Expression example looks like: { "Dimensions": { "Key": "REGION",
+	//    The Expression example is as follows: { "Dimensions": { "Key": "REGION",
 	//    "Values": [ "us-east-1", “us-west-1” ] } } The list of dimension values
 	//    are OR'd together to retrieve cost or usage data. You can create Expression
 	//    and DimensionValues objects using either with* methods or set* methods
@@ -8760,10 +8969,10 @@ type GetTagsInput struct {
 	//
 	//    * Compound dimension values with logical operations - You can use multiple
 	//    Expression types and the logical operators AND/OR/NOT to create a list
-	//    of one or more Expression objects. This allows you to filter on more advanced
-	//    options. For example, you can filter on ((REGION == us-east-1 OR REGION
-	//    == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
-	//    The Expression for that looks like this: { "And": [ {"Or": [ {"Dimensions":
+	//    of one or more Expression objects. By doing this, you can filter on more
+	//    advanced options. For example, you can filter on ((REGION == us-east-1
+	//    OR REGION == us-west-1) OR (TAG.Type == Type1)) AND (USAGE_TYPE != DataTransfer).
+	//    The Expression for that is as follows: { "And": [ {"Or": [ {"Dimensions":
 	//    { "Key": "REGION", "Values": [ "us-east-1", "us-west-1" ] }}, {"Tags":
 	//    { "Key": "TagName", "Values": ["Value1"] } } ]}, {"Not": {"Dimensions":
 	//    { "Key": "USAGE_TYPE", "Values": ["DataTransfer"] }}} ] } Because each
@@ -8773,12 +8982,12 @@ type GetTagsInput struct {
 	//    "USAGE_TYPE", "Values": [ "DataTransfer" ] } }
 	//
 	// For the GetRightsizingRecommendation action, a combination of OR and NOT
-	// is not supported. OR is not supported between different dimensions, or dimensions
+	// isn't supported. OR isn't supported between different dimensions, or dimensions
 	// and tags. NOT operators aren't supported. Dimensions are also limited to
 	// LINKED_ACCOUNT, REGION, or RIGHTSIZING_TYPE.
 	//
 	// For the GetReservationPurchaseRecommendation action, only NOT is supported.
-	// AND and OR are not supported. Dimensions are limited to LINKED_ACCOUNT.
+	// AND and OR aren't supported. Dimensions are limited to LINKED_ACCOUNT.
 	Filter *Expression `type:"structure"`
 
 	// This field is only used when SortBy is provided in the request. The maximum
@@ -8789,9 +8998,9 @@ type GetTagsInput struct {
 	// For GetTags, MaxResults has an upper limit of 1000.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The token to retrieve the next set of results. AWS provides the token when
-	// the response from a previous call has more results than the maximum page
-	// size.
+	// The token to retrieve the next set of results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
 	// The value that you want to search for.
@@ -8923,12 +9132,12 @@ func (s *GetTagsInput) SetTimePeriod(v *DateInterval) *GetTagsInput {
 type GetTagsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of retrievable results. AWS provides the token
-	// when the response from a previous call has more results than the maximum
-	// page size.
+	// The token for the next set of retrievable results. Amazon Web Services provides
+	// the token when the response from a previous call has more results than the
+	// maximum page size.
 	NextPageToken *string `type:"string"`
 
-	// The number of query results that AWS returns at a time.
+	// The number of query results that Amazon Web Services returns at a time.
 	//
 	// ReturnSize is a required field
 	ReturnSize *int64 `type:"integer" required:"true"`
@@ -9240,16 +9449,16 @@ func (s *GroupDefinition) SetType(v string) *GroupDefinition {
 	return s
 }
 
-// The anomaly's dollar value.
+// The dollar value of the anomaly.
 type Impact struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum dollar value observed for an anomaly.
+	// The maximum dollar value that's observed for an anomaly.
 	//
 	// MaxImpact is a required field
 	MaxImpact *float64 `type:"double" required:"true"`
 
-	// The cumulative dollar value observed for an anomaly.
+	// The cumulative dollar value that's observed for an anomaly.
 	TotalImpact *float64 `type:"double"`
 }
 
@@ -9275,23 +9484,25 @@ func (s *Impact) SetTotalImpact(v float64) *Impact {
 	return s
 }
 
-// Details about the instances that AWS recommends that you purchase.
+// Details about the instances that Amazon Web Services recommends that you
+// purchase.
 type InstanceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon EC2 instances that AWS recommends that you purchase.
+	// The Amazon EC2 instances that Amazon Web Services recommends that you purchase.
 	EC2InstanceDetails *EC2InstanceDetails `type:"structure"`
 
-	// The Amazon ES instances that AWS recommends that you purchase.
+	// The Amazon ES instances that Amazon Web Services recommends that you purchase.
 	ESInstanceDetails *ESInstanceDetails `type:"structure"`
 
-	// The ElastiCache instances that AWS recommends that you purchase.
+	// The ElastiCache instances that Amazon Web Services recommends that you purchase.
 	ElastiCacheInstanceDetails *ElastiCacheInstanceDetails `type:"structure"`
 
-	// The Amazon RDS instances that AWS recommends that you purchase.
+	// The Amazon RDS instances that Amazon Web Services recommends that you purchase.
 	RDSInstanceDetails *RDSInstanceDetails `type:"structure"`
 
-	// The Amazon Redshift instances that AWS recommends that you purchase.
+	// The Amazon Redshift instances that Amazon Web Services recommends that you
+	// purchase.
 	RedshiftInstanceDetails *RedshiftInstanceDetails `type:"structure"`
 }
 
@@ -9578,7 +9789,8 @@ func (s *MetricValue) SetUnit(v string) *MetricValue {
 type ModifyRecommendationDetail struct {
 	_ struct{} `type:"structure"`
 
-	// Identifies whether this instance type is the AWS default recommendation.
+	// Determines whether this instance type is the Amazon Web Services default
+	// recommendation.
 	TargetInstances []*TargetInstance `type:"list"`
 }
 
@@ -9598,21 +9810,21 @@ func (s *ModifyRecommendationDetail) SetTargetInstances(v []*TargetInstance) *Mo
 	return s
 }
 
-// The network field that contains a list of network metrics associated with
-// the current instance.
+// The network field that contains a list of network metrics that are associated
+// with the current instance.
 type NetworkResourceUtilization struct {
 	_ struct{} `type:"structure"`
 
-	// The network ingress throughput utilization measured in Bytes per second.
+	// The network inbound throughput utilization measured in Bytes per second.
 	NetworkInBytesPerSecond *string `type:"string"`
 
-	// The network outgress throughput utilization measured in Bytes per second.
+	// The network outbound throughput utilization measured in Bytes per second.
 	NetworkOutBytesPerSecond *string `type:"string"`
 
-	// The network ingress packets measured in packets per second.
+	// The network ingress packets that are measured in packets per second.
 	NetworkPacketsInPerSecond *string `type:"string"`
 
-	// The network outgress packets measured in packets per second.
+	// The network outgress packets that are measured in packets per second.
 	NetworkPacketsOutPerSecond *string `type:"string"`
 }
 
@@ -9728,11 +9940,12 @@ func (s *ProvideAnomalyFeedbackOutput) SetAnomalyId(v string) *ProvideAnomalyFee
 	return s
 }
 
-// Details about the Amazon RDS instances that AWS recommends that you purchase.
+// Details about the Amazon RDS instances that Amazon Web Services recommends
+// that you purchase.
 type RDSInstanceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Whether the recommendation is for a current-generation instance.
+	// Determines whether the recommendation is for a current-generation instance.
 	CurrentGeneration *bool `type:"boolean"`
 
 	// The database edition that the recommended reservation supports.
@@ -9741,23 +9954,23 @@ type RDSInstanceDetails struct {
 	// The database engine that the recommended reservation supports.
 	DatabaseEngine *string `type:"string"`
 
-	// Whether the recommendation is for a reservation in a single Availability
+	// Determines whether the recommendation is for a reservation in a single Availability
 	// Zone or a reservation with a backup in a second Availability Zone.
 	DeploymentOption *string `type:"string"`
 
 	// The instance family of the recommended reservation.
 	Family *string `type:"string"`
 
-	// The type of instance that AWS recommends.
+	// The type of instance that Amazon Web Services recommends.
 	InstanceType *string `type:"string"`
 
 	// The license model that the recommended reservation supports.
 	LicenseModel *string `type:"string"`
 
-	// The AWS Region of the recommended reservation.
+	// The Amazon Web Services Region of the recommended reservation.
 	Region *string `type:"string"`
 
-	// Whether the recommended reservation is size flexible.
+	// Determines whether the recommended reservation is size flexible.
 	SizeFlexEligible *bool `type:"boolean"`
 }
 
@@ -9825,24 +10038,24 @@ func (s *RDSInstanceDetails) SetSizeFlexEligible(v bool) *RDSInstanceDetails {
 	return s
 }
 
-// Details about the Amazon Redshift instances that AWS recommends that you
-// purchase.
+// Details about the Amazon Redshift instances that Amazon Web Services recommends
+// that you purchase.
 type RedshiftInstanceDetails struct {
 	_ struct{} `type:"structure"`
 
-	// Whether the recommendation is for a current-generation instance.
+	// Determines whether the recommendation is for a current-generation instance.
 	CurrentGeneration *bool `type:"boolean"`
 
 	// The instance family of the recommended reservation.
 	Family *string `type:"string"`
 
-	// The type of node that AWS recommends.
+	// The type of node that Amazon Web Services recommends.
 	NodeType *string `type:"string"`
 
-	// The AWS Region of the recommended reservation.
+	// The Amazon Web Services Region of the recommended reservation.
 	Region *string `type:"string"`
 
-	// Whether the recommended reservation is size flexible.
+	// Determines whether the recommended reservation is size flexible.
 	SizeFlexEligible *bool `type:"boolean"`
 }
 
@@ -9947,54 +10160,56 @@ func (s *RequestChangedException) RequestID() string {
 type ReservationAggregates struct {
 	_ struct{} `type:"structure"`
 
-	// The monthly cost of your reservation, amortized over the reservation period.
+	// The monthly cost of your reservation. It's amortized over the reservation
+	// period.
 	AmortizedRecurringFee *string `type:"string"`
 
-	// The upfront cost of your reservation, amortized over the reservation period.
+	// The upfront cost of your reservation. It's amortized over the reservation
+	// period.
 	AmortizedUpfrontFee *string `type:"string"`
 
-	// How much you saved due to purchasing and utilizing reservation. AWS calculates
-	// this by subtracting TotalAmortizedFee from OnDemandCostOfRIHoursUsed.
+	// How much you saved due to purchasing and utilizing reservation. Amazon Web
+	// Services calculates this by subtracting TotalAmortizedFee from OnDemandCostOfRIHoursUsed.
 	NetRISavings *string `type:"string"`
 
-	// How much your reservation would cost if charged On-Demand rates.
+	// How much your reservation costs if charged On-Demand rates.
 	OnDemandCostOfRIHoursUsed *string `type:"string"`
 
 	// How many reservation hours that you purchased.
 	PurchasedHours *string `type:"string"`
 
-	// How many Amazon EC2 reservation hours that you purchased, converted to normalized
-	// units. Normalized units are available only for Amazon EC2 usage after November
-	// 11, 2017.
+	// The number of Amazon EC2 reservation hours that you purchased. It's converted
+	// to normalized units. Normalized units are available only for Amazon EC2 usage
+	// after November 11, 2017.
 	PurchasedUnits *string `type:"string"`
 
 	// The cost of unused hours for your reservation.
 	RICostForUnusedHours *string `type:"string"`
 
-	// The realized savings due to purchasing and using a reservation.
+	// The realized savings because of purchasing and using a reservation.
 	RealizedSavings *string `type:"string"`
 
 	// The total number of reservation hours that you used.
 	TotalActualHours *string `type:"string"`
 
-	// The total number of Amazon EC2 reservation hours that you used, converted
+	// The total number of Amazon EC2 reservation hours that you used. It's converted
 	// to normalized units. Normalized units are available only for Amazon EC2 usage
 	// after November 11, 2017.
 	TotalActualUnits *string `type:"string"`
 
-	// The total cost of your reservation, amortized over the reservation period.
+	// The total cost of your reservation. It's amortized over the reservation period.
 	TotalAmortizedFee *string `type:"string"`
 
-	// How much you could save if you use your entire reservation.
+	// How much you might save if you use your entire reservation.
 	TotalPotentialRISavings *string `type:"string"`
 
-	// The unrealized savings due to purchasing and using a reservation.
+	// The unrealized savings because of purchasing and using a reservation.
 	UnrealizedSavings *string `type:"string"`
 
 	// The number of reservation hours that you didn't use.
 	UnusedHours *string `type:"string"`
 
-	// The number of Amazon EC2 reservation hours that you didn't use, converted
+	// The number of Amazon EC2 reservation hours that you didn't use. It's converted
 	// to normalized units. Normalized units are available only for Amazon EC2 usage
 	// after November 11, 2017.
 	UnusedUnits *string `type:"string"`
@@ -10002,8 +10217,8 @@ type ReservationAggregates struct {
 	// The percentage of reservation time that you used.
 	UtilizationPercentage *string `type:"string"`
 
-	// The percentage of Amazon EC2 reservation time that you used, converted to
-	// normalized units. Normalized units are available only for Amazon EC2 usage
+	// The percentage of Amazon EC2 reservation time that you used. It's converted
+	// to normalized units. Normalized units are available only for Amazon EC2 usage
 	// after November 11, 2017.
 	UtilizationPercentageInUnits *string `type:"string"`
 }
@@ -10153,19 +10368,20 @@ func (s *ReservationCoverageGroup) SetCoverage(v *Coverage) *ReservationCoverage
 	return s
 }
 
-// A specific reservation that AWS recommends for purchase.
+// A specific reservation that Amazon Web Services recommends for purchase.
 type ReservationPurchaseRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The account scope that AWS recommends that you purchase this instance for.
-	// For example, you can purchase this reservation for an entire organization
-	// in AWS Organizations.
+	// The account scope that Amazon Web Services recommends that you purchase this
+	// instance for. For example, you can purchase this reservation for an entire
+	// organization in Amazon Web Services Organizations.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
-	// How many days of previous usage that AWS considers when making this recommendation.
+	// How many days of previous usage that Amazon Web Services considers when making
+	// this recommendation.
 	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
 
-	// The payment option for the reservation. For example, AllUpfront or NoUpfront.
+	// The payment option for the reservation (for example, AllUpfront or NoUpfront).
 	PaymentOption *string `type:"string" enum:"PaymentOption"`
 
 	// Details about the recommended purchases.
@@ -10241,65 +10457,72 @@ type ReservationPurchaseRecommendationDetail struct {
 	AccountId *string `type:"string"`
 
 	// The average number of normalized units that you used in an hour during the
-	// historical period. AWS uses this to calculate your recommended reservation
-	// purchases.
+	// historical period. Amazon Web Services uses this to calculate your recommended
+	// reservation purchases.
 	AverageNormalizedUnitsUsedPerHour *string `type:"string"`
 
 	// The average number of instances that you used in an hour during the historical
-	// period. AWS uses this to calculate your recommended reservation purchases.
+	// period. Amazon Web Services uses this to calculate your recommended reservation
+	// purchases.
 	AverageNumberOfInstancesUsedPerHour *string `type:"string"`
 
-	// The average utilization of your instances. AWS uses this to calculate your
-	// recommended reservation purchases.
+	// The average utilization of your instances. Amazon Web Services uses this
+	// to calculate your recommended reservation purchases.
 	AverageUtilization *string `type:"string"`
 
-	// The currency code that AWS used to calculate the costs for this instance.
+	// The currency code that Amazon Web Services used to calculate the costs for
+	// this instance.
 	CurrencyCode *string `type:"string"`
 
-	// How long AWS estimates that it takes for this instance to start saving you
-	// money, in months.
+	// How long Amazon Web Services estimates that it takes for this instance to
+	// start saving you money, in months.
 	EstimatedBreakEvenInMonths *string `type:"string"`
 
-	// How much AWS estimates that you spend on On-Demand Instances in a month.
+	// How much Amazon Web Services estimates that you spend on On-Demand Instances
+	// in a month.
 	EstimatedMonthlyOnDemandCost *string `type:"string"`
 
-	// How much AWS estimates that this specific recommendation could save you in
-	// a month.
+	// How much Amazon Web Services estimates that this specific recommendation
+	// could save you in a month.
 	EstimatedMonthlySavingsAmount *string `type:"string"`
 
-	// How much AWS estimates that this specific recommendation could save you in
-	// a month, as a percentage of your overall costs.
+	// How much Amazon Web Services estimates that this specific recommendation
+	// could save you in a month, as a percentage of your overall costs.
 	EstimatedMonthlySavingsPercentage *string `type:"string"`
 
-	// How much AWS estimates that you would have spent for all usage during the
-	// specified historical period if you had a reservation.
+	// How much Amazon Web Services estimates that you would have spent for all
+	// usage during the specified historical period if you had a reservation.
 	EstimatedReservationCostForLookbackPeriod *string `type:"string"`
 
-	// Details about the instances that AWS recommends that you purchase.
+	// Details about the instances that Amazon Web Services recommends that you
+	// purchase.
 	InstanceDetails *InstanceDetails `type:"structure"`
 
 	// The maximum number of normalized units that you used in an hour during the
-	// historical period. AWS uses this to calculate your recommended reservation
-	// purchases.
+	// historical period. Amazon Web Services uses this to calculate your recommended
+	// reservation purchases.
 	MaximumNormalizedUnitsUsedPerHour *string `type:"string"`
 
 	// The maximum number of instances that you used in an hour during the historical
-	// period. AWS uses this to calculate your recommended reservation purchases.
+	// period. Amazon Web Services uses this to calculate your recommended reservation
+	// purchases.
 	MaximumNumberOfInstancesUsedPerHour *string `type:"string"`
 
 	// The minimum number of normalized units that you used in an hour during the
-	// historical period. AWS uses this to calculate your recommended reservation
-	// purchases.
+	// historical period. Amazon Web Services uses this to calculate your recommended
+	// reservation purchases.
 	MinimumNormalizedUnitsUsedPerHour *string `type:"string"`
 
 	// The minimum number of instances that you used in an hour during the historical
-	// period. AWS uses this to calculate your recommended reservation purchases.
+	// period. Amazon Web Services uses this to calculate your recommended reservation
+	// purchases.
 	MinimumNumberOfInstancesUsedPerHour *string `type:"string"`
 
-	// The number of normalized units that AWS recommends that you purchase.
+	// The number of normalized units that Amazon Web Services recommends that you
+	// purchase.
 	RecommendedNormalizedUnitsToPurchase *string `type:"string"`
 
-	// The number of instances that AWS recommends that you purchase.
+	// The number of instances that Amazon Web Services recommends that you purchase.
 	RecommendedNumberOfInstancesToPurchase *string `type:"string"`
 
 	// How much purchasing this instance costs you on a monthly basis.
@@ -10434,11 +10657,11 @@ func (s *ReservationPurchaseRecommendationDetail) SetUpfrontCost(v string) *Rese
 }
 
 // Information about this specific recommendation, such as the timestamp for
-// when AWS made a specific recommendation.
+// when Amazon Web Services made a specific recommendation.
 type ReservationPurchaseRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// The timestamp for when AWS made this recommendation.
+	// The timestamp for when Amazon Web Services made this recommendation.
 	GenerationTimestamp *string `type:"string"`
 
 	// The ID for this specific recommendation.
@@ -10468,20 +10691,20 @@ func (s *ReservationPurchaseRecommendationMetadata) SetRecommendationId(v string
 }
 
 // A summary about this recommendation, such as the currency code, the amount
-// that AWS estimates that you could save, and the total amount of reservation
-// to purchase.
+// that Amazon Web Services estimates that you could save, and the total amount
+// of reservation to purchase.
 type ReservationPurchaseRecommendationSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The currency code used for this recommendation.
 	CurrencyCode *string `type:"string"`
 
-	// The total amount that AWS estimates that this recommendation could save you
-	// in a month.
+	// The total amount that Amazon Web Services estimates that this recommendation
+	// could save you in a month.
 	TotalEstimatedMonthlySavingsAmount *string `type:"string"`
 
-	// The total amount that AWS estimates that this recommendation could save you
-	// in a month, as a percentage of your costs.
+	// The total amount that Amazon Web Services estimates that this recommendation
+	// could save you in a month, as a percentage of your costs.
 	TotalEstimatedMonthlySavingsPercentage *string `type:"string"`
 }
 
@@ -10648,7 +10871,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 type ResourceUtilization struct {
 	_ struct{} `type:"structure"`
 
-	// Utilization of current Amazon EC2 instance.
+	// The utilization of current Amazon EC2 instance.
 	EC2ResourceUtilization *EC2ResourceUtilization `type:"structure"`
 }
 
@@ -10668,11 +10891,11 @@ func (s *ResourceUtilization) SetEC2ResourceUtilization(v *EC2ResourceUtilizatio
 	return s
 }
 
-// The result that is associated with a time period.
+// The result that's associated with a time period.
 type ResultByTime struct {
 	_ struct{} `type:"structure"`
 
-	// Whether the result is estimated.
+	// Determines whether the result is estimated.
 	Estimated *bool `type:"boolean"`
 
 	// The groups that this time period includes.
@@ -10734,13 +10957,13 @@ type RightsizingRecommendation struct {
 	// Network).
 	FindingReasonCodes []*string `type:"list"`
 
-	// Details for modification recommendations.
+	// The details for the modification recommendations.
 	ModifyRecommendationDetail *ModifyRecommendationDetail `type:"structure"`
 
-	// Recommendation to either terminate or modify the resource.
+	// A recommendation to either terminate or modify the resource.
 	RightsizingType *string `type:"string" enum:"RightsizingType"`
 
-	// Details for termination recommendations.
+	// The details for termination recommendations.
 	TerminateRecommendationDetail *TerminateRecommendationDetail `type:"structure"`
 }
 
@@ -10790,11 +11013,12 @@ func (s *RightsizingRecommendation) SetTerminateRecommendationDetail(v *Terminat
 	return s
 }
 
-// Enables you to customize recommendations across two attributes. You can choose
-// to view recommendations for instances within the same instance families or
-// across different instance families. You can also choose to view your estimated
-// savings associated with recommendations with consideration of existing Savings
-// Plans or RI benefits, or neither.
+// You can use RightsizingRecommendationConfiguration to customize recommendations
+// across two attributes. You can choose to view recommendations for instances
+// within the same instance families or across different instance families.
+// You can also choose to view your estimated savings that are associated with
+// recommendations with consideration of existing Savings Plans or RI benefits,
+// or neither.
 type RightsizingRecommendationConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -10804,7 +11028,7 @@ type RightsizingRecommendationConfiguration struct {
 	// BenefitsConsidered is a required field
 	BenefitsConsidered *bool `type:"boolean" required:"true"`
 
-	// The option to see recommendations within the same instance family, or recommendations
+	// The option to see recommendations within the same instance family or recommendations
 	// for instances across other families. The default value is SAME_INSTANCE_FAMILY.
 	//
 	// RecommendationTarget is a required field
@@ -10853,13 +11077,14 @@ func (s *RightsizingRecommendationConfiguration) SetRecommendationTarget(v strin
 type RightsizingRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// Additional metadata that may be applicable to the recommendation.
+	// Additional metadata that might be applicable to the recommendation.
 	AdditionalMetadata *string `type:"string"`
 
-	// The timestamp for when AWS made this recommendation.
+	// The timestamp for when Amazon Web Services made this recommendation.
 	GenerationTimestamp *string `type:"string"`
 
-	// How many days of previous usage that AWS considers when making this recommendation.
+	// The number of days of previous usage that Amazon Web Services considers when
+	// making this recommendation.
 	LookbackPeriodInDays *string `type:"string" enum:"LookbackPeriodInDays"`
 
 	// The ID for this specific recommendation.
@@ -10900,21 +11125,21 @@ func (s *RightsizingRecommendationMetadata) SetRecommendationId(v string) *Right
 	return s
 }
 
-// Summary of rightsizing recommendations
+// The summary of rightsizing recommendations
 type RightsizingRecommendationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Estimated total savings resulting from modifications, on a monthly basis.
+	// The estimated total savings resulting from modifications, on a monthly basis.
 	EstimatedTotalMonthlySavingsAmount *string `type:"string"`
 
-	// The currency code that AWS used to calculate the savings.
+	// The currency code that Amazon Web Services used to calculate the savings.
 	SavingsCurrencyCode *string `type:"string"`
 
-	// Savings percentage based on the recommended modifications, relative to the
-	// total On-Demand costs associated with these instances.
+	// The savings percentage based on the recommended modifications. It's relative
+	// to the total On-Demand costs that are associated with these instances.
 	SavingsPercentage *string `type:"string"`
 
-	// Total number of instance recommendations.
+	// The total number of instance recommendations.
 	TotalRecommendationCount *string `type:"string"`
 }
 
@@ -10952,21 +11177,21 @@ func (s *RightsizingRecommendationSummary) SetTotalRecommendationCount(v string)
 	return s
 }
 
-// The combination of AWS service, linked account, Region, and usage type where
-// a cost anomaly is observed.
+// The combination of Amazon Web Services service, linked account, Region, and
+// usage type where a cost anomaly is observed.
 type RootCause struct {
 	_ struct{} `type:"structure"`
 
-	// The linked account value associated with the cost anomaly.
+	// The member account value that's associated with the cost anomaly.
 	LinkedAccount *string `type:"string"`
 
-	// The AWS Region associated with the cost anomaly.
+	// The Amazon Web Services Region that's associated with the cost anomaly.
 	Region *string `type:"string"`
 
-	// The AWS service name associated with the cost anomaly.
+	// The Amazon Web Services service name that's associated with the cost anomaly.
 	Service *string `type:"string"`
 
-	// The UsageType value associated with the cost anomaly.
+	// The UsageType value that's associated with the cost anomaly.
 	UsageType *string `type:"string"`
 }
 
@@ -11100,16 +11325,18 @@ type SavingsPlansCoverageData struct {
 	_ struct{} `type:"structure"`
 
 	// The percentage of your existing Savings Plans covered usage, divided by all
-	// of your eligible Savings Plans usage in an account(or set of accounts).
+	// of your eligible Savings Plans usage in an account (or set of accounts).
 	CoveragePercentage *string `type:"string"`
 
-	// The cost of your AWS usage at the public On-Demand rate.
+	// The cost of your Amazon Web Services usage at the public On-Demand rate.
 	OnDemandCost *string `type:"string"`
 
-	// The amount of your AWS usage that is covered by a Savings Plans.
+	// The amount of your Amazon Web Services usage that is covered by a Savings
+	// Plans.
 	SpendCoveredBySavingsPlans *string `type:"string"`
 
-	// The total cost of your AWS usage, regardless of your purchase option.
+	// The total cost of your Amazon Web Services usage, regardless of your purchase
+	// option.
 	TotalCost *string `type:"string"`
 }
 
@@ -11147,18 +11374,18 @@ func (s *SavingsPlansCoverageData) SetTotalCost(v string) *SavingsPlansCoverageD
 	return s
 }
 
-// Attribute details on a specific Savings Plan.
+// The attribute details on a specific Savings Plan.
 type SavingsPlansDetails struct {
 	_ struct{} `type:"structure"`
 
 	// A group of instance types that Savings Plans applies to.
 	InstanceFamily *string `type:"string"`
 
-	// The unique ID used to distinguish Savings Plans from one another.
+	// The unique ID that's used to distinguish Savings Plans from one another.
 	OfferingId *string `type:"string"`
 
-	// A collection of AWS resources in a geographic area. Each AWS Region is isolated
-	// and independent of the other Regions.
+	// A collection of Amazon Web Services resources in a geographic area. Each
+	// Amazon Web Services Region is isolated and independent of the other Regions.
 	Region *string `type:"string"`
 }
 
@@ -11196,9 +11423,9 @@ type SavingsPlansPurchaseRecommendation struct {
 	_ struct{} `type:"structure"`
 
 	// The account scope that you want your recommendations for. Amazon Web Services
-	// calculates recommendations including the management account and member accounts
-	// if the value is set to PAYER. If the value is LINKED, recommendations are
-	// calculated for individual member accounts only.
+	// calculates recommendations that include the management account and member
+	// accounts if the value is set to PAYER. If the value is LINKED, recommendations
+	// are calculated for individual member accounts only.
 	AccountScope *string `type:"string" enum:"AccountScope"`
 
 	// The lookback period in days, used to generate the recommendation.
@@ -11217,7 +11444,8 @@ type SavingsPlansPurchaseRecommendation struct {
 	// The requested Savings Plans recommendation type.
 	SavingsPlansType *string `type:"string" enum:"SupportedSavingsPlansType"`
 
-	// The Savings Plans recommendation term in years, used to generate the recommendation.
+	// The Savings Plans recommendation term in years. It's used to generate the
+	// recommendation.
 	TermInYears *string `type:"string" enum:"TermInYears"`
 }
 
@@ -11280,8 +11508,8 @@ type SavingsPlansPurchaseRecommendationDetail struct {
 	// The AccountID the recommendation is generated for.
 	AccountId *string `type:"string"`
 
-	// The currency code AWS used to generate the recommendations and present potential
-	// savings.
+	// The currency code that Amazon Web Services used to generate the recommendations
+	// and present potential savings.
 	CurrencyCode *string `type:"string"`
 
 	// The average value of hourly On-Demand spend over the lookback period of the
@@ -11299,7 +11527,7 @@ type SavingsPlansPurchaseRecommendationDetail struct {
 	// The estimated utilization of the recommended Savings Plans.
 	EstimatedAverageUtilization *string `type:"string"`
 
-	// The estimated monthly savings amount, based on the recommended Savings Plans.
+	// The estimated monthly savings amount based on the recommended Savings Plans.
 	EstimatedMonthlySavingsAmount *string `type:"string"`
 
 	// The remaining On-Demand cost estimated to not be covered by the recommended
@@ -11311,24 +11539,24 @@ type SavingsPlansPurchaseRecommendationDetail struct {
 	// own.
 	EstimatedOnDemandCostWithCurrentCommitment *string `type:"string"`
 
-	// The estimated return on investment based on the recommended Savings Plans
-	// purchased. This is calculated as estimatedSavingsAmount/ estimatedSPCost*100.
+	// The estimated return on investment that's based on the recommended Savings
+	// Plans that you purchased. This is calculated as estimatedSavingsAmount/ estimatedSPCost*100.
 	EstimatedROI *string `type:"string"`
 
 	// The cost of the recommended Savings Plans over the length of the lookback
 	// period.
 	EstimatedSPCost *string `type:"string"`
 
-	// The estimated savings amount based on the recommended Savings Plans over
-	// the length of the lookback period.
+	// The estimated savings amount that's based on the recommended Savings Plans
+	// over the length of the lookback period.
 	EstimatedSavingsAmount *string `type:"string"`
 
 	// The estimated savings percentage relative to the total cost of applicable
 	// On-Demand usage over the lookback period.
 	EstimatedSavingsPercentage *string `type:"string"`
 
-	// The recommended hourly commitment level for the Savings Plans type, and configuration
-	// based on the usage during the lookback period.
+	// The recommended hourly commitment level for the Savings Plans type and the
+	// configuration that's based on the usage during the lookback period.
 	HourlyCommitmentToPurchase *string `type:"string"`
 
 	// Details for your recommended Savings Plans.
@@ -11449,7 +11677,7 @@ func (s *SavingsPlansPurchaseRecommendationDetail) SetUpfrontCost(v string) *Sav
 type SavingsPlansPurchaseRecommendationMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// Additional metadata that may be applicable to the recommendation.
+	// Additional metadata that might be applicable to the recommendation.
 	AdditionalMetadata *string `type:"string"`
 
 	// The timestamp showing when the recommendations were generated.
@@ -11491,8 +11719,8 @@ func (s *SavingsPlansPurchaseRecommendationMetadata) SetRecommendationId(v strin
 type SavingsPlansPurchaseRecommendationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The currency code AWS used to generate the recommendations and present potential
-	// savings.
+	// The currency code that Amazon Web Services used to generate the recommendations
+	// and present potential savings.
 	CurrencyCode *string `type:"string"`
 
 	// The current total on demand spend of the applicable usage types over the
@@ -11502,17 +11730,17 @@ type SavingsPlansPurchaseRecommendationSummary struct {
 	// The recommended Savings Plans cost on a daily (24 hourly) basis.
 	DailyCommitmentToPurchase *string `type:"string"`
 
-	// The estimated monthly savings amount, based on the recommended Savings Plans
-	// purchase.
+	// The estimated monthly savings amount that's based on the recommended Savings
+	// Plans purchase.
 	EstimatedMonthlySavingsAmount *string `type:"string"`
 
-	// The estimated On-Demand costs you would expect with no additional commitment,
-	// based on your usage of the selected time period and the Savings Plans you
-	// own.
+	// The estimated On-Demand costs you would expect with no additional commitment.
+	// It's based on your usage of the selected time period and the Savings Plans
+	// you own.
 	EstimatedOnDemandCostWithCurrentCommitment *string `type:"string"`
 
-	// The estimated return on investment based on the recommended Savings Plans
-	// and estimated savings.
+	// The estimated return on investment that's based on the recommended Savings
+	// Plans and estimated savings.
 	EstimatedROI *string `type:"string"`
 
 	// The estimated total savings over the lookback period, based on the purchase
@@ -11528,7 +11756,7 @@ type SavingsPlansPurchaseRecommendationSummary struct {
 	// remaining On-Demand usage.
 	EstimatedTotalCost *string `type:"string"`
 
-	// The recommended hourly commitment based on the recommendation parameters.
+	// The recommended hourly commitment that's based on the recommendation parameters.
 	HourlyCommitmentToPurchase *string `type:"string"`
 
 	// The aggregate number of Savings Plans recommendations that exist for your
@@ -11612,12 +11840,12 @@ func (s *SavingsPlansPurchaseRecommendationSummary) SetTotalRecommendationCount(
 	return s
 }
 
-// The amount of savings you're accumulating, against the public On-Demand rate
-// of the usage accrued in an account.
+// The amount of savings that you're accumulating, against the public On-Demand
+// rate of the usage accrued in an account.
 type SavingsPlansSavings struct {
 	_ struct{} `type:"structure"`
 
-	// The savings amount that you are accumulating for the usage that is covered
+	// The savings amount that you're accumulating for the usage that's covered
 	// by a Savings Plans, when compared to the On-Demand equivalent of the same
 	// usage.
 	NetSavings *string `type:"string"`
@@ -11649,7 +11877,7 @@ func (s *SavingsPlansSavings) SetOnDemandCostEquivalent(v string) *SavingsPlansS
 	return s
 }
 
-// The measurement of how well you are using your existing Savings Plans.
+// The measurement of how well you're using your existing Savings Plans.
 type SavingsPlansUtilization struct {
 	_ struct{} `type:"structure"`
 
@@ -11657,7 +11885,7 @@ type SavingsPlansUtilization struct {
 	// account (or set of accounts).
 	TotalCommitment *string `type:"string"`
 
-	// The amount of your Savings Plans commitment that was not consumed from Savings
+	// The amount of your Savings Plans commitment that wasn't consumed from Savings
 	// Plans eligible usage in a specific period.
 	UnusedCommitment *string `type:"string"`
 
@@ -11939,8 +12167,8 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 type ServiceSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon EC2 hardware specifications that you want AWS to provide recommendations
-	// for.
+	// The Amazon EC2 hardware specifications that you want Amazon Web Services
+	// to provide recommendations for.
 	EC2Specification *EC2Specification `type:"structure"`
 }
 
@@ -11964,12 +12192,12 @@ func (s *ServiceSpecification) SetEC2Specification(v *EC2Specification) *Service
 type SortDefinition struct {
 	_ struct{} `type:"structure"`
 
-	// The key by which to sort the data.
+	// The key that's used to sort the data.
 	//
 	// Key is a required field
 	Key *string `type:"string" required:"true"`
 
-	// The order in which to sort the data.
+	// The order that's used to sort the data.
 	SortOrder *string `type:"string" enum:"SortOrder"`
 }
 
@@ -12012,7 +12240,8 @@ func (s *SortDefinition) SetSortOrder(v string) *SortDefinition {
 type Subscriber struct {
 	_ struct{} `type:"structure"`
 
-	// The email address or SNS Amazon Resource Name (ARN), depending on the Type.
+	// The email address or SNS Amazon Resource Name (ARN). This depends on the
+	// Type.
 	Address *string `min:"6" type:"string"`
 
 	// Indicates if the subscriber accepts the notifications.
@@ -12065,12 +12294,12 @@ func (s *Subscriber) SetType(v string) *Subscriber {
 
 // The values that are available for a tag.
 //
-// If Values and Key are not specified, the ABSENT MatchOption is applied to
-// all tags. That is, filtering on resources with no tags.
+// If Values and Key aren't specified, the ABSENT MatchOption is applied to
+// all tags. That is, it's filtered on resources with no tags.
 //
-// If Values is provided and Key is not specified, the ABSENT MatchOption is
-// applied to the tag Key only. That is, filtering on resources without the
-// given tag key.
+// If Values is provided and Key isn't specified, the ABSENT MatchOption is
+// applied to the tag Key only. That is, it's filtered on resources without
+// the given tag key.
 type TagValues struct {
 	_ struct{} `type:"structure"`
 
@@ -12118,19 +12347,21 @@ func (s *TagValues) SetValues(v []*string) *TagValues {
 type TargetInstance struct {
 	_ struct{} `type:"structure"`
 
-	// The currency code that AWS used to calculate the costs for this instance.
+	// The currency code that Amazon Web Services used to calculate the costs for
+	// this instance.
 	CurrencyCode *string `type:"string"`
 
-	// Indicates whether this recommendation is the defaulted AWS recommendation.
+	// Determines whether this recommendation is the defaulted Amazon Web Services
+	// recommendation.
 	DefaultTargetInstance *bool `type:"boolean"`
 
-	// Expected cost to operate this instance type on a monthly basis.
+	// The expected cost to operate this instance type on a monthly basis.
 	EstimatedMonthlyCost *string `type:"string"`
 
-	// Estimated savings resulting from modification, on a monthly basis.
+	// The estimated savings that result from modification, on a monthly basis.
 	EstimatedMonthlySavings *string `type:"string"`
 
-	// Expected utilization metrics for target instance type.
+	// The expected utilization metrics for target instance type.
 	ExpectedResourceUtilization *ResourceUtilization `type:"structure"`
 
 	// Explains the actions you might need to take in order to successfully migrate
@@ -12198,10 +12429,11 @@ func (s *TargetInstance) SetResourceDetails(v *ResourceDetails) *TargetInstance 
 type TerminateRecommendationDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The currency code that AWS used to calculate the costs for this instance.
+	// The currency code that Amazon Web Services used to calculate the costs for
+	// this instance.
 	CurrencyCode *string `type:"string"`
 
-	// Estimated savings resulting from modification, on a monthly basis.
+	// The estimated savings that result from modification, on a monthly basis.
 	EstimatedMonthlySavings *string `type:"string"`
 }
 
@@ -12231,15 +12463,15 @@ func (s *TerminateRecommendationDetail) SetEstimatedMonthlySavings(v string) *Te
 type TotalImpactFilter struct {
 	_ struct{} `type:"structure"`
 
-	// The upper bound dollar value used in the filter.
+	// The upper bound dollar value that's used in the filter.
 	EndValue *float64 `type:"double"`
 
-	// The comparing value used in the filter.
+	// The comparing value that's used in the filter.
 	//
 	// NumericOperator is a required field
 	NumericOperator *string `type:"string" required:"true" enum:"NumericOperator"`
 
-	// The lower bound dollar value used in the filter.
+	// The lower bound dollar value that's used in the filter.
 	//
 	// StartValue is a required field
 	StartValue *float64 `type:"double" required:"true"`
@@ -12533,7 +12765,7 @@ func (s *UpdateAnomalyMonitorOutput) SetMonitorArn(v string) *UpdateAnomalyMonit
 type UpdateAnomalySubscriptionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The update to the frequency value at which subscribers will receive notifications.
+	// The update to the frequency value that subscribers receive notifications.
 	Frequency *string `type:"string" enum:"AnomalySubscriptionFrequency"`
 
 	// A list of cost anomaly monitor ARNs.
@@ -12547,7 +12779,7 @@ type UpdateAnomalySubscriptionInput struct {
 	// SubscriptionArn is a required field
 	SubscriptionArn *string `type:"string" required:"true"`
 
-	// The subscription's new name.
+	// The new name of the subscription.
 	SubscriptionName *string `type:"string"`
 
 	// The update to the threshold value for receiving notifications.
@@ -12669,6 +12901,10 @@ type UpdateCostCategoryDefinitionInput struct {
 	//
 	// Rules is a required field
 	Rules []*CostCategoryRule `min:"1" type:"list" required:"true"`
+
+	// The split charge rules used to allocate your charges between your Cost Category
+	// values.
+	SplitChargeRules []*CostCategorySplitChargeRule `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -12702,6 +12938,9 @@ func (s *UpdateCostCategoryDefinitionInput) Validate() error {
 	if s.Rules != nil && len(s.Rules) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Rules", 1))
 	}
+	if s.SplitChargeRules != nil && len(s.SplitChargeRules) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SplitChargeRules", 1))
+	}
 	if s.Rules != nil {
 		for i, v := range s.Rules {
 			if v == nil {
@@ -12709,6 +12948,16 @@ func (s *UpdateCostCategoryDefinitionInput) Validate() error {
 			}
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Rules", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SplitChargeRules != nil {
+		for i, v := range s.SplitChargeRules {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "SplitChargeRules", i), err.(request.ErrInvalidParams))
 			}
 		}
 	}
@@ -12740,6 +12989,12 @@ func (s *UpdateCostCategoryDefinitionInput) SetRuleVersion(v string) *UpdateCost
 // SetRules sets the Rules field's value.
 func (s *UpdateCostCategoryDefinitionInput) SetRules(v []*CostCategoryRule) *UpdateCostCategoryDefinitionInput {
 	s.Rules = v
+	return s
+}
+
+// SetSplitChargeRules sets the SplitChargeRules field's value.
+func (s *UpdateCostCategoryDefinitionInput) SetSplitChargeRules(v []*CostCategorySplitChargeRule) *UpdateCostCategoryDefinitionInput {
+	s.SplitChargeRules = v
 	return s
 }
 
@@ -12935,6 +13190,38 @@ const (
 func CostCategoryRuleVersion_Values() []string {
 	return []string{
 		CostCategoryRuleVersionCostCategoryExpressionV1,
+	}
+}
+
+const (
+	// CostCategorySplitChargeMethodFixed is a CostCategorySplitChargeMethod enum value
+	CostCategorySplitChargeMethodFixed = "FIXED"
+
+	// CostCategorySplitChargeMethodProportional is a CostCategorySplitChargeMethod enum value
+	CostCategorySplitChargeMethodProportional = "PROPORTIONAL"
+
+	// CostCategorySplitChargeMethodEven is a CostCategorySplitChargeMethod enum value
+	CostCategorySplitChargeMethodEven = "EVEN"
+)
+
+// CostCategorySplitChargeMethod_Values returns all elements of the CostCategorySplitChargeMethod enum
+func CostCategorySplitChargeMethod_Values() []string {
+	return []string{
+		CostCategorySplitChargeMethodFixed,
+		CostCategorySplitChargeMethodProportional,
+		CostCategorySplitChargeMethodEven,
+	}
+}
+
+const (
+	// CostCategorySplitChargeRuleParameterTypeAllocationPercentages is a CostCategorySplitChargeRuleParameterType enum value
+	CostCategorySplitChargeRuleParameterTypeAllocationPercentages = "ALLOCATION_PERCENTAGES"
+)
+
+// CostCategorySplitChargeRuleParameterType_Values returns all elements of the CostCategorySplitChargeRuleParameterType enum
+func CostCategorySplitChargeRuleParameterType_Values() []string {
+	return []string{
+		CostCategorySplitChargeRuleParameterTypeAllocationPercentages,
 	}
 }
 

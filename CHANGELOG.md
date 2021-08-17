@@ -1,3 +1,17 @@
+Release v1.40.24 (2021-08-17)
+===
+
+### Service Client Updates
+* `service/ce`: Updates service API and documentation
+* `service/cloud9`: Updates service API and documentation
+  * Added DryRun parameter to CreateEnvironmentEC2 API. Added ManagedCredentialsActions parameter to UpdateEnvironment API
+* `service/clouddirectory`: Updates service documentation
+  * Documentation updates for clouddirectory
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for EC2 ED25519 key pairs for authentication
+* `service/logs`: Updates service documentation
+  * Documentation-only update for CloudWatch Logs
+
 Release v1.40.23 (2021-08-16)
 ===
 
