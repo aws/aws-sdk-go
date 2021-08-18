@@ -862,11 +862,11 @@ func (c *Route53Resolver) CreateResolverQueryLogConfigRequest(input *CreateResol
 // To specify which VPCs you want to log queries for, you use AssociateResolverQueryLogConfig.
 // For more information, see AssociateResolverQueryLogConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_AssociateResolverQueryLogConfig.html).
 //
-// You can optionally use AWS Resource Access Manager (AWS RAM) to share a query
-// logging configuration with other AWS accounts. The other accounts can then
-// associate VPCs with the configuration. The query logs that Resolver creates
-// for a configuration include all DNS queries that originate in all VPCs that
-// are associated with the configuration.
+// You can optionally use Resource Access Manager (RAM) to share a query logging
+// configuration with other Amazon Web Services accounts. The other accounts
+// can then associate VPCs with the configuration. The query logs that Resolver
+// creates for a configuration include all DNS queries that originate in all
+// VPCs that are associated with the configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1442,8 +1442,8 @@ func (c *Route53Resolver) DeleteResolverQueryLogConfigRequest(input *DeleteResol
 // Deletes a query logging configuration. When you delete a configuration, Resolver
 // stops logging DNS queries for all of the Amazon VPCs that are associated
 // with the configuration. This also applies if the query logging configuration
-// is shared with other AWS accounts, and the other accounts have associated
-// VPCs with the shared configuration.
+// is shared with other Amazon Web Services accounts, and the other accounts
+// have associated VPCs with the shared configuration.
 //
 // Before you can delete a query logging configuration, you must first disassociate
 // all VPCs from the configuration. See DisassociateResolverQueryLogConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_DisassociateResolverQueryLogConfig.html).
@@ -1837,9 +1837,9 @@ func (c *Route53Resolver) DisassociateResolverQueryLogConfigRequest(input *Disas
 // Disassociates a VPC from a query logging configuration.
 //
 // Before you can delete a query logging configuration, you must first disassociate
-// all VPCs from the configuration. If you used AWS Resource Access Manager
-// (AWS RAM) to share a query logging configuration with other accounts, VPCs
-// can be disassociated from the configuration in the following ways:
+// all VPCs from the configuration. If you used Resource Access Manager (RAM)
+// to share a query logging configuration with other accounts, VPCs can be disassociated
+// from the configuration in the following ways:
 //
 //    * The accounts that you shared the configuration with can disassociate
 //    VPCs from the configuration.
@@ -2393,9 +2393,9 @@ func (c *Route53Resolver) GetFirewallRuleGroupPolicyRequest(input *GetFirewallRu
 
 // GetFirewallRuleGroupPolicy API operation for Amazon Route 53 Resolver.
 //
-// Returns the AWS Identity and Access Management (AWS IAM) policy for sharing
-// the specified rule group. You can use the policy to share the rule group
-// using AWS Resource Access Manager (AWS RAM).
+// Returns the Identity and Access Management (Amazon Web Services IAM) policy
+// for sharing the specified rule group. You can use the policy to share the
+// rule group using Resource Access Manager (RAM).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2867,7 +2867,7 @@ func (c *Route53Resolver) GetResolverQueryLogConfigPolicyRequest(input *GetResol
 //
 // Gets information about a query logging policy. A query logging policy specifies
 // the Resolver query logging operations and resources that you want to allow
-// another AWS account to be able to use.
+// another Amazon Web Services account to be able to use.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4249,7 +4249,7 @@ func (c *Route53Resolver) ListResolverDnssecConfigsRequest(input *ListResolverDn
 // ListResolverDnssecConfigs API operation for Amazon Route 53 Resolver.
 //
 // Lists the configurations for DNSSEC validation that are associated with the
-// current AWS account.
+// current Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4551,8 +4551,8 @@ func (c *Route53Resolver) ListResolverEndpointsRequest(input *ListResolverEndpoi
 
 // ListResolverEndpoints API operation for Amazon Route 53 Resolver.
 //
-// Lists all the Resolver endpoints that were created using the current AWS
-// account.
+// Lists all the Resolver endpoints that were created using the current Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5011,7 +5011,7 @@ func (c *Route53Resolver) ListResolverRuleAssociationsRequest(input *ListResolve
 // ListResolverRuleAssociations API operation for Amazon Route 53 Resolver.
 //
 // Lists the associations that were created between Resolver rules and VPCs
-// using the current AWS account.
+// using the current Amazon Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5160,7 +5160,8 @@ func (c *Route53Resolver) ListResolverRulesRequest(input *ListResolverRulesInput
 
 // ListResolverRules API operation for Amazon Route 53 Resolver.
 //
-// Lists the Resolver rules that were created using the current AWS account.
+// Lists the Resolver rules that were created using the current Amazon Web Services
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5455,9 +5456,9 @@ func (c *Route53Resolver) PutFirewallRuleGroupPolicyRequest(input *PutFirewallRu
 
 // PutFirewallRuleGroupPolicy API operation for Amazon Route 53 Resolver.
 //
-// Attaches an AWS Identity and Access Management (AWS IAM) policy for sharing
-// the rule group. You can use the policy to share the rule group using AWS
-// Resource Access Manager (AWS RAM).
+// Attaches an Identity and Access Management (Amazon Web Services IAM) policy
+// for sharing the rule group. You can use the policy to share the rule group
+// using Resource Access Manager (RAM).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5548,9 +5549,10 @@ func (c *Route53Resolver) PutResolverQueryLogConfigPolicyRequest(input *PutResol
 
 // PutResolverQueryLogConfigPolicy API operation for Amazon Route 53 Resolver.
 //
-// Specifies an AWS account that you want to share a query logging configuration
-// with, the query logging configuration that you want to share, and the operations
-// that you want the account to be able to perform on the configuration.
+// Specifies an Amazon Web Services account that you want to share a query logging
+// configuration with, the query logging configuration that you want to share,
+// and the operations that you want the account to be able to perform on the
+// configuration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5645,9 +5647,9 @@ func (c *Route53Resolver) PutResolverRulePolicyRequest(input *PutResolverRulePol
 
 // PutResolverRulePolicy API operation for Amazon Route 53 Resolver.
 //
-// Specifies an AWS rule that you want to share with another account, the account
-// that you want to share the rule with, and the operations that you want the
-// account to be able to perform on the rule.
+// Specifies an Amazon Web Services rule that you want to share with another
+// account, the account that you want to share the rule with, and the operations
+// that you want the account to be able to perform on the rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8716,7 +8718,7 @@ type Filter struct {
 	//    * Direction: Whether you want to return inbound or outbound Resolver endpoints.
 	//    If you specify DIRECTION for Name, specify INBOUND or OUTBOUND for Values.
 	//
-	//    * HostVpcId: The ID of the VPC that inbound DNS queries pass through on
+	//    * HostVPCId: The ID of the VPC that inbound DNS queries pass through on
 	//    the way from your network to your VPCs in a region, or the VPC that outbound
 	//    queries pass through on the way from your VPCs to your network. In a CreateResolverEndpoint
 	//    (https://docs.aws.amazon.com/Route53/latest/APIReference/API_route53resolver_CreateResolverEndpoint.html)
@@ -8793,8 +8795,8 @@ type Filter struct {
 	//    * CreatorRequestId: A unique string that identifies the request that created
 	//    the query logging configuration.
 	//
-	//    * Destination: The AWS service that you want to forward query logs to.
-	//    Valid values include the following: S3 CloudWatchLogs KinesisFirehose
+	//    * Destination: The Amazon Web Services service that you want to forward
+	//    query logs to. Valid values include the following: S3 CloudWatchLogs KinesisFirehose
 	//
 	//    * DestinationArn: The ARN of the location that Resolver is sending query
 	//    logs to. This value can be the ARN for an S3 bucket, a CloudWatch Logs
@@ -8804,13 +8806,13 @@ type Filter struct {
 	//
 	//    * Name: The name of the query logging configuration
 	//
-	//    * OwnerId: The AWS account ID for the account that created the query logging
-	//    configuration.
+	//    * OwnerId: The Amazon Web Services account ID for the account that created
+	//    the query logging configuration.
 	//
 	//    * ShareStatus: An indication of whether the query logging configuration
-	//    is shared with other AWS accounts, or was shared with the current account
-	//    by another AWS account. Valid values include: NOT_SHARED, SHARED_WITH_ME,
-	//    or SHARED_BY_ME.
+	//    is shared with other Amazon Web Services accounts, or was shared with
+	//    the current account by another Amazon Web Services account. Valid values
+	//    include: NOT_SHARED, SHARED_WITH_ME, or SHARED_BY_ME.
 	//
 	//    * Status: The status of the query logging configuration. If you specify
 	//    Status for Name, specify the applicable status code for Values: CREATING,
@@ -8906,8 +8908,8 @@ type FirewallConfig struct {
 	// The ID of the firewall configuration.
 	Id *string `min:"1" type:"string"`
 
-	// The AWS account ID of the owner of the VPC that this firewall configuration
-	// applies to.
+	// The Amazon Web Services account ID of the owner of the VPC that this firewall
+	// configuration applies to.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The ID of the VPC that this firewall configuration applies to.
@@ -9310,17 +9312,17 @@ type FirewallRuleGroup struct {
 	// The name of the rule group.
 	Name *string `type:"string"`
 
-	// The AWS account ID for the account that created the rule group. When a rule
-	// group is shared with your account, this is the account that has shared the
-	// rule group with you.
+	// The Amazon Web Services account ID for the account that created the rule
+	// group. When a rule group is shared with your account, this is the account
+	// that has shared the rule group with you.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The number of rules in the rule group.
 	RuleCount *int64 `type:"integer"`
 
-	// Whether the rule group is shared with other AWS accounts, or was shared with
-	// the current account by another AWS account. Sharing is configured through
-	// AWS Resource Access Manager (AWS RAM).
+	// Whether the rule group is shared with other Amazon Web Services accounts,
+	// or was shared with the current account by another Amazon Web Services account.
+	// Sharing is configured through Resource Access Manager (RAM).
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
 
 	// The status of the domain list.
@@ -9430,8 +9432,8 @@ type FirewallRuleGroupAssociation struct {
 	Id *string `min:"1" type:"string"`
 
 	// The owner of the association, used only for associations that are not managed
-	// by you. If you use AWS Firewall Manager to manage your DNS Firewalls, then
-	// this reports Firewall Manager as the managed owner.
+	// by you. If you use Firewall Manager to manage your DNS Firewalls, then this
+	// reports Firewall Manager as the managed owner.
 	ManagedOwnerName *string `min:"1" type:"string"`
 
 	// The date and time that the association was last modified, in Unix time format
@@ -9570,14 +9572,14 @@ type FirewallRuleGroupMetadata struct {
 	// The name of the rule group.
 	Name *string `type:"string"`
 
-	// The AWS account ID for the account that created the rule group. When a rule
-	// group is shared with your account, this is the account that has shared the
-	// rule group with you.
+	// The Amazon Web Services account ID for the account that created the rule
+	// group. When a rule group is shared with your account, this is the account
+	// that has shared the rule group with you.
 	OwnerId *string `min:"12" type:"string"`
 
-	// Whether the rule group is shared with other AWS accounts, or was shared with
-	// the current account by another AWS account. Sharing is configured through
-	// AWS Resource Access Manager (AWS RAM).
+	// Whether the rule group is shared with other Amazon Web Services accounts,
+	// or was shared with the current account by another Amazon Web Services account.
+	// Sharing is configured through Resource Access Manager (RAM).
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
 }
 
@@ -9928,9 +9930,9 @@ func (s *GetFirewallRuleGroupPolicyInput) SetArn(v string) *GetFirewallRuleGroup
 type GetFirewallRuleGroupPolicyOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS Identity and Access Management (AWS IAM) policy for sharing the specified
-	// rule group. You can use the policy to share the rule group using AWS Resource
-	// Access Manager (AWS RAM).
+	// The Identity and Access Management (Amazon Web Services IAM) policy for sharing
+	// the specified rule group. You can use the policy to share the rule group
+	// using Resource Access Manager (RAM).
 	FirewallRuleGroupPolicy *string `type:"string"`
 }
 
@@ -11883,8 +11885,9 @@ type ListResolverDnssecConfigsInput struct {
 	// for MaxResults, Route 53 returns up to 100 configuration per page.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// (Optional) If the current AWS account has more than MaxResults DNSSEC configurations,
-	// use NextToken to get the second and subsequent pages of results.
+	// (Optional) If the current Amazon Web Services account has more than MaxResults
+	// DNSSEC configurations, use NextToken to get the second and subsequent pages
+	// of results.
 	//
 	// For the first ListResolverDnssecConfigs request, omit this value.
 	//
@@ -11948,7 +11951,8 @@ type ListResolverDnssecConfigsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// If a response includes the last of the DNSSEC configurations that are associated
-	// with the current AWS account, NextToken doesn't appear in the response.
+	// with the current Amazon Web Services account, NextToken doesn't appear in
+	// the response.
 	//
 	// If a response doesn't include the last of the configurations, you can get
 	// more configurations by submitting another ListResolverDnssecConfigs (https://docs.aws.amazon.com/Route53/latest/APIReference/API_ListResolverDnssecConfigs.html)
@@ -11958,7 +11962,7 @@ type ListResolverDnssecConfigsOutput struct {
 
 	// An array that contains one ResolverDnssecConfig (https://docs.aws.amazon.com/Route53/latest/APIReference/API_ResolverDnssecConfig.html)
 	// element for each configuration for DNSSEC validation that is associated with
-	// the current AWS account.
+	// the current Amazon Web Services account.
 	ResolverDnssecConfigs []*ResolverDnssecConfig `type:"list"`
 }
 
@@ -12185,8 +12189,8 @@ type ListResolverEndpointsOutput struct {
 	// In the next request, specify the value of NextToken from the previous response.
 	NextToken *string `type:"string"`
 
-	// The Resolver endpoints that were created by using the current AWS account,
-	// and that match the specified filters, if any.
+	// The Resolver endpoints that were created by using the current Amazon Web
+	// Services account, and that match the specified filters, if any.
 	ResolverEndpoints []*ResolverEndpoint `type:"list"`
 }
 
@@ -12462,11 +12466,13 @@ type ListResolverQueryLogConfigsInput struct {
 	//
 	//    * Name: The name of the configuration
 	//
-	//    * OwnerId: The AWS account number of the account that created the configuration
+	//    * OwnerId: The Amazon Web Services account number of the account that
+	//    created the configuration
 	//
-	//    * ShareStatus: Whether the configuration is shared with other AWS accounts
-	//    or shared with the current account by another AWS account. Sharing is
-	//    configured through AWS Resource Access Manager (AWS RAM).
+	//    * ShareStatus: Whether the configuration is shared with other Amazon Web
+	//    Services accounts or shared with the current account by another Amazon
+	//    Web Services account. Sharing is configured through Resource Access Manager
+	//    (RAM).
 	//
 	//    * Status: The current status of the configuration. Valid values include
 	//    the following: CREATING: Resolver is creating the query logging configuration.
@@ -12701,7 +12707,8 @@ type ListResolverRuleAssociationsOutput struct {
 	NextToken *string `type:"string"`
 
 	// The associations that were created between Resolver rules and VPCs using
-	// the current AWS account, and that match the specified filters, if any.
+	// the current Amazon Web Services account, and that match the specified filters,
+	// if any.
 	ResolverRuleAssociations []*ResolverRuleAssociation `type:"list"`
 }
 
@@ -12819,8 +12826,8 @@ type ListResolverRulesOutput struct {
 	// In the next request, specify the value of NextToken from the previous response.
 	NextToken *string `type:"string"`
 
-	// The Resolver rules that were created using the current AWS account and that
-	// match the specified filters, if any.
+	// The Resolver rules that were created using the current Amazon Web Services
+	// account and that match the specified filters, if any.
 	ResolverRules []*ResolverRule `type:"list"`
 }
 
@@ -12964,8 +12971,8 @@ type PutFirewallRuleGroupPolicyInput struct {
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
 
-	// The AWS Identity and Access Management (AWS IAM) policy to attach to the
-	// rule group.
+	// The Identity and Access Management (Amazon Web Services IAM) policy to attach
+	// to the rule group.
 	//
 	// FirewallRuleGroupPolicy is a required field
 	FirewallRuleGroupPolicy *string `type:"string" required:"true"`
@@ -13043,10 +13050,10 @@ type PutResolverQueryLogConfigPolicyInput struct {
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
 
-	// An AWS Identity and Access Management policy statement that lists the query
-	// logging configurations that you want to share with another AWS account and
-	// the operations that you want the account to be able to perform. You can specify
-	// the following operations in the Actions section of the statement:
+	// An Identity and Access Management policy statement that lists the query logging
+	// configurations that you want to share with another Amazon Web Services account
+	// and the operations that you want the account to be able to perform. You can
+	// specify the following operations in the Actions section of the statement:
 	//
 	//    * route53resolver:AssociateResolverQueryLogConfig
 	//
@@ -13138,10 +13145,10 @@ type PutResolverRulePolicyInput struct {
 	// Arn is a required field
 	Arn *string `min:"1" type:"string" required:"true"`
 
-	// An AWS Identity and Access Management policy statement that lists the rules
-	// that you want to share with another AWS account and the operations that you
-	// want the account to be able to perform. You can specify the following operations
-	// in the Action section of the statement:
+	// An Identity and Access Management policy statement that lists the rules that
+	// you want to share with another Amazon Web Services account and the operations
+	// that you want the account to be able to perform. You can specify the following
+	// operations in the Action section of the statement:
 	//
 	//    * route53resolver:GetResolverRule
 	//
@@ -13497,12 +13504,14 @@ type ResolverQueryLogConfig struct {
 	// The name of the query logging configuration.
 	Name *string `min:"1" type:"string"`
 
-	// The AWS account ID for the account that created the query logging configuration.
+	// The Amazon Web Services account ID for the account that created the query
+	// logging configuration.
 	OwnerId *string `min:"12" type:"string"`
 
 	// An indication of whether the query logging configuration is shared with other
-	// AWS accounts, or was shared with the current account by another AWS account.
-	// Sharing is configured through AWS Resource Access Manager (AWS RAM).
+	// Amazon Web Services accounts, or was shared with the current account by another
+	// Amazon Web Services account. Sharing is configured through Resource Access
+	// Manager (RAM).
 	ShareStatus *string `type:"string" enum:"ShareStatus"`
 
 	// The status of the specified query logging configuration. Valid values include
@@ -13737,8 +13746,8 @@ type ResolverRule struct {
 	// Resolver rule.
 	Name *string `type:"string"`
 
-	// When a rule is shared with another AWS account, the account ID of the account
-	// that the rule is shared with.
+	// When a rule is shared with another Amazon Web Services account, the account
+	// ID of the account that the rule is shared with.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The ID of the endpoint that the rule is associated with.

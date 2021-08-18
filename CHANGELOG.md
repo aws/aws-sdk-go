@@ -1,3 +1,20 @@
+Release v1.40.25 (2021-08-18)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * CodeBuild now allows you to make the build results for your build projects available to the public without requiring access to an AWS account.
+* `service/route53`: Updates service documentation
+  * Documentation updates for route53
+* `service/route53resolver`: Updates service documentation
+* `service/runtime.sagemaker`: Updates service API and documentation
+* `service/sagemaker`: Updates service API and documentation
+  * Amazon SageMaker now supports Asynchronous Inference endpoints. Adds PlatformIdentifier field that allows Notebook Instance creation with different platform selections. Increases the maximum number of containers in multi-container endpoints to 15. Adds more instance types to InstanceType field.
+
+### SDK Bugs
+* `service/s3`: Close http.Response.Body in CopyObject, UploadPartCopy and CompleteMultipartUpload operations
+  * Fixes [#4037](https://github.com/aws/aws-sdk-go/issues/4037)
+
 Release v1.40.24 (2021-08-17)
 ===
 
