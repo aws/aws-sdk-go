@@ -694,6 +694,32 @@
         "AssociationSummaries$member": null
       }
     },
+    "AsyncInferenceClientConfig": {
+      "base": "<p>Configures the behavior of the client used by Amazon SageMaker to interact with the model container during asynchronous inference.</p>",
+      "refs": {
+        "AsyncInferenceConfig$ClientConfig": "<p>Configures the behavior of the client used by Amazon SageMaker to interact with the model container during asynchronous inference.</p>"
+      }
+    },
+    "AsyncInferenceConfig": {
+      "base": "<p>Specifies configuration for how an endpoint performs asynchronous inference.</p>",
+      "refs": {
+        "CreateEndpointConfigInput$AsyncInferenceConfig": "<p>Specifies configuration for how an endpoint performs asynchronous inference. This is a required field in order for your Endpoint to be invoked using <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html\"> <code>InvokeEndpointAsync</code> </a>.</p>",
+        "DescribeEndpointConfigOutput$AsyncInferenceConfig": "<p>Returns the description of an endpoint configuration created using the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html\"> <code>CreateEndpointConfig</code> </a> API.</p>",
+        "DescribeEndpointOutput$AsyncInferenceConfig": "<p>Returns the description of an endpoint configuration created using the <a href=\"https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html\"> <code>CreateEndpointConfig</code> </a> API.</p>"
+      }
+    },
+    "AsyncInferenceNotificationConfig": {
+      "base": "<p>Specifies the configuration for notifications of inference results for asynchronous inference.</p>",
+      "refs": {
+        "AsyncInferenceOutputConfig$NotificationConfig": "<p>Specifies the configuration for notifications of inference results for asynchronous inference.</p>"
+      }
+    },
+    "AsyncInferenceOutputConfig": {
+      "base": "<p>Specifies the configuration for asynchronous inference invocation outputs.</p>",
+      "refs": {
+        "AsyncInferenceConfig$OutputConfig": "<p>Specifies the configuration for asynchronous inference invocation outputs.</p>"
+      }
+    },
     "AthenaCatalog": {
       "base": "<p>The name of the data catalog used in Athena query execution.</p>",
       "refs": {
@@ -3043,6 +3069,7 @@
     "DestinationS3Uri": {
       "base": null,
       "refs": {
+        "AsyncInferenceOutputConfig$S3OutputPath": "<p>The Amazon S3 location to upload inference responses to.</p>",
         "DataCaptureConfig$DestinationS3Uri": "<p/>",
         "DataCaptureConfigSummary$DestinationS3Uri": "<p/>",
         "ProductionVariantCoreDumpConfig$DestinationS3Uri": "<p>The Amazon S3 bucket to send the core dump to.</p>"
@@ -4744,6 +4771,12 @@
         "ModelPackage$InferenceSpecification": null
       }
     },
+    "InitialTaskCount": {
+      "base": null,
+      "refs": {
+        "ProductionVariant$InitialInstanceCount": "<p>Number of instances to launch initially.</p>"
+      }
+    },
     "InputConfig": {
       "base": "<p>Contains information about the location of input model artifacts, the name and shape of the expected data inputs, and the framework in which the model was trained.</p>",
       "refs": {
@@ -4910,6 +4943,7 @@
     "KmsKeyId": {
       "base": null,
       "refs": {
+        "AsyncInferenceOutputConfig$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt the asynchronous inference output in Amazon S3.</p> <p/>",
         "AthenaDatasetDefinition$KmsKeyId": "<p>The Amazon Web Services Key Management Service (Amazon Web Services KMS) key that Amazon SageMaker uses to encrypt data generated from an Athena query execution.</p>",
         "AutoMLOutputDataConfig$KmsKeyId": "<p>The Amazon Web Services KMS encryption key ID.</p>",
         "AutoMLSecurityConfig$VolumeKmsKeyId": "<p>The key used to encrypt stored data.</p>",
@@ -5775,6 +5809,12 @@
       "base": null,
       "refs": {
         "AutoMLJobCompletionCriteria$MaxCandidates": "<p>The maximum number of times a training job is allowed to run.</p>"
+      }
+    },
+    "MaxConcurrentInvocationsPerInstance": {
+      "base": null,
+      "refs": {
+        "AsyncInferenceClientConfig$MaxConcurrentInvocationsPerInstance": "<p>The maximum number of concurrent requests sent by the SageMaker client to the model container. If no value is provided, Amazon SageMaker will choose an optimal value for you.</p>"
       }
     },
     "MaxConcurrentTaskCount": {
@@ -7083,7 +7123,7 @@
       }
     },
     "NotificationConfiguration": {
-      "base": "<p>Configures SNS notifications of available or expiring work items for work teams.</p>",
+      "base": "<p>Configures Amazon SNS notifications of available or expiring work items for work teams.</p>",
       "refs": {
         "CreateWorkteamRequest$NotificationConfiguration": "<p>Configures notification of workers regarding available or expiring work items.</p>",
         "UpdateWorkteamRequest$NotificationConfiguration": "<p>Configures SNS topic notifications for available or expiring work items</p>",
@@ -7093,7 +7133,7 @@
     "NotificationTopicArn": {
       "base": null,
       "refs": {
-        "NotificationConfiguration$NotificationTopicArn": "<p>The ARN for the SNS topic to which notifications should be published.</p>"
+        "NotificationConfiguration$NotificationTopicArn": "<p>The ARN for the Amazon SNS topic to which notifications should be published.</p>"
       }
     },
     "NumberOfHumanWorkersPerDataObject": {
@@ -7548,6 +7588,13 @@
       "base": null,
       "refs": {
         "ListPipelinesResponse$PipelineSummaries": "<p>Contains a sorted list of <code>PipelineSummary</code> objects matching the specified filters. Each <code>PipelineSummary</code> consists of PipelineArn, PipelineName, ExperimentName, PipelineDescription, CreationTime, LastModifiedTime, LastRunTime, and RoleArn. This list can be empty. </p>"
+      }
+    },
+    "PlatformIdentifier": {
+      "base": null,
+      "refs": {
+        "CreateNotebookInstanceInput$PlatformIdentifier": "<p>The platform identifier of the notebook instance runtime environment.</p>",
+        "DescribeNotebookInstanceOutput$PlatformIdentifier": "<p>The platform identifier of the notebook instance runtime environment.</p>"
       }
     },
     "PolicyString": {
@@ -8629,6 +8676,8 @@
     "SnsTopicArn": {
       "base": null,
       "refs": {
+        "AsyncInferenceNotificationConfig$SuccessTopic": "<p>Amazon SNS topic to post a notification to when inference completes successfully. If no topic is provided, no notification is sent on success.</p>",
+        "AsyncInferenceNotificationConfig$ErrorTopic": "<p>Amazon SNS topic to post a notification to when inference fails. If no topic is provided, no notification is sent on failure.</p>",
         "LabelingJobOutputConfig$SnsTopicArn": "<p>An Amazon Simple Notification Service (Amazon SNS) output topic ARN. Provide a <code>SnsTopicArn</code> if you want to do real time chaining to another streaming job and receive an Amazon SNS notifications each time a data object is submitted by a worker.</p> <p>If you provide an <code>SnsTopicArn</code> in <code>OutputConfig</code>, when workers complete labeling tasks, Ground Truth will send labeling task output data to the SNS output topic you specify here. </p> <p>To learn more, see <a href=\"https://docs.aws.amazon.com/sagemaker/latest/dg/sms-streaming-labeling-job.html#sms-streaming-how-it-works-output-data\">Receive Output Data from a Streaming Labeling Job</a>. </p>",
         "LabelingJobSnsDataSource$SnsTopicArn": "<p>The Amazon SNS input topic Amazon Resource Name (ARN). Specify the ARN of the input topic you will use to send new data objects to a streaming labeling job.</p>"
       }
@@ -9200,7 +9249,6 @@
       "base": null,
       "refs": {
         "DesiredWeightAndCapacity$DesiredInstanceCount": "<p>The variant's capacity.</p>",
-        "ProductionVariant$InitialInstanceCount": "<p>Number of instances to launch initially.</p>",
         "ProductionVariantSummary$CurrentInstanceCount": "<p>The number of instances associated with the variant.</p>",
         "ProductionVariantSummary$DesiredInstanceCount": "<p>The number of instances requested in the <code>UpdateEndpointWeightsAndCapacities</code> request. </p>"
       }

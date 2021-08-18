@@ -24519,6 +24519,201 @@ func (s *AssociationSummary) SetSourceType(v string) *AssociationSummary {
 	return s
 }
 
+// Configures the behavior of the client used by Amazon SageMaker to interact
+// with the model container during asynchronous inference.
+type AsyncInferenceClientConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of concurrent requests sent by the SageMaker client to
+	// the model container. If no value is provided, Amazon SageMaker will choose
+	// an optimal value for you.
+	MaxConcurrentInvocationsPerInstance *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s AsyncInferenceClientConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AsyncInferenceClientConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AsyncInferenceClientConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AsyncInferenceClientConfig"}
+	if s.MaxConcurrentInvocationsPerInstance != nil && *s.MaxConcurrentInvocationsPerInstance < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxConcurrentInvocationsPerInstance", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxConcurrentInvocationsPerInstance sets the MaxConcurrentInvocationsPerInstance field's value.
+func (s *AsyncInferenceClientConfig) SetMaxConcurrentInvocationsPerInstance(v int64) *AsyncInferenceClientConfig {
+	s.MaxConcurrentInvocationsPerInstance = &v
+	return s
+}
+
+// Specifies configuration for how an endpoint performs asynchronous inference.
+type AsyncInferenceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Configures the behavior of the client used by Amazon SageMaker to interact
+	// with the model container during asynchronous inference.
+	ClientConfig *AsyncInferenceClientConfig `type:"structure"`
+
+	// Specifies the configuration for asynchronous inference invocation outputs.
+	//
+	// OutputConfig is a required field
+	OutputConfig *AsyncInferenceOutputConfig `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s AsyncInferenceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AsyncInferenceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AsyncInferenceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AsyncInferenceConfig"}
+	if s.OutputConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutputConfig"))
+	}
+	if s.ClientConfig != nil {
+		if err := s.ClientConfig.Validate(); err != nil {
+			invalidParams.AddNested("ClientConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OutputConfig != nil {
+		if err := s.OutputConfig.Validate(); err != nil {
+			invalidParams.AddNested("OutputConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientConfig sets the ClientConfig field's value.
+func (s *AsyncInferenceConfig) SetClientConfig(v *AsyncInferenceClientConfig) *AsyncInferenceConfig {
+	s.ClientConfig = v
+	return s
+}
+
+// SetOutputConfig sets the OutputConfig field's value.
+func (s *AsyncInferenceConfig) SetOutputConfig(v *AsyncInferenceOutputConfig) *AsyncInferenceConfig {
+	s.OutputConfig = v
+	return s
+}
+
+// Specifies the configuration for notifications of inference results for asynchronous
+// inference.
+type AsyncInferenceNotificationConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon SNS topic to post a notification to when inference fails. If no topic
+	// is provided, no notification is sent on failure.
+	ErrorTopic *string `type:"string"`
+
+	// Amazon SNS topic to post a notification to when inference completes successfully.
+	// If no topic is provided, no notification is sent on success.
+	SuccessTopic *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AsyncInferenceNotificationConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AsyncInferenceNotificationConfig) GoString() string {
+	return s.String()
+}
+
+// SetErrorTopic sets the ErrorTopic field's value.
+func (s *AsyncInferenceNotificationConfig) SetErrorTopic(v string) *AsyncInferenceNotificationConfig {
+	s.ErrorTopic = &v
+	return s
+}
+
+// SetSuccessTopic sets the SuccessTopic field's value.
+func (s *AsyncInferenceNotificationConfig) SetSuccessTopic(v string) *AsyncInferenceNotificationConfig {
+	s.SuccessTopic = &v
+	return s
+}
+
+// Specifies the configuration for asynchronous inference invocation outputs.
+type AsyncInferenceOutputConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services Key Management Service (Amazon Web Services KMS)
+	// key that Amazon SageMaker uses to encrypt the asynchronous inference output
+	// in Amazon S3.
+	KmsKeyId *string `type:"string"`
+
+	// Specifies the configuration for notifications of inference results for asynchronous
+	// inference.
+	NotificationConfig *AsyncInferenceNotificationConfig `type:"structure"`
+
+	// The Amazon S3 location to upload inference responses to.
+	//
+	// S3OutputPath is a required field
+	S3OutputPath *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AsyncInferenceOutputConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AsyncInferenceOutputConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AsyncInferenceOutputConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AsyncInferenceOutputConfig"}
+	if s.S3OutputPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3OutputPath"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AsyncInferenceOutputConfig) SetKmsKeyId(v string) *AsyncInferenceOutputConfig {
+	s.KmsKeyId = &v
+	return s
+}
+
+// SetNotificationConfig sets the NotificationConfig field's value.
+func (s *AsyncInferenceOutputConfig) SetNotificationConfig(v *AsyncInferenceNotificationConfig) *AsyncInferenceOutputConfig {
+	s.NotificationConfig = v
+	return s
+}
+
+// SetS3OutputPath sets the S3OutputPath field's value.
+func (s *AsyncInferenceOutputConfig) SetS3OutputPath(v string) *AsyncInferenceOutputConfig {
+	s.S3OutputPath = &v
+	return s
+}
+
 // Configuration for Athena Dataset Definition input.
 type AthenaDatasetDefinition struct {
 	_ struct{} `type:"structure"`
@@ -29341,6 +29536,11 @@ func (s CreateEdgePackagingJobOutput) GoString() string {
 type CreateEndpointConfigInput struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies configuration for how an endpoint performs asynchronous inference.
+	// This is a required field in order for your Endpoint to be invoked using InvokeEndpointAsync
+	// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_runtime_InvokeEndpoint.html).
+	AsyncInferenceConfig *AsyncInferenceConfig `type:"structure"`
+
 	DataCaptureConfig *DataCaptureConfig `type:"structure"`
 
 	// The name of the endpoint configuration. You specify this name in a CreateEndpoint
@@ -29419,6 +29619,11 @@ func (s *CreateEndpointConfigInput) Validate() error {
 	if s.ProductionVariants != nil && len(s.ProductionVariants) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ProductionVariants", 1))
 	}
+	if s.AsyncInferenceConfig != nil {
+		if err := s.AsyncInferenceConfig.Validate(); err != nil {
+			invalidParams.AddNested("AsyncInferenceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DataCaptureConfig != nil {
 		if err := s.DataCaptureConfig.Validate(); err != nil {
 			invalidParams.AddNested("DataCaptureConfig", err.(request.ErrInvalidParams))
@@ -29449,6 +29654,12 @@ func (s *CreateEndpointConfigInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAsyncInferenceConfig sets the AsyncInferenceConfig field's value.
+func (s *CreateEndpointConfigInput) SetAsyncInferenceConfig(v *AsyncInferenceConfig) *CreateEndpointConfigInput {
+	s.AsyncInferenceConfig = v
+	return s
 }
 
 // SetDataCaptureConfig sets the DataCaptureConfig field's value.
@@ -32308,6 +32519,9 @@ type CreateNotebookInstanceInput struct {
 	// NotebookInstanceName is a required field
 	NotebookInstanceName *string `type:"string" required:"true"`
 
+	// The platform identifier of the notebook instance runtime environment.
+	PlatformIdentifier *string `type:"string"`
+
 	// When you send any requests to Amazon Web Services resources from the notebook
 	// instance, Amazon SageMaker assumes this role to perform tasks on your behalf.
 	// You must grant this role necessary permissions so Amazon SageMaker can perform
@@ -32442,6 +32656,12 @@ func (s *CreateNotebookInstanceInput) SetLifecycleConfigName(v string) *CreateNo
 // SetNotebookInstanceName sets the NotebookInstanceName field's value.
 func (s *CreateNotebookInstanceInput) SetNotebookInstanceName(v string) *CreateNotebookInstanceInput {
 	s.NotebookInstanceName = &v
+	return s
+}
+
+// SetPlatformIdentifier sets the PlatformIdentifier field's value.
+func (s *CreateNotebookInstanceInput) SetPlatformIdentifier(v string) *CreateNotebookInstanceInput {
+	s.PlatformIdentifier = &v
 	return s
 }
 
@@ -40663,6 +40883,11 @@ func (s *DescribeEndpointConfigInput) SetEndpointConfigName(v string) *DescribeE
 type DescribeEndpointConfigOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns the description of an endpoint configuration created using the CreateEndpointConfig
+	// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html)
+	// API.
+	AsyncInferenceConfig *AsyncInferenceConfig `type:"structure"`
+
 	// A timestamp that shows when the endpoint configuration was created.
 	//
 	// CreationTime is a required field
@@ -40699,6 +40924,12 @@ func (s DescribeEndpointConfigOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEndpointConfigOutput) GoString() string {
 	return s.String()
+}
+
+// SetAsyncInferenceConfig sets the AsyncInferenceConfig field's value.
+func (s *DescribeEndpointConfigOutput) SetAsyncInferenceConfig(v *AsyncInferenceConfig) *DescribeEndpointConfigOutput {
+	s.AsyncInferenceConfig = v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -40778,6 +41009,11 @@ func (s *DescribeEndpointInput) SetEndpointName(v string) *DescribeEndpointInput
 type DescribeEndpointOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Returns the description of an endpoint configuration created using the CreateEndpointConfig
+	// (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpointConfig.html)
+	// API.
+	AsyncInferenceConfig *AsyncInferenceConfig `type:"structure"`
+
 	// A timestamp that shows when the endpoint was created.
 	//
 	// CreationTime is a required field
@@ -40856,6 +41092,12 @@ func (s DescribeEndpointOutput) String() string {
 // GoString returns the string representation
 func (s DescribeEndpointOutput) GoString() string {
 	return s.String()
+}
+
+// SetAsyncInferenceConfig sets the AsyncInferenceConfig field's value.
+func (s *DescribeEndpointOutput) SetAsyncInferenceConfig(v *AsyncInferenceConfig) *DescribeEndpointOutput {
+	s.AsyncInferenceConfig = v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.
@@ -43756,6 +43998,9 @@ type DescribeNotebookInstanceOutput struct {
 	// The status of the notebook instance.
 	NotebookInstanceStatus *string `type:"string" enum:"NotebookInstanceStatus"`
 
+	// The platform identifier of the notebook instance runtime environment.
+	PlatformIdentifier *string `type:"string"`
+
 	// The Amazon Resource Name (ARN) of the IAM role associated with the instance.
 	RoleArn *string `min:"20" type:"string"`
 
@@ -43872,6 +44117,12 @@ func (s *DescribeNotebookInstanceOutput) SetNotebookInstanceName(v string) *Desc
 // SetNotebookInstanceStatus sets the NotebookInstanceStatus field's value.
 func (s *DescribeNotebookInstanceOutput) SetNotebookInstanceStatus(v string) *DescribeNotebookInstanceOutput {
 	s.NotebookInstanceStatus = &v
+	return s
+}
+
+// SetPlatformIdentifier sets the PlatformIdentifier field's value.
+func (s *DescribeNotebookInstanceOutput) SetPlatformIdentifier(v string) *DescribeNotebookInstanceOutput {
+	s.PlatformIdentifier = &v
 	return s
 }
 
@@ -46279,7 +46530,7 @@ type DesiredWeightAndCapacity struct {
 	_ struct{} `type:"structure"`
 
 	// The variant's capacity.
-	DesiredInstanceCount *int64 `min:"1" type:"integer"`
+	DesiredInstanceCount *int64 `type:"integer"`
 
 	// The variant's weight.
 	DesiredWeight *float64 `type:"float"`
@@ -46303,9 +46554,6 @@ func (s DesiredWeightAndCapacity) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DesiredWeightAndCapacity) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DesiredWeightAndCapacity"}
-	if s.DesiredInstanceCount != nil && *s.DesiredInstanceCount < 1 {
-		invalidParams.Add(request.NewErrParamMinValue("DesiredInstanceCount", 1))
-	}
 	if s.VariantName == nil {
 		invalidParams.Add(request.NewErrParamRequired("VariantName"))
 	}
@@ -64713,12 +64961,12 @@ func (s *NotebookInstanceSummary) SetUrl(v string) *NotebookInstanceSummary {
 	return s
 }
 
-// Configures SNS notifications of available or expiring work items for work
-// teams.
+// Configures Amazon SNS notifications of available or expiring work items for
+// work teams.
 type NotificationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN for the SNS topic to which notifications should be published.
+	// The ARN for the Amazon SNS topic to which notifications should be published.
 	NotificationTopicArn *string `type:"string"`
 }
 
@@ -67687,7 +67935,7 @@ type ProductionVariantSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The number of instances associated with the variant.
-	CurrentInstanceCount *int64 `min:"1" type:"integer"`
+	CurrentInstanceCount *int64 `type:"integer"`
 
 	// The weight associated with the variant.
 	CurrentWeight *float64 `type:"float"`
@@ -67698,7 +67946,7 @@ type ProductionVariantSummary struct {
 
 	// The number of instances requested in the UpdateEndpointWeightsAndCapacities
 	// request.
-	DesiredInstanceCount *int64 `min:"1" type:"integer"`
+	DesiredInstanceCount *int64 `type:"integer"`
 
 	// The requested weight, as specified in the UpdateEndpointWeightsAndCapacities
 	// request.
@@ -80164,6 +80412,30 @@ const (
 	// InstanceTypeMlM524xlarge is a InstanceType enum value
 	InstanceTypeMlM524xlarge = "ml.m5.24xlarge"
 
+	// InstanceTypeMlM5dLarge is a InstanceType enum value
+	InstanceTypeMlM5dLarge = "ml.m5d.large"
+
+	// InstanceTypeMlM5dXlarge is a InstanceType enum value
+	InstanceTypeMlM5dXlarge = "ml.m5d.xlarge"
+
+	// InstanceTypeMlM5d2xlarge is a InstanceType enum value
+	InstanceTypeMlM5d2xlarge = "ml.m5d.2xlarge"
+
+	// InstanceTypeMlM5d4xlarge is a InstanceType enum value
+	InstanceTypeMlM5d4xlarge = "ml.m5d.4xlarge"
+
+	// InstanceTypeMlM5d8xlarge is a InstanceType enum value
+	InstanceTypeMlM5d8xlarge = "ml.m5d.8xlarge"
+
+	// InstanceTypeMlM5d12xlarge is a InstanceType enum value
+	InstanceTypeMlM5d12xlarge = "ml.m5d.12xlarge"
+
+	// InstanceTypeMlM5d16xlarge is a InstanceType enum value
+	InstanceTypeMlM5d16xlarge = "ml.m5d.16xlarge"
+
+	// InstanceTypeMlM5d24xlarge is a InstanceType enum value
+	InstanceTypeMlM5d24xlarge = "ml.m5d.24xlarge"
+
 	// InstanceTypeMlC4Xlarge is a InstanceType enum value
 	InstanceTypeMlC4Xlarge = "ml.c4.xlarge"
 
@@ -80223,6 +80495,51 @@ const (
 
 	// InstanceTypeMlP316xlarge is a InstanceType enum value
 	InstanceTypeMlP316xlarge = "ml.p3.16xlarge"
+
+	// InstanceTypeMlP3dn24xlarge is a InstanceType enum value
+	InstanceTypeMlP3dn24xlarge = "ml.p3dn.24xlarge"
+
+	// InstanceTypeMlG4dnXlarge is a InstanceType enum value
+	InstanceTypeMlG4dnXlarge = "ml.g4dn.xlarge"
+
+	// InstanceTypeMlG4dn2xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn2xlarge = "ml.g4dn.2xlarge"
+
+	// InstanceTypeMlG4dn4xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn4xlarge = "ml.g4dn.4xlarge"
+
+	// InstanceTypeMlG4dn8xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn8xlarge = "ml.g4dn.8xlarge"
+
+	// InstanceTypeMlG4dn12xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn12xlarge = "ml.g4dn.12xlarge"
+
+	// InstanceTypeMlG4dn16xlarge is a InstanceType enum value
+	InstanceTypeMlG4dn16xlarge = "ml.g4dn.16xlarge"
+
+	// InstanceTypeMlR5Large is a InstanceType enum value
+	InstanceTypeMlR5Large = "ml.r5.large"
+
+	// InstanceTypeMlR5Xlarge is a InstanceType enum value
+	InstanceTypeMlR5Xlarge = "ml.r5.xlarge"
+
+	// InstanceTypeMlR52xlarge is a InstanceType enum value
+	InstanceTypeMlR52xlarge = "ml.r5.2xlarge"
+
+	// InstanceTypeMlR54xlarge is a InstanceType enum value
+	InstanceTypeMlR54xlarge = "ml.r5.4xlarge"
+
+	// InstanceTypeMlR58xlarge is a InstanceType enum value
+	InstanceTypeMlR58xlarge = "ml.r5.8xlarge"
+
+	// InstanceTypeMlR512xlarge is a InstanceType enum value
+	InstanceTypeMlR512xlarge = "ml.r5.12xlarge"
+
+	// InstanceTypeMlR516xlarge is a InstanceType enum value
+	InstanceTypeMlR516xlarge = "ml.r5.16xlarge"
+
+	// InstanceTypeMlR524xlarge is a InstanceType enum value
+	InstanceTypeMlR524xlarge = "ml.r5.24xlarge"
 )
 
 // InstanceType_Values returns all elements of the InstanceType enum
@@ -80246,6 +80563,14 @@ func InstanceType_Values() []string {
 		InstanceTypeMlM54xlarge,
 		InstanceTypeMlM512xlarge,
 		InstanceTypeMlM524xlarge,
+		InstanceTypeMlM5dLarge,
+		InstanceTypeMlM5dXlarge,
+		InstanceTypeMlM5d2xlarge,
+		InstanceTypeMlM5d4xlarge,
+		InstanceTypeMlM5d8xlarge,
+		InstanceTypeMlM5d12xlarge,
+		InstanceTypeMlM5d16xlarge,
+		InstanceTypeMlM5d24xlarge,
 		InstanceTypeMlC4Xlarge,
 		InstanceTypeMlC42xlarge,
 		InstanceTypeMlC44xlarge,
@@ -80266,6 +80591,21 @@ func InstanceType_Values() []string {
 		InstanceTypeMlP32xlarge,
 		InstanceTypeMlP38xlarge,
 		InstanceTypeMlP316xlarge,
+		InstanceTypeMlP3dn24xlarge,
+		InstanceTypeMlG4dnXlarge,
+		InstanceTypeMlG4dn2xlarge,
+		InstanceTypeMlG4dn4xlarge,
+		InstanceTypeMlG4dn8xlarge,
+		InstanceTypeMlG4dn12xlarge,
+		InstanceTypeMlG4dn16xlarge,
+		InstanceTypeMlR5Large,
+		InstanceTypeMlR5Xlarge,
+		InstanceTypeMlR52xlarge,
+		InstanceTypeMlR54xlarge,
+		InstanceTypeMlR58xlarge,
+		InstanceTypeMlR512xlarge,
+		InstanceTypeMlR516xlarge,
+		InstanceTypeMlR524xlarge,
 	}
 }
 

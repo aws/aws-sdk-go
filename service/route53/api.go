@@ -11803,7 +11803,7 @@ type HealthCheckConfig struct {
 	// If you don't specify a value for FullyQualifiedDomainName, Route 53 substitutes
 	// the value of IPAddress in the Host header in each of the preceding cases.
 	//
-	// If you don't specify a value for IPAddress :
+	// If you don't specify a value for IPAddress:
 	//
 	// Route 53 sends a DNS request to the domain that you specify for FullyQualifiedDomainName
 	// at the interval that you specify for RequestInterval. Using an IPv4 address

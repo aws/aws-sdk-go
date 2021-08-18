@@ -10690,20 +10690,6 @@ func (s *ProjectBadge) SetBadgeRequestUrl(v string) *ProjectBadge {
 type ProjectBuildBatchConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies how build status reports are sent to the source provider for the
-	// batch build. This property is only used when the source provider for your
-	// project is Bitbucket, GitHub, or GitHub Enterprise, and your project is configured
-	// to report build statuses to the source provider.
-	//
-	// REPORT_AGGREGATED_BATCH
-	//
-	// (Default) Aggregate all of the build statuses into a single status report.
-	//
-	// REPORT_INDIVIDUAL_BUILDS
-	//
-	// Send a separate status report for each individual build.
-	BatchReportMode *string `locationName:"batchReportMode" type:"string" enum:"BatchReportModeType"`
-
 	// Specifies if the build artifacts for the batch build should be combined into
 	// a single artifact location.
 	CombineArtifacts *bool `locationName:"combineArtifacts" type:"boolean"`
@@ -10741,12 +10727,6 @@ func (s *ProjectBuildBatchConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
-}
-
-// SetBatchReportMode sets the BatchReportMode field's value.
-func (s *ProjectBuildBatchConfig) SetBatchReportMode(v string) *ProjectBuildBatchConfig {
-	s.BatchReportMode = &v
-	return s
 }
 
 // SetCombineArtifacts sets the CombineArtifacts field's value.
@@ -11284,6 +11264,9 @@ type ProjectSource struct {
 	//
 	// The status of a build triggered by a webhook is always reported to your source
 	// provider.
+	//
+	// If your project's builds are triggered by a webhook, you must push a new
+	// commit to the repo for a change to this property to take effect.
 	ReportBuildStatus *bool `locationName:"reportBuildStatus" type:"boolean"`
 
 	// An identifier for this project source. The identifier can only contain alphanumeric
@@ -15105,22 +15088,6 @@ func AuthType_Values() []string {
 		AuthTypeOauth,
 		AuthTypeBasicAuth,
 		AuthTypePersonalAccessToken,
-	}
-}
-
-const (
-	// BatchReportModeTypeReportIndividualBuilds is a BatchReportModeType enum value
-	BatchReportModeTypeReportIndividualBuilds = "REPORT_INDIVIDUAL_BUILDS"
-
-	// BatchReportModeTypeReportAggregatedBatch is a BatchReportModeType enum value
-	BatchReportModeTypeReportAggregatedBatch = "REPORT_AGGREGATED_BATCH"
-)
-
-// BatchReportModeType_Values returns all elements of the BatchReportModeType enum
-func BatchReportModeType_Values() []string {
-	return []string{
-		BatchReportModeTypeReportIndividualBuilds,
-		BatchReportModeTypeReportAggregatedBatch,
 	}
 }
 

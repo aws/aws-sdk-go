@@ -3115,6 +3115,36 @@
         "CreatedBy":{"shape":"UserContext"}
       }
     },
+    "AsyncInferenceClientConfig":{
+      "type":"structure",
+      "members":{
+        "MaxConcurrentInvocationsPerInstance":{"shape":"MaxConcurrentInvocationsPerInstance"}
+      }
+    },
+    "AsyncInferenceConfig":{
+      "type":"structure",
+      "required":["OutputConfig"],
+      "members":{
+        "ClientConfig":{"shape":"AsyncInferenceClientConfig"},
+        "OutputConfig":{"shape":"AsyncInferenceOutputConfig"}
+      }
+    },
+    "AsyncInferenceNotificationConfig":{
+      "type":"structure",
+      "members":{
+        "SuccessTopic":{"shape":"SnsTopicArn"},
+        "ErrorTopic":{"shape":"SnsTopicArn"}
+      }
+    },
+    "AsyncInferenceOutputConfig":{
+      "type":"structure",
+      "required":["S3OutputPath"],
+      "members":{
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "S3OutputPath":{"shape":"DestinationS3Uri"},
+        "NotificationConfig":{"shape":"AsyncInferenceNotificationConfig"}
+      }
+    },
     "AthenaCatalog":{
       "type":"string",
       "max":256,
@@ -4018,7 +4048,7 @@
     "ContainerDefinitionList":{
       "type":"list",
       "member":{"shape":"ContainerDefinition"},
-      "max":5
+      "max":15
     },
     "ContainerEntrypoint":{
       "type":"list",
@@ -4444,7 +4474,8 @@
         "ProductionVariants":{"shape":"ProductionVariantList"},
         "DataCaptureConfig":{"shape":"DataCaptureConfig"},
         "Tags":{"shape":"TagList"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "AsyncInferenceConfig":{"shape":"AsyncInferenceConfig"}
       }
     },
     "CreateEndpointConfigOutput":{
@@ -4851,7 +4882,8 @@
         "AcceleratorTypes":{"shape":"NotebookInstanceAcceleratorTypes"},
         "DefaultCodeRepository":{"shape":"CodeRepositoryNameOrUrl"},
         "AdditionalCodeRepositories":{"shape":"AdditionalCodeRepositoryNamesOrUrls"},
-        "RootAccess":{"shape":"RootAccess"}
+        "RootAccess":{"shape":"RootAccess"},
+        "PlatformIdentifier":{"shape":"PlatformIdentifier"}
       }
     },
     "CreateNotebookInstanceLifecycleConfigInput":{
@@ -6218,7 +6250,8 @@
         "ProductionVariants":{"shape":"ProductionVariantList"},
         "DataCaptureConfig":{"shape":"DataCaptureConfig"},
         "KmsKeyId":{"shape":"KmsKeyId"},
-        "CreationTime":{"shape":"Timestamp"}
+        "CreationTime":{"shape":"Timestamp"},
+        "AsyncInferenceConfig":{"shape":"AsyncInferenceConfig"}
       }
     },
     "DescribeEndpointInput":{
@@ -6248,7 +6281,8 @@
         "FailureReason":{"shape":"FailureReason"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "LastDeploymentConfig":{"shape":"DeploymentConfig"}
+        "LastDeploymentConfig":{"shape":"DeploymentConfig"},
+        "AsyncInferenceConfig":{"shape":"AsyncInferenceConfig"}
       }
     },
     "DescribeExperimentRequest":{
@@ -6750,7 +6784,8 @@
         "AcceleratorTypes":{"shape":"NotebookInstanceAcceleratorTypes"},
         "DefaultCodeRepository":{"shape":"CodeRepositoryNameOrUrl"},
         "AdditionalCodeRepositories":{"shape":"AdditionalCodeRepositoryNamesOrUrls"},
-        "RootAccess":{"shape":"RootAccess"}
+        "RootAccess":{"shape":"RootAccess"},
+        "PlatformIdentifier":{"shape":"PlatformIdentifier"}
       }
     },
     "DescribePipelineDefinitionForExecutionRequest":{
@@ -8751,6 +8786,10 @@
         "SupportedResponseMIMETypes":{"shape":"ResponseMIMETypes"}
       }
     },
+    "InitialTaskCount":{
+      "type":"integer",
+      "min":1
+    },
     "InputConfig":{
       "type":"structure",
       "required":[
@@ -8804,6 +8843,14 @@
         "ml.m5.4xlarge",
         "ml.m5.12xlarge",
         "ml.m5.24xlarge",
+        "ml.m5d.large",
+        "ml.m5d.xlarge",
+        "ml.m5d.2xlarge",
+        "ml.m5d.4xlarge",
+        "ml.m5d.8xlarge",
+        "ml.m5d.12xlarge",
+        "ml.m5d.16xlarge",
+        "ml.m5d.24xlarge",
         "ml.c4.xlarge",
         "ml.c4.2xlarge",
         "ml.c4.4xlarge",
@@ -8823,7 +8870,22 @@
         "ml.p2.16xlarge",
         "ml.p3.2xlarge",
         "ml.p3.8xlarge",
-        "ml.p3.16xlarge"
+        "ml.p3.16xlarge",
+        "ml.p3dn.24xlarge",
+        "ml.g4dn.xlarge",
+        "ml.g4dn.2xlarge",
+        "ml.g4dn.4xlarge",
+        "ml.g4dn.8xlarge",
+        "ml.g4dn.12xlarge",
+        "ml.g4dn.16xlarge",
+        "ml.r5.large",
+        "ml.r5.xlarge",
+        "ml.r5.2xlarge",
+        "ml.r5.4xlarge",
+        "ml.r5.8xlarge",
+        "ml.r5.12xlarge",
+        "ml.r5.16xlarge",
+        "ml.r5.24xlarge"
       ]
     },
     "Integer":{"type":"integer"},
@@ -10363,6 +10425,11 @@
       "type":"integer",
       "min":1
     },
+    "MaxConcurrentInvocationsPerInstance":{
+      "type":"integer",
+      "max":1000,
+      "min":1
+    },
     "MaxConcurrentTaskCount":{
       "type":"integer",
       "max":1000,
@@ -10706,7 +10773,7 @@
     "ModelPackageContainerDefinitionList":{
       "type":"list",
       "member":{"shape":"ModelPackageContainerDefinition"},
-      "max":5,
+      "max":15,
       "min":1
     },
     "ModelPackageGroup":{
@@ -11948,6 +12015,11 @@
       "max":100,
       "min":0
     },
+    "PlatformIdentifier":{
+      "type":"string",
+      "max":15,
+      "pattern":"^(notebook-al1-v1|notebook-al2-v1)$"
+    },
     "PolicyString":{
       "type":"string",
       "max":20480,
@@ -12284,7 +12356,7 @@
       "members":{
         "VariantName":{"shape":"VariantName"},
         "ModelName":{"shape":"ModelName"},
-        "InitialInstanceCount":{"shape":"TaskCount"},
+        "InitialInstanceCount":{"shape":"InitialTaskCount"},
         "InstanceType":{"shape":"ProductionVariantInstanceType"},
         "InitialVariantWeight":{"shape":"VariantWeight"},
         "AcceleratorType":{"shape":"ProductionVariantAcceleratorType"},
@@ -13680,7 +13752,7 @@
     },
     "TaskCount":{
       "type":"integer",
-      "min":1
+      "min":0
     },
     "TaskDescription":{
       "type":"string",

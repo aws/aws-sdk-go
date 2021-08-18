@@ -122,6 +122,108 @@ func (c *SageMakerRuntime) InvokeEndpointWithContext(ctx aws.Context, input *Inv
 	return out, req.Send()
 }
 
+const opInvokeEndpointAsync = "InvokeEndpointAsync"
+
+// InvokeEndpointAsyncRequest generates a "aws/request.Request" representing the
+// client's request for the InvokeEndpointAsync operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See InvokeEndpointAsync for more information on using the InvokeEndpointAsync
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the InvokeEndpointAsyncRequest method.
+//    req, resp := client.InvokeEndpointAsyncRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpointAsync
+func (c *SageMakerRuntime) InvokeEndpointAsyncRequest(input *InvokeEndpointAsyncInput) (req *request.Request, output *InvokeEndpointAsyncOutput) {
+	op := &request.Operation{
+		Name:       opInvokeEndpointAsync,
+		HTTPMethod: "POST",
+		HTTPPath:   "/endpoints/{EndpointName}/async-invocations",
+	}
+
+	if input == nil {
+		input = &InvokeEndpointAsyncInput{}
+	}
+
+	output = &InvokeEndpointAsyncOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// InvokeEndpointAsync API operation for Amazon SageMaker Runtime.
+//
+// After you deploy a model into production using Amazon SageMaker hosting services,
+// your client applications use this API to get inferences from the model hosted
+// at the specified endpoint in an asynchronous manner.
+//
+// Inference requests sent to this API are enqueued for asynchronous processing.
+// The processing of the inference request may or may not complete before the
+// you receive a response from this API. The response from this API will not
+// contain the result of the inference request but contain information about
+// where you can locate it.
+//
+// Amazon SageMaker strips all POST headers except those supported by the API.
+// Amazon SageMaker might add additional headers. You should not rely on the
+// behavior of headers outside those enumerated in the request syntax.
+//
+// Calls to InvokeEndpointAsync are authenticated by using AWS Signature Version
+// 4. For information, see Authenticating Requests (AWS Signature Version 4)
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/sig-v4-authenticating-requests.html)
+// in the Amazon S3 API Reference.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Runtime's
+// API operation InvokeEndpointAsync for usage and error information.
+//
+// Returned Error Types:
+//   * InternalFailure
+//   An internal failure occurred.
+//
+//   * ServiceUnavailable
+//   The service is unavailable. Try your call again.
+//
+//   * ValidationError
+//   Inspect your request and try again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/runtime.sagemaker-2017-05-13/InvokeEndpointAsync
+func (c *SageMakerRuntime) InvokeEndpointAsync(input *InvokeEndpointAsyncInput) (*InvokeEndpointAsyncOutput, error) {
+	req, out := c.InvokeEndpointAsyncRequest(input)
+	return out, req.Send()
+}
+
+// InvokeEndpointAsyncWithContext is the same as InvokeEndpointAsync with the addition of
+// the ability to pass a context and additional request options.
+//
+// See InvokeEndpointAsync for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMakerRuntime) InvokeEndpointAsyncWithContext(ctx aws.Context, input *InvokeEndpointAsyncInput, opts ...request.Option) (*InvokeEndpointAsyncOutput, error) {
+	req, out := c.InvokeEndpointAsyncRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // An internal failure occurred.
 type InternalFailure struct {
 	_            struct{}                  `type:"structure"`
@@ -176,6 +278,169 @@ func (s *InternalFailure) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalFailure) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type InvokeEndpointAsyncInput struct {
+	_ struct{} `type:"structure"`
+
+	// The desired MIME type of the inference in the response.
+	Accept *string `location:"header" locationName:"X-Amzn-SageMaker-Accept" type:"string"`
+
+	// The MIME type of the input data in the request body.
+	ContentType *string `location:"header" locationName:"X-Amzn-SageMaker-Content-Type" type:"string"`
+
+	// Provides additional information about a request for an inference submitted
+	// to a model hosted at an Amazon SageMaker endpoint. The information is an
+	// opaque value that is forwarded verbatim. You could use this value, for example,
+	// to provide an ID that you can use to track a request or to provide other
+	// metadata that a service endpoint was programmed to process. The value must
+	// consist of no more than 1024 visible US-ASCII characters as specified in
+	// Section 3.3.6. Field Value Components (https://datatracker.ietf.org/doc/html/rfc7230#section-3.2.6)
+	// of the Hypertext Transfer Protocol (HTTP/1.1).
+	//
+	// The code in your model is responsible for setting or updating any custom
+	// attributes in the response. If your code does not set this value in the response,
+	// an empty value is returned. For example, if a custom attribute represents
+	// the trace ID, your model can prepend the custom attribute with Trace ID:
+	// in your post-processing function.
+	//
+	// This feature is currently supported in the AWS SDKs but not in the Amazon
+	// SageMaker Python SDK.
+	CustomAttributes *string `location:"header" locationName:"X-Amzn-SageMaker-Custom-Attributes" type:"string" sensitive:"true"`
+
+	// The name of the endpoint that you specified when you created the endpoint
+	// using the CreateEndpoint (https://docs.aws.amazon.com/sagemaker/latest/APIReference/API_CreateEndpoint.html)
+	// API.
+	//
+	// EndpointName is a required field
+	EndpointName *string `location:"uri" locationName:"EndpointName" type:"string" required:"true"`
+
+	// The identifier for the inference request. Amazon SageMaker will generate
+	// an identifier for you if none is specified.
+	InferenceId *string `location:"header" locationName:"X-Amzn-SageMaker-Inference-Id" min:"1" type:"string"`
+
+	// The Amazon S3 URI where the inference request payload is stored.
+	//
+	// InputLocation is a required field
+	InputLocation *string `location:"header" locationName:"X-Amzn-SageMaker-InputLocation" min:"1" type:"string" required:"true"`
+
+	// Maximum age in seconds a request can be in the queue before it is marked
+	// as expired.
+	RequestTTLSeconds *int64 `location:"header" locationName:"X-Amzn-SageMaker-RequestTTLSeconds" min:"60" type:"integer"`
+}
+
+// String returns the string representation
+func (s InvokeEndpointAsyncInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvokeEndpointAsyncInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InvokeEndpointAsyncInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InvokeEndpointAsyncInput"}
+	if s.EndpointName == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointName"))
+	}
+	if s.EndpointName != nil && len(*s.EndpointName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointName", 1))
+	}
+	if s.InferenceId != nil && len(*s.InferenceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InferenceId", 1))
+	}
+	if s.InputLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("InputLocation"))
+	}
+	if s.InputLocation != nil && len(*s.InputLocation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("InputLocation", 1))
+	}
+	if s.RequestTTLSeconds != nil && *s.RequestTTLSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("RequestTTLSeconds", 60))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccept sets the Accept field's value.
+func (s *InvokeEndpointAsyncInput) SetAccept(v string) *InvokeEndpointAsyncInput {
+	s.Accept = &v
+	return s
+}
+
+// SetContentType sets the ContentType field's value.
+func (s *InvokeEndpointAsyncInput) SetContentType(v string) *InvokeEndpointAsyncInput {
+	s.ContentType = &v
+	return s
+}
+
+// SetCustomAttributes sets the CustomAttributes field's value.
+func (s *InvokeEndpointAsyncInput) SetCustomAttributes(v string) *InvokeEndpointAsyncInput {
+	s.CustomAttributes = &v
+	return s
+}
+
+// SetEndpointName sets the EndpointName field's value.
+func (s *InvokeEndpointAsyncInput) SetEndpointName(v string) *InvokeEndpointAsyncInput {
+	s.EndpointName = &v
+	return s
+}
+
+// SetInferenceId sets the InferenceId field's value.
+func (s *InvokeEndpointAsyncInput) SetInferenceId(v string) *InvokeEndpointAsyncInput {
+	s.InferenceId = &v
+	return s
+}
+
+// SetInputLocation sets the InputLocation field's value.
+func (s *InvokeEndpointAsyncInput) SetInputLocation(v string) *InvokeEndpointAsyncInput {
+	s.InputLocation = &v
+	return s
+}
+
+// SetRequestTTLSeconds sets the RequestTTLSeconds field's value.
+func (s *InvokeEndpointAsyncInput) SetRequestTTLSeconds(v int64) *InvokeEndpointAsyncInput {
+	s.RequestTTLSeconds = &v
+	return s
+}
+
+type InvokeEndpointAsyncOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Identifier for an inference request. This will be the same as the InferenceId
+	// specified in the input. Amazon SageMaker will generate an identifier for
+	// you if you do not specify one.
+	InferenceId *string `type:"string"`
+
+	// The Amazon S3 URI where the inference response payload is stored.
+	OutputLocation *string `location:"header" locationName:"X-Amzn-SageMaker-OutputLocation" type:"string"`
+}
+
+// String returns the string representation
+func (s InvokeEndpointAsyncOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InvokeEndpointAsyncOutput) GoString() string {
+	return s.String()
+}
+
+// SetInferenceId sets the InferenceId field's value.
+func (s *InvokeEndpointAsyncOutput) SetInferenceId(v string) *InvokeEndpointAsyncOutput {
+	s.InferenceId = &v
+	return s
+}
+
+// SetOutputLocation sets the OutputLocation field's value.
+func (s *InvokeEndpointAsyncOutput) SetOutputLocation(v string) *InvokeEndpointAsyncOutput {
+	s.OutputLocation = &v
+	return s
 }
 
 type InvokeEndpointInput struct {

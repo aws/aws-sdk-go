@@ -26,6 +26,21 @@
         {"shape":"ValidationError"},
         {"shape":"ModelError"}
       ]
+    },
+    "InvokeEndpointAsync":{
+      "name":"InvokeEndpointAsync",
+      "http":{
+        "method":"POST",
+        "requestUri":"/endpoints/{EndpointName}/async-invocations",
+        "responseCode":202
+      },
+      "input":{"shape":"InvokeEndpointAsyncInput"},
+      "output":{"shape":"InvokeEndpointAsyncOutput"},
+      "errors":[
+        {"shape":"InternalFailure"},
+        {"shape":"ServiceUnavailable"},
+        {"shape":"ValidationError"}
+      ]
     }
   },
   "shapes":{
@@ -56,6 +71,12 @@
       "min":1,
       "pattern":"\\A\\S[\\p{Print}]*\\z"
     },
+    "InputLocationHeader":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^(https|s3)://([^/]+)/?(.*)$"
+    },
     "InternalFailure":{
       "type":"structure",
       "members":{
@@ -65,6 +86,61 @@
       "exception":true,
       "fault":true,
       "synthetic":true
+    },
+    "InvokeEndpointAsyncInput":{
+      "type":"structure",
+      "required":[
+        "EndpointName",
+        "InputLocation"
+      ],
+      "members":{
+        "EndpointName":{
+          "shape":"EndpointName",
+          "location":"uri",
+          "locationName":"EndpointName"
+        },
+        "ContentType":{
+          "shape":"Header",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Content-Type"
+        },
+        "Accept":{
+          "shape":"Header",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Accept"
+        },
+        "CustomAttributes":{
+          "shape":"CustomAttributesHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Custom-Attributes"
+        },
+        "InferenceId":{
+          "shape":"InferenceId",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-Inference-Id"
+        },
+        "InputLocation":{
+          "shape":"InputLocationHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-InputLocation"
+        },
+        "RequestTTLSeconds":{
+          "shape":"RequestTTLSecondsHeader",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-RequestTTLSeconds"
+        }
+      }
+    },
+    "InvokeEndpointAsyncOutput":{
+      "type":"structure",
+      "members":{
+        "InferenceId":{"shape":"Header"},
+        "OutputLocation":{
+          "shape":"Header",
+          "location":"header",
+          "locationName":"X-Amzn-SageMaker-OutputLocation"
+        }
+      }
     },
     "InvokeEndpointInput":{
       "type":"structure",
@@ -155,6 +231,11 @@
       },
       "error":{"httpStatusCode":424},
       "exception":true
+    },
+    "RequestTTLSecondsHeader":{
+      "type":"integer",
+      "max":21600,
+      "min":60
     },
     "ServiceUnavailable":{
       "type":"structure",
