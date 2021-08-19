@@ -57,10 +57,11 @@ func (c *Appflow) CreateConnectorProfileRequest(input *CreateConnectorProfileInp
 
 // CreateConnectorProfile API operation for Amazon Appflow.
 //
-// Creates a new connector profile associated with your AWS account. There is
-// a soft quota of 100 connector profiles per AWS account. If you need more
-// connector profiles than this quota allows, you can submit a request to the
-// Amazon AppFlow team through the Amazon AppFlow support channel.
+// Creates a new connector profile associated with your Amazon Web Services
+// account. There is a soft quota of 100 connector profiles per Amazon Web Services
+// account. If you need more connector profiles than this quota allows, you
+// can submit a request to the Amazon AppFlow team through the Amazon AppFlow
+// support channel.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2049,6 +2050,59 @@ func (s *AmplitudeSourceProperties) SetObject(v string) *AmplitudeSourceProperti
 	return s
 }
 
+// The basic auth credentials required for basic authentication.
+type BasicAuthCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The password to use to connect to a resource.
+	//
+	// Password is a required field
+	Password *string `locationName:"password" type:"string" required:"true" sensitive:"true"`
+
+	// The username to use to connect to a resource.
+	//
+	// Username is a required field
+	Username *string `locationName:"username" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s BasicAuthCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BasicAuthCredentials) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BasicAuthCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BasicAuthCredentials"}
+	if s.Password == nil {
+		invalidParams.Add(request.NewErrParamRequired("Password"))
+	}
+	if s.Username == nil {
+		invalidParams.Add(request.NewErrParamRequired("Username"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPassword sets the Password field's value.
+func (s *BasicAuthCredentials) SetPassword(v string) *BasicAuthCredentials {
+	s.Password = &v
+	return s
+}
+
+// SetUsername sets the Username field's value.
+func (s *BasicAuthCredentials) SetUsername(v string) *BasicAuthCredentials {
+	s.Username = &v
+	return s
+}
+
 // There was a conflict when processing the request (for example, a flow with
 // the given name already exists within the account. Check for conflicting resource
 // names and try again.
@@ -2413,6 +2467,9 @@ type ConnectorMetadata struct {
 	// The connector metadata specific to Amazon S3.
 	S3 *S3Metadata `type:"structure"`
 
+	// The connector metadata specific to SAPOData.
+	SAPOData *SAPODataMetadata `type:"structure"`
+
 	// The connector metadata specific to Salesforce.
 	Salesforce *SalesforceMetadata `type:"structure"`
 
@@ -2514,6 +2571,12 @@ func (s *ConnectorMetadata) SetRedshift(v *RedshiftMetadata) *ConnectorMetadata 
 // SetS3 sets the S3 field's value.
 func (s *ConnectorMetadata) SetS3(v *S3Metadata) *ConnectorMetadata {
 	s.S3 = v
+	return s
+}
+
+// SetSAPOData sets the SAPOData field's value.
+func (s *ConnectorMetadata) SetSAPOData(v *SAPODataMetadata) *ConnectorMetadata {
+	s.SAPOData = v
 	return s
 }
 
@@ -2632,6 +2695,9 @@ type ConnectorOperator struct {
 	// The operation to be performed on the provided Amazon S3 source fields.
 	S3 *string `type:"string" enum:"S3ConnectorOperator"`
 
+	// The operation to be performed on the provided SAPOData source fields.
+	SAPOData *string `type:"string" enum:"SAPODataConnectorOperator"`
+
 	// The operation to be performed on the provided Salesforce source fields.
 	Salesforce *string `type:"string" enum:"SalesforceConnectorOperator"`
 
@@ -2706,6 +2772,12 @@ func (s *ConnectorOperator) SetS3(v string) *ConnectorOperator {
 	return s
 }
 
+// SetSAPOData sets the SAPOData field's value.
+func (s *ConnectorOperator) SetSAPOData(v string) *ConnectorOperator {
+	s.SAPOData = &v
+	return s
+}
+
 // SetSalesforce sets the Salesforce field's value.
 func (s *ConnectorOperator) SetSalesforce(v string) *ConnectorOperator {
 	s.Salesforce = &v
@@ -2763,7 +2835,7 @@ type ConnectorProfile struct {
 	ConnectorProfileArn *string `locationName:"connectorProfileArn" type:"string"`
 
 	// The name of the connector profile. The name is unique for each ConnectorProfile
-	// in the AWS account.
+	// in the Amazon Web Services account.
 	ConnectorProfileName *string `locationName:"connectorProfileName" type:"string"`
 
 	// The connector-specific properties of the profile configuration.
@@ -2780,6 +2852,9 @@ type ConnectorProfile struct {
 
 	// Specifies when the connector profile was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
+
+	// Specifies the private connection provisioning state.
+	PrivateConnectionProvisioningState *PrivateConnectionProvisioningState `locationName:"privateConnectionProvisioningState" type:"structure"`
 }
 
 // String returns the string representation
@@ -2837,6 +2912,12 @@ func (s *ConnectorProfile) SetCredentialsArn(v string) *ConnectorProfile {
 // SetLastUpdatedAt sets the LastUpdatedAt field's value.
 func (s *ConnectorProfile) SetLastUpdatedAt(v time.Time) *ConnectorProfile {
 	s.LastUpdatedAt = &v
+	return s
+}
+
+// SetPrivateConnectionProvisioningState sets the PrivateConnectionProvisioningState field's value.
+func (s *ConnectorProfile) SetPrivateConnectionProvisioningState(v *PrivateConnectionProvisioningState) *ConnectorProfile {
+	s.PrivateConnectionProvisioningState = v
 	return s
 }
 
@@ -2932,6 +3013,9 @@ type ConnectorProfileCredentials struct {
 	// The connector-specific credentials required when using Amazon Redshift.
 	Redshift *RedshiftConnectorProfileCredentials `type:"structure"`
 
+	// The connector-specific profile credentials required when using SAPOData.
+	SAPOData *SAPODataConnectorProfileCredentials `type:"structure"`
+
 	// The connector-specific credentials required when using Salesforce.
 	Salesforce *SalesforceConnectorProfileCredentials `type:"structure"`
 
@@ -3003,6 +3087,11 @@ func (s *ConnectorProfileCredentials) Validate() error {
 	if s.Redshift != nil {
 		if err := s.Redshift.Validate(); err != nil {
 			invalidParams.AddNested("Redshift", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SAPOData != nil {
+		if err := s.SAPOData.Validate(); err != nil {
+			invalidParams.AddNested("SAPOData", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Salesforce != nil {
@@ -3100,6 +3189,12 @@ func (s *ConnectorProfileCredentials) SetRedshift(v *RedshiftConnectorProfileCre
 	return s
 }
 
+// SetSAPOData sets the SAPOData field's value.
+func (s *ConnectorProfileCredentials) SetSAPOData(v *SAPODataConnectorProfileCredentials) *ConnectorProfileCredentials {
+	s.SAPOData = v
+	return s
+}
+
 // SetSalesforce sets the Salesforce field's value.
 func (s *ConnectorProfileCredentials) SetSalesforce(v *SalesforceConnectorProfileCredentials) *ConnectorProfileCredentials {
 	s.Salesforce = v
@@ -3176,6 +3271,9 @@ type ConnectorProfileProperties struct {
 	// The connector-specific properties required by Amazon Redshift.
 	Redshift *RedshiftConnectorProfileProperties `type:"structure"`
 
+	// The connector-specific profile properties required when using SAPOData.
+	SAPOData *SAPODataConnectorProfileProperties `type:"structure"`
+
 	// The connector-specific properties required by Salesforce.
 	Salesforce *SalesforceConnectorProfileProperties `type:"structure"`
 
@@ -3237,6 +3335,11 @@ func (s *ConnectorProfileProperties) Validate() error {
 	if s.Redshift != nil {
 		if err := s.Redshift.Validate(); err != nil {
 			invalidParams.AddNested("Redshift", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SAPOData != nil {
+		if err := s.SAPOData.Validate(); err != nil {
+			invalidParams.AddNested("SAPOData", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.ServiceNow != nil {
@@ -3316,6 +3419,12 @@ func (s *ConnectorProfileProperties) SetMarketo(v *MarketoConnectorProfileProper
 // SetRedshift sets the Redshift field's value.
 func (s *ConnectorProfileProperties) SetRedshift(v *RedshiftConnectorProfileProperties) *ConnectorProfileProperties {
 	s.Redshift = v
+	return s
+}
+
+// SetSAPOData sets the SAPOData field's value.
+func (s *ConnectorProfileProperties) SetSAPOData(v *SAPODataConnectorProfileProperties) *ConnectorProfileProperties {
+	s.SAPOData = v
 	return s
 }
 
@@ -3427,8 +3536,8 @@ type CreateConnectorProfileInput struct {
 	_ struct{} `type:"structure"`
 
 	// Indicates the connection mode and specifies whether it is public or private.
-	// Private flows use AWS PrivateLink to route data over AWS infrastructure without
-	// exposing it to the public internet.
+	// Private flows use Amazon Web Services PrivateLink to route data over Amazon
+	// Web Services infrastructure without exposing it to the public internet.
 	//
 	// ConnectionMode is a required field
 	ConnectionMode *string `locationName:"connectionMode" type:"string" required:"true" enum:"ConnectionMode"`
@@ -3439,7 +3548,7 @@ type CreateConnectorProfileInput struct {
 	ConnectorProfileConfig *ConnectorProfileConfig `locationName:"connectorProfileConfig" type:"structure" required:"true"`
 
 	// The name of the connector profile. The name is unique for each ConnectorProfile
-	// in your AWS account.
+	// in your Amazon Web Services account.
 	//
 	// ConnectorProfileName is a required field
 	ConnectorProfileName *string `locationName:"connectorProfileName" type:"string" required:"true"`
@@ -4091,7 +4200,7 @@ type DescribeConnectorEntityInput struct {
 	ConnectorEntityName *string `locationName:"connectorEntityName" type:"string" required:"true"`
 
 	// The name of the connector profile. The name is unique for each ConnectorProfile
-	// in the AWS account.
+	// in the Amazon Web Services account.
 	ConnectorProfileName *string `locationName:"connectorProfileName" type:"string"`
 
 	// The type of connector application, such as Salesforce, Amplitude, and so
@@ -4170,7 +4279,7 @@ type DescribeConnectorProfilesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the connector profile. The name is unique for each ConnectorProfile
-	// in the AWS account.
+	// in the Amazon Web Services account.
 	ConnectorProfileNames []*string `locationName:"connectorProfileNames" type:"list"`
 
 	// The type of connector, such as Salesforce, Amplitude, and so on.
@@ -4857,7 +4966,7 @@ type DestinationFlowConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the connector profile. This name must be unique for each connector
-	// profile in the AWS account.
+	// profile in the Amazon Web Services account.
 	ConnectorProfileName *string `locationName:"connectorProfileName" type:"string"`
 
 	// The type of connector, such as Salesforce, Amplitude, and so on.
@@ -6140,7 +6249,7 @@ type ListConnectorEntitiesInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the connector profile. The name is unique for each ConnectorProfile
-	// in the AWS account, and is used to query the downstream connector.
+	// in the Amazon Web Services account, and is used to query the downstream connector.
 	ConnectorProfileName *string `locationName:"connectorProfileName" type:"string"`
 
 	// The type of connector, such as Salesforce, Amplitude, and so on.
@@ -6534,6 +6643,157 @@ func (s *MarketoSourceProperties) SetObject(v string) *MarketoSourceProperties {
 	return s
 }
 
+// The OAuth credentials required for OAuth type authentication.
+type OAuthCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The access token used to access protected SAPOData resources.
+	AccessToken *string `locationName:"accessToken" type:"string" sensitive:"true"`
+
+	// The identifier for the desired client.
+	//
+	// ClientId is a required field
+	ClientId *string `locationName:"clientId" type:"string" required:"true"`
+
+	// The client secret used by the OAuth client to authenticate to the authorization
+	// server.
+	//
+	// ClientSecret is a required field
+	ClientSecret *string `locationName:"clientSecret" type:"string" required:"true" sensitive:"true"`
+
+	// The OAuth requirement needed to request security tokens from the connector
+	// endpoint.
+	OAuthRequest *ConnectorOAuthRequest `locationName:"oAuthRequest" type:"structure"`
+
+	// The refresh token used to refresh expired access token.
+	RefreshToken *string `locationName:"refreshToken" type:"string"`
+}
+
+// String returns the string representation
+func (s OAuthCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OAuthCredentials) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OAuthCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OAuthCredentials"}
+	if s.ClientId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientId"))
+	}
+	if s.ClientSecret == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientSecret"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccessToken sets the AccessToken field's value.
+func (s *OAuthCredentials) SetAccessToken(v string) *OAuthCredentials {
+	s.AccessToken = &v
+	return s
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *OAuthCredentials) SetClientId(v string) *OAuthCredentials {
+	s.ClientId = &v
+	return s
+}
+
+// SetClientSecret sets the ClientSecret field's value.
+func (s *OAuthCredentials) SetClientSecret(v string) *OAuthCredentials {
+	s.ClientSecret = &v
+	return s
+}
+
+// SetOAuthRequest sets the OAuthRequest field's value.
+func (s *OAuthCredentials) SetOAuthRequest(v *ConnectorOAuthRequest) *OAuthCredentials {
+	s.OAuthRequest = v
+	return s
+}
+
+// SetRefreshToken sets the RefreshToken field's value.
+func (s *OAuthCredentials) SetRefreshToken(v string) *OAuthCredentials {
+	s.RefreshToken = &v
+	return s
+}
+
+// The OAuth properties required for OAuth type authentication.
+type OAuthProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The authorization code url required to redirect to SAP Login Page to fetch
+	// authorization code for OAuth type authentication.
+	//
+	// AuthCodeUrl is a required field
+	AuthCodeUrl *string `locationName:"authCodeUrl" type:"string" required:"true"`
+
+	// The OAuth scopes required for OAuth type authentication.
+	//
+	// OAuthScopes is a required field
+	OAuthScopes []*string `locationName:"oAuthScopes" type:"list" required:"true"`
+
+	// The token url required to fetch access/refresh tokens using authorization
+	// code and also to refresh expired access token using refresh token.
+	//
+	// TokenUrl is a required field
+	TokenUrl *string `locationName:"tokenUrl" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s OAuthProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OAuthProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OAuthProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OAuthProperties"}
+	if s.AuthCodeUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("AuthCodeUrl"))
+	}
+	if s.OAuthScopes == nil {
+		invalidParams.Add(request.NewErrParamRequired("OAuthScopes"))
+	}
+	if s.TokenUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("TokenUrl"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthCodeUrl sets the AuthCodeUrl field's value.
+func (s *OAuthProperties) SetAuthCodeUrl(v string) *OAuthProperties {
+	s.AuthCodeUrl = &v
+	return s
+}
+
+// SetOAuthScopes sets the OAuthScopes field's value.
+func (s *OAuthProperties) SetOAuthScopes(v []*string) *OAuthProperties {
+	s.OAuthScopes = v
+	return s
+}
+
+// SetTokenUrl sets the TokenUrl field's value.
+func (s *OAuthProperties) SetTokenUrl(v string) *OAuthProperties {
+	s.TokenUrl = &v
+	return s
+}
+
 // Determines the prefix that Amazon AppFlow applies to the destination folder
 // name. You can name your destination folders according to the flow frequency
 // and date.
@@ -6567,6 +6827,48 @@ func (s *PrefixConfig) SetPrefixFormat(v string) *PrefixConfig {
 // SetPrefixType sets the PrefixType field's value.
 func (s *PrefixConfig) SetPrefixType(v string) *PrefixConfig {
 	s.PrefixType = &v
+	return s
+}
+
+// Specifies the private connection provisioning state.
+type PrivateConnectionProvisioningState struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the private connection provisioning failure cause.
+	FailureCause *string `locationName:"failureCause" type:"string" enum:"PrivateConnectionProvisioningFailureCause"`
+
+	// Specifies the private connection provisioning failure reason.
+	FailureMessage *string `locationName:"failureMessage" type:"string"`
+
+	// Specifies the private connection provisioning status.
+	Status *string `locationName:"status" type:"string" enum:"PrivateConnectionProvisioningStatus"`
+}
+
+// String returns the string representation
+func (s PrivateConnectionProvisioningState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PrivateConnectionProvisioningState) GoString() string {
+	return s.String()
+}
+
+// SetFailureCause sets the FailureCause field's value.
+func (s *PrivateConnectionProvisioningState) SetFailureCause(v string) *PrivateConnectionProvisioningState {
+	s.FailureCause = &v
+	return s
+}
+
+// SetFailureMessage sets the FailureMessage field's value.
+func (s *PrivateConnectionProvisioningState) SetFailureMessage(v string) *PrivateConnectionProvisioningState {
+	s.FailureMessage = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PrivateConnectionProvisioningState) SetStatus(v string) *PrivateConnectionProvisioningState {
+	s.Status = &v
 	return s
 }
 
@@ -7033,6 +7335,217 @@ func (s *S3SourceProperties) SetBucketName(v string) *S3SourceProperties {
 // SetBucketPrefix sets the BucketPrefix field's value.
 func (s *S3SourceProperties) SetBucketPrefix(v string) *S3SourceProperties {
 	s.BucketPrefix = &v
+	return s
+}
+
+// The connector-specific profile credentials required when using SAPOData.
+type SAPODataConnectorProfileCredentials struct {
+	_ struct{} `type:"structure"`
+
+	// The SAPOData basic authentication credentials.
+	BasicAuthCredentials *BasicAuthCredentials `locationName:"basicAuthCredentials" type:"structure"`
+
+	// The SAPOData OAuth type authentication credentials.
+	OAuthCredentials *OAuthCredentials `locationName:"oAuthCredentials" type:"structure"`
+}
+
+// String returns the string representation
+func (s SAPODataConnectorProfileCredentials) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SAPODataConnectorProfileCredentials) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SAPODataConnectorProfileCredentials) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SAPODataConnectorProfileCredentials"}
+	if s.BasicAuthCredentials != nil {
+		if err := s.BasicAuthCredentials.Validate(); err != nil {
+			invalidParams.AddNested("BasicAuthCredentials", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OAuthCredentials != nil {
+		if err := s.OAuthCredentials.Validate(); err != nil {
+			invalidParams.AddNested("OAuthCredentials", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBasicAuthCredentials sets the BasicAuthCredentials field's value.
+func (s *SAPODataConnectorProfileCredentials) SetBasicAuthCredentials(v *BasicAuthCredentials) *SAPODataConnectorProfileCredentials {
+	s.BasicAuthCredentials = v
+	return s
+}
+
+// SetOAuthCredentials sets the OAuthCredentials field's value.
+func (s *SAPODataConnectorProfileCredentials) SetOAuthCredentials(v *OAuthCredentials) *SAPODataConnectorProfileCredentials {
+	s.OAuthCredentials = v
+	return s
+}
+
+// The connector-specific profile properties required when using SAPOData.
+type SAPODataConnectorProfileProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The location of the SAPOData resource.
+	//
+	// ApplicationHostUrl is a required field
+	ApplicationHostUrl *string `locationName:"applicationHostUrl" type:"string" required:"true"`
+
+	// The application path to catalog service.
+	//
+	// ApplicationServicePath is a required field
+	ApplicationServicePath *string `locationName:"applicationServicePath" type:"string" required:"true"`
+
+	// The client number for the client creating the connection.
+	//
+	// ClientNumber is a required field
+	ClientNumber *string `locationName:"clientNumber" min:"3" type:"string" required:"true"`
+
+	// The logon language of SAPOData instance.
+	LogonLanguage *string `locationName:"logonLanguage" type:"string"`
+
+	// The SAPOData OAuth properties required for OAuth type authentication.
+	OAuthProperties *OAuthProperties `locationName:"oAuthProperties" type:"structure"`
+
+	// The port number of the SAPOData instance.
+	//
+	// PortNumber is a required field
+	PortNumber *int64 `locationName:"portNumber" min:"1" type:"integer" required:"true"`
+
+	// The SAPOData Private Link service name to be used for private data transfers.
+	PrivateLinkServiceName *string `locationName:"privateLinkServiceName" type:"string"`
+}
+
+// String returns the string representation
+func (s SAPODataConnectorProfileProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SAPODataConnectorProfileProperties) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SAPODataConnectorProfileProperties) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SAPODataConnectorProfileProperties"}
+	if s.ApplicationHostUrl == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationHostUrl"))
+	}
+	if s.ApplicationServicePath == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationServicePath"))
+	}
+	if s.ClientNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClientNumber"))
+	}
+	if s.ClientNumber != nil && len(*s.ClientNumber) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientNumber", 3))
+	}
+	if s.PortNumber == nil {
+		invalidParams.Add(request.NewErrParamRequired("PortNumber"))
+	}
+	if s.PortNumber != nil && *s.PortNumber < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("PortNumber", 1))
+	}
+	if s.OAuthProperties != nil {
+		if err := s.OAuthProperties.Validate(); err != nil {
+			invalidParams.AddNested("OAuthProperties", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationHostUrl sets the ApplicationHostUrl field's value.
+func (s *SAPODataConnectorProfileProperties) SetApplicationHostUrl(v string) *SAPODataConnectorProfileProperties {
+	s.ApplicationHostUrl = &v
+	return s
+}
+
+// SetApplicationServicePath sets the ApplicationServicePath field's value.
+func (s *SAPODataConnectorProfileProperties) SetApplicationServicePath(v string) *SAPODataConnectorProfileProperties {
+	s.ApplicationServicePath = &v
+	return s
+}
+
+// SetClientNumber sets the ClientNumber field's value.
+func (s *SAPODataConnectorProfileProperties) SetClientNumber(v string) *SAPODataConnectorProfileProperties {
+	s.ClientNumber = &v
+	return s
+}
+
+// SetLogonLanguage sets the LogonLanguage field's value.
+func (s *SAPODataConnectorProfileProperties) SetLogonLanguage(v string) *SAPODataConnectorProfileProperties {
+	s.LogonLanguage = &v
+	return s
+}
+
+// SetOAuthProperties sets the OAuthProperties field's value.
+func (s *SAPODataConnectorProfileProperties) SetOAuthProperties(v *OAuthProperties) *SAPODataConnectorProfileProperties {
+	s.OAuthProperties = v
+	return s
+}
+
+// SetPortNumber sets the PortNumber field's value.
+func (s *SAPODataConnectorProfileProperties) SetPortNumber(v int64) *SAPODataConnectorProfileProperties {
+	s.PortNumber = &v
+	return s
+}
+
+// SetPrivateLinkServiceName sets the PrivateLinkServiceName field's value.
+func (s *SAPODataConnectorProfileProperties) SetPrivateLinkServiceName(v string) *SAPODataConnectorProfileProperties {
+	s.PrivateLinkServiceName = &v
+	return s
+}
+
+// The connector metadata specific to SAPOData.
+type SAPODataMetadata struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s SAPODataMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SAPODataMetadata) GoString() string {
+	return s.String()
+}
+
+// The properties that are applied when using SAPOData as a flow source.
+type SAPODataSourceProperties struct {
+	_ struct{} `type:"structure"`
+
+	// The object path specified in the SAPOData flow source.
+	ObjectPath *string `locationName:"objectPath" type:"string"`
+}
+
+// String returns the string representation
+func (s SAPODataSourceProperties) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SAPODataSourceProperties) GoString() string {
+	return s.String()
+}
+
+// SetObjectPath sets the ObjectPath field's value.
+func (s *SAPODataSourceProperties) SetObjectPath(v string) *SAPODataSourceProperties {
+	s.ObjectPath = &v
 	return s
 }
 
@@ -7953,7 +8466,7 @@ type SnowflakeConnectorProfileProperties struct {
 	// The Snowflake Private Link service name to be used for private data transfers.
 	PrivateLinkServiceName *string `locationName:"privateLinkServiceName" type:"string"`
 
-	// The AWS Region of the Snowflake account.
+	// The Amazon Web Services Region of the Snowflake account.
 	Region *string `locationName:"region" type:"string"`
 
 	// The name of the Amazon S3 stage that was created while setting up an Amazon
@@ -8131,7 +8644,7 @@ func (s *SnowflakeDestinationProperties) SetObject(v string) *SnowflakeDestinati
 type SnowflakeMetadata struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the supported AWS Regions when using Snowflake.
+	// Specifies the supported Amazon Web Services Regions when using Snowflake.
 	SupportedRegions []*string `locationName:"supportedRegions" type:"list"`
 }
 
@@ -8175,6 +8688,9 @@ type SourceConnectorProperties struct {
 
 	// Specifies the information that is required for querying Amazon S3.
 	S3 *S3SourceProperties `type:"structure"`
+
+	// The properties that are applied when using SAPOData as a flow source.
+	SAPOData *SAPODataSourceProperties `type:"structure"`
 
 	// Specifies the information that is required for querying Salesforce.
 	Salesforce *SalesforceSourceProperties `type:"structure"`
@@ -8330,6 +8846,12 @@ func (s *SourceConnectorProperties) SetS3(v *S3SourceProperties) *SourceConnecto
 	return s
 }
 
+// SetSAPOData sets the SAPOData field's value.
+func (s *SourceConnectorProperties) SetSAPOData(v *SAPODataSourceProperties) *SourceConnectorProperties {
+	s.SAPOData = v
+	return s
+}
+
 // SetSalesforce sets the Salesforce field's value.
 func (s *SourceConnectorProperties) SetSalesforce(v *SalesforceSourceProperties) *SourceConnectorProperties {
 	s.Salesforce = v
@@ -8412,7 +8934,7 @@ type SourceFlowConfig struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the connector profile. This name must be unique for each connector
-	// profile in the AWS account.
+	// profile in the Amazon Web Services account.
 	ConnectorProfileName *string `locationName:"connectorProfileName" type:"string"`
 
 	// The type of connector, such as Salesforce, Amplitude, and so on.
@@ -9162,7 +9684,7 @@ type UpdateConnectorProfileInput struct {
 	ConnectorProfileConfig *ConnectorProfileConfig `locationName:"connectorProfileConfig" type:"structure" required:"true"`
 
 	// The name of the connector profile and is unique for each ConnectorProfile
-	// in the AWS Account.
+	// in the Amazon Web Services account.
 	//
 	// ConnectorProfileName is a required field
 	ConnectorProfileName *string `locationName:"connectorProfileName" type:"string" required:"true"`
@@ -9263,7 +9785,9 @@ type UpdateFlowInput struct {
 
 	// Contains information about the configuration of the source connector used
 	// in the flow.
-	SourceFlowConfig *SourceFlowConfig `locationName:"sourceFlowConfig" type:"structure"`
+	//
+	// SourceFlowConfig is a required field
+	SourceFlowConfig *SourceFlowConfig `locationName:"sourceFlowConfig" type:"structure" required:"true"`
 
 	// A list of tasks that Amazon AppFlow performs while transferring the data
 	// in the flow run.
@@ -9295,6 +9819,9 @@ func (s *UpdateFlowInput) Validate() error {
 	}
 	if s.FlowName == nil {
 		invalidParams.Add(request.NewErrParamRequired("FlowName"))
+	}
+	if s.SourceFlowConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceFlowConfig"))
 	}
 	if s.Tasks == nil {
 		invalidParams.Add(request.NewErrParamRequired("Tasks"))
@@ -9715,6 +10242,19 @@ func (s VeevaMetadata) GoString() string {
 type VeevaSourceProperties struct {
 	_ struct{} `type:"structure"`
 
+	// The document type specified in the Veeva document extract flow.
+	DocumentType *string `locationName:"documentType" type:"string"`
+
+	// Boolean value to include All Versions of files in Veeva document extract
+	// flow.
+	IncludeAllVersions *bool `locationName:"includeAllVersions" type:"boolean"`
+
+	// Boolean value to include file renditions in Veeva document extract flow.
+	IncludeRenditions *bool `locationName:"includeRenditions" type:"boolean"`
+
+	// Boolean value to include source files in Veeva document extract flow.
+	IncludeSourceFiles *bool `locationName:"includeSourceFiles" type:"boolean"`
+
 	// The object specified in the Veeva flow source.
 	//
 	// Object is a required field
@@ -9742,6 +10282,30 @@ func (s *VeevaSourceProperties) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDocumentType sets the DocumentType field's value.
+func (s *VeevaSourceProperties) SetDocumentType(v string) *VeevaSourceProperties {
+	s.DocumentType = &v
+	return s
+}
+
+// SetIncludeAllVersions sets the IncludeAllVersions field's value.
+func (s *VeevaSourceProperties) SetIncludeAllVersions(v bool) *VeevaSourceProperties {
+	s.IncludeAllVersions = &v
+	return s
+}
+
+// SetIncludeRenditions sets the IncludeRenditions field's value.
+func (s *VeevaSourceProperties) SetIncludeRenditions(v bool) *VeevaSourceProperties {
+	s.IncludeRenditions = &v
+	return s
+}
+
+// SetIncludeSourceFiles sets the IncludeSourceFiles field's value.
+func (s *VeevaSourceProperties) SetIncludeSourceFiles(v bool) *VeevaSourceProperties {
+	s.IncludeSourceFiles = &v
+	return s
 }
 
 // SetObject sets the Object field's value.
@@ -10109,6 +10673,9 @@ const (
 
 	// ConnectorTypeCustomerProfiles is a ConnectorType enum value
 	ConnectorTypeCustomerProfiles = "CustomerProfiles"
+
+	// ConnectorTypeSapodata is a ConnectorType enum value
+	ConnectorTypeSapodata = "SAPOData"
 )
 
 // ConnectorType_Values returns all elements of the ConnectorType enum
@@ -10135,6 +10702,7 @@ func ConnectorType_Values() []string {
 		ConnectorTypeUpsolver,
 		ConnectorTypeHoneycode,
 		ConnectorTypeCustomerProfiles,
+		ConnectorTypeSapodata,
 	}
 }
 
@@ -10727,6 +11295,54 @@ func PrefixType_Values() []string {
 }
 
 const (
+	// PrivateConnectionProvisioningFailureCauseConnectorAuthentication is a PrivateConnectionProvisioningFailureCause enum value
+	PrivateConnectionProvisioningFailureCauseConnectorAuthentication = "CONNECTOR_AUTHENTICATION"
+
+	// PrivateConnectionProvisioningFailureCauseConnectorServer is a PrivateConnectionProvisioningFailureCause enum value
+	PrivateConnectionProvisioningFailureCauseConnectorServer = "CONNECTOR_SERVER"
+
+	// PrivateConnectionProvisioningFailureCauseInternalServer is a PrivateConnectionProvisioningFailureCause enum value
+	PrivateConnectionProvisioningFailureCauseInternalServer = "INTERNAL_SERVER"
+
+	// PrivateConnectionProvisioningFailureCauseAccessDenied is a PrivateConnectionProvisioningFailureCause enum value
+	PrivateConnectionProvisioningFailureCauseAccessDenied = "ACCESS_DENIED"
+
+	// PrivateConnectionProvisioningFailureCauseValidation is a PrivateConnectionProvisioningFailureCause enum value
+	PrivateConnectionProvisioningFailureCauseValidation = "VALIDATION"
+)
+
+// PrivateConnectionProvisioningFailureCause_Values returns all elements of the PrivateConnectionProvisioningFailureCause enum
+func PrivateConnectionProvisioningFailureCause_Values() []string {
+	return []string{
+		PrivateConnectionProvisioningFailureCauseConnectorAuthentication,
+		PrivateConnectionProvisioningFailureCauseConnectorServer,
+		PrivateConnectionProvisioningFailureCauseInternalServer,
+		PrivateConnectionProvisioningFailureCauseAccessDenied,
+		PrivateConnectionProvisioningFailureCauseValidation,
+	}
+}
+
+const (
+	// PrivateConnectionProvisioningStatusFailed is a PrivateConnectionProvisioningStatus enum value
+	PrivateConnectionProvisioningStatusFailed = "FAILED"
+
+	// PrivateConnectionProvisioningStatusPending is a PrivateConnectionProvisioningStatus enum value
+	PrivateConnectionProvisioningStatusPending = "PENDING"
+
+	// PrivateConnectionProvisioningStatusCreated is a PrivateConnectionProvisioningStatus enum value
+	PrivateConnectionProvisioningStatusCreated = "CREATED"
+)
+
+// PrivateConnectionProvisioningStatus_Values returns all elements of the PrivateConnectionProvisioningStatus enum
+func PrivateConnectionProvisioningStatus_Values() []string {
+	return []string{
+		PrivateConnectionProvisioningStatusFailed,
+		PrivateConnectionProvisioningStatusPending,
+		PrivateConnectionProvisioningStatusCreated,
+	}
+}
+
+const (
 	// S3ConnectorOperatorProjection is a S3ConnectorOperator enum value
 	S3ConnectorOperatorProjection = "PROJECTION"
 
@@ -10811,6 +11427,98 @@ func S3ConnectorOperator_Values() []string {
 		S3ConnectorOperatorValidateNonNegative,
 		S3ConnectorOperatorValidateNumeric,
 		S3ConnectorOperatorNoOp,
+	}
+}
+
+const (
+	// SAPODataConnectorOperatorProjection is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorProjection = "PROJECTION"
+
+	// SAPODataConnectorOperatorLessThan is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorLessThan = "LESS_THAN"
+
+	// SAPODataConnectorOperatorContains is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorContains = "CONTAINS"
+
+	// SAPODataConnectorOperatorGreaterThan is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorGreaterThan = "GREATER_THAN"
+
+	// SAPODataConnectorOperatorBetween is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorBetween = "BETWEEN"
+
+	// SAPODataConnectorOperatorLessThanOrEqualTo is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorLessThanOrEqualTo = "LESS_THAN_OR_EQUAL_TO"
+
+	// SAPODataConnectorOperatorGreaterThanOrEqualTo is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorGreaterThanOrEqualTo = "GREATER_THAN_OR_EQUAL_TO"
+
+	// SAPODataConnectorOperatorEqualTo is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorEqualTo = "EQUAL_TO"
+
+	// SAPODataConnectorOperatorNotEqualTo is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorNotEqualTo = "NOT_EQUAL_TO"
+
+	// SAPODataConnectorOperatorAddition is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorAddition = "ADDITION"
+
+	// SAPODataConnectorOperatorMultiplication is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorMultiplication = "MULTIPLICATION"
+
+	// SAPODataConnectorOperatorDivision is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorDivision = "DIVISION"
+
+	// SAPODataConnectorOperatorSubtraction is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorSubtraction = "SUBTRACTION"
+
+	// SAPODataConnectorOperatorMaskAll is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorMaskAll = "MASK_ALL"
+
+	// SAPODataConnectorOperatorMaskFirstN is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorMaskFirstN = "MASK_FIRST_N"
+
+	// SAPODataConnectorOperatorMaskLastN is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorMaskLastN = "MASK_LAST_N"
+
+	// SAPODataConnectorOperatorValidateNonNull is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorValidateNonNull = "VALIDATE_NON_NULL"
+
+	// SAPODataConnectorOperatorValidateNonZero is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorValidateNonZero = "VALIDATE_NON_ZERO"
+
+	// SAPODataConnectorOperatorValidateNonNegative is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorValidateNonNegative = "VALIDATE_NON_NEGATIVE"
+
+	// SAPODataConnectorOperatorValidateNumeric is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorValidateNumeric = "VALIDATE_NUMERIC"
+
+	// SAPODataConnectorOperatorNoOp is a SAPODataConnectorOperator enum value
+	SAPODataConnectorOperatorNoOp = "NO_OP"
+)
+
+// SAPODataConnectorOperator_Values returns all elements of the SAPODataConnectorOperator enum
+func SAPODataConnectorOperator_Values() []string {
+	return []string{
+		SAPODataConnectorOperatorProjection,
+		SAPODataConnectorOperatorLessThan,
+		SAPODataConnectorOperatorContains,
+		SAPODataConnectorOperatorGreaterThan,
+		SAPODataConnectorOperatorBetween,
+		SAPODataConnectorOperatorLessThanOrEqualTo,
+		SAPODataConnectorOperatorGreaterThanOrEqualTo,
+		SAPODataConnectorOperatorEqualTo,
+		SAPODataConnectorOperatorNotEqualTo,
+		SAPODataConnectorOperatorAddition,
+		SAPODataConnectorOperatorMultiplication,
+		SAPODataConnectorOperatorDivision,
+		SAPODataConnectorOperatorSubtraction,
+		SAPODataConnectorOperatorMaskAll,
+		SAPODataConnectorOperatorMaskFirstN,
+		SAPODataConnectorOperatorMaskLastN,
+		SAPODataConnectorOperatorValidateNonNull,
+		SAPODataConnectorOperatorValidateNonZero,
+		SAPODataConnectorOperatorValidateNonNegative,
+		SAPODataConnectorOperatorValidateNumeric,
+		SAPODataConnectorOperatorNoOp,
 	}
 }
 

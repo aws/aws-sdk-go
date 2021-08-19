@@ -1405,8 +1405,8 @@ func (s *ConcurrentUpdateException) RequestID() string {
 // Represents a CloudWatch metric of your choosing for a target tracking scaling
 // policy to use with Application Auto Scaling.
 //
-// For information about the available metrics for a service, see AWS Services
-// That Publish CloudWatch Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
+// For information about the available metrics for a service, see Amazon Web
+// Services Services That Publish CloudWatch Metrics (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/aws-services-cloudwatch-metrics.html)
 // in the Amazon CloudWatch User Guide.
 //
 // To create your customized metric specification:
@@ -1577,6 +1577,9 @@ type DeleteScalingPolicyInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1585,11 +1588,11 @@ type DeleteScalingPolicyInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -1635,11 +1638,18 @@ type DeleteScalingPolicyInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -1773,6 +1783,9 @@ type DeleteScheduledActionInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1781,11 +1794,11 @@ type DeleteScheduledActionInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -1831,6 +1844,12 @@ type DeleteScheduledActionInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
@@ -1839,8 +1858,9 @@ type DeleteScheduledActionInput struct {
 	// ScheduledActionName is a required field
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -1974,6 +1994,9 @@ type DeregisterScalableTargetInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1982,11 +2005,11 @@ type DeregisterScalableTargetInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2032,11 +2055,18 @@ type DeregisterScalableTargetInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -2169,6 +2199,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
+	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	ResourceIds []*string `type:"list"`
 
 	// The scalable dimension associated with the scalable target. This string consists
@@ -2177,11 +2210,11 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2226,10 +2259,17 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -2384,6 +2424,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
+	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2392,11 +2435,11 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2441,10 +2484,17 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -2605,6 +2655,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
+	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2613,11 +2666,11 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2662,10 +2715,17 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -2829,6 +2889,9 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
+	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2837,11 +2900,11 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2886,13 +2949,20 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The names of the scheduled actions to describe.
 	ScheduledActionNames []*string `type:"list"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -3339,7 +3409,7 @@ func (s *ObjectNotFoundException) RequestID() string {
 // Represents a predefined metric for a target tracking scaling policy to use
 // with Application Auto Scaling.
 //
-// Only the AWS services that you're using send metrics to Amazon CloudWatch.
+// Only the Amazon Web Services that you're using send metrics to Amazon CloudWatch.
 // To determine whether a desired metric already exists by looking up its namespace
 // and dimension using the CloudWatch metrics dashboard in the console, follow
 // the procedure in Building dashboards with CloudWatch (https://docs.aws.amazon.com/autoscaling/application/userguide/monitoring-cloudwatch.html)
@@ -3359,16 +3429,18 @@ type PredefinedMetricSpecification struct {
 	//
 	// You create the resource label by appending the final portion of the load
 	// balancer ARN and the final portion of the target group ARN into a single
-	// value, separated by a forward slash (/). The format is app/<load-balancer-name>/<load-balancer-id>/targetgroup/<target-group-name>/<target-group-id>,
-	// where:
+	// value, separated by a forward slash (/). The format of the resource label
+	// is:
+	//
+	// app/my-alb/778d41231b141a0f/targetgroup/my-alb-target-group/943f017f100becff.
+	//
+	// Where:
 	//
 	//    * app/<load-balancer-name>/<load-balancer-id> is the final portion of
 	//    the load balancer ARN
 	//
 	//    * targetgroup/<target-group-name>/<target-group-id> is the final portion
 	//    of the target group ARN.
-	//
-	// This is an example: app/EC2Co-EcsEl-1TKLTMITMM0EO/f37c06a68c1748aa/targetgroup/EC2Co-Defau-LDNM7Q3ZH1ZN/6d4ea56ca2d6a18d.
 	//
 	// To find the ARN for an Application Load Balancer, use the DescribeLoadBalancers
 	// (https://docs.aws.amazon.com/elasticloadbalancing/latest/APIReference/API_DescribeLoadBalancers.html)
@@ -3432,7 +3504,7 @@ type PutScalingPolicyInput struct {
 	// TargetTrackingScaling—Not supported for Amazon EMR
 	//
 	// StepScaling—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon
-	// Keyspaces (for Apache Cassandra), or Amazon MSK.
+	// Keyspaces (for Apache Cassandra), Amazon MSK, or Amazon ElastiCache for Redis.
 	//
 	// For more information, see Target tracking scaling policies (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html)
 	// and Step scaling policies (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html)
@@ -3488,6 +3560,9 @@ type PutScalingPolicyInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -3496,11 +3571,11 @@ type PutScalingPolicyInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -3546,11 +3621,18 @@ type PutScalingPolicyInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -3748,6 +3830,9 @@ type PutScheduledActionInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -3756,11 +3841,11 @@ type PutScheduledActionInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -3806,6 +3891,12 @@ type PutScheduledActionInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
@@ -3848,8 +3939,9 @@ type PutScheduledActionInput struct {
 	// ScheduledActionName is a required field
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -4055,6 +4147,9 @@ type RegisterScalableTargetInput struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4072,11 +4167,11 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4122,11 +4217,18 @@ type RegisterScalableTargetInput struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource. For a resource
-	// provided by your own application or service, use custom-resource instead.
+	// The namespace of the Amazon Web Services service that provides the resource.
+	// For a resource provided by your own application or service, use custom-resource
+	// instead.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -4311,6 +4413,9 @@ type ScalableTarget struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4325,11 +4430,11 @@ type ScalableTarget struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4375,10 +4480,17 @@ type ScalableTarget struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource, or a custom-resource.
+	// The namespace of the Amazon Web Services service that provides the resource,
+	// or a custom-resource.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -4566,6 +4678,9 @@ type ScalingActivity struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4574,11 +4689,11 @@ type ScalingActivity struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4624,10 +4739,17 @@ type ScalingActivity struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource, or a custom-resource.
+	// The namespace of the Amazon Web Services service that provides the resource,
+	// or a custom-resource.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -4802,6 +4924,9 @@ type ScalingPolicy struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4810,11 +4935,11 @@ type ScalingPolicy struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4860,10 +4985,17 @@ type ScalingPolicy struct {
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
 	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
+	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
 
-	// The namespace of the AWS service that provides the resource, or a custom-resource.
+	// The namespace of the Amazon Web Services service that provides the resource,
+	// or a custom-resource.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -5006,6 +5138,9 @@ type ScheduledAction struct {
 	//    * Amazon MSK cluster - The resource type and unique identifier are specified
 	//    using the cluster ARN. Example: arn:aws:kafka:us-east-1:123456789012:cluster/demo-cluster-1/6357e0b2-0e6a-4b86-a0b4-70df934c2e31-5.
 	//
+	//    * Amazon ElastiCache replication group - The resource type is replication-group
+	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5014,11 +5149,11 @@ type ScheduledAction struct {
 	//
 	//    * ecs:service:DesiredCount - The desired task count of an ECS service.
 	//
-	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
-	//
 	//    * elasticmapreduce:instancegroup:InstanceCount - The instance count of
 	//    an EMR Instance Group.
+	//
+	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
+	//    Fleet request.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -5063,6 +5198,12 @@ type ScheduledAction struct {
 	//
 	//    * kafka:broker-storage:VolumeSize - The provisioned volume size (in GiB)
 	//    for brokers in an Amazon MSK cluster.
+	//
+	//    * elasticache:replication-group:NodeGroups - The number of node groups
+	//    for an Amazon ElastiCache replication group.
+	//
+	//    * elasticache:replication-group:Replicas - The number of replicas per
+	//    node group for an Amazon ElastiCache replication group.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The new minimum and maximum capacity. You can set both values or just one.
@@ -5110,7 +5251,8 @@ type ScheduledAction struct {
 	// ScheduledActionName is a required field
 	ScheduledActionName *string `min:"1" type:"string" required:"true"`
 
-	// The namespace of the AWS service that provides the resource, or a custom-resource.
+	// The namespace of the Amazon Web Services service that provides the resource,
+	// or a custom-resource.
 	//
 	// ServiceNamespace is a required field
 	ServiceNamespace *string `type:"string" required:"true" enum:"ServiceNamespace"`
@@ -5332,8 +5474,9 @@ type StepScalingPolicyConfiguration struct {
 	// Auto Scaling scales out the target immediately. In this case, the cooldown
 	// period for the scale-in activity stops and doesn't complete.
 	//
-	// Application Auto Scaling provides a default value of 300 for the following
-	// scalable targets:
+	// Application Auto Scaling provides a default value of 600 for Amazon ElastiCache
+	// replication groups and a default value of 300 for the following scalable
+	// targets:
 	//
 	//    * ECS services
 	//
@@ -5524,8 +5667,9 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	// Auto Scaling scales out the target immediately. In this case, the scale-in
 	// cooldown period stops and doesn't complete.
 	//
-	// Application Auto Scaling provides a default value of 300 for the following
-	// scalable targets:
+	// Application Auto Scaling provides a default value of 600 for Amazon ElastiCache
+	// replication groups and a default value of 300 for the following scalable
+	// targets:
 	//
 	//    * ECS services
 	//
@@ -5568,8 +5712,9 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	// activity is calculated as part of the desired capacity for the next scale-out
 	// activity.
 	//
-	// Application Auto Scaling provides a default value of 300 for the following
-	// scalable targets:
+	// Application Auto Scaling provides a default value of 600 for Amazon ElastiCache
+	// replication groups and a default value of 300 for the following scalable
+	// targets:
 	//
 	//    * ECS services
 	//
@@ -5856,6 +6001,15 @@ const (
 
 	// MetricTypeKafkaBrokerStorageUtilization is a MetricType enum value
 	MetricTypeKafkaBrokerStorageUtilization = "KafkaBrokerStorageUtilization"
+
+	// MetricTypeElastiCachePrimaryEngineCpuutilization is a MetricType enum value
+	MetricTypeElastiCachePrimaryEngineCpuutilization = "ElastiCachePrimaryEngineCPUUtilization"
+
+	// MetricTypeElastiCacheReplicaEngineCpuutilization is a MetricType enum value
+	MetricTypeElastiCacheReplicaEngineCpuutilization = "ElastiCacheReplicaEngineCPUUtilization"
+
+	// MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage is a MetricType enum value
+	MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage = "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage"
 )
 
 // MetricType_Values returns all elements of the MetricType enum
@@ -5878,6 +6032,9 @@ func MetricType_Values() []string {
 		MetricTypeCassandraReadCapacityUtilization,
 		MetricTypeCassandraWriteCapacityUtilization,
 		MetricTypeKafkaBrokerStorageUtilization,
+		MetricTypeElastiCachePrimaryEngineCpuutilization,
+		MetricTypeElastiCacheReplicaEngineCpuutilization,
+		MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage,
 	}
 }
 
@@ -5948,6 +6105,12 @@ const (
 
 	// ScalableDimensionKafkaBrokerStorageVolumeSize is a ScalableDimension enum value
 	ScalableDimensionKafkaBrokerStorageVolumeSize = "kafka:broker-storage:VolumeSize"
+
+	// ScalableDimensionElasticacheReplicationGroupNodeGroups is a ScalableDimension enum value
+	ScalableDimensionElasticacheReplicationGroupNodeGroups = "elasticache:replication-group:NodeGroups"
+
+	// ScalableDimensionElasticacheReplicationGroupReplicas is a ScalableDimension enum value
+	ScalableDimensionElasticacheReplicationGroupReplicas = "elasticache:replication-group:Replicas"
 )
 
 // ScalableDimension_Values returns all elements of the ScalableDimension enum
@@ -5970,6 +6133,8 @@ func ScalableDimension_Values() []string {
 		ScalableDimensionCassandraTableReadCapacityUnits,
 		ScalableDimensionCassandraTableWriteCapacityUnits,
 		ScalableDimensionKafkaBrokerStorageVolumeSize,
+		ScalableDimensionElasticacheReplicationGroupNodeGroups,
+		ScalableDimensionElasticacheReplicationGroupReplicas,
 	}
 }
 
@@ -6041,6 +6206,9 @@ const (
 
 	// ServiceNamespaceKafka is a ServiceNamespace enum value
 	ServiceNamespaceKafka = "kafka"
+
+	// ServiceNamespaceElasticache is a ServiceNamespace enum value
+	ServiceNamespaceElasticache = "elasticache"
 )
 
 // ServiceNamespace_Values returns all elements of the ServiceNamespace enum
@@ -6058,5 +6226,6 @@ func ServiceNamespace_Values() []string {
 		ServiceNamespaceLambda,
 		ServiceNamespaceCassandra,
 		ServiceNamespaceKafka,
+		ServiceNamespaceElasticache,
 	}
 }
