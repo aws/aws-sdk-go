@@ -19218,7 +19218,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "UsageOperation":{"shape":"String"}
       }
     },
     "ImportImageResult":{
@@ -19283,6 +19284,10 @@
         "Tags":{
           "shape":"TagList",
           "locationName":"tagSet"
+        },
+        "UsageOperation":{
+          "shape":"String",
+          "locationName":"usageOperation"
         }
       }
     },
@@ -19348,6 +19353,10 @@
         "LicenseSpecifications":{
           "shape":"ImportImageLicenseSpecificationListResponse",
           "locationName":"licenseSpecifications"
+        },
+        "UsageOperation":{
+          "shape":"String",
+          "locationName":"usageOperation"
         }
       }
     },

@@ -1,3 +1,13 @@
+Release v1.40.26 (2021-08-19)
+===
+
+### Service Client Updates
+* `service/appflow`: Updates service API and documentation
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * The ImportImage API now supports the ability to create AMIs with AWS-managed licenses for Microsoft SQL Server for both Windows and Linux.
+* `service/memorydb`: Updates service API, documentation, paginators, and examples
+
 Release v1.40.25 (2021-08-18)
 ===
 

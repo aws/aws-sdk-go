@@ -363,7 +363,17 @@
       "max":256,
       "pattern":"\\S+"
     },
+    "ApplicationHostUrl":{
+      "type":"string",
+      "max":256,
+      "pattern":"^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+    },
     "ApplicationKey":{
+      "type":"string",
+      "max":512,
+      "pattern":"\\S+"
+    },
+    "ApplicationServicePath":{
       "type":"string",
       "max":512,
       "pattern":"\\S+"
@@ -372,6 +382,22 @@
       "type":"string",
       "max":512,
       "pattern":"\\S+"
+    },
+    "AuthCodeUrl":{
+      "type":"string",
+      "max":256,
+      "pattern":"^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+    },
+    "BasicAuthCredentials":{
+      "type":"structure",
+      "required":[
+        "username",
+        "password"
+      ],
+      "members":{
+        "username":{"shape":"Username"},
+        "password":{"shape":"Password"}
+      }
     },
     "Boolean":{"type":"boolean"},
     "BucketName":{
@@ -396,6 +422,12 @@
       "type":"string",
       "max":512,
       "pattern":"\\S+"
+    },
+    "ClientNumber":{
+      "type":"string",
+      "max":3,
+      "min":3,
+      "pattern":"^\\d{3}$"
     },
     "ClientSecret":{
       "type":"string",
@@ -500,7 +532,8 @@
         "EventBridge":{"shape":"EventBridgeMetadata"},
         "Upsolver":{"shape":"UpsolverMetadata"},
         "CustomerProfiles":{"shape":"CustomerProfilesMetadata"},
-        "Honeycode":{"shape":"HoneycodeMetadata"}
+        "Honeycode":{"shape":"HoneycodeMetadata"},
+        "SAPOData":{"shape":"SAPODataMetadata"}
       }
     },
     "ConnectorOAuthRequest":{
@@ -526,7 +559,8 @@
         "Slack":{"shape":"SlackConnectorOperator"},
         "Trendmicro":{"shape":"TrendmicroConnectorOperator"},
         "Veeva":{"shape":"VeevaConnectorOperator"},
-        "Zendesk":{"shape":"ZendeskConnectorOperator"}
+        "Zendesk":{"shape":"ZendeskConnectorOperator"},
+        "SAPOData":{"shape":"SAPODataConnectorOperator"}
       }
     },
     "ConnectorProfile":{
@@ -539,7 +573,8 @@
         "credentialsArn":{"shape":"ARN"},
         "connectorProfileProperties":{"shape":"ConnectorProfileProperties"},
         "createdAt":{"shape":"Date"},
-        "lastUpdatedAt":{"shape":"Date"}
+        "lastUpdatedAt":{"shape":"Date"},
+        "privateConnectionProvisioningState":{"shape":"PrivateConnectionProvisioningState"}
       }
     },
     "ConnectorProfileArn":{
@@ -576,7 +611,8 @@
         "Snowflake":{"shape":"SnowflakeConnectorProfileCredentials"},
         "Trendmicro":{"shape":"TrendmicroConnectorProfileCredentials"},
         "Veeva":{"shape":"VeevaConnectorProfileCredentials"},
-        "Zendesk":{"shape":"ZendeskConnectorProfileCredentials"}
+        "Zendesk":{"shape":"ZendeskConnectorProfileCredentials"},
+        "SAPOData":{"shape":"SAPODataConnectorProfileCredentials"}
       }
     },
     "ConnectorProfileDetailList":{
@@ -612,7 +648,8 @@
         "Snowflake":{"shape":"SnowflakeConnectorProfileProperties"},
         "Trendmicro":{"shape":"TrendmicroConnectorProfileProperties"},
         "Veeva":{"shape":"VeevaConnectorProfileProperties"},
-        "Zendesk":{"shape":"ZendeskConnectorProfileProperties"}
+        "Zendesk":{"shape":"ZendeskConnectorProfileProperties"},
+        "SAPOData":{"shape":"SAPODataConnectorProfileProperties"}
       }
     },
     "ConnectorServerException":{
@@ -646,7 +683,8 @@
         "LookoutMetrics",
         "Upsolver",
         "Honeycode",
-        "CustomerProfiles"
+        "CustomerProfiles",
+        "SAPOData"
       ]
     },
     "ConnectorTypeList":{
@@ -956,6 +994,11 @@
     "DestinationFlowConfigList":{
       "type":"list",
       "member":{"shape":"DestinationFlowConfig"}
+    },
+    "DocumentType":{
+      "type":"string",
+      "max":512,
+      "pattern":"[\\s\\w_-]+"
     },
     "DomainName":{
       "type":"string",
@@ -1392,6 +1435,11 @@
         "tags":{"shape":"TagMap"}
       }
     },
+    "LogonLanguage":{
+      "type":"string",
+      "max":2,
+      "pattern":"^[a-zA-Z0-9_]*$"
+    },
     "Long":{"type":"long"},
     "LookoutMetricsDestinationProperties":{
       "type":"structure",
@@ -1471,10 +1519,37 @@
       "max":2048,
       "pattern":"\\S+"
     },
+    "OAuthCredentials":{
+      "type":"structure",
+      "required":[
+        "clientId",
+        "clientSecret"
+      ],
+      "members":{
+        "clientId":{"shape":"ClientId"},
+        "clientSecret":{"shape":"ClientSecret"},
+        "accessToken":{"shape":"AccessToken"},
+        "refreshToken":{"shape":"RefreshToken"},
+        "oAuthRequest":{"shape":"ConnectorOAuthRequest"}
+      }
+    },
+    "OAuthProperties":{
+      "type":"structure",
+      "required":[
+        "tokenUrl",
+        "authCodeUrl",
+        "oAuthScopes"
+      ],
+      "members":{
+        "tokenUrl":{"shape":"TokenUrl"},
+        "authCodeUrl":{"shape":"AuthCodeUrl"},
+        "oAuthScopes":{"shape":"OAuthScopeList"}
+      }
+    },
     "OAuthScope":{
       "type":"string",
       "max":128,
-      "pattern":"[\\w]*"
+      "pattern":"[/\\w]*"
     },
     "OAuthScopeList":{
       "type":"list",
@@ -1542,6 +1617,11 @@
       "pattern":".*",
       "sensitive":true
     },
+    "PortNumber":{
+      "type":"integer",
+      "max":65535,
+      "min":1
+    },
     "PrefixConfig":{
       "type":"structure",
       "members":{
@@ -1567,10 +1647,41 @@
         "PATH_AND_FILENAME"
       ]
     },
+    "PrivateConnectionProvisioningFailureCause":{
+      "type":"string",
+      "enum":[
+        "CONNECTOR_AUTHENTICATION",
+        "CONNECTOR_SERVER",
+        "INTERNAL_SERVER",
+        "ACCESS_DENIED",
+        "VALIDATION"
+      ]
+    },
+    "PrivateConnectionProvisioningFailureMessage":{
+      "type":"string",
+      "max":2048,
+      "pattern":"[\\s\\w/!@#+=.-]*"
+    },
+    "PrivateConnectionProvisioningState":{
+      "type":"structure",
+      "members":{
+        "status":{"shape":"PrivateConnectionProvisioningStatus"},
+        "failureMessage":{"shape":"PrivateConnectionProvisioningFailureMessage"},
+        "failureCause":{"shape":"PrivateConnectionProvisioningFailureCause"}
+      }
+    },
+    "PrivateConnectionProvisioningStatus":{
+      "type":"string",
+      "enum":[
+        "FAILED",
+        "PENDING",
+        "CREATED"
+      ]
+    },
     "PrivateLinkServiceName":{
       "type":"string",
       "max":512,
-      "pattern":"\\S+"
+      "pattern":"^$|com.amazonaws.vpce.[\\w/!:@#.\\-]+"
     },
     "Property":{
       "type":"string",
@@ -1705,6 +1816,71 @@
       "members":{
         "bucketName":{"shape":"BucketName"},
         "bucketPrefix":{"shape":"BucketPrefix"}
+      }
+    },
+    "SAPODataConnectorOperator":{
+      "type":"string",
+      "enum":[
+        "PROJECTION",
+        "LESS_THAN",
+        "CONTAINS",
+        "GREATER_THAN",
+        "BETWEEN",
+        "LESS_THAN_OR_EQUAL_TO",
+        "GREATER_THAN_OR_EQUAL_TO",
+        "EQUAL_TO",
+        "NOT_EQUAL_TO",
+        "ADDITION",
+        "MULTIPLICATION",
+        "DIVISION",
+        "SUBTRACTION",
+        "MASK_ALL",
+        "MASK_FIRST_N",
+        "MASK_LAST_N",
+        "VALIDATE_NON_NULL",
+        "VALIDATE_NON_ZERO",
+        "VALIDATE_NON_NEGATIVE",
+        "VALIDATE_NUMERIC",
+        "NO_OP"
+      ]
+    },
+    "SAPODataConnectorProfileCredentials":{
+      "type":"structure",
+      "members":{
+        "basicAuthCredentials":{"shape":"BasicAuthCredentials"},
+        "oAuthCredentials":{"shape":"OAuthCredentials"}
+      }
+    },
+    "SAPODataConnectorProfileProperties":{
+      "type":"structure",
+      "required":[
+        "applicationHostUrl",
+        "applicationServicePath",
+        "portNumber",
+        "clientNumber"
+      ],
+      "members":{
+        "applicationHostUrl":{"shape":"ApplicationHostUrl"},
+        "applicationServicePath":{"shape":"ApplicationServicePath"},
+        "portNumber":{
+          "shape":"PortNumber",
+          "box":true
+        },
+        "clientNumber":{"shape":"ClientNumber"},
+        "logonLanguage":{"shape":"LogonLanguage"},
+        "privateLinkServiceName":{"shape":"PrivateLinkServiceName"},
+        "oAuthProperties":{"shape":"OAuthProperties"}
+      }
+    },
+    "SAPODataMetadata":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "SAPODataSourceProperties":{
+      "type":"structure",
+      "members":{
+        "objectPath":{"shape":"Object"}
       }
     },
     "SalesforceConnectorOperator":{
@@ -2048,7 +2224,8 @@
         "Slack":{"shape":"SlackSourceProperties"},
         "Trendmicro":{"shape":"TrendmicroSourceProperties"},
         "Veeva":{"shape":"VeevaSourceProperties"},
-        "Zendesk":{"shape":"ZendeskSourceProperties"}
+        "Zendesk":{"shape":"ZendeskSourceProperties"},
+        "SAPOData":{"shape":"SAPODataSourceProperties"}
       }
     },
     "SourceFieldProperties":{
@@ -2214,6 +2391,11 @@
       "max":256,
       "pattern":".*"
     },
+    "TokenUrl":{
+      "type":"string",
+      "max":256,
+      "pattern":"^(https?)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]"
+    },
     "TrendmicroConnectorOperator":{
       "type":"string",
       "enum":[
@@ -2339,6 +2521,7 @@
       "required":[
         "flowName",
         "triggerConfig",
+        "sourceFlowConfig",
         "destinationFlowConfigList",
         "tasks"
       ],
@@ -2465,7 +2648,11 @@
       "type":"structure",
       "required":["object"],
       "members":{
-        "object":{"shape":"Object"}
+        "object":{"shape":"Object"},
+        "documentType":{"shape":"DocumentType"},
+        "includeSourceFiles":{"shape":"Boolean"},
+        "includeRenditions":{"shape":"Boolean"},
+        "includeAllVersions":{"shape":"Boolean"}
       }
     },
     "Warehouse":{
