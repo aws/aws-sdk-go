@@ -676,6 +676,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceUnavailableException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -691,6 +692,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -708,6 +710,7 @@
         {"shape":"ResourceNotFoundException"},
         {"shape":"ResourceUnavailableException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -723,6 +726,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -738,6 +742,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -753,6 +758,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -768,6 +774,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -783,6 +790,7 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"KmsKeyValidationException"},
+        {"shape":"TooManyTagsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -1633,6 +1641,7 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobName":{"shape":"JobName"},
         "JobStatus":{"shape":"JobStatus"},
         "Message":{"shape":"AnyLengthString"},
@@ -1754,6 +1763,7 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobName":{"shape":"JobName"},
         "JobStatus":{"shape":"JobStatus"},
         "Message":{"shape":"AnyLengthString"},
@@ -1821,6 +1831,7 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobName":{"shape":"JobName"},
         "JobStatus":{"shape":"JobStatus"},
         "Message":{"shape":"AnyLengthString"},
@@ -2028,6 +2039,7 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobName":{"shape":"JobName"},
         "JobStatus":{"shape":"JobStatus"},
         "Message":{"shape":"AnyLengthString"},
@@ -2145,6 +2157,7 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobName":{"shape":"JobName"},
         "JobStatus":{"shape":"JobStatus"},
         "Message":{"shape":"AnyLengthString"},
@@ -2510,6 +2523,7 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobName":{"shape":"JobName"},
         "JobStatus":{"shape":"JobStatus"},
         "Message":{"shape":"AnyLengthString"},
@@ -2652,6 +2666,7 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobName":{"shape":"JobName"},
         "JobStatus":{"shape":"JobStatus"},
         "Message":{"shape":"AnyLengthString"},
@@ -2706,13 +2721,15 @@
           "idempotencyToken":true
         },
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartDocumentClassificationJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobStatus":{"shape":"JobStatus"}
       }
     },
@@ -2733,13 +2750,15 @@
           "idempotencyToken":true
         },
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartDominantLanguageDetectionJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobStatus":{"shape":"JobStatus"}
       }
     },
@@ -2763,13 +2782,15 @@
           "idempotencyToken":true
         },
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartEntitiesDetectionJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobStatus":{"shape":"JobStatus"}
       }
     },
@@ -2792,13 +2813,15 @@
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
         },
-        "TargetEventTypes":{"shape":"TargetEventTypes"}
+        "TargetEventTypes":{"shape":"TargetEventTypes"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartEventsDetectionJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobStatus":{"shape":"JobStatus"}
       }
     },
@@ -2821,13 +2844,15 @@
           "idempotencyToken":true
         },
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartKeyPhrasesDetectionJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobStatus":{"shape":"JobStatus"}
       }
     },
@@ -2851,13 +2876,15 @@
         "ClientRequestToken":{
           "shape":"ClientRequestTokenString",
           "idempotencyToken":true
-        }
+        },
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartPiiEntitiesDetectionJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobStatus":{"shape":"JobStatus"}
       }
     },
@@ -2880,13 +2907,15 @@
           "idempotencyToken":true
         },
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartSentimentDetectionJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobStatus":{"shape":"JobStatus"}
       }
     },
@@ -2908,13 +2937,15 @@
           "idempotencyToken":true
         },
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
-        "VpcConfig":{"shape":"VpcConfig"}
+        "VpcConfig":{"shape":"VpcConfig"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartTopicsDetectionJobResponse":{
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobStatus":{"shape":"JobStatus"}
       }
     },
@@ -3152,6 +3183,7 @@
       "type":"structure",
       "members":{
         "JobId":{"shape":"JobId"},
+        "JobArn":{"shape":"ComprehendArn"},
         "JobName":{"shape":"JobName"},
         "JobStatus":{"shape":"JobStatus"},
         "Message":{"shape":"AnyLengthString"},

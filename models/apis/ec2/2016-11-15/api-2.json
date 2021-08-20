@@ -16442,6 +16442,7 @@
         "Enabled":{"shape":"Boolean"}
       }
     },
+    "EncryptionInTransitSupported":{"type":"boolean"},
     "EndDateType":{
       "type":"string",
       "enum":[
@@ -21392,6 +21393,15 @@
         "m6gd.8xlarge",
         "m6gd.12xlarge",
         "m6gd.16xlarge",
+        "m6i.large",
+        "m6i.xlarge",
+        "m6i.2xlarge",
+        "m6i.4xlarge",
+        "m6i.8xlarge",
+        "m6i.12xlarge",
+        "m6i.16xlarge",
+        "m6i.24xlarge",
+        "m6i.32xlarge",
         "mac1.metal",
         "x2gd.medium",
         "x2gd.large",
@@ -25065,6 +25075,10 @@
         "EfaInfo":{
           "shape":"EfaInfo",
           "locationName":"efaInfo"
+        },
+        "EncryptionInTransitSupported":{
+          "shape":"EncryptionInTransitSupported",
+          "locationName":"encryptionInTransitSupported"
         }
       }
     },

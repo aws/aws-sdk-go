@@ -5327,6 +5327,11 @@ type DeleteAddonInput struct {
 	//
 	// ClusterName is a required field
 	ClusterName *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Specifying this option preserves the add-on software on your cluster but
+	// Amazon EKS stops managing any settings for the add-on. If an IAM account
+	// is associated with the add-on, it is not removed.
+	Preserve *bool `location:"querystring" locationName:"preserve" type:"boolean"`
 }
 
 // String returns the string representation
@@ -5370,6 +5375,12 @@ func (s *DeleteAddonInput) SetAddonName(v string) *DeleteAddonInput {
 // SetClusterName sets the ClusterName field's value.
 func (s *DeleteAddonInput) SetClusterName(v string) *DeleteAddonInput {
 	s.ClusterName = &v
+	return s
+}
+
+// SetPreserve sets the Preserve field's value.
+func (s *DeleteAddonInput) SetPreserve(v bool) *DeleteAddonInput {
+	s.Preserve = &v
 	return s
 }
 
@@ -10263,6 +10274,9 @@ const (
 
 	// AddonIssueCodeUnsupportedAddonModification is a AddonIssueCode enum value
 	AddonIssueCodeUnsupportedAddonModification = "UnsupportedAddonModification"
+
+	// AddonIssueCodeK8sResourceNotFound is a AddonIssueCode enum value
+	AddonIssueCodeK8sResourceNotFound = "K8sResourceNotFound"
 )
 
 // AddonIssueCode_Values returns all elements of the AddonIssueCode enum
@@ -10275,6 +10289,7 @@ func AddonIssueCode_Values() []string {
 		AddonIssueCodeConfigurationConflict,
 		AddonIssueCodeAdmissionRequestDenied,
 		AddonIssueCodeUnsupportedAddonModification,
+		AddonIssueCodeK8sResourceNotFound,
 	}
 }
 
@@ -10426,6 +10441,9 @@ const (
 
 	// ErrorCodeUnsupportedAddonModification is a ErrorCode enum value
 	ErrorCodeUnsupportedAddonModification = "UnsupportedAddonModification"
+
+	// ErrorCodeK8sResourceNotFound is a ErrorCode enum value
+	ErrorCodeK8sResourceNotFound = "K8sResourceNotFound"
 )
 
 // ErrorCode_Values returns all elements of the ErrorCode enum
@@ -10447,6 +10465,7 @@ func ErrorCode_Values() []string {
 		ErrorCodeConfigurationConflict,
 		ErrorCodeAdmissionRequestDenied,
 		ErrorCodeUnsupportedAddonModification,
+		ErrorCodeK8sResourceNotFound,
 	}
 }
 

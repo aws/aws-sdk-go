@@ -1,3 +1,17 @@
+Release v1.40.27 (2021-08-20)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, and paginators
+  * encryptionInTransitSupported added to DescribeInstanceTypes API
+* `service/eks`: Updates service API and documentation
+* `service/robomaker`: Updates service documentation
+
+### SDK Bugs
+* `aws`: Fix SDK's suppressing of sensitive API parameters being logged.
+  * The SDK did not correctly suppress sensitive API parameters via the `String` and `GoString` methods. Updates the SDK's behavior to suppress sensitive API parameters.
+
 Release v1.40.26 (2021-08-19)
 ===
 
