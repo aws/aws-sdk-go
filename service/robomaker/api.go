@@ -7685,7 +7685,8 @@ type CreateSimulationJobInput struct {
 	//
 	// Continue
 	//
-	// Restart the simulation job in the same host instance.
+	// Leaves the instance running for its maximum timeout duration after a 4XX
+	// error code.
 	//
 	// Fail
 	//
@@ -14862,7 +14863,8 @@ type SimulationJob struct {
 	//
 	// Continue
 	//
-	// Restart the simulation job in the same host instance.
+	// Leaves the host running for its maximum timeout duration after a 4XX error
+	// code.
 	//
 	// Fail
 	//
@@ -15204,7 +15206,8 @@ type SimulationJobRequest struct {
 	//
 	// Continue
 	//
-	// Restart the simulation job in the same host instance.
+	// Leaves the host running for its maximum timeout duration after a 4XX error
+	// code.
 	//
 	// Fail
 	//

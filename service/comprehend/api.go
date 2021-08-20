@@ -4478,6 +4478,11 @@ func (c *Comprehend) StartDocumentClassificationJobRequest(input *StartDocumentC
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
 //   key and re-enter it.
 //
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
+//
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
@@ -4567,6 +4572,11 @@ func (c *Comprehend) StartDominantLanguageDetectionJobRequest(input *StartDomina
 //   * KmsKeyValidationException
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
 //   key and re-enter it.
+//
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -4671,6 +4681,11 @@ func (c *Comprehend) StartEntitiesDetectionJobRequest(input *StartEntitiesDetect
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
 //   key and re-enter it.
 //
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
+//
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
@@ -4759,6 +4774,11 @@ func (c *Comprehend) StartEventsDetectionJobRequest(input *StartEventsDetectionJ
 //   * KmsKeyValidationException
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
 //   key and re-enter it.
+//
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -4850,6 +4870,11 @@ func (c *Comprehend) StartKeyPhrasesDetectionJobRequest(input *StartKeyPhrasesDe
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
 //   key and re-enter it.
 //
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
+//
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
@@ -4938,6 +4963,11 @@ func (c *Comprehend) StartPiiEntitiesDetectionJobRequest(input *StartPiiEntities
 //   * KmsKeyValidationException
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
 //   key and re-enter it.
+//
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -5029,6 +5059,11 @@ func (c *Comprehend) StartSentimentDetectionJobRequest(input *StartSentimentDete
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
 //   key and re-enter it.
 //
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
+//
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
 //
@@ -5118,6 +5153,11 @@ func (c *Comprehend) StartTopicsDetectionJobRequest(input *StartTopicsDetectionJ
 //   * KmsKeyValidationException
 //   The KMS customer managed key (CMK) entered cannot be validated. Verify the
 //   key and re-enter it.
+//
+//   * TooManyTagsException
+//   The request contains more tags than can be associated with a resource (50
+//   tags per resource). The maximum number of tags includes both existing tags
+//   and those included in your current request.
 //
 //   * InternalServerException
 //   An internal server error occurred. Retry your request.
@@ -9460,6 +9500,17 @@ type DocumentClassificationJobProperties struct {
 	// classification job.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the document classification job. It is
+	// a unique, fully qualified identifier for the job. It includes the AWS account,
+	// Region, and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:document-classification-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
 	// The identifier assigned to the document classification job.
 	JobId *string `min:"1" type:"string"`
 
@@ -9527,6 +9578,12 @@ func (s *DocumentClassificationJobProperties) SetEndTime(v time.Time) *DocumentC
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *DocumentClassificationJobProperties) SetInputDataConfig(v *InputDataConfig) *DocumentClassificationJobProperties {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *DocumentClassificationJobProperties) SetJobArn(v string) *DocumentClassificationJobProperties {
+	s.JobArn = &v
 	return s
 }
 
@@ -10126,6 +10183,17 @@ type DominantLanguageDetectionJobProperties struct {
 	// language detection job.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the dominant language detection job. It
+	// is a unique, fully qualified identifier for the job. It includes the AWS
+	// account, Region, and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:dominant-language-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:dominant-language-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
 	// The identifier assigned to the dominant language detection job.
 	JobId *string `min:"1" type:"string"`
 
@@ -10187,6 +10255,12 @@ func (s *DominantLanguageDetectionJobProperties) SetEndTime(v time.Time) *Domina
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *DominantLanguageDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *DominantLanguageDetectionJobProperties {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *DominantLanguageDetectionJobProperties) SetJobArn(v string) *DominantLanguageDetectionJobProperties {
+	s.JobArn = &v
 	return s
 }
 
@@ -10482,6 +10556,17 @@ type EntitiesDetectionJobProperties struct {
 	// detection job.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the entities detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:entities-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
 	// The identifier assigned to the entities detection job.
 	JobId *string `min:"1" type:"string"`
 
@@ -10552,6 +10637,12 @@ func (s *EntitiesDetectionJobProperties) SetEntityRecognizerArn(v string) *Entit
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *EntitiesDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *EntitiesDetectionJobProperties {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *EntitiesDetectionJobProperties) SetJobArn(v string) *EntitiesDetectionJobProperties {
+	s.JobArn = &v
 	return s
 }
 
@@ -11517,6 +11608,17 @@ type EventsDetectionJobProperties struct {
 	// detection job.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the events detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:events-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:events-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
 	// The identifier assigned to the events detection job.
 	JobId *string `min:"1" type:"string"`
 
@@ -11568,6 +11670,12 @@ func (s *EventsDetectionJobProperties) SetEndTime(v time.Time) *EventsDetectionJ
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *EventsDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *EventsDetectionJobProperties {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *EventsDetectionJobProperties) SetJobArn(v string) *EventsDetectionJobProperties {
+	s.JobArn = &v
 	return s
 }
 
@@ -12049,6 +12157,17 @@ type KeyPhrasesDetectionJobProperties struct {
 	// detection job.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the key phrases detection job. It is a
+	// unique, fully qualified identifier for the job. It includes the AWS account,
+	// Region, and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:key-phrases-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:key-phrases-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
 	// The identifier assigned to the key phrases detection job.
 	JobId *string `min:"1" type:"string"`
 
@@ -12113,6 +12232,12 @@ func (s *KeyPhrasesDetectionJobProperties) SetEndTime(v time.Time) *KeyPhrasesDe
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *KeyPhrasesDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *KeyPhrasesDetectionJobProperties {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *KeyPhrasesDetectionJobProperties) SetJobArn(v string) *KeyPhrasesDetectionJobProperties {
+	s.JobArn = &v
 	return s
 }
 
@@ -13530,6 +13655,17 @@ type PiiEntitiesDetectionJobProperties struct {
 	// The input properties for a PII entities detection job.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the PII entities detection job. It is a
+	// unique, fully qualified identifier for the job. It includes the AWS account,
+	// Region, and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:pii-entities-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:pii-entities-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
 	// The identifier assigned to the PII entities detection job.
 	JobId *string `min:"1" type:"string"`
 
@@ -13590,6 +13726,12 @@ func (s *PiiEntitiesDetectionJobProperties) SetEndTime(v time.Time) *PiiEntities
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *PiiEntitiesDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *PiiEntitiesDetectionJobProperties {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *PiiEntitiesDetectionJobProperties) SetJobArn(v string) *PiiEntitiesDetectionJobProperties {
+	s.JobArn = &v
 	return s
 }
 
@@ -14114,6 +14256,17 @@ type SentimentDetectionJobProperties struct {
 	// detection job.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the sentiment detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:sentiment-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
 	// The identifier assigned to the sentiment detection job.
 	JobId *string `min:"1" type:"string"`
 
@@ -14178,6 +14331,12 @@ func (s *SentimentDetectionJobProperties) SetEndTime(v time.Time) *SentimentDete
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *SentimentDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *SentimentDetectionJobProperties {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *SentimentDetectionJobProperties) SetJobArn(v string) *SentimentDetectionJobProperties {
+	s.JobArn = &v
 	return s
 }
 
@@ -14323,6 +14482,12 @@ type StartDocumentClassificationJobInput struct {
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
 
+	// Tags to be associated with the document classification job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
+	Tags []*Tag `type:"list"`
+
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
 	// that process the analysis job. The VolumeKmsKeyId can be either of the following
@@ -14383,6 +14548,16 @@ func (s *StartDocumentClassificationJobInput) Validate() error {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.VpcConfig != nil {
 		if err := s.VpcConfig.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
@@ -14431,6 +14606,12 @@ func (s *StartDocumentClassificationJobInput) SetOutputDataConfig(v *OutputDataC
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartDocumentClassificationJobInput) SetTags(v []*Tag) *StartDocumentClassificationJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *StartDocumentClassificationJobInput) SetVolumeKmsKeyId(v string) *StartDocumentClassificationJobInput {
 	s.VolumeKmsKeyId = &v
@@ -14445,6 +14626,17 @@ func (s *StartDocumentClassificationJobInput) SetVpcConfig(v *VpcConfig) *StartD
 
 type StartDocumentClassificationJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the document classification job. It is
+	// a unique, fully qualified identifier for the job. It includes the AWS account,
+	// Region, and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:document-classification-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
 
 	// The identifier generated for the job. To get the status of the job, use this
 	// identifier with the operation.
@@ -14475,6 +14667,12 @@ func (s StartDocumentClassificationJobOutput) String() string {
 // GoString returns the string representation
 func (s StartDocumentClassificationJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartDocumentClassificationJobOutput) SetJobArn(v string) *StartDocumentClassificationJobOutput {
+	s.JobArn = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -14516,6 +14714,12 @@ type StartDominantLanguageDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// Tags to be associated with the dominant language detection job. A tag is
+	// a key-value pair that adds metadata to a resource used by Amazon Comprehend.
+	// For example, a tag with "Sales" as the key might be added to a resource to
+	// indicate its use by the sales department.
+	Tags []*Tag `type:"list"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
@@ -14574,6 +14778,16 @@ func (s *StartDominantLanguageDetectionJobInput) Validate() error {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.VpcConfig != nil {
 		if err := s.VpcConfig.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
@@ -14616,6 +14830,12 @@ func (s *StartDominantLanguageDetectionJobInput) SetOutputDataConfig(v *OutputDa
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartDominantLanguageDetectionJobInput) SetTags(v []*Tag) *StartDominantLanguageDetectionJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *StartDominantLanguageDetectionJobInput) SetVolumeKmsKeyId(v string) *StartDominantLanguageDetectionJobInput {
 	s.VolumeKmsKeyId = &v
@@ -14630,6 +14850,17 @@ func (s *StartDominantLanguageDetectionJobInput) SetVpcConfig(v *VpcConfig) *Sta
 
 type StartDominantLanguageDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the dominant language detection job. It
+	// is a unique, fully qualified identifier for the job. It includes the AWS
+	// account, Region, and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:dominant-language-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:dominant-language-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
 
 	// The identifier generated for the job. To get the status of a job, use this
 	// identifier with the operation.
@@ -14655,6 +14886,12 @@ func (s StartDominantLanguageDetectionJobOutput) String() string {
 // GoString returns the string representation
 func (s StartDominantLanguageDetectionJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartDominantLanguageDetectionJobOutput) SetJobArn(v string) *StartDominantLanguageDetectionJobOutput {
+	s.JobArn = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -14709,6 +14946,12 @@ type StartEntitiesDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// Tags to be associated with the entities detection job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
+	Tags []*Tag `type:"list"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
@@ -14770,6 +15013,16 @@ func (s *StartEntitiesDetectionJobInput) Validate() error {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.VpcConfig != nil {
 		if err := s.VpcConfig.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
@@ -14824,6 +15077,12 @@ func (s *StartEntitiesDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartEntitiesDetectionJobInput) SetTags(v []*Tag) *StartEntitiesDetectionJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *StartEntitiesDetectionJobInput) SetVolumeKmsKeyId(v string) *StartEntitiesDetectionJobInput {
 	s.VolumeKmsKeyId = &v
@@ -14838,6 +15097,17 @@ func (s *StartEntitiesDetectionJobInput) SetVpcConfig(v *VpcConfig) *StartEntiti
 
 type StartEntitiesDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the entities detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:entities-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:entities-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
 
 	// The identifier generated for the job. To get the status of job, use this
 	// identifier with the operation.
@@ -14868,6 +15138,12 @@ func (s StartEntitiesDetectionJobOutput) String() string {
 // GoString returns the string representation
 func (s StartEntitiesDetectionJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartEntitiesDetectionJobOutput) SetJobArn(v string) *StartEntitiesDetectionJobOutput {
+	s.JobArn = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -14912,6 +15188,12 @@ type StartEventsDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// Tags to be associated with the events detection job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
+	Tags []*Tag `type:"list"`
 
 	// The types of events to detect in the input documents.
 	//
@@ -14969,6 +15251,16 @@ func (s *StartEventsDetectionJobInput) Validate() error {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15012,6 +15304,12 @@ func (s *StartEventsDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig) 
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartEventsDetectionJobInput) SetTags(v []*Tag) *StartEventsDetectionJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetTargetEventTypes sets the TargetEventTypes field's value.
 func (s *StartEventsDetectionJobInput) SetTargetEventTypes(v []*string) *StartEventsDetectionJobInput {
 	s.TargetEventTypes = v
@@ -15020,6 +15318,17 @@ func (s *StartEventsDetectionJobInput) SetTargetEventTypes(v []*string) *StartEv
 
 type StartEventsDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the events detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:events-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:events-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
 
 	// An unique identifier for the request. If you don't set the client request
 	// token, Amazon Comprehend generates one.
@@ -15037,6 +15346,12 @@ func (s StartEventsDetectionJobOutput) String() string {
 // GoString returns the string representation
 func (s StartEventsDetectionJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartEventsDetectionJobOutput) SetJobArn(v string) *StartEventsDetectionJobOutput {
+	s.JobArn = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -15084,6 +15399,12 @@ type StartKeyPhrasesDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// Tags to be associated with the key phrases detection job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
+	Tags []*Tag `type:"list"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
@@ -15145,6 +15466,16 @@ func (s *StartKeyPhrasesDetectionJobInput) Validate() error {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.VpcConfig != nil {
 		if err := s.VpcConfig.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
@@ -15193,6 +15524,12 @@ func (s *StartKeyPhrasesDetectionJobInput) SetOutputDataConfig(v *OutputDataConf
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartKeyPhrasesDetectionJobInput) SetTags(v []*Tag) *StartKeyPhrasesDetectionJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *StartKeyPhrasesDetectionJobInput) SetVolumeKmsKeyId(v string) *StartKeyPhrasesDetectionJobInput {
 	s.VolumeKmsKeyId = &v
@@ -15207,6 +15544,17 @@ func (s *StartKeyPhrasesDetectionJobInput) SetVpcConfig(v *VpcConfig) *StartKeyP
 
 type StartKeyPhrasesDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the key phrase detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:key-phrases-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:key-phrases-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
 
 	// The identifier generated for the job. To get the status of a job, use this
 	// identifier with the operation.
@@ -15232,6 +15580,12 @@ func (s StartKeyPhrasesDetectionJobOutput) String() string {
 // GoString returns the string representation
 func (s StartKeyPhrasesDetectionJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartKeyPhrasesDetectionJobOutput) SetJobArn(v string) *StartKeyPhrasesDetectionJobOutput {
+	s.JobArn = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -15290,6 +15644,12 @@ type StartPiiEntitiesDetectionJobInput struct {
 	// In that case, you must provide a RedactionConfig definition that includes
 	// the PiiEntityTypes parameter.
 	RedactionConfig *RedactionConfig `type:"structure"`
+
+	// Tags to be associated with the PII entities detection job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
+	Tags []*Tag `type:"list"`
 }
 
 // String returns the string representation
@@ -15342,6 +15702,16 @@ func (s *StartPiiEntitiesDetectionJobInput) Validate() error {
 	if s.RedactionConfig != nil {
 		if err := s.RedactionConfig.Validate(); err != nil {
 			invalidParams.AddNested("RedactionConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -15399,8 +15769,25 @@ func (s *StartPiiEntitiesDetectionJobInput) SetRedactionConfig(v *RedactionConfi
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartPiiEntitiesDetectionJobInput) SetTags(v []*Tag) *StartPiiEntitiesDetectionJobInput {
+	s.Tags = v
+	return s
+}
+
 type StartPiiEntitiesDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the PII entity detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:pii-entities-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:pii-entities-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
 
 	// The identifier generated for the job.
 	JobId *string `min:"1" type:"string"`
@@ -15417,6 +15804,12 @@ func (s StartPiiEntitiesDetectionJobOutput) String() string {
 // GoString returns the string representation
 func (s StartPiiEntitiesDetectionJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartPiiEntitiesDetectionJobOutput) SetJobArn(v string) *StartPiiEntitiesDetectionJobOutput {
+	s.JobArn = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -15464,6 +15857,12 @@ type StartSentimentDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// Tags to be associated with the sentiment detection job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
+	Tags []*Tag `type:"list"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
@@ -15525,6 +15924,16 @@ func (s *StartSentimentDetectionJobInput) Validate() error {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.VpcConfig != nil {
 		if err := s.VpcConfig.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
@@ -15573,6 +15982,12 @@ func (s *StartSentimentDetectionJobInput) SetOutputDataConfig(v *OutputDataConfi
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartSentimentDetectionJobInput) SetTags(v []*Tag) *StartSentimentDetectionJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *StartSentimentDetectionJobInput) SetVolumeKmsKeyId(v string) *StartSentimentDetectionJobInput {
 	s.VolumeKmsKeyId = &v
@@ -15587,6 +16002,17 @@ func (s *StartSentimentDetectionJobInput) SetVpcConfig(v *VpcConfig) *StartSenti
 
 type StartSentimentDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the sentiment detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:sentiment-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:sentiment-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
 
 	// The identifier generated for the job. To get the status of a job, use this
 	// identifier with the operation.
@@ -15612,6 +16038,12 @@ func (s StartSentimentDetectionJobOutput) String() string {
 // GoString returns the string representation
 func (s StartSentimentDetectionJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartSentimentDetectionJobOutput) SetJobArn(v string) *StartSentimentDetectionJobOutput {
+	s.JobArn = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -15658,6 +16090,12 @@ type StartTopicsDetectionJobInput struct {
 	//
 	// OutputDataConfig is a required field
 	OutputDataConfig *OutputDataConfig `type:"structure" required:"true"`
+
+	// Tags to be associated with the topics detection job. A tag is a key-value
+	// pair that adds metadata to a resource used by Amazon Comprehend. For example,
+	// a tag with "Sales" as the key might be added to a resource to indicate its
+	// use by the sales department.
+	Tags []*Tag `type:"list"`
 
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
@@ -15719,6 +16157,16 @@ func (s *StartTopicsDetectionJobInput) Validate() error {
 			invalidParams.AddNested("OutputDataConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 	if s.VpcConfig != nil {
 		if err := s.VpcConfig.Validate(); err != nil {
 			invalidParams.AddNested("VpcConfig", err.(request.ErrInvalidParams))
@@ -15767,6 +16215,12 @@ func (s *StartTopicsDetectionJobInput) SetOutputDataConfig(v *OutputDataConfig) 
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartTopicsDetectionJobInput) SetTags(v []*Tag) *StartTopicsDetectionJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *StartTopicsDetectionJobInput) SetVolumeKmsKeyId(v string) *StartTopicsDetectionJobInput {
 	s.VolumeKmsKeyId = &v
@@ -15781,6 +16235,17 @@ func (s *StartTopicsDetectionJobInput) SetVpcConfig(v *VpcConfig) *StartTopicsDe
 
 type StartTopicsDetectionJobOutput struct {
 	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the topics detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:topics-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:document-classification-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
 
 	// The identifier generated for the job. To get the status of the job, use this
 	// identifier with the DescribeTopicDetectionJob operation.
@@ -15807,6 +16272,12 @@ func (s StartTopicsDetectionJobOutput) String() string {
 // GoString returns the string representation
 func (s StartTopicsDetectionJobOutput) GoString() string {
 	return s.String()
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *StartTopicsDetectionJobOutput) SetJobArn(v string) *StartTopicsDetectionJobOutput {
+	s.JobArn = &v
+	return s
 }
 
 // SetJobId sets the JobId field's value.
@@ -16883,6 +17354,17 @@ type TopicsDetectionJobProperties struct {
 	// job.
 	InputDataConfig *InputDataConfig `type:"structure"`
 
+	// The Amazon Resource Name (ARN) of the topics detection job. It is a unique,
+	// fully qualified identifier for the job. It includes the AWS account, Region,
+	// and the job ID. The format of the ARN is as follows:
+	//
+	// arn:<partition>:comprehend:<region>:<account-id>:topics-detection-job/<job-id>
+	//
+	// The following is an example job ARN:
+	//
+	// arn:aws:comprehend:us-west-2:111122223333:topics-detection-job/1234abcd12ab34cd56ef1234567890ab
+	JobArn *string `type:"string"`
+
 	// The identifier assigned to the topic detection job.
 	JobId *string `min:"1" type:"string"`
 
@@ -16948,6 +17430,12 @@ func (s *TopicsDetectionJobProperties) SetEndTime(v time.Time) *TopicsDetectionJ
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *TopicsDetectionJobProperties) SetInputDataConfig(v *InputDataConfig) *TopicsDetectionJobProperties {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetJobArn sets the JobArn field's value.
+func (s *TopicsDetectionJobProperties) SetJobArn(v string) *TopicsDetectionJobProperties {
+	s.JobArn = &v
 	return s
 }
 
