@@ -11,6 +11,11 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 )
 
+type temporaryError interface {
+	error
+	Temporary() bool
+}
+
 func TestNew(t *testing.T) {
 	err := awserr.New("RequestTimeout", "RequestTimeout", context.DeadlineExceeded)
 	if err.Code() != "RequestTimeout" {
@@ -24,6 +29,11 @@ func TestNew(t *testing.T) {
 	}
 	if !errors.Is(err, context.DeadlineExceeded) {
 		t.Error("expected err is a context.DeadlineExceeded")
+	}
+
+	var e temporaryError
+	if !errors.As(err, &e) {
+		t.Errorf("expacted err can be casted to temporaryError")
 	}
 }
 
@@ -41,6 +51,14 @@ func TestNewBatchError(t *testing.T) {
 	}
 	if !errors.Is(err, context.DeadlineExceeded) {
 		t.Error("expected err is a context.DeadlineExceeded")
+	}
+
+	var e temporaryError
+	if !errors.As(err, &e) {
+		t.Errorf("expacted err can be casted to temporaryError")
+	}
+	if !e.Temporary() {
+		t.Error("expect true")
 	}
 }
 
@@ -66,6 +84,14 @@ func TestNewRequestFailure(t *testing.T) {
 	if !errors.Is(err, context.DeadlineExceeded) {
 		t.Error("expected err is a context.DeadlineExceeded")
 	}
+
+	var e temporaryError
+	if !errors.As(err, &e) {
+		t.Errorf("expacted err can be casted to temporaryError")
+	}
+	if !e.Temporary() {
+		t.Error("expect true")
+	}
 }
 
 func TestNewUnmarshalError(t *testing.T) {
@@ -84,5 +110,13 @@ func TestNewUnmarshalError(t *testing.T) {
 	}
 	if !errors.Is(err, io.ErrUnexpectedEOF) {
 		t.Error("expected err is a io.ErrUnexpectedEOFd")
+	}
+
+	var e temporaryError
+	if !errors.As(err, &e) {
+		t.Errorf("expacted err can be casted to temporaryError")
+	}
+	if !e.Temporary() {
+		t.Error("expect true")
 	}
 }
