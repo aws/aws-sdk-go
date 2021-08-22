@@ -43,6 +43,11 @@ func (e InvalidARNError) OrigErr() error {
 	return e.origErr
 }
 
+// Unwrap returns the underlying error that caused the failure.
+func (e InvalidARNError) Unwrap() error {
+	return e.origErr
+}
+
 // NewInvalidARNError denotes invalid arn error
 func NewInvalidARNError(resource arn.Resource, err error) InvalidARNError {
 	return InvalidARNError{

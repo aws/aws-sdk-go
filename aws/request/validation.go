@@ -104,6 +104,11 @@ func (e ErrInvalidParams) OrigErrs() []error {
 	return errs
 }
 
+// Unwrap returns the invalid parameters as a awserr.BatchedErrors value
+func (e ErrInvalidParams) Unwrap() error {
+	return e.OrigErr()
+}
+
 // An ErrInvalidParam represents an invalid parameter error type.
 type ErrInvalidParam interface {
 	awserr.Error

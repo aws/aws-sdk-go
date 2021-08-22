@@ -583,6 +583,11 @@ func (e SharedConfigLoadError) Error() string {
 	return awserr.SprintError(e.Code(), e.Message(), "", e.Err)
 }
 
+// Unwrap returns the underlying error that caused the failure.
+func (e SharedConfigLoadError) Unwrap() error {
+	return e.Err
+}
+
 // SharedConfigProfileNotExistsError is an error for the shared config when
 // the profile was not find in the config file.
 type SharedConfigProfileNotExistsError struct {
