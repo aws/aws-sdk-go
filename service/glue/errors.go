@@ -80,6 +80,10 @@ const (
 	// The same unique identifier was associated with two different records.
 	ErrCodeIdempotentParameterMismatchException = "IdempotentParameterMismatchException"
 
+	// ErrCodeIllegalBlueprintStateException for service response error code
+	// "IllegalBlueprintStateException".
+	ErrCodeIllegalBlueprintStateException = "IllegalBlueprintStateException"
+
 	// ErrCodeIllegalWorkflowStateException for service response error code
 	// "IllegalWorkflowStateException".
 	//
@@ -166,6 +170,7 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"GlueEncryptionException":              newErrorEncryptionException,
 	"EntityNotFoundException":              newErrorEntityNotFoundException,
 	"IdempotentParameterMismatchException": newErrorIdempotentParameterMismatchException,
+	"IllegalBlueprintStateException":       newErrorIllegalBlueprintStateException,
 	"IllegalWorkflowStateException":        newErrorIllegalWorkflowStateException,
 	"InternalServiceException":             newErrorInternalServiceException,
 	"InvalidInputException":                newErrorInvalidInputException,

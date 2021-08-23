@@ -251,10 +251,15 @@ func (c *FraudDetector) CancelBatchPredictionJobRequest(input *CancelBatchPredic
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -344,13 +349,18 @@ func (c *FraudDetector) CreateBatchPredictionJobRequest(input *CreateBatchPredic
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/CreateBatchPredictionJob
 func (c *FraudDetector) CreateBatchPredictionJob(input *CreateBatchPredictionJobInput) (*CreateBatchPredictionJobOutput, error) {
@@ -432,7 +442,9 @@ func (c *FraudDetector) CreateDetectorVersionRequest(input *CreateDetectorVersio
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -528,6 +540,9 @@ func (c *FraudDetector) CreateModelRequest(input *CreateModelInput) (req *reques
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
@@ -613,12 +628,17 @@ func (c *FraudDetector) CreateModelVersionRequest(input *CreateModelVersionInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -885,10 +905,15 @@ func (c *FraudDetector) DeleteBatchPredictionJobRequest(input *DeleteBatchPredic
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -1089,7 +1114,9 @@ func (c *FraudDetector) DeleteDetectorVersionRequest(input *DeleteDetectorVersio
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -1217,6 +1244,9 @@ func (c *FraudDetector) DeleteEntityTypeRequest(input *DeleteEntityTypeInput) (r
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -1418,6 +1448,9 @@ func (c *FraudDetector) DeleteEventTypeRequest(input *DeleteEventTypeInput) (req
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -1636,6 +1669,9 @@ func (c *FraudDetector) DeleteLabelRequest(input *DeleteLabelInput) (req *reques
 //      * DeleteRule: A conflict exception will occur if the RuleVersion is in
 //      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
@@ -1742,6 +1778,9 @@ func (c *FraudDetector) DeleteModelRequest(input *DeleteModelInput) (req *reques
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
@@ -1840,6 +1879,9 @@ func (c *FraudDetector) DeleteModelVersionRequest(input *DeleteModelVersionInput
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * ConflictException
 //   An exception indicating there was a conflict during a delete operation. The
@@ -2269,7 +2311,9 @@ func (c *FraudDetector) DescribeDetectorRequest(input *DescribeDetectorInput) (r
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2370,10 +2414,15 @@ func (c *FraudDetector) DescribeModelVersionsRequest(input *DescribeModelVersion
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -2523,10 +2572,15 @@ func (c *FraudDetector) GetBatchPredictionJobsRequest(input *GetBatchPredictionJ
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -2665,7 +2719,9 @@ func (c *FraudDetector) GetDetectorVersionRequest(input *GetDetectorVersionInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2769,7 +2825,9 @@ func (c *FraudDetector) GetDetectorsRequest(input *GetDetectorsInput) (req *requ
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -2925,10 +2983,15 @@ func (c *FraudDetector) GetEntityTypesRequest(input *GetEntityTypesInput) (req *
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -3068,7 +3131,9 @@ func (c *FraudDetector) GetEventPredictionRequest(input *GetEventPredictionInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3094,6 +3159,10 @@ func (c *FraudDetector) GetEventPredictionRequest(input *GetEventPredictionInput
 //
 //      * DeleteRule: A conflict exception will occur if the RuleVersion is in
 //      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
+//   * ResourceUnavailableException
+//   An exception indicating that the attached customer-owned (external) model
+//   threw an exception when Amazon Fraud Detector invoked the model.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/GetEventPrediction
 func (c *FraudDetector) GetEventPrediction(input *GetEventPredictionInput) (*GetEventPredictionOutput, error) {
@@ -3186,10 +3255,15 @@ func (c *FraudDetector) GetEventTypesRequest(input *GetEventTypesInput) (req *re
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -3339,7 +3413,9 @@ func (c *FraudDetector) GetExternalModelsRequest(input *GetExternalModelsInput) 
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -3483,10 +3559,15 @@ func (c *FraudDetector) GetKMSEncryptionKeyRequest(input *GetKMSEncryptionKeyInp
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -3584,10 +3665,15 @@ func (c *FraudDetector) GetLabelsRequest(input *GetLabelsInput) (req *request.Re
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -3726,10 +3812,15 @@ func (c *FraudDetector) GetModelVersionRequest(input *GetModelVersionInput) (req
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -3808,10 +3899,11 @@ func (c *FraudDetector) GetModelsRequest(input *GetModelsInput) (req *request.Re
 
 // GetModels API operation for Amazon Fraud Detector.
 //
-// Gets one or more models. Gets all models for the AWS account if no model
-// type and no model id provided. Gets all models for the AWS account and model
-// type, if the model type is specified but model id is not provided. Gets a
-// specific model if (model type, model id) tuple is specified.
+// Gets one or more models. Gets all models for the Amazon Web Services account
+// if no model type and no model id provided. Gets all models for the Amazon
+// Web Services account and model type, if the model type is specified but model
+// id is not provided. Gets a specific model if (model type, model id) tuple
+// is specified.
 //
 // This is a paginated API. If you provide a null maxResults, this action retrieves
 // a maximum of 10 records per page. If you provide a maxResults, the value
@@ -3831,10 +3923,15 @@ func (c *FraudDetector) GetModelsRequest(input *GetModelsInput) (req *request.Re
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -3984,7 +4081,9 @@ func (c *FraudDetector) GetOutcomesRequest(input *GetOutcomesInput) (req *reques
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -4143,7 +4242,9 @@ func (c *FraudDetector) GetRulesRequest(input *GetRulesInput) (req *request.Requ
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -4299,7 +4400,9 @@ func (c *FraudDetector) GetVariablesRequest(input *GetVariablesInput) (req *requ
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -4453,7 +4556,12 @@ func (c *FraudDetector) ListTagsForResourceRequest(input *ListTagsForResourceInp
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -4603,6 +4711,20 @@ func (c *FraudDetector) PutDetectorRequest(input *PutDetectorInput) (req *reques
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
 //
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutDetector
 func (c *FraudDetector) PutDetector(input *PutDetectorInput) (*PutDetectorOutput, error) {
 	req, out := c.PutDetectorRequest(input)
@@ -4689,10 +4811,27 @@ func (c *FraudDetector) PutEntityTypeRequest(input *PutEntityTypeInput) (req *re
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEntityType
 func (c *FraudDetector) PutEntityType(input *PutEntityTypeInput) (*PutEntityTypeOutput, error) {
@@ -4783,10 +4922,27 @@ func (c *FraudDetector) PutEventTypeRequest(input *PutEventTypeInput) (req *requ
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutEventType
 func (c *FraudDetector) PutEventType(input *PutEventTypeInput) (*PutEventTypeOutput, error) {
@@ -4881,6 +5037,20 @@ func (c *FraudDetector) PutExternalModelRequest(input *PutExternalModelInput) (r
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
 //
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutExternalModel
 func (c *FraudDetector) PutExternalModel(input *PutExternalModelInput) (*PutExternalModelOutput, error) {
 	req, out := c.PutExternalModelRequest(input)
@@ -4963,15 +5133,34 @@ func (c *FraudDetector) PutKMSEncryptionKeyRequest(input *PutKMSEncryptionKeyInp
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutKMSEncryptionKey
 func (c *FraudDetector) PutKMSEncryptionKey(input *PutKMSEncryptionKeyInput) (*PutKMSEncryptionKeyOutput, error) {
@@ -5058,10 +5247,27 @@ func (c *FraudDetector) PutLabelRequest(input *PutLabelInput) (req *request.Requ
 //   * InternalServerException
 //   An exception indicating an internal server error.
 //
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutLabel
 func (c *FraudDetector) PutLabel(input *PutLabelInput) (*PutLabelOutput, error) {
@@ -5154,6 +5360,20 @@ func (c *FraudDetector) PutOutcomeRequest(input *PutOutcomeInput) (req *request.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
 //
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/PutOutcome
 func (c *FraudDetector) PutOutcome(input *PutOutcomeInput) (*PutOutcomeOutput, error) {
 	req, out := c.PutOutcomeRequest(input)
@@ -5235,7 +5455,12 @@ func (c *FraudDetector) TagResourceRequest(input *TagResourceInput) (req *reques
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -5323,7 +5548,12 @@ func (c *FraudDetector) UntagResourceRequest(input *UntagResourceInput) (req *re
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
@@ -5413,7 +5643,9 @@ func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersio
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -5425,6 +5657,20 @@ func (c *FraudDetector) UpdateDetectorVersionRequest(input *UpdateDetectorVersio
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersion
 func (c *FraudDetector) UpdateDetectorVersion(input *UpdateDetectorVersionInput) (*UpdateDetectorVersionOutput, error) {
@@ -5518,6 +5764,20 @@ func (c *FraudDetector) UpdateDetectorVersionMetadataRequest(input *UpdateDetect
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
 //
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionMetadata
 func (c *FraudDetector) UpdateDetectorVersionMetadata(input *UpdateDetectorVersionMetadataInput) (*UpdateDetectorVersionMetadataOutput, error) {
 	req, out := c.UpdateDetectorVersionMetadataRequest(input)
@@ -5601,7 +5861,9 @@ func (c *FraudDetector) UpdateDetectorVersionStatusRequest(input *UpdateDetector
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -5613,6 +5875,20 @@ func (c *FraudDetector) UpdateDetectorVersionStatusRequest(input *UpdateDetector
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateDetectorVersionStatus
 func (c *FraudDetector) UpdateDetectorVersionStatus(input *UpdateDetectorVersionStatusInput) (*UpdateDetectorVersionStatusOutput, error) {
@@ -5695,15 +5971,34 @@ func (c *FraudDetector) UpdateModelRequest(input *UpdateModelInput) (req *reques
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModel
 func (c *FraudDetector) UpdateModel(input *UpdateModelInput) (*UpdateModelOutput, error) {
@@ -5789,15 +6084,34 @@ func (c *FraudDetector) UpdateModelVersionRequest(input *UpdateModelVersionInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
 //
+//   * ThrottlingException
+//   An exception indicating a throttling error.
+//
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersion
 func (c *FraudDetector) UpdateModelVersion(input *UpdateModelVersionInput) (*UpdateModelVersionOutput, error) {
@@ -5886,15 +6200,34 @@ func (c *FraudDetector) UpdateModelVersionStatusRequest(input *UpdateModelVersio
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
+//
+//   * ThrottlingException
+//   An exception indicating a throttling error.
 //
 //   * AccessDeniedException
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateModelVersionStatus
 func (c *FraudDetector) UpdateModelVersionStatus(input *UpdateModelVersionStatusInput) (*UpdateModelVersionStatusOutput, error) {
@@ -5977,7 +6310,9 @@ func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -5989,6 +6324,20 @@ func (c *FraudDetector) UpdateRuleMetadataRequest(input *UpdateRuleMetadataInput
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleMetadata
 func (c *FraudDetector) UpdateRuleMetadata(input *UpdateRuleMetadataInput) (*UpdateRuleMetadataOutput, error) {
@@ -6071,7 +6420,9 @@ func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) 
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -6083,6 +6434,20 @@ func (c *FraudDetector) UpdateRuleVersionRequest(input *UpdateRuleVersionInput) 
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateRuleVersion
 func (c *FraudDetector) UpdateRuleVersion(input *UpdateRuleVersionInput) (*UpdateRuleVersionOutput, error) {
@@ -6165,7 +6530,9 @@ func (c *FraudDetector) UpdateVariableRequest(input *UpdateVariableInput) (req *
 //   An exception indicating a specified value is not allowed.
 //
 //   * ResourceNotFoundException
-//   An exception indicating the specified resource was not found.
+//   An exception indicating the specified resource was not found. This can occur
+//   if you submit a request, such as CreateBatchPredictionJob, but the detector
+//   name or version does not exist.
 //
 //   * InternalServerException
 //   An exception indicating an internal server error.
@@ -6177,6 +6544,20 @@ func (c *FraudDetector) UpdateVariableRequest(input *UpdateVariableInput) (req *
 //   An exception indicating Amazon Fraud Detector does not have the needed permissions.
 //   This can occur if you submit a request, such as PutExternalModel, that specifies
 //   a role that is not in your account.
+//
+//   * ConflictException
+//   An exception indicating there was a conflict during a delete operation. The
+//   following delete operations can cause a conflict exception:
+//
+//      * DeleteDetector: A conflict exception will occur if the detector has
+//      associated Rules or DetectorVersions. You can only delete a detector if
+//      it has no Rules or DetectorVersions.
+//
+//      * DeleteDetectorVersion: A conflict exception will occur if the DetectorVersion
+//      status is ACTIVE.
+//
+//      * DeleteRule: A conflict exception will occur if the RuleVersion is in
+//      use by an associated ACTIVE or INACTIVE DetectorVersion.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/frauddetector-2019-11-15/UpdateVariable
 func (c *FraudDetector) UpdateVariable(input *UpdateVariableInput) (*UpdateVariableOutput, error) {
@@ -8883,7 +9264,7 @@ func (s *DetectorVersionSummary) SetStatus(v string) *DetectorVersionSummary {
 
 // The entity details.
 type Entity struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The entity ID. If you do not know the entityId, you can pass unknown, which
 	// is areserved string literal.
@@ -9000,7 +9381,7 @@ func (s *EntityType) SetName(v string) *EntityType {
 
 // The event type details.
 type EventType struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" sensitive:"true"`
 
 	// The entity type ARN.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
@@ -9815,7 +10196,7 @@ type GetEventPredictionInput struct {
 	// Timestamp that defines when the event under evaluation occurred.
 	//
 	// EventTimestamp is a required field
-	EventTimestamp *string `locationName:"eventTimestamp" type:"string" required:"true"`
+	EventTimestamp *string `locationName:"eventTimestamp" min:"10" type:"string" required:"true"`
 
 	// The event type associated with the detector specified for the prediction.
 	//
@@ -9882,6 +10263,9 @@ func (s *GetEventPredictionInput) Validate() error {
 	}
 	if s.EventTimestamp == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventTimestamp"))
+	}
+	if s.EventTimestamp != nil && len(*s.EventTimestamp) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("EventTimestamp", 10))
 	}
 	if s.EventTypeName == nil {
 		invalidParams.Add(request.NewErrParamRequired("EventTypeName"))
@@ -9977,7 +10361,7 @@ type GetEventPredictionOutput struct {
 	// of 900 corresponds to an estimated 2% false positive rate.
 	ModelScores []*ModelScores `locationName:"modelScores" type:"list"`
 
-	// The results.
+	// The results from the rules.
 	RuleResults []*RuleResult `locationName:"ruleResults" type:"list"`
 }
 
@@ -11152,11 +11536,12 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
-// The logit metric details.
-type LogitMetric struct {
+// The log odds metric details.
+type LogOddsMetric struct {
 	_ struct{} `type:"structure"`
 
-	// The relative importance of the variable.
+	// The relative importance of the variable. For more information, see Model
+	// variable importance (https://docs.aws.amazon.com/frauddetector/latest/ug/model-variable-importance.html).
 	//
 	// VariableImportance is a required field
 	VariableImportance *float64 `locationName:"variableImportance" type:"float" required:"true"`
@@ -11173,29 +11558,29 @@ type LogitMetric struct {
 }
 
 // String returns the string representation
-func (s LogitMetric) String() string {
+func (s LogOddsMetric) String() string {
 	return awsutil.Prettify(s)
 }
 
 // GoString returns the string representation
-func (s LogitMetric) GoString() string {
+func (s LogOddsMetric) GoString() string {
 	return s.String()
 }
 
 // SetVariableImportance sets the VariableImportance field's value.
-func (s *LogitMetric) SetVariableImportance(v float64) *LogitMetric {
+func (s *LogOddsMetric) SetVariableImportance(v float64) *LogOddsMetric {
 	s.VariableImportance = &v
 	return s
 }
 
 // SetVariableName sets the VariableName field's value.
-func (s *LogitMetric) SetVariableName(v string) *LogitMetric {
+func (s *LogOddsMetric) SetVariableName(v string) *LogOddsMetric {
 	s.VariableName = &v
 	return s
 }
 
 // SetVariableType sets the VariableType field's value.
-func (s *LogitMetric) SetVariableType(v string) *LogitMetric {
+func (s *LogOddsMetric) SetVariableType(v string) *LogOddsMetric {
 	s.VariableType = &v
 	return s
 }
@@ -12517,7 +12902,9 @@ func (s PutOutcomeOutput) GoString() string {
 	return s.String()
 }
 
-// An exception indicating the specified resource was not found.
+// An exception indicating the specified resource was not found. This can occur
+// if you submit a request, such as CreateBatchPredictionJob, but the detector
+// name or version does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -12570,6 +12957,63 @@ func (s *ResourceNotFoundException) StatusCode() int {
 
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// An exception indicating that the attached customer-owned (external) model
+// threw an exception when Amazon Fraud Detector invoked the model.
+type ResourceUnavailableException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation
+func (s ResourceUnavailableException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceUnavailableException) GoString() string {
+	return s.String()
+}
+
+func newErrorResourceUnavailableException(v protocol.ResponseMetadata) error {
+	return &ResourceUnavailableException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ResourceUnavailableException) Code() string {
+	return "ResourceUnavailableException"
+}
+
+// Message returns the exception's message.
+func (s *ResourceUnavailableException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ResourceUnavailableException) OrigErr() error {
+	return nil
+}
+
+func (s *ResourceUnavailableException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ResourceUnavailableException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ResourceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
@@ -14394,7 +14838,7 @@ type VariableImportanceMetrics struct {
 	_ struct{} `type:"structure"`
 
 	// List of variable metrics.
-	LogitMetrics []*LogitMetric `type:"list"`
+	LogOddsMetrics []*LogOddsMetric `locationName:"logOddsMetrics" type:"list"`
 }
 
 // String returns the string representation
@@ -14407,9 +14851,9 @@ func (s VariableImportanceMetrics) GoString() string {
 	return s.String()
 }
 
-// SetLogitMetrics sets the LogitMetrics field's value.
-func (s *VariableImportanceMetrics) SetLogitMetrics(v []*LogitMetric) *VariableImportanceMetrics {
-	s.LogitMetrics = v
+// SetLogOddsMetrics sets the LogOddsMetrics field's value.
+func (s *VariableImportanceMetrics) SetLogOddsMetrics(v []*LogOddsMetric) *VariableImportanceMetrics {
+	s.LogOddsMetrics = v
 	return s
 }
 

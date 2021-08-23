@@ -239,6 +239,13 @@
       "max":3,
       "min":0
     },
+    "CrossRegionCopyDeprecateRule":{
+      "type":"structure",
+      "members":{
+        "Interval":{"shape":"Interval"},
+        "IntervalUnit":{"shape":"RetentionIntervalUnitValues"}
+      }
+    },
     "CrossRegionCopyRetainRule":{
       "type":"structure",
       "members":{
@@ -255,7 +262,8 @@
         "Encrypted":{"shape":"Encrypted"},
         "CmkArn":{"shape":"CmkArn"},
         "CopyTags":{"shape":"CopyTagsNullable"},
-        "RetainRule":{"shape":"CrossRegionCopyRetainRule"}
+        "RetainRule":{"shape":"CrossRegionCopyRetainRule"},
+        "DeprecateRule":{"shape":"CrossRegionCopyDeprecateRule"}
       }
     },
     "CrossRegionCopyRules":{
@@ -278,6 +286,14 @@
     "DeleteLifecyclePolicyResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "DeprecateRule":{
+      "type":"structure",
+      "members":{
+        "Count":{"shape":"Count"},
+        "Interval":{"shape":"Interval"},
+        "IntervalUnit":{"shape":"RetentionIntervalUnitValues"}
       }
     },
     "DescriptionRegex":{
@@ -616,7 +632,8 @@
         "RetainRule":{"shape":"RetainRule"},
         "FastRestoreRule":{"shape":"FastRestoreRule"},
         "CrossRegionCopyRules":{"shape":"CrossRegionCopyRules"},
-        "ShareRules":{"shape":"ShareRules"}
+        "ShareRules":{"shape":"ShareRules"},
+        "DeprecateRule":{"shape":"DeprecateRule"}
       }
     },
     "ScheduleList":{

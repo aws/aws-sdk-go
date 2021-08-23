@@ -1,8 +1,8 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon Data Lifecycle Manager</fullname> <p>With Amazon Data Lifecycle Manager, you can manage the lifecycle of your AWS resources. You create lifecycle policies, which are used to automate operations on the specified resources.</p> <p>Amazon DLM supports Amazon EBS volumes and snapshots. For information about using Amazon DLM with Amazon EBS, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html\">Automating the Amazon EBS Snapshot Lifecycle</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+  "service": "<fullname>Amazon Data Lifecycle Manager</fullname> <p>With Amazon Data Lifecycle Manager, you can manage the lifecycle of your Amazon Web Services resources. You create lifecycle policies, which are used to automate operations on the specified resources.</p> <p>Amazon DLM supports Amazon EBS volumes and snapshots. For information about using Amazon DLM with Amazon EBS, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshot-lifecycle.html\">Automating the Amazon EBS Snapshot Lifecycle</a> in the <i>Amazon EC2 User Guide</i>.</p>",
   "operations": {
-    "CreateLifecyclePolicy": "<p>Creates a policy to manage the lifecycle of the specified AWS resources. You can create up to 100 lifecycle policies.</p>",
+    "CreateLifecyclePolicy": "<p>Creates a policy to manage the lifecycle of the specified Amazon Web Services resources. You can create up to 100 lifecycle policies.</p>",
     "DeleteLifecyclePolicy": "<p>Deletes the specified lifecycle policy and halts the automated operations that the policy specified.</p>",
     "GetLifecyclePolicies": "<p>Gets summary information about all or the specified data lifecycle policies.</p> <p>To get complete information about a policy, use <a>GetLifecyclePolicy</a>.</p>",
     "GetLifecyclePolicy": "<p>Gets detailed information about the specified lifecycle policy.</p>",
@@ -52,8 +52,8 @@
     "CmkArn": {
       "base": null,
       "refs": {
-        "CrossRegionCopyRule$CmkArn": "<p>The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to use for EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used.</p>",
-        "EncryptionConfiguration$CmkArn": "<p>The Amazon Resource Name (ARN) of the AWS KMS customer master key (CMK) to use for EBS encryption. If this parameter is not specified, your AWS managed CMK for EBS is used.</p>"
+        "CrossRegionCopyRule$CmkArn": "<p>The Amazon Resource Name (ARN) of the KMS key to use for EBS encryption. If this parameter is not specified, the default KMS key for the account is used.</p>",
+        "EncryptionConfiguration$CmkArn": "<p>The Amazon Resource Name (ARN) of the KMS key to use for EBS encryption. If this parameter is not specified, the default KMS key for the account is used.</p>"
       }
     },
     "CopyTags": {
@@ -65,12 +65,13 @@
     "CopyTagsNullable": {
       "base": null,
       "refs": {
-        "CrossRegionCopyRule$CopyTags": "<p>Copy all user-defined tags from the source snapshot to the copied snapshot.</p>"
+        "CrossRegionCopyRule$CopyTags": "<p>Indicates whether to copy all user-defined tags from the source snapshot to the cross-Region snapshot copy.</p>"
       }
     },
     "Count": {
       "base": null,
       "refs": {
+        "DeprecateRule$Count": "<p>If the schedule has a count-based retention rule, this parameter specifies the number of oldest AMIs to deprecate. The count must be less than or equal to the schedule's retention count, and it can't be greater than 1000.</p>",
         "FastRestoreRule$Count": "<p>The number of snapshots to be enabled with fast snapshot restore.</p>",
         "RetainRule$Count": "<p>The number of snapshots to retain for each volume, up to a maximum of 1000.</p>"
       }
@@ -109,11 +110,17 @@
         "Action$CrossRegionCopy": "<p>The rule for copying shared snapshots across Regions.</p>"
       }
     },
+    "CrossRegionCopyDeprecateRule": {
+      "base": "<p>Specifies an AMI deprecation rule for cross-Region AMI copies created by a cross-Region copy rule.</p>",
+      "refs": {
+        "CrossRegionCopyRule$DeprecateRule": "<p>The AMI deprecation rule for cross-Region AMI copies created by the rule.</p>"
+      }
+    },
     "CrossRegionCopyRetainRule": {
       "base": "<p>Specifies the retention rule for cross-Region snapshot copies.</p>",
       "refs": {
         "CrossRegionCopyAction$RetainRule": null,
-        "CrossRegionCopyRule$RetainRule": "<p>The retention rule.</p>"
+        "CrossRegionCopyRule$RetainRule": "<p>The retention rule that indicates how long snapshot copies are to be retained in the destination Region.</p>"
       }
     },
     "CrossRegionCopyRule": {
@@ -136,6 +143,12 @@
     "DeleteLifecyclePolicyResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "DeprecateRule": {
+      "base": "<p>Specifies an AMI deprecation rule for a schedule.</p>",
+      "refs": {
+        "Schedule$DeprecateRule": "<p>The AMI deprecation rule for the schedule.</p>"
       }
     },
     "DescriptionRegex": {
@@ -190,7 +203,7 @@
     "EventSourceValues": {
       "base": null,
       "refs": {
-        "EventSource$Type": "<p>The source of the event. Currently only managed AWS CloudWatch Events rules are supported.</p>"
+        "EventSource$Type": "<p>The source of the event. Currently only managed CloudWatch Events rules are supported.</p>"
       }
     },
     "EventTypeValues": {
@@ -256,10 +269,12 @@
       "base": null,
       "refs": {
         "CreateRule$Interval": "<p>The interval between snapshots. The supported values are 1, 2, 3, 4, 6, 8, 12, and 24.</p>",
+        "CrossRegionCopyDeprecateRule$Interval": "<p>The period after which to deprecate the cross-Region AMI copies. The period must be less than or equal to the cross-Region AMI copy retention period, and it can't be greater than 10 years. This is equivalent to 120 months, 520 weeks, or 3650 days.</p>",
         "CrossRegionCopyRetainRule$Interval": "<p>The amount of time to retain each snapshot. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
+        "DeprecateRule$Interval": "<p>If the schedule has an age-based retention rule, this parameter specifies the period after which to deprecate AMIs created by the schedule. The period must be less than or equal to the schedule's retention period, and it can't be greater than 10 years. This is equivalent to 120 months, 520 weeks, or 3650 days.</p>",
         "FastRestoreRule$Interval": "<p>The amount of time to enable fast snapshot restore. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
         "RetainRule$Interval": "<p>The amount of time to retain each snapshot. The maximum is 100 years. This is equivalent to 1200 months, 5200 weeks, or 36500 days.</p>",
-        "ShareRule$UnshareInterval": "<p>The period after which snapshots that are shared with other AWS accounts are automatically unshared.</p>"
+        "ShareRule$UnshareInterval": "<p>The period after which snapshots that are shared with other Amazon Web Services accounts are automatically unshared.</p>"
       }
     },
     "IntervalUnitValues": {
@@ -309,7 +324,7 @@
     "LocationValues": {
       "base": null,
       "refs": {
-        "CreateRule$Location": "<p>Specifies the destination for snapshots created by the policy. To create snapshots in the same Region as the source resource, specify <code>CLOUD</code>. To create snapshots on the same Outpost as the source resource, specify <code>OUTPOST_LOCAL</code>. If you omit this parameter, <code>CLOUD</code> is used by default.</p> <p>If the policy targets resources in an AWS Region, then you must create snapshots in the same Region as the source resource. </p> <p>If the policy targets resources on an Outpost, then you can create snapshots on the same Outpost as the source resource, or in the Region of that Outpost.</p>"
+        "CreateRule$Location": "<p>Specifies the destination for snapshots created by the policy. To create snapshots in the same Region as the source resource, specify <code>CLOUD</code>. To create snapshots on the same Outpost as the source resource, specify <code>OUTPOST_LOCAL</code>. If you omit this parameter, <code>CLOUD</code> is used by default.</p> <p>If the policy targets resources in an Amazon Web Services Region, then you must create snapshots in the same Region as the source resource.</p> <p>If the policy targets resources on an Outpost, then you can create snapshots on the same Outpost as the source resource, or in the Region of that Outpost.</p>"
       }
     },
     "NoReboot": {
@@ -386,13 +401,13 @@
       "base": null,
       "refs": {
         "LifecyclePolicySummary$PolicyType": "<p>The type of policy. <code>EBS_SNAPSHOT_MANAGEMENT</code> indicates that the policy manages the lifecycle of Amazon EBS snapshots. <code>IMAGE_MANAGEMENT</code> indicates that the policy manages the lifecycle of EBS-backed AMIs.</p>",
-        "PolicyDetails$PolicyType": "<p>The valid target resource types and actions a policy can manage. Specify <code>EBS_SNAPSHOT_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of Amazon EBS snapshots. Specify <code>IMAGE_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of EBS-backed AMIs. Specify <code>EVENT_BASED_POLICY </code> to create an event-based policy that performs specific actions when a defined event occurs in your AWS account.</p> <p>The default is <code>EBS_SNAPSHOT_MANAGEMENT</code>.</p>"
+        "PolicyDetails$PolicyType": "<p>The valid target resource types and actions a policy can manage. Specify <code>EBS_SNAPSHOT_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of Amazon EBS snapshots. Specify <code>IMAGE_MANAGEMENT</code> to create a lifecycle policy that manages the lifecycle of EBS-backed AMIs. Specify <code>EVENT_BASED_POLICY </code> to create an event-based policy that performs specific actions when a defined event occurs in your Amazon Web Services account.</p> <p>The default is <code>EBS_SNAPSHOT_MANAGEMENT</code>.</p>"
       }
     },
     "ResourceLocationList": {
       "base": null,
       "refs": {
-        "PolicyDetails$ResourceLocations": "<p>The location of the resources to backup. If the source resources are located in an AWS Region, specify <code>CLOUD</code>. If the source resources are located on an AWS Outpost in your account, specify <code>OUTPOST</code>. </p> <p>If you specify <code>OUTPOST</code>, Amazon Data Lifecycle Manager backs up all resources of the specified type with matching target tags across all of the Outposts in your account.</p>"
+        "PolicyDetails$ResourceLocations": "<p>The location of the resources to backup. If the source resources are located in an Amazon Web Services Region, specify <code>CLOUD</code>. If the source resources are located on an Outpost in your account, specify <code>OUTPOST</code>. </p> <p>If you specify <code>OUTPOST</code>, Amazon Data Lifecycle Manager backs up all resources of the specified type with matching target tags across all of the Outposts in your account.</p>"
       }
     },
     "ResourceLocationValues": {
@@ -428,7 +443,9 @@
     "RetentionIntervalUnitValues": {
       "base": null,
       "refs": {
+        "CrossRegionCopyDeprecateRule$IntervalUnit": "<p>The unit of time in which to measure the <b>Interval</b>.</p>",
         "CrossRegionCopyRetainRule$IntervalUnit": "<p>The unit of time for time-based retention.</p>",
+        "DeprecateRule$IntervalUnit": "<p>The unit of time in which to measure the <b>Interval</b>.</p>",
         "FastRestoreRule$IntervalUnit": "<p>The unit of time for enabling fast snapshot restore.</p>",
         "RetainRule$IntervalUnit": "<p>The unit of time for time-based retention.</p>",
         "ShareRule$UnshareIntervalUnit": "<p>The unit of time for the automatic unsharing interval.</p>"
@@ -460,7 +477,7 @@
       }
     },
     "ShareRule": {
-      "base": "<p>Specifies a rule for sharing snapshots across AWS accounts.</p>",
+      "base": "<p>Specifies a rule for sharing snapshots across Amazon Web Services accounts.</p>",
       "refs": {
         "ShareRules$member": null
       }
@@ -468,19 +485,19 @@
     "ShareRules": {
       "base": null,
       "refs": {
-        "Schedule$ShareRules": "<p>The rule for sharing snapshots with other AWS accounts.</p>"
+        "Schedule$ShareRules": "<p>The rule for sharing snapshots with other Amazon Web Services accounts.</p>"
       }
     },
     "ShareTargetAccountList": {
       "base": null,
       "refs": {
-        "ShareRule$TargetAccounts": "<p>The IDs of the AWS accounts with which to share the snapshots.</p>"
+        "ShareRule$TargetAccounts": "<p>The IDs of the Amazon Web Services accounts with which to share the snapshots.</p>"
       }
     },
     "SnapshotOwnerList": {
       "base": null,
       "refs": {
-        "EventParameters$SnapshotOwner": "<p>The IDs of the AWS accounts that can trigger policy by sharing snapshots with your account. The policy only runs if one of the specified AWS accounts shares a snapshot with your account.</p>"
+        "EventParameters$SnapshotOwner": "<p>The IDs of the Amazon Web Services accounts that can trigger policy by sharing snapshots with your account. The policy only runs if one of the specified Amazon Web Services accounts shares a snapshot with your account.</p>"
       }
     },
     "StatusMessage": {
@@ -555,26 +572,26 @@
     "TagsToAddFilterList": {
       "base": null,
       "refs": {
-        "GetLifecyclePoliciesRequest$TagsToAdd": "<p>The tags to add to objects created by the policy.</p> <p>Tags are strings in the format <code>key=value</code>.</p> <p>These user-defined tags are added in addition to the AWS-added lifecycle tags.</p>"
+        "GetLifecyclePoliciesRequest$TagsToAdd": "<p>The tags to add to objects created by the policy.</p> <p>Tags are strings in the format <code>key=value</code>.</p> <p>These user-defined tags are added in addition to the Amazon Web Services-added lifecycle tags.</p>"
       }
     },
     "TagsToAddList": {
       "base": null,
       "refs": {
-        "Schedule$TagsToAdd": "<p>The tags to apply to policy-created resources. These user-defined tags are in addition to the AWS-added lifecycle tags.</p>"
+        "Schedule$TagsToAdd": "<p>The tags to apply to policy-created resources. These user-defined tags are in addition to the Amazon Web Services-added lifecycle tags.</p>"
       }
     },
     "Target": {
       "base": null,
       "refs": {
         "CrossRegionCopyAction$Target": "<p>The target Region.</p>",
-        "CrossRegionCopyRule$Target": "<p>The Amazon Resource Name (ARN) of the target AWS Outpost for the snapshot copies.</p> <p>If you specify an ARN, you must omit <b>TargetRegion</b>. You cannot specify a target Region and a target Outpost in the same rule.</p>"
+        "CrossRegionCopyRule$Target": "<p>The target Region or the Amazon Resource Name (ARN) of the target Outpost for the snapshot copies.</p> <p>Use this parameter instead of <b>TargetRegion</b>. Do not specify both.</p>"
       }
     },
     "TargetRegion": {
       "base": null,
       "refs": {
-        "CrossRegionCopyRule$TargetRegion": "<p>The target Region for the snapshot copies.</p> <p>If you specify a target Region, you must omit <b>Target</b>. You cannot specify a target Region and a target Outpost in the same rule.</p>"
+        "CrossRegionCopyRule$TargetRegion": "<p>Avoid using this parameter when creating new policies. Instead, use <b>Target</b> to specify a target Region or a target Outpost for snapshot copies.</p> <p>For policies created before the <b>Target</b> parameter was introduced, this parameter indicates the target Region for snapshot copies.</p>"
       }
     },
     "TargetTagList": {

@@ -7,6 +7,7 @@
     "BatchDeletePartition": "<p>Deletes one or more partitions in a batch operation.</p>",
     "BatchDeleteTable": "<p>Deletes multiple tables at once.</p> <note> <p>After completing this operation, you no longer have access to the table versions and partitions that belong to the deleted table. Glue deletes these \"orphaned\" resources asynchronously in a timely manner, at the discretion of the service.</p> <p>To ensure the immediate deletion of all related resources, before calling <code>BatchDeleteTable</code>, use <code>DeleteTableVersion</code> or <code>BatchDeleteTableVersion</code>, and <code>DeletePartition</code> or <code>BatchDeletePartition</code>, to delete any resources that belong to the table.</p> </note>",
     "BatchDeleteTableVersion": "<p>Deletes a specified batch of versions of a table.</p>",
+    "BatchGetBlueprints": "<p>Retrieves information about a list of blueprints.</p>",
     "BatchGetCrawlers": "<p>Returns a list of resource metadata for a given list of crawler names. After calling the <code>ListCrawlers</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetDevEndpoints": "<p>Returns a list of resource metadata for a given list of development endpoint names. After calling the <code>ListDevEndpoints</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags.</p>",
     "BatchGetJobs": "<p>Returns a list of resource metadata for a given list of job names. After calling the <code>ListJobs</code> operation, you can call this operation to access the data to which you have been granted permissions. This operation supports all IAM permissions, including permission conditions that uses tags. </p>",
@@ -17,6 +18,7 @@
     "BatchUpdatePartition": "<p>Updates one or more partitions in a batch operation.</p>",
     "CancelMLTaskRun": "<p>Cancels (stops) a task run. Machine learning task runs are asynchronous tasks that Glue runs on your behalf as part of various machine learning workflows. You can cancel a machine learning task run at any time by calling <code>CancelMLTaskRun</code> with a task run's parent transform's <code>TransformID</code> and the task run's <code>TaskRunId</code>. </p>",
     "CheckSchemaVersionValidity": "<p>Validates the supplied schema. This call has no side effects, it simply validates using the supplied schema using <code>DataFormat</code> as the format. Since it does not take a schema set name, no compatibility checks are performed.</p>",
+    "CreateBlueprint": "<p>Registers a blueprint with Glue.</p>",
     "CreateClassifier": "<p>Creates a classifier in the user's account. This can be a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field of the request is present.</p>",
     "CreateConnection": "<p>Creates a connection definition in the Data Catalog.</p>",
     "CreateCrawler": "<p>Creates a new crawler with specified targets, role, configuration, and optional schedule. At least one crawl target must be specified, in the <code>s3Targets</code> field, the <code>jdbcTargets</code> field, or the <code>DynamoDBTargets</code> field.</p>",
@@ -34,6 +36,7 @@
     "CreateTrigger": "<p>Creates a new trigger.</p>",
     "CreateUserDefinedFunction": "<p>Creates a new function definition in the Data Catalog.</p>",
     "CreateWorkflow": "<p>Creates a new workflow.</p>",
+    "DeleteBlueprint": "<p>Deletes an existing blueprint.</p>",
     "DeleteClassifier": "<p>Removes a classifier from the Data Catalog.</p>",
     "DeleteColumnStatisticsForPartition": "<p>Delete the partition column statistics of a column.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>DeletePartition</code>.</p>",
     "DeleteColumnStatisticsForTable": "<p>Retrieves table statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>DeleteTable</code>.</p>",
@@ -55,6 +58,9 @@
     "DeleteTrigger": "<p>Deletes a specified trigger. If the trigger is not found, no exception is thrown.</p>",
     "DeleteUserDefinedFunction": "<p>Deletes an existing function definition from the Data Catalog.</p>",
     "DeleteWorkflow": "<p>Deletes a workflow.</p>",
+    "GetBlueprint": "<p>Retrieves the details of a blueprint.</p>",
+    "GetBlueprintRun": "<p>Retrieves the details of a blueprint run.</p>",
+    "GetBlueprintRuns": "<p>Retrieves the details of blueprint runs for a specified blueprint.</p>",
     "GetCatalogImportStatus": "<p>Retrieves the status of a migration operation.</p>",
     "GetClassifier": "<p>Retrieve a classifier by name.</p>",
     "GetClassifiers": "<p>Lists all classifier objects in the Data Catalog.</p>",
@@ -108,6 +114,7 @@
     "GetWorkflowRunProperties": "<p>Retrieves the workflow run properties which were set during the run.</p>",
     "GetWorkflowRuns": "<p>Retrieves metadata for all runs of a given workflow.</p>",
     "ImportCatalogToGlue": "<p>Imports an existing Amazon Athena Data Catalog to Glue.</p>",
+    "ListBlueprints": "<p>Lists all the blueprint names in an account.</p>",
     "ListCrawlers": "<p>Retrieves the names of all crawler resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListDevEndpoints": "<p>Retrieves the names of all <code>DevEndpoint</code> resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
     "ListJobs": "<p>Retrieves the names of all job resources in this Amazon Web Services account, or the resources with the specified tag. This operation allows you to see which resources are available in your account, and their names.</p> <p>This operation takes the optional <code>Tags</code> field, which you can use as a filter on the response so that tagged resources can be retrieved as a group. If you choose to use tags filtering, only resources with the tag are retrieved.</p>",
@@ -127,6 +134,7 @@
     "ResetJobBookmark": "<p>Resets a bookmark entry.</p>",
     "ResumeWorkflowRun": "<p>Restarts selected nodes of a previous partially completed workflow run and resumes the workflow run. The selected nodes and all nodes that are downstream from the selected nodes are run.</p>",
     "SearchTables": "<p>Searches a set of tables based on properties in the table metadata as well as on the parent database. You can search against text or filter conditions. </p> <p>You can only get tables that you have access to based on the security policies defined in Lake Formation. You need at least a read-only access to the table for it to be returned. If you do not have access to all the columns in the table, these columns will not be searched against when returning the list of tables back to you. If you have access to the columns but not the data in the columns, those columns and the associated metadata for those columns will be included in the search. </p>",
+    "StartBlueprintRun": "<p>Starts a new run of the specified blueprint.</p>",
     "StartCrawler": "<p>Starts a crawl using the specified crawler, regardless of what is scheduled. If the crawler is already running, returns a <a href=\"https://docs.aws.amazon.com/glue/latest/dg/aws-glue-api-exceptions.html#aws-glue-api-exceptions-CrawlerRunningException\">CrawlerRunningException</a>.</p>",
     "StartCrawlerSchedule": "<p>Changes the schedule state of the specified crawler to <code>SCHEDULED</code>, unless the crawler is already running or the schedule state is already <code>SCHEDULED</code>.</p>",
     "StartExportLabelsTaskRun": "<p>Begins an asynchronous task to export all labeled data for a particular transform. This task is the only label-related API call that is not part of the typical active learning workflow. You typically use <code>StartExportLabelsTaskRun</code> when you want to work with all of your existing labels at the same time, such as when you want to remove or change labels that were previously submitted as truth. This API operation accepts the <code>TransformId</code> whose labels you want to export and an Amazon Simple Storage Service (Amazon S3) path to export the labels to. The operation returns a <code>TaskRunId</code>. You can check on the status of your task run by calling the <code>GetMLTaskRun</code> API.</p>",
@@ -142,6 +150,7 @@
     "StopWorkflowRun": "<p>Stops the execution of the specified workflow run.</p>",
     "TagResource": "<p>Adds tags to a resource. A tag is a label you can assign to an Amazon Web Services resource. In Glue, you can tag only certain resources. For information about what resources you can tag, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a>.</p>",
     "UntagResource": "<p>Removes tags from a resource.</p>",
+    "UpdateBlueprint": "<p>Updates a registered blueprint.</p>",
     "UpdateClassifier": "<p>Modifies an existing classifier (a <code>GrokClassifier</code>, an <code>XMLClassifier</code>, a <code>JsonClassifier</code>, or a <code>CsvClassifier</code>, depending on which field is present).</p>",
     "UpdateColumnStatisticsForPartition": "<p>Creates or updates partition statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>UpdatePartition</code>.</p>",
     "UpdateColumnStatisticsForTable": "<p>Creates or updates table statistics of columns.</p> <p>The Identity and Access Management (IAM) permission required for this operation is <code>UpdateTable</code>.</p>",
@@ -285,6 +294,22 @@
       }
     },
     "BatchDeleteTableVersionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetBlueprintNames": {
+      "base": null,
+      "refs": {
+        "BatchGetBlueprintsRequest$Names": "<p>A list of blueprint names.</p>"
+      }
+    },
+    "BatchGetBlueprintsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "BatchGetBlueprintsResponse": {
       "base": null,
       "refs": {
       }
@@ -452,6 +477,71 @@
       "base": null,
       "refs": {
         "DecimalNumber$UnscaledValue": "<p>The unscaled numeric value.</p>"
+      }
+    },
+    "Blueprint": {
+      "base": "<p>The details of a blueprint.</p>",
+      "refs": {
+        "Blueprints$member": null,
+        "GetBlueprintResponse$Blueprint": "<p>Returns a <code>Blueprint</code> object.</p>"
+      }
+    },
+    "BlueprintDetails": {
+      "base": "<p>The details of a blueprint.</p>",
+      "refs": {
+        "Workflow$BlueprintDetails": "<p>This structure indicates the details of the blueprint that this particular workflow is created from.</p>"
+      }
+    },
+    "BlueprintNames": {
+      "base": null,
+      "refs": {
+        "BatchGetBlueprintsResponse$MissingBlueprints": "<p>Returns a list of <code>BlueprintNames</code> that were not found.</p>",
+        "ListBlueprintsResponse$Blueprints": "<p>List of names of blueprints in the account.</p>"
+      }
+    },
+    "BlueprintParameterSpec": {
+      "base": null,
+      "refs": {
+        "Blueprint$ParameterSpec": "<p>A JSON string that indicates the list of parameter specifications for the blueprint.</p>",
+        "LastActiveDefinition$ParameterSpec": "<p>A JSON string specifying the parameters for the blueprint.</p>"
+      }
+    },
+    "BlueprintParameters": {
+      "base": null,
+      "refs": {
+        "BlueprintRun$Parameters": "<p>The blueprint parameters as a string. You will have to provide a value for each key that is required from the parameter spec that is defined in the <code>Blueprint$ParameterSpec</code>.</p>",
+        "StartBlueprintRunRequest$Parameters": "<p>Specifies the parameters as a <code>BlueprintParameters</code> object.</p>"
+      }
+    },
+    "BlueprintRun": {
+      "base": "<p>The details of a blueprint run.</p>",
+      "refs": {
+        "BlueprintRuns$member": null,
+        "GetBlueprintRunResponse$BlueprintRun": "<p>Returns a <code>BlueprintRun</code> object.</p>"
+      }
+    },
+    "BlueprintRunState": {
+      "base": null,
+      "refs": {
+        "BlueprintRun$State": "<p>The state of the blueprint run. Possible values are:</p> <ul> <li> <p>Running — The blueprint run is in progress.</p> </li> <li> <p>Succeeded — The blueprint run completed successfully.</p> </li> <li> <p>Failed — The blueprint run failed and rollback is complete.</p> </li> <li> <p>Rolling Back — The blueprint run failed and rollback is in progress.</p> </li> </ul>"
+      }
+    },
+    "BlueprintRuns": {
+      "base": null,
+      "refs": {
+        "GetBlueprintRunsResponse$BlueprintRuns": "<p>Returns a list of <code>BlueprintRun</code> objects.</p>"
+      }
+    },
+    "BlueprintStatus": {
+      "base": null,
+      "refs": {
+        "Blueprint$Status": "<p>The status of the blueprint registration.</p> <ul> <li> <p>Creating — The blueprint registration is in progress.</p> </li> <li> <p>Active — The blueprint has been successfully registered.</p> </li> <li> <p>Updating — An update to the blueprint registration is in progress.</p> </li> <li> <p>Failed — The blueprint registration failed.</p> </li> </ul>"
+      }
+    },
+    "Blueprints": {
+      "base": null,
+      "refs": {
+        "BatchGetBlueprintsResponse$Blueprints": "<p>Returns a list of blueprint as a <code>Blueprints</code> object.</p>"
       }
     },
     "Boolean": {
@@ -1070,6 +1160,16 @@
         "UpdateCrawlerRequest$Targets": "<p>A list of targets to crawl.</p>"
       }
     },
+    "CreateBlueprintRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateBlueprintResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateClassifierRequest": {
       "base": null,
       "refs": {
@@ -1435,6 +1535,16 @@
       "base": null,
       "refs": {
         "SchemaChangePolicy$DeleteBehavior": "<p>The deletion behavior when the crawler finds a deleted object.</p>"
+      }
+    },
+    "DeleteBlueprintRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteBlueprintResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "DeleteClassifierRequest": {
@@ -1829,6 +1939,7 @@
     "ErrorString": {
       "base": null,
       "refs": {
+        "Blueprint$ErrorMessage": "<p>An error message.</p>",
         "JobRun$ErrorMessage": "<p>An error message associated with this job run.</p>",
         "WorkflowRun$ErrorMessage": "<p>This error message describes any error that may have occurred in starting the workflow run. Currently the only error message is \"Concurrent runs exceeded for workflow: <code>foo</code>.\"</p>"
       }
@@ -1843,7 +1954,7 @@
     "EventBatchingCondition": {
       "base": "<p>Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires.</p>",
       "refs": {
-        "CreateTriggerRequest$EventBatchingCondition": null,
+        "CreateTriggerRequest$EventBatchingCondition": "<p>Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires.</p>",
         "Trigger$EventBatchingCondition": "<p>Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires.</p>",
         "TriggerUpdate$EventBatchingCondition": "<p>Batch condition that must be met (specified number of events received or batch time window expired) before EventBridge event trigger fires.</p>"
       }
@@ -1914,6 +2025,15 @@
         "StorageDescriptor$OutputFormat": "<p>The output format: <code>SequenceFileOutputFormat</code> (binary), or <code>IgnoreKeyTextOutputFormat</code>, or a custom format.</p>"
       }
     },
+    "Generic512CharString": {
+      "base": null,
+      "refs": {
+        "Blueprint$Description": "<p>The description of the blueprint.</p>",
+        "CreateBlueprintRequest$Description": "<p>A description of the blueprint.</p>",
+        "LastActiveDefinition$Description": "<p>The description of the blueprint.</p>",
+        "UpdateBlueprintRequest$Description": "<p>A description of the blueprint.</p>"
+      }
+    },
     "GenericBoundedDouble": {
       "base": null,
       "refs": {
@@ -1945,6 +2065,8 @@
       "refs": {
         "AdditionalPlanOptionsMap$key": null,
         "AdditionalPlanOptionsMap$value": null,
+        "Blueprint$BlueprintLocation": "<p>Specifies the path in Amazon S3 where the blueprint is published.</p>",
+        "Blueprint$BlueprintServiceLocation": "<p>Specifies a path in Amazon S3 where the blueprint is copied when you call <code>CreateBlueprint/UpdateBlueprint</code> to register the blueprint in Glue.</p>",
         "CreateDevEndpointRequest$EndpointName": "<p>The name to be assigned to the new <code>DevEndpoint</code>.</p>",
         "CreateDevEndpointRequest$SubnetId": "<p>The subnet ID for the new <code>DevEndpoint</code> to use.</p>",
         "CreateDevEndpointRequest$PublicKey": "<p>The public key to be used by this <code>DevEndpoint</code> for authentication. This attribute is provided for backward compatibility because the recommended attribute to use is public keys.</p>",
@@ -1980,6 +2102,8 @@
         "DevEndpointNames$member": null,
         "GenericMap$key": null,
         "GenericMap$value": null,
+        "GetBlueprintRunsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
+        "GetBlueprintRunsResponse$NextToken": "<p>A continuation token, if not all blueprint runs have been returned.</p>",
         "GetDevEndpointRequest$EndpointName": "<p>Name of the <code>DevEndpoint</code> to retrieve information for.</p>",
         "GetDevEndpointsRequest$NextToken": "<p>A continuation token, if this is a continuation call.</p>",
         "GetDevEndpointsResponse$NextToken": "<p>A continuation token, if not all <code>DevEndpoint</code> definitions have yet been returned.</p>",
@@ -1997,6 +2121,10 @@
         "GetWorkflowRunsResponse$NextToken": "<p>A continuation token, if not all requested workflow runs have been returned.</p>",
         "JobCommand$Name": "<p>The name of the job command. For an Apache Spark ETL job, this must be <code>glueetl</code>. For a Python shell job, it must be <code>pythonshell</code>. For an Apache Spark streaming ETL job, this must be <code>gluestreaming</code>.</p>",
         "JobRun$LogGroupName": "<p>The name of the log group for secure logging that can be server-side encrypted in Amazon CloudWatch using KMS. This name can be <code>/aws-glue/jobs/</code>, in which case the default encryption is <code>NONE</code>. If you add a role name and <code>SecurityConfiguration</code> name (in other words, <code>/aws-glue/jobs-yourRoleName-yourSecurityConfigurationName/</code>), then that security configuration is used to encrypt the log group.</p>",
+        "LastActiveDefinition$BlueprintLocation": "<p>Specifies a path in Amazon S3 where the blueprint is published by the Glue developer.</p>",
+        "LastActiveDefinition$BlueprintServiceLocation": "<p>Specifies a path in Amazon S3 where the blueprint is copied when you create or update the blueprint.</p>",
+        "ListBlueprintsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
+        "ListBlueprintsResponse$NextToken": "<p>A continuation token, if not all blueprint names have been returned.</p>",
         "ListDevEndpointsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
         "ListDevEndpointsResponse$NextToken": "<p>A continuation token, if the returned list does not contain the last metric available.</p>",
         "ListJobsRequest$NextToken": "<p>A continuation token, if this is a continuation request.</p>",
@@ -2019,6 +2147,36 @@
         "UpdateWorkflowRequest$Description": "<p>The description of the workflow.</p>",
         "Workflow$Description": "<p>A description of the workflow.</p>",
         "WorkflowRunProperties$value": null
+      }
+    },
+    "GetBlueprintRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBlueprintResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBlueprintRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBlueprintRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBlueprintRunsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBlueprintRunsResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "GetCatalogImportStatusRequest": {
@@ -2698,6 +2856,9 @@
         "BatchStopJobRunError$JobRunId": "<p>The <code>JobRunId</code> of the job run in question.</p>",
         "BatchStopJobRunJobRunIdList$member": null,
         "BatchStopJobRunSuccessfulSubmission$JobRunId": "<p>The <code>JobRunId</code> of the job run that was stopped.</p>",
+        "BlueprintDetails$RunId": "<p>The run ID for this blueprint.</p>",
+        "BlueprintRun$RunId": "<p>The run ID for this blueprint run.</p>",
+        "GetBlueprintRunRequest$RunId": "<p>The run ID for the blueprint run you want to retrieve.</p>",
         "GetJobRunRequest$RunId": "<p>The ID of the job run.</p>",
         "GetWorkflowRunPropertiesRequest$RunId": "<p>The ID of the workflow run whose run properties should be returned.</p>",
         "GetWorkflowRunRequest$RunId": "<p>The ID of the workflow run.</p>",
@@ -2707,6 +2868,7 @@
         "PutWorkflowRunPropertiesRequest$RunId": "<p>The ID of the workflow run for which the run properties should be updated.</p>",
         "ResumeWorkflowRunRequest$RunId": "<p>The ID of the workflow run to resume.</p>",
         "ResumeWorkflowRunResponse$RunId": "<p>The new ID assigned to the resumed workflow run. Each resume of a workflow run will have a new run ID.</p>",
+        "StartBlueprintRunResponse$RunId": "<p>The run ID for this blueprint run.</p>",
         "StartJobRunRequest$JobRunId": "<p>The ID of a previous <code>JobRun</code> to retry.</p>",
         "StartJobRunResponse$JobRunId": "<p>The ID assigned to this job run.</p>",
         "StartWorkflowRunResponse$RunId": "<p>An Id for the new run.</p>",
@@ -2719,6 +2881,11 @@
     },
     "IdempotentParameterMismatchException": {
       "base": "<p>The same unique identifier was associated with two different records.</p>",
+      "refs": {
+      }
+    },
+    "IllegalBlueprintStateException": {
+      "base": null,
       "refs": {
       }
     },
@@ -2971,6 +3138,12 @@
         "GetPlanRequest$Language": "<p>The programming language of the code to perform the mapping.</p>"
       }
     },
+    "LastActiveDefinition": {
+      "base": "<p>When there are multiple versions of a blueprint and the latest version has some errors, this attribute indicates the last successful blueprint definition that is available with the service.</p>",
+      "refs": {
+        "Blueprint$LastActiveDefinition": "<p>When there are multiple versions of a blueprint and the latest version has some errors, this attribute indicates the last successful blueprint definition that is available with the service.</p>"
+      }
+    },
     "LastCrawlInfo": {
       "base": "<p>Status and error information about the most recent crawl.</p>",
       "refs": {
@@ -2997,6 +3170,16 @@
         "Crawler$LineageConfiguration": "<p>A configuration that specifies whether data lineage is enabled for the crawler.</p>",
         "CreateCrawlerRequest$LineageConfiguration": "<p>Specifies data lineage configuration settings for the crawler.</p>",
         "UpdateCrawlerRequest$LineageConfiguration": "<p>Specifies data lineage configuration settings for the crawler.</p>"
+      }
+    },
+    "ListBlueprintsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListBlueprintsResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "ListCrawlersRequest": {
@@ -3233,6 +3416,8 @@
       "refs": {
         "AccessDeniedException$Message": "<p>A message describing the problem.</p>",
         "AlreadyExistsException$Message": "<p>A message describing the problem.</p>",
+        "BlueprintRun$ErrorMessage": "<p>Indicates any errors that are seen while running the blueprint.</p>",
+        "BlueprintRun$RollbackErrorMessage": "<p>If there are any errors while creating the entities of a workflow, we try to roll back the created entities until that point and delete them. This attribute indicates the errors seen while trying to delete the entities that are created.</p>",
         "ConcurrentModificationException$Message": "<p>A message describing the problem.</p>",
         "ConcurrentRunsExceededException$Message": "<p>A message describing the problem.</p>",
         "ConditionCheckFailureException$Message": "<p>A message describing the problem.</p>",
@@ -3243,6 +3428,7 @@
         "EntityNotFoundException$Message": "<p>A message describing the problem.</p>",
         "GlueEncryptionException$Message": "<p>A message describing the problem.</p>",
         "IdempotentParameterMismatchException$Message": "<p>A message describing the problem.</p>",
+        "IllegalBlueprintStateException$Message": null,
         "IllegalWorkflowStateException$Message": "<p>A message describing the problem.</p>",
         "InternalServiceException$Message": "<p>A message describing the problem.</p>",
         "InvalidInputException$Message": "<p>A message describing the problem.</p>",
@@ -3341,6 +3527,7 @@
         "BatchStopJobRunSuccessfulSubmission$JobName": "<p>The name of the job definition used in the job run that was stopped.</p>",
         "BatchUpdatePartitionRequest$DatabaseName": "<p>The name of the metadata database in which the partition is to be updated.</p>",
         "BatchUpdatePartitionRequest$TableName": "<p>The name of the metadata table in which the partition is to be updated.</p>",
+        "BlueprintRun$WorkflowName": "<p>The name of a workflow that is created as a result of a successful blueprint run. If a blueprint run has an error, there will not be a workflow created.</p>",
         "CatalogEntry$DatabaseName": "<p>The database in which the table metadata resides.</p>",
         "CatalogEntry$TableName": "<p>The name of the table in question.</p>",
         "CatalogImportStatus$ImportedBy": "<p>The name of the person who initiated the migration.</p>",
@@ -3360,6 +3547,7 @@
         "Crawler$Name": "<p>The name of the crawler.</p>",
         "CrawlerMetrics$CrawlerName": "<p>The name of the crawler.</p>",
         "CrawlerNameList$member": null,
+        "CreateBlueprintResponse$Name": "<p>Returns the name of the blueprint that was registered.</p>",
         "CreateCrawlerRequest$Name": "<p>Name of the new crawler.</p>",
         "CreateCsvClassifierRequest$Name": "<p>The name of the classifier.</p>",
         "CreateDevEndpointRequest$SecurityConfiguration": "<p>The name of the <code>SecurityConfiguration</code> structure to be used with this <code>DevEndpoint</code>.</p>",
@@ -3389,6 +3577,8 @@
         "Database$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
         "DatabaseIdentifier$DatabaseName": "<p>The name of the catalog database.</p>",
         "DatabaseInput$Name": "<p>The name of the database. For Hive compatibility, this is folded to lowercase when it is stored.</p>",
+        "DeleteBlueprintRequest$Name": "<p>The name of the blueprint to delete.</p>",
+        "DeleteBlueprintResponse$Name": "<p>Returns the name of the blueprint that was deleted.</p>",
         "DeleteClassifierRequest$Name": "<p>Name of the classifier to remove.</p>",
         "DeleteColumnStatisticsForPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
         "DeleteColumnStatisticsForPartitionRequest$TableName": "<p>The name of the partitions' table.</p>",
@@ -3426,6 +3616,8 @@
         "ErrorByName$key": null,
         "ErrorDetail$ErrorCode": "<p>The code associated with this error.</p>",
         "FindMatchesTaskRunProperties$JobName": "<p>The name assigned to the job for the Find Matches task run.</p>",
+        "GetBlueprintRequest$Name": "<p>The name of the blueprint.</p>",
+        "GetBlueprintRunsRequest$BlueprintName": "<p>The name of the blueprint.</p>",
         "GetClassifierRequest$Name": "<p>Name of the classifier to retrieve.</p>",
         "GetColumnNamesList$member": null,
         "GetColumnStatisticsForPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
@@ -3528,6 +3720,7 @@
         "Trigger$WorkflowName": "<p>The name of the workflow associated with the trigger.</p>",
         "TriggerNameList$member": null,
         "TriggerUpdate$Name": "<p>Reserved for future use.</p>",
+        "UpdateBlueprintResponse$Name": "<p>Returns the name of the blueprint that was updated.</p>",
         "UpdateColumnStatisticsForPartitionRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
         "UpdateColumnStatisticsForPartitionRequest$TableName": "<p>The name of the partitions' table.</p>",
         "UpdateColumnStatisticsForTableRequest$DatabaseName": "<p>The name of the catalog database where the partitions reside.</p>",
@@ -3664,6 +3857,8 @@
     "NullableBoolean": {
       "base": null,
       "refs": {
+        "BatchGetBlueprintsRequest$IncludeBlueprint": "<p>Specifies whether or not to include the blueprint in the response.</p>",
+        "BatchGetBlueprintsRequest$IncludeParameterSpec": "<p>Specifies whether or not to include the parameters, as a JSON string, for the blueprint in the response.</p>",
         "BatchGetWorkflowsRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
         "CreateCsvClassifierRequest$DisableValueTrimming": "<p>Specifies not to trim values before identifying the type of column values. The default value is true.</p>",
         "CreateCsvClassifierRequest$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
@@ -3671,6 +3866,8 @@
         "CsvClassifier$AllowSingleColumn": "<p>Enables the processing of files that contain only one column.</p>",
         "DynamoDBTarget$scanAll": "<p>Indicates whether to scan all the records, or to sample rows from the table. Scanning all the records can take a long time when the table is not a high throughput table.</p> <p>A value of <code>true</code> means to scan all records, while a value of <code>false</code> means to sample the records. If no value is specified, the value defaults to <code>true</code>.</p>",
         "FindMatchesParameters$EnforceProvidedLabels": "<p>The value to switch on or off to force the output to match the provided labels from users. If the value is <code>True</code>, the <code>find matches</code> transform forces the output to match the provided labels. The results override the normal conflation results. If the value is <code>False</code>, the <code>find matches</code> transform does not ensure all the labels provided are respected, and the results rely on the trained model.</p> <p>Note that setting this value to true may increase the conflation execution time.</p>",
+        "GetBlueprintRequest$IncludeBlueprint": "<p>Specifies whether or not to include the blueprint in the response.</p>",
+        "GetBlueprintRequest$IncludeParameterSpec": "<p>Specifies whether or not to include the parameter specification.</p>",
         "GetWorkflowRequest$IncludeGraph": "<p>Specifies whether to include a graph when returning the workflow resource metadata.</p>",
         "GetWorkflowRunRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
         "GetWorkflowRunsRequest$IncludeGraph": "<p>Specifies whether to include the workflow graph in response or not.</p>",
@@ -3726,6 +3923,34 @@
       "refs": {
       }
     },
+    "OrchestrationIAMRoleArn": {
+      "base": null,
+      "refs": {
+        "BlueprintRun$RoleArn": "<p>The role ARN. This role will be assumed by the Glue service and will be used to create the workflow and other entities of a workflow.</p>",
+        "StartBlueprintRunRequest$RoleArn": "<p>Specifies the IAM role used to create the workflow.</p>"
+      }
+    },
+    "OrchestrationNameString": {
+      "base": null,
+      "refs": {
+        "BatchGetBlueprintNames$member": null,
+        "Blueprint$Name": "<p>The name of the blueprint.</p>",
+        "BlueprintDetails$BlueprintName": "<p>The name of the blueprint.</p>",
+        "BlueprintNames$member": null,
+        "BlueprintRun$BlueprintName": "<p>The name of the blueprint.</p>",
+        "CreateBlueprintRequest$Name": "<p>The name of the blueprint.</p>",
+        "GetBlueprintRunRequest$BlueprintName": "<p>The name of the blueprint.</p>",
+        "StartBlueprintRunRequest$BlueprintName": "<p>The name of the blueprint.</p>",
+        "UpdateBlueprintRequest$Name": "<p>The name of the blueprint.</p>"
+      }
+    },
+    "OrchestrationS3Location": {
+      "base": null,
+      "refs": {
+        "CreateBlueprintRequest$BlueprintLocation": "<p>Specifies a path in Amazon S3 where the blueprint is published.</p>",
+        "UpdateBlueprintRequest$BlueprintLocation": "<p>Specifies a path in Amazon S3 where the blueprint is published.</p>"
+      }
+    },
     "OrchestrationStringList": {
       "base": null,
       "refs": {
@@ -3759,6 +3984,7 @@
     "PageSize": {
       "base": null,
       "refs": {
+        "GetBlueprintRunsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "GetClassifiersRequest$MaxResults": "<p>The size of the list to return (optional).</p>",
         "GetConnectionsRequest$MaxResults": "<p>The maximum number of connections to return in one response.</p>",
         "GetCrawlerMetricsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
@@ -3773,6 +3999,7 @@
         "GetSecurityConfigurationsRequest$MaxResults": "<p>The maximum number of results to return.</p>",
         "GetTriggersRequest$MaxResults": "<p>The maximum size of the response.</p>",
         "GetWorkflowRunsRequest$MaxResults": "<p>The maximum number of workflow runs to be included in the response.</p>",
+        "ListBlueprintsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListCrawlersRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListDevEndpointsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
         "ListJobsRequest$MaxResults": "<p>The maximum size of a list to return.</p>",
@@ -4599,6 +4826,16 @@
         "TransformSortCriteria$SortDirection": "<p>The sort direction to be used in the sorting criteria that are associated with the machine learning transform.</p>"
       }
     },
+    "StartBlueprintRunRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "StartBlueprintRunResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "StartCrawlerRequest": {
       "base": null,
       "refs": {
@@ -4873,6 +5110,7 @@
     "TagsMap": {
       "base": null,
       "refs": {
+        "CreateBlueprintRequest$Tags": "<p>The tags to be applied to this blueprint.</p>",
         "CreateCrawlerRequest$Tags": "<p>The tags to use with this crawler request. You may use tags to limit access to the crawler. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
         "CreateDevEndpointRequest$Tags": "<p>The tags to use with this DevEndpoint. You may use tags to limit access to the DevEndpoint. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
         "CreateJobRequest$Tags": "<p>The tags to use with this job. You may use tags to limit access to the job. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
@@ -4884,6 +5122,7 @@
         "CreateTriggerRequest$Tags": "<p>The tags to use with this trigger. You may use tags to limit access to the trigger. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide. </p>",
         "CreateWorkflowRequest$Tags": "<p>The tags to be used with this workflow.</p>",
         "GetTagsResponse$Tags": "<p>The requested tags.</p>",
+        "ListBlueprintsRequest$Tags": "<p>Filters the list by an Amazon Web Services resource tag.</p>",
         "ListCrawlersRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
         "ListDevEndpointsRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
         "ListJobsRequest$Tags": "<p>Specifies to return only these tagged resources.</p>",
@@ -5018,6 +5257,10 @@
     "TimestampValue": {
       "base": null,
       "refs": {
+        "Blueprint$CreatedOn": "<p>The date and time the blueprint was registered.</p>",
+        "Blueprint$LastModifiedOn": "<p>The date and time the blueprint was last modified.</p>",
+        "BlueprintRun$StartedOn": "<p>The date and time that the blueprint run started.</p>",
+        "BlueprintRun$CompletedOn": "<p>The date and time that the blueprint run completed.</p>",
         "Crawl$StartedOn": "<p>The date and time on which the crawl started.</p>",
         "Crawl$CompletedOn": "<p>The date and time on which the crawl completed.</p>",
         "CreateDevEndpointResponse$CreatedTimestamp": "<p>The point in time at which this <code>DevEndpoint</code> was created.</p>",
@@ -5029,6 +5272,7 @@
         "JobRun$StartedOn": "<p>The date and time at which this job run was started.</p>",
         "JobRun$LastModifiedOn": "<p>The last time that this job run was modified.</p>",
         "JobRun$CompletedOn": "<p>The date and time that this job run completed.</p>",
+        "LastActiveDefinition$LastModifiedOn": "<p>The date and time the blueprint was last modified.</p>",
         "SecurityConfiguration$CreatedTimeStamp": "<p>The time at which this security configuration was created.</p>",
         "Workflow$CreatedOn": "<p>The date and time when the workflow was created.</p>",
         "Workflow$LastModifiedOn": "<p>The date and time when the workflow was last modified.</p>",
@@ -5223,6 +5467,16 @@
       "base": null,
       "refs": {
         "SchemaChangePolicy$UpdateBehavior": "<p>The update behavior when the crawler finds a changed schema.</p>"
+      }
+    },
+    "UpdateBlueprintRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UpdateBlueprintResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateClassifierRequest": {

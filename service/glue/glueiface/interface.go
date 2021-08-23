@@ -80,6 +80,10 @@ type GlueAPI interface {
 	BatchDeleteTableVersionWithContext(aws.Context, *glue.BatchDeleteTableVersionInput, ...request.Option) (*glue.BatchDeleteTableVersionOutput, error)
 	BatchDeleteTableVersionRequest(*glue.BatchDeleteTableVersionInput) (*request.Request, *glue.BatchDeleteTableVersionOutput)
 
+	BatchGetBlueprints(*glue.BatchGetBlueprintsInput) (*glue.BatchGetBlueprintsOutput, error)
+	BatchGetBlueprintsWithContext(aws.Context, *glue.BatchGetBlueprintsInput, ...request.Option) (*glue.BatchGetBlueprintsOutput, error)
+	BatchGetBlueprintsRequest(*glue.BatchGetBlueprintsInput) (*request.Request, *glue.BatchGetBlueprintsOutput)
+
 	BatchGetCrawlers(*glue.BatchGetCrawlersInput) (*glue.BatchGetCrawlersOutput, error)
 	BatchGetCrawlersWithContext(aws.Context, *glue.BatchGetCrawlersInput, ...request.Option) (*glue.BatchGetCrawlersOutput, error)
 	BatchGetCrawlersRequest(*glue.BatchGetCrawlersInput) (*request.Request, *glue.BatchGetCrawlersOutput)
@@ -119,6 +123,10 @@ type GlueAPI interface {
 	CheckSchemaVersionValidity(*glue.CheckSchemaVersionValidityInput) (*glue.CheckSchemaVersionValidityOutput, error)
 	CheckSchemaVersionValidityWithContext(aws.Context, *glue.CheckSchemaVersionValidityInput, ...request.Option) (*glue.CheckSchemaVersionValidityOutput, error)
 	CheckSchemaVersionValidityRequest(*glue.CheckSchemaVersionValidityInput) (*request.Request, *glue.CheckSchemaVersionValidityOutput)
+
+	CreateBlueprint(*glue.CreateBlueprintInput) (*glue.CreateBlueprintOutput, error)
+	CreateBlueprintWithContext(aws.Context, *glue.CreateBlueprintInput, ...request.Option) (*glue.CreateBlueprintOutput, error)
+	CreateBlueprintRequest(*glue.CreateBlueprintInput) (*request.Request, *glue.CreateBlueprintOutput)
 
 	CreateClassifier(*glue.CreateClassifierInput) (*glue.CreateClassifierOutput, error)
 	CreateClassifierWithContext(aws.Context, *glue.CreateClassifierInput, ...request.Option) (*glue.CreateClassifierOutput, error)
@@ -187,6 +195,10 @@ type GlueAPI interface {
 	CreateWorkflow(*glue.CreateWorkflowInput) (*glue.CreateWorkflowOutput, error)
 	CreateWorkflowWithContext(aws.Context, *glue.CreateWorkflowInput, ...request.Option) (*glue.CreateWorkflowOutput, error)
 	CreateWorkflowRequest(*glue.CreateWorkflowInput) (*request.Request, *glue.CreateWorkflowOutput)
+
+	DeleteBlueprint(*glue.DeleteBlueprintInput) (*glue.DeleteBlueprintOutput, error)
+	DeleteBlueprintWithContext(aws.Context, *glue.DeleteBlueprintInput, ...request.Option) (*glue.DeleteBlueprintOutput, error)
+	DeleteBlueprintRequest(*glue.DeleteBlueprintInput) (*request.Request, *glue.DeleteBlueprintOutput)
 
 	DeleteClassifier(*glue.DeleteClassifierInput) (*glue.DeleteClassifierOutput, error)
 	DeleteClassifierWithContext(aws.Context, *glue.DeleteClassifierInput, ...request.Option) (*glue.DeleteClassifierOutput, error)
@@ -271,6 +283,21 @@ type GlueAPI interface {
 	DeleteWorkflow(*glue.DeleteWorkflowInput) (*glue.DeleteWorkflowOutput, error)
 	DeleteWorkflowWithContext(aws.Context, *glue.DeleteWorkflowInput, ...request.Option) (*glue.DeleteWorkflowOutput, error)
 	DeleteWorkflowRequest(*glue.DeleteWorkflowInput) (*request.Request, *glue.DeleteWorkflowOutput)
+
+	GetBlueprint(*glue.GetBlueprintInput) (*glue.GetBlueprintOutput, error)
+	GetBlueprintWithContext(aws.Context, *glue.GetBlueprintInput, ...request.Option) (*glue.GetBlueprintOutput, error)
+	GetBlueprintRequest(*glue.GetBlueprintInput) (*request.Request, *glue.GetBlueprintOutput)
+
+	GetBlueprintRun(*glue.GetBlueprintRunInput) (*glue.GetBlueprintRunOutput, error)
+	GetBlueprintRunWithContext(aws.Context, *glue.GetBlueprintRunInput, ...request.Option) (*glue.GetBlueprintRunOutput, error)
+	GetBlueprintRunRequest(*glue.GetBlueprintRunInput) (*request.Request, *glue.GetBlueprintRunOutput)
+
+	GetBlueprintRuns(*glue.GetBlueprintRunsInput) (*glue.GetBlueprintRunsOutput, error)
+	GetBlueprintRunsWithContext(aws.Context, *glue.GetBlueprintRunsInput, ...request.Option) (*glue.GetBlueprintRunsOutput, error)
+	GetBlueprintRunsRequest(*glue.GetBlueprintRunsInput) (*request.Request, *glue.GetBlueprintRunsOutput)
+
+	GetBlueprintRunsPages(*glue.GetBlueprintRunsInput, func(*glue.GetBlueprintRunsOutput, bool) bool) error
+	GetBlueprintRunsPagesWithContext(aws.Context, *glue.GetBlueprintRunsInput, func(*glue.GetBlueprintRunsOutput, bool) bool, ...request.Option) error
 
 	GetCatalogImportStatus(*glue.GetCatalogImportStatusInput) (*glue.GetCatalogImportStatusOutput, error)
 	GetCatalogImportStatusWithContext(aws.Context, *glue.GetCatalogImportStatusInput, ...request.Option) (*glue.GetCatalogImportStatusOutput, error)
@@ -541,6 +568,13 @@ type GlueAPI interface {
 	ImportCatalogToGlueWithContext(aws.Context, *glue.ImportCatalogToGlueInput, ...request.Option) (*glue.ImportCatalogToGlueOutput, error)
 	ImportCatalogToGlueRequest(*glue.ImportCatalogToGlueInput) (*request.Request, *glue.ImportCatalogToGlueOutput)
 
+	ListBlueprints(*glue.ListBlueprintsInput) (*glue.ListBlueprintsOutput, error)
+	ListBlueprintsWithContext(aws.Context, *glue.ListBlueprintsInput, ...request.Option) (*glue.ListBlueprintsOutput, error)
+	ListBlueprintsRequest(*glue.ListBlueprintsInput) (*request.Request, *glue.ListBlueprintsOutput)
+
+	ListBlueprintsPages(*glue.ListBlueprintsInput, func(*glue.ListBlueprintsOutput, bool) bool) error
+	ListBlueprintsPagesWithContext(aws.Context, *glue.ListBlueprintsInput, func(*glue.ListBlueprintsOutput, bool) bool, ...request.Option) error
+
 	ListCrawlers(*glue.ListCrawlersInput) (*glue.ListCrawlersOutput, error)
 	ListCrawlersWithContext(aws.Context, *glue.ListCrawlersInput, ...request.Option) (*glue.ListCrawlersOutput, error)
 	ListCrawlersRequest(*glue.ListCrawlersInput) (*request.Request, *glue.ListCrawlersOutput)
@@ -647,6 +681,10 @@ type GlueAPI interface {
 	SearchTablesPages(*glue.SearchTablesInput, func(*glue.SearchTablesOutput, bool) bool) error
 	SearchTablesPagesWithContext(aws.Context, *glue.SearchTablesInput, func(*glue.SearchTablesOutput, bool) bool, ...request.Option) error
 
+	StartBlueprintRun(*glue.StartBlueprintRunInput) (*glue.StartBlueprintRunOutput, error)
+	StartBlueprintRunWithContext(aws.Context, *glue.StartBlueprintRunInput, ...request.Option) (*glue.StartBlueprintRunOutput, error)
+	StartBlueprintRunRequest(*glue.StartBlueprintRunInput) (*request.Request, *glue.StartBlueprintRunOutput)
+
 	StartCrawler(*glue.StartCrawlerInput) (*glue.StartCrawlerOutput, error)
 	StartCrawlerWithContext(aws.Context, *glue.StartCrawlerInput, ...request.Option) (*glue.StartCrawlerOutput, error)
 	StartCrawlerRequest(*glue.StartCrawlerInput) (*request.Request, *glue.StartCrawlerOutput)
@@ -706,6 +744,10 @@ type GlueAPI interface {
 	UntagResource(*glue.UntagResourceInput) (*glue.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *glue.UntagResourceInput, ...request.Option) (*glue.UntagResourceOutput, error)
 	UntagResourceRequest(*glue.UntagResourceInput) (*request.Request, *glue.UntagResourceOutput)
+
+	UpdateBlueprint(*glue.UpdateBlueprintInput) (*glue.UpdateBlueprintOutput, error)
+	UpdateBlueprintWithContext(aws.Context, *glue.UpdateBlueprintInput, ...request.Option) (*glue.UpdateBlueprintOutput, error)
+	UpdateBlueprintRequest(*glue.UpdateBlueprintInput) (*request.Request, *glue.UpdateBlueprintOutput)
 
 	UpdateClassifier(*glue.UpdateClassifierInput) (*glue.UpdateClassifierOutput, error)
 	UpdateClassifierWithContext(aws.Context, *glue.UpdateClassifierInput, ...request.Option) (*glue.UpdateClassifierOutput, error)

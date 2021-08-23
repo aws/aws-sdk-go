@@ -42,8 +42,17 @@ const (
 	// ErrCodeResourceNotFoundException for service response error code
 	// "ResourceNotFoundException".
 	//
-	// An exception indicating the specified resource was not found.
+	// An exception indicating the specified resource was not found. This can occur
+	// if you submit a request, such as CreateBatchPredictionJob, but the detector
+	// name or version does not exist.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
+
+	// ErrCodeResourceUnavailableException for service response error code
+	// "ResourceUnavailableException".
+	//
+	// An exception indicating that the attached customer-owned (external) model
+	// threw an exception when Amazon Fraud Detector invoked the model.
+	ErrCodeResourceUnavailableException = "ResourceUnavailableException"
 
 	// ErrCodeThrottlingException for service response error code
 	// "ThrottlingException".
@@ -59,10 +68,11 @@ const (
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
-	"AccessDeniedException":     newErrorAccessDeniedException,
-	"ConflictException":         newErrorConflictException,
-	"InternalServerException":   newErrorInternalServerException,
-	"ResourceNotFoundException": newErrorResourceNotFoundException,
-	"ThrottlingException":       newErrorThrottlingException,
-	"ValidationException":       newErrorValidationException,
+	"AccessDeniedException":        newErrorAccessDeniedException,
+	"ConflictException":            newErrorConflictException,
+	"InternalServerException":      newErrorInternalServerException,
+	"ResourceNotFoundException":    newErrorResourceNotFoundException,
+	"ResourceUnavailableException": newErrorResourceUnavailableException,
+	"ThrottlingException":          newErrorThrottlingException,
+	"ValidationException":          newErrorValidationException,
 }

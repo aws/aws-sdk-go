@@ -88,6 +88,20 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "BatchGetBlueprints":{
+      "name":"BatchGetBlueprints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"BatchGetBlueprintsRequest"},
+      "output":{"shape":"BatchGetBlueprintsResponse"},
+      "errors":[
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"}
+      ]
+    },
     "BatchGetCrawlers":{
       "name":"BatchGetCrawlers",
       "http":{
@@ -231,6 +245,22 @@
         {"shape":"InvalidInputException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServiceException"}
+      ]
+    },
+    "CreateBlueprint":{
+      "name":"CreateBlueprint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateBlueprintRequest"},
+      "output":{"shape":"CreateBlueprintResponse"},
+      "errors":[
+        {"shape":"AlreadyExistsException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceNumberLimitExceededException"}
       ]
     },
     "CreateClassifier":{
@@ -521,6 +551,20 @@
         {"shape":"OperationTimeoutException"},
         {"shape":"ResourceNumberLimitExceededException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "DeleteBlueprint":{
+      "name":"DeleteBlueprint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteBlueprintRequest"},
+      "output":{"shape":"DeleteBlueprintResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
       ]
     },
     "DeleteClassifier":{
@@ -838,6 +882,50 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"ConcurrentModificationException"}
+      ]
+    },
+    "GetBlueprint":{
+      "name":"GetBlueprint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBlueprintRequest"},
+      "output":{"shape":"GetBlueprintResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"}
+      ]
+    },
+    "GetBlueprintRun":{
+      "name":"GetBlueprintRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBlueprintRunRequest"},
+      "output":{"shape":"GetBlueprintRunResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
+    "GetBlueprintRuns":{
+      "name":"GetBlueprintRuns",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetBlueprintRunsRequest"},
+      "output":{"shape":"GetBlueprintRunsResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InvalidInputException"}
       ]
     },
     "GetCatalogImportStatus":{
@@ -1628,6 +1716,20 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "ListBlueprints":{
+      "name":"ListBlueprints",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListBlueprintsRequest"},
+      "output":{"shape":"ListBlueprintsResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"OperationTimeoutException"}
+      ]
+    },
     "ListCrawlers":{
       "name":"ListCrawlers",
       "http":{
@@ -1913,6 +2015,23 @@
         {"shape":"OperationTimeoutException"}
       ]
     },
+    "StartBlueprintRun":{
+      "name":"StartBlueprintRun",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"StartBlueprintRunRequest"},
+      "output":{"shape":"StartBlueprintRunResponse"},
+      "errors":[
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"ResourceNumberLimitExceededException"},
+        {"shape":"EntityNotFoundException"},
+        {"shape":"IllegalBlueprintStateException"}
+      ]
+    },
     "StartCrawler":{
       "name":"StartCrawler",
       "http":{
@@ -2148,6 +2267,23 @@
         {"shape":"InternalServiceException"},
         {"shape":"OperationTimeoutException"},
         {"shape":"EntityNotFoundException"}
+      ]
+    },
+    "UpdateBlueprint":{
+      "name":"UpdateBlueprint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateBlueprintRequest"},
+      "output":{"shape":"UpdateBlueprintResponse"},
+      "errors":[
+        {"shape":"EntityNotFoundException"},
+        {"shape":"ConcurrentModificationException"},
+        {"shape":"InvalidInputException"},
+        {"shape":"OperationTimeoutException"},
+        {"shape":"InternalServiceException"},
+        {"shape":"IllegalBlueprintStateException"}
       ]
     },
     "UpdateClassifier":{
@@ -2597,6 +2733,28 @@
         "Errors":{"shape":"TableVersionErrors"}
       }
     },
+    "BatchGetBlueprintNames":{
+      "type":"list",
+      "member":{"shape":"OrchestrationNameString"},
+      "max":25,
+      "min":1
+    },
+    "BatchGetBlueprintsRequest":{
+      "type":"structure",
+      "required":["Names"],
+      "members":{
+        "Names":{"shape":"BatchGetBlueprintNames"},
+        "IncludeBlueprint":{"shape":"NullableBoolean"},
+        "IncludeParameterSpec":{"shape":"NullableBoolean"}
+      }
+    },
+    "BatchGetBlueprintsResponse":{
+      "type":"structure",
+      "members":{
+        "Blueprints":{"shape":"Blueprints"},
+        "MissingBlueprints":{"shape":"BlueprintNames"}
+      }
+    },
     "BatchGetCrawlersRequest":{
       "type":"structure",
       "required":["CrawlerNames"],
@@ -2815,6 +2973,83 @@
       }
     },
     "Blob":{"type":"blob"},
+    "Blueprint":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"OrchestrationNameString"},
+        "Description":{"shape":"Generic512CharString"},
+        "CreatedOn":{"shape":"TimestampValue"},
+        "LastModifiedOn":{"shape":"TimestampValue"},
+        "ParameterSpec":{"shape":"BlueprintParameterSpec"},
+        "BlueprintLocation":{"shape":"GenericString"},
+        "BlueprintServiceLocation":{"shape":"GenericString"},
+        "Status":{"shape":"BlueprintStatus"},
+        "ErrorMessage":{"shape":"ErrorString"},
+        "LastActiveDefinition":{"shape":"LastActiveDefinition"}
+      }
+    },
+    "BlueprintDetails":{
+      "type":"structure",
+      "members":{
+        "BlueprintName":{"shape":"OrchestrationNameString"},
+        "RunId":{"shape":"IdString"}
+      }
+    },
+    "BlueprintNames":{
+      "type":"list",
+      "member":{"shape":"OrchestrationNameString"}
+    },
+    "BlueprintParameterSpec":{
+      "type":"string",
+      "max":131072,
+      "min":1
+    },
+    "BlueprintParameters":{
+      "type":"string",
+      "max":131072,
+      "min":1
+    },
+    "BlueprintRun":{
+      "type":"structure",
+      "members":{
+        "BlueprintName":{"shape":"OrchestrationNameString"},
+        "RunId":{"shape":"IdString"},
+        "WorkflowName":{"shape":"NameString"},
+        "State":{"shape":"BlueprintRunState"},
+        "StartedOn":{"shape":"TimestampValue"},
+        "CompletedOn":{"shape":"TimestampValue"},
+        "ErrorMessage":{"shape":"MessageString"},
+        "RollbackErrorMessage":{"shape":"MessageString"},
+        "Parameters":{"shape":"BlueprintParameters"},
+        "RoleArn":{"shape":"OrchestrationIAMRoleArn"}
+      }
+    },
+    "BlueprintRunState":{
+      "type":"string",
+      "enum":[
+        "RUNNING",
+        "SUCCEEDED",
+        "FAILED",
+        "ROLLING_BACK"
+      ]
+    },
+    "BlueprintRuns":{
+      "type":"list",
+      "member":{"shape":"BlueprintRun"}
+    },
+    "BlueprintStatus":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "FAILED"
+      ]
+    },
+    "Blueprints":{
+      "type":"list",
+      "member":{"shape":"Blueprint"}
+    },
     "Boolean":{"type":"boolean"},
     "BooleanColumnStatisticsData":{
       "type":"structure",
@@ -3449,6 +3684,25 @@
         "CatalogTargets":{"shape":"CatalogTargetList"}
       }
     },
+    "CreateBlueprintRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "BlueprintLocation"
+      ],
+      "members":{
+        "Name":{"shape":"OrchestrationNameString"},
+        "Description":{"shape":"Generic512CharString"},
+        "BlueprintLocation":{"shape":"OrchestrationS3Location"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "CreateBlueprintResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
     "CreateClassifierRequest":{
       "type":"structure",
       "members":{
@@ -4051,6 +4305,19 @@
         "DEPRECATE_IN_DATABASE"
       ]
     },
+    "DeleteBlueprintRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
+    "DeleteBlueprintResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
     "DeleteClassifierRequest":{
       "type":"structure",
       "required":["Name"],
@@ -4602,6 +4869,11 @@
       "max":128,
       "pattern":"[\\u0020-\\uD7FF\\uE000-\\uFFFD\\uD800\\uDC00-\\uDBFF\\uDFFF\\t]*"
     },
+    "Generic512CharString":{
+      "type":"string",
+      "max":512,
+      "min":1
+    },
     "GenericBoundedDouble":{
       "type":"double",
       "box":true,
@@ -4614,6 +4886,54 @@
       "value":{"shape":"GenericString"}
     },
     "GenericString":{"type":"string"},
+    "GetBlueprintRequest":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"NameString"},
+        "IncludeBlueprint":{"shape":"NullableBoolean"},
+        "IncludeParameterSpec":{"shape":"NullableBoolean"}
+      }
+    },
+    "GetBlueprintResponse":{
+      "type":"structure",
+      "members":{
+        "Blueprint":{"shape":"Blueprint"}
+      }
+    },
+    "GetBlueprintRunRequest":{
+      "type":"structure",
+      "required":[
+        "BlueprintName",
+        "RunId"
+      ],
+      "members":{
+        "BlueprintName":{"shape":"OrchestrationNameString"},
+        "RunId":{"shape":"IdString"}
+      }
+    },
+    "GetBlueprintRunResponse":{
+      "type":"structure",
+      "members":{
+        "BlueprintRun":{"shape":"BlueprintRun"}
+      }
+    },
+    "GetBlueprintRunsRequest":{
+      "type":"structure",
+      "required":["BlueprintName"],
+      "members":{
+        "BlueprintName":{"shape":"NameString"},
+        "NextToken":{"shape":"GenericString"},
+        "MaxResults":{"shape":"PageSize"}
+      }
+    },
+    "GetBlueprintRunsResponse":{
+      "type":"structure",
+      "members":{
+        "BlueprintRuns":{"shape":"BlueprintRuns"},
+        "NextToken":{"shape":"GenericString"}
+      }
+    },
     "GetCatalogImportStatusRequest":{
       "type":"structure",
       "members":{
@@ -5613,6 +5933,13 @@
       },
       "exception":true
     },
+    "IllegalBlueprintStateException":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"MessageString"}
+      },
+      "exception":true
+    },
     "IllegalWorkflowStateException":{
       "type":"structure",
       "members":{
@@ -5885,6 +6212,16 @@
         "SCALA"
       ]
     },
+    "LastActiveDefinition":{
+      "type":"structure",
+      "members":{
+        "Description":{"shape":"Generic512CharString"},
+        "LastModifiedOn":{"shape":"TimestampValue"},
+        "ParameterSpec":{"shape":"BlueprintParameterSpec"},
+        "BlueprintLocation":{"shape":"GenericString"},
+        "BlueprintServiceLocation":{"shape":"GenericString"}
+      }
+    },
     "LastCrawlInfo":{
       "type":"structure",
       "members":{
@@ -5909,6 +6246,21 @@
       "type":"structure",
       "members":{
         "CrawlerLineageSettings":{"shape":"CrawlerLineageSettings"}
+      }
+    },
+    "ListBlueprintsRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"GenericString"},
+        "MaxResults":{"shape":"PageSize"},
+        "Tags":{"shape":"TagsMap"}
+      }
+    },
+    "ListBlueprintsResponse":{
+      "type":"structure",
+      "members":{
+        "Blueprints":{"shape":"BlueprintNames"},
+        "NextToken":{"shape":"GenericString"}
       }
     },
     "ListCrawlersRequest":{
@@ -6327,6 +6679,24 @@
         "Message":{"shape":"MessageString"}
       },
       "exception":true
+    },
+    "OrchestrationIAMRoleArn":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"arn:aws[^:]*:iam::[0-9]*:role/.+"
+    },
+    "OrchestrationNameString":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[\\.\\-_A-Za-z0-9]+"
+    },
+    "OrchestrationS3Location":{
+      "type":"string",
+      "max":8192,
+      "min":1,
+      "pattern":"^s3://([^/]+)/([^/]+/)*([^/]+)$"
     },
     "OrchestrationStringList":{
       "type":"list",
@@ -7130,6 +7500,24 @@
         "ASCENDING"
       ]
     },
+    "StartBlueprintRunRequest":{
+      "type":"structure",
+      "required":[
+        "BlueprintName",
+        "RoleArn"
+      ],
+      "members":{
+        "BlueprintName":{"shape":"OrchestrationNameString"},
+        "Parameters":{"shape":"BlueprintParameters"},
+        "RoleArn":{"shape":"OrchestrationIAMRoleArn"}
+      }
+    },
+    "StartBlueprintRunResponse":{
+      "type":"structure",
+      "members":{
+        "RunId":{"shape":"IdString"}
+      }
+    },
     "StartCrawlerRequest":{
       "type":"structure",
       "required":["Name"],
@@ -7767,6 +8155,24 @@
         "UPDATE_IN_DATABASE"
       ]
     },
+    "UpdateBlueprintRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "BlueprintLocation"
+      ],
+      "members":{
+        "Name":{"shape":"OrchestrationNameString"},
+        "Description":{"shape":"Generic512CharString"},
+        "BlueprintLocation":{"shape":"OrchestrationS3Location"}
+      }
+    },
+    "UpdateBlueprintResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"NameString"}
+      }
+    },
     "UpdateClassifierRequest":{
       "type":"structure",
       "members":{
@@ -8217,7 +8623,8 @@
         "LastModifiedOn":{"shape":"TimestampValue"},
         "LastRun":{"shape":"WorkflowRun"},
         "Graph":{"shape":"WorkflowGraph"},
-        "MaxConcurrentRuns":{"shape":"NullableInteger"}
+        "MaxConcurrentRuns":{"shape":"NullableInteger"},
+        "BlueprintDetails":{"shape":"BlueprintDetails"}
       }
     },
     "WorkflowGraph":{

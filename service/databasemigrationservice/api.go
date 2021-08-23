@@ -3578,7 +3578,8 @@ func (c *DatabaseMigrationService) DescribeReplicationTaskAssessmentResultsReque
 // DescribeReplicationTaskAssessmentResults API operation for AWS Database Migration Service.
 //
 // Returns the task assessment results from the Amazon S3 bucket that DMS creates
-// in your account. This action always returns the latest results.
+// in your Amazon Web Services account. This action always returns the latest
+// results.
 //
 // For more information about DMS task assessments, see Creating a task assessment
 // report (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Tasks.AssessmentReport.html)
@@ -5110,6 +5111,9 @@ func (c *DatabaseMigrationService) MoveReplicationTaskRequest(input *MoveReplica
 //   * KMSKeyNotAccessibleFault
 //   DMS cannot access the KMS key.
 //
+//   * ResourceQuotaExceededFault
+//   The quota for this resource quota has been exceeded.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dms-2016-01-01/MoveReplicationTask
 func (c *DatabaseMigrationService) MoveReplicationTask(input *MoveReplicationTaskInput) (*MoveReplicationTaskOutput, error) {
 	req, out := c.MoveReplicationTaskRequest(input)
@@ -5999,12 +6003,12 @@ func (s *AccessDeniedFault) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a quota for an account, for example the number of replication instances
-// allowed.
+// Describes a quota for an Amazon Web Services account, for example the number
+// of replication instances allowed.
 type AccountQuota struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the DMS quota for this account.
+	// The name of the DMS quota for this Amazon Web Services account.
 	AccountQuotaName *string `type:"string"`
 
 	// The maximum allowed value for the quota.
@@ -6215,9 +6219,9 @@ func (s *ApplyPendingMaintenanceActionOutput) SetResourcePendingMaintenanceActio
 
 // The name of an Availability Zone for use during database migration. AvailabilityZone
 // is an optional parameter to the CreateReplicationInstance (https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationInstance.html)
-// operation, and it’s value relates to the Region of an endpoint. For example,
-// the availability zone of an endpoint in the us-east-1 region might be us-east-1a,
-// us-east-1b, us-east-1c, or us-east-1d.
+// operation, and it’s value relates to the Amazon Web Services Region of
+// an endpoint. For example, the availability zone of an endpoint in the us-east-1
+// region might be us-east-1a, us-east-1b, us-east-1c, or us-east-1d.
 type AvailabilityZone struct {
 	_ struct{} `type:"structure"`
 
@@ -6588,8 +6592,9 @@ type CreateEndpointInput struct {
 	// If you don't specify a value for the KmsKeyId parameter, then DMS uses your
 	// default encryption key.
 	//
-	// KMS creates the default encryption key for your account. Your account has
-	// a different default encryption key for each Region.
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// Settings in JSON format for the source and target Microsoft SQL Server endpoint.
@@ -6640,6 +6645,9 @@ type CreateEndpointInput struct {
 	// (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.PostgreSQL.html#CHAP_Target.PostgreSQL.ConnectionAttrib)
 	// in the Database Migration Service User Guide.
 	PostgreSQLSettings *PostgreSQLSettings `type:"structure"`
+
+	// Settings in JSON format for the target Redis endpoint.
+	RedisSettings *RedisSettings `type:"structure"`
 
 	// Provides information that defines an Amazon Redshift endpoint.
 	RedshiftSettings *RedshiftSettings `type:"structure"`
@@ -6720,6 +6728,11 @@ func (s *CreateEndpointInput) Validate() error {
 	if s.NeptuneSettings != nil {
 		if err := s.NeptuneSettings.Validate(); err != nil {
 			invalidParams.AddNested("NeptuneSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RedisSettings != nil {
+		if err := s.RedisSettings.Validate(); err != nil {
+			invalidParams.AddNested("RedisSettings", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -6864,6 +6877,12 @@ func (s *CreateEndpointInput) SetPort(v int64) *CreateEndpointInput {
 // SetPostgreSQLSettings sets the PostgreSQLSettings field's value.
 func (s *CreateEndpointInput) SetPostgreSQLSettings(v *PostgreSQLSettings) *CreateEndpointInput {
 	s.PostgreSQLSettings = v
+	return s
+}
+
+// SetRedisSettings sets the RedisSettings field's value.
+func (s *CreateEndpointInput) SetRedisSettings(v *RedisSettings) *CreateEndpointInput {
+	s.RedisSettings = v
 	return s
 }
 
@@ -7097,7 +7116,7 @@ type CreateReplicationInstanceInput struct {
 
 	// The Availability Zone where the replication instance will be created. The
 	// default value is a random, system-chosen Availability Zone in the endpoint's
-	// Region, for example: us-east-1d
+	// Amazon Web Services Region, for example: us-east-1d
 	AvailabilityZone *string `type:"string"`
 
 	// A list of custom DNS name servers supported for the replication instance
@@ -7119,8 +7138,9 @@ type CreateReplicationInstanceInput struct {
 	// If you don't specify a value for the KmsKeyId parameter, then DMS uses your
 	// default encryption key.
 	//
-	// KMS creates the default encryption key for your account. Your account has
-	// a different default encryption key for each Region.
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies whether the replication instance is a Multi-AZ deployment. You
@@ -7134,7 +7154,7 @@ type CreateReplicationInstanceInput struct {
 	// Format: ddd:hh24:mi-ddd:hh24:mi
 	//
 	// Default: A 30-minute window selected at random from an 8-hour block of time
-	// per Region, occurring on a random day of the week.
+	// per Amazon Web Services Region, occurring on a random day of the week.
 	//
 	// Valid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun
 	//
@@ -8193,12 +8213,13 @@ type DescribeAccountAttributesOutput struct {
 	// Account quota information.
 	AccountQuotas []*AccountQuota `type:"list"`
 
-	// A unique DMS identifier for an account in a particular Region. The value
-	// of this identifier has the following format: c99999999999. DMS uses this
-	// identifier to name artifacts. For example, DMS uses this identifier to name
-	// the default Amazon S3 bucket for storing task assessment reports in a given
-	// Region. The format of this S3 bucket name is the following: dms-AccountNumber-UniqueAccountIdentifier.
-	// Here is an example name for this default S3 bucket: dms-111122223333-c44445555666.
+	// A unique DMS identifier for an account in a particular Amazon Web Services
+	// Region. The value of this identifier has the following format: c99999999999.
+	// DMS uses this identifier to name artifacts. For example, DMS uses this identifier
+	// to name the default Amazon S3 bucket for storing task assessment reports
+	// in a given Amazon Web Services Region. The format of this S3 bucket name
+	// is the following: dms-AccountNumber-UniqueAccountIdentifier. Here is an example
+	// name for this default S3 bucket: dms-111122223333-c44445555666.
 	//
 	// DMS supports the UniqueAccountIdentifier parameter in versions 3.1.4 and
 	// later.
@@ -10480,8 +10501,8 @@ type DocDbSettings struct {
 	// The KMS key identifier that is used to encrypt the content on the replication
 	// instance. If you don't specify a value for the KmsKeyId parameter, then DMS
 	// uses your default encryption key. KMS creates the default encryption key
-	// for your account. Your account has a different default encryption key for
-	// each Region.
+	// for your Amazon Web Services account. Your Amazon Web Services account has
+	// a different default encryption key for each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies either document or table mode.
@@ -10814,8 +10835,9 @@ type Endpoint struct {
 	// If you don't specify a value for the KmsKeyId parameter, then DMS uses your
 	// default encryption key.
 	//
-	// KMS creates the default encryption key for your account. Your account has
-	// a different default encryption key for each Region.
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// The settings for the Microsoft SQL Server source and target endpoint. For
@@ -10844,6 +10866,10 @@ type Endpoint struct {
 	// The settings for the PostgreSQL source and target endpoint. For more information,
 	// see the PostgreSQLSettings structure.
 	PostgreSQLSettings *PostgreSQLSettings `type:"structure"`
+
+	// The settings for the Redis target endpoint. For more information, see the
+	// RedisSettings structure.
+	RedisSettings *RedisSettings `type:"structure"`
 
 	// Settings for the Amazon Redshift endpoint.
 	RedshiftSettings *RedshiftSettings `type:"structure"`
@@ -11030,6 +11056,12 @@ func (s *Endpoint) SetPort(v int64) *Endpoint {
 // SetPostgreSQLSettings sets the PostgreSQLSettings field's value.
 func (s *Endpoint) SetPostgreSQLSettings(v *PostgreSQLSettings) *Endpoint {
 	s.PostgreSQLSettings = v
+	return s
+}
+
+// SetRedisSettings sets the RedisSettings field's value.
+func (s *Endpoint) SetRedisSettings(v *RedisSettings) *Endpoint {
+	s.RedisSettings = v
 	return s
 }
 
@@ -12327,9 +12359,11 @@ type KafkaSettings struct {
 	// is 1,000,000.
 	MessageMaxBytes *int64 `type:"integer"`
 
-	// If this attribute is Y, it allows hexadecimal values that don't have the
-	// 0x prefix when migrated to a Kafka target. If this attribute is N, all hexadecimal
-	// values include this prefix when migrated to Kafka.
+	// Set this optional parameter to true to avoid adding a '0x' prefix to raw
+	// data in hexadecimal format. For example, by default, DMS adds a '0x' prefix
+	// to the LOB column type in hexadecimal format moving from an Oracle source
+	// to a Kafka target. Use the NoHexPrefix endpoint setting to enable migration
+	// of RAW data type columns without adding the '0x' prefix.
 	NoHexPrefix *bool `type:"boolean"`
 
 	// Prefixes schema and table names to partition values, when the partition type
@@ -12355,7 +12389,7 @@ type KafkaSettings struct {
 	// sasl-ssl requires SaslUsername and SaslPassword.
 	SecurityProtocol *string `type:"string" enum:"KafkaSecurityProtocol"`
 
-	// The Amazon Resource Name (ARN) for the private Certification Authority (CA)
+	// The Amazon Resource Name (ARN) for the private certificate authority (CA)
 	// cert that DMS uses to securely connect to your Kafka target endpoint.
 	SslCaCertificateArn *string `type:"string"`
 
@@ -12528,9 +12562,11 @@ type KinesisSettings struct {
 	// is JSON (default) or JSON_UNFORMATTED (a single line with no tab).
 	MessageFormat *string `type:"string" enum:"MessageFormatValue"`
 
-	// If this attribute is Y, it allows hexadecimal values that don't have the
-	// 0x prefix when migrated to a Kinesis target. If this attribute is N, all
-	// hexadecimal values include this prefix when migrated to Kinesis.
+	// Set this optional parameter to true to avoid adding a '0x' prefix to raw
+	// data in hexadecimal format. For example, by default, DMS adds a '0x' prefix
+	// to the LOB column type in hexadecimal format moving from an Oracle source
+	// to an Amazon Kinesis target. Use the NoHexPrefix endpoint setting to enable
+	// migration of RAW data type columns without adding the '0x' prefix.
 	NoHexPrefix *bool `type:"boolean"`
 
 	// Prefixes schema and table names to partition values, when the partition type
@@ -12622,10 +12658,16 @@ func (s *KinesisSettings) SetStreamArn(v string) *KinesisSettings {
 type ListTagsForResourceInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) string that uniquely identifies the DMS resource.
-	//
-	// ResourceArn is a required field
-	ResourceArn *string `type:"string" required:"true"`
+	// The Amazon Resource Name (ARN) string that uniquely identifies the DMS resource
+	// to list tags for. This returns a list of keys (names of tags) created for
+	// the resource and their associated tag values.
+	ResourceArn *string `type:"string"`
+
+	// List of ARNs that identify multiple DMS resources that you want to list tags
+	// for. This returns a list of keys (tag names) and their associated tag values.
+	// It also returns each tag's associated ResourceArn value, which is the ARN
+	// of the resource for which each listed tag is created.
+	ResourceArnList []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -12638,22 +12680,15 @@ func (s ListTagsForResourceInput) GoString() string {
 	return s.String()
 }
 
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *ListTagsForResourceInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
-	if s.ResourceArn == nil {
-		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
-}
-
 // SetResourceArn sets the ResourceArn field's value.
 func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
 	s.ResourceArn = &v
+	return s
+}
+
+// SetResourceArnList sets the ResourceArnList field's value.
+func (s *ListTagsForResourceInput) SetResourceArnList(v []*string) *ListTagsForResourceInput {
+	s.ResourceArnList = v
 	return s
 }
 
@@ -13022,6 +13057,9 @@ type ModifyEndpointInput struct {
 	// in the Database Migration Service User Guide.
 	PostgreSQLSettings *PostgreSQLSettings `type:"structure"`
 
+	// Settings in JSON format for the Redis target endpoint.
+	RedisSettings *RedisSettings `type:"structure"`
+
 	// Provides information that defines an Amazon Redshift endpoint.
 	RedshiftSettings *RedshiftSettings `type:"structure"`
 
@@ -13081,6 +13119,11 @@ func (s *ModifyEndpointInput) Validate() error {
 	if s.NeptuneSettings != nil {
 		if err := s.NeptuneSettings.Validate(); err != nil {
 			invalidParams.AddNested("NeptuneSettings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RedisSettings != nil {
+		if err := s.RedisSettings.Validate(); err != nil {
+			invalidParams.AddNested("RedisSettings", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -13231,6 +13274,12 @@ func (s *ModifyEndpointInput) SetPort(v int64) *ModifyEndpointInput {
 // SetPostgreSQLSettings sets the PostgreSQLSettings field's value.
 func (s *ModifyEndpointInput) SetPostgreSQLSettings(v *PostgreSQLSettings) *ModifyEndpointInput {
 	s.PostgreSQLSettings = v
+	return s
+}
+
+// SetRedisSettings sets the RedisSettings field's value.
+func (s *ModifyEndpointInput) SetRedisSettings(v *RedisSettings) *ModifyEndpointInput {
+	s.RedisSettings = v
 	return s
 }
 
@@ -13896,8 +13945,8 @@ type MongoDbSettings struct {
 	// The KMS key identifier that is used to encrypt the content on the replication
 	// instance. If you don't specify a value for the KmsKeyId parameter, then DMS
 	// uses your default encryption key. KMS creates the default encryption key
-	// for your account. Your account has a different default encryption key for
-	// each Region.
+	// for your Amazon Web Services account. Your Amazon Web Services account has
+	// a different default encryption key for each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies either document or table mode.
@@ -14504,6 +14553,29 @@ type OracleSettings struct {
 	// existing tables or indexes under the same tablespace on the target.
 	EnableHomogenousTablespace *bool `type:"boolean"`
 
+	// Specifies the IDs of one more destinations for one or more archived redo
+	// logs. These IDs are the values of the dest_id column in the v$archived_log
+	// view. Use this setting with the archivedLogDestId extra connection attribute
+	// in a primary-to-single setup or a primary-to-multiple-standby setup.
+	//
+	// This setting is useful in a switchover when you use an Oracle Data Guard
+	// database as a source. In this case, DMS needs information about what destination
+	// to get archive redo logs from to read changes. DMS needs this because after
+	// the switchover the previous primary is a standby instance. For example, in
+	// a primary-to-single standby setup you might apply the following settings.
+	//
+	// archivedLogDestId=1; ExtraArchivedLogDestIds=[2]
+	//
+	// In a primary-to-multiple-standby setup, you might apply the following settings.
+	//
+	// archivedLogDestId=1; ExtraArchivedLogDestIds=[2,3,4]
+	//
+	// Although DMS supports the use of the Oracle RESETLOGS option to open the
+	// database, never use RESETLOGS unless it's necessary. For more information
+	// about RESETLOGS, see RMAN Data Repair Concepts (https://docs.oracle.com/en/database/oracle/oracle-database/19/bradv/rman-data-repair-concepts.html#GUID-1805CCF7-4AF2-482D-B65A-998192F89C2B)
+	// in the Oracle Database Backup and Recovery User's Guide.
+	ExtraArchivedLogDestIds []*int64 `type:"list"`
+
 	// When set to true, this attribute causes a task to fail if the actual size
 	// of an LOB column is greater than the specified LobMaxSize.
 	//
@@ -14762,6 +14834,12 @@ func (s *OracleSettings) SetDirectPathParallelLoad(v bool) *OracleSettings {
 // SetEnableHomogenousTablespace sets the EnableHomogenousTablespace field's value.
 func (s *OracleSettings) SetEnableHomogenousTablespace(v bool) *OracleSettings {
 	s.EnableHomogenousTablespace = &v
+	return s
+}
+
+// SetExtraArchivedLogDestIds sets the ExtraArchivedLogDestIds field's value.
+func (s *OracleSettings) SetExtraArchivedLogDestIds(v []*int64) *OracleSettings {
+	s.ExtraArchivedLogDestIds = v
 	return s
 }
 
@@ -15146,10 +15224,10 @@ type PostgreSQLSettings struct {
 	// fails instead of truncating the LOB data.
 	FailTasksOnLobTruncation *bool `type:"boolean"`
 
-	// If this attribute is set to true, the write-ahead log (WAL) heartbeat keeps
-	// restart_lsn moving and prevents storage full scenarios. The WAL heartbeat
-	// mimics a dummy transaction, so that idle logical replication slots don't
-	// hold onto old WAL logs that result in storage full situations on the source.
+	// The write-ahead log (WAL) heartbeat feature mimics a dummy transaction. By
+	// doing this, it prevents idle logical replication slots from holding onto
+	// old WAL logs, which can result in storage full situations on the source.
+	// This heartbeat keeps restart_lsn moving and prevents storage full scenarios.
 	HeartbeatEnable *bool `type:"boolean"`
 
 	// Sets the WAL heartbeat frequency (in minutes).
@@ -15196,11 +15274,22 @@ type PostgreSQLSettings struct {
 	// Fully qualified domain name of the endpoint.
 	ServerName *string `type:"string"`
 
-	// Sets the name of a previously created logical replication slot for a CDC
-	// load of the PostgreSQL source instance.
+	// Sets the name of a previously created logical replication slot for a change
+	// data capture (CDC) load of the PostgreSQL source instance.
 	//
-	// When used with the DMS API CdcStartPosition request parameter, this attribute
-	// also enables using native CDC start points.
+	// When used with the CdcStartPosition request parameter for the DMS API , this
+	// attribute also makes it possible to use native CDC start points. DMS verifies
+	// that the specified logical replication slot exists before starting the CDC
+	// load task. It also verifies that the task was created with a valid setting
+	// of CdcStartPosition. If the specified slot doesn't exist or the task doesn't
+	// have a valid CdcStartPosition setting, DMS raises an error.
+	//
+	// For more information about setting the CdcStartPosition request parameter,
+	// see Determining a CDC native start point (dms/latest/userguide/CHAP_Task.CDC.html#CHAP_Task.CDC.StartPoint.Native)
+	// in the Database Migration Service User Guide. For more information about
+	// using CdcStartPosition, see CreateReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_CreateReplicationTask.html),
+	// StartReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_StartReplicationTask.html),
+	// and ModifyReplicationTask (https://docs.aws.amazon.com/dms/latest/APIReference/API_ModifyReplicationTask.html).
 	SlotName *string `type:"string"`
 
 	// Endpoint connection user name.
@@ -15393,6 +15482,118 @@ func (s RebootReplicationInstanceOutput) GoString() string {
 // SetReplicationInstance sets the ReplicationInstance field's value.
 func (s *RebootReplicationInstanceOutput) SetReplicationInstance(v *ReplicationInstance) *RebootReplicationInstanceOutput {
 	s.ReplicationInstance = v
+	return s
+}
+
+// Provides information that defines a Redis target endpoint.
+type RedisSettings struct {
+	_ struct{} `type:"structure"`
+
+	// The password provided with the auth-role and auth-token options of the AuthType
+	// setting for a Redis target endpoint.
+	AuthPassword *string `type:"string" sensitive:"true"`
+
+	// The type of authentication to perform when connecting to a Redis target.
+	// Options include none, auth-token, and auth-role. The auth-token option requires
+	// an AuthPassword value to be provided. The auth-role option requires AuthUserName
+	// and AuthPassword values to be provided.
+	AuthType *string `type:"string" enum:"RedisAuthTypeValue"`
+
+	// The user name provided with the auth-role option of the AuthType setting
+	// for a Redis target endpoint.
+	AuthUserName *string `type:"string"`
+
+	// Transmission Control Protocol (TCP) port for the endpoint.
+	//
+	// Port is a required field
+	Port *int64 `type:"integer" required:"true"`
+
+	// Fully qualified domain name of the endpoint.
+	//
+	// ServerName is a required field
+	ServerName *string `type:"string" required:"true"`
+
+	// The Amazon Resource Name (ARN) for the certificate authority (CA) that DMS
+	// uses to connect to your Redis target endpoint.
+	SslCaCertificateArn *string `type:"string"`
+
+	// The connection to a Redis target endpoint using Transport Layer Security
+	// (TLS). Valid values include plaintext and ssl-encryption. The default is
+	// ssl-encryption. The ssl-encryption option makes an encrypted connection.
+	// Optionally, you can identify an Amazon Resource Name (ARN) for an SSL certificate
+	// authority (CA) using the SslCaCertificateArn setting. If an ARN isn't given
+	// for a CA, DMS uses the Amazon root CA.
+	//
+	// The plaintext option doesn't provide Transport Layer Security (TLS) encryption
+	// for traffic between endpoint and database.
+	SslSecurityProtocol *string `type:"string" enum:"SslSecurityProtocolValue"`
+}
+
+// String returns the string representation
+func (s RedisSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RedisSettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RedisSettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RedisSettings"}
+	if s.Port == nil {
+		invalidParams.Add(request.NewErrParamRequired("Port"))
+	}
+	if s.ServerName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ServerName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAuthPassword sets the AuthPassword field's value.
+func (s *RedisSettings) SetAuthPassword(v string) *RedisSettings {
+	s.AuthPassword = &v
+	return s
+}
+
+// SetAuthType sets the AuthType field's value.
+func (s *RedisSettings) SetAuthType(v string) *RedisSettings {
+	s.AuthType = &v
+	return s
+}
+
+// SetAuthUserName sets the AuthUserName field's value.
+func (s *RedisSettings) SetAuthUserName(v string) *RedisSettings {
+	s.AuthUserName = &v
+	return s
+}
+
+// SetPort sets the Port field's value.
+func (s *RedisSettings) SetPort(v int64) *RedisSettings {
+	s.Port = &v
+	return s
+}
+
+// SetServerName sets the ServerName field's value.
+func (s *RedisSettings) SetServerName(v string) *RedisSettings {
+	s.ServerName = &v
+	return s
+}
+
+// SetSslCaCertificateArn sets the SslCaCertificateArn field's value.
+func (s *RedisSettings) SetSslCaCertificateArn(v string) *RedisSettings {
+	s.SslCaCertificateArn = &v
+	return s
+}
+
+// SetSslSecurityProtocol sets the SslSecurityProtocol field's value.
+func (s *RedisSettings) SetSslSecurityProtocol(v string) *RedisSettings {
+	s.SslSecurityProtocol = &v
 	return s
 }
 
@@ -16119,8 +16320,9 @@ type ReplicationInstance struct {
 	// If you don't specify a value for the KmsKeyId parameter, then DMS uses your
 	// default encryption key.
 	//
-	// KMS creates the default encryption key for your account. Your account has
-	// a different default encryption key for each Region.
+	// KMS creates the default encryption key for your Amazon Web Services account.
+	// Your Amazon Web Services account has a different default encryption key for
+	// each Amazon Web Services Region.
 	KmsKeyId *string `type:"string"`
 
 	// Specifies whether the replication instance is a Multi-AZ deployment. You
@@ -17679,6 +17881,12 @@ func (s *S3ResourceNotFoundFault) RequestID() string {
 type S3Settings struct {
 	_ struct{} `type:"structure"`
 
+	// An optional parameter that, when set to true or y, you can use to add column
+	// name information to the .csv output file.
+	//
+	// The default value is false. Valid values are true, false, y, and n.
+	AddColumnName *bool `type:"boolean"`
+
 	// An optional parameter to set a folder name in the S3 bucket. If provided,
 	// tables are created in the path bucketFolder/schema_name/table_name/. If this
 	// parameter isn't specified, then the path used is schema_name/table_name/.
@@ -17686,6 +17894,16 @@ type S3Settings struct {
 
 	// The name of the S3 bucket.
 	BucketName *string `type:"string"`
+
+	// A value that enables DMS to specify a predefined (canned) access control
+	// list for objects created in an Amazon S3 bucket as .csv or .parquet files.
+	// For more information about Amazon S3 canned ACLs, see Canned ACL (http://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl)
+	// in the Amazon S3 Developer Guide.
+	//
+	// The default value is NONE. Valid values include NONE, PRIVATE, PUBLIC_READ,
+	// PUBLIC_READ_WRITE, AUTHENTICATED_READ, AWS_EXEC_READ, BUCKET_OWNER_READ,
+	// and BUCKET_OWNER_FULL_CONTROL.
+	CannedAclForObjects *string `type:"string" enum:"CannedAclForObjectsValue"`
 
 	// A value that enables a change data capture (CDC) load to write INSERT and
 	// UPDATE operations to .csv or .parquet (columnar storage) output files. The
@@ -17736,6 +17954,26 @@ type S3Settings struct {
 	// for the same endpoint, but not both.
 	CdcInsertsOnly *bool `type:"boolean"`
 
+	// Maximum length of the interval, defined in seconds, after which to output
+	// a file to Amazon S3.
+	//
+	// When CdcMaxBatchInterval and CdcMinFileSize are both specified, the file
+	// write is triggered by whichever parameter condition is met first within an
+	// DMS CloudFormation template.
+	//
+	// The default value is 60 seconds.
+	CdcMaxBatchInterval *int64 `type:"integer"`
+
+	// Minimum file size, defined in megabytes, to reach for a file output to Amazon
+	// S3.
+	//
+	// When CdcMinFileSize and CdcMaxBatchInterval are both specified, the file
+	// write is triggered by whichever parameter condition is met first within an
+	// DMS CloudFormation template.
+	//
+	// The default value is 32 MB.
+	CdcMinFileSize *int64 `type:"integer"`
+
 	// Specifies the folder path of CDC files. For an S3 source, this setting is
 	// required if a task captures change data; otherwise, it's optional. If CdcPath
 	// is set, DMS reads CDC files from this path and replicates the data changes
@@ -17781,6 +18019,17 @@ type S3Settings struct {
 	//
 	// This setting is supported in DMS versions 3.4.1 and later.
 	CsvNoSupValue *string `type:"string"`
+
+	// An optional parameter that specifies how DMS treats null values. While handling
+	// the null value, you can use this parameter to pass a user-defined string
+	// as null when writing to the target. For example, when target columns are
+	// not nullable, you can use this option to differentiate between the empty
+	// string value and the null value. So, if you set this parameter value to the
+	// empty string ("" or ''), DMS treats the empty string as the null value instead
+	// of NULL.
+	//
+	// The default value is NULL. Valid values include any valid string.
+	CsvNullValue *string `type:"string"`
 
 	// The delimiter used to separate rows in the .csv file for both source and
 	// target. The default is a carriage return (\n).
@@ -17876,6 +18125,12 @@ type S3Settings struct {
 	// Specifies how tables are defined in the S3 source files only.
 	ExternalTableDefinition *string `type:"string"`
 
+	// When this value is set to 1, DMS ignores the first row header in a .csv file.
+	// A value of 1 turns on the feature; a value of 0 turns off the feature.
+	//
+	// The default is 0.
+	IgnoreHeaderRows *int64 `type:"integer"`
+
 	// A value that enables a full load to write INSERT operations to the comma-separated
 	// value (.csv) output files only to indicate how the rows were added to the
 	// source database.
@@ -17895,6 +18150,12 @@ type S3Settings struct {
 	// S3 Data (https://docs.aws.amazon.com/dms/latest/userguide/CHAP_Target.S3.html#CHAP_Target.S3.Configuring.InsertOps)
 	// in the Database Migration Service User Guide..
 	IncludeOpForFullLoad *bool `type:"boolean"`
+
+	// A value that specifies the maximum size (in KB) of any .csv file to be created
+	// while migrating to an S3 target during full load.
+	//
+	// The default value is 1,048,576 KB (1 GB). Valid values include 1 to 1,048,576.
+	MaxFileSize *int64 `type:"integer"`
 
 	// A value that specifies the precision of any TIMESTAMP column values that
 	// are written to an Amazon S3 object file in .parquet format.
@@ -17930,6 +18191,23 @@ type S3Settings struct {
 	//
 	// This setting is supported in DMS versions 3.4.2 and later.
 	PreserveTransactions *bool `type:"boolean"`
+
+	// For an S3 source, when this value is set to true or y, each leading double
+	// quotation mark has to be followed by an ending double quotation mark. This
+	// formatting complies with RFC 4180. When this value is set to false or n,
+	// string literals are copied to the target as is. In this case, a delimiter
+	// (row or column) signals the end of the field. Thus, you can't use a delimiter
+	// as part of the string, because it signals the end of the value.
+	//
+	// For an S3 target, an optional parameter used to set behavior to comply with
+	// RFC 4180 for data migrated to Amazon S3 using .csv file format only. When
+	// this value is set to true or y using Amazon S3 as a target, if the data has
+	// quotation marks or newline characters in it, DMS encloses the entire column
+	// with an additional pair of double quotation marks ("). Every quotation mark
+	// within the data is repeated twice.
+	//
+	// The default value is true. Valid values include true, false, y, and n.
+	Rfc4180 *bool `type:"boolean"`
 
 	// The number of rows in a row group. A smaller row group size provides faster
 	// reads. But as the number of row groups grows, the slower writes become. This
@@ -17995,6 +18273,12 @@ func (s S3Settings) GoString() string {
 	return s.String()
 }
 
+// SetAddColumnName sets the AddColumnName field's value.
+func (s *S3Settings) SetAddColumnName(v bool) *S3Settings {
+	s.AddColumnName = &v
+	return s
+}
+
 // SetBucketFolder sets the BucketFolder field's value.
 func (s *S3Settings) SetBucketFolder(v string) *S3Settings {
 	s.BucketFolder = &v
@@ -18007,6 +18291,12 @@ func (s *S3Settings) SetBucketName(v string) *S3Settings {
 	return s
 }
 
+// SetCannedAclForObjects sets the CannedAclForObjects field's value.
+func (s *S3Settings) SetCannedAclForObjects(v string) *S3Settings {
+	s.CannedAclForObjects = &v
+	return s
+}
+
 // SetCdcInsertsAndUpdates sets the CdcInsertsAndUpdates field's value.
 func (s *S3Settings) SetCdcInsertsAndUpdates(v bool) *S3Settings {
 	s.CdcInsertsAndUpdates = &v
@@ -18016,6 +18306,18 @@ func (s *S3Settings) SetCdcInsertsAndUpdates(v bool) *S3Settings {
 // SetCdcInsertsOnly sets the CdcInsertsOnly field's value.
 func (s *S3Settings) SetCdcInsertsOnly(v bool) *S3Settings {
 	s.CdcInsertsOnly = &v
+	return s
+}
+
+// SetCdcMaxBatchInterval sets the CdcMaxBatchInterval field's value.
+func (s *S3Settings) SetCdcMaxBatchInterval(v int64) *S3Settings {
+	s.CdcMaxBatchInterval = &v
+	return s
+}
+
+// SetCdcMinFileSize sets the CdcMinFileSize field's value.
+func (s *S3Settings) SetCdcMinFileSize(v int64) *S3Settings {
+	s.CdcMinFileSize = &v
 	return s
 }
 
@@ -18040,6 +18342,12 @@ func (s *S3Settings) SetCsvDelimiter(v string) *S3Settings {
 // SetCsvNoSupValue sets the CsvNoSupValue field's value.
 func (s *S3Settings) SetCsvNoSupValue(v string) *S3Settings {
 	s.CsvNoSupValue = &v
+	return s
+}
+
+// SetCsvNullValue sets the CsvNullValue field's value.
+func (s *S3Settings) SetCsvNullValue(v string) *S3Settings {
+	s.CsvNullValue = &v
 	return s
 }
 
@@ -18109,9 +18417,21 @@ func (s *S3Settings) SetExternalTableDefinition(v string) *S3Settings {
 	return s
 }
 
+// SetIgnoreHeaderRows sets the IgnoreHeaderRows field's value.
+func (s *S3Settings) SetIgnoreHeaderRows(v int64) *S3Settings {
+	s.IgnoreHeaderRows = &v
+	return s
+}
+
 // SetIncludeOpForFullLoad sets the IncludeOpForFullLoad field's value.
 func (s *S3Settings) SetIncludeOpForFullLoad(v bool) *S3Settings {
 	s.IncludeOpForFullLoad = &v
+	return s
+}
+
+// SetMaxFileSize sets the MaxFileSize field's value.
+func (s *S3Settings) SetMaxFileSize(v int64) *S3Settings {
+	s.MaxFileSize = &v
 	return s
 }
 
@@ -18130,6 +18450,12 @@ func (s *S3Settings) SetParquetVersion(v string) *S3Settings {
 // SetPreserveTransactions sets the PreserveTransactions field's value.
 func (s *S3Settings) SetPreserveTransactions(v bool) *S3Settings {
 	s.PreserveTransactions = &v
+	return s
+}
+
+// SetRfc4180 sets the Rfc4180 field's value.
+func (s *S3Settings) SetRfc4180(v bool) *S3Settings {
+	s.Rfc4180 = &v
 	return s
 }
 
@@ -19320,6 +19646,10 @@ type Tag struct {
 	// '.', '/', '=', '+', '-' (Java regular expressions: "^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-]*)$").
 	Key *string `type:"string"`
 
+	// The Amazon Resource Name (ARN) string that uniquely identifies the resource
+	// for which the tag is created.
+	ResourceArn *string `type:"string"`
+
 	// A value is the optional value of the tag. The string value can be 1-256 Unicode
 	// characters in length and can't be prefixed with "aws:" or "dms:". The string
 	// can only contain only the set of Unicode letters, digits, white-space, '_',
@@ -19340,6 +19670,12 @@ func (s Tag) GoString() string {
 // SetKey sets the Key field's value.
 func (s *Tag) SetKey(v string) *Tag {
 	s.Key = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *Tag) SetResourceArn(v string) *Tag {
+	s.ResourceArn = &v
 	return s
 }
 
@@ -19547,6 +19883,46 @@ func AuthTypeValue_Values() []string {
 	return []string{
 		AuthTypeValueNo,
 		AuthTypeValuePassword,
+	}
+}
+
+const (
+	// CannedAclForObjectsValueNone is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueNone = "none"
+
+	// CannedAclForObjectsValuePrivate is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValuePrivate = "private"
+
+	// CannedAclForObjectsValuePublicRead is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValuePublicRead = "public-read"
+
+	// CannedAclForObjectsValuePublicReadWrite is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValuePublicReadWrite = "public-read-write"
+
+	// CannedAclForObjectsValueAuthenticatedRead is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueAuthenticatedRead = "authenticated-read"
+
+	// CannedAclForObjectsValueAwsExecRead is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueAwsExecRead = "aws-exec-read"
+
+	// CannedAclForObjectsValueBucketOwnerRead is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueBucketOwnerRead = "bucket-owner-read"
+
+	// CannedAclForObjectsValueBucketOwnerFullControl is a CannedAclForObjectsValue enum value
+	CannedAclForObjectsValueBucketOwnerFullControl = "bucket-owner-full-control"
+)
+
+// CannedAclForObjectsValue_Values returns all elements of the CannedAclForObjectsValue enum
+func CannedAclForObjectsValue_Values() []string {
+	return []string{
+		CannedAclForObjectsValueNone,
+		CannedAclForObjectsValuePrivate,
+		CannedAclForObjectsValuePublicRead,
+		CannedAclForObjectsValuePublicReadWrite,
+		CannedAclForObjectsValueAuthenticatedRead,
+		CannedAclForObjectsValueAwsExecRead,
+		CannedAclForObjectsValueBucketOwnerRead,
+		CannedAclForObjectsValueBucketOwnerFullControl,
 	}
 }
 
@@ -19851,6 +20227,26 @@ func PluginNameValue_Values() []string {
 }
 
 const (
+	// RedisAuthTypeValueNone is a RedisAuthTypeValue enum value
+	RedisAuthTypeValueNone = "none"
+
+	// RedisAuthTypeValueAuthRole is a RedisAuthTypeValue enum value
+	RedisAuthTypeValueAuthRole = "auth-role"
+
+	// RedisAuthTypeValueAuthToken is a RedisAuthTypeValue enum value
+	RedisAuthTypeValueAuthToken = "auth-token"
+)
+
+// RedisAuthTypeValue_Values returns all elements of the RedisAuthTypeValue enum
+func RedisAuthTypeValue_Values() []string {
+	return []string{
+		RedisAuthTypeValueNone,
+		RedisAuthTypeValueAuthRole,
+		RedisAuthTypeValueAuthToken,
+	}
+}
+
+const (
 	// RefreshSchemasStatusTypeValueSuccessful is a RefreshSchemasStatusTypeValue enum value
 	RefreshSchemasStatusTypeValueSuccessful = "successful"
 
@@ -19943,6 +20339,22 @@ const (
 func SourceType_Values() []string {
 	return []string{
 		SourceTypeReplicationInstance,
+	}
+}
+
+const (
+	// SslSecurityProtocolValuePlaintext is a SslSecurityProtocolValue enum value
+	SslSecurityProtocolValuePlaintext = "plaintext"
+
+	// SslSecurityProtocolValueSslEncryption is a SslSecurityProtocolValue enum value
+	SslSecurityProtocolValueSslEncryption = "ssl-encryption"
+)
+
+// SslSecurityProtocolValue_Values returns all elements of the SslSecurityProtocolValue enum
+func SslSecurityProtocolValue_Values() []string {
+	return []string{
+		SslSecurityProtocolValuePlaintext,
+		SslSecurityProtocolValueSslEncryption,
 	}
 }
 

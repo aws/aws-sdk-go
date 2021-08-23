@@ -1,5 +1,10 @@
 {
   "pagination": {
+    "GetBlueprintRuns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
     "GetClassifiers": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
@@ -93,6 +98,11 @@
       "output_token": "NextToken"
     },
     "GetWorkflowRuns": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken"
+    },
+    "ListBlueprints": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",
       "output_token": "NextToken"

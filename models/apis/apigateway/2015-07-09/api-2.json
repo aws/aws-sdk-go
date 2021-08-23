@@ -20,12 +20,12 @@
       "input":{"shape":"CreateApiKeyRequest"},
       "output":{"shape":"ApiKey"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "CreateAuthorizer":{
@@ -39,9 +39,10 @@
       "output":{"shape":"Authorizer"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -55,10 +56,11 @@
       "input":{"shape":"CreateBasePathMappingRequest"},
       "output":{"shape":"BasePathMapping"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"ConflictException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -72,11 +74,11 @@
       "input":{"shape":"CreateDeploymentRequest"},
       "output":{"shape":"Deployment"},
       "errors":[
-        {"shape":"UnauthorizedException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -93,9 +95,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -111,9 +113,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -127,9 +129,10 @@
       "input":{"shape":"CreateDomainNameRequest"},
       "output":{"shape":"DomainName"},
       "errors":[
-        {"shape":"UnauthorizedException"},
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -144,10 +147,10 @@
       "output":{"shape":"Model"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -162,9 +165,10 @@
       "output":{"shape":"RequestValidator"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -196,9 +200,10 @@
       "input":{"shape":"CreateRestApiRequest"},
       "output":{"shape":"RestApi"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -231,11 +236,11 @@
       "output":{"shape":"UsagePlan"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"LimitExceededException"},
         {"shape":"ConflictException"},
-        {"shape":"NotFoundException"}
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "CreateUsagePlanKey":{
@@ -250,8 +255,9 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
-        {"shape":"UnauthorizedException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -265,8 +271,10 @@
       "input":{"shape":"CreateVpcLinkRequest"},
       "output":{"shape":"VpcLink"},
       "errors":[
-        {"shape":"UnauthorizedException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -279,8 +287,10 @@
       },
       "input":{"shape":"DeleteApiKeyRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -293,11 +303,11 @@
       },
       "input":{"shape":"DeleteAuthorizerRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteBasePathMapping":{
@@ -309,10 +319,10 @@
       },
       "input":{"shape":"DeleteBasePathMappingRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"ConflictException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -325,10 +335,11 @@
       },
       "input":{"shape":"DeleteClientCertificateRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteDeployment":{
@@ -340,9 +351,11 @@
       },
       "input":{"shape":"DeleteDeploymentRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -355,11 +368,11 @@
       },
       "input":{"shape":"DeleteDocumentationPartRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
+        {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
-        {"shape":"BadRequestException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteDocumentationVersion":{
@@ -371,10 +384,10 @@
       },
       "input":{"shape":"DeleteDocumentationVersionRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -387,10 +400,11 @@
       },
       "input":{"shape":"DeleteDomainNameRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteGatewayResponse":{
@@ -402,11 +416,11 @@
       },
       "input":{"shape":"DeleteGatewayResponseRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteIntegration":{
@@ -418,10 +432,11 @@
       },
       "input":{"shape":"DeleteIntegrationRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"ConflictException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteIntegrationResponse":{
@@ -433,11 +448,11 @@
       },
       "input":{"shape":"DeleteIntegrationResponseRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteMethod":{
@@ -480,11 +495,11 @@
       },
       "input":{"shape":"DeleteModelRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteRequestValidator":{
@@ -496,11 +511,11 @@
       },
       "input":{"shape":"DeleteRequestValidatorRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteResource":{
@@ -528,10 +543,11 @@
       },
       "input":{"shape":"DeleteRestApiRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteStage":{
@@ -543,10 +559,12 @@
       },
       "input":{"shape":"DeleteStageRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteUsagePlan":{
@@ -558,10 +576,11 @@
       },
       "input":{"shape":"DeleteUsagePlanRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "DeleteUsagePlanKey":{
@@ -575,8 +594,8 @@
       "errors":[
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
-        {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -589,10 +608,11 @@
       },
       "input":{"shape":"DeleteVpcLinkRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"BadRequestException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "FlushStageAuthorizersCache":{
@@ -604,9 +624,11 @@
       },
       "input":{"shape":"FlushStageAuthorizersCacheRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -619,9 +641,11 @@
       },
       "input":{"shape":"FlushStageCacheRequest"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -635,9 +659,11 @@
       "input":{"shape":"GenerateClientCertificateRequest"},
       "output":{"shape":"ClientCertificate"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetAccount":{
@@ -649,8 +675,9 @@
       "input":{"shape":"GetAccountRequest"},
       "output":{"shape":"Account"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -663,8 +690,9 @@
       "input":{"shape":"GetApiKeyRequest"},
       "output":{"shape":"ApiKey"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -678,6 +706,7 @@
       "output":{"shape":"ApiKeys"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -691,8 +720,9 @@
       "input":{"shape":"GetAuthorizerRequest"},
       "output":{"shape":"Authorizer"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -706,8 +736,8 @@
       "output":{"shape":"Authorizers"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -720,8 +750,9 @@
       "input":{"shape":"GetBasePathMappingRequest"},
       "output":{"shape":"BasePathMapping"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -734,8 +765,9 @@
       "input":{"shape":"GetBasePathMappingsRequest"},
       "output":{"shape":"BasePathMappings"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -748,8 +780,9 @@
       "input":{"shape":"GetClientCertificateRequest"},
       "output":{"shape":"ClientCertificate"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -763,6 +796,7 @@
       "output":{"shape":"ClientCertificates"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -776,8 +810,9 @@
       "input":{"shape":"GetDeploymentRequest"},
       "output":{"shape":"Deployment"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -807,8 +842,9 @@
       "input":{"shape":"GetDocumentationPartRequest"},
       "output":{"shape":"DocumentationPart"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -822,8 +858,8 @@
       "output":{"shape":"DocumentationParts"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -865,9 +901,9 @@
       "input":{"shape":"GetDomainNameRequest"},
       "output":{"shape":"DomainName"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
-        {"shape":"ServiceUnavailableException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -881,6 +917,7 @@
       "output":{"shape":"DomainNames"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -895,10 +932,11 @@
       "input":{"shape":"GetExportRequest"},
       "output":{"shape":"ExportResponse"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -911,8 +949,9 @@
       "input":{"shape":"GetGatewayResponseRequest"},
       "output":{"shape":"GatewayResponse"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -926,8 +965,8 @@
       "output":{"shape":"GatewayResponses"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -940,8 +979,9 @@
       "input":{"shape":"GetIntegrationRequest"},
       "output":{"shape":"Integration"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -954,8 +994,9 @@
       "input":{"shape":"GetIntegrationResponseRequest"},
       "output":{"shape":"IntegrationResponse"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -996,8 +1037,9 @@
       "input":{"shape":"GetModelRequest"},
       "output":{"shape":"Model"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1040,8 +1082,9 @@
       "input":{"shape":"GetRequestValidatorRequest"},
       "output":{"shape":"RequestValidator"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1055,8 +1098,8 @@
       "output":{"shape":"RequestValidators"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1098,8 +1141,9 @@
       "input":{"shape":"GetRestApiRequest"},
       "output":{"shape":"RestApi"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1113,6 +1157,7 @@
       "output":{"shape":"RestApis"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -1127,10 +1172,11 @@
       "input":{"shape":"GetSdkRequest"},
       "output":{"shape":"SdkResponse"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1143,8 +1189,9 @@
       "input":{"shape":"GetSdkTypeRequest"},
       "output":{"shape":"SdkType"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1157,6 +1204,8 @@
       "input":{"shape":"GetSdkTypesRequest"},
       "output":{"shape":"SdkTypes"},
       "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -1170,8 +1219,11 @@
       "input":{"shape":"GetStageRequest"},
       "output":{"shape":"Stage"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1184,8 +1236,11 @@
       "input":{"shape":"GetStagesRequest"},
       "output":{"shape":"Stages"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1199,10 +1254,9 @@
       "output":{"shape":"Tags"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"NotFoundException"},
-        {"shape":"LimitExceededException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetUsage":{
@@ -1230,8 +1284,8 @@
       "output":{"shape":"UsagePlan"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1246,8 +1300,8 @@
       "output":{"shape":"UsagePlanKey"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1261,8 +1315,8 @@
       "output":{"shape":"UsagePlanKeys"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1276,10 +1330,9 @@
       "output":{"shape":"UsagePlans"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"ConflictException"},
-        {"shape":"NotFoundException"}
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "GetVpcLink":{
@@ -1291,8 +1344,9 @@
       "input":{"shape":"GetVpcLinkRequest"},
       "output":{"shape":"VpcLink"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1306,6 +1360,7 @@
       "output":{"shape":"VpcLinks"},
       "errors":[
         {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
         {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
@@ -1320,12 +1375,12 @@
       "input":{"shape":"ImportApiKeysRequest"},
       "output":{"shape":"ApiKeyIds"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "ImportDocumentationParts":{
@@ -1337,10 +1392,11 @@
       "input":{"shape":"ImportDocumentationPartsRequest"},
       "output":{"shape":"DocumentationPartIds"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1354,11 +1410,12 @@
       "input":{"shape":"ImportRestApiRequest"},
       "output":{"shape":"RestApi"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "PutGatewayResponse":{
@@ -1372,9 +1429,10 @@
       "output":{"shape":"GatewayResponse"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1388,10 +1446,11 @@
       "input":{"shape":"PutIntegrationRequest"},
       "output":{"shape":"Integration"},
       "errors":[
-        {"shape":"UnauthorizedException"},
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1405,12 +1464,12 @@
       "input":{"shape":"PutIntegrationResponseRequest"},
       "output":{"shape":"IntegrationResponse"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"LimitExceededException"},
         {"shape":"BadRequestException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "PutMethod":{
@@ -1458,12 +1517,12 @@
       "input":{"shape":"PutRestApiRequest"},
       "output":{"shape":"RestApi"},
       "errors":[
-        {"shape":"UnauthorizedException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
-        {"shape":"BadRequestException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"ConflictException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "TagResource":{
@@ -1476,11 +1535,11 @@
       "input":{"shape":"TagResourceRequest"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"NotFoundException"},
+        {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
-        {"shape":"ConflictException"}
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "TestInvokeAuthorizer":{
@@ -1523,10 +1582,11 @@
       "input":{"shape":"UntagResourceRequest"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
-        {"shape":"ConflictException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateAccount":{
@@ -1538,9 +1598,11 @@
       "input":{"shape":"UpdateAccountRequest"},
       "output":{"shape":"Account"},
       "errors":[
-        {"shape":"UnauthorizedException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1553,11 +1615,12 @@
       "input":{"shape":"UpdateApiKeyRequest"},
       "output":{"shape":"ApiKey"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateAuthorizer":{
@@ -1569,9 +1632,11 @@
       "input":{"shape":"UpdateAuthorizerRequest"},
       "output":{"shape":"Authorizer"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1584,10 +1649,11 @@
       "input":{"shape":"UpdateBasePathMappingRequest"},
       "output":{"shape":"BasePathMapping"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"ConflictException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1600,10 +1666,12 @@
       "input":{"shape":"UpdateClientCertificateRequest"},
       "output":{"shape":"ClientCertificate"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateDeployment":{
@@ -1615,9 +1683,11 @@
       "input":{"shape":"UpdateDeploymentRequest"},
       "output":{"shape":"Deployment"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"ServiceUnavailableException"}
       ]
@@ -1632,10 +1702,10 @@
       "output":{"shape":"DocumentationPart"},
       "errors":[
         {"shape":"BadRequestException"},
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"ConflictException"},
         {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1648,10 +1718,11 @@
       "input":{"shape":"UpdateDocumentationVersionRequest"},
       "output":{"shape":"DocumentationVersion"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"ConflictException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1664,10 +1735,11 @@
       "input":{"shape":"UpdateDomainNameRequest"},
       "output":{"shape":"DomainName"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1680,9 +1752,11 @@
       "input":{"shape":"UpdateGatewayResponseRequest"},
       "output":{"shape":"GatewayResponse"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1695,11 +1769,12 @@
       "input":{"shape":"UpdateIntegrationRequest"},
       "output":{"shape":"Integration"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
-        {"shape":"TooManyRequestsException"},
-        {"shape":"ConflictException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateIntegrationResponse":{
@@ -1711,10 +1786,11 @@
       "input":{"shape":"UpdateIntegrationResponseRequest"},
       "output":{"shape":"IntegrationResponse"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"ConflictException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1761,10 +1837,11 @@
       "input":{"shape":"UpdateModelRequest"},
       "output":{"shape":"Model"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1777,9 +1854,11 @@
       "input":{"shape":"UpdateRequestValidatorRequest"},
       "output":{"shape":"RequestValidator"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1808,10 +1887,11 @@
       "input":{"shape":"UpdateRestApiRequest"},
       "output":{"shape":"RestApi"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"ConflictException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1824,10 +1904,11 @@
       "input":{"shape":"UpdateStageRequest"},
       "output":{"shape":"Stage"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
-        {"shape":"ConflictException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     },
@@ -1840,10 +1921,12 @@
       "input":{"shape":"UpdateUsageRequest"},
       "output":{"shape":"Usage"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
-        {"shape":"NotFoundException"}
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateUsagePlan":{
@@ -1855,11 +1938,12 @@
       "input":{"shape":"UpdateUsagePlanRequest"},
       "output":{"shape":"UsagePlan"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"TooManyRequestsException"},
         {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
         {"shape":"NotFoundException"},
-        {"shape":"ConflictException"}
+        {"shape":"UnauthorizedException"},
+        {"shape":"TooManyRequestsException"}
       ]
     },
     "UpdateVpcLink":{
@@ -1871,10 +1955,11 @@
       "input":{"shape":"UpdateVpcLinkRequest"},
       "output":{"shape":"VpcLink"},
       "errors":[
-        {"shape":"UnauthorizedException"},
-        {"shape":"NotFoundException"},
         {"shape":"BadRequestException"},
         {"shape":"ConflictException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"NotFoundException"},
+        {"shape":"UnauthorizedException"},
         {"shape":"TooManyRequestsException"}
       ]
     }
@@ -2982,7 +3067,8 @@
         "BAD_REQUEST_BODY",
         "REQUEST_TOO_LARGE",
         "THROTTLED",
-        "QUOTA_EXCEEDED"
+        "QUOTA_EXCEEDED",
+        "WAF_FILTERED"
       ]
     },
     "GatewayResponses":{

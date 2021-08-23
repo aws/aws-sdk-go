@@ -67,19 +67,6 @@ func (c *APIGateway) CreateApiKeyRequest(input *CreateApiKeyInput) (req *request
 // API operation CreateApiKey for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -87,6 +74,19 @@ func (c *APIGateway) CreateApiKeyRequest(input *CreateApiKeyInput) (req *request
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) CreateApiKey(input *CreateApiKeyInput) (*ApiKey, error) {
 	req, out := c.CreateApiKeyRequest(input)
@@ -167,14 +167,18 @@ func (c *APIGateway) CreateAuthorizerRequest(input *CreateAuthorizerInput) (req 
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -253,19 +257,22 @@ func (c *APIGateway) CreateBasePathMappingRequest(input *CreateBasePathMappingIn
 // API operation CreateBasePathMapping for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -345,15 +352,9 @@ func (c *APIGateway) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 // API operation CreateDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
@@ -361,6 +362,12 @@ func (c *APIGateway) CreateDeploymentRequest(input *CreateDeploymentInput) (req 
 //
 //   * LimitExceededException
 //   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -449,14 +456,14 @@ func (c *APIGateway) CreateDocumentationPartRequest(input *CreateDocumentationPa
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -541,14 +548,14 @@ func (c *APIGateway) CreateDocumentationVersionRequest(input *CreateDocumentatio
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -627,9 +634,6 @@ func (c *APIGateway) CreateDomainNameRequest(input *CreateDomainNameInput) (req 
 // API operation CreateDomainName for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -637,6 +641,12 @@ func (c *APIGateway) CreateDomainNameRequest(input *CreateDomainNameInput) (req 
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -719,18 +729,18 @@ func (c *APIGateway) CreateModelRequest(input *CreateModelInput) (req *request.R
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
 //   * LimitExceededException
 //   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -813,14 +823,18 @@ func (c *APIGateway) CreateRequestValidatorRequest(input *CreateRequestValidator
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -993,15 +1007,19 @@ func (c *APIGateway) CreateRestApiRequest(input *CreateRestApiInput) (req *reque
 // API operation CreateRestApi for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
 //
 //   * LimitExceededException
 //   The request exceeded the rate limit. Retry after the specified time period.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -1180,22 +1198,22 @@ func (c *APIGateway) CreateUsagePlanRequest(input *CreateUsagePlanInput) (req *r
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
-//
-//   * ConflictException
-//   The request configuration has conflicts. For details, see the accompanying
-//   error message.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
 //
 func (c *APIGateway) CreateUsagePlan(input *CreateUsagePlanInput) (*UsagePlan, error) {
 	req, out := c.CreateUsagePlanRequest(input)
@@ -1278,11 +1296,14 @@ func (c *APIGateway) CreateUsagePlanKeyRequest(input *CreateUsagePlanKeyInput) (
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -1364,12 +1385,19 @@ func (c *APIGateway) CreateVpcLinkRequest(input *CreateVpcLinkInput) (req *reque
 // API operation CreateVpcLink for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -1449,11 +1477,19 @@ func (c *APIGateway) DeleteApiKeyRequest(input *DeleteApiKeyInput) (req *request
 // API operation DeleteApiKey for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -1535,16 +1571,6 @@ func (c *APIGateway) DeleteAuthorizerRequest(input *DeleteAuthorizerInput) (req 
 // API operation DeleteAuthorizer for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -1552,6 +1578,16 @@ func (c *APIGateway) DeleteAuthorizerRequest(input *DeleteAuthorizerInput) (req 
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) DeleteAuthorizer(input *DeleteAuthorizerInput) (*DeleteAuthorizerOutput, error) {
 	req, out := c.DeleteAuthorizerRequest(input)
@@ -1627,19 +1663,19 @@ func (c *APIGateway) DeleteBasePathMappingRequest(input *DeleteBasePathMappingIn
 // API operation DeleteBasePathMapping for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -1719,19 +1755,23 @@ func (c *APIGateway) DeleteClientCertificateRequest(input *DeleteClientCertifica
 // API operation DeleteClientCertificate for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
 //
 func (c *APIGateway) DeleteClientCertificate(input *DeleteClientCertificateInput) (*DeleteClientCertificateOutput, error) {
 	req, out := c.DeleteClientCertificateRequest(input)
@@ -1808,15 +1848,22 @@ func (c *APIGateway) DeleteDeploymentRequest(input *DeleteDeploymentInput) (req 
 // API operation DeleteDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -1894,23 +1941,23 @@ func (c *APIGateway) DeleteDocumentationPartRequest(input *DeleteDocumentationPa
 // API operation DeleteDocumentationPart for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) DeleteDocumentationPart(input *DeleteDocumentationPartInput) (*DeleteDocumentationPartOutput, error) {
 	req, out := c.DeleteDocumentationPartRequest(input)
@@ -1984,12 +2031,6 @@ func (c *APIGateway) DeleteDocumentationVersionRequest(input *DeleteDocumentatio
 // API operation DeleteDocumentationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -1997,6 +2038,12 @@ func (c *APIGateway) DeleteDocumentationVersionRequest(input *DeleteDocumentatio
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -2076,19 +2123,23 @@ func (c *APIGateway) DeleteDomainNameRequest(input *DeleteDomainNameInput) (req 
 // API operation DeleteDomainName for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
 //
 func (c *APIGateway) DeleteDomainName(input *DeleteDomainNameInput) (*DeleteDomainNameOutput, error) {
 	req, out := c.DeleteDomainNameRequest(input)
@@ -2165,16 +2216,6 @@ func (c *APIGateway) DeleteGatewayResponseRequest(input *DeleteGatewayResponseIn
 // API operation DeleteGatewayResponse for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -2182,6 +2223,16 @@ func (c *APIGateway) DeleteGatewayResponseRequest(input *DeleteGatewayResponseIn
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) DeleteGatewayResponse(input *DeleteGatewayResponseInput) (*DeleteGatewayResponseOutput, error) {
 	req, out := c.DeleteGatewayResponseRequest(input)
@@ -2257,19 +2308,23 @@ func (c *APIGateway) DeleteIntegrationRequest(input *DeleteIntegrationInput) (re
 // API operation DeleteIntegration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) DeleteIntegration(input *DeleteIntegrationInput) (*DeleteIntegrationOutput, error) {
 	req, out := c.DeleteIntegrationRequest(input)
@@ -2345,16 +2400,6 @@ func (c *APIGateway) DeleteIntegrationResponseRequest(input *DeleteIntegrationRe
 // API operation DeleteIntegrationResponse for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -2362,6 +2407,16 @@ func (c *APIGateway) DeleteIntegrationResponseRequest(input *DeleteIntegrationRe
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) DeleteIntegrationResponse(input *DeleteIntegrationResponseInput) (*DeleteIntegrationResponseOutput, error) {
 	req, out := c.DeleteIntegrationResponseRequest(input)
@@ -2617,16 +2672,6 @@ func (c *APIGateway) DeleteModelRequest(input *DeleteModelInput) (req *request.R
 // API operation DeleteModel for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -2634,6 +2679,16 @@ func (c *APIGateway) DeleteModelRequest(input *DeleteModelInput) (req *request.R
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) DeleteModel(input *DeleteModelInput) (*DeleteModelOutput, error) {
 	req, out := c.DeleteModelRequest(input)
@@ -2709,16 +2764,6 @@ func (c *APIGateway) DeleteRequestValidatorRequest(input *DeleteRequestValidator
 // API operation DeleteRequestValidator for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -2726,6 +2771,16 @@ func (c *APIGateway) DeleteRequestValidatorRequest(input *DeleteRequestValidator
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) DeleteRequestValidator(input *DeleteRequestValidatorInput) (*DeleteRequestValidatorOutput, error) {
 	req, out := c.DeleteRequestValidatorRequest(input)
@@ -2893,19 +2948,23 @@ func (c *APIGateway) DeleteRestApiRequest(input *DeleteRestApiInput) (req *reque
 // API operation DeleteRestApi for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
 //
 func (c *APIGateway) DeleteRestApi(input *DeleteRestApiInput) (*DeleteRestApiOutput, error) {
 	req, out := c.DeleteRestApiRequest(input)
@@ -2981,19 +3040,26 @@ func (c *APIGateway) DeleteStageRequest(input *DeleteStageInput) (req *request.R
 // API operation DeleteStage for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
 //
 func (c *APIGateway) DeleteStage(input *DeleteStageInput) (*DeleteStageOutput, error) {
 	req, out := c.DeleteStageRequest(input)
@@ -3069,19 +3135,23 @@ func (c *APIGateway) DeleteUsagePlanRequest(input *DeleteUsagePlanInput) (req *r
 // API operation DeleteUsagePlan for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
 //
 func (c *APIGateway) DeleteUsagePlan(input *DeleteUsagePlanInput) (*DeleteUsagePlanOutput, error) {
 	req, out := c.DeleteUsagePlanRequest(input)
@@ -3166,11 +3236,11 @@ func (c *APIGateway) DeleteUsagePlanKeyRequest(input *DeleteUsagePlanKeyInput) (
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -3250,19 +3320,23 @@ func (c *APIGateway) DeleteVpcLinkRequest(input *DeleteVpcLinkInput) (req *reque
 // API operation DeleteVpcLink for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
 //
 func (c *APIGateway) DeleteVpcLink(input *DeleteVpcLinkInput) (*DeleteVpcLinkOutput, error) {
 	req, out := c.DeleteVpcLinkRequest(input)
@@ -3338,15 +3412,22 @@ func (c *APIGateway) FlushStageAuthorizersCacheRequest(input *FlushStageAuthoriz
 // API operation FlushStageAuthorizersCache for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -3426,15 +3507,22 @@ func (c *APIGateway) FlushStageCacheRequest(input *FlushStageCacheInput) (req *r
 // API operation FlushStageCache for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -3513,15 +3601,23 @@ func (c *APIGateway) GenerateClientCertificateRequest(input *GenerateClientCerti
 // API operation GenerateClientCertificate for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
 //
 func (c *APIGateway) GenerateClientCertificate(input *GenerateClientCertificateInput) (*ClientCertificate, error) {
 	req, out := c.GenerateClientCertificateRequest(input)
@@ -3596,11 +3692,15 @@ func (c *APIGateway) GetAccountRequest(input *GetAccountInput) (req *request.Req
 // API operation GetAccount for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -3679,11 +3779,15 @@ func (c *APIGateway) GetApiKeyRequest(input *GetApiKeyInput) (req *request.Reque
 // API operation GetApiKey for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -3771,6 +3875,9 @@ func (c *APIGateway) GetApiKeysRequest(input *GetApiKeysInput) (req *request.Req
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
 //
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
@@ -3906,11 +4013,15 @@ func (c *APIGateway) GetAuthorizerRequest(input *GetAuthorizerInput) (req *reque
 // API operation GetAuthorizer for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -3995,11 +4106,11 @@ func (c *APIGateway) GetAuthorizersRequest(input *GetAuthorizersInput) (req *req
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -4078,11 +4189,15 @@ func (c *APIGateway) GetBasePathMappingRequest(input *GetBasePathMappingInput) (
 // API operation GetBasePathMapping for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -4167,11 +4282,15 @@ func (c *APIGateway) GetBasePathMappingsRequest(input *GetBasePathMappingsInput)
 // API operation GetBasePathMappings for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -4302,11 +4421,15 @@ func (c *APIGateway) GetClientCertificateRequest(input *GetClientCertificateInpu
 // API operation GetClientCertificate for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -4394,6 +4517,9 @@ func (c *APIGateway) GetClientCertificatesRequest(input *GetClientCertificatesIn
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
 //
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
@@ -4527,11 +4653,15 @@ func (c *APIGateway) GetDeploymentRequest(input *GetDeploymentInput) (req *reque
 // API operation GetDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -4761,11 +4891,15 @@ func (c *APIGateway) GetDocumentationPartRequest(input *GetDocumentationPartInpu
 // API operation GetDocumentationPart for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -4846,11 +4980,11 @@ func (c *APIGateway) GetDocumentationPartsRequest(input *GetDocumentationPartsIn
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -5096,15 +5230,15 @@ func (c *APIGateway) GetDomainNameRequest(input *GetDomainNameInput) (req *reque
 // API operation GetDomainName for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * ServiceUnavailableException
-//   The requested service is not available. For details see the accompanying
-//   error message. Retry after the specified time period.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -5192,6 +5326,9 @@ func (c *APIGateway) GetDomainNamesRequest(input *GetDomainNamesInput) (req *req
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
 //
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
@@ -5325,12 +5462,6 @@ func (c *APIGateway) GetExportRequest(input *GetExportInput) (req *request.Reque
 // API operation GetExport for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -5338,6 +5469,15 @@ func (c *APIGateway) GetExportRequest(input *GetExportInput) (req *request.Reque
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -5416,11 +5556,15 @@ func (c *APIGateway) GetGatewayResponseRequest(input *GetGatewayResponseInput) (
 // API operation GetGatewayResponse for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -5506,11 +5650,11 @@ func (c *APIGateway) GetGatewayResponsesRequest(input *GetGatewayResponsesInput)
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -5589,11 +5733,15 @@ func (c *APIGateway) GetIntegrationRequest(input *GetIntegrationInput) (req *req
 // API operation GetIntegration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -5672,11 +5820,15 @@ func (c *APIGateway) GetIntegrationResponseRequest(input *GetIntegrationResponse
 // API operation GetIntegrationResponse for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -5921,11 +6073,15 @@ func (c *APIGateway) GetModelRequest(input *GetModelInput) (req *request.Request
 // API operation GetModel for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -6237,11 +6393,15 @@ func (c *APIGateway) GetRequestValidatorRequest(input *GetRequestValidatorInput)
 // API operation GetRequestValidator for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -6324,11 +6484,11 @@ func (c *APIGateway) GetRequestValidatorsRequest(input *GetRequestValidatorsInpu
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -6635,11 +6795,15 @@ func (c *APIGateway) GetRestApiRequest(input *GetRestApiInput) (req *request.Req
 // API operation GetRestApi for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -6727,6 +6891,9 @@ func (c *APIGateway) GetRestApisRequest(input *GetRestApisInput) (req *request.R
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
 //
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
@@ -6860,12 +7027,6 @@ func (c *APIGateway) GetSdkRequest(input *GetSdkInput) (req *request.Request, ou
 // API operation GetSdk for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -6873,6 +7034,15 @@ func (c *APIGateway) GetSdkRequest(input *GetSdkInput) (req *request.Request, ou
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -6949,11 +7119,15 @@ func (c *APIGateway) GetSdkTypeRequest(input *GetSdkTypeInput) (req *request.Req
 // API operation GetSdkType for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -7030,6 +7204,13 @@ func (c *APIGateway) GetSdkTypesRequest(input *GetSdkTypesInput) (req *request.R
 // API operation GetSdkTypes for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
@@ -7110,11 +7291,22 @@ func (c *APIGateway) GetStageRequest(input *GetStageInput) (req *request.Request
 // API operation GetStage for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -7193,11 +7385,22 @@ func (c *APIGateway) GetStagesRequest(input *GetStagesInput) (req *request.Reque
 // API operation GetStages for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -7280,18 +7483,15 @@ func (c *APIGateway) GetTagsRequest(input *GetTagsInput) (req *request.Request, 
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
 //
 func (c *APIGateway) GetTags(input *GetTagsInput) (*GetTagsOutput, error) {
 	req, out := c.GetTagsRequest(input)
@@ -7515,11 +7715,11 @@ func (c *APIGateway) GetUsagePlanRequest(input *GetUsagePlanInput) (req *request
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -7602,11 +7802,11 @@ func (c *APIGateway) GetUsagePlanKeyRequest(input *GetUsagePlanKeyInput) (req *r
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -7696,11 +7896,11 @@ func (c *APIGateway) GetUsagePlanKeysRequest(input *GetUsagePlanKeysInput) (req 
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -7841,19 +8041,15 @@ func (c *APIGateway) GetUsagePlansRequest(input *GetUsagePlansInput) (req *reque
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * ConflictException
-//   The request configuration has conflicts. For details, see the accompanying
-//   error message.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
 //
 func (c *APIGateway) GetUsagePlans(input *GetUsagePlansInput) (*GetUsagePlansOutput, error) {
 	req, out := c.GetUsagePlansRequest(input)
@@ -7980,11 +8176,15 @@ func (c *APIGateway) GetVpcLinkRequest(input *GetVpcLinkInput) (req *request.Req
 // API operation GetVpcLink for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -8072,6 +8272,9 @@ func (c *APIGateway) GetVpcLinksRequest(input *GetVpcLinksInput) (req *request.R
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
 //
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
@@ -8205,19 +8408,6 @@ func (c *APIGateway) ImportApiKeysRequest(input *ImportApiKeysInput) (req *reque
 // API operation ImportApiKeys for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -8225,6 +8415,19 @@ func (c *APIGateway) ImportApiKeysRequest(input *ImportApiKeysInput) (req *reque
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) ImportApiKeys(input *ImportApiKeysInput) (*ImportApiKeysOutput, error) {
 	req, out := c.ImportApiKeysRequest(input)
@@ -8297,18 +8500,22 @@ func (c *APIGateway) ImportDocumentationPartsRequest(input *ImportDocumentationP
 // API operation ImportDocumentationParts for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
 //   * LimitExceededException
 //   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -8388,23 +8595,26 @@ func (c *APIGateway) ImportRestApiRequest(input *ImportRestApiInput) (req *reque
 // API operation ImportRestApi for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) ImportRestApi(input *ImportRestApiInput) (*RestApi, error) {
 	req, out := c.ImportRestApiRequest(input)
@@ -8484,14 +8694,18 @@ func (c *APIGateway) PutGatewayResponseRequest(input *PutGatewayResponseInput) (
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -8570,9 +8784,6 @@ func (c *APIGateway) PutIntegrationRequest(input *PutIntegrationInput) (req *req
 // API operation PutIntegration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -8581,8 +8792,14 @@ func (c *APIGateway) PutIntegrationRequest(input *PutIntegrationInput) (req *req
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -8661,26 +8878,26 @@ func (c *APIGateway) PutIntegrationResponseRequest(input *PutIntegrationResponse
 // API operation PutIntegrationResponse for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) PutIntegrationResponse(input *PutIntegrationResponseInput) (*IntegrationResponse, error) {
 	req, out := c.PutIntegrationResponseRequest(input)
@@ -8946,8 +9163,13 @@ func (c *APIGateway) PutRestApiRequest(input *PutRestApiInput) (req *request.Req
 // API operation PutRestApi for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
 //
 //   * LimitExceededException
 //   The request exceeded the rate limit. Retry after the specified time period.
@@ -8955,17 +9177,12 @@ func (c *APIGateway) PutRestApiRequest(input *PutRestApiInput) (req *request.Req
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * ConflictException
-//   The request configuration has conflicts. For details, see the accompanying
-//   error message.
 //
 func (c *APIGateway) PutRestApi(input *PutRestApiInput) (*RestApi, error) {
 	req, out := c.PutRestApiRequest(input)
@@ -9045,22 +9262,22 @@ func (c *APIGateway) TagResourceRequest(input *TagResourceInput) (req *request.R
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * LimitExceededException
-//   The request exceeded the rate limit. Retry after the specified time period.
-//
-//   * ConflictException
-//   The request configuration has conflicts. For details, see the accompanying
-//   error message.
 //
 func (c *APIGateway) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
 	req, out := c.TagResourceRequest(input)
@@ -9319,19 +9536,22 @@ func (c *APIGateway) UntagResourceRequest(input *UntagResourceInput) (req *reque
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * ConflictException
-//   The request configuration has conflicts. For details, see the accompanying
-//   error message.
 //
 func (c *APIGateway) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
@@ -9406,15 +9626,22 @@ func (c *APIGateway) UpdateAccountRequest(input *UpdateAccountInput) (req *reque
 // API operation UpdateAccount for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -9493,23 +9720,26 @@ func (c *APIGateway) UpdateApiKeyRequest(input *UpdateApiKeyInput) (req *request
 // API operation UpdateApiKey for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) UpdateApiKey(input *UpdateApiKeyInput) (*ApiKey, error) {
 	req, out := c.UpdateApiKeyRequest(input)
@@ -9586,15 +9816,22 @@ func (c *APIGateway) UpdateAuthorizerRequest(input *UpdateAuthorizerInput) (req 
 // API operation UpdateAuthorizer for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -9673,19 +9910,22 @@ func (c *APIGateway) UpdateBasePathMappingRequest(input *UpdateBasePathMappingIn
 // API operation UpdateBasePathMapping for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -9764,19 +10004,26 @@ func (c *APIGateway) UpdateClientCertificateRequest(input *UpdateClientCertifica
 // API operation UpdateClientCertificate for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
 //
 func (c *APIGateway) UpdateClientCertificate(input *UpdateClientCertificateInput) (*ClientCertificate, error) {
 	req, out := c.UpdateClientCertificateRequest(input)
@@ -9851,15 +10098,22 @@ func (c *APIGateway) UpdateDeploymentRequest(input *UpdateDeploymentInput) (req 
 // API operation UpdateDeployment for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -9944,18 +10198,18 @@ func (c *APIGateway) UpdateDocumentationPartRequest(input *UpdateDocumentationPa
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
 //   * LimitExceededException
 //   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -10032,19 +10286,22 @@ func (c *APIGateway) UpdateDocumentationVersionRequest(input *UpdateDocumentatio
 // API operation UpdateDocumentationVersion for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -10123,12 +10380,6 @@ func (c *APIGateway) UpdateDomainNameRequest(input *UpdateDomainNameInput) (req 
 // API operation UpdateDomainName for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -10136,6 +10387,15 @@ func (c *APIGateway) UpdateDomainNameRequest(input *UpdateDomainNameInput) (req 
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -10214,15 +10474,22 @@ func (c *APIGateway) UpdateGatewayResponseRequest(input *UpdateGatewayResponseIn
 // API operation UpdateGatewayResponse for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -10301,23 +10568,26 @@ func (c *APIGateway) UpdateIntegrationRequest(input *UpdateIntegrationInput) (re
 // API operation UpdateIntegration for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
 //
-//   * TooManyRequestsException
-//   The request has reached its throttling limit. Retry after the specified time
-//   period.
-//
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
+//
+//   * TooManyRequestsException
+//   The request has reached its throttling limit. Retry after the specified time
+//   period.
 //
 func (c *APIGateway) UpdateIntegration(input *UpdateIntegrationInput) (*Integration, error) {
 	req, out := c.UpdateIntegrationRequest(input)
@@ -10392,19 +10662,22 @@ func (c *APIGateway) UpdateIntegrationResponseRequest(input *UpdateIntegrationRe
 // API operation UpdateIntegrationResponse for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -10668,12 +10941,6 @@ func (c *APIGateway) UpdateModelRequest(input *UpdateModelInput) (req *request.R
 // API operation UpdateModel for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -10681,6 +10948,15 @@ func (c *APIGateway) UpdateModelRequest(input *UpdateModelInput) (req *request.R
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -10759,15 +11035,22 @@ func (c *APIGateway) UpdateRequestValidatorRequest(input *UpdateRequestValidator
 // API operation UpdateRequestValidator for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
 //
 //   * NotFoundException
 //   The requested resource is not found. Make sure that the request URI is correct.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -10937,19 +11220,22 @@ func (c *APIGateway) UpdateRestApiRequest(input *UpdateRestApiInput) (req *reque
 // API operation UpdateRestApi for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -11028,19 +11314,22 @@ func (c *APIGateway) UpdateStageRequest(input *UpdateStageInput) (req *request.R
 // API operation UpdateStage for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
 //
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
 //
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -11120,19 +11409,26 @@ func (c *APIGateway) UpdateUsageRequest(input *UpdateUsageInput) (req *request.R
 // API operation UpdateUsage for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
 //
 func (c *APIGateway) UpdateUsage(input *UpdateUsageInput) (*Usage, error) {
 	req, out := c.UpdateUsageRequest(input)
@@ -11207,23 +11503,26 @@ func (c *APIGateway) UpdateUsagePlanRequest(input *UpdateUsagePlanInput) (req *r
 // API operation UpdateUsagePlan for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequestException
+//   The submitted request is not valid, for example, the input is incomplete
+//   or incorrect. See the accompanying error message for details.
+//
+//   * ConflictException
+//   The request configuration has conflicts. For details, see the accompanying
+//   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
 //   * UnauthorizedException
 //   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
 //   period.
-//
-//   * BadRequestException
-//   The submitted request is not valid, for example, the input is incomplete
-//   or incorrect. See the accompanying error message for details.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
-//   * ConflictException
-//   The request configuration has conflicts. For details, see the accompanying
-//   error message.
 //
 func (c *APIGateway) UpdateUsagePlan(input *UpdateUsagePlanInput) (*UsagePlan, error) {
 	req, out := c.UpdateUsagePlanRequest(input)
@@ -11298,12 +11597,6 @@ func (c *APIGateway) UpdateVpcLinkRequest(input *UpdateVpcLinkInput) (req *reque
 // API operation UpdateVpcLink for usage and error information.
 //
 // Returned Error Types:
-//   * UnauthorizedException
-//   The request is denied because the caller has insufficient permissions.
-//
-//   * NotFoundException
-//   The requested resource is not found. Make sure that the request URI is correct.
-//
 //   * BadRequestException
 //   The submitted request is not valid, for example, the input is incomplete
 //   or incorrect. See the accompanying error message for details.
@@ -11311,6 +11604,15 @@ func (c *APIGateway) UpdateVpcLinkRequest(input *UpdateVpcLinkInput) (req *reque
 //   * ConflictException
 //   The request configuration has conflicts. For details, see the accompanying
 //   error message.
+//
+//   * LimitExceededException
+//   The request exceeded the rate limit. Retry after the specified time period.
+//
+//   * NotFoundException
+//   The requested resource is not found. Make sure that the request URI is correct.
+//
+//   * UnauthorizedException
+//   The request is denied because the caller has insufficient permissions.
 //
 //   * TooManyRequestsException
 //   The request has reached its throttling limit. Retry after the specified time
@@ -14155,46 +14457,7 @@ type DeleteGatewayResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// [Required]
-	// The response type of the associated GatewayResponse. Valid values are
-	//    * ACCESS_DENIED
-	//
-	//    * API_CONFIGURATION_ERROR
-	//
-	//    * AUTHORIZER_FAILURE
-	//
-	//    * AUTHORIZER_CONFIGURATION_ERROR
-	//
-	//    * BAD_REQUEST_PARAMETERS
-	//
-	//    * BAD_REQUEST_BODY
-	//
-	//    * DEFAULT_4XX
-	//
-	//    * DEFAULT_5XX
-	//
-	//    * EXPIRED_TOKEN
-	//
-	//    * INVALID_SIGNATURE
-	//
-	//    * INTEGRATION_FAILURE
-	//
-	//    * INTEGRATION_TIMEOUT
-	//
-	//    * INVALID_API_KEY
-	//
-	//    * MISSING_AUTHENTICATION_TOKEN
-	//
-	//    * QUOTA_EXCEEDED
-	//
-	//    * REQUEST_TOO_LARGE
-	//
-	//    * RESOURCE_NOT_FOUND
-	//
-	//    * THROTTLED
-	//
-	//    * UNAUTHORIZED
-	//
-	//    * UNSUPPORTED_MEDIA_TYPE
+	// The response type of the associated GatewayResponse.
 	//
 	// ResponseType is a required field
 	ResponseType *string `location:"uri" locationName:"response_type" type:"string" required:"true" enum:"GatewayResponseType"`
@@ -17329,46 +17592,7 @@ type GetGatewayResponseInput struct {
 	_ struct{} `type:"structure"`
 
 	// [Required]
-	// The response type of the associated GatewayResponse. Valid values are
-	//    * ACCESS_DENIED
-	//
-	//    * API_CONFIGURATION_ERROR
-	//
-	//    * AUTHORIZER_FAILURE
-	//
-	//    * AUTHORIZER_CONFIGURATION_ERROR
-	//
-	//    * BAD_REQUEST_PARAMETERS
-	//
-	//    * BAD_REQUEST_BODY
-	//
-	//    * DEFAULT_4XX
-	//
-	//    * DEFAULT_5XX
-	//
-	//    * EXPIRED_TOKEN
-	//
-	//    * INVALID_SIGNATURE
-	//
-	//    * INTEGRATION_FAILURE
-	//
-	//    * INTEGRATION_TIMEOUT
-	//
-	//    * INVALID_API_KEY
-	//
-	//    * MISSING_AUTHENTICATION_TOKEN
-	//
-	//    * QUOTA_EXCEEDED
-	//
-	//    * REQUEST_TOO_LARGE
-	//
-	//    * RESOURCE_NOT_FOUND
-	//
-	//    * THROTTLED
-	//
-	//    * UNAUTHORIZED
-	//
-	//    * UNSUPPORTED_MEDIA_TYPE
+	// The response type of the associated GatewayResponse.
 	//
 	// ResponseType is a required field
 	ResponseType *string `location:"uri" locationName:"response_type" type:"string" required:"true" enum:"GatewayResponseType"`
@@ -21236,46 +21460,7 @@ type PutGatewayResponseInput struct {
 	ResponseTemplates map[string]*string `locationName:"responseTemplates" type:"map"`
 
 	// [Required]
-	// The response type of the associated GatewayResponse. Valid values are
-	//    * ACCESS_DENIED
-	//
-	//    * API_CONFIGURATION_ERROR
-	//
-	//    * AUTHORIZER_FAILURE
-	//
-	//    * AUTHORIZER_CONFIGURATION_ERROR
-	//
-	//    * BAD_REQUEST_PARAMETERS
-	//
-	//    * BAD_REQUEST_BODY
-	//
-	//    * DEFAULT_4XX
-	//
-	//    * DEFAULT_5XX
-	//
-	//    * EXPIRED_TOKEN
-	//
-	//    * INVALID_SIGNATURE
-	//
-	//    * INTEGRATION_FAILURE
-	//
-	//    * INTEGRATION_TIMEOUT
-	//
-	//    * INVALID_API_KEY
-	//
-	//    * MISSING_AUTHENTICATION_TOKEN
-	//
-	//    * QUOTA_EXCEEDED
-	//
-	//    * REQUEST_TOO_LARGE
-	//
-	//    * RESOURCE_NOT_FOUND
-	//
-	//    * THROTTLED
-	//
-	//    * UNAUTHORIZED
-	//
-	//    * UNSUPPORTED_MEDIA_TYPE
+	// The response type of the associated GatewayResponse.
 	//
 	// ResponseType is a required field
 	ResponseType *string `location:"uri" locationName:"response_type" type:"string" required:"true" enum:"GatewayResponseType"`
@@ -24119,46 +24304,7 @@ type UpdateGatewayResponseInput struct {
 	PatchOperations []*PatchOperation `locationName:"patchOperations" type:"list"`
 
 	// [Required]
-	// The response type of the associated GatewayResponse. Valid values are
-	//    * ACCESS_DENIED
-	//
-	//    * API_CONFIGURATION_ERROR
-	//
-	//    * AUTHORIZER_FAILURE
-	//
-	//    * AUTHORIZER_CONFIGURATION_ERROR
-	//
-	//    * BAD_REQUEST_PARAMETERS
-	//
-	//    * BAD_REQUEST_BODY
-	//
-	//    * DEFAULT_4XX
-	//
-	//    * DEFAULT_5XX
-	//
-	//    * EXPIRED_TOKEN
-	//
-	//    * INVALID_SIGNATURE
-	//
-	//    * INTEGRATION_FAILURE
-	//
-	//    * INTEGRATION_TIMEOUT
-	//
-	//    * INVALID_API_KEY
-	//
-	//    * MISSING_AUTHENTICATION_TOKEN
-	//
-	//    * QUOTA_EXCEEDED
-	//
-	//    * REQUEST_TOO_LARGE
-	//
-	//    * RESOURCE_NOT_FOUND
-	//
-	//    * THROTTLED
-	//
-	//    * UNAUTHORIZED
-	//
-	//    * UNSUPPORTED_MEDIA_TYPE
+	// The response type of the associated GatewayResponse.
 	//
 	// ResponseType is a required field
 	ResponseType *string `location:"uri" locationName:"response_type" type:"string" required:"true" enum:"GatewayResponseType"`
@@ -24274,46 +24420,7 @@ type UpdateGatewayResponseOutput struct {
 	// pairs.
 	ResponseTemplates map[string]*string `locationName:"responseTemplates" type:"map"`
 
-	// The response type of the associated GatewayResponse. Valid values are
-	//    * ACCESS_DENIED
-	//
-	//    * API_CONFIGURATION_ERROR
-	//
-	//    * AUTHORIZER_FAILURE
-	//
-	//    * AUTHORIZER_CONFIGURATION_ERROR
-	//
-	//    * BAD_REQUEST_PARAMETERS
-	//
-	//    * BAD_REQUEST_BODY
-	//
-	//    * DEFAULT_4XX
-	//
-	//    * DEFAULT_5XX
-	//
-	//    * EXPIRED_TOKEN
-	//
-	//    * INVALID_SIGNATURE
-	//
-	//    * INTEGRATION_FAILURE
-	//
-	//    * INTEGRATION_TIMEOUT
-	//
-	//    * INVALID_API_KEY
-	//
-	//    * MISSING_AUTHENTICATION_TOKEN
-	//
-	//    * QUOTA_EXCEEDED
-	//
-	//    * REQUEST_TOO_LARGE
-	//
-	//    * RESOURCE_NOT_FOUND
-	//
-	//    * THROTTLED
-	//
-	//    * UNAUTHORIZED
-	//
-	//    * UNSUPPORTED_MEDIA_TYPE
+	// The response type of the associated GatewayResponse.
 	ResponseType *string `locationName:"responseType" type:"string" enum:"GatewayResponseType"`
 
 	// The HTTP status code for this GatewayResponse.
@@ -25935,6 +26042,9 @@ const (
 
 	// GatewayResponseTypeQuotaExceeded is a GatewayResponseType enum value
 	GatewayResponseTypeQuotaExceeded = "QUOTA_EXCEEDED"
+
+	// GatewayResponseTypeWafFiltered is a GatewayResponseType enum value
+	GatewayResponseTypeWafFiltered = "WAF_FILTERED"
 )
 
 // GatewayResponseType_Values returns all elements of the GatewayResponseType enum
@@ -25960,6 +26070,7 @@ func GatewayResponseType_Values() []string {
 		GatewayResponseTypeRequestTooLarge,
 		GatewayResponseTypeThrottled,
 		GatewayResponseTypeQuotaExceeded,
+		GatewayResponseTypeWafFiltered,
 	}
 }
 
