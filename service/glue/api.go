@@ -465,6 +465,91 @@ func (c *Glue) BatchDeleteTableVersionWithContext(ctx aws.Context, input *BatchD
 	return out, req.Send()
 }
 
+const opBatchGetBlueprints = "BatchGetBlueprints"
+
+// BatchGetBlueprintsRequest generates a "aws/request.Request" representing the
+// client's request for the BatchGetBlueprints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See BatchGetBlueprints for more information on using the BatchGetBlueprints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the BatchGetBlueprintsRequest method.
+//    req, resp := client.BatchGetBlueprintsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetBlueprints
+func (c *Glue) BatchGetBlueprintsRequest(input *BatchGetBlueprintsInput) (req *request.Request, output *BatchGetBlueprintsOutput) {
+	op := &request.Operation{
+		Name:       opBatchGetBlueprints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &BatchGetBlueprintsInput{}
+	}
+
+	output = &BatchGetBlueprintsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// BatchGetBlueprints API operation for AWS Glue.
+//
+// Retrieves information about a list of blueprints.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation BatchGetBlueprints for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/BatchGetBlueprints
+func (c *Glue) BatchGetBlueprints(input *BatchGetBlueprintsInput) (*BatchGetBlueprintsOutput, error) {
+	req, out := c.BatchGetBlueprintsRequest(input)
+	return out, req.Send()
+}
+
+// BatchGetBlueprintsWithContext is the same as BatchGetBlueprints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See BatchGetBlueprints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) BatchGetBlueprintsWithContext(ctx aws.Context, input *BatchGetBlueprintsInput, opts ...request.Option) (*BatchGetBlueprintsOutput, error) {
+	req, out := c.BatchGetBlueprintsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opBatchGetCrawlers = "BatchGetCrawlers"
 
 // BatchGetCrawlersRequest generates a "aws/request.Request" representing the
@@ -1345,6 +1430,97 @@ func (c *Glue) CheckSchemaVersionValidity(input *CheckSchemaVersionValidityInput
 // for more information on using Contexts.
 func (c *Glue) CheckSchemaVersionValidityWithContext(ctx aws.Context, input *CheckSchemaVersionValidityInput, opts ...request.Option) (*CheckSchemaVersionValidityOutput, error) {
 	req, out := c.CheckSchemaVersionValidityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateBlueprint = "CreateBlueprint"
+
+// CreateBlueprintRequest generates a "aws/request.Request" representing the
+// client's request for the CreateBlueprint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateBlueprint for more information on using the CreateBlueprint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateBlueprintRequest method.
+//    req, resp := client.CreateBlueprintRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateBlueprint
+func (c *Glue) CreateBlueprintRequest(input *CreateBlueprintInput) (req *request.Request, output *CreateBlueprintOutput) {
+	op := &request.Operation{
+		Name:       opCreateBlueprint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateBlueprintInput{}
+	}
+
+	output = &CreateBlueprintOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateBlueprint API operation for AWS Glue.
+//
+// Registers a blueprint with Glue.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation CreateBlueprint for usage and error information.
+//
+// Returned Error Types:
+//   * AlreadyExistsException
+//   A resource to be created or added already exists.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/CreateBlueprint
+func (c *Glue) CreateBlueprint(input *CreateBlueprintInput) (*CreateBlueprintOutput, error) {
+	req, out := c.CreateBlueprintRequest(input)
+	return out, req.Send()
+}
+
+// CreateBlueprintWithContext is the same as CreateBlueprint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateBlueprint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) CreateBlueprintWithContext(ctx aws.Context, input *CreateBlueprintInput, opts ...request.Option) (*CreateBlueprintOutput, error) {
+	req, out := c.CreateBlueprintRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2985,6 +3161,91 @@ func (c *Glue) CreateWorkflow(input *CreateWorkflowInput) (*CreateWorkflowOutput
 // for more information on using Contexts.
 func (c *Glue) CreateWorkflowWithContext(ctx aws.Context, input *CreateWorkflowInput, opts ...request.Option) (*CreateWorkflowOutput, error) {
 	req, out := c.CreateWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteBlueprint = "DeleteBlueprint"
+
+// DeleteBlueprintRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBlueprint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBlueprint for more information on using the DeleteBlueprint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBlueprintRequest method.
+//    req, resp := client.DeleteBlueprintRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteBlueprint
+func (c *Glue) DeleteBlueprintRequest(input *DeleteBlueprintInput) (req *request.Request, output *DeleteBlueprintOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBlueprint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteBlueprintInput{}
+	}
+
+	output = &DeleteBlueprintOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteBlueprint API operation for AWS Glue.
+//
+// Deletes an existing blueprint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation DeleteBlueprint for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/DeleteBlueprint
+func (c *Glue) DeleteBlueprint(input *DeleteBlueprintInput) (*DeleteBlueprintOutput, error) {
+	req, out := c.DeleteBlueprintRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBlueprintWithContext is the same as DeleteBlueprint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBlueprint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) DeleteBlueprintWithContext(ctx aws.Context, input *DeleteBlueprintInput, opts ...request.Option) (*DeleteBlueprintOutput, error) {
+	req, out := c.DeleteBlueprintRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4912,6 +5173,325 @@ func (c *Glue) DeleteWorkflowWithContext(ctx aws.Context, input *DeleteWorkflowI
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opGetBlueprint = "GetBlueprint"
+
+// GetBlueprintRequest generates a "aws/request.Request" representing the
+// client's request for the GetBlueprint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBlueprint for more information on using the GetBlueprint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBlueprintRequest method.
+//    req, resp := client.GetBlueprintRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetBlueprint
+func (c *Glue) GetBlueprintRequest(input *GetBlueprintInput) (req *request.Request, output *GetBlueprintOutput) {
+	op := &request.Operation{
+		Name:       opGetBlueprint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetBlueprintInput{}
+	}
+
+	output = &GetBlueprintOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBlueprint API operation for AWS Glue.
+//
+// Retrieves the details of a blueprint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetBlueprint for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetBlueprint
+func (c *Glue) GetBlueprint(input *GetBlueprintInput) (*GetBlueprintOutput, error) {
+	req, out := c.GetBlueprintRequest(input)
+	return out, req.Send()
+}
+
+// GetBlueprintWithContext is the same as GetBlueprint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBlueprint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetBlueprintWithContext(ctx aws.Context, input *GetBlueprintInput, opts ...request.Option) (*GetBlueprintOutput, error) {
+	req, out := c.GetBlueprintRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetBlueprintRun = "GetBlueprintRun"
+
+// GetBlueprintRunRequest generates a "aws/request.Request" representing the
+// client's request for the GetBlueprintRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBlueprintRun for more information on using the GetBlueprintRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBlueprintRunRequest method.
+//    req, resp := client.GetBlueprintRunRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetBlueprintRun
+func (c *Glue) GetBlueprintRunRequest(input *GetBlueprintRunInput) (req *request.Request, output *GetBlueprintRunOutput) {
+	op := &request.Operation{
+		Name:       opGetBlueprintRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetBlueprintRunInput{}
+	}
+
+	output = &GetBlueprintRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBlueprintRun API operation for AWS Glue.
+//
+// Retrieves the details of a blueprint run.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetBlueprintRun for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetBlueprintRun
+func (c *Glue) GetBlueprintRun(input *GetBlueprintRunInput) (*GetBlueprintRunOutput, error) {
+	req, out := c.GetBlueprintRunRequest(input)
+	return out, req.Send()
+}
+
+// GetBlueprintRunWithContext is the same as GetBlueprintRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBlueprintRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetBlueprintRunWithContext(ctx aws.Context, input *GetBlueprintRunInput, opts ...request.Option) (*GetBlueprintRunOutput, error) {
+	req, out := c.GetBlueprintRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetBlueprintRuns = "GetBlueprintRuns"
+
+// GetBlueprintRunsRequest generates a "aws/request.Request" representing the
+// client's request for the GetBlueprintRuns operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBlueprintRuns for more information on using the GetBlueprintRuns
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBlueprintRunsRequest method.
+//    req, resp := client.GetBlueprintRunsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetBlueprintRuns
+func (c *Glue) GetBlueprintRunsRequest(input *GetBlueprintRunsInput) (req *request.Request, output *GetBlueprintRunsOutput) {
+	op := &request.Operation{
+		Name:       opGetBlueprintRuns,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &GetBlueprintRunsInput{}
+	}
+
+	output = &GetBlueprintRunsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBlueprintRuns API operation for AWS Glue.
+//
+// Retrieves the details of blueprint runs for a specified blueprint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation GetBlueprintRuns for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/GetBlueprintRuns
+func (c *Glue) GetBlueprintRuns(input *GetBlueprintRunsInput) (*GetBlueprintRunsOutput, error) {
+	req, out := c.GetBlueprintRunsRequest(input)
+	return out, req.Send()
+}
+
+// GetBlueprintRunsWithContext is the same as GetBlueprintRuns with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBlueprintRuns for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetBlueprintRunsWithContext(ctx aws.Context, input *GetBlueprintRunsInput, opts ...request.Option) (*GetBlueprintRunsOutput, error) {
+	req, out := c.GetBlueprintRunsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// GetBlueprintRunsPages iterates over the pages of a GetBlueprintRuns operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See GetBlueprintRuns method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a GetBlueprintRuns operation.
+//    pageNum := 0
+//    err := client.GetBlueprintRunsPages(params,
+//        func(page *glue.GetBlueprintRunsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Glue) GetBlueprintRunsPages(input *GetBlueprintRunsInput, fn func(*GetBlueprintRunsOutput, bool) bool) error {
+	return c.GetBlueprintRunsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// GetBlueprintRunsPagesWithContext same as GetBlueprintRunsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) GetBlueprintRunsPagesWithContext(ctx aws.Context, input *GetBlueprintRunsInput, fn func(*GetBlueprintRunsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *GetBlueprintRunsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.GetBlueprintRunsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*GetBlueprintRunsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opGetCatalogImportStatus = "GetCatalogImportStatus"
@@ -10712,6 +11292,149 @@ func (c *Glue) ImportCatalogToGlueWithContext(ctx aws.Context, input *ImportCata
 	return out, req.Send()
 }
 
+const opListBlueprints = "ListBlueprints"
+
+// ListBlueprintsRequest generates a "aws/request.Request" representing the
+// client's request for the ListBlueprints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListBlueprints for more information on using the ListBlueprints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListBlueprintsRequest method.
+//    req, resp := client.ListBlueprintsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListBlueprints
+func (c *Glue) ListBlueprintsRequest(input *ListBlueprintsInput) (req *request.Request, output *ListBlueprintsOutput) {
+	op := &request.Operation{
+		Name:       opListBlueprints,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListBlueprintsInput{}
+	}
+
+	output = &ListBlueprintsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListBlueprints API operation for AWS Glue.
+//
+// Lists all the blueprint names in an account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation ListBlueprints for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/ListBlueprints
+func (c *Glue) ListBlueprints(input *ListBlueprintsInput) (*ListBlueprintsOutput, error) {
+	req, out := c.ListBlueprintsRequest(input)
+	return out, req.Send()
+}
+
+// ListBlueprintsWithContext is the same as ListBlueprints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListBlueprints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListBlueprintsWithContext(ctx aws.Context, input *ListBlueprintsInput, opts ...request.Option) (*ListBlueprintsOutput, error) {
+	req, out := c.ListBlueprintsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListBlueprintsPages iterates over the pages of a ListBlueprints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListBlueprints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListBlueprints operation.
+//    pageNum := 0
+//    err := client.ListBlueprintsPages(params,
+//        func(page *glue.ListBlueprintsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Glue) ListBlueprintsPages(input *ListBlueprintsInput, fn func(*ListBlueprintsOutput, bool) bool) error {
+	return c.ListBlueprintsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListBlueprintsPagesWithContext same as ListBlueprintsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) ListBlueprintsPagesWithContext(ctx aws.Context, input *ListBlueprintsInput, fn func(*ListBlueprintsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListBlueprintsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListBlueprintsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListBlueprintsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListCrawlers = "ListCrawlers"
 
 // ListCrawlersRequest generates a "aws/request.Request" representing the
@@ -13033,6 +13756,99 @@ func (c *Glue) SearchTablesPagesWithContext(ctx aws.Context, input *SearchTables
 	return p.Err()
 }
 
+const opStartBlueprintRun = "StartBlueprintRun"
+
+// StartBlueprintRunRequest generates a "aws/request.Request" representing the
+// client's request for the StartBlueprintRun operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartBlueprintRun for more information on using the StartBlueprintRun
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartBlueprintRunRequest method.
+//    req, resp := client.StartBlueprintRunRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StartBlueprintRun
+func (c *Glue) StartBlueprintRunRequest(input *StartBlueprintRunInput) (req *request.Request, output *StartBlueprintRunOutput) {
+	op := &request.Operation{
+		Name:       opStartBlueprintRun,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &StartBlueprintRunInput{}
+	}
+
+	output = &StartBlueprintRunOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartBlueprintRun API operation for AWS Glue.
+//
+// Starts a new run of the specified blueprint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation StartBlueprintRun for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * ResourceNumberLimitExceededException
+//   A resource numerical limit was exceeded.
+//
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * IllegalBlueprintStateException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/StartBlueprintRun
+func (c *Glue) StartBlueprintRun(input *StartBlueprintRunInput) (*StartBlueprintRunOutput, error) {
+	req, out := c.StartBlueprintRunRequest(input)
+	return out, req.Send()
+}
+
+// StartBlueprintRunWithContext is the same as StartBlueprintRun with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartBlueprintRun for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) StartBlueprintRunWithContext(ctx aws.Context, input *StartBlueprintRunInput, opts ...request.Option) (*StartBlueprintRunOutput, error) {
+	req, out := c.StartBlueprintRunRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartCrawler = "StartCrawler"
 
 // StartCrawlerRequest generates a "aws/request.Request" representing the
@@ -14450,6 +15266,99 @@ func (c *Glue) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, e
 // for more information on using Contexts.
 func (c *Glue) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
 	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateBlueprint = "UpdateBlueprint"
+
+// UpdateBlueprintRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateBlueprint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateBlueprint for more information on using the UpdateBlueprint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateBlueprintRequest method.
+//    req, resp := client.UpdateBlueprintRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateBlueprint
+func (c *Glue) UpdateBlueprintRequest(input *UpdateBlueprintInput) (req *request.Request, output *UpdateBlueprintOutput) {
+	op := &request.Operation{
+		Name:       opUpdateBlueprint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateBlueprintInput{}
+	}
+
+	output = &UpdateBlueprintOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateBlueprint API operation for AWS Glue.
+//
+// Updates a registered blueprint.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Glue's
+// API operation UpdateBlueprint for usage and error information.
+//
+// Returned Error Types:
+//   * EntityNotFoundException
+//   A specified entity does not exist
+//
+//   * ConcurrentModificationException
+//   Two processes are trying to modify a resource simultaneously.
+//
+//   * InvalidInputException
+//   The input provided was not valid.
+//
+//   * OperationTimeoutException
+//   The operation timed out.
+//
+//   * InternalServiceException
+//   An internal service error occurred.
+//
+//   * IllegalBlueprintStateException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/glue-2017-03-31/UpdateBlueprint
+func (c *Glue) UpdateBlueprint(input *UpdateBlueprintInput) (*UpdateBlueprintOutput, error) {
+	req, out := c.UpdateBlueprintRequest(input)
+	return out, req.Send()
+}
+
+// UpdateBlueprintWithContext is the same as UpdateBlueprint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateBlueprint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Glue) UpdateBlueprintWithContext(ctx aws.Context, input *UpdateBlueprintInput, opts ...request.Option) (*UpdateBlueprintOutput, error) {
+	req, out := c.UpdateBlueprintRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -16843,6 +17752,98 @@ func (s *BatchDeleteTableVersionOutput) SetErrors(v []*TableVersionError) *Batch
 	return s
 }
 
+type BatchGetBlueprintsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether or not to include the blueprint in the response.
+	IncludeBlueprint *bool `type:"boolean"`
+
+	// Specifies whether or not to include the parameters, as a JSON string, for
+	// the blueprint in the response.
+	IncludeParameterSpec *bool `type:"boolean"`
+
+	// A list of blueprint names.
+	//
+	// Names is a required field
+	Names []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s BatchGetBlueprintsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetBlueprintsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BatchGetBlueprintsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BatchGetBlueprintsInput"}
+	if s.Names == nil {
+		invalidParams.Add(request.NewErrParamRequired("Names"))
+	}
+	if s.Names != nil && len(s.Names) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Names", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncludeBlueprint sets the IncludeBlueprint field's value.
+func (s *BatchGetBlueprintsInput) SetIncludeBlueprint(v bool) *BatchGetBlueprintsInput {
+	s.IncludeBlueprint = &v
+	return s
+}
+
+// SetIncludeParameterSpec sets the IncludeParameterSpec field's value.
+func (s *BatchGetBlueprintsInput) SetIncludeParameterSpec(v bool) *BatchGetBlueprintsInput {
+	s.IncludeParameterSpec = &v
+	return s
+}
+
+// SetNames sets the Names field's value.
+func (s *BatchGetBlueprintsInput) SetNames(v []*string) *BatchGetBlueprintsInput {
+	s.Names = v
+	return s
+}
+
+type BatchGetBlueprintsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a list of blueprint as a Blueprints object.
+	Blueprints []*Blueprint `type:"list"`
+
+	// Returns a list of BlueprintNames that were not found.
+	MissingBlueprints []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s BatchGetBlueprintsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BatchGetBlueprintsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueprints sets the Blueprints field's value.
+func (s *BatchGetBlueprintsOutput) SetBlueprints(v []*Blueprint) *BatchGetBlueprintsOutput {
+	s.Blueprints = v
+	return s
+}
+
+// SetMissingBlueprints sets the MissingBlueprints field's value.
+func (s *BatchGetBlueprintsOutput) SetMissingBlueprints(v []*string) *BatchGetBlueprintsOutput {
+	s.MissingBlueprints = v
+	return s
+}
+
 type BatchGetCrawlersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -17785,6 +18786,276 @@ func (s *BinaryColumnStatisticsData) SetMaximumLength(v int64) *BinaryColumnStat
 // SetNumberOfNulls sets the NumberOfNulls field's value.
 func (s *BinaryColumnStatisticsData) SetNumberOfNulls(v int64) *BinaryColumnStatisticsData {
 	s.NumberOfNulls = &v
+	return s
+}
+
+// The details of a blueprint.
+type Blueprint struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the path in Amazon S3 where the blueprint is published.
+	BlueprintLocation *string `type:"string"`
+
+	// Specifies a path in Amazon S3 where the blueprint is copied when you call
+	// CreateBlueprint/UpdateBlueprint to register the blueprint in Glue.
+	BlueprintServiceLocation *string `type:"string"`
+
+	// The date and time the blueprint was registered.
+	CreatedOn *time.Time `type:"timestamp"`
+
+	// The description of the blueprint.
+	Description *string `min:"1" type:"string"`
+
+	// An error message.
+	ErrorMessage *string `type:"string"`
+
+	// When there are multiple versions of a blueprint and the latest version has
+	// some errors, this attribute indicates the last successful blueprint definition
+	// that is available with the service.
+	LastActiveDefinition *LastActiveDefinition `type:"structure"`
+
+	// The date and time the blueprint was last modified.
+	LastModifiedOn *time.Time `type:"timestamp"`
+
+	// The name of the blueprint.
+	Name *string `min:"1" type:"string"`
+
+	// A JSON string that indicates the list of parameter specifications for the
+	// blueprint.
+	ParameterSpec *string `min:"1" type:"string"`
+
+	// The status of the blueprint registration.
+	//
+	//    * Creating — The blueprint registration is in progress.
+	//
+	//    * Active — The blueprint has been successfully registered.
+	//
+	//    * Updating — An update to the blueprint registration is in progress.
+	//
+	//    * Failed — The blueprint registration failed.
+	Status *string `type:"string" enum:"BlueprintStatus"`
+}
+
+// String returns the string representation
+func (s Blueprint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Blueprint) GoString() string {
+	return s.String()
+}
+
+// SetBlueprintLocation sets the BlueprintLocation field's value.
+func (s *Blueprint) SetBlueprintLocation(v string) *Blueprint {
+	s.BlueprintLocation = &v
+	return s
+}
+
+// SetBlueprintServiceLocation sets the BlueprintServiceLocation field's value.
+func (s *Blueprint) SetBlueprintServiceLocation(v string) *Blueprint {
+	s.BlueprintServiceLocation = &v
+	return s
+}
+
+// SetCreatedOn sets the CreatedOn field's value.
+func (s *Blueprint) SetCreatedOn(v time.Time) *Blueprint {
+	s.CreatedOn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *Blueprint) SetDescription(v string) *Blueprint {
+	s.Description = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *Blueprint) SetErrorMessage(v string) *Blueprint {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetLastActiveDefinition sets the LastActiveDefinition field's value.
+func (s *Blueprint) SetLastActiveDefinition(v *LastActiveDefinition) *Blueprint {
+	s.LastActiveDefinition = v
+	return s
+}
+
+// SetLastModifiedOn sets the LastModifiedOn field's value.
+func (s *Blueprint) SetLastModifiedOn(v time.Time) *Blueprint {
+	s.LastModifiedOn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Blueprint) SetName(v string) *Blueprint {
+	s.Name = &v
+	return s
+}
+
+// SetParameterSpec sets the ParameterSpec field's value.
+func (s *Blueprint) SetParameterSpec(v string) *Blueprint {
+	s.ParameterSpec = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Blueprint) SetStatus(v string) *Blueprint {
+	s.Status = &v
+	return s
+}
+
+// The details of a blueprint.
+type BlueprintDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the blueprint.
+	BlueprintName *string `min:"1" type:"string"`
+
+	// The run ID for this blueprint.
+	RunId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s BlueprintDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BlueprintDetails) GoString() string {
+	return s.String()
+}
+
+// SetBlueprintName sets the BlueprintName field's value.
+func (s *BlueprintDetails) SetBlueprintName(v string) *BlueprintDetails {
+	s.BlueprintName = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *BlueprintDetails) SetRunId(v string) *BlueprintDetails {
+	s.RunId = &v
+	return s
+}
+
+// The details of a blueprint run.
+type BlueprintRun struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the blueprint.
+	BlueprintName *string `min:"1" type:"string"`
+
+	// The date and time that the blueprint run completed.
+	CompletedOn *time.Time `type:"timestamp"`
+
+	// Indicates any errors that are seen while running the blueprint.
+	ErrorMessage *string `type:"string"`
+
+	// The blueprint parameters as a string. You will have to provide a value for
+	// each key that is required from the parameter spec that is defined in the
+	// Blueprint$ParameterSpec.
+	Parameters *string `min:"1" type:"string"`
+
+	// The role ARN. This role will be assumed by the Glue service and will be used
+	// to create the workflow and other entities of a workflow.
+	RoleArn *string `min:"1" type:"string"`
+
+	// If there are any errors while creating the entities of a workflow, we try
+	// to roll back the created entities until that point and delete them. This
+	// attribute indicates the errors seen while trying to delete the entities that
+	// are created.
+	RollbackErrorMessage *string `type:"string"`
+
+	// The run ID for this blueprint run.
+	RunId *string `min:"1" type:"string"`
+
+	// The date and time that the blueprint run started.
+	StartedOn *time.Time `type:"timestamp"`
+
+	// The state of the blueprint run. Possible values are:
+	//
+	//    * Running — The blueprint run is in progress.
+	//
+	//    * Succeeded — The blueprint run completed successfully.
+	//
+	//    * Failed — The blueprint run failed and rollback is complete.
+	//
+	//    * Rolling Back — The blueprint run failed and rollback is in progress.
+	State *string `type:"string" enum:"BlueprintRunState"`
+
+	// The name of a workflow that is created as a result of a successful blueprint
+	// run. If a blueprint run has an error, there will not be a workflow created.
+	WorkflowName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s BlueprintRun) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BlueprintRun) GoString() string {
+	return s.String()
+}
+
+// SetBlueprintName sets the BlueprintName field's value.
+func (s *BlueprintRun) SetBlueprintName(v string) *BlueprintRun {
+	s.BlueprintName = &v
+	return s
+}
+
+// SetCompletedOn sets the CompletedOn field's value.
+func (s *BlueprintRun) SetCompletedOn(v time.Time) *BlueprintRun {
+	s.CompletedOn = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BlueprintRun) SetErrorMessage(v string) *BlueprintRun {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *BlueprintRun) SetParameters(v string) *BlueprintRun {
+	s.Parameters = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *BlueprintRun) SetRoleArn(v string) *BlueprintRun {
+	s.RoleArn = &v
+	return s
+}
+
+// SetRollbackErrorMessage sets the RollbackErrorMessage field's value.
+func (s *BlueprintRun) SetRollbackErrorMessage(v string) *BlueprintRun {
+	s.RollbackErrorMessage = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *BlueprintRun) SetRunId(v string) *BlueprintRun {
+	s.RunId = &v
+	return s
+}
+
+// SetStartedOn sets the StartedOn field's value.
+func (s *BlueprintRun) SetStartedOn(v time.Time) *BlueprintRun {
+	s.StartedOn = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *BlueprintRun) SetState(v string) *BlueprintRun {
+	s.State = &v
+	return s
+}
+
+// SetWorkflowName sets the WorkflowName field's value.
+func (s *BlueprintRun) SetWorkflowName(v string) *BlueprintRun {
+	s.WorkflowName = &v
 	return s
 }
 
@@ -20313,6 +21584,108 @@ func (s *CrawlerTargets) SetMongoDBTargets(v []*MongoDBTarget) *CrawlerTargets {
 // SetS3Targets sets the S3Targets field's value.
 func (s *CrawlerTargets) SetS3Targets(v []*S3Target) *CrawlerTargets {
 	s.S3Targets = v
+	return s
+}
+
+type CreateBlueprintInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a path in Amazon S3 where the blueprint is published.
+	//
+	// BlueprintLocation is a required field
+	BlueprintLocation *string `min:"1" type:"string" required:"true"`
+
+	// A description of the blueprint.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the blueprint.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The tags to be applied to this blueprint.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s CreateBlueprintInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateBlueprintInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateBlueprintInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateBlueprintInput"}
+	if s.BlueprintLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlueprintLocation"))
+	}
+	if s.BlueprintLocation != nil && len(*s.BlueprintLocation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueprintLocation", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueprintLocation sets the BlueprintLocation field's value.
+func (s *CreateBlueprintInput) SetBlueprintLocation(v string) *CreateBlueprintInput {
+	s.BlueprintLocation = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateBlueprintInput) SetDescription(v string) *CreateBlueprintInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateBlueprintInput) SetName(v string) *CreateBlueprintInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateBlueprintInput) SetTags(v map[string]*string) *CreateBlueprintInput {
+	s.Tags = v
+	return s
+}
+
+type CreateBlueprintOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the name of the blueprint that was registered.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateBlueprintOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateBlueprintOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *CreateBlueprintOutput) SetName(v string) *CreateBlueprintOutput {
+	s.Name = &v
 	return s
 }
 
@@ -24049,6 +25422,70 @@ func (s *DecimalNumber) SetUnscaledValue(v []byte) *DecimalNumber {
 	return s
 }
 
+type DeleteBlueprintInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the blueprint to delete.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteBlueprintInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBlueprintInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBlueprintInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBlueprintInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteBlueprintInput) SetName(v string) *DeleteBlueprintInput {
+	s.Name = &v
+	return s
+}
+
+type DeleteBlueprintOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the name of the blueprint that was deleted.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteBlueprintOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteBlueprintOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteBlueprintOutput) SetName(v string) *DeleteBlueprintOutput {
+	s.Name = &v
+	return s
+}
+
 type DeleteClassifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -26830,6 +28267,263 @@ func (s *FindMatchesTaskRunProperties) SetJobName(v string) *FindMatchesTaskRunP
 // SetJobRunId sets the JobRunId field's value.
 func (s *FindMatchesTaskRunProperties) SetJobRunId(v string) *FindMatchesTaskRunProperties {
 	s.JobRunId = &v
+	return s
+}
+
+type GetBlueprintInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether or not to include the blueprint in the response.
+	IncludeBlueprint *bool `type:"boolean"`
+
+	// Specifies whether or not to include the parameter specification.
+	IncludeParameterSpec *bool `type:"boolean"`
+
+	// The name of the blueprint.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBlueprintInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBlueprintInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBlueprintInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBlueprintInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIncludeBlueprint sets the IncludeBlueprint field's value.
+func (s *GetBlueprintInput) SetIncludeBlueprint(v bool) *GetBlueprintInput {
+	s.IncludeBlueprint = &v
+	return s
+}
+
+// SetIncludeParameterSpec sets the IncludeParameterSpec field's value.
+func (s *GetBlueprintInput) SetIncludeParameterSpec(v bool) *GetBlueprintInput {
+	s.IncludeParameterSpec = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetBlueprintInput) SetName(v string) *GetBlueprintInput {
+	s.Name = &v
+	return s
+}
+
+type GetBlueprintOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a Blueprint object.
+	Blueprint *Blueprint `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetBlueprintOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBlueprintOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueprint sets the Blueprint field's value.
+func (s *GetBlueprintOutput) SetBlueprint(v *Blueprint) *GetBlueprintOutput {
+	s.Blueprint = v
+	return s
+}
+
+type GetBlueprintRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the blueprint.
+	//
+	// BlueprintName is a required field
+	BlueprintName *string `min:"1" type:"string" required:"true"`
+
+	// The run ID for the blueprint run you want to retrieve.
+	//
+	// RunId is a required field
+	RunId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetBlueprintRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBlueprintRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBlueprintRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBlueprintRunInput"}
+	if s.BlueprintName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlueprintName"))
+	}
+	if s.BlueprintName != nil && len(*s.BlueprintName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueprintName", 1))
+	}
+	if s.RunId == nil {
+		invalidParams.Add(request.NewErrParamRequired("RunId"))
+	}
+	if s.RunId != nil && len(*s.RunId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RunId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueprintName sets the BlueprintName field's value.
+func (s *GetBlueprintRunInput) SetBlueprintName(v string) *GetBlueprintRunInput {
+	s.BlueprintName = &v
+	return s
+}
+
+// SetRunId sets the RunId field's value.
+func (s *GetBlueprintRunInput) SetRunId(v string) *GetBlueprintRunInput {
+	s.RunId = &v
+	return s
+}
+
+type GetBlueprintRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a BlueprintRun object.
+	BlueprintRun *BlueprintRun `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetBlueprintRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBlueprintRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueprintRun sets the BlueprintRun field's value.
+func (s *GetBlueprintRunOutput) SetBlueprintRun(v *BlueprintRun) *GetBlueprintRunOutput {
+	s.BlueprintRun = v
+	return s
+}
+
+type GetBlueprintRunsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the blueprint.
+	//
+	// BlueprintName is a required field
+	BlueprintName *string `min:"1" type:"string" required:"true"`
+
+	// The maximum size of a list to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is a continuation request.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetBlueprintRunsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBlueprintRunsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBlueprintRunsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBlueprintRunsInput"}
+	if s.BlueprintName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlueprintName"))
+	}
+	if s.BlueprintName != nil && len(*s.BlueprintName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueprintName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueprintName sets the BlueprintName field's value.
+func (s *GetBlueprintRunsInput) SetBlueprintName(v string) *GetBlueprintRunsInput {
+	s.BlueprintName = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetBlueprintRunsInput) SetMaxResults(v int64) *GetBlueprintRunsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBlueprintRunsInput) SetNextToken(v string) *GetBlueprintRunsInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetBlueprintRunsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns a list of BlueprintRun objects.
+	BlueprintRuns []*BlueprintRun `type:"list"`
+
+	// A continuation token, if not all blueprint runs have been returned.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s GetBlueprintRunsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBlueprintRunsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueprintRuns sets the BlueprintRuns field's value.
+func (s *GetBlueprintRunsOutput) SetBlueprintRuns(v []*BlueprintRun) *GetBlueprintRunsOutput {
+	s.BlueprintRuns = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetBlueprintRunsOutput) SetNextToken(v string) *GetBlueprintRunsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -32368,6 +34062,61 @@ func (s *IdempotentParameterMismatchException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type IllegalBlueprintStateException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+}
+
+// String returns the string representation
+func (s IllegalBlueprintStateException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s IllegalBlueprintStateException) GoString() string {
+	return s.String()
+}
+
+func newErrorIllegalBlueprintStateException(v protocol.ResponseMetadata) error {
+	return &IllegalBlueprintStateException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *IllegalBlueprintStateException) Code() string {
+	return "IllegalBlueprintStateException"
+}
+
+// Message returns the exception's message.
+func (s *IllegalBlueprintStateException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *IllegalBlueprintStateException) OrigErr() error {
+	return nil
+}
+
+func (s *IllegalBlueprintStateException) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *IllegalBlueprintStateException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *IllegalBlueprintStateException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The workflow is in an invalid state to perform a requested operation.
 type IllegalWorkflowStateException struct {
 	_            struct{}                  `type:"structure"`
@@ -33774,6 +35523,70 @@ func (s *LabelingSetGenerationTaskRunProperties) SetOutputS3Path(v string) *Labe
 	return s
 }
 
+// When there are multiple versions of a blueprint and the latest version has
+// some errors, this attribute indicates the last successful blueprint definition
+// that is available with the service.
+type LastActiveDefinition struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a path in Amazon S3 where the blueprint is published by the Glue
+	// developer.
+	BlueprintLocation *string `type:"string"`
+
+	// Specifies a path in Amazon S3 where the blueprint is copied when you create
+	// or update the blueprint.
+	BlueprintServiceLocation *string `type:"string"`
+
+	// The description of the blueprint.
+	Description *string `min:"1" type:"string"`
+
+	// The date and time the blueprint was last modified.
+	LastModifiedOn *time.Time `type:"timestamp"`
+
+	// A JSON string specifying the parameters for the blueprint.
+	ParameterSpec *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LastActiveDefinition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LastActiveDefinition) GoString() string {
+	return s.String()
+}
+
+// SetBlueprintLocation sets the BlueprintLocation field's value.
+func (s *LastActiveDefinition) SetBlueprintLocation(v string) *LastActiveDefinition {
+	s.BlueprintLocation = &v
+	return s
+}
+
+// SetBlueprintServiceLocation sets the BlueprintServiceLocation field's value.
+func (s *LastActiveDefinition) SetBlueprintServiceLocation(v string) *LastActiveDefinition {
+	s.BlueprintServiceLocation = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *LastActiveDefinition) SetDescription(v string) *LastActiveDefinition {
+	s.Description = &v
+	return s
+}
+
+// SetLastModifiedOn sets the LastModifiedOn field's value.
+func (s *LastActiveDefinition) SetLastModifiedOn(v time.Time) *LastActiveDefinition {
+	s.LastModifiedOn = &v
+	return s
+}
+
+// SetParameterSpec sets the ParameterSpec field's value.
+func (s *LastActiveDefinition) SetParameterSpec(v string) *LastActiveDefinition {
+	s.ParameterSpec = &v
+	return s
+}
+
 // Status and error information about the most recent crawl.
 type LastCrawlInfo struct {
 	_ struct{} `type:"structure"`
@@ -33868,6 +35681,92 @@ func (s LineageConfiguration) GoString() string {
 // SetCrawlerLineageSettings sets the CrawlerLineageSettings field's value.
 func (s *LineageConfiguration) SetCrawlerLineageSettings(v string) *LineageConfiguration {
 	s.CrawlerLineageSettings = &v
+	return s
+}
+
+type ListBlueprintsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum size of a list to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A continuation token, if this is a continuation request.
+	NextToken *string `type:"string"`
+
+	// Filters the list by an Amazon Web Services resource tag.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s ListBlueprintsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBlueprintsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListBlueprintsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListBlueprintsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListBlueprintsInput) SetMaxResults(v int64) *ListBlueprintsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBlueprintsInput) SetNextToken(v string) *ListBlueprintsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListBlueprintsInput) SetTags(v map[string]*string) *ListBlueprintsInput {
+	s.Tags = v
+	return s
+}
+
+type ListBlueprintsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// List of names of blueprints in the account.
+	Blueprints []*string `type:"list"`
+
+	// A continuation token, if not all blueprint names have been returned.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListBlueprintsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListBlueprintsOutput) GoString() string {
+	return s.String()
+}
+
+// SetBlueprints sets the Blueprints field's value.
+func (s *ListBlueprintsOutput) SetBlueprints(v []*string) *ListBlueprintsOutput {
+	s.Blueprints = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListBlueprintsOutput) SetNextToken(v string) *ListBlueprintsOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -38779,6 +40678,99 @@ func (s *SortCriterion) SetSort(v string) *SortCriterion {
 	return s
 }
 
+type StartBlueprintRunInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the blueprint.
+	//
+	// BlueprintName is a required field
+	BlueprintName *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the parameters as a BlueprintParameters object.
+	Parameters *string `min:"1" type:"string"`
+
+	// Specifies the IAM role used to create the workflow.
+	//
+	// RoleArn is a required field
+	RoleArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartBlueprintRunInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartBlueprintRunInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartBlueprintRunInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartBlueprintRunInput"}
+	if s.BlueprintName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlueprintName"))
+	}
+	if s.BlueprintName != nil && len(*s.BlueprintName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueprintName", 1))
+	}
+	if s.Parameters != nil && len(*s.Parameters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Parameters", 1))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.RoleArn != nil && len(*s.RoleArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueprintName sets the BlueprintName field's value.
+func (s *StartBlueprintRunInput) SetBlueprintName(v string) *StartBlueprintRunInput {
+	s.BlueprintName = &v
+	return s
+}
+
+// SetParameters sets the Parameters field's value.
+func (s *StartBlueprintRunInput) SetParameters(v string) *StartBlueprintRunInput {
+	s.Parameters = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *StartBlueprintRunInput) SetRoleArn(v string) *StartBlueprintRunInput {
+	s.RoleArn = &v
+	return s
+}
+
+type StartBlueprintRunOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The run ID for this blueprint run.
+	RunId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StartBlueprintRunOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartBlueprintRunOutput) GoString() string {
+	return s.String()
+}
+
+// SetRunId sets the RunId field's value.
+func (s *StartBlueprintRunOutput) SetRunId(v string) *StartBlueprintRunOutput {
+	s.RunId = &v
+	return s
+}
+
 type StartCrawlerInput struct {
 	_ struct{} `type:"structure"`
 
@@ -41668,6 +43660,99 @@ func (s UntagResourceOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateBlueprintInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a path in Amazon S3 where the blueprint is published.
+	//
+	// BlueprintLocation is a required field
+	BlueprintLocation *string `min:"1" type:"string" required:"true"`
+
+	// A description of the blueprint.
+	Description *string `min:"1" type:"string"`
+
+	// The name of the blueprint.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateBlueprintInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateBlueprintInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateBlueprintInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateBlueprintInput"}
+	if s.BlueprintLocation == nil {
+		invalidParams.Add(request.NewErrParamRequired("BlueprintLocation"))
+	}
+	if s.BlueprintLocation != nil && len(*s.BlueprintLocation) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BlueprintLocation", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBlueprintLocation sets the BlueprintLocation field's value.
+func (s *UpdateBlueprintInput) SetBlueprintLocation(v string) *UpdateBlueprintInput {
+	s.BlueprintLocation = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateBlueprintInput) SetDescription(v string) *UpdateBlueprintInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateBlueprintInput) SetName(v string) *UpdateBlueprintInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateBlueprintOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the name of the blueprint that was updated.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateBlueprintOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateBlueprintOutput) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateBlueprintOutput) SetName(v string) *UpdateBlueprintOutput {
+	s.Name = &v
+	return s
+}
+
 type UpdateClassifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -44141,6 +46226,10 @@ func (s *VersionMismatchException) RequestID() string {
 type Workflow struct {
 	_ struct{} `type:"structure"`
 
+	// This structure indicates the details of the blueprint that this particular
+	// workflow is created from.
+	BlueprintDetails *BlueprintDetails `type:"structure"`
+
 	// The date and time when the workflow was created.
 	CreatedOn *time.Time `type:"timestamp"`
 
@@ -44180,6 +46269,12 @@ func (s Workflow) String() string {
 // GoString returns the string representation
 func (s Workflow) GoString() string {
 	return s.String()
+}
+
+// SetBlueprintDetails sets the BlueprintDetails field's value.
+func (s *Workflow) SetBlueprintDetails(v *BlueprintDetails) *Workflow {
+	s.BlueprintDetails = v
+	return s
 }
 
 // SetCreatedOn sets the CreatedOn field's value.
@@ -44554,6 +46649,54 @@ func BackfillErrorCode_Values() []string {
 		BackfillErrorCodeInvalidPartitionTypeDataError,
 		BackfillErrorCodeMissingPartitionValueError,
 		BackfillErrorCodeUnsupportedPartitionCharacterError,
+	}
+}
+
+const (
+	// BlueprintRunStateRunning is a BlueprintRunState enum value
+	BlueprintRunStateRunning = "RUNNING"
+
+	// BlueprintRunStateSucceeded is a BlueprintRunState enum value
+	BlueprintRunStateSucceeded = "SUCCEEDED"
+
+	// BlueprintRunStateFailed is a BlueprintRunState enum value
+	BlueprintRunStateFailed = "FAILED"
+
+	// BlueprintRunStateRollingBack is a BlueprintRunState enum value
+	BlueprintRunStateRollingBack = "ROLLING_BACK"
+)
+
+// BlueprintRunState_Values returns all elements of the BlueprintRunState enum
+func BlueprintRunState_Values() []string {
+	return []string{
+		BlueprintRunStateRunning,
+		BlueprintRunStateSucceeded,
+		BlueprintRunStateFailed,
+		BlueprintRunStateRollingBack,
+	}
+}
+
+const (
+	// BlueprintStatusCreating is a BlueprintStatus enum value
+	BlueprintStatusCreating = "CREATING"
+
+	// BlueprintStatusActive is a BlueprintStatus enum value
+	BlueprintStatusActive = "ACTIVE"
+
+	// BlueprintStatusUpdating is a BlueprintStatus enum value
+	BlueprintStatusUpdating = "UPDATING"
+
+	// BlueprintStatusFailed is a BlueprintStatus enum value
+	BlueprintStatusFailed = "FAILED"
+)
+
+// BlueprintStatus_Values returns all elements of the BlueprintStatus enum
+func BlueprintStatus_Values() []string {
+	return []string{
+		BlueprintStatusCreating,
+		BlueprintStatusActive,
+		BlueprintStatusUpdating,
+		BlueprintStatusFailed,
 	}
 }
 

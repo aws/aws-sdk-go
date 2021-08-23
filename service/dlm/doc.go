@@ -4,8 +4,8 @@
 // requests to Amazon Data Lifecycle Manager.
 //
 // With Amazon Data Lifecycle Manager, you can manage the lifecycle of your
-// AWS resources. You create lifecycle policies, which are used to automate
-// operations on the specified resources.
+// Amazon Web Services resources. You create lifecycle policies, which are used
+// to automate operations on the specified resources.
 //
 // Amazon DLM supports Amazon EBS volumes and snapshots. For information about
 // using Amazon DLM with Amazon EBS, see Automating the Amazon EBS Snapshot

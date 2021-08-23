@@ -14,11 +14,18 @@ const (
 	// The required resource already exists.
 	ErrCodeAlreadyExistsException = "AlreadyExistsException"
 
+	// ErrCodeConflictException for service response error code
+	// "ConflictException".
+	//
+	// Backup can't perform the action that you requested until it finishes performing
+	// a previous action. Try again later.
+	ErrCodeConflictException = "ConflictException"
+
 	// ErrCodeDependencyFailureException for service response error code
 	// "DependencyFailureException".
 	//
-	// A dependent AWS service or resource returned an error to the AWS Backup service,
-	// and the action cannot be completed.
+	// A dependent Amazon Web Services service or resource returned an error to
+	// the Backup service, and the action cannot be completed.
 	ErrCodeDependencyFailureException = "DependencyFailureException"
 
 	// ErrCodeInvalidParameterValueException for service response error code
@@ -38,9 +45,8 @@ const (
 	// ErrCodeInvalidResourceStateException for service response error code
 	// "InvalidResourceStateException".
 	//
-	// AWS Backup is already performing an action on this recovery point. It can't
-	// perform the action you requested until the first action finishes. Try again
-	// later.
+	// Backup is already performing an action on this recovery point. It can't perform
+	// the action you requested until the first action finishes. Try again later.
 	ErrCodeInvalidResourceStateException = "InvalidResourceStateException"
 
 	// ErrCodeLimitExceededException for service response error code
@@ -71,6 +77,7 @@ const (
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"AlreadyExistsException":         newErrorAlreadyExistsException,
+	"ConflictException":              newErrorConflictException,
 	"DependencyFailureException":     newErrorDependencyFailureException,
 	"InvalidParameterValueException": newErrorInvalidParameterValueException,
 	"InvalidRequestException":        newErrorInvalidRequestException,

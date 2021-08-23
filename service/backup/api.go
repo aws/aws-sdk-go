@@ -58,11 +58,11 @@ func (c *Backup) CreateBackupPlanRequest(input *CreateBackupPlanInput) (req *req
 // CreateBackupPlan API operation for AWS Backup.
 //
 // Creates a backup plan using a backup plan name and backup rules. A backup
-// plan is a document that contains information that AWS Backup uses to schedule
+// plan is a document that contains information that Backup uses to schedule
 // tasks that create recovery points for resources.
 //
-// If you call CreateBackupPlan with a plan that already exists, an AlreadyExistsException
-// is returned.
+// If you call CreateBackupPlan with a plan that already exists, you receive
+// an AlreadyExistsException exception.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -272,8 +272,8 @@ func (c *Backup) CreateBackupVaultRequest(input *CreateBackupVaultInput) (req *r
 // request includes a name, optionally one or more resource tags, an encryption
 // key, and a request ID.
 //
-// Sensitive data, such as passport numbers, should not be included the name
-// of a backup vault.
+// Do not include sensitive data, such as passport numbers, in the name of a
+// backup vault.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -317,6 +317,201 @@ func (c *Backup) CreateBackupVault(input *CreateBackupVaultInput) (*CreateBackup
 // for more information on using Contexts.
 func (c *Backup) CreateBackupVaultWithContext(ctx aws.Context, input *CreateBackupVaultInput, opts ...request.Option) (*CreateBackupVaultOutput, error) {
 	req, out := c.CreateBackupVaultRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateFramework = "CreateFramework"
+
+// CreateFrameworkRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFramework operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFramework for more information on using the CreateFramework
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFrameworkRequest method.
+//    req, resp := client.CreateFrameworkRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateFramework
+func (c *Backup) CreateFrameworkRequest(input *CreateFrameworkInput) (req *request.Request, output *CreateFrameworkOutput) {
+	op := &request.Operation{
+		Name:       opCreateFramework,
+		HTTPMethod: "POST",
+		HTTPPath:   "/audit/frameworks",
+	}
+
+	if input == nil {
+		input = &CreateFrameworkInput{}
+	}
+
+	output = &CreateFrameworkOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFramework API operation for AWS Backup.
+//
+// Creates a framework with one or more controls. A framework is a collection
+// of controls that you can use to evaluate your backup practices. By using
+// pre-built customizable controls to define your policies, you can evaluate
+// whether your backup practices comply with your policies. To get insights
+// into the compliance status of your frameworks, you can set up automatic daily
+// reports.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation CreateFramework for usage and error information.
+//
+// Returned Error Types:
+//   * AlreadyExistsException
+//   The required resource already exists.
+//
+//   * LimitExceededException
+//   A limit in the request has been exceeded; for example, a maximum number of
+//   items allowed in a request.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateFramework
+func (c *Backup) CreateFramework(input *CreateFrameworkInput) (*CreateFrameworkOutput, error) {
+	req, out := c.CreateFrameworkRequest(input)
+	return out, req.Send()
+}
+
+// CreateFrameworkWithContext is the same as CreateFramework with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFramework for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) CreateFrameworkWithContext(ctx aws.Context, input *CreateFrameworkInput, opts ...request.Option) (*CreateFrameworkOutput, error) {
+	req, out := c.CreateFrameworkRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateReportPlan = "CreateReportPlan"
+
+// CreateReportPlanRequest generates a "aws/request.Request" representing the
+// client's request for the CreateReportPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateReportPlan for more information on using the CreateReportPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateReportPlanRequest method.
+//    req, resp := client.CreateReportPlanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateReportPlan
+func (c *Backup) CreateReportPlanRequest(input *CreateReportPlanInput) (req *request.Request, output *CreateReportPlanOutput) {
+	op := &request.Operation{
+		Name:       opCreateReportPlan,
+		HTTPMethod: "POST",
+		HTTPPath:   "/audit/report-plans",
+	}
+
+	if input == nil {
+		input = &CreateReportPlanInput{}
+	}
+
+	output = &CreateReportPlanOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateReportPlan API operation for AWS Backup.
+//
+// Creates a report plan. A report plan is a document that contains information
+// about the contents of the report and where Backup will deliver it.
+//
+// If you call CreateReportPlan with a plan that already exists, you receive
+// an AlreadyExistsException exception.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation CreateReportPlan for usage and error information.
+//
+// Returned Error Types:
+//   * AlreadyExistsException
+//   The required resource already exists.
+//
+//   * LimitExceededException
+//   A limit in the request has been exceeded; for example, a maximum number of
+//   items allowed in a request.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/CreateReportPlan
+func (c *Backup) CreateReportPlan(input *CreateReportPlanInput) (*CreateReportPlanOutput, error) {
+	req, out := c.CreateReportPlanRequest(input)
+	return out, req.Send()
+}
+
+// CreateReportPlanWithContext is the same as CreateReportPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateReportPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) CreateReportPlanWithContext(ctx aws.Context, input *CreateReportPlanInput, opts ...request.Option) (*CreateReportPlanOutput, error) {
+	req, out := c.CreateReportPlanRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -784,6 +979,100 @@ func (c *Backup) DeleteBackupVaultNotificationsWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opDeleteFramework = "DeleteFramework"
+
+// DeleteFrameworkRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFramework operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFramework for more information on using the DeleteFramework
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFrameworkRequest method.
+//    req, resp := client.DeleteFrameworkRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteFramework
+func (c *Backup) DeleteFrameworkRequest(input *DeleteFrameworkInput) (req *request.Request, output *DeleteFrameworkOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFramework,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/audit/frameworks/{frameworkName}",
+	}
+
+	if input == nil {
+		input = &DeleteFrameworkInput{}
+	}
+
+	output = &DeleteFrameworkOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFramework API operation for AWS Backup.
+//
+// Deletes the framework specified by a framework name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation DeleteFramework for usage and error information.
+//
+// Returned Error Types:
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+//   * ConflictException
+//   Backup can't perform the action that you requested until it finishes performing
+//   a previous action. Try again later.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteFramework
+func (c *Backup) DeleteFramework(input *DeleteFrameworkInput) (*DeleteFrameworkOutput, error) {
+	req, out := c.DeleteFrameworkRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFrameworkWithContext is the same as DeleteFramework with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFramework for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) DeleteFrameworkWithContext(ctx aws.Context, input *DeleteFrameworkInput, opts ...request.Option) (*DeleteFrameworkOutput, error) {
+	req, out := c.DeleteFrameworkRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteRecoveryPoint = "DeleteRecoveryPoint"
 
 // DeleteRecoveryPointRequest generates a "aws/request.Request" representing the
@@ -853,9 +1142,8 @@ func (c *Backup) DeleteRecoveryPointRequest(input *DeleteRecoveryPointInput) (re
 //   Indicates that a required parameter is missing.
 //
 //   * InvalidResourceStateException
-//   AWS Backup is already performing an action on this recovery point. It can't
-//   perform the action you requested until the first action finishes. Try again
-//   later.
+//   Backup is already performing an action on this recovery point. It can't perform
+//   the action you requested until the first action finishes. Try again later.
 //
 //   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
@@ -881,6 +1169,100 @@ func (c *Backup) DeleteRecoveryPoint(input *DeleteRecoveryPointInput) (*DeleteRe
 // for more information on using Contexts.
 func (c *Backup) DeleteRecoveryPointWithContext(ctx aws.Context, input *DeleteRecoveryPointInput, opts ...request.Option) (*DeleteRecoveryPointOutput, error) {
 	req, out := c.DeleteRecoveryPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteReportPlan = "DeleteReportPlan"
+
+// DeleteReportPlanRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteReportPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteReportPlan for more information on using the DeleteReportPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteReportPlanRequest method.
+//    req, resp := client.DeleteReportPlanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteReportPlan
+func (c *Backup) DeleteReportPlanRequest(input *DeleteReportPlanInput) (req *request.Request, output *DeleteReportPlanOutput) {
+	op := &request.Operation{
+		Name:       opDeleteReportPlan,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/audit/report-plans/{reportPlanName}",
+	}
+
+	if input == nil {
+		input = &DeleteReportPlanInput{}
+	}
+
+	output = &DeleteReportPlanOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteReportPlan API operation for AWS Backup.
+//
+// Deletes the report plan specified by a report plan name.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation DeleteReportPlan for usage and error information.
+//
+// Returned Error Types:
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * ConflictException
+//   Backup can't perform the action that you requested until it finishes performing
+//   a previous action. Try again later.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteReportPlan
+func (c *Backup) DeleteReportPlan(input *DeleteReportPlanInput) (*DeleteReportPlanOutput, error) {
+	req, out := c.DeleteReportPlanRequest(input)
+	return out, req.Send()
+}
+
+// DeleteReportPlanWithContext is the same as DeleteReportPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteReportPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) DeleteReportPlanWithContext(ctx aws.Context, input *DeleteReportPlanInput, opts ...request.Option) (*DeleteReportPlanOutput, error) {
+	req, out := c.DeleteReportPlanRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -954,8 +1336,8 @@ func (c *Backup) DescribeBackupJobRequest(input *DescribeBackupJobInput) (req *r
 //   The request failed due to a temporary failure of the server.
 //
 //   * DependencyFailureException
-//   A dependent AWS service or resource returned an error to the AWS Backup service,
-//   and the action cannot be completed.
+//   A dependent Amazon Web Services service or resource returned an error to
+//   the Backup service, and the action cannot be completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeBackupJob
 func (c *Backup) DescribeBackupJob(input *DescribeBackupJobInput) (*DescribeBackupJobOutput, error) {
@@ -1157,6 +1539,95 @@ func (c *Backup) DescribeCopyJobWithContext(ctx aws.Context, input *DescribeCopy
 	return out, req.Send()
 }
 
+const opDescribeFramework = "DescribeFramework"
+
+// DescribeFrameworkRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFramework operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFramework for more information on using the DescribeFramework
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFrameworkRequest method.
+//    req, resp := client.DescribeFrameworkRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeFramework
+func (c *Backup) DescribeFrameworkRequest(input *DescribeFrameworkInput) (req *request.Request, output *DescribeFrameworkOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFramework,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/frameworks/{frameworkName}",
+	}
+
+	if input == nil {
+		input = &DescribeFrameworkInput{}
+	}
+
+	output = &DescribeFrameworkOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFramework API operation for AWS Backup.
+//
+// Returns the framework details for the specified FrameworkName.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation DescribeFramework for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeFramework
+func (c *Backup) DescribeFramework(input *DescribeFrameworkInput) (*DescribeFrameworkOutput, error) {
+	req, out := c.DescribeFrameworkRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFrameworkWithContext is the same as DescribeFramework with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFramework for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) DescribeFrameworkWithContext(ctx aws.Context, input *DescribeFrameworkInput, opts ...request.Option) (*DescribeFrameworkOutput, error) {
+	req, out := c.DescribeFrameworkRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeGlobalSettings = "DescribeGlobalSettings"
 
 // DescribeGlobalSettingsRequest generates a "aws/request.Request" representing the
@@ -1201,8 +1672,9 @@ func (c *Backup) DescribeGlobalSettingsRequest(input *DescribeGlobalSettingsInpu
 
 // DescribeGlobalSettings API operation for AWS Backup.
 //
-// Describes the global settings of the AWS account, including whether it is
-// opted in to cross-account backup.
+// Describes whether the Amazon Web Services account is opted in to cross-account
+// backup. Returns an error if the account is not a member of an Organizations
+// organization. Example: describe-global-settings --region us-west-2
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1286,8 +1758,8 @@ func (c *Backup) DescribeProtectedResourceRequest(input *DescribeProtectedResour
 // DescribeProtectedResource API operation for AWS Backup.
 //
 // Returns information about a saved resource, including the last time it was
-// backed up, its Amazon Resource Name (ARN), and the AWS service type of the
-// saved resource.
+// backed up, its Amazon Resource Name (ARN), and the Amazon Web Services service
+// type of the saved resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1466,12 +1938,11 @@ func (c *Backup) DescribeRegionSettingsRequest(input *DescribeRegionSettingsInpu
 
 // DescribeRegionSettings API operation for AWS Backup.
 //
-// Returns the current service opt-in settings for the Region. If service-opt-in
-// is enabled for a service, AWS Backup tries to protect that service's resources
+// Returns the current service opt-in settings for the Region. If service opt-in
+// is enabled for a service, Backup tries to protect that service's resources
 // in this Region, when the resource is included in an on-demand backup or scheduled
-// backup plan. Otherwise, AWS Backup does not try to protect that service's
-// resources in this Region, AWS Backup does not try to protect that service's
-// resources in this Region.
+// backup plan. Otherwise, Backup does not try to protect that service's resources
+// in this Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1501,6 +1972,182 @@ func (c *Backup) DescribeRegionSettings(input *DescribeRegionSettingsInput) (*De
 // for more information on using Contexts.
 func (c *Backup) DescribeRegionSettingsWithContext(ctx aws.Context, input *DescribeRegionSettingsInput, opts ...request.Option) (*DescribeRegionSettingsOutput, error) {
 	req, out := c.DescribeRegionSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeReportJob = "DescribeReportJob"
+
+// DescribeReportJobRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReportJob for more information on using the DescribeReportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeReportJobRequest method.
+//    req, resp := client.DescribeReportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeReportJob
+func (c *Backup) DescribeReportJobRequest(input *DescribeReportJobInput) (req *request.Request, output *DescribeReportJobOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReportJob,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/report-jobs/{reportJobId}",
+	}
+
+	if input == nil {
+		input = &DescribeReportJobInput{}
+	}
+
+	output = &DescribeReportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReportJob API operation for AWS Backup.
+//
+// Returns the details associated with creating a report as specified by its
+// ReportJobId.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation DescribeReportJob for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeReportJob
+func (c *Backup) DescribeReportJob(input *DescribeReportJobInput) (*DescribeReportJobOutput, error) {
+	req, out := c.DescribeReportJobRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReportJobWithContext is the same as DescribeReportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) DescribeReportJobWithContext(ctx aws.Context, input *DescribeReportJobInput, opts ...request.Option) (*DescribeReportJobOutput, error) {
+	req, out := c.DescribeReportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeReportPlan = "DescribeReportPlan"
+
+// DescribeReportPlanRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeReportPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeReportPlan for more information on using the DescribeReportPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeReportPlanRequest method.
+//    req, resp := client.DescribeReportPlanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeReportPlan
+func (c *Backup) DescribeReportPlanRequest(input *DescribeReportPlanInput) (req *request.Request, output *DescribeReportPlanOutput) {
+	op := &request.Operation{
+		Name:       opDescribeReportPlan,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/report-plans/{reportPlanName}",
+	}
+
+	if input == nil {
+		input = &DescribeReportPlanInput{}
+	}
+
+	output = &DescribeReportPlanOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeReportPlan API operation for AWS Backup.
+//
+// Returns a list of all report plans for an Amazon Web Services account and
+// Amazon Web Services Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation DescribeReportPlan for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeReportPlan
+func (c *Backup) DescribeReportPlan(input *DescribeReportPlanInput) (*DescribeReportPlanOutput, error) {
+	req, out := c.DescribeReportPlanRequest(input)
+	return out, req.Send()
+}
+
+// DescribeReportPlanWithContext is the same as DescribeReportPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeReportPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) DescribeReportPlanWithContext(ctx aws.Context, input *DescribeReportPlanInput, opts ...request.Option) (*DescribeReportPlanOutput, error) {
+	req, out := c.DescribeReportPlanRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1575,8 +2222,8 @@ func (c *Backup) DescribeRestoreJobRequest(input *DescribeRestoreJobInput) (req 
 //   The request failed due to a temporary failure of the server.
 //
 //   * DependencyFailureException
-//   A dependent AWS service or resource returned an error to the AWS Backup service,
-//   and the action cannot be completed.
+//   A dependent Amazon Web Services service or resource returned an error to
+//   the Backup service, and the action cannot be completed.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DescribeRestoreJob
 func (c *Backup) DescribeRestoreJob(input *DescribeRestoreJobInput) (*DescribeRestoreJobOutput, error) {
@@ -1645,10 +2292,10 @@ func (c *Backup) DisassociateRecoveryPointRequest(input *DisassociateRecoveryPoi
 
 // DisassociateRecoveryPoint API operation for AWS Backup.
 //
-// Deletes the specified continuous backup recovery point from AWS Backup and
-// releases control of that continuous backup to the source service, such as
-// Amazon RDS. The source service will continue to create and retain continuous
-// backups using the lifecycle that you specified in your original backup plan.
+// Deletes the specified continuous backup recovery point from Backup and releases
+// control of that continuous backup to the source service, such as Amazon RDS.
+// The source service will continue to create and retain continuous backups
+// using the lifecycle that you specified in your original backup plan.
 //
 // Does not support snapshot backup recovery points.
 //
@@ -1671,9 +2318,8 @@ func (c *Backup) DisassociateRecoveryPointRequest(input *DisassociateRecoveryPoi
 //   Indicates that a required parameter is missing.
 //
 //   * InvalidResourceStateException
-//   AWS Backup is already performing an action on this recovery point. It can't
-//   perform the action you requested until the first action finishes. Try again
-//   later.
+//   Backup is already performing an action on this recovery point. It can't perform
+//   the action you requested until the first action finishes. Try again later.
 //
 //   * ServiceUnavailableException
 //   The request failed due to a temporary failure of the server.
@@ -2468,7 +3114,7 @@ func (c *Backup) GetSupportedResourceTypesRequest(input *GetSupportedResourceTyp
 
 // GetSupportedResourceTypes API operation for AWS Backup.
 //
-// Returns the AWS resource types supported by AWS Backup.
+// Returns the Amazon Web Services resource types supported by Backup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2993,10 +3639,9 @@ func (c *Backup) ListBackupPlansRequest(input *ListBackupPlansInput) (req *reque
 
 // ListBackupPlans API operation for AWS Backup.
 //
-// Returns a list of existing backup plans for an authenticated account. The
-// list is populated only if the advanced option is set for the backup plan.
-// The list contains information such as Amazon Resource Names (ARNs), plan
-// IDs, creation and deletion dates, version IDs, plan names, and creator request
+// Returns a list of all active backup plans for an authenticated account. The
+// list contains information such as Amazon Resource Names (ARNs), plan IDs,
+// creation and deletion dates, version IDs, plan names, and creator request
 // IDs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3531,6 +4176,148 @@ func (c *Backup) ListCopyJobsPagesWithContext(ctx aws.Context, input *ListCopyJo
 	return p.Err()
 }
 
+const opListFrameworks = "ListFrameworks"
+
+// ListFrameworksRequest generates a "aws/request.Request" representing the
+// client's request for the ListFrameworks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFrameworks for more information on using the ListFrameworks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFrameworksRequest method.
+//    req, resp := client.ListFrameworksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListFrameworks
+func (c *Backup) ListFrameworksRequest(input *ListFrameworksInput) (req *request.Request, output *ListFrameworksOutput) {
+	op := &request.Operation{
+		Name:       opListFrameworks,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/frameworks",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFrameworksInput{}
+	}
+
+	output = &ListFrameworksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFrameworks API operation for AWS Backup.
+//
+// Returns a list of all frameworks for an Amazon Web Services account and Amazon
+// Web Services Region.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation ListFrameworks for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListFrameworks
+func (c *Backup) ListFrameworks(input *ListFrameworksInput) (*ListFrameworksOutput, error) {
+	req, out := c.ListFrameworksRequest(input)
+	return out, req.Send()
+}
+
+// ListFrameworksWithContext is the same as ListFrameworks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFrameworks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListFrameworksWithContext(ctx aws.Context, input *ListFrameworksInput, opts ...request.Option) (*ListFrameworksOutput, error) {
+	req, out := c.ListFrameworksRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFrameworksPages iterates over the pages of a ListFrameworks operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFrameworks method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFrameworks operation.
+//    pageNum := 0
+//    err := client.ListFrameworksPages(params,
+//        func(page *backup.ListFrameworksOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Backup) ListFrameworksPages(input *ListFrameworksInput, fn func(*ListFrameworksOutput, bool) bool) error {
+	return c.ListFrameworksPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFrameworksPagesWithContext same as ListFrameworksPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListFrameworksPagesWithContext(ctx aws.Context, input *ListFrameworksInput, fn func(*ListFrameworksOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFrameworksInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFrameworksRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFrameworksOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListProtectedResources = "ListProtectedResources"
 
 // ListProtectedResourcesRequest generates a "aws/request.Request" representing the
@@ -3581,7 +4368,7 @@ func (c *Backup) ListProtectedResourcesRequest(input *ListProtectedResourcesInpu
 
 // ListProtectedResources API operation for AWS Backup.
 //
-// Returns an array of resources successfully backed up by AWS Backup, including
+// Returns an array of resources successfully backed up by Backup, including
 // the time the resource was saved, an Amazon Resource Name (ARN) of the resource,
 // and a resource type.
 //
@@ -3872,8 +4659,11 @@ func (c *Backup) ListRecoveryPointsByResourceRequest(input *ListRecoveryPointsBy
 
 // ListRecoveryPointsByResource API operation for AWS Backup.
 //
-// Returns detailed information about recovery points of the type specified
+// Returns detailed information about all the recovery points of the type specified
 // by a resource Amazon Resource Name (ARN).
+//
+// For Amazon EFS and Amazon EC2, this action only lists recovery points created
+// by Backup.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3970,6 +4760,289 @@ func (c *Backup) ListRecoveryPointsByResourcePagesWithContext(ctx aws.Context, i
 	return p.Err()
 }
 
+const opListReportJobs = "ListReportJobs"
+
+// ListReportJobsRequest generates a "aws/request.Request" representing the
+// client's request for the ListReportJobs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListReportJobs for more information on using the ListReportJobs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListReportJobsRequest method.
+//    req, resp := client.ListReportJobsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListReportJobs
+func (c *Backup) ListReportJobsRequest(input *ListReportJobsInput) (req *request.Request, output *ListReportJobsOutput) {
+	op := &request.Operation{
+		Name:       opListReportJobs,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/report-jobs",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListReportJobsInput{}
+	}
+
+	output = &ListReportJobsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListReportJobs API operation for AWS Backup.
+//
+// Returns details about your report jobs.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation ListReportJobs for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListReportJobs
+func (c *Backup) ListReportJobs(input *ListReportJobsInput) (*ListReportJobsOutput, error) {
+	req, out := c.ListReportJobsRequest(input)
+	return out, req.Send()
+}
+
+// ListReportJobsWithContext is the same as ListReportJobs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListReportJobs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListReportJobsWithContext(ctx aws.Context, input *ListReportJobsInput, opts ...request.Option) (*ListReportJobsOutput, error) {
+	req, out := c.ListReportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListReportJobsPages iterates over the pages of a ListReportJobs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListReportJobs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListReportJobs operation.
+//    pageNum := 0
+//    err := client.ListReportJobsPages(params,
+//        func(page *backup.ListReportJobsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Backup) ListReportJobsPages(input *ListReportJobsInput, fn func(*ListReportJobsOutput, bool) bool) error {
+	return c.ListReportJobsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListReportJobsPagesWithContext same as ListReportJobsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListReportJobsPagesWithContext(ctx aws.Context, input *ListReportJobsInput, fn func(*ListReportJobsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListReportJobsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListReportJobsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListReportJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListReportPlans = "ListReportPlans"
+
+// ListReportPlansRequest generates a "aws/request.Request" representing the
+// client's request for the ListReportPlans operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListReportPlans for more information on using the ListReportPlans
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListReportPlansRequest method.
+//    req, resp := client.ListReportPlansRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListReportPlans
+func (c *Backup) ListReportPlansRequest(input *ListReportPlansInput) (req *request.Request, output *ListReportPlansOutput) {
+	op := &request.Operation{
+		Name:       opListReportPlans,
+		HTTPMethod: "GET",
+		HTTPPath:   "/audit/report-plans",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListReportPlansInput{}
+	}
+
+	output = &ListReportPlansOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListReportPlans API operation for AWS Backup.
+//
+// Returns a list of your report plans. For detailed information about a single
+// report plan, use DescribeReportPlan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation ListReportPlans for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/ListReportPlans
+func (c *Backup) ListReportPlans(input *ListReportPlansInput) (*ListReportPlansOutput, error) {
+	req, out := c.ListReportPlansRequest(input)
+	return out, req.Send()
+}
+
+// ListReportPlansWithContext is the same as ListReportPlans with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListReportPlans for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListReportPlansWithContext(ctx aws.Context, input *ListReportPlansInput, opts ...request.Option) (*ListReportPlansOutput, error) {
+	req, out := c.ListReportPlansRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListReportPlansPages iterates over the pages of a ListReportPlans operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListReportPlans method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListReportPlans operation.
+//    pageNum := 0
+//    err := client.ListReportPlansPages(params,
+//        func(page *backup.ListReportPlansOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Backup) ListReportPlansPages(input *ListReportPlansInput, fn func(*ListReportPlansOutput, bool) bool) error {
+	return c.ListReportPlansPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListReportPlansPagesWithContext same as ListReportPlansPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) ListReportPlansPagesWithContext(ctx aws.Context, input *ListReportPlansInput, fn func(*ListReportPlansOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListReportPlansInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListReportPlansRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListReportPlansOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListRestoreJobs = "ListRestoreJobs"
 
 // ListRestoreJobsRequest generates a "aws/request.Request" representing the
@@ -4020,8 +5093,8 @@ func (c *Backup) ListRestoreJobsRequest(input *ListRestoreJobsInput) (req *reque
 
 // ListRestoreJobs API operation for AWS Backup.
 //
-// Returns a list of jobs that AWS Backup initiated to restore a saved resource,
-// including metadata about the recovery process.
+// Returns a list of jobs that Backup initiated to restore a saved resource,
+// including details about the recovery process.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4646,6 +5719,95 @@ func (c *Backup) StartCopyJobWithContext(ctx aws.Context, input *StartCopyJobInp
 	return out, req.Send()
 }
 
+const opStartReportJob = "StartReportJob"
+
+// StartReportJobRequest generates a "aws/request.Request" representing the
+// client's request for the StartReportJob operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See StartReportJob for more information on using the StartReportJob
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the StartReportJobRequest method.
+//    req, resp := client.StartReportJobRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/StartReportJob
+func (c *Backup) StartReportJobRequest(input *StartReportJobInput) (req *request.Request, output *StartReportJobOutput) {
+	op := &request.Operation{
+		Name:       opStartReportJob,
+		HTTPMethod: "POST",
+		HTTPPath:   "/audit/report-jobs/{reportPlanName}",
+	}
+
+	if input == nil {
+		input = &StartReportJobInput{}
+	}
+
+	output = &StartReportJobOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// StartReportJob API operation for AWS Backup.
+//
+// Starts an on-demand report job for the specified report plan.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation StartReportJob for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/StartReportJob
+func (c *Backup) StartReportJob(input *StartReportJobInput) (*StartReportJobOutput, error) {
+	req, out := c.StartReportJobRequest(input)
+	return out, req.Send()
+}
+
+// StartReportJobWithContext is the same as StartReportJob with the addition of
+// the ability to pass a context and additional request options.
+//
+// See StartReportJob for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) StartReportJobWithContext(ctx aws.Context, input *StartReportJobInput, opts ...request.Option) (*StartReportJobOutput, error) {
+	req, out := c.StartReportJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartRestoreJob = "StartRestoreJob"
 
 // StartRestoreJobRequest generates a "aws/request.Request" representing the
@@ -5105,6 +6267,104 @@ func (c *Backup) UpdateBackupPlanWithContext(ctx aws.Context, input *UpdateBacku
 	return out, req.Send()
 }
 
+const opUpdateFramework = "UpdateFramework"
+
+// UpdateFrameworkRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFramework operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFramework for more information on using the UpdateFramework
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFrameworkRequest method.
+//    req, resp := client.UpdateFrameworkRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateFramework
+func (c *Backup) UpdateFrameworkRequest(input *UpdateFrameworkInput) (req *request.Request, output *UpdateFrameworkOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFramework,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/audit/frameworks/{frameworkName}",
+	}
+
+	if input == nil {
+		input = &UpdateFrameworkInput{}
+	}
+
+	output = &UpdateFrameworkOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateFramework API operation for AWS Backup.
+//
+// Updates an existing framework identified by its FrameworkName with the input
+// document in JSON format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation UpdateFramework for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * LimitExceededException
+//   A limit in the request has been exceeded; for example, a maximum number of
+//   items allowed in a request.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * ConflictException
+//   Backup can't perform the action that you requested until it finishes performing
+//   a previous action. Try again later.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateFramework
+func (c *Backup) UpdateFramework(input *UpdateFrameworkInput) (*UpdateFrameworkOutput, error) {
+	req, out := c.UpdateFrameworkRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFrameworkWithContext is the same as UpdateFramework with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFramework for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) UpdateFrameworkWithContext(ctx aws.Context, input *UpdateFrameworkInput, opts ...request.Option) (*UpdateFrameworkOutput, error) {
+	req, out := c.UpdateFrameworkRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateGlobalSettings = "UpdateGlobalSettings"
 
 // UpdateGlobalSettingsRequest generates a "aws/request.Request" representing the
@@ -5150,8 +6410,9 @@ func (c *Backup) UpdateGlobalSettingsRequest(input *UpdateGlobalSettingsInput) (
 
 // UpdateGlobalSettings API operation for AWS Backup.
 //
-// Updates the current global settings for the AWS account. Use the DescribeGlobalSettings
-// API to determine the current settings.
+// Updates whether the Amazon Web Services account is opted in to cross-account
+// backup. Returns an error if the account is not an Organizations management
+// account. Use the DescribeGlobalSettings API to determine the current settings.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5244,7 +6505,7 @@ func (c *Backup) UpdateRecoveryPointLifecycleRequest(input *UpdateRecoveryPointL
 // Sets the transition lifecycle of a recovery point.
 //
 // The lifecycle defines when a protected resource is transitioned to cold storage
-// and when it expires. AWS Backup transitions and expires backups automatically
+// and when it expires. Backup transitions and expires backups automatically
 // according to the lifecycle that you define.
 //
 // Backups transitioned to cold storage must be stored in cold storage for a
@@ -5346,11 +6607,11 @@ func (c *Backup) UpdateRegionSettingsRequest(input *UpdateRegionSettingsInput) (
 // UpdateRegionSettings API operation for AWS Backup.
 //
 // Updates the current service opt-in settings for the Region. If service-opt-in
-// is enabled for a service, AWS Backup tries to protect that service's resources
+// is enabled for a service, Backup tries to protect that service's resources
 // in this Region, when the resource is included in an on-demand backup or scheduled
-// backup plan. Otherwise, AWS Backup does not try to protect that service's
-// resources in this Region. Use the DescribeRegionSettings API to determine
-// the resource types that are supported.
+// backup plan. Otherwise, Backup does not try to protect that service's resources
+// in this Region. Use the DescribeRegionSettings API to determine the resource
+// types that are supported.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5392,6 +6653,100 @@ func (c *Backup) UpdateRegionSettingsWithContext(ctx aws.Context, input *UpdateR
 	return out, req.Send()
 }
 
+const opUpdateReportPlan = "UpdateReportPlan"
+
+// UpdateReportPlanRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateReportPlan operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateReportPlan for more information on using the UpdateReportPlan
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateReportPlanRequest method.
+//    req, resp := client.UpdateReportPlanRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateReportPlan
+func (c *Backup) UpdateReportPlanRequest(input *UpdateReportPlanInput) (req *request.Request, output *UpdateReportPlanOutput) {
+	op := &request.Operation{
+		Name:       opUpdateReportPlan,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/audit/report-plans/{reportPlanName}",
+	}
+
+	if input == nil {
+		input = &UpdateReportPlanInput{}
+	}
+
+	output = &UpdateReportPlanOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateReportPlan API operation for AWS Backup.
+//
+// Updates an existing report plan identified by its ReportPlanName with the
+// input document in JSON format.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation UpdateReportPlan for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * ConflictException
+//   Backup can't perform the action that you requested until it finishes performing
+//   a previous action. Try again later.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/UpdateReportPlan
+func (c *Backup) UpdateReportPlan(input *UpdateReportPlanInput) (*UpdateReportPlanOutput, error) {
+	req, out := c.UpdateReportPlanRequest(input)
+	return out, req.Send()
+}
+
+// UpdateReportPlanWithContext is the same as UpdateReportPlan with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateReportPlan for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) UpdateReportPlanWithContext(ctx aws.Context, input *UpdateReportPlanInput, opts ...request.Option) (*UpdateReportPlanOutput, error) {
+	req, out := c.UpdateReportPlanRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // A list of backup options for each resource type.
 type AdvancedBackupSetting struct {
 	_ struct{} `type:"structure"`
@@ -5402,7 +6757,7 @@ type AdvancedBackupSetting struct {
 	// Valid values:
 	//
 	// Set to "WindowsVSS":"enabled" to enable the WindowsVSS backup option and
-	// create a VSS Windows backup.
+	// create a Windows VSS backup.
 	//
 	// Set to "WindowsVSS":"disabled" to create a regular backup. The WindowsVSS
 	// option is not enabled by default.
@@ -5415,10 +6770,10 @@ type AdvancedBackupSetting struct {
 	BackupOptions map[string]*string `type:"map"`
 
 	// Specifies an object containing resource type and backup options. The only
-	// supported resource type is Amazon EC2 instances with Windows VSS. For an
-	// CloudFormation example, see the sample CloudFormation template to enable
-	// Windows VSS (https://docs.aws.amazon.com/aws-backup/latest/devguide/integrate-cloudformation-with-aws-backup.html)
-	// in the AWS Backup User Guide.
+	// supported resource type is Amazon EC2 instances with Windows Volume Shadow
+	// Copy Service (VSS). For a CloudFormation example, see the sample CloudFormation
+	// template to enable Windows VSS (https://docs.aws.amazon.com/aws-backup/latest/devguide/integrate-cloudformation-with-aws-backup.html)
+	// in the Backup User Guide.
 	//
 	// Valid values: EC2.
 	ResourceType *string `type:"string"`
@@ -5516,7 +6871,7 @@ func (s *AlreadyExistsException) RequestID() string {
 // a lifecycle for a recovery point.
 //
 // The lifecycle defines when a protected resource is transitioned to cold storage
-// and when it expires. AWS Backup transitions and expires backups automatically
+// and when it expires. Backup transitions and expires backups automatically
 // according to the lifecycle that you define.
 //
 // Backups transitioned to cold storage must be stored in cold storage for a
@@ -5630,6 +6985,169 @@ func (s *Condition) SetConditionValue(v string) *Condition {
 	return s
 }
 
+// Backup can't perform the action that you requested until it finishes performing
+// a previous action. Try again later.
+type ConflictException struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	Code_ *string `locationName:"Code" type:"string"`
+
+	Context *string `type:"string"`
+
+	Message_ *string `locationName:"Message" type:"string"`
+
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ConflictException) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConflictException) GoString() string {
+	return s.String()
+}
+
+func newErrorConflictException(v protocol.ResponseMetadata) error {
+	return &ConflictException{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *ConflictException) Code() string {
+	return "ConflictException"
+}
+
+// Message returns the exception's message.
+func (s *ConflictException) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *ConflictException) OrigErr() error {
+	return nil
+}
+
+func (s *ConflictException) Error() string {
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *ConflictException) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *ConflictException) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// A list of parameters for a control. A control can have zero, one, or more
+// than one parameter. An example of a control with two parameters is: "backup
+// plan frequency is at least daily and the retention period is at least 1 year".
+// The first parameter is daily. The second parameter is 1 year.
+type ControlInputParameter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of a parameter, for example, BackupPlanFrequency.
+	ParameterName *string `type:"string"`
+
+	// The value of parameter, for example, hourly.
+	ParameterValue *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ControlInputParameter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ControlInputParameter) GoString() string {
+	return s.String()
+}
+
+// SetParameterName sets the ParameterName field's value.
+func (s *ControlInputParameter) SetParameterName(v string) *ControlInputParameter {
+	s.ParameterName = &v
+	return s
+}
+
+// SetParameterValue sets the ParameterValue field's value.
+func (s *ControlInputParameter) SetParameterValue(v string) *ControlInputParameter {
+	s.ParameterValue = &v
+	return s
+}
+
+// A framework consists of one or more controls. Each control has its own control
+// scope. The control scope defines what the control will evaluate. Three examples
+// of control scopes are: a specific backup plan, all backup plans with a specific
+// tag, or all backup plans.
+//
+// To set a control scope that includes all of a particular resource, leave
+// the ControlScope empty or do not pass it when calling CreateFramework.
+type ControlScope struct {
+	_ struct{} `type:"structure"`
+
+	// Describes whether the control scope includes a specific resource identified
+	// by its unique Amazon Resource Name (ARN).
+	ComplianceResourceIds []*string `min:"1" type:"list"`
+
+	// Describes whether the control scope includes one or more types of resources,
+	// such as EFS or RDS.
+	ComplianceResourceTypes []*string `type:"list"`
+
+	// Describes whether the control scope includes resources with one or more tags.
+	// Each tag is a key-value pair.
+	Tags map[string]*string `type:"map"`
+}
+
+// String returns the string representation
+func (s ControlScope) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ControlScope) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ControlScope) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ControlScope"}
+	if s.ComplianceResourceIds != nil && len(s.ComplianceResourceIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ComplianceResourceIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetComplianceResourceIds sets the ComplianceResourceIds field's value.
+func (s *ControlScope) SetComplianceResourceIds(v []*string) *ControlScope {
+	s.ComplianceResourceIds = v
+	return s
+}
+
+// SetComplianceResourceTypes sets the ComplianceResourceTypes field's value.
+func (s *ControlScope) SetComplianceResourceTypes(v []*string) *ControlScope {
+	s.ComplianceResourceTypes = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ControlScope) SetTags(v map[string]*string) *ControlScope {
+	s.Tags = v
+	return s
+}
+
 // The details of the copy operation.
 type CopyAction struct {
 	_ struct{} `type:"structure"`
@@ -5707,8 +7225,8 @@ type CopyJob struct {
 	// Uniquely identifies a copy job.
 	CopyJobId *string `type:"string"`
 
-	// Contains information about the backup plan and rule that AWS Backup used
-	// to initiate the recovery point backup.
+	// Contains information about the backup plan and rule that Backup used to initiate
+	// the recovery point backup.
 	CreatedBy *RecoveryPointCreator `type:"structure"`
 
 	// The date and time a copy job is created, in Unix format and Coordinated Universal
@@ -5729,14 +7247,14 @@ type CopyJob struct {
 	// arn:aws:iam::123456789012:role/S3Access.
 	IamRoleArn *string `type:"string"`
 
-	// The AWS resource to be copied; for example, an Amazon Elastic Block Store
-	// (Amazon EBS) volume or an Amazon Relational Database Service (Amazon RDS)
-	// database.
+	// The Amazon Web Services resource to be copied; for example, an Amazon Elastic
+	// Block Store (Amazon EBS) volume or an Amazon Relational Database Service
+	// (Amazon RDS) database.
 	ResourceArn *string `type:"string"`
 
-	// The type of AWS resource to be copied; for example, an Amazon Elastic Block
-	// Store (Amazon EBS) volume or an Amazon Relational Database Service (Amazon
-	// RDS) database.
+	// The type of Amazon Web Services resource to be copied; for example, an Amazon
+	// Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
+	// Service (Amazon RDS) database.
 	ResourceType *string `type:"string"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a source copy vault;
@@ -5924,7 +7442,7 @@ type CreateBackupPlanOutput struct {
 	_ struct{} `type:"structure"`
 
 	// A list of BackupOptions settings for a resource type. This option is only
-	// available for Windows VSS backup jobs.
+	// available for Windows Volume Shadow Copy Service (VSS) backup jobs.
 	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a backup plan; for
@@ -6107,8 +7625,8 @@ type CreateBackupVaultInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of letters, numbers,
-	// and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of letters,
+	// numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -6221,6 +7739,288 @@ func (s *CreateBackupVaultOutput) SetBackupVaultName(v string) *CreateBackupVaul
 // SetCreationDate sets the CreationDate field's value.
 func (s *CreateBackupVaultOutput) SetCreationDate(v time.Time) *CreateBackupVaultOutput {
 	s.CreationDate = &v
+	return s
+}
+
+type CreateFrameworkInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the controls that make up the framework. Each control in the list
+	// has a name, input parameters, and scope.
+	//
+	// FrameworkControls is a required field
+	FrameworkControls []*FrameworkControl `type:"list" required:"true"`
+
+	// An optional description of the framework with a maximum of 1,024 characters.
+	FrameworkDescription *string `type:"string"`
+
+	// The unique name of the framework. The name must be between 1 and 256 characters,
+	// starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9),
+	// and underscores (_).
+	//
+	// FrameworkName is a required field
+	FrameworkName *string `min:"1" type:"string" required:"true"`
+
+	// Metadata that you can assign to help organize the frameworks that you create.
+	// Each tag is a key-value pair.
+	FrameworkTags map[string]*string `type:"map"`
+
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to CreateFrameworkInput. Retrying a successful request with
+	// the same idempotency token results in a success message with no action taken.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+}
+
+// String returns the string representation
+func (s CreateFrameworkInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFrameworkInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFrameworkInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFrameworkInput"}
+	if s.FrameworkControls == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrameworkControls"))
+	}
+	if s.FrameworkName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrameworkName"))
+	}
+	if s.FrameworkName != nil && len(*s.FrameworkName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FrameworkName", 1))
+	}
+	if s.FrameworkControls != nil {
+		for i, v := range s.FrameworkControls {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FrameworkControls", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFrameworkControls sets the FrameworkControls field's value.
+func (s *CreateFrameworkInput) SetFrameworkControls(v []*FrameworkControl) *CreateFrameworkInput {
+	s.FrameworkControls = v
+	return s
+}
+
+// SetFrameworkDescription sets the FrameworkDescription field's value.
+func (s *CreateFrameworkInput) SetFrameworkDescription(v string) *CreateFrameworkInput {
+	s.FrameworkDescription = &v
+	return s
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *CreateFrameworkInput) SetFrameworkName(v string) *CreateFrameworkInput {
+	s.FrameworkName = &v
+	return s
+}
+
+// SetFrameworkTags sets the FrameworkTags field's value.
+func (s *CreateFrameworkInput) SetFrameworkTags(v map[string]*string) *CreateFrameworkInput {
+	s.FrameworkTags = v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *CreateFrameworkInput) SetIdempotencyToken(v string) *CreateFrameworkInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+type CreateFrameworkOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
+	// of the ARN depends on the resource type.
+	FrameworkArn *string `type:"string"`
+
+	// The unique name of the framework. The name must be between 1 and 256 characters,
+	// starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9),
+	// and underscores (_).
+	FrameworkName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateFrameworkOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFrameworkOutput) GoString() string {
+	return s.String()
+}
+
+// SetFrameworkArn sets the FrameworkArn field's value.
+func (s *CreateFrameworkOutput) SetFrameworkArn(v string) *CreateFrameworkOutput {
+	s.FrameworkArn = &v
+	return s
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *CreateFrameworkOutput) SetFrameworkName(v string) *CreateFrameworkOutput {
+	s.FrameworkName = &v
+	return s
+}
+
+type CreateReportPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to CreateReportPlanInput. Retrying a successful request with
+	// the same idempotency token results in a success message with no action taken.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+
+	// A structure that contains information about where and how to deliver your
+	// reports, specifically your Amazon S3 bucket name, S3 key prefix, and the
+	// formats of your reports.
+	//
+	// ReportDeliveryChannel is a required field
+	ReportDeliveryChannel *ReportDeliveryChannel `type:"structure" required:"true"`
+
+	// An optional description of the report plan with a maximum of 1,024 characters.
+	ReportPlanDescription *string `type:"string"`
+
+	// The unique name of the report plan. The name must be between 1 and 256 characters,
+	// starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9),
+	// and underscores (_).
+	//
+	// ReportPlanName is a required field
+	ReportPlanName *string `min:"1" type:"string" required:"true"`
+
+	// Metadata that you can assign to help organize the frameworks that you create.
+	// Each tag is a key-value pair.
+	ReportPlanTags map[string]*string `type:"map"`
+
+	// Identifies the report template for the report. Reports are built using a
+	// report template. The report templates are:
+	//
+	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	//
+	// ReportSetting is a required field
+	ReportSetting *ReportSetting `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateReportPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateReportPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateReportPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateReportPlanInput"}
+	if s.ReportDeliveryChannel == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportDeliveryChannel"))
+	}
+	if s.ReportPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportPlanName"))
+	}
+	if s.ReportPlanName != nil && len(*s.ReportPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportPlanName", 1))
+	}
+	if s.ReportSetting == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportSetting"))
+	}
+	if s.ReportDeliveryChannel != nil {
+		if err := s.ReportDeliveryChannel.Validate(); err != nil {
+			invalidParams.AddNested("ReportDeliveryChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ReportSetting != nil {
+		if err := s.ReportSetting.Validate(); err != nil {
+			invalidParams.AddNested("ReportSetting", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *CreateReportPlanInput) SetIdempotencyToken(v string) *CreateReportPlanInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetReportDeliveryChannel sets the ReportDeliveryChannel field's value.
+func (s *CreateReportPlanInput) SetReportDeliveryChannel(v *ReportDeliveryChannel) *CreateReportPlanInput {
+	s.ReportDeliveryChannel = v
+	return s
+}
+
+// SetReportPlanDescription sets the ReportPlanDescription field's value.
+func (s *CreateReportPlanInput) SetReportPlanDescription(v string) *CreateReportPlanInput {
+	s.ReportPlanDescription = &v
+	return s
+}
+
+// SetReportPlanName sets the ReportPlanName field's value.
+func (s *CreateReportPlanInput) SetReportPlanName(v string) *CreateReportPlanInput {
+	s.ReportPlanName = &v
+	return s
+}
+
+// SetReportPlanTags sets the ReportPlanTags field's value.
+func (s *CreateReportPlanInput) SetReportPlanTags(v map[string]*string) *CreateReportPlanInput {
+	s.ReportPlanTags = v
+	return s
+}
+
+// SetReportSetting sets the ReportSetting field's value.
+func (s *CreateReportPlanInput) SetReportSetting(v *ReportSetting) *CreateReportPlanInput {
+	s.ReportSetting = v
+	return s
+}
+
+type CreateReportPlanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
+	// of the ARN depends on the resource type.
+	ReportPlanArn *string `type:"string"`
+
+	// The unique name of the report plan.
+	ReportPlanName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateReportPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateReportPlanOutput) GoString() string {
+	return s.String()
+}
+
+// SetReportPlanArn sets the ReportPlanArn field's value.
+func (s *CreateReportPlanOutput) SetReportPlanArn(v string) *CreateReportPlanOutput {
+	s.ReportPlanArn = &v
+	return s
+}
+
+// SetReportPlanName sets the ReportPlanName field's value.
+func (s *CreateReportPlanOutput) SetReportPlanName(v string) *CreateReportPlanOutput {
+	s.ReportPlanName = &v
 	return s
 }
 
@@ -6398,8 +8198,8 @@ type DeleteBackupVaultAccessPolicyInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -6456,8 +8256,8 @@ type DeleteBackupVaultInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -6567,13 +8367,68 @@ func (s DeleteBackupVaultOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteFrameworkInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of a framework.
+	//
+	// FrameworkName is a required field
+	FrameworkName *string `location:"uri" locationName:"frameworkName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFrameworkInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFrameworkInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFrameworkInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFrameworkInput"}
+	if s.FrameworkName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrameworkName"))
+	}
+	if s.FrameworkName != nil && len(*s.FrameworkName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FrameworkName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *DeleteFrameworkInput) SetFrameworkName(v string) *DeleteFrameworkInput {
+	s.FrameworkName = &v
+	return s
+}
+
+type DeleteFrameworkOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFrameworkOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFrameworkOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteRecoveryPointInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -6643,8 +8498,63 @@ func (s DeleteRecoveryPointOutput) GoString() string {
 	return s.String()
 }
 
-// A dependent AWS service or resource returned an error to the AWS Backup service,
-// and the action cannot be completed.
+type DeleteReportPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of a report plan.
+	//
+	// ReportPlanName is a required field
+	ReportPlanName *string `location:"uri" locationName:"reportPlanName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteReportPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteReportPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteReportPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteReportPlanInput"}
+	if s.ReportPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportPlanName"))
+	}
+	if s.ReportPlanName != nil && len(*s.ReportPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportPlanName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReportPlanName sets the ReportPlanName field's value.
+func (s *DeleteReportPlanInput) SetReportPlanName(v string) *DeleteReportPlanInput {
+	s.ReportPlanName = &v
+	return s
+}
+
+type DeleteReportPlanOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteReportPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteReportPlanOutput) GoString() string {
+	return s.String()
+}
+
+// A dependent Amazon Web Services service or resource returned an error to
+// the Backup service, and the action cannot be completed.
 type DependencyFailureException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6709,7 +8619,7 @@ func (s *DependencyFailureException) RequestID() string {
 type DescribeBackupJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// Uniquely identifies a request to AWS Backup to back up a resource.
+	// Uniquely identifies a request to Backup to back up a resource.
 	//
 	// BackupJobId is a required field
 	BackupJobId *string `location:"uri" locationName:"backupJobId" type:"string" required:"true"`
@@ -6753,7 +8663,7 @@ type DescribeBackupJobOutput struct {
 	// Returns the account ID that owns the backup job.
 	AccountId *string `type:"string"`
 
-	// Uniquely identifies a request to AWS Backup to back up a resource.
+	// Uniquely identifies a request to Backup to back up a resource.
 	BackupJobId *string `type:"string"`
 
 	// Represents the options specified as part of backup plan or on-demand backup
@@ -6764,8 +8674,9 @@ type DescribeBackupJobOutput struct {
 	BackupSizeInBytes *int64 `type:"long"`
 
 	// Represents the actual backup type selected for a backup job. For example,
-	// if a successful WindowsVSS backup was taken, BackupType returns "WindowsVSS".
-	// If BackupType is empty, then the backup type that was is a regular backup.
+	// if a successful Windows Volume Shadow Copy Service (VSS) backup was taken,
+	// BackupType returns "WindowsVSS". If BackupType is empty, then the backup
+	// type was a regular backup.
 	BackupType *string `type:"string"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a backup vault; for
@@ -6774,8 +8685,8 @@ type DescribeBackupJobOutput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	BackupVaultName *string `type:"string"`
 
 	// The size in bytes transferred to a backup vault at the time that the job
@@ -6820,9 +8731,9 @@ type DescribeBackupJobOutput struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
-	// The type of AWS resource to be backed up; for example, an Amazon Elastic
-	// Block Store (Amazon EBS) volume or an Amazon Relational Database Service
-	// (Amazon RDS) database.
+	// The type of Amazon Web Services resource to be backed up; for example, an
+	// Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
+	// Service (Amazon RDS) database.
 	ResourceType *string `type:"string"`
 
 	// Specifies the time in Unix format and Coordinated Universal Time (UTC) when
@@ -6976,8 +8887,8 @@ type DescribeBackupVaultInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -7156,6 +9067,159 @@ func (s *DescribeCopyJobOutput) SetCopyJob(v *CopyJob) *DescribeCopyJobOutput {
 	return s
 }
 
+type DescribeFrameworkInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of a framework.
+	//
+	// FrameworkName is a required field
+	FrameworkName *string `location:"uri" locationName:"frameworkName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFrameworkInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFrameworkInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFrameworkInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFrameworkInput"}
+	if s.FrameworkName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrameworkName"))
+	}
+	if s.FrameworkName != nil && len(*s.FrameworkName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FrameworkName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *DescribeFrameworkInput) SetFrameworkName(v string) *DescribeFrameworkInput {
+	s.FrameworkName = &v
+	return s
+}
+
+type DescribeFrameworkOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that a framework is created, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CreationTime is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The deployment status of a framework. The statuses are:
+	//
+	// CREATE_IN_PROGRESS | UPDATE_IN_PROGRESS | DELETE_IN_PROGRESS | COMPLETED
+	// | FAILED
+	DeploymentStatus *string `type:"string"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
+	// of the ARN depends on the resource type.
+	FrameworkArn *string `type:"string"`
+
+	// A list of the controls that make up the framework. Each control in the list
+	// has a name, input parameters, and scope.
+	FrameworkControls []*FrameworkControl `type:"list"`
+
+	// An optional description of the framework.
+	FrameworkDescription *string `type:"string"`
+
+	// The unique name of a framework.
+	FrameworkName *string `min:"1" type:"string"`
+
+	// A framework consists of one or more controls. Each control governs a resource,
+	// such as backup plans, backup selections, backup vaults, or recovery points.
+	// You can also turn Config recording on or off for each resource. The statuses
+	// are:
+	//
+	//    * ACTIVE when recording is turned on for all resources governed by the
+	//    framework.
+	//
+	//    * PARTIALLY_ACTIVE when recording is turned off for at least one resource
+	//    governed by the framework.
+	//
+	//    * INACTIVE when recording is turned off for all resources governed by
+	//    the framework.
+	//
+	//    * UNAVAILABLE when Backup is unable to validate recording status at this
+	//    time.
+	FrameworkStatus *string `type:"string"`
+
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to DescribeFrameworkOutput. Retrying a successful request
+	// with the same idempotency token results in a success message with no action
+	// taken.
+	IdempotencyToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeFrameworkOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFrameworkOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeFrameworkOutput) SetCreationTime(v time.Time) *DescribeFrameworkOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeploymentStatus sets the DeploymentStatus field's value.
+func (s *DescribeFrameworkOutput) SetDeploymentStatus(v string) *DescribeFrameworkOutput {
+	s.DeploymentStatus = &v
+	return s
+}
+
+// SetFrameworkArn sets the FrameworkArn field's value.
+func (s *DescribeFrameworkOutput) SetFrameworkArn(v string) *DescribeFrameworkOutput {
+	s.FrameworkArn = &v
+	return s
+}
+
+// SetFrameworkControls sets the FrameworkControls field's value.
+func (s *DescribeFrameworkOutput) SetFrameworkControls(v []*FrameworkControl) *DescribeFrameworkOutput {
+	s.FrameworkControls = v
+	return s
+}
+
+// SetFrameworkDescription sets the FrameworkDescription field's value.
+func (s *DescribeFrameworkOutput) SetFrameworkDescription(v string) *DescribeFrameworkOutput {
+	s.FrameworkDescription = &v
+	return s
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *DescribeFrameworkOutput) SetFrameworkName(v string) *DescribeFrameworkOutput {
+	s.FrameworkName = &v
+	return s
+}
+
+// SetFrameworkStatus sets the FrameworkStatus field's value.
+func (s *DescribeFrameworkOutput) SetFrameworkStatus(v string) *DescribeFrameworkOutput {
+	s.FrameworkStatus = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *DescribeFrameworkOutput) SetIdempotencyToken(v string) *DescribeFrameworkOutput {
+	s.IdempotencyToken = &v
+	return s
+}
+
 type DescribeGlobalSettingsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -7173,13 +9237,13 @@ func (s DescribeGlobalSettingsInput) GoString() string {
 type DescribeGlobalSettingsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of resources along with the opt-in preferences for the account.
+	// The status of the flag isCrossAccountBackupEnabled.
 	GlobalSettings map[string]*string `type:"map"`
 
-	// The date and time that the global settings were last updated. This update
-	// is in Unix format and Coordinated Universal Time (UTC). The value of LastUpdateTime
-	// is accurate to milliseconds. For example, the value 1516925490.087 represents
-	// Friday, January 26, 2018 12:11:30.087 AM.
+	// The date and time that the flag isCrossAccountBackupEnabled was last updated.
+	// This update is in Unix format and Coordinated Universal Time (UTC). The value
+	// of LastUpdateTime is accurate to milliseconds. For example, the value 1516925490.087
+	// represents Friday, January 26, 2018 12:11:30.087 AM.
 	LastUpdateTime *time.Time `type:"timestamp"`
 }
 
@@ -7260,8 +9324,8 @@ type DescribeProtectedResourceOutput struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
-	// The type of AWS resource saved as a recovery point; for example, an EBS volume
-	// or an Amazon RDS database.
+	// The type of Amazon Web Services resource saved as a recovery point; for example,
+	// an Amazon EBS volume or an Amazon RDS database.
 	ResourceType *string `type:"string"`
 }
 
@@ -7298,8 +9362,8 @@ type DescribeRecoveryPointInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -7410,7 +9474,7 @@ type DescribeRecoveryPointOutput struct {
 	LastRestoreTime *time.Time `type:"timestamp"`
 
 	// The lifecycle defines when a protected resource is transitioned to cold storage
-	// and when it expires. AWS Backup transitions and expires backups automatically
+	// and when it expires. Backup transitions and expires backups automatically
 	// according to the lifecycle that you define.
 	//
 	// Backups that are transitioned to cold storage must be stored in cold storage
@@ -7429,22 +9493,34 @@ type DescribeRecoveryPointOutput struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
-	// The type of AWS resource to save as a recovery point; for example, an Amazon
-	// Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
-	// Service (Amazon RDS) database.
+	// The type of Amazon Web Services resource to save as a recovery point; for
+	// example, an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational
+	// Database Service (Amazon RDS) database.
 	ResourceType *string `type:"string"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies the source vault where
 	// the resource was originally backed up in; for example, arn:aws:backup:us-east-1:123456789012:vault:BackupVault.
-	// If the recovery is restored to the same AWS account or Region, this value
-	// will be null.
+	// If the recovery is restored to the same Amazon Web Services account or Region,
+	// this value will be null.
 	SourceBackupVaultArn *string `type:"string"`
 
 	// A status code specifying the state of the recovery point.
 	//
-	// A partial status indicates that the recovery point was not successfully re-created
-	// and must be retried.
+	// PARTIAL status indicates Backup could not create the recovery point before
+	// the backup window closed. To increase your backup plan window using the API,
+	// see UpdateBackupPlan (https://docs.aws.amazon.com/aws-backup/latest/devguide/API_UpdateBackupPlan.html).
+	// You can also increase your backup plan window using the Console by choosing
+	// and editing your backup plan.
+	//
+	// EXPIRED status indicates that the recovery point has exceeded its retention
+	// period, but Backup lacks permission or is otherwise unable to delete it.
+	// To manually delete these recovery points, see Step 3: Delete the recovery
+	// points (https://docs.aws.amazon.com/aws-backup/latest/devguide/gs-cleanup-resources.html#cleanup-backups)
+	// in the Clean up resources section of Getting started.
 	Status *string `type:"string" enum:"RecoveryPointStatus"`
+
+	// A status message explaining the reason for the recovery point deletion failure.
+	StatusMessage *string `type:"string"`
 
 	// Specifies the storage class of the recovery point. Valid values are WARM
 	// or COLD.
@@ -7563,6 +9639,12 @@ func (s *DescribeRecoveryPointOutput) SetStatus(v string) *DescribeRecoveryPoint
 	return s
 }
 
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *DescribeRecoveryPointOutput) SetStatusMessage(v string) *DescribeRecoveryPointOutput {
+	s.StatusMessage = &v
+	return s
+}
+
 // SetStorageClass sets the StorageClass field's value.
 func (s *DescribeRecoveryPointOutput) SetStorageClass(v string) *DescribeRecoveryPointOutput {
 	s.StorageClass = &v
@@ -7603,6 +9685,141 @@ func (s DescribeRegionSettingsOutput) GoString() string {
 // SetResourceTypeOptInPreference sets the ResourceTypeOptInPreference field's value.
 func (s *DescribeRegionSettingsOutput) SetResourceTypeOptInPreference(v map[string]*bool) *DescribeRegionSettingsOutput {
 	s.ResourceTypeOptInPreference = v
+	return s
+}
+
+type DescribeReportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the report job. A unique, randomly generated, Unicode,
+	// UTF-8 encoded string that is at most 1,024 bytes long. The report job ID
+	// cannot be edited.
+	//
+	// ReportJobId is a required field
+	ReportJobId *string `location:"uri" locationName:"reportJobId" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeReportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReportJobInput"}
+	if s.ReportJobId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportJobId"))
+	}
+	if s.ReportJobId != nil && len(*s.ReportJobId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportJobId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReportJobId sets the ReportJobId field's value.
+func (s *DescribeReportJobInput) SetReportJobId(v string) *DescribeReportJobInput {
+	s.ReportJobId = &v
+	return s
+}
+
+type DescribeReportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of information about a report job, including its completion and creation
+	// times, report destination, unique report job ID, Amazon Resource Name (ARN),
+	// report template, status, and status message.
+	ReportJob *ReportJob `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetReportJob sets the ReportJob field's value.
+func (s *DescribeReportJobOutput) SetReportJob(v *ReportJob) *DescribeReportJobOutput {
+	s.ReportJob = v
+	return s
+}
+
+type DescribeReportPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of a report plan.
+	//
+	// ReportPlanName is a required field
+	ReportPlanName *string `location:"uri" locationName:"reportPlanName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeReportPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReportPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeReportPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeReportPlanInput"}
+	if s.ReportPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportPlanName"))
+	}
+	if s.ReportPlanName != nil && len(*s.ReportPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportPlanName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReportPlanName sets the ReportPlanName field's value.
+func (s *DescribeReportPlanInput) SetReportPlanName(v string) *DescribeReportPlanInput {
+	s.ReportPlanName = &v
+	return s
+}
+
+type DescribeReportPlanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns details about the report plan that is specified by its name. These
+	// details include the report plan's Amazon Resource Name (ARN), description,
+	// settings, delivery channel, deployment status, creation time, and last attempted
+	// and successful run times.
+	ReportPlan *ReportPlan `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeReportPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeReportPlanOutput) GoString() string {
+	return s.String()
+}
+
+// SetReportPlan sets the ReportPlan field's value.
+func (s *DescribeReportPlanOutput) SetReportPlan(v *ReportPlan) *DescribeReportPlanOutput {
+	s.ReportPlan = v
 	return s
 }
 
@@ -7694,8 +9911,8 @@ type DescribeRestoreJobOutput struct {
 	// Uniquely identifies the job that restores a recovery point.
 	RestoreJobId *string `type:"string"`
 
-	// Status code specifying the state of the job that is initiated by AWS Backup
-	// to restore a recovery point.
+	// Status code specifying the state of the job that is initiated by Backup to
+	// restore a recovery point.
 	Status *string `type:"string" enum:"RestoreJobStatus"`
 
 	// A message showing the status of a job to restore a recovery point.
@@ -7793,13 +10010,13 @@ func (s *DescribeRestoreJobOutput) SetStatusMessage(v string) *DescribeRestoreJo
 type DisassociateRecoveryPointInput struct {
 	_ struct{} `type:"structure"`
 
-	// The unique name of an AWS Backup vault. Required.
+	// The unique name of an Backup vault.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
 
-	// An Amazon Resource Name (ARN) that uniquely identifies an AWS Backup recovery
-	// point. Required.
+	// An Amazon Resource Name (ARN) that uniquely identifies an Backup recovery
+	// point.
 	//
 	// RecoveryPointArn is a required field
 	RecoveryPointArn *string `location:"uri" locationName:"recoveryPointArn" type:"string" required:"true"`
@@ -7927,6 +10144,152 @@ func (s ExportBackupPlanTemplateOutput) GoString() string {
 // SetBackupPlanTemplateJson sets the BackupPlanTemplateJson field's value.
 func (s *ExportBackupPlanTemplateOutput) SetBackupPlanTemplateJson(v string) *ExportBackupPlanTemplateOutput {
 	s.BackupPlanTemplateJson = &v
+	return s
+}
+
+// Contains detailed information about a framework. Frameworks contain controls,
+// which evaluate and report on your backup events and resources. Frameworks
+// generate daily compliance results.
+type Framework struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that a framework is created, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CreationTime is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The deployment status of a framework. The statuses are:
+	//
+	// CREATE_IN_PROGRESS | UPDATE_IN_PROGRESS | DELETE_IN_PROGRESS | COMPLETED
+	// | FAILED
+	DeploymentStatus *string `type:"string"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
+	// of the ARN depends on the resource type.
+	FrameworkArn *string `type:"string"`
+
+	// An optional description of the framework with a maximum 1,024 characters.
+	FrameworkDescription *string `type:"string"`
+
+	// The unique name of a framework. This name is between 1 and 256 characters,
+	// starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9),
+	// and underscores (_).
+	FrameworkName *string `min:"1" type:"string"`
+
+	// The number of controls contained by the framework.
+	NumberOfControls *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s Framework) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Framework) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Framework) SetCreationTime(v time.Time) *Framework {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeploymentStatus sets the DeploymentStatus field's value.
+func (s *Framework) SetDeploymentStatus(v string) *Framework {
+	s.DeploymentStatus = &v
+	return s
+}
+
+// SetFrameworkArn sets the FrameworkArn field's value.
+func (s *Framework) SetFrameworkArn(v string) *Framework {
+	s.FrameworkArn = &v
+	return s
+}
+
+// SetFrameworkDescription sets the FrameworkDescription field's value.
+func (s *Framework) SetFrameworkDescription(v string) *Framework {
+	s.FrameworkDescription = &v
+	return s
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *Framework) SetFrameworkName(v string) *Framework {
+	s.FrameworkName = &v
+	return s
+}
+
+// SetNumberOfControls sets the NumberOfControls field's value.
+func (s *Framework) SetNumberOfControls(v int64) *Framework {
+	s.NumberOfControls = &v
+	return s
+}
+
+// Contains detailed information about all of the controls of a framework. Each
+// framework must contain at least one control.
+type FrameworkControl struct {
+	_ struct{} `type:"structure"`
+
+	// A list of ParameterName and ParameterValue pairs.
+	ControlInputParameters []*ControlInputParameter `type:"list"`
+
+	// The name of a control. This name is between 1 and 256 characters.
+	//
+	// ControlName is a required field
+	ControlName *string `type:"string" required:"true"`
+
+	// The scope of a control. The control scope defines what the control will evaluate.
+	// Three examples of control scopes are: a specific backup plan, all backup
+	// plans with a specific tag, or all backup plans. For more information, see
+	// ControlScope.
+	ControlScope *ControlScope `type:"structure"`
+}
+
+// String returns the string representation
+func (s FrameworkControl) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FrameworkControl) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FrameworkControl) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FrameworkControl"}
+	if s.ControlName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ControlName"))
+	}
+	if s.ControlScope != nil {
+		if err := s.ControlScope.Validate(); err != nil {
+			invalidParams.AddNested("ControlScope", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetControlInputParameters sets the ControlInputParameters field's value.
+func (s *FrameworkControl) SetControlInputParameters(v []*ControlInputParameter) *FrameworkControl {
+	s.ControlInputParameters = v
+	return s
+}
+
+// SetControlName sets the ControlName field's value.
+func (s *FrameworkControl) SetControlName(v string) *FrameworkControl {
+	s.ControlName = &v
+	return s
+}
+
+// SetControlScope sets the ControlScope field's value.
+func (s *FrameworkControl) SetControlScope(v *ControlScope) *FrameworkControl {
+	s.ControlScope = v
 	return s
 }
 
@@ -8346,8 +10709,8 @@ type GetBackupVaultAccessPolicyInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -8435,8 +10798,8 @@ type GetBackupVaultNotificationsInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -8535,8 +10898,8 @@ type GetRecoveryPointRestoreMetadataInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -8652,7 +11015,7 @@ func (s GetSupportedResourceTypesInput) GoString() string {
 type GetSupportedResourceTypesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Contains a string with the supported AWS resource types:
+	// Contains a string with the supported Amazon Web Services resource types:
 	//
 	//    * DynamoDB for Amazon DynamoDB
 	//
@@ -8666,7 +11029,7 @@ type GetSupportedResourceTypesOutput struct {
 	//
 	//    * Aurora for Amazon Aurora
 	//
-	//    * Storage Gateway for AWS Storage Gateway
+	//    * Storage Gateway for Storage Gateway
 	ResourceTypes []*string `type:"list"`
 }
 
@@ -8812,9 +11175,8 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// AWS Backup is already performing an action on this recovery point. It can't
-// perform the action you requested until the first action finishes. Try again
-// later.
+// Backup is already performing an action on this recovery point. It can't perform
+// the action you requested until the first action finishes. Try again later.
 type InvalidResourceStateException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8883,16 +11245,16 @@ type Job struct {
 	// The account ID that owns the backup job.
 	AccountId *string `type:"string"`
 
-	// Uniquely identifies a request to AWS Backup to back up a resource.
+	// Uniquely identifies a request to Backup to back up a resource.
 	BackupJobId *string `type:"string"`
 
 	// Specifies the backup option for a selected resource. This option is only
-	// available for Windows VSS backup jobs.
+	// available for Windows Volume Shadow Copy Service (VSS) backup jobs.
 	//
-	// Valid values: Set to "WindowsVSS”:“enabled" to enable WindowsVSS backup
-	// option and create a VSS Windows backup. Set to “WindowsVSS”:”disabled”
-	// to create a regular backup. If you specify an invalid option, you get an
-	// InvalidParameterValueException exception.
+	// Valid values: Set to "WindowsVSS":"enabled" to enable the WindowsVSS backup
+	// option and create a Windows VSS backup. Set to "WindowsVSS":"disabled" to
+	// create a regular backup. If you specify an invalid option, you get an InvalidParameterValueException
+	// exception.
 	BackupOptions map[string]*string `type:"map"`
 
 	// The size, in bytes, of a backup.
@@ -8907,8 +11269,8 @@ type Job struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	BackupVaultName *string `type:"string"`
 
 	// The size in bytes transferred to a backup vault at the time that the job
@@ -8955,10 +11317,10 @@ type Job struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
-	// The type of AWS resource to be backed up; for example, an Amazon Elastic
-	// Block Store (Amazon EBS) volume or an Amazon Relational Database Service
-	// (Amazon RDS) database. For VSS Windows backups, the only supported resource
-	// type is Amazon EC2.
+	// The type of Amazon Web Services resource to be backed up; for example, an
+	// Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
+	// Service (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS)
+	// backups, the only supported resource type is Amazon EC2.
 	ResourceType *string `type:"string"`
 
 	// Specifies the time in Unix format and Coordinated Universal Time (UTC) when
@@ -9220,14 +11582,14 @@ type ListBackupJobsInput struct {
 	// The account ID to list the jobs from. Returns only backup jobs associated
 	// with the specified account ID.
 	//
-	// If used from an AWS Organizations management account, passing * returns all
-	// jobs across the organization.
+	// If used from an Organizations management account, passing * returns all jobs
+	// across the organization.
 	ByAccountId *string `location:"querystring" locationName:"accountId" type:"string"`
 
 	// Returns only backup jobs that will be stored in the specified backup vault.
 	// Backup vaults are identified by names that are unique to the account used
-	// to create them and the AWS Region where they are created. They consist of
-	// lowercase letters, numbers, and hyphens.
+	// to create them and the Amazon Web Services Region where they are created.
+	// They consist of lowercase letters, numbers, and hyphens.
 	ByBackupVaultName *string `location:"querystring" locationName:"backupVaultName" type:"string"`
 
 	// Returns only backup jobs that were created after the specified date.
@@ -9254,7 +11616,7 @@ type ListBackupJobsInput struct {
 	//
 	//    * Aurora for Amazon Aurora
 	//
-	//    * Storage Gateway for AWS Storage Gateway
+	//    * Storage Gateway for Storage Gateway
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
 
 	// Returns only backup jobs that are in the specified state.
@@ -9882,7 +12244,7 @@ type ListCopyJobsInput struct {
 	//
 	//    * Aurora for Amazon Aurora
 	//
-	//    * Storage Gateway for AWS Storage Gateway
+	//    * Storage Gateway for Storage Gateway
 	ByResourceType *string `location:"querystring" locationName:"resourceType" type:"string"`
 
 	// Returns only copy jobs that are in the specified state.
@@ -10011,6 +12373,88 @@ func (s *ListCopyJobsOutput) SetNextToken(v string) *ListCopyJobsOutput {
 	return s
 }
 
+type ListFrameworksInput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of desired results from 1 to 1000. Optional. If unspecified, the
+	// query will return 1 MB of data.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFrameworksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFrameworksInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFrameworksInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFrameworksInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFrameworksInput) SetMaxResults(v int64) *ListFrameworksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFrameworksInput) SetNextToken(v string) *ListFrameworksInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFrameworksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of frameworks with details for each framework, including the framework
+	// name, Amazon Resource Name (ARN), description, number of controls, creation
+	// time, and deployment status.
+	Frameworks []*Framework `type:"list"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ListFrameworksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFrameworksOutput) GoString() string {
+	return s.String()
+}
+
+// SetFrameworks sets the Frameworks field's value.
+func (s *ListFrameworksOutput) SetFrameworks(v []*Framework) *ListFrameworksOutput {
+	s.Frameworks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFrameworksOutput) SetNextToken(v string) *ListFrameworksOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListProtectedResourcesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10068,9 +12512,9 @@ type ListProtectedResourcesOutput struct {
 	// by the next token.
 	NextToken *string `type:"string"`
 
-	// An array of resources successfully backed up by AWS Backup including the
-	// time the resource was saved, an Amazon Resource Name (ARN) of the resource,
-	// and a resource type.
+	// An array of resources successfully backed up by Backup including the time
+	// the resource was saved, an Amazon Resource Name (ARN) of the resource, and
+	// a resource type.
 	Results []*ProtectedResource `type:"list"`
 }
 
@@ -10101,8 +12545,11 @@ type ListRecoveryPointsByBackupVaultInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
+	//
+	// Backup vault name might not be available when a supported service creates
+	// the backup.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -10250,6 +12697,8 @@ type ListRecoveryPointsByResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// The maximum number of items to be returned.
+	//
+	// Amazon RDS requires a value of at least 20.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
 	// The next item following a partial list of returned items. For example, if
@@ -10323,6 +12772,8 @@ type ListRecoveryPointsByResourceOutput struct {
 
 	// An array of objects that contain detailed information about recovery points
 	// of the specified resource type.
+	//
+	// Only Amazon EFS and Amazon EC2 recovery points return BackupVaultName.
 	RecoveryPoints []*RecoveryPointByResource `type:"list"`
 }
 
@@ -10345,6 +12796,214 @@ func (s *ListRecoveryPointsByResourceOutput) SetNextToken(v string) *ListRecover
 // SetRecoveryPoints sets the RecoveryPoints field's value.
 func (s *ListRecoveryPointsByResourceOutput) SetRecoveryPoints(v []*RecoveryPointByResource) *ListRecoveryPointsByResourceOutput {
 	s.RecoveryPoints = v
+	return s
+}
+
+type ListReportJobsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns only report jobs that were created after the date and time specified
+	// in Unix format and Coordinated Universal Time (UTC). For example, the value
+	// 1516925490 represents Friday, January 26, 2018 12:11:30 AM.
+	ByCreationAfter *time.Time `location:"querystring" locationName:"CreationAfter" type:"timestamp"`
+
+	// Returns only report jobs that were created before the date and time specified
+	// in Unix format and Coordinated Universal Time (UTC). For example, the value
+	// 1516925490 represents Friday, January 26, 2018 12:11:30 AM.
+	ByCreationBefore *time.Time `location:"querystring" locationName:"CreationBefore" type:"timestamp"`
+
+	// Returns only report jobs with the specified report plan name.
+	ByReportPlanName *string `location:"querystring" locationName:"ReportPlanName" min:"1" type:"string"`
+
+	// Returns only report jobs that are in the specified status. The statuses are:
+	//
+	// CREATED | RUNNING | COMPLETED | FAILED
+	ByStatus *string `location:"querystring" locationName:"Status" type:"string"`
+
+	// The number of desired results from 1 to 1000. Optional. If unspecified, the
+	// query will return 1 MB of data.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListReportJobsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListReportJobsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListReportJobsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListReportJobsInput"}
+	if s.ByReportPlanName != nil && len(*s.ByReportPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ByReportPlanName", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetByCreationAfter sets the ByCreationAfter field's value.
+func (s *ListReportJobsInput) SetByCreationAfter(v time.Time) *ListReportJobsInput {
+	s.ByCreationAfter = &v
+	return s
+}
+
+// SetByCreationBefore sets the ByCreationBefore field's value.
+func (s *ListReportJobsInput) SetByCreationBefore(v time.Time) *ListReportJobsInput {
+	s.ByCreationBefore = &v
+	return s
+}
+
+// SetByReportPlanName sets the ByReportPlanName field's value.
+func (s *ListReportJobsInput) SetByReportPlanName(v string) *ListReportJobsInput {
+	s.ByReportPlanName = &v
+	return s
+}
+
+// SetByStatus sets the ByStatus field's value.
+func (s *ListReportJobsInput) SetByStatus(v string) *ListReportJobsInput {
+	s.ByStatus = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListReportJobsInput) SetMaxResults(v int64) *ListReportJobsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReportJobsInput) SetNextToken(v string) *ListReportJobsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListReportJobsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `type:"string"`
+
+	// Details about your report jobs in JSON format.
+	ReportJobs []*ReportJob `type:"list"`
+}
+
+// String returns the string representation
+func (s ListReportJobsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListReportJobsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReportJobsOutput) SetNextToken(v string) *ListReportJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReportJobs sets the ReportJobs field's value.
+func (s *ListReportJobsOutput) SetReportJobs(v []*ReportJob) *ListReportJobsOutput {
+	s.ReportJobs = v
+	return s
+}
+
+type ListReportPlansInput struct {
+	_ struct{} `type:"structure"`
+
+	// The number of desired results from 1 to 1000. Optional. If unspecified, the
+	// query will return 1 MB of data.
+	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `location:"querystring" locationName:"NextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListReportPlansInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListReportPlansInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListReportPlansInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListReportPlansInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListReportPlansInput) SetMaxResults(v int64) *ListReportPlansInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReportPlansInput) SetNextToken(v string) *ListReportPlansInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListReportPlansOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier that was returned from the previous call to this operation,
+	// which can be used to return the next set of items in the list.
+	NextToken *string `type:"string"`
+
+	// A list of your report plans with detailed information for each plan. This
+	// information includes the Amazon Resource Name (ARN), report plan name, description,
+	// settings, delivery channel, deployment status, creation time, and last times
+	// the report plan attempted to and successfully ran.
+	ReportPlans []*ReportPlan `type:"list"`
+}
+
+// String returns the string representation
+func (s ListReportPlansOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListReportPlansOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListReportPlansOutput) SetNextToken(v string) *ListReportPlansOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetReportPlans sets the ReportPlans field's value.
+func (s *ListReportPlansOutput) SetReportPlans(v []*ReportPlan) *ListReportPlansOutput {
+	s.ReportPlans = v
 	return s
 }
 
@@ -10636,8 +13295,8 @@ func (s *MissingParameterValueException) RequestID() string {
 
 // Contains an optional backup plan display name and an array of BackupRule
 // objects, each of which specifies a backup rule. Each rule in a backup plan
-// is a separate scheduled task and can back up a different selection of AWS
-// resources.
+// is a separate scheduled task and can back up a different selection of Amazon
+// Web Services resources.
 type Plan struct {
 	_ struct{} `type:"structure"`
 
@@ -10686,13 +13345,13 @@ func (s *Plan) SetRules(v []*Rule) *Plan {
 
 // Contains an optional backup plan display name and an array of BackupRule
 // objects, each of which specifies a backup rule. Each rule in a backup plan
-// is a separate scheduled task and can back up a different selection of AWS
-// resources.
+// is a separate scheduled task and can back up a different selection of Amazon
+// Web Services resources.
 type PlanInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies a list of BackupOptions for each resource type. These settings
-	// are only available for Windows VSS backup jobs.
+	// are only available for Windows Volume Shadow Copy Service (VSS) backup jobs.
 	AdvancedBackupSettings []*AdvancedBackupSetting `type:"list"`
 
 	// The optional display name of a backup plan.
@@ -10916,9 +13575,10 @@ type ProtectedResource struct {
 	// of the ARN depends on the resource type.
 	ResourceArn *string `type:"string"`
 
-	// The type of AWS resource; for example, an Amazon Elastic Block Store (Amazon
-	// EBS) volume or an Amazon Relational Database Service (Amazon RDS) database.
-	// For VSS Windows backups, the only supported resource type is Amazon EC2.
+	// The type of Amazon Web Services resource; for example, an Amazon Elastic
+	// Block Store (Amazon EBS) volume or an Amazon Relational Database Service
+	// (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS) backups,
+	// the only supported resource type is Amazon EC2.
 	ResourceType *string `type:"string"`
 }
 
@@ -10955,8 +13615,8 @@ type PutBackupVaultAccessPolicyInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -11023,13 +13683,26 @@ type PutBackupVaultNotificationsInput struct {
 	// An array of events that indicate the status of jobs to back up resources
 	// to the backup vault.
 	//
+	// The following events are supported:
+	//
+	// BACKUP_JOB_STARTED, BACKUP_JOB_COMPLETED,
+	//
+	// COPY_JOB_STARTED, COPY_JOB_SUCCESSFUL, COPY_JOB_FAILED,
+	//
+	// RESTORE_JOB_STARTED, RESTORE_JOB_COMPLETED, and RECOVERY_POINT_MODIFIED.
+	//
+	// To find failed backup jobs, use BACKUP_JOB_COMPLETED and filter using event
+	// metadata.
+	//
+	// Other events in the following list are deprecated.
+	//
 	// BackupVaultEvents is a required field
 	BackupVaultEvents []*string `type:"list" required:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
@@ -11118,8 +13791,8 @@ type RecoveryPointByBackupVault struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	BackupVaultName *string `type:"string"`
 
 	// A CalculatedLifecycle object containing DeleteAt and MoveToColdStorageAt
@@ -11162,7 +13835,7 @@ type RecoveryPointByBackupVault struct {
 	LastRestoreTime *time.Time `type:"timestamp"`
 
 	// The lifecycle defines when a protected resource is transitioned to cold storage
-	// and when it expires. AWS Backup transitions and expires backups automatically
+	// and when it expires. Backup transitions and expires backups automatically
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
@@ -11182,10 +13855,10 @@ type RecoveryPointByBackupVault struct {
 	// on the resource type.
 	ResourceArn *string `type:"string"`
 
-	// The type of AWS resource saved as a recovery point; for example, an Amazon
-	// Elastic Block Store (Amazon EBS) volume or an Amazon Relational Database
-	// Service (Amazon RDS) database. For VSS Windows backups, the only supported
-	// resource type is Amazon EC2.
+	// The type of Amazon Web Services resource saved as a recovery point; for example,
+	// an Amazon Elastic Block Store (Amazon EBS) volume or an Amazon Relational
+	// Database Service (Amazon RDS) database. For Windows Volume Shadow Copy Service
+	// (VSS) backups, the only supported resource type is Amazon EC2.
 	ResourceType *string `type:"string"`
 
 	// The backup vault where the recovery point was originally copied from. If
@@ -11194,6 +13867,9 @@ type RecoveryPointByBackupVault struct {
 
 	// A status code specifying the state of the recovery point.
 	Status *string `type:"string" enum:"RecoveryPointStatus"`
+
+	// A message explaining the reason of the recovery point deletion failure.
+	StatusMessage *string `type:"string"`
 }
 
 // String returns the string representation
@@ -11308,6 +13984,12 @@ func (s *RecoveryPointByBackupVault) SetStatus(v string) *RecoveryPointByBackupV
 	return s
 }
 
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *RecoveryPointByBackupVault) SetStatusMessage(v string) *RecoveryPointByBackupVault {
+	s.StatusMessage = &v
+	return s
+}
+
 // Contains detailed information about a saved recovery point.
 type RecoveryPointByResource struct {
 	_ struct{} `type:"structure"`
@@ -11317,8 +13999,8 @@ type RecoveryPointByResource struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	BackupVaultName *string `type:"string"`
 
 	// The date and time a recovery point is created, in Unix format and Coordinated
@@ -11337,6 +14019,9 @@ type RecoveryPointByResource struct {
 
 	// A status code specifying the state of the recovery point.
 	Status *string `type:"string" enum:"RecoveryPointStatus"`
+
+	// A message explaining the reason of the recovery point deletion failure.
+	StatusMessage *string `type:"string"`
 }
 
 // String returns the string representation
@@ -11385,8 +14070,14 @@ func (s *RecoveryPointByResource) SetStatus(v string) *RecoveryPointByResource {
 	return s
 }
 
-// Contains information about the backup plan and rule that AWS Backup used
-// to initiate the recovery point backup.
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *RecoveryPointByResource) SetStatusMessage(v string) *RecoveryPointByResource {
+	s.StatusMessage = &v
+	return s
+}
+
+// Contains information about the backup plan and rule that Backup used to initiate
+// the recovery point backup.
 type RecoveryPointCreator struct {
 	_ struct{} `type:"structure"`
 
@@ -11437,6 +14128,365 @@ func (s *RecoveryPointCreator) SetBackupPlanVersion(v string) *RecoveryPointCrea
 // SetBackupRuleId sets the BackupRuleId field's value.
 func (s *RecoveryPointCreator) SetBackupRuleId(v string) *RecoveryPointCreator {
 	s.BackupRuleId = &v
+	return s
+}
+
+// Contains information from your report plan about where to deliver your reports,
+// specifically your Amazon S3 bucket name, S3 key prefix, and the formats of
+// your reports.
+type ReportDeliveryChannel struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the format of your reports: CSV, JSON, or both. If not specified,
+	// the default format is CSV.
+	Formats []*string `type:"list"`
+
+	// The unique name of the S3 bucket that receives your reports.
+	//
+	// S3BucketName is a required field
+	S3BucketName *string `type:"string" required:"true"`
+
+	// The prefix for where Backup Audit Manager delivers your reports to Amazon
+	// S3. The prefix is this part of the following path: s3://your-bucket-name/prefix/Backup/us-west-2/year/month/day/report-name.
+	// If not specified, there is no prefix.
+	S3KeyPrefix *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ReportDeliveryChannel) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportDeliveryChannel) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportDeliveryChannel) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportDeliveryChannel"}
+	if s.S3BucketName == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3BucketName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFormats sets the Formats field's value.
+func (s *ReportDeliveryChannel) SetFormats(v []*string) *ReportDeliveryChannel {
+	s.Formats = v
+	return s
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *ReportDeliveryChannel) SetS3BucketName(v string) *ReportDeliveryChannel {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3KeyPrefix sets the S3KeyPrefix field's value.
+func (s *ReportDeliveryChannel) SetS3KeyPrefix(v string) *ReportDeliveryChannel {
+	s.S3KeyPrefix = &v
+	return s
+}
+
+// Contains information from your report job about your report destination.
+type ReportDestination struct {
+	_ struct{} `type:"structure"`
+
+	// The unique name of the Amazon S3 bucket that receives your reports.
+	S3BucketName *string `type:"string"`
+
+	// The object key that uniquely identifies your reports in your S3 bucket.
+	S3Keys []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s ReportDestination) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportDestination) GoString() string {
+	return s.String()
+}
+
+// SetS3BucketName sets the S3BucketName field's value.
+func (s *ReportDestination) SetS3BucketName(v string) *ReportDestination {
+	s.S3BucketName = &v
+	return s
+}
+
+// SetS3Keys sets the S3Keys field's value.
+func (s *ReportDestination) SetS3Keys(v []*string) *ReportDestination {
+	s.S3Keys = v
+	return s
+}
+
+// Contains detailed information about a report job. A report job compiles a
+// report based on a report plan and publishes it to Amazon S3.
+type ReportJob struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that a report job is completed, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CompletionTime is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CompletionTime *time.Time `type:"timestamp"`
+
+	// The date and time that a report job is created, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CreationTime is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The S3 bucket name and S3 keys for the destination where the report job publishes
+	// the report.
+	ReportDestination *ReportDestination `type:"structure"`
+
+	// The identifier for a report job. A unique, randomly generated, Unicode, UTF-8
+	// encoded string that is at most 1,024 bytes long. Report job IDs cannot be
+	// edited.
+	ReportJobId *string `type:"string"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
+	// of the ARN depends on the resource type.
+	ReportPlanArn *string `type:"string"`
+
+	// Identifies the report template for the report. Reports are built using a
+	// report template. The report templates are:
+	//
+	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	ReportTemplate *string `type:"string"`
+
+	// The status of a report job. The statuses are:
+	//
+	// CREATED | RUNNING | COMPLETED | FAILED
+	//
+	// COMPLETED means that the report is available for your review at your designated
+	// destination. If the status is FAILED, review the StatusMessage for the reason.
+	Status *string `type:"string"`
+
+	// A message explaining the status of the report job.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ReportJob) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportJob) GoString() string {
+	return s.String()
+}
+
+// SetCompletionTime sets the CompletionTime field's value.
+func (s *ReportJob) SetCompletionTime(v time.Time) *ReportJob {
+	s.CompletionTime = &v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ReportJob) SetCreationTime(v time.Time) *ReportJob {
+	s.CreationTime = &v
+	return s
+}
+
+// SetReportDestination sets the ReportDestination field's value.
+func (s *ReportJob) SetReportDestination(v *ReportDestination) *ReportJob {
+	s.ReportDestination = v
+	return s
+}
+
+// SetReportJobId sets the ReportJobId field's value.
+func (s *ReportJob) SetReportJobId(v string) *ReportJob {
+	s.ReportJobId = &v
+	return s
+}
+
+// SetReportPlanArn sets the ReportPlanArn field's value.
+func (s *ReportJob) SetReportPlanArn(v string) *ReportJob {
+	s.ReportPlanArn = &v
+	return s
+}
+
+// SetReportTemplate sets the ReportTemplate field's value.
+func (s *ReportJob) SetReportTemplate(v string) *ReportJob {
+	s.ReportTemplate = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ReportJob) SetStatus(v string) *ReportJob {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *ReportJob) SetStatusMessage(v string) *ReportJob {
+	s.StatusMessage = &v
+	return s
+}
+
+// Contains detailed information about a report plan.
+type ReportPlan struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that a report plan is created, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CreationTime is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The deployment status of a report plan. The statuses are:
+	//
+	// CREATE_IN_PROGRESS | UPDATE_IN_PROGRESS | DELETE_IN_PROGRESS | COMPLETED
+	DeploymentStatus *string `type:"string"`
+
+	// The date and time that a report job associated with this report plan last
+	// attempted to run, in Unix format and Coordinated Universal Time (UTC). The
+	// value of LastAttemptedExecutionTime is accurate to milliseconds. For example,
+	// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
+	// AM.
+	LastAttemptedExecutionTime *time.Time `type:"timestamp"`
+
+	// The date and time that a report job associated with this report plan last
+	// successfully ran, in Unix format and Coordinated Universal Time (UTC). The
+	// value of LastSuccessfulExecutionTime is accurate to milliseconds. For example,
+	// the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087
+	// AM.
+	LastSuccessfulExecutionTime *time.Time `type:"timestamp"`
+
+	// Contains information about where and how to deliver your reports, specifically
+	// your Amazon S3 bucket name, S3 key prefix, and the formats of your reports.
+	ReportDeliveryChannel *ReportDeliveryChannel `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
+	// of the ARN depends on the resource type.
+	ReportPlanArn *string `type:"string"`
+
+	// An optional description of the report plan with a maximum 1,024 characters.
+	ReportPlanDescription *string `type:"string"`
+
+	// The unique name of the report plan. This name is between 1 and 256 characters
+	// starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9),
+	// and underscores (_).
+	ReportPlanName *string `min:"1" type:"string"`
+
+	// Identifies the report template for the report. Reports are built using a
+	// report template. The report templates are:
+	//
+	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	ReportSetting *ReportSetting `type:"structure"`
+}
+
+// String returns the string representation
+func (s ReportPlan) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportPlan) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *ReportPlan) SetCreationTime(v time.Time) *ReportPlan {
+	s.CreationTime = &v
+	return s
+}
+
+// SetDeploymentStatus sets the DeploymentStatus field's value.
+func (s *ReportPlan) SetDeploymentStatus(v string) *ReportPlan {
+	s.DeploymentStatus = &v
+	return s
+}
+
+// SetLastAttemptedExecutionTime sets the LastAttemptedExecutionTime field's value.
+func (s *ReportPlan) SetLastAttemptedExecutionTime(v time.Time) *ReportPlan {
+	s.LastAttemptedExecutionTime = &v
+	return s
+}
+
+// SetLastSuccessfulExecutionTime sets the LastSuccessfulExecutionTime field's value.
+func (s *ReportPlan) SetLastSuccessfulExecutionTime(v time.Time) *ReportPlan {
+	s.LastSuccessfulExecutionTime = &v
+	return s
+}
+
+// SetReportDeliveryChannel sets the ReportDeliveryChannel field's value.
+func (s *ReportPlan) SetReportDeliveryChannel(v *ReportDeliveryChannel) *ReportPlan {
+	s.ReportDeliveryChannel = v
+	return s
+}
+
+// SetReportPlanArn sets the ReportPlanArn field's value.
+func (s *ReportPlan) SetReportPlanArn(v string) *ReportPlan {
+	s.ReportPlanArn = &v
+	return s
+}
+
+// SetReportPlanDescription sets the ReportPlanDescription field's value.
+func (s *ReportPlan) SetReportPlanDescription(v string) *ReportPlan {
+	s.ReportPlanDescription = &v
+	return s
+}
+
+// SetReportPlanName sets the ReportPlanName field's value.
+func (s *ReportPlan) SetReportPlanName(v string) *ReportPlan {
+	s.ReportPlanName = &v
+	return s
+}
+
+// SetReportSetting sets the ReportSetting field's value.
+func (s *ReportPlan) SetReportSetting(v *ReportSetting) *ReportPlan {
+	s.ReportSetting = v
+	return s
+}
+
+// Contains detailed information about a report setting.
+type ReportSetting struct {
+	_ struct{} `type:"structure"`
+
+	// Identifies the report template for the report. Reports are built using a
+	// report template. The report templates are:
+	//
+	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	//
+	// ReportTemplate is a required field
+	ReportTemplate *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ReportSetting) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ReportSetting) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ReportSetting) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ReportSetting"}
+	if s.ReportTemplate == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportTemplate"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetReportTemplate sets the ReportTemplate field's value.
+func (s *ReportSetting) SetReportTemplate(v string) *ReportSetting {
+	s.ReportTemplate = &v
 	return s
 }
 
@@ -11545,15 +14595,15 @@ type RestoreJobsListMember struct {
 
 	// The resource type of the listed restore jobs; for example, an Amazon Elastic
 	// Block Store (Amazon EBS) volume or an Amazon Relational Database Service
-	// (Amazon RDS) database. For VSS Windows backups, the only supported resource
-	// type is Amazon EC2.
+	// (Amazon RDS) database. For Windows Volume Shadow Copy Service (VSS) backups,
+	// the only supported resource type is Amazon EC2.
 	ResourceType *string `type:"string"`
 
 	// Uniquely identifies the job that restores a recovery point.
 	RestoreJobId *string `type:"string"`
 
-	// A status code specifying the state of the job initiated by AWS Backup to
-	// restore a recovery point.
+	// A status code specifying the state of the job initiated by Backup to restore
+	// a recovery point.
 	Status *string `type:"string" enum:"RestoreJobStatus"`
 
 	// A detailed message explaining the status of the job to restore a recovery
@@ -11654,19 +14704,19 @@ type Rule struct {
 	_ struct{} `type:"structure"`
 
 	// A value in minutes after a backup job is successfully started before it must
-	// be completed or it will be canceled by AWS Backup. This value is optional.
+	// be completed or it will be canceled by Backup. This value is optional.
 	CompletionWindowMinutes *int64 `type:"long"`
 
 	// An array of CopyAction objects, which contains the details of the copy operation.
 	CopyActions []*CopyAction `type:"list"`
 
-	// Specifies whether AWS Backup creates continuous backups. True causes AWS
-	// Backup to create continuous backups capable of point-in-time restore (PITR).
-	// False (or not specified) causes AWS Backup to create snapshot backups.
+	// Specifies whether Backup creates continuous backups. True causes Backup to
+	// create continuous backups capable of point-in-time restore (PITR). False
+	// (or not specified) causes Backup to create snapshot backups.
 	EnableContinuousBackup *bool `type:"boolean"`
 
 	// The lifecycle defines when a protected resource is transitioned to cold storage
-	// and when it expires. AWS Backup transitions and expires backups automatically
+	// and when it expires. Backup transitions and expires backups automatically
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
@@ -11691,7 +14741,7 @@ type Rule struct {
 	// RuleName is a required field
 	RuleName *string `type:"string" required:"true"`
 
-	// A CRON expression specifying when AWS Backup initiates a backup job. For
+	// A cron expression in UTC specifying when Backup initiates a backup job. For
 	// more information about cron expressions, see Schedule Expressions for Rules
 	// (https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html)
 	// in the Amazon CloudWatch Events User Guide.. Prior to specifying a value
@@ -11705,8 +14755,8 @@ type Rule struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// TargetBackupVaultName is a required field
 	TargetBackupVaultName *string `type:"string" required:"true"`
@@ -11787,19 +14837,19 @@ type RuleInput struct {
 	_ struct{} `type:"structure"`
 
 	// A value in minutes after a backup job is successfully started before it must
-	// be completed or it will be canceled by AWS Backup. This value is optional.
+	// be completed or it will be canceled by Backup. This value is optional.
 	CompletionWindowMinutes *int64 `type:"long"`
 
 	// An array of CopyAction objects, which contains the details of the copy operation.
 	CopyActions []*CopyAction `type:"list"`
 
-	// Specifies whether AWS Backup creates continuous backups. True causes AWS
-	// Backup to create continuous backups capable of point-in-time restore (PITR).
-	// False (or not specified) causes AWS Backup to create snapshot backups.
+	// Specifies whether Backup creates continuous backups. True causes Backup to
+	// create continuous backups capable of point-in-time restore (PITR). False
+	// (or not specified) causes Backup to create snapshot backups.
 	EnableContinuousBackup *bool `type:"boolean"`
 
 	// The lifecycle defines when a protected resource is transitioned to cold storage
-	// and when it expires. AWS Backup will transition and expire backups automatically
+	// and when it expires. Backup will transition and expire backups automatically
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
@@ -11820,7 +14870,7 @@ type RuleInput struct {
 	// RuleName is a required field
 	RuleName *string `type:"string" required:"true"`
 
-	// A CRON expression specifying when AWS Backup initiates a backup job.
+	// A CRON expression in UTC specifying when Backup initiates a backup job.
 	ScheduleExpression *string `type:"string"`
 
 	// A value in minutes after a backup is scheduled before a job will be canceled
@@ -11829,8 +14879,8 @@ type RuleInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// TargetBackupVaultName is a required field
 	TargetBackupVaultName *string `type:"string" required:"true"`
@@ -11930,8 +14980,8 @@ func (s *RuleInput) SetTargetBackupVaultName(v string) *RuleInput {
 type Selection struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the IAM role that AWS Backup uses to authenticate when backing
-	// up the target resource; for example, arn:aws:iam::123456789012:role/S3Access.
+	// The ARN of the IAM role that Backup uses to authenticate when backing up
+	// the target resource; for example, arn:aws:iam::123456789012:role/S3Access.
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
@@ -12152,17 +15202,17 @@ type StartBackupJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies the backup option for a selected resource. This option is only
-	// available for Windows VSS backup jobs.
+	// available for Windows Volume Shadow Copy Service (VSS) backup jobs.
 	//
-	// Valid values: Set to "WindowsVSS”:“enabled" to enable WindowsVSS backup
-	// option and create a VSS Windows backup. Set to “WindowsVSS”:”disabled”
-	// to create a regular backup. The WindowsVSS option is not enabled by default.
+	// Valid values: Set to "WindowsVSS":"enabled" to enable the WindowsVSS backup
+	// option and create a Windows VSS backup. Set to "WindowsVSS""disabled" to
+	// create a regular backup. The WindowsVSS option is not enabled by default.
 	BackupOptions map[string]*string `type:"map"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `type:"string" required:"true"`
@@ -12180,12 +15230,13 @@ type StartBackupJobInput struct {
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
 
-	// A customer chosen string that can be used to distinguish between calls to
-	// StartBackupJob.
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to StartBackupJob. Retrying a successful request with the
+	// same idempotency token results in a success message with no action taken.
 	IdempotencyToken *string `type:"string"`
 
 	// The lifecycle defines when a protected resource is transitioned to cold storage
-	// and when it expires. AWS Backup will transition and expire backups automatically
+	// and when it expires. Backup will transition and expire backups automatically
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
@@ -12299,7 +15350,7 @@ func (s *StartBackupJobInput) SetStartWindowMinutes(v int64) *StartBackupJobInpu
 type StartBackupJobOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Uniquely identifies a request to AWS Backup to back up a resource.
+	// Uniquely identifies a request to Backup to back up a resource.
 	BackupJobId *string `type:"string"`
 
 	// The date and time that a backup job is created, in Unix format and Coordinated
@@ -12355,8 +15406,9 @@ type StartCopyJobInput struct {
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
 
-	// A customer chosen string that can be used to distinguish between calls to
-	// StartCopyJob.
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to StartCopyJob. Retrying a successful request with the same
+	// idempotency token results in a success message with no action taken.
 	IdempotencyToken *string `type:"string"`
 
 	// Contains an array of Transition objects specifying how long in days before
@@ -12379,8 +15431,8 @@ type StartCopyJobInput struct {
 
 	// The name of a logical source container where backups are stored. Backup vaults
 	// are identified by names that are unique to the account used to create them
-	// and the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// and the Amazon Web Services Region where they are created. They consist of
+	// lowercase letters, numbers, and hyphens.
 	//
 	// SourceBackupVaultName is a required field
 	SourceBackupVaultName *string `type:"string" required:"true"`
@@ -12489,17 +15541,95 @@ func (s *StartCopyJobOutput) SetCreationDate(v time.Time) *StartCopyJobOutput {
 	return s
 }
 
+type StartReportJobInput struct {
+	_ struct{} `type:"structure"`
+
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to StartReportJobInput. Retrying a successful request with
+	// the same idempotency token results in a success message with no action taken.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+
+	// The unique name of a report plan.
+	//
+	// ReportPlanName is a required field
+	ReportPlanName *string `location:"uri" locationName:"reportPlanName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s StartReportJobInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartReportJobInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *StartReportJobInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "StartReportJobInput"}
+	if s.ReportPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportPlanName"))
+	}
+	if s.ReportPlanName != nil && len(*s.ReportPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportPlanName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *StartReportJobInput) SetIdempotencyToken(v string) *StartReportJobInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetReportPlanName sets the ReportPlanName field's value.
+func (s *StartReportJobInput) SetReportPlanName(v string) *StartReportJobInput {
+	s.ReportPlanName = &v
+	return s
+}
+
+type StartReportJobOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the report job. A unique, randomly generated, Unicode,
+	// UTF-8 encoded string that is at most 1,024 bytes long. The report job ID
+	// cannot be edited.
+	ReportJobId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StartReportJobOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StartReportJobOutput) GoString() string {
+	return s.String()
+}
+
+// SetReportJobId sets the ReportJobId field's value.
+func (s *StartReportJobOutput) SetReportJobId(v string) *StartReportJobOutput {
+	s.ReportJobId = &v
+	return s
+}
+
 type StartRestoreJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the IAM role that AWS Backup uses to create
+	// The Amazon Resource Name (ARN) of the IAM role that Backup uses to create
 	// the target recovery point; for example, arn:aws:iam::123456789012:role/S3Access.
 	//
 	// IamRoleArn is a required field
 	IamRoleArn *string `type:"string" required:"true"`
 
-	// A customer chosen string that can be used to distinguish between calls to
-	// StartRestoreJob.
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to StartRestoreJob. Retrying a successful request with the
+	// same idempotency token results in a success message with no action taken.
 	IdempotencyToken *string `type:"string"`
 
 	// A set of metadata key-value pairs. Contains information, such as a resource
@@ -12515,14 +15645,15 @@ type StartRestoreJobInput struct {
 	// (Amazon EFS) instance:
 	//
 	//    * file-system-id: The ID of the Amazon EFS file system that is backed
-	//    up by AWS Backup. Returned in GetRecoveryPointRestoreMetadata.
+	//    up by Backup. Returned in GetRecoveryPointRestoreMetadata.
 	//
 	//    * Encrypted: A Boolean value that, if true, specifies that the file system
 	//    is encrypted. If KmsKeyId is specified, Encrypted must be set to true.
 	//
-	//    * KmsKeyId: Specifies the AWS KMS key that is used to encrypt the restored
-	//    file system. You can specify a key from another AWS account provided that
-	//    key it is properly shared with your account via AWS KMS.
+	//    * KmsKeyId: Specifies the Amazon Web Services KMS key that is used to
+	//    encrypt the restored file system. You can specify a key from another Amazon
+	//    Web Services account provided that key it is properly shared with your
+	//    account via Amazon Web Services KMS.
 	//
 	//    * PerformanceMode: Specifies the throughput mode of the file system.
 	//
@@ -12532,7 +15663,7 @@ type StartRestoreJobInput struct {
 	//    * newFileSystem: A Boolean value that, if true, specifies that the recovery
 	//    point is restored to a new Amazon EFS file system.
 	//
-	//    * ItemsToRestore : An array of one to five strings where each string is
+	//    * ItemsToRestore: An array of one to five strings where each string is
 	//    a file path. Use ItemsToRestore to restore specific files or directories
 	//    rather than the entire file system. This parameter is optional. For example,
 	//    "itemsToRestore":"[\"/my.test\"]".
@@ -12559,7 +15690,7 @@ type StartRestoreJobInput struct {
 	//
 	//    * Aurora for Amazon Aurora
 	//
-	//    * Storage Gateway for AWS Storage Gateway
+	//    * Storage Gateway for Storage Gateway
 	ResourceType *string `type:"string"`
 }
 
@@ -12648,7 +15779,7 @@ func (s *StartRestoreJobOutput) SetRestoreJobId(v string) *StartRestoreJobOutput
 type StopBackupJobInput struct {
 	_ struct{} `type:"structure"`
 
-	// Uniquely identifies a request to AWS Backup to back up a resource.
+	// Uniquely identifies a request to Backup to back up a resource.
 	//
 	// BackupJobId is a required field
 	BackupJobId *string `location:"uri" locationName:"backupJobId" type:"string" required:"true"`
@@ -12915,7 +16046,7 @@ type UpdateBackupPlanOutput struct {
 	// Uniquely identifies a backup plan.
 	BackupPlanId *string `type:"string"`
 
-	// The date and time a backup plan is updated, in Unix format and Coordinated
+	// The date and time a backup plan is created, in Unix format and Coordinated
 	// Universal Time (UTC). The value of CreationDate is accurate to milliseconds.
 	// For example, the value 1516925490.087 represents Friday, January 26, 2018
 	// 12:11:30.087 AM.
@@ -12966,10 +16097,141 @@ func (s *UpdateBackupPlanOutput) SetVersionId(v string) *UpdateBackupPlanOutput 
 	return s
 }
 
+type UpdateFrameworkInput struct {
+	_ struct{} `type:"structure"`
+
+	// A list of the controls that make up the framework. Each control in the list
+	// has a name, input parameters, and scope.
+	FrameworkControls []*FrameworkControl `type:"list"`
+
+	// An optional description of the framework with a maximum 1,024 characters.
+	FrameworkDescription *string `type:"string"`
+
+	// The unique name of a framework. This name is between 1 and 256 characters,
+	// starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9),
+	// and underscores (_).
+	//
+	// FrameworkName is a required field
+	FrameworkName *string `location:"uri" locationName:"frameworkName" min:"1" type:"string" required:"true"`
+
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to UpdateFrameworkInput. Retrying a successful request with
+	// the same idempotency token results in a success message with no action taken.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+}
+
+// String returns the string representation
+func (s UpdateFrameworkInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFrameworkInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFrameworkInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFrameworkInput"}
+	if s.FrameworkName == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrameworkName"))
+	}
+	if s.FrameworkName != nil && len(*s.FrameworkName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FrameworkName", 1))
+	}
+	if s.FrameworkControls != nil {
+		for i, v := range s.FrameworkControls {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FrameworkControls", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFrameworkControls sets the FrameworkControls field's value.
+func (s *UpdateFrameworkInput) SetFrameworkControls(v []*FrameworkControl) *UpdateFrameworkInput {
+	s.FrameworkControls = v
+	return s
+}
+
+// SetFrameworkDescription sets the FrameworkDescription field's value.
+func (s *UpdateFrameworkInput) SetFrameworkDescription(v string) *UpdateFrameworkInput {
+	s.FrameworkDescription = &v
+	return s
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *UpdateFrameworkInput) SetFrameworkName(v string) *UpdateFrameworkInput {
+	s.FrameworkName = &v
+	return s
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *UpdateFrameworkInput) SetIdempotencyToken(v string) *UpdateFrameworkInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+type UpdateFrameworkOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that a framework is created, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CreationTime is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
+	// of the ARN depends on the resource type.
+	FrameworkArn *string `type:"string"`
+
+	// The unique name of a framework. This name is between 1 and 256 characters,
+	// starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9),
+	// and underscores (_).
+	FrameworkName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateFrameworkOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFrameworkOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *UpdateFrameworkOutput) SetCreationTime(v time.Time) *UpdateFrameworkOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFrameworkArn sets the FrameworkArn field's value.
+func (s *UpdateFrameworkOutput) SetFrameworkArn(v string) *UpdateFrameworkOutput {
+	s.FrameworkArn = &v
+	return s
+}
+
+// SetFrameworkName sets the FrameworkName field's value.
+func (s *UpdateFrameworkOutput) SetFrameworkName(v string) *UpdateFrameworkOutput {
+	s.FrameworkName = &v
+	return s
+}
+
 type UpdateGlobalSettingsInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of resources along with the opt-in preferences for the account.
+	// A value for isCrossAccountBackupEnabled and a Region. Example: update-global-settings
+	// --global-settings isCrossAccountBackupEnabled=false --region us-west-2.
 	GlobalSettings map[string]*string `type:"map"`
 }
 
@@ -13008,14 +16270,14 @@ type UpdateRecoveryPointLifecycleInput struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	//
 	// BackupVaultName is a required field
 	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
 
 	// The lifecycle defines when a protected resource is transitioned to cold storage
-	// and when it expires. AWS Backup transitions and expires backups automatically
+	// and when it expires. Backup transitions and expires backups automatically
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
@@ -13093,7 +16355,7 @@ type UpdateRecoveryPointLifecycleOutput struct {
 	CalculatedLifecycle *CalculatedLifecycle `type:"structure"`
 
 	// The lifecycle defines when a protected resource is transitioned to cold storage
-	// and when it expires. AWS Backup transitions and expires backups automatically
+	// and when it expires. Backup transitions and expires backups automatically
 	// according to the lifecycle that you define.
 	//
 	// Backups transitioned to cold storage must be stored in cold storage for a
@@ -13181,6 +16443,147 @@ func (s UpdateRegionSettingsOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateReportPlanInput struct {
+	_ struct{} `type:"structure"`
+
+	// A customer-chosen string that you can use to distinguish between otherwise
+	// identical calls to UpdateReportPlanInput. Retrying a successful request with
+	// the same idempotency token results in a success message with no action taken.
+	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
+
+	// A structure that contains information about where to deliver your reports,
+	// specifically your Amazon S3 bucket name, S3 key prefix, and the formats of
+	// your reports.
+	ReportDeliveryChannel *ReportDeliveryChannel `type:"structure"`
+
+	// An optional description of the report plan with a maximum 1,024 characters.
+	ReportPlanDescription *string `type:"string"`
+
+	// The unique name of the report plan. This name is between 1 and 256 characters,
+	// starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9),
+	// and underscores (_).
+	//
+	// ReportPlanName is a required field
+	ReportPlanName *string `location:"uri" locationName:"reportPlanName" min:"1" type:"string" required:"true"`
+
+	// Identifies the report template for the report. Reports are built using a
+	// report template. The report templates are:
+	//
+	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	ReportSetting *ReportSetting `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateReportPlanInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateReportPlanInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateReportPlanInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateReportPlanInput"}
+	if s.ReportPlanName == nil {
+		invalidParams.Add(request.NewErrParamRequired("ReportPlanName"))
+	}
+	if s.ReportPlanName != nil && len(*s.ReportPlanName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ReportPlanName", 1))
+	}
+	if s.ReportDeliveryChannel != nil {
+		if err := s.ReportDeliveryChannel.Validate(); err != nil {
+			invalidParams.AddNested("ReportDeliveryChannel", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ReportSetting != nil {
+		if err := s.ReportSetting.Validate(); err != nil {
+			invalidParams.AddNested("ReportSetting", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdempotencyToken sets the IdempotencyToken field's value.
+func (s *UpdateReportPlanInput) SetIdempotencyToken(v string) *UpdateReportPlanInput {
+	s.IdempotencyToken = &v
+	return s
+}
+
+// SetReportDeliveryChannel sets the ReportDeliveryChannel field's value.
+func (s *UpdateReportPlanInput) SetReportDeliveryChannel(v *ReportDeliveryChannel) *UpdateReportPlanInput {
+	s.ReportDeliveryChannel = v
+	return s
+}
+
+// SetReportPlanDescription sets the ReportPlanDescription field's value.
+func (s *UpdateReportPlanInput) SetReportPlanDescription(v string) *UpdateReportPlanInput {
+	s.ReportPlanDescription = &v
+	return s
+}
+
+// SetReportPlanName sets the ReportPlanName field's value.
+func (s *UpdateReportPlanInput) SetReportPlanName(v string) *UpdateReportPlanInput {
+	s.ReportPlanName = &v
+	return s
+}
+
+// SetReportSetting sets the ReportSetting field's value.
+func (s *UpdateReportPlanInput) SetReportSetting(v *ReportSetting) *UpdateReportPlanInput {
+	s.ReportSetting = v
+	return s
+}
+
+type UpdateReportPlanOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date and time that a report plan is created, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CreationTime is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
+	// of the ARN depends on the resource type.
+	ReportPlanArn *string `type:"string"`
+
+	// The unique name of the report plan.
+	ReportPlanName *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateReportPlanOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateReportPlanOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *UpdateReportPlanOutput) SetCreationTime(v time.Time) *UpdateReportPlanOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetReportPlanArn sets the ReportPlanArn field's value.
+func (s *UpdateReportPlanOutput) SetReportPlanArn(v string) *UpdateReportPlanOutput {
+	s.ReportPlanArn = &v
+	return s
+}
+
+// SetReportPlanName sets the ReportPlanName field's value.
+func (s *UpdateReportPlanOutput) SetReportPlanName(v string) *UpdateReportPlanOutput {
+	s.ReportPlanName = &v
+	return s
+}
+
 // Contains metadata about a backup vault.
 type VaultListMember struct {
 	_ struct{} `type:"structure"`
@@ -13191,8 +16594,8 @@ type VaultListMember struct {
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
-	// the AWS Region where they are created. They consist of lowercase letters,
-	// numbers, and hyphens.
+	// the Amazon Web Services Region where they are created. They consist of lowercase
+	// letters, numbers, and hyphens.
 	BackupVaultName *string `type:"string"`
 
 	// The date and time a resource backup is created, in Unix format and Coordinated

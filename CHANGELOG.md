@@ -1,3 +1,18 @@
+Release v1.40.28 (2021-08-23)
+===
+
+### Service Client Updates
+* `service/apigateway`: Updates service API and documentation
+  * Adding some of the pending releases (1) Adding WAF Filter to GatewayResponseType enum (2) Ensuring consistent error model for all operations (3) Add missing BRE to GetVpcLink operation
+* `service/backup`: Updates service API, documentation, and paginators
+* `service/dlm`: Updates service API and documentation
+* `service/dms`: Updates service API and documentation
+  * Amazon AWS DMS service now support Redis target endpoint migration. Now S3 endpoint setting is capable to setup features which are used to be configurable only in extract connection attributes.
+* `service/frauddetector`: Updates service API and documentation
+* `service/glue`: Updates service API, documentation, and paginators
+  * Add support for Custom Blueprints
+* `service/iotsitewise`: Updates service documentation
+
 Release v1.40.27 (2021-08-20)
 ===
 

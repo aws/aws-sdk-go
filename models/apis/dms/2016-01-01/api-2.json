@@ -626,7 +626,8 @@
         {"shape":"AccessDeniedFault"},
         {"shape":"InvalidResourceStateFault"},
         {"shape":"ResourceNotFoundFault"},
-        {"shape":"KMSKeyNotAccessibleFault"}
+        {"shape":"KMSKeyNotAccessibleFault"},
+        {"shape":"ResourceQuotaExceededFault"}
       ]
     },
     "RebootReplicationInstance":{
@@ -817,6 +818,10 @@
         "ResourcePendingMaintenanceActions":{"shape":"ResourcePendingMaintenanceActions"}
       }
     },
+    "ArnList":{
+      "type":"list",
+      "member":{"shape":"String"}
+    },
     "AuthMechanismValue":{
       "type":"string",
       "enum":[
@@ -856,6 +861,19 @@
       "members":{
         "ReplicationTaskAssessmentRun":{"shape":"ReplicationTaskAssessmentRun"}
       }
+    },
+    "CannedAclForObjectsValue":{
+      "type":"string",
+      "enum":[
+        "none",
+        "private",
+        "public-read",
+        "public-read-write",
+        "authenticated-read",
+        "aws-exec-read",
+        "bucket-owner-read",
+        "bucket-owner-full-control"
+      ]
     },
     "Certificate":{
       "type":"structure",
@@ -946,7 +964,8 @@
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
         "IBMDb2Settings":{"shape":"IBMDb2Settings"},
         "ResourceIdentifier":{"shape":"String"},
-        "DocDbSettings":{"shape":"DocDbSettings"}
+        "DocDbSettings":{"shape":"DocDbSettings"},
+        "RedisSettings":{"shape":"RedisSettings"}
       }
     },
     "CreateEndpointResponse":{
@@ -1637,7 +1656,8 @@
         "SybaseSettings":{"shape":"SybaseSettings"},
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
         "IBMDb2Settings":{"shape":"IBMDb2Settings"},
-        "DocDbSettings":{"shape":"DocDbSettings"}
+        "DocDbSettings":{"shape":"DocDbSettings"},
+        "RedisSettings":{"shape":"RedisSettings"}
       }
     },
     "EndpointList":{
@@ -1793,6 +1813,10 @@
       "exception":true
     },
     "Integer":{"type":"integer"},
+    "IntegerList":{
+      "type":"list",
+      "member":{"shape":"Integer"}
+    },
     "IntegerOptional":{"type":"integer"},
     "InvalidCertificateFault":{
       "type":"structure",
@@ -1917,9 +1941,9 @@
     },
     "ListTagsForResourceMessage":{
       "type":"structure",
-      "required":["ResourceArn"],
       "members":{
-        "ResourceArn":{"shape":"String"}
+        "ResourceArn":{"shape":"String"},
+        "ResourceArnList":{"shape":"ArnList"}
       }
     },
     "ListTagsForResourceResponse":{
@@ -1997,6 +2021,7 @@
         "MicrosoftSQLServerSettings":{"shape":"MicrosoftSQLServerSettings"},
         "IBMDb2Settings":{"shape":"IBMDb2Settings"},
         "DocDbSettings":{"shape":"DocDbSettings"},
+        "RedisSettings":{"shape":"RedisSettings"},
         "ExactSettings":{"shape":"BooleanOptional"}
       }
     },
@@ -2169,6 +2194,7 @@
         "AddSupplementalLogging":{"shape":"BooleanOptional"},
         "ArchivedLogDestId":{"shape":"IntegerOptional"},
         "AdditionalArchivedLogDestId":{"shape":"IntegerOptional"},
+        "ExtraArchivedLogDestIds":{"shape":"IntegerList"},
         "AllowSelectNestedTables":{"shape":"BooleanOptional"},
         "ParallelAsmReadThreads":{"shape":"IntegerOptional"},
         "ReadAheadBlocks":{"shape":"IntegerOptional"},
@@ -2294,6 +2320,30 @@
       "type":"structure",
       "members":{
         "ReplicationInstance":{"shape":"ReplicationInstance"}
+      }
+    },
+    "RedisAuthTypeValue":{
+      "type":"string",
+      "enum":[
+        "none",
+        "auth-role",
+        "auth-token"
+      ]
+    },
+    "RedisSettings":{
+      "type":"structure",
+      "required":[
+        "ServerName",
+        "Port"
+      ],
+      "members":{
+        "ServerName":{"shape":"String"},
+        "Port":{"shape":"Integer"},
+        "SslSecurityProtocol":{"shape":"SslSecurityProtocolValue"},
+        "AuthType":{"shape":"RedisAuthTypeValue"},
+        "AuthUserName":{"shape":"String"},
+        "AuthPassword":{"shape":"SecretString"},
+        "SslCaCertificateArn":{"shape":"String"}
       }
     },
     "RedshiftSettings":{
@@ -2682,7 +2732,15 @@
         "UseCsvNoSupValue":{"shape":"BooleanOptional"},
         "CsvNoSupValue":{"shape":"String"},
         "PreserveTransactions":{"shape":"BooleanOptional"},
-        "CdcPath":{"shape":"String"}
+        "CdcPath":{"shape":"String"},
+        "CannedAclForObjects":{"shape":"CannedAclForObjectsValue"},
+        "AddColumnName":{"shape":"BooleanOptional"},
+        "CdcMaxBatchInterval":{"shape":"IntegerOptional"},
+        "CdcMinFileSize":{"shape":"IntegerOptional"},
+        "CsvNullValue":{"shape":"String"},
+        "IgnoreHeaderRows":{"shape":"IntegerOptional"},
+        "MaxFileSize":{"shape":"IntegerOptional"},
+        "Rfc4180":{"shape":"BooleanOptional"}
       }
     },
     "SNSInvalidTopicFault":{
@@ -2722,6 +2780,13 @@
     "SourceType":{
       "type":"string",
       "enum":["replication-instance"]
+    },
+    "SslSecurityProtocolValue":{
+      "type":"string",
+      "enum":[
+        "plaintext",
+        "ssl-encryption"
+      ]
     },
     "StartReplicationTaskAssessmentMessage":{
       "type":"structure",
@@ -2908,7 +2973,8 @@
       "type":"structure",
       "members":{
         "Key":{"shape":"String"},
-        "Value":{"shape":"String"}
+        "Value":{"shape":"String"},
+        "ResourceArn":{"shape":"String"}
       }
     },
     "TagList":{

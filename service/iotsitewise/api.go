@@ -3694,9 +3694,12 @@ func (c *IoTSiteWise) GetInterpolatedAssetPropertyValuesRequest(input *GetInterp
 // GetInterpolatedAssetPropertyValues API operation for AWS IoT SiteWise.
 //
 // Get interpolated values for an asset property for a specified time interval,
-// during a period of time. For example, you can use the this operation to return
-// the interpolated temperature values for a wind turbine every 24 hours over
-// a duration of 7 days.
+// during a period of time. If your time series is missing data points during
+// the specified time interval, you can use interpolation to estimate the missing
+// data.
+//
+// For example, you can use this operation to return the interpolated temperature
+// values for a wind turbine every 24 hours over a duration of 7 days.
 //
 // To identify an asset property, you must specify one of the following:
 //
@@ -13562,17 +13565,24 @@ type GetInterpolatedAssetPropertyValuesInput struct {
 	//
 	// Valid values: LINEAR_INTERPOLATION | LOCF_INTERPOLATION
 	//
-	// For the LOCF_INTERPOLATION interpolation, if no data point is found for an
-	// interval, IoT SiteWise returns the same interpolated value calculated for
-	// the previous interval and carries forward this interpolated value until a
-	// new data point is found.
+	//    * LINEAR_INTERPOLATION – Estimates missing data using linear interpolation
+	//    (https://en.wikipedia.org/wiki/Linear_interpolation). For example, you
+	//    can use this operation to return the interpolated temperature values for
+	//    a wind turbine every 24 hours over a duration of 7 days. If the interpolation
+	//    starts on July 1, 2021, at 9 AM, IoT SiteWise returns the first interpolated
+	//    value on July 2, 2021, at 9 AM, the second interpolated value on July
+	//    3, 2021, at 9 AM, and so on.
 	//
-	// For example, you can get the interpolated temperature values for a wind turbine
-	// every 24 hours over a duration of 7 days. If the LOCF_INTERPOLATION interpolation
-	// starts on July 1, 2021, at 9 AM, IoT SiteWise uses the data points from July
-	// 1, 2021, at 9 AM to July 2, 2021, at 9 AM to compute the first interpolated
-	// value. If no data points is found after 9 A.M. on July 2, 2021, IoT SiteWise
-	// uses the same interpolated value for the rest of the days.
+	//    * LOCF_INTERPOLATION – Estimates missing data using last observation
+	//    carried forward interpolation If no data point is found for an interval,
+	//    IoT SiteWise returns the last observed data point for the previous interval
+	//    and carries forward this interpolated value until a new data point is
+	//    found. For example, you can get the state of an on-off valve every 24
+	//    hours over a duration of 7 days. If the interpolation starts on July 1,
+	//    2021, at 9 AM, IoT SiteWise returns the last observed data point between
+	//    July 1, 2021, at 9 AM and July 2, 2021, at 9 AM as the first interpolated
+	//    value. If no data point is found after 9 AM on July 2, 2021, IoT SiteWise
+	//    uses the same interpolated value for the rest of the days.
 	//
 	// Type is a required field
 	Type *string `location:"querystring" locationName:"type" min:"1" type:"string" required:"true"`
