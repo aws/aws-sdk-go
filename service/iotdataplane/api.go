@@ -56,8 +56,11 @@ func (c *IoTDataPlane) DeleteThingShadowRequest(input *DeleteThingShadowInput) (
 //
 // Deletes the shadow for the specified thing.
 //
+// Requires permission to access the DeleteThingShadow (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // For more information, see DeleteThingShadow (http://docs.aws.amazon.com/iot/latest/developerguide/API_DeleteThingShadow.html)
-// in the AWS IoT Developer Guide.
+// in the IoT Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -112,6 +115,110 @@ func (c *IoTDataPlane) DeleteThingShadowWithContext(ctx aws.Context, input *Dele
 	return out, req.Send()
 }
 
+const opGetRetainedMessage = "GetRetainedMessage"
+
+// GetRetainedMessageRequest generates a "aws/request.Request" representing the
+// client's request for the GetRetainedMessage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetRetainedMessage for more information on using the GetRetainedMessage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetRetainedMessageRequest method.
+//    req, resp := client.GetRetainedMessageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoTDataPlane) GetRetainedMessageRequest(input *GetRetainedMessageInput) (req *request.Request, output *GetRetainedMessageOutput) {
+	op := &request.Operation{
+		Name:       opGetRetainedMessage,
+		HTTPMethod: "GET",
+		HTTPPath:   "/retainedMessage/{topic}",
+	}
+
+	if input == nil {
+		input = &GetRetainedMessageInput{}
+	}
+
+	output = &GetRetainedMessageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetRetainedMessage API operation for AWS IoT Data Plane.
+//
+// Gets the details of a single retained message for the specified topic.
+//
+// This action returns the message payload of the retained message, which can
+// incur messaging costs. To list only the topic names of the retained messages,
+// call ListRetainedMessages (/iot/latest/developerguide/API_iotdata_ListRetainedMessages.html).
+//
+// Requires permission to access the GetRetainedMessage (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiotfleethubfordevicemanagement.html#awsiotfleethubfordevicemanagement-actions-as-permissions)
+// action.
+//
+// For more information about messaging costs, see IoT Core pricing - Messaging
+// (http://aws.amazon.com/iot-core/pricing/#Messaging).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Data Plane's
+// API operation GetRetainedMessage for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * MethodNotAllowedException
+//   The specified combination of HTTP verb and URI is not supported.
+//
+func (c *IoTDataPlane) GetRetainedMessage(input *GetRetainedMessageInput) (*GetRetainedMessageOutput, error) {
+	req, out := c.GetRetainedMessageRequest(input)
+	return out, req.Send()
+}
+
+// GetRetainedMessageWithContext is the same as GetRetainedMessage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetRetainedMessage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTDataPlane) GetRetainedMessageWithContext(ctx aws.Context, input *GetRetainedMessageInput, opts ...request.Option) (*GetRetainedMessageOutput, error) {
+	req, out := c.GetRetainedMessageRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetThingShadow = "GetThingShadow"
 
 // GetThingShadowRequest generates a "aws/request.Request" representing the
@@ -156,8 +263,11 @@ func (c *IoTDataPlane) GetThingShadowRequest(input *GetThingShadowInput) (req *r
 //
 // Gets the shadow for the specified thing.
 //
+// Requires permission to access the GetThingShadow (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // For more information, see GetThingShadow (http://docs.aws.amazon.com/iot/latest/developerguide/API_GetThingShadow.html)
-// in the AWS IoT Developer Guide.
+// in the IoT Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -256,6 +366,9 @@ func (c *IoTDataPlane) ListNamedShadowsForThingRequest(input *ListNamedShadowsFo
 //
 // Lists the shadows for the specified thing.
 //
+// Requires permission to access the ListNamedShadowsForThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -306,6 +419,169 @@ func (c *IoTDataPlane) ListNamedShadowsForThingWithContext(ctx aws.Context, inpu
 	return out, req.Send()
 }
 
+const opListRetainedMessages = "ListRetainedMessages"
+
+// ListRetainedMessagesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRetainedMessages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRetainedMessages for more information on using the ListRetainedMessages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRetainedMessagesRequest method.
+//    req, resp := client.ListRetainedMessagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoTDataPlane) ListRetainedMessagesRequest(input *ListRetainedMessagesInput) (req *request.Request, output *ListRetainedMessagesOutput) {
+	op := &request.Operation{
+		Name:       opListRetainedMessages,
+		HTTPMethod: "GET",
+		HTTPPath:   "/retainedMessage",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRetainedMessagesInput{}
+	}
+
+	output = &ListRetainedMessagesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRetainedMessages API operation for AWS IoT Data Plane.
+//
+// Lists summary information about the retained messages stored for the account.
+//
+// This action returns only the topic names of the retained messages. It doesn't
+// return any message payloads. Although this action doesn't return a message
+// payload, it can still incur messaging costs.
+//
+// To get the message payload of a retained message, call GetRetainedMessage
+// (https://docs.aws.amazon.com/iot/latest/developerguide/API_iotdata_GetRetainedMessage.html)
+// with the topic name of the retained message.
+//
+// Requires permission to access the ListRetainedMessages (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiotfleethubfordevicemanagement.html#awsiotfleethubfordevicemanagement-actions-as-permissions)
+// action.
+//
+// For more information about messaging costs, see IoT Core pricing - Messaging
+// (http://aws.amazon.com/iot-core/pricing/#Messaging).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT Data Plane's
+// API operation ListRetainedMessages for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * MethodNotAllowedException
+//   The specified combination of HTTP verb and URI is not supported.
+//
+func (c *IoTDataPlane) ListRetainedMessages(input *ListRetainedMessagesInput) (*ListRetainedMessagesOutput, error) {
+	req, out := c.ListRetainedMessagesRequest(input)
+	return out, req.Send()
+}
+
+// ListRetainedMessagesWithContext is the same as ListRetainedMessages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRetainedMessages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTDataPlane) ListRetainedMessagesWithContext(ctx aws.Context, input *ListRetainedMessagesInput, opts ...request.Option) (*ListRetainedMessagesOutput, error) {
+	req, out := c.ListRetainedMessagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRetainedMessagesPages iterates over the pages of a ListRetainedMessages operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRetainedMessages method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRetainedMessages operation.
+//    pageNum := 0
+//    err := client.ListRetainedMessagesPages(params,
+//        func(page *iotdataplane.ListRetainedMessagesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoTDataPlane) ListRetainedMessagesPages(input *ListRetainedMessagesInput, fn func(*ListRetainedMessagesOutput, bool) bool) error {
+	return c.ListRetainedMessagesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRetainedMessagesPagesWithContext same as ListRetainedMessagesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoTDataPlane) ListRetainedMessagesPagesWithContext(ctx aws.Context, input *ListRetainedMessagesInput, fn func(*ListRetainedMessagesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRetainedMessagesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRetainedMessagesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRetainedMessagesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opPublish = "Publish"
 
 // PublishRequest generates a "aws/request.Request" representing the
@@ -349,10 +625,16 @@ func (c *IoTDataPlane) PublishRequest(input *PublishInput) (req *request.Request
 
 // Publish API operation for AWS IoT Data Plane.
 //
-// Publishes state information.
+// Publishes an MQTT message.
 //
-// For more information, see HTTP Protocol (http://docs.aws.amazon.com/iot/latest/developerguide/protocols.html#http)
-// in the AWS IoT Developer Guide.
+// Requires permission to access the Publish (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// For more information about MQTT messages, see MQTT Protocol (http://docs.aws.amazon.com/iot/latest/developerguide/mqtt.html)
+// in the IoT Developer Guide.
+//
+// For more information about messaging costs, see IoT Core pricing - Messaging
+// (http://aws.amazon.com/iot-core/pricing/#Messaging).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -439,8 +721,11 @@ func (c *IoTDataPlane) UpdateThingShadowRequest(input *UpdateThingShadowInput) (
 //
 // Updates the shadow for the specified thing.
 //
+// Requires permission to access the UpdateThingShadow (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // For more information, see UpdateThingShadow (http://docs.aws.amazon.com/iot/latest/developerguide/API_UpdateThingShadow.html)
-// in the AWS IoT Developer Guide.
+// in the IoT Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -632,6 +917,102 @@ func (s DeleteThingShadowOutput) GoString() string {
 // SetPayload sets the Payload field's value.
 func (s *DeleteThingShadowOutput) SetPayload(v []byte) *DeleteThingShadowOutput {
 	s.Payload = v
+	return s
+}
+
+// The input for the GetRetainedMessage operation.
+type GetRetainedMessageInput struct {
+	_ struct{} `type:"structure"`
+
+	// The topic name of the retained message to retrieve.
+	//
+	// Topic is a required field
+	Topic *string `location:"uri" locationName:"topic" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetRetainedMessageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRetainedMessageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetRetainedMessageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetRetainedMessageInput"}
+	if s.Topic == nil {
+		invalidParams.Add(request.NewErrParamRequired("Topic"))
+	}
+	if s.Topic != nil && len(*s.Topic) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Topic", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTopic sets the Topic field's value.
+func (s *GetRetainedMessageInput) SetTopic(v string) *GetRetainedMessageInput {
+	s.Topic = &v
+	return s
+}
+
+// The output from the GetRetainedMessage operation.
+type GetRetainedMessageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Epoch date and time, in milliseconds, when the retained message was stored
+	// by IoT.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// The Base64-encoded message payload of the retained message body.
+	//
+	// Payload is automatically base64 encoded/decoded by the SDK.
+	Payload []byte `locationName:"payload" type:"blob"`
+
+	// The quality of service (QoS) level used to publish the retained message.
+	Qos *int64 `locationName:"qos" type:"integer"`
+
+	// The topic name to which the retained message was published.
+	Topic *string `locationName:"topic" type:"string"`
+}
+
+// String returns the string representation
+func (s GetRetainedMessageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetRetainedMessageOutput) GoString() string {
+	return s.String()
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *GetRetainedMessageOutput) SetLastModifiedTime(v int64) *GetRetainedMessageOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetPayload sets the Payload field's value.
+func (s *GetRetainedMessageOutput) SetPayload(v []byte) *GetRetainedMessageOutput {
+	s.Payload = v
+	return s
+}
+
+// SetQos sets the Qos field's value.
+func (s *GetRetainedMessageOutput) SetQos(v int64) *GetRetainedMessageOutput {
+	s.Qos = &v
+	return s
+}
+
+// SetTopic sets the Topic field's value.
+func (s *GetRetainedMessageOutput) SetTopic(v string) *GetRetainedMessageOutput {
+	s.Topic = &v
 	return s
 }
 
@@ -892,14 +1273,14 @@ func (s *ListNamedShadowsForThingInput) SetThingName(v string) *ListNamedShadows
 type ListNamedShadowsForThingOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The token for the next set of results, or null if there are no additional
-	// results.
+	// The token to use to get the next set of results, or null if there are no
+	// additional results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
 	// The list of shadows for the specified thing.
 	Results []*string `locationName:"results" type:"list"`
 
-	// The Epoch date and time the response was generated by AWS IoT.
+	// The Epoch date and time the response was generated by IoT.
 	Timestamp *int64 `locationName:"timestamp" type:"long"`
 }
 
@@ -928,6 +1309,86 @@ func (s *ListNamedShadowsForThingOutput) SetResults(v []*string) *ListNamedShado
 // SetTimestamp sets the Timestamp field's value.
 func (s *ListNamedShadowsForThingOutput) SetTimestamp(v int64) *ListNamedShadowsForThingOutput {
 	s.Timestamp = &v
+	return s
+}
+
+type ListRetainedMessagesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return at one time.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListRetainedMessagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRetainedMessagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRetainedMessagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRetainedMessagesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRetainedMessagesInput) SetMaxResults(v int64) *ListRetainedMessagesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRetainedMessagesInput) SetNextToken(v string) *ListRetainedMessagesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListRetainedMessagesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token for the next set of results, or null if there are no additional
+	// results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// A summary list the account's retained messages. The information returned
+	// doesn't include the message payloads of the retained messages.
+	RetainedTopics []*RetainedMessageSummary `locationName:"retainedTopics" type:"list"`
+}
+
+// String returns the string representation
+func (s ListRetainedMessagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListRetainedMessagesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRetainedMessagesOutput) SetNextToken(v string) *ListRetainedMessagesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRetainedTopics sets the RetainedTopics field's value.
+func (s *ListRetainedMessagesOutput) SetRetainedTopics(v []*RetainedMessageSummary) *ListRetainedMessagesOutput {
+	s.RetainedTopics = v
 	return s
 }
 
@@ -992,11 +1453,25 @@ func (s *MethodNotAllowedException) RequestID() string {
 type PublishInput struct {
 	_ struct{} `type:"structure" payload:"Payload"`
 
-	// The state information, in JSON format.
+	// The message body. MQTT accepts text, binary, and empty (null) message payloads.
+	//
+	// Publishing an empty (null) payload with retain = true deletes the retained
+	// message identified by topic from IoT Core.
 	Payload []byte `locationName:"payload" type:"blob"`
 
 	// The Quality of Service (QoS) level.
 	Qos *int64 `location:"querystring" locationName:"qos" type:"integer"`
+
+	// A Boolean value that determines whether to set the RETAIN flag when the message
+	// is published.
+	//
+	// Setting the RETAIN flag causes the message to be retained and sent to new
+	// subscribers to the topic.
+	//
+	// Valid values: true | false
+	//
+	// Default value: false
+	Retain *bool `location:"querystring" locationName:"retain" type:"boolean"`
 
 	// The name of the MQTT topic.
 	//
@@ -1039,6 +1514,12 @@ func (s *PublishInput) SetPayload(v []byte) *PublishInput {
 // SetQos sets the Qos field's value.
 func (s *PublishInput) SetQos(v int64) *PublishInput {
 	s.Qos = &v
+	return s
+}
+
+// SetRetain sets the Retain field's value.
+func (s *PublishInput) SetRetain(v bool) *PublishInput {
+	s.Retain = &v
 	return s
 }
 
@@ -1174,6 +1655,58 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about a single retained message.
+type RetainedMessageSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Epoch date and time, in milliseconds, when the retained message was stored
+	// by IoT.
+	LastModifiedTime *int64 `locationName:"lastModifiedTime" type:"long"`
+
+	// The size of the retained message's payload in bytes.
+	PayloadSize *int64 `locationName:"payloadSize" type:"long"`
+
+	// The quality of service (QoS) level used to publish the retained message.
+	Qos *int64 `locationName:"qos" type:"integer"`
+
+	// The topic name to which the retained message was published.
+	Topic *string `locationName:"topic" type:"string"`
+}
+
+// String returns the string representation
+func (s RetainedMessageSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetainedMessageSummary) GoString() string {
+	return s.String()
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *RetainedMessageSummary) SetLastModifiedTime(v int64) *RetainedMessageSummary {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetPayloadSize sets the PayloadSize field's value.
+func (s *RetainedMessageSummary) SetPayloadSize(v int64) *RetainedMessageSummary {
+	s.PayloadSize = &v
+	return s
+}
+
+// SetQos sets the Qos field's value.
+func (s *RetainedMessageSummary) SetQos(v int64) *RetainedMessageSummary {
+	s.Qos = &v
+	return s
+}
+
+// SetTopic sets the Topic field's value.
+func (s *RetainedMessageSummary) SetTopic(v string) *RetainedMessageSummary {
+	s.Topic = &v
+	return s
 }
 
 // The service is temporarily unavailable.
