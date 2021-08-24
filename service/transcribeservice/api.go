@@ -250,7 +250,7 @@ func (c *TranscribeService) CreateMedicalVocabularyRequest(input *CreateMedicalV
 
 // CreateMedicalVocabulary API operation for Amazon Transcribe Service.
 //
-// Creates a new custom vocabulary that you can use to change how Amazon Transcribe
+// Creates a new custom vocabulary that you can use to modify how Amazon Transcribe
 // Medical transcribes your audio file.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2752,6 +2752,101 @@ func (c *TranscribeService) ListMedicalVocabulariesPagesWithContext(ctx aws.Cont
 	return p.Err()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListTagsForResource
+func (c *TranscribeService) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Transcribe Service.
+//
+// Lists all tags associated with a given transcription job, vocabulary, or
+// resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/ListTagsForResource
+func (c *TranscribeService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListTranscriptionJobs = "ListTranscriptionJobs"
 
 // ListTranscriptionJobsRequest generates a "aws/request.Request" representing the
@@ -3482,6 +3577,202 @@ func (c *TranscribeService) StartTranscriptionJobWithContext(ctx aws.Context, in
 	return out, req.Send()
 }
 
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/TagResource
+func (c *TranscribeService) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Transcribe Service.
+//
+// Tags a Amazon Transcribe resource with the given list of tags.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * ConflictException
+//   There is already a resource with that name.
+//
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/TagResource
+func (c *TranscribeService) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UntagResource
+func (c *TranscribeService) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Transcribe Service.
+//
+// Removes specified tags from a specified Amazon Transcribe resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Transcribe Service's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * LimitExceededException
+//   Either you have sent too many requests or your input file is too long. Wait
+//   before you resend your request, or use a smaller file and resend the request.
+//
+//   * BadRequestException
+//   Your request didn't pass one or more validation tests. For example, if the
+//   entity that you're trying to delete doesn't exist or if it is in a non-terminal
+//   state (for example, it's "in progress"). See the exception Message field
+//   for more information.
+//
+//   * ConflictException
+//   There is already a resource with that name.
+//
+//   * NotFoundException
+//   We can't find the requested resource. Check the name and try your request
+//   again.
+//
+//   * InternalFailureException
+//   There was an internal error. Check the error message and try your request
+//   again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transcribe-2017-10-26/UntagResource
+func (c *TranscribeService) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *TranscribeService) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateCallAnalyticsCategory = "UpdateCallAnalyticsCategory"
 
 // UpdateCallAnalyticsCategoryRequest generates a "aws/request.Request" representing the
@@ -4047,7 +4338,7 @@ type CallAnalyticsJob struct {
 	//
 	//    * Invalid sample rate for audio file: The sample rate specified in the
 	//    MediaSampleRateHertz of the request isn't valid. The sample rate must
-	//    be between 8000 and 48000 Hertz.
+	//    be between 8,000 and 48,000 Hertz.
 	//
 	//    * The sample rate provided does not match the detected sample rate: The
 	//    sample rate in the audio file doesn't match the sample rate specified
@@ -4056,7 +4347,7 @@ type CallAnalyticsJob struct {
 	//
 	//    * Invalid file size: file size too large: The size of your audio file
 	//    is larger than what Amazon Transcribe Medical can process. For more information,
-	//    see Guidelines and Quotas in the Amazon Transcribe Medical Guide
+	//    see Guidelines and Quotas in the Amazon Transcribe Medical Guide.
 	//
 	//    * Invalid number of channels: number of channels too large: Your audio
 	//    contains more channels than Amazon Transcribe Medical is configured to
@@ -4077,51 +4368,8 @@ type CallAnalyticsJob struct {
 	// Transcribe will use machine learning to automatically identify the language.
 	// To improve the accuracy of language identification, you can provide an array
 	// containing the possible language codes for the language spoken in your audio.
-	//
-	// The following list shows the supported languages and corresponding language
-	// codes for call analytics jobs:
-	//
-	//    * Gulf Arabic (ar-AE)
-	//
-	//    * Mandarin Chinese, Mainland (zh-CN)
-	//
-	//    * Australian English (en-AU)
-	//
-	//    * British English (en-GB)
-	//
-	//    * Indian English (en-IN)
-	//
-	//    * Irish English (en-IE)
-	//
-	//    * Scottish English (en-AB)
-	//
-	//    * US English (en-US)
-	//
-	//    * Welsh English (en-WL)
-	//
-	//    * Spanish (es-ES)
-	//
-	//    * US Spanish (es-US)
-	//
-	//    * French (fr-FR)
-	//
-	//    * Canadian French (fr-CA)
-	//
-	//    * German (de-DE)
-	//
-	//    * Swiss German (de-CH)
-	//
-	//    * Indian Hindi (hi-IN)
-	//
-	//    * Italian (it-IT)
-	//
-	//    * Japanese (ja-JP)
-	//
-	//    * Korean (ko-KR)
-	//
-	//    * Portuguese (pt-PT)
-	//
-	//    * Brazilian Portuguese (pt-BR)
+	// Refer to Supported languages and language-specific features (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html)
+	// for additional information.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// Describes the input media file in a transcription request.
@@ -4261,52 +4509,9 @@ type CallAnalyticsJobSettings struct {
 	// know the language, you can leave this field blank and Amazon Transcribe will
 	// use machine learning to identify the language for you. To improve the ability
 	// of Amazon Transcribe to correctly identify the language, you can provide
-	// an array of the languages that can be present in the audio.
-	//
-	// The following list shows the supported languages and corresponding language
-	// codes for call analytics jobs:
-	//
-	//    * Gulf Arabic (ar-AE)
-	//
-	//    * Mandarin Chinese, Mainland (zh-CN)
-	//
-	//    * Australian English (en-AU)
-	//
-	//    * British English (en-GB)
-	//
-	//    * Indian English (en-IN)
-	//
-	//    * Irish English (en-IE)
-	//
-	//    * Scottish English (en-AB)
-	//
-	//    * US English (en-US)
-	//
-	//    * Welsh English (en-WL)
-	//
-	//    * Spanish (es-ES)
-	//
-	//    * US Spanish (es-US)
-	//
-	//    * French (fr-FR)
-	//
-	//    * Canadian French (fr-CA)
-	//
-	//    * German (de-DE)
-	//
-	//    * Swiss German (de-CH)
-	//
-	//    * Indian Hindi (hi-IN)
-	//
-	//    * Italian (it-IT)
-	//
-	//    * Japanese (ja-JP)
-	//
-	//    * Korean (ko-KR)
-	//
-	//    * Portuguese (pt-PT)
-	//
-	//    * Brazilian Portuguese (pt-BR)
+	// an array of the languages that can be present in the audio. Refer to Supported
+	// languages and language-specific features (https://docs.aws.amazon.com/transcribe/latest/dg/how-it-works.html)
+	// for additional information.
 	LanguageOptions []*string `min:"1" type:"list"`
 
 	// Set to mask to remove filtered text from the transcript and replace it with
@@ -4782,10 +4987,10 @@ type CreateLanguageModelInput struct {
 	// your custom language model.
 	//
 	// If you want to use your custom language model to transcribe audio with a
-	// sample rate of 16 kHz or greater, choose Wideband.
+	// sample rate of 16,000 Hz or greater, choose Wideband.
 	//
 	// If you want to use your custom language model to transcribe audio with a
-	// sample rate that is less than 16 kHz, choose Narrowband.
+	// sample rate that is less than 16,000 Hz, choose Narrowband.
 	//
 	// BaseModelName is a required field
 	BaseModelName *string `type:"string" required:"true" enum:"BaseModelName"`
@@ -4806,6 +5011,10 @@ type CreateLanguageModelInput struct {
 	//
 	// ModelName is a required field
 	ModelName *string `min:"1" type:"string" required:"true"`
+
+	// Adds one or more tags, each in the form of a key:value pair, to a new language
+	// model at the time you create this new model.
+	Tags []*Tag `min:"1" type:"list"`
 }
 
 // String returns the string representation
@@ -4836,9 +5045,22 @@ func (s *CreateLanguageModelInput) Validate() error {
 	if s.ModelName != nil && len(*s.ModelName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.InputDataConfig != nil {
 		if err := s.InputDataConfig.Validate(); err != nil {
 			invalidParams.AddNested("InputDataConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -4869,6 +5091,12 @@ func (s *CreateLanguageModelInput) SetLanguageCode(v string) *CreateLanguageMode
 // SetModelName sets the ModelName field's value.
 func (s *CreateLanguageModelInput) SetModelName(v string) *CreateLanguageModelInput {
 	s.ModelName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateLanguageModelInput) SetTags(v []*Tag) *CreateLanguageModelInput {
+	s.Tags = v
 	return s
 }
 
@@ -4945,6 +5173,10 @@ type CreateMedicalVocabularyInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
+	// Adds one or more tags, each in the form of a key:value pair, to a new medical
+	// vocabulary at the time you create this new vocabulary.
+	Tags []*Tag `min:"1" type:"list"`
+
 	// The location in Amazon S3 of the text file you use to define your custom
 	// vocabulary. The URI must be in the same Amazon Web Services Region as the
 	// resource that you're calling. Enter information about your VocabularyFileUri
@@ -4991,6 +5223,9 @@ func (s *CreateMedicalVocabularyInput) Validate() error {
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.VocabularyFileUri == nil {
 		invalidParams.Add(request.NewErrParamRequired("VocabularyFileUri"))
 	}
@@ -5003,6 +5238,16 @@ func (s *CreateMedicalVocabularyInput) Validate() error {
 	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5013,6 +5258,12 @@ func (s *CreateMedicalVocabularyInput) Validate() error {
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *CreateMedicalVocabularyInput) SetLanguageCode(v string) *CreateMedicalVocabularyInput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateMedicalVocabularyInput) SetTags(v []*Tag) *CreateMedicalVocabularyInput {
+	s.Tags = v
 	return s
 }
 
@@ -5102,6 +5353,10 @@ type CreateVocabularyFilterInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
+	// Adds one or more tags, each in the form of a key:value pair, to a new Amazon
+	// Transcribe vocabulary filter at the time you create this new vocabulary filter.
+	Tags []*Tag `min:"1" type:"list"`
+
 	// The Amazon S3 location of a text file used as input to create the vocabulary
 	// filter. Only use characters from the character set defined for custom vocabularies.
 	// For a list of character sets, see Character Sets for Custom Vocabularies
@@ -5145,6 +5400,9 @@ func (s *CreateVocabularyFilterInput) Validate() error {
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.VocabularyFilterFileUri != nil && len(*s.VocabularyFilterFileUri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyFilterFileUri", 1))
 	}
@@ -5157,6 +5415,16 @@ func (s *CreateVocabularyFilterInput) Validate() error {
 	if s.Words != nil && len(s.Words) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Words", 1))
 	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5167,6 +5435,12 @@ func (s *CreateVocabularyFilterInput) Validate() error {
 // SetLanguageCode sets the LanguageCode field's value.
 func (s *CreateVocabularyFilterInput) SetLanguageCode(v string) *CreateVocabularyFilterInput {
 	s.LanguageCode = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVocabularyFilterInput) SetTags(v []*Tag) *CreateVocabularyFilterInput {
+	s.Tags = v
 	return s
 }
 
@@ -5233,7 +5507,7 @@ type CreateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code of the vocabulary entries. For a list of languages and
-	// their corresponding language codes, see what-is-transcribe.
+	// their corresponding language codes, see transcribe-whatis.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
@@ -5241,14 +5515,18 @@ type CreateVocabularyInput struct {
 	// An array of strings that contains the vocabulary entries.
 	Phrases []*string `type:"list"`
 
+	// Adds one or more tags, each in the form of a key:value pair, to a new Amazon
+	// Transcribe vocabulary at the time you create this new vocabulary.
+	Tags []*Tag `min:"1" type:"list"`
+
 	// The S3 location of the text file that contains the definition of the custom
 	// vocabulary. The URI must be in the same region as the API endpoint that you
-	// are calling. The general form is
+	// are calling. The general form is:
 	//
 	// For more information about S3 object names, see Object Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html#object-keys)
 	// in the Amazon S3 Developer Guide.
 	//
-	// For more information about custom vocabularies, see Custom Vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary).
+	// For more information about custom vocabularies, see Custom vocabularies (https://docs.aws.amazon.com/transcribe/latest/dg/how-vocabulary).
 	VocabularyFileUri *string `min:"1" type:"string"`
 
 	// The name of the vocabulary. The name must be unique within an Amazon Web
@@ -5276,6 +5554,9 @@ func (s *CreateVocabularyInput) Validate() error {
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.VocabularyFileUri != nil && len(*s.VocabularyFileUri) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyFileUri", 1))
 	}
@@ -5284,6 +5565,16 @@ func (s *CreateVocabularyInput) Validate() error {
 	}
 	if s.VocabularyName != nil && len(*s.VocabularyName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("VocabularyName", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
 	}
 
 	if invalidParams.Len() > 0 {
@@ -5301,6 +5592,12 @@ func (s *CreateVocabularyInput) SetLanguageCode(v string) *CreateVocabularyInput
 // SetPhrases sets the Phrases field's value.
 func (s *CreateVocabularyInput) SetPhrases(v []*string) *CreateVocabularyInput {
 	s.Phrases = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVocabularyInput) SetTags(v []*Tag) *CreateVocabularyInput {
+	s.Tags = v
 	return s
 }
 
@@ -6881,8 +7178,9 @@ func (s *LimitExceededException) RequestID() string {
 type ListCallAnalyticsCategoriesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of categories to return in the response. If there are
-	// fewer results in the list, the response contains only the actual results.
+	// The maximum number of categories to return in each page of results. If there
+	// are fewer results than the value you specify, only the actual results are
+	// returned. If you do not specify a value, the default of 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// When included, NextTokenfetches the next set of categories if the result
@@ -6968,8 +7266,9 @@ type ListCallAnalyticsJobsInput struct {
 	// contains the specified string.
 	JobNameContains *string `min:"1" type:"string"`
 
-	// The maximum number of call analytics jobs to return in the response. If there
-	// are fewer results in the list, this response contains only the actual results.
+	// The maximum number of call analytics jobs to return in each page of results.
+	// If there are fewer results than the value you specify, only the actual results
+	// are returned. If you do not specify a value, the default of 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If you receive a truncated result in the previous request of , include NextToken
@@ -7083,8 +7382,9 @@ func (s *ListCallAnalyticsJobsOutput) SetStatus(v string) *ListCallAnalyticsJobs
 type ListLanguageModelsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of language models to return in the response. If there
-	// are fewer results in the list, the response contains only the actual results.
+	// The maximum number of language models to return in each page of results.
+	// If there are fewer results than the value you specify, only the actual results
+	// are returned. If you do not specify a value, the default of 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// When specified, the custom language model names returned contain the substring
@@ -7195,9 +7495,10 @@ type ListMedicalTranscriptionJobsInput struct {
 	// contains the specified string.
 	JobNameContains *string `min:"1" type:"string"`
 
-	// The maximum number of medical transcription jobs to return in the response.
-	// IF there are fewer results in the list, this response contains only the actual
-	// results.
+	// The maximum number of medical transcription jobs to return in each page of
+	// results. If there are fewer results than the value you specify, only the
+	// actual results are returned. If you do not specify a value, the default of
+	// 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If you a receive a truncated result in the previous request of ListMedicalTranscriptionJobs,
@@ -7309,7 +7610,9 @@ func (s *ListMedicalTranscriptionJobsOutput) SetStatus(v string) *ListMedicalTra
 type ListMedicalVocabulariesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of vocabularies to return in the response.
+	// The maximum number of vocabularies to return in each page of results. If
+	// there are fewer results than the value you specify, only the actual results
+	// are returned. If you do not specify a value, the default of 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// Returns vocabularies whose names contain the specified string. The search
@@ -7423,6 +7726,80 @@ func (s *ListMedicalVocabulariesOutput) SetVocabularies(v []*VocabularyInfo) *Li
 	return s
 }
 
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists all tags associated with a given Amazon Resource Name (ARN).
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists all tags associated with the given Amazon Resource Name (ARN).
+	ResourceArn *string `min:"1" type:"string"`
+
+	// Lists all tags associated with the given transcription job, vocabulary, or
+	// resource.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceOutput) SetResourceArn(v string) *ListTagsForResourceOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
+}
+
 type ListTranscriptionJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7430,8 +7807,9 @@ type ListTranscriptionJobsInput struct {
 	// contains the specified string.
 	JobNameContains *string `min:"1" type:"string"`
 
-	// The maximum number of jobs to return in the response. If there are fewer
-	// results in the list, this response contains only the actual results.
+	// The maximum number of jobs to return in each page of results. If there are
+	// fewer results than the value you specify, only the actual results are returned.
+	// If you do not specify a value, the default of 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// If the result of the previous request to ListTranscriptionJobs was truncated,
@@ -7543,8 +7921,9 @@ func (s *ListTranscriptionJobsOutput) SetTranscriptionJobSummaries(v []*Transcri
 type ListVocabulariesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of vocabularies to return in the response. If there are
-	// fewer results in the list, this response contains only the actual results.
+	// The maximum number of vocabularies to return in each page of results. If
+	// there are fewer results than the value you specify, only the actual results
+	// are returned. If you do not specify a value, the default of 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// When specified, the vocabularies returned in the list are limited to vocabularies
@@ -7661,8 +8040,9 @@ func (s *ListVocabulariesOutput) SetVocabularies(v []*VocabularyInfo) *ListVocab
 type ListVocabularyFiltersInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of filters to return in the response. If there are fewer
-	// results in the list, this response contains only the actual results.
+	// The maximum number of filters to return in each page of results. If there
+	// are fewer results than the value you specify, only the actual results are
+	// returned. If you do not specify a value, the default of 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
 	// Filters the response so that it only contains vocabulary filters whose name
@@ -7873,7 +8253,7 @@ type MedicalTranscriptionJob struct {
 	//
 	//    * Invalid sample rate for audio file- The sample rate specified in the
 	//    MediaSampleRateHertz of the request isn't valid. The sample rate must
-	//    be between 8000 and 48000 Hertz.
+	//    be between 8,000 and 48,000 Hertz.
 	//
 	//    * The sample rate provided does not match the detected sample rate- The
 	//    sample rate in the audio file doesn't match the sample rate specified
@@ -7919,15 +8299,15 @@ type MedicalTranscriptionJob struct {
 	Settings *MedicalTranscriptionSetting `type:"structure"`
 
 	// The medical specialty of any clinicians providing a dictation or having a
-	// conversation. PRIMARYCARE is the only available setting for this object.
-	// This specialty enables you to generate transcriptions for the following medical
-	// fields:
-	//
-	//    * Family Medicine
+	// conversation. Refer to Transcribing a medical conversation (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html)for
+	// a list of supported specialties.
 	Specialty *string `type:"string" enum:"Specialty"`
 
 	// A timestamp that shows when the job started processing.
 	StartTime *time.Time `type:"timestamp"`
+
+	// A key:value pair assigned to a given medical transcription job.
+	Tags []*Tag `min:"1" type:"list"`
 
 	// An object that contains the MedicalTranscript. The MedicalTranscript contains
 	// the TranscriptFileUri.
@@ -8025,6 +8405,12 @@ func (s *MedicalTranscriptionJob) SetStartTime(v time.Time) *MedicalTranscriptio
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *MedicalTranscriptionJob) SetTags(v []*Tag) *MedicalTranscriptionJob {
+	s.Tags = v
+	return s
+}
+
 // SetTranscript sets the Transcript field's value.
 func (s *MedicalTranscriptionJob) SetTranscript(v *MedicalTranscript) *MedicalTranscriptionJob {
 	s.Transcript = v
@@ -8067,14 +8453,14 @@ type MedicalTranscriptionJobSummary struct {
 	// The name of a medical transcription job.
 	MedicalTranscriptionJobName *string `min:"1" type:"string"`
 
-	// Indicates the location of the transcription job's output.
-	//
-	// The CUSTOMER_BUCKET is the S3 location provided in the OutputBucketName field
-	// when the
+	// Indicates the location of the transcription job's output. This field must
+	// be the path of an S3 bucket; if you don't already have an S3 bucket, one
+	// is created based on the path you add.
 	OutputLocationType *string `type:"string" enum:"OutputLocationType"`
 
-	// The medical specialty of the transcription job. Primary care is the only
-	// valid value.
+	// The medical specialty of the transcription job. Refer to Transcribing a medical
+	// conversation (https://docs.aws.amazon.com/transcribe/latest/dg/transcribe-medical-conversation.html)for
+	// a list of supported specialties.
 	Specialty *string `type:"string" enum:"Specialty"`
 
 	// A timestamp that shows when the job began processing.
@@ -8815,9 +9201,9 @@ type StartCallAnalyticsJobInput struct {
 	_ struct{} `type:"structure"`
 
 	// The name of the call analytics job. You can't use the string "." or ".."
-	// by themselves as the job name. The name must also be unique within an AWS
-	// account. If you try to create a call analytics job with the same name as
-	// a previous call analytics job, you get a ConflictException error.
+	// by themselves as the job name. The name must also be unique within an Amazon
+	// Web Services account. If you try to create a call analytics job with the
+	// same name as a previous call analytics job, you get a ConflictException error.
 	//
 	// CallAnalyticsJobName is a required field
 	CallAnalyticsJobName *string `min:"1" type:"string" required:"true"`
@@ -8841,12 +9227,12 @@ type StartCallAnalyticsJobInput struct {
 	// Media is a required field
 	Media *Media `type:"structure" required:"true"`
 
-	// The Amazon Resource Name (ARN) of the AWS Key Management Service key used
-	// to encrypt the output of the call analytics job. The user calling the operation
-	// must have permission to use the specified KMS key.
+	// The Amazon Resource Name (ARN) of the Amazon Web Services Key Management
+	// Service key used to encrypt the output of the call analytics job. The user
+	// calling the operation must have permission to use the specified KMS key.
 	//
-	// You use either of the following to identify an AWS KMS key in the current
-	// account:
+	// You use either of the following to identify an Amazon Web Services KMS key
+	// in the current account:
 	//
 	//    * KMS Key ID: "1234abcd-12ab-34cd-56ef-1234567890ab"
 	//
@@ -8883,10 +9269,11 @@ type StartCallAnalyticsJobInput struct {
 	//    that has the filename specified, Amazon Transcribe saves the output of
 	//    the analytics job as s3://DOC-EXAMPLEBUCKET1/folder/filename.json
 	//
-	// You can specify an AWS Key Management Service key to encrypt the output of
-	// our analytics job using the OutputEncryptionKMSKeyId parameter. If you don't
-	// specify a KMS key, Amazon Transcribe uses the default Amazon S3 key for server-side
-	// encryption of the analytics job output that is placed in your S3 bucket.
+	// You can specify an Amazon Web Services Key Management Service (KMS) key to
+	// encrypt the output of our analytics job using the OutputEncryptionKMSKeyId
+	// parameter. If you don't specify a KMS key, Amazon Transcribe uses the default
+	// Amazon S3 key for server-side encryption of the analytics job output that
+	// is placed in your S3 bucket.
 	OutputLocation *string `min:"1" type:"string"`
 
 	// A Settings object that provides optional settings for a call analytics job.
@@ -9122,9 +9509,12 @@ type StartMedicalTranscriptionJobInput struct {
 	// Specialty is a required field
 	Specialty *string `type:"string" required:"true" enum:"Specialty"`
 
+	// Add tags to an Amazon Transcribe medical transcription job.
+	Tags []*Tag `min:"1" type:"list"`
+
 	// The type of speech in the input audio. CONVERSATION refers to conversations
 	// between two or more speakers, e.g., a conversations between doctors and patients.
-	// DICTATION refers to single-speaker dictated speech, e.g., for clinical notes.
+	// DICTATION refers to single-speaker dictated speech, such as clinical notes.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"Type"`
@@ -9170,6 +9560,9 @@ func (s *StartMedicalTranscriptionJobInput) Validate() error {
 	if s.Specialty == nil {
 		invalidParams.Add(request.NewErrParamRequired("Specialty"))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.Type == nil {
 		invalidParams.Add(request.NewErrParamRequired("Type"))
 	}
@@ -9181,6 +9574,16 @@ func (s *StartMedicalTranscriptionJobInput) Validate() error {
 	if s.Settings != nil {
 		if err := s.Settings.Validate(); err != nil {
 			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -9256,6 +9659,12 @@ func (s *StartMedicalTranscriptionJobInput) SetSpecialty(v string) *StartMedical
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartMedicalTranscriptionJobInput) SetTags(v []*Tag) *StartMedicalTranscriptionJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetType sets the Type field's value.
 func (s *StartMedicalTranscriptionJobInput) SetType(v string) *StartMedicalTranscriptionJobInput {
 	s.Type = &v
@@ -9305,7 +9714,7 @@ type StartTranscriptionJobInput struct {
 	// The language code for the language used in the input media file.
 	//
 	// To transcribe speech in Modern Standard Arabic (ar-SA), your audio or video
-	// file must be encoded at a sample rate of 16000 Hz or higher.
+	// file must be encoded at a sample rate of 16,000 Hz or higher.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
 
 	// An object containing a list of languages that might be present in your collection
@@ -9313,7 +9722,7 @@ type StartTranscriptionJobInput struct {
 	// best matches the source audio from that list.
 	//
 	// To transcribe speech in Modern Standard Arabic (ar-SA), your audio or video
-	// file must be encoded at a sample rate of 16000 Hz or higher.
+	// file must be encoded at a sample rate of 16,000 Hz or higher.
 	LanguageOptions []*string `min:"1" type:"list"`
 
 	// An object that describes the input media for a transcription job.
@@ -9407,6 +9816,9 @@ type StartTranscriptionJobInput struct {
 	// A Settings object that provides optional settings for a transcription job.
 	Settings *Settings `type:"structure"`
 
+	// Add tags to an Amazon Transcribe transcription job.
+	Tags []*Tag `min:"1" type:"list"`
+
 	// The name of the job. You can't use the strings "." or ".." by themselves
 	// as the job name. The name must also be unique within an Amazon Web Services
 	// account. If you try to create a transcription job with the same name as a
@@ -9444,6 +9856,9 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	if s.OutputKey != nil && len(*s.OutputKey) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("OutputKey", 1))
 	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
 	if s.TranscriptionJobName == nil {
 		invalidParams.Add(request.NewErrParamRequired("TranscriptionJobName"))
 	}
@@ -9473,6 +9888,16 @@ func (s *StartTranscriptionJobInput) Validate() error {
 	if s.Settings != nil {
 		if err := s.Settings.Validate(); err != nil {
 			invalidParams.AddNested("Settings", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
 		}
 	}
 
@@ -9560,6 +9985,12 @@ func (s *StartTranscriptionJobInput) SetSettings(v *Settings) *StartTranscriptio
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *StartTranscriptionJobInput) SetTags(v []*Tag) *StartTranscriptionJobInput {
+	s.Tags = v
+	return s
+}
+
 // SetTranscriptionJobName sets the TranscriptionJobName field's value.
 func (s *StartTranscriptionJobInput) SetTranscriptionJobName(v string) *StartTranscriptionJobInput {
 	s.TranscriptionJobName = &v
@@ -9587,6 +10018,151 @@ func (s StartTranscriptionJobOutput) GoString() string {
 func (s *StartTranscriptionJobOutput) SetTranscriptionJob(v *TranscriptionJob) *StartTranscriptionJobOutput {
 	s.TranscriptionJob = v
 	return s
+}
+
+// A key:value pair that adds metadata to a resource used by Amazon Transcribe.
+// For example, a tag with the key:value pair ‘Department’:’Sales’ might
+// be added to a resource to indicate its use by your organization's sales department.
+type Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The first part of a key:value pair that forms a tag associated with a given
+	// resource. For example, in the tag ‘Department’:’Sales’, the key is
+	// 'Department'.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The second part of a key:value pair that forms a tag associated with a given
+	// resource. For example, in the tag ‘Department’:’Sales’, the value
+	// is 'Sales'.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *Tag) SetKey(v string) *Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *Tag) SetValue(v string) *Tag {
+	s.Value = &v
+	return s
+}
+
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want
+	// to tag.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+
+	// The tags you are assigning to a given Amazon Transcribe resource.
+	//
+	// Tags is a required field
+	Tags []*Tag `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // Identifies the location of a transcription.
@@ -9765,7 +10341,7 @@ type TranscriptionJob struct {
 	//
 	//    * Invalid sample rate for audio file - The sample rate specified in the
 	//    MediaSampleRateHertz of the request isn't valid. The sample rate must
-	//    be between 8000 and 48000 Hertz.
+	//    be between 8,000 and 48,000 Hertz.
 	//
 	//    * The sample rate provided does not match the detected sample rate - The
 	//    sample rate in the audio file doesn't match the sample rate specified
@@ -9820,8 +10396,11 @@ type TranscriptionJob struct {
 	// transcription job.
 	Settings *Settings `type:"structure"`
 
-	// A timestamp that shows with the job was started processing.
+	// A timestamp that shows when the job started processing.
 	StartTime *time.Time `type:"timestamp"`
+
+	// A key:value pair assigned to a given transcription job.
+	Tags []*Tag `min:"1" type:"list"`
 
 	// An object that describes the output of the transcription job.
 	Transcript *Transcript `type:"structure"`
@@ -9930,6 +10509,12 @@ func (s *TranscriptionJob) SetSettings(v *Settings) *TranscriptionJob {
 // SetStartTime sets the StartTime field's value.
 func (s *TranscriptionJob) SetStartTime(v time.Time) *TranscriptionJob {
 	s.StartTime = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TranscriptionJob) SetTags(v []*Tag) *TranscriptionJob {
+	s.Tags = v
 	return s
 }
 
@@ -10087,6 +10672,80 @@ func (s *TranscriptionJobSummary) SetTranscriptionJobStatus(v string) *Transcrip
 	return s
 }
 
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want
+	// to remove tags from.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `min:"1" type:"string" required:"true"`
+
+	// A list of tag keys you want to remove from a specified Amazon Transcribe
+	// resource.
+	//
+	// TagKeys is a required field
+	TagKeys []*string `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+	if s.TagKeys != nil && len(s.TagKeys) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TagKeys", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateCallAnalyticsCategoryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10192,9 +10851,9 @@ type UpdateMedicalVocabularyInput struct {
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`
 
-	// The location in Amazon S3 of the text file that contains the you use for
-	// your custom vocabulary. The URI must be in the same Amazon Web Services Region
-	// as the resource that you are calling. The following is the format for a URI:
+	// The location in Amazon S3 of the text file that contains your custom vocabulary.
+	// The URI must be in the same Amazon Web Services Region as the resource that
+	// you are calling. The following is the format for a URI:
 	//
 	// https://s3.<aws-region>.amazonaws.com/<bucket-name>/<keyprefix>/<objectkey>
 	//
@@ -10446,7 +11105,7 @@ type UpdateVocabularyInput struct {
 	_ struct{} `type:"structure"`
 
 	// The language code of the vocabulary entries. For a list of languages and
-	// their corresponding language codes, see what-is-transcribe.
+	// their corresponding language codes, see transcribe-whatis.
 	//
 	// LanguageCode is a required field
 	LanguageCode *string `type:"string" required:"true" enum:"LanguageCode"`

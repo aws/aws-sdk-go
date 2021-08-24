@@ -59,9 +59,10 @@ func (c *Polly) DeleteLexiconRequest(input *DeleteLexiconInput) (req *request.Re
 
 // DeleteLexicon API operation for Amazon Polly.
 //
-// Deletes the specified pronunciation lexicon stored in an AWS Region. A lexicon
-// which has been deleted is not available for speech synthesis, nor is it possible
-// to retrieve it using either the GetLexicon or ListLexicon APIs.
+// Deletes the specified pronunciation lexicon stored in an Amazon Web Services
+// Region. A lexicon which has been deleted is not available for speech synthesis,
+// nor is it possible to retrieve it using either the GetLexicon or ListLexicon
+// APIs.
 //
 // For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 //
@@ -249,8 +250,8 @@ func (c *Polly) GetLexiconRequest(input *GetLexiconInput) (req *request.Request,
 
 // GetLexicon API operation for Amazon Polly.
 //
-// Returns the content of the specified pronunciation lexicon stored in an AWS
-// Region. For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
+// Returns the content of the specified pronunciation lexicon stored in an Amazon
+// Web Services Region. For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -426,8 +427,8 @@ func (c *Polly) ListLexiconsRequest(input *ListLexiconsInput) (req *request.Requ
 
 // ListLexicons API operation for Amazon Polly.
 //
-// Returns a list of pronunciation lexicons stored in an AWS Region. For more
-// information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
+// Returns a list of pronunciation lexicons stored in an Amazon Web Services
+// Region. For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -654,10 +655,11 @@ func (c *Polly) PutLexiconRequest(input *PutLexiconInput) (req *request.Request,
 
 // PutLexicon API operation for Amazon Polly.
 //
-// Stores a pronunciation lexicon in an AWS Region. If a lexicon with the same
-// name already exists in the region, it is overwritten by the new lexicon.
-// Lexicon operations have eventual consistency, therefore, it might take some
-// time before the lexicon is available to the SynthesizeSpeech operation.
+// Stores a pronunciation lexicon in an Amazon Web Services Region. If a lexicon
+// with the same name already exists in the region, it is overwritten by the
+// new lexicon. Lexicon operations have eventual consistency, therefore, it
+// might take some time before the lexicon is available to the SynthesizeSpeech
+// operation.
 //
 // For more information, see Managing Lexicons (https://docs.aws.amazon.com/polly/latest/dg/managing-lexicons.html).
 //
@@ -765,7 +767,9 @@ func (c *Polly) StartSpeechSynthesisTaskRequest(input *StartSpeechSynthesisTaskI
 // service to store the output of the synthesis task and two optional parameters
 // (OutputS3KeyPrefix and SnsTopicArn). Once the synthesis task is created,
 // this operation will return a SpeechSynthesisTask object, which will include
-// an identifier of this task as well as the current status.
+// an identifier of this task as well as the current status. The SpeechSynthesisTask
+// object is available for 72 hours after starting the asynchronous synthesis
+// task.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2596,8 +2600,8 @@ type StartSpeechSynthesisTaskInput struct {
 	// English (en-IN) or Hindi (hi-IN).
 	//
 	// If a bilingual voice is used and no language code is specified, Amazon Polly
-	// will use the default language of the bilingual voice. The default language
-	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// uses the default language of the bilingual voice. The default language for
+	// any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
 	// operation for the LanguageCode parameter. For example, if no language code
 	// is specified, Aditi will use Indian English rather than Hindi.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
@@ -2798,8 +2802,8 @@ type SynthesisTask struct {
 	// (en-IN) or Hindi (hi-IN).
 	//
 	// If a bilingual voice is used and no language code is specified, Amazon Polly
-	// will use the default language of the bilingual voice. The default language
-	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// uses the default language of the bilingual voice. The default language for
+	// any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
 	// operation for the LanguageCode parameter. For example, if no language code
 	// is specified, Aditi will use Indian English rather than Hindi.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
@@ -3041,8 +3045,8 @@ type SynthesizeSpeechInput struct {
 	// English (en-IN) or Hindi (hi-IN).
 	//
 	// If a bilingual voice is used and no language code is specified, Amazon Polly
-	// will use the default language of the bilingual voice. The default language
-	// for any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
+	// uses the default language of the bilingual voice. The default language for
+	// any voice is the one returned by the DescribeVoices (https://docs.aws.amazon.com/polly/latest/dg/API_DescribeVoices.html)
 	// operation for the LanguageCode parameter. For example, if no language code
 	// is specified, Aditi will use Indian English rather than Hindi.
 	LanguageCode *string `type:"string" enum:"LanguageCode"`
@@ -3608,6 +3612,9 @@ const (
 
 	// LanguageCodeTrTr is a LanguageCode enum value
 	LanguageCodeTrTr = "tr-TR"
+
+	// LanguageCodeEnNz is a LanguageCode enum value
+	LanguageCodeEnNz = "en-NZ"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -3642,6 +3649,7 @@ func LanguageCode_Values() []string {
 		LanguageCodeRuRu,
 		LanguageCodeSvSe,
 		LanguageCodeTrTr,
+		LanguageCodeEnNz,
 	}
 }
 
@@ -3922,6 +3930,9 @@ const (
 
 	// VoiceIdZhiyu is a VoiceId enum value
 	VoiceIdZhiyu = "Zhiyu"
+
+	// VoiceIdAria is a VoiceId enum value
+	VoiceIdAria = "Aria"
 )
 
 // VoiceId_Values returns all elements of the VoiceId enum
@@ -3990,5 +4001,6 @@ func VoiceId_Values() []string {
 		VoiceIdVitoria,
 		VoiceIdZeina,
 		VoiceIdZhiyu,
+		VoiceIdAria,
 	}
 }

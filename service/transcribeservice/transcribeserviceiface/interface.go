@@ -179,6 +179,10 @@ type TranscribeServiceAPI interface {
 	ListMedicalVocabulariesPages(*transcribeservice.ListMedicalVocabulariesInput, func(*transcribeservice.ListMedicalVocabulariesOutput, bool) bool) error
 	ListMedicalVocabulariesPagesWithContext(aws.Context, *transcribeservice.ListMedicalVocabulariesInput, func(*transcribeservice.ListMedicalVocabulariesOutput, bool) bool, ...request.Option) error
 
+	ListTagsForResource(*transcribeservice.ListTagsForResourceInput) (*transcribeservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *transcribeservice.ListTagsForResourceInput, ...request.Option) (*transcribeservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*transcribeservice.ListTagsForResourceInput) (*request.Request, *transcribeservice.ListTagsForResourceOutput)
+
 	ListTranscriptionJobs(*transcribeservice.ListTranscriptionJobsInput) (*transcribeservice.ListTranscriptionJobsOutput, error)
 	ListTranscriptionJobsWithContext(aws.Context, *transcribeservice.ListTranscriptionJobsInput, ...request.Option) (*transcribeservice.ListTranscriptionJobsOutput, error)
 	ListTranscriptionJobsRequest(*transcribeservice.ListTranscriptionJobsInput) (*request.Request, *transcribeservice.ListTranscriptionJobsOutput)
@@ -211,6 +215,14 @@ type TranscribeServiceAPI interface {
 	StartTranscriptionJob(*transcribeservice.StartTranscriptionJobInput) (*transcribeservice.StartTranscriptionJobOutput, error)
 	StartTranscriptionJobWithContext(aws.Context, *transcribeservice.StartTranscriptionJobInput, ...request.Option) (*transcribeservice.StartTranscriptionJobOutput, error)
 	StartTranscriptionJobRequest(*transcribeservice.StartTranscriptionJobInput) (*request.Request, *transcribeservice.StartTranscriptionJobOutput)
+
+	TagResource(*transcribeservice.TagResourceInput) (*transcribeservice.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *transcribeservice.TagResourceInput, ...request.Option) (*transcribeservice.TagResourceOutput, error)
+	TagResourceRequest(*transcribeservice.TagResourceInput) (*request.Request, *transcribeservice.TagResourceOutput)
+
+	UntagResource(*transcribeservice.UntagResourceInput) (*transcribeservice.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *transcribeservice.UntagResourceInput, ...request.Option) (*transcribeservice.UntagResourceOutput, error)
+	UntagResourceRequest(*transcribeservice.UntagResourceInput) (*request.Request, *transcribeservice.UntagResourceOutput)
 
 	UpdateCallAnalyticsCategory(*transcribeservice.UpdateCallAnalyticsCategoryInput) (*transcribeservice.UpdateCallAnalyticsCategoryOutput, error)
 	UpdateCallAnalyticsCategoryWithContext(aws.Context, *transcribeservice.UpdateCallAnalyticsCategoryInput, ...request.Option) (*transcribeservice.UpdateCallAnalyticsCategoryOutput, error)

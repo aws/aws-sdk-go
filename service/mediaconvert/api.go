@@ -5623,12 +5623,10 @@ type CmafGroupSettings struct {
 	// DRM settings.
 	Encryption *CmafEncryptionSettings `locationName:"encryption" type:"structure"`
 
-	// Length of fragments to generate (in seconds). Fragment length must be compatible
-	// with GOP size and Framerate. Note that fragments will end on the next keyframe
-	// after this number of seconds, so actual fragment length may be longer. When
-	// Emit Single File is checked, the fragmentation is internal to a single output
-	// file and it does not cause the creation of many output files as in other
-	// output types.
+	// Specify the length, in whole seconds, of the mp4 fragments. When you don't
+	// specify a value, MediaConvert defaults to 2. Related setting: Use Fragment
+	// length control (FragmentLengthControl) to specify whether the encoder enforces
+	// this value strictly.
 	FragmentLength *int64 `locationName:"fragmentLength" min:"1" type:"integer"`
 
 	// Specify whether MediaConvert generates images for trick play. Keep the default
@@ -5692,15 +5690,20 @@ type CmafGroupSettings struct {
 	// separate segment files will be created.
 	SegmentControl *string `locationName:"segmentControl" type:"string" enum:"CmafSegmentControl"`
 
-	// Use this setting to specify the length, in seconds, of each individual CMAF
-	// segment. This value applies to the whole package; that is, to every output
-	// in the output group. Note that segments end on the first keyframe after this
-	// number of seconds, so the actual segment length might be slightly longer.
-	// If you set Segment control (CmafSegmentControl) to single file, the service
-	// puts the content of each output in a single file that has metadata that marks
-	// these segments. If you set it to segmented files, the service creates multiple
-	// files for each output, each with the content of one segment.
+	// Specify the length, in whole seconds, of each segment. When you don't specify
+	// a value, MediaConvert defaults to 10. Related settings: Use Segment length
+	// control (SegmentLengthControl) to specify whether the encoder enforces this
+	// value strictly. Use Segment control (CmafSegmentControl) to specify whether
+	// MediaConvert creates separate segment files or one content file that has
+	// metadata to mark the segment boundaries.
 	SegmentLength *int64 `locationName:"segmentLength" min:"1" type:"integer"`
+
+	// Specify how you want MediaConvert to determine the segment length. Choose
+	// Exact (EXACT) to have the encoder use the exact length that you specify with
+	// the setting Segment length (SegmentLength). This might result in extra I-frames.
+	// Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round up the segment
+	// lengths to match the next GOP boundary.
+	SegmentLengthControl *string `locationName:"segmentLengthControl" type:"string" enum:"CmafSegmentLengthControl"`
 
 	// Include or exclude RESOLUTION attribute for video in EXT-X-STREAM-INF tag
 	// of variant manifest.
@@ -5871,6 +5874,12 @@ func (s *CmafGroupSettings) SetSegmentControl(v string) *CmafGroupSettings {
 // SetSegmentLength sets the SegmentLength field's value.
 func (s *CmafGroupSettings) SetSegmentLength(v int64) *CmafGroupSettings {
 	s.SegmentLength = &v
+	return s
+}
+
+// SetSegmentLengthControl sets the SegmentLengthControl field's value.
+func (s *CmafGroupSettings) SetSegmentLengthControl(v string) *CmafGroupSettings {
+	s.SegmentLengthControl = &v
 	return s
 }
 
@@ -7229,12 +7238,20 @@ type DashIsoGroupSettings struct {
 	// separate segment files will be created.
 	SegmentControl *string `locationName:"segmentControl" type:"string" enum:"DashIsoSegmentControl"`
 
-	// Length of mpd segments to create (in seconds). Note that segments will end
-	// on the next keyframe after this number of seconds, so actual segment length
-	// may be longer. When Emit Single File is checked, the segmentation is internal
-	// to a single output file and it does not cause the creation of many output
-	// files as in other output types.
+	// Specify the length, in whole seconds, of each segment. When you don't specify
+	// a value, MediaConvert defaults to 30. Related settings: Use Segment length
+	// control (SegmentLengthControl) to specify whether the encoder enforces this
+	// value strictly. Use Segment control (DashIsoSegmentControl) to specify whether
+	// MediaConvert creates separate segment files or one content file that has
+	// metadata to mark the segment boundaries.
 	SegmentLength *int64 `locationName:"segmentLength" min:"1" type:"integer"`
+
+	// Specify how you want MediaConvert to determine the segment length. Choose
+	// Exact (EXACT) to have the encoder use the exact length that you specify with
+	// the setting Segment length (SegmentLength). This might result in extra I-frames.
+	// Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round up the segment
+	// lengths to match the next GOP boundary.
+	SegmentLengthControl *string `locationName:"segmentLengthControl" type:"string" enum:"DashIsoSegmentLengthControl"`
 
 	// If you get an HTTP error in the 400 range when you play back your DASH output,
 	// enable this setting and run your transcoding job again. When you enable this
@@ -7369,6 +7386,12 @@ func (s *DashIsoGroupSettings) SetSegmentControl(v string) *DashIsoGroupSettings
 // SetSegmentLength sets the SegmentLength field's value.
 func (s *DashIsoGroupSettings) SetSegmentLength(v int64) *DashIsoGroupSettings {
 	s.SegmentLength = &v
+	return s
+}
+
+// SetSegmentLengthControl sets the SegmentLengthControl field's value.
+func (s *DashIsoGroupSettings) SetSegmentLengthControl(v string) *DashIsoGroupSettings {
+	s.SegmentLengthControl = &v
 	return s
 }
 
@@ -9954,9 +9977,11 @@ type H264Settings struct {
 	// Entropy encoding mode. Use CABAC (must be in Main or High profile) or CAVLC.
 	EntropyEncoding *string `locationName:"entropyEncoding" type:"string" enum:"H264EntropyEncoding"`
 
-	// Keep the default value, PAFF, to have MediaConvert use PAFF encoding for
-	// interlaced outputs. Choose Force field (FORCE_FIELD) to disable PAFF encoding
-	// and create separate interlaced fields.
+	// The video encoding method for your MPEG-4 AVC output. Keep the default value,
+	// PAFF, to have MediaConvert use PAFF encoding for interlaced outputs. Choose
+	// Force field (FORCE_FIELD) to disable PAFF encoding and create separate interlaced
+	// fields. Choose MBAFF to disable PAFF and have MediaConvert use MBAFF encoding
+	// for interlaced outputs.
 	FieldEncoding *string `locationName:"fieldEncoding" type:"string" enum:"H264FieldEncoding"`
 
 	// Only use this setting when you change the default value, AUTO, for the setting
@@ -10066,7 +10091,9 @@ type H264Settings struct {
 	// = GOP size + Min-I-interval - 1
 	MinIInterval *int64 `locationName:"minIInterval" type:"integer"`
 
-	// Number of B-frames between reference frames.
+	// Specify the number of B-frames that MediaConvert puts between reference frames
+	// in this output. Valid values are whole numbers from 0 through 7. When you
+	// don't specify a value, MediaConvert defaults to 2.
 	NumberBFramesBetweenReferenceFrames *int64 `locationName:"numberBFramesBetweenReferenceFrames" type:"integer"`
 
 	// Number of reference frames to use. The encoder may use more than requested
@@ -10732,7 +10759,9 @@ type H265Settings struct {
 	// = GOP size + Min-I-interval - 1
 	MinIInterval *int64 `locationName:"minIInterval" type:"integer"`
 
-	// Number of B-frames between reference frames.
+	// Specify the number of B-frames that MediaConvert puts between reference frames
+	// in this output. Valid values are whole numbers from 0 through 7. When you
+	// don't specify a value, MediaConvert defaults to 2.
 	NumberBFramesBetweenReferenceFrames *int64 `locationName:"numberBFramesBetweenReferenceFrames" type:"integer"`
 
 	// Number of reference frames to use. The encoder may use more than requested
@@ -11710,10 +11739,20 @@ type HlsGroupSettings struct {
 	// uses #EXT-X-BYTERANGE tags to index segment for playback.
 	SegmentControl *string `locationName:"segmentControl" type:"string" enum:"HlsSegmentControl"`
 
-	// Length of MPEG-2 Transport Stream segments to create (in seconds). Note that
-	// segments will end on the next keyframe after this number of seconds, so actual
-	// segment length may be longer.
+	// Specify the length, in whole seconds, of each segment. When you don't specify
+	// a value, MediaConvert defaults to 10. Related settings: Use Segment length
+	// control (SegmentLengthControl) to specify whether the encoder enforces this
+	// value strictly. Use Segment control (HlsSegmentControl) to specify whether
+	// MediaConvert creates separate segment files or one content file that has
+	// metadata to mark the segment boundaries.
 	SegmentLength *int64 `locationName:"segmentLength" min:"1" type:"integer"`
+
+	// Specify how you want MediaConvert to determine the segment length. Choose
+	// Exact (EXACT) to have the encoder use the exact length that you specify with
+	// the setting Segment length (SegmentLength). This might result in extra I-frames.
+	// Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round up the segment
+	// lengths to match the next GOP boundary.
+	SegmentLengthControl *string `locationName:"segmentLengthControl" type:"string" enum:"HlsSegmentLengthControl"`
 
 	// Number of segments to write to a subdirectory before starting a new one.
 	// directoryStructure must be SINGLE_DIRECTORY for this setting to have an effect.
@@ -11929,6 +11968,12 @@ func (s *HlsGroupSettings) SetSegmentControl(v string) *HlsGroupSettings {
 // SetSegmentLength sets the SegmentLength field's value.
 func (s *HlsGroupSettings) SetSegmentLength(v int64) *HlsGroupSettings {
 	s.SegmentLength = &v
+	return s
+}
+
+// SetSegmentLengthControl sets the SegmentLengthControl field's value.
+func (s *HlsGroupSettings) SetSegmentLengthControl(v string) *HlsGroupSettings {
+	s.SegmentLengthControl = &v
 	return s
 }
 
@@ -14952,6 +14997,12 @@ type M2tsSettings struct {
 	// but low-memory devices may not be able to play back the stream without interruptions.
 	BufferModel *string `locationName:"bufferModel" type:"string" enum:"M2tsBufferModel"`
 
+	// If you select ALIGN_TO_VIDEO, MediaConvert writes captions and data packets
+	// with Presentation Timestamp (PTS) values greater than or equal to the first
+	// video packet PTS (MediaConvert drops captions and data packets with lesser
+	// PTS values). Keep the default value (AUTO) to allow all PTS values.
+	DataPTSControl *string `locationName:"dataPTSControl" type:"string" enum:"M2tsDataPtsControl"`
+
 	// Use these settings to insert a DVB Network Information Table (NIT) in the
 	// transport stream of this output. When you work directly in your JSON job
 	// specification, include this object only when your job has a transport stream
@@ -15215,6 +15266,12 @@ func (s *M2tsSettings) SetBufferModel(v string) *M2tsSettings {
 	return s
 }
 
+// SetDataPTSControl sets the DataPTSControl field's value.
+func (s *M2tsSettings) SetDataPTSControl(v string) *M2tsSettings {
+	s.DataPTSControl = &v
+	return s
+}
+
 // SetDvbNitSettings sets the DvbNitSettings field's value.
 func (s *M2tsSettings) SetDvbNitSettings(v *DvbNitSettings) *M2tsSettings {
 	s.DvbNitSettings = v
@@ -15429,6 +15486,12 @@ type M3u8Settings struct {
 	// by comma separation.
 	AudioPids []*int64 `locationName:"audioPids" type:"list"`
 
+	// If you select ALIGN_TO_VIDEO, MediaConvert writes captions and data packets
+	// with Presentation Timestamp (PTS) values greater than or equal to the first
+	// video packet PTS (MediaConvert drops captions and data packets with lesser
+	// PTS values). Keep the default value (AUTO) to allow all PTS values.
+	DataPTSControl *string `locationName:"dataPTSControl" type:"string" enum:"M3u8DataPtsControl"`
+
 	// Specify the maximum time, in milliseconds, between Program Clock References
 	// (PCRs) inserted into the transport stream.
 	MaxPcrInterval *int64 `locationName:"maxPcrInterval" type:"integer"`
@@ -15545,6 +15608,12 @@ func (s *M3u8Settings) SetAudioFramesPerPes(v int64) *M3u8Settings {
 // SetAudioPids sets the AudioPids field's value.
 func (s *M3u8Settings) SetAudioPids(v []*int64) *M3u8Settings {
 	s.AudioPids = v
+	return s
+}
+
+// SetDataPTSControl sets the DataPTSControl field's value.
+func (s *M3u8Settings) SetDataPTSControl(v string) *M3u8Settings {
+	s.DataPTSControl = &v
 	return s
 }
 
@@ -16325,12 +16394,14 @@ type Mpeg2Settings struct {
 	// as quickly as possible. Setting this value to 0 will break output segmenting.
 	GopClosedCadence *int64 `locationName:"gopClosedCadence" type:"integer"`
 
-	// GOP Length (keyframe interval) in frames or seconds. Must be greater than
-	// zero.
+	// Specify the interval between keyframes, in seconds or frames, for this output.
+	// Default: 12 Related settings: When you specify the GOP size in seconds, set
+	// GOP mode control (GopSizeUnits) to Specified, seconds (SECONDS). The default
+	// value for GOP mode control (GopSizeUnits) is Frames (FRAMES).
 	GopSize *float64 `locationName:"gopSize" type:"double"`
 
-	// Indicates if the GOP Size in MPEG2 is specified in frames or seconds. If
-	// seconds the system will convert the GOP Size into a frame count at run time.
+	// Specify the units for GOP size (GopSize). If you don't specify a value here,
+	// by default the encoder measures GOP size in frames.
 	GopSizeUnits *string `locationName:"gopSizeUnits" type:"string" enum:"Mpeg2GopSizeUnits"`
 
 	// Percentage of the buffer that should initially be filled (HRD buffer model).
@@ -16373,7 +16444,9 @@ type Mpeg2Settings struct {
 	// = GOP size + Min-I-interval - 1
 	MinIInterval *int64 `locationName:"minIInterval" type:"integer"`
 
-	// Number of B-frames between reference frames.
+	// Specify the number of B-frames that MediaConvert puts between reference frames
+	// in this output. Valid values are whole numbers from 0 through 7. When you
+	// don't specify a value, MediaConvert defaults to 2.
 	NumberBFramesBetweenReferenceFrames *int64 `locationName:"numberBFramesBetweenReferenceFrames" type:"integer"`
 
 	// Optional. Specify how the service determines the pixel aspect ratio (PAR)
@@ -16841,9 +16914,19 @@ type MsSmoothGroupSettings struct {
 	// the value SpekeKeyProvider.
 	Encryption *MsSmoothEncryptionSettings `locationName:"encryption" type:"structure"`
 
-	// Use Fragment length (FragmentLength) to specify the mp4 fragment sizes in
-	// seconds. Fragment length must be compatible with GOP size and frame rate.
+	// Specify how you want MediaConvert to determine the fragment length. Choose
+	// Exact (EXACT) to have the encoder use the exact length that you specify with
+	// the setting Fragment length (FragmentLength). This might result in extra
+	// I-frames. Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round
+	// up the segment lengths to match the next GOP boundary.
 	FragmentLength *int64 `locationName:"fragmentLength" min:"1" type:"integer"`
+
+	// Specify how you want MediaConvert to determine the fragment length. Choose
+	// Exact (EXACT) to have the encoder use the exact length that you specify with
+	// the setting Fragment length (FragmentLength). This might result in extra
+	// I-frames. Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round
+	// up the segment lengths to match the next GOP boundary.
+	FragmentLengthControl *string `locationName:"fragmentLengthControl" type:"string" enum:"MsSmoothFragmentLengthControl"`
 
 	// Use Manifest encoding (MsSmoothManifestEncoding) to specify the encoding
 	// format for the server and client manifest. Valid options are utf8 and utf16.
@@ -16916,6 +16999,12 @@ func (s *MsSmoothGroupSettings) SetEncryption(v *MsSmoothEncryptionSettings) *Ms
 // SetFragmentLength sets the FragmentLength field's value.
 func (s *MsSmoothGroupSettings) SetFragmentLength(v int64) *MsSmoothGroupSettings {
 	s.FragmentLength = &v
+	return s
+}
+
+// SetFragmentLengthControl sets the FragmentLengthControl field's value.
+func (s *MsSmoothGroupSettings) SetFragmentLengthControl(v string) *MsSmoothGroupSettings {
+	s.FragmentLengthControl = &v
 	return s
 }
 
@@ -19240,6 +19329,15 @@ type S3EncryptionSettings struct {
 	// Name (ARN) of the key for the setting KMS ARN (kmsKeyArn).
 	EncryptionType *string `locationName:"encryptionType" type:"string" enum:"S3ServerSideEncryptionType"`
 
+	// Optionally, specify the encryption context that you want to use alongside
+	// your KMS key. AWS KMS uses this encryption context as additional authenticated
+	// data (AAD) to support authenticated encryption. This value must be a base64-encoded
+	// UTF-8 string holding JSON which represents a string-string map. To use this
+	// setting, you must also set Server-side encryption (S3ServerSideEncryptionType)
+	// to AWS KMS (SERVER_SIDE_ENCRYPTION_KMS). For more information about encryption
+	// context, see: https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#encrypt_context.
+	KmsEncryptionContext *string `locationName:"kmsEncryptionContext" type:"string"`
+
 	// Optionally, specify the customer master key (CMK) that you want to use to
 	// encrypt the data key that AWS uses to encrypt your output content. Enter
 	// the Amazon Resource Name (ARN) of the CMK. To use this setting, you must
@@ -19262,6 +19360,12 @@ func (s S3EncryptionSettings) GoString() string {
 // SetEncryptionType sets the EncryptionType field's value.
 func (s *S3EncryptionSettings) SetEncryptionType(v string) *S3EncryptionSettings {
 	s.EncryptionType = &v
+	return s
+}
+
+// SetKmsEncryptionContext sets the KmsEncryptionContext field's value.
+func (s *S3EncryptionSettings) SetKmsEncryptionContext(v string) *S3EncryptionSettings {
+	s.KmsEncryptionContext = &v
 	return s
 }
 
@@ -24452,6 +24556,27 @@ func CmafSegmentControl_Values() []string {
 	}
 }
 
+// Specify how you want MediaConvert to determine the segment length. Choose
+// Exact (EXACT) to have the encoder use the exact length that you specify with
+// the setting Segment length (SegmentLength). This might result in extra I-frames.
+// Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round up the segment
+// lengths to match the next GOP boundary.
+const (
+	// CmafSegmentLengthControlExact is a CmafSegmentLengthControl enum value
+	CmafSegmentLengthControlExact = "EXACT"
+
+	// CmafSegmentLengthControlGopMultiple is a CmafSegmentLengthControl enum value
+	CmafSegmentLengthControlGopMultiple = "GOP_MULTIPLE"
+)
+
+// CmafSegmentLengthControl_Values returns all elements of the CmafSegmentLengthControl enum
+func CmafSegmentLengthControl_Values() []string {
+	return []string{
+		CmafSegmentLengthControlExact,
+		CmafSegmentLengthControlGopMultiple,
+	}
+}
+
 // Include or exclude RESOLUTION attribute for video in EXT-X-STREAM-INF tag
 // of variant manifest.
 const (
@@ -25054,6 +25179,27 @@ func DashIsoSegmentControl_Values() []string {
 	return []string{
 		DashIsoSegmentControlSingleFile,
 		DashIsoSegmentControlSegmentedFiles,
+	}
+}
+
+// Specify how you want MediaConvert to determine the segment length. Choose
+// Exact (EXACT) to have the encoder use the exact length that you specify with
+// the setting Segment length (SegmentLength). This might result in extra I-frames.
+// Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round up the segment
+// lengths to match the next GOP boundary.
+const (
+	// DashIsoSegmentLengthControlExact is a DashIsoSegmentLengthControl enum value
+	DashIsoSegmentLengthControlExact = "EXACT"
+
+	// DashIsoSegmentLengthControlGopMultiple is a DashIsoSegmentLengthControl enum value
+	DashIsoSegmentLengthControlGopMultiple = "GOP_MULTIPLE"
+)
+
+// DashIsoSegmentLengthControl_Values returns all elements of the DashIsoSegmentLengthControl enum
+func DashIsoSegmentLengthControl_Values() []string {
+	return []string{
+		DashIsoSegmentLengthControlExact,
+		DashIsoSegmentLengthControlGopMultiple,
 	}
 }
 
@@ -26361,15 +26507,20 @@ func H264EntropyEncoding_Values() []string {
 	}
 }
 
-// Keep the default value, PAFF, to have MediaConvert use PAFF encoding for
-// interlaced outputs. Choose Force field (FORCE_FIELD) to disable PAFF encoding
-// and create separate interlaced fields.
+// The video encoding method for your MPEG-4 AVC output. Keep the default value,
+// PAFF, to have MediaConvert use PAFF encoding for interlaced outputs. Choose
+// Force field (FORCE_FIELD) to disable PAFF encoding and create separate interlaced
+// fields. Choose MBAFF to disable PAFF and have MediaConvert use MBAFF encoding
+// for interlaced outputs.
 const (
 	// H264FieldEncodingPaff is a H264FieldEncoding enum value
 	H264FieldEncodingPaff = "PAFF"
 
 	// H264FieldEncodingForceField is a H264FieldEncoding enum value
 	H264FieldEncodingForceField = "FORCE_FIELD"
+
+	// H264FieldEncodingMbaff is a H264FieldEncoding enum value
+	H264FieldEncodingMbaff = "MBAFF"
 )
 
 // H264FieldEncoding_Values returns all elements of the H264FieldEncoding enum
@@ -26377,6 +26528,7 @@ func H264FieldEncoding_Values() []string {
 	return []string{
 		H264FieldEncodingPaff,
 		H264FieldEncodingForceField,
+		H264FieldEncodingMbaff,
 	}
 }
 
@@ -27938,6 +28090,27 @@ func HlsSegmentControl_Values() []string {
 	}
 }
 
+// Specify how you want MediaConvert to determine the segment length. Choose
+// Exact (EXACT) to have the encoder use the exact length that you specify with
+// the setting Segment length (SegmentLength). This might result in extra I-frames.
+// Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round up the segment
+// lengths to match the next GOP boundary.
+const (
+	// HlsSegmentLengthControlExact is a HlsSegmentLengthControl enum value
+	HlsSegmentLengthControlExact = "EXACT"
+
+	// HlsSegmentLengthControlGopMultiple is a HlsSegmentLengthControl enum value
+	HlsSegmentLengthControlGopMultiple = "GOP_MULTIPLE"
+)
+
+// HlsSegmentLengthControl_Values returns all elements of the HlsSegmentLengthControl enum
+func HlsSegmentLengthControl_Values() []string {
+	return []string{
+		HlsSegmentLengthControlExact,
+		HlsSegmentLengthControlGopMultiple,
+	}
+}
+
 // Include or exclude RESOLUTION attribute for video in EXT-X-STREAM-INF tag
 // of variant manifest.
 const (
@@ -29137,6 +29310,26 @@ func M2tsBufferModel_Values() []string {
 	}
 }
 
+// If you select ALIGN_TO_VIDEO, MediaConvert writes captions and data packets
+// with Presentation Timestamp (PTS) values greater than or equal to the first
+// video packet PTS (MediaConvert drops captions and data packets with lesser
+// PTS values). Keep the default value (AUTO) to allow all PTS values.
+const (
+	// M2tsDataPtsControlAuto is a M2tsDataPtsControl enum value
+	M2tsDataPtsControlAuto = "AUTO"
+
+	// M2tsDataPtsControlAlignToVideo is a M2tsDataPtsControl enum value
+	M2tsDataPtsControlAlignToVideo = "ALIGN_TO_VIDEO"
+)
+
+// M2tsDataPtsControl_Values returns all elements of the M2tsDataPtsControl enum
+func M2tsDataPtsControl_Values() []string {
+	return []string{
+		M2tsDataPtsControlAuto,
+		M2tsDataPtsControlAlignToVideo,
+	}
+}
+
 // When set to VIDEO_AND_FIXED_INTERVALS, audio EBP markers will be added to
 // partitions 3 and 4. The interval between these additional markers will be
 // fixed, and will be slightly shorter than the video EBP marker interval. When
@@ -29385,6 +29578,26 @@ func M3u8AudioDuration_Values() []string {
 	return []string{
 		M3u8AudioDurationDefaultCodecDuration,
 		M3u8AudioDurationMatchVideoDuration,
+	}
+}
+
+// If you select ALIGN_TO_VIDEO, MediaConvert writes captions and data packets
+// with Presentation Timestamp (PTS) values greater than or equal to the first
+// video packet PTS (MediaConvert drops captions and data packets with lesser
+// PTS values). Keep the default value (AUTO) to allow all PTS values.
+const (
+	// M3u8DataPtsControlAuto is a M3u8DataPtsControl enum value
+	M3u8DataPtsControlAuto = "AUTO"
+
+	// M3u8DataPtsControlAlignToVideo is a M3u8DataPtsControl enum value
+	M3u8DataPtsControlAlignToVideo = "ALIGN_TO_VIDEO"
+)
+
+// M3u8DataPtsControl_Values returns all elements of the M3u8DataPtsControl enum
+func M3u8DataPtsControl_Values() []string {
+	return []string{
+		M3u8DataPtsControlAuto,
+		M3u8DataPtsControlAlignToVideo,
 	}
 }
 
@@ -29919,8 +30132,8 @@ func Mpeg2FramerateConversionAlgorithm_Values() []string {
 	}
 }
 
-// Indicates if the GOP Size in MPEG2 is specified in frames or seconds. If
-// seconds the system will convert the GOP Size into a frame count at run time.
+// Specify the units for GOP size (GopSize). If you don't specify a value here,
+// by default the encoder measures GOP size in frames.
 const (
 	// Mpeg2GopSizeUnitsFrames is a Mpeg2GopSizeUnits enum value
 	Mpeg2GopSizeUnitsFrames = "FRAMES"
@@ -30262,6 +30475,27 @@ func MsSmoothAudioDeduplication_Values() []string {
 	return []string{
 		MsSmoothAudioDeduplicationCombineDuplicateStreams,
 		MsSmoothAudioDeduplicationNone,
+	}
+}
+
+// Specify how you want MediaConvert to determine the fragment length. Choose
+// Exact (EXACT) to have the encoder use the exact length that you specify with
+// the setting Fragment length (FragmentLength). This might result in extra
+// I-frames. Choose Multiple of GOP (GOP_MULTIPLE) to have the encoder round
+// up the segment lengths to match the next GOP boundary.
+const (
+	// MsSmoothFragmentLengthControlExact is a MsSmoothFragmentLengthControl enum value
+	MsSmoothFragmentLengthControlExact = "EXACT"
+
+	// MsSmoothFragmentLengthControlGopMultiple is a MsSmoothFragmentLengthControl enum value
+	MsSmoothFragmentLengthControlGopMultiple = "GOP_MULTIPLE"
+)
+
+// MsSmoothFragmentLengthControl_Values returns all elements of the MsSmoothFragmentLengthControl enum
+func MsSmoothFragmentLengthControl_Values() []string {
+	return []string{
+		MsSmoothFragmentLengthControlExact,
+		MsSmoothFragmentLengthControlGopMultiple,
 	}
 }
 
