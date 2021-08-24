@@ -30,6 +30,24 @@
         {"shape":"UnsupportedDocumentEncodingException"}
       ]
     },
+    "GetRetainedMessage":{
+      "name":"GetRetainedMessage",
+      "http":{
+        "method":"GET",
+        "requestUri":"/retainedMessage/{topic}"
+      },
+      "input":{"shape":"GetRetainedMessageRequest"},
+      "output":{"shape":"GetRetainedMessageResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"MethodNotAllowedException"}
+      ]
+    },
     "GetThingShadow":{
       "name":"GetThingShadow",
       "http":{
@@ -59,6 +77,23 @@
       "output":{"shape":"ListNamedShadowsForThingResponse"},
       "errors":[
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"MethodNotAllowedException"}
+      ]
+    },
+    "ListRetainedMessages":{
+      "name":"ListRetainedMessages",
+      "http":{
+        "method":"GET",
+        "requestUri":"/retainedMessage"
+      },
+      "input":{"shape":"ListRetainedMessagesRequest"},
+      "output":{"shape":"ListRetainedMessagesResponse"},
+      "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ThrottlingException"},
         {"shape":"UnauthorizedException"},
@@ -135,6 +170,26 @@
       },
       "payload":"payload"
     },
+    "GetRetainedMessageRequest":{
+      "type":"structure",
+      "required":["topic"],
+      "members":{
+        "topic":{
+          "shape":"Topic",
+          "location":"uri",
+          "locationName":"topic"
+        }
+      }
+    },
+    "GetRetainedMessageResponse":{
+      "type":"structure",
+      "members":{
+        "topic":{"shape":"Topic"},
+        "payload":{"shape":"Payload"},
+        "qos":{"shape":"Qos"},
+        "lastModifiedTime":{"shape":"Timestamp"}
+      }
+    },
     "GetThingShadowRequest":{
       "type":"structure",
       "required":["thingName"],
@@ -205,6 +260,33 @@
         "timestamp":{"shape":"Timestamp"}
       }
     },
+    "ListRetainedMessagesRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListRetainedMessagesResponse":{
+      "type":"structure",
+      "members":{
+        "retainedTopics":{"shape":"RetainedMessageList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "MaxResults":{
+      "type":"integer",
+      "max":200,
+      "min":1
+    },
     "MethodNotAllowedException":{
       "type":"structure",
       "members":{
@@ -224,6 +306,7 @@
       "min":1
     },
     "Payload":{"type":"blob"},
+    "PayloadSize":{"type":"long"},
     "PublishRequest":{
       "type":"structure",
       "required":["topic"],
@@ -237,6 +320,11 @@
           "shape":"Qos",
           "location":"querystring",
           "locationName":"qos"
+        },
+        "retain":{
+          "shape":"Retain",
+          "location":"querystring",
+          "locationName":"retain"
         },
         "payload":{"shape":"Payload"}
       },
@@ -262,6 +350,20 @@
       },
       "error":{"httpStatusCode":404},
       "exception":true
+    },
+    "Retain":{"type":"boolean"},
+    "RetainedMessageList":{
+      "type":"list",
+      "member":{"shape":"RetainedMessageSummary"}
+    },
+    "RetainedMessageSummary":{
+      "type":"structure",
+      "members":{
+        "topic":{"shape":"Topic"},
+        "payloadSize":{"shape":"PayloadSize"},
+        "qos":{"shape":"Qos"},
+        "lastModifiedTime":{"shape":"Timestamp"}
+      }
     },
     "ServiceUnavailableException":{
       "type":"structure",

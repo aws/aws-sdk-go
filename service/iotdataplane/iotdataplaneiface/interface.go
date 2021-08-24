@@ -64,6 +64,10 @@ type IoTDataPlaneAPI interface {
 	DeleteThingShadowWithContext(aws.Context, *iotdataplane.DeleteThingShadowInput, ...request.Option) (*iotdataplane.DeleteThingShadowOutput, error)
 	DeleteThingShadowRequest(*iotdataplane.DeleteThingShadowInput) (*request.Request, *iotdataplane.DeleteThingShadowOutput)
 
+	GetRetainedMessage(*iotdataplane.GetRetainedMessageInput) (*iotdataplane.GetRetainedMessageOutput, error)
+	GetRetainedMessageWithContext(aws.Context, *iotdataplane.GetRetainedMessageInput, ...request.Option) (*iotdataplane.GetRetainedMessageOutput, error)
+	GetRetainedMessageRequest(*iotdataplane.GetRetainedMessageInput) (*request.Request, *iotdataplane.GetRetainedMessageOutput)
+
 	GetThingShadow(*iotdataplane.GetThingShadowInput) (*iotdataplane.GetThingShadowOutput, error)
 	GetThingShadowWithContext(aws.Context, *iotdataplane.GetThingShadowInput, ...request.Option) (*iotdataplane.GetThingShadowOutput, error)
 	GetThingShadowRequest(*iotdataplane.GetThingShadowInput) (*request.Request, *iotdataplane.GetThingShadowOutput)
@@ -71,6 +75,13 @@ type IoTDataPlaneAPI interface {
 	ListNamedShadowsForThing(*iotdataplane.ListNamedShadowsForThingInput) (*iotdataplane.ListNamedShadowsForThingOutput, error)
 	ListNamedShadowsForThingWithContext(aws.Context, *iotdataplane.ListNamedShadowsForThingInput, ...request.Option) (*iotdataplane.ListNamedShadowsForThingOutput, error)
 	ListNamedShadowsForThingRequest(*iotdataplane.ListNamedShadowsForThingInput) (*request.Request, *iotdataplane.ListNamedShadowsForThingOutput)
+
+	ListRetainedMessages(*iotdataplane.ListRetainedMessagesInput) (*iotdataplane.ListRetainedMessagesOutput, error)
+	ListRetainedMessagesWithContext(aws.Context, *iotdataplane.ListRetainedMessagesInput, ...request.Option) (*iotdataplane.ListRetainedMessagesOutput, error)
+	ListRetainedMessagesRequest(*iotdataplane.ListRetainedMessagesInput) (*request.Request, *iotdataplane.ListRetainedMessagesOutput)
+
+	ListRetainedMessagesPages(*iotdataplane.ListRetainedMessagesInput, func(*iotdataplane.ListRetainedMessagesOutput, bool) bool) error
+	ListRetainedMessagesPagesWithContext(aws.Context, *iotdataplane.ListRetainedMessagesInput, func(*iotdataplane.ListRetainedMessagesOutput, bool) bool, ...request.Option) error
 
 	Publish(*iotdataplane.PublishInput) (*iotdataplane.PublishOutput, error)
 	PublishWithContext(aws.Context, *iotdataplane.PublishInput, ...request.Option) (*iotdataplane.PublishOutput, error)
