@@ -86,6 +86,11 @@ func TestParseTime(t *testing.T) {
 			input:          "2000-01-02T20:34:56.123Z",
 			expectedOutput: time.Date(2000, time.January, 2, 20, 34, 56, .123e9, time.UTC),
 		},
+		"ISO8601Test milliseconds, no Z": {
+			formatName:     ISO8601TimeFormatName,
+			input:          "2000-01-02T20:34:56.123",
+			expectedOutput: time.Date(2000, time.January, 2, 20, 34, 56, .123e9, time.UTC),
+		},
 		"ISO8601Test nanoseconds": {
 			formatName:     ISO8601TimeFormatName,
 			input:          "2000-01-02T20:34:56.123456789Z",
