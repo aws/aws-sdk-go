@@ -1,3 +1,18 @@
+Release v1.40.29 (2021-08-24)
+===
+
+### Service Client Updates
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert SDK has added MBAFF encoding support for AVC video and the ability to pass encryption context from the job settings to S3.
+* `service/polly`: Updates service API and documentation
+  * Amazon Polly adds new New Zealand English voice - Aria. Aria is available as Neural voice only.
+* `service/ssm`: Updates service API
+  * Updated Parameter Store property for logging improvements.
+* `service/transcribe`: Updates service API and documentation
+
+### SDK Enhancements
+* `service/iotdataplane`: Updated Publish with support for new Retain flag and added two new API operations: GetRetainedMessage, ListRetainedMessages.
+
 Release v1.40.28 (2021-08-23)
 ===
 

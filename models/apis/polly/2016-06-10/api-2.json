@@ -374,7 +374,8 @@
         "ro-RO",
         "ru-RU",
         "sv-SE",
-        "tr-TR"
+        "tr-TR",
+        "en-NZ"
       ]
     },
     "LanguageCodeList":{
@@ -825,7 +826,8 @@
         "Vicki",
         "Vitoria",
         "Zeina",
-        "Zhiyu"
+        "Zhiyu",
+        "Aria"
       ]
     },
     "VoiceList":{

@@ -7935,7 +7935,10 @@
       "max":128,
       "min":0
     },
-    "PSParameterValue":{"type":"string"},
+    "PSParameterValue":{
+      "type":"string",
+      "sensitive":true
+    },
     "PSParameterVersion":{"type":"long"},
     "Parameter":{
       "type":"structure",

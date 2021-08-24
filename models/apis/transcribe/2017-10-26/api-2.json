@@ -388,6 +388,21 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "ListTranscriptionJobs":{
       "name":"ListTranscriptionJobs",
       "http":{
@@ -473,6 +488,38 @@
         {"shape":"LimitExceededException"},
         {"shape":"InternalFailureException"},
         {"shape":"ConflictException"}
+      ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"LimitExceededException"},
+        {"shape":"BadRequestException"},
+        {"shape":"ConflictException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalFailureException"}
       ]
     },
     "UpdateCallAnalyticsCategory":{
@@ -720,7 +767,8 @@
         "LanguageCode":{"shape":"CLMLanguageCode"},
         "BaseModelName":{"shape":"BaseModelName"},
         "ModelName":{"shape":"ModelName"},
-        "InputDataConfig":{"shape":"InputDataConfig"}
+        "InputDataConfig":{"shape":"InputDataConfig"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateLanguageModelResponse":{
@@ -743,7 +791,8 @@
       "members":{
         "VocabularyName":{"shape":"VocabularyName"},
         "LanguageCode":{"shape":"LanguageCode"},
-        "VocabularyFileUri":{"shape":"Uri"}
+        "VocabularyFileUri":{"shape":"Uri"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateMedicalVocabularyResponse":{
@@ -766,7 +815,8 @@
         "VocabularyFilterName":{"shape":"VocabularyFilterName"},
         "LanguageCode":{"shape":"LanguageCode"},
         "Words":{"shape":"Words"},
-        "VocabularyFilterFileUri":{"shape":"Uri"}
+        "VocabularyFilterFileUri":{"shape":"Uri"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateVocabularyFilterResponse":{
@@ -787,7 +837,8 @@
         "VocabularyName":{"shape":"VocabularyName"},
         "LanguageCode":{"shape":"LanguageCode"},
         "Phrases":{"shape":"Phrases"},
-        "VocabularyFileUri":{"shape":"Uri"}
+        "VocabularyFileUri":{"shape":"Uri"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "CreateVocabularyResponse":{
@@ -1183,6 +1234,20 @@
         "Vocabularies":{"shape":"Vocabularies"}
       }
     },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["ResourceArn"],
+      "members":{
+        "ResourceArn":{"shape":"TranscribeArn"}
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "ResourceArn":{"shape":"TranscribeArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "ListTranscriptionJobsRequest":{
       "type":"structure",
       "members":{
@@ -1298,7 +1363,8 @@
         "Settings":{"shape":"MedicalTranscriptionSetting"},
         "ContentIdentificationType":{"shape":"MedicalContentIdentificationType"},
         "Specialty":{"shape":"Specialty"},
-        "Type":{"shape":"Type"}
+        "Type":{"shape":"Type"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "MedicalTranscriptionJobSummaries":{
@@ -1546,7 +1612,8 @@
         "Settings":{"shape":"MedicalTranscriptionSetting"},
         "ContentIdentificationType":{"shape":"MedicalContentIdentificationType"},
         "Specialty":{"shape":"Specialty"},
-        "Type":{"shape":"Type"}
+        "Type":{"shape":"Type"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartMedicalTranscriptionJobResponse":{
@@ -1575,7 +1642,8 @@
         "JobExecutionSettings":{"shape":"JobExecutionSettings"},
         "ContentRedaction":{"shape":"ContentRedaction"},
         "IdentifyLanguage":{"shape":"Boolean"},
-        "LanguageOptions":{"shape":"LanguageOptions"}
+        "LanguageOptions":{"shape":"LanguageOptions"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "StartTranscriptionJobResponse":{
@@ -1590,10 +1658,65 @@
       "member":{"shape":"NonEmptyString"},
       "min":1
     },
+    "Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"TagKey"},
+        "Value":{"shape":"TagValue"}
+      }
+    },
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1
+    },
+    "TagKeyList":{
+      "type":"list",
+      "member":{"shape":"TagKey"},
+      "max":200,
+      "min":1
+    },
+    "TagList":{
+      "type":"list",
+      "member":{"shape":"Tag"},
+      "max":200,
+      "min":1
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "Tags"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"TranscribeArn"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0
+    },
     "TimestampMilliseconds":{
       "type":"long",
       "max":14400000,
       "min":0
+    },
+    "TranscribeArn":{
+      "type":"string",
+      "max":1011,
+      "min":1,
+      "pattern":"arn:aws(-[^:]+)?:transcribe:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z-]*/[0-9a-zA-Z._-]+"
     },
     "Transcript":{
       "type":"structure",
@@ -1641,7 +1764,8 @@
         "ContentRedaction":{"shape":"ContentRedaction"},
         "IdentifyLanguage":{"shape":"Boolean"},
         "LanguageOptions":{"shape":"LanguageOptions"},
-        "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"}
+        "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"},
+        "Tags":{"shape":"TagList"}
       }
     },
     "TranscriptionJobName":{
@@ -1686,6 +1810,22 @@
         "CONVERSATION",
         "DICTATION"
       ]
+    },
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "TagKeys"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"TranscribeArn"},
+        "TagKeys":{"shape":"TagKeyList"}
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
     },
     "UpdateCallAnalyticsCategoryRequest":{
       "type":"structure",

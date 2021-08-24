@@ -42502,7 +42502,7 @@ type Parameter struct {
 	Type *string `type:"string" enum:"ParameterType"`
 
 	// The parameter value.
-	Value *string `type:"string"`
+	Value *string `type:"string" sensitive:"true"`
 
 	// The parameter version.
 	Version *int64 `type:"long"`
@@ -42673,7 +42673,7 @@ type ParameterHistory struct {
 	Type *string `type:"string" enum:"ParameterType"`
 
 	// The parameter value.
-	Value *string `type:"string"`
+	Value *string `type:"string" sensitive:"true"`
 
 	// The parameter version.
 	Version *int64 `type:"long"`
@@ -44913,7 +44913,7 @@ type PutParameterInput struct {
 	// You can't include {{}} or {{ssm:parameter-name}} in a parameter value.
 	//
 	// Value is a required field
-	Value *string `type:"string" required:"true"`
+	Value *string `type:"string" required:"true" sensitive:"true"`
 }
 
 // String returns the string representation
