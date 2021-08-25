@@ -1744,7 +1744,8 @@
       "type":"string",
       "enum":[
         "EC2",
-        "FARGATE"
+        "FARGATE",
+        "EXTERNAL"
       ]
     },
     "LimitExceededException":{
