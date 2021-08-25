@@ -3791,8 +3791,6 @@ func (c *EventBridge) PutTargetsRequest(input *PutTargetsInput) (req *request.Re
 //
 //    * Amazon EC2 CreateSnapshot API call
 //
-//    * EC2 Image Builder
-//
 //    * Amazon EC2 RebootInstances API call
 //
 //    * Amazon EC2 StopInstances API call
@@ -14700,6 +14698,9 @@ const (
 
 	// LaunchTypeFargate is a LaunchType enum value
 	LaunchTypeFargate = "FARGATE"
+
+	// LaunchTypeExternal is a LaunchType enum value
+	LaunchTypeExternal = "EXTERNAL"
 )
 
 // LaunchType_Values returns all elements of the LaunchType enum
@@ -14707,6 +14708,7 @@ func LaunchType_Values() []string {
 	return []string{
 		LaunchTypeEc2,
 		LaunchTypeFargate,
+		LaunchTypeExternal,
 	}
 }
 

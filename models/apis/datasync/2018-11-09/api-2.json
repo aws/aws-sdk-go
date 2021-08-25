@@ -697,7 +697,8 @@
         "Options":{"shape":"Options"},
         "Excludes":{"shape":"FilterList"},
         "Schedule":{"shape":"TaskSchedule"},
-        "Tags":{"shape":"InputTagList"}
+        "Tags":{"shape":"InputTagList"},
+        "Includes":{"shape":"FilterList"}
       }
     },
     "CreateTaskResponse":{
@@ -916,7 +917,8 @@
         "Schedule":{"shape":"TaskSchedule"},
         "ErrorCode":{"shape":"string"},
         "ErrorDetail":{"shape":"string"},
-        "CreationTime":{"shape":"Time"}
+        "CreationTime":{"shape":"Time"},
+        "Includes":{"shape":"FilterList"}
       }
     },
     "DestinationNetworkInterfaceArns":{
@@ -1463,7 +1465,8 @@
       "members":{
         "TaskArn":{"shape":"TaskArn"},
         "OverrideOptions":{"shape":"Options"},
-        "Includes":{"shape":"FilterList"}
+        "Includes":{"shape":"FilterList"},
+        "Excludes":{"shape":"FilterList"}
       }
     },
     "StartTaskExecutionResponse":{
@@ -1748,7 +1751,8 @@
         "Excludes":{"shape":"FilterList"},
         "Schedule":{"shape":"TaskSchedule"},
         "Name":{"shape":"TagValue"},
-        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"}
+        "CloudWatchLogGroupArn":{"shape":"LogGroupArn"},
+        "Includes":{"shape":"FilterList"}
       }
     },
     "UpdateTaskResponse":{

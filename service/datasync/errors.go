@@ -11,7 +11,7 @@ const (
 	// ErrCodeInternalException for service response error code
 	// "InternalException".
 	//
-	// This exception is thrown when an error occurs in the AWS DataSync service.
+	// This exception is thrown when an error occurs in the DataSync service.
 	ErrCodeInternalException = "InternalException"
 
 	// ErrCodeInvalidRequestException for service response error code

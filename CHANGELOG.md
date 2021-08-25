@@ -1,3 +1,20 @@
+Release v1.40.30 (2021-08-25)
+===
+
+### Service Client Updates
+* `service/datasync`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Support added for IMDS IPv6 endpoint
+* `service/eventbridge`: Updates service API and documentation
+* `service/events`: Updates service API and documentation
+  * AWS CWEvents adds an enum of EXTERNAL for EcsParameters LaunchType for PutTargets API
+* `service/fms`: Updates service API and documentation
+
+### SDK Bugs
+* `private/protocol`: Add support for parsing RFC 3339 timestamp without trailing Z
+  * Adds support for parsing RFC 3339 timestamp but without the `Z` character, nor UTC offset.
+  * Related to [aws/aws-sdk-go-v2#1387](https://github.com/aws/aws-sdk-go-v2/issues/1387)
+
 Release v1.40.29 (2021-08-24)
 ===
 

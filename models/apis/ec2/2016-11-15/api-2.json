@@ -20498,7 +20498,8 @@
       "members":{
         "HttpTokens":{"shape":"HttpTokensState"},
         "HttpPutResponseHopLimit":{"shape":"Integer"},
-        "HttpEndpoint":{"shape":"InstanceMetadataEndpointState"}
+        "HttpEndpoint":{"shape":"InstanceMetadataEndpointState"},
+        "HttpProtocolIpv6":{"shape":"InstanceMetadataProtocolState"}
       }
     },
     "InstanceMetadataOptionsResponse":{
@@ -20519,6 +20520,10 @@
         "HttpEndpoint":{
           "shape":"InstanceMetadataEndpointState",
           "locationName":"httpEndpoint"
+        },
+        "HttpProtocolIpv6":{
+          "shape":"InstanceMetadataProtocolState",
+          "locationName":"httpProtocolIpv6"
         }
       }
     },
@@ -20527,6 +20532,13 @@
       "enum":[
         "pending",
         "applied"
+      ]
+    },
+    "InstanceMetadataProtocolState":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
       ]
     },
     "InstanceMonitoring":{
@@ -23924,7 +23936,8 @@
         "HttpTokens":{"shape":"HttpTokensState"},
         "HttpPutResponseHopLimit":{"shape":"Integer"},
         "HttpEndpoint":{"shape":"InstanceMetadataEndpointState"},
-        "DryRun":{"shape":"Boolean"}
+        "DryRun":{"shape":"Boolean"},
+        "HttpProtocolIpv6":{"shape":"InstanceMetadataProtocolState"}
       }
     },
     "ModifyInstanceMetadataOptionsResult":{

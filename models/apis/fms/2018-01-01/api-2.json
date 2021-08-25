@@ -1203,6 +1203,7 @@
         "ResourceTags":{"shape":"ResourceTags"},
         "ExcludeResourceTags":{"shape":"Boolean"},
         "RemediationEnabled":{"shape":"Boolean"},
+        "DeleteUnusedFMManagedResources":{"shape":"Boolean"},
         "IncludeMap":{"shape":"CustomerPolicyScopeMap"},
         "ExcludeMap":{"shape":"CustomerPolicyScopeMap"}
       }
@@ -1256,7 +1257,8 @@
         "PolicyName":{"shape":"ResourceName"},
         "ResourceType":{"shape":"ResourceType"},
         "SecurityServiceType":{"shape":"SecurityServiceType"},
-        "RemediationEnabled":{"shape":"Boolean"}
+        "RemediationEnabled":{"shape":"Boolean"},
+        "DeleteUnusedFMManagedResources":{"shape":"Boolean"}
       }
     },
     "PolicySummaryList":{
