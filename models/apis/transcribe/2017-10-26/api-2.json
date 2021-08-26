@@ -1124,7 +1124,11 @@
         "ta-IN",
         "te-IN",
         "tr-TR",
-        "zh-CN"
+        "zh-CN",
+        "zh-TW",
+        "th-TH",
+        "en-ZA",
+        "en-NZ"
       ]
     },
     "LanguageModel":{

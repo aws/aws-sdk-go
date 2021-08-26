@@ -1070,7 +1070,8 @@
         "Name":{"shape":"String"},
         "Id":{"shape":"RekognitionUniqueId"},
         "Face":{"shape":"ComparedFace"},
-        "MatchConfidence":{"shape":"Percent"}
+        "MatchConfidence":{"shape":"Percent"},
+        "KnownGender":{"shape":"KnownGender"}
       }
     },
     "CelebrityDetail":{
@@ -1167,7 +1168,9 @@
         "Confidence":{"shape":"Percent"},
         "Landmarks":{"shape":"Landmarks"},
         "Pose":{"shape":"Pose"},
-        "Quality":{"shape":"ImageQuality"}
+        "Quality":{"shape":"ImageQuality"},
+        "Emotions":{"shape":"Emotions"},
+        "Smile":{"shape":"Smile"}
       }
     },
     "ComparedFaceList":{
@@ -1777,7 +1780,8 @@
       "type":"structure",
       "members":{
         "Urls":{"shape":"Urls"},
-        "Name":{"shape":"String"}
+        "Name":{"shape":"String"},
+        "KnownGender":{"shape":"KnownGender"}
       }
     },
     "GetCelebrityRecognitionRequest":{
@@ -2148,6 +2152,19 @@
       "max":2048,
       "min":1,
       "pattern":"^[A-Za-z0-9][A-Za-z0-9:_/+=,@.-]{0,2048}$"
+    },
+    "KnownGender":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"KnownGenderType"}
+      }
+    },
+    "KnownGenderType":{
+      "type":"string",
+      "enum":[
+        "Male",
+        "Female"
+      ]
     },
     "Label":{
       "type":"structure",
@@ -3287,7 +3304,9 @@
     "Url":{"type":"string"},
     "Urls":{
       "type":"list",
-      "member":{"shape":"Url"}
+      "member":{"shape":"Url"},
+      "max":255,
+      "min":0
     },
     "ValidationData":{
       "type":"structure",

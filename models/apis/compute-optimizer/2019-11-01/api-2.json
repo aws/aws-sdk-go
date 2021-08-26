@@ -201,6 +201,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "GetEnrollmentStatusesForOrganization":{
+      "name":"GetEnrollmentStatusesForOrganization",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetEnrollmentStatusesForOrganizationRequest"},
+      "output":{"shape":"GetEnrollmentStatusesForOrganizationResponse"},
+      "errors":[
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingAuthenticationToken"},
+        {"shape":"ThrottlingException"}
+      ]
+    },
     "GetLambdaFunctionRecommendations":{
       "name":"GetLambdaFunctionRecommendations",
       "http":{
@@ -265,6 +282,19 @@
       "exception":true,
       "synthetic":true
     },
+    "AccountEnrollmentStatus":{
+      "type":"structure",
+      "members":{
+        "accountId":{"shape":"AccountId"},
+        "status":{"shape":"Status"},
+        "statusReason":{"shape":"StatusReason"},
+        "lastUpdatedTimestamp":{"shape":"LastUpdatedTimestamp"}
+      }
+    },
+    "AccountEnrollmentStatuses":{
+      "type":"list",
+      "member":{"shape":"AccountEnrollmentStatus"}
+    },
     "AccountId":{"type":"string"},
     "AccountIds":{
       "type":"list",
@@ -317,6 +347,17 @@
       "member":{"shape":"AutoScalingGroupRecommendation"}
     },
     "Code":{"type":"string"},
+    "CpuVendorArchitecture":{
+      "type":"string",
+      "enum":[
+        "AWS_ARM64",
+        "CURRENT"
+      ]
+    },
+    "CpuVendorArchitectures":{
+      "type":"list",
+      "member":{"shape":"CpuVendorArchitecture"}
+    },
     "CreationTimestamp":{"type":"timestamp"},
     "CurrentInstanceType":{"type":"string"},
     "DescribeRecommendationExportJobsRequest":{
@@ -382,6 +423,21 @@
       "type":"list",
       "member":{"shape":"EBSUtilizationMetric"}
     },
+    "EnrollmentFilter":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"EnrollmentFilterName"},
+        "values":{"shape":"FilterValues"}
+      }
+    },
+    "EnrollmentFilterName":{
+      "type":"string",
+      "enum":["Status"]
+    },
+    "EnrollmentFilters":{
+      "type":"list",
+      "member":{"shape":"EnrollmentFilter"}
+    },
     "ErrorMessage":{"type":"string"},
     "ExportAutoScalingGroupRecommendationsRequest":{
       "type":"structure",
@@ -392,7 +448,8 @@
         "fieldsToExport":{"shape":"ExportableAutoScalingGroupFields"},
         "s3DestinationConfig":{"shape":"S3DestinationConfig"},
         "fileFormat":{"shape":"FileFormat"},
-        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"}
+        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"},
+        "recommendationPreferences":{"shape":"RecommendationPreferences"}
       }
     },
     "ExportAutoScalingGroupRecommendationsResponse":{
@@ -436,7 +493,8 @@
         "fieldsToExport":{"shape":"ExportableInstanceFields"},
         "s3DestinationConfig":{"shape":"S3DestinationConfig"},
         "fileFormat":{"shape":"FileFormat"},
-        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"}
+        "includeMemberAccounts":{"shape":"IncludeMemberAccounts"},
+        "recommendationPreferences":{"shape":"RecommendationPreferences"}
       }
     },
     "ExportEC2InstanceRecommendationsResponse":{
@@ -693,7 +751,8 @@
         "autoScalingGroupArns":{"shape":"AutoScalingGroupArns"},
         "nextToken":{"shape":"NextToken"},
         "maxResults":{"shape":"MaxResults"},
-        "filters":{"shape":"Filters"}
+        "filters":{"shape":"Filters"},
+        "recommendationPreferences":{"shape":"RecommendationPreferences"}
       }
     },
     "GetAutoScalingGroupRecommendationsResponse":{
@@ -729,7 +788,8 @@
         "nextToken":{"shape":"NextToken"},
         "maxResults":{"shape":"MaxResults"},
         "filters":{"shape":"Filters"},
-        "accountIds":{"shape":"AccountIds"}
+        "accountIds":{"shape":"AccountIds"},
+        "recommendationPreferences":{"shape":"RecommendationPreferences"}
       }
     },
     "GetEC2InstanceRecommendationsResponse":{
@@ -754,7 +814,8 @@
         "stat":{"shape":"MetricStatistic"},
         "period":{"shape":"Period"},
         "startTime":{"shape":"Timestamp"},
-        "endTime":{"shape":"Timestamp"}
+        "endTime":{"shape":"Timestamp"},
+        "recommendationPreferences":{"shape":"RecommendationPreferences"}
       }
     },
     "GetEC2RecommendationProjectedMetricsResponse":{
@@ -773,7 +834,24 @@
       "members":{
         "status":{"shape":"Status"},
         "statusReason":{"shape":"StatusReason"},
-        "memberAccountsEnrolled":{"shape":"MemberAccountsEnrolled"}
+        "memberAccountsEnrolled":{"shape":"MemberAccountsEnrolled"},
+        "lastUpdatedTimestamp":{"shape":"LastUpdatedTimestamp"},
+        "numberOfMemberAccountsOptedIn":{"shape":"NumberOfMemberAccountsOptedIn"}
+      }
+    },
+    "GetEnrollmentStatusesForOrganizationRequest":{
+      "type":"structure",
+      "members":{
+        "filters":{"shape":"EnrollmentFilters"},
+        "nextToken":{"shape":"NextToken"},
+        "maxResults":{"shape":"MaxResults"}
+      }
+    },
+    "GetEnrollmentStatusesForOrganizationResponse":{
+      "type":"structure",
+      "members":{
+        "accountEnrollmentStatuses":{"shape":"AccountEnrollmentStatuses"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "GetLambdaFunctionRecommendationsRequest":{
@@ -1115,6 +1193,7 @@
     },
     "NextToken":{"type":"string"},
     "NumberOfInvocations":{"type":"long"},
+    "NumberOfMemberAccountsOptedIn":{"type":"integer"},
     "OptInRequiredException":{
       "type":"structure",
       "members":{
@@ -1125,7 +1204,7 @@
     },
     "PerformanceRisk":{
       "type":"double",
-      "max":5,
+      "max":4,
       "min":0
     },
     "Period":{"type":"integer"},
@@ -1136,7 +1215,8 @@
         "NetworkInterface",
         "StorageInterface",
         "InstanceStoreAvailability",
-        "VirtualizationType"
+        "VirtualizationType",
+        "Architecture"
       ]
     },
     "PlatformDifferences":{
@@ -1190,6 +1270,12 @@
     "RecommendationOptions":{
       "type":"list",
       "member":{"shape":"InstanceRecommendationOption"}
+    },
+    "RecommendationPreferences":{
+      "type":"structure",
+      "members":{
+        "cpuVendorArchitectures":{"shape":"CpuVendorArchitectures"}
+      }
     },
     "RecommendationSource":{
       "type":"structure",

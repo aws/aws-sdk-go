@@ -1,3 +1,14 @@
+Release v1.40.31 (2021-08-26)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * Support added for resizing VPC prefix lists
+* `service/rekognition`: Updates service API and documentation
+  * This release added new attributes to Rekognition RecognizeCelebities and GetCelebrityInfo API operations.
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.40.30 (2021-08-25)
 ===
 

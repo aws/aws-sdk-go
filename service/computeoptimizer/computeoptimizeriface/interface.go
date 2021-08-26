@@ -100,6 +100,10 @@ type ComputeOptimizerAPI interface {
 	GetEnrollmentStatusWithContext(aws.Context, *computeoptimizer.GetEnrollmentStatusInput, ...request.Option) (*computeoptimizer.GetEnrollmentStatusOutput, error)
 	GetEnrollmentStatusRequest(*computeoptimizer.GetEnrollmentStatusInput) (*request.Request, *computeoptimizer.GetEnrollmentStatusOutput)
 
+	GetEnrollmentStatusesForOrganization(*computeoptimizer.GetEnrollmentStatusesForOrganizationInput) (*computeoptimizer.GetEnrollmentStatusesForOrganizationOutput, error)
+	GetEnrollmentStatusesForOrganizationWithContext(aws.Context, *computeoptimizer.GetEnrollmentStatusesForOrganizationInput, ...request.Option) (*computeoptimizer.GetEnrollmentStatusesForOrganizationOutput, error)
+	GetEnrollmentStatusesForOrganizationRequest(*computeoptimizer.GetEnrollmentStatusesForOrganizationInput) (*request.Request, *computeoptimizer.GetEnrollmentStatusesForOrganizationOutput)
+
 	GetLambdaFunctionRecommendations(*computeoptimizer.GetLambdaFunctionRecommendationsInput) (*computeoptimizer.GetLambdaFunctionRecommendationsOutput, error)
 	GetLambdaFunctionRecommendationsWithContext(aws.Context, *computeoptimizer.GetLambdaFunctionRecommendationsInput, ...request.Option) (*computeoptimizer.GetLambdaFunctionRecommendationsOutput, error)
 	GetLambdaFunctionRecommendationsRequest(*computeoptimizer.GetLambdaFunctionRecommendationsInput) (*request.Request, *computeoptimizer.GetLambdaFunctionRecommendationsOutput)

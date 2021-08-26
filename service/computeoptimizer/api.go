@@ -71,7 +71,7 @@ func (c *ComputeOptimizer) DescribeRecommendationExportJobsRequest(input *Descri
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -83,14 +83,14 @@ func (c *ComputeOptimizer) DescribeRecommendationExportJobsRequest(input *Descri
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -164,12 +164,13 @@ func (c *ComputeOptimizer) ExportAutoScalingGroupRecommendationsRequest(input *E
 // Exports optimization recommendations for Auto Scaling groups.
 //
 // Recommendations are exported in a comma-separated values (.csv) file, and
-// its metadata in a JavaScript Object Notation (.json) file, to an existing
+// its metadata in a JavaScript Object Notation (JSON) (.json) file, to an existing
 // Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
 // information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
 // in the Compute Optimizer User Guide.
 //
-// You can have only one Auto Scaling group export job in progress per AWS Region.
+// You can have only one Auto Scaling group export job in progress per Amazon
+// Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -180,7 +181,7 @@ func (c *ComputeOptimizer) ExportAutoScalingGroupRecommendationsRequest(input *E
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -192,11 +193,11 @@ func (c *ComputeOptimizer) ExportAutoScalingGroupRecommendationsRequest(input *E
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -273,12 +274,13 @@ func (c *ComputeOptimizer) ExportEBSVolumeRecommendationsRequest(input *ExportEB
 // Exports optimization recommendations for Amazon EBS volumes.
 //
 // Recommendations are exported in a comma-separated values (.csv) file, and
-// its metadata in a JavaScript Object Notation (.json) file, to an existing
+// its metadata in a JavaScript Object Notation (JSON) (.json) file, to an existing
 // Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
 // information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
 // in the Compute Optimizer User Guide.
 //
-// You can have only one Amazon EBS volume export job in progress per AWS Region.
+// You can have only one Amazon EBS volume export job in progress per Amazon
+// Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -289,7 +291,7 @@ func (c *ComputeOptimizer) ExportEBSVolumeRecommendationsRequest(input *ExportEB
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -301,11 +303,11 @@ func (c *ComputeOptimizer) ExportEBSVolumeRecommendationsRequest(input *ExportEB
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -382,13 +384,13 @@ func (c *ComputeOptimizer) ExportEC2InstanceRecommendationsRequest(input *Export
 // Exports optimization recommendations for Amazon EC2 instances.
 //
 // Recommendations are exported in a comma-separated values (.csv) file, and
-// its metadata in a JavaScript Object Notation (.json) file, to an existing
+// its metadata in a JavaScript Object Notation (JSON) (.json) file, to an existing
 // Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
 // information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
 // in the Compute Optimizer User Guide.
 //
-// You can have only one Amazon EC2 instance export job in progress per AWS
-// Region.
+// You can have only one Amazon EC2 instance export job in progress per Amazon
+// Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -399,7 +401,7 @@ func (c *ComputeOptimizer) ExportEC2InstanceRecommendationsRequest(input *Export
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -411,11 +413,11 @@ func (c *ComputeOptimizer) ExportEC2InstanceRecommendationsRequest(input *Export
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -489,15 +491,16 @@ func (c *ComputeOptimizer) ExportLambdaFunctionRecommendationsRequest(input *Exp
 
 // ExportLambdaFunctionRecommendations API operation for AWS Compute Optimizer.
 //
-// Exports optimization recommendations for AWS Lambda functions.
+// Exports optimization recommendations for Lambda functions.
 //
 // Recommendations are exported in a comma-separated values (.csv) file, and
-// its metadata in a JavaScript Object Notation (.json) file, to an existing
+// its metadata in a JavaScript Object Notation (JSON) (.json) file, to an existing
 // Amazon Simple Storage Service (Amazon S3) bucket that you specify. For more
 // information, see Exporting Recommendations (https://docs.aws.amazon.com/compute-optimizer/latest/ug/exporting-recommendations.html)
 // in the Compute Optimizer User Guide.
 //
-// You can have only one Lambda function export job in progress per AWS Region.
+// You can have only one Lambda function export job in progress per Amazon Web
+// Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -508,7 +511,7 @@ func (c *ComputeOptimizer) ExportLambdaFunctionRecommendationsRequest(input *Exp
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -520,11 +523,11 @@ func (c *ComputeOptimizer) ExportLambdaFunctionRecommendationsRequest(input *Exp
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -600,10 +603,10 @@ func (c *ComputeOptimizer) GetAutoScalingGroupRecommendationsRequest(input *GetA
 //
 // Returns Auto Scaling group recommendations.
 //
-// AWS Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling
-// groups that meet a specific set of requirements. For more information, see
-// the Supported resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
-// in the AWS Compute Optimizer User Guide.
+// Compute Optimizer generates recommendations for Amazon EC2 Auto Scaling groups
+// that meet a specific set of requirements. For more information, see the Supported
+// resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the Compute Optimizer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -614,7 +617,7 @@ func (c *ComputeOptimizer) GetAutoScalingGroupRecommendationsRequest(input *GetA
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -626,14 +629,14 @@ func (c *ComputeOptimizer) GetAutoScalingGroupRecommendationsRequest(input *GetA
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -706,10 +709,10 @@ func (c *ComputeOptimizer) GetEBSVolumeRecommendationsRequest(input *GetEBSVolum
 //
 // Returns Amazon Elastic Block Store (Amazon EBS) volume recommendations.
 //
-// AWS Compute Optimizer generates recommendations for Amazon EBS volumes that
-// meet a specific set of requirements. For more information, see the Supported
-// resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
-// in the AWS Compute Optimizer User Guide.
+// Compute Optimizer generates recommendations for Amazon EBS volumes that meet
+// a specific set of requirements. For more information, see the Supported resources
+// and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the Compute Optimizer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -720,7 +723,7 @@ func (c *ComputeOptimizer) GetEBSVolumeRecommendationsRequest(input *GetEBSVolum
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -732,14 +735,14 @@ func (c *ComputeOptimizer) GetEBSVolumeRecommendationsRequest(input *GetEBSVolum
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -812,10 +815,10 @@ func (c *ComputeOptimizer) GetEC2InstanceRecommendationsRequest(input *GetEC2Ins
 //
 // Returns Amazon EC2 instance recommendations.
 //
-// AWS Compute Optimizer generates recommendations for Amazon Elastic Compute
-// Cloud (Amazon EC2) instances that meet a specific set of requirements. For
-// more information, see the Supported resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
-// in the AWS Compute Optimizer User Guide.
+// Compute Optimizer generates recommendations for Amazon Elastic Compute Cloud
+// (Amazon EC2) instances that meet a specific set of requirements. For more
+// information, see the Supported resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the Compute Optimizer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -826,7 +829,7 @@ func (c *ComputeOptimizer) GetEC2InstanceRecommendationsRequest(input *GetEC2Ins
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -838,14 +841,14 @@ func (c *ComputeOptimizer) GetEC2InstanceRecommendationsRequest(input *GetEC2Ins
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -933,7 +936,7 @@ func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetricsRequest(input *Ge
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -945,14 +948,14 @@ func (c *ComputeOptimizer) GetEC2RecommendationProjectedMetricsRequest(input *Ge
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -1023,11 +1026,13 @@ func (c *ComputeOptimizer) GetEnrollmentStatusRequest(input *GetEnrollmentStatus
 
 // GetEnrollmentStatus API operation for AWS Compute Optimizer.
 //
-// Returns the enrollment (opt in) status of an account to the AWS Compute Optimizer
+// Returns the enrollment (opt in) status of an account to the Compute Optimizer
 // service.
 //
 // If the account is the management account of an organization, this action
-// also confirms the enrollment status of member accounts within the organization.
+// also confirms the enrollment status of member accounts of the organization.
+// Use the GetEnrollmentStatusesForOrganization action to get detailed information
+// about the enrollment status of member accounts of an organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1047,11 +1052,11 @@ func (c *ComputeOptimizer) GetEnrollmentStatusRequest(input *GetEnrollmentStatus
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -1073,6 +1078,105 @@ func (c *ComputeOptimizer) GetEnrollmentStatus(input *GetEnrollmentStatusInput) 
 // for more information on using Contexts.
 func (c *ComputeOptimizer) GetEnrollmentStatusWithContext(ctx aws.Context, input *GetEnrollmentStatusInput, opts ...request.Option) (*GetEnrollmentStatusOutput, error) {
 	req, out := c.GetEnrollmentStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEnrollmentStatusesForOrganization = "GetEnrollmentStatusesForOrganization"
+
+// GetEnrollmentStatusesForOrganizationRequest generates a "aws/request.Request" representing the
+// client's request for the GetEnrollmentStatusesForOrganization operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEnrollmentStatusesForOrganization for more information on using the GetEnrollmentStatusesForOrganization
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEnrollmentStatusesForOrganizationRequest method.
+//    req, resp := client.GetEnrollmentStatusesForOrganizationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEnrollmentStatusesForOrganization
+func (c *ComputeOptimizer) GetEnrollmentStatusesForOrganizationRequest(input *GetEnrollmentStatusesForOrganizationInput) (req *request.Request, output *GetEnrollmentStatusesForOrganizationOutput) {
+	op := &request.Operation{
+		Name:       opGetEnrollmentStatusesForOrganization,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetEnrollmentStatusesForOrganizationInput{}
+	}
+
+	output = &GetEnrollmentStatusesForOrganizationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEnrollmentStatusesForOrganization API operation for AWS Compute Optimizer.
+//
+// Returns the Compute Optimizer enrollment (opt-in) status of organization
+// member accounts, if your account is an organization management account.
+//
+// To get the enrollment status of standalone accounts, use the GetEnrollmentStatus
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Compute Optimizer's
+// API operation GetEnrollmentStatusesForOrganization for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServerException
+//   An internal error has occurred. Try your call again.
+//
+//   * ServiceUnavailableException
+//   The request has failed due to a temporary failure of the server.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * InvalidParameterValueException
+//   The value supplied for the input parameter is out of range or not valid.
+//
+//   * MissingAuthenticationToken
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/compute-optimizer-2019-11-01/GetEnrollmentStatusesForOrganization
+func (c *ComputeOptimizer) GetEnrollmentStatusesForOrganization(input *GetEnrollmentStatusesForOrganizationInput) (*GetEnrollmentStatusesForOrganizationOutput, error) {
+	req, out := c.GetEnrollmentStatusesForOrganizationRequest(input)
+	return out, req.Send()
+}
+
+// GetEnrollmentStatusesForOrganizationWithContext is the same as GetEnrollmentStatusesForOrganization with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEnrollmentStatusesForOrganization for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *ComputeOptimizer) GetEnrollmentStatusesForOrganizationWithContext(ctx aws.Context, input *GetEnrollmentStatusesForOrganizationInput, opts ...request.Option) (*GetEnrollmentStatusesForOrganizationOutput, error) {
+	req, out := c.GetEnrollmentStatusesForOrganizationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1122,12 +1226,12 @@ func (c *ComputeOptimizer) GetLambdaFunctionRecommendationsRequest(input *GetLam
 
 // GetLambdaFunctionRecommendations API operation for AWS Compute Optimizer.
 //
-// Returns AWS Lambda function recommendations.
+// Returns Lambda function recommendations.
 //
-// AWS Compute Optimizer generates recommendations for functions that meet a
-// specific set of requirements. For more information, see the Supported resources
-// and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
-// in the AWS Compute Optimizer User Guide.
+// Compute Optimizer generates recommendations for functions that meet a specific
+// set of requirements. For more information, see the Supported resources and
+// requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
+// in the Compute Optimizer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1138,7 +1242,7 @@ func (c *ComputeOptimizer) GetLambdaFunctionRecommendationsRequest(input *GetLam
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -1150,11 +1254,11 @@ func (c *ComputeOptimizer) GetLambdaFunctionRecommendationsRequest(input *GetLam
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -1250,7 +1354,7 @@ func (c *ComputeOptimizer) GetRecommendationSummariesRequest(input *GetRecommend
 //
 // Returned Error Types:
 //   * OptInRequiredException
-//   The account is not opted in to AWS Compute Optimizer.
+//   The account is not opted in to Compute Optimizer.
 //
 //   * InternalServerException
 //   An internal error has occurred. Try your call again.
@@ -1262,11 +1366,11 @@ func (c *ComputeOptimizer) GetRecommendationSummariesRequest(input *GetRecommend
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -1337,21 +1441,21 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusRequest(input *UpdateEnrollment
 
 // UpdateEnrollmentStatus API operation for AWS Compute Optimizer.
 //
-// Updates the enrollment (opt in and opt out) status of an account to the AWS
-// Compute Optimizer service.
+// Updates the enrollment (opt in and opt out) status of an account to the Compute
+// Optimizer service.
 //
 // If the account is a management account of an organization, this action can
-// also be used to enroll member accounts within the organization.
+// also be used to enroll member accounts of the organization.
 //
 // You must have the appropriate permissions to opt in to Compute Optimizer,
 // to view its recommendations, and to opt out. For more information, see Controlling
-// access with AWS Identity and Access Management (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html)
-// in the AWS Compute Optimizer User Guide.
+// access with Amazon Web Services Identity and Access Management (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html)
+// in the Compute Optimizer User Guide.
 //
-// When you opt in, Compute Optimizer automatically creates a Service-Linked
-// Role in your account to access its data. For more information, see Using
-// Service-Linked Roles for AWS Compute Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/using-service-linked-roles.html)
-// in the AWS Compute Optimizer User Guide.
+// When you opt in, Compute Optimizer automatically creates a service-linked
+// role in your account to access its data. For more information, see Using
+// Service-Linked Roles for Compute Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/using-service-linked-roles.html)
+// in the Compute Optimizer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1371,11 +1475,11 @@ func (c *ComputeOptimizer) UpdateEnrollmentStatusRequest(input *UpdateEnrollment
 //   You do not have sufficient access to perform this action.
 //
 //   * InvalidParameterValueException
-//   An invalid or out-of-range value was supplied for the input parameter.
+//   The value supplied for the input parameter is out of range or not valid.
 //
 //   * MissingAuthenticationToken
-//   The request must contain either a valid (registered) AWS access key ID or
-//   X.509 certificate.
+//   The request must contain either a valid (registered) Amazon Web Services
+//   access key ID or X.509 certificate.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -1458,6 +1562,62 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Describes the enrollment status of an organization's member accounts in Compute
+// Optimizer.
+type AccountEnrollmentStatus struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services account ID.
+	AccountId *string `locationName:"accountId" type:"string"`
+
+	// The Unix epoch timestamp, in seconds, of when the account enrollment status
+	// was last updated.
+	LastUpdatedTimestamp *time.Time `locationName:"lastUpdatedTimestamp" type:"timestamp"`
+
+	// The account enrollment status.
+	Status *string `locationName:"status" type:"string" enum:"Status"`
+
+	// The reason for the account enrollment status.
+	//
+	// For example, an account might show a status of Pending because member accounts
+	// of an organization require more time to be enrolled in the service.
+	StatusReason *string `locationName:"statusReason" type:"string"`
+}
+
+// String returns the string representation
+func (s AccountEnrollmentStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AccountEnrollmentStatus) GoString() string {
+	return s.String()
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *AccountEnrollmentStatus) SetAccountId(v string) *AccountEnrollmentStatus {
+	s.AccountId = &v
+	return s
+}
+
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *AccountEnrollmentStatus) SetLastUpdatedTimestamp(v time.Time) *AccountEnrollmentStatus {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AccountEnrollmentStatus) SetStatus(v string) *AccountEnrollmentStatus {
+	s.Status = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *AccountEnrollmentStatus) SetStatusReason(v string) *AccountEnrollmentStatus {
+	s.StatusReason = &v
+	return s
+}
+
 // Describes the configuration of an Auto Scaling group.
 type AutoScalingGroupConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -1513,7 +1673,7 @@ func (s *AutoScalingGroupConfiguration) SetMinSize(v int64) *AutoScalingGroupCon
 type AutoScalingGroupRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the Auto Scaling group.
+	// The Amazon Web Services account ID of the Auto Scaling group.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the Auto Scaling group.
@@ -1531,7 +1691,7 @@ type AutoScalingGroupRecommendation struct {
 	// Findings for Auto Scaling groups include:
 	//
 	//    * NotOptimized —An Auto Scaling group is considered not optimized when
-	//    AWS Compute Optimizer identifies a recommendation that can provide better
+	//    Compute Optimizer identifies a recommendation that can provide better
 	//    performance for your workload.
 	//
 	//    * Optimized —An Auto Scaling group is considered optimized when Compute
@@ -1540,7 +1700,7 @@ type AutoScalingGroupRecommendation struct {
 	//    Optimizer might recommend a new generation instance type.
 	Finding *string `locationName:"finding" type:"string" enum:"Finding"`
 
-	// The time stamp of when the Auto Scaling group recommendation was last refreshed.
+	// The timestamp of when the Auto Scaling group recommendation was last refreshed.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
 	// The number of days for which utilization metrics were analyzed for the Auto
@@ -1696,7 +1856,7 @@ func (s *AutoScalingGroupRecommendationOption) SetRank(v int64) *AutoScalingGrou
 type DescribeRecommendationExportJobsInput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of objects that describe a filter to return a more specific list
+	// An array of objects to specify a filter that returns a more specific list
 	// of export jobs.
 	Filters []*JobFilter `locationName:"filters" type:"list"`
 
@@ -1712,7 +1872,7 @@ type DescribeRecommendationExportJobsInput struct {
 	// The maximum number of export jobs to return with a single request.
 	//
 	// To retrieve the remaining results, make another request with the returned
-	// NextToken value.
+	// nextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of export jobs.
@@ -1801,7 +1961,7 @@ type EBSFilter struct {
 	// The name of the filter.
 	//
 	// Specify Finding to return recommendations with a specific finding classification
-	// (e.g., NotOptimized).
+	// (for example, NotOptimized).
 	Name *string `locationName:"name" type:"string" enum:"EBSFilterName"`
 
 	// The value of the filter.
@@ -1860,15 +2020,15 @@ type EBSUtilizationMetric struct {
 
 	// The statistic of the utilization metric.
 	//
-	// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
-	// return utilization metrics using only the Maximum statistic, which is the
-	// highest value observed during the specified period.
+	// The Compute Optimizer API, Command Line Interface (CLI), and SDKs return
+	// utilization metrics using only the Maximum statistic, which is the highest
+	// value observed during the specified period.
 	//
 	// The Compute Optimizer console displays graphs for some utilization metrics
 	// using the Average statistic, which is the value of Sum / SampleCount during
 	// the specified period. For more information, see Viewing resource recommendations
 	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html)
-	// in the AWS Compute Optimizer User Guide. You can also get averaged utilization
+	// in the Compute Optimizer User Guide. You can also get averaged utilization
 	// metric data for your resources using Amazon CloudWatch. For more information,
 	// see the Amazon CloudWatch User Guide (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html).
 	Statistic *string `locationName:"statistic" type:"string" enum:"MetricStatistic"`
@@ -1905,10 +2065,50 @@ func (s *EBSUtilizationMetric) SetValue(v float64) *EBSUtilizationMetric {
 	return s
 }
 
+// Describes a filter that returns a more specific list of account enrollment
+// statuses. Use this filter with the GetEnrollmentStatusesForOrganization action.
+type EnrollmentFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the filter.
+	//
+	// Specify Status to return accounts with a specific enrollment status (for
+	// example, Active).
+	Name *string `locationName:"name" type:"string" enum:"EnrollmentFilterName"`
+
+	// The value of the filter.
+	//
+	// The valid values are Active, Inactive, Pending, and Failed.
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation
+func (s EnrollmentFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EnrollmentFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *EnrollmentFilter) SetName(v string) *EnrollmentFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *EnrollmentFilter) SetValues(v []*string) *EnrollmentFilter {
+	s.Values = v
+	return s
+}
+
 type ExportAutoScalingGroupRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to export Auto Scaling group recommendations.
+	// The IDs of the Amazon Web Services accounts for which to export Auto Scaling
+	// group recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to export recommendations.
@@ -1932,7 +2132,7 @@ type ExportAutoScalingGroupRecommendationsInput struct {
 	// The only export file format currently supported is Csv.
 	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
 
-	// An array of objects that describe a filter to export a more specific set
+	// An array of objects to specify a filter that exports a more specific set
 	// of Auto Scaling group recommendations.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
@@ -1942,9 +2142,9 @@ type ExportAutoScalingGroupRecommendationsInput struct {
 	//
 	// The member accounts must also be opted in to Compute Optimizer, and trusted
 	// access for Compute Optimizer must be enabled in the organization account.
-	// For more information, see Compute Optimizer and AWS Organizations trusted
-	// access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
-	// in the AWS Compute Optimizer User Guide.
+	// For more information, see Compute Optimizer and Amazon Web Services Organizations
+	// trusted access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the Compute Optimizer User Guide.
 	//
 	// Recommendations for member accounts of the organization are not included
 	// in the export file if this parameter is omitted.
@@ -1956,18 +2156,22 @@ type ExportAutoScalingGroupRecommendationsInput struct {
 	// parameter, or the account IDs parameter, is omitted.
 	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
 
+	// An object to specify the preferences for the Auto Scaling group recommendations
+	// to export.
+	RecommendationPreferences *RecommendationPreferences `locationName:"recommendationPreferences" type:"structure"`
+
 	// An object to specify the destination Amazon Simple Storage Service (Amazon
 	// S3) bucket name and key prefix for the export job.
 	//
 	// You must create the destination Amazon S3 bucket for your recommendations
 	// export before you create the export job. Compute Optimizer does not create
 	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
-	// the required permission policy to allow Compute Optimizer to write the export
+	// the required permissions policy to allow Compute Optimizer to write the export
 	// file to it. If you plan to specify an object prefix when you create the export
 	// job, you must include the object prefix in the policy that you add to the
 	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
 	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
-	// in the Compute Optimizer user guide.
+	// in the Compute Optimizer User Guide.
 	//
 	// S3DestinationConfig is a required field
 	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
@@ -2023,6 +2227,12 @@ func (s *ExportAutoScalingGroupRecommendationsInput) SetFilters(v []*Filter) *Ex
 // SetIncludeMemberAccounts sets the IncludeMemberAccounts field's value.
 func (s *ExportAutoScalingGroupRecommendationsInput) SetIncludeMemberAccounts(v bool) *ExportAutoScalingGroupRecommendationsInput {
 	s.IncludeMemberAccounts = &v
+	return s
+}
+
+// SetRecommendationPreferences sets the RecommendationPreferences field's value.
+func (s *ExportAutoScalingGroupRecommendationsInput) SetRecommendationPreferences(v *RecommendationPreferences) *ExportAutoScalingGroupRecommendationsInput {
+	s.RecommendationPreferences = v
 	return s
 }
 
@@ -2097,7 +2307,8 @@ func (s *ExportDestination) SetS3(v *S3Destination) *ExportDestination {
 type ExportEBSVolumeRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to export Amazon EBS volume recommendations.
+	// The IDs of the Amazon Web Services accounts for which to export Amazon EBS
+	// volume recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to export recommendations.
@@ -2121,7 +2332,7 @@ type ExportEBSVolumeRecommendationsInput struct {
 	// The only export file format currently supported is Csv.
 	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
 
-	// An array of objects that describe a filter to export a more specific set
+	// An array of objects to specify a filter that exports a more specific set
 	// of Amazon EBS volume recommendations.
 	Filters []*EBSFilter `locationName:"filters" type:"list"`
 
@@ -2131,9 +2342,9 @@ type ExportEBSVolumeRecommendationsInput struct {
 	//
 	// The member accounts must also be opted in to Compute Optimizer, and trusted
 	// access for Compute Optimizer must be enabled in the organization account.
-	// For more information, see Compute Optimizer and AWS Organizations trusted
-	// access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
-	// in the AWS Compute Optimizer User Guide.
+	// For more information, see Compute Optimizer and Amazon Web Services Organizations
+	// trusted access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the Compute Optimizer User Guide.
 	//
 	// Recommendations for member accounts of the organization are not included
 	// in the export file if this parameter is omitted.
@@ -2156,7 +2367,7 @@ type ExportEBSVolumeRecommendationsInput struct {
 	// job, you must include the object prefix in the policy that you add to the
 	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
 	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
-	// in the Compute Optimizer user guide.
+	// in the Compute Optimizer User Guide.
 	//
 	// S3DestinationConfig is a required field
 	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
@@ -2261,7 +2472,8 @@ func (s *ExportEBSVolumeRecommendationsOutput) SetS3Destination(v *S3Destination
 type ExportEC2InstanceRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to export instance recommendations.
+	// The IDs of the Amazon Web Services accounts for which to export instance
+	// recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to export recommendations.
@@ -2285,7 +2497,7 @@ type ExportEC2InstanceRecommendationsInput struct {
 	// The only export file format currently supported is Csv.
 	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
 
-	// An array of objects that describe a filter to export a more specific set
+	// An array of objects to specify a filter that exports a more specific set
 	// of instance recommendations.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
@@ -2295,9 +2507,9 @@ type ExportEC2InstanceRecommendationsInput struct {
 	//
 	// The member accounts must also be opted in to Compute Optimizer, and trusted
 	// access for Compute Optimizer must be enabled in the organization account.
-	// For more information, see Compute Optimizer and AWS Organizations trusted
-	// access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
-	// in the AWS Compute Optimizer User Guide.
+	// For more information, see Compute Optimizer and Amazon Web Services Organizations
+	// trusted access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the Compute Optimizer User Guide.
 	//
 	// Recommendations for member accounts of the organization are not included
 	// in the export file if this parameter is omitted.
@@ -2306,18 +2518,22 @@ type ExportEC2InstanceRecommendationsInput struct {
 	// parameter, or the account IDs parameter, is omitted.
 	IncludeMemberAccounts *bool `locationName:"includeMemberAccounts" type:"boolean"`
 
+	// An object to specify the preferences for the Amazon EC2 instance recommendations
+	// to export.
+	RecommendationPreferences *RecommendationPreferences `locationName:"recommendationPreferences" type:"structure"`
+
 	// An object to specify the destination Amazon Simple Storage Service (Amazon
 	// S3) bucket name and key prefix for the export job.
 	//
 	// You must create the destination Amazon S3 bucket for your recommendations
 	// export before you create the export job. Compute Optimizer does not create
 	// the S3 bucket for you. After you create the S3 bucket, ensure that it has
-	// the required permission policy to allow Compute Optimizer to write the export
-	// file to it. If you plan to specify an object prefix when you create the export
-	// job, you must include the object prefix in the policy that you add to the
-	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
+	// the required permissions policy policy to allow Compute Optimizer to write
+	// the export file to it. If you plan to specify an object prefix when you create
+	// the export job, you must include the object prefix in the that you add to
+	// the S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
 	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
-	// in the Compute Optimizer user guide.
+	// in the Compute Optimizer User Guide.
 	//
 	// S3DestinationConfig is a required field
 	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
@@ -2376,6 +2592,12 @@ func (s *ExportEC2InstanceRecommendationsInput) SetIncludeMemberAccounts(v bool)
 	return s
 }
 
+// SetRecommendationPreferences sets the RecommendationPreferences field's value.
+func (s *ExportEC2InstanceRecommendationsInput) SetRecommendationPreferences(v *RecommendationPreferences) *ExportEC2InstanceRecommendationsInput {
+	s.RecommendationPreferences = v
+	return s
+}
+
 // SetS3DestinationConfig sets the S3DestinationConfig field's value.
 func (s *ExportEC2InstanceRecommendationsInput) SetS3DestinationConfig(v *S3DestinationConfig) *ExportEC2InstanceRecommendationsInput {
 	s.S3DestinationConfig = v
@@ -2421,7 +2643,8 @@ func (s *ExportEC2InstanceRecommendationsOutput) SetS3Destination(v *S3Destinati
 type ExportLambdaFunctionRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The IDs of the AWS accounts for which to export Lambda function recommendations.
+	// The IDs of the Amazon Web Services accounts for which to export Lambda function
+	// recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to export recommendations.
@@ -2445,7 +2668,7 @@ type ExportLambdaFunctionRecommendationsInput struct {
 	// The only export file format currently supported is Csv.
 	FileFormat *string `locationName:"fileFormat" type:"string" enum:"FileFormat"`
 
-	// An array of objects that describe a filter to export a more specific set
+	// An array of objects to specify a filter that exports a more specific set
 	// of Lambda function recommendations.
 	Filters []*LambdaFunctionRecommendationFilter `locationName:"filters" type:"list"`
 
@@ -2455,9 +2678,9 @@ type ExportLambdaFunctionRecommendationsInput struct {
 	//
 	// The member accounts must also be opted in to Compute Optimizer, and trusted
 	// access for Compute Optimizer must be enabled in the organization account.
-	// For more information, see Compute Optimizer and AWS Organizations trusted
-	// access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
-	// in the AWS Compute Optimizer User Guide.
+	// For more information, see Compute Optimizer and Amazon Web Services Organizations
+	// trusted access (https://docs.aws.amazon.com/compute-optimizer/latest/ug/security-iam.html#trusted-service-access)
+	// in the Compute Optimizer User Guide.
 	//
 	// Recommendations for member accounts of the organization are not included
 	// in the export file if this parameter is omitted.
@@ -2480,7 +2703,7 @@ type ExportLambdaFunctionRecommendationsInput struct {
 	// job, you must include the object prefix in the policy that you add to the
 	// S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
 	// Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
-	// in the Compute Optimizer user guide.
+	// in the Compute Optimizer User Guide.
 	//
 	// S3DestinationConfig is a required field
 	S3DestinationConfig *S3DestinationConfig `locationName:"s3DestinationConfig" type:"structure" required:"true"`
@@ -2595,13 +2818,13 @@ type Filter struct {
 	// The name of the filter.
 	//
 	// Specify Finding to return recommendations with a specific finding classification
-	// (e.g., Underprovisioned).
+	// (for example, Underprovisioned).
 	//
 	// Specify RecommendationSourceType to return recommendations of a specific
-	// resource type (e.g., Ec2Instance).
+	// resource type (for example, Ec2Instance).
 	//
 	// Specify FindingReasonCodes to return recommendations with a specific finding
-	// reason code (e.g., CPUUnderprovisioned).
+	// reason code (for example, CPUUnderprovisioned).
 	Name *string `locationName:"name" type:"string" enum:"FilterName"`
 
 	// The value of the filter.
@@ -2690,7 +2913,8 @@ func (s *Filter) SetValues(v []*string) *Filter {
 type GetAutoScalingGroupRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account for which to return Auto Scaling group recommendations.
+	// The ID of the Amazon Web Services account for which to return Auto Scaling
+	// group recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to return Auto Scaling group
@@ -2703,7 +2927,7 @@ type GetAutoScalingGroupRecommendationsInput struct {
 	// recommendations.
 	AutoScalingGroupArns []*string `locationName:"autoScalingGroupArns" type:"list"`
 
-	// An array of objects that describe a filter that returns a more specific list
+	// An array of objects to specify a filter that returns a more specific list
 	// of Auto Scaling group recommendations.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
@@ -2711,11 +2935,15 @@ type GetAutoScalingGroupRecommendationsInput struct {
 	// single request.
 	//
 	// To retrieve the remaining results, make another request with the returned
-	// NextToken value.
+	// nextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of Auto Scaling group recommendations.
 	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An object to specify the preferences for the Auto Scaling group recommendations
+	// to return in the response.
+	RecommendationPreferences *RecommendationPreferences `locationName:"recommendationPreferences" type:"structure"`
 }
 
 // String returns the string representation
@@ -2755,6 +2983,12 @@ func (s *GetAutoScalingGroupRecommendationsInput) SetMaxResults(v int64) *GetAut
 // SetNextToken sets the NextToken field's value.
 func (s *GetAutoScalingGroupRecommendationsInput) SetNextToken(v string) *GetAutoScalingGroupRecommendationsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationPreferences sets the RecommendationPreferences field's value.
+func (s *GetAutoScalingGroupRecommendationsInput) SetRecommendationPreferences(v *RecommendationPreferences) *GetAutoScalingGroupRecommendationsInput {
+	s.RecommendationPreferences = v
 	return s
 }
 
@@ -2808,7 +3042,7 @@ func (s *GetAutoScalingGroupRecommendationsOutput) SetNextToken(v string) *GetAu
 type GetEBSVolumeRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account for which to return volume recommendations.
+	// The ID of the Amazon Web Services account for which to return volume recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to return volume recommendations.
@@ -2816,14 +3050,14 @@ type GetEBSVolumeRecommendationsInput struct {
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
 
-	// An array of objects that describe a filter that returns a more specific list
+	// An array of objects to specify a filter that returns a more specific list
 	// of volume recommendations.
 	Filters []*EBSFilter `locationName:"filters" type:"list"`
 
 	// The maximum number of volume recommendations to return with a single request.
 	//
 	// To retrieve the remaining results, make another request with the returned
-	// NextToken value.
+	// nextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of volume recommendations.
@@ -2923,7 +3157,7 @@ func (s *GetEBSVolumeRecommendationsOutput) SetVolumeRecommendations(v []*Volume
 type GetEC2InstanceRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account for which to return instance recommendations.
+	// The ID of the Amazon Web Services account for which to return instance recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to return instance recommendations.
@@ -2931,7 +3165,7 @@ type GetEC2InstanceRecommendationsInput struct {
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
 
-	// An array of objects that describe a filter that returns a more specific list
+	// An array of objects to specify a filter that returns a more specific list
 	// of instance recommendations.
 	Filters []*Filter `locationName:"filters" type:"list"`
 
@@ -2941,11 +3175,15 @@ type GetEC2InstanceRecommendationsInput struct {
 	// The maximum number of instance recommendations to return with a single request.
 	//
 	// To retrieve the remaining results, make another request with the returned
-	// NextToken value.
+	// nextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of instance recommendations.
 	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// An object to specify the preferences for the Amazon EC2 instance recommendations
+	// to return in the response.
+	RecommendationPreferences *RecommendationPreferences `locationName:"recommendationPreferences" type:"structure"`
 }
 
 // String returns the string representation
@@ -2985,6 +3223,12 @@ func (s *GetEC2InstanceRecommendationsInput) SetMaxResults(v int64) *GetEC2Insta
 // SetNextToken sets the NextToken field's value.
 func (s *GetEC2InstanceRecommendationsInput) SetNextToken(v string) *GetEC2InstanceRecommendationsInput {
 	s.NextToken = &v
+	return s
+}
+
+// SetRecommendationPreferences sets the RecommendationPreferences field's value.
+func (s *GetEC2InstanceRecommendationsInput) SetRecommendationPreferences(v *RecommendationPreferences) *GetEC2InstanceRecommendationsInput {
+	s.RecommendationPreferences = v
 	return s
 }
 
@@ -3038,7 +3282,7 @@ func (s *GetEC2InstanceRecommendationsOutput) SetNextToken(v string) *GetEC2Inst
 type GetEC2RecommendationProjectedMetricsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The time stamp of the last projected metrics data point to return.
+	// The timestamp of the last projected metrics data point to return.
 	//
 	// EndTime is a required field
 	EndTime *time.Time `locationName:"endTime" type:"timestamp" required:"true"`
@@ -3054,7 +3298,11 @@ type GetEC2RecommendationProjectedMetricsInput struct {
 	// Period is a required field
 	Period *int64 `locationName:"period" type:"integer" required:"true"`
 
-	// The time stamp of the first projected metrics data point to return.
+	// An object to specify the preferences for the Amazon EC2 recommendation projected
+	// metrics to return in the response.
+	RecommendationPreferences *RecommendationPreferences `locationName:"recommendationPreferences" type:"structure"`
+
+	// The timestamp of the first projected metrics data point to return.
 	//
 	// StartTime is a required field
 	StartTime *time.Time `locationName:"startTime" type:"timestamp" required:"true"`
@@ -3118,6 +3366,12 @@ func (s *GetEC2RecommendationProjectedMetricsInput) SetPeriod(v int64) *GetEC2Re
 	return s
 }
 
+// SetRecommendationPreferences sets the RecommendationPreferences field's value.
+func (s *GetEC2RecommendationProjectedMetricsInput) SetRecommendationPreferences(v *RecommendationPreferences) *GetEC2RecommendationProjectedMetricsInput {
+	s.RecommendationPreferences = v
+	return s
+}
+
 // SetStartTime sets the StartTime field's value.
 func (s *GetEC2RecommendationProjectedMetricsInput) SetStartTime(v time.Time) *GetEC2RecommendationProjectedMetricsInput {
 	s.StartTime = &v
@@ -3133,7 +3387,7 @@ func (s *GetEC2RecommendationProjectedMetricsInput) SetStat(v string) *GetEC2Rec
 type GetEC2RecommendationProjectedMetricsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of objects that describe a projected metrics.
+	// An array of objects that describes projected metrics.
 	RecommendedOptionProjectedMetrics []*RecommendedOptionProjectedMetric `locationName:"recommendedOptionProjectedMetrics" type:"list"`
 }
 
@@ -3170,9 +3424,17 @@ func (s GetEnrollmentStatusInput) GoString() string {
 type GetEnrollmentStatusOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Confirms the enrollment status of member accounts within the organization,
-	// if the account is a management account of an organization.
+	// The Unix epoch timestamp, in seconds, of when the account enrollment status
+	// was last updated.
+	LastUpdatedTimestamp *time.Time `locationName:"lastUpdatedTimestamp" type:"timestamp"`
+
+	// Confirms the enrollment status of member accounts of the organization, if
+	// the account is a management account of an organization.
 	MemberAccountsEnrolled *bool `locationName:"memberAccountsEnrolled" type:"boolean"`
+
+	// The count of organization member accounts that are opted in to the service,
+	// if your account is an organization management account.
+	NumberOfMemberAccountsOptedIn *int64 `locationName:"numberOfMemberAccountsOptedIn" type:"integer"`
 
 	// The enrollment status of the account.
 	Status *string `locationName:"status" type:"string" enum:"Status"`
@@ -3194,9 +3456,21 @@ func (s GetEnrollmentStatusOutput) GoString() string {
 	return s.String()
 }
 
+// SetLastUpdatedTimestamp sets the LastUpdatedTimestamp field's value.
+func (s *GetEnrollmentStatusOutput) SetLastUpdatedTimestamp(v time.Time) *GetEnrollmentStatusOutput {
+	s.LastUpdatedTimestamp = &v
+	return s
+}
+
 // SetMemberAccountsEnrolled sets the MemberAccountsEnrolled field's value.
 func (s *GetEnrollmentStatusOutput) SetMemberAccountsEnrolled(v bool) *GetEnrollmentStatusOutput {
 	s.MemberAccountsEnrolled = &v
+	return s
+}
+
+// SetNumberOfMemberAccountsOptedIn sets the NumberOfMemberAccountsOptedIn field's value.
+func (s *GetEnrollmentStatusOutput) SetNumberOfMemberAccountsOptedIn(v int64) *GetEnrollmentStatusOutput {
+	s.NumberOfMemberAccountsOptedIn = &v
 	return s
 }
 
@@ -3212,10 +3486,92 @@ func (s *GetEnrollmentStatusOutput) SetStatusReason(v string) *GetEnrollmentStat
 	return s
 }
 
+type GetEnrollmentStatusesForOrganizationInput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects to specify a filter that returns a more specific list
+	// of account enrollment statuses.
+	Filters []*EnrollmentFilter `locationName:"filters" type:"list"`
+
+	// The maximum number of account enrollment statuses to return with a single
+	// request. You can specify up to 100 statuses to return with each request.
+	//
+	// To retrieve the remaining results, make another request with the returned
+	// nextToken value.
+	MaxResults *int64 `locationName:"maxResults" type:"integer"`
+
+	// The token to advance to the next page of account enrollment statuses.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetEnrollmentStatusesForOrganizationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEnrollmentStatusesForOrganizationInput) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *GetEnrollmentStatusesForOrganizationInput) SetFilters(v []*EnrollmentFilter) *GetEnrollmentStatusesForOrganizationInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *GetEnrollmentStatusesForOrganizationInput) SetMaxResults(v int64) *GetEnrollmentStatusesForOrganizationInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetEnrollmentStatusesForOrganizationInput) SetNextToken(v string) *GetEnrollmentStatusesForOrganizationInput {
+	s.NextToken = &v
+	return s
+}
+
+type GetEnrollmentStatusesForOrganizationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An array of objects that describe the enrollment statuses of organization
+	// member accounts.
+	AccountEnrollmentStatuses []*AccountEnrollmentStatus `locationName:"accountEnrollmentStatuses" type:"list"`
+
+	// The token to use to advance to the next page of account enrollment statuses.
+	//
+	// This value is null when there are no more pages of account enrollment statuses
+	// to return.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s GetEnrollmentStatusesForOrganizationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetEnrollmentStatusesForOrganizationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccountEnrollmentStatuses sets the AccountEnrollmentStatuses field's value.
+func (s *GetEnrollmentStatusesForOrganizationOutput) SetAccountEnrollmentStatuses(v []*AccountEnrollmentStatus) *GetEnrollmentStatusesForOrganizationOutput {
+	s.AccountEnrollmentStatuses = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *GetEnrollmentStatusesForOrganizationOutput) SetNextToken(v string) *GetEnrollmentStatusesForOrganizationOutput {
+	s.NextToken = &v
+	return s
+}
+
 type GetLambdaFunctionRecommendationsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account for which to return function recommendations.
+	// The ID of the Amazon Web Services account for which to return function recommendations.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to return function recommendations.
@@ -3223,7 +3579,7 @@ type GetLambdaFunctionRecommendationsInput struct {
 	// Only one account ID can be specified per request.
 	AccountIds []*string `locationName:"accountIds" type:"list"`
 
-	// An array of objects that describe a filter that returns a more specific list
+	// An array of objects to specify a filter that returns a more specific list
 	// of function recommendations.
 	Filters []*LambdaFunctionRecommendationFilter `locationName:"filters" type:"list"`
 
@@ -3235,13 +3591,13 @@ type GetLambdaFunctionRecommendationsInput struct {
 	// ARN with a version suffix, Compute Optimizer will return recommendations
 	// for the specified function version. For more information about using function
 	// versions, see Using versions (https://docs.aws.amazon.com/lambda/latest/dg/configuration-versions.html#versioning-versions-using)
-	// in the AWS Lambda Developer Guide.
+	// in the Lambda Developer Guide.
 	FunctionArns []*string `locationName:"functionArns" type:"list"`
 
 	// The maximum number of function recommendations to return with a single request.
 	//
 	// To retrieve the remaining results, make another request with the returned
-	// NextToken value.
+	// nextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of function recommendations.
@@ -3372,7 +3728,8 @@ func (s *GetRecommendationError) SetMessage(v string) *GetRecommendationError {
 type GetRecommendationSummariesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS account for which to return recommendation summaries.
+	// The ID of the Amazon Web Services account for which to return recommendation
+	// summaries.
 	//
 	// If your account is the management account of an organization, use this parameter
 	// to specify the member account for which you want to return recommendation
@@ -3384,7 +3741,7 @@ type GetRecommendationSummariesInput struct {
 	// The maximum number of recommendation summaries to return with a single request.
 	//
 	// To retrieve the remaining results, make another request with the returned
-	// NextToken value.
+	// nextToken value.
 	MaxResults *int64 `locationName:"maxResults" type:"integer"`
 
 	// The token to advance to the next page of recommendation summaries.
@@ -3458,7 +3815,7 @@ func (s *GetRecommendationSummariesOutput) SetRecommendationSummaries(v []*Recom
 type InstanceRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the instance.
+	// The Amazon Web Services account ID of the instance.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The instance type of the current instance.
@@ -3482,7 +3839,7 @@ type InstanceRecommendation struct {
 	//    * Optimized —An instance is considered optimized when all specifications
 	//    of your instance, such as CPU, memory, and network, meet the performance
 	//    requirements of your workload and is not over provisioned. For optimized
-	//    resources, AWS Compute Optimizer might recommend a new generation instance
+	//    resources, Compute Optimizer might recommend a new generation instance
 	//    type.
 	Finding *string `locationName:"finding" type:"string" enum:"Finding"`
 
@@ -3513,7 +3870,7 @@ type InstanceRecommendation struct {
 	//    the look-back period. Memory utilization is analyzed only for resources
 	//    that have the unified CloudWatch agent installed on them. For more information,
 	//    see Enabling memory utilization with the Amazon CloudWatch Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent)
-	//    in the AWS Compute Optimizer User Guide. On Linux instances, Compute Optimizer
+	//    in the Compute Optimizer User Guide. On Linux instances, Compute Optimizer
 	//    analyses the mem_used_percent metric in the CWAgent namespace, or the
 	//    legacy MemoryUtilization metric in the System/Linux namespace. On Windows
 	//    instances, Compute Optimizer analyses the Memory % Committed Bytes In
@@ -3605,7 +3962,7 @@ type InstanceRecommendation struct {
 	// The name of the current instance.
 	InstanceName *string `locationName:"instanceName" type:"string"`
 
-	// The time stamp of when the instance recommendation was last refreshed.
+	// The timestamp of when the instance recommendation was last refreshed.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
 	// The number of days for which utilization metrics were analyzed for the instance.
@@ -3745,9 +4102,9 @@ type InstanceRecommendationOption struct {
 	//    type is different than that of the current instance. For example, the
 	//    recommended instance type supports enhanced networking and the current
 	//    instance might not. To enable enhanced networking for the recommended
-	//    instance type, you will need to install the Elastic Network Adapter (ENA)
-	//    driver or the Intel 82599 Virtual Function driver. For more information,
-	//    see Networking and storage features (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage)
+	//    instance type, you must install the Elastic Network Adapter (ENA) driver
+	//    or the Intel 82599 Virtual Function driver. For more information, see
+	//    Networking and storage features (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage)
 	//    and Enhanced networking on Linux (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/enhanced-networking.html)
 	//    in the Amazon EC2 User Guide for Linux, or Networking and storage features
 	//    (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#instance-networking-storage)
@@ -3771,8 +4128,8 @@ type InstanceRecommendationOption struct {
 	//    you might need to back up the data on your instance store volumes if you
 	//    want to preserve them. For more information, see How do I back up an instance
 	//    store volume on my Amazon EC2 instance to Amazon EBS? (https://aws.amazon.com/premiumsupport/knowledge-center/back-up-instance-store-ebs/)
-	//    in the AWS Premium Support Knowledge Base. For more information, see Networking
-	//    and storage features (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage)
+	//    in the Amazon Web Services Premium Support Knowledge Base. For more information,
+	//    see Networking and storage features (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#instance-networking-storage)
 	//    and Amazon EC2 instance store (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/InstanceStorage.html)
 	//    in the Amazon EC2 User Guide for Linux, or see Networking and storage
 	//    features (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/instance-types.html#instance-networking-storage)
@@ -3787,6 +4144,15 @@ type InstanceRecommendationOption struct {
 	//    in the Amazon EC2 User Guide for Linux, or Windows AMI virtualization
 	//    types (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/windows-ami-version-history.html#virtualization-types)
 	//    in the Amazon EC2 User Guide for Windows.
+	//
+	//    * Architecture — The CPU architecture between the recommended instance
+	//    type and the current instance is different. For example, the recommended
+	//    instance type might use an x86 CPU architecture and the current instance
+	//    type might use a different one, such as ARM. Before migrating, you should
+	//    consider recompiling the software on your instance for the new architecture.
+	//    Alternatively, you might switch to an Amazon Machine Image (AMI) that
+	//    supports the new architecture. For more information about the CPU architecture
+	//    for each instance type, see Amazon EC2 Instance Types (http://aws.amazon.com/ec2/instance-types/).
 	PlatformDifferences []*string `locationName:"platformDifferences" type:"list"`
 
 	// An array of objects that describe the projected utilization metrics of the
@@ -3900,7 +4266,7 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An invalid or out-of-range value was supplied for the input parameter.
+// The value supplied for the input parameter is out of range or not valid.
 type InvalidParameterValueException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3967,8 +4333,8 @@ type JobFilter struct {
 
 	// The name of the filter.
 	//
-	// Specify ResourceType to return export jobs of a specific resource type (e.g.,
-	// Ec2Instance).
+	// Specify ResourceType to return export jobs of a specific resource type (for
+	// example, Ec2Instance).
 	//
 	// Specify JobStatus to return export jobs with a specific status (e.g, Complete).
 	Name *string `locationName:"name" type:"string" enum:"JobFilterName"`
@@ -4009,7 +4375,7 @@ func (s *JobFilter) SetValues(v []*string) *JobFilter {
 	return s
 }
 
-// Describes a projected utilization metric of an AWS Lambda function recommendation
+// Describes a projected utilization metric of an Lambda function recommendation
 // option.
 type LambdaFunctionMemoryProjectedMetric struct {
 	_ struct{} `type:"structure"`
@@ -4052,7 +4418,7 @@ func (s *LambdaFunctionMemoryProjectedMetric) SetValue(v float64) *LambdaFunctio
 	return s
 }
 
-// Describes a recommendation option for an AWS Lambda function.
+// Describes a recommendation option for an Lambda function.
 type LambdaFunctionMemoryRecommendationOption struct {
 	_ struct{} `type:"structure"`
 
@@ -4097,11 +4463,11 @@ func (s *LambdaFunctionMemoryRecommendationOption) SetRank(v int64) *LambdaFunct
 	return s
 }
 
-// Describes an AWS Lambda function recommendation.
+// Describes an Lambda function recommendation.
 type LambdaFunctionRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the function.
+	// The Amazon Web Services account ID of the function.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The amount of memory, in MB, that's allocated to the current function.
@@ -4154,7 +4520,7 @@ type LambdaFunctionRecommendation struct {
 	//    * InsufficientData — The function does not have sufficient metric data
 	//    for Compute Optimizer to generate a recommendation. For more information,
 	//    see the Supported resources and requirements (https://docs.aws.amazon.com/compute-optimizer/latest/ug/requirements.html)
-	//    in the AWS Compute Optimizer User Guide. This finding reason code is part
+	//    in the Compute Optimizer User Guide. This finding reason code is part
 	//    of the Unavailable finding classification.
 	//
 	//    * Inconclusive — The function does not qualify for a recommendation
@@ -4169,7 +4535,7 @@ type LambdaFunctionRecommendation struct {
 	// The version number of the current function.
 	FunctionVersion *string `locationName:"functionVersion" type:"string"`
 
-	// The time stamp of when the function recommendation was last refreshed.
+	// The timestamp of when the function recommendation was last refreshed.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
 	// The number of days for which utilization metrics were analyzed for the function.
@@ -4179,8 +4545,7 @@ type LambdaFunctionRecommendation struct {
 	// options for the function.
 	MemorySizeRecommendationOptions []*LambdaFunctionMemoryRecommendationOption `locationName:"memorySizeRecommendationOptions" type:"list"`
 
-	// The number of times your function code was executed during the look-back
-	// period.
+	// The number of times your function code was applied during the look-back period.
 	NumberOfInvocations *int64 `locationName:"numberOfInvocations" type:"long"`
 
 	// An array of objects that describe the utilization metrics of the function.
@@ -4263,9 +4628,8 @@ func (s *LambdaFunctionRecommendation) SetUtilizationMetrics(v []*LambdaFunction
 	return s
 }
 
-// Describes a filter that returns a more specific list of AWS Lambda function
-// recommendations. Use this filter with the GetLambdaFunctionRecommendations
-// action.
+// Describes a filter that returns a more specific list of Lambda function recommendations.
+// Use this filter with the GetLambdaFunctionRecommendations action.
 //
 // You can use EBSFilter with the GetEBSVolumeRecommendations action, JobFilter
 // with the DescribeRecommendationExportJobs action, and Filter with the GetAutoScalingGroupRecommendations
@@ -4276,10 +4640,10 @@ type LambdaFunctionRecommendationFilter struct {
 	// The name of the filter.
 	//
 	// Specify Finding to return recommendations with a specific finding classification
-	// (e.g., NotOptimized).
+	// (for example, NotOptimized).
 	//
 	// Specify FindingReasonCode to return recommendations with a specific finding
-	// reason code (e.g., MemoryUnderprovisioned).
+	// reason code (for example, MemoryUnderprovisioned).
 	Name *string `locationName:"name" type:"string" enum:"LambdaFunctionRecommendationFilterName"`
 
 	// The value of the filter.
@@ -4317,7 +4681,7 @@ func (s *LambdaFunctionRecommendationFilter) SetValues(v []*string) *LambdaFunct
 	return s
 }
 
-// Describes a utilization metric of an AWS Lambda function.
+// Describes a utilization metric of an Lambda function.
 type LambdaFunctionUtilizationMetric struct {
 	_ struct{} `type:"structure"`
 
@@ -4333,15 +4697,15 @@ type LambdaFunctionUtilizationMetric struct {
 
 	// The statistic of the utilization metric.
 	//
-	// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
-	// return utilization metrics using only the Maximum statistic, which is the
-	// highest value observed during the specified period.
+	// The Compute Optimizer API, Command Line Interface (CLI), and SDKs return
+	// utilization metrics using only the Maximum statistic, which is the highest
+	// value observed during the specified period.
 	//
 	// The Compute Optimizer console displays graphs for some utilization metrics
 	// using the Average statistic, which is the value of Sum / SampleCount during
 	// the specified period. For more information, see Viewing resource recommendations
 	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html)
-	// in the AWS Compute Optimizer User Guide. You can also get averaged utilization
+	// in the Compute Optimizer User Guide. You can also get averaged utilization
 	// metric data for your resources using Amazon CloudWatch. For more information,
 	// see the Amazon CloudWatch User Guide (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html).
 	Statistic *string `locationName:"statistic" type:"string" enum:"LambdaFunctionMetricStatistic"`
@@ -4434,8 +4798,8 @@ func (s *LimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The request must contain either a valid (registered) AWS access key ID or
-// X.509 certificate.
+// The request must contain either a valid (registered) Amazon Web Services
+// access key ID or X.509 certificate.
 type MissingAuthenticationToken struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4491,7 +4855,7 @@ func (s *MissingAuthenticationToken) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The account is not opted in to AWS Compute Optimizer.
+// The account is not opted in to Compute Optimizer.
 type OptInRequiredException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -4584,7 +4948,7 @@ type ProjectedMetric struct {
 	//    Agent (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html#cw-agent).
 	Name *string `locationName:"name" type:"string" enum:"MetricName"`
 
-	// The time stamps of the projected utilization metric.
+	// The timestamps of the projected utilization metric.
 	Timestamps []*time.Time `locationName:"timestamps" type:"list"`
 
 	// The values of the projected utilization metrics.
@@ -4736,6 +5100,45 @@ func (s *RecommendationExportJob) SetStatus(v string) *RecommendationExportJob {
 	return s
 }
 
+// Describes preferences for recommendations.
+type RecommendationPreferences struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the CPU vendor and architecture for Amazon EC2 instance and Auto
+	// Scaling group recommendations.
+	//
+	// For example, when you specify AWS_ARM64 with:
+	//
+	//    * A GetEC2InstanceRecommendations or GetAutoScalingGroupRecommendations
+	//    request, Compute Optimizer returns recommendations that consist of Graviton2
+	//    instance types only.
+	//
+	//    * A GetEC2RecommendationProjectedMetrics request, Compute Optimizer returns
+	//    projected utilization metrics for Graviton2 instance type recommendations
+	//    only.
+	//
+	//    * A ExportEC2InstanceRecommendations or ExportAutoScalingGroupRecommendations
+	//    request, Compute Optimizer exports recommendations that consist of Graviton2
+	//    instance types only.
+	CpuVendorArchitectures []*string `locationName:"cpuVendorArchitectures" type:"list"`
+}
+
+// String returns the string representation
+func (s RecommendationPreferences) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RecommendationPreferences) GoString() string {
+	return s.String()
+}
+
+// SetCpuVendorArchitectures sets the CpuVendorArchitectures field's value.
+func (s *RecommendationPreferences) SetCpuVendorArchitectures(v []*string) *RecommendationPreferences {
+	s.CpuVendorArchitectures = v
+	return s
+}
+
 // Describes the source of a recommendation, such as an Amazon EC2 instance
 // or Auto Scaling group.
 type RecommendationSource struct {
@@ -4774,7 +5177,7 @@ func (s *RecommendationSource) SetRecommendationSourceType(v string) *Recommenda
 type RecommendationSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the recommendation summary.
+	// The Amazon Web Services account ID of the recommendation summary.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// The resource type of the recommendation.
@@ -4981,7 +5384,7 @@ func (s *S3Destination) SetMetadataKey(v string) *S3Destination {
 // job, you must include the object prefix in the policy that you add to the
 // S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute
 // Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/create-s3-bucket-policy-for-compute-optimizer.html)
-// in the Compute Optimizer user guide.
+// in the Compute Optimizer User Guide.
 type S3DestinationConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -5182,9 +5585,9 @@ type UpdateEnrollmentStatusInput struct {
 	//
 	//    * Active - Opts in your account to the Compute Optimizer service. Compute
 	//    Optimizer begins analyzing the configuration and utilization metrics of
-	//    your AWS resources after you opt in. For more information, see Metrics
-	//    analyzed by AWS Compute Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html)
-	//    in the AWS Compute Optimizer User Guide.
+	//    your Amazon Web Services resources after you opt in. For more information,
+	//    see Metrics analyzed by Compute Optimizer (https://docs.aws.amazon.com/compute-optimizer/latest/ug/metrics.html)
+	//    in the Compute Optimizer User Guide.
 	//
 	//    * Inactive - Opts out your account from the Compute Optimizer service.
 	//    Your account's recommendations and related metrics data will be deleted
@@ -5349,15 +5752,15 @@ type UtilizationMetric struct {
 
 	// The statistic of the utilization metric.
 	//
-	// The Compute Optimizer API, AWS Command Line Interface (AWS CLI), and SDKs
-	// return utilization metrics using only the Maximum statistic, which is the
-	// highest value observed during the specified period.
+	// The Compute Optimizer API, Command Line Interface (CLI), and SDKs return
+	// utilization metrics using only the Maximum statistic, which is the highest
+	// value observed during the specified period.
 	//
 	// The Compute Optimizer console displays graphs for some utilization metrics
 	// using the Average statistic, which is the value of Sum / SampleCount during
 	// the specified period. For more information, see Viewing resource recommendations
 	// (https://docs.aws.amazon.com/compute-optimizer/latest/ug/viewing-recommendations.html)
-	// in the AWS Compute Optimizer User Guide. You can also get averaged utilization
+	// in the Compute Optimizer User Guide. You can also get averaged utilization
 	// metric data for your resources using Amazon CloudWatch. For more information,
 	// see the Amazon CloudWatch User Guide (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html).
 	Statistic *string `locationName:"statistic" type:"string" enum:"MetricStatistic"`
@@ -5472,7 +5875,7 @@ func (s *VolumeConfiguration) SetVolumeType(v string) *VolumeConfiguration {
 type VolumeRecommendation struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID of the volume.
+	// The Amazon Web Services account ID of the volume.
 	AccountId *string `locationName:"accountId" type:"string"`
 
 	// An array of objects that describe the current configuration of the volume.
@@ -5482,9 +5885,9 @@ type VolumeRecommendation struct {
 	//
 	// Findings for volumes include:
 	//
-	//    * NotOptimized —A volume is considered not optimized when AWS Compute
-	//    Optimizer identifies a recommendation that can provide better performance
-	//    for your workload.
+	//    * NotOptimized —A volume is considered not optimized when Compute Optimizer
+	//    identifies a recommendation that can provide better performance for your
+	//    workload.
 	//
 	//    * Optimized —An volume is considered optimized when Compute Optimizer
 	//    determines that the volume is correctly provisioned to run your workload
@@ -5492,7 +5895,7 @@ type VolumeRecommendation struct {
 	//    might recommend a new generation volume type.
 	Finding *string `locationName:"finding" type:"string" enum:"EBSFinding"`
 
-	// The time stamp of when the volume recommendation was last refreshed.
+	// The timestamp of when the volume recommendation was last refreshed.
 	LastRefreshTimestamp *time.Time `locationName:"lastRefreshTimestamp" type:"timestamp"`
 
 	// The number of days for which utilization metrics were analyzed for the volume.
@@ -5621,6 +6024,22 @@ func (s *VolumeRecommendationOption) SetRank(v int64) *VolumeRecommendationOptio
 }
 
 const (
+	// CpuVendorArchitectureAwsArm64 is a CpuVendorArchitecture enum value
+	CpuVendorArchitectureAwsArm64 = "AWS_ARM64"
+
+	// CpuVendorArchitectureCurrent is a CpuVendorArchitecture enum value
+	CpuVendorArchitectureCurrent = "CURRENT"
+)
+
+// CpuVendorArchitecture_Values returns all elements of the CpuVendorArchitecture enum
+func CpuVendorArchitecture_Values() []string {
+	return []string{
+		CpuVendorArchitectureAwsArm64,
+		CpuVendorArchitectureCurrent,
+	}
+}
+
+const (
 	// EBSFilterNameFinding is a EBSFilterName enum value
 	EBSFilterNameFinding = "Finding"
 )
@@ -5669,6 +6088,18 @@ func EBSMetricName_Values() []string {
 		EBSMetricNameVolumeWriteOpsPerSecond,
 		EBSMetricNameVolumeReadBytesPerSecond,
 		EBSMetricNameVolumeWriteBytesPerSecond,
+	}
+}
+
+const (
+	// EnrollmentFilterNameStatus is a EnrollmentFilterName enum value
+	EnrollmentFilterNameStatus = "Status"
+)
+
+// EnrollmentFilterName_Values returns all elements of the EnrollmentFilterName enum
+func EnrollmentFilterName_Values() []string {
+	return []string{
+		EnrollmentFilterNameStatus,
 	}
 }
 
@@ -6643,6 +7074,9 @@ const (
 
 	// PlatformDifferenceVirtualizationType is a PlatformDifference enum value
 	PlatformDifferenceVirtualizationType = "VirtualizationType"
+
+	// PlatformDifferenceArchitecture is a PlatformDifference enum value
+	PlatformDifferenceArchitecture = "Architecture"
 )
 
 // PlatformDifference_Values returns all elements of the PlatformDifference enum
@@ -6653,6 +7087,7 @@ func PlatformDifference_Values() []string {
 		PlatformDifferenceStorageInterface,
 		PlatformDifferenceInstanceStoreAvailability,
 		PlatformDifferenceVirtualizationType,
+		PlatformDifferenceArchitecture,
 	}
 }
 
