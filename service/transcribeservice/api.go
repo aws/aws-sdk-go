@@ -7812,7 +7812,7 @@ type ListTranscriptionJobsInput struct {
 	// If you do not specify a value, the default of 5 is used.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// If the result of the previous request to ListTranscriptionJobs was truncated,
+	// If the result of the previous request to ListTranscriptionJobs is truncated,
 	// include the NextToken to fetch the next set of jobs.
 	NextToken *string `type:"string"`
 
@@ -10315,7 +10315,7 @@ func (s *TranscriptFilter) SetTranscriptFilterType(v string) *TranscriptFilter {
 type TranscriptionJob struct {
 	_ struct{} `type:"structure"`
 
-	// A timestamp that shows when the job was completed.
+	// A timestamp that shows when the job completed.
 	CompletionTime *time.Time `type:"timestamp"`
 
 	// An object that describes content redaction settings for the transcription
@@ -11511,6 +11511,18 @@ const (
 
 	// LanguageCodeZhCn is a LanguageCode enum value
 	LanguageCodeZhCn = "zh-CN"
+
+	// LanguageCodeZhTw is a LanguageCode enum value
+	LanguageCodeZhTw = "zh-TW"
+
+	// LanguageCodeThTh is a LanguageCode enum value
+	LanguageCodeThTh = "th-TH"
+
+	// LanguageCodeEnZa is a LanguageCode enum value
+	LanguageCodeEnZa = "en-ZA"
+
+	// LanguageCodeEnNz is a LanguageCode enum value
+	LanguageCodeEnNz = "en-NZ"
 )
 
 // LanguageCode_Values returns all elements of the LanguageCode enum
@@ -11552,6 +11564,10 @@ func LanguageCode_Values() []string {
 		LanguageCodeTeIn,
 		LanguageCodeTrTr,
 		LanguageCodeZhCn,
+		LanguageCodeZhTw,
+		LanguageCodeThTh,
+		LanguageCodeEnZa,
+		LanguageCodeEnNz,
 	}
 }
 

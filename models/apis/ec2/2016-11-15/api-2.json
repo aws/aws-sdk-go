@@ -24024,7 +24024,8 @@
         "RemoveEntries":{
           "shape":"RemovePrefixListEntries",
           "locationName":"RemoveEntry"
-        }
+        },
+        "MaxEntries":{"shape":"Integer"}
       }
     },
     "ModifyManagedPrefixListResult":{

@@ -1711,22 +1711,29 @@ func (c *Rekognition) DetectCustomLabelsRequest(input *DetectCustomLabelsInput) 
 // the object (Confidence), and object location information, if it exists, for
 // the label on the image (Geometry).
 //
-// During training model calculates a threshold value that determines if a prediction
-// for a label is true. By default, DetectCustomLabels doesn't return labels
-// whose confidence value is below the model's calculated threshold value. To
-// filter labels that are returned, specify a value for MinConfidence that is
-// higher than the model's calculated threshold. You can get the model's calculated
-// threshold from the model's training results shown in the Amazon Rekognition
-// Custom Labels console. To get all labels, regardless of confidence, specify
-// a MinConfidence value of 0.
+// To filter labels that are returned, specify a value for MinConfidence. DetectCustomLabelsLabels
+// only returns labels with a confidence that's higher than the specified value.
+// The value of MinConfidence maps to the assumed threshold values created during
+// training. For more information, see Assumed threshold in the Amazon Rekognition
+// Custom Labels Developer Guide. Amazon Rekognition Custom Labels metrics expresses
+// an assumed threshold as a floating point value between 0-1. The range of
+// MinConfidence normalizes the threshold value to a percentage value (0-100).
+// Confidence responses from DetectCustomLabels are also returned as a percentage.
+// You can use MinConfidence to change the precision and recall or your model.
+// For more information, see Analyzing an image in the Amazon Rekognition Custom
+// Labels Developer Guide.
 //
-// You can also add the MaxResults parameter to limit the number of labels returned.
+// If you don't specify a value for MinConfidence, DetectCustomLabels returns
+// labels based on the assumed threshold of each label.
 //
 // This is a stateless API operation. That is, the operation does not persist
 // any data.
 //
 // This operation requires permissions to perform the rekognition:DetectCustomLabels
 // action.
+//
+// For more information, see Analyzing an image in the Amazon Rekognition Custom
+// Labels Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2526,8 +2533,8 @@ func (c *Rekognition) GetCelebrityInfoRequest(input *GetCelebrityInfoInput) (req
 
 // GetCelebrityInfo API operation for Amazon Rekognition.
 //
-// Gets the name and additional information about a celebrity based on his or
-// her Amazon Rekognition ID. The additional information is returned as an array
+// Gets the name and additional information about a celebrity based on their
+// Amazon Rekognition ID. The additional information is returned as an array
 // of URLs. If there is no additional information about the celebrity, this
 // list is empty.
 //
@@ -7209,6 +7216,9 @@ type Celebrity struct {
 	// A unique identifier for the celebrity.
 	Id *string `type:"string"`
 
+	// The known gender identity for the celebrity that matches the provided ID.
+	KnownGender *KnownGender `type:"structure"`
+
 	// The confidence, in percentage, that Amazon Rekognition has that the recognized
 	// face is the celebrity.
 	MatchConfidence *float64 `type:"float"`
@@ -7240,6 +7250,12 @@ func (s *Celebrity) SetFace(v *ComparedFace) *Celebrity {
 // SetId sets the Id field's value.
 func (s *Celebrity) SetId(v string) *Celebrity {
 	s.Id = &v
+	return s
+}
+
+// SetKnownGender sets the KnownGender field's value.
+func (s *Celebrity) SetKnownGender(v *KnownGender) *Celebrity {
+	s.KnownGender = v
 	return s
 }
 
@@ -7606,6 +7622,11 @@ type ComparedFace struct {
 	// Level of confidence that what the bounding box contains is a face.
 	Confidence *float64 `type:"float"`
 
+	// The emotions that appear to be expressed on the face, and the confidence
+	// level in the determination. Valid values include "Happy", "Sad", "Angry",
+	// "Confused", "Disgusted", "Surprised", "Calm", "Unknown", and "Fear".
+	Emotions []*Emotion `type:"list"`
+
 	// An array of facial landmarks.
 	Landmarks []*Landmark `type:"list"`
 
@@ -7614,6 +7635,10 @@ type ComparedFace struct {
 
 	// Identifies face image brightness and sharpness.
 	Quality *ImageQuality `type:"structure"`
+
+	// Indicates whether or not the face is smiling, and the confidence level in
+	// the determination.
+	Smile *Smile `type:"structure"`
 }
 
 // String returns the string representation
@@ -7638,6 +7663,12 @@ func (s *ComparedFace) SetConfidence(v float64) *ComparedFace {
 	return s
 }
 
+// SetEmotions sets the Emotions field's value.
+func (s *ComparedFace) SetEmotions(v []*Emotion) *ComparedFace {
+	s.Emotions = v
+	return s
+}
+
 // SetLandmarks sets the Landmarks field's value.
 func (s *ComparedFace) SetLandmarks(v []*Landmark) *ComparedFace {
 	s.Landmarks = v
@@ -7653,6 +7684,12 @@ func (s *ComparedFace) SetPose(v *Pose) *ComparedFace {
 // SetQuality sets the Quality field's value.
 func (s *ComparedFace) SetQuality(v *ImageQuality) *ComparedFace {
 	s.Quality = v
+	return s
+}
+
+// SetSmile sets the Smile field's value.
+func (s *ComparedFace) SetSmile(v *Smile) *ComparedFace {
+	s.Smile = v
 	return s
 }
 
@@ -9103,10 +9140,12 @@ type DetectCustomLabelsInput struct {
 	// from highest confidence to lowest.
 	MaxResults *int64 `type:"integer"`
 
-	// Specifies the minimum confidence level for the labels to return. Amazon Rekognition
-	// doesn't return any labels with a confidence lower than this specified value.
-	// If you specify a value of 0, all labels are return, regardless of the default
-	// thresholds that the model version applies.
+	// Specifies the minimum confidence level for the labels to return. DetectCustomLabels
+	// doesn't return any labels with a confidence value that's lower than this
+	// specified value. If you specify a value of 0, DetectCustomLabels returns
+	// all labels, regardless of the assumed threshold applied to each label. If
+	// you don't specify a value for MinConfidence, DetectCustomLabels returns labels
+	// based on the assumed threshold of each label.
 	MinConfidence *float64 `type:"float"`
 
 	// The ARN of the model version that you want to use.
@@ -10551,6 +10590,9 @@ func (s *GetCelebrityInfoInput) SetId(v string) *GetCelebrityInfoInput {
 type GetCelebrityInfoOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Retrieves the known gender for the celebrity.
+	KnownGender *KnownGender `type:"structure"`
+
 	// The name of the celebrity.
 	Name *string `type:"string"`
 
@@ -10566,6 +10608,12 @@ func (s GetCelebrityInfoOutput) String() string {
 // GoString returns the string representation
 func (s GetCelebrityInfoOutput) GoString() string {
 	return s.String()
+}
+
+// SetKnownGender sets the KnownGender field's value.
+func (s *GetCelebrityInfoOutput) SetKnownGender(v *KnownGender) *GetCelebrityInfoOutput {
+	s.KnownGender = v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -12806,6 +12854,30 @@ func (s *KinesisVideoStream) SetArn(v string) *KinesisVideoStream {
 	return s
 }
 
+// The known gender identity for the celebrity that matches the provided ID.
+type KnownGender struct {
+	_ struct{} `type:"structure"`
+
+	// A string value of the KnownGender info about the Celebrity.
+	Type *string `type:"string" enum:"KnownGenderType"`
+}
+
+// String returns the string representation
+func (s KnownGender) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s KnownGender) GoString() string {
+	return s.String()
+}
+
+// SetType sets the Type field's value.
+func (s *KnownGender) SetType(v string) *KnownGender {
+	s.Type = &v
+	return s
+}
+
 // Structure containing details about the detected label, including the name,
 // detected instances, parent labels, and level of confidence.
 type Label struct {
@@ -14314,9 +14386,16 @@ type RecognizeCelebritiesOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Details about each celebrity found in the image. Amazon Rekognition can detect
-	// a maximum of 64 celebrities in an image.
+	// a maximum of 64 celebrities in an image. Each celebrity object includes the
+	// following attributes: Face, Confidence, Emotions, Landmarks, Pose, Quality,
+	// Smile, Id, KnownGender, MatchConfidence, Name, Urls.
 	CelebrityFaces []*Celebrity `type:"list"`
 
+	//
+	// Support for estimating image orientation using the the OrientationCorrection
+	// field has ceased as of August 2021. Any returned values for this field included
+	// in an API response will always be NULL.
+	//
 	// The orientation of the input image (counterclockwise direction). If your
 	// application displays the image, you can use this value to correct the orientation.
 	// The bounding box coordinates returned in CelebrityFaces and UnrecognizedFaces
@@ -17938,6 +18017,23 @@ func GenderType_Values() []string {
 	return []string{
 		GenderTypeMale,
 		GenderTypeFemale,
+	}
+}
+
+// A list of enum string of possible gender values that Celebrity returns.
+const (
+	// KnownGenderTypeMale is a KnownGenderType enum value
+	KnownGenderTypeMale = "Male"
+
+	// KnownGenderTypeFemale is a KnownGenderType enum value
+	KnownGenderTypeFemale = "Female"
+)
+
+// KnownGenderType_Values returns all elements of the KnownGenderType enum
+func KnownGenderType_Values() []string {
+	return []string{
+		KnownGenderTypeMale,
+		KnownGenderTypeFemale,
 	}
 }
 
