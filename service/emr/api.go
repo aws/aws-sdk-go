@@ -1572,6 +1572,80 @@ func (c *EMR) DescribeStudioWithContext(ctx aws.Context, input *DescribeStudioIn
 	return out, req.Send()
 }
 
+const opGetAutoTerminationPolicy = "GetAutoTerminationPolicy"
+
+// GetAutoTerminationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetAutoTerminationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAutoTerminationPolicy for more information on using the GetAutoTerminationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAutoTerminationPolicyRequest method.
+//    req, resp := client.GetAutoTerminationPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetAutoTerminationPolicy
+func (c *EMR) GetAutoTerminationPolicyRequest(input *GetAutoTerminationPolicyInput) (req *request.Request, output *GetAutoTerminationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetAutoTerminationPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetAutoTerminationPolicyInput{}
+	}
+
+	output = &GetAutoTerminationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAutoTerminationPolicy API operation for Amazon EMR.
+//
+// Returns the auto-termination policy for an Amazon EMR cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation GetAutoTerminationPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/GetAutoTerminationPolicy
+func (c *EMR) GetAutoTerminationPolicy(input *GetAutoTerminationPolicyInput) (*GetAutoTerminationPolicyOutput, error) {
+	req, out := c.GetAutoTerminationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetAutoTerminationPolicyWithContext is the same as GetAutoTerminationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAutoTerminationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) GetAutoTerminationPolicyWithContext(ctx aws.Context, input *GetAutoTerminationPolicyInput, opts ...request.Option) (*GetAutoTerminationPolicyOutput, error) {
+	req, out := c.GetAutoTerminationPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetBlockPublicAccessConfiguration = "GetBlockPublicAccessConfiguration"
 
 // GetBlockPublicAccessConfigurationRequest generates a "aws/request.Request" representing the
@@ -1616,9 +1690,9 @@ func (c *EMR) GetBlockPublicAccessConfigurationRequest(input *GetBlockPublicAcce
 
 // GetBlockPublicAccessConfiguration API operation for Amazon EMR.
 //
-// Returns the Amazon EMR block public access configuration for your account
-// in the current Region. For more information see Configure Block Public Access
-// for Amazon EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html)
+// Returns the Amazon EMR block public access configuration for your Amazon
+// Web Services account in the current Region. For more information see Configure
+// Block Public Access for Amazon EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html)
 // in the Amazon EMR Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2007,11 +2081,12 @@ func (c *EMR) ListClustersRequest(input *ListClustersInput) (req *request.Reques
 
 // ListClusters API operation for Amazon EMR.
 //
-// Provides the status of all clusters visible to this account. Allows you to
-// filter the list of clusters based on certain criteria; for example, filtering
-// by cluster creation date and time or by status. This call returns a maximum
-// of 50 clusters in unsorted order per call, but returns a marker to track
-// the paging of the cluster list across multiple ListClusters calls.
+// Provides the status of all clusters visible to this Amazon Web Services account.
+// Allows you to filter the list of clusters based on certain criteria; for
+// example, filtering by cluster creation date and time or by status. This call
+// returns a maximum of 50 clusters in unsorted order per call, but returns
+// a marker to track the paging of the cluster list across multiple ListClusters
+// calls.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3297,9 +3372,9 @@ func (c *EMR) ListStudiosRequest(input *ListStudiosInput) (req *request.Request,
 
 // ListStudios API operation for Amazon EMR.
 //
-// Returns a list of all Amazon EMR Studios associated with the account. The
-// list includes details such as ID, Studio Access URL, and creation time for
-// each Studio.
+// Returns a list of all Amazon EMR Studios associated with the Amazon Web Services
+// account. The list includes details such as ID, Studio Access URL, and creation
+// time for each Studio.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3724,6 +3799,84 @@ func (c *EMR) PutAutoScalingPolicyWithContext(ctx aws.Context, input *PutAutoSca
 	return out, req.Send()
 }
 
+const opPutAutoTerminationPolicy = "PutAutoTerminationPolicy"
+
+// PutAutoTerminationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutAutoTerminationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAutoTerminationPolicy for more information on using the PutAutoTerminationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAutoTerminationPolicyRequest method.
+//    req, resp := client.PutAutoTerminationPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoTerminationPolicy
+func (c *EMR) PutAutoTerminationPolicyRequest(input *PutAutoTerminationPolicyInput) (req *request.Request, output *PutAutoTerminationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutAutoTerminationPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutAutoTerminationPolicyInput{}
+	}
+
+	output = &PutAutoTerminationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutAutoTerminationPolicy API operation for Amazon EMR.
+//
+// Creates or updates an auto-termination policy for an Amazon EMR cluster.
+// An auto-termination policy defines the amount of idle time in seconds after
+// which a cluster automatically terminates. For alternative cluster termination
+// options, see Control cluster termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation PutAutoTerminationPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/PutAutoTerminationPolicy
+func (c *EMR) PutAutoTerminationPolicy(input *PutAutoTerminationPolicyInput) (*PutAutoTerminationPolicyOutput, error) {
+	req, out := c.PutAutoTerminationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutAutoTerminationPolicyWithContext is the same as PutAutoTerminationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAutoTerminationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) PutAutoTerminationPolicyWithContext(ctx aws.Context, input *PutAutoTerminationPolicyInput, opts ...request.Option) (*PutAutoTerminationPolicyOutput, error) {
+	req, out := c.PutAutoTerminationPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutBlockPublicAccessConfiguration = "PutBlockPublicAccessConfiguration"
 
 // PutBlockPublicAccessConfigurationRequest generates a "aws/request.Request" representing the
@@ -3770,8 +3923,8 @@ func (c *EMR) PutBlockPublicAccessConfigurationRequest(input *PutBlockPublicAcce
 // PutBlockPublicAccessConfiguration API operation for Amazon EMR.
 //
 // Creates or updates an Amazon EMR block public access configuration for your
-// account in the current Region. For more information see Configure Block Public
-// Access for Amazon EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html)
+// Amazon Web Services account in the current Region. For more information see
+// Configure Block Public Access for Amazon EMR (https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html)
 // in the Amazon EMR Management Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3960,6 +4113,81 @@ func (c *EMR) RemoveAutoScalingPolicy(input *RemoveAutoScalingPolicyInput) (*Rem
 // for more information on using Contexts.
 func (c *EMR) RemoveAutoScalingPolicyWithContext(ctx aws.Context, input *RemoveAutoScalingPolicyInput, opts ...request.Option) (*RemoveAutoScalingPolicyOutput, error) {
 	req, out := c.RemoveAutoScalingPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opRemoveAutoTerminationPolicy = "RemoveAutoTerminationPolicy"
+
+// RemoveAutoTerminationPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the RemoveAutoTerminationPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RemoveAutoTerminationPolicy for more information on using the RemoveAutoTerminationPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RemoveAutoTerminationPolicyRequest method.
+//    req, resp := client.RemoveAutoTerminationPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoTerminationPolicy
+func (c *EMR) RemoveAutoTerminationPolicyRequest(input *RemoveAutoTerminationPolicyInput) (req *request.Request, output *RemoveAutoTerminationPolicyOutput) {
+	op := &request.Operation{
+		Name:       opRemoveAutoTerminationPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RemoveAutoTerminationPolicyInput{}
+	}
+
+	output = &RemoveAutoTerminationPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// RemoveAutoTerminationPolicy API operation for Amazon EMR.
+//
+// Removes an auto-termination policy from an Amazon EMR cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon EMR's
+// API operation RemoveAutoTerminationPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/elasticmapreduce-2009-03-31/RemoveAutoTerminationPolicy
+func (c *EMR) RemoveAutoTerminationPolicy(input *RemoveAutoTerminationPolicyInput) (*RemoveAutoTerminationPolicyOutput, error) {
+	req, out := c.RemoveAutoTerminationPolicyRequest(input)
+	return out, req.Send()
+}
+
+// RemoveAutoTerminationPolicyWithContext is the same as RemoveAutoTerminationPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RemoveAutoTerminationPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EMR) RemoveAutoTerminationPolicyWithContext(ctx aws.Context, input *RemoveAutoTerminationPolicyInput, opts ...request.Option) (*RemoveAutoTerminationPolicyOutput, error) {
+	req, out := c.RemoveAutoTerminationPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4377,10 +4605,11 @@ func (c *EMR) SetVisibleToAllUsersRequest(input *SetVisibleToAllUsersInput) (req
 // SetVisibleToAllUsers API operation for Amazon EMR.
 //
 // Sets the Cluster$VisibleToAllUsers value for an EMR cluster. When true, IAM
-// principals in the account can perform EMR cluster actions that their IAM
-// policies allow. When false, only the IAM principal that created the cluster
-// and the account root user can perform EMR actions on the cluster, regardless
-// of IAM permissions policies attached to other IAM principals.
+// principals in the Amazon Web Services account can perform EMR cluster actions
+// that their IAM policies allow. When false, only the IAM principal that created
+// the cluster and the Amazon Web Services account root user can perform EMR
+// actions on the cluster, regardless of IAM permissions policies attached to
+// other IAM principals.
 //
 // This action works on running clusters. When you create a cluster, use the
 // RunJobFlowInput$VisibleToAllUsers parameter.
@@ -5464,6 +5693,35 @@ func (s *AutoScalingPolicyStatus) SetStateChangeReason(v *AutoScalingPolicyState
 	return s
 }
 
+// An auto-termination policy for an Amazon EMR cluster. An auto-termination
+// policy defines the amount of idle time in seconds after which a cluster automatically
+// terminates. For alternative cluster termination options, see Control cluster
+// termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html).
+type AutoTerminationPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the amount of idle time in seconds after which the cluster automatically
+	// terminates. You can specify a minimum of 60 seconds and a maximum of 604800
+	// seconds (seven days).
+	IdleTimeout *int64 `type:"long"`
+}
+
+// String returns the string representation
+func (s AutoTerminationPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AutoTerminationPolicy) GoString() string {
+	return s.String()
+}
+
+// SetIdleTimeout sets the IdleTimeout field's value.
+func (s *AutoTerminationPolicy) SetIdleTimeout(v int64) *AutoTerminationPolicy {
+	s.IdleTimeout = &v
+	return s
+}
+
 // A configuration for Amazon EMR block public access. When BlockPublicSecurityGroupRules
 // is set to true, Amazon EMR prevents cluster creation if one of the cluster's
 // security groups has a rule that allows inbound traffic from 0.0.0.0/0 or
@@ -6063,19 +6321,20 @@ type Cluster struct {
 	// of a cluster error.
 	TerminationProtected *bool `type:"boolean"`
 
-	// Indicates whether the cluster is visible to IAM principals in the account
-	// associated with the cluster. When true, IAM principals in the account can
-	// perform EMR cluster actions on the cluster that their IAM policies allow.
-	// When false, only the IAM principal that created the cluster and the account
-	// root user can perform EMR actions, regardless of IAM permissions policies
-	// attached to other IAM principals.
+	// Indicates whether the cluster is visible to IAM principals in the Amazon
+	// Web Services account associated with the cluster. When true, IAM principals
+	// in the Amazon Web Services account can perform EMR cluster actions on the
+	// cluster that their IAM policies allow. When false, only the IAM principal
+	// that created the cluster and the Amazon Web Services account root user can
+	// perform EMR actions, regardless of IAM permissions policies attached to other
+	// IAM principals.
 	//
 	// The default value is true if a value is not provided when creating a cluster
 	// using the EMR API RunJobFlow command, the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
-	// command, or the Management Console. IAM principals that are allowed to perform
-	// actions on the cluster can use the SetVisibleToAllUsers action to change
-	// the value on a running cluster. For more information, see Understanding the
-	// EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
+	// command, or the Amazon Web Services Management Console. IAM principals that
+	// are allowed to perform actions on the cluster can use the SetVisibleToAllUsers
+	// action to change the value on a running cluster. For more information, see
+	// Understanding the EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
 	// in the Amazon EMRManagement Guide.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
@@ -8202,6 +8461,68 @@ func (s *FailureDetails) SetMessage(v string) *FailureDetails {
 // SetReason sets the Reason field's value.
 func (s *FailureDetails) SetReason(v string) *FailureDetails {
 	s.Reason = &v
+	return s
+}
+
+type GetAutoTerminationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ID of the Amazon EMR cluster for which the auto-termination
+	// policy will be fetched.
+	//
+	// ClusterId is a required field
+	ClusterId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetAutoTerminationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAutoTerminationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAutoTerminationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAutoTerminationPolicyInput"}
+	if s.ClusterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *GetAutoTerminationPolicyInput) SetClusterId(v string) *GetAutoTerminationPolicyInput {
+	s.ClusterId = &v
+	return s
+}
+
+type GetAutoTerminationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the auto-termination policy that is attached to an Amazon EMR cluster.
+	AutoTerminationPolicy *AutoTerminationPolicy `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAutoTerminationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAutoTerminationPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetAutoTerminationPolicy sets the AutoTerminationPolicy field's value.
+func (s *GetAutoTerminationPolicyOutput) SetAutoTerminationPolicy(v *AutoTerminationPolicy) *GetAutoTerminationPolicyOutput {
+	s.AutoTerminationPolicy = v
 	return s
 }
 
@@ -10583,19 +10904,19 @@ type JobFlowDetail struct {
 	// is empty.
 	SupportedProducts []*string `type:"list"`
 
-	// Indicates whether the cluster is visible to IAM principals in the account
-	// associated with the cluster. When true, IAM principals in the account can
-	// perform EMR cluster actions that their IAM policies allow. When false, only
-	// the IAM principal that created the cluster and the account root user can
-	// perform EMR actions, regardless of IAM permissions policies attached to other
-	// IAM principals.
+	// Indicates whether the cluster is visible to IAM principals in the Amazon
+	// Web Services account associated with the cluster. When true, IAM principals
+	// in the Amazon Web Services account can perform EMR cluster actions that their
+	// IAM policies allow. When false, only the IAM principal that created the cluster
+	// and the Amazon Web Services account root user can perform EMR actions, regardless
+	// of IAM permissions policies attached to other IAM principals.
 	//
 	// The default value is true if a value is not provided when creating a cluster
 	// using the EMR API RunJobFlow command, the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
-	// command, or the Management Console. IAM principals that are authorized to
-	// perform actions on the cluster can use the SetVisibleToAllUsers action to
-	// change the value on a running cluster. For more information, see Understanding
-	// the EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
+	// command, or the Amazon Web Services Management Console. IAM principals that
+	// are authorized to perform actions on the cluster can use the SetVisibleToAllUsers
+	// action to change the value on a running cluster. For more information, see
+	// Understanding the EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
 	// in the Amazon EMRManagement Guide.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
@@ -11877,9 +12198,9 @@ type ListReleaseLabelsInput struct {
 	// Specifies the next page of results. If NextToken is not specified, which
 	// is usually the case for the first request of ListReleaseLabels, the first
 	// page of results are determined by other filtering parameters or by the latest
-	// version. The ListReleaseLabels request fails if the identity (account ID)
-	// and all filtering parameters are different from the original request, or
-	// if the NextToken is expired or tampered with.
+	// version. The ListReleaseLabels request fails if the identity (Amazon Web
+	// Services account ID) and all filtering parameters are different from the
+	// original request, or if the NextToken is expired or tampered with.
 	NextToken *string `type:"string"`
 }
 
@@ -13205,6 +13526,68 @@ func (s *PutAutoScalingPolicyOutput) SetInstanceGroupId(v string) *PutAutoScalin
 	return s
 }
 
+type PutAutoTerminationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the auto-termination policy to attach to the cluster.
+	AutoTerminationPolicy *AutoTerminationPolicy `type:"structure"`
+
+	// Specifies the ID of the Amazon EMR cluster to which the auto-termination
+	// policy will be attached.
+	//
+	// ClusterId is a required field
+	ClusterId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutAutoTerminationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAutoTerminationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAutoTerminationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAutoTerminationPolicyInput"}
+	if s.ClusterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutoTerminationPolicy sets the AutoTerminationPolicy field's value.
+func (s *PutAutoTerminationPolicyInput) SetAutoTerminationPolicy(v *AutoTerminationPolicy) *PutAutoTerminationPolicyInput {
+	s.AutoTerminationPolicy = v
+	return s
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *PutAutoTerminationPolicyInput) SetClusterId(v string) *PutAutoTerminationPolicyInput {
+	s.ClusterId = &v
+	return s
+}
+
+type PutAutoTerminationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s PutAutoTerminationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutAutoTerminationPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type PutBlockPublicAccessConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13447,6 +13830,59 @@ func (s RemoveAutoScalingPolicyOutput) GoString() string {
 	return s.String()
 }
 
+type RemoveAutoTerminationPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the ID of the Amazon EMR cluster from which the auto-termination
+	// policy will be removed.
+	//
+	// ClusterId is a required field
+	ClusterId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RemoveAutoTerminationPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveAutoTerminationPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RemoveAutoTerminationPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RemoveAutoTerminationPolicyInput"}
+	if s.ClusterId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClusterId sets the ClusterId field's value.
+func (s *RemoveAutoTerminationPolicyInput) SetClusterId(v string) *RemoveAutoTerminationPolicyInput {
+	s.ClusterId = &v
+	return s
+}
+
+type RemoveAutoTerminationPolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s RemoveAutoTerminationPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RemoveAutoTerminationPolicyOutput) GoString() string {
+	return s.String()
+}
+
 type RemoveManagedScalingPolicyInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13590,6 +14026,12 @@ type RunJobFlowInput struct {
 	// The IAM role provides permissions that the automatic scaling feature requires
 	// to launch and terminate EC2 instances in an instance group.
 	AutoScalingRole *string `type:"string"`
+
+	// An auto-termination policy for an Amazon EMR cluster. An auto-termination
+	// policy defines the amount of idle time in seconds after which a cluster automatically
+	// terminates. For alternative cluster termination options, see Control cluster
+	// termination (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html).
+	AutoTerminationPolicy *AutoTerminationPolicy `type:"structure"`
 
 	// A list of bootstrap actions to run before Hadoop starts on the cluster nodes.
 	BootstrapActions []*BootstrapActionConfig `type:"list"`
@@ -13743,16 +14185,17 @@ type RunJobFlowInput struct {
 	// A list of tags to associate with a cluster and propagate to Amazon EC2 instances.
 	Tags []*Tag `type:"list"`
 
-	// Set this value to true so that IAM principals in the account associated with
-	// the cluster can perform EMR actions on the cluster that their IAM policies
-	// allow. This value defaults to true for clusters created using the EMR API
-	// or the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
+	// Set this value to true so that IAM principals in the Amazon Web Services
+	// account associated with the cluster can perform EMR actions on the cluster
+	// that their IAM policies allow. This value defaults to true for clusters created
+	// using the EMR API or the CLI create-cluster (https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
 	// command.
 	//
 	// When set to false, only the IAM principal that created the cluster and the
-	// account root user can perform EMR actions for the cluster, regardless of
-	// the IAM permissions policies attached to other IAM principals. For more information,
-	// see Understanding the EMR Cluster VisibleToAllUsers Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
+	// Amazon Web Services account root user can perform EMR actions for the cluster,
+	// regardless of the IAM permissions policies attached to other IAM principals.
+	// For more information, see Understanding the EMR Cluster VisibleToAllUsers
+	// Setting (https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users)
 	// in the Amazon EMRManagement Guide.
 	VisibleToAllUsers *bool `type:"boolean"`
 }
@@ -13849,6 +14292,12 @@ func (s *RunJobFlowInput) SetApplications(v []*Application) *RunJobFlowInput {
 // SetAutoScalingRole sets the AutoScalingRole field's value.
 func (s *RunJobFlowInput) SetAutoScalingRole(v string) *RunJobFlowInput {
 	s.AutoScalingRole = &v
+	return s
+}
+
+// SetAutoTerminationPolicy sets the AutoTerminationPolicy field's value.
+func (s *RunJobFlowInput) SetAutoTerminationPolicy(v *AutoTerminationPolicy) *RunJobFlowInput {
+	s.AutoTerminationPolicy = v
 	return s
 }
 
@@ -14592,11 +15041,11 @@ type SetVisibleToAllUsersInput struct {
 	// JobFlowIds is a required field
 	JobFlowIds []*string `type:"list" required:"true"`
 
-	// A value of true indicates that an IAM principal in the account can perform
-	// EMR actions on the cluster that the IAM policies attached to the principal
-	// allow. A value of false indicates that only the IAM principal that created
-	// the cluster and the Amazon Web Services root user can perform EMR actions
-	// on the cluster.
+	// A value of true indicates that an IAM principal in the Amazon Web Services
+	// account can perform EMR actions on the cluster that the IAM policies attached
+	// to the principal allow. A value of false indicates that only the IAM principal
+	// that created the cluster and the Amazon Web Services root user can perform
+	// EMR actions on the cluster.
 	//
 	// VisibleToAllUsers is a required field
 	VisibleToAllUsers *bool `type:"boolean" required:"true"`

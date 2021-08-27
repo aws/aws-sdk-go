@@ -19220,7 +19220,8 @@
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
         },
-        "UsageOperation":{"shape":"String"}
+        "UsageOperation":{"shape":"String"},
+        "BootMode":{"shape":"BootModeValues"}
       }
     },
     "ImportImageResult":{
@@ -19358,6 +19359,10 @@
         "UsageOperation":{
           "shape":"String",
           "locationName":"usageOperation"
+        },
+        "BootMode":{
+          "shape":"BootModeValues",
+          "locationName":"bootMode"
         }
       }
     },

@@ -132,6 +132,10 @@ type EMRAPI interface {
 	DescribeStudioWithContext(aws.Context, *emr.DescribeStudioInput, ...request.Option) (*emr.DescribeStudioOutput, error)
 	DescribeStudioRequest(*emr.DescribeStudioInput) (*request.Request, *emr.DescribeStudioOutput)
 
+	GetAutoTerminationPolicy(*emr.GetAutoTerminationPolicyInput) (*emr.GetAutoTerminationPolicyOutput, error)
+	GetAutoTerminationPolicyWithContext(aws.Context, *emr.GetAutoTerminationPolicyInput, ...request.Option) (*emr.GetAutoTerminationPolicyOutput, error)
+	GetAutoTerminationPolicyRequest(*emr.GetAutoTerminationPolicyInput) (*request.Request, *emr.GetAutoTerminationPolicyOutput)
+
 	GetBlockPublicAccessConfiguration(*emr.GetBlockPublicAccessConfigurationInput) (*emr.GetBlockPublicAccessConfigurationOutput, error)
 	GetBlockPublicAccessConfigurationWithContext(aws.Context, *emr.GetBlockPublicAccessConfigurationInput, ...request.Option) (*emr.GetBlockPublicAccessConfigurationOutput, error)
 	GetBlockPublicAccessConfigurationRequest(*emr.GetBlockPublicAccessConfigurationInput) (*request.Request, *emr.GetBlockPublicAccessConfigurationOutput)
@@ -237,6 +241,10 @@ type EMRAPI interface {
 	PutAutoScalingPolicyWithContext(aws.Context, *emr.PutAutoScalingPolicyInput, ...request.Option) (*emr.PutAutoScalingPolicyOutput, error)
 	PutAutoScalingPolicyRequest(*emr.PutAutoScalingPolicyInput) (*request.Request, *emr.PutAutoScalingPolicyOutput)
 
+	PutAutoTerminationPolicy(*emr.PutAutoTerminationPolicyInput) (*emr.PutAutoTerminationPolicyOutput, error)
+	PutAutoTerminationPolicyWithContext(aws.Context, *emr.PutAutoTerminationPolicyInput, ...request.Option) (*emr.PutAutoTerminationPolicyOutput, error)
+	PutAutoTerminationPolicyRequest(*emr.PutAutoTerminationPolicyInput) (*request.Request, *emr.PutAutoTerminationPolicyOutput)
+
 	PutBlockPublicAccessConfiguration(*emr.PutBlockPublicAccessConfigurationInput) (*emr.PutBlockPublicAccessConfigurationOutput, error)
 	PutBlockPublicAccessConfigurationWithContext(aws.Context, *emr.PutBlockPublicAccessConfigurationInput, ...request.Option) (*emr.PutBlockPublicAccessConfigurationOutput, error)
 	PutBlockPublicAccessConfigurationRequest(*emr.PutBlockPublicAccessConfigurationInput) (*request.Request, *emr.PutBlockPublicAccessConfigurationOutput)
@@ -248,6 +256,10 @@ type EMRAPI interface {
 	RemoveAutoScalingPolicy(*emr.RemoveAutoScalingPolicyInput) (*emr.RemoveAutoScalingPolicyOutput, error)
 	RemoveAutoScalingPolicyWithContext(aws.Context, *emr.RemoveAutoScalingPolicyInput, ...request.Option) (*emr.RemoveAutoScalingPolicyOutput, error)
 	RemoveAutoScalingPolicyRequest(*emr.RemoveAutoScalingPolicyInput) (*request.Request, *emr.RemoveAutoScalingPolicyOutput)
+
+	RemoveAutoTerminationPolicy(*emr.RemoveAutoTerminationPolicyInput) (*emr.RemoveAutoTerminationPolicyOutput, error)
+	RemoveAutoTerminationPolicyWithContext(aws.Context, *emr.RemoveAutoTerminationPolicyInput, ...request.Option) (*emr.RemoveAutoTerminationPolicyOutput, error)
+	RemoveAutoTerminationPolicyRequest(*emr.RemoveAutoTerminationPolicyInput) (*request.Request, *emr.RemoveAutoTerminationPolicyOutput)
 
 	RemoveManagedScalingPolicy(*emr.RemoveManagedScalingPolicyInput) (*emr.RemoveManagedScalingPolicyOutput, error)
 	RemoveManagedScalingPolicyWithContext(aws.Context, *emr.RemoveManagedScalingPolicyInput, ...request.Option) (*emr.RemoveManagedScalingPolicyOutput, error)
