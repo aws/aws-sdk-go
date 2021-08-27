@@ -1,3 +1,14 @@
+Release v1.40.32 (2021-08-27)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release adds the BootMode flag to the ImportImage API and showing the detected BootMode of an ImportImage task.
+* `service/elasticmapreduce`: Updates service API and documentation
+  * Amazon EMR now supports auto-terminating idle EMR clusters. You can specify the idle timeout value when enabling auto-termination for both running and new clusters and Amazon EMR automatically terminates the cluster when idle timeout kicks in.
+* `service/s3`: Updates service documentation and examples
+  * Documentation updates for Amazon S3.
+
 Release v1.40.31 (2021-08-26)
 ===
 

@@ -242,6 +242,15 @@
         {"shape":"InvalidRequestException"}
       ]
     },
+    "GetAutoTerminationPolicy":{
+      "name":"GetAutoTerminationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetAutoTerminationPolicyInput"},
+      "output":{"shape":"GetAutoTerminationPolicyOutput"}
+    },
     "GetBlockPublicAccessConfiguration":{
       "name":"GetBlockPublicAccessConfiguration",
       "http":{
@@ -465,6 +474,15 @@
       "input":{"shape":"PutAutoScalingPolicyInput"},
       "output":{"shape":"PutAutoScalingPolicyOutput"}
     },
+    "PutAutoTerminationPolicy":{
+      "name":"PutAutoTerminationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutAutoTerminationPolicyInput"},
+      "output":{"shape":"PutAutoTerminationPolicyOutput"}
+    },
     "PutBlockPublicAccessConfiguration":{
       "name":"PutBlockPublicAccessConfiguration",
       "http":{
@@ -495,6 +513,15 @@
       },
       "input":{"shape":"RemoveAutoScalingPolicyInput"},
       "output":{"shape":"RemoveAutoScalingPolicyOutput"}
+    },
+    "RemoveAutoTerminationPolicy":{
+      "name":"RemoveAutoTerminationPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RemoveAutoTerminationPolicyInput"},
+      "output":{"shape":"RemoveAutoTerminationPolicyOutput"}
     },
     "RemoveManagedScalingPolicy":{
       "name":"RemoveManagedScalingPolicy",
@@ -777,6 +804,12 @@
       "members":{
         "State":{"shape":"AutoScalingPolicyState"},
         "StateChangeReason":{"shape":"AutoScalingPolicyStateChangeReason"}
+      }
+    },
+    "AutoTerminationPolicy":{
+      "type":"structure",
+      "members":{
+        "IdleTimeout":{"shape":"Long"}
       }
     },
     "BlockPublicAccessConfiguration":{
@@ -1337,6 +1370,19 @@
         "Reason":{"shape":"String"},
         "Message":{"shape":"String"},
         "LogFile":{"shape":"String"}
+      }
+    },
+    "GetAutoTerminationPolicyInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"}
+      }
+    },
+    "GetAutoTerminationPolicyOutput":{
+      "type":"structure",
+      "members":{
+        "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"}
       }
     },
     "GetBlockPublicAccessConfigurationInput":{
@@ -2361,6 +2407,19 @@
         "ClusterArn":{"shape":"ArnType"}
       }
     },
+    "PutAutoTerminationPolicyInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"},
+        "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"}
+      }
+    },
+    "PutAutoTerminationPolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "PutBlockPublicAccessConfigurationInput":{
       "type":"structure",
       "required":["BlockPublicAccessConfiguration"],
@@ -2408,6 +2467,18 @@
       }
     },
     "RemoveAutoScalingPolicyOutput":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "RemoveAutoTerminationPolicyInput":{
+      "type":"structure",
+      "required":["ClusterId"],
+      "members":{
+        "ClusterId":{"shape":"ClusterId"}
+      }
+    },
+    "RemoveAutoTerminationPolicyOutput":{
       "type":"structure",
       "members":{
       }
@@ -2481,7 +2552,8 @@
         "KerberosAttributes":{"shape":"KerberosAttributes"},
         "StepConcurrencyLevel":{"shape":"Integer"},
         "ManagedScalingPolicy":{"shape":"ManagedScalingPolicy"},
-        "PlacementGroupConfigs":{"shape":"PlacementGroupConfigList"}
+        "PlacementGroupConfigs":{"shape":"PlacementGroupConfigList"},
+        "AutoTerminationPolicy":{"shape":"AutoTerminationPolicy"}
       }
     },
     "RunJobFlowOutput":{

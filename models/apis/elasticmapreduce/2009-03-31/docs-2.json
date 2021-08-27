@@ -20,11 +20,12 @@
     "DescribeSecurityConfiguration": "<p>Provides the details of a security configuration by returning the configuration JSON.</p>",
     "DescribeStep": "<p>Provides more detail about the cluster step.</p>",
     "DescribeStudio": "<p>Returns details for the specified Amazon EMR Studio including ID, Name, VPC, Studio access URL, and so on.</p>",
-    "GetBlockPublicAccessConfiguration": "<p>Returns the Amazon EMR block public access configuration for your account in the current Region. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html\">Configure Block Public Access for Amazon EMR</a> in the <i>Amazon EMR Management Guide</i>.</p>",
+    "GetAutoTerminationPolicy": "<p>Returns the auto-termination policy for an Amazon EMR cluster.</p>",
+    "GetBlockPublicAccessConfiguration": "<p>Returns the Amazon EMR block public access configuration for your Amazon Web Services account in the current Region. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html\">Configure Block Public Access for Amazon EMR</a> in the <i>Amazon EMR Management Guide</i>.</p>",
     "GetManagedScalingPolicy": "<p>Fetches the attached managed scaling policy for an Amazon EMR cluster. </p>",
     "GetStudioSessionMapping": "<p>Fetches mapping details for the specified Amazon EMR Studio and identity (user or group).</p>",
     "ListBootstrapActions": "<p>Provides information about the bootstrap actions associated with a cluster.</p>",
-    "ListClusters": "<p>Provides the status of all clusters visible to this account. Allows you to filter the list of clusters based on certain criteria; for example, filtering by cluster creation date and time or by status. This call returns a maximum of 50 clusters in unsorted order per call, but returns a marker to track the paging of the cluster list across multiple ListClusters calls.</p>",
+    "ListClusters": "<p>Provides the status of all clusters visible to this Amazon Web Services account. Allows you to filter the list of clusters based on certain criteria; for example, filtering by cluster creation date and time or by status. This call returns a maximum of 50 clusters in unsorted order per call, but returns a marker to track the paging of the cluster list across multiple ListClusters calls.</p>",
     "ListInstanceFleets": "<p>Lists all available details about the instance fleets in a cluster.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
     "ListInstanceGroups": "<p>Provides all available details about the instance groups in a cluster.</p>",
     "ListInstances": "<p>Provides information for all active EC2 instances and EC2 instances terminated in the last 30 days, up to a maximum of 2,000. EC2 instances in any of the following states are considered active: AWAITING_FULFILLMENT, PROVISIONING, BOOTSTRAPPING, RUNNING.</p>",
@@ -33,19 +34,21 @@
     "ListSecurityConfigurations": "<p>Lists all the security configurations visible to this account, providing their creation dates and times, and their names. This call returns a maximum of 50 clusters per call, but returns a marker to track the paging of the cluster list across multiple ListSecurityConfigurations calls.</p>",
     "ListSteps": "<p>Provides a list of steps for the cluster in reverse order unless you specify <code>stepIds</code> with the request or filter by <code>StepStates</code>. You can specify a maximum of 10 <code>stepIDs</code>. The CLI automatically paginates results to return a list greater than 50 steps. To return more than 50 steps using the CLI, specify a <code>Marker</code>, which is a pagination token that indicates the next set of steps to retrieve.</p>",
     "ListStudioSessionMappings": "<p>Returns a list of all user or group session mappings for the Amazon EMR Studio specified by <code>StudioId</code>.</p>",
-    "ListStudios": "<p>Returns a list of all Amazon EMR Studios associated with the account. The list includes details such as ID, Studio Access URL, and creation time for each Studio.</p>",
+    "ListStudios": "<p>Returns a list of all Amazon EMR Studios associated with the Amazon Web Services account. The list includes details such as ID, Studio Access URL, and creation time for each Studio.</p>",
     "ModifyCluster": "<p>Modifies the number of steps that can be executed concurrently for the cluster specified using ClusterID.</p>",
     "ModifyInstanceFleet": "<p>Modifies the target On-Demand and target Spot capacities for the instance fleet with the specified InstanceFleetID within the cluster specified using ClusterID. The call either succeeds or fails atomically.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions.</p> </note>",
     "ModifyInstanceGroups": "<p>ModifyInstanceGroups modifies the number of nodes and configuration settings of an instance group. The input parameters include the new target instance count for the group and the instance group ID. The call will either succeed or fail atomically.</p>",
     "PutAutoScalingPolicy": "<p>Creates or updates an automatic scaling policy for a core instance group or task instance group in an Amazon EMR cluster. The automatic scaling policy defines how an instance group dynamically adds and terminates EC2 instances in response to the value of a CloudWatch metric.</p>",
-    "PutBlockPublicAccessConfiguration": "<p>Creates or updates an Amazon EMR block public access configuration for your account in the current Region. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html\">Configure Block Public Access for Amazon EMR</a> in the <i>Amazon EMR Management Guide</i>.</p>",
+    "PutAutoTerminationPolicy": "<p>Creates or updates an auto-termination policy for an Amazon EMR cluster. An auto-termination policy defines the amount of idle time in seconds after which a cluster automatically terminates. For alternative cluster termination options, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html\">Control cluster termination</a>.</p>",
+    "PutBlockPublicAccessConfiguration": "<p>Creates or updates an Amazon EMR block public access configuration for your Amazon Web Services account in the current Region. For more information see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/configure-block-public-access.html\">Configure Block Public Access for Amazon EMR</a> in the <i>Amazon EMR Management Guide</i>.</p>",
     "PutManagedScalingPolicy": "<p>Creates or updates a managed scaling policy for an Amazon EMR cluster. The managed scaling policy defines the limits for resources, such as EC2 instances that can be added or terminated from a cluster. The policy only applies to the core and task nodes. The master node cannot be scaled after initial configuration. </p>",
     "RemoveAutoScalingPolicy": "<p>Removes an automatic scaling policy from a specified instance group within an EMR cluster.</p>",
+    "RemoveAutoTerminationPolicy": "<p>Removes an auto-termination policy from an Amazon EMR cluster.</p>",
     "RemoveManagedScalingPolicy": "<p> Removes a managed scaling policy from a specified EMR cluster. </p>",
     "RemoveTags": "<p>Removes tags from an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag Clusters</a>. </p> <p>The following example removes the stack tag with value Prod from a cluster:</p>",
     "RunJobFlow": "<p>RunJobFlow creates and starts running a new cluster (job flow). The cluster runs the steps specified. After the steps complete, the cluster stops and the HDFS partition is lost. To prevent loss of data, configure the last step of the job flow to store results in Amazon S3. If the <a>JobFlowInstancesConfig</a> <code>KeepJobFlowAliveWhenNoSteps</code> parameter is set to <code>TRUE</code>, the cluster transitions to the WAITING state rather than shutting down after the steps have completed. </p> <p>For additional protection, you can set the <a>JobFlowInstancesConfig</a> <code>TerminationProtected</code> parameter to <code>TRUE</code> to lock the cluster and prevent it from being terminated by API call, user intervention, or in the event of a job flow error.</p> <p>A maximum of 256 steps are allowed in each job flow.</p> <p>If your cluster is long-running (such as a Hive data warehouse) or complex, you may require more than 256 steps to process your data. You can bypass the 256-step limitation in various ways, including using the SSH shell to connect to the master node and submitting queries directly to the software running on the master node, such as Hive and Hadoop. For more information on how to do this, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html\">Add More than 256 Steps to a Cluster</a> in the <i>Amazon EMR Management Guide</i>.</p> <p>For long running clusters, we recommend that you periodically store your results.</p> <note> <p>The instance fleets configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. The RunJobFlow request can contain InstanceFleets parameters or InstanceGroups parameters, but not both.</p> </note>",
     "SetTerminationProtection": "<p>SetTerminationProtection locks a cluster (job flow) so the EC2 instances in the cluster cannot be terminated by user intervention, an API call, or in the event of a job-flow error. The cluster still terminates upon successful completion of the job flow. Calling <code>SetTerminationProtection</code> on a cluster is similar to calling the Amazon EC2 <code>DisableAPITermination</code> API on all EC2 instances in a cluster.</p> <p> <code>SetTerminationProtection</code> is used to prevent accidental termination of a cluster and to ensure that in the event of an error, the instances persist so that you can recover any data stored in their ephemeral instance storage.</p> <p> To terminate a cluster that has been locked by setting <code>SetTerminationProtection</code> to <code>true</code>, you must first unlock the job flow by a subsequent call to <code>SetTerminationProtection</code> in which you set the value to <code>false</code>. </p> <p> For more information, see<a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html\">Managing Cluster Termination</a> in the <i>Amazon EMR Management Guide</i>. </p>",
-    "SetVisibleToAllUsers": "<p>Sets the <a>Cluster$VisibleToAllUsers</a> value for an EMR cluster. When <code>true</code>, IAM principals in the account can perform EMR cluster actions that their IAM policies allow. When <code>false</code>, only the IAM principal that created the cluster and the account root user can perform EMR actions on the cluster, regardless of IAM permissions policies attached to other IAM principals.</p> <p>This action works on running clusters. When you create a cluster, use the <a>RunJobFlowInput$VisibleToAllUsers</a> parameter.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
+    "SetVisibleToAllUsers": "<p>Sets the <a>Cluster$VisibleToAllUsers</a> value for an EMR cluster. When <code>true</code>, IAM principals in the Amazon Web Services account can perform EMR cluster actions that their IAM policies allow. When <code>false</code>, only the IAM principal that created the cluster and the Amazon Web Services account root user can perform EMR actions on the cluster, regardless of IAM permissions policies attached to other IAM principals.</p> <p>This action works on running clusters. When you create a cluster, use the <a>RunJobFlowInput$VisibleToAllUsers</a> parameter.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
     "StartNotebookExecution": "<p>Starts a notebook execution.</p>",
     "StopNotebookExecution": "<p>Stops a notebook execution.</p>",
     "TerminateJobFlows": "<p>TerminateJobFlows shuts a list of clusters (job flows) down. When a job flow is shut down, any step not yet completed is canceled and the EC2 instances on which the cluster is running are stopped. Any log files not already saved are uploaded to Amazon S3 if a LogUri was specified when the cluster was created.</p> <p>The maximum number of clusters allowed is 10. The call to <code>TerminateJobFlows</code> is asynchronous. Depending on the configuration of the cluster, it may take up to 1-5 minutes for the cluster to completely terminate and release allocated resources, such as Amazon EC2 instances.</p>",
@@ -177,6 +180,14 @@
         "AutoScalingPolicyDescription$Status": "<p>The status of an automatic scaling policy. </p>"
       }
     },
+    "AutoTerminationPolicy": {
+      "base": "<p>An auto-termination policy for an Amazon EMR cluster. An auto-termination policy defines the amount of idle time in seconds after which a cluster automatically terminates. For alternative cluster termination options, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html\">Control cluster termination</a>.</p>",
+      "refs": {
+        "GetAutoTerminationPolicyOutput$AutoTerminationPolicy": "<p>Specifies the auto-termination policy that is attached to an Amazon EMR cluster. </p>",
+        "PutAutoTerminationPolicyInput$AutoTerminationPolicy": "<p>Specifies the auto-termination policy to attach to the cluster.</p>",
+        "RunJobFlowInput$AutoTerminationPolicy": null
+      }
+    },
     "BlockPublicAccessConfiguration": {
       "base": "<p>A configuration for Amazon EMR block public access. When <code>BlockPublicSecurityGroupRules</code> is set to <code>true</code>, Amazon EMR prevents cluster creation if one of the cluster's security groups has a rule that allows inbound traffic from 0.0.0.0/0 or ::/0 on a port, unless the port is specified as an exception using <code>PermittedPublicSecurityGroupRuleRanges</code>.</p>",
       "refs": {
@@ -196,15 +207,15 @@
         "BlockPublicAccessConfiguration$BlockPublicSecurityGroupRules": "<p>Indicates whether Amazon EMR block public access is enabled (<code>true</code>) or disabled (<code>false</code>). By default, the value is <code>false</code> for accounts that have created EMR clusters before July 2019. For accounts created after this, the default is <code>true</code>.</p>",
         "Cluster$AutoTerminate": "<p>Specifies whether the cluster should terminate after completing all steps.</p>",
         "Cluster$TerminationProtected": "<p>Indicates whether Amazon EMR will lock the cluster to prevent the EC2 instances from being terminated by an API call or user intervention, or in the event of a cluster error.</p>",
-        "Cluster$VisibleToAllUsers": "<p>Indicates whether the cluster is visible to IAM principals in the account associated with the cluster. When <code>true</code>, IAM principals in the account can perform EMR cluster actions on the cluster that their IAM policies allow. When <code>false</code>, only the IAM principal that created the cluster and the account root user can perform EMR actions, regardless of IAM permissions policies attached to other IAM principals.</p> <p>The default value is <code>true</code> if a value is not provided when creating a cluster using the EMR API <a>RunJobFlow</a> command, the CLI <a href=\"https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html\">create-cluster</a> command, or the Management Console. IAM principals that are allowed to perform actions on the cluster can use the <a>SetVisibleToAllUsers</a> action to change the value on a running cluster. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
-        "JobFlowDetail$VisibleToAllUsers": "<p>Indicates whether the cluster is visible to IAM principals in the account associated with the cluster. When <code>true</code>, IAM principals in the account can perform EMR cluster actions that their IAM policies allow. When <code>false</code>, only the IAM principal that created the cluster and the account root user can perform EMR actions, regardless of IAM permissions policies attached to other IAM principals.</p> <p>The default value is <code>true</code> if a value is not provided when creating a cluster using the EMR API <a>RunJobFlow</a> command, the CLI <a href=\"https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html\">create-cluster</a> command, or the Management Console. IAM principals that are authorized to perform actions on the cluster can use the <a>SetVisibleToAllUsers</a> action to change the value on a running cluster. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
+        "Cluster$VisibleToAllUsers": "<p>Indicates whether the cluster is visible to IAM principals in the Amazon Web Services account associated with the cluster. When <code>true</code>, IAM principals in the Amazon Web Services account can perform EMR cluster actions on the cluster that their IAM policies allow. When <code>false</code>, only the IAM principal that created the cluster and the Amazon Web Services account root user can perform EMR actions, regardless of IAM permissions policies attached to other IAM principals.</p> <p>The default value is <code>true</code> if a value is not provided when creating a cluster using the EMR API <a>RunJobFlow</a> command, the CLI <a href=\"https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html\">create-cluster</a> command, or the Amazon Web Services Management Console. IAM principals that are allowed to perform actions on the cluster can use the <a>SetVisibleToAllUsers</a> action to change the value on a running cluster. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
+        "JobFlowDetail$VisibleToAllUsers": "<p>Indicates whether the cluster is visible to IAM principals in the Amazon Web Services account associated with the cluster. When <code>true</code>, IAM principals in the Amazon Web Services account can perform EMR cluster actions that their IAM policies allow. When <code>false</code>, only the IAM principal that created the cluster and the Amazon Web Services account root user can perform EMR actions, regardless of IAM permissions policies attached to other IAM principals.</p> <p>The default value is <code>true</code> if a value is not provided when creating a cluster using the EMR API <a>RunJobFlow</a> command, the CLI <a href=\"https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html\">create-cluster</a> command, or the Amazon Web Services Management Console. IAM principals that are authorized to perform actions on the cluster can use the <a>SetVisibleToAllUsers</a> action to change the value on a running cluster. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
         "JobFlowInstancesConfig$KeepJobFlowAliveWhenNoSteps": "<p>Specifies whether the cluster should remain available after completing all steps. Defaults to <code>true</code>. For more information about configuring cluster termination, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-termination.html\">Control Cluster Termination</a> in the <i>EMR Management Guide</i>.</p>",
         "JobFlowInstancesConfig$TerminationProtected": "<p>Specifies whether to lock the cluster to prevent the Amazon EC2 instances from being terminated by API call, user intervention, or in the event of a job-flow error.</p>",
         "JobFlowInstancesDetail$KeepJobFlowAliveWhenNoSteps": "<p>Specifies whether the cluster should remain available after completing all steps.</p>",
         "JobFlowInstancesDetail$TerminationProtected": "<p>Specifies whether the Amazon EC2 instances in the cluster are protected from termination by API calls, user intervention, or in the event of a job-flow error.</p>",
-        "RunJobFlowInput$VisibleToAllUsers": "<p>Set this value to <code>true</code> so that IAM principals in the account associated with the cluster can perform EMR actions on the cluster that their IAM policies allow. This value defaults to <code>true</code> for clusters created using the EMR API or the CLI <a href=\"https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html\">create-cluster</a> command.</p> <p>When set to <code>false</code>, only the IAM principal that created the cluster and the account root user can perform EMR actions for the cluster, regardless of the IAM permissions policies attached to other IAM principals. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
+        "RunJobFlowInput$VisibleToAllUsers": "<p>Set this value to <code>true</code> so that IAM principals in the Amazon Web Services account associated with the cluster can perform EMR actions on the cluster that their IAM policies allow. This value defaults to <code>true</code> for clusters created using the EMR API or the CLI <a href=\"https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html\">create-cluster</a> command.</p> <p>When set to <code>false</code>, only the IAM principal that created the cluster and the Amazon Web Services account root user can perform EMR actions for the cluster, regardless of the IAM permissions policies attached to other IAM principals. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
         "SetTerminationProtectionInput$TerminationProtected": "<p>A Boolean that indicates whether to protect the cluster and prevent the Amazon EC2 instances in the cluster from shutting down due to API calls, user intervention, or job-flow error.</p>",
-        "SetVisibleToAllUsersInput$VisibleToAllUsers": "<p>A value of <code>true</code> indicates that an IAM principal in the account can perform EMR actions on the cluster that the IAM policies attached to the principal allow. A value of <code>false</code> indicates that only the IAM principal that created the cluster and the Amazon Web Services root user can perform EMR actions on the cluster.</p>"
+        "SetVisibleToAllUsersInput$VisibleToAllUsers": "<p>A value of <code>true</code> indicates that an IAM principal in the Amazon Web Services account can perform EMR actions on the cluster that the IAM policies attached to the principal allow. A value of <code>false</code> indicates that only the IAM principal that created the cluster and the Amazon Web Services root user can perform EMR actions on the cluster.</p>"
       }
     },
     "BooleanObject": {
@@ -287,6 +298,7 @@
         "ClusterSummary$Id": "<p>The unique identifier for the cluster.</p>",
         "DescribeClusterInput$ClusterId": "<p>The identifier of the cluster to describe.</p>",
         "DescribeStepInput$ClusterId": "<p>The identifier of the cluster with steps to describe.</p>",
+        "GetAutoTerminationPolicyInput$ClusterId": "<p>Specifies the ID of the Amazon EMR cluster for which the auto-termination policy will be fetched.</p>",
         "GetManagedScalingPolicyInput$ClusterId": "<p>Specifies the ID of the cluster for which the managed scaling policy will be fetched. </p>",
         "ListBootstrapActionsInput$ClusterId": "<p>The cluster identifier for the bootstrap actions to list.</p>",
         "ListInstanceFleetsInput$ClusterId": "<p>The unique identifier of the cluster.</p>",
@@ -297,8 +309,10 @@
         "ModifyInstanceGroupsInput$ClusterId": "<p>The ID of the cluster to which the instance group belongs.</p>",
         "PutAutoScalingPolicyInput$ClusterId": "<p>Specifies the ID of a cluster. The instance group to which the automatic scaling policy is applied is within this cluster.</p>",
         "PutAutoScalingPolicyOutput$ClusterId": "<p>Specifies the ID of a cluster. The instance group to which the automatic scaling policy is applied is within this cluster.</p>",
+        "PutAutoTerminationPolicyInput$ClusterId": "<p>Specifies the ID of the Amazon EMR cluster to which the auto-termination policy will be attached.</p>",
         "PutManagedScalingPolicyInput$ClusterId": "<p>Specifies the ID of an EMR cluster where the managed scaling policy is attached. </p>",
         "RemoveAutoScalingPolicyInput$ClusterId": "<p>Specifies the ID of a cluster. The instance group to which the automatic scaling policy is applied is within this cluster.</p>",
+        "RemoveAutoTerminationPolicyInput$ClusterId": "<p>Specifies the ID of the Amazon EMR cluster from which the auto-termination policy will be removed.</p>",
         "RemoveManagedScalingPolicyInput$ClusterId": "<p> Specifies the ID of the cluster from which the managed scaling policy will be removed. </p>"
       }
     },
@@ -660,6 +674,16 @@
       "base": "<p>The details of the step failure. The service attempts to detect the root cause for many common failures.</p>",
       "refs": {
         "StepStatus$FailureDetails": "<p>The details for the step failure including reason, message, and log file path where the root cause was identified.</p>"
+      }
+    },
+    "GetAutoTerminationPolicyInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetAutoTerminationPolicyOutput": {
+      "base": null,
+      "refs": {
       }
     },
     "GetBlockPublicAccessConfigurationInput": {
@@ -1256,6 +1280,7 @@
     "Long": {
       "base": null,
       "refs": {
+        "AutoTerminationPolicy$IdleTimeout": "<p>Specifies the amount of idle time in seconds after which the cluster automatically terminates. You can specify a minimum of 60 seconds and a maximum of 604800 seconds (seven days).</p>",
         "InstanceGroup$ConfigurationsVersion": "<p>The version number of the requested configuration specification for this instance group.</p>",
         "InstanceGroup$LastSuccessfullyAppliedConfigurationsVersion": "<p>The version number of a configuration specification that was successfully applied for an instance group last time. </p>"
       }
@@ -1474,6 +1499,16 @@
       "refs": {
       }
     },
+    "PutAutoTerminationPolicyInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutAutoTerminationPolicyOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
     "PutBlockPublicAccessConfigurationInput": {
       "base": null,
       "refs": {
@@ -1506,6 +1541,16 @@
       }
     },
     "RemoveAutoScalingPolicyOutput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveAutoTerminationPolicyInput": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RemoveAutoTerminationPolicyOutput": {
       "base": null,
       "refs": {
       }
@@ -1880,7 +1925,7 @@
         "InstanceGroup$BidPrice": "<p>If specified, indicates that the instance group uses Spot Instances. This is the maximum price you are willing to pay for Spot Instances. Specify <code>OnDemandPrice</code> to set the amount equal to the On-Demand price, or specify an amount in USD.</p>",
         "InstanceGroupStateChangeReason$Message": "<p>The status change reason description.</p>",
         "InstanceStateChangeReason$Message": "<p>The status change reason description.</p>",
-        "ListReleaseLabelsInput$NextToken": "<p>Specifies the next page of results. If <code>NextToken</code> is not specified, which is usually the case for the first request of ListReleaseLabels, the first page of results are determined by other filtering parameters or by the latest version. The <code>ListReleaseLabels</code> request fails if the identity (account ID) and all filtering parameters are different from the original request, or if the <code>NextToken</code> is expired or tampered with.</p>",
+        "ListReleaseLabelsInput$NextToken": "<p>Specifies the next page of results. If <code>NextToken</code> is not specified, which is usually the case for the first request of ListReleaseLabels, the first page of results are determined by other filtering parameters or by the latest version. The <code>ListReleaseLabels</code> request fails if the identity (Amazon Web Services account ID) and all filtering parameters are different from the original request, or if the <code>NextToken</code> is expired or tampered with.</p>",
         "ListReleaseLabelsOutput$NextToken": "<p>Used to paginate the next page of results if specified in the next <code>ListReleaseLabels</code> request.</p>",
         "MetricDimension$Key": "<p>The dimension name.</p>",
         "MetricDimension$Value": "<p>The dimension value.</p>",
