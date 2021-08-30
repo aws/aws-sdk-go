@@ -320,6 +320,10 @@ type CloudFormationAPI interface {
 	RegisterTypeWithContext(aws.Context, *cloudformation.RegisterTypeInput, ...request.Option) (*cloudformation.RegisterTypeOutput, error)
 	RegisterTypeRequest(*cloudformation.RegisterTypeInput) (*request.Request, *cloudformation.RegisterTypeOutput)
 
+	RollbackStack(*cloudformation.RollbackStackInput) (*cloudformation.RollbackStackOutput, error)
+	RollbackStackWithContext(aws.Context, *cloudformation.RollbackStackInput, ...request.Option) (*cloudformation.RollbackStackOutput, error)
+	RollbackStackRequest(*cloudformation.RollbackStackInput) (*request.Request, *cloudformation.RollbackStackOutput)
+
 	SetStackPolicy(*cloudformation.SetStackPolicyInput) (*cloudformation.SetStackPolicyOutput, error)
 	SetStackPolicyWithContext(aws.Context, *cloudformation.SetStackPolicyInput, ...request.Option) (*cloudformation.SetStackPolicyOutput, error)
 	SetStackPolicyRequest(*cloudformation.SetStackPolicyInput) (*request.Request, *cloudformation.SetStackPolicyOutput)

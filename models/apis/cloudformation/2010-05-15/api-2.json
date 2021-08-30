@@ -798,6 +798,21 @@
       ],
       "idempotent":true
     },
+    "RollbackStack":{
+      "name":"RollbackStack",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RollbackStackInput"},
+      "output":{
+        "shape":"RollbackStackOutput",
+        "resultWrapper":"RollbackStackResult"
+      },
+      "errors":[
+        {"shape":"TokenAlreadyExistsException"}
+      ]
+    },
     "SetStackPolicy":{
       "name":"SetStackPolicy",
       "http":{
@@ -1901,7 +1916,8 @@
       "members":{
         "ChangeSetName":{"shape":"ChangeSetNameOrId"},
         "StackName":{"shape":"StackNameOrId"},
-        "ClientRequestToken":{"shape":"ClientRequestToken"}
+        "ClientRequestToken":{"shape":"ClientRequestToken"},
+        "DisableRollback":{"shape":"DisableRollback"}
       }
     },
     "ExecuteChangeSetOutput":{
@@ -2880,7 +2896,13 @@
         "IMPORT_IN_PROGRESS",
         "IMPORT_ROLLBACK_IN_PROGRESS",
         "IMPORT_ROLLBACK_FAILED",
-        "IMPORT_ROLLBACK_COMPLETE"
+        "IMPORT_ROLLBACK_COMPLETE",
+        "UPDATE_ROLLBACK_IN_PROGRESS",
+        "UPDATE_ROLLBACK_COMPLETE",
+        "UPDATE_ROLLBACK_FAILED",
+        "ROLLBACK_IN_PROGRESS",
+        "ROLLBACK_COMPLETE",
+        "ROLLBACK_FAILED"
       ]
     },
     "ResourceStatusReason":{"type":"string"},
@@ -2950,6 +2972,21 @@
       "members":{
         "RollbackTriggers":{"shape":"RollbackTriggers"},
         "MonitoringTimeInMinutes":{"shape":"MonitoringTimeInMinutes"}
+      }
+    },
+    "RollbackStackInput":{
+      "type":"structure",
+      "required":["StackName"],
+      "members":{
+        "StackName":{"shape":"StackNameOrId"},
+        "RoleARN":{"shape":"RoleARN"},
+        "ClientRequestToken":{"shape":"ClientRequestToken"}
+      }
+    },
+    "RollbackStackOutput":{
+      "type":"structure",
+      "members":{
+        "StackId":{"shape":"StackId"}
       }
     },
     "RollbackTrigger":{
@@ -3605,6 +3642,7 @@
         "UPDATE_IN_PROGRESS",
         "UPDATE_COMPLETE_CLEANUP_IN_PROGRESS",
         "UPDATE_COMPLETE",
+        "UPDATE_FAILED",
         "UPDATE_ROLLBACK_IN_PROGRESS",
         "UPDATE_ROLLBACK_FAILED",
         "UPDATE_ROLLBACK_COMPLETE_CLEANUP_IN_PROGRESS",
@@ -3990,6 +4028,7 @@
         "StackPolicyURL":{"shape":"StackPolicyURL"},
         "NotificationARNs":{"shape":"NotificationARNs"},
         "Tags":{"shape":"Tags"},
+        "DisableRollback":{"shape":"DisableRollback"},
         "ClientRequestToken":{"shape":"ClientRequestToken"}
       }
     },

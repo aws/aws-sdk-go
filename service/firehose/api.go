@@ -573,7 +573,7 @@ func (c *Firehose) PutRecordRequest(input *PutRecordInput) (req *request.Request
 //
 // You must specify the name of the delivery stream and the data record when
 // using PutRecord. The data record consists of a data blob that can be up to
-// 1,000 KB in size, and any kind of data. For example, it can be a segment
+// 1,000 KiB in size, and any kind of data. For example, it can be a segment
 // from a log file, geographic location data, website clickstream data, and
 // so on.
 //
@@ -700,7 +700,7 @@ func (c *Firehose) PutRecordBatchRequest(input *PutRecordBatchInput) (req *reque
 // (https://docs.aws.amazon.com/firehose/latest/dev/limits.html).
 //
 // Each PutRecordBatch request supports up to 500 records. Each record in the
-// request can be as large as 1,000 KB (before 64-bit encoding), up to a limit
+// request can be as large as 1,000 KB (before base64 encoding), up to a limit
 // of 4 MB for the entire request. These limits cannot be changed.
 //
 // You must specify the name of the delivery stream and the data record when
@@ -2495,6 +2495,45 @@ func (s *DestinationDescription) SetSplunkDestinationDescription(v *SplunkDestin
 	return s
 }
 
+// The configuration of the dynamic partitioning mechanism that creates smaller
+// data sets from the streaming data by partitioning it based on partition keys.
+// Currently, dynamic partitioning is only supported for Amazon S3 destinations.
+// For more information, see https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html
+// (https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html)
+type DynamicPartitioningConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies that the dynamic partitioning is enabled for this Kinesis Data
+	// Firehose delivery stream.
+	Enabled *bool `type:"boolean"`
+
+	// The retry behavior in case Kinesis Data Firehose is unable to deliver data
+	// to an Amazon S3 prefix.
+	RetryOptions *RetryOptions `type:"structure"`
+}
+
+// String returns the string representation
+func (s DynamicPartitioningConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DynamicPartitioningConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *DynamicPartitioningConfiguration) SetEnabled(v bool) *DynamicPartitioningConfiguration {
+	s.Enabled = &v
+	return s
+}
+
+// SetRetryOptions sets the RetryOptions field's value.
+func (s *DynamicPartitioningConfiguration) SetRetryOptions(v *RetryOptions) *DynamicPartitioningConfiguration {
+	s.RetryOptions = v
+	return s
+}
+
 // Describes the buffering to perform before delivering data to the Amazon ES
 // destination.
 type ElasticsearchBufferingHints struct {
@@ -3183,6 +3222,13 @@ type ExtendedS3DestinationConfiguration struct {
 	// format to the Parquet or ORC format before writing it to Amazon S3.
 	DataFormatConversionConfiguration *DataFormatConversionConfiguration `type:"structure"`
 
+	// The configuration of the dynamic partitioning mechanism that creates smaller
+	// data sets from the streaming data by partitioning it based on partition keys.
+	// Currently, dynamic partitioning is only supported for Amazon S3 destinations.
+	// For more information, see https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html
+	// (https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html)
+	DynamicPartitioningConfiguration *DynamicPartitioningConfiguration `type:"structure"`
+
 	// The encryption configuration. If no value is specified, the default is no
 	// encryption.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
@@ -3303,6 +3349,12 @@ func (s *ExtendedS3DestinationConfiguration) SetDataFormatConversionConfiguratio
 	return s
 }
 
+// SetDynamicPartitioningConfiguration sets the DynamicPartitioningConfiguration field's value.
+func (s *ExtendedS3DestinationConfiguration) SetDynamicPartitioningConfiguration(v *DynamicPartitioningConfiguration) *ExtendedS3DestinationConfiguration {
+	s.DynamicPartitioningConfiguration = v
+	return s
+}
+
 // SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
 func (s *ExtendedS3DestinationConfiguration) SetEncryptionConfiguration(v *EncryptionConfiguration) *ExtendedS3DestinationConfiguration {
 	s.EncryptionConfiguration = v
@@ -3371,6 +3423,13 @@ type ExtendedS3DestinationDescription struct {
 	// The serializer, deserializer, and schema for converting data from the JSON
 	// format to the Parquet or ORC format before writing it to Amazon S3.
 	DataFormatConversionConfiguration *DataFormatConversionConfiguration `type:"structure"`
+
+	// The configuration of the dynamic partitioning mechanism that creates smaller
+	// data sets from the streaming data by partitioning it based on partition keys.
+	// Currently, dynamic partitioning is only supported for Amazon S3 destinations.
+	// For more information, see https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html
+	// (https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html)
+	DynamicPartitioningConfiguration *DynamicPartitioningConfiguration `type:"structure"`
 
 	// The encryption configuration. If no value is specified, the default is no
 	// encryption.
@@ -3445,6 +3504,12 @@ func (s *ExtendedS3DestinationDescription) SetDataFormatConversionConfiguration(
 	return s
 }
 
+// SetDynamicPartitioningConfiguration sets the DynamicPartitioningConfiguration field's value.
+func (s *ExtendedS3DestinationDescription) SetDynamicPartitioningConfiguration(v *DynamicPartitioningConfiguration) *ExtendedS3DestinationDescription {
+	s.DynamicPartitioningConfiguration = v
+	return s
+}
+
 // SetEncryptionConfiguration sets the EncryptionConfiguration field's value.
 func (s *ExtendedS3DestinationDescription) SetEncryptionConfiguration(v *EncryptionConfiguration) *ExtendedS3DestinationDescription {
 	s.EncryptionConfiguration = v
@@ -3507,6 +3572,13 @@ type ExtendedS3DestinationUpdate struct {
 	// The serializer, deserializer, and schema for converting data from the JSON
 	// format to the Parquet or ORC format before writing it to Amazon S3.
 	DataFormatConversionConfiguration *DataFormatConversionConfiguration `type:"structure"`
+
+	// The configuration of the dynamic partitioning mechanism that creates smaller
+	// data sets from the streaming data by partitioning it based on partition keys.
+	// Currently, dynamic partitioning is only supported for Amazon S3 destinations.
+	// For more information, see https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html
+	// (https://docs.aws.amazon.com/firehose/latest/dev/dynamic-partitioning.html)
+	DynamicPartitioningConfiguration *DynamicPartitioningConfiguration `type:"structure"`
 
 	// The encryption configuration. If no value is specified, the default is no
 	// encryption.
@@ -3616,6 +3688,12 @@ func (s *ExtendedS3DestinationUpdate) SetCompressionFormat(v string) *ExtendedS3
 // SetDataFormatConversionConfiguration sets the DataFormatConversionConfiguration field's value.
 func (s *ExtendedS3DestinationUpdate) SetDataFormatConversionConfiguration(v *DataFormatConversionConfiguration) *ExtendedS3DestinationUpdate {
 	s.DataFormatConversionConfiguration = v
+	return s
+}
+
+// SetDynamicPartitioningConfiguration sets the DynamicPartitioningConfiguration field's value.
+func (s *ExtendedS3DestinationUpdate) SetDynamicPartitioningConfiguration(v *DynamicPartitioningConfiguration) *ExtendedS3DestinationUpdate {
+	s.DynamicPartitioningConfiguration = v
 	return s
 }
 
@@ -3862,6 +3940,10 @@ type HttpEndpointConfiguration struct {
 	Name *string `min:"1" type:"string"`
 
 	// The URL of the HTTP endpoint selected as the destination.
+	//
+	// If you choose an HTTP endpoint as your destination, review and follow the
+	// instructions in the Appendix - HTTP Endpoint Delivery Request and Response
+	// Specifications (https://docs.aws.amazon.com/firehose/latest/dev/httpdeliveryrequestresponse.html).
 	//
 	// Url is a required field
 	Url *string `min:"1" type:"string" required:"true" sensitive:"true"`
@@ -6431,6 +6513,32 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The retry behavior in case Kinesis Data Firehose is unable to deliver data
+// to an Amazon S3 prefix.
+type RetryOptions struct {
+	_ struct{} `type:"structure"`
+
+	// The period of time during which Kinesis Data Firehose retries to deliver
+	// data to the specified Amazon S3 prefix.
+	DurationInSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation
+func (s RetryOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RetryOptions) GoString() string {
+	return s.String()
+}
+
+// SetDurationInSeconds sets the DurationInSeconds field's value.
+func (s *RetryOptions) SetDurationInSeconds(v int64) *RetryOptions {
+	s.DurationInSeconds = &v
+	return s
+}
+
 // Describes the configuration of a destination in Amazon S3.
 type S3DestinationConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -6811,6 +6919,10 @@ type SchemaConfiguration struct {
 
 	// Specifies the name of the AWS Glue database that contains the schema for
 	// the output data.
+	//
+	// If the SchemaConfiguration request parameter is used as part of invoking
+	// the CreateDeliveryStream API, then the DatabaseName property is required
+	// and its value must be specified.
 	DatabaseName *string `min:"1" type:"string"`
 
 	// If you don't specify an AWS Region, the default is the current Region.
@@ -6819,10 +6931,18 @@ type SchemaConfiguration struct {
 	// The role that Kinesis Data Firehose can use to access AWS Glue. This role
 	// must be in the same account you use for Kinesis Data Firehose. Cross-account
 	// roles aren't allowed.
+	//
+	// If the SchemaConfiguration request parameter is used as part of invoking
+	// the CreateDeliveryStream API, then the RoleARN property is required and its
+	// value must be specified.
 	RoleARN *string `min:"1" type:"string"`
 
 	// Specifies the AWS Glue table that contains the column information that constitutes
 	// your data schema.
+	//
+	// If the SchemaConfiguration request parameter is used as part of invoking
+	// the CreateDeliveryStream API, then the TableName property is required and
+	// its value must be specified.
 	TableName *string `min:"1" type:"string"`
 
 	// Specifies the table version for the output data schema. If you don't specify
@@ -8584,6 +8704,12 @@ const (
 	// ProcessorParameterNameNumberOfRetries is a ProcessorParameterName enum value
 	ProcessorParameterNameNumberOfRetries = "NumberOfRetries"
 
+	// ProcessorParameterNameMetadataExtractionQuery is a ProcessorParameterName enum value
+	ProcessorParameterNameMetadataExtractionQuery = "MetadataExtractionQuery"
+
+	// ProcessorParameterNameJsonParsingEngine is a ProcessorParameterName enum value
+	ProcessorParameterNameJsonParsingEngine = "JsonParsingEngine"
+
 	// ProcessorParameterNameRoleArn is a ProcessorParameterName enum value
 	ProcessorParameterNameRoleArn = "RoleArn"
 
@@ -8592,6 +8718,12 @@ const (
 
 	// ProcessorParameterNameBufferIntervalInSeconds is a ProcessorParameterName enum value
 	ProcessorParameterNameBufferIntervalInSeconds = "BufferIntervalInSeconds"
+
+	// ProcessorParameterNameSubRecordType is a ProcessorParameterName enum value
+	ProcessorParameterNameSubRecordType = "SubRecordType"
+
+	// ProcessorParameterNameDelimiter is a ProcessorParameterName enum value
+	ProcessorParameterNameDelimiter = "Delimiter"
 )
 
 // ProcessorParameterName_Values returns all elements of the ProcessorParameterName enum
@@ -8599,21 +8731,37 @@ func ProcessorParameterName_Values() []string {
 	return []string{
 		ProcessorParameterNameLambdaArn,
 		ProcessorParameterNameNumberOfRetries,
+		ProcessorParameterNameMetadataExtractionQuery,
+		ProcessorParameterNameJsonParsingEngine,
 		ProcessorParameterNameRoleArn,
 		ProcessorParameterNameBufferSizeInMbs,
 		ProcessorParameterNameBufferIntervalInSeconds,
+		ProcessorParameterNameSubRecordType,
+		ProcessorParameterNameDelimiter,
 	}
 }
 
 const (
+	// ProcessorTypeRecordDeAggregation is a ProcessorType enum value
+	ProcessorTypeRecordDeAggregation = "RecordDeAggregation"
+
 	// ProcessorTypeLambda is a ProcessorType enum value
 	ProcessorTypeLambda = "Lambda"
+
+	// ProcessorTypeMetadataExtraction is a ProcessorType enum value
+	ProcessorTypeMetadataExtraction = "MetadataExtraction"
+
+	// ProcessorTypeAppendDelimiterToRecord is a ProcessorType enum value
+	ProcessorTypeAppendDelimiterToRecord = "AppendDelimiterToRecord"
 )
 
 // ProcessorType_Values returns all elements of the ProcessorType enum
 func ProcessorType_Values() []string {
 	return []string{
+		ProcessorTypeRecordDeAggregation,
 		ProcessorTypeLambda,
+		ProcessorTypeMetadataExtraction,
+		ProcessorTypeAppendDelimiterToRecord,
 	}
 }
 

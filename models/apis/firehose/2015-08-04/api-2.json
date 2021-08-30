@@ -220,7 +220,7 @@
       "type":"string",
       "max":512,
       "min":1,
-      "pattern":"jdbc:(redshift|postgresql)://((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+redshift\\.([a-zA-Z0-9\\.]+):\\d{1,5}/[a-zA-Z0-9_$]+"
+      "pattern":"jdbc:(redshift|postgresql)://((?!-)[A-Za-z0-9-]{1,63}(?<!-)\\.)+redshift\\.([a-zA-Z0-9\\.]+):\\d{1,5}/[a-zA-Z0-9_$-]+"
     },
     "ColumnToJsonKeyMappings":{
       "type":"map",
@@ -496,6 +496,13 @@
       "min":1,
       "pattern":"[a-zA-Z0-9-]+"
     },
+    "DynamicPartitioningConfiguration":{
+      "type":"structure",
+      "members":{
+        "RetryOptions":{"shape":"RetryOptions"},
+        "Enabled":{"shape":"BooleanObject"}
+      }
+    },
     "ElasticsearchBufferingHints":{
       "type":"structure",
       "members":{
@@ -655,7 +662,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"S3BackupMode"},
         "S3BackupConfiguration":{"shape":"S3DestinationConfiguration"},
-        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"}
+        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"},
+        "DynamicPartitioningConfiguration":{"shape":"DynamicPartitioningConfiguration"}
       }
     },
     "ExtendedS3DestinationDescription":{
@@ -679,7 +687,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"S3BackupMode"},
         "S3BackupDescription":{"shape":"S3DestinationDescription"},
-        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"}
+        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"},
+        "DynamicPartitioningConfiguration":{"shape":"DynamicPartitioningConfiguration"}
       }
     },
     "ExtendedS3DestinationUpdate":{
@@ -696,7 +705,8 @@
         "ProcessingConfiguration":{"shape":"ProcessingConfiguration"},
         "S3BackupMode":{"shape":"S3BackupMode"},
         "S3BackupUpdate":{"shape":"S3DestinationUpdate"},
-        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"}
+        "DataFormatConversionConfiguration":{"shape":"DataFormatConversionConfiguration"},
+        "DynamicPartitioningConfiguration":{"shape":"DynamicPartitioningConfiguration"}
       }
     },
     "FailureDescription":{
@@ -1196,20 +1206,29 @@
       "enum":[
         "LambdaArn",
         "NumberOfRetries",
+        "MetadataExtractionQuery",
+        "JsonParsingEngine",
         "RoleArn",
         "BufferSizeInMBs",
-        "BufferIntervalInSeconds"
+        "BufferIntervalInSeconds",
+        "SubRecordType",
+        "Delimiter"
       ]
     },
     "ProcessorParameterValue":{
       "type":"string",
-      "max":512,
+      "max":5120,
       "min":1,
       "pattern":"^(?!\\s*$).+"
     },
     "ProcessorType":{
       "type":"string",
-      "enum":["Lambda"]
+      "enum":[
+        "RecordDeAggregation",
+        "Lambda",
+        "MetadataExtraction",
+        "AppendDelimiterToRecord"
+      ]
     },
     "Proportion":{
       "type":"double",
@@ -1382,6 +1401,17 @@
         "message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "RetryDurationInSeconds":{
+      "type":"integer",
+      "max":7200,
+      "min":0
+    },
+    "RetryOptions":{
+      "type":"structure",
+      "members":{
+        "DurationInSeconds":{"shape":"RetryDurationInSeconds"}
+      }
     },
     "RoleARN":{
       "type":"string",
