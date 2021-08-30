@@ -2,11 +2,7 @@ package aws
 
 import (
 	"bytes"
-	"context"
-	stderrors "errors"
-	"io"
 	"math/rand"
-	"os"
 	"testing"
 )
 
@@ -47,44 +43,6 @@ func TestWriteAtBuffer(t *testing.T) {
 
 	if !bytes.Equal([]byte{1, 2, 3, 0, 0, 1, 1, 1}, b.Bytes()) {
 		t.Errorf("expected %v, but received %v", []byte{1, 2, 3, 0, 0, 1, 1, 1}, b.Bytes())
-	}
-}
-
-type errCloser struct {
-	err error
-}
-
-func (c errCloser) Close() error { return c.err }
-
-func TestMultiCloser_Close(t *testing.T) {
-	cases := []struct {
-		name    string
-		closers []io.Closer
-		expects []error
-	}{
-		{
-			name:    "no error",
-			closers: []io.Closer{errCloser{err: nil}},
-		},
-		{
-			name: "multiple errors",
-			closers: []io.Closer{
-				errCloser{err: os.ErrNotExist},
-				errCloser{err: nil},
-				errCloser{err: context.Canceled},
-			},
-			expects: []error{os.ErrNotExist, context.Canceled},
-		},
-	}
-	for _, c := range cases {
-		t.Run(c.name, func(t *testing.T) {
-			err := MultiCloser(c.closers).Close()
-			for _, e := range c.expects {
-				if !stderrors.Is(err, e) {
-					t.Errorf("expect %v is a %v", err, e)
-				}
-			}
-		})
 	}
 }
 

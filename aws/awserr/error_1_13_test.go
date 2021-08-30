@@ -1,9 +1,11 @@
+//go:build go1.13
+// +build go1.13
+
 package awserr_test
 
 import (
 	"context"
 	"errors"
-	"io"
 	"net/http"
 	"reflect"
 	"testing"
@@ -55,7 +57,7 @@ func TestNewBatchError(t *testing.T) {
 
 	var e temporaryError
 	if !errors.As(err, &e) {
-		t.Errorf("expacted err can be casted to temporaryError")
+		t.Fatal("expected err can be casted to temporaryError")
 	}
 	if !e.Temporary() {
 		t.Error("expect true")
@@ -87,7 +89,7 @@ func TestNewRequestFailure(t *testing.T) {
 
 	var e temporaryError
 	if !errors.As(err, &e) {
-		t.Errorf("expacted err can be casted to temporaryError")
+		t.Fatal("expected err can be casted to temporaryError")
 	}
 	if !e.Temporary() {
 		t.Error("expect true")
@@ -95,26 +97,26 @@ func TestNewRequestFailure(t *testing.T) {
 }
 
 func TestNewUnmarshalError(t *testing.T) {
-	err := awserr.NewUnmarshalError(io.ErrUnexpectedEOF, "unexpected EOF", []byte("unexpected EOF"))
+	err := awserr.NewUnmarshalError(context.DeadlineExceeded, "unexpected EOF", []byte("unexpected EOF"))
 	if err.Code() != "UnmarshalError" {
 		t.Errorf("expected UnmarshalError but received %v", err.Code())
 	}
 	if err.Message() != "unexpected EOF" {
 		t.Errorf("expected 'unexpected EOF' but received %v", err.Message())
 	}
-	if !errors.Is(err.OrigErr(), io.ErrUnexpectedEOF) {
-		t.Errorf("expected io.ErrUnexpectedEOF but received %v", err.OrigErr())
+	if !errors.Is(err.OrigErr(), context.DeadlineExceeded) {
+		t.Errorf("expected context.DeadlineExceeded but received %v", err.OrigErr())
 	}
 	if string(err.Bytes()) != "unexpected EOF" {
 		t.Errorf("expected 'unexpected EOF' but received %s", err.Bytes())
 	}
-	if !errors.Is(err, io.ErrUnexpectedEOF) {
-		t.Error("expected err is a io.ErrUnexpectedEOFd")
+	if !errors.Is(err, context.DeadlineExceeded) {
+		t.Error("expected err is a context.DeadlineExceeded")
 	}
 
 	var e temporaryError
 	if !errors.As(err, &e) {
-		t.Errorf("expacted err can be casted to temporaryError")
+		t.Fatal("expected err can be casted to temporaryError")
 	}
 	if !e.Temporary() {
 		t.Error("expect true")
