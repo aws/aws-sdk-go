@@ -1,3 +1,16 @@
+Release v1.40.33 (2021-08-30)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service API and documentation
+  * AWS CloudFormation allows you to iteratively develop your applications when failures are encountered without rolling back successfully provisioned resources. By specifying stack failure options, you can troubleshoot resources in a CREATE_FAILED or UPDATE_FAILED status.
+* `service/codebuild`: Updates service documentation
+  * Documentation updates for CodeBuild
+* `service/firehose`: Updates service API and documentation
+  * This release adds the Dynamic Partitioning feature to Kinesis Data Firehose service for S3 destinations.
+* `service/kms`: Updates service API, documentation, and examples
+  * This release has changes to KMS nomenclature to remove the word master from both the "Customer master key" and "CMK" abbreviation and replace those naming conventions with "KMS key".
+
 Release v1.40.32 (2021-08-27)
 ===
 

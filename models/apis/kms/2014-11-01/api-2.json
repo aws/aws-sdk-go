@@ -1037,7 +1037,12 @@
         "Policy":{"shape":"PolicyType"},
         "Description":{"shape":"DescriptionType"},
         "KeyUsage":{"shape":"KeyUsageType"},
-        "CustomerMasterKeySpec":{"shape":"CustomerMasterKeySpec"},
+        "CustomerMasterKeySpec":{
+          "shape":"CustomerMasterKeySpec",
+          "deprecated":true,
+          "deprecatedMessage":"This parameter has been deprecated. Instead, use the KeySpec parameter."
+        },
+        "KeySpec":{"shape":"KeySpec"},
         "Origin":{"shape":"OriginType"},
         "CustomKeyStoreId":{"shape":"CustomKeyStoreIdType"},
         "BypassPolicyLockoutSafetyCheck":{"shape":"BooleanType"},
@@ -1107,6 +1112,8 @@
     },
     "CustomerMasterKeySpec":{
       "type":"string",
+      "deprecated":true,
+      "deprecatedMessage":"This enum has been deprecated. Instead, use the KeySpec enum.",
       "enum":[
         "RSA_2048",
         "RSA_3072",
@@ -1490,7 +1497,12 @@
       "members":{
         "KeyId":{"shape":"KeyIdType"},
         "PublicKey":{"shape":"PublicKeyType"},
-        "CustomerMasterKeySpec":{"shape":"CustomerMasterKeySpec"},
+        "CustomerMasterKeySpec":{
+          "shape":"CustomerMasterKeySpec",
+          "deprecated":true,
+          "deprecatedMessage":"This field has been deprecated. Instead, use the KeySpec field."
+        },
+        "KeySpec":{"shape":"KeySpec"},
         "KeyUsage":{"shape":"KeyUsageType"},
         "EncryptionAlgorithms":{"shape":"EncryptionAlgorithmSpecList"},
         "SigningAlgorithms":{"shape":"SigningAlgorithmSpecList"}
@@ -1727,13 +1739,31 @@
         "CloudHsmClusterId":{"shape":"CloudHsmClusterIdType"},
         "ExpirationModel":{"shape":"ExpirationModelType"},
         "KeyManager":{"shape":"KeyManagerType"},
-        "CustomerMasterKeySpec":{"shape":"CustomerMasterKeySpec"},
+        "CustomerMasterKeySpec":{
+          "shape":"CustomerMasterKeySpec",
+          "deprecated":true,
+          "deprecatedMessage":"This field has been deprecated. Instead, use the KeySpec field."
+        },
+        "KeySpec":{"shape":"KeySpec"},
         "EncryptionAlgorithms":{"shape":"EncryptionAlgorithmSpecList"},
         "SigningAlgorithms":{"shape":"SigningAlgorithmSpecList"},
         "MultiRegion":{"shape":"NullableBooleanType"},
         "MultiRegionConfiguration":{"shape":"MultiRegionConfiguration"},
         "PendingDeletionWindowInDays":{"shape":"PendingWindowInDaysType"}
       }
+    },
+    "KeySpec":{
+      "type":"string",
+      "enum":[
+        "RSA_2048",
+        "RSA_3072",
+        "RSA_4096",
+        "ECC_NIST_P256",
+        "ECC_NIST_P384",
+        "ECC_NIST_P521",
+        "ECC_SECG_P256K1",
+        "SYMMETRIC_DEFAULT"
+      ]
     },
     "KeyState":{
       "type":"string",

@@ -11,15 +11,15 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose deletion you are canceling. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose deletion you are canceling. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           },
           "output": {
-            "KeyId": "The ARN of the CMK whose deletion you canceled."
+            "KeyId": "The ARN of the KMS key whose deletion you canceled."
           }
         },
-        "description": "The following example cancels deletion of the specified CMK.",
+        "description": "The following example cancels deletion of the specified KMS key.",
         "id": "to-cancel-deletion-of-a-cmk-1477428535102",
-        "title": "To cancel deletion of a customer master key (CMK)"
+        "title": "To cancel deletion of a KMS key"
       }
     ],
     "CreateAlias": [
@@ -31,10 +31,10 @@
         "comments": {
           "input": {
             "AliasName": "The alias to create. Aliases must begin with 'alias/'. Do not use aliases that begin with 'alias/aws' because they are reserved for use by AWS.",
-            "TargetKeyId": "The identifier of the CMK whose alias you are creating. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "TargetKeyId": "The identifier of the KMS key whose alias you are creating. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example creates an alias for the specified customer master key (CMK).",
+        "description": "The following example creates an alias for the specified KMS key.",
         "id": "to-create-an-alias-1477505685119",
         "title": "To create an alias"
       }
@@ -56,7 +56,7 @@
         "comments": {
           "input": {
             "GranteePrincipal": "The identity that is given permission to perform the operations specified in the grant.",
-            "KeyId": "The identifier of the CMK to which the grant applies. You can use the key ID or the Amazon Resource Name (ARN) of the CMK.",
+            "KeyId": "The identifier of the KMS key to which the grant applies. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
             "Operations": "A list of operations that the grant allows."
           },
           "output": {
@@ -64,7 +64,7 @@
             "GrantToken": "The grant token."
           }
         },
-        "description": "The following example creates a grant that allows the specified IAM role to encrypt data with the specified customer master key (CMK).",
+        "description": "The following example creates a grant that allows the specified IAM role to encrypt data with the specified KMS key.",
         "id": "to-create-a-grant-1477972226782",
         "title": "To create a grant"
       }
@@ -84,10 +84,15 @@
             "AWSAccountId": "111122223333",
             "Arn": "arn:aws:kms:us-east-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab",
             "CreationDate": "2017-07-05T14:04:55-07:00",
+            "CustomerMasterKeySpec": "SYMMETRIC_DEFAULT",
             "Description": "",
             "Enabled": true,
+            "EncryptionAlgorithms": [
+              "SYMMETRIC_DEFAULT"
+            ],
             "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
             "KeyManager": "CUSTOMER",
+            "KeySpec": "SYMMETRIC_DEFAULT",
             "KeyState": "Enabled",
             "KeyUsage": "ENCRYPT_DECRYPT",
             "Origin": "AWS_KMS"
@@ -98,12 +103,12 @@
             "Tags": "One or more tags. Each tag consists of a tag key and a tag value."
           },
           "output": {
-            "KeyMetadata": "An object that contains information about the CMK created by this operation."
+            "KeyMetadata": "An object that contains information about the KMS key created by this operation."
           }
         },
-        "description": "The following example creates a CMK.",
+        "description": "The following example creates a KMS key.",
         "id": "to-create-a-cmk-1478028992966",
-        "title": "To create a customer master key (CMK)"
+        "title": "To create a KMS key"
       }
     ],
     "Decrypt": [
@@ -119,14 +124,14 @@
         "comments": {
           "input": {
             "CiphertextBlob": "The encrypted data (ciphertext).",
-            "KeyId": "A key identifier for the CMK to use to decrypt the data."
+            "KeyId": "A key identifier for the KMS key to use to decrypt the data."
           },
           "output": {
-            "KeyId": "The Amazon Resource Name (ARN) of the CMK that was used to decrypt the data.",
+            "KeyId": "The Amazon Resource Name (ARN) of the KMS key that was used to decrypt the data.",
             "Plaintext": "The decrypted (plaintext) data."
           }
         },
-        "description": "The following example decrypts data that was encrypted with a customer master key (CMK) in AWS KMS.",
+        "description": "The following example decrypts data that was encrypted with a KMS key.",
         "id": "to-decrypt-data-1478281622886",
         "title": "To decrypt data"
       }
@@ -153,10 +158,10 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose imported key material you are deleting. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose imported key material you are deleting. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example deletes the imported key material from the specified customer master key (CMK).",
+        "description": "The following example deletes the imported key material from the specified KMS key.",
         "id": "to-delete-imported-key-material-1478561674507",
         "title": "To delete imported key material"
       }
@@ -179,6 +184,7 @@
             ],
             "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab",
             "KeyManager": "CUSTOMER",
+            "KeySpec": "SYMMETRIC_DEFAULT",
             "KeyState": "Enabled",
             "KeyUsage": "ENCRYPT_DECRYPT",
             "MultiRegion": false,
@@ -187,15 +193,15 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK that you want information about. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key that you want information about. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           },
           "output": {
-            "KeyMetadata": "An object that contains information about the specified CMK."
+            "KeyMetadata": "An object that contains information about the specified KMS key."
           }
         },
-        "description": "The following example gets metadata about a symmetric CMK.",
+        "description": "The following example gets metadata about a symmetric KMS key.",
         "id": "get-key-details-1478565820907",
-        "title": "To get details about a customer master key (CMK)"
+        "title": "To get details about a KMS key"
       }
     ],
     "DisableKey": [
@@ -205,12 +211,12 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK to disable. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key to disable. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example disables the specified CMK.",
+        "description": "The following example disables the specified KMS key.",
         "id": "to-disable-a-cmk-1478566583659",
-        "title": "To disable a customer master key (CMK)"
+        "title": "To disable a KMS key"
       }
     ],
     "DisableKeyRotation": [
@@ -220,10 +226,10 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose key material will no longer be rotated. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose key material will no longer be rotated. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example disables automatic annual rotation of the key material for the specified CMK.",
+        "description": "The following example disables automatic annual rotation of the key material for the specified KMS key.",
         "id": "to-disable-automatic-rotation-of-key-material-1478624396092",
         "title": "To disable automatic rotation of key material"
       }
@@ -235,12 +241,12 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK to enable. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key to enable. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example enables the specified CMK.",
+        "description": "The following example enables the specified KMS key.",
         "id": "to-enable-a-cmk-1478627501129",
-        "title": "To enable a customer master key (CMK)"
+        "title": "To enable a KMS key"
       }
     ],
     "EnableKeyRotation": [
@@ -250,10 +256,10 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose key material will be rotated annually. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose key material will be rotated annually. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example enables automatic annual rotation of the key material for the specified CMK.",
+        "description": "The following example enables automatic annual rotation of the key material for the specified KMS key.",
         "id": "to-enable-automatic-rotation-of-key-material-1478629109677",
         "title": "To enable automatic rotation of key material"
       }
@@ -270,15 +276,15 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK to use for encryption. You can use the key ID or Amazon Resource Name (ARN) of the CMK, or the name or ARN of an alias that refers to the CMK.",
+            "KeyId": "The identifier of the KMS key to use for encryption. You can use the key ID or Amazon Resource Name (ARN) of the KMS key, or the name or ARN of an alias that refers to the KMS key.",
             "Plaintext": "The data to encrypt."
           },
           "output": {
             "CiphertextBlob": "The encrypted data (ciphertext).",
-            "KeyId": "The ARN of the CMK that was used to encrypt the data."
+            "KeyId": "The ARN of the KMS key that was used to encrypt the data."
           }
         },
-        "description": "The following example encrypts data with the specified customer master key (CMK).",
+        "description": "The following example encrypts data with the specified KMS key.",
         "id": "to-encrypt-data-1478906026012",
         "title": "To encrypt data"
       }
@@ -296,16 +302,16 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK to use to encrypt the data key. You can use the key ID or Amazon Resource Name (ARN) of the CMK, or the name or ARN of an alias that refers to the CMK.",
+            "KeyId": "The identifier of the KMS key to use to encrypt the data key. You can use the key ID or Amazon Resource Name (ARN) of the KMS key, or the name or ARN of an alias that refers to the KMS key.",
             "KeySpec": "Specifies the type of data key to return."
           },
           "output": {
             "CiphertextBlob": "The encrypted data key.",
-            "KeyId": "The ARN of the CMK that was used to encrypt the data key.",
+            "KeyId": "The ARN of the KMS key that was used to encrypt the data key.",
             "Plaintext": "The unencrypted (plaintext) data key."
           }
         },
-        "description": "The following example generates a 256-bit symmetric data encryption key (data key) in two formats. One is the unencrypted (plainext) data key, and the other is the data key encrypted with the specified customer master key (CMK).",
+        "description": "The following example generates a 256-bit symmetric data encryption key (data key) in two formats. One is the unencrypted (plainext) data key, and the other is the data key encrypted with the specified KMS key.",
         "id": "to-generate-a-data-key-1478912956062",
         "title": "To generate a data key"
       }
@@ -322,15 +328,15 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK to use to encrypt the data key. You can use the key ID or Amazon Resource Name (ARN) of the CMK, or the name or ARN of an alias that refers to the CMK.",
+            "KeyId": "The identifier of the KMS key to use to encrypt the data key. You can use the key ID or Amazon Resource Name (ARN) of the KMS key, or the name or ARN of an alias that refers to the KMS key.",
             "KeySpec": "Specifies the type of data key to return."
           },
           "output": {
             "CiphertextBlob": "The encrypted data key.",
-            "KeyId": "The ARN of the CMK that was used to encrypt the data key."
+            "KeyId": "The ARN of the KMS key that was used to encrypt the data key."
           }
         },
-        "description": "The following example generates an encrypted copy of a 256-bit symmetric data encryption key (data key). The data key is encrypted with the specified customer master key (CMK).",
+        "description": "The following example generates an encrypted copy of a 256-bit symmetric data encryption key (data key). The data key is encrypted with the specified KMS key.",
         "id": "to-generate-an-encrypted-data-key-1478914121134",
         "title": "To generate an encrypted data key"
       }
@@ -351,7 +357,7 @@
             "Plaintext": "The random data."
           }
         },
-        "description": "The following example uses AWS KMS to generate 32 bytes of random data.",
+        "description": "The following example generates 32 bytes of random data.",
         "id": "to-generate-random-data-1479163645600",
         "title": "To generate random data"
       }
@@ -367,14 +373,14 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose key policy you want to retrieve. You can use the key ID or the Amazon Resource Name (ARN) of the CMK.",
+            "KeyId": "The identifier of the KMS key whose key policy you want to retrieve. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
             "PolicyName": "The name of the key policy to retrieve."
           },
           "output": {
             "Policy": "The key policy document."
           }
         },
-        "description": "The following example retrieves the key policy for the specified customer master key (CMK).",
+        "description": "The following example retrieves the key policy for the specified KMS key.",
         "id": "to-retrieve-a-key-policy-1479170128325",
         "title": "To retrieve a key policy"
       }
@@ -389,15 +395,15 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose key material rotation status you want to retrieve. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose key material rotation status you want to retrieve. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           },
           "output": {
             "KeyRotationEnabled": "A boolean that indicates the key material rotation status. Returns true when automatic annual rotation of the key material is enabled, or false when it is not."
           }
         },
-        "description": "The following example retrieves the status of automatic annual rotation of the key material for the specified CMK.",
+        "description": "The following example retrieves the status of automatic annual rotation of the key material for the specified KMS key.",
         "id": "to-retrieve-the-rotation-status-for-a-cmk-1479172287408",
-        "title": "To retrieve the rotation status for a customer master key (CMK)"
+        "title": "To retrieve the rotation status for a KMS key"
       }
     ],
     "GetParametersForImport": [
@@ -415,20 +421,20 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK for which to retrieve the public key and import token. You can use the key ID or the Amazon Resource Name (ARN) of the CMK.",
+            "KeyId": "The identifier of the KMS key for which to retrieve the public key and import token. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
             "WrappingAlgorithm": "The algorithm that you will use to encrypt the key material before importing it.",
             "WrappingKeySpec": "The type of wrapping key (public key) to return in the response."
           },
           "output": {
             "ImportToken": "The import token to send with a subsequent ImportKeyMaterial request.",
-            "KeyId": "The ARN of the CMK for which you are retrieving the public key and import token. This is the same CMK specified in the request.",
+            "KeyId": "The ARN of the KMS key for which you are retrieving the public key and import token. This is the same KMS key specified in the request.",
             "ParametersValidTo": "The time at which the import token and public key are no longer valid.",
             "PublicKey": "The public key to use to encrypt the key material before importing it."
           }
         },
-        "description": "The following example retrieves the public key and import token for the specified CMK.",
+        "description": "The following example retrieves the public key and import token for the specified KMS key.",
         "id": "to-retrieve-the-public-key-and-import-token-for-a-cmk-1480626483211",
-        "title": "To retrieve the public key and import token for a customer master key (CMK)"
+        "title": "To retrieve the public key and import token for a KMS key"
       }
     ],
     "ImportKeyMaterial": [
@@ -444,12 +450,12 @@
             "EncryptedKeyMaterial": "The encrypted key material to import.",
             "ExpirationModel": "A value that specifies whether the key material expires.",
             "ImportToken": "The import token that you received in the response to a previous GetParametersForImport request.",
-            "KeyId": "The identifier of the CMK to import the key material into. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key to import the key material into. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example imports key material into the specified CMK.",
+        "description": "The following example imports key material into the specified KMS key.",
         "id": "to-import-key-material-into-a-cmk-1480630551969",
-        "title": "To import key material into a customer master key (CMK)"
+        "title": "To import key material into a KMS key"
       }
     ],
     "ListAliases": [
@@ -501,7 +507,7 @@
         },
         "comments": {
           "output": {
-            "Aliases": "A list of aliases, including the key ID of the customer master key (CMK) that each alias refers to.",
+            "Aliases": "A list of aliases, including the key ID of the KMS key that each alias refers to.",
             "Truncated": "A boolean that indicates whether there are more items in the list. Returns true when there are more items, or false when there are not."
           }
         },
@@ -573,16 +579,16 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose grants you want to list. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose grants you want to list. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           },
           "output": {
             "Grants": "A list of grants.",
             "Truncated": "A boolean that indicates whether there are more items in the list. Returns true when there are more items, or false when there are not."
           }
         },
-        "description": "The following example lists grants for the specified CMK.",
+        "description": "The following example lists grants for the specified KMS key.",
         "id": "to-list-grants-for-a-cmk-1481067365389",
-        "title": "To list grants for a customer master key (CMK)"
+        "title": "To list grants for a KMS key"
       }
     ],
     "ListKeyPolicies": [
@@ -598,16 +604,16 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose key policies you want to list. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose key policies you want to list. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           },
           "output": {
             "PolicyNames": "A list of key policy names.",
             "Truncated": "A boolean that indicates whether there are more items in the list. Returns true when there are more items, or false when there are not."
           }
         },
-        "description": "The following example lists key policies for the specified CMK.",
+        "description": "The following example lists key policies for the specified KMS key.",
         "id": "to-list-key-policies-for-a-cmk-1481069780998",
-        "title": "To list key policies for a customer master key (CMK)"
+        "title": "To list key policies for a KMS key"
       }
     ],
     "ListKeys": [
@@ -647,13 +653,13 @@
         },
         "comments": {
           "output": {
-            "Keys": "A list of CMKs, including the key ID and Amazon Resource Name (ARN) of each one.",
+            "Keys": "A list of KMS keys, including the key ID and Amazon Resource Name (ARN) of each one.",
             "Truncated": "A boolean that indicates whether there are more items in the list. Returns true when there are more items, or false when there are not."
           }
         },
-        "description": "The following example lists CMKs.",
+        "description": "The following example lists KMS keys.",
         "id": "to-list-cmks-1481071643069",
-        "title": "To list customer master keys (CMKs)"
+        "title": "To list KMS keys"
       }
     ],
     "ListResourceTags": [
@@ -680,16 +686,16 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose tags you are listing. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose tags you are listing. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           },
           "output": {
             "Tags": "A list of tags.",
             "Truncated": "A boolean that indicates whether there are more items in the list. Returns true when there are more items, or false when there are not."
           }
         },
-        "description": "The following example lists tags for a CMK.",
+        "description": "The following example lists tags for a KMS key.",
         "id": "to-list-tags-for-a-cmk-1483996855796",
-        "title": "To list tags for a customer master key (CMK)"
+        "title": "To list tags for a KMS key"
       }
     ],
     "ListRetirableGrants": [
@@ -716,7 +722,7 @@
         },
         "comments": {
           "input": {
-            "RetiringPrincipal": "The retiring principal whose grants you want to list. Use the Amazon Resource Name (ARN) of an AWS principal such as an AWS account (root), IAM user, federated user, or assumed role user."
+            "RetiringPrincipal": "The retiring principal whose grants you want to list. Use the Amazon Resource Name (ARN) of a principal such as an AWS account (root), IAM user, federated user, or assumed role user."
           },
           "output": {
             "Grants": "A list of grants that the specified principal can retire.",
@@ -737,14 +743,14 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK to attach the key policy to. You can use the key ID or the Amazon Resource Name (ARN) of the CMK.",
+            "KeyId": "The identifier of the KMS key to attach the key policy to. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
             "Policy": "The key policy document.",
             "PolicyName": "The name of the key policy."
           }
         },
-        "description": "The following example attaches a key policy to the specified CMK.",
+        "description": "The following example attaches a key policy to the specified KMS key.",
         "id": "to-attach-a-key-policy-to-a-cmk-1481147345018",
-        "title": "To attach a key policy to a customer master key (CMK)"
+        "title": "To attach a key policy to a KMS key"
       }
     ],
     "ReEncrypt": [
@@ -761,16 +767,16 @@
         "comments": {
           "input": {
             "CiphertextBlob": "The data to reencrypt.",
-            "DestinationKeyId": "The identifier of the CMK to use to reencrypt the data. You can use any valid key identifier.",
-            "SourceKeyId": "The identifier of the CMK to use to decrypt the data. You can use any valid key identifier."
+            "DestinationKeyId": "The identifier of the KMS key to use to reencrypt the data. You can use any valid key identifier.",
+            "SourceKeyId": "The identifier of the KMS key to use to decrypt the data. You can use any valid key identifier."
           },
           "output": {
             "CiphertextBlob": "The reencrypted data.",
-            "KeyId": "The ARN of the CMK that was used to reencrypt the data.",
-            "SourceKeyId": "The ARN of the CMK that was originally used to encrypt the data."
+            "KeyId": "The ARN of the KMS key that was used to reencrypt the data.",
+            "SourceKeyId": "The ARN of the KMS key that was originally used to encrypt the data."
           }
         },
-        "description": "The following example reencrypts data with the specified CMK.",
+        "description": "The following example reencrypts data with the specified KMS key.",
         "id": "to-reencrypt-data-1481230358001",
         "title": "To reencrypt data"
       }
@@ -784,7 +790,7 @@
         "comments": {
           "input": {
             "GrantId": "The identifier of the grant to retire.",
-            "KeyId": "The Amazon Resource Name (ARN) of the customer master key (CMK) associated with the grant."
+            "KeyId": "The Amazon Resource Name (ARN) of the KMS key associated with the grant."
           }
         },
         "description": "The following example retires a grant.",
@@ -801,7 +807,7 @@
         "comments": {
           "input": {
             "GrantId": "The identifier of the grant to revoke.",
-            "KeyId": "The identifier of the customer master key (CMK) associated with the grant. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key associated with the grant. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
         "description": "The following example revokes a grant.",
@@ -821,17 +827,17 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK to schedule for deletion. You can use the key ID or the Amazon Resource Name (ARN) of the CMK.",
-            "PendingWindowInDays": "The waiting period, specified in number of days. After the waiting period ends, AWS KMS deletes the CMK."
+            "KeyId": "The identifier of the KMS key to schedule for deletion. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
+            "PendingWindowInDays": "The waiting period, specified in number of days. After the waiting period ends, KMS deletes the KMS key."
           },
           "output": {
-            "DeletionDate": "The date and time after which AWS KMS deletes the CMK.",
-            "KeyId": "The ARN of the CMK that is scheduled for deletion."
+            "DeletionDate": "The date and time after which KMS deletes the KMS key.",
+            "KeyId": "The ARN of the KMS key that is scheduled for deletion."
           }
         },
-        "description": "The following example schedules the specified CMK for deletion.",
+        "description": "The following example schedules the specified KMS key for deletion.",
         "id": "to-schedule-a-cmk-for-deletion-1481331111094",
-        "title": "To schedule a customer master key (CMK) for deletion"
+        "title": "To schedule a KMS key for deletion"
       }
     ],
     "TagResource": [
@@ -847,13 +853,13 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK you are tagging. You can use the key ID or the Amazon Resource Name (ARN) of the CMK.",
+            "KeyId": "The identifier of the KMS key you are tagging. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key.",
             "Tags": "A list of tags."
           }
         },
-        "description": "The following example tags a CMK.",
+        "description": "The following example tags a KMS key.",
         "id": "to-tag-a-cmk-1483997246518",
-        "title": "To tag a customer master key (CMK)"
+        "title": "To tag a KMS key"
       }
     ],
     "UntagResource": [
@@ -867,13 +873,13 @@
         },
         "comments": {
           "input": {
-            "KeyId": "The identifier of the CMK whose tags you are removing.",
+            "KeyId": "The identifier of the KMS key whose tags you are removing.",
             "TagKeys": "A list of tag keys. Provide only the tag keys, not the tag values."
           }
         },
-        "description": "The following example removes tags from a CMK.",
+        "description": "The following example removes tags from a KMS key.",
         "id": "to-remove-tags-from-a-cmk-1483997590962",
-        "title": "To remove tags from a customer master key (CMK)"
+        "title": "To remove tags from a KMS key"
       }
     ],
     "UpdateAlias": [
@@ -885,10 +891,10 @@
         "comments": {
           "input": {
             "AliasName": "The alias to update.",
-            "TargetKeyId": "The identifier of the CMK that the alias will refer to after this operation succeeds. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "TargetKeyId": "The identifier of the KMS key that the alias will refer to after this operation succeeds. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example updates the specified alias to refer to the specified customer master key (CMK).",
+        "description": "The following example updates the specified alias to refer to the specified KMS key.",
         "id": "to-update-an-alias-1481572726920",
         "title": "To update an alias"
       }
@@ -896,18 +902,18 @@
     "UpdateKeyDescription": [
       {
         "input": {
-          "Description": "Example description that indicates the intended use of this CMK.",
+          "Description": "Example description that indicates the intended use of this KMS key.",
           "KeyId": "1234abcd-12ab-34cd-56ef-1234567890ab"
         },
         "comments": {
           "input": {
             "Description": "The updated description.",
-            "KeyId": "The identifier of the CMK whose description you are updating. You can use the key ID or the Amazon Resource Name (ARN) of the CMK."
+            "KeyId": "The identifier of the KMS key whose description you are updating. You can use the key ID or the Amazon Resource Name (ARN) of the KMS key."
           }
         },
-        "description": "The following example updates the description of the specified CMK.",
+        "description": "The following example updates the description of the specified KMS key.",
         "id": "to-update-the-description-of-a-cmk-1481574808619",
-        "title": "To update the description of a customer master key (CMK)"
+        "title": "To update the description of a KMS key"
       }
     ]
   }
