@@ -1,234 +1,240 @@
 {
   "version": "2.0",
-  "service": "<fullname>AWS IoT</fullname> <p>AWS IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the AWS cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p> <p>The service endpoints that expose this API are listed in <a href=\"https://docs.aws.amazon.com/general/latest/gr/iot-core.html\">AWS IoT Core Endpoints and Quotas</a>. You must use the endpoint for the region that has the resources you want to access.</p> <p>The service name used by <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">AWS Signature Version 4</a> to sign the request is: <i>execute-api</i>.</p> <p>For more information about how AWS IoT works, see the <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p> <p>For information about how to use the credentials provider for AWS IoT, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html\">Authorizing Direct Calls to AWS Services</a>.</p>",
+  "service": "<fullname>IoT</fullname> <p>IoT provides secure, bi-directional communication between Internet-connected devices (such as sensors, actuators, embedded devices, or smart appliances) and the Amazon Web Services cloud. You can discover your custom IoT-Data endpoint to communicate with, configure rules for data processing and integration with other services, organize resources associated with each device (Registry), configure logging, and create and manage policies and credentials to authenticate devices.</p> <p>The service endpoints that expose this API are listed in <a href=\"https://docs.aws.amazon.com/general/latest/gr/iot-core.html\">Amazon Web Services IoT Core Endpoints and Quotas</a>. You must use the endpoint for the region that has the resources you want to access.</p> <p>The service name used by <a href=\"https://docs.aws.amazon.com/general/latest/gr/signature-version-4.html\">Amazon Web Services Signature Version 4</a> to sign the request is: <i>execute-api</i>.</p> <p>For more information about how IoT works, see the <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/aws-iot-how-it-works.html\">Developer Guide</a>.</p> <p>For information about how to use the credentials provider for IoT, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/authorizing-direct-aws.html\">Authorizing Direct Calls to Amazon Web Services Services</a>.</p>",
   "operations": {
-    "AcceptCertificateTransfer": "<p>Accepts a pending certificate transfer. The default state of the certificate is INACTIVE.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p>",
-    "AddThingToBillingGroup": "<p>Adds a thing to a billing group.</p>",
-    "AddThingToThingGroup": "<p>Adds a thing to a thing group.</p>",
-    "AssociateTargetsWithJob": "<p>Associates a group with a continuous job. The following criteria must be met: </p> <ul> <li> <p>The job must have been created with the <code>targetSelection</code> field set to \"CONTINUOUS\".</p> </li> <li> <p>The job status must currently be \"IN_PROGRESS\".</p> </li> <li> <p>The total number of targets associated with a job must not exceed 100.</p> </li> </ul>",
-    "AttachPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p>",
-    "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p> <b>Note:</b> This API is deprecated. Please use <a>AttachPolicy</a> instead.</p>",
-    "AttachSecurityProfile": "<p>Associates a Device Defender security profile with a thing group or this account. Each thing group or account can have up to five security profiles associated with it.</p>",
-    "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p>",
-    "CancelAuditMitigationActionsTask": "<p>Cancels a mitigation action task that is in progress. If the task is not in progress, an InvalidRequestException occurs.</p>",
-    "CancelAuditTask": "<p>Cancels an audit that is in progress. The audit can be either scheduled or on demand. If the audit isn't in progress, an \"InvalidRequestException\" occurs.</p>",
-    "CancelCertificateTransfer": "<p>Cancels a pending transfer for the specified certificate.</p> <p> <b>Note</b> Only the transfer source account can use this operation to cancel a transfer. (Transfer destinations can use <a>RejectCertificateTransfer</a> instead.) After transfer, AWS IoT returns the certificate to the source account in the INACTIVE state. After the destination account has accepted the transfer, the transfer cannot be cancelled.</p> <p>After a certificate transfer is cancelled, the status of the certificate changes from PENDING_TRANSFER to INACTIVE.</p>",
-    "CancelDetectMitigationActionsTask": "<p> Cancels a Device Defender ML Detect mitigation action. </p>",
-    "CancelJob": "<p>Cancels a job.</p>",
-    "CancelJobExecution": "<p>Cancels the execution of a job for a given thing.</p>",
-    "ClearDefaultAuthorizer": "<p>Clears the default authorizer.</p>",
-    "ConfirmTopicRuleDestination": "<p>Confirms a topic rule destination. When you create a rule requiring a destination, AWS IoT sends a confirmation message to the endpoint or base address you specify. The message includes a token which you pass back when calling <code>ConfirmTopicRuleDestination</code> to confirm that you own or have access to the endpoint.</p>",
-    "CreateAuditSuppression": "<p> Creates a Device Defender audit suppression. </p>",
-    "CreateAuthorizer": "<p>Creates an authorizer.</p>",
-    "CreateBillingGroup": "<p>Creates a billing group.</p>",
-    "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr AWS CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
-    "CreateCustomMetric": "<p> Use this API to define a Custom Metric published by your devices to Device Defender. </p>",
-    "CreateDimension": "<p>Create a dimension that you can use to limit the scope of a metric used in a security profile for AWS IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p>",
-    "CreateDomainConfiguration": "<p>Creates a domain configuration.</p>",
-    "CreateDynamicThingGroup": "<p>Creates a dynamic thing group.</p>",
-    "CreateJob": "<p>Creates a job.</p>",
-    "CreateJobTemplate": "<p>Creates a job template.</p>",
-    "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device, for more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api\">Provisioning MQTT API</a>.</p> <p> <b>Note</b> This is the only time AWS IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p>",
-    "CreateMitigationAction": "<p>Defines an action that can be applied to audit findings by using StartAuditMitigationActionsTask. Only certain types of mitigation actions can be applied to specific check names. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-mitigation-actions.html\">Mitigation actions</a>. Each mitigation action can apply only one type of change.</p>",
-    "CreateOTAUpdate": "<p>Creates an AWS IoT OTAUpdate on a target group of things or groups.</p>",
-    "CreatePolicy": "<p>Creates an AWS IoT policy.</p> <p>The created policy is the default version for the policy. This operation creates a policy version with a version identifier of <b>1</b> and sets <b>1</b> as the policy's default version.</p>",
-    "CreatePolicyVersion": "<p>Creates a new version of the specified AWS IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p>",
-    "CreateProvisioningClaim": "<p>Creates a provisioning claim.</p>",
-    "CreateProvisioningTemplate": "<p>Creates a fleet provisioning template.</p>",
-    "CreateProvisioningTemplateVersion": "<p>Creates a new version of a fleet provisioning template.</p>",
-    "CreateRoleAlias": "<p>Creates a role alias.</p>",
-    "CreateScheduledAudit": "<p>Creates a scheduled audit that is run at a specified time interval.</p>",
-    "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p>",
-    "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream.</p>",
-    "CreateThing": "<p>Creates a thing record in the registry. If this call is made multiple times using the same thing name and configuration, the call will succeed. If this call is made with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code> is thrown.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
-    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note>",
-    "CreateThingType": "<p>Creates a new thing type.</p>",
-    "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
-    "CreateTopicRuleDestination": "<p>Creates a topic rule destination. The destination must be confirmed prior to use.</p>",
-    "DeleteAccountAuditConfiguration": "<p>Restores the default settings for Device Defender audits for this account. Any configuration data you entered is deleted and all audit checks are reset to disabled. </p>",
-    "DeleteAuditSuppression": "<p> Deletes a Device Defender audit suppression. </p>",
-    "DeleteAuthorizer": "<p>Deletes an authorizer.</p>",
-    "DeleteBillingGroup": "<p>Deletes the billing group.</p>",
-    "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p>",
-    "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy or IoT thing attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPrincipalPolicy</a> API to detach all policies. Next, use the <a>UpdateCertificate</a> API to set the certificate to the INACTIVE status.</p>",
-    "DeleteCustomMetric": "<note> <p>Before you can delete a custom metric, you must first remove the custom metric from all security profiles it's a part of. The security profile associated with the custom metric can be found using the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html\">ListSecurityProfiles</a> API with <code>metricName</code> set to your custom metric name.</p> </note> <p> Deletes a Device Defender detect custom metric. </p>",
-    "DeleteDimension": "<p>Removes the specified dimension from your AWS account.</p>",
-    "DeleteDomainConfiguration": "<p>Deletes the specified domain configuration.</p>",
-    "DeleteDynamicThingGroup": "<p>Deletes a dynamic thing group.</p>",
-    "DeleteJob": "<p>Deletes a job and its related job executions.</p> <p>Deleting a job may take time, depending on the number of job executions created for the job and various other factors. While the job is being deleted, the status of the job will be shown as \"DELETION_IN_PROGRESS\". Attempting to delete or cancel a job whose status is already \"DELETION_IN_PROGRESS\" will result in an error.</p> <p>Only 10 jobs may have status \"DELETION_IN_PROGRESS\" at the same time, or a LimitExceededException will occur.</p>",
-    "DeleteJobExecution": "<p>Deletes a job execution.</p>",
+    "AcceptCertificateTransfer": "<p>Accepts a pending certificate transfer. The default state of the certificate is INACTIVE.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AcceptCertificateTransfer</a> action.</p>",
+    "AddThingToBillingGroup": "<p>Adds a thing to a billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AddThingToBillingGroup</a> action.</p>",
+    "AddThingToThingGroup": "<p>Adds a thing to a thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AddThingToThingGroup</a> action.</p>",
+    "AssociateTargetsWithJob": "<p>Associates a group with a continuous job. The following criteria must be met: </p> <ul> <li> <p>The job must have been created with the <code>targetSelection</code> field set to \"CONTINUOUS\".</p> </li> <li> <p>The job status must currently be \"IN_PROGRESS\".</p> </li> <li> <p>The total number of targets associated with a job must not exceed 100.</p> </li> </ul> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AssociateTargetsWithJob</a> action.</p>",
+    "AttachPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachPolicy</a> action.</p>",
+    "AttachPrincipalPolicy": "<p>Attaches the specified policy to the specified principal (certificate or other credential).</p> <p> <b>Note:</b> This action is deprecated. Please use <a>AttachPolicy</a> instead.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachPrincipalPolicy</a> action.</p>",
+    "AttachSecurityProfile": "<p>Associates a Device Defender security profile with a thing group or this account. Each thing group or account can have up to five security profiles associated with it.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachSecurityProfile</a> action.</p>",
+    "AttachThingPrincipal": "<p>Attaches the specified principal to the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">AttachThingPrincipal</a> action.</p>",
+    "CancelAuditMitigationActionsTask": "<p>Cancels a mitigation action task that is in progress. If the task is not in progress, an InvalidRequestException occurs.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelAuditMitigationActionsTask</a> action.</p>",
+    "CancelAuditTask": "<p>Cancels an audit that is in progress. The audit can be either scheduled or on demand. If the audit isn't in progress, an \"InvalidRequestException\" occurs.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelAuditTask</a> action.</p>",
+    "CancelCertificateTransfer": "<p>Cancels a pending transfer for the specified certificate.</p> <p> <b>Note</b> Only the transfer source account can use this operation to cancel a transfer. (Transfer destinations can use <a>RejectCertificateTransfer</a> instead.) After transfer, IoT returns the certificate to the source account in the INACTIVE state. After the destination account has accepted the transfer, the transfer cannot be cancelled.</p> <p>After a certificate transfer is cancelled, the status of the certificate changes from PENDING_TRANSFER to INACTIVE.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelCertificateTransfer</a> action.</p>",
+    "CancelDetectMitigationActionsTask": "<p> Cancels a Device Defender ML Detect mitigation action. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelDetectMitigationActionsTask</a> action.</p>",
+    "CancelJob": "<p>Cancels a job.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelJob</a> action.</p>",
+    "CancelJobExecution": "<p>Cancels the execution of a job for a given thing.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CancelJobExecution</a> action.</p>",
+    "ClearDefaultAuthorizer": "<p>Clears the default authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ClearDefaultAuthorizer</a> action.</p>",
+    "ConfirmTopicRuleDestination": "<p>Confirms a topic rule destination. When you create a rule requiring a destination, IoT sends a confirmation message to the endpoint or base address you specify. The message includes a token which you pass back when calling <code>ConfirmTopicRuleDestination</code> to confirm that you own or have access to the endpoint.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ConfirmTopicRuleDestination</a> action.</p>",
+    "CreateAuditSuppression": "<p> Creates a Device Defender audit suppression. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateAuditSuppression</a> action.</p>",
+    "CreateAuthorizer": "<p>Creates an authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateAuthorizer</a> action.</p>",
+    "CreateBillingGroup": "<p>Creates a billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateBillingGroup</a> action.</p>",
+    "CreateCertificateFromCsr": "<p>Creates an X.509 certificate using the specified certificate signing request.</p> <p> <b>Note:</b> The CSR must include a public key that is either an RSA key with a length of at least 2048 bits or an ECC key from NIST P-256 or NIST P-384 curves. </p> <p> <b>Note:</b> Reusing the same certificate signing request (CSR) results in a distinct certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCertificateFromCsr</a> action.</p> <p>You can create multiple certificates in a batch by creating a directory, copying multiple .csr files into that directory, and then specifying that directory on the command line. The following commands show how to create a batch of certificates given a batch of CSRs.</p> <p>Assuming a set of CSRs are located inside of the directory my-csr-directory:</p> <p>On Linux and OS X, the command is:</p> <p>$ ls my-csr-directory/ | xargs -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>This command lists all of the CSRs in my-csr-directory and pipes each CSR file name to the aws iot create-certificate-from-csr Amazon Web Services CLI command to create a certificate for the corresponding CSR.</p> <p>The aws iot create-certificate-from-csr part of the command can also be run in parallel to speed up the certificate creation process:</p> <p>$ ls my-csr-directory/ | xargs -P 10 -I {} aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/{}</p> <p>On Windows PowerShell, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; ls -Name my-csr-directory | %{aws iot create-certificate-from-csr --certificate-signing-request file://my-csr-directory/$_}</p> <p>On a Windows command prompt, the command to create certificates for all CSRs in my-csr-directory is:</p> <p>&gt; forfiles /p my-csr-directory /c \"cmd /c aws iot create-certificate-from-csr --certificate-signing-request file://@path\"</p>",
+    "CreateCustomMetric": "<p> Use this API to define a Custom Metric published by your devices to Device Defender. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateCustomMetric</a> action.</p>",
+    "CreateDimension": "<p>Create a dimension that you can use to limit the scope of a metric used in a security profile for IoT Device Defender. For example, using a <code>TOPIC_FILTER</code> dimension, you can narrow down the scope of the metric only to MQTT topics whose name match the pattern specified in the dimension.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDimension</a> action.</p>",
+    "CreateDomainConfiguration": "<p>Creates a domain configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDomainConfiguration</a> action.</p>",
+    "CreateDynamicThingGroup": "<p>Creates a dynamic thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateDynamicThingGroup</a> action.</p>",
+    "CreateFleetMetric": "<p>Creates a fleet metric.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateFleetMetric</a> action.</p>",
+    "CreateJob": "<p>Creates a job.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateJob</a> action.</p>",
+    "CreateJobTemplate": "<p>Creates a job template.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateJobTemplate</a> action.</p>",
+    "CreateKeysAndCertificate": "<p>Creates a 2048-bit RSA key pair and issues an X.509 certificate using the issued public key. You can also call <code>CreateKeysAndCertificate</code> over MQTT from a device, for more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api\">Provisioning MQTT API</a>.</p> <p> <b>Note</b> This is the only time IoT issues the private key for this certificate, so it is important to keep it in a secure location.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateKeysAndCertificate</a> action.</p>",
+    "CreateMitigationAction": "<p>Defines an action that can be applied to audit findings by using StartAuditMitigationActionsTask. Only certain types of mitigation actions can be applied to specific check names. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-mitigation-actions.html\">Mitigation actions</a>. Each mitigation action can apply only one type of change.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateMitigationAction</a> action.</p>",
+    "CreateOTAUpdate": "<p>Creates an IoT OTA update on a target group of things or groups.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateOTAUpdate</a> action.</p>",
+    "CreatePolicy": "<p>Creates an IoT policy.</p> <p>The created policy is the default version for the policy. This operation creates a policy version with a version identifier of <b>1</b> and sets <b>1</b> as the policy's default version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreatePolicy</a> action.</p>",
+    "CreatePolicyVersion": "<p>Creates a new version of the specified IoT policy. To update a policy, create a new policy version. A managed policy can have up to five versions. If the policy has five versions, you must use <a>DeletePolicyVersion</a> to delete an existing version before you create a new one.</p> <p>Optionally, you can set the new version as the policy's default version. The default version is the operative version (that is, the version that is in effect for the certificates to which the policy is attached).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreatePolicyVersion</a> action.</p>",
+    "CreateProvisioningClaim": "<p>Creates a provisioning claim.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateProvisioningClaim</a> action.</p>",
+    "CreateProvisioningTemplate": "<p>Creates a fleet provisioning template.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateProvisioningTemplate</a> action.</p>",
+    "CreateProvisioningTemplateVersion": "<p>Creates a new version of a fleet provisioning template.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateProvisioningTemplateVersion</a> action.</p>",
+    "CreateRoleAlias": "<p>Creates a role alias.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateRoleAlias</a> action.</p>",
+    "CreateScheduledAudit": "<p>Creates a scheduled audit that is run at a specified time interval.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateScheduledAudit</a> action.</p>",
+    "CreateSecurityProfile": "<p>Creates a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateSecurityProfile</a> action.</p>",
+    "CreateStream": "<p>Creates a stream for delivering one or more large files in chunks over MQTT. A stream transports data bytes in chunks or blocks packaged as MQTT messages from a source like S3. You can have one or more files associated with a stream.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateStream</a> action.</p>",
+    "CreateThing": "<p>Creates a thing record in the registry. If this call is made multiple times using the same thing name and configuration, the call will succeed. If this call is made with the same thing name but different configuration a <code>ResourceAlreadyExistsException</code> is thrown.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateThing</a> action.</p>",
+    "CreateThingGroup": "<p>Create a thing group.</p> <note> <p>This is a control plane operation. See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html\">Authorization</a> for information about authorizing control plane actions.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateThingGroup</a> action.</p>",
+    "CreateThingType": "<p>Creates a new thing type.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateThingType</a> action.</p>",
+    "CreateTopicRule": "<p>Creates a rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateTopicRule</a> action.</p>",
+    "CreateTopicRuleDestination": "<p>Creates a topic rule destination. The destination must be confirmed prior to use.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateTopicRuleDestination</a> action.</p>",
+    "DeleteAccountAuditConfiguration": "<p>Restores the default settings for Device Defender audits for this account. Any configuration data you entered is deleted and all audit checks are reset to disabled. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteAccountAuditConfiguration</a> action.</p>",
+    "DeleteAuditSuppression": "<p> Deletes a Device Defender audit suppression. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteAuditSuppression</a> action.</p>",
+    "DeleteAuthorizer": "<p>Deletes an authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteAuthorizer</a> action.</p>",
+    "DeleteBillingGroup": "<p>Deletes the billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteBillingGroup</a> action.</p>",
+    "DeleteCACertificate": "<p>Deletes a registered CA certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCACertificate</a> action.</p>",
+    "DeleteCertificate": "<p>Deletes the specified certificate.</p> <p>A certificate cannot be deleted if it has a policy or IoT thing attached to it or if its status is set to ACTIVE. To delete a certificate, first use the <a>DetachPolicy</a> action to detach all policies. Next, use the <a>UpdateCertificate</a> action to set the certificate to the INACTIVE status.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCertificate</a> action.</p>",
+    "DeleteCustomMetric": "<p> Deletes a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteCustomMetric</a> action.</p> <note> <p>Before you can delete a custom metric, you must first remove the custom metric from all security profiles it's a part of. The security profile associated with the custom metric can be found using the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html\">ListSecurityProfiles</a> API with <code>metricName</code> set to your custom metric name.</p> </note>",
+    "DeleteDimension": "<p>Removes the specified dimension from your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteDimension</a> action.</p>",
+    "DeleteDomainConfiguration": "<p>Deletes the specified domain configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteDomainConfiguration</a> action.</p>",
+    "DeleteDynamicThingGroup": "<p>Deletes a dynamic thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteDynamicThingGroup</a> action.</p>",
+    "DeleteFleetMetric": "<p>Deletes the specified fleet metric. Returns successfully with no error if the deletion is successful or you specify a fleet metric that doesn't exist.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteFleetMetric</a> action.</p>",
+    "DeleteJob": "<p>Deletes a job and its related job executions.</p> <p>Deleting a job may take time, depending on the number of job executions created for the job and various other factors. While the job is being deleted, the status of the job will be shown as \"DELETION_IN_PROGRESS\". Attempting to delete or cancel a job whose status is already \"DELETION_IN_PROGRESS\" will result in an error.</p> <p>Only 10 jobs may have status \"DELETION_IN_PROGRESS\" at the same time, or a LimitExceededException will occur.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteJob</a> action.</p>",
+    "DeleteJobExecution": "<p>Deletes a job execution.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteJobExecution</a> action.</p>",
     "DeleteJobTemplate": "<p>Deletes the specified job template.</p>",
-    "DeleteMitigationAction": "<p>Deletes a defined mitigation action from your AWS account.</p>",
-    "DeleteOTAUpdate": "<p>Delete an OTA update.</p>",
-    "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions or it is attached to any certificate.</p> <p>To delete a policy, use the DeletePolicyVersion API to delete all non-default versions of the policy; use the DetachPrincipalPolicy API to detach the policy from any certificate; and then use the DeletePolicy API to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p>",
-    "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. You cannot delete the default version of a policy using this API. To delete the default version of a policy, use <a>DeletePolicy</a>. To find out which version of a policy is marked as the default version, use ListPolicyVersions.</p>",
-    "DeleteProvisioningTemplate": "<p>Deletes a fleet provisioning template.</p>",
-    "DeleteProvisioningTemplateVersion": "<p>Deletes a fleet provisioning template version.</p>",
-    "DeleteRegistrationCode": "<p>Deletes a CA certificate registration code.</p>",
-    "DeleteRoleAlias": "<p>Deletes a role alias</p>",
-    "DeleteScheduledAudit": "<p>Deletes a scheduled audit.</p>",
-    "DeleteSecurityProfile": "<p>Deletes a Device Defender security profile.</p>",
-    "DeleteStream": "<p>Deletes a stream.</p>",
-    "DeleteThing": "<p>Deletes the specified thing. Returns successfully with no error if the deletion is successful or you specify a thing that doesn't exist.</p>",
-    "DeleteThingGroup": "<p>Deletes a thing group.</p>",
-    "DeleteThingType": "<p>Deletes the specified thing type. You cannot delete a thing type if it has things associated with it. To delete a thing type, first mark it as deprecated by calling <a>DeprecateThingType</a>, then remove any associated things by calling <a>UpdateThing</a> to change the thing type on any associated thing, and finally use <a>DeleteThingType</a> to delete the thing type.</p>",
-    "DeleteTopicRule": "<p>Deletes the rule.</p>",
-    "DeleteTopicRuleDestination": "<p>Deletes a topic rule destination.</p>",
-    "DeleteV2LoggingLevel": "<p>Deletes a logging level.</p>",
-    "DeprecateThingType": "<p>Deprecates a thing type. You can not associate new things with deprecated thing type.</p>",
-    "DescribeAccountAuditConfiguration": "<p>Gets information about the Device Defender audit settings for this account. Settings include how audit notifications are sent and which audit checks are enabled or disabled.</p>",
-    "DescribeAuditFinding": "<p>Gets information about a single audit finding. Properties include the reason for noncompliance, the severity of the issue, and the start time when the audit that returned the finding.</p>",
+    "DeleteMitigationAction": "<p>Deletes a defined mitigation action from your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteMitigationAction</a> action.</p>",
+    "DeleteOTAUpdate": "<p>Delete an OTA update.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteOTAUpdate</a> action.</p>",
+    "DeletePolicy": "<p>Deletes the specified policy.</p> <p>A policy cannot be deleted if it has non-default versions or it is attached to any certificate.</p> <p>To delete a policy, use the <a>DeletePolicyVersion</a> action to delete all non-default versions of the policy; use the <a>DetachPolicy</a> action to detach the policy from any certificate; and then use the DeletePolicy action to delete the policy.</p> <p>When a policy is deleted using DeletePolicy, its default version is deleted with it.</p> <note> <p>Because of the distributed nature of Amazon Web Services, it can take up to five minutes after a policy is detached before it's ready to be deleted.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeletePolicy</a> action.</p>",
+    "DeletePolicyVersion": "<p>Deletes the specified version of the specified policy. You cannot delete the default version of a policy using this action. To delete the default version of a policy, use <a>DeletePolicy</a>. To find out which version of a policy is marked as the default version, use ListPolicyVersions.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeletePolicyVersion</a> action.</p>",
+    "DeleteProvisioningTemplate": "<p>Deletes a fleet provisioning template.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteProvisioningTemplate</a> action.</p>",
+    "DeleteProvisioningTemplateVersion": "<p>Deletes a fleet provisioning template version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteProvisioningTemplateVersion</a> action.</p>",
+    "DeleteRegistrationCode": "<p>Deletes a CA certificate registration code.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteRegistrationCode</a> action.</p>",
+    "DeleteRoleAlias": "<p>Deletes a role alias</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteRoleAlias</a> action.</p>",
+    "DeleteScheduledAudit": "<p>Deletes a scheduled audit.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteScheduledAudit</a> action.</p>",
+    "DeleteSecurityProfile": "<p>Deletes a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteSecurityProfile</a> action.</p>",
+    "DeleteStream": "<p>Deletes a stream.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteStream</a> action.</p>",
+    "DeleteThing": "<p>Deletes the specified thing. Returns successfully with no error if the deletion is successful or you specify a thing that doesn't exist.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteThing</a> action.</p>",
+    "DeleteThingGroup": "<p>Deletes a thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteThingGroup</a> action.</p>",
+    "DeleteThingType": "<p>Deletes the specified thing type. You cannot delete a thing type if it has things associated with it. To delete a thing type, first mark it as deprecated by calling <a>DeprecateThingType</a>, then remove any associated things by calling <a>UpdateThing</a> to change the thing type on any associated thing, and finally use <a>DeleteThingType</a> to delete the thing type.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteThingType</a> action.</p>",
+    "DeleteTopicRule": "<p>Deletes the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteTopicRule</a> action.</p>",
+    "DeleteTopicRuleDestination": "<p>Deletes a topic rule destination.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteTopicRuleDestination</a> action.</p>",
+    "DeleteV2LoggingLevel": "<p>Deletes a logging level.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeleteV2LoggingLevel</a> action.</p>",
+    "DeprecateThingType": "<p>Deprecates a thing type. You can not associate new things with deprecated thing type.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DeprecateThingType</a> action.</p>",
+    "DescribeAccountAuditConfiguration": "<p>Gets information about the Device Defender audit settings for this account. Settings include how audit notifications are sent and which audit checks are enabled or disabled.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeAccountAuditConfiguration</a> action.</p>",
+    "DescribeAuditFinding": "<p>Gets information about a single audit finding. Properties include the reason for noncompliance, the severity of the issue, and the start time when the audit that returned the finding.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeAuditFinding</a> action.</p>",
     "DescribeAuditMitigationActionsTask": "<p>Gets information about an audit mitigation task that is used to apply mitigation actions to a set of audit findings. Properties include the actions being applied, the audit checks to which they're being applied, the task status, and aggregated task statistics.</p>",
     "DescribeAuditSuppression": "<p> Gets information about a Device Defender audit suppression. </p>",
-    "DescribeAuditTask": "<p>Gets information about a Device Defender audit.</p>",
-    "DescribeAuthorizer": "<p>Describes an authorizer.</p>",
-    "DescribeBillingGroup": "<p>Returns information about a billing group.</p>",
-    "DescribeCACertificate": "<p>Describes a registered CA certificate.</p>",
-    "DescribeCertificate": "<p>Gets information about the specified certificate.</p>",
-    "DescribeCustomMetric": "<p> Gets information about a Device Defender detect custom metric. </p>",
-    "DescribeDefaultAuthorizer": "<p>Describes the default authorizer.</p>",
-    "DescribeDetectMitigationActionsTask": "<p> Gets information about a Device Defender ML Detect mitigation action. </p>",
-    "DescribeDimension": "<p>Provides details about a dimension that is defined in your AWS account.</p>",
-    "DescribeDomainConfiguration": "<p>Gets summary information about a domain configuration.</p>",
-    "DescribeEndpoint": "<p>Returns a unique endpoint specific to the AWS account making the call.</p>",
-    "DescribeEventConfigurations": "<p>Describes event configurations.</p>",
-    "DescribeIndex": "<p>Describes a search index.</p>",
-    "DescribeJob": "<p>Describes a job.</p>",
-    "DescribeJobExecution": "<p>Describes a job execution.</p>",
+    "DescribeAuditTask": "<p>Gets information about a Device Defender audit.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeAuditTask</a> action.</p>",
+    "DescribeAuthorizer": "<p>Describes an authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeAuthorizer</a> action.</p>",
+    "DescribeBillingGroup": "<p>Returns information about a billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeBillingGroup</a> action.</p>",
+    "DescribeCACertificate": "<p>Describes a registered CA certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCACertificate</a> action.</p>",
+    "DescribeCertificate": "<p>Gets information about the specified certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCertificate</a> action.</p>",
+    "DescribeCustomMetric": "<p> Gets information about a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeCustomMetric</a> action.</p>",
+    "DescribeDefaultAuthorizer": "<p>Describes the default authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDefaultAuthorizer</a> action.</p>",
+    "DescribeDetectMitigationActionsTask": "<p> Gets information about a Device Defender ML Detect mitigation action. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDetectMitigationActionsTask</a> action.</p>",
+    "DescribeDimension": "<p>Provides details about a dimension that is defined in your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDimension</a> action.</p>",
+    "DescribeDomainConfiguration": "<p>Gets summary information about a domain configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeDomainConfiguration</a> action.</p>",
+    "DescribeEndpoint": "<p>Returns a unique endpoint specific to the Amazon Web Services account making the call.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeEndpoint</a> action.</p>",
+    "DescribeEventConfigurations": "<p>Describes event configurations.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeEventConfigurations</a> action.</p>",
+    "DescribeFleetMetric": "<p>Gets information about the specified fleet metric.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeFleetMetric</a> action.</p>",
+    "DescribeIndex": "<p>Describes a search index.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeIndex</a> action.</p>",
+    "DescribeJob": "<p>Describes a job.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeJob</a> action.</p>",
+    "DescribeJobExecution": "<p>Describes a job execution.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeJobExecution</a> action.</p>",
     "DescribeJobTemplate": "<p>Returns information about a job template.</p>",
-    "DescribeMitigationAction": "<p>Gets information about a mitigation action.</p>",
-    "DescribeProvisioningTemplate": "<p>Returns information about a fleet provisioning template.</p>",
-    "DescribeProvisioningTemplateVersion": "<p>Returns information about a fleet provisioning template version.</p>",
-    "DescribeRoleAlias": "<p>Describes a role alias.</p>",
-    "DescribeScheduledAudit": "<p>Gets information about a scheduled audit.</p>",
-    "DescribeSecurityProfile": "<p>Gets information about a Device Defender security profile.</p>",
-    "DescribeStream": "<p>Gets information about a stream.</p>",
-    "DescribeThing": "<p>Gets information about the specified thing.</p>",
-    "DescribeThingGroup": "<p>Describe a thing group.</p>",
-    "DescribeThingRegistrationTask": "<p>Describes a bulk thing provisioning task.</p>",
-    "DescribeThingType": "<p>Gets information about the specified thing type.</p>",
-    "DetachPolicy": "<p>Detaches a policy from the specified target.</p>",
-    "DetachPrincipalPolicy": "<p>Removes the specified policy from the specified certificate.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>DetachPolicy</a> instead.</p>",
-    "DetachSecurityProfile": "<p>Disassociates a Device Defender security profile from a thing group or from this account.</p>",
-    "DetachThingPrincipal": "<p>Detaches the specified principal from the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p> <note> <p>This call is asynchronous. It might take several seconds for the detachment to propagate.</p> </note>",
-    "DisableTopicRule": "<p>Disables the rule.</p>",
-    "EnableTopicRule": "<p>Enables the rule.</p>",
-    "GetBehaviorModelTrainingSummaries": "<p> Returns a Device Defender's ML Detect Security Profile training model's status. </p>",
-    "GetCardinality": "<p>Returns the approximate count of unique values that match the query.</p>",
-    "GetEffectivePolicies": "<p>Gets a list of the policies that have an effect on the authorization behavior of the specified device when it connects to the AWS IoT device gateway.</p>",
-    "GetIndexingConfiguration": "<p>Gets the indexing configuration.</p>",
-    "GetJobDocument": "<p>Gets a job document.</p>",
-    "GetLoggingOptions": "<p>Gets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>GetV2LoggingOptions</code> instead.</p>",
-    "GetOTAUpdate": "<p>Gets an OTA update.</p>",
-    "GetPercentiles": "<p>Groups the aggregated values that match the query into percentile groupings. The default percentile groupings are: 1,5,25,50,75,95,99, although you can specify your own when you call <code>GetPercentiles</code>. This function returns a value for each percentile group specified (or the default percentile groupings). The percentile group \"1\" contains the aggregated field value that occurs in approximately one percent of the values that match the query. The percentile group \"5\" contains the aggregated field value that occurs in approximately five percent of the values that match the query, and so on. The result is an approximation, the more values that match the query, the more accurate the percentile values.</p>",
-    "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p>",
-    "GetPolicyVersion": "<p>Gets information about the specified policy version.</p>",
-    "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with AWS IoT.</p>",
-    "GetStatistics": "<p>Returns the count, average, sum, minimum, maximum, sum of squares, variance, and standard deviation for the specified aggregated field. If the aggregation field is of type <code>String</code>, only the count statistic is returned.</p>",
-    "GetTopicRule": "<p>Gets information about the rule.</p>",
-    "GetTopicRuleDestination": "<p>Gets information about a topic rule destination.</p>",
-    "GetV2LoggingOptions": "<p>Gets the fine grained logging options.</p>",
-    "ListActiveViolations": "<p>Lists the active violations for a given Device Defender security profile.</p>",
-    "ListAttachedPolicies": "<p>Lists the policies attached to the specified thing group.</p>",
-    "ListAuditFindings": "<p>Lists the findings (results) of a Device Defender audit or of the audits performed during a specified time period. (Findings are retained for 90 days.)</p>",
-    "ListAuditMitigationActionsExecutions": "<p>Gets the status of audit mitigation action tasks that were executed.</p>",
-    "ListAuditMitigationActionsTasks": "<p>Gets a list of audit mitigation action tasks that match the specified filters.</p>",
-    "ListAuditSuppressions": "<p> Lists your Device Defender audit listings. </p>",
-    "ListAuditTasks": "<p>Lists the Device Defender audits that have been performed during a given time period.</p>",
-    "ListAuthorizers": "<p>Lists the authorizers registered in your account.</p>",
-    "ListBillingGroups": "<p>Lists the billing groups you have created.</p>",
-    "ListCACertificates": "<p>Lists the CA certificates registered for your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
-    "ListCertificates": "<p>Lists the certificates registered in your AWS account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p>",
-    "ListCertificatesByCA": "<p>List the device certificates signed by the specified CA certificate.</p>",
-    "ListCustomMetrics": "<p> Lists your Device Defender detect custom metrics. </p>",
-    "ListDetectMitigationActionsExecutions": "<p> Lists mitigation actions executions for a Device Defender ML Detect Security Profile. </p>",
-    "ListDetectMitigationActionsTasks": "<p> List of Device Defender ML Detect mitigation actions tasks. </p>",
-    "ListDimensions": "<p>List the set of dimensions that are defined for your AWS account.</p>",
-    "ListDomainConfigurations": "<p>Gets a list of domain configurations for the user. This list is sorted alphabetically by domain configuration name.</p>",
-    "ListIndices": "<p>Lists the search indices.</p>",
-    "ListJobExecutionsForJob": "<p>Lists the job executions for a job.</p>",
-    "ListJobExecutionsForThing": "<p>Lists the job executions for the specified thing.</p>",
-    "ListJobTemplates": "<p>Returns a list of job templates.</p>",
-    "ListJobs": "<p>Lists jobs.</p>",
-    "ListMitigationActions": "<p>Gets a list of all mitigation actions that match the specified filter criteria.</p>",
-    "ListOTAUpdates": "<p>Lists OTA updates.</p>",
-    "ListOutgoingCertificates": "<p>Lists certificates that are being transferred but not yet accepted.</p>",
-    "ListPolicies": "<p>Lists your policies.</p>",
-    "ListPolicyPrincipals": "<p>Lists the principals associated with the specified policy.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListTargetsForPolicy</a> instead.</p>",
-    "ListPolicyVersions": "<p>Lists the versions of the specified policy and identifies the default version.</p>",
-    "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p> <p> <b>Note:</b> This API is deprecated. Please use <a>ListAttachedPolicies</a> instead.</p>",
-    "ListPrincipalThings": "<p>Lists the things associated with the specified principal. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities. </p>",
-    "ListProvisioningTemplateVersions": "<p>A list of fleet provisioning template versions.</p>",
-    "ListProvisioningTemplates": "<p>Lists the fleet provisioning templates in your AWS account.</p>",
-    "ListRoleAliases": "<p>Lists the role aliases registered in your account.</p>",
-    "ListScheduledAudits": "<p>Lists all of your scheduled audits.</p>",
-    "ListSecurityProfiles": "<p>Lists the Device Defender security profiles you've created. You can filter security profiles by dimension or custom metric.</p> <note> <p> <code>dimensionName</code> and <code>metricName</code> cannot be used in the same request.</p> </note>",
-    "ListSecurityProfilesForTarget": "<p>Lists the Device Defender security profiles attached to a target (thing group).</p>",
-    "ListStreams": "<p>Lists all of the streams in your AWS account.</p>",
-    "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p>",
-    "ListTargetsForPolicy": "<p>List targets for the specified policy.</p>",
-    "ListTargetsForSecurityProfile": "<p>Lists the targets (thing groups) associated with a given Device Defender security profile.</p>",
-    "ListThingGroups": "<p>List the thing groups in your account.</p>",
-    "ListThingGroupsForThing": "<p>List the thing groups to which the specified thing belongs.</p>",
-    "ListThingPrincipals": "<p>Lists the principals associated with the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p>",
+    "DescribeMitigationAction": "<p>Gets information about a mitigation action.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeMitigationAction</a> action.</p>",
+    "DescribeProvisioningTemplate": "<p>Returns information about a fleet provisioning template.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeProvisioningTemplate</a> action.</p>",
+    "DescribeProvisioningTemplateVersion": "<p>Returns information about a fleet provisioning template version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeProvisioningTemplateVersion</a> action.</p>",
+    "DescribeRoleAlias": "<p>Describes a role alias.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeRoleAlias</a> action.</p>",
+    "DescribeScheduledAudit": "<p>Gets information about a scheduled audit.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeScheduledAudit</a> action.</p>",
+    "DescribeSecurityProfile": "<p>Gets information about a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeSecurityProfile</a> action.</p>",
+    "DescribeStream": "<p>Gets information about a stream.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeStream</a> action.</p>",
+    "DescribeThing": "<p>Gets information about the specified thing.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeThing</a> action.</p>",
+    "DescribeThingGroup": "<p>Describe a thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeThingGroup</a> action.</p>",
+    "DescribeThingRegistrationTask": "<p>Describes a bulk thing provisioning task.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeThingRegistrationTask</a> action.</p>",
+    "DescribeThingType": "<p>Gets information about the specified thing type.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DescribeThingType</a> action.</p>",
+    "DetachPolicy": "<p>Detaches a policy from the specified target.</p> <note> <p>Because of the distributed nature of Amazon Web Services, it can take up to five minutes after a policy is detached before it's ready to be deleted.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DetachPolicy</a> action.</p>",
+    "DetachPrincipalPolicy": "<p>Removes the specified policy from the specified certificate.</p> <note> <p>This action is deprecated. Please use <a>DetachPolicy</a> instead.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DetachPrincipalPolicy</a> action.</p>",
+    "DetachSecurityProfile": "<p>Disassociates a Device Defender security profile from a thing group or from this account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DetachSecurityProfile</a> action.</p>",
+    "DetachThingPrincipal": "<p>Detaches the specified principal from the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p> <note> <p>This call is asynchronous. It might take several seconds for the detachment to propagate.</p> </note> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DetachThingPrincipal</a> action.</p>",
+    "DisableTopicRule": "<p>Disables the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">DisableTopicRule</a> action.</p>",
+    "EnableTopicRule": "<p>Enables the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">EnableTopicRule</a> action.</p>",
+    "GetBehaviorModelTrainingSummaries": "<p> Returns a Device Defender's ML Detect Security Profile training model's status. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetBehaviorModelTrainingSummaries</a> action.</p>",
+    "GetBucketsAggregation": "<p>Aggregates on indexed data with search queries pertaining to particular fields. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetBucketsAggregation</a> action.</p>",
+    "GetCardinality": "<p>Returns the approximate count of unique values that match the query.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetCardinality</a> action.</p>",
+    "GetEffectivePolicies": "<p>Gets a list of the policies that have an effect on the authorization behavior of the specified device when it connects to the IoT device gateway.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetEffectivePolicies</a> action.</p>",
+    "GetIndexingConfiguration": "<p>Gets the indexing configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetIndexingConfiguration</a> action.</p>",
+    "GetJobDocument": "<p>Gets a job document.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetJobDocument</a> action.</p>",
+    "GetLoggingOptions": "<p>Gets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>GetV2LoggingOptions</code> instead.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetLoggingOptions</a> action.</p>",
+    "GetOTAUpdate": "<p>Gets an OTA update.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetOTAUpdate</a> action.</p>",
+    "GetPercentiles": "<p>Groups the aggregated values that match the query into percentile groupings. The default percentile groupings are: 1,5,25,50,75,95,99, although you can specify your own when you call <code>GetPercentiles</code>. This function returns a value for each percentile group specified (or the default percentile groupings). The percentile group \"1\" contains the aggregated field value that occurs in approximately one percent of the values that match the query. The percentile group \"5\" contains the aggregated field value that occurs in approximately five percent of the values that match the query, and so on. The result is an approximation, the more values that match the query, the more accurate the percentile values.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetPercentiles</a> action.</p>",
+    "GetPolicy": "<p>Gets information about the specified policy with the policy document of the default version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetPolicy</a> action.</p>",
+    "GetPolicyVersion": "<p>Gets information about the specified policy version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetPolicyVersion</a> action.</p>",
+    "GetRegistrationCode": "<p>Gets a registration code used to register a CA certificate with IoT.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetRegistrationCode</a> action.</p>",
+    "GetStatistics": "<p>Returns the count, average, sum, minimum, maximum, sum of squares, variance, and standard deviation for the specified aggregated field. If the aggregation field is of type <code>String</code>, only the count statistic is returned.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetStatistics</a> action.</p>",
+    "GetTopicRule": "<p>Gets information about the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetTopicRule</a> action.</p>",
+    "GetTopicRuleDestination": "<p>Gets information about a topic rule destination.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetTopicRuleDestination</a> action.</p>",
+    "GetV2LoggingOptions": "<p>Gets the fine grained logging options.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">GetV2LoggingOptions</a> action.</p>",
+    "ListActiveViolations": "<p>Lists the active violations for a given Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListActiveViolations</a> action.</p>",
+    "ListAttachedPolicies": "<p>Lists the policies attached to the specified thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListAttachedPolicies</a> action.</p>",
+    "ListAuditFindings": "<p>Lists the findings (results) of a Device Defender audit or of the audits performed during a specified time period. (Findings are retained for 90 days.)</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListAuditFindings</a> action.</p>",
+    "ListAuditMitigationActionsExecutions": "<p>Gets the status of audit mitigation action tasks that were executed.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListAuditMitigationActionsExecutions</a> action.</p>",
+    "ListAuditMitigationActionsTasks": "<p>Gets a list of audit mitigation action tasks that match the specified filters.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListAuditMitigationActionsTasks</a> action.</p>",
+    "ListAuditSuppressions": "<p> Lists your Device Defender audit listings. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListAuditSuppressions</a> action.</p>",
+    "ListAuditTasks": "<p>Lists the Device Defender audits that have been performed during a given time period.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListAuditTasks</a> action.</p>",
+    "ListAuthorizers": "<p>Lists the authorizers registered in your account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListAuthorizers</a> action.</p>",
+    "ListBillingGroups": "<p>Lists the billing groups you have created.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListBillingGroups</a> action.</p>",
+    "ListCACertificates": "<p>Lists the CA certificates registered for your Amazon Web Services account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCACertificates</a> action.</p>",
+    "ListCertificates": "<p>Lists the certificates registered in your Amazon Web Services account.</p> <p>The results are paginated with a default page size of 25. You can use the returned marker to retrieve additional results.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCertificates</a> action.</p>",
+    "ListCertificatesByCA": "<p>List the device certificates signed by the specified CA certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCertificatesByCA</a> action.</p>",
+    "ListCustomMetrics": "<p> Lists your Device Defender detect custom metrics. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListCustomMetrics</a> action.</p>",
+    "ListDetectMitigationActionsExecutions": "<p> Lists mitigation actions executions for a Device Defender ML Detect Security Profile. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDetectMitigationActionsExecutions</a> action.</p>",
+    "ListDetectMitigationActionsTasks": "<p> List of Device Defender ML Detect mitigation actions tasks. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDetectMitigationActionsTasks</a> action.</p>",
+    "ListDimensions": "<p>List the set of dimensions that are defined for your Amazon Web Services accounts.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDimensions</a> action.</p>",
+    "ListDomainConfigurations": "<p>Gets a list of domain configurations for the user. This list is sorted alphabetically by domain configuration name.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListDomainConfigurations</a> action.</p>",
+    "ListFleetMetrics": "<p>Lists all your fleet metrics. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListFleetMetrics</a> action.</p>",
+    "ListIndices": "<p>Lists the search indices.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListIndices</a> action.</p>",
+    "ListJobExecutionsForJob": "<p>Lists the job executions for a job.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobExecutionsForJob</a> action.</p>",
+    "ListJobExecutionsForThing": "<p>Lists the job executions for the specified thing.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobExecutionsForThing</a> action.</p>",
+    "ListJobTemplates": "<p>Returns a list of job templates.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobTemplates</a> action.</p>",
+    "ListJobs": "<p>Lists jobs.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListJobs</a> action.</p>",
+    "ListMitigationActions": "<p>Gets a list of all mitigation actions that match the specified filter criteria.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListMitigationActions</a> action.</p>",
+    "ListOTAUpdates": "<p>Lists OTA updates.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListOTAUpdates</a> action.</p>",
+    "ListOutgoingCertificates": "<p>Lists certificates that are being transferred but not yet accepted.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListOutgoingCertificates</a> action.</p>",
+    "ListPolicies": "<p>Lists your policies.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListPolicies</a> action.</p>",
+    "ListPolicyPrincipals": "<p>Lists the principals associated with the specified policy.</p> <p> <b>Note:</b> This action is deprecated. Please use <a>ListTargetsForPolicy</a> instead.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListPolicyPrincipals</a> action.</p>",
+    "ListPolicyVersions": "<p>Lists the versions of the specified policy and identifies the default version.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListPolicyVersions</a> action.</p>",
+    "ListPrincipalPolicies": "<p>Lists the policies attached to the specified principal. If you use an Cognito identity, the ID must be in <a href=\"https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax\">AmazonCognito Identity format</a>.</p> <p> <b>Note:</b> This action is deprecated. Please use <a>ListAttachedPolicies</a> instead.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListPrincipalPolicies</a> action.</p>",
+    "ListPrincipalThings": "<p>Lists the things associated with the specified principal. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListPrincipalThings</a> action.</p>",
+    "ListProvisioningTemplateVersions": "<p>A list of fleet provisioning template versions.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListProvisioningTemplateVersions</a> action.</p>",
+    "ListProvisioningTemplates": "<p>Lists the fleet provisioning templates in your Amazon Web Services account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListProvisioningTemplates</a> action.</p>",
+    "ListRoleAliases": "<p>Lists the role aliases registered in your account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListRoleAliases</a> action.</p>",
+    "ListScheduledAudits": "<p>Lists all of your scheduled audits.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListScheduledAudits</a> action.</p>",
+    "ListSecurityProfiles": "<p>Lists the Device Defender security profiles you've created. You can filter security profiles by dimension or custom metric.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSecurityProfiles</a> action.</p> <note> <p> <code>dimensionName</code> and <code>metricName</code> cannot be used in the same request.</p> </note>",
+    "ListSecurityProfilesForTarget": "<p>Lists the Device Defender security profiles attached to a target (thing group).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListSecurityProfilesForTarget</a> action.</p>",
+    "ListStreams": "<p>Lists all of the streams in your Amazon Web Services account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListStreams</a> action.</p>",
+    "ListTagsForResource": "<p>Lists the tags (metadata) you have assigned to the resource.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTagsForResource</a> action.</p>",
+    "ListTargetsForPolicy": "<p>List targets for the specified policy.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTargetsForPolicy</a> action.</p>",
+    "ListTargetsForSecurityProfile": "<p>Lists the targets (thing groups) associated with a given Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTargetsForSecurityProfile</a> action.</p>",
+    "ListThingGroups": "<p>List the thing groups in your account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListThingGroups</a> action.</p>",
+    "ListThingGroupsForThing": "<p>List the thing groups to which the specified thing belongs.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListThingGroupsForThing</a> action.</p>",
+    "ListThingPrincipals": "<p>Lists the principals associated with the specified thing. A principal can be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities or federated identities.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListThingPrincipals</a> action.</p>",
     "ListThingRegistrationTaskReports": "<p>Information about the thing registration tasks.</p>",
-    "ListThingRegistrationTasks": "<p>List bulk thing provisioning tasks.</p>",
-    "ListThingTypes": "<p>Lists the existing thing types.</p>",
-    "ListThings": "<p>Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b> parameters to filter your things. For example, calling <code>ListThings</code> with attributeName=Color and attributeValue=Red retrieves all things in the registry that contain an attribute <b>Color</b> with the value <b>Red</b>. </p> <note> <p>You will not be charged for calling this API if an <code>Access denied</code> error is returned. You will also not be charged if no attributes or pagination token was provided in request and no pagination token and no results were returned.</p> </note>",
-    "ListThingsInBillingGroup": "<p>Lists the things you have added to the given billing group.</p>",
-    "ListThingsInThingGroup": "<p>Lists the things in the specified group.</p>",
-    "ListTopicRuleDestinations": "<p>Lists all the topic rule destinations in your AWS account.</p>",
-    "ListTopicRules": "<p>Lists the rules for the specific topic.</p>",
-    "ListV2LoggingLevels": "<p>Lists logging levels.</p>",
-    "ListViolationEvents": "<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p>",
-    "RegisterCACertificate": "<p>Registers a CA certificate with AWS IoT. This CA certificate can then be used to sign device certificates, which can be then registered with AWS IoT. You can register up to 10 CA certificates per AWS account that have the same subject field. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the RegisterCertificate API.</p>",
-    "RegisterCertificate": "<p>Registers a device certificate with AWS IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p>",
+    "ListThingRegistrationTasks": "<p>List bulk thing provisioning tasks.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListThingRegistrationTasks</a> action.</p>",
+    "ListThingTypes": "<p>Lists the existing thing types.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListThingTypes</a> action.</p>",
+    "ListThings": "<p>Lists your things. Use the <b>attributeName</b> and <b>attributeValue</b> parameters to filter your things. For example, calling <code>ListThings</code> with attributeName=Color and attributeValue=Red retrieves all things in the registry that contain an attribute <b>Color</b> with the value <b>Red</b>. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListThings</a> action.</p> <note> <p>You will not be charged for calling this API if an <code>Access denied</code> error is returned. You will also not be charged if no attributes or pagination token was provided in request and no pagination token and no results were returned.</p> </note>",
+    "ListThingsInBillingGroup": "<p>Lists the things you have added to the given billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListThingsInBillingGroup</a> action.</p>",
+    "ListThingsInThingGroup": "<p>Lists the things in the specified group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListThingsInThingGroup</a> action.</p>",
+    "ListTopicRuleDestinations": "<p>Lists all the topic rule destinations in your Amazon Web Services account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTopicRuleDestinations</a> action.</p>",
+    "ListTopicRules": "<p>Lists the rules for the specific topic.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTopicRules</a> action.</p>",
+    "ListV2LoggingLevels": "<p>Lists logging levels.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListV2LoggingLevels</a> action.</p>",
+    "ListViolationEvents": "<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListViolationEvents</a> action.</p>",
+    "RegisterCACertificate": "<p>Registers a CA certificate with IoT. This CA certificate can then be used to sign device certificates, which can be then registered with IoT. You can register up to 10 CA certificates per Amazon Web Services account that have the same subject field. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the <a>RegisterCertificate</a> action.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RegisterCACertificate</a> action.</p>",
+    "RegisterCertificate": "<p>Registers a device certificate with IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RegisterCertificate</a> action.</p>",
     "RegisterCertificateWithoutCA": "<p>Register a certificate that does not have a certificate authority (CA).</p>",
-    "RegisterThing": "<p>Provisions a thing in the device registry. RegisterThing calls other AWS IoT control plane APIs. These calls might exceed your account level <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot\"> AWS IoT Throttling Limits</a> and cause throttle errors. Please contact <a href=\"https://console.aws.amazon.com/support/home\">AWS Customer Support</a> to raise your throttling limits if necessary.</p>",
-    "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After AWS IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p>",
-    "RemoveThingFromBillingGroup": "<p>Removes the given thing from the billing group.</p>",
-    "RemoveThingFromThingGroup": "<p>Remove the specified thing from the specified group.</p> <p>You must specify either a <code>thingGroupArn</code> or a <code>thingGroupName</code> to identify the thing group and either a <code>thingArn</code> or a <code>thingName</code> to identify the thing to remove from the thing group. </p>",
-    "ReplaceTopicRule": "<p>Replaces the rule. You must specify all parameters for the new rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p>",
-    "SearchIndex": "<p>The query search index.</p>",
-    "SetDefaultAuthorizer": "<p>Sets the default authorizer. This will be used if a websocket connection is made without specifying an authorizer.</p>",
-    "SetDefaultPolicyVersion": "<p>Sets the specified version of the specified policy as the policy's default (operative) version. This action affects all certificates to which the policy is attached. To list the principals the policy is attached to, use the ListPrincipalPolicy API.</p>",
-    "SetLoggingOptions": "<p>Sets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>SetV2LoggingOptions</code> instead.</p>",
-    "SetV2LoggingLevel": "<p>Sets the logging level.</p>",
-    "SetV2LoggingOptions": "<p>Sets the logging options for the V2 logging service.</p>",
-    "StartAuditMitigationActionsTask": "<p>Starts a task that applies a set of mitigation actions to the specified target.</p>",
-    "StartDetectMitigationActionsTask": "<p> Starts a Device Defender ML Detect mitigation actions task. </p>",
-    "StartOnDemandAuditTask": "<p>Starts an on-demand Device Defender audit.</p>",
-    "StartThingRegistrationTask": "<p>Creates a bulk thing provisioning task.</p>",
-    "StopThingRegistrationTask": "<p>Cancels a bulk thing provisioning task.</p>",
-    "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata which can be used to manage a resource.</p>",
-    "TestAuthorization": "<p>Tests if a specified principal is authorized to perform an AWS IoT action on a specified resource. Use this to test and debug the authorization behavior of devices that connect to the AWS IoT device gateway.</p>",
-    "TestInvokeAuthorizer": "<p>Tests a custom authorization behavior by invoking a specified custom authorizer. Use this to test and debug the custom authorization behavior of devices that connect to the AWS IoT device gateway.</p>",
-    "TransferCertificate": "<p>Transfers the specified certificate to the specified AWS account.</p> <p>You can cancel the transfer until it is acknowledged by the recipient.</p> <p>No notification is sent to the transfer destination's account. It is up to the caller to notify the transfer target.</p> <p>The certificate being transferred must not be in the ACTIVE state. You can use the UpdateCertificate API to deactivate it.</p> <p>The certificate must not have any policies attached to it. You can use the DetachPrincipalPolicy API to detach them.</p>",
-    "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p>",
-    "UpdateAccountAuditConfiguration": "<p>Configures or reconfigures the Device Defender audit settings for this account. Settings include how audit notifications are sent and which audit checks are enabled or disabled.</p>",
+    "RegisterThing": "<p>Provisions a thing in the device registry. RegisterThing calls other IoT control plane APIs. These calls might exceed your account level <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot\"> IoT Throttling Limits</a> and cause throttle errors. Please contact <a href=\"https://console.aws.amazon.com/support/home\">Amazon Web Services Customer Support</a> to raise your throttling limits if necessary.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RegisterThing</a> action.</p>",
+    "RejectCertificateTransfer": "<p>Rejects a pending certificate transfer. After IoT rejects a certificate transfer, the certificate status changes from <b>PENDING_TRANSFER</b> to <b>INACTIVE</b>.</p> <p>To check for pending certificate transfers, call <a>ListCertificates</a> to enumerate your certificates.</p> <p>This operation can only be called by the transfer destination. After it is called, the certificate will be returned to the source's account in the INACTIVE state.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RejectCertificateTransfer</a> action.</p>",
+    "RemoveThingFromBillingGroup": "<p>Removes the given thing from the billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RemoveThingFromBillingGroup</a> action.</p>",
+    "RemoveThingFromThingGroup": "<p>Remove the specified thing from the specified group.</p> <p>You must specify either a <code>thingGroupArn</code> or a <code>thingGroupName</code> to identify the thing group and either a <code>thingArn</code> or a <code>thingName</code> to identify the thing to remove from the thing group. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RemoveThingFromThingGroup</a> action.</p>",
+    "ReplaceTopicRule": "<p>Replaces the rule. You must specify all parameters for the new rule. Creating rules is an administrator-level action. Any user who has permission to create rules will be able to access data processed by the rule.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ReplaceTopicRule</a> action.</p>",
+    "SearchIndex": "<p>The query search index.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">SearchIndex</a> action.</p>",
+    "SetDefaultAuthorizer": "<p>Sets the default authorizer. This will be used if a websocket connection is made without specifying an authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">SetDefaultAuthorizer</a> action.</p>",
+    "SetDefaultPolicyVersion": "<p>Sets the specified version of the specified policy as the policy's default (operative) version. This action affects all certificates to which the policy is attached. To list the principals the policy is attached to, use the <a>ListPrincipalPolicies</a> action.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">SetDefaultPolicyVersion</a> action.</p>",
+    "SetLoggingOptions": "<p>Sets the logging options.</p> <p>NOTE: use of this command is not recommended. Use <code>SetV2LoggingOptions</code> instead.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">SetLoggingOptions</a> action.</p>",
+    "SetV2LoggingLevel": "<p>Sets the logging level.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">SetV2LoggingLevel</a> action.</p>",
+    "SetV2LoggingOptions": "<p>Sets the logging options for the V2 logging service.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">SetV2LoggingOptions</a> action.</p>",
+    "StartAuditMitigationActionsTask": "<p>Starts a task that applies a set of mitigation actions to the specified target.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StartAuditMitigationActionsTask</a> action.</p>",
+    "StartDetectMitigationActionsTask": "<p> Starts a Device Defender ML Detect mitigation actions task. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StartDetectMitigationActionsTask</a> action.</p>",
+    "StartOnDemandAuditTask": "<p>Starts an on-demand Device Defender audit.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StartOnDemandAuditTask</a> action.</p>",
+    "StartThingRegistrationTask": "<p>Creates a bulk thing provisioning task.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StartThingRegistrationTask</a> action.</p>",
+    "StopThingRegistrationTask": "<p>Cancels a bulk thing provisioning task.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">StopThingRegistrationTask</a> action.</p>",
+    "TagResource": "<p>Adds to or modifies the tags of the given resource. Tags are metadata which can be used to manage a resource.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">TagResource</a> action.</p>",
+    "TestAuthorization": "<p>Tests if a specified principal is authorized to perform an IoT action on a specified resource. Use this to test and debug the authorization behavior of devices that connect to the IoT device gateway.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">TestAuthorization</a> action.</p>",
+    "TestInvokeAuthorizer": "<p>Tests a custom authorization behavior by invoking a specified custom authorizer. Use this to test and debug the custom authorization behavior of devices that connect to the IoT device gateway.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">TestInvokeAuthorizer</a> action.</p>",
+    "TransferCertificate": "<p>Transfers the specified certificate to the specified Amazon Web Services account.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">TransferCertificate</a> action.</p> <p>You can cancel the transfer until it is acknowledged by the recipient.</p> <p>No notification is sent to the transfer destination's account. It is up to the caller to notify the transfer target.</p> <p>The certificate being transferred must not be in the ACTIVE state. You can use the <a>UpdateCertificate</a> action to deactivate it.</p> <p>The certificate must not have any policies attached to it. You can use the <a>DetachPolicy</a> action to detach them.</p>",
+    "UntagResource": "<p>Removes the given tags (metadata) from the resource.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UntagResource</a> action.</p>",
+    "UpdateAccountAuditConfiguration": "<p>Configures or reconfigures the Device Defender audit settings for this account. Settings include how audit notifications are sent and which audit checks are enabled or disabled.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateAccountAuditConfiguration</a> action.</p>",
     "UpdateAuditSuppression": "<p> Updates a Device Defender audit suppression. </p>",
-    "UpdateAuthorizer": "<p>Updates an authorizer.</p>",
-    "UpdateBillingGroup": "<p>Updates information about the billing group.</p>",
-    "UpdateCACertificate": "<p>Updates a registered CA certificate.</p>",
-    "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Certificates must be in the ACTIVE state to authenticate devices that use a certificate to connect to AWS IoT.</p> <p>Within a few minutes of updating a certificate from the ACTIVE state to any other state, AWS IoT disconnects all devices that used that certificate to connect. Devices cannot use a certificate that is not in the ACTIVE state to reconnect.</p>",
-    "UpdateCustomMetric": "<p>Updates a Device Defender detect custom metric. </p>",
-    "UpdateDimension": "<p>Updates the definition for a dimension. You cannot change the type of a dimension after it is created (you can delete it and recreate it).</p>",
-    "UpdateDomainConfiguration": "<p>Updates values stored in the domain configuration. Domain configurations for default endpoints can't be updated.</p>",
-    "UpdateDynamicThingGroup": "<p>Updates a dynamic thing group.</p>",
-    "UpdateEventConfigurations": "<p>Updates the event configurations.</p>",
-    "UpdateIndexingConfiguration": "<p>Updates the search configuration.</p>",
-    "UpdateJob": "<p>Updates supported fields of the specified job.</p>",
-    "UpdateMitigationAction": "<p>Updates the definition for the specified mitigation action.</p>",
-    "UpdateProvisioningTemplate": "<p>Updates a fleet provisioning template.</p>",
-    "UpdateRoleAlias": "<p>Updates a role alias.</p>",
-    "UpdateScheduledAudit": "<p>Updates a scheduled audit, including which checks are performed and how often the audit takes place.</p>",
-    "UpdateSecurityProfile": "<p>Updates a Device Defender security profile.</p>",
-    "UpdateStream": "<p>Updates an existing stream. The stream version will be incremented by one.</p>",
-    "UpdateThing": "<p>Updates the data for a thing.</p>",
-    "UpdateThingGroup": "<p>Update a thing group.</p>",
-    "UpdateThingGroupsForThing": "<p>Updates the groups to which the thing belongs.</p>",
-    "UpdateTopicRuleDestination": "<p>Updates a topic rule destination. You use this to change the status, endpoint URL, or confirmation URL of the destination.</p>",
-    "ValidateSecurityProfileBehaviors": "<p>Validates a Device Defender security profile behaviors specification.</p>"
+    "UpdateAuthorizer": "<p>Updates an authorizer.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateAuthorizer</a> action.</p>",
+    "UpdateBillingGroup": "<p>Updates information about the billing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateBillingGroup</a> action.</p>",
+    "UpdateCACertificate": "<p>Updates a registered CA certificate.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCACertificate</a> action.</p>",
+    "UpdateCertificate": "<p>Updates the status of the specified certificate. This operation is idempotent.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCertificate</a> action.</p> <p>Certificates must be in the ACTIVE state to authenticate devices that use a certificate to connect to IoT.</p> <p>Within a few minutes of updating a certificate from the ACTIVE state to any other state, IoT disconnects all devices that used that certificate to connect. Devices cannot use a certificate that is not in the ACTIVE state to reconnect.</p>",
+    "UpdateCustomMetric": "<p>Updates a Device Defender detect custom metric. </p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateCustomMetric</a> action.</p>",
+    "UpdateDimension": "<p>Updates the definition for a dimension. You cannot change the type of a dimension after it is created (you can delete it and recreate it).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateDimension</a> action.</p>",
+    "UpdateDomainConfiguration": "<p>Updates values stored in the domain configuration. Domain configurations for default endpoints can't be updated.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateDomainConfiguration</a> action.</p>",
+    "UpdateDynamicThingGroup": "<p>Updates a dynamic thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateDynamicThingGroup</a> action.</p>",
+    "UpdateEventConfigurations": "<p>Updates the event configurations.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateEventConfigurations</a> action.</p>",
+    "UpdateFleetMetric": "<p>Updates the data for a fleet metric.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateFleetMetric</a> action.</p>",
+    "UpdateIndexingConfiguration": "<p>Updates the search configuration.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateIndexingConfiguration</a> action.</p>",
+    "UpdateJob": "<p>Updates supported fields of the specified job.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateJob</a> action.</p>",
+    "UpdateMitigationAction": "<p>Updates the definition for the specified mitigation action.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateMitigationAction</a> action.</p>",
+    "UpdateProvisioningTemplate": "<p>Updates a fleet provisioning template.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateProvisioningTemplate</a> action.</p>",
+    "UpdateRoleAlias": "<p>Updates a role alias.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateRoleAlias</a> action.</p>",
+    "UpdateScheduledAudit": "<p>Updates a scheduled audit, including which checks are performed and how often the audit takes place.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateScheduledAudit</a> action.</p>",
+    "UpdateSecurityProfile": "<p>Updates a Device Defender security profile.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateSecurityProfile</a> action.</p>",
+    "UpdateStream": "<p>Updates an existing stream. The stream version will be incremented by one.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateStream</a> action.</p>",
+    "UpdateThing": "<p>Updates the data for a thing.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateThing</a> action.</p>",
+    "UpdateThingGroup": "<p>Update a thing group.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateThingGroup</a> action.</p>",
+    "UpdateThingGroupsForThing": "<p>Updates the groups to which the thing belongs.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateThingGroupsForThing</a> action.</p>",
+    "UpdateTopicRuleDestination": "<p>Updates a topic rule destination. You use this to change the status, endpoint URL, or confirmation URL of the destination.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">UpdateTopicRuleDestination</a> action.</p>",
+    "ValidateSecurityProfileBehaviors": "<p>Validates a Device Defender security profile behaviors specification.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ValidateSecurityProfileBehaviors</a> action.</p>"
   },
   "shapes": {
     "AbortAction": {
@@ -262,7 +268,7 @@
     "AbortThresholdPercentage": {
       "base": null,
       "refs": {
-        "AbortCriteria$thresholdPercentage": "<p>The minimum percentage of job execution failures that must occur to initiate the job abort.</p> <p>AWS IoT supports up to two digits after the decimal (for example, 10.9 and 10.99, but not 10.999).</p>"
+        "AbortCriteria$thresholdPercentage": "<p>The minimum percentage of job execution failures that must occur to initiate the job abort.</p> <p>Amazon Web Services IoT Core supports up to two digits after the decimal (for example, 10.9 and 10.99, but not 10.999).</p>"
       }
     },
     "AcceptCertificateTransferRequest": {
@@ -273,7 +279,7 @@
     "AcmCertificateArn": {
       "base": null,
       "refs": {
-        "CreateDomainConfigurationRequest$validationCertificateArn": "<p>The certificate used to validate the server certificate and prove domain name ownership. This certificate must be signed by a public certificate authority. This value is not required for AWS-managed domains.</p>",
+        "CreateDomainConfigurationRequest$validationCertificateArn": "<p>The certificate used to validate the server certificate and prove domain name ownership. This certificate must be signed by a public certificate authority. This value is not required for Amazon Web Services-managed domains.</p>",
         "ServerCertificateArns$member": null,
         "ServerCertificateSummary$serverCertificateArn": "<p>The ARN of the server certificate.</p>"
       }
@@ -365,9 +371,39 @@
     "AggregationField": {
       "base": null,
       "refs": {
+        "CreateFleetMetricRequest$aggregationField": "<p>The field to aggregate.</p>",
+        "DescribeFleetMetricResponse$aggregationField": "<p>The field to aggregate.</p>",
+        "GetBucketsAggregationRequest$aggregationField": "<p>The aggregation field.</p>",
         "GetCardinalityRequest$aggregationField": "<p>The field to aggregate.</p>",
         "GetPercentilesRequest$aggregationField": "<p>The field to aggregate.</p>",
-        "GetStatisticsRequest$aggregationField": "<p>The aggregation field name.</p>"
+        "GetStatisticsRequest$aggregationField": "<p>The aggregation field name.</p>",
+        "UpdateFleetMetricRequest$aggregationField": "<p>The field to aggregate.</p>"
+      }
+    },
+    "AggregationType": {
+      "base": "<p>The type of aggregation queries.</p>",
+      "refs": {
+        "CreateFleetMetricRequest$aggregationType": "<p>The type of the aggregation query.</p>",
+        "DescribeFleetMetricResponse$aggregationType": "<p>The type of the aggregation query.</p>",
+        "UpdateFleetMetricRequest$aggregationType": "<p>The type of the aggregation query.</p>"
+      }
+    },
+    "AggregationTypeName": {
+      "base": null,
+      "refs": {
+        "AggregationType$name": "<p>The name of the aggregation type.</p>"
+      }
+    },
+    "AggregationTypeValue": {
+      "base": null,
+      "refs": {
+        "AggregationTypeValues$member": null
+      }
+    },
+    "AggregationTypeValues": {
+      "base": null,
+      "refs": {
+        "AggregationType$values": "<p>A list of the values of aggregation types.</p>"
       }
     },
     "AlarmName": {
@@ -446,7 +482,7 @@
     "AssetId": {
       "base": null,
       "refs": {
-        "PutAssetPropertyValueEntry$assetId": "<p>The ID of the AWS IoT SiteWise asset. You must specify either a <code>propertyAlias</code> or both an <code>aliasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
+        "PutAssetPropertyValueEntry$assetId": "<p>The ID of the IoT SiteWise asset. You must specify either a <code>propertyAlias</code> or both an <code>aliasId</code> and a <code>propertyId</code>. Accepts substitution templates.</p>"
       }
     },
     "AssetPropertyAlias": {
@@ -668,7 +704,7 @@
       "base": null,
       "refs": {
         "DescribeAuditMitigationActionsTaskResponse$auditCheckToActionsMapping": "<p>Specifies the mitigation actions that should be applied to specific audit checks.</p>",
-        "StartAuditMitigationActionsTaskRequest$auditCheckToActionsMapping": "<p>For an audit check, specifies which mitigation actions to apply. Those actions must be defined in your AWS account.</p>"
+        "StartAuditMitigationActionsTaskRequest$auditCheckToActionsMapping": "<p>For an audit check, specifies which mitigation actions to apply. Those actions must be defined in your Amazon Web Services accounts.</p>"
       }
     },
     "AuditCheckToReasonCodeFilter": {
@@ -963,12 +999,12 @@
       "base": null,
       "refs": {
         "CACertificateDescription$ownedBy": "<p>The owner of the CA certificate.</p>",
-        "CertificateDescription$ownedBy": "<p>The ID of the AWS account that owns the certificate.</p>",
-        "CertificateDescription$previousOwnedBy": "<p>The ID of the AWS account of the previous owner of the certificate.</p>",
-        "OutgoingCertificate$transferredTo": "<p>The AWS account to which the transfer was made.</p>",
+        "CertificateDescription$ownedBy": "<p>The ID of the Amazon Web Services account that owns the certificate.</p>",
+        "CertificateDescription$previousOwnedBy": "<p>The ID of the Amazon Web Services account of the previous owner of the certificate.</p>",
+        "OutgoingCertificate$transferredTo": "<p>The Amazon Web Services account to which the transfer was made.</p>",
         "ResourceIdentifier$account": "<p>The account with which the resource is associated.</p>",
         "RoleAliasDescription$owner": "<p>The role alias owner.</p>",
-        "TransferCertificateRequest$targetAwsAccount": "<p>The AWS account.</p>"
+        "TransferCertificateRequest$targetAwsAccount": "<p>The Amazon Web Services account.</p>"
       }
     },
     "AwsArn": {
@@ -984,11 +1020,11 @@
         "FirehoseAction$roleArn": "<p>The IAM role that grants access to the Amazon Kinesis Firehose stream.</p>",
         "GetLoggingOptionsResponse$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "GetTopicRuleDestinationRequest$arn": "<p>The ARN of the topic rule destination.</p>",
-        "GetV2LoggingOptionsResponse$roleArn": "<p>The IAM role ARN AWS IoT uses to write to your CloudWatch logs.</p>",
+        "GetV2LoggingOptionsResponse$roleArn": "<p>The IAM role ARN IoT uses to write to your CloudWatch logs.</p>",
         "IotAnalyticsAction$channelArn": "<p>(deprecated) The ARN of the IoT Analytics channel to which message data will be sent.</p>",
         "IotAnalyticsAction$roleArn": "<p>The ARN of the role which has a policy that grants IoT Analytics permission to send message data via IoT Analytics (iotanalytics:BatchPutMessage).</p>",
-        "IotEventsAction$roleArn": "<p>The ARN of the role that grants AWS IoT permission to send an input to an AWS IoT Events detector. (\"Action\":\"iotevents:BatchPutMessage\").</p>",
-        "IotSiteWiseAction$roleArn": "<p>The ARN of the role that grants AWS IoT permission to send an asset property value to AWS IoTSiteWise. (<code>\"Action\": \"iotsitewise:BatchPutAssetPropertyValue\"</code>). The trust policy can restrict access to specific asset hierarchy paths.</p>",
+        "IotEventsAction$roleArn": "<p>The ARN of the role that grants IoT permission to send an input to an IoT Events detector. (\"Action\":\"iotevents:BatchPutMessage\").</p>",
+        "IotSiteWiseAction$roleArn": "<p>The ARN of the role that grants IoT permission to send an asset property value to IoT SiteWise. (<code>\"Action\": \"iotsitewise:BatchPutAssetPropertyValue\"</code>). The trust policy can restrict access to specific asset hierarchy paths.</p>",
         "KafkaAction$destinationArn": "<p>The ARN of Kafka action's VPC <code>TopicRuleDestination</code>.</p>",
         "KinesisAction$roleArn": "<p>The ARN of the IAM role that grants access to the Amazon Kinesis stream.</p>",
         "LoggingOptionsPayload$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
@@ -1012,15 +1048,15 @@
     "AwsIotJobArn": {
       "base": null,
       "refs": {
-        "CreateOTAUpdateResponse$awsIotJobArn": "<p>The AWS IoT job ARN associated with the OTA update.</p>",
-        "OTAUpdateInfo$awsIotJobArn": "<p>The AWS IoT job ARN associated with the OTA update.</p>"
+        "CreateOTAUpdateResponse$awsIotJobArn": "<p>The IoT job ARN associated with the OTA update.</p>",
+        "OTAUpdateInfo$awsIotJobArn": "<p>The IoT job ARN associated with the OTA update.</p>"
       }
     },
     "AwsIotJobId": {
       "base": null,
       "refs": {
-        "CreateOTAUpdateResponse$awsIotJobId": "<p>The AWS IoT job ID associated with the OTA update.</p>",
-        "OTAUpdateInfo$awsIotJobId": "<p>The AWS IoT job ID associated with the OTA update.</p>"
+        "CreateOTAUpdateResponse$awsIotJobId": "<p>The IoT job ID associated with the OTA update.</p>",
+        "OTAUpdateInfo$awsIotJobId": "<p>The IoT job ID associated with the OTA update.</p>"
       }
     },
     "AwsIotSqlVersion": {
@@ -1051,7 +1087,7 @@
     "AwsJobAbortCriteriaAbortThresholdPercentage": {
       "base": null,
       "refs": {
-        "AwsJobAbortCriteria$thresholdPercentage": "<p>The minimum percentage of job execution failures that must occur to initiate the job abort.</p> <p>AWS IoT supports up to two digits after the decimal (for example, 10.9 and 10.99, but not 10.999).</p>"
+        "AwsJobAbortCriteria$thresholdPercentage": "<p>The minimum percentage of job execution failures that must occur to initiate the job abort.</p> <p>Amazon Web Services IoT Core supports up to two digits after the decimal (for example, 10.9 and 10.99, but not 10.999).</p>"
       }
     },
     "AwsJobAbortCriteriaFailureType": {
@@ -1095,7 +1131,7 @@
     "AwsJobRateIncreaseCriteria": {
       "base": "<p>The criteria to initiate the increase in rate of rollout for a job.</p>",
       "refs": {
-        "AwsJobExponentialRolloutRate$rateIncreaseCriteria": "<p>The criteria to initiate the increase in rate of rollout for a job.</p> <p>AWS IoT supports up to one digit after the decimal (for example, 1.5, but not 1.55).</p>"
+        "AwsJobExponentialRolloutRate$rateIncreaseCriteria": "<p>The criteria to initiate the increase in rate of rollout for a job.</p> <p>Amazon Web Services IoT Core supports up to one digit after the decimal (for example, 1.5, but not 1.55).</p>"
       }
     },
     "AwsJobRateIncreaseCriteriaNumberOfThings": {
@@ -1133,8 +1169,8 @@
       "base": null,
       "refs": {
         "FirehoseAction$batchMode": "<p>Whether to deliver the Kinesis Data Firehose stream as a batch by using <a href=\"https://docs.aws.amazon.com/firehose/latest/APIReference/API_PutRecordBatch.html\"> <code>PutRecordBatch</code> </a>. The default value is <code>false</code>.</p> <p>When <code>batchMode</code> is <code>true</code> and the rule's SQL statement evaluates to an Array, each Array element forms one record in the <a href=\"https://docs.aws.amazon.com/firehose/latest/APIReference/API_PutRecordBatch.html\"> <code>PutRecordBatch</code> </a> request. The resulting array can't have more than 500 records.</p>",
-        "IotAnalyticsAction$batchMode": "<p>Whether to process the action as a batch. The default value is <code>false</code>.</p> <p>When <code>batchMode</code> is <code>true</code> and the rule SQL statement evaluates to an Array, each Array element is delivered as a separate message when passed by <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html\"> <code>BatchPutMessage</code> </a> to the AWS IoT Analytics channel. The resulting array can't have more than 100 messages.</p>",
-        "IotEventsAction$batchMode": "<p>Whether to process the event actions as a batch. The default value is <code>false</code>.</p> <p>When <code>batchMode</code> is <code>true</code>, you can't specify a <code>messageId</code>. </p> <p>When <code>batchMode</code> is <code>true</code> and the rule SQL statement evaluates to an Array, each Array element is treated as a separate message when it's sent to AWS IoT Events by calling <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html\"> <code>BatchPutMessage</code> </a>. The resulting array can't have more than 10 messages.</p>"
+        "IotAnalyticsAction$batchMode": "<p>Whether to process the action as a batch. The default value is <code>false</code>.</p> <p>When <code>batchMode</code> is <code>true</code> and the rule SQL statement evaluates to an Array, each Array element is delivered as a separate message when passed by <a href=\"https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html\"> <code>BatchPutMessage</code> </a> to the IoT Analytics channel. The resulting array can't have more than 100 messages.</p>",
+        "IotEventsAction$batchMode": "<p>Whether to process the event actions as a batch. The default value is <code>false</code>.</p> <p>When <code>batchMode</code> is <code>true</code>, you can't specify a <code>messageId</code>. </p> <p>When <code>batchMode</code> is <code>true</code> and the rule SQL statement evaluates to an Array, each Array element is treated as a separate message when it's sent to IoT Events by calling <a href=\"https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html\"> <code>BatchPutMessage</code> </a>. The resulting array can't have more than 10 messages.</p>"
       }
     },
     "Behavior": {
@@ -1258,21 +1294,45 @@
     "Boolean": {
       "base": null,
       "refs": {
-        "ThingConnectivity$connected": "<p>True if the thing is connected to the AWS IoT service; false if it is not connected.</p>",
+        "ThingConnectivity$connected": "<p>True if the thing is connected to the Amazon Web Services IoT Core service; false if it is not connected.</p>",
         "ThingTypeMetadata$deprecated": "<p>Whether the thing type is deprecated. If <b>true</b>, no new things could be associated with this type.</p>"
       }
     },
     "BooleanKey": {
       "base": null,
       "refs": {
-        "AuthorizerDescription$signingDisabled": "<p>Specifies whether AWS IoT validates the token signature in an authorization request.</p>",
-        "CreateAuthorizerRequest$signingDisabled": "<p>Specifies whether AWS IoT validates the token signature in an authorization request.</p>"
+        "AuthorizerDescription$signingDisabled": "<p>Specifies whether IoT validates the token signature in an authorization request.</p>",
+        "CreateAuthorizerRequest$signingDisabled": "<p>Specifies whether IoT validates the token signature in an authorization request.</p>"
+      }
+    },
+    "Bucket": {
+      "base": "<p>A count of documents that meets a specific aggregation criteria.</p>",
+      "refs": {
+        "Buckets$member": null
+      }
+    },
+    "BucketKeyValue": {
+      "base": null,
+      "refs": {
+        "Bucket$keyValue": "<p>The value counted for the particular bucket.</p>"
       }
     },
     "BucketName": {
       "base": null,
       "refs": {
         "S3Action$bucketName": "<p>The Amazon S3 bucket.</p>"
+      }
+    },
+    "Buckets": {
+      "base": null,
+      "refs": {
+        "GetBucketsAggregationResponse$buckets": "<p>The main part of the response with a list of buckets. Each bucket contains a <code>keyValue</code> and a <code>count</code>.</p> <p> <code>keyValue</code>: The aggregation field value counted for the particular bucket.</p> <p> <code>count</code>: The number of documents that have that value.</p>"
+      }
+    },
+    "BucketsAggregationType": {
+      "base": "<p>The type of bucketed aggregation performed.</p>",
+      "refs": {
+        "GetBucketsAggregationRequest$bucketsAggregationType": "<p>The basic control of the response shape and the bucket aggregation type to perform. </p>"
       }
     },
     "CACertificate": {
@@ -1304,7 +1364,7 @@
     "CACertificates": {
       "base": null,
       "refs": {
-        "ListCACertificatesResponse$certificates": "<p>The CA certificates registered in your AWS account.</p>"
+        "ListCACertificatesResponse$certificates": "<p>The CA certificates registered in your Amazon Web Services account.</p>"
       }
     },
     "CancelAuditMitigationActionsTaskRequest": {
@@ -1426,7 +1486,7 @@
         "CertificateDescription$certificateId": "<p>The ID of the certificate.</p>",
         "CertificateDescription$caCertificateId": "<p>The certificate ID of the CA certificate used to sign this certificate.</p>",
         "CreateCertificateFromCsrResponse$certificateId": "<p>The ID of the certificate. Certificate management operations only take a certificateId.</p>",
-        "CreateKeysAndCertificateResponse$certificateId": "<p>The ID of the certificate. AWS IoT issues a default subject name for the certificate (for example, AWS IoT Certificate).</p>",
+        "CreateKeysAndCertificateResponse$certificateId": "<p>The ID of the certificate. IoT issues a default subject name for the certificate (for example, IoT Certificate).</p>",
         "CreateProvisioningClaimResponse$certificateId": "<p>The ID of the certificate.</p>",
         "DeleteCACertificateRequest$certificateId": "<p>The ID of the certificate to delete. (The last part of the certificate ARN contains the certificate ID.)</p>",
         "DeleteCertificateRequest$certificateId": "<p>The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)</p>",
@@ -1498,7 +1558,7 @@
         "CertificateDescription$status": "<p>The status of the certificate.</p>",
         "RegisterCertificateRequest$status": "<p>The status of the register certificate request.</p>",
         "RegisterCertificateWithoutCARequest$status": "<p>The status of the register certificate request.</p>",
-        "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p> <b>Note:</b> Setting the status to PENDING_TRANSFER or PENDING_ACTIVATION will result in an exception being thrown. PENDING_TRANSFER and PENDING_ACTIVATION are statuses used internally by AWS IoT. They are not intended for developer use.</p> <p> <b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
+        "UpdateCertificateRequest$newStatus": "<p>The new status.</p> <p> <b>Note:</b> Setting the status to PENDING_TRANSFER or PENDING_ACTIVATION will result in an exception being thrown. PENDING_TRANSFER and PENDING_ACTIVATION are statuses used internally by IoT. They are not intended for developer use.</p> <p> <b>Note:</b> The status value REGISTER_INACTIVE is deprecated and should not be used.</p>"
       }
     },
     "CertificateValidationException": {
@@ -1557,7 +1617,7 @@
     "ClientId": {
       "base": null,
       "refs": {
-        "DescribeThingResponse$defaultClientId": "<p>The default MQTT client ID. For a typical device, the thing name is also used as the default MQTT client ID. Although we don’t require a mapping between a thing's registry name and its use of MQTT client IDs, certificates, or shadow state, we recommend that you choose a thing name and use it as the MQTT client ID for the registry and the Device Shadow service.</p> <p>This lets you better organize your AWS IoT fleet without removing the flexibility of the underlying device certificate model or shadows.</p>",
+        "DescribeThingResponse$defaultClientId": "<p>The default MQTT client ID. For a typical device, the thing name is also used as the default MQTT client ID. Although we don’t require a mapping between a thing's registry name and its use of MQTT client IDs, certificates, or shadow state, we recommend that you choose a thing name and use it as the MQTT client ID for the registry and the Device Shadow service.</p> <p>This lets you better organize your IoT fleet without removing the flexibility of the underlying device certificate model or shadows.</p>",
         "ResourceIdentifier$clientId": "<p>The client ID.</p>",
         "TestAuthorizationRequest$clientId": "<p>The MQTT client ID.</p>"
       }
@@ -1572,10 +1632,10 @@
       "base": null,
       "refs": {
         "CreateAuditSuppressionRequest$clientRequestToken": "<p> The epoch timestamp in seconds at which this suppression expires. </p>",
-        "CreateCustomMetricRequest$clientRequestToken": "<p>Each custom metric must have a unique client request token. If you try to create a new custom metric that already exists with a different token, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>",
-        "CreateDimensionRequest$clientRequestToken": "<p>Each dimension must have a unique client request token. If you try to create a new dimension with the same token as a dimension that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request.</p>",
+        "CreateCustomMetricRequest$clientRequestToken": "<p>Each custom metric must have a unique client request token. If you try to create a new custom metric that already exists with a different token, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request. </p>",
+        "CreateDimensionRequest$clientRequestToken": "<p>Each dimension must have a unique client request token. If you try to create a new dimension with the same token as a dimension that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request.</p>",
         "StartAuditMitigationActionsTaskRequest$clientRequestToken": "<p>Each audit mitigation task must have a unique client request token. If you try to start a new task with the same token as a task that already exists, an exception occurs. If you omit this value, a unique client request token is generated automatically.</p>",
-        "StartDetectMitigationActionsTaskRequest$clientRequestToken": "<p> Each mitigation action task must have a unique client request token. If you try to create a new task with the same token as a task that already exists, an exception occurs. If you omit this value, AWS SDKs will automatically generate a unique client request. </p>"
+        "StartDetectMitigationActionsTaskRequest$clientRequestToken": "<p> Each mitigation action task must have a unique client request token. If you try to create a new task with the same token as a task that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request. </p>"
       }
     },
     "CloudwatchAlarmAction": {
@@ -1690,7 +1750,7 @@
     "ConnectivityTimestamp": {
       "base": null,
       "refs": {
-        "ThingConnectivity$timestamp": "<p>The epoch time (in milliseconds) when the thing last connected or disconnected. If the thing has been disconnected for more than a few weeks, the time value might be missing.</p>"
+        "ThingConnectivity$timestamp": "<p>The epoch time (in milliseconds) when the thing last connected or disconnected. If the thing has been disconnected for approximately an hour, the time value might be missing.</p>"
       }
     },
     "ConsecutiveDatapointsToAlarm": {
@@ -1708,8 +1768,10 @@
     "Count": {
       "base": null,
       "refs": {
+        "Bucket$count": "<p>The number of documents that have the value counted for the particular bucket.</p>",
         "DescribeThingRegistrationTaskResponse$successCount": "<p>The number of things successfully provisioned.</p>",
         "DescribeThingRegistrationTaskResponse$failureCount": "<p>The number of things that failed to be provisioned.</p>",
+        "GetBucketsAggregationResponse$totalCount": "<p>The total number of documents that fit the query string criteria and contain a value for the Aggregation field targeted in the request.</p>",
         "GetCardinalityResponse$cardinality": "<p>The approximate count of unique values that match the query.</p>",
         "Statistics$count": "<p>The count of things that match the query.</p>"
       }
@@ -1794,6 +1856,16 @@
       "refs": {
       }
     },
+    "CreateFleetMetricRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateFleetMetricResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CreateJobRequest": {
       "base": null,
       "refs": {
@@ -1815,7 +1887,7 @@
       }
     },
     "CreateKeysAndCertificateRequest": {
-      "base": "<p>The input for the CreateKeysAndCertificate operation.</p>",
+      "base": "<p>The input for the CreateKeysAndCertificate operation.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">CreateKeysAndCertificateRequest</a> action.</p>",
       "refs": {
       }
     },
@@ -1993,6 +2065,7 @@
       "refs": {
         "BillingGroupMetadata$creationDate": "<p>The date the billing group was created.</p>",
         "DescribeEventConfigurationsResponse$creationDate": "<p>The creation date of the event configuration.</p>",
+        "DescribeFleetMetricResponse$creationDate": "<p>The date when the fleet metric is created.</p>",
         "DescribeThingRegistrationTaskResponse$creationDate": "<p>The task creation date.</p>",
         "ThingGroupMetadata$creationDate": "<p>The UNIX timestamp of when the thing group was created.</p>",
         "ThingTypeMetadata$creationDate": "<p>The date and time when the thing type was created.</p>"
@@ -2001,7 +2074,7 @@
     "CredentialDurationSeconds": {
       "base": null,
       "refs": {
-        "CreateRoleAliasRequest$credentialDurationSeconds": "<p>How long (in seconds) the credentials will be valid.</p>",
+        "CreateRoleAliasRequest$credentialDurationSeconds": "<p>How long (in seconds) the credentials will be valid. The default value is 3,600 seconds.</p>",
         "RoleAliasDescription$credentialDurationSeconds": "<p>The number of seconds for which the credential is valid.</p>",
         "UpdateRoleAliasRequest$credentialDurationSeconds": "<p>The number of seconds the credential will be valid.</p>"
       }
@@ -2236,6 +2309,11 @@
       }
     },
     "DeleteDynamicThingGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeleteFleetMetricRequest": {
       "base": null,
       "refs": {
       }
@@ -2605,6 +2683,16 @@
       "refs": {
       }
     },
+    "DescribeFleetMetricRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeFleetMetricResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "DescribeIndexRequest": {
       "base": null,
       "refs": {
@@ -2966,6 +3054,12 @@
       "refs": {
       }
     },
+    "DisconnectReason": {
+      "base": null,
+      "refs": {
+        "ThingConnectivity$disconnectReason": "<p>The reason why the client is disconnected.</p>"
+      }
+    },
     "DomainConfigurationArn": {
       "base": null,
       "refs": {
@@ -2991,7 +3085,7 @@
       }
     },
     "DomainConfigurationSummary": {
-      "base": "<p>The summary of a domain configuration. A domain configuration specifies custom IoT-specific information about a domain. A domain configuration can be associated with an AWS-managed domain (for example, dbc123defghijk.iot.us-west-2.amazonaws.com), a customer managed domain, or a default endpoint.</p> <ul> <li> <p>Data</p> </li> <li> <p>Jobs</p> </li> <li> <p>CredentialProvider</p> </li> </ul>",
+      "base": "<p>The summary of a domain configuration. A domain configuration specifies custom IoT-specific information about a domain. A domain configuration can be associated with an Amazon Web Services-managed domain (for example, dbc123defghijk.iot.us-west-2.amazonaws.com), a customer managed domain, or a default endpoint.</p> <ul> <li> <p>Data</p> </li> <li> <p>Jobs</p> </li> <li> <p>CredentialProvider</p> </li> </ul>",
       "refs": {
         "DomainConfigurations$member": null
       }
@@ -3095,9 +3189,9 @@
       }
     },
     "EnableIoTLoggingParams": {
-      "base": "<p>Parameters used when defining a mitigation action that enable AWS IoT logging.</p>",
+      "base": "<p>Parameters used when defining a mitigation action that enable Amazon Web Services IoT Core logging.</p>",
       "refs": {
-        "MitigationActionParams$enableIoTLoggingParams": "<p>Parameters to define a mitigation action that enables AWS IoT logging at a specified level of detail.</p>"
+        "MitigationActionParams$enableIoTLoggingParams": "<p>Parameters to define a mitigation action that enables Amazon Web Services IoT Core logging at a specified level of detail.</p>"
       }
     },
     "EnableTopicRuleRequest": {
@@ -3126,7 +3220,7 @@
     "EndpointType": {
       "base": null,
       "refs": {
-        "DescribeEndpointRequest$endpointType": "<p>The endpoint type. Valid endpoint types include:</p> <ul> <li> <p> <code>iot:Data</code> - Returns a VeriSign signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Data-ATS</code> - Returns an ATS signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:CredentialProvider</code> - Returns an AWS IoT credentials provider API endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Jobs</code> - Returns an AWS IoT device management Jobs API endpoint.</p> </li> </ul> <p>We strongly recommend that customers use the newer <code>iot:Data-ATS</code> endpoint type to avoid issues related to the widespread distrust of Symantec certificate authorities.</p>"
+        "DescribeEndpointRequest$endpointType": "<p>The endpoint type. Valid endpoint types include:</p> <ul> <li> <p> <code>iot:Data</code> - Returns a VeriSign signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Data-ATS</code> - Returns an ATS signed data endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:CredentialProvider</code> - Returns an IoT credentials provider API endpoint.</p> </li> </ul> <ul> <li> <p> <code>iot:Jobs</code> - Returns an IoT device management Jobs API endpoint.</p> </li> </ul> <p>We strongly recommend that customers use the newer <code>iot:Data-ATS</code> endpoint type to avoid issues related to the widespread distrust of Symantec certificate authorities.</p>"
       }
     },
     "ErrorCode": {
@@ -3249,7 +3343,7 @@
     "FieldType": {
       "base": null,
       "refs": {
-        "Field$type": "<p>The datatype of the field.</p>"
+        "Field$type": "<p>The data type of the field.</p>"
       }
     },
     "Fields": {
@@ -3321,6 +3415,62 @@
         "AttributePayload$merge": "<p>Specifies whether the list of attributes provided in the <code>AttributePayload</code> is merged with the attributes stored in the registry, instead of overwriting them.</p> <p>To remove an attribute, call <code>UpdateThing</code> with an empty attribute value.</p> <note> <p>The <code>merge</code> attribute is only valid when calling <code>UpdateThing</code> or <code>UpdateThingGroup</code>.</p> </note>"
       }
     },
+    "FleetMetricArn": {
+      "base": null,
+      "refs": {
+        "CreateFleetMetricResponse$metricArn": "<p>The Amazon Resource Name (ARN) of the new fleet metric.</p>",
+        "DescribeFleetMetricResponse$metricArn": "<p>The ARN of the fleet metric to describe.</p>",
+        "FleetMetricNameAndArn$metricArn": "<p>The fleet metric ARN.</p>"
+      }
+    },
+    "FleetMetricDescription": {
+      "base": null,
+      "refs": {
+        "CreateFleetMetricRequest$description": "<p>The fleet metric description.</p>",
+        "DescribeFleetMetricResponse$description": "<p>The fleet metric description.</p>",
+        "UpdateFleetMetricRequest$description": "<p>The description of the fleet metric.</p>"
+      }
+    },
+    "FleetMetricName": {
+      "base": null,
+      "refs": {
+        "CreateFleetMetricRequest$metricName": "<p>The name of the fleet metric to create.</p>",
+        "CreateFleetMetricResponse$metricName": "<p>The name of the fleet metric to create.</p>",
+        "DeleteFleetMetricRequest$metricName": "<p>The name of the fleet metric to delete.</p>",
+        "DescribeFleetMetricRequest$metricName": "<p>The name of the fleet metric to describe.</p>",
+        "DescribeFleetMetricResponse$metricName": "<p>The name of the fleet metric to describe.</p>",
+        "FleetMetricNameAndArn$metricName": "<p>The fleet metric name.</p>",
+        "UpdateFleetMetricRequest$metricName": "<p>The name of the fleet metric to update.</p>"
+      }
+    },
+    "FleetMetricNameAndArn": {
+      "base": "<p>The name and ARN of a fleet metric.</p>",
+      "refs": {
+        "FleetMetricNameAndArnList$member": null
+      }
+    },
+    "FleetMetricNameAndArnList": {
+      "base": null,
+      "refs": {
+        "ListFleetMetricsResponse$fleetMetrics": "<p>The list of fleet metrics objects.</p>"
+      }
+    },
+    "FleetMetricPeriod": {
+      "base": null,
+      "refs": {
+        "CreateFleetMetricRequest$period": "<p>The time in seconds between fleet metric emissions. Range [60(1 min), 86400(1 day)] and must be multiple of 60.</p>",
+        "DescribeFleetMetricResponse$period": "<p>The time in seconds between fleet metric emissions. Range [60(1 min), 86400(1 day)] and must be multiple of 60.</p>",
+        "UpdateFleetMetricRequest$period": "<p>The time in seconds between fleet metric emissions. Range [60(1 min), 86400(1 day)] and must be multiple of 60.</p>"
+      }
+    },
+    "FleetMetricUnit": {
+      "base": null,
+      "refs": {
+        "CreateFleetMetricRequest$unit": "<p>Used to support unit transformation such as milliseconds to seconds. The unit must be supported by <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html\">CW metric</a>. Default to null.</p>",
+        "DescribeFleetMetricResponse$unit": "<p>Used to support unit transformation such as milliseconds to seconds. The unit must be supported by <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html\">CW metric</a>.</p>",
+        "UpdateFleetMetricRequest$unit": "<p>Used to support unit transformation such as milliseconds to seconds. The unit must be supported by <a href=\"https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html\">CW metric</a>.</p>"
+      }
+    },
     "ForceDelete": {
       "base": null,
       "refs": {
@@ -3330,7 +3480,7 @@
     "ForceDeleteAWSJob": {
       "base": null,
       "refs": {
-        "DeleteOTAUpdateRequest$forceDeleteAWSJob": "<p>When true, deletes the AWS job created by the OTAUpdate process even if it is \"IN_PROGRESS\". Otherwise, if the job is not in a terminal state (\"COMPLETED\" or \"CANCELED\") an exception will occur. The default is false.</p>"
+        "DeleteOTAUpdateRequest$forceDeleteAWSJob": "<p>When true, deletes the IoT job created by the OTAUpdate process even if it is \"IN_PROGRESS\". Otherwise, if the job is not in a terminal state (\"COMPLETED\" or \"CANCELED\") an exception will occur. The default is false.</p>"
       }
     },
     "ForceFlag": {
@@ -3378,6 +3528,16 @@
       }
     },
     "GetBehaviorModelTrainingSummariesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBucketsAggregationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "GetBucketsAggregationResponse": {
       "base": null,
       "refs": {
       }
@@ -3658,23 +3818,27 @@
     "IncrementFactor": {
       "base": null,
       "refs": {
-        "ExponentialRolloutRate$incrementFactor": "<p>The exponential factor to increase the rate of rollout for a job.</p> <p>AWS IoT supports up to one digit after the decimal (for example, 1.5, but not 1.55).</p>"
+        "ExponentialRolloutRate$incrementFactor": "<p>The exponential factor to increase the rate of rollout for a job.</p> <p>Amazon Web Services IoT Core supports up to one digit after the decimal (for example, 1.5, but not 1.55).</p>"
       }
     },
     "IndexName": {
       "base": null,
       "refs": {
-        "CreateDynamicThingGroupRequest$indexName": "<p>The dynamic thing group index name.</p> <note> <p>Currently one index is supported: \"AWS_Things\".</p> </note>",
+        "CreateDynamicThingGroupRequest$indexName": "<p>The dynamic thing group index name.</p> <note> <p>Currently one index is supported: <code>AWS_Things</code>.</p> </note>",
         "CreateDynamicThingGroupResponse$indexName": "<p>The dynamic thing group index name.</p>",
+        "CreateFleetMetricRequest$indexName": "<p>The name of the index to search.</p>",
+        "DescribeFleetMetricResponse$indexName": "<p>The name of the index to search.</p>",
         "DescribeIndexRequest$indexName": "<p>The index name.</p>",
         "DescribeIndexResponse$indexName": "<p>The index name.</p>",
         "DescribeThingGroupResponse$indexName": "<p>The dynamic thing group index name.</p>",
+        "GetBucketsAggregationRequest$indexName": "<p>The name of the index to search.</p>",
         "GetCardinalityRequest$indexName": "<p>The name of the index to search.</p>",
         "GetPercentilesRequest$indexName": "<p>The name of the index to search.</p>",
         "GetStatisticsRequest$indexName": "<p>The name of the index to search. The default value is <code>AWS_Things</code>.</p>",
         "IndexNamesList$member": null,
         "SearchIndexRequest$indexName": "<p>The search index name.</p>",
-        "UpdateDynamicThingGroupRequest$indexName": "<p>The dynamic thing group index to update.</p> <note> <p>Currently one index is supported: 'AWS_Things'.</p> </note>"
+        "UpdateDynamicThingGroupRequest$indexName": "<p>The dynamic thing group index to update.</p> <note> <p>Currently one index is supported: <code>AWS_Things</code>.</p> </note>",
+        "UpdateFleetMetricRequest$indexName": "<p>The name of the index to search.</p>"
       }
     },
     "IndexNamesList": {
@@ -3709,7 +3873,7 @@
     "InputName": {
       "base": null,
       "refs": {
-        "IotEventsAction$inputName": "<p>The name of the AWS IoT Events input.</p>"
+        "IotEventsAction$inputName": "<p>The name of the IoT Events input.</p>"
       }
     },
     "InternalException": {
@@ -3748,21 +3912,21 @@
       }
     },
     "IotAnalyticsAction": {
-      "base": "<p>Sends message data to an AWS IoT Analytics channel.</p>",
+      "base": "<p>Sends message data to an IoT Analytics channel.</p>",
       "refs": {
-        "Action$iotAnalytics": "<p>Sends message data to an AWS IoT Analytics channel.</p>"
+        "Action$iotAnalytics": "<p>Sends message data to an IoT Analytics channel.</p>"
       }
     },
     "IotEventsAction": {
-      "base": "<p>Sends an input to an AWS IoT Events detector.</p>",
+      "base": "<p>Sends an input to an IoT Events detector.</p>",
       "refs": {
-        "Action$iotEvents": "<p>Sends an input to an AWS IoT Events detector.</p>"
+        "Action$iotEvents": "<p>Sends an input to an IoT Events detector.</p>"
       }
     },
     "IotSiteWiseAction": {
-      "base": "<p>Describes an action to send data from an MQTT message that triggered the rule to AWS IoT SiteWise asset properties.</p>",
+      "base": "<p>Describes an action to send data from an MQTT message that triggered the rule to IoT SiteWise asset properties.</p>",
       "refs": {
-        "Action$iotSiteWise": "<p>Sends data from the MQTT message that triggered the rule to AWS IoT SiteWise asset properties.</p>"
+        "Action$iotSiteWise": "<p>Sends data from the MQTT message that triggered the rule to IoT SiteWise asset properties.</p>"
       }
     },
     "IsAuthenticated": {
@@ -3922,7 +4086,7 @@
         "CancelJobExecutionRequest$jobId": "<p>The ID of the job to be canceled.</p>",
         "CancelJobRequest$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
         "CancelJobResponse$jobId": "<p>The unique identifier you assigned to this job when it was created.</p>",
-        "CreateJobRequest$jobId": "<p>A job identifier which must be unique for your AWS account. We recommend using a UUID. Alpha-numeric characters, \"-\" and \"_\" are valid for use here.</p>",
+        "CreateJobRequest$jobId": "<p>A job identifier which must be unique for your Amazon Web Services account. We recommend using a UUID. Alpha-numeric characters, \"-\" and \"_\" are valid for use here.</p>",
         "CreateJobResponse$jobId": "<p>The unique identifier you assigned to this job.</p>",
         "DeleteJobExecutionRequest$jobId": "<p>The ID of the job whose execution on a particular device will be deleted.</p>",
         "DeleteJobRequest$jobId": "<p>The ID of the job to be deleted.</p> <p>After a job deletion is completed, you may reuse this jobId when you create a new job. However, this is not recommended, and you must ensure that your devices are not using the jobId to refer to the deleted job.</p>",
@@ -4066,6 +4230,7 @@
       "base": null,
       "refs": {
         "DescribeEventConfigurationsResponse$lastModifiedDate": "<p>The date the event configurations were last modified.</p>",
+        "DescribeFleetMetricResponse$lastModifiedDate": "<p>The date when the fleet metric is last modified.</p>",
         "DescribeThingRegistrationTaskResponse$lastModifiedDate": "<p>The date when the task was last modified.</p>"
       }
     },
@@ -4247,6 +4412,16 @@
       }
     },
     "ListDomainConfigurationsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFleetMetricsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListFleetMetricsResponse": {
       "base": null,
       "refs": {
       }
@@ -4722,6 +4897,12 @@
         "ListTargetsForPolicyResponse$nextMarker": "<p>A marker used to get the next set of results.</p>"
       }
     },
+    "MaxBuckets": {
+      "base": null,
+      "refs": {
+        "TermsAggregation$maxBuckets": "<p>The number of buckets to return in the response. Default to 10.</p>"
+      }
+    },
     "MaxJobExecutionsPerMin": {
       "base": null,
       "refs": {
@@ -4741,6 +4922,7 @@
         "ListDetectMitigationActionsExecutionsRequest$maxResults": "<p> The maximum number of results to return at one time. The default is 25. </p>",
         "ListDetectMitigationActionsTasksRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListDimensionsRequest$maxResults": "<p>The maximum number of results to retrieve at one time.</p>",
+        "ListFleetMetricsRequest$maxResults": "<p>The maximum number of results to return in this operation.</p>",
         "ListMitigationActionsRequest$maxResults": "<p>The maximum number of results to return at one time. The default is 25.</p>",
         "ListOTAUpdatesRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
         "ListProvisioningTemplateVersionsRequest$maxResults": "<p>The maximum number of results to return at one time.</p>",
@@ -4784,7 +4966,7 @@
     "MessageId": {
       "base": null,
       "refs": {
-        "IotEventsAction$messageId": "<p>The ID of the message. The default <code>messageId</code> is a new UUID value.</p> <p>When <code>batchMode</code> is <code>true</code>, you can't specify a <code>messageId</code>--a new UUID value will be assigned.</p> <p>Assign a value to this property to ensure that only one input (message) with a given <code>messageId</code> will be processed by an AWS IoT Events detector.</p>"
+        "IotEventsAction$messageId": "<p>The ID of the message. The default <code>messageId</code> is a new UUID value.</p> <p>When <code>batchMode</code> is <code>true</code>, you can't specify a <code>messageId</code>--a new UUID value will be assigned.</p> <p>Assign a value to this property to ensure that only one input (message) with a given <code>messageId</code> will be processed by an IoT Events detector.</p>"
       }
     },
     "MetricDimension": {
@@ -4986,14 +5168,14 @@
     "NamespaceId": {
       "base": null,
       "refs": {
-        "AssociateTargetsWithJobRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, AWS IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
-        "CreateJobRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, AWS IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
-        "DeleteJobExecutionRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, AWS IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
-        "DeleteJobRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, AWS IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
-        "Job$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, AWS IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
-        "ListJobExecutionsForThingRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, AWS IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
-        "ListJobsRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, AWS IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
-        "UpdateJobRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, AWS IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>"
+        "AssociateTargetsWithJobRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
+        "CreateJobRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
+        "DeleteJobExecutionRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
+        "DeleteJobRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
+        "Job$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
+        "ListJobExecutionsForThingRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
+        "ListJobsRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>",
+        "UpdateJobRequest$namespaceId": "<p>The namespace used to indicate that a job is a customer-managed job.</p> <p>When you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.</p> <p> <code>$aws/things/<i>THING_NAME</i>/jobs/<i>JOB_ID</i>/notify-namespace-<i>NAMESPACE_ID</i>/</code> </p> <note> <p>The <code>namespaceId</code> feature is in public preview.</p> </note>"
       }
     },
     "NextToken": {
@@ -5023,6 +5205,8 @@
         "ListDetectMitigationActionsTasksResponse$nextToken": "<p> A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results. </p>",
         "ListDimensionsRequest$nextToken": "<p>The token for the next set of results.</p>",
         "ListDimensionsResponse$nextToken": "<p>A token that can be used to retrieve the next set of results, or <code>null</code> if there are no additional results.</p>",
+        "ListFleetMetricsRequest$nextToken": "<p>To retrieve the next set of results, the <code>nextToken</code> value from a previous response; otherwise <code>null</code> to receive the first set of results.</p>",
+        "ListFleetMetricsResponse$nextToken": "<p>The token for the next set of results. Will not be returned if the operation has returned all results.</p>",
         "ListIndicesRequest$nextToken": "<p>The token used to get the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListIndicesResponse$nextToken": "<p>The token used to get the next set of results, or <code>null</code> if there are no additional results.</p>",
         "ListJobExecutionsForJobRequest$nextToken": "<p>The token to retrieve the next set of results.</p>",
@@ -5217,11 +5401,13 @@
       "refs": {
         "DeleteBillingGroupRequest$expectedVersion": "<p>The expected version of the billing group. If the version of the billing group does not match the expected version specified in the request, the <code>DeleteBillingGroup</code> request is rejected with a <code>VersionConflictException</code>.</p>",
         "DeleteDynamicThingGroupRequest$expectedVersion": "<p>The expected version of the dynamic thing group to delete.</p>",
+        "DeleteFleetMetricRequest$expectedVersion": "<p>The expected version of the fleet metric to delete.</p>",
         "DeleteSecurityProfileRequest$expectedVersion": "<p>The expected version of the security profile. A new version is generated whenever the security profile is updated. If you specify a value that is different from the actual version, a <code>VersionConflictException</code> is thrown.</p>",
         "DeleteThingGroupRequest$expectedVersion": "<p>The expected version of the thing group to delete.</p>",
         "DeleteThingRequest$expectedVersion": "<p>The expected version of the thing record in the registry. If the version of the record in the registry does not match the expected version specified in the request, the <code>DeleteThing</code> request is rejected with a <code>VersionConflictException</code>.</p>",
         "UpdateBillingGroupRequest$expectedVersion": "<p>The expected version of the billing group. If the version of the billing group does not match the expected version specified in the request, the <code>UpdateBillingGroup</code> request is rejected with a <code>VersionConflictException</code>.</p>",
         "UpdateDynamicThingGroupRequest$expectedVersion": "<p>The expected version of the dynamic thing group to update.</p>",
+        "UpdateFleetMetricRequest$expectedVersion": "<p>The expected version of the fleet metric record in the registry.</p>",
         "UpdateSecurityProfileRequest$expectedVersion": "<p>The expected version of the security profile. A new version is generated whenever the security profile is updated. If you specify a value that is different from the actual version, a <code>VersionConflictException</code> is thrown.</p>",
         "UpdateThingGroupRequest$expectedVersion": "<p>The expected version of the thing group. If this does not match the version of the thing group being updated, the update will fail.</p>",
         "UpdateThingRequest$expectedVersion": "<p>The expected version of the thing record in the registry. If the version of the record in the registry does not match the expected version specified in the request, the <code>UpdateThing</code> request is rejected with a <code>VersionConflictException</code>.</p>"
@@ -5349,7 +5535,7 @@
       }
     },
     "Policy": {
-      "base": "<p>Describes an AWS IoT policy.</p>",
+      "base": "<p>Describes an IoT policy.</p>",
       "refs": {
         "Policies$member": null
       }
@@ -5656,12 +5842,16 @@
       "refs": {
         "CreateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string.</p> <p>See <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/query-syntax.html\">Query Syntax</a> for information about query string syntax.</p>",
         "CreateDynamicThingGroupResponse$queryString": "<p>The dynamic thing group search query string.</p>",
+        "CreateFleetMetricRequest$queryString": "<p>The search query string.</p>",
+        "DescribeFleetMetricResponse$queryString": "<p>The search query string.</p>",
         "DescribeThingGroupResponse$queryString": "<p>The dynamic thing group search query string.</p>",
-        "GetCardinalityRequest$queryString": "<p>The search query.</p>",
-        "GetPercentilesRequest$queryString": "<p>The query string.</p>",
-        "GetStatisticsRequest$queryString": "<p>The query used to search. You can specify \"*\" for the query string to get the count of all indexed things in your AWS account.</p>",
+        "GetBucketsAggregationRequest$queryString": "<p>The search query string.</p>",
+        "GetCardinalityRequest$queryString": "<p>The search query string.</p>",
+        "GetPercentilesRequest$queryString": "<p>The search query string.</p>",
+        "GetStatisticsRequest$queryString": "<p>The query used to search. You can specify \"*\" for the query string to get the count of all indexed things in your Amazon Web Services account.</p>",
         "SearchIndexRequest$queryString": "<p>The search query string.</p>",
-        "UpdateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string to update.</p>"
+        "UpdateDynamicThingGroupRequest$queryString": "<p>The dynamic thing group search query string to update.</p>",
+        "UpdateFleetMetricRequest$queryString": "<p>The search query string.</p>"
       }
     },
     "QueryVersion": {
@@ -5669,12 +5859,16 @@
       "refs": {
         "CreateDynamicThingGroupRequest$queryVersion": "<p>The dynamic thing group query version.</p> <note> <p>Currently one query version is supported: \"2017-09-30\". If not specified, the query version defaults to this value.</p> </note>",
         "CreateDynamicThingGroupResponse$queryVersion": "<p>The dynamic thing group query version.</p>",
+        "CreateFleetMetricRequest$queryVersion": "<p>The query version.</p>",
+        "DescribeFleetMetricResponse$queryVersion": "<p>The query version.</p>",
         "DescribeThingGroupResponse$queryVersion": "<p>The dynamic thing group query version.</p>",
+        "GetBucketsAggregationRequest$queryVersion": "<p>The version of the query.</p>",
         "GetCardinalityRequest$queryVersion": "<p>The query version.</p>",
         "GetPercentilesRequest$queryVersion": "<p>The query version.</p>",
         "GetStatisticsRequest$queryVersion": "<p>The version of the query used to search.</p>",
         "SearchIndexRequest$queryVersion": "<p>The query version.</p>",
-        "UpdateDynamicThingGroupRequest$queryVersion": "<p>The dynamic thing group query version to update.</p> <note> <p>Currently one query version is supported: \"2017-09-30\". If not specified, the query version defaults to this value.</p> </note>"
+        "UpdateDynamicThingGroupRequest$queryVersion": "<p>The dynamic thing group query version to update.</p> <note> <p>Currently one query version is supported: \"2017-09-30\". If not specified, the query version defaults to this value.</p> </note>",
+        "UpdateFleetMetricRequest$queryVersion": "<p>The version of the query.</p>"
       }
     },
     "QueueUrl": {
@@ -6053,11 +6247,11 @@
         "AlertTarget$roleArn": "<p>The ARN of the role that grants permission to send alerts to the notification target.</p>",
         "AuditNotificationTarget$roleArn": "<p>The ARN of the role that grants permission to send notifications to the target.</p>",
         "CreateMitigationActionRequest$roleArn": "<p>The ARN of the IAM role that is used to apply the mitigation action.</p>",
-        "CreateOTAUpdateRequest$roleArn": "<p>The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs and AWS Code Signing resources to create an OTA update job.</p>",
+        "CreateOTAUpdateRequest$roleArn": "<p>The IAM role that grants Amazon Web Services IoT Core access to the Amazon S3, IoT jobs and Amazon Web Services Code Signing resources to create an OTA update job.</p>",
         "CreateProvisioningTemplateRequest$provisioningRoleArn": "<p>The role ARN for the role associated with the fleet provisioning template. This IoT role grants permission to provision a device.</p>",
         "CreateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
         "CreateStreamRequest$roleArn": "<p>An IAM role that allows the IoT service principal assumes to access your S3 files.</p>",
-        "DescribeAccountAuditConfigurationResponse$roleArn": "<p>The ARN of the role that grants permission to AWS IoT to access information about your devices, policies, certificates, and other items as required when performing an audit.</p> <p>On the first call to <code>UpdateAccountAuditConfiguration</code>, this parameter is required.</p>",
+        "DescribeAccountAuditConfigurationResponse$roleArn": "<p>The ARN of the role that grants permission to IoT to access information about your devices, policies, certificates, and other items as required when performing an audit.</p> <p>On the first call to <code>UpdateAccountAuditConfiguration</code>, this parameter is required.</p>",
         "DescribeMitigationActionResponse$roleArn": "<p>The ARN of the IAM role used to apply this action.</p>",
         "DescribeProvisioningTemplateResponse$provisioningRoleArn": "<p>The ARN of the role associated with the provisioning template. This IoT role grants permission to provision a device.</p>",
         "DescribeThingRegistrationTaskResponse$roleArn": "<p>The role ARN that grants access to the input file bucket.</p>",
@@ -6068,8 +6262,8 @@
         "ResourceIdentifier$iamRoleArn": "<p>The ARN of the IAM role that has overly permissive actions.</p>",
         "RoleAliasDescription$roleArn": "<p>The role ARN.</p>",
         "StartThingRegistrationTaskRequest$roleArn": "<p>The IAM role ARN that grants permission the input file.</p>",
-        "StreamInfo$roleArn": "<p>An IAM role AWS IoT assumes to access your S3 files.</p>",
-        "UpdateAccountAuditConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the role that grants permission to AWS IoT to access information about your devices, policies, certificates, and other items as required when performing an audit.</p>",
+        "StreamInfo$roleArn": "<p>An IAM role IoT assumes to access your S3 files.</p>",
+        "UpdateAccountAuditConfigurationRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the role that grants permission to IoT to access information about your devices, policies, certificates, and other items as required when performing an audit.</p>",
         "UpdateMitigationActionRequest$roleArn": "<p>The ARN of the IAM role that is used to apply the mitigation action.</p>",
         "UpdateProvisioningTemplateRequest$provisioningRoleArn": "<p>The ARN of the role associated with the provisioning template. This IoT role grants permission to provision a device.</p>",
         "UpdateRoleAliasRequest$roleArn": "<p>The role ARN.</p>",
@@ -6156,7 +6350,7 @@
       "base": null,
       "refs": {
         "TopicRule$sql": "<p>The SQL statement used to query the topic. When using a SQL query with multiple lines, be sure to escape the newline characters.</p>",
-        "TopicRulePayload$sql": "<p>The SQL statement used to query the topic. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-sql-reference.html\">AWS IoT SQL Reference</a> in the <i>AWS IoT Developer Guide</i>.</p>"
+        "TopicRulePayload$sql": "<p>The SQL statement used to query the topic. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/developerguide/iot-sql-reference.html\">IoT SQL Reference</a> in the <i>IoT Developer Guide</i>.</p>"
       }
     },
     "SalesforceAction": {
@@ -6338,7 +6532,7 @@
     "ServerCertificateArns": {
       "base": null,
       "refs": {
-        "CreateDomainConfigurationRequest$serverCertificateArns": "<p>The ARNs of the certificates that AWS IoT passes to the device during the TLS handshake. Currently you can specify only one certificate ARN. This value is not required for AWS-managed domains.</p>"
+        "CreateDomainConfigurationRequest$serverCertificateArns": "<p>The ARNs of the certificates that IoT passes to the device during the TLS handshake. Currently you can specify only one certificate ARN. This value is not required for Amazon Web Services-managed domains.</p>"
       }
     },
     "ServerCertificateStatus": {
@@ -6380,7 +6574,7 @@
     "ServiceType": {
       "base": null,
       "refs": {
-        "CreateDomainConfigurationRequest$serviceType": "<p>The type of service delivered by the endpoint.</p> <note> <p>AWS IoT Core currently supports only the <code>DATA</code> service type.</p> </note>",
+        "CreateDomainConfigurationRequest$serviceType": "<p>The type of service delivered by the endpoint.</p> <note> <p>Amazon Web Services IoT Core currently supports only the <code>DATA</code> service type.</p> </note>",
         "DescribeDomainConfigurationResponse$serviceType": "<p>The type of service delivered by the endpoint.</p>",
         "DomainConfigurationSummary$serviceType": "<p>The type of service delivered by the endpoint.</p>",
         "ListDomainConfigurationsRequest$serviceType": "<p>The type of service delivered by the endpoint.</p>"
@@ -6464,7 +6658,7 @@
     "SigningJobId": {
       "base": null,
       "refs": {
-        "CodeSigning$awsSignerJobId": "<p>The ID of the AWSSignerJob which was created to sign the file.</p>"
+        "CodeSigning$awsSignerJobId": "<p>The ID of the <code>AWSSignerJob</code> which was created to sign the file.</p>"
       }
     },
     "SigningProfileName": {
@@ -6839,6 +7033,7 @@
         "CreateDimensionRequest$tags": "<p>Metadata that can be used to manage the dimension.</p>",
         "CreateDomainConfigurationRequest$tags": "<p>Metadata which can be used to manage the domain configuration.</p> <note> <p>For URI Request parameters use format: ...key1=value1&amp;key2=value2...</p> <p>For the CLI command-line parameter use format: &amp;&amp;tags \"key1=value1&amp;key2=value2...\"</p> <p>For the cli-input-json file use format: \"tags\": \"key1=value1&amp;key2=value2...\"</p> </note>",
         "CreateDynamicThingGroupRequest$tags": "<p>Metadata which can be used to manage the dynamic thing group.</p>",
+        "CreateFleetMetricRequest$tags": "<p>Metadata, which can be used to manage the fleet metric.</p>",
         "CreateJobRequest$tags": "<p>Metadata which can be used to manage the job.</p>",
         "CreateJobTemplateRequest$tags": "<p>Metadata that can be used to manage the job template.</p>",
         "CreateMitigationActionRequest$tags": "<p>Metadata that can be used to manage the mitigation action.</p>",
@@ -7015,6 +7210,12 @@
         "UpdateProvisioningTemplateRequest$defaultVersionId": "<p>The ID of the default provisioning template version.</p>"
       }
     },
+    "TermsAggregation": {
+      "base": "<p>Performs an aggregation that will return a list of buckets. The list of buckets is a ranked list of the number of occurrences of an aggregation field value.</p>",
+      "refs": {
+        "BucketsAggregationType$termsAggregation": "<p>Performs an aggregation that will return a list of buckets. The list of buckets is a ranked list of the number of occurrences of an aggregation field value.</p>"
+      }
+    },
     "TestAuthorizationRequest": {
       "base": null,
       "refs": {
@@ -7064,13 +7265,13 @@
     "ThingConnectivity": {
       "base": "<p>The connectivity status of the thing.</p>",
       "refs": {
-        "ThingDocument$connectivity": "<p>Indicates whether the thing is connected to the AWS IoT service.</p>"
+        "ThingDocument$connectivity": "<p>Indicates whether the thing is connected to the Amazon Web Services IoT Core service.</p>"
       }
     },
     "ThingConnectivityIndexingMode": {
       "base": null,
       "refs": {
-        "ThingIndexingConfiguration$thingConnectivityIndexingMode": "<p>Thing connectivity indexing mode. Valid values are: </p> <ul> <li> <p>STATUS – Your thing index contains connectivity status. To enable thing connectivity indexing, thingIndexMode must not be set to OFF.</p> </li> <li> <p>OFF - Thing connectivity status indexing is disabled.</p> </li> </ul>"
+        "ThingIndexingConfiguration$thingConnectivityIndexingMode": "<p>Thing connectivity indexing mode. Valid values are: </p> <ul> <li> <p>STATUS – Your thing index contains connectivity status. To enable thing connectivity indexing, <i>thingIndexMode</i> must not be set to OFF.</p> </li> <li> <p>OFF - Thing connectivity status indexing is disabled.</p> </li> </ul>"
       }
     },
     "ThingDocument": {
@@ -7378,7 +7579,7 @@
         "DescribeCustomMetricResponse$lastModifiedDate": "<p> The time the custom metric was last modified in milliseconds since epoch. </p>",
         "DescribeDimensionResponse$creationDate": "<p>The date the dimension was created.</p>",
         "DescribeDimensionResponse$lastModifiedDate": "<p>The date the dimension was last modified.</p>",
-        "DescribeMitigationActionResponse$creationDate": "<p>The date and time when the mitigation action was added to your AWS account.</p>",
+        "DescribeMitigationActionResponse$creationDate": "<p>The date and time when the mitigation action was added to your Amazon Web Services accounts.</p>",
         "DescribeMitigationActionResponse$lastModifiedDate": "<p>The date and time when the mitigation action was last changed.</p>",
         "DescribeSecurityProfileResponse$creationDate": "<p>The time the security profile was created.</p>",
         "DescribeSecurityProfileResponse$lastModifiedDate": "<p>The time the security profile was last modified.</p>",
@@ -7625,7 +7826,7 @@
       }
     },
     "TransferData": {
-      "base": "<p>Data used to transfer a certificate to an AWS account.</p>",
+      "base": "<p>Data used to transfer a certificate to an Amazon Web Services account.</p>",
       "refs": {
         "CertificateDescription$transferData": "<p>The transfer data.</p>"
       }
@@ -7769,6 +7970,11 @@
       "refs": {
       }
     },
+    "UpdateFleetMetricRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
     "UpdateIndexingConfigurationRequest": {
       "base": null,
       "refs": {
@@ -7888,8 +8094,8 @@
       "base": null,
       "refs": {
         "HttpAction$url": "<p>The endpoint URL. If substitution templates are used in the URL, you must also specify a <code>confirmationUrl</code>. If this is a new destination, a new <code>TopicRuleDestination</code> is created if possible.</p>",
-        "HttpAction$confirmationUrl": "<p>The URL to which AWS IoT sends a confirmation message. The value of the confirmation URL must be a prefix of the endpoint URL. If you do not specify a confirmation URL AWS IoT uses the endpoint URL as the confirmation URL. If you use substitution templates in the confirmationUrl, you must create and enable topic rule destinations that match each possible value of the substitution template before traffic is allowed to your endpoint URL.</p>",
-        "HttpUrlDestinationConfiguration$confirmationUrl": "<p>The URL AWS IoT uses to confirm ownership of or access to the topic rule destination URL.</p>",
+        "HttpAction$confirmationUrl": "<p>The URL to which IoT sends a confirmation message. The value of the confirmation URL must be a prefix of the endpoint URL. If you do not specify a confirmation URL IoT uses the endpoint URL as the confirmation URL. If you use substitution templates in the confirmationUrl, you must create and enable topic rule destinations that match each possible value of the substitution template before traffic is allowed to your endpoint URL.</p>",
+        "HttpUrlDestinationConfiguration$confirmationUrl": "<p>The URL IoT uses to confirm ownership of or access to the topic rule destination URL.</p>",
         "HttpUrlDestinationProperties$confirmationUrl": "<p>The URL used to confirm the HTTP topic rule destination URL.</p>",
         "HttpUrlDestinationSummary$confirmationUrl": "<p>The URL used to confirm ownership of or access to the HTTP topic rule destination URL.</p>"
       }
@@ -7946,6 +8152,7 @@
       "base": null,
       "refs": {
         "DescribeBillingGroupResponse$version": "<p>The version of the billing group.</p>",
+        "DescribeFleetMetricResponse$version": "<p>The version of the fleet metric.</p>",
         "DescribeSecurityProfileResponse$version": "<p>The version of the security profile. A new version is generated whenever the security profile is updated.</p>",
         "DescribeThingGroupResponse$version": "<p>The version of the thing group.</p>",
         "DescribeThingResponse$version": "<p>The current version of the thing record in the registry.</p> <note> <p>To avoid unintentional changes to the information in the registry, you can pass the version information in the <code>expectedVersion</code> parameter of the <code>UpdateThing</code> and <code>DeleteThing</code> calls.</p> </note>",

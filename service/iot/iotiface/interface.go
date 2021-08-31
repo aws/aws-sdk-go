@@ -156,6 +156,10 @@ type IoTAPI interface {
 	CreateDynamicThingGroupWithContext(aws.Context, *iot.CreateDynamicThingGroupInput, ...request.Option) (*iot.CreateDynamicThingGroupOutput, error)
 	CreateDynamicThingGroupRequest(*iot.CreateDynamicThingGroupInput) (*request.Request, *iot.CreateDynamicThingGroupOutput)
 
+	CreateFleetMetric(*iot.CreateFleetMetricInput) (*iot.CreateFleetMetricOutput, error)
+	CreateFleetMetricWithContext(aws.Context, *iot.CreateFleetMetricInput, ...request.Option) (*iot.CreateFleetMetricOutput, error)
+	CreateFleetMetricRequest(*iot.CreateFleetMetricInput) (*request.Request, *iot.CreateFleetMetricOutput)
+
 	CreateJob(*iot.CreateJobInput) (*iot.CreateJobOutput, error)
 	CreateJobWithContext(aws.Context, *iot.CreateJobInput, ...request.Option) (*iot.CreateJobOutput, error)
 	CreateJobRequest(*iot.CreateJobInput) (*request.Request, *iot.CreateJobOutput)
@@ -271,6 +275,10 @@ type IoTAPI interface {
 	DeleteDynamicThingGroup(*iot.DeleteDynamicThingGroupInput) (*iot.DeleteDynamicThingGroupOutput, error)
 	DeleteDynamicThingGroupWithContext(aws.Context, *iot.DeleteDynamicThingGroupInput, ...request.Option) (*iot.DeleteDynamicThingGroupOutput, error)
 	DeleteDynamicThingGroupRequest(*iot.DeleteDynamicThingGroupInput) (*request.Request, *iot.DeleteDynamicThingGroupOutput)
+
+	DeleteFleetMetric(*iot.DeleteFleetMetricInput) (*iot.DeleteFleetMetricOutput, error)
+	DeleteFleetMetricWithContext(aws.Context, *iot.DeleteFleetMetricInput, ...request.Option) (*iot.DeleteFleetMetricOutput, error)
+	DeleteFleetMetricRequest(*iot.DeleteFleetMetricInput) (*request.Request, *iot.DeleteFleetMetricOutput)
 
 	DeleteJob(*iot.DeleteJobInput) (*iot.DeleteJobOutput, error)
 	DeleteJobWithContext(aws.Context, *iot.DeleteJobInput, ...request.Option) (*iot.DeleteJobOutput, error)
@@ -420,6 +428,10 @@ type IoTAPI interface {
 	DescribeEventConfigurationsWithContext(aws.Context, *iot.DescribeEventConfigurationsInput, ...request.Option) (*iot.DescribeEventConfigurationsOutput, error)
 	DescribeEventConfigurationsRequest(*iot.DescribeEventConfigurationsInput) (*request.Request, *iot.DescribeEventConfigurationsOutput)
 
+	DescribeFleetMetric(*iot.DescribeFleetMetricInput) (*iot.DescribeFleetMetricOutput, error)
+	DescribeFleetMetricWithContext(aws.Context, *iot.DescribeFleetMetricInput, ...request.Option) (*iot.DescribeFleetMetricOutput, error)
+	DescribeFleetMetricRequest(*iot.DescribeFleetMetricInput) (*request.Request, *iot.DescribeFleetMetricOutput)
+
 	DescribeIndex(*iot.DescribeIndexInput) (*iot.DescribeIndexOutput, error)
 	DescribeIndexWithContext(aws.Context, *iot.DescribeIndexInput, ...request.Option) (*iot.DescribeIndexOutput, error)
 	DescribeIndexRequest(*iot.DescribeIndexInput) (*request.Request, *iot.DescribeIndexOutput)
@@ -510,6 +522,10 @@ type IoTAPI interface {
 
 	GetBehaviorModelTrainingSummariesPages(*iot.GetBehaviorModelTrainingSummariesInput, func(*iot.GetBehaviorModelTrainingSummariesOutput, bool) bool) error
 	GetBehaviorModelTrainingSummariesPagesWithContext(aws.Context, *iot.GetBehaviorModelTrainingSummariesInput, func(*iot.GetBehaviorModelTrainingSummariesOutput, bool) bool, ...request.Option) error
+
+	GetBucketsAggregation(*iot.GetBucketsAggregationInput) (*iot.GetBucketsAggregationOutput, error)
+	GetBucketsAggregationWithContext(aws.Context, *iot.GetBucketsAggregationInput, ...request.Option) (*iot.GetBucketsAggregationOutput, error)
+	GetBucketsAggregationRequest(*iot.GetBucketsAggregationInput) (*request.Request, *iot.GetBucketsAggregationOutput)
 
 	GetCardinality(*iot.GetCardinalityInput) (*iot.GetCardinalityOutput, error)
 	GetCardinalityWithContext(aws.Context, *iot.GetCardinalityInput, ...request.Option) (*iot.GetCardinalityOutput, error)
@@ -686,6 +702,13 @@ type IoTAPI interface {
 	ListDomainConfigurationsPages(*iot.ListDomainConfigurationsInput, func(*iot.ListDomainConfigurationsOutput, bool) bool) error
 	ListDomainConfigurationsPagesWithContext(aws.Context, *iot.ListDomainConfigurationsInput, func(*iot.ListDomainConfigurationsOutput, bool) bool, ...request.Option) error
 
+	ListFleetMetrics(*iot.ListFleetMetricsInput) (*iot.ListFleetMetricsOutput, error)
+	ListFleetMetricsWithContext(aws.Context, *iot.ListFleetMetricsInput, ...request.Option) (*iot.ListFleetMetricsOutput, error)
+	ListFleetMetricsRequest(*iot.ListFleetMetricsInput) (*request.Request, *iot.ListFleetMetricsOutput)
+
+	ListFleetMetricsPages(*iot.ListFleetMetricsInput, func(*iot.ListFleetMetricsOutput, bool) bool) error
+	ListFleetMetricsPagesWithContext(aws.Context, *iot.ListFleetMetricsInput, func(*iot.ListFleetMetricsOutput, bool) bool, ...request.Option) error
+
 	ListIndices(*iot.ListIndicesInput) (*iot.ListIndicesOutput, error)
 	ListIndicesWithContext(aws.Context, *iot.ListIndicesInput, ...request.Option) (*iot.ListIndicesOutput, error)
 	ListIndicesRequest(*iot.ListIndicesInput) (*request.Request, *iot.ListIndicesOutput)
@@ -710,6 +733,9 @@ type IoTAPI interface {
 	ListJobTemplates(*iot.ListJobTemplatesInput) (*iot.ListJobTemplatesOutput, error)
 	ListJobTemplatesWithContext(aws.Context, *iot.ListJobTemplatesInput, ...request.Option) (*iot.ListJobTemplatesOutput, error)
 	ListJobTemplatesRequest(*iot.ListJobTemplatesInput) (*request.Request, *iot.ListJobTemplatesOutput)
+
+	ListJobTemplatesPages(*iot.ListJobTemplatesInput, func(*iot.ListJobTemplatesOutput, bool) bool) error
+	ListJobTemplatesPagesWithContext(aws.Context, *iot.ListJobTemplatesInput, func(*iot.ListJobTemplatesOutput, bool) bool, ...request.Option) error
 
 	ListJobs(*iot.ListJobsInput) (*iot.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *iot.ListJobsInput, ...request.Option) (*iot.ListJobsOutput, error)
@@ -1071,6 +1097,10 @@ type IoTAPI interface {
 	UpdateEventConfigurations(*iot.UpdateEventConfigurationsInput) (*iot.UpdateEventConfigurationsOutput, error)
 	UpdateEventConfigurationsWithContext(aws.Context, *iot.UpdateEventConfigurationsInput, ...request.Option) (*iot.UpdateEventConfigurationsOutput, error)
 	UpdateEventConfigurationsRequest(*iot.UpdateEventConfigurationsInput) (*request.Request, *iot.UpdateEventConfigurationsOutput)
+
+	UpdateFleetMetric(*iot.UpdateFleetMetricInput) (*iot.UpdateFleetMetricOutput, error)
+	UpdateFleetMetricWithContext(aws.Context, *iot.UpdateFleetMetricInput, ...request.Option) (*iot.UpdateFleetMetricOutput, error)
+	UpdateFleetMetricRequest(*iot.UpdateFleetMetricInput) (*request.Request, *iot.UpdateFleetMetricOutput)
 
 	UpdateIndexingConfiguration(*iot.UpdateIndexingConfigurationInput) (*iot.UpdateIndexingConfigurationOutput, error)
 	UpdateIndexingConfigurationWithContext(aws.Context, *iot.UpdateIndexingConfigurationInput, ...request.Option) (*iot.UpdateIndexingConfigurationOutput, error)

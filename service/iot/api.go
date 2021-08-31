@@ -62,6 +62,9 @@ func (c *IoT) AcceptCertificateTransferRequest(input *AcceptCertificateTransferI
 // To check for pending certificate transfers, call ListCertificates to enumerate
 // your certificates.
 //
+// Requires permission to access the AcceptCertificateTransfer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -158,6 +161,9 @@ func (c *IoT) AddThingToBillingGroupRequest(input *AddThingToBillingGroupInput) 
 //
 // Adds a thing to a billing group.
 //
+// Requires permission to access the AddThingToBillingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -243,6 +249,9 @@ func (c *IoT) AddThingToThingGroupRequest(input *AddThingToThingGroupInput) (req
 // AddThingToThingGroup API operation for AWS IoT.
 //
 // Adds a thing to a thing group.
+//
+// Requires permission to access the AddThingToThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -337,6 +346,9 @@ func (c *IoT) AssociateTargetsWithJobRequest(input *AssociateTargetsWithJobInput
 //
 //    * The total number of targets associated with a job must not exceed 100.
 //
+// Requires permission to access the AssociateTargetsWithJob (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -426,6 +438,9 @@ func (c *IoT) AttachPolicyRequest(input *AttachPolicyInput) (req *request.Reques
 //
 // Attaches the specified policy to the specified principal (certificate or
 // other credential).
+//
+// Requires permission to access the AttachPolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -528,7 +543,10 @@ func (c *IoT) AttachPrincipalPolicyRequest(input *AttachPrincipalPolicyInput) (r
 // Attaches the specified policy to the specified principal (certificate or
 // other credential).
 //
-// Note: This API is deprecated. Please use AttachPolicy instead.
+// Note: This action is deprecated. Please use AttachPolicy instead.
+//
+// Requires permission to access the AttachPrincipalPolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -631,6 +649,9 @@ func (c *IoT) AttachSecurityProfileRequest(input *AttachSecurityProfileInput) (r
 // account. Each thing group or account can have up to five security profiles
 // associated with it.
 //
+// Requires permission to access the AttachSecurityProfile (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -726,6 +747,9 @@ func (c *IoT) AttachThingPrincipalRequest(input *AttachThingPrincipalInput) (req
 // be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
 // or federated identities.
 //
+// Requires permission to access the AttachThingPrincipal (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -819,6 +843,9 @@ func (c *IoT) CancelAuditMitigationActionsTaskRequest(input *CancelAuditMitigati
 // Cancels a mitigation action task that is in progress. If the task is not
 // in progress, an InvalidRequestException occurs.
 //
+// Requires permission to access the CancelAuditMitigationActionsTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -905,6 +932,9 @@ func (c *IoT) CancelAuditTaskRequest(input *CancelAuditTaskInput) (req *request.
 //
 // Cancels an audit that is in progress. The audit can be either scheduled or
 // on demand. If the audit isn't in progress, an "InvalidRequestException" occurs.
+//
+// Requires permission to access the CancelAuditTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -994,12 +1024,15 @@ func (c *IoT) CancelCertificateTransferRequest(input *CancelCertificateTransferI
 //
 // Note Only the transfer source account can use this operation to cancel a
 // transfer. (Transfer destinations can use RejectCertificateTransfer instead.)
-// After transfer, AWS IoT returns the certificate to the source account in
-// the INACTIVE state. After the destination account has accepted the transfer,
+// After transfer, IoT returns the certificate to the source account in the
+// INACTIVE state. After the destination account has accepted the transfer,
 // the transfer cannot be cancelled.
 //
 // After a certificate transfer is cancelled, the status of the certificate
 // changes from PENDING_TRANSFER to INACTIVE.
+//
+// Requires permission to access the CancelCertificateTransfer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1097,6 +1130,9 @@ func (c *IoT) CancelDetectMitigationActionsTaskRequest(input *CancelDetectMitiga
 //
 // Cancels a Device Defender ML Detect mitigation action.
 //
+// Requires permission to access the CancelDetectMitigationActionsTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1181,6 +1217,9 @@ func (c *IoT) CancelJobRequest(input *CancelJobInput) (req *request.Request, out
 // CancelJob API operation for AWS IoT.
 //
 // Cancels a job.
+//
+// Requires permission to access the CancelJob (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1267,6 +1306,9 @@ func (c *IoT) CancelJobExecutionRequest(input *CancelJobExecutionInput) (req *re
 // CancelJobExecution API operation for AWS IoT.
 //
 // Cancels the execution of a job for a given thing.
+//
+// Requires permission to access the CancelJobExecution (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1363,6 +1405,9 @@ func (c *IoT) ClearDefaultAuthorizerRequest(input *ClearDefaultAuthorizerInput) 
 //
 // Clears the default authorizer.
 //
+// Requires permission to access the ClearDefaultAuthorizer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1454,9 +1499,12 @@ func (c *IoT) ConfirmTopicRuleDestinationRequest(input *ConfirmTopicRuleDestinat
 // ConfirmTopicRuleDestination API operation for AWS IoT.
 //
 // Confirms a topic rule destination. When you create a rule requiring a destination,
-// AWS IoT sends a confirmation message to the endpoint or base address you
-// specify. The message includes a token which you pass back when calling ConfirmTopicRuleDestination
+// IoT sends a confirmation message to the endpoint or base address you specify.
+// The message includes a token which you pass back when calling ConfirmTopicRuleDestination
 // to confirm that you own or have access to the endpoint.
+//
+// Requires permission to access the ConfirmTopicRuleDestination (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1548,6 +1596,9 @@ func (c *IoT) CreateAuditSuppressionRequest(input *CreateAuditSuppressionInput) 
 //
 // Creates a Device Defender audit suppression.
 //
+// Requires permission to access the CreateAuditSuppression (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1635,6 +1686,9 @@ func (c *IoT) CreateAuthorizerRequest(input *CreateAuthorizerInput) (req *reques
 // CreateAuthorizer API operation for AWS IoT.
 //
 // Creates an authorizer.
+//
+// Requires permission to access the CreateAuthorizer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1730,6 +1784,9 @@ func (c *IoT) CreateBillingGroupRequest(input *CreateBillingGroupInput) (req *re
 //
 // Creates a billing group.
 //
+// Requires permission to access the CreateBillingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1822,6 +1879,9 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 // Note: Reusing the same certificate signing request (CSR) results in a distinct
 // certificate.
 //
+// Requires permission to access the CreateCertificateFromCsr (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // You can create multiple certificates in a batch by creating a directory,
 // copying multiple .csr files into that directory, and then specifying that
 // directory on the command line. The following commands show how to create
@@ -1835,8 +1895,8 @@ func (c *IoT) CreateCertificateFromCsrRequest(input *CreateCertificateFromCsrInp
 // --certificate-signing-request file://my-csr-directory/{}
 //
 // This command lists all of the CSRs in my-csr-directory and pipes each CSR
-// file name to the aws iot create-certificate-from-csr AWS CLI command to create
-// a certificate for the corresponding CSR.
+// file name to the aws iot create-certificate-from-csr Amazon Web Services
+// CLI command to create a certificate for the corresponding CSR.
 //
 // The aws iot create-certificate-from-csr part of the command can also be run
 // in parallel to speed up the certificate creation process:
@@ -1945,6 +2005,9 @@ func (c *IoT) CreateCustomMetricRequest(input *CreateCustomMetricInput) (req *re
 // Use this API to define a Custom Metric published by your devices to Device
 // Defender.
 //
+// Requires permission to access the CreateCustomMetric (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2032,9 +2095,12 @@ func (c *IoT) CreateDimensionRequest(input *CreateDimensionInput) (req *request.
 // CreateDimension API operation for AWS IoT.
 //
 // Create a dimension that you can use to limit the scope of a metric used in
-// a security profile for AWS IoT Device Defender. For example, using a TOPIC_FILTER
+// a security profile for IoT Device Defender. For example, using a TOPIC_FILTER
 // dimension, you can narrow down the scope of the metric only to MQTT topics
 // whose name match the pattern specified in the dimension.
+//
+// Requires permission to access the CreateDimension (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2123,6 +2189,9 @@ func (c *IoT) CreateDomainConfigurationRequest(input *CreateDomainConfigurationI
 // CreateDomainConfiguration API operation for AWS IoT.
 //
 // Creates a domain configuration.
+//
+// Requires permission to access the CreateDomainConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2221,6 +2290,9 @@ func (c *IoT) CreateDynamicThingGroupRequest(input *CreateDynamicThingGroupInput
 //
 // Creates a dynamic thing group.
 //
+// Requires permission to access the CreateDynamicThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2271,6 +2343,115 @@ func (c *IoT) CreateDynamicThingGroupWithContext(ctx aws.Context, input *CreateD
 	return out, req.Send()
 }
 
+const opCreateFleetMetric = "CreateFleetMetric"
+
+// CreateFleetMetricRequest generates a "aws/request.Request" representing the
+// client's request for the CreateFleetMetric operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateFleetMetric for more information on using the CreateFleetMetric
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateFleetMetricRequest method.
+//    req, resp := client.CreateFleetMetricRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) CreateFleetMetricRequest(input *CreateFleetMetricInput) (req *request.Request, output *CreateFleetMetricOutput) {
+	op := &request.Operation{
+		Name:       opCreateFleetMetric,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/fleet-metric/{metricName}",
+	}
+
+	if input == nil {
+		input = &CreateFleetMetricInput{}
+	}
+
+	output = &CreateFleetMetricOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateFleetMetric API operation for AWS IoT.
+//
+// Creates a fleet metric.
+//
+// Requires permission to access the CreateFleetMetric (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation CreateFleetMetric for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * LimitExceededException
+//   A limit has been exceeded.
+//
+//   * ResourceAlreadyExistsException
+//   The resource already exists.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidQueryException
+//   The query is invalid.
+//
+//   * InvalidAggregationException
+//   The aggregation is invalid.
+//
+//   * IndexNotReadyException
+//   The index is not ready.
+//
+func (c *IoT) CreateFleetMetric(input *CreateFleetMetricInput) (*CreateFleetMetricOutput, error) {
+	req, out := c.CreateFleetMetricRequest(input)
+	return out, req.Send()
+}
+
+// CreateFleetMetricWithContext is the same as CreateFleetMetric with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateFleetMetric for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) CreateFleetMetricWithContext(ctx aws.Context, input *CreateFleetMetricInput, opts ...request.Option) (*CreateFleetMetricOutput, error) {
+	req, out := c.CreateFleetMetricRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateJob = "CreateJob"
 
 // CreateJobRequest generates a "aws/request.Request" representing the
@@ -2314,6 +2495,9 @@ func (c *IoT) CreateJobRequest(input *CreateJobInput) (req *request.Request, out
 // CreateJob API operation for AWS IoT.
 //
 // Creates a job.
+//
+// Requires permission to access the CreateJob (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2405,6 +2589,9 @@ func (c *IoT) CreateJobTemplateRequest(input *CreateJobTemplateInput) (req *requ
 // CreateJobTemplate API operation for AWS IoT.
 //
 // Creates a job template.
+//
+// Requires permission to access the CreateJobTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2499,8 +2686,11 @@ func (c *IoT) CreateKeysAndCertificateRequest(input *CreateKeysAndCertificateInp
 // issued public key. You can also call CreateKeysAndCertificate over MQTT from
 // a device, for more information, see Provisioning MQTT API (https://docs.aws.amazon.com/iot/latest/developerguide/provision-wo-cert.html#provision-mqtt-api).
 //
-// Note This is the only time AWS IoT issues the private key for this certificate,
+// Note This is the only time IoT issues the private key for this certificate,
 // so it is important to keep it in a secure location.
+//
+// Requires permission to access the CreateKeysAndCertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2593,6 +2783,9 @@ func (c *IoT) CreateMitigationActionRequest(input *CreateMitigationActionInput) 
 // names. For more information, see Mitigation actions (https://docs.aws.amazon.com/iot/latest/developerguide/device-defender-mitigation-actions.html).
 // Each mitigation action can apply only one type of change.
 //
+// Requires permission to access the CreateMitigationAction (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2679,7 +2872,10 @@ func (c *IoT) CreateOTAUpdateRequest(input *CreateOTAUpdateInput) (req *request.
 
 // CreateOTAUpdate API operation for AWS IoT.
 //
-// Creates an AWS IoT OTAUpdate on a target group of things or groups.
+// Creates an IoT OTA update on a target group of things or groups.
+//
+// Requires permission to access the CreateOTAUpdate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2776,11 +2972,14 @@ func (c *IoT) CreatePolicyRequest(input *CreatePolicyInput) (req *request.Reques
 
 // CreatePolicy API operation for AWS IoT.
 //
-// Creates an AWS IoT policy.
+// Creates an IoT policy.
 //
 // The created policy is the default version for the policy. This operation
 // creates a policy version with a version identifier of 1 and sets 1 as the
 // policy's default version.
+//
+// Requires permission to access the CreatePolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2874,14 +3073,17 @@ func (c *IoT) CreatePolicyVersionRequest(input *CreatePolicyVersionInput) (req *
 
 // CreatePolicyVersion API operation for AWS IoT.
 //
-// Creates a new version of the specified AWS IoT policy. To update a policy,
-// create a new policy version. A managed policy can have up to five versions.
-// If the policy has five versions, you must use DeletePolicyVersion to delete
-// an existing version before you create a new one.
+// Creates a new version of the specified IoT policy. To update a policy, create
+// a new policy version. A managed policy can have up to five versions. If the
+// policy has five versions, you must use DeletePolicyVersion to delete an existing
+// version before you create a new one.
 //
 // Optionally, you can set the new version as the policy's default version.
 // The default version is the operative version (that is, the version that is
 // in effect for the certificates to which the policy is attached).
+//
+// Requires permission to access the CreatePolicyVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2980,6 +3182,9 @@ func (c *IoT) CreateProvisioningClaimRequest(input *CreateProvisioningClaimInput
 //
 // Creates a provisioning claim.
 //
+// Requires permission to access the CreateProvisioningClaim (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3071,6 +3276,9 @@ func (c *IoT) CreateProvisioningTemplateRequest(input *CreateProvisioningTemplat
 //
 // Creates a fleet provisioning template.
 //
+// Requires permission to access the CreateProvisioningTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3161,6 +3369,9 @@ func (c *IoT) CreateProvisioningTemplateVersionRequest(input *CreateProvisioning
 // CreateProvisioningTemplateVersion API operation for AWS IoT.
 //
 // Creates a new version of a fleet provisioning template.
+//
+// Requires permission to access the CreateProvisioningTemplateVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3257,6 +3468,9 @@ func (c *IoT) CreateRoleAliasRequest(input *CreateRoleAliasInput) (req *request.
 //
 // Creates a role alias.
 //
+// Requires permission to access the CreateRoleAlias (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3351,6 +3565,9 @@ func (c *IoT) CreateScheduledAuditRequest(input *CreateScheduledAuditInput) (req
 //
 // Creates a scheduled audit that is run at a specified time interval.
 //
+// Requires permission to access the CreateScheduledAudit (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3439,6 +3656,9 @@ func (c *IoT) CreateSecurityProfileRequest(input *CreateSecurityProfileInput) (r
 //
 // Creates a Device Defender security profile.
 //
+// Requires permission to access the CreateSecurityProfile (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3525,6 +3745,9 @@ func (c *IoT) CreateStreamRequest(input *CreateStreamInput) (req *request.Reques
 // Creates a stream for delivering one or more large files in chunks over MQTT.
 // A stream transports data bytes in chunks or blocks packaged as MQTT messages
 // from a source like S3. You can have one or more files associated with a stream.
+//
+// Requires permission to access the CreateStream (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3629,6 +3852,9 @@ func (c *IoT) CreateThingRequest(input *CreateThingInput) (req *request.Request,
 // This is a control plane operation. See Authorization (https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html)
 // for information about authorizing control plane actions.
 //
+// Requires permission to access the CreateThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3726,6 +3952,9 @@ func (c *IoT) CreateThingGroupRequest(input *CreateThingGroupInput) (req *reques
 // This is a control plane operation. See Authorization (https://docs.aws.amazon.com/iot/latest/developerguide/iot-authorization.html)
 // for information about authorizing control plane actions.
 //
+// Requires permission to access the CreateThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3810,6 +4039,9 @@ func (c *IoT) CreateThingTypeRequest(input *CreateThingTypeInput) (req *request.
 // CreateThingType API operation for AWS IoT.
 //
 // Creates a new thing type.
+//
+// Requires permission to access the CreateThingType (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3905,6 +4137,9 @@ func (c *IoT) CreateTopicRuleRequest(input *CreateTopicRuleInput) (req *request.
 // who has permission to create rules will be able to access data processed
 // by the rule.
 //
+// Requires permission to access the CreateTopicRule (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -3998,6 +4233,9 @@ func (c *IoT) CreateTopicRuleDestinationRequest(input *CreateTopicRuleDestinatio
 // Creates a topic rule destination. The destination must be confirmed prior
 // to use.
 //
+// Requires permission to access the CreateTopicRuleDestination (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4090,6 +4328,9 @@ func (c *IoT) DeleteAccountAuditConfigurationRequest(input *DeleteAccountAuditCo
 // Any configuration data you entered is deleted and all audit checks are reset
 // to disabled.
 //
+// Requires permission to access the DeleteAccountAuditConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4176,6 +4417,9 @@ func (c *IoT) DeleteAuditSuppressionRequest(input *DeleteAuditSuppressionInput) 
 //
 // Deletes a Device Defender audit suppression.
 //
+// Requires permission to access the DeleteAuditSuppression (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4258,6 +4502,9 @@ func (c *IoT) DeleteAuthorizerRequest(input *DeleteAuthorizerInput) (req *reques
 // DeleteAuthorizer API operation for AWS IoT.
 //
 // Deletes an authorizer.
+//
+// Requires permission to access the DeleteAuthorizer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4354,6 +4601,9 @@ func (c *IoT) DeleteBillingGroupRequest(input *DeleteBillingGroupInput) (req *re
 //
 // Deletes the billing group.
 //
+// Requires permission to access the DeleteBillingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4440,6 +4690,9 @@ func (c *IoT) DeleteCACertificateRequest(input *DeleteCACertificateInput) (req *
 // DeleteCACertificate API operation for AWS IoT.
 //
 // Deletes a registered CA certificate.
+//
+// Requires permission to access the DeleteCACertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4538,8 +4791,11 @@ func (c *IoT) DeleteCertificateRequest(input *DeleteCertificateInput) (req *requ
 //
 // A certificate cannot be deleted if it has a policy or IoT thing attached
 // to it or if its status is set to ACTIVE. To delete a certificate, first use
-// the DetachPrincipalPolicy API to detach all policies. Next, use the UpdateCertificate
-// API to set the certificate to the INACTIVE status.
+// the DetachPolicy action to detach all policies. Next, use the UpdateCertificate
+// action to set the certificate to the INACTIVE status.
+//
+// Requires permission to access the DeleteCertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4637,13 +4893,15 @@ func (c *IoT) DeleteCustomMetricRequest(input *DeleteCustomMetricInput) (req *re
 
 // DeleteCustomMetric API operation for AWS IoT.
 //
+// Deletes a Device Defender detect custom metric.
+//
+// Requires permission to access the DeleteCustomMetric (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Before you can delete a custom metric, you must first remove the custom metric
 // from all security profiles it's a part of. The security profile associated
 // with the custom metric can be found using the ListSecurityProfiles (https://docs.aws.amazon.com/iot/latest/apireference/API_ListSecurityProfiles.html)
 // API with metricName set to your custom metric name.
-//
-// Deletes a Device Defender detect custom metric.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4726,7 +4984,10 @@ func (c *IoT) DeleteDimensionRequest(input *DeleteDimensionInput) (req *request.
 
 // DeleteDimension API operation for AWS IoT.
 //
-// Removes the specified dimension from your AWS account.
+// Removes the specified dimension from your Amazon Web Services accounts.
+//
+// Requires permission to access the DeleteDimension (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4810,6 +5071,9 @@ func (c *IoT) DeleteDomainConfigurationRequest(input *DeleteDomainConfigurationI
 // DeleteDomainConfiguration API operation for AWS IoT.
 //
 // Deletes the specified domain configuration.
+//
+// Requires permission to access the DeleteDomainConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4903,6 +5167,9 @@ func (c *IoT) DeleteDynamicThingGroupRequest(input *DeleteDynamicThingGroupInput
 //
 // Deletes a dynamic thing group.
 //
+// Requires permission to access the DeleteDynamicThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -4940,6 +5207,103 @@ func (c *IoT) DeleteDynamicThingGroup(input *DeleteDynamicThingGroupInput) (*Del
 // for more information on using Contexts.
 func (c *IoT) DeleteDynamicThingGroupWithContext(ctx aws.Context, input *DeleteDynamicThingGroupInput, opts ...request.Option) (*DeleteDynamicThingGroupOutput, error) {
 	req, out := c.DeleteDynamicThingGroupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteFleetMetric = "DeleteFleetMetric"
+
+// DeleteFleetMetricRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteFleetMetric operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteFleetMetric for more information on using the DeleteFleetMetric
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteFleetMetricRequest method.
+//    req, resp := client.DeleteFleetMetricRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DeleteFleetMetricRequest(input *DeleteFleetMetricInput) (req *request.Request, output *DeleteFleetMetricOutput) {
+	op := &request.Operation{
+		Name:       opDeleteFleetMetric,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/fleet-metric/{metricName}",
+	}
+
+	if input == nil {
+		input = &DeleteFleetMetricInput{}
+	}
+
+	output = &DeleteFleetMetricOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteFleetMetric API operation for AWS IoT.
+//
+// Deletes the specified fleet metric. Returns successfully with no error if
+// the deletion is successful or you specify a fleet metric that doesn't exist.
+//
+// Requires permission to access the DeleteFleetMetric (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DeleteFleetMetric for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * VersionConflictException
+//   An exception thrown when the version of an entity specified with the expectedVersion
+//   parameter does not match the latest version in the system.
+//
+func (c *IoT) DeleteFleetMetric(input *DeleteFleetMetricInput) (*DeleteFleetMetricOutput, error) {
+	req, out := c.DeleteFleetMetricRequest(input)
+	return out, req.Send()
+}
+
+// DeleteFleetMetricWithContext is the same as DeleteFleetMetric with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteFleetMetric for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DeleteFleetMetricWithContext(ctx aws.Context, input *DeleteFleetMetricInput, opts ...request.Option) (*DeleteFleetMetricOutput, error) {
+	req, out := c.DeleteFleetMetricRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -4998,6 +5362,9 @@ func (c *IoT) DeleteJobRequest(input *DeleteJobInput) (req *request.Request, out
 //
 // Only 10 jobs may have status "DELETION_IN_PROGRESS" at the same time, or
 // a LimitExceededException will occur.
+//
+// Requires permission to access the DeleteJob (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5092,6 +5459,9 @@ func (c *IoT) DeleteJobExecutionRequest(input *DeleteJobExecutionInput) (req *re
 // DeleteJobExecution API operation for AWS IoT.
 //
 // Deletes a job execution.
+//
+// Requires permission to access the DeleteJobExecution (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5268,7 +5638,10 @@ func (c *IoT) DeleteMitigationActionRequest(input *DeleteMitigationActionInput) 
 
 // DeleteMitigationAction API operation for AWS IoT.
 //
-// Deletes a defined mitigation action from your AWS account.
+// Deletes a defined mitigation action from your Amazon Web Services accounts.
+//
+// Requires permission to access the DeleteMitigationAction (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5352,6 +5725,9 @@ func (c *IoT) DeleteOTAUpdateRequest(input *DeleteOTAUpdateInput) (req *request.
 // DeleteOTAUpdate API operation for AWS IoT.
 //
 // Delete an OTA update.
+//
+// Requires permission to access the DeleteOTAUpdate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5452,12 +5828,19 @@ func (c *IoT) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Reques
 // A policy cannot be deleted if it has non-default versions or it is attached
 // to any certificate.
 //
-// To delete a policy, use the DeletePolicyVersion API to delete all non-default
-// versions of the policy; use the DetachPrincipalPolicy API to detach the policy
-// from any certificate; and then use the DeletePolicy API to delete the policy.
+// To delete a policy, use the DeletePolicyVersion action to delete all non-default
+// versions of the policy; use the DetachPolicy action to detach the policy
+// from any certificate; and then use the DeletePolicy action to delete the
+// policy.
 //
 // When a policy is deleted using DeletePolicy, its default version is deleted
 // with it.
+//
+// Because of the distributed nature of Amazon Web Services, it can take up
+// to five minutes after a policy is detached before it's ready to be deleted.
+//
+// Requires permission to access the DeletePolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5553,9 +5936,12 @@ func (c *IoT) DeletePolicyVersionRequest(input *DeletePolicyVersionInput) (req *
 // DeletePolicyVersion API operation for AWS IoT.
 //
 // Deletes the specified version of the specified policy. You cannot delete
-// the default version of a policy using this API. To delete the default version
-// of a policy, use DeletePolicy. To find out which version of a policy is marked
-// as the default version, use ListPolicyVersions.
+// the default version of a policy using this action. To delete the default
+// version of a policy, use DeletePolicy. To find out which version of a policy
+// is marked as the default version, use ListPolicyVersions.
+//
+// Requires permission to access the DeletePolicyVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5651,6 +6037,9 @@ func (c *IoT) DeleteProvisioningTemplateRequest(input *DeleteProvisioningTemplat
 // DeleteProvisioningTemplate API operation for AWS IoT.
 //
 // Deletes a fleet provisioning template.
+//
+// Requires permission to access the DeleteProvisioningTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5748,6 +6137,9 @@ func (c *IoT) DeleteProvisioningTemplateVersionRequest(input *DeleteProvisioning
 //
 // Deletes a fleet provisioning template version.
 //
+// Requires permission to access the DeleteProvisioningTemplateVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5844,6 +6236,9 @@ func (c *IoT) DeleteRegistrationCodeRequest(input *DeleteRegistrationCodeInput) 
 //
 // Deletes a CA certificate registration code.
 //
+// Requires permission to access the DeleteRegistrationCode (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5932,6 +6327,9 @@ func (c *IoT) DeleteRoleAliasRequest(input *DeleteRoleAliasInput) (req *request.
 // DeleteRoleAlias API operation for AWS IoT.
 //
 // Deletes a role alias
+//
+// Requires permission to access the DeleteRoleAlias (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6028,6 +6426,9 @@ func (c *IoT) DeleteScheduledAuditRequest(input *DeleteScheduledAuditInput) (req
 //
 // Deletes a scheduled audit.
 //
+// Requires permission to access the DeleteScheduledAudit (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6113,6 +6514,9 @@ func (c *IoT) DeleteSecurityProfileRequest(input *DeleteSecurityProfileInput) (r
 // DeleteSecurityProfile API operation for AWS IoT.
 //
 // Deletes a Device Defender security profile.
+//
+// Requires permission to access the DeleteSecurityProfile (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6200,6 +6604,9 @@ func (c *IoT) DeleteStreamRequest(input *DeleteStreamInput) (req *request.Reques
 // DeleteStream API operation for AWS IoT.
 //
 // Deletes a stream.
+//
+// Requires permission to access the DeleteStream (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6297,6 +6704,9 @@ func (c *IoT) DeleteThingRequest(input *DeleteThingInput) (req *request.Request,
 // Deletes the specified thing. Returns successfully with no error if the deletion
 // is successful or you specify a thing that doesn't exist.
 //
+// Requires permission to access the DeleteThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6393,6 +6803,9 @@ func (c *IoT) DeleteThingGroupRequest(input *DeleteThingGroupInput) (req *reques
 //
 // Deletes a thing group.
 //
+// Requires permission to access the DeleteThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6483,6 +6896,9 @@ func (c *IoT) DeleteThingTypeRequest(input *DeleteThingTypeInput) (req *request.
 // by calling DeprecateThingType, then remove any associated things by calling
 // UpdateThing to change the thing type on any associated thing, and finally
 // use DeleteThingType to delete the thing type.
+//
+// Requires permission to access the DeleteThingType (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6576,6 +6992,9 @@ func (c *IoT) DeleteTopicRuleRequest(input *DeleteTopicRuleInput) (req *request.
 //
 // Deletes the rule.
 //
+// Requires permission to access the DeleteTopicRule (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6665,6 +7084,9 @@ func (c *IoT) DeleteTopicRuleDestinationRequest(input *DeleteTopicRuleDestinatio
 // DeleteTopicRuleDestination API operation for AWS IoT.
 //
 // Deletes a topic rule destination.
+//
+// Requires permission to access the DeleteTopicRuleDestination (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6756,6 +7178,9 @@ func (c *IoT) DeleteV2LoggingLevelRequest(input *DeleteV2LoggingLevelInput) (req
 //
 // Deletes a logging level.
 //
+// Requires permission to access the DeleteV2LoggingLevel (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6839,6 +7264,9 @@ func (c *IoT) DeprecateThingTypeRequest(input *DeprecateThingTypeInput) (req *re
 //
 // Deprecates a thing type. You can not associate new things with deprecated
 // thing type.
+//
+// Requires permission to access the DeprecateThingType (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6933,6 +7361,9 @@ func (c *IoT) DescribeAccountAuditConfigurationRequest(input *DescribeAccountAud
 // Settings include how audit notifications are sent and which audit checks
 // are enabled or disabled.
 //
+// Requires permission to access the DescribeAccountAuditConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7013,6 +7444,9 @@ func (c *IoT) DescribeAuditFindingRequest(input *DescribeAuditFindingInput) (req
 // Gets information about a single audit finding. Properties include the reason
 // for noncompliance, the severity of the issue, and the start time when the
 // audit that returned the finding.
+//
+// Requires permission to access the DescribeAuditFinding (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7272,6 +7706,9 @@ func (c *IoT) DescribeAuditTaskRequest(input *DescribeAuditTaskInput) (req *requ
 //
 // Gets information about a Device Defender audit.
 //
+// Requires permission to access the DescribeAuditTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7356,6 +7793,9 @@ func (c *IoT) DescribeAuthorizerRequest(input *DescribeAuthorizerInput) (req *re
 // DescribeAuthorizer API operation for AWS IoT.
 //
 // Describes an authorizer.
+//
+// Requires permission to access the DescribeAuthorizer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7448,6 +7888,9 @@ func (c *IoT) DescribeBillingGroupRequest(input *DescribeBillingGroupInput) (req
 //
 // Returns information about a billing group.
 //
+// Requires permission to access the DescribeBillingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7532,6 +7975,9 @@ func (c *IoT) DescribeCACertificateRequest(input *DescribeCACertificateInput) (r
 // DescribeCACertificate API operation for AWS IoT.
 //
 // Describes a registered CA certificate.
+//
+// Requires permission to access the DescribeCACertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7624,6 +8070,9 @@ func (c *IoT) DescribeCertificateRequest(input *DescribeCertificateInput) (req *
 //
 // Gets information about the specified certificate.
 //
+// Requires permission to access the DescribeCertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7715,6 +8164,9 @@ func (c *IoT) DescribeCustomMetricRequest(input *DescribeCustomMetricInput) (req
 //
 // Gets information about a Device Defender detect custom metric.
 //
+// Requires permission to access the DescribeCustomMetric (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7799,6 +8251,9 @@ func (c *IoT) DescribeDefaultAuthorizerRequest(input *DescribeDefaultAuthorizerI
 // DescribeDefaultAuthorizer API operation for AWS IoT.
 //
 // Describes the default authorizer.
+//
+// Requires permission to access the DescribeDefaultAuthorizer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -7891,6 +8346,9 @@ func (c *IoT) DescribeDetectMitigationActionsTaskRequest(input *DescribeDetectMi
 //
 // Gets information about a Device Defender ML Detect mitigation action.
 //
+// Requires permission to access the DescribeDetectMitigationActionsTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7974,7 +8432,11 @@ func (c *IoT) DescribeDimensionRequest(input *DescribeDimensionInput) (req *requ
 
 // DescribeDimension API operation for AWS IoT.
 //
-// Provides details about a dimension that is defined in your AWS account.
+// Provides details about a dimension that is defined in your Amazon Web Services
+// accounts.
+//
+// Requires permission to access the DescribeDimension (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8060,6 +8522,9 @@ func (c *IoT) DescribeDomainConfigurationRequest(input *DescribeDomainConfigurat
 // DescribeDomainConfiguration API operation for AWS IoT.
 //
 // Gets summary information about a domain configuration.
+//
+// Requires permission to access the DescribeDomainConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8150,7 +8615,11 @@ func (c *IoT) DescribeEndpointRequest(input *DescribeEndpointInput) (req *reques
 
 // DescribeEndpoint API operation for AWS IoT.
 //
-// Returns a unique endpoint specific to the AWS account making the call.
+// Returns a unique endpoint specific to the Amazon Web Services account making
+// the call.
+//
+// Requires permission to access the DescribeEndpoint (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8237,6 +8706,9 @@ func (c *IoT) DescribeEventConfigurationsRequest(input *DescribeEventConfigurati
 //
 // Describes event configurations.
 //
+// Requires permission to access the DescribeEventConfigurations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8267,6 +8739,100 @@ func (c *IoT) DescribeEventConfigurations(input *DescribeEventConfigurationsInpu
 // for more information on using Contexts.
 func (c *IoT) DescribeEventConfigurationsWithContext(ctx aws.Context, input *DescribeEventConfigurationsInput, opts ...request.Option) (*DescribeEventConfigurationsOutput, error) {
 	req, out := c.DescribeEventConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeFleetMetric = "DescribeFleetMetric"
+
+// DescribeFleetMetricRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeFleetMetric operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeFleetMetric for more information on using the DescribeFleetMetric
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeFleetMetricRequest method.
+//    req, resp := client.DescribeFleetMetricRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) DescribeFleetMetricRequest(input *DescribeFleetMetricInput) (req *request.Request, output *DescribeFleetMetricOutput) {
+	op := &request.Operation{
+		Name:       opDescribeFleetMetric,
+		HTTPMethod: "GET",
+		HTTPPath:   "/fleet-metric/{metricName}",
+	}
+
+	if input == nil {
+		input = &DescribeFleetMetricInput{}
+	}
+
+	output = &DescribeFleetMetricOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeFleetMetric API operation for AWS IoT.
+//
+// Gets information about the specified fleet metric.
+//
+// Requires permission to access the DescribeFleetMetric (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation DescribeFleetMetric for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+func (c *IoT) DescribeFleetMetric(input *DescribeFleetMetricInput) (*DescribeFleetMetricOutput, error) {
+	req, out := c.DescribeFleetMetricRequest(input)
+	return out, req.Send()
+}
+
+// DescribeFleetMetricWithContext is the same as DescribeFleetMetric with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeFleetMetric for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) DescribeFleetMetricWithContext(ctx aws.Context, input *DescribeFleetMetricInput, opts ...request.Option) (*DescribeFleetMetricOutput, error) {
+	req, out := c.DescribeFleetMetricRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8315,6 +8881,9 @@ func (c *IoT) DescribeIndexRequest(input *DescribeIndexInput) (req *request.Requ
 // DescribeIndex API operation for AWS IoT.
 //
 // Describes a search index.
+//
+// Requires permission to access the DescribeIndex (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8407,6 +8976,9 @@ func (c *IoT) DescribeJobRequest(input *DescribeJobInput) (req *request.Request,
 //
 // Describes a job.
 //
+// Requires permission to access the DescribeJob (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8491,6 +9063,9 @@ func (c *IoT) DescribeJobExecutionRequest(input *DescribeJobExecutionInput) (req
 // DescribeJobExecution API operation for AWS IoT.
 //
 // Describes a job execution.
+//
+// Requires permission to access the DescribeJobExecution (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8662,6 +9237,9 @@ func (c *IoT) DescribeMitigationActionRequest(input *DescribeMitigationActionInp
 //
 // Gets information about a mitigation action.
 //
+// Requires permission to access the DescribeMitigationAction (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8746,6 +9324,9 @@ func (c *IoT) DescribeProvisioningTemplateRequest(input *DescribeProvisioningTem
 // DescribeProvisioningTemplate API operation for AWS IoT.
 //
 // Returns information about a fleet provisioning template.
+//
+// Requires permission to access the DescribeProvisioningTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8835,6 +9416,9 @@ func (c *IoT) DescribeProvisioningTemplateVersionRequest(input *DescribeProvisio
 //
 // Returns information about a fleet provisioning template version.
 //
+// Requires permission to access the DescribeProvisioningTemplateVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -8922,6 +9506,9 @@ func (c *IoT) DescribeRoleAliasRequest(input *DescribeRoleAliasInput) (req *requ
 // DescribeRoleAlias API operation for AWS IoT.
 //
 // Describes a role alias.
+//
+// Requires permission to access the DescribeRoleAlias (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9014,6 +9601,9 @@ func (c *IoT) DescribeScheduledAuditRequest(input *DescribeScheduledAuditInput) 
 //
 // Gets information about a scheduled audit.
 //
+// Requires permission to access the DescribeScheduledAudit (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9099,6 +9689,9 @@ func (c *IoT) DescribeSecurityProfileRequest(input *DescribeSecurityProfileInput
 //
 // Gets information about a Device Defender security profile.
 //
+// Requires permission to access the DescribeSecurityProfile (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9183,6 +9776,9 @@ func (c *IoT) DescribeStreamRequest(input *DescribeStreamInput) (req *request.Re
 // DescribeStream API operation for AWS IoT.
 //
 // Gets information about a stream.
+//
+// Requires permission to access the DescribeStream (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9275,6 +9871,9 @@ func (c *IoT) DescribeThingRequest(input *DescribeThingInput) (req *request.Requ
 //
 // Gets information about the specified thing.
 //
+// Requires permission to access the DescribeThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9366,6 +9965,9 @@ func (c *IoT) DescribeThingGroupRequest(input *DescribeThingGroupInput) (req *re
 //
 // Describe a thing group.
 //
+// Requires permission to access the DescribeThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9450,6 +10052,9 @@ func (c *IoT) DescribeThingRegistrationTaskRequest(input *DescribeThingRegistrat
 // DescribeThingRegistrationTask API operation for AWS IoT.
 //
 // Describes a bulk thing provisioning task.
+//
+// Requires permission to access the DescribeThingRegistrationTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9538,6 +10143,9 @@ func (c *IoT) DescribeThingTypeRequest(input *DescribeThingTypeInput) (req *requ
 // DescribeThingType API operation for AWS IoT.
 //
 // Gets information about the specified thing type.
+//
+// Requires permission to access the DescribeThingType (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9630,6 +10238,12 @@ func (c *IoT) DetachPolicyRequest(input *DetachPolicyInput) (req *request.Reques
 // DetachPolicy API operation for AWS IoT.
 //
 // Detaches a policy from the specified target.
+//
+// Because of the distributed nature of Amazon Web Services, it can take up
+// to five minutes after a policy is detached before it's ready to be deleted.
+//
+// Requires permission to access the DetachPolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9728,7 +10342,10 @@ func (c *IoT) DetachPrincipalPolicyRequest(input *DetachPrincipalPolicyInput) (r
 //
 // Removes the specified policy from the specified certificate.
 //
-// Note: This API is deprecated. Please use DetachPolicy instead.
+// This action is deprecated. Please use DetachPolicy instead.
+//
+// Requires permission to access the DetachPrincipalPolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -9827,6 +10444,9 @@ func (c *IoT) DetachSecurityProfileRequest(input *DetachSecurityProfileInput) (r
 // Disassociates a Device Defender security profile from a thing group or from
 // this account.
 //
+// Requires permission to access the DetachSecurityProfile (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -9917,6 +10537,9 @@ func (c *IoT) DetachThingPrincipalRequest(input *DetachThingPrincipalInput) (req
 //
 // This call is asynchronous. It might take several seconds for the detachment
 // to propagate.
+//
+// Requires permission to access the DetachThingPrincipal (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10010,6 +10633,9 @@ func (c *IoT) DisableTopicRuleRequest(input *DisableTopicRuleInput) (req *reques
 //
 // Disables the rule.
 //
+// Requires permission to access the DisableTopicRule (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10099,6 +10725,9 @@ func (c *IoT) EnableTopicRuleRequest(input *EnableTopicRuleInput) (req *request.
 // EnableTopicRule API operation for AWS IoT.
 //
 // Enables the rule.
+//
+// Requires permission to access the EnableTopicRule (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10195,6 +10824,9 @@ func (c *IoT) GetBehaviorModelTrainingSummariesRequest(input *GetBehaviorModelTr
 //
 // Returns a Device Defender's ML Detect Security Profile training model's status.
 //
+// Requires permission to access the GetBehaviorModelTrainingSummaries (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10288,6 +10920,109 @@ func (c *IoT) GetBehaviorModelTrainingSummariesPagesWithContext(ctx aws.Context,
 	return p.Err()
 }
 
+const opGetBucketsAggregation = "GetBucketsAggregation"
+
+// GetBucketsAggregationRequest generates a "aws/request.Request" representing the
+// client's request for the GetBucketsAggregation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetBucketsAggregation for more information on using the GetBucketsAggregation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetBucketsAggregationRequest method.
+//    req, resp := client.GetBucketsAggregationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) GetBucketsAggregationRequest(input *GetBucketsAggregationInput) (req *request.Request, output *GetBucketsAggregationOutput) {
+	op := &request.Operation{
+		Name:       opGetBucketsAggregation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/indices/buckets",
+	}
+
+	if input == nil {
+		input = &GetBucketsAggregationInput{}
+	}
+
+	output = &GetBucketsAggregationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetBucketsAggregation API operation for AWS IoT.
+//
+// Aggregates on indexed data with search queries pertaining to particular fields.
+//
+// Requires permission to access the GetBucketsAggregation (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation GetBucketsAggregation for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidQueryException
+//   The query is invalid.
+//
+//   * InvalidAggregationException
+//   The aggregation is invalid.
+//
+//   * IndexNotReadyException
+//   The index is not ready.
+//
+func (c *IoT) GetBucketsAggregation(input *GetBucketsAggregationInput) (*GetBucketsAggregationOutput, error) {
+	req, out := c.GetBucketsAggregationRequest(input)
+	return out, req.Send()
+}
+
+// GetBucketsAggregationWithContext is the same as GetBucketsAggregation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetBucketsAggregation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) GetBucketsAggregationWithContext(ctx aws.Context, input *GetBucketsAggregationInput, opts ...request.Option) (*GetBucketsAggregationOutput, error) {
+	req, out := c.GetBucketsAggregationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetCardinality = "GetCardinality"
 
 // GetCardinalityRequest generates a "aws/request.Request" representing the
@@ -10331,6 +11066,9 @@ func (c *IoT) GetCardinalityRequest(input *GetCardinalityInput) (req *request.Re
 // GetCardinality API operation for AWS IoT.
 //
 // Returns the approximate count of unique values that match the query.
+//
+// Requires permission to access the GetCardinality (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10431,7 +11169,10 @@ func (c *IoT) GetEffectivePoliciesRequest(input *GetEffectivePoliciesInput) (req
 // GetEffectivePolicies API operation for AWS IoT.
 //
 // Gets a list of the policies that have an effect on the authorization behavior
-// of the specified device when it connects to the AWS IoT device gateway.
+// of the specified device when it connects to the IoT device gateway.
+//
+// Requires permission to access the GetEffectivePolicies (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10527,6 +11268,9 @@ func (c *IoT) GetIndexingConfigurationRequest(input *GetIndexingConfigurationInp
 //
 // Gets the indexing configuration.
 //
+// Requires permission to access the GetIndexingConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10615,6 +11359,9 @@ func (c *IoT) GetJobDocumentRequest(input *GetJobDocumentInput) (req *request.Re
 //
 // Gets a job document.
 //
+// Requires permission to access the GetJobDocument (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10702,6 +11449,9 @@ func (c *IoT) GetLoggingOptionsRequest(input *GetLoggingOptionsInput) (req *requ
 //
 // NOTE: use of this command is not recommended. Use GetV2LoggingOptions instead.
 //
+// Requires permission to access the GetLoggingOptions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -10783,6 +11533,9 @@ func (c *IoT) GetOTAUpdateRequest(input *GetOTAUpdateInput) (req *request.Reques
 // GetOTAUpdate API operation for AWS IoT.
 //
 // Gets an OTA update.
+//
+// Requires permission to access the GetOTAUpdate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10883,6 +11636,9 @@ func (c *IoT) GetPercentilesRequest(input *GetPercentilesInput) (req *request.Re
 // five percent of the values that match the query, and so on. The result is
 // an approximation, the more values that match the query, the more accurate
 // the percentile values.
+//
+// Requires permission to access the GetPercentiles (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -10985,6 +11741,9 @@ func (c *IoT) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, out
 // Gets information about the specified policy with the policy document of the
 // default version.
 //
+// Requires permission to access the GetPolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11076,6 +11835,9 @@ func (c *IoT) GetPolicyVersionRequest(input *GetPolicyVersionInput) (req *reques
 //
 // Gets information about the specified policy version.
 //
+// Requires permission to access the GetPolicyVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11165,7 +11927,10 @@ func (c *IoT) GetRegistrationCodeRequest(input *GetRegistrationCodeInput) (req *
 
 // GetRegistrationCode API operation for AWS IoT.
 //
-// Gets a registration code used to register a CA certificate with AWS IoT.
+// Gets a registration code used to register a CA certificate with IoT.
+//
+// Requires permission to access the GetRegistrationCode (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11256,6 +12021,9 @@ func (c *IoT) GetStatisticsRequest(input *GetStatisticsInput) (req *request.Requ
 // Returns the count, average, sum, minimum, maximum, sum of squares, variance,
 // and standard deviation for the specified aggregated field. If the aggregation
 // field is of type String, only the count statistic is returned.
+//
+// Requires permission to access the GetStatistics (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11357,6 +12125,9 @@ func (c *IoT) GetTopicRuleRequest(input *GetTopicRuleInput) (req *request.Reques
 //
 // Gets information about the rule.
 //
+// Requires permission to access the GetTopicRule (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11442,6 +12213,9 @@ func (c *IoT) GetTopicRuleDestinationRequest(input *GetTopicRuleDestinationInput
 //
 // Gets information about a topic rule destination.
 //
+// Requires permission to access the GetTopicRuleDestination (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -11526,6 +12300,9 @@ func (c *IoT) GetV2LoggingOptionsRequest(input *GetV2LoggingOptionsInput) (req *
 // GetV2LoggingOptions API operation for AWS IoT.
 //
 // Gets the fine grained logging options.
+//
+// Requires permission to access the GetV2LoggingOptions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11614,6 +12391,9 @@ func (c *IoT) ListActiveViolationsRequest(input *ListActiveViolationsInput) (req
 // ListActiveViolations API operation for AWS IoT.
 //
 // Lists the active violations for a given Device Defender security profile.
+//
+// Requires permission to access the ListActiveViolations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11757,6 +12537,9 @@ func (c *IoT) ListAttachedPoliciesRequest(input *ListAttachedPoliciesInput) (req
 // ListAttachedPolicies API operation for AWS IoT.
 //
 // Lists the policies attached to the specified thing group.
+//
+// Requires permission to access the ListAttachedPolicies (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11911,6 +12694,9 @@ func (c *IoT) ListAuditFindingsRequest(input *ListAuditFindingsInput) (req *requ
 // Lists the findings (results) of a Device Defender audit or of the audits
 // performed during a specified time period. (Findings are retained for 90 days.)
 //
+// Requires permission to access the ListAuditFindings (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12050,6 +12836,9 @@ func (c *IoT) ListAuditMitigationActionsExecutionsRequest(input *ListAuditMitiga
 // ListAuditMitigationActionsExecutions API operation for AWS IoT.
 //
 // Gets the status of audit mitigation action tasks that were executed.
+//
+// Requires permission to access the ListAuditMitigationActionsExecutions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12191,6 +12980,9 @@ func (c *IoT) ListAuditMitigationActionsTasksRequest(input *ListAuditMitigationA
 //
 // Gets a list of audit mitigation action tasks that match the specified filters.
 //
+// Requires permission to access the ListAuditMitigationActionsTasks (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12330,6 +13122,9 @@ func (c *IoT) ListAuditSuppressionsRequest(input *ListAuditSuppressionsInput) (r
 // ListAuditSuppressions API operation for AWS IoT.
 //
 // Lists your Device Defender audit listings.
+//
+// Requires permission to access the ListAuditSuppressions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12472,6 +13267,9 @@ func (c *IoT) ListAuditTasksRequest(input *ListAuditTasksInput) (req *request.Re
 // Lists the Device Defender audits that have been performed during a given
 // time period.
 //
+// Requires permission to access the ListAuditTasks (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12611,6 +13409,9 @@ func (c *IoT) ListAuthorizersRequest(input *ListAuthorizersInput) (req *request.
 // ListAuthorizers API operation for AWS IoT.
 //
 // Lists the authorizers registered in your account.
+//
+// Requires permission to access the ListAuthorizers (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -12758,6 +13559,9 @@ func (c *IoT) ListBillingGroupsRequest(input *ListBillingGroupsInput) (req *requ
 //
 // Lists the billing groups you have created.
 //
+// Requires permission to access the ListBillingGroups (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -12899,10 +13703,13 @@ func (c *IoT) ListCACertificatesRequest(input *ListCACertificatesInput) (req *re
 
 // ListCACertificates API operation for AWS IoT.
 //
-// Lists the CA certificates registered for your AWS account.
+// Lists the CA certificates registered for your Amazon Web Services account.
 //
 // The results are paginated with a default page size of 25. You can use the
 // returned marker to retrieve additional results.
+//
+// Requires permission to access the ListCACertificates (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13048,10 +13855,13 @@ func (c *IoT) ListCertificatesRequest(input *ListCertificatesInput) (req *reques
 
 // ListCertificates API operation for AWS IoT.
 //
-// Lists the certificates registered in your AWS account.
+// Lists the certificates registered in your Amazon Web Services account.
 //
 // The results are paginated with a default page size of 25. You can use the
 // returned marker to retrieve additional results.
+//
+// Requires permission to access the ListCertificates (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13199,6 +14009,9 @@ func (c *IoT) ListCertificatesByCARequest(input *ListCertificatesByCAInput) (req
 //
 // List the device certificates signed by the specified CA certificate.
 //
+// Requires permission to access the ListCertificatesByCA (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -13345,6 +14158,9 @@ func (c *IoT) ListCustomMetricsRequest(input *ListCustomMetricsInput) (req *requ
 //
 // Lists your Device Defender detect custom metrics.
 //
+// Requires permission to access the ListCustomMetrics (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -13486,6 +14302,9 @@ func (c *IoT) ListDetectMitigationActionsExecutionsRequest(input *ListDetectMiti
 // Lists mitigation actions executions for a Device Defender ML Detect Security
 // Profile.
 //
+// Requires permission to access the ListDetectMitigationActionsExecutions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -13626,6 +14445,9 @@ func (c *IoT) ListDetectMitigationActionsTasksRequest(input *ListDetectMitigatio
 //
 // List of Device Defender ML Detect mitigation actions tasks.
 //
+// Requires permission to access the ListDetectMitigationActionsTasks (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -13764,7 +14586,11 @@ func (c *IoT) ListDimensionsRequest(input *ListDimensionsInput) (req *request.Re
 
 // ListDimensions API operation for AWS IoT.
 //
-// List the set of dimensions that are defined for your AWS account.
+// List the set of dimensions that are defined for your Amazon Web Services
+// accounts.
+//
+// Requires permission to access the ListDimensions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -13907,6 +14733,9 @@ func (c *IoT) ListDomainConfigurationsRequest(input *ListDomainConfigurationsInp
 // Gets a list of domain configurations for the user. This list is sorted alphabetically
 // by domain configuration name.
 //
+// Requires permission to access the ListDomainConfigurations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14003,6 +14832,155 @@ func (c *IoT) ListDomainConfigurationsPagesWithContext(ctx aws.Context, input *L
 	return p.Err()
 }
 
+const opListFleetMetrics = "ListFleetMetrics"
+
+// ListFleetMetricsRequest generates a "aws/request.Request" representing the
+// client's request for the ListFleetMetrics operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListFleetMetrics for more information on using the ListFleetMetrics
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListFleetMetricsRequest method.
+//    req, resp := client.ListFleetMetricsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) ListFleetMetricsRequest(input *ListFleetMetricsInput) (req *request.Request, output *ListFleetMetricsOutput) {
+	op := &request.Operation{
+		Name:       opListFleetMetrics,
+		HTTPMethod: "GET",
+		HTTPPath:   "/fleet-metrics",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListFleetMetricsInput{}
+	}
+
+	output = &ListFleetMetricsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListFleetMetrics API operation for AWS IoT.
+//
+// Lists all your fleet metrics.
+//
+// Requires permission to access the ListFleetMetrics (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation ListFleetMetrics for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) ListFleetMetrics(input *ListFleetMetricsInput) (*ListFleetMetricsOutput, error) {
+	req, out := c.ListFleetMetricsRequest(input)
+	return out, req.Send()
+}
+
+// ListFleetMetricsWithContext is the same as ListFleetMetrics with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListFleetMetrics for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListFleetMetricsWithContext(ctx aws.Context, input *ListFleetMetricsInput, opts ...request.Option) (*ListFleetMetricsOutput, error) {
+	req, out := c.ListFleetMetricsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListFleetMetricsPages iterates over the pages of a ListFleetMetrics operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListFleetMetrics method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListFleetMetrics operation.
+//    pageNum := 0
+//    err := client.ListFleetMetricsPages(params,
+//        func(page *iot.ListFleetMetricsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListFleetMetricsPages(input *ListFleetMetricsInput, fn func(*ListFleetMetricsOutput, bool) bool) error {
+	return c.ListFleetMetricsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListFleetMetricsPagesWithContext same as ListFleetMetricsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListFleetMetricsPagesWithContext(ctx aws.Context, input *ListFleetMetricsInput, fn func(*ListFleetMetricsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListFleetMetricsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListFleetMetricsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListFleetMetricsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListIndices = "ListIndices"
 
 // ListIndicesRequest generates a "aws/request.Request" representing the
@@ -14052,6 +15030,9 @@ func (c *IoT) ListIndicesRequest(input *ListIndicesInput) (req *request.Request,
 // ListIndices API operation for AWS IoT.
 //
 // Lists the search indices.
+//
+// Requires permission to access the ListIndices (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14199,6 +15180,9 @@ func (c *IoT) ListJobExecutionsForJobRequest(input *ListJobExecutionsForJobInput
 //
 // Lists the job executions for a job.
 //
+// Requires permission to access the ListJobExecutionsForJob (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14342,6 +15326,9 @@ func (c *IoT) ListJobExecutionsForThingRequest(input *ListJobExecutionsForThingI
 //
 // Lists the job executions for the specified thing.
 //
+// Requires permission to access the ListJobExecutionsForThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14464,6 +15451,12 @@ func (c *IoT) ListJobTemplatesRequest(input *ListJobTemplatesInput) (req *reques
 		Name:       opListJobTemplates,
 		HTTPMethod: "GET",
 		HTTPPath:   "/job-templates",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -14478,6 +15471,9 @@ func (c *IoT) ListJobTemplatesRequest(input *ListJobTemplatesInput) (req *reques
 // ListJobTemplates API operation for AWS IoT.
 //
 // Returns a list of job templates.
+//
+// Requires permission to access the ListJobTemplates (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14515,6 +15511,58 @@ func (c *IoT) ListJobTemplatesWithContext(ctx aws.Context, input *ListJobTemplat
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListJobTemplatesPages iterates over the pages of a ListJobTemplates operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListJobTemplates method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListJobTemplates operation.
+//    pageNum := 0
+//    err := client.ListJobTemplatesPages(params,
+//        func(page *iot.ListJobTemplatesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *IoT) ListJobTemplatesPages(input *ListJobTemplatesInput, fn func(*ListJobTemplatesOutput, bool) bool) error {
+	return c.ListJobTemplatesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListJobTemplatesPagesWithContext same as ListJobTemplatesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) ListJobTemplatesPagesWithContext(ctx aws.Context, input *ListJobTemplatesInput, fn func(*ListJobTemplatesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListJobTemplatesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListJobTemplatesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListJobTemplatesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListJobs = "ListJobs"
@@ -14566,6 +15614,9 @@ func (c *IoT) ListJobsRequest(input *ListJobsInput) (req *request.Request, outpu
 // ListJobs API operation for AWS IoT.
 //
 // Lists jobs.
+//
+// Requires permission to access the ListJobs (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14710,6 +15761,9 @@ func (c *IoT) ListMitigationActionsRequest(input *ListMitigationActionsInput) (r
 //
 // Gets a list of all mitigation actions that match the specified filter criteria.
 //
+// Requires permission to access the ListMitigationActions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -14849,6 +15903,9 @@ func (c *IoT) ListOTAUpdatesRequest(input *ListOTAUpdatesInput) (req *request.Re
 // ListOTAUpdates API operation for AWS IoT.
 //
 // Lists OTA updates.
+//
+// Requires permission to access the ListOTAUpdates (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -14996,6 +16053,9 @@ func (c *IoT) ListOutgoingCertificatesRequest(input *ListOutgoingCertificatesInp
 //
 // Lists certificates that are being transferred but not yet accepted.
 //
+// Requires permission to access the ListOutgoingCertificates (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -15141,6 +16201,9 @@ func (c *IoT) ListPoliciesRequest(input *ListPoliciesInput) (req *request.Reques
 // ListPolicies API operation for AWS IoT.
 //
 // Lists your policies.
+//
+// Requires permission to access the ListPolicies (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15293,7 +16356,10 @@ func (c *IoT) ListPolicyPrincipalsRequest(input *ListPolicyPrincipalsInput) (req
 //
 // Lists the principals associated with the specified policy.
 //
-// Note: This API is deprecated. Please use ListTargetsForPolicy instead.
+// Note: This action is deprecated. Please use ListTargetsForPolicy instead.
+//
+// Requires permission to access the ListPolicyPrincipals (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15446,6 +16512,9 @@ func (c *IoT) ListPolicyVersionsRequest(input *ListPolicyVersionsInput) (req *re
 //
 // Lists the versions of the specified policy and identifies the default version.
 //
+// Requires permission to access the ListPolicyVersions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -15549,7 +16618,10 @@ func (c *IoT) ListPrincipalPoliciesRequest(input *ListPrincipalPoliciesInput) (r
 // Lists the policies attached to the specified principal. If you use an Cognito
 // identity, the ID must be in AmazonCognito Identity format (https://docs.aws.amazon.com/cognitoidentity/latest/APIReference/API_GetCredentialsForIdentity.html#API_GetCredentialsForIdentity_RequestSyntax).
 //
-// Note: This API is deprecated. Please use ListAttachedPolicies instead.
+// Note: This action is deprecated. Please use ListAttachedPolicies instead.
+//
+// Requires permission to access the ListPrincipalPolicies (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15710,6 +16782,9 @@ func (c *IoT) ListPrincipalThingsRequest(input *ListPrincipalThingsInput) (req *
 // be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
 // or federated identities.
 //
+// Requires permission to access the ListPrincipalThings (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -15859,6 +16934,9 @@ func (c *IoT) ListProvisioningTemplateVersionsRequest(input *ListProvisioningTem
 //
 // A list of fleet provisioning template versions.
 //
+// Requires permission to access the ListProvisioningTemplateVersions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -16003,7 +17081,10 @@ func (c *IoT) ListProvisioningTemplatesRequest(input *ListProvisioningTemplatesI
 
 // ListProvisioningTemplates API operation for AWS IoT.
 //
-// Lists the fleet provisioning templates in your AWS account.
+// Lists the fleet provisioning templates in your Amazon Web Services account.
+//
+// Requires permission to access the ListProvisioningTemplates (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16147,6 +17228,9 @@ func (c *IoT) ListRoleAliasesRequest(input *ListRoleAliasesInput) (req *request.
 // ListRoleAliases API operation for AWS IoT.
 //
 // Lists the role aliases registered in your account.
+//
+// Requires permission to access the ListRoleAliases (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16294,6 +17378,9 @@ func (c *IoT) ListScheduledAuditsRequest(input *ListScheduledAuditsInput) (req *
 //
 // Lists all of your scheduled audits.
 //
+// Requires permission to access the ListScheduledAudits (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -16434,6 +17521,9 @@ func (c *IoT) ListSecurityProfilesRequest(input *ListSecurityProfilesInput) (req
 //
 // Lists the Device Defender security profiles you've created. You can filter
 // security profiles by dimension or custom metric.
+//
+// Requires permission to access the ListSecurityProfiles (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // dimensionName and metricName cannot be used in the same request.
 //
@@ -16580,6 +17670,9 @@ func (c *IoT) ListSecurityProfilesForTargetRequest(input *ListSecurityProfilesFo
 //
 // Lists the Device Defender security profiles attached to a target (thing group).
 //
+// Requires permission to access the ListSecurityProfilesForTarget (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -16721,7 +17814,10 @@ func (c *IoT) ListStreamsRequest(input *ListStreamsInput) (req *request.Request,
 
 // ListStreams API operation for AWS IoT.
 //
-// Lists all of the streams in your AWS account.
+// Lists all of the streams in your Amazon Web Services account.
+//
+// Requires permission to access the ListStreams (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -16869,6 +17965,9 @@ func (c *IoT) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //
 // Lists the tags (metadata) you have assigned to the resource.
 //
+// Requires permission to access the ListTagsForResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -17011,6 +18110,9 @@ func (c *IoT) ListTargetsForPolicyRequest(input *ListTargetsForPolicyInput) (req
 // ListTargetsForPolicy API operation for AWS IoT.
 //
 // List targets for the specified policy.
+//
+// Requires permission to access the ListTargetsForPolicy (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17165,6 +18267,9 @@ func (c *IoT) ListTargetsForSecurityProfileRequest(input *ListTargetsForSecurity
 // Lists the targets (thing groups) associated with a given Device Defender
 // security profile.
 //
+// Requires permission to access the ListTargetsForSecurityProfile (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -17308,6 +18413,9 @@ func (c *IoT) ListThingGroupsRequest(input *ListThingGroupsInput) (req *request.
 //
 // List the thing groups in your account.
 //
+// Requires permission to access the ListThingGroups (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -17450,6 +18558,9 @@ func (c *IoT) ListThingGroupsForThingRequest(input *ListThingGroupsForThingInput
 // ListThingGroupsForThing API operation for AWS IoT.
 //
 // List the thing groups to which the specified thing belongs.
+//
+// Requires permission to access the ListThingGroupsForThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17595,6 +18706,9 @@ func (c *IoT) ListThingPrincipalsRequest(input *ListThingPrincipalsInput) (req *
 // Lists the principals associated with the specified thing. A principal can
 // be X.509 certificates, IAM users, groups, and roles, Amazon Cognito identities
 // or federated identities.
+//
+// Requires permission to access the ListThingPrincipals (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -17888,6 +19002,9 @@ func (c *IoT) ListThingRegistrationTasksRequest(input *ListThingRegistrationTask
 //
 // List bulk thing provisioning tasks.
 //
+// Requires permission to access the ListThingRegistrationTasks (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -18030,6 +19147,9 @@ func (c *IoT) ListThingTypesRequest(input *ListThingTypesInput) (req *request.Re
 // ListThingTypes API operation for AWS IoT.
 //
 // Lists the existing thing types.
+//
+// Requires permission to access the ListThingTypes (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18179,6 +19299,9 @@ func (c *IoT) ListThingsRequest(input *ListThingsInput) (req *request.Request, o
 // filter your things. For example, calling ListThings with attributeName=Color
 // and attributeValue=Red retrieves all things in the registry that contain
 // an attribute Color with the value Red.
+//
+// Requires permission to access the ListThings (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // You will not be charged for calling this API if an Access denied error is
 // returned. You will also not be charged if no attributes or pagination token
@@ -18330,6 +19453,9 @@ func (c *IoT) ListThingsInBillingGroupRequest(input *ListThingsInBillingGroupInp
 //
 // Lists the things you have added to the given billing group.
 //
+// Requires permission to access the ListThingsInBillingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -18473,6 +19599,9 @@ func (c *IoT) ListThingsInThingGroupRequest(input *ListThingsInThingGroupInput) 
 //
 // Lists the things in the specified group.
 //
+// Requires permission to access the ListThingsInThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -18614,7 +19743,10 @@ func (c *IoT) ListTopicRuleDestinationsRequest(input *ListTopicRuleDestinationsI
 
 // ListTopicRuleDestinations API operation for AWS IoT.
 //
-// Lists all the topic rule destinations in your AWS account.
+// Lists all the topic rule destinations in your Amazon Web Services account.
+//
+// Requires permission to access the ListTopicRuleDestinations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -18759,6 +19891,9 @@ func (c *IoT) ListTopicRulesRequest(input *ListTopicRulesInput) (req *request.Re
 //
 // Lists the rules for the specific topic.
 //
+// Requires permission to access the ListTopicRules (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -18898,6 +20033,9 @@ func (c *IoT) ListV2LoggingLevelsRequest(input *ListV2LoggingLevelsInput) (req *
 // ListV2LoggingLevels API operation for AWS IoT.
 //
 // Lists logging levels.
+//
+// Requires permission to access the ListV2LoggingLevels (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19044,6 +20182,9 @@ func (c *IoT) ListViolationEventsRequest(input *ListViolationEventsInput) (req *
 // given time period. You can use filters to limit the results to those alerts
 // issued for a particular security profile, behavior, or thing (device).
 //
+// Requires permission to access the ListViolationEvents (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -19176,13 +20317,16 @@ func (c *IoT) RegisterCACertificateRequest(input *RegisterCACertificateInput) (r
 
 // RegisterCACertificate API operation for AWS IoT.
 //
-// Registers a CA certificate with AWS IoT. This CA certificate can then be
-// used to sign device certificates, which can be then registered with AWS IoT.
-// You can register up to 10 CA certificates per AWS account that have the same
-// subject field. This enables you to have up to 10 certificate authorities
+// Registers a CA certificate with IoT. This CA certificate can then be used
+// to sign device certificates, which can be then registered with IoT. You can
+// register up to 10 CA certificates per Amazon Web Services account that have
+// the same subject field. This enables you to have up to 10 certificate authorities
 // sign your device certificates. If you have more than one CA certificate registered,
 // make sure you pass the CA certificate when you register your device certificates
-// with the RegisterCertificate API.
+// with the RegisterCertificate action.
+//
+// Requires permission to access the RegisterCACertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19282,9 +20426,12 @@ func (c *IoT) RegisterCertificateRequest(input *RegisterCertificateInput) (req *
 
 // RegisterCertificate API operation for AWS IoT.
 //
-// Registers a device certificate with AWS IoT. If you have more than one CA
-// certificate that has the same subject field, you must specify the CA certificate
-// that was used to sign the device certificate being registered.
+// Registers a device certificate with IoT. If you have more than one CA certificate
+// that has the same subject field, you must specify the CA certificate that
+// was used to sign the device certificate being registered.
+//
+// Requires permission to access the RegisterCertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19483,11 +20630,15 @@ func (c *IoT) RegisterThingRequest(input *RegisterThingInput) (req *request.Requ
 
 // RegisterThing API operation for AWS IoT.
 //
-// Provisions a thing in the device registry. RegisterThing calls other AWS
-// IoT control plane APIs. These calls might exceed your account level AWS IoT
-// Throttling Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot)
-// and cause throttle errors. Please contact AWS Customer Support (https://console.aws.amazon.com/support/home)
-// to raise your throttling limits if necessary.
+// Provisions a thing in the device registry. RegisterThing calls other IoT
+// control plane APIs. These calls might exceed your account level IoT Throttling
+// Limits (https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_iot)
+// and cause throttle errors. Please contact Amazon Web Services Customer Support
+// (https://console.aws.amazon.com/support/home) to raise your throttling limits
+// if necessary.
+//
+// Requires permission to access the RegisterThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19583,8 +20734,8 @@ func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferI
 
 // RejectCertificateTransfer API operation for AWS IoT.
 //
-// Rejects a pending certificate transfer. After AWS IoT rejects a certificate
-// transfer, the certificate status changes from PENDING_TRANSFER to INACTIVE.
+// Rejects a pending certificate transfer. After IoT rejects a certificate transfer,
+// the certificate status changes from PENDING_TRANSFER to INACTIVE.
 //
 // To check for pending certificate transfers, call ListCertificates to enumerate
 // your certificates.
@@ -19592,6 +20743,9 @@ func (c *IoT) RejectCertificateTransferRequest(input *RejectCertificateTransferI
 // This operation can only be called by the transfer destination. After it is
 // called, the certificate will be returned to the source's account in the INACTIVE
 // state.
+//
+// Requires permission to access the RejectCertificateTransfer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19689,6 +20843,9 @@ func (c *IoT) RemoveThingFromBillingGroupRequest(input *RemoveThingFromBillingGr
 //
 // Removes the given thing from the billing group.
 //
+// Requires permission to access the RemoveThingFromBillingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -19779,6 +20936,9 @@ func (c *IoT) RemoveThingFromThingGroupRequest(input *RemoveThingFromThingGroupI
 // thing group and either a thingArn or a thingName to identify the thing to
 // remove from the thing group.
 //
+// Requires permission to access the RemoveThingFromThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -19866,6 +21026,9 @@ func (c *IoT) ReplaceTopicRuleRequest(input *ReplaceTopicRuleInput) (req *reques
 // Replaces the rule. You must specify all parameters for the new rule. Creating
 // rules is an administrator-level action. Any user who has permission to create
 // rules will be able to access data processed by the rule.
+//
+// Requires permission to access the ReplaceTopicRule (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -19958,6 +21121,9 @@ func (c *IoT) SearchIndexRequest(input *SearchIndexInput) (req *request.Request,
 // SearchIndex API operation for AWS IoT.
 //
 // The query search index.
+//
+// Requires permission to access the SearchIndex (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20057,6 +21223,9 @@ func (c *IoT) SetDefaultAuthorizerRequest(input *SetDefaultAuthorizerInput) (req
 // Sets the default authorizer. This will be used if a websocket connection
 // is made without specifying an authorizer.
 //
+// Requires permission to access the SetDefaultAuthorizer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -20152,8 +21321,11 @@ func (c *IoT) SetDefaultPolicyVersionRequest(input *SetDefaultPolicyVersionInput
 //
 // Sets the specified version of the specified policy as the policy's default
 // (operative) version. This action affects all certificates to which the policy
-// is attached. To list the principals the policy is attached to, use the ListPrincipalPolicy
-// API.
+// is attached. To list the principals the policy is attached to, use the ListPrincipalPolicies
+// action.
+//
+// Requires permission to access the SetDefaultPolicyVersion (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20249,6 +21421,9 @@ func (c *IoT) SetLoggingOptionsRequest(input *SetLoggingOptionsInput) (req *requ
 //
 // NOTE: use of this command is not recommended. Use SetV2LoggingOptions instead.
 //
+// Requires permission to access the SetLoggingOptions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -20331,6 +21506,9 @@ func (c *IoT) SetV2LoggingLevelRequest(input *SetV2LoggingLevelInput) (req *requ
 // SetV2LoggingLevel API operation for AWS IoT.
 //
 // Sets the logging level.
+//
+// Requires permission to access the SetV2LoggingLevel (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20421,6 +21599,9 @@ func (c *IoT) SetV2LoggingOptionsRequest(input *SetV2LoggingOptionsInput) (req *
 //
 // Sets the logging options for the V2 logging service.
 //
+// Requires permission to access the SetV2LoggingOptions (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -20502,6 +21683,9 @@ func (c *IoT) StartAuditMitigationActionsTaskRequest(input *StartAuditMitigation
 // StartAuditMitigationActionsTask API operation for AWS IoT.
 //
 // Starts a task that applies a set of mitigation actions to the specified target.
+//
+// Requires permission to access the StartAuditMitigationActionsTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20592,6 +21776,9 @@ func (c *IoT) StartDetectMitigationActionsTaskRequest(input *StartDetectMitigati
 //
 // Starts a Device Defender ML Detect mitigation actions task.
 //
+// Requires permission to access the StartDetectMitigationActionsTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -20681,6 +21868,9 @@ func (c *IoT) StartOnDemandAuditTaskRequest(input *StartOnDemandAuditTaskInput) 
 //
 // Starts an on-demand Device Defender audit.
 //
+// Requires permission to access the StartOnDemandAuditTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -20765,6 +21955,9 @@ func (c *IoT) StartThingRegistrationTaskRequest(input *StartThingRegistrationTas
 // StartThingRegistrationTask API operation for AWS IoT.
 //
 // Creates a bulk thing provisioning task.
+//
+// Requires permission to access the StartThingRegistrationTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20851,6 +22044,9 @@ func (c *IoT) StopThingRegistrationTaskRequest(input *StopThingRegistrationTaskI
 // StopThingRegistrationTask API operation for AWS IoT.
 //
 // Cancels a bulk thing provisioning task.
+//
+// Requires permission to access the StopThingRegistrationTask (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -20942,6 +22138,9 @@ func (c *IoT) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 // Adds to or modifies the tags of the given resource. Tags are metadata which
 // can be used to manage a resource.
 //
+// Requires permission to access the TagResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -21028,9 +22227,12 @@ func (c *IoT) TestAuthorizationRequest(input *TestAuthorizationInput) (req *requ
 
 // TestAuthorization API operation for AWS IoT.
 //
-// Tests if a specified principal is authorized to perform an AWS IoT action
-// on a specified resource. Use this to test and debug the authorization behavior
-// of devices that connect to the AWS IoT device gateway.
+// Tests if a specified principal is authorized to perform an IoT action on
+// a specified resource. Use this to test and debug the authorization behavior
+// of devices that connect to the IoT device gateway.
+//
+// Requires permission to access the TestAuthorization (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21126,7 +22328,10 @@ func (c *IoT) TestInvokeAuthorizerRequest(input *TestInvokeAuthorizerInput) (req
 //
 // Tests a custom authorization behavior by invoking a specified custom authorizer.
 // Use this to test and debug the custom authorization behavior of devices that
-// connect to the AWS IoT device gateway.
+// connect to the IoT device gateway.
+//
+// Requires permission to access the TestInvokeAuthorizer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21220,7 +22425,11 @@ func (c *IoT) TransferCertificateRequest(input *TransferCertificateInput) (req *
 
 // TransferCertificate API operation for AWS IoT.
 //
-// Transfers the specified certificate to the specified AWS account.
+// Transfers the specified certificate to the specified Amazon Web Services
+// account.
+//
+// Requires permission to access the TransferCertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // You can cancel the transfer until it is acknowledged by the recipient.
 //
@@ -21228,10 +22437,10 @@ func (c *IoT) TransferCertificateRequest(input *TransferCertificateInput) (req *
 // the caller to notify the transfer target.
 //
 // The certificate being transferred must not be in the ACTIVE state. You can
-// use the UpdateCertificate API to deactivate it.
+// use the UpdateCertificate action to deactivate it.
 //
 // The certificate must not have any policies attached to it. You can use the
-// DetachPrincipalPolicy API to detach them.
+// DetachPolicy action to detach them.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21332,6 +22541,9 @@ func (c *IoT) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 //
 // Removes the given tags (metadata) from the resource.
 //
+// Requires permission to access the UntagResource (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -21419,6 +22631,9 @@ func (c *IoT) UpdateAccountAuditConfigurationRequest(input *UpdateAccountAuditCo
 // Configures or reconfigures the Device Defender audit settings for this account.
 // Settings include how audit notifications are sent and which audit checks
 // are enabled or disabled.
+//
+// Requires permission to access the UpdateAccountAuditConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21588,6 +22803,9 @@ func (c *IoT) UpdateAuthorizerRequest(input *UpdateAuthorizerInput) (req *reques
 //
 // Updates an authorizer.
 //
+// Requires permission to access the UpdateAuthorizer (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -21682,6 +22900,9 @@ func (c *IoT) UpdateBillingGroupRequest(input *UpdateBillingGroupInput) (req *re
 //
 // Updates information about the billing group.
 //
+// Requires permission to access the UpdateBillingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -21771,6 +22992,9 @@ func (c *IoT) UpdateCACertificateRequest(input *UpdateCACertificateInput) (req *
 // UpdateCACertificate API operation for AWS IoT.
 //
 // Updates a registered CA certificate.
+//
+// Requires permission to access the UpdateCACertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21864,13 +23088,15 @@ func (c *IoT) UpdateCertificateRequest(input *UpdateCertificateInput) (req *requ
 //
 // Updates the status of the specified certificate. This operation is idempotent.
 //
+// Requires permission to access the UpdateCertificate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Certificates must be in the ACTIVE state to authenticate devices that use
-// a certificate to connect to AWS IoT.
+// a certificate to connect to IoT.
 //
 // Within a few minutes of updating a certificate from the ACTIVE state to any
-// other state, AWS IoT disconnects all devices that used that certificate to
-// connect. Devices cannot use a certificate that is not in the ACTIVE state
-// to reconnect.
+// other state, IoT disconnects all devices that used that certificate to connect.
+// Devices cannot use a certificate that is not in the ACTIVE state to reconnect.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -21966,6 +23192,9 @@ func (c *IoT) UpdateCustomMetricRequest(input *UpdateCustomMetricInput) (req *re
 //
 // Updates a Device Defender detect custom metric.
 //
+// Requires permission to access the UpdateCustomMetric (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -22052,6 +23281,9 @@ func (c *IoT) UpdateDimensionRequest(input *UpdateDimensionInput) (req *request.
 // Updates the definition for a dimension. You cannot change the type of a dimension
 // after it is created (you can delete it and recreate it).
 //
+// Requires permission to access the UpdateDimension (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -22137,6 +23369,9 @@ func (c *IoT) UpdateDomainConfigurationRequest(input *UpdateDomainConfigurationI
 //
 // Updates values stored in the domain configuration. Domain configurations
 // for default endpoints can't be updated.
+//
+// Requires permission to access the UpdateDomainConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22232,6 +23467,9 @@ func (c *IoT) UpdateDynamicThingGroupRequest(input *UpdateDynamicThingGroupInput
 //
 // Updates a dynamic thing group.
 //
+// Requires permission to access the UpdateDynamicThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -22325,6 +23563,9 @@ func (c *IoT) UpdateEventConfigurationsRequest(input *UpdateEventConfigurationsI
 //
 // Updates the event configurations.
 //
+// Requires permission to access the UpdateEventConfigurations (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -22358,6 +23599,114 @@ func (c *IoT) UpdateEventConfigurations(input *UpdateEventConfigurationsInput) (
 // for more information on using Contexts.
 func (c *IoT) UpdateEventConfigurationsWithContext(ctx aws.Context, input *UpdateEventConfigurationsInput, opts ...request.Option) (*UpdateEventConfigurationsOutput, error) {
 	req, out := c.UpdateEventConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateFleetMetric = "UpdateFleetMetric"
+
+// UpdateFleetMetricRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateFleetMetric operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateFleetMetric for more information on using the UpdateFleetMetric
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateFleetMetricRequest method.
+//    req, resp := client.UpdateFleetMetricRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) UpdateFleetMetricRequest(input *UpdateFleetMetricInput) (req *request.Request, output *UpdateFleetMetricOutput) {
+	op := &request.Operation{
+		Name:       opUpdateFleetMetric,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/fleet-metric/{metricName}",
+	}
+
+	if input == nil {
+		input = &UpdateFleetMetricInput{}
+	}
+
+	output = &UpdateFleetMetricOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateFleetMetric API operation for AWS IoT.
+//
+// Updates the data for a fleet metric.
+//
+// Requires permission to access the UpdateFleetMetric (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation UpdateFleetMetric for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * UnauthorizedException
+//   You are not authorized to perform this operation.
+//
+//   * ServiceUnavailableException
+//   The service is temporarily unavailable.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * InvalidQueryException
+//   The query is invalid.
+//
+//   * InvalidAggregationException
+//   The aggregation is invalid.
+//
+//   * VersionConflictException
+//   An exception thrown when the version of an entity specified with the expectedVersion
+//   parameter does not match the latest version in the system.
+//
+//   * IndexNotReadyException
+//   The index is not ready.
+//
+func (c *IoT) UpdateFleetMetric(input *UpdateFleetMetricInput) (*UpdateFleetMetricOutput, error) {
+	req, out := c.UpdateFleetMetricRequest(input)
+	return out, req.Send()
+}
+
+// UpdateFleetMetricWithContext is the same as UpdateFleetMetric with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateFleetMetric for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) UpdateFleetMetricWithContext(ctx aws.Context, input *UpdateFleetMetricInput, opts ...request.Option) (*UpdateFleetMetricOutput, error) {
+	req, out := c.UpdateFleetMetricRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -22407,6 +23756,9 @@ func (c *IoT) UpdateIndexingConfigurationRequest(input *UpdateIndexingConfigurat
 // UpdateIndexingConfiguration API operation for AWS IoT.
 //
 // Updates the search configuration.
+//
+// Requires permission to access the UpdateIndexingConfiguration (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22497,6 +23849,9 @@ func (c *IoT) UpdateJobRequest(input *UpdateJobInput) (req *request.Request, out
 //
 // Updates supported fields of the specified job.
 //
+// Requires permission to access the UpdateJob (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -22581,6 +23936,9 @@ func (c *IoT) UpdateMitigationActionRequest(input *UpdateMitigationActionInput) 
 // UpdateMitigationAction API operation for AWS IoT.
 //
 // Updates the definition for the specified mitigation action.
+//
+// Requires permission to access the UpdateMitigationAction (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22667,6 +24025,9 @@ func (c *IoT) UpdateProvisioningTemplateRequest(input *UpdateProvisioningTemplat
 // UpdateProvisioningTemplate API operation for AWS IoT.
 //
 // Updates a fleet provisioning template.
+//
+// Requires permission to access the UpdateProvisioningTemplate (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22756,6 +24117,9 @@ func (c *IoT) UpdateRoleAliasRequest(input *UpdateRoleAliasInput) (req *request.
 // UpdateRoleAlias API operation for AWS IoT.
 //
 // Updates a role alias.
+//
+// Requires permission to access the UpdateRoleAlias (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -22849,6 +24213,9 @@ func (c *IoT) UpdateScheduledAuditRequest(input *UpdateScheduledAuditInput) (req
 // Updates a scheduled audit, including which checks are performed and how often
 // the audit takes place.
 //
+// Requires permission to access the UpdateScheduledAudit (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -22933,6 +24300,9 @@ func (c *IoT) UpdateSecurityProfileRequest(input *UpdateSecurityProfileInput) (r
 // UpdateSecurityProfile API operation for AWS IoT.
 //
 // Updates a Device Defender security profile.
+//
+// Requires permission to access the UpdateSecurityProfile (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23022,6 +24392,9 @@ func (c *IoT) UpdateStreamRequest(input *UpdateStreamInput) (req *request.Reques
 // UpdateStream API operation for AWS IoT.
 //
 // Updates an existing stream. The stream version will be incremented by one.
+//
+// Requires permission to access the UpdateStream (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23114,6 +24487,9 @@ func (c *IoT) UpdateThingRequest(input *UpdateThingInput) (req *request.Request,
 // UpdateThing API operation for AWS IoT.
 //
 // Updates the data for a thing.
+//
+// Requires permission to access the UpdateThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23210,6 +24586,9 @@ func (c *IoT) UpdateThingGroupRequest(input *UpdateThingGroupInput) (req *reques
 //
 // Update a thing group.
 //
+// Requires permission to access the UpdateThingGroup (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -23300,6 +24679,9 @@ func (c *IoT) UpdateThingGroupsForThingRequest(input *UpdateThingGroupsForThingI
 //
 // Updates the groups to which the thing belongs.
 //
+// Requires permission to access the UpdateThingGroupsForThing (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -23386,6 +24768,9 @@ func (c *IoT) UpdateTopicRuleDestinationRequest(input *UpdateTopicRuleDestinatio
 //
 // Updates a topic rule destination. You use this to change the status, endpoint
 // URL, or confirmation URL of the destination.
+//
+// Requires permission to access the UpdateTopicRuleDestination (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23475,6 +24860,9 @@ func (c *IoT) ValidateSecurityProfileBehaviorsRequest(input *ValidateSecurityPro
 // ValidateSecurityProfileBehaviors API operation for AWS IoT.
 //
 // Validates a Device Defender security profile behaviors specification.
+//
+// Requires permission to access the ValidateSecurityProfileBehaviors (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -23589,8 +24977,8 @@ type AbortCriteria struct {
 	// The minimum percentage of job execution failures that must occur to initiate
 	// the job abort.
 	//
-	// AWS IoT supports up to two digits after the decimal (for example, 10.9 and
-	// 10.99, but not 10.999).
+	// Amazon Web Services IoT Core supports up to two digits after the decimal
+	// (for example, 10.9 and 10.99, but not 10.999).
 	//
 	// ThresholdPercentage is a required field
 	ThresholdPercentage *float64 `locationName:"thresholdPercentage" type:"double" required:"true"`
@@ -23751,13 +25139,13 @@ type Action struct {
 	// Send data to an HTTPS endpoint.
 	Http *HttpAction `locationName:"http" type:"structure"`
 
-	// Sends message data to an AWS IoT Analytics channel.
+	// Sends message data to an IoT Analytics channel.
 	IotAnalytics *IotAnalyticsAction `locationName:"iotAnalytics" type:"structure"`
 
-	// Sends an input to an AWS IoT Events detector.
+	// Sends an input to an IoT Events detector.
 	IotEvents *IotEventsAction `locationName:"iotEvents" type:"structure"`
 
-	// Sends data from the MQTT message that triggered the rule to AWS IoT SiteWise
+	// Sends data from the MQTT message that triggered the rule to IoT SiteWise
 	// asset properties.
 	IotSiteWise *IotSiteWiseAction `locationName:"iotSiteWise" type:"structure"`
 
@@ -24356,6 +25744,54 @@ func (s *AddThingsToThingGroupParams) SetThingGroupNames(v []*string) *AddThings
 	return s
 }
 
+// The type of aggregation queries.
+type AggregationType struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the aggregation type.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AggregationTypeName"`
+
+	// A list of the values of aggregation types.
+	Values []*string `locationName:"values" type:"list"`
+}
+
+// String returns the string representation
+func (s AggregationType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AggregationType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AggregationType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AggregationType"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AggregationType) SetName(v string) *AggregationType {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AggregationType) SetValues(v []*string) *AggregationType {
+	s.Values = v
+	return s
+}
+
 // A structure containing the alert target ARN and the role ARN.
 type AlertTarget struct {
 	_ struct{} `type:"structure"`
@@ -24642,8 +26078,9 @@ type AssociateTargetsWithJobInput struct {
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
-	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
-	// to MQTT topics that contain the value in the following format.
+	// When you specify a value for this parameter, Amazon Web Services IoT Core
+	// sends jobs notifications to MQTT topics that contain the value in the following
+	// format.
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
@@ -25846,8 +27283,7 @@ type AuthorizerDescription struct {
 	// The UNIX timestamp of when the authorizer was last updated.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
-	// Specifies whether AWS IoT validates the token signature in an authorization
-	// request.
+	// Specifies whether IoT validates the token signature in an authorization request.
 	SigningDisabled *bool `locationName:"signingDisabled" type:"boolean"`
 
 	// The status of the authorizer.
@@ -26033,8 +27469,8 @@ type AwsJobAbortCriteria struct {
 	// The minimum percentage of job execution failures that must occur to initiate
 	// the job abort.
 	//
-	// AWS IoT supports up to two digits after the decimal (for example, 10.9 and
-	// 10.99, but not 10.999).
+	// Amazon Web Services IoT Core supports up to two digits after the decimal
+	// (for example, 10.9 and 10.99, but not 10.999).
 	//
 	// ThresholdPercentage is a required field
 	ThresholdPercentage *float64 `locationName:"thresholdPercentage" type:"double" required:"true"`
@@ -26171,8 +27607,8 @@ type AwsJobExponentialRolloutRate struct {
 
 	// The criteria to initiate the increase in rate of rollout for a job.
 	//
-	// AWS IoT supports up to one digit after the decimal (for example, 1.5, but
-	// not 1.55).
+	// Amazon Web Services IoT Core supports up to one digit after the decimal (for
+	// example, 1.5, but not 1.55).
 	//
 	// RateIncreaseCriteria is a required field
 	RateIncreaseCriteria *AwsJobRateIncreaseCriteria `locationName:"rateIncreaseCriteria" type:"structure" required:"true"`
@@ -26667,6 +28103,79 @@ func (s BillingGroupProperties) GoString() string {
 // SetBillingGroupDescription sets the BillingGroupDescription field's value.
 func (s *BillingGroupProperties) SetBillingGroupDescription(v string) *BillingGroupProperties {
 	s.BillingGroupDescription = &v
+	return s
+}
+
+// A count of documents that meets a specific aggregation criteria.
+type Bucket struct {
+	_ struct{} `type:"structure"`
+
+	// The number of documents that have the value counted for the particular bucket.
+	Count *int64 `locationName:"count" type:"integer"`
+
+	// The value counted for the particular bucket.
+	KeyValue *string `locationName:"keyValue" type:"string"`
+}
+
+// String returns the string representation
+func (s Bucket) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Bucket) GoString() string {
+	return s.String()
+}
+
+// SetCount sets the Count field's value.
+func (s *Bucket) SetCount(v int64) *Bucket {
+	s.Count = &v
+	return s
+}
+
+// SetKeyValue sets the KeyValue field's value.
+func (s *Bucket) SetKeyValue(v string) *Bucket {
+	s.KeyValue = &v
+	return s
+}
+
+// The type of bucketed aggregation performed.
+type BucketsAggregationType struct {
+	_ struct{} `type:"structure"`
+
+	// Performs an aggregation that will return a list of buckets. The list of buckets
+	// is a ranked list of the number of occurrences of an aggregation field value.
+	TermsAggregation *TermsAggregation `locationName:"termsAggregation" type:"structure"`
+}
+
+// String returns the string representation
+func (s BucketsAggregationType) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s BucketsAggregationType) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *BucketsAggregationType) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "BucketsAggregationType"}
+	if s.TermsAggregation != nil {
+		if err := s.TermsAggregation.Validate(); err != nil {
+			invalidParams.AddNested("TermsAggregation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTermsAggregation sets the TermsAggregation field's value.
+func (s *BucketsAggregationType) SetTermsAggregation(v *TermsAggregation) *BucketsAggregationType {
+	s.TermsAggregation = v
 	return s
 }
 
@@ -27445,10 +28954,10 @@ type CertificateDescription struct {
 	// The date and time the certificate was last modified.
 	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
 
-	// The ID of the AWS account that owns the certificate.
+	// The ID of the Amazon Web Services account that owns the certificate.
 	OwnedBy *string `locationName:"ownedBy" min:"12" type:"string"`
 
-	// The ID of the AWS account of the previous owner of the certificate.
+	// The ID of the Amazon Web Services account of the previous owner of the certificate.
 	PreviousOwnedBy *string `locationName:"previousOwnedBy" min:"12" type:"string"`
 
 	// The status of the certificate.
@@ -28404,8 +29913,7 @@ type CreateAuthorizerInput struct {
 	// AuthorizerName is a required field
 	AuthorizerName *string `location:"uri" locationName:"authorizerName" min:"1" type:"string" required:"true"`
 
-	// Specifies whether AWS IoT validates the token signature in an authorization
-	// request.
+	// Specifies whether IoT validates the token signature in an authorization request.
 	SigningDisabled *bool `locationName:"signingDisabled" type:"boolean"`
 
 	// The status of the create authorizer request.
@@ -28754,8 +30262,8 @@ type CreateCustomMetricInput struct {
 
 	// Each custom metric must have a unique client request token. If you try to
 	// create a new custom metric that already exists with a different token, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// exception occurs. If you omit this value, Amazon Web Services SDKs will automatically
+	// generate a unique client request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Field represents a friendly name in the console for the custom metric; it
@@ -28889,8 +30397,8 @@ type CreateDimensionInput struct {
 
 	// Each dimension must have a unique client request token. If you try to create
 	// a new dimension with the same token as a dimension that already exists, an
-	// exception occurs. If you omit this value, AWS SDKs will automatically generate
-	// a unique client request.
+	// exception occurs. If you omit this value, Amazon Web Services SDKs will automatically
+	// generate a unique client request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// A unique identifier for the dimension. Choose something that describes the
@@ -29039,14 +30547,14 @@ type CreateDomainConfigurationInput struct {
 	// The name of the domain.
 	DomainName *string `locationName:"domainName" min:"1" type:"string"`
 
-	// The ARNs of the certificates that AWS IoT passes to the device during the
-	// TLS handshake. Currently you can specify only one certificate ARN. This value
-	// is not required for AWS-managed domains.
+	// The ARNs of the certificates that IoT passes to the device during the TLS
+	// handshake. Currently you can specify only one certificate ARN. This value
+	// is not required for Amazon Web Services-managed domains.
 	ServerCertificateArns []*string `locationName:"serverCertificateArns" type:"list"`
 
 	// The type of service delivered by the endpoint.
 	//
-	// AWS IoT Core currently supports only the DATA service type.
+	// Amazon Web Services IoT Core currently supports only the DATA service type.
 	ServiceType *string `locationName:"serviceType" type:"string" enum:"ServiceType"`
 
 	// Metadata which can be used to manage the domain configuration.
@@ -29060,7 +30568,7 @@ type CreateDomainConfigurationInput struct {
 
 	// The certificate used to validate the server certificate and prove domain
 	// name ownership. This certificate must be signed by a public certificate authority.
-	// This value is not required for AWS-managed domains.
+	// This value is not required for Amazon Web Services-managed domains.
 	ValidationCertificateArn *string `locationName:"validationCertificateArn" min:"1" type:"string"`
 }
 
@@ -29190,7 +30698,7 @@ type CreateDynamicThingGroupInput struct {
 
 	// The dynamic thing group index name.
 	//
-	// Currently one index is supported: "AWS_Things".
+	// Currently one index is supported: AWS_Things.
 	IndexName *string `locationName:"indexName" min:"1" type:"string"`
 
 	// The dynamic thing group search query string.
@@ -29368,6 +30876,210 @@ func (s *CreateDynamicThingGroupOutput) SetThingGroupName(v string) *CreateDynam
 	return s
 }
 
+type CreateFleetMetricInput struct {
+	_ struct{} `type:"structure"`
+
+	// The field to aggregate.
+	//
+	// AggregationField is a required field
+	AggregationField *string `locationName:"aggregationField" min:"1" type:"string" required:"true"`
+
+	// The type of the aggregation query.
+	//
+	// AggregationType is a required field
+	AggregationType *AggregationType `locationName:"aggregationType" type:"structure" required:"true"`
+
+	// The fleet metric description.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of the index to search.
+	IndexName *string `locationName:"indexName" min:"1" type:"string"`
+
+	// The name of the fleet metric to create.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
+
+	// The time in seconds between fleet metric emissions. Range [60(1 min), 86400(1
+	// day)] and must be multiple of 60.
+	//
+	// Period is a required field
+	Period *int64 `locationName:"period" min:"60" type:"integer" required:"true"`
+
+	// The search query string.
+	//
+	// QueryString is a required field
+	QueryString *string `locationName:"queryString" min:"1" type:"string" required:"true"`
+
+	// The query version.
+	QueryVersion *string `locationName:"queryVersion" type:"string"`
+
+	// Metadata, which can be used to manage the fleet metric.
+	Tags []*Tag `locationName:"tags" type:"list"`
+
+	// Used to support unit transformation such as milliseconds to seconds. The
+	// unit must be supported by CW metric (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
+	// Default to null.
+	Unit *string `locationName:"unit" type:"string" enum:"FleetMetricUnit"`
+}
+
+// String returns the string representation
+func (s CreateFleetMetricInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFleetMetricInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFleetMetricInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFleetMetricInput"}
+	if s.AggregationField == nil {
+		invalidParams.Add(request.NewErrParamRequired("AggregationField"))
+	}
+	if s.AggregationField != nil && len(*s.AggregationField) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AggregationField", 1))
+	}
+	if s.AggregationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("AggregationType"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+	if s.Period == nil {
+		invalidParams.Add(request.NewErrParamRequired("Period"))
+	}
+	if s.Period != nil && *s.Period < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("Period", 60))
+	}
+	if s.QueryString == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryString"))
+	}
+	if s.QueryString != nil && len(*s.QueryString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryString", 1))
+	}
+	if s.AggregationType != nil {
+		if err := s.AggregationType.Validate(); err != nil {
+			invalidParams.AddNested("AggregationType", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregationField sets the AggregationField field's value.
+func (s *CreateFleetMetricInput) SetAggregationField(v string) *CreateFleetMetricInput {
+	s.AggregationField = &v
+	return s
+}
+
+// SetAggregationType sets the AggregationType field's value.
+func (s *CreateFleetMetricInput) SetAggregationType(v *AggregationType) *CreateFleetMetricInput {
+	s.AggregationType = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateFleetMetricInput) SetDescription(v string) *CreateFleetMetricInput {
+	s.Description = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *CreateFleetMetricInput) SetIndexName(v string) *CreateFleetMetricInput {
+	s.IndexName = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *CreateFleetMetricInput) SetMetricName(v string) *CreateFleetMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *CreateFleetMetricInput) SetPeriod(v int64) *CreateFleetMetricInput {
+	s.Period = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *CreateFleetMetricInput) SetQueryString(v string) *CreateFleetMetricInput {
+	s.QueryString = &v
+	return s
+}
+
+// SetQueryVersion sets the QueryVersion field's value.
+func (s *CreateFleetMetricInput) SetQueryVersion(v string) *CreateFleetMetricInput {
+	s.QueryVersion = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateFleetMetricInput) SetTags(v []*Tag) *CreateFleetMetricInput {
+	s.Tags = v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *CreateFleetMetricInput) SetUnit(v string) *CreateFleetMetricInput {
+	s.Unit = &v
+	return s
+}
+
+type CreateFleetMetricOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the new fleet metric.
+	MetricArn *string `locationName:"metricArn" type:"string"`
+
+	// The name of the fleet metric to create.
+	MetricName *string `locationName:"metricName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateFleetMetricOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFleetMetricOutput) GoString() string {
+	return s.String()
+}
+
+// SetMetricArn sets the MetricArn field's value.
+func (s *CreateFleetMetricOutput) SetMetricArn(v string) *CreateFleetMetricOutput {
+	s.MetricArn = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *CreateFleetMetricOutput) SetMetricName(v string) *CreateFleetMetricOutput {
+	s.MetricName = &v
+	return s
+}
+
 type CreateJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -29397,8 +31109,9 @@ type CreateJobInput struct {
 	// Allows you to create a staged rollout of the job.
 	JobExecutionsRolloutConfig *JobExecutionsRolloutConfig `locationName:"jobExecutionsRolloutConfig" type:"structure"`
 
-	// A job identifier which must be unique for your AWS account. We recommend
-	// using a UUID. Alpha-numeric characters, "-" and "_" are valid for use here.
+	// A job identifier which must be unique for your Amazon Web Services account.
+	// We recommend using a UUID. Alpha-numeric characters, "-" and "_" are valid
+	// for use here.
 	//
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"jobId" min:"1" type:"string" required:"true"`
@@ -29408,8 +31121,9 @@ type CreateJobInput struct {
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
-	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
-	// to MQTT topics that contain the value in the following format.
+	// When you specify a value for this parameter, Amazon Web Services IoT Core
+	// sends jobs notifications to MQTT topics that contain the value in the following
+	// format.
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
@@ -29830,6 +31544,9 @@ func (s *CreateJobTemplateOutput) SetJobTemplateId(v string) *CreateJobTemplateO
 }
 
 // The input for the CreateKeysAndCertificate operation.
+//
+// Requires permission to access the CreateKeysAndCertificateRequest (https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions)
+// action.
 type CreateKeysAndCertificateInput struct {
 	_ struct{} `type:"structure"`
 
@@ -29860,8 +31577,8 @@ type CreateKeysAndCertificateOutput struct {
 	// The ARN of the certificate.
 	CertificateArn *string `locationName:"certificateArn" type:"string"`
 
-	// The ID of the certificate. AWS IoT issues a default subject name for the
-	// certificate (for example, AWS IoT Certificate).
+	// The ID of the certificate. IoT issues a default subject name for the certificate
+	// (for example, IoT Certificate).
 	CertificateId *string `locationName:"certificateId" min:"64" type:"string"`
 
 	// The certificate data, in PEM format.
@@ -30073,8 +31790,9 @@ type CreateOTAUpdateInput struct {
 	// can choose the protocol.
 	Protocols []*string `locationName:"protocols" min:"1" type:"list"`
 
-	// The IAM role that grants AWS IoT access to the Amazon S3, AWS IoT jobs and
-	// AWS Code Signing resources to create an OTA update job.
+	// The IAM role that grants Amazon Web Services IoT Core access to the Amazon
+	// S3, IoT jobs and Amazon Web Services Code Signing resources to create an
+	// OTA update job.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string" required:"true"`
@@ -30254,10 +31972,10 @@ func (s *CreateOTAUpdateInput) SetTargets(v []*string) *CreateOTAUpdateInput {
 type CreateOTAUpdateOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS IoT job ARN associated with the OTA update.
+	// The IoT job ARN associated with the OTA update.
 	AwsIotJobArn *string `locationName:"awsIotJobArn" type:"string"`
 
-	// The AWS IoT job ID associated with the OTA update.
+	// The IoT job ID associated with the OTA update.
 	AwsIotJobId *string `locationName:"awsIotJobId" type:"string"`
 
 	// The OTA update ARN.
@@ -30942,7 +32660,8 @@ func (s *CreateProvisioningTemplateVersionOutput) SetVersionId(v int64) *CreateP
 type CreateRoleAliasInput struct {
 	_ struct{} `type:"structure"`
 
-	// How long (in seconds) the credentials will be valid.
+	// How long (in seconds) the credentials will be valid. The default value is
+	// 3,600 seconds.
 	CredentialDurationSeconds *int64 `locationName:"credentialDurationSeconds" min:"900" type:"integer"`
 
 	// The role alias that points to a role ARN. This allows you to change the role
@@ -32757,6 +34476,70 @@ func (s DeleteDynamicThingGroupOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteFleetMetricInput struct {
+	_ struct{} `type:"structure"`
+
+	// The expected version of the fleet metric to delete.
+	ExpectedVersion *int64 `location:"querystring" locationName:"expectedVersion" type:"long"`
+
+	// The name of the fleet metric to delete.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteFleetMetricInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFleetMetricInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteFleetMetricInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteFleetMetricInput"}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExpectedVersion sets the ExpectedVersion field's value.
+func (s *DeleteFleetMetricInput) SetExpectedVersion(v int64) *DeleteFleetMetricInput {
+	s.ExpectedVersion = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *DeleteFleetMetricInput) SetMetricName(v string) *DeleteFleetMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+type DeleteFleetMetricOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteFleetMetricOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteFleetMetricOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteJobExecutionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -32786,8 +34569,9 @@ type DeleteJobExecutionInput struct {
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
-	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
-	// to MQTT topics that contain the value in the following format.
+	// When you specify a value for this parameter, Amazon Web Services IoT Core
+	// sends jobs notifications to MQTT topics that contain the value in the following
+	// format.
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
@@ -32906,8 +34690,9 @@ type DeleteJobInput struct {
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
-	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
-	// to MQTT topics that contain the value in the following format.
+	// When you specify a value for this parameter, Amazon Web Services IoT Core
+	// sends jobs notifications to MQTT topics that contain the value in the following
+	// format.
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
@@ -33094,7 +34879,7 @@ type DeleteOTAUpdateInput struct {
 	// supplied by the user.
 	DeleteStream *bool `location:"querystring" locationName:"deleteStream" type:"boolean"`
 
-	// When true, deletes the AWS job created by the OTAUpdate process even if it
+	// When true, deletes the IoT job created by the OTAUpdate process even if it
 	// is "IN_PROGRESS". Otherwise, if the job is not in a terminal state ("COMPLETED"
 	// or "CANCELED") an exception will occur. The default is false.
 	ForceDeleteAWSJob *bool `location:"querystring" locationName:"forceDeleteAWSJob" type:"boolean"`
@@ -34169,9 +35954,9 @@ type DescribeAccountAuditConfigurationOutput struct {
 	// account.
 	AuditNotificationTargetConfigurations map[string]*AuditNotificationTarget `locationName:"auditNotificationTargetConfigurations" type:"map"`
 
-	// The ARN of the role that grants permission to AWS IoT to access information
-	// about your devices, policies, certificates, and other items as required when
-	// performing an audit.
+	// The ARN of the role that grants permission to IoT to access information about
+	// your devices, policies, certificates, and other items as required when performing
+	// an audit.
 	//
 	// On the first call to UpdateAccountAuditConfiguration, this parameter is required.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
@@ -35407,10 +37192,9 @@ type DescribeEndpointInput struct {
 	//
 	//    * iot:Data-ATS - Returns an ATS signed data endpoint.
 	//
-	//    * iot:CredentialProvider - Returns an AWS IoT credentials provider API
-	//    endpoint.
+	//    * iot:CredentialProvider - Returns an IoT credentials provider API endpoint.
 	//
-	//    * iot:Jobs - Returns an AWS IoT device management Jobs API endpoint.
+	//    * iot:Jobs - Returns an IoT device management Jobs API endpoint.
 	//
 	// We strongly recommend that customers use the newer iot:Data-ATS endpoint
 	// type to avoid issues related to the widespread distrust of Symantec certificate
@@ -35510,6 +37294,180 @@ func (s *DescribeEventConfigurationsOutput) SetEventConfigurations(v map[string]
 // SetLastModifiedDate sets the LastModifiedDate field's value.
 func (s *DescribeEventConfigurationsOutput) SetLastModifiedDate(v time.Time) *DescribeEventConfigurationsOutput {
 	s.LastModifiedDate = &v
+	return s
+}
+
+type DescribeFleetMetricInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the fleet metric to describe.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeFleetMetricInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFleetMetricInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeFleetMetricInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeFleetMetricInput"}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *DescribeFleetMetricInput) SetMetricName(v string) *DescribeFleetMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+type DescribeFleetMetricOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The field to aggregate.
+	AggregationField *string `locationName:"aggregationField" min:"1" type:"string"`
+
+	// The type of the aggregation query.
+	AggregationType *AggregationType `locationName:"aggregationType" type:"structure"`
+
+	// The date when the fleet metric is created.
+	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
+
+	// The fleet metric description.
+	Description *string `locationName:"description" type:"string"`
+
+	// The name of the index to search.
+	IndexName *string `locationName:"indexName" min:"1" type:"string"`
+
+	// The date when the fleet metric is last modified.
+	LastModifiedDate *time.Time `locationName:"lastModifiedDate" type:"timestamp"`
+
+	// The ARN of the fleet metric to describe.
+	MetricArn *string `locationName:"metricArn" type:"string"`
+
+	// The name of the fleet metric to describe.
+	MetricName *string `locationName:"metricName" min:"1" type:"string"`
+
+	// The time in seconds between fleet metric emissions. Range [60(1 min), 86400(1
+	// day)] and must be multiple of 60.
+	Period *int64 `locationName:"period" min:"60" type:"integer"`
+
+	// The search query string.
+	QueryString *string `locationName:"queryString" min:"1" type:"string"`
+
+	// The query version.
+	QueryVersion *string `locationName:"queryVersion" type:"string"`
+
+	// Used to support unit transformation such as milliseconds to seconds. The
+	// unit must be supported by CW metric (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
+	Unit *string `locationName:"unit" type:"string" enum:"FleetMetricUnit"`
+
+	// The version of the fleet metric.
+	Version *int64 `locationName:"version" type:"long"`
+}
+
+// String returns the string representation
+func (s DescribeFleetMetricOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeFleetMetricOutput) GoString() string {
+	return s.String()
+}
+
+// SetAggregationField sets the AggregationField field's value.
+func (s *DescribeFleetMetricOutput) SetAggregationField(v string) *DescribeFleetMetricOutput {
+	s.AggregationField = &v
+	return s
+}
+
+// SetAggregationType sets the AggregationType field's value.
+func (s *DescribeFleetMetricOutput) SetAggregationType(v *AggregationType) *DescribeFleetMetricOutput {
+	s.AggregationType = v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *DescribeFleetMetricOutput) SetCreationDate(v time.Time) *DescribeFleetMetricOutput {
+	s.CreationDate = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribeFleetMetricOutput) SetDescription(v string) *DescribeFleetMetricOutput {
+	s.Description = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *DescribeFleetMetricOutput) SetIndexName(v string) *DescribeFleetMetricOutput {
+	s.IndexName = &v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *DescribeFleetMetricOutput) SetLastModifiedDate(v time.Time) *DescribeFleetMetricOutput {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetMetricArn sets the MetricArn field's value.
+func (s *DescribeFleetMetricOutput) SetMetricArn(v string) *DescribeFleetMetricOutput {
+	s.MetricArn = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *DescribeFleetMetricOutput) SetMetricName(v string) *DescribeFleetMetricOutput {
+	s.MetricName = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *DescribeFleetMetricOutput) SetPeriod(v int64) *DescribeFleetMetricOutput {
+	s.Period = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *DescribeFleetMetricOutput) SetQueryString(v string) *DescribeFleetMetricOutput {
+	s.QueryString = &v
+	return s
+}
+
+// SetQueryVersion sets the QueryVersion field's value.
+func (s *DescribeFleetMetricOutput) SetQueryVersion(v string) *DescribeFleetMetricOutput {
+	s.QueryVersion = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *DescribeFleetMetricOutput) SetUnit(v string) *DescribeFleetMetricOutput {
+	s.Unit = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DescribeFleetMetricOutput) SetVersion(v int64) *DescribeFleetMetricOutput {
+	s.Version = &v
 	return s
 }
 
@@ -35979,7 +37937,8 @@ type DescribeMitigationActionOutput struct {
 	// The type of mitigation action.
 	ActionType *string `locationName:"actionType" type:"string" enum:"MitigationActionType"`
 
-	// The date and time when the mitigation action was added to your AWS account.
+	// The date and time when the mitigation action was added to your Amazon Web
+	// Services accounts.
 	CreationDate *time.Time `locationName:"creationDate" type:"timestamp"`
 
 	// The date and time when the mitigation action was last changed.
@@ -36901,7 +38860,7 @@ type DescribeThingOutput struct {
 	// or shadow state, we recommend that you choose a thing name and use it as
 	// the MQTT client ID for the registry and the Device Shadow service.
 	//
-	// This lets you better organize your AWS IoT fleet without removing the flexibility
+	// This lets you better organize your IoT fleet without removing the flexibility
 	// of the underlying device certificate model or shadows.
 	DefaultClientId *string `locationName:"defaultClientId" type:"string"`
 
@@ -37937,7 +39896,7 @@ func (s DisableTopicRuleOutput) GoString() string {
 
 // The summary of a domain configuration. A domain configuration specifies custom
 // IoT-specific information about a domain. A domain configuration can be associated
-// with an AWS-managed domain (for example, dbc123defghijk.iot.us-west-2.amazonaws.com),
+// with an Amazon Web Services-managed domain (for example, dbc123defghijk.iot.us-west-2.amazonaws.com),
 // a customer managed domain, or a default endpoint.
 //
 //    * Data
@@ -38344,7 +40303,8 @@ func (s *ElasticsearchAction) SetType(v string) *ElasticsearchAction {
 	return s
 }
 
-// Parameters used when defining a mitigation action that enable AWS IoT logging.
+// Parameters used when defining a mitigation action that enable Amazon Web
+// Services IoT Core logging.
 type EnableIoTLoggingParams struct {
 	_ struct{} `type:"structure"`
 
@@ -38526,8 +40486,8 @@ type ExponentialRolloutRate struct {
 
 	// The exponential factor to increase the rate of rollout for a job.
 	//
-	// AWS IoT supports up to one digit after the decimal (for example, 1.5, but
-	// not 1.55).
+	// Amazon Web Services IoT Core supports up to one digit after the decimal (for
+	// example, 1.5, but not 1.55).
 	//
 	// IncrementFactor is a required field
 	IncrementFactor *float64 `locationName:"incrementFactor" min:"1" type:"double" required:"true"`
@@ -38603,7 +40563,7 @@ type Field struct {
 	// The name of the field.
 	Name *string `locationName:"name" type:"string"`
 
-	// The datatype of the field.
+	// The data type of the field.
 	Type *string `locationName:"type" type:"string" enum:"FieldType"`
 }
 
@@ -38761,6 +40721,39 @@ func (s *FirehoseAction) SetSeparator(v string) *FirehoseAction {
 	return s
 }
 
+// The name and ARN of a fleet metric.
+type FleetMetricNameAndArn struct {
+	_ struct{} `type:"structure"`
+
+	// The fleet metric ARN.
+	MetricArn *string `locationName:"metricArn" type:"string"`
+
+	// The fleet metric name.
+	MetricName *string `locationName:"metricName" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s FleetMetricNameAndArn) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FleetMetricNameAndArn) GoString() string {
+	return s.String()
+}
+
+// SetMetricArn sets the MetricArn field's value.
+func (s *FleetMetricNameAndArn) SetMetricArn(v string) *FleetMetricNameAndArn {
+	s.MetricArn = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *FleetMetricNameAndArn) SetMetricName(v string) *FleetMetricNameAndArn {
+	s.MetricName = &v
+	return s
+}
+
 type GetBehaviorModelTrainingSummariesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -38852,6 +40845,143 @@ func (s *GetBehaviorModelTrainingSummariesOutput) SetSummaries(v []*BehaviorMode
 	return s
 }
 
+type GetBucketsAggregationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The aggregation field.
+	//
+	// AggregationField is a required field
+	AggregationField *string `locationName:"aggregationField" min:"1" type:"string" required:"true"`
+
+	// The basic control of the response shape and the bucket aggregation type to
+	// perform.
+	//
+	// BucketsAggregationType is a required field
+	BucketsAggregationType *BucketsAggregationType `locationName:"bucketsAggregationType" type:"structure" required:"true"`
+
+	// The name of the index to search.
+	IndexName *string `locationName:"indexName" min:"1" type:"string"`
+
+	// The search query string.
+	//
+	// QueryString is a required field
+	QueryString *string `locationName:"queryString" min:"1" type:"string" required:"true"`
+
+	// The version of the query.
+	QueryVersion *string `locationName:"queryVersion" type:"string"`
+}
+
+// String returns the string representation
+func (s GetBucketsAggregationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketsAggregationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetBucketsAggregationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetBucketsAggregationInput"}
+	if s.AggregationField == nil {
+		invalidParams.Add(request.NewErrParamRequired("AggregationField"))
+	}
+	if s.AggregationField != nil && len(*s.AggregationField) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AggregationField", 1))
+	}
+	if s.BucketsAggregationType == nil {
+		invalidParams.Add(request.NewErrParamRequired("BucketsAggregationType"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.QueryString == nil {
+		invalidParams.Add(request.NewErrParamRequired("QueryString"))
+	}
+	if s.QueryString != nil && len(*s.QueryString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryString", 1))
+	}
+	if s.BucketsAggregationType != nil {
+		if err := s.BucketsAggregationType.Validate(); err != nil {
+			invalidParams.AddNested("BucketsAggregationType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregationField sets the AggregationField field's value.
+func (s *GetBucketsAggregationInput) SetAggregationField(v string) *GetBucketsAggregationInput {
+	s.AggregationField = &v
+	return s
+}
+
+// SetBucketsAggregationType sets the BucketsAggregationType field's value.
+func (s *GetBucketsAggregationInput) SetBucketsAggregationType(v *BucketsAggregationType) *GetBucketsAggregationInput {
+	s.BucketsAggregationType = v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *GetBucketsAggregationInput) SetIndexName(v string) *GetBucketsAggregationInput {
+	s.IndexName = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *GetBucketsAggregationInput) SetQueryString(v string) *GetBucketsAggregationInput {
+	s.QueryString = &v
+	return s
+}
+
+// SetQueryVersion sets the QueryVersion field's value.
+func (s *GetBucketsAggregationInput) SetQueryVersion(v string) *GetBucketsAggregationInput {
+	s.QueryVersion = &v
+	return s
+}
+
+type GetBucketsAggregationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The main part of the response with a list of buckets. Each bucket contains
+	// a keyValue and a count.
+	//
+	// keyValue: The aggregation field value counted for the particular bucket.
+	//
+	// count: The number of documents that have that value.
+	Buckets []*Bucket `locationName:"buckets" type:"list"`
+
+	// The total number of documents that fit the query string criteria and contain
+	// a value for the Aggregation field targeted in the request.
+	TotalCount *int64 `locationName:"totalCount" type:"integer"`
+}
+
+// String returns the string representation
+func (s GetBucketsAggregationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetBucketsAggregationOutput) GoString() string {
+	return s.String()
+}
+
+// SetBuckets sets the Buckets field's value.
+func (s *GetBucketsAggregationOutput) SetBuckets(v []*Bucket) *GetBucketsAggregationOutput {
+	s.Buckets = v
+	return s
+}
+
+// SetTotalCount sets the TotalCount field's value.
+func (s *GetBucketsAggregationOutput) SetTotalCount(v int64) *GetBucketsAggregationOutput {
+	s.TotalCount = &v
+	return s
+}
+
 type GetCardinalityInput struct {
 	_ struct{} `type:"structure"`
 
@@ -38861,7 +40991,7 @@ type GetCardinalityInput struct {
 	// The name of the index to search.
 	IndexName *string `locationName:"indexName" min:"1" type:"string"`
 
-	// The search query.
+	// The search query string.
 	//
 	// QueryString is a required field
 	QueryString *string `locationName:"queryString" min:"1" type:"string" required:"true"`
@@ -39262,7 +41392,7 @@ type GetPercentilesInput struct {
 	// The percentile groups returned.
 	Percents []*float64 `locationName:"percents" type:"list"`
 
-	// The query string.
+	// The search query string.
 	//
 	// QueryString is a required field
 	QueryString *string `locationName:"queryString" min:"1" type:"string" required:"true"`
@@ -39671,7 +41801,7 @@ type GetStatisticsInput struct {
 	IndexName *string `locationName:"indexName" min:"1" type:"string"`
 
 	// The query used to search. You can specify "*" for the query string to get
-	// the count of all indexed things in your AWS account.
+	// the count of all indexed things in your Amazon Web Services account.
 	//
 	// QueryString is a required field
 	QueryString *string `locationName:"queryString" min:"1" type:"string" required:"true"`
@@ -39922,7 +42052,7 @@ type GetV2LoggingOptionsOutput struct {
 	// Disables all logs.
 	DisableAllLogs *bool `locationName:"disableAllLogs" type:"boolean"`
 
-	// The IAM role ARN AWS IoT uses to write to your CloudWatch logs.
+	// The IAM role ARN IoT uses to write to your CloudWatch logs.
 	RoleArn *string `locationName:"roleArn" type:"string"`
 }
 
@@ -39994,9 +42124,9 @@ type HttpAction struct {
 	// The authentication method to use when sending data to an HTTPS endpoint.
 	Auth *HttpAuthorization `locationName:"auth" type:"structure"`
 
-	// The URL to which AWS IoT sends a confirmation message. The value of the confirmation
+	// The URL to which IoT sends a confirmation message. The value of the confirmation
 	// URL must be a prefix of the endpoint URL. If you do not specify a confirmation
-	// URL AWS IoT uses the endpoint URL as the confirmation URL. If you use substitution
+	// URL IoT uses the endpoint URL as the confirmation URL. If you use substitution
 	// templates in the confirmationUrl, you must create and enable topic rule destinations
 	// that match each possible value of the substitution template before traffic
 	// is allowed to your endpoint URL.
@@ -40221,8 +42351,8 @@ func (s *HttpContext) SetQueryString(v string) *HttpContext {
 type HttpUrlDestinationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The URL AWS IoT uses to confirm ownership of or access to the topic rule
-	// destination URL.
+	// The URL IoT uses to confirm ownership of or access to the topic rule destination
+	// URL.
 	//
 	// ConfirmationUrl is a required field
 	ConfirmationUrl *string `locationName:"confirmationUrl" type:"string" required:"true"`
@@ -40789,7 +42919,7 @@ func (s *InvalidStateTransitionException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Sends message data to an AWS IoT Analytics channel.
+// Sends message data to an IoT Analytics channel.
 type IotAnalyticsAction struct {
 	_ struct{} `type:"structure"`
 
@@ -40798,8 +42928,8 @@ type IotAnalyticsAction struct {
 	// When batchMode is true and the rule SQL statement evaluates to an Array,
 	// each Array element is delivered as a separate message when passed by BatchPutMessage
 	// (https://docs.aws.amazon.com/iotanalytics/latest/APIReference/API_BatchPutMessage.html)
-	// to the AWS IoT Analytics channel. The resulting array can't have more than
-	// 100 messages.
+	// to the IoT Analytics channel. The resulting array can't have more than 100
+	// messages.
 	BatchMode *bool `locationName:"batchMode" type:"boolean"`
 
 	// (deprecated) The ARN of the IoT Analytics channel to which message data will
@@ -40848,7 +42978,7 @@ func (s *IotAnalyticsAction) SetRoleArn(v string) *IotAnalyticsAction {
 	return s
 }
 
-// Sends an input to an AWS IoT Events detector.
+// Sends an input to an IoT Events detector.
 type IotEventsAction struct {
 	_ struct{} `type:"structure"`
 
@@ -40857,12 +42987,12 @@ type IotEventsAction struct {
 	// When batchMode is true, you can't specify a messageId.
 	//
 	// When batchMode is true and the rule SQL statement evaluates to an Array,
-	// each Array element is treated as a separate message when it's sent to AWS
-	// IoT Events by calling BatchPutMessage (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html).
+	// each Array element is treated as a separate message when it's sent to IoT
+	// Events by calling BatchPutMessage (https://docs.aws.amazon.com/iotevents/latest/apireference/API_iotevents-data_BatchPutMessage.html).
 	// The resulting array can't have more than 10 messages.
 	BatchMode *bool `locationName:"batchMode" type:"boolean"`
 
-	// The name of the AWS IoT Events input.
+	// The name of the IoT Events input.
 	//
 	// InputName is a required field
 	InputName *string `locationName:"inputName" min:"1" type:"string" required:"true"`
@@ -40873,11 +43003,11 @@ type IotEventsAction struct {
 	// be assigned.
 	//
 	// Assign a value to this property to ensure that only one input (message) with
-	// a given messageId will be processed by an AWS IoT Events detector.
+	// a given messageId will be processed by an IoT Events detector.
 	MessageId *string `locationName:"messageId" type:"string"`
 
-	// The ARN of the role that grants AWS IoT permission to send an input to an
-	// AWS IoT Events detector. ("Action":"iotevents:BatchPutMessage").
+	// The ARN of the role that grants IoT permission to send an input to an IoT
+	// Events detector. ("Action":"iotevents:BatchPutMessage").
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -40937,7 +43067,7 @@ func (s *IotEventsAction) SetRoleArn(v string) *IotEventsAction {
 }
 
 // Describes an action to send data from an MQTT message that triggered the
-// rule to AWS IoT SiteWise asset properties.
+// rule to IoT SiteWise asset properties.
 type IotSiteWiseAction struct {
 	_ struct{} `type:"structure"`
 
@@ -40946,8 +43076,8 @@ type IotSiteWiseAction struct {
 	// PutAssetPropertyValueEntries is a required field
 	PutAssetPropertyValueEntries []*PutAssetPropertyValueEntry `locationName:"putAssetPropertyValueEntries" min:"1" type:"list" required:"true"`
 
-	// The ARN of the role that grants AWS IoT permission to send an asset property
-	// value to AWS IoTSiteWise. ("Action": "iotsitewise:BatchPutAssetPropertyValue").
+	// The ARN of the role that grants IoT permission to send an asset property
+	// value to IoT SiteWise. ("Action": "iotsitewise:BatchPutAssetPropertyValue").
 	// The trust policy can restrict access to specific asset hierarchy paths.
 	//
 	// RoleArn is a required field
@@ -41048,8 +43178,9 @@ type Job struct {
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
-	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
-	// to MQTT topics that contain the value in the following format.
+	// When you specify a value for this parameter, Amazon Web Services IoT Core
+	// sends jobs notifications to MQTT topics that contain the value in the following
+	// format.
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
@@ -43180,7 +45311,7 @@ func (s *ListCACertificatesInput) SetPageSize(v int64) *ListCACertificatesInput 
 type ListCACertificatesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The CA certificates registered in your AWS account.
+	// The CA certificates registered in your Amazon Web Services account.
 	Certificates []*CACertificate `locationName:"certificates" type:"list"`
 
 	// The current position within the list of CA certificates.
@@ -43893,6 +46024,85 @@ func (s *ListDomainConfigurationsOutput) SetNextMarker(v string) *ListDomainConf
 	return s
 }
 
+type ListFleetMetricsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return in this operation.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// To retrieve the next set of results, the nextToken value from a previous
+	// response; otherwise null to receive the first set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFleetMetricsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFleetMetricsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListFleetMetricsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListFleetMetricsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListFleetMetricsInput) SetMaxResults(v int64) *ListFleetMetricsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFleetMetricsInput) SetNextToken(v string) *ListFleetMetricsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListFleetMetricsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of fleet metrics objects.
+	FleetMetrics []*FleetMetricNameAndArn `locationName:"fleetMetrics" type:"list"`
+
+	// The token for the next set of results. Will not be returned if the operation
+	// has returned all results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation
+func (s ListFleetMetricsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListFleetMetricsOutput) GoString() string {
+	return s.String()
+}
+
+// SetFleetMetrics sets the FleetMetrics field's value.
+func (s *ListFleetMetricsOutput) SetFleetMetrics(v []*FleetMetricNameAndArn) *ListFleetMetricsOutput {
+	s.FleetMetrics = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListFleetMetricsOutput) SetNextToken(v string) *ListFleetMetricsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListIndicesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -44084,8 +46294,9 @@ type ListJobExecutionsForThingInput struct {
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
-	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
-	// to MQTT topics that contain the value in the following format.
+	// When you specify a value for this parameter, Amazon Web Services IoT Core
+	// sends jobs notifications to MQTT topics that contain the value in the following
+	// format.
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
@@ -44286,8 +46497,9 @@ type ListJobsInput struct {
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
-	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
-	// to MQTT topics that contain the value in the following format.
+	// When you specify a value for this parameter, Amazon Web Services IoT Core
+	// sends jobs notifications to MQTT topics that contain the value in the following
+	// format.
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
@@ -47905,8 +50117,8 @@ type MitigationActionParams struct {
 	// a certificate to one or more specified thing groups, typically for quarantine.
 	AddThingsToThingGroupParams *AddThingsToThingGroupParams `locationName:"addThingsToThingGroupParams" type:"structure"`
 
-	// Parameters to define a mitigation action that enables AWS IoT logging at
-	// a specified level of detail.
+	// Parameters to define a mitigation action that enables Amazon Web Services
+	// IoT Core logging at a specified level of detail.
 	EnableIoTLoggingParams *EnableIoTLoggingParams `locationName:"enableIoTLoggingParams" type:"structure"`
 
 	// Parameters to define a mitigation action that publishes findings to Amazon
@@ -48272,10 +50484,10 @@ type OTAUpdateInfo struct {
 	// A collection of name/value pairs
 	AdditionalParameters map[string]*string `locationName:"additionalParameters" type:"map"`
 
-	// The AWS IoT job ARN associated with the OTA update.
+	// The IoT job ARN associated with the OTA update.
 	AwsIotJobArn *string `locationName:"awsIotJobArn" type:"string"`
 
-	// The AWS IoT job ID associated with the OTA update.
+	// The IoT job ID associated with the OTA update.
 	AwsIotJobId *string `locationName:"awsIotJobId" type:"string"`
 
 	// Configuration for the rollout of OTA updates.
@@ -48493,7 +50705,7 @@ type OutgoingCertificate struct {
 	// The transfer message.
 	TransferMessage *string `locationName:"transferMessage" type:"string"`
 
-	// The AWS account to which the transfer was made.
+	// The Amazon Web Services account to which the transfer was made.
 	TransferredTo *string `locationName:"transferredTo" min:"12" type:"string"`
 }
 
@@ -48576,7 +50788,7 @@ func (s *PercentPair) SetValue(v float64) *PercentPair {
 	return s
 }
 
-// Describes an AWS IoT policy.
+// Describes an IoT policy.
 type Policy struct {
 	_ struct{} `type:"structure"`
 
@@ -48962,7 +51174,7 @@ func (s *PublishFindingToSnsParams) SetTopicArn(v string) *PublishFindingToSnsPa
 type PutAssetPropertyValueEntry struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS IoT SiteWise asset. You must specify either a propertyAlias
+	// The ID of the IoT SiteWise asset. You must specify either a propertyAlias
 	// or both an aliasId and a propertyId. Accepts substitution templates.
 	AssetId *string `locationName:"assetId" type:"string"`
 
@@ -51744,7 +53956,7 @@ type StartAuditMitigationActionsTaskInput struct {
 	_ struct{} `type:"structure"`
 
 	// For an audit check, specifies which mitigation actions to apply. Those actions
-	// must be defined in your AWS account.
+	// must be defined in your Amazon Web Services accounts.
 	//
 	// AuditCheckToActionsMapping is a required field
 	AuditCheckToActionsMapping map[string][]*string `locationName:"auditCheckToActionsMapping" type:"map" required:"true"`
@@ -51867,8 +54079,8 @@ type StartDetectMitigationActionsTaskInput struct {
 
 	// Each mitigation action task must have a unique client request token. If you
 	// try to create a new task with the same token as a task that already exists,
-	// an exception occurs. If you omit this value, AWS SDKs will automatically
-	// generate a unique client request.
+	// an exception occurs. If you omit this value, Amazon Web Services SDKs will
+	// automatically generate a unique client request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// Specifies to list only active violations.
@@ -52589,7 +54801,7 @@ type StreamInfo struct {
 	// The date when the stream was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
 
-	// An IAM role AWS IoT assumes to access your S3 files.
+	// An IAM role IoT assumes to access your S3 files.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 
 	// The stream ARN.
@@ -53040,6 +55252,44 @@ func (s *TaskStatisticsForAuditCheck) SetTotalFindingsCount(v int64) *TaskStatis
 	return s
 }
 
+// Performs an aggregation that will return a list of buckets. The list of buckets
+// is a ranked list of the number of occurrences of an aggregation field value.
+type TermsAggregation struct {
+	_ struct{} `type:"structure"`
+
+	// The number of buckets to return in the response. Default to 10.
+	MaxBuckets *int64 `locationName:"maxBuckets" min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s TermsAggregation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TermsAggregation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TermsAggregation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TermsAggregation"}
+	if s.MaxBuckets != nil && *s.MaxBuckets < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxBuckets", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxBuckets sets the MaxBuckets field's value.
+func (s *TermsAggregation) SetMaxBuckets(v int64) *TermsAggregation {
+	s.MaxBuckets = &v
+	return s
+}
+
 type TestAuthorizationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -53396,12 +55646,15 @@ func (s *ThingAttribute) SetVersion(v int64) *ThingAttribute {
 type ThingConnectivity struct {
 	_ struct{} `type:"structure"`
 
-	// True if the thing is connected to the AWS IoT service; false if it is not
-	// connected.
+	// True if the thing is connected to the Amazon Web Services IoT Core service;
+	// false if it is not connected.
 	Connected *bool `locationName:"connected" type:"boolean"`
 
+	// The reason why the client is disconnected.
+	DisconnectReason *string `locationName:"disconnectReason" type:"string"`
+
 	// The epoch time (in milliseconds) when the thing last connected or disconnected.
-	// If the thing has been disconnected for more than a few weeks, the time value
+	// If the thing has been disconnected for approximately an hour, the time value
 	// might be missing.
 	Timestamp *int64 `locationName:"timestamp" type:"long"`
 }
@@ -53422,6 +55675,12 @@ func (s *ThingConnectivity) SetConnected(v bool) *ThingConnectivity {
 	return s
 }
 
+// SetDisconnectReason sets the DisconnectReason field's value.
+func (s *ThingConnectivity) SetDisconnectReason(v string) *ThingConnectivity {
+	s.DisconnectReason = &v
+	return s
+}
+
 // SetTimestamp sets the Timestamp field's value.
 func (s *ThingConnectivity) SetTimestamp(v int64) *ThingConnectivity {
 	s.Timestamp = &v
@@ -53435,7 +55694,8 @@ type ThingDocument struct {
 	// The attributes.
 	Attributes map[string]*string `locationName:"attributes" type:"map"`
 
-	// Indicates whether the thing is connected to the AWS IoT service.
+	// Indicates whether the thing is connected to the Amazon Web Services IoT Core
+	// service.
 	Connectivity *ThingConnectivity `locationName:"connectivity" type:"structure"`
 
 	// The shadow.
@@ -54705,9 +56965,9 @@ type TopicRulePayload struct {
 	// Specifies whether the rule is disabled.
 	RuleDisabled *bool `locationName:"ruleDisabled" type:"boolean"`
 
-	// The SQL statement used to query the topic. For more information, see AWS
-	// IoT SQL Reference (https://docs.aws.amazon.com/iot/latest/developerguide/iot-sql-reference.html)
-	// in the AWS IoT Developer Guide.
+	// The SQL statement used to query the topic. For more information, see IoT
+	// SQL Reference (https://docs.aws.amazon.com/iot/latest/developerguide/iot-sql-reference.html)
+	// in the IoT Developer Guide.
 	//
 	// Sql is a required field
 	Sql *string `locationName:"sql" type:"string" required:"true"`
@@ -54858,7 +57118,7 @@ type TransferCertificateInput struct {
 	// CertificateId is a required field
 	CertificateId *string `location:"uri" locationName:"certificateId" min:"64" type:"string" required:"true"`
 
-	// The AWS account.
+	// The Amazon Web Services account.
 	//
 	// TargetAwsAccount is a required field
 	TargetAwsAccount *string `location:"querystring" locationName:"targetAwsAccount" min:"12" type:"string" required:"true"`
@@ -54999,7 +57259,7 @@ func (s *TransferConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Data used to transfer a certificate to an AWS account.
+// Data used to transfer a certificate to an Amazon Web Services account.
 type TransferData struct {
 	_ struct{} `type:"structure"`
 
@@ -55204,9 +57464,9 @@ type UpdateAccountAuditConfigurationInput struct {
 	// Information about the targets to which audit notifications are sent.
 	AuditNotificationTargetConfigurations map[string]*AuditNotificationTarget `locationName:"auditNotificationTargetConfigurations" type:"map"`
 
-	// The Amazon Resource Name (ARN) of the role that grants permission to AWS
-	// IoT to access information about your devices, policies, certificates, and
-	// other items as required when performing an audit.
+	// The Amazon Resource Name (ARN) of the role that grants permission to IoT
+	// to access information about your devices, policies, certificates, and other
+	// items as required when performing an audit.
 	RoleArn *string `locationName:"roleArn" min:"20" type:"string"`
 }
 
@@ -55733,8 +57993,7 @@ type UpdateCertificateInput struct {
 	//
 	// Note: Setting the status to PENDING_TRANSFER or PENDING_ACTIVATION will result
 	// in an exception being thrown. PENDING_TRANSFER and PENDING_ACTIVATION are
-	// statuses used internally by AWS IoT. They are not intended for developer
-	// use.
+	// statuses used internally by IoT. They are not intended for developer use.
 	//
 	// Note: The status value REGISTER_INACTIVE is deprecated and should not be
 	// used.
@@ -56210,7 +58469,7 @@ type UpdateDynamicThingGroupInput struct {
 
 	// The dynamic thing group index to update.
 	//
-	// Currently one index is supported: 'AWS_Things'.
+	// Currently one index is supported: AWS_Things.
 	IndexName *string `locationName:"indexName" min:"1" type:"string"`
 
 	// The dynamic thing group search query string to update.
@@ -56364,6 +58623,166 @@ func (s UpdateEventConfigurationsOutput) GoString() string {
 	return s.String()
 }
 
+type UpdateFleetMetricInput struct {
+	_ struct{} `type:"structure"`
+
+	// The field to aggregate.
+	AggregationField *string `locationName:"aggregationField" min:"1" type:"string"`
+
+	// The type of the aggregation query.
+	AggregationType *AggregationType `locationName:"aggregationType" type:"structure"`
+
+	// The description of the fleet metric.
+	Description *string `locationName:"description" type:"string"`
+
+	// The expected version of the fleet metric record in the registry.
+	ExpectedVersion *int64 `locationName:"expectedVersion" type:"long"`
+
+	// The name of the index to search.
+	//
+	// IndexName is a required field
+	IndexName *string `locationName:"indexName" min:"1" type:"string" required:"true"`
+
+	// The name of the fleet metric to update.
+	//
+	// MetricName is a required field
+	MetricName *string `location:"uri" locationName:"metricName" min:"1" type:"string" required:"true"`
+
+	// The time in seconds between fleet metric emissions. Range [60(1 min), 86400(1
+	// day)] and must be multiple of 60.
+	Period *int64 `locationName:"period" min:"60" type:"integer"`
+
+	// The search query string.
+	QueryString *string `locationName:"queryString" min:"1" type:"string"`
+
+	// The version of the query.
+	QueryVersion *string `locationName:"queryVersion" type:"string"`
+
+	// Used to support unit transformation such as milliseconds to seconds. The
+	// unit must be supported by CW metric (https://docs.aws.amazon.com/https:/docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_MetricDatum.html).
+	Unit *string `locationName:"unit" type:"string" enum:"FleetMetricUnit"`
+}
+
+// String returns the string representation
+func (s UpdateFleetMetricInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFleetMetricInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFleetMetricInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFleetMetricInput"}
+	if s.AggregationField != nil && len(*s.AggregationField) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AggregationField", 1))
+	}
+	if s.IndexName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexName"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.MetricName == nil {
+		invalidParams.Add(request.NewErrParamRequired("MetricName"))
+	}
+	if s.MetricName != nil && len(*s.MetricName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MetricName", 1))
+	}
+	if s.Period != nil && *s.Period < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("Period", 60))
+	}
+	if s.QueryString != nil && len(*s.QueryString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("QueryString", 1))
+	}
+	if s.AggregationType != nil {
+		if err := s.AggregationType.Validate(); err != nil {
+			invalidParams.AddNested("AggregationType", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregationField sets the AggregationField field's value.
+func (s *UpdateFleetMetricInput) SetAggregationField(v string) *UpdateFleetMetricInput {
+	s.AggregationField = &v
+	return s
+}
+
+// SetAggregationType sets the AggregationType field's value.
+func (s *UpdateFleetMetricInput) SetAggregationType(v *AggregationType) *UpdateFleetMetricInput {
+	s.AggregationType = v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateFleetMetricInput) SetDescription(v string) *UpdateFleetMetricInput {
+	s.Description = &v
+	return s
+}
+
+// SetExpectedVersion sets the ExpectedVersion field's value.
+func (s *UpdateFleetMetricInput) SetExpectedVersion(v int64) *UpdateFleetMetricInput {
+	s.ExpectedVersion = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *UpdateFleetMetricInput) SetIndexName(v string) *UpdateFleetMetricInput {
+	s.IndexName = &v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *UpdateFleetMetricInput) SetMetricName(v string) *UpdateFleetMetricInput {
+	s.MetricName = &v
+	return s
+}
+
+// SetPeriod sets the Period field's value.
+func (s *UpdateFleetMetricInput) SetPeriod(v int64) *UpdateFleetMetricInput {
+	s.Period = &v
+	return s
+}
+
+// SetQueryString sets the QueryString field's value.
+func (s *UpdateFleetMetricInput) SetQueryString(v string) *UpdateFleetMetricInput {
+	s.QueryString = &v
+	return s
+}
+
+// SetQueryVersion sets the QueryVersion field's value.
+func (s *UpdateFleetMetricInput) SetQueryVersion(v string) *UpdateFleetMetricInput {
+	s.QueryVersion = &v
+	return s
+}
+
+// SetUnit sets the Unit field's value.
+func (s *UpdateFleetMetricInput) SetUnit(v string) *UpdateFleetMetricInput {
+	s.Unit = &v
+	return s
+}
+
+type UpdateFleetMetricOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateFleetMetricOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFleetMetricOutput) GoString() string {
+	return s.String()
+}
+
 type UpdateIndexingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -56449,8 +58868,9 @@ type UpdateJobInput struct {
 
 	// The namespace used to indicate that a job is a customer-managed job.
 	//
-	// When you specify a value for this parameter, AWS IoT Core sends jobs notifications
-	// to MQTT topics that contain the value in the following format.
+	// When you specify a value for this parameter, Amazon Web Services IoT Core
+	// sends jobs notifications to MQTT topics that contain the value in the following
+	// format.
 	//
 	// $aws/things/THING_NAME/jobs/JOB_ID/notify-namespace-NAMESPACE_ID/
 	//
@@ -58377,6 +60797,26 @@ func ActionType_Values() []string {
 	}
 }
 
+const (
+	// AggregationTypeNameStatistics is a AggregationTypeName enum value
+	AggregationTypeNameStatistics = "Statistics"
+
+	// AggregationTypeNamePercentiles is a AggregationTypeName enum value
+	AggregationTypeNamePercentiles = "Percentiles"
+
+	// AggregationTypeNameCardinality is a AggregationTypeName enum value
+	AggregationTypeNameCardinality = "Cardinality"
+)
+
+// AggregationTypeName_Values returns all elements of the AggregationTypeName enum
+func AggregationTypeName_Values() []string {
+	return []string{
+		AggregationTypeNameStatistics,
+		AggregationTypeNamePercentiles,
+		AggregationTypeNameCardinality,
+	}
+}
+
 // The type of alert target: one of "SNS".
 const (
 	// AlertTargetTypeSns is a AlertTargetType enum value
@@ -59159,6 +61599,122 @@ func FieldType_Values() []string {
 		FieldTypeNumber,
 		FieldTypeString,
 		FieldTypeBoolean,
+	}
+}
+
+const (
+	// FleetMetricUnitSeconds is a FleetMetricUnit enum value
+	FleetMetricUnitSeconds = "Seconds"
+
+	// FleetMetricUnitMicroseconds is a FleetMetricUnit enum value
+	FleetMetricUnitMicroseconds = "Microseconds"
+
+	// FleetMetricUnitMilliseconds is a FleetMetricUnit enum value
+	FleetMetricUnitMilliseconds = "Milliseconds"
+
+	// FleetMetricUnitBytes is a FleetMetricUnit enum value
+	FleetMetricUnitBytes = "Bytes"
+
+	// FleetMetricUnitKilobytes is a FleetMetricUnit enum value
+	FleetMetricUnitKilobytes = "Kilobytes"
+
+	// FleetMetricUnitMegabytes is a FleetMetricUnit enum value
+	FleetMetricUnitMegabytes = "Megabytes"
+
+	// FleetMetricUnitGigabytes is a FleetMetricUnit enum value
+	FleetMetricUnitGigabytes = "Gigabytes"
+
+	// FleetMetricUnitTerabytes is a FleetMetricUnit enum value
+	FleetMetricUnitTerabytes = "Terabytes"
+
+	// FleetMetricUnitBits is a FleetMetricUnit enum value
+	FleetMetricUnitBits = "Bits"
+
+	// FleetMetricUnitKilobits is a FleetMetricUnit enum value
+	FleetMetricUnitKilobits = "Kilobits"
+
+	// FleetMetricUnitMegabits is a FleetMetricUnit enum value
+	FleetMetricUnitMegabits = "Megabits"
+
+	// FleetMetricUnitGigabits is a FleetMetricUnit enum value
+	FleetMetricUnitGigabits = "Gigabits"
+
+	// FleetMetricUnitTerabits is a FleetMetricUnit enum value
+	FleetMetricUnitTerabits = "Terabits"
+
+	// FleetMetricUnitPercent is a FleetMetricUnit enum value
+	FleetMetricUnitPercent = "Percent"
+
+	// FleetMetricUnitCount is a FleetMetricUnit enum value
+	FleetMetricUnitCount = "Count"
+
+	// FleetMetricUnitBytesSecond is a FleetMetricUnit enum value
+	FleetMetricUnitBytesSecond = "Bytes/Second"
+
+	// FleetMetricUnitKilobytesSecond is a FleetMetricUnit enum value
+	FleetMetricUnitKilobytesSecond = "Kilobytes/Second"
+
+	// FleetMetricUnitMegabytesSecond is a FleetMetricUnit enum value
+	FleetMetricUnitMegabytesSecond = "Megabytes/Second"
+
+	// FleetMetricUnitGigabytesSecond is a FleetMetricUnit enum value
+	FleetMetricUnitGigabytesSecond = "Gigabytes/Second"
+
+	// FleetMetricUnitTerabytesSecond is a FleetMetricUnit enum value
+	FleetMetricUnitTerabytesSecond = "Terabytes/Second"
+
+	// FleetMetricUnitBitsSecond is a FleetMetricUnit enum value
+	FleetMetricUnitBitsSecond = "Bits/Second"
+
+	// FleetMetricUnitKilobitsSecond is a FleetMetricUnit enum value
+	FleetMetricUnitKilobitsSecond = "Kilobits/Second"
+
+	// FleetMetricUnitMegabitsSecond is a FleetMetricUnit enum value
+	FleetMetricUnitMegabitsSecond = "Megabits/Second"
+
+	// FleetMetricUnitGigabitsSecond is a FleetMetricUnit enum value
+	FleetMetricUnitGigabitsSecond = "Gigabits/Second"
+
+	// FleetMetricUnitTerabitsSecond is a FleetMetricUnit enum value
+	FleetMetricUnitTerabitsSecond = "Terabits/Second"
+
+	// FleetMetricUnitCountSecond is a FleetMetricUnit enum value
+	FleetMetricUnitCountSecond = "Count/Second"
+
+	// FleetMetricUnitNone is a FleetMetricUnit enum value
+	FleetMetricUnitNone = "None"
+)
+
+// FleetMetricUnit_Values returns all elements of the FleetMetricUnit enum
+func FleetMetricUnit_Values() []string {
+	return []string{
+		FleetMetricUnitSeconds,
+		FleetMetricUnitMicroseconds,
+		FleetMetricUnitMilliseconds,
+		FleetMetricUnitBytes,
+		FleetMetricUnitKilobytes,
+		FleetMetricUnitMegabytes,
+		FleetMetricUnitGigabytes,
+		FleetMetricUnitTerabytes,
+		FleetMetricUnitBits,
+		FleetMetricUnitKilobits,
+		FleetMetricUnitMegabits,
+		FleetMetricUnitGigabits,
+		FleetMetricUnitTerabits,
+		FleetMetricUnitPercent,
+		FleetMetricUnitCount,
+		FleetMetricUnitBytesSecond,
+		FleetMetricUnitKilobytesSecond,
+		FleetMetricUnitMegabytesSecond,
+		FleetMetricUnitGigabytesSecond,
+		FleetMetricUnitTerabytesSecond,
+		FleetMetricUnitBitsSecond,
+		FleetMetricUnitKilobitsSecond,
+		FleetMetricUnitMegabitsSecond,
+		FleetMetricUnitGigabitsSecond,
+		FleetMetricUnitTerabitsSecond,
+		FleetMetricUnitCountSecond,
+		FleetMetricUnitNone,
 	}
 }
 

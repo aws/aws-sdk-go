@@ -57,7 +57,7 @@ func (c *MemoryDB) BatchUpdateClusterRequest(input *BatchUpdateClusterInput) (re
 // BatchUpdateCluster API operation for Amazon MemoryDB.
 //
 // Apply the service update to a list of clusters supplied. For more information
-// on service updates and applying them, see Applying the service updates (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/managing-updates.html#applying-updates).
+// on service updates and applying them, see Applying the service updates (https://docs.aws.amazon.com/MemoryDB/latest/devguide/managing-updates.html#applying-updates).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -230,7 +230,7 @@ func (c *MemoryDB) CreateACLRequest(input *CreateACLInput) (req *request.Request
 // CreateACL API operation for Amazon MemoryDB.
 //
 // Creates an Access Control List. For more information, see Authenticating
-// users with Access Contol Lists (ACLs) (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Clusters.ACLs.html).
+// users with Access Contol Lists (ACLs) (https://docs.aws.amazon.com/MemoryDB/latest/devguide/clusters.acls.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -432,7 +432,7 @@ func (c *MemoryDB) CreateParameterGroupRequest(input *CreateParameterGroupInput)
 // Creates a new MemoryDB parameter group. A parameter group is a collection
 // of parameters and their values that are applied to all of the nodes in any
 // cluster. For more information, see Configuring engine parameters using parameter
-// groups (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/ParameterGroups.html).
+// groups (https://docs.aws.amazon.com/MemoryDB/latest/devguide/parametergroups.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -619,7 +619,7 @@ func (c *MemoryDB) CreateSubnetGroupRequest(input *CreateSubnetGroupInput) (req 
 // Private Cloud (VPC) environment. When you create a cluster in an Amazon VPC,
 // you must specify a subnet group. MemoryDB uses that subnet group to choose
 // a subnet and IP addresses within that subnet to associate with your nodes.
-// For more information, see Subnets and subnet groups (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/SubnetGroups.html).
+// For more information, see Subnets and subnet groups (https://docs.aws.amazon.com/MemoryDB/latest/devguide/subnetgroups.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -710,7 +710,7 @@ func (c *MemoryDB) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 // CreateUser API operation for Amazon MemoryDB.
 //
 // Creates a MemoryDB user. For more information, see Authenticating users with
-// Access Contol Lists (ACLs) (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Clusters.ACLs.html).
+// Access Contol Lists (ACLs) (https://docs.aws.amazon.com/MemoryDB/latest/devguide/clusters.acls.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -800,7 +800,7 @@ func (c *MemoryDB) DeleteACLRequest(input *DeleteACLInput) (req *request.Request
 //
 // Deletes an Access Control List. The ACL must first be disassociated from
 // the cluster before it can be deleted. For more information, see Authenticating
-// users with Access Contol Lists (ACLs) (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Clusters.ACLs.html).
+// users with Access Contol Lists (ACLs) (https://docs.aws.amazon.com/MemoryDB/latest/devguide/clusters.acls.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2323,7 +2323,7 @@ func (c *MemoryDB) ListTagsRequest(input *ListTagsInput) (req *request.Request, 
 // Lists all tags currently on a named resource. A tag is a key-value pair where
 // the key and value are case-sensitive. You can use tags to categorize and
 // track your MemoryDB resources. For more information, see Tagging your MemoryDB
-// resources (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Tagging-Resources.html)
+// resources (https://docs.aws.amazon.com/MemoryDB/latest/devguide/Tagging-Resources.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2509,14 +2509,14 @@ func (c *MemoryDB) TagResourceRequest(input *TagResourceInput) (req *request.Req
 // A tag is a key-value pair where the key and value are case-sensitive. You
 // can use tags to categorize and track all your MemoryDB resources. When you
 // add or remove tags on clusters, those actions will be replicated to all nodes
-// in the cluster. For more information, see Resource-level permissions (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/IAM.ResourceLevelPermissions.html).
+// in the cluster. For more information, see Resource-level permissions (https://docs.aws.amazon.com/MemoryDB/latest/devguide/iam.resourcelevelpermissions.html).
 //
 // For example, you can use cost-allocation tags to your MemoryDB resources,
 // Amazon generates a cost allocation report as a comma-separated value (CSV)
 // file with your usage and costs aggregated by your tags. You can apply tags
 // that represent business categories (such as cost centers, application names,
 // or owners) to organize your costs across multiple services. For more information,
-// see Using Cost Allocation Tags (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Tagging.html).
+// see Using Cost Allocation Tags (https://docs.aws.amazon.com/MemoryDB/latest/devguide/tagging.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2996,7 +2996,7 @@ func (c *MemoryDB) UpdateSubnetGroupRequest(input *UpdateSubnetGroupInput) (req 
 // UpdateSubnetGroup API operation for Amazon MemoryDB.
 //
 // Updates a subnet group. For more information, see Updating a subnet group
-// (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/SubnetGroups.Modifying.html)
+// (https://docs.aws.amazon.com/MemoryDB/latest/devguide/ubnetGroups.Modifying.html)
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4282,7 +4282,7 @@ type CopySnapshotInput struct {
 	// used only when exporting a snapshot for external access. When using this
 	// parameter to export a snapshot, be sure MemoryDB has the needed permissions
 	// to this S3 bucket. For more information, see Step 2: Grant MemoryDB Access
-	// to Your Amazon S3 Bucket (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/snapshots-exporting.html).
+	// to Your Amazon S3 Bucket (https://docs.aws.amazon.com/MemoryDB/latest/devguide/snapshots-exporting.html).
 	TargetBucket *string `type:"string"`
 
 	// A name for the snapshot copy. MemoryDB does not permit overwriting a snapshot,
@@ -4493,18 +4493,11 @@ type CreateClusterInput struct {
 	// NodeType is a required field
 	NodeType *string `type:"string" required:"true"`
 
-	// The number of replicas to apply to each shard. The limit is 5.
+	// The number of replicas to apply to each shard. The default value is 1. The
+	// maximum is 5.
 	NumReplicasPerShard *int64 `type:"integer"`
 
-	// The number of shards the cluster will contain.
-	//
-	// Clusters can have up to 500 shards, with your data partitioned across the
-	// shards. For example, you can choose to configure a 500 node cluster that
-	// ranges between 83 shards (one primary and 5 replicas per shard) and 500 shards
-	// (single primary and no replicas). Make sure there are enough available IP
-	// addresses to accommodate the increase. Common pitfalls include the subnets
-	// in the subnet group have too small a CIDR range or the subnets are shared
-	// and heavily used by other clusters.
+	// The number of shards the cluster will contain. The default value is 1.
 	NumShards *int64 `type:"integer"`
 
 	// The name of the parameter group associated with the cluster.
@@ -9792,7 +9785,7 @@ func (s *SubnetQuotaExceededFault) RequestID() string {
 // pair. You can use tags to categorize and track all your MemoryDB resources.
 // When you add or remove tags on clusters, those actions will be replicated
 // to all nodes in the cluster. A tag with a null Value is permitted. For more
-// information, see Tagging your MemoryDB resources (https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Tagging-Resources.html)
+// information, see Tagging your MemoryDB resources (https://docs.aws.amazon.com/MemoryDB/latest/devguide/tagging-resources.html)
 type Tag struct {
 	_ struct{} `type:"structure"`
 
