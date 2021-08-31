@@ -108,6 +108,12 @@
       "output_token": "nextMarker",
       "result_key": "domainConfigurations"
     },
+    "ListFleetMetrics": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "fleetMetrics"
+    },
     "ListIndices": {
       "input_token": "nextToken",
       "limit_key": "maxResults",
@@ -125,6 +131,12 @@
       "limit_key": "maxResults",
       "output_token": "nextToken",
       "result_key": "executionSummaries"
+    },
+    "ListJobTemplates": {
+      "input_token": "nextToken",
+      "limit_key": "maxResults",
+      "output_token": "nextToken",
+      "result_key": "jobTemplates"
     },
     "ListJobs": {
       "input_token": "nextToken",

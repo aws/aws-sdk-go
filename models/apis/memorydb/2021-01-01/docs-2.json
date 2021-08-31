@@ -1,16 +1,16 @@
 {
   "version": "2.0",
-  "service": "<p>Amazon MemoryDB for Redis is a fully managed, Redis-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis, a popular open source data store, enabling you to leverage Redis’ flexible and friendly data structures, APIs, and commands.</p>",
+  "service": "<p>MemoryDB for Redis is a fully managed, Redis-compatible, in-memory database that delivers ultra-fast performance and Multi-AZ durability for modern applications built using microservices architectures. MemoryDB stores the entire database in-memory, enabling low latency and high throughput data access. It is compatible with Redis, a popular open source data store, enabling you to leverage Redis’ flexible and friendly data structures, APIs, and commands.</p>",
   "operations": {
-    "BatchUpdateCluster": "<p>Apply the service update to a list of clusters supplied. For more information on service updates and applying them, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/managing-updates.html#applying-updates\">Applying the service updates</a>.</p>",
+    "BatchUpdateCluster": "<p>Apply the service update to a list of clusters supplied. For more information on service updates and applying them, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/managing-updates.html#applying-updates\">Applying the service updates</a>.</p>",
     "CopySnapshot": "<p>Makes a copy of an existing snapshot.</p>",
-    "CreateACL": "<p>Creates an Access Control List. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Clusters.ACLs.html\">Authenticating users with Access Contol Lists (ACLs)</a>.</p>",
+    "CreateACL": "<p>Creates an Access Control List. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/clusters.acls.html\">Authenticating users with Access Contol Lists (ACLs)</a>.</p>",
     "CreateCluster": "<p>Creates a cluster. All nodes in the cluster run the same protocol-compliant engine software.</p>",
-    "CreateParameterGroup": "<p>Creates a new MemoryDB parameter group. A parameter group is a collection of parameters and their values that are applied to all of the nodes in any cluster. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/ParameterGroups.html\">Configuring engine parameters using parameter groups</a>. </p>",
+    "CreateParameterGroup": "<p>Creates a new MemoryDB parameter group. A parameter group is a collection of parameters and their values that are applied to all of the nodes in any cluster. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/parametergroups.html\">Configuring engine parameters using parameter groups</a>. </p>",
     "CreateSnapshot": "<p>Creates a copy of an entire cluster at a specific moment in time.</p>",
-    "CreateSubnetGroup": "<p>Creates a subnet group. A subnet group is a collection of subnets (typically private) that you can designate for your clusters running in an Amazon Virtual Private Cloud (VPC) environment. When you create a cluster in an Amazon VPC, you must specify a subnet group. MemoryDB uses that subnet group to choose a subnet and IP addresses within that subnet to associate with your nodes. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/SubnetGroups.html\">Subnets and subnet groups</a>.</p>",
-    "CreateUser": "<p>Creates a MemoryDB user. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Clusters.ACLs.html\">Authenticating users with Access Contol Lists (ACLs)</a>.</p>",
-    "DeleteACL": "<p>Deletes an Access Control List. The ACL must first be disassociated from the cluster before it can be deleted. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Clusters.ACLs.html\">Authenticating users with Access Contol Lists (ACLs)</a>.</p>",
+    "CreateSubnetGroup": "<p>Creates a subnet group. A subnet group is a collection of subnets (typically private) that you can designate for your clusters running in an Amazon Virtual Private Cloud (VPC) environment. When you create a cluster in an Amazon VPC, you must specify a subnet group. MemoryDB uses that subnet group to choose a subnet and IP addresses within that subnet to associate with your nodes. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/subnetgroups.html\">Subnets and subnet groups</a>.</p>",
+    "CreateUser": "<p>Creates a MemoryDB user. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/clusters.acls.html\">Authenticating users with Access Contol Lists (ACLs)</a>.</p>",
+    "DeleteACL": "<p>Deletes an Access Control List. The ACL must first be disassociated from the cluster before it can be deleted. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/clusters.acls.html\">Authenticating users with Access Contol Lists (ACLs)</a>.</p>",
     "DeleteCluster": "<p>Deletes a cluster. It also deletes all associated nodes and node endpoints</p>",
     "DeleteParameterGroup": "<p>Deletes the specified parameter group. You cannot delete a parameter group if it is associated with any clusters. You cannot delete the default parameter groups in your account.</p>",
     "DeleteSnapshot": "<p>Deletes an existing snapshot. When you receive a successful response from this operation, MemoryDB immediately begins deleting the snapshot; you cannot cancel or revert this operation.</p>",
@@ -28,14 +28,14 @@
     "DescribeUsers": "<p>Returns a list of users.</p>",
     "FailoverShard": "<p>Used to failover a shard</p>",
     "ListAllowedNodeTypeUpdates": "<p>Lists all available node types that you can scale to from your cluster's current node type. When you use the UpdateCluster operation to scale your cluster, the value of the NodeType parameter must be one of the node types returned by this operation.</p>",
-    "ListTags": "<p>Lists all tags currently on a named resource. A tag is a key-value pair where the key and value are case-sensitive. You can use tags to categorize and track your MemoryDB resources. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Tagging-Resources.html\">Tagging your MemoryDB resources</a> </p>",
+    "ListTags": "<p>Lists all tags currently on a named resource. A tag is a key-value pair where the key and value are case-sensitive. You can use tags to categorize and track your MemoryDB resources. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/Tagging-Resources.html\">Tagging your MemoryDB resources</a> </p>",
     "ResetParameterGroup": "<p>Modifies the parameters of a parameter group to the engine or system default value. You can reset specific parameters by submitting a list of parameter names. To reset the entire parameter group, specify the AllParameters and ParameterGroupName parameters.</p>",
-    "TagResource": "<p>A tag is a key-value pair where the key and value are case-sensitive. You can use tags to categorize and track all your MemoryDB resources. When you add or remove tags on clusters, those actions will be replicated to all nodes in the cluster. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/IAM.ResourceLevelPermissions.html\">Resource-level permissions</a>.</p> <p>For example, you can use cost-allocation tags to your MemoryDB resources, Amazon generates a cost allocation report as a comma-separated value (CSV) file with your usage and costs aggregated by your tags. You can apply tags that represent business categories (such as cost centers, application names, or owners) to organize your costs across multiple services. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Tagging.html\">Using Cost Allocation Tags</a>.</p>",
+    "TagResource": "<p>A tag is a key-value pair where the key and value are case-sensitive. You can use tags to categorize and track all your MemoryDB resources. When you add or remove tags on clusters, those actions will be replicated to all nodes in the cluster. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/iam.resourcelevelpermissions.html\">Resource-level permissions</a>.</p> <p>For example, you can use cost-allocation tags to your MemoryDB resources, Amazon generates a cost allocation report as a comma-separated value (CSV) file with your usage and costs aggregated by your tags. You can apply tags that represent business categories (such as cost centers, application names, or owners) to organize your costs across multiple services. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/tagging.html\">Using Cost Allocation Tags</a>.</p>",
     "UntagResource": "<p>Use this operation to remove tags on a resource</p>",
     "UpdateACL": "<p>Changes the list of users that belong to the Access Control List.</p>",
     "UpdateCluster": "<p>Modifies the settings for a cluster. You can use this operation to change one or more cluster configuration settings by specifying the settings and the new values.</p>",
     "UpdateParameterGroup": "<p>Updates the parameters of a parameter group. You can modify up to 20 parameters in a single request by submitting a list parameter name and value pairs.</p>",
-    "UpdateSubnetGroup": "<p>Updates a subnet group. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/SubnetGroups.Modifying.html\">Updating a subnet group</a> </p>",
+    "UpdateSubnetGroup": "<p>Updates a subnet group. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/ubnetGroups.Modifying.html\">Updating a subnet group</a> </p>",
     "UpdateUser": "<p>Changes user password(s) and/or access string.</p>"
   },
   "shapes": {
@@ -577,8 +577,8 @@
         "ClusterConfiguration$Port": "<p>The port used by the cluster</p>",
         "ClusterConfiguration$SnapshotRetentionLimit": "<p>The snapshot retention limit set by the cluster</p>",
         "ClusterConfiguration$NumShards": "<p>The number of shards in the cluster</p>",
-        "CreateClusterRequest$NumShards": "<p>The number of shards the cluster will contain.</p> <p>Clusters can have up to 500 shards, with your data partitioned across the shards. For example, you can choose to configure a 500 node cluster that ranges between 83 shards (one primary and 5 replicas per shard) and 500 shards (single primary and no replicas). Make sure there are enough available IP addresses to accommodate the increase. Common pitfalls include the subnets in the subnet group have too small a CIDR range or the subnets are shared and heavily used by other clusters. </p>",
-        "CreateClusterRequest$NumReplicasPerShard": "<p>The number of replicas to apply to each shard. The limit is 5.</p>",
+        "CreateClusterRequest$NumShards": "<p>The number of shards the cluster will contain. The default value is 1. </p>",
+        "CreateClusterRequest$NumReplicasPerShard": "<p>The number of replicas to apply to each shard. The default value is 1. The maximum is 5. </p>",
         "CreateClusterRequest$Port": "<p>The port number on which each of the nodes accepts connections.</p>",
         "CreateClusterRequest$SnapshotRetentionLimit": "<p>The number of days for which MemoryDB retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.</p>",
         "DescribeACLsRequest$MaxResults": "<p>The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.</p>",
@@ -933,7 +933,7 @@
       }
     },
     "ShardNotFoundFault": {
-      "base": null,
+      "base": "<p/>",
       "refs": {
       }
     },
@@ -1252,7 +1252,7 @@
       }
     },
     "Tag": {
-      "base": "<p>A tag that can be added to an MemoryDB resource. Tags are composed of a Key/Value pair. You can use tags to categorize and track all your MemoryDB resources. When you add or remove tags on clusters, those actions will be replicated to all nodes in the cluster. A tag with a null Value is permitted. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/Tagging-Resources.html\">Tagging your MemoryDB resources</a> </p>",
+      "base": "<p>A tag that can be added to an MemoryDB resource. Tags are composed of a Key/Value pair. You can use tags to categorize and track all your MemoryDB resources. When you add or remove tags on clusters, those actions will be replicated to all nodes in the cluster. A tag with a null Value is permitted. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/tagging-resources.html\">Tagging your MemoryDB resources</a> </p>",
       "refs": {
         "TagList$member": null
       }
@@ -1296,7 +1296,7 @@
     "TargetBucket": {
       "base": null,
       "refs": {
-        "CopySnapshotRequest$TargetBucket": "<p>The Amazon S3 bucket to which the snapshot is exported. This parameter is used only when exporting a snapshot for external access. When using this parameter to export a snapshot, be sure MemoryDB has the needed permissions to this S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonMemoryDB/latest/devguide/snapshots-exporting.html\">Step 2: Grant MemoryDB Access to Your Amazon S3 Bucket</a>. </p>"
+        "CopySnapshotRequest$TargetBucket": "<p>The Amazon S3 bucket to which the snapshot is exported. This parameter is used only when exporting a snapshot for external access. When using this parameter to export a snapshot, be sure MemoryDB has the needed permissions to this S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/MemoryDB/latest/devguide/snapshots-exporting.html\">Step 2: Grant MemoryDB Access to Your Amazon S3 Bucket</a>. </p>"
       }
     },
     "TestFailoverNotAvailableFault": {

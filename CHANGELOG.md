@@ -1,3 +1,16 @@
+Release v1.40.34 (2021-08-31)
+===
+
+### Service Client Updates
+* `service/compute-optimizer`: Updates service documentation
+* `service/iot`: Updates service API, documentation, and paginators
+  * Added Create/Update/Delete/Describe/List APIs for a new IoT resource named FleetMetric. Added a new Fleet Indexing query API named GetBucketsAggregation. Added a new field named DisconnectedReason in Fleet Indexing query response. Updated their related documentations.
+* `service/memorydb`: Updates service documentation
+* `service/polly`: Updates service API
+  * Amazon Polly adds new South African English voice - Ayanda. Ayanda is available as Neural voice only.
+* `service/sqs`: Updates service API and documentation
+  * Amazon SQS adds a new queue attribute, RedriveAllowPolicy, which includes the dead-letter queue redrive permission parameters. It defines which source queues can specify dead-letter queues as a JSON object.
+
 Release v1.40.33 (2021-08-30)
 ===
 

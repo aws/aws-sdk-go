@@ -403,6 +403,28 @@
         {"shape":"LimitExceededException"}
       ]
     },
+    "CreateFleetMetric":{
+      "name":"CreateFleetMetric",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/fleet-metric/{metricName}"
+      },
+      "input":{"shape":"CreateFleetMetricRequest"},
+      "output":{"shape":"CreateFleetMetricResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"LimitExceededException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidQueryException"},
+        {"shape":"InvalidAggregationException"},
+        {"shape":"IndexNotReadyException"}
+      ]
+    },
     "CreateJob":{
       "name":"CreateJob",
       "http":{
@@ -883,6 +905,22 @@
         {"shape":"VersionConflictException"},
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"}
+      ]
+    },
+    "DeleteFleetMetric":{
+      "name":"DeleteFleetMetric",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/fleet-metric/{metricName}"
+      },
+      "input":{"shape":"DeleteFleetMetricRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"VersionConflictException"}
       ]
     },
     "DeleteJob":{
@@ -1471,6 +1509,23 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "DescribeFleetMetric":{
+      "name":"DescribeFleetMetric",
+      "http":{
+        "method":"GET",
+        "requestUri":"/fleet-metric/{metricName}"
+      },
+      "input":{"shape":"DescribeFleetMetricRequest"},
+      "output":{"shape":"DescribeFleetMetricResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeIndex":{
       "name":"DescribeIndex",
       "http":{
@@ -1817,6 +1872,26 @@
         {"shape":"ThrottlingException"},
         {"shape":"InternalFailureException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "GetBucketsAggregation":{
+      "name":"GetBucketsAggregation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/indices/buckets"
+      },
+      "input":{"shape":"GetBucketsAggregationRequest"},
+      "output":{"shape":"GetBucketsAggregationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidQueryException"},
+        {"shape":"InvalidAggregationException"},
+        {"shape":"IndexNotReadyException"}
       ]
     },
     "GetCardinality":{
@@ -2299,6 +2374,22 @@
       },
       "input":{"shape":"ListDomainConfigurationsRequest"},
       "output":{"shape":"ListDomainConfigurationsResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
+    "ListFleetMetrics":{
+      "name":"ListFleetMetrics",
+      "http":{
+        "method":"GET",
+        "requestUri":"/fleet-metrics"
+      },
+      "input":{"shape":"ListFleetMetricsRequest"},
+      "output":{"shape":"ListFleetMetricsResponse"},
       "errors":[
         {"shape":"InvalidRequestException"},
         {"shape":"ThrottlingException"},
@@ -3439,6 +3530,26 @@
         {"shape":"ThrottlingException"}
       ]
     },
+    "UpdateFleetMetric":{
+      "name":"UpdateFleetMetric",
+      "http":{
+        "method":"PATCH",
+        "requestUri":"/fleet-metric/{metricName}"
+      },
+      "input":{"shape":"UpdateFleetMetricRequest"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"UnauthorizedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalFailureException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidQueryException"},
+        {"shape":"InvalidAggregationException"},
+        {"shape":"VersionConflictException"},
+        {"shape":"IndexNotReadyException"}
+      ]
+    },
     "UpdateIndexingConfiguration":{
       "name":"UpdateIndexingConfiguration",
       "http":{
@@ -3814,6 +3925,32 @@
     "AggregationField":{
       "type":"string",
       "min":1
+    },
+    "AggregationType":{
+      "type":"structure",
+      "required":["name"],
+      "members":{
+        "name":{"shape":"AggregationTypeName"},
+        "values":{"shape":"AggregationTypeValues"}
+      }
+    },
+    "AggregationTypeName":{
+      "type":"string",
+      "enum":[
+        "Statistics",
+        "Percentiles",
+        "Cardinality"
+      ]
+    },
+    "AggregationTypeValue":{
+      "type":"string",
+      "max":12,
+      "min":1,
+      "pattern":"[a-zA-Z0-9]+"
+    },
+    "AggregationTypeValues":{
+      "type":"list",
+      "member":{"shape":"AggregationTypeValue"}
     },
     "AlarmName":{"type":"string"},
     "AlertTarget":{
@@ -4566,7 +4703,25 @@
     },
     "Boolean":{"type":"boolean"},
     "BooleanKey":{"type":"boolean"},
+    "Bucket":{
+      "type":"structure",
+      "members":{
+        "keyValue":{"shape":"BucketKeyValue"},
+        "count":{"shape":"Count"}
+      }
+    },
+    "BucketKeyValue":{"type":"string"},
     "BucketName":{"type":"string"},
+    "Buckets":{
+      "type":"list",
+      "member":{"shape":"Bucket"}
+    },
+    "BucketsAggregationType":{
+      "type":"structure",
+      "members":{
+        "termsAggregation":{"shape":"TermsAggregation"}
+      }
+    },
     "CACertificate":{
       "type":"structure",
       "members":{
@@ -5222,6 +5377,39 @@
         "indexName":{"shape":"IndexName"},
         "queryString":{"shape":"QueryString"},
         "queryVersion":{"shape":"QueryVersion"}
+      }
+    },
+    "CreateFleetMetricRequest":{
+      "type":"structure",
+      "required":[
+        "metricName",
+        "queryString",
+        "aggregationType",
+        "period",
+        "aggregationField"
+      ],
+      "members":{
+        "metricName":{
+          "shape":"FleetMetricName",
+          "location":"uri",
+          "locationName":"metricName"
+        },
+        "queryString":{"shape":"QueryString"},
+        "aggregationType":{"shape":"AggregationType"},
+        "period":{"shape":"FleetMetricPeriod"},
+        "aggregationField":{"shape":"AggregationField"},
+        "description":{"shape":"FleetMetricDescription"},
+        "queryVersion":{"shape":"QueryVersion"},
+        "indexName":{"shape":"IndexName"},
+        "unit":{"shape":"FleetMetricUnit"},
+        "tags":{"shape":"TagList"}
+      }
+    },
+    "CreateFleetMetricResponse":{
+      "type":"structure",
+      "members":{
+        "metricName":{"shape":"FleetMetricName"},
+        "metricArn":{"shape":"FleetMetricArn"}
       }
     },
     "CreateJobRequest":{
@@ -5940,6 +6128,22 @@
       "members":{
       }
     },
+    "DeleteFleetMetricRequest":{
+      "type":"structure",
+      "required":["metricName"],
+      "members":{
+        "metricName":{
+          "shape":"FleetMetricName",
+          "location":"uri",
+          "locationName":"metricName"
+        },
+        "expectedVersion":{
+          "shape":"OptionalVersion",
+          "location":"querystring",
+          "locationName":"expectedVersion"
+        }
+      }
+    },
     "DeleteJobExecutionRequest":{
       "type":"structure",
       "required":[
@@ -6626,6 +6830,35 @@
         "lastModifiedDate":{"shape":"LastModifiedDate"}
       }
     },
+    "DescribeFleetMetricRequest":{
+      "type":"structure",
+      "required":["metricName"],
+      "members":{
+        "metricName":{
+          "shape":"FleetMetricName",
+          "location":"uri",
+          "locationName":"metricName"
+        }
+      }
+    },
+    "DescribeFleetMetricResponse":{
+      "type":"structure",
+      "members":{
+        "metricName":{"shape":"FleetMetricName"},
+        "queryString":{"shape":"QueryString"},
+        "aggregationType":{"shape":"AggregationType"},
+        "period":{"shape":"FleetMetricPeriod"},
+        "aggregationField":{"shape":"AggregationField"},
+        "description":{"shape":"FleetMetricDescription"},
+        "queryVersion":{"shape":"QueryVersion"},
+        "indexName":{"shape":"IndexName"},
+        "creationDate":{"shape":"CreationDate"},
+        "lastModifiedDate":{"shape":"LastModifiedDate"},
+        "unit":{"shape":"FleetMetricUnit"},
+        "version":{"shape":"Version"},
+        "metricArn":{"shape":"FleetMetricArn"}
+      }
+    },
     "DescribeIndexRequest":{
       "type":"structure",
       "required":["indexName"],
@@ -7219,6 +7452,7 @@
         }
       }
     },
+    "DisconnectReason":{"type":"string"},
     "DomainConfigurationArn":{"type":"string"},
     "DomainConfigurationName":{
       "type":"string",
@@ -7507,6 +7741,66 @@
       "pattern":"([\\n\\t])|(\\r\\n)|(,)"
     },
     "Flag":{"type":"boolean"},
+    "FleetMetricArn":{"type":"string"},
+    "FleetMetricDescription":{
+      "type":"string",
+      "max":1024,
+      "pattern":"[\\p{Graph}\\x20]*"
+    },
+    "FleetMetricName":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"[a-zA-Z0-9_\\-\\.]+"
+    },
+    "FleetMetricNameAndArn":{
+      "type":"structure",
+      "members":{
+        "metricName":{"shape":"FleetMetricName"},
+        "metricArn":{"shape":"FleetMetricArn"}
+      }
+    },
+    "FleetMetricNameAndArnList":{
+      "type":"list",
+      "member":{"shape":"FleetMetricNameAndArn"}
+    },
+    "FleetMetricPeriod":{
+      "type":"integer",
+      "max":86400,
+      "min":60
+    },
+    "FleetMetricUnit":{
+      "type":"string",
+      "enum":[
+        "Seconds",
+        "Microseconds",
+        "Milliseconds",
+        "Bytes",
+        "Kilobytes",
+        "Megabytes",
+        "Gigabytes",
+        "Terabytes",
+        "Bits",
+        "Kilobits",
+        "Megabits",
+        "Gigabits",
+        "Terabits",
+        "Percent",
+        "Count",
+        "Bytes/Second",
+        "Kilobytes/Second",
+        "Megabytes/Second",
+        "Gigabytes/Second",
+        "Terabytes/Second",
+        "Bits/Second",
+        "Kilobits/Second",
+        "Megabits/Second",
+        "Gigabits/Second",
+        "Terabits/Second",
+        "Count/Second",
+        "None"
+      ]
+    },
     "ForceDelete":{"type":"boolean"},
     "ForceDeleteAWSJob":{"type":"boolean"},
     "ForceFlag":{"type":"boolean"},
@@ -7539,6 +7833,28 @@
       "members":{
         "summaries":{"shape":"BehaviorModelTrainingSummaries"},
         "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "GetBucketsAggregationRequest":{
+      "type":"structure",
+      "required":[
+        "queryString",
+        "aggregationField",
+        "bucketsAggregationType"
+      ],
+      "members":{
+        "indexName":{"shape":"IndexName"},
+        "queryString":{"shape":"QueryString"},
+        "aggregationField":{"shape":"AggregationField"},
+        "queryVersion":{"shape":"QueryVersion"},
+        "bucketsAggregationType":{"shape":"BucketsAggregationType"}
+      }
+    },
+    "GetBucketsAggregationResponse":{
+      "type":"structure",
+      "members":{
+        "totalCount":{"shape":"Count"},
+        "buckets":{"shape":"Buckets"}
       }
     },
     "GetCardinalityRequest":{
@@ -8833,6 +9149,28 @@
         "nextMarker":{"shape":"Marker"}
       }
     },
+    "ListFleetMetricsRequest":{
+      "type":"structure",
+      "members":{
+        "nextToken":{
+          "shape":"NextToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "maxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListFleetMetricsResponse":{
+      "type":"structure",
+      "members":{
+        "fleetMetrics":{"shape":"FleetMetricNameAndArnList"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
     "ListIndicesRequest":{
       "type":"structure",
       "members":{
@@ -9975,6 +10313,11 @@
       "type":"string",
       "max":1024,
       "pattern":"[A-Za-z0-9+/]+={0,2}"
+    },
+    "MaxBuckets":{
+      "type":"integer",
+      "max":10000,
+      "min":1
     },
     "MaxJobExecutionsPerMin":{
       "type":"integer",
@@ -11625,6 +11968,12 @@
       "pattern":"^[0-9A-Za-z_-]+$"
     },
     "TemplateVersionId":{"type":"integer"},
+    "TermsAggregation":{
+      "type":"structure",
+      "members":{
+        "maxBuckets":{"shape":"MaxBuckets"}
+      }
+    },
     "TestAuthorizationRequest":{
       "type":"structure",
       "required":["authInfos"],
@@ -11692,7 +12041,8 @@
       "type":"structure",
       "members":{
         "connected":{"shape":"Boolean"},
-        "timestamp":{"shape":"ConnectivityTimestamp"}
+        "timestamp":{"shape":"ConnectivityTimestamp"},
+        "disconnectReason":{"shape":"DisconnectReason"}
       }
     },
     "ThingConnectivityIndexingMode":{
@@ -12385,6 +12735,29 @@
     "UpdateEventConfigurationsResponse":{
       "type":"structure",
       "members":{
+      }
+    },
+    "UpdateFleetMetricRequest":{
+      "type":"structure",
+      "required":[
+        "metricName",
+        "indexName"
+      ],
+      "members":{
+        "metricName":{
+          "shape":"FleetMetricName",
+          "location":"uri",
+          "locationName":"metricName"
+        },
+        "queryString":{"shape":"QueryString"},
+        "aggregationType":{"shape":"AggregationType"},
+        "period":{"shape":"FleetMetricPeriod"},
+        "aggregationField":{"shape":"AggregationField"},
+        "description":{"shape":"FleetMetricDescription"},
+        "queryVersion":{"shape":"QueryVersion"},
+        "indexName":{"shape":"IndexName"},
+        "unit":{"shape":"FleetMetricUnit"},
+        "expectedVersion":{"shape":"OptionalVersion"}
       }
     },
     "UpdateIndexingConfigurationRequest":{
