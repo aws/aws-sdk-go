@@ -806,6 +806,91 @@ func (c *AppRegistry) GetApplicationWithContext(ctx aws.Context, input *GetAppli
 	return out, req.Send()
 }
 
+const opGetAssociatedResource = "GetAssociatedResource"
+
+// GetAssociatedResourceRequest generates a "aws/request.Request" representing the
+// client's request for the GetAssociatedResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetAssociatedResource for more information on using the GetAssociatedResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetAssociatedResourceRequest method.
+//    req, resp := client.GetAssociatedResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetAssociatedResource
+func (c *AppRegistry) GetAssociatedResourceRequest(input *GetAssociatedResourceInput) (req *request.Request, output *GetAssociatedResourceOutput) {
+	op := &request.Operation{
+		Name:       opGetAssociatedResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/applications/{application}/resources/{resourceType}/{resource}",
+	}
+
+	if input == nil {
+		input = &GetAssociatedResourceInput{}
+	}
+
+	output = &GetAssociatedResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetAssociatedResource API operation for AWS Service Catalog App Registry.
+//
+// Gets the resource associated with the application.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Service Catalog App Registry's
+// API operation GetAssociatedResource for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The specified resource does not exist.
+//
+//   * ValidationException
+//   The request has invalid or missing parameters.
+//
+//   * InternalServerException
+//   The service is experiencing internal problems.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24/GetAssociatedResource
+func (c *AppRegistry) GetAssociatedResource(input *GetAssociatedResourceInput) (*GetAssociatedResourceOutput, error) {
+	req, out := c.GetAssociatedResourceRequest(input)
+	return out, req.Send()
+}
+
+// GetAssociatedResourceWithContext is the same as GetAssociatedResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetAssociatedResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppRegistry) GetAssociatedResourceWithContext(ctx aws.Context, input *GetAssociatedResourceInput, opts ...request.Option) (*GetAssociatedResourceOutput, error) {
+	req, out := c.GetAssociatedResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetAttributeGroup = "GetAttributeGroup"
 
 // GetAttributeGroupRequest generates a "aws/request.Request" representing the
@@ -1589,10 +1674,12 @@ func (c *AppRegistry) SyncResourceRequest(input *SyncResourceInput) (req *reques
 
 // SyncResource API operation for AWS Service Catalog App Registry.
 //
-// Syncs the resource with what is currently recorded in App registry. Specifically,
-// the resource’s App registry system tags are synced with its associated
-// application. The resource is removed if it is not associated with the application.
-// The caller must have permissions to read and update the resource.
+// Syncs the resource with current AppRegistry records.
+//
+// Specifically, the resource’s AppRegistry system tags sync with its associated
+// application. We remove the resource's AppRegistry system tags if it does
+// not associate with the application. The caller must have permissions to read
+// and update the resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1988,8 +2075,8 @@ func (c *AppRegistry) UpdateAttributeGroupWithContext(ctx aws.Context, input *Up
 	return out, req.Send()
 }
 
-// Represents a Service Catalog AppRegistry application that is the top-level
-// node in a hierarchy of related cloud resource abstractions.
+// Represents a Amazon Web Services Service Catalog AppRegistry application
+// that is the top-level node in a hierarchy of related cloud resource abstractions.
 type Application struct {
 	_ struct{} `type:"structure"`
 
@@ -2003,7 +2090,7 @@ type Application struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The identifier of the application.
-	Id *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" min:"26" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment when the application was last
 	// updated.
@@ -2069,7 +2156,7 @@ func (s *Application) SetTags(v map[string]*string) *Application {
 	return s
 }
 
-// Summary of a Service Catalog AppRegistry application.
+// Summary of a Amazon Web Services Service Catalog AppRegistry application.
 type ApplicationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -2083,7 +2170,7 @@ type ApplicationSummary struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The identifier of the application.
-	Id *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" min:"26" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment when the application was last
 	// updated.
@@ -2341,8 +2428,8 @@ func (s *AssociateResourceOutput) SetResourceArn(v string) *AssociateResourceOut
 	return s
 }
 
-// Represents a Service Catalog AppRegistry attribute group that is rich metadata
-// which describes an application and its components.
+// Represents a Amazon Web Services Service Catalog AppRegistry attribute group
+// that is rich metadata which describes an application and its components.
 type AttributeGroup struct {
 	_ struct{} `type:"structure"`
 
@@ -2357,7 +2444,7 @@ type AttributeGroup struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The globally unique attribute group identifier of the attribute group.
-	Id *string `locationName:"id" min:"1" type:"string"`
+	Id *string `locationName:"id" min:"26" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was last
 	// updated. This time is the same as the creationTime for a newly created attribute
@@ -2423,7 +2510,7 @@ func (s *AttributeGroup) SetTags(v map[string]*string) *AttributeGroup {
 	return s
 }
 
-// Summary of a Service Catalog AppRegistry attribute group.
+// Summary of a Amazon Web Services Service Catalog AppRegistry attribute group.
 type AttributeGroupSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -2438,7 +2525,7 @@ type AttributeGroupSummary struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The globally unique attribute group identifier of the attribute group.
-	Id *string `locationName:"id" min:"1" type:"string"`
+	Id *string `locationName:"id" min:"26" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was last
 	// updated. This time is the same as the creationTime for a newly created attribute
@@ -3151,7 +3238,11 @@ type GetApplicationOutput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The identifier of the application.
-	Id *string `locationName:"id" type:"string"`
+	Id *string `locationName:"id" min:"26" type:"string"`
+
+	// The information about the integration of the application with other services,
+	// such as Resource Groups.
+	Integrations *Integrations `locationName:"integrations" type:"structure"`
 
 	// The ISO-8601 formatted timestamp of the moment when the application was last
 	// updated.
@@ -3205,6 +3296,12 @@ func (s *GetApplicationOutput) SetId(v string) *GetApplicationOutput {
 	return s
 }
 
+// SetIntegrations sets the Integrations field's value.
+func (s *GetApplicationOutput) SetIntegrations(v *Integrations) *GetApplicationOutput {
+	s.Integrations = v
+	return s
+}
+
 // SetLastUpdateTime sets the LastUpdateTime field's value.
 func (s *GetApplicationOutput) SetLastUpdateTime(v time.Time) *GetApplicationOutput {
 	s.LastUpdateTime = &v
@@ -3220,6 +3317,104 @@ func (s *GetApplicationOutput) SetName(v string) *GetApplicationOutput {
 // SetTags sets the Tags field's value.
 func (s *GetApplicationOutput) SetTags(v map[string]*string) *GetApplicationOutput {
 	s.Tags = v
+	return s
+}
+
+type GetAssociatedResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name or ID of the application.
+	//
+	// Application is a required field
+	Application *string `location:"uri" locationName:"application" min:"1" type:"string" required:"true"`
+
+	// The name or ID of the resource associated with the application.
+	//
+	// Resource is a required field
+	Resource *string `location:"uri" locationName:"resource" min:"1" type:"string" required:"true"`
+
+	// The type of resource associated with the application.
+	//
+	// ResourceType is a required field
+	ResourceType *string `location:"uri" locationName:"resourceType" type:"string" required:"true" enum:"ResourceType"`
+}
+
+// String returns the string representation
+func (s GetAssociatedResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAssociatedResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetAssociatedResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetAssociatedResourceInput"}
+	if s.Application == nil {
+		invalidParams.Add(request.NewErrParamRequired("Application"))
+	}
+	if s.Application != nil && len(*s.Application) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Application", 1))
+	}
+	if s.Resource == nil {
+		invalidParams.Add(request.NewErrParamRequired("Resource"))
+	}
+	if s.Resource != nil && len(*s.Resource) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Resource", 1))
+	}
+	if s.ResourceType == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceType"))
+	}
+	if s.ResourceType != nil && len(*s.ResourceType) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceType", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplication sets the Application field's value.
+func (s *GetAssociatedResourceInput) SetApplication(v string) *GetAssociatedResourceInput {
+	s.Application = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *GetAssociatedResourceInput) SetResource(v string) *GetAssociatedResourceInput {
+	s.Resource = &v
+	return s
+}
+
+// SetResourceType sets the ResourceType field's value.
+func (s *GetAssociatedResourceInput) SetResourceType(v string) *GetAssociatedResourceInput {
+	s.ResourceType = &v
+	return s
+}
+
+type GetAssociatedResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The resource associated with the application.
+	Resource *Resource `locationName:"resource" type:"structure"`
+}
+
+// String returns the string representation
+func (s GetAssociatedResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetAssociatedResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetResource sets the Resource field's value.
+func (s *GetAssociatedResourceOutput) SetResource(v *Resource) *GetAssociatedResourceOutput {
+	s.Resource = v
 	return s
 }
 
@@ -3283,7 +3478,7 @@ type GetAttributeGroupOutput struct {
 	Description *string `locationName:"description" type:"string"`
 
 	// The identifier of the attribute group.
-	Id *string `locationName:"id" min:"1" type:"string"`
+	Id *string `locationName:"id" min:"26" type:"string"`
 
 	// The ISO-8601 formatted timestamp of the moment the attribute group was last
 	// updated. This time is the same as the creationTime for a newly created attribute
@@ -3352,6 +3547,30 @@ func (s *GetAttributeGroupOutput) SetName(v string) *GetAttributeGroupOutput {
 // SetTags sets the Tags field's value.
 func (s *GetAttributeGroupOutput) SetTags(v map[string]*string) *GetAttributeGroupOutput {
 	s.Tags = v
+	return s
+}
+
+// The information about the service integration.
+type Integrations struct {
+	_ struct{} `type:"structure"`
+
+	// The information about the resource group integration.
+	ResourceGroup *ResourceGroup `locationName:"resourceGroup" type:"structure"`
+}
+
+// String returns the string representation
+func (s Integrations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Integrations) GoString() string {
+	return s.String()
+}
+
+// SetResourceGroup sets the ResourceGroup field's value.
+func (s *Integrations) SetResourceGroup(v *ResourceGroup) *Integrations {
+	s.ResourceGroup = v
 	return s
 }
 
@@ -3833,7 +4052,113 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Information about the resource.
+// The information about the resource.
+type Resource struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon resource name (ARN) of the resource.
+	Arn *string `locationName:"arn" type:"string"`
+
+	// The time the resource was associated with the application.
+	AssociationTime *time.Time `locationName:"associationTime" type:"timestamp" timestampFormat:"iso8601"`
+
+	// The service integration information about the resource.
+	Integrations *ResourceIntegrations `locationName:"integrations" type:"structure"`
+
+	// The name of the resource.
+	Name *string `locationName:"name" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s Resource) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Resource) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *Resource) SetArn(v string) *Resource {
+	s.Arn = &v
+	return s
+}
+
+// SetAssociationTime sets the AssociationTime field's value.
+func (s *Resource) SetAssociationTime(v time.Time) *Resource {
+	s.AssociationTime = &v
+	return s
+}
+
+// SetIntegrations sets the Integrations field's value.
+func (s *Resource) SetIntegrations(v *ResourceIntegrations) *Resource {
+	s.Integrations = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Resource) SetName(v string) *Resource {
+	s.Name = &v
+	return s
+}
+
+// The information about the resource group integration.
+type ResourceGroup struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon resource name (ARN) of the resource group.
+	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The error message that generates when the propagation process for the resource
+	// group fails.
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
+
+	// The state of the propagation process for the resource group. The states includes:
+	//
+	// CREATING if the resource group is in the process of being created.
+	//
+	// CREATE_COMPLETE if the resource group was created successfully.
+	//
+	// CREATE_FAILED if the resource group failed to be created.
+	//
+	// UPDATING if the resource group is in the process of being updated.
+	//
+	// UPDATE_COMPLETE if the resource group updated successfully.
+	//
+	// UPDATE_FAILED if the resource group could not update successfully.
+	State *string `locationName:"state" type:"string" enum:"ResourceGroupState"`
+}
+
+// String returns the string representation
+func (s ResourceGroup) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceGroup) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ResourceGroup) SetArn(v string) *ResourceGroup {
+	s.Arn = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *ResourceGroup) SetErrorMessage(v string) *ResourceGroup {
+	s.ErrorMessage = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ResourceGroup) SetState(v string) *ResourceGroup {
+	s.State = &v
+	return s
+}
+
+// The information about the resource.
 type ResourceInfo struct {
 	_ struct{} `type:"structure"`
 
@@ -3863,6 +4188,30 @@ func (s *ResourceInfo) SetArn(v string) *ResourceInfo {
 // SetName sets the Name field's value.
 func (s *ResourceInfo) SetName(v string) *ResourceInfo {
 	s.Name = &v
+	return s
+}
+
+// The service integration information about the resource.
+type ResourceIntegrations struct {
+	_ struct{} `type:"structure"`
+
+	// The information about the integration of Resource Groups.
+	ResourceGroup *ResourceGroup `locationName:"resourceGroup" type:"structure"`
+}
+
+// String returns the string representation
+func (s ResourceIntegrations) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ResourceIntegrations) GoString() string {
+	return s.String()
+}
+
+// SetResourceGroup sets the ResourceGroup field's value.
+func (s *ResourceIntegrations) SetResourceGroup(v *ResourceGroup) *ResourceIntegrations {
+	s.ResourceGroup = v
 	return s
 }
 
@@ -3982,7 +4331,8 @@ type SyncResourceInput struct {
 	_ struct{} `type:"structure"`
 
 	// An entity you can work with and specify with a name or ID. Examples include
-	// an Amazon EC2 instance, an AWS CloudFormation stack, or an Amazon S3 bucket.
+	// an Amazon EC2 instance, an Amazon Web Services CloudFormation stack, or an
+	// Amazon S3 bucket.
 	//
 	// Resource is a required field
 	Resource *string `location:"uri" locationName:"resource" min:"1" type:"string" required:"true"`
@@ -4457,6 +4807,38 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// ResourceGroupStateCreating is a ResourceGroupState enum value
+	ResourceGroupStateCreating = "CREATING"
+
+	// ResourceGroupStateCreateComplete is a ResourceGroupState enum value
+	ResourceGroupStateCreateComplete = "CREATE_COMPLETE"
+
+	// ResourceGroupStateCreateFailed is a ResourceGroupState enum value
+	ResourceGroupStateCreateFailed = "CREATE_FAILED"
+
+	// ResourceGroupStateUpdating is a ResourceGroupState enum value
+	ResourceGroupStateUpdating = "UPDATING"
+
+	// ResourceGroupStateUpdateComplete is a ResourceGroupState enum value
+	ResourceGroupStateUpdateComplete = "UPDATE_COMPLETE"
+
+	// ResourceGroupStateUpdateFailed is a ResourceGroupState enum value
+	ResourceGroupStateUpdateFailed = "UPDATE_FAILED"
+)
+
+// ResourceGroupState_Values returns all elements of the ResourceGroupState enum
+func ResourceGroupState_Values() []string {
+	return []string{
+		ResourceGroupStateCreating,
+		ResourceGroupStateCreateComplete,
+		ResourceGroupStateCreateFailed,
+		ResourceGroupStateUpdating,
+		ResourceGroupStateUpdateComplete,
+		ResourceGroupStateUpdateFailed,
+	}
 }
 
 const (

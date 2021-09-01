@@ -96,6 +96,10 @@ type AppRegistryAPI interface {
 	GetApplicationWithContext(aws.Context, *appregistry.GetApplicationInput, ...request.Option) (*appregistry.GetApplicationOutput, error)
 	GetApplicationRequest(*appregistry.GetApplicationInput) (*request.Request, *appregistry.GetApplicationOutput)
 
+	GetAssociatedResource(*appregistry.GetAssociatedResourceInput) (*appregistry.GetAssociatedResourceOutput, error)
+	GetAssociatedResourceWithContext(aws.Context, *appregistry.GetAssociatedResourceInput, ...request.Option) (*appregistry.GetAssociatedResourceOutput, error)
+	GetAssociatedResourceRequest(*appregistry.GetAssociatedResourceInput) (*request.Request, *appregistry.GetAssociatedResourceOutput)
+
 	GetAttributeGroup(*appregistry.GetAttributeGroupInput) (*appregistry.GetAttributeGroupOutput, error)
 	GetAttributeGroupWithContext(aws.Context, *appregistry.GetAttributeGroupInput, ...request.Option) (*appregistry.GetAttributeGroupOutput, error)
 	GetAttributeGroupRequest(*appregistry.GetAttributeGroupInput) (*request.Request, *appregistry.GetAttributeGroupOutput)

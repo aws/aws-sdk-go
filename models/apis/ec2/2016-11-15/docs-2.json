@@ -9169,14 +9169,14 @@
         "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv6AddressCount": "<p>The number of IPv6 addresses for the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses for the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$NetworkCardIndex": "<p>The index of the network card.</p>",
-        "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv4PrefixCount": "<p>The number of IPv4 delegated prefixes that AWS automatically assigned to the network interface.</p>",
-        "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv6PrefixCount": "<p>The number of IPv6 delegated prefixes that AWS automatically assigned to the network interface.</p>",
+        "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv4PrefixCount": "<p>The number of IPv4 prefixes that Amazon Web Services automatically assigned to the network interface.</p>",
+        "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv6PrefixCount": "<p>The number of IPv6 prefixes that Amazon Web Services automatically assigned to the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$DeviceIndex": "<p>The device index for the network interface attachment.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv6AddressCount": "<p>The number of IPv6 addresses to assign to a network interface. Amazon EC2 automatically selects the IPv6 addresses from the subnet range. You can't use this option if specifying specific IPv6 addresses.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$SecondaryPrivateIpAddressCount": "<p>The number of secondary private IPv4 addresses to assign to a network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$NetworkCardIndex": "<p>The index of the network card. Some instance types support multiple network cards. The primary network interface must be assigned to network card index 0. The default is network card index 0.</p>",
-        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv4PrefixCount": "<p>The number of IPv4 delegated prefixes to be automatically assigned to the network interface. You cannot use this option if you use the <code>Ipv4Prefix</code> option.</p>",
-        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv6PrefixCount": "<p>The number of IPv6 delegated prefixes to be automatically assigned to the network interface. You cannot use this option if you use the <code>Ipv6Prefix</code> option.</p>",
+        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv4PrefixCount": "<p>The number of IPv4 prefixes to be automatically assigned to the network interface. You cannot use this option if you use the <code>Ipv4Prefix</code> option.</p>",
+        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv6PrefixCount": "<p>The number of IPv6 prefixes to be automatically assigned to the network interface. You cannot use this option if you use the <code>Ipv6Prefix</code> option.</p>",
         "LaunchTemplatePlacement$PartitionNumber": "<p>The number of the partition the instance should launch in. Valid only if the placement group strategy is set to <code>partition</code>.</p>",
         "LaunchTemplatePlacementRequest$PartitionNumber": "<p>The number of the partition the instance should launch in. Valid only if the placement group strategy is set to <code>partition</code>.</p>",
         "LaunchTemplateSpotMarketOptions$BlockDurationMinutes": "<p>The required duration for the Spot Instances (also known as Spot blocks), in minutes. This value must be a multiple of 60 (60, 120, 180, 240, 300, or 360).</p>",
@@ -9463,13 +9463,13 @@
       "refs": {
         "CreateNetworkInterfaceRequest$Ipv4Prefixes": "<p>One or more IPv4 prefixes assigned to the network interface. You cannot use this option if you use the <code>Ipv4PrefixCount</code> option.</p>",
         "InstanceNetworkInterfaceSpecification$Ipv4Prefixes": "<p>One or more IPv4 delegated prefixes to be assigned to the network interface. You cannot use this option if you use the <code>Ipv4PrefixCount</code> option.</p>",
-        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv4Prefixes": "<p>One or more IPv4 delegated prefixes to be assigned to the network interface. You cannot use this option if you use the <code>Ipv4PrefixCount</code> option.</p>"
+        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv4Prefixes": "<p>One or more IPv4 prefixes to be assigned to the network interface. You cannot use this option if you use the <code>Ipv4PrefixCount</code> option.</p>"
       }
     },
     "Ipv4PrefixListResponse": {
       "base": null,
       "refs": {
-        "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv4Prefixes": "<p>One or more IPv4 delegated prefixes assigned to the network interface.</p>"
+        "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv4Prefixes": "<p>One or more IPv4 prefixes assigned to the network interface.</p>"
       }
     },
     "Ipv4PrefixSpecification": {
@@ -9581,13 +9581,13 @@
       "refs": {
         "CreateNetworkInterfaceRequest$Ipv6Prefixes": "<p>One or more IPv6 prefixes assigned to the network interface. You cannot use this option if you use the <code>Ipv6PrefixCount</code> option.</p>",
         "InstanceNetworkInterfaceSpecification$Ipv6Prefixes": "<p>One or more IPv6 delegated prefixes to be assigned to the network interface. You cannot use this option if you use the <code>Ipv6PrefixCount</code> option.</p>",
-        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv6Prefixes": "<p>One or more IPv6 delegated prefixes to be assigned to the network interface. You cannot use this option if you use the <code>Ipv6PrefixCount</code> option.</p>"
+        "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$Ipv6Prefixes": "<p>One or more IPv6 prefixes to be assigned to the network interface. You cannot use this option if you use the <code>Ipv6PrefixCount</code> option.</p>"
       }
     },
     "Ipv6PrefixListResponse": {
       "base": null,
       "refs": {
-        "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv6Prefixes": "<p>One or more IPv6 delegated prefixes assigned to the network interface.</p>"
+        "LaunchTemplateInstanceNetworkInterfaceSpecification$Ipv6Prefixes": "<p>One or more IPv6 prefixes assigned to the network interface.</p>"
       }
     },
     "Ipv6PrefixSpecification": {
@@ -9974,6 +9974,13 @@
       "base": null,
       "refs": {
         "LaunchTemplateInstanceMetadataOptions$State": "<p>The state of the metadata option changes.</p> <p> <code>pending</code> - The metadata options are being updated and the instance is not ready to process metadata traffic with the new selection.</p> <p> <code>applied</code> - The metadata options have been successfully applied on the instance.</p>"
+      }
+    },
+    "LaunchTemplateInstanceMetadataProtocolIpv6": {
+      "base": null,
+      "refs": {
+        "LaunchTemplateInstanceMetadataOptions$HttpProtocolIpv6": "<p>Enables or disables the IPv6 endpoint for the instance metadata service.</p> <p>Default: <code>disabled</code> </p>",
+        "LaunchTemplateInstanceMetadataOptionsRequest$HttpProtocolIpv6": "<p>Enables or disables the IPv6 endpoint for the instance metadata service.</p> <p>Default: <code>disabled</code> </p>"
       }
     },
     "LaunchTemplateInstanceNetworkInterfaceSpecification": {
@@ -14443,9 +14450,9 @@
         "CreateVpcPeeringConnectionRequest$PeerOwnerId": "<p>The Amazon Web Services account ID of the owner of the accepter VPC.</p> <p>Default: Your Amazon Web Services account ID</p>",
         "CreateVpcPeeringConnectionRequest$PeerVpcId": "<p>The ID of the VPC with which you are creating the VPC peering connection. You must specify this parameter in the request.</p>",
         "CreateVpcPeeringConnectionRequest$PeerRegion": "<p>The Region code for the accepter VPC, if the accepter VPC is located in a Region other than the Region in which you make the request.</p> <p>Default: The Region in which you make the request.</p>",
-        "CreateVpcRequest$CidrBlock": "<p>The IPv4 network range for the VPC, in CIDR notation. For example, <code>10.0.0.0/16</code>. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</p>",
         "CreateVpcRequest$Ipv6CidrBlock": "<p>The IPv6 CIDR block from the IPv6 address pool. You must also specify <code>Ipv6Pool</code> in the request.</p> <p>To let Amazon choose the IPv6 CIDR block for you, omit this parameter.</p>",
         "CreateVpcRequest$Ipv6CidrBlockNetworkBorderGroup": "<p>The name of the location from which we advertise the IPV6 CIDR block. Use this parameter to limit the address to this location.</p> <p> You must set <code>AmazonProvidedIpv6CidrBlock</code> to <code>true</code> to use this parameter.</p>",
+        "CreateVpcRequest$CidrBlock": "<p>The IPv4 network range for the VPC, in CIDR notation. For example, <code>10.0.0.0/16</code>. We modify the specified CIDR block to its canonical form; for example, if you specify <code>100.68.0.18/18</code>, we modify it to <code>100.68.0.0/18</code>.</p>",
         "CreateVpnConnectionRequest$Type": "<p>The type of VPN connection (<code>ipsec.1</code>).</p>",
         "CreateVpnConnectionRouteRequest$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer network.</p>",
         "CreateVpnGatewayRequest$AvailabilityZone": "<p>The Availability Zone for the virtual private gateway.</p>",
@@ -15311,7 +15318,7 @@
         "ReplaceRouteTableAssociationResult$NewAssociationId": "<p>The ID of the new association.</p>",
         "ReplaceTransitGatewayRouteRequest$DestinationCidrBlock": "<p>The CIDR range used for the destination match. Routing decisions are based on the most specific match.</p>",
         "ReportInstanceStatusRequest$Description": "<p>Descriptive text about the health state of your instance.</p>",
-        "RequestLaunchTemplateData$UserData": "<p>The Base64-encoded user data to make available to the instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html\">Running Commands on Your Linux Instance at Launch</a> (Linux) and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data\">Adding User Data</a> (Windows).</p>",
+        "RequestLaunchTemplateData$UserData": "<p>The user data to make available to the instance. You must provide base64-encoded text. User data is limited to 16 KB. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html\">Running Commands on Your Linux Instance at Launch</a> (Linux) or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/ec2-instance-metadata.html#instancedata-add-user-data\">Adding User Data</a> (Windows).</p> <p>If you are creating the launch template for use with Batch, the user data must be provided in the <a href=\"https://cloudinit.readthedocs.io/en/latest/topics/format.html#mime-multi-part-archive\"> MIME multi-part archive format</a>. For more information, see <a href=\"https://docs.aws.amazon.com/batch/latest/userguide/launch-templates.html\">Amazon EC2 user data in launch templates</a> in the <i>Batch User Guide</i>.</p>",
         "RequestSpotFleetResponse$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
         "RequestSpotInstancesRequest$AvailabilityZoneGroup": "<p>The user-specified name for a logical grouping of requests.</p> <p>When you specify an Availability Zone group in a Spot Instance request, all Spot Instances in the request are launched in the same Availability Zone. Instance proximity is maintained with this parameter, but the choice of Availability Zone is not. The group applies only to requests for Spot Instances of the same instance type. Any additional Spot Instance requests that are specified with the same Availability Zone group name are launched in that same Availability Zone, as long as at least one instance from the group is still active.</p> <p>If there is no active instance running in the Availability Zone group that you specify for a new Spot Instance request (all instances are terminated, the request is expired, or the maximum price you specified falls below current Spot price), then Amazon EC2 launches the instance in any Availability Zone where the constraint can be met. Consequently, the subsequent set of Spot Instances could be placed in a different zone from the original request, even if you specified the same Availability Zone group.</p> <p>Default: Instances are launched in any available Availability Zone.</p>",
         "RequestSpotInstancesRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Run_Instance_Idempotency.html\">How to Ensure Idempotency</a> in the <i>Amazon EC2 User Guide for Linux Instances</i>.</p>",

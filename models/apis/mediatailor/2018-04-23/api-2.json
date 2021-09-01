@@ -629,6 +629,9 @@
         "CreationTime": {
           "shape": "__timestampUnix"
         },
+        "FillerSlate": {
+          "shape": "SlateSource"
+        },
         "LastModifiedTime": {
           "shape": "__timestampUnix"
         },
@@ -684,6 +687,9 @@
           "locationName": "channelName",
           "shape": "__string"
         },
+        "FillerSlate": {
+          "shape": "SlateSource"
+        },
         "Outputs": {
           "shape": "RequestOutputs"
         },
@@ -715,6 +721,9 @@
         },
         "CreationTime": {
           "shape": "__timestampUnix"
+        },
+        "FillerSlate": {
+          "shape": "SlateSource"
         },
         "LastModifiedTime": {
           "shape": "__timestampUnix"
@@ -782,6 +791,9 @@
         },
         "ProgramName": {
           "shape": "__string"
+        },
+        "ScheduledStartTime": {
+          "shape": "__timestampUnix"
         },
         "SourceLocationName": {
           "shape": "__string"
@@ -1094,6 +1106,9 @@
         "CreationTime": {
           "shape": "__timestampUnix"
         },
+        "FillerSlate": {
+          "shape": "SlateSource"
+        },
         "LastModifiedTime": {
           "shape": "__timestampUnix"
         },
@@ -1145,6 +1160,9 @@
         },
         "ProgramName": {
           "shape": "__string"
+        },
+        "ScheduledStartTime": {
+          "shape": "__timestampUnix"
         },
         "SourceLocationName": {
           "shape": "__string"
@@ -1703,7 +1721,8 @@
     },
     "PlaybackMode": {
       "enum": [
-        "LOOP"
+        "LOOP",
+        "LINEAR"
       ],
       "type": "string"
     },
@@ -1949,6 +1968,9 @@
         "ScheduleAdBreaks": {
           "shape": "__listOfScheduleAdBreak"
         },
+        "ScheduleEntryType": {
+          "shape": "ScheduleEntryType"
+        },
         "SourceLocationName": {
           "shape": "__string"
         },
@@ -1964,6 +1986,13 @@
         "ProgramName"
       ],
       "type": "structure"
+    },
+    "ScheduleEntryType": {
+      "enum": [
+        "PROGRAM",
+        "FILLER_SLATE"
+      ],
+      "type": "string"
     },
     "SecretsManagerAccessTokenConfiguration": {
       "members": {
@@ -2102,6 +2131,9 @@
         "RelativeProgram": {
           "shape": "__string"
         },
+        "ScheduledStartTimeMillis": {
+          "shape": "__long"
+        },
         "Type": {
           "shape": "__string"
         }
@@ -2168,6 +2200,9 @@
         },
         "CreationTime": {
           "shape": "__timestampUnix"
+        },
+        "FillerSlate": {
+          "shape": "SlateSource"
         },
         "LastModifiedTime": {
           "shape": "__timestampUnix"

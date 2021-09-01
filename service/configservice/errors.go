@@ -17,7 +17,7 @@ const (
 	// ErrCodeInsufficientDeliveryPolicyException for service response error code
 	// "InsufficientDeliveryPolicyException".
 	//
-	// Your Amazon S3 bucket policy does not permit AWS Config to write to it.
+	// Your Amazon S3 bucket policy does not permit Config to write to it.
 	ErrCodeInsufficientDeliveryPolicyException = "InsufficientDeliveryPolicyException"
 
 	// ErrCodeInsufficientPermissionsException for service response error code
@@ -26,10 +26,10 @@ const (
 	// Indicates one of the following errors:
 	//
 	//    * For PutConfigRule, the rule cannot be created because the IAM role assigned
-	//    to AWS Config lacks permissions to perform the config:Put* action.
+	//    to Config lacks permissions to perform the config:Put* action.
 	//
-	//    * For PutConfigRule, the AWS Lambda function cannot be invoked. Check
-	//    the function ARN, and check the function's permissions.
+	//    * For PutConfigRule, the Lambda function cannot be invoked. Check the
+	//    function ARN, and check the function's permissions.
 	//
 	//    * For PutOrganizationConfigRule, organization config rule cannot be created
 	//    because you do not have permissions to call IAM GetRole action or create
@@ -81,8 +81,8 @@ const (
 	// ErrCodeInvalidRecordingGroupException for service response error code
 	// "InvalidRecordingGroupException".
 	//
-	// AWS Config throws an exception if the recording group does not contain a
-	// valid list of resource types. Invalid values might also be incorrectly formatted.
+	// Config throws an exception if the recording group does not contain a valid
+	// list of resource types. Invalid values might also be incorrectly formatted.
 	ErrCodeInvalidRecordingGroupException = "InvalidRecordingGroupException"
 
 	// ErrCodeInvalidResultTokenException for service response error code
@@ -150,9 +150,9 @@ const (
 	// ErrCodeMaxNumberOfConfigRulesExceededException for service response error code
 	// "MaxNumberOfConfigRulesExceededException".
 	//
-	// Failed to add the AWS Config rule because the account already contains the
-	// maximum number of 150 rules. Consider deleting any deactivated rules before
-	// you add new rules.
+	// Failed to add the Config rule because the account already contains the maximum
+	// number of 150 rules. Consider deleting any deactivated rules before you add
+	// new rules.
 	ErrCodeMaxNumberOfConfigRulesExceededException = "MaxNumberOfConfigRulesExceededException"
 
 	// ErrCodeMaxNumberOfConfigurationRecordersExceededException for service response error code
@@ -165,7 +165,7 @@ const (
 	// "MaxNumberOfConformancePacksExceededException".
 	//
 	// You have reached the limit (6) of the number of conformance packs in an account
-	// (6 conformance pack with 25 AWS Config rules per pack).
+	// (6 conformance pack with 25 Config rules per pack).
 	ErrCodeMaxNumberOfConformancePacksExceededException = "MaxNumberOfConformancePacksExceededException"
 
 	// ErrCodeMaxNumberOfDeliveryChannelsExceededException for service response error code
@@ -185,8 +185,8 @@ const (
 	// "MaxNumberOfOrganizationConformancePacksExceededException".
 	//
 	// You have reached the limit (6) of the number of organization conformance
-	// packs in an account (6 conformance pack with 25 AWS Config rules per pack
-	// per account).
+	// packs in an account (6 conformance pack with 25 Config rules per pack per
+	// account).
 	ErrCodeMaxNumberOfOrganizationConformancePacksExceededException = "MaxNumberOfOrganizationConformancePacksExceededException"
 
 	// ErrCodeMaxNumberOfRetentionConfigurationsExceededException for service response error code
@@ -230,14 +230,14 @@ const (
 	// ErrCodeNoSuchConfigRuleException for service response error code
 	// "NoSuchConfigRuleException".
 	//
-	// One or more AWS Config rules in the request are invalid. Verify that the
-	// rule names are correct and try again.
+	// One or more Config rules in the request are invalid. Verify that the rule
+	// names are correct and try again.
 	ErrCodeNoSuchConfigRuleException = "NoSuchConfigRuleException"
 
 	// ErrCodeNoSuchConfigRuleInConformancePackException for service response error code
 	// "NoSuchConfigRuleInConformancePackException".
 	//
-	// AWS Config rule that you passed in the filter does not exist.
+	// Config rule that you passed in the filter does not exist.
 	ErrCodeNoSuchConfigRuleInConformancePackException = "NoSuchConfigRuleInConformancePackException"
 
 	// ErrCodeNoSuchConfigurationAggregatorException for service response error code
@@ -273,8 +273,8 @@ const (
 	// ErrCodeNoSuchOrganizationConformancePackException for service response error code
 	// "NoSuchOrganizationConformancePackException".
 	//
-	// AWS Config organization conformance pack that you passed in the filter does
-	// not exist.
+	// Config organization conformance pack that you passed in the filter does not
+	// exist.
 	//
 	// For DeleteOrganizationConformancePack, you tried to delete an organization
 	// conformance pack that does not exist.
@@ -283,7 +283,7 @@ const (
 	// ErrCodeNoSuchRemediationConfigurationException for service response error code
 	// "NoSuchRemediationConfigurationException".
 	//
-	// You specified an AWS Config rule without a remediation configuration.
+	// You specified an Config rule without a remediation configuration.
 	ErrCodeNoSuchRemediationConfigurationException = "NoSuchRemediationConfigurationException"
 
 	// ErrCodeNoSuchRemediationExceptionException for service response error code
@@ -306,29 +306,31 @@ const (
 	//
 	//    * No permission to call EnableAWSServiceAccess API
 	//
-	//    * The configuration aggregator cannot be updated because your AWS Organization
-	//    management account or the delegated administrator role changed. Delete
-	//    this aggregator and create a new one with the current AWS Organization.
+	//    * The configuration aggregator cannot be updated because your Amazon Web
+	//    Services Organization management account or the delegated administrator
+	//    role changed. Delete this aggregator and create a new one with the current
+	//    Amazon Web Services Organization.
 	//
-	//    * The configuration aggregator is associated with a previous AWS Organization
-	//    and AWS Config cannot aggregate data with current AWS Organization. Delete
-	//    this aggregator and create a new one with the current AWS Organization.
+	//    * The configuration aggregator is associated with a previous Amazon Web
+	//    Services Organization and Config cannot aggregate data with current Amazon
+	//    Web Services Organization. Delete this aggregator and create a new one
+	//    with the current Amazon Web Services Organization.
 	//
-	//    * You are not a registered delegated administrator for AWS Config with
-	//    permissions to call ListDelegatedAdministrators API. Ensure that the management
-	//    account registers delagated administrator for AWS Config service principle
-	//    name before the delegated administrator creates an aggregator.
+	//    * You are not a registered delegated administrator for Config with permissions
+	//    to call ListDelegatedAdministrators API. Ensure that the management account
+	//    registers delagated administrator for Config service principle name before
+	//    the delegated administrator creates an aggregator.
 	//
-	// For all OrganizationConfigRule and OrganizationConformancePack APIs, AWS
-	// Config throws an exception if APIs are called from member accounts. All APIs
-	// must be called from organization master account.
+	// For all OrganizationConfigRule and OrganizationConformancePack APIs, Config
+	// throws an exception if APIs are called from member accounts. All APIs must
+	// be called from organization master account.
 	ErrCodeOrganizationAccessDeniedException = "OrganizationAccessDeniedException"
 
 	// ErrCodeOrganizationAllFeaturesNotEnabledException for service response error code
 	// "OrganizationAllFeaturesNotEnabledException".
 	//
-	// AWS Config resource cannot be created because your organization does not
-	// have all features enabled.
+	// Config resource cannot be created because your organization does not have
+	// all features enabled.
 	ErrCodeOrganizationAllFeaturesNotEnabledException = "OrganizationAllFeaturesNotEnabledException"
 
 	// ErrCodeOrganizationConformancePackTemplateValidationException for service response error code
@@ -346,8 +348,8 @@ const (
 	// ErrCodeRemediationInProgressException for service response error code
 	// "RemediationInProgressException".
 	//
-	// Remediation action is in progress. You can either cancel execution in AWS
-	// Systems Manager or wait and try again later.
+	// Remediation action is in progress. You can either cancel execution in Amazon
+	// Web Services Systems Manager or wait and try again later.
 	ErrCodeRemediationInProgressException = "RemediationInProgressException"
 
 	// ErrCodeResourceConcurrentModificationException for service response error code
@@ -362,16 +364,15 @@ const (
 	//
 	// You see this exception in the following cases:
 	//
-	//    * For DeleteConfigRule, AWS Config is deleting this rule. Try your request
+	//    * For DeleteConfigRule, Config is deleting this rule. Try your request
 	//    again later.
 	//
 	//    * For DeleteConfigRule, the rule is deleting your evaluation results.
 	//    Try your request again later.
 	//
 	//    * For DeleteConfigRule, a remediation action is associated with the rule
-	//    and AWS Config cannot delete this rule. Delete the remediation action
-	//    associated with the rule before deleting the rule and try your request
-	//    again later.
+	//    and Config cannot delete this rule. Delete the remediation action associated
+	//    with the rule before deleting the rule and try your request again later.
 	//
 	//    * For PutConfigOrganizationRule, organization config rule deletion is
 	//    in progress. Try your request again later.

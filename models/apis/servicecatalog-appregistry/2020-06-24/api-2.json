@@ -143,6 +143,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "GetAssociatedResource":{
+      "name":"GetAssociatedResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/applications/{application}/resources/{resourceType}/{resource}"
+      },
+      "input":{"shape":"GetAssociatedResourceRequest"},
+      "output":{"shape":"GetAssociatedResourceResponse"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ValidationException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "GetAttributeGroup":{
       "name":"GetAttributeGroup",
       "http":{
@@ -320,13 +335,15 @@
     },
     "ApplicationId":{
       "type":"string",
-      "pattern":"[a-z0-9]{12}"
+      "max":26,
+      "min":26,
+      "pattern":"[a-z0-9]+"
     },
     "ApplicationSpecifier":{
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"\\w+"
+      "pattern":"[-.\\w]+"
     },
     "ApplicationSummaries":{
       "type":"list",
@@ -429,9 +446,9 @@
     },
     "AttributeGroupId":{
       "type":"string",
-      "max":100,
-      "min":1,
-      "pattern":"[a-z0-9]{12}"
+      "max":26,
+      "min":26,
+      "pattern":"[a-z0-9]+"
     },
     "AttributeGroupIds":{
       "type":"list",
@@ -441,7 +458,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"\\w+"
+      "pattern":"[-.\\w]+"
     },
     "AttributeGroupSummaries":{
       "type":"list",
@@ -641,7 +658,39 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "associatedResourceCount":{"shape":"AssociationCount"},
-        "tags":{"shape":"Tags"}
+        "tags":{"shape":"Tags"},
+        "integrations":{"shape":"Integrations"}
+      }
+    },
+    "GetAssociatedResourceRequest":{
+      "type":"structure",
+      "required":[
+        "application",
+        "resourceType",
+        "resource"
+      ],
+      "members":{
+        "application":{
+          "shape":"ApplicationSpecifier",
+          "location":"uri",
+          "locationName":"application"
+        },
+        "resourceType":{
+          "shape":"ResourceType",
+          "location":"uri",
+          "locationName":"resourceType"
+        },
+        "resource":{
+          "shape":"ResourceSpecifier",
+          "location":"uri",
+          "locationName":"resource"
+        }
+      }
+    },
+    "GetAssociatedResourceResponse":{
+      "type":"structure",
+      "members":{
+        "resource":{"shape":"Resource"}
       }
     },
     "GetAttributeGroupRequest":{
@@ -666,6 +715,12 @@
         "creationTime":{"shape":"Timestamp"},
         "lastUpdateTime":{"shape":"Timestamp"},
         "tags":{"shape":"Tags"}
+      }
+    },
+    "Integrations":{
+      "type":"structure",
+      "members":{
+        "resourceGroup":{"shape":"ResourceGroup"}
       }
     },
     "InternalServerException":{
@@ -807,7 +862,7 @@
       "type":"string",
       "max":256,
       "min":1,
-      "pattern":"\\w+"
+      "pattern":"[-.\\w]+"
     },
     "NextToken":{
       "type":"string",
@@ -815,11 +870,45 @@
       "min":1,
       "pattern":"[A-Za-z0-9+/=]+"
     },
+    "Resource":{
+      "type":"structure",
+      "members":{
+        "name":{"shape":"ResourceSpecifier"},
+        "arn":{"shape":"StackArn"},
+        "associationTime":{"shape":"Timestamp"},
+        "integrations":{"shape":"ResourceIntegrations"}
+      }
+    },
+    "ResourceGroup":{
+      "type":"structure",
+      "members":{
+        "state":{"shape":"ResourceGroupState"},
+        "arn":{"shape":"Arn"},
+        "errorMessage":{"shape":"String"}
+      }
+    },
+    "ResourceGroupState":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATE_COMPLETE",
+        "CREATE_FAILED",
+        "UPDATING",
+        "UPDATE_COMPLETE",
+        "UPDATE_FAILED"
+      ]
+    },
     "ResourceInfo":{
       "type":"structure",
       "members":{
         "name":{"shape":"ResourceSpecifier"},
         "arn":{"shape":"StackArn"}
+      }
+    },
+    "ResourceIntegrations":{
+      "type":"structure",
+      "members":{
+        "resourceGroup":{"shape":"ResourceGroup"}
       }
     },
     "ResourceNotFoundException":{

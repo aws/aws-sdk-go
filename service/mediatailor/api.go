@@ -3173,6 +3173,11 @@ type Channel struct {
 	// The timestamp of when the channel was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// Contains information about the slate used to fill gaps between programs in
+	// the schedule. You must configure FillerSlate if your channel uses an LINEAR
+	// PlaybackMode.
+	FillerSlate *SlateSource `type:"structure"`
+
 	// The timestamp of when the channel was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
@@ -3181,7 +3186,12 @@ type Channel struct {
 	// Outputs is a required field
 	Outputs []*ResponseOutputItem `type:"list" required:"true"`
 
-	// The type of playback mode for this channel. Possible values: ONCE or LOOP.
+	// The type of playback mode for this channel.
+	//
+	// LINEAR - Programs play back-to-back only once.
+	//
+	// LOOP - Programs play back-to-back in an endless loop. When the last program
+	// in the schedule plays, playback loops back to the first program in the schedule.
 	//
 	// PlaybackMode is a required field
 	PlaybackMode *string `type:"string" required:"true"`
@@ -3224,6 +3234,12 @@ func (s *Channel) SetCreationTime(v time.Time) *Channel {
 	return s
 }
 
+// SetFillerSlate sets the FillerSlate field's value.
+func (s *Channel) SetFillerSlate(v *SlateSource) *Channel {
+	s.FillerSlate = v
+	return s
+}
+
 // SetLastModifiedTime sets the LastModifiedTime field's value.
 func (s *Channel) SetLastModifiedTime(v time.Time) *Channel {
 	s.LastModifiedTime = &v
@@ -3255,12 +3271,22 @@ type CreateChannelInput struct {
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
 
+	// The slate used to fill gaps between programs in the schedule. You must configure
+	// filler slate if your channel uses an LINEAR PlaybackMode.
+	FillerSlate *SlateSource `type:"structure"`
+
 	// The channel's output properties.
 	//
 	// Outputs is a required field
 	Outputs []*RequestOutputItem `type:"list" required:"true"`
 
-	// The type of playback mode for this channel. The only supported value is LOOP.
+	// The type of playback mode to use for this channel.
+	//
+	// LINEAR - The programs in the schedule play once back-to-back in the schedule.
+	//
+	// LOOP - The programs in the schedule play back-to-back in an endless loop.
+	// When the last program in the schedule stops playing, playback loops back
+	// to the first program in the schedule.
 	//
 	// PlaybackMode is a required field
 	PlaybackMode *string `type:"string" required:"true" enum:"PlaybackMode"`
@@ -3317,6 +3343,12 @@ func (s *CreateChannelInput) SetChannelName(v string) *CreateChannelInput {
 	return s
 }
 
+// SetFillerSlate sets the FillerSlate field's value.
+func (s *CreateChannelInput) SetFillerSlate(v *SlateSource) *CreateChannelInput {
+	s.FillerSlate = v
+	return s
+}
+
 // SetOutputs sets the Outputs field's value.
 func (s *CreateChannelInput) SetOutputs(v []*RequestOutputItem) *CreateChannelInput {
 	s.Outputs = v
@@ -3345,6 +3377,9 @@ type CreateChannelOutput struct {
 	ChannelState *string `type:"string" enum:"ChannelState"`
 
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
+	// Slate VOD source configuration.
+	FillerSlate *SlateSource `type:"structure"`
 
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
@@ -3386,6 +3421,12 @@ func (s *CreateChannelOutput) SetChannelState(v string) *CreateChannelOutput {
 // SetCreationTime sets the CreationTime field's value.
 func (s *CreateChannelOutput) SetCreationTime(v time.Time) *CreateChannelOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetFillerSlate sets the FillerSlate field's value.
+func (s *CreateChannelOutput) SetFillerSlate(v *SlateSource) *CreateChannelOutput {
+	s.FillerSlate = v
 	return s
 }
 
@@ -3537,6 +3578,8 @@ type CreateProgramOutput struct {
 
 	ProgramName *string `type:"string"`
 
+	ScheduledStartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
 	SourceLocationName *string `type:"string"`
 
 	VodSourceName *string `type:"string"`
@@ -3579,6 +3622,12 @@ func (s *CreateProgramOutput) SetCreationTime(v time.Time) *CreateProgramOutput 
 // SetProgramName sets the ProgramName field's value.
 func (s *CreateProgramOutput) SetProgramName(v string) *CreateProgramOutput {
 	s.ProgramName = &v
+	return s
+}
+
+// SetScheduledStartTime sets the ScheduledStartTime field's value.
+func (s *CreateProgramOutput) SetScheduledStartTime(v time.Time) *CreateProgramOutput {
+	s.ScheduledStartTime = &v
 	return s
 }
 
@@ -4518,13 +4567,17 @@ type DescribeChannelOutput struct {
 	// The timestamp of when the channel was created.
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// Contains information about the slate used to fill gaps between programs in
+	// the schedule.
+	FillerSlate *SlateSource `type:"structure"`
+
 	// The timestamp of when the channel was last modified.
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
 	// The channel's output properties.
 	Outputs []*ResponseOutputItem `type:"list"`
 
-	// The type of playback for this channel. The only supported value is LOOP.
+	// The channel's playback mode.
 	PlaybackMode *string `type:"string"`
 
 	// The tags assigned to the channel.
@@ -4562,6 +4615,12 @@ func (s *DescribeChannelOutput) SetChannelState(v string) *DescribeChannelOutput
 // SetCreationTime sets the CreationTime field's value.
 func (s *DescribeChannelOutput) SetCreationTime(v time.Time) *DescribeChannelOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetFillerSlate sets the FillerSlate field's value.
+func (s *DescribeChannelOutput) SetFillerSlate(v *SlateSource) *DescribeChannelOutput {
+	s.FillerSlate = v
 	return s
 }
 
@@ -4662,6 +4721,11 @@ type DescribeProgramOutput struct {
 	// The name of the program.
 	ProgramName *string `type:"string"`
 
+	// The date and time that the program is scheduled to start in ISO 8601 format
+	// and Coordinated Universal Time (UTC). For example, the value 2021-03-27T17:48:16.751Z
+	// represents March 27, 2021 at 17:48:16.751 UTC.
+	ScheduledStartTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
+
 	// The source location name.
 	SourceLocationName *string `type:"string"`
 
@@ -4706,6 +4770,12 @@ func (s *DescribeProgramOutput) SetCreationTime(v time.Time) *DescribeProgramOut
 // SetProgramName sets the ProgramName field's value.
 func (s *DescribeProgramOutput) SetProgramName(v string) *DescribeProgramOutput {
 	s.ProgramName = &v
+	return s
+}
+
+// SetScheduledStartTime sets the ScheduledStartTime field's value.
+func (s *DescribeProgramOutput) SetScheduledStartTime(v time.Time) *DescribeProgramOutput {
+	s.ScheduledStartTime = &v
 	return s
 }
 
@@ -6976,6 +7046,11 @@ type ScheduleEntry struct {
 	// The schedule's ad break properties.
 	ScheduleAdBreaks []*ScheduleAdBreak `type:"list"`
 
+	// The type of schedule entry.
+	//
+	// Valid values: PROGRAM or FILLER_SLATE.
+	ScheduleEntryType *string `type:"string" enum:"ScheduleEntryType"`
+
 	// The name of the source location.
 	//
 	// SourceLocationName is a required field
@@ -7030,6 +7105,12 @@ func (s *ScheduleEntry) SetProgramName(v string) *ScheduleEntry {
 // SetScheduleAdBreaks sets the ScheduleAdBreaks field's value.
 func (s *ScheduleEntry) SetScheduleAdBreaks(v []*ScheduleAdBreak) *ScheduleEntry {
 	s.ScheduleAdBreaks = v
+	return s
+}
+
+// SetScheduleEntryType sets the ScheduleEntryType field's value.
+func (s *ScheduleEntry) SetScheduleEntryType(v string) *ScheduleEntry {
+	s.ScheduleEntryType = &v
 	return s
 }
 
@@ -7453,8 +7534,7 @@ func (s TagResourceOutput) GoString() string {
 type Transition struct {
 	_ struct{} `type:"structure"`
 
-	// The position where this program will be inserted relative to the RelativeProgram.
-	// Possible values are: AFTER_PROGRAM, and BEFORE_PROGRAM.
+	// The position where this program will be inserted relative to the RelativePosition.
 	//
 	// RelativePosition is a required field
 	RelativePosition *string `type:"string" required:"true" enum:"RelativePosition"`
@@ -7463,8 +7543,26 @@ type Transition struct {
 	// by RelativePosition.
 	RelativeProgram *string `type:"string"`
 
-	// When the program should be played. RELATIVE means that programs will be played
-	// back-to-back.
+	// The date and time that the program is scheduled to start, in epoch milliseconds.
+	ScheduledStartTimeMillis *int64 `type:"long"`
+
+	// Defines when the program plays in the schedule. You can set the value to
+	// ABSOLUTE or RELATIVE.
+	//
+	// ABSOLUTE - The program plays at a specific wall clock time. This setting
+	// can only be used for channels using the LINEAR PlaybackMode.
+	//
+	// Note the following considerations when using ABSOLUTE transitions:
+	//
+	// If the preceding program in the schedule has a duration that extends past
+	// the wall clock time, MediaTailor truncates the preceding program on a common
+	// segment boundary.
+	//
+	// If there are gaps in playback, MediaTailor plays the FillerSlate you configured
+	// for your linear channel.
+	//
+	// RELATIVE - The program is inserted into the schedule either before or after
+	// a program that you specify via RelativePosition.
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true"`
@@ -7505,6 +7603,12 @@ func (s *Transition) SetRelativePosition(v string) *Transition {
 // SetRelativeProgram sets the RelativeProgram field's value.
 func (s *Transition) SetRelativeProgram(v string) *Transition {
 	s.RelativeProgram = &v
+	return s
+}
+
+// SetScheduledStartTimeMillis sets the ScheduledStartTimeMillis field's value.
+func (s *Transition) SetScheduledStartTimeMillis(v int64) *Transition {
+	s.ScheduledStartTimeMillis = &v
 	return s
 }
 
@@ -7654,6 +7758,9 @@ type UpdateChannelOutput struct {
 
 	CreationTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
+	// Slate VOD source configuration.
+	FillerSlate *SlateSource `type:"structure"`
+
 	LastModifiedTime *time.Time `type:"timestamp" timestampFormat:"unixTimestamp"`
 
 	Outputs []*ResponseOutputItem `type:"list"`
@@ -7694,6 +7801,12 @@ func (s *UpdateChannelOutput) SetChannelState(v string) *UpdateChannelOutput {
 // SetCreationTime sets the CreationTime field's value.
 func (s *UpdateChannelOutput) SetCreationTime(v time.Time) *UpdateChannelOutput {
 	s.CreationTime = &v
+	return s
+}
+
+// SetFillerSlate sets the FillerSlate field's value.
+func (s *UpdateChannelOutput) SetFillerSlate(v *SlateSource) *UpdateChannelOutput {
+	s.FillerSlate = v
 	return s
 }
 
@@ -8200,12 +8313,16 @@ func OriginManifestType_Values() []string {
 const (
 	// PlaybackModeLoop is a PlaybackMode enum value
 	PlaybackModeLoop = "LOOP"
+
+	// PlaybackModeLinear is a PlaybackMode enum value
+	PlaybackModeLinear = "LINEAR"
 )
 
 // PlaybackMode_Values returns all elements of the PlaybackMode enum
 func PlaybackMode_Values() []string {
 	return []string{
 		PlaybackModeLoop,
+		PlaybackModeLinear,
 	}
 }
 
@@ -8222,6 +8339,22 @@ func RelativePosition_Values() []string {
 	return []string{
 		RelativePositionBeforeProgram,
 		RelativePositionAfterProgram,
+	}
+}
+
+const (
+	// ScheduleEntryTypeProgram is a ScheduleEntryType enum value
+	ScheduleEntryTypeProgram = "PROGRAM"
+
+	// ScheduleEntryTypeFillerSlate is a ScheduleEntryType enum value
+	ScheduleEntryTypeFillerSlate = "FILLER_SLATE"
+)
+
+// ScheduleEntryType_Values returns all elements of the ScheduleEntryType enum
+func ScheduleEntryType_Values() []string {
+	return []string{
+		ScheduleEntryTypeProgram,
+		ScheduleEntryTypeFillerSlate,
 	}
 }
 
