@@ -1,3 +1,15 @@
+Release v1.40.35 (2021-09-01)
+===
+
+### Service Client Updates
+* `service/cloudtrail`: Updates service documentation
+  * Documentation updates for CloudTrail
+* `service/config`: Updates service documentation
+* `service/ec2`: Updates service API and documentation
+  * Added LaunchTemplate support for the IMDS IPv6 endpoint
+* `service/mediatailor`: Updates service API and documentation
+* `service/servicecatalog-appregistry`: Updates service API and documentation
+
 Release v1.40.34 (2021-08-31)
 ===
 

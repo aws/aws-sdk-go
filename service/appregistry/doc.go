@@ -3,10 +3,10 @@
 // Package appregistry provides the client and types for making API
 // requests to AWS Service Catalog App Registry.
 //
-// AWS Service Catalog AppRegistry enables organizations to understand the application
-// context of their AWS resources. AppRegistry provides a repository of your
-// applications, their resources, and the application metadata that you use
-// within your enterprise.
+// Amazon Web Services Service Catalog AppRegistry enables organizations to
+// understand the application context of their Amazon Web Services resources.
+// AppRegistry provides a repository of your applications, their resources,
+// and the application metadata that you use within your enterprise.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/AWS242AppRegistry-2020-06-24 for more information on this service.
 //

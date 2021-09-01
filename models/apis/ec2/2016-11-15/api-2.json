@@ -9559,7 +9559,6 @@
       "type":"structure",
       "required":["CidrBlock"],
       "members":{
-        "CidrBlock":{"shape":"String"},
         "AmazonProvidedIpv6CidrBlock":{
           "shape":"Boolean",
           "locationName":"amazonProvidedIpv6CidrBlock"
@@ -9578,7 +9577,8 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        }
+        },
+        "CidrBlock":{"shape":"String"}
       }
     },
     "CreateVpcResult":{
@@ -22519,6 +22519,10 @@
         "HttpEndpoint":{
           "shape":"LaunchTemplateInstanceMetadataEndpointState",
           "locationName":"httpEndpoint"
+        },
+        "HttpProtocolIpv6":{
+          "shape":"LaunchTemplateInstanceMetadataProtocolIpv6",
+          "locationName":"httpProtocolIpv6"
         }
       }
     },
@@ -22527,7 +22531,8 @@
       "members":{
         "HttpTokens":{"shape":"LaunchTemplateHttpTokensState"},
         "HttpPutResponseHopLimit":{"shape":"Integer"},
-        "HttpEndpoint":{"shape":"LaunchTemplateInstanceMetadataEndpointState"}
+        "HttpEndpoint":{"shape":"LaunchTemplateInstanceMetadataEndpointState"},
+        "HttpProtocolIpv6":{"shape":"LaunchTemplateInstanceMetadataProtocolIpv6"}
       }
     },
     "LaunchTemplateInstanceMetadataOptionsState":{
@@ -22535,6 +22540,13 @@
       "enum":[
         "pending",
         "applied"
+      ]
+    },
+    "LaunchTemplateInstanceMetadataProtocolIpv6":{
+      "type":"string",
+      "enum":[
+        "disabled",
+        "enabled"
       ]
     },
     "LaunchTemplateInstanceNetworkInterfaceSpecification":{
