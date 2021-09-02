@@ -72,6 +72,10 @@ type TransferAPI interface {
 	CreateUserWithContext(aws.Context, *transfer.CreateUserInput, ...request.Option) (*transfer.CreateUserOutput, error)
 	CreateUserRequest(*transfer.CreateUserInput) (*request.Request, *transfer.CreateUserOutput)
 
+	CreateWorkflow(*transfer.CreateWorkflowInput) (*transfer.CreateWorkflowOutput, error)
+	CreateWorkflowWithContext(aws.Context, *transfer.CreateWorkflowInput, ...request.Option) (*transfer.CreateWorkflowOutput, error)
+	CreateWorkflowRequest(*transfer.CreateWorkflowInput) (*request.Request, *transfer.CreateWorkflowOutput)
+
 	DeleteAccess(*transfer.DeleteAccessInput) (*transfer.DeleteAccessOutput, error)
 	DeleteAccessWithContext(aws.Context, *transfer.DeleteAccessInput, ...request.Option) (*transfer.DeleteAccessOutput, error)
 	DeleteAccessRequest(*transfer.DeleteAccessInput) (*request.Request, *transfer.DeleteAccessOutput)
@@ -88,9 +92,17 @@ type TransferAPI interface {
 	DeleteUserWithContext(aws.Context, *transfer.DeleteUserInput, ...request.Option) (*transfer.DeleteUserOutput, error)
 	DeleteUserRequest(*transfer.DeleteUserInput) (*request.Request, *transfer.DeleteUserOutput)
 
+	DeleteWorkflow(*transfer.DeleteWorkflowInput) (*transfer.DeleteWorkflowOutput, error)
+	DeleteWorkflowWithContext(aws.Context, *transfer.DeleteWorkflowInput, ...request.Option) (*transfer.DeleteWorkflowOutput, error)
+	DeleteWorkflowRequest(*transfer.DeleteWorkflowInput) (*request.Request, *transfer.DeleteWorkflowOutput)
+
 	DescribeAccess(*transfer.DescribeAccessInput) (*transfer.DescribeAccessOutput, error)
 	DescribeAccessWithContext(aws.Context, *transfer.DescribeAccessInput, ...request.Option) (*transfer.DescribeAccessOutput, error)
 	DescribeAccessRequest(*transfer.DescribeAccessInput) (*request.Request, *transfer.DescribeAccessOutput)
+
+	DescribeExecution(*transfer.DescribeExecutionInput) (*transfer.DescribeExecutionOutput, error)
+	DescribeExecutionWithContext(aws.Context, *transfer.DescribeExecutionInput, ...request.Option) (*transfer.DescribeExecutionOutput, error)
+	DescribeExecutionRequest(*transfer.DescribeExecutionInput) (*request.Request, *transfer.DescribeExecutionOutput)
 
 	DescribeSecurityPolicy(*transfer.DescribeSecurityPolicyInput) (*transfer.DescribeSecurityPolicyOutput, error)
 	DescribeSecurityPolicyWithContext(aws.Context, *transfer.DescribeSecurityPolicyInput, ...request.Option) (*transfer.DescribeSecurityPolicyOutput, error)
@@ -104,6 +116,10 @@ type TransferAPI interface {
 	DescribeUserWithContext(aws.Context, *transfer.DescribeUserInput, ...request.Option) (*transfer.DescribeUserOutput, error)
 	DescribeUserRequest(*transfer.DescribeUserInput) (*request.Request, *transfer.DescribeUserOutput)
 
+	DescribeWorkflow(*transfer.DescribeWorkflowInput) (*transfer.DescribeWorkflowOutput, error)
+	DescribeWorkflowWithContext(aws.Context, *transfer.DescribeWorkflowInput, ...request.Option) (*transfer.DescribeWorkflowOutput, error)
+	DescribeWorkflowRequest(*transfer.DescribeWorkflowInput) (*request.Request, *transfer.DescribeWorkflowOutput)
+
 	ImportSshPublicKey(*transfer.ImportSshPublicKeyInput) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyWithContext(aws.Context, *transfer.ImportSshPublicKeyInput, ...request.Option) (*transfer.ImportSshPublicKeyOutput, error)
 	ImportSshPublicKeyRequest(*transfer.ImportSshPublicKeyInput) (*request.Request, *transfer.ImportSshPublicKeyOutput)
@@ -114,6 +130,13 @@ type TransferAPI interface {
 
 	ListAccessesPages(*transfer.ListAccessesInput, func(*transfer.ListAccessesOutput, bool) bool) error
 	ListAccessesPagesWithContext(aws.Context, *transfer.ListAccessesInput, func(*transfer.ListAccessesOutput, bool) bool, ...request.Option) error
+
+	ListExecutions(*transfer.ListExecutionsInput) (*transfer.ListExecutionsOutput, error)
+	ListExecutionsWithContext(aws.Context, *transfer.ListExecutionsInput, ...request.Option) (*transfer.ListExecutionsOutput, error)
+	ListExecutionsRequest(*transfer.ListExecutionsInput) (*request.Request, *transfer.ListExecutionsOutput)
+
+	ListExecutionsPages(*transfer.ListExecutionsInput, func(*transfer.ListExecutionsOutput, bool) bool) error
+	ListExecutionsPagesWithContext(aws.Context, *transfer.ListExecutionsInput, func(*transfer.ListExecutionsOutput, bool) bool, ...request.Option) error
 
 	ListSecurityPolicies(*transfer.ListSecurityPoliciesInput) (*transfer.ListSecurityPoliciesOutput, error)
 	ListSecurityPoliciesWithContext(aws.Context, *transfer.ListSecurityPoliciesInput, ...request.Option) (*transfer.ListSecurityPoliciesOutput, error)
@@ -142,6 +165,17 @@ type TransferAPI interface {
 
 	ListUsersPages(*transfer.ListUsersInput, func(*transfer.ListUsersOutput, bool) bool) error
 	ListUsersPagesWithContext(aws.Context, *transfer.ListUsersInput, func(*transfer.ListUsersOutput, bool) bool, ...request.Option) error
+
+	ListWorkflows(*transfer.ListWorkflowsInput) (*transfer.ListWorkflowsOutput, error)
+	ListWorkflowsWithContext(aws.Context, *transfer.ListWorkflowsInput, ...request.Option) (*transfer.ListWorkflowsOutput, error)
+	ListWorkflowsRequest(*transfer.ListWorkflowsInput) (*request.Request, *transfer.ListWorkflowsOutput)
+
+	ListWorkflowsPages(*transfer.ListWorkflowsInput, func(*transfer.ListWorkflowsOutput, bool) bool) error
+	ListWorkflowsPagesWithContext(aws.Context, *transfer.ListWorkflowsInput, func(*transfer.ListWorkflowsOutput, bool) bool, ...request.Option) error
+
+	SendWorkflowStepState(*transfer.SendWorkflowStepStateInput) (*transfer.SendWorkflowStepStateOutput, error)
+	SendWorkflowStepStateWithContext(aws.Context, *transfer.SendWorkflowStepStateInput, ...request.Option) (*transfer.SendWorkflowStepStateOutput, error)
+	SendWorkflowStepStateRequest(*transfer.SendWorkflowStepStateInput) (*request.Request, *transfer.SendWorkflowStepStateOutput)
 
 	StartServer(*transfer.StartServerInput) (*transfer.StartServerOutput, error)
 	StartServerWithContext(aws.Context, *transfer.StartServerInput, ...request.Option) (*transfer.StartServerOutput, error)

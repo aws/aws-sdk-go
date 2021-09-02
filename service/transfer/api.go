@@ -186,6 +186,10 @@ func (c *Transfer) CreateServerRequest(input *CreateServerInput) (req *request.R
 //   * ResourceExistsException
 //   The requested resource does not exist.
 //
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
 //   * ThrottlingException
 //   The request was denied due to request throttling.
 //
@@ -262,7 +266,7 @@ func (c *Transfer) CreateUserRequest(input *CreateUserInput) (req *request.Reque
 // IdentityProviderType set to SERVICE_MANAGED. Using parameters for CreateUser,
 // you can specify the user name, set the home directory, store the user's public
 // key, and assign the user's Amazon Web Services Identity and Access Management
-// (IAM) role. You can also optionally add a scope-down policy, and assign metadata
+// (IAM) role. You can also optionally add a session policy, and assign metadata
 // with tags that can be used to group and search for users.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -308,6 +312,107 @@ func (c *Transfer) CreateUser(input *CreateUserInput) (*CreateUserOutput, error)
 // for more information on using Contexts.
 func (c *Transfer) CreateUserWithContext(ctx aws.Context, input *CreateUserInput, opts ...request.Option) (*CreateUserOutput, error) {
 	req, out := c.CreateUserRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateWorkflow = "CreateWorkflow"
+
+// CreateWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the CreateWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateWorkflow for more information on using the CreateWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateWorkflowRequest method.
+//    req, resp := client.CreateWorkflowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateWorkflow
+func (c *Transfer) CreateWorkflowRequest(input *CreateWorkflowInput) (req *request.Request, output *CreateWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opCreateWorkflow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateWorkflowInput{}
+	}
+
+	output = &CreateWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateWorkflow API operation for AWS Transfer Family.
+//
+// Allows you to create a workflow with specified steps and step details the
+// workflow invokes after file transfer completes. After creating a workflow,
+// you can associate the workflow created with any transfer servers by specifying
+// the workflow-details field in CreateServer and UpdateServer operations.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation CreateWorkflow for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceExistsException
+//   The requested resource does not exist.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/CreateWorkflow
+func (c *Transfer) CreateWorkflow(input *CreateWorkflowInput) (*CreateWorkflowOutput, error) {
+	req, out := c.CreateWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// CreateWorkflowWithContext is the same as CreateWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) CreateWorkflowWithContext(ctx aws.Context, input *CreateWorkflowInput, opts ...request.Option) (*CreateWorkflowOutput, error) {
+	req, out := c.CreateWorkflowRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -550,8 +655,6 @@ func (c *Transfer) DeleteSshPublicKeyRequest(input *DeleteSshPublicKeyInput) (re
 //
 // Deletes a user's Secure Shell (SSH) public key.
 //
-// No response is returned from this operation.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -699,6 +802,101 @@ func (c *Transfer) DeleteUserWithContext(ctx aws.Context, input *DeleteUserInput
 	return out, req.Send()
 }
 
+const opDeleteWorkflow = "DeleteWorkflow"
+
+// DeleteWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteWorkflow for more information on using the DeleteWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteWorkflowRequest method.
+//    req, resp := client.DeleteWorkflowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteWorkflow
+func (c *Transfer) DeleteWorkflowRequest(input *DeleteWorkflowInput) (req *request.Request, output *DeleteWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opDeleteWorkflow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteWorkflowInput{}
+	}
+
+	output = &DeleteWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteWorkflow API operation for AWS Transfer Family.
+//
+// Deletes the specified workflow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DeleteWorkflow for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DeleteWorkflow
+func (c *Transfer) DeleteWorkflow(input *DeleteWorkflowInput) (*DeleteWorkflowOutput, error) {
+	req, out := c.DeleteWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// DeleteWorkflowWithContext is the same as DeleteWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DeleteWorkflowWithContext(ctx aws.Context, input *DeleteWorkflowInput, opts ...request.Option) (*DeleteWorkflowOutput, error) {
+	req, out := c.DeleteWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAccess = "DescribeAccess"
 
 // DescribeAccessRequest generates a "aws/request.Request" representing the
@@ -789,6 +987,98 @@ func (c *Transfer) DescribeAccess(input *DescribeAccessInput) (*DescribeAccessOu
 // for more information on using Contexts.
 func (c *Transfer) DescribeAccessWithContext(ctx aws.Context, input *DescribeAccessInput, opts ...request.Option) (*DescribeAccessOutput, error) {
 	req, out := c.DescribeAccessRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeExecution = "DescribeExecution"
+
+// DescribeExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeExecution for more information on using the DescribeExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeExecutionRequest method.
+//    req, resp := client.DescribeExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeExecution
+func (c *Transfer) DescribeExecutionRequest(input *DescribeExecutionInput) (req *request.Request, output *DescribeExecutionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeExecutionInput{}
+	}
+
+	output = &DescribeExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeExecution API operation for AWS Transfer Family.
+//
+// You can use DescribeExecution to check the details of the execution of the
+// specified workflow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DescribeExecution for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeExecution
+func (c *Transfer) DescribeExecution(input *DescribeExecutionInput) (*DescribeExecutionOutput, error) {
+	req, out := c.DescribeExecutionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeExecutionWithContext is the same as DescribeExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DescribeExecutionWithContext(ctx aws.Context, input *DescribeExecutionInput, opts ...request.Option) (*DescribeExecutionOutput, error) {
+	req, out := c.DescribeExecutionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1078,6 +1368,97 @@ func (c *Transfer) DescribeUserWithContext(ctx aws.Context, input *DescribeUserI
 	return out, req.Send()
 }
 
+const opDescribeWorkflow = "DescribeWorkflow"
+
+// DescribeWorkflowRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeWorkflow operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeWorkflow for more information on using the DescribeWorkflow
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeWorkflowRequest method.
+//    req, resp := client.DescribeWorkflowRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeWorkflow
+func (c *Transfer) DescribeWorkflowRequest(input *DescribeWorkflowInput) (req *request.Request, output *DescribeWorkflowOutput) {
+	op := &request.Operation{
+		Name:       opDescribeWorkflow,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeWorkflowInput{}
+	}
+
+	output = &DescribeWorkflowOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeWorkflow API operation for AWS Transfer Family.
+//
+// Describes the specified workflow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation DescribeWorkflow for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/DescribeWorkflow
+func (c *Transfer) DescribeWorkflow(input *DescribeWorkflowInput) (*DescribeWorkflowOutput, error) {
+	req, out := c.DescribeWorkflowRequest(input)
+	return out, req.Send()
+}
+
+// DescribeWorkflowWithContext is the same as DescribeWorkflow with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeWorkflow for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) DescribeWorkflowWithContext(ctx aws.Context, input *DescribeWorkflowInput, opts ...request.Option) (*DescribeWorkflowOutput, error) {
+	req, out := c.DescribeWorkflowRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opImportSshPublicKey = "ImportSshPublicKey"
 
 // ImportSshPublicKeyRequest generates a "aws/request.Request" representing the
@@ -1327,6 +1708,158 @@ func (c *Transfer) ListAccessesPagesWithContext(ctx aws.Context, input *ListAcce
 
 	for p.Next() {
 		if !fn(p.Page().(*ListAccessesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListExecutions = "ListExecutions"
+
+// ListExecutionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListExecutions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListExecutions for more information on using the ListExecutions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListExecutionsRequest method.
+//    req, resp := client.ListExecutionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListExecutions
+func (c *Transfer) ListExecutionsRequest(input *ListExecutionsInput) (req *request.Request, output *ListExecutionsOutput) {
+	op := &request.Operation{
+		Name:       opListExecutions,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListExecutionsInput{}
+	}
+
+	output = &ListExecutionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListExecutions API operation for AWS Transfer Family.
+//
+// Lists all executions for the specified workflow.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ListExecutions for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidNextTokenException
+//   The NextToken parameter that was passed is invalid.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListExecutions
+func (c *Transfer) ListExecutions(input *ListExecutionsInput) (*ListExecutionsOutput, error) {
+	req, out := c.ListExecutionsRequest(input)
+	return out, req.Send()
+}
+
+// ListExecutionsWithContext is the same as ListExecutions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListExecutions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListExecutionsWithContext(ctx aws.Context, input *ListExecutionsInput, opts ...request.Option) (*ListExecutionsOutput, error) {
+	req, out := c.ListExecutionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListExecutionsPages iterates over the pages of a ListExecutions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListExecutions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListExecutions operation.
+//    pageNum := 0
+//    err := client.ListExecutionsPages(params,
+//        func(page *transfer.ListExecutionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Transfer) ListExecutionsPages(input *ListExecutionsInput, fn func(*ListExecutionsOutput, bool) bool) error {
+	return c.ListExecutionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListExecutionsPagesWithContext same as ListExecutionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListExecutionsPagesWithContext(ctx aws.Context, input *ListExecutionsInput, fn func(*ListExecutionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListExecutionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListExecutionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListExecutionsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1934,6 +2467,258 @@ func (c *Transfer) ListUsersPagesWithContext(ctx aws.Context, input *ListUsersIn
 	return p.Err()
 }
 
+const opListWorkflows = "ListWorkflows"
+
+// ListWorkflowsRequest generates a "aws/request.Request" representing the
+// client's request for the ListWorkflows operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListWorkflows for more information on using the ListWorkflows
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListWorkflowsRequest method.
+//    req, resp := client.ListWorkflowsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListWorkflows
+func (c *Transfer) ListWorkflowsRequest(input *ListWorkflowsInput) (req *request.Request, output *ListWorkflowsOutput) {
+	op := &request.Operation{
+		Name:       opListWorkflows,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListWorkflowsInput{}
+	}
+
+	output = &ListWorkflowsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListWorkflows API operation for AWS Transfer Family.
+//
+// Lists all of your workflows.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation ListWorkflows for usage and error information.
+//
+// Returned Error Types:
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidNextTokenException
+//   The NextToken parameter that was passed is invalid.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/ListWorkflows
+func (c *Transfer) ListWorkflows(input *ListWorkflowsInput) (*ListWorkflowsOutput, error) {
+	req, out := c.ListWorkflowsRequest(input)
+	return out, req.Send()
+}
+
+// ListWorkflowsWithContext is the same as ListWorkflows with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListWorkflows for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListWorkflowsWithContext(ctx aws.Context, input *ListWorkflowsInput, opts ...request.Option) (*ListWorkflowsOutput, error) {
+	req, out := c.ListWorkflowsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListWorkflowsPages iterates over the pages of a ListWorkflows operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListWorkflows method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListWorkflows operation.
+//    pageNum := 0
+//    err := client.ListWorkflowsPages(params,
+//        func(page *transfer.ListWorkflowsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Transfer) ListWorkflowsPages(input *ListWorkflowsInput, fn func(*ListWorkflowsOutput, bool) bool) error {
+	return c.ListWorkflowsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListWorkflowsPagesWithContext same as ListWorkflowsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) ListWorkflowsPagesWithContext(ctx aws.Context, input *ListWorkflowsInput, fn func(*ListWorkflowsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListWorkflowsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListWorkflowsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListWorkflowsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opSendWorkflowStepState = "SendWorkflowStepState"
+
+// SendWorkflowStepStateRequest generates a "aws/request.Request" representing the
+// client's request for the SendWorkflowStepState operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See SendWorkflowStepState for more information on using the SendWorkflowStepState
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the SendWorkflowStepStateRequest method.
+//    req, resp := client.SendWorkflowStepStateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/SendWorkflowStepState
+func (c *Transfer) SendWorkflowStepStateRequest(input *SendWorkflowStepStateInput) (req *request.Request, output *SendWorkflowStepStateOutput) {
+	op := &request.Operation{
+		Name:       opSendWorkflowStepState,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &SendWorkflowStepStateInput{}
+	}
+
+	output = &SendWorkflowStepStateOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// SendWorkflowStepState API operation for AWS Transfer Family.
+//
+// Sends a callback for asynchronous custom steps.
+//
+// The ExecutionId, WorkflowId, and Token are passed to the target resource
+// during execution of a custom step of a workflow. You must include those with
+// their callback as well as providing a status.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Transfer Family's
+// API operation SendWorkflowStepState for usage and error information.
+//
+// Returned Error Types:
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+//   * ServiceUnavailableException
+//   The request has failed because the Amazon Web ServicesTransfer Family service
+//   is not available.
+//
+//   * InternalServiceError
+//   This exception is thrown when an error occurs in the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * InvalidRequestException
+//   This exception is thrown when the client submits a malformed request.
+//
+//   * ResourceNotFoundException
+//   This exception is thrown when a resource is not found by the Amazon Web ServicesTransfer
+//   Family service.
+//
+//   * ThrottlingException
+//   The request was denied due to request throttling.
+//
+//   HTTP Status Code: 400
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/transfer-2018-11-05/SendWorkflowStepState
+func (c *Transfer) SendWorkflowStepState(input *SendWorkflowStepStateInput) (*SendWorkflowStepStateOutput, error) {
+	req, out := c.SendWorkflowStepStateRequest(input)
+	return out, req.Send()
+}
+
+// SendWorkflowStepStateWithContext is the same as SendWorkflowStepState with the addition of
+// the ability to pass a context and additional request options.
+//
+// See SendWorkflowStepState for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Transfer) SendWorkflowStepStateWithContext(ctx aws.Context, input *SendWorkflowStepStateInput, opts ...request.Option) (*SendWorkflowStepStateOutput, error) {
+	req, out := c.SendWorkflowStepStateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opStartServer = "StartServer"
 
 // StartServerRequest generates a "aws/request.Request" representing the
@@ -2294,6 +3079,25 @@ func (c *Transfer) TestIdentityProviderRequest(input *TestIdentityProviderInput)
 // doing so, you can troubleshoot issues with the identity provider integration
 // to ensure that your users can successfully use the service.
 //
+// The ServerId and UserName parameters are required. The ServerProtocol, SourceIp,
+// and UserPassword are all optional.
+//
+// You cannot use TestIdentityProvider if the IdentityProviderType of your server
+// is SERVICE_MANAGED.
+//
+//    * If you provide any incorrect values for any parameters, the Response
+//    field is empty.
+//
+//    * If you provide a server ID for a server that uses service-managed users,
+//    you get an error: An error occurred (InvalidRequestException) when calling
+//    the TestIdentityProvider operation: s-server-ID not configured for external
+//    auth
+//
+//    * If you enter a Server ID for the --server-id parameter that does not
+//    identify an actual Transfer server, you receive the following error: An
+//    error occurred (ResourceNotFoundException) when calling the TestIdentityProvider
+//    operation: Unknown server
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2594,7 +3398,7 @@ func (c *Transfer) UpdateServerRequest(input *UpdateServerInput) (req *request.R
 //   is not available.
 //
 //   * ConflictException
-//   This exception is thrown when the UpdatServer is called for a file transfer
+//   This exception is thrown when the UpdateServer is called for a file transfer
 //   protocol-enabled server that has VPC as the endpoint type and the server's
 //   VpcEndpointID is not in the available state.
 //
@@ -2795,7 +3599,7 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// This exception is thrown when the UpdatServer is called for a file transfer
+// This exception is thrown when the UpdateServer is called for a file transfer
 // protocol-enabled server that has VPC as the endpoint type and the server's
 // VpcEndpointID is not in the available state.
 type ConflictException struct {
@@ -2853,6 +3657,65 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Each step type has its own StepDetails structure.
+type CopyStepDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the location for the file being copied. Only applicable for the
+	// Copy type of workflow steps.
+	DestinationFileLocation *InputFileLocation `type:"structure"`
+
+	// The name of the step, used as an identifier.
+	Name *string `type:"string"`
+
+	// A flag that indicates whether or not to overwrite an existing file of the
+	// same name. The default is FALSE.
+	OverwriteExisting *string `type:"string" enum:"OverwriteExisting"`
+}
+
+// String returns the string representation
+func (s CopyStepDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CopyStepDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CopyStepDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CopyStepDetails"}
+	if s.DestinationFileLocation != nil {
+		if err := s.DestinationFileLocation.Validate(); err != nil {
+			invalidParams.AddNested("DestinationFileLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationFileLocation sets the DestinationFileLocation field's value.
+func (s *CopyStepDetails) SetDestinationFileLocation(v *InputFileLocation) *CopyStepDetails {
+	s.DestinationFileLocation = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CopyStepDetails) SetName(v string) *CopyStepDetails {
+	s.Name = &v
+	return s
+}
+
+// SetOverwriteExisting sets the OverwriteExisting field's value.
+func (s *CopyStepDetails) SetOverwriteExisting(v string) *CopyStepDetails {
+	s.OverwriteExisting = &v
+	return s
+}
+
 type CreateAccessInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2895,9 +3758,9 @@ type CreateAccessInput struct {
 	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
 	// } ]
 	//
-	// In most cases, you can use this value instead of the scope-down policy to
-	// lock down your user to the designated home directory ("chroot"). To do this,
-	// you can set Entry to / and set Target to the HomeDirectory parameter value.
+	// In most cases, you can use this value instead of the session policy to lock
+	// down your user to the designated home directory ("chroot"). To do this, you
+	// can set Entry to / and set Target to the HomeDirectory parameter value.
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
@@ -2915,24 +3778,24 @@ type CreateAccessInput struct {
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
-	// protocol clients. If you set it LOGICAL, you will need to provide mappings
-	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// protocol clients. If you set it LOGICAL, you need to provide mappings in
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
 	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A scope-down policy for your user so that you can use the same IAM role across
+	// A session policy for your user so that you can use the same IAM role across
 	// multiple users. This policy scopes down user access to portions of their
 	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
 	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
 	//
-	// This only applies when domain of ServerId is S3. Amazon EFS does not use
-	// scope-down policies.
+	// This only applies when the domain of ServerId is S3. EFS does not use session
+	// policies.
 	//
-	// For scope-down policies, Amazon Web Services Transfer Family stores the policy
+	// For session policies, Amazon Web Services Transfer Family stores the policy
 	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
 	// You save the policy as a JSON blob and pass it in the Policy argument.
 	//
-	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
+	// For an example of a session policy, see Example session policy (https://docs.aws.amazon.com/transfer/latest/userguide/session-policy.html).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
 	// in the Amazon Web Services Security Token Service API Reference.
@@ -3243,6 +4106,10 @@ type CreateServerInput struct {
 
 	// Key-value pairs that can be used to group and search for servers.
 	Tags []*Tag `min:"1" type:"list"`
+
+	// Specifies the workflow ID for the workflow to assign and the execution role
+	// used for executing the workflow.
+	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
 // String returns the string representation
@@ -3285,6 +4152,11 @@ func (s *CreateServerInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.WorkflowDetails != nil {
+		if err := s.WorkflowDetails.Validate(); err != nil {
+			invalidParams.AddNested("WorkflowDetails", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -3360,6 +4232,12 @@ func (s *CreateServerInput) SetTags(v []*Tag) *CreateServerInput {
 	return s
 }
 
+// SetWorkflowDetails sets the WorkflowDetails field's value.
+func (s *CreateServerInput) SetWorkflowDetails(v *WorkflowDetails) *CreateServerInput {
+	s.WorkflowDetails = v
+	return s
+}
+
 type CreateServerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -3408,9 +4286,9 @@ type CreateUserInput struct {
 	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
 	// } ]
 	//
-	// In most cases, you can use this value instead of the scope-down policy to
-	// lock your user down to the designated home directory ("chroot"). To do this,
-	// you can set Entry to / and set Target to the HomeDirectory parameter value.
+	// In most cases, you can use this value instead of the session policy to lock
+	// your user down to the designated home directory ("chroot"). To do this, you
+	// can set Entry to / and set Target to the HomeDirectory parameter value.
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
@@ -3428,24 +4306,24 @@ type CreateUserInput struct {
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
-	// protocol clients. If you set it LOGICAL, you will need to provide mappings
-	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// protocol clients. If you set it LOGICAL, you need to provide mappings in
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
 	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A scope-down policy for your user so that you can use the same IAM role across
+	// A session policy for your user so that you can use the same IAM role across
 	// multiple users. This policy scopes down user access to portions of their
 	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
 	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
 	//
-	// This only applies when domain of ServerId is S3. EFS does not use scope down
-	// policy.
+	// This only applies when the domain of ServerId is S3. EFS does not use session
+	// policies.
 	//
-	// For scope-down policies, Amazon Web Services Transfer Family stores the policy
+	// For session policies, Amazon Web Services Transfer Family stores the policy
 	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
 	// You save the policy as a JSON blob and pass it in the Policy argument.
 	//
-	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
+	// For an example of a session policy, see Example session policy (https://docs.aws.amazon.com/transfer/latest/userguide/session-policy.html).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
 	// in the Amazon Web Services Security Token Service API Reference.
@@ -3482,11 +4360,11 @@ type CreateUserInput struct {
 	// metadata attached to users for any purpose.
 	Tags []*Tag `min:"1" type:"list"`
 
-	// A unique string that identifies a user and is associated with a as specified
-	// by the ServerId. This user name must be a minimum of 3 and a maximum of 100
-	// characters long. The following are valid characters: a-z, A-Z, 0-9, underscore
-	// '_', hyphen '-', period '.', and at sign '@'. The user name can't start with
-	// a hyphen, period, or at sign.
+	// A unique string that identifies a user and is associated with a ServerId.
+	// This user name must be a minimum of 3 and a maximum of 100 characters long.
+	// The following are valid characters: a-z, A-Z, 0-9, underscore '_', hyphen
+	// '-', period '.', and at sign '@'. The user name can't start with a hyphen,
+	// period, or at sign.
 	//
 	// UserName is a required field
 	UserName *string `min:"3" type:"string" required:"true"`
@@ -3654,6 +4532,200 @@ func (s *CreateUserOutput) SetServerId(v string) *CreateUserOutput {
 // SetUserName sets the UserName field's value.
 func (s *CreateUserOutput) SetUserName(v string) *CreateUserOutput {
 	s.UserName = &v
+	return s
+}
+
+type CreateWorkflowInput struct {
+	_ struct{} `type:"structure"`
+
+	// A textual description for the workflow.
+	Description *string `type:"string"`
+
+	// Specifies the steps (actions) to take if any errors are encountered during
+	// execution of the workflow.
+	OnExceptionSteps []*WorkflowStep `type:"list"`
+
+	// Specifies the details for the steps that are in the specified workflow.
+	//
+	// The TYPE specifies which of the following actions is being taken for this
+	// step.
+	//
+	//    * Copy: copy the file to another location
+	//
+	//    * Custom: custom step with a lambda target
+	//
+	//    * Delete: delete the file
+	//
+	//    * Tag: add a tag to the file
+	//
+	// For file location, you specify either the S3 bucket and key, or the EFS filesystem
+	// ID and path.
+	//
+	// Steps is a required field
+	Steps []*WorkflowStep `type:"list" required:"true"`
+
+	// Key-value pairs that can be used to group and search for workflows. Tags
+	// are metadata attached to workflows for any purpose.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateWorkflowInput"}
+	if s.Steps == nil {
+		invalidParams.Add(request.NewErrParamRequired("Steps"))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.OnExceptionSteps != nil {
+		for i, v := range s.OnExceptionSteps {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OnExceptionSteps", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Steps != nil {
+		for i, v := range s.Steps {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Steps", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateWorkflowInput) SetDescription(v string) *CreateWorkflowInput {
+	s.Description = &v
+	return s
+}
+
+// SetOnExceptionSteps sets the OnExceptionSteps field's value.
+func (s *CreateWorkflowInput) SetOnExceptionSteps(v []*WorkflowStep) *CreateWorkflowInput {
+	s.OnExceptionSteps = v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *CreateWorkflowInput) SetSteps(v []*WorkflowStep) *CreateWorkflowInput {
+	s.Steps = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateWorkflowInput) SetTags(v []*Tag) *CreateWorkflowInput {
+	s.Tags = v
+	return s
+}
+
+type CreateWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *CreateWorkflowOutput) SetWorkflowId(v string) *CreateWorkflowOutput {
+	s.WorkflowId = &v
+	return s
+}
+
+// Each step type has its own StepDetails structure.
+type CustomStepDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the step, used as an identifier.
+	Name *string `type:"string"`
+
+	// The ARN for the lambda function that is being called.
+	Target *string `type:"string"`
+
+	// Timeout, in seconds, for the step.
+	TimeoutSeconds *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s CustomStepDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CustomStepDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CustomStepDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CustomStepDetails"}
+	if s.TimeoutSeconds != nil && *s.TimeoutSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeoutSeconds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CustomStepDetails) SetName(v string) *CustomStepDetails {
+	s.Name = &v
+	return s
+}
+
+// SetTarget sets the Target field's value.
+func (s *CustomStepDetails) SetTarget(v string) *CustomStepDetails {
+	s.Target = &v
+	return s
+}
+
+// SetTimeoutSeconds sets the TimeoutSeconds field's value.
+func (s *CustomStepDetails) SetTimeoutSeconds(v int64) *CustomStepDetails {
+	s.TimeoutSeconds = &v
 	return s
 }
 
@@ -3888,6 +4960,30 @@ func (s DeleteSshPublicKeyOutput) GoString() string {
 	return s.String()
 }
 
+// The name of the step, used to identify the step that is being deleted.
+type DeleteStepDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the step, used as an identifier.
+	Name *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteStepDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStepDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteStepDetails) SetName(v string) *DeleteStepDetails {
+	s.Name = &v
+	return s
+}
+
 type DeleteUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3958,6 +5054,61 @@ func (s DeleteUserOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteUserOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteWorkflowInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteWorkflowInput"}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *DeleteWorkflowInput) SetWorkflowId(v string) *DeleteWorkflowInput {
+	s.WorkflowId = &v
+	return s
+}
+
+type DeleteWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteWorkflowOutput) GoString() string {
 	return s.String()
 }
 
@@ -4066,6 +5217,100 @@ func (s *DescribeAccessOutput) SetAccess(v *DescribedAccess) *DescribeAccessOutp
 // SetServerId sets the ServerId field's value.
 func (s *DescribeAccessOutput) SetServerId(v string) *DescribeAccessOutput {
 	s.ServerId = &v
+	return s
+}
+
+type DescribeExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the execution of a workflow.
+	//
+	// ExecutionId is a required field
+	ExecutionId *string `min:"36" type:"string" required:"true"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeExecutionInput"}
+	if s.ExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionId"))
+	}
+	if s.ExecutionId != nil && len(*s.ExecutionId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionId", 36))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutionId sets the ExecutionId field's value.
+func (s *DescribeExecutionInput) SetExecutionId(v string) *DescribeExecutionInput {
+	s.ExecutionId = &v
+	return s
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *DescribeExecutionInput) SetWorkflowId(v string) *DescribeExecutionInput {
+	s.WorkflowId = &v
+	return s
+}
+
+type DescribeExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure that contains the details of the workflow' execution.
+	//
+	// Execution is a required field
+	Execution *DescribedExecution `type:"structure" required:"true"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetExecution sets the Execution field's value.
+func (s *DescribeExecutionOutput) SetExecution(v *DescribedExecution) *DescribeExecutionOutput {
+	s.Execution = v
+	return s
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *DescribeExecutionOutput) SetWorkflowId(v string) *DescribeExecutionOutput {
+	s.WorkflowId = &v
 	return s
 }
 
@@ -4295,6 +5540,72 @@ func (s *DescribeUserOutput) SetUser(v *DescribedUser) *DescribeUserOutput {
 	return s
 }
 
+type DescribeWorkflowInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeWorkflowInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkflowInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeWorkflowInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeWorkflowInput"}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *DescribeWorkflowInput) SetWorkflowId(v string) *DescribeWorkflowInput {
+	s.WorkflowId = &v
+	return s
+}
+
+type DescribeWorkflowOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The structure that contains the details of the workflow.
+	//
+	// Workflow is a required field
+	Workflow *DescribedWorkflow `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeWorkflowOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeWorkflowOutput) GoString() string {
+	return s.String()
+}
+
+// SetWorkflow sets the Workflow field's value.
+func (s *DescribeWorkflowOutput) SetWorkflow(v *DescribedWorkflow) *DescribeWorkflowOutput {
+	s.Workflow = v
+	return s
+}
+
 // Describes the properties of the access that was specified.
 type DescribedAccess struct {
 	_ struct{} `type:"structure"`
@@ -4331,21 +5642,21 @@ type DescribedAccess struct {
 	// access to paths in Target. This value can only be set when HomeDirectoryType
 	// is set to LOGICAL.
 	//
-	// In most cases, you can use this value instead of the scope-down policy to
-	// lock down the associated access to the designated home directory ("chroot").
-	// To do this, you can set Entry to '/' and set Target to the HomeDirectory
-	// parameter value.
+	// In most cases, you can use this value instead of the session policy to lock
+	// down the associated access to the designated home directory ("chroot"). To
+	// do this, you can set Entry to '/' and set Target to the HomeDirectory parameter
+	// value.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
-	// protocol clients. If you set it LOGICAL, you will need to provide mappings
-	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// protocol clients. If you set it LOGICAL, you need to provide mappings in
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
 	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A scope-down policy for your user so that you can use the same IAM role across
+	// A session policy for your user so that you can use the same IAM role across
 	// multiple users. This policy scopes down user access to portions of their
 	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
 	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
@@ -4416,6 +5727,102 @@ func (s *DescribedAccess) SetPosixProfile(v *PosixProfile) *DescribedAccess {
 // SetRole sets the Role field's value.
 func (s *DescribedAccess) SetRole(v string) *DescribedAccess {
 	s.Role = &v
+	return s
+}
+
+// The details for an execution object.
+type DescribedExecution struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the execution of a workflow.
+	ExecutionId *string `min:"36" type:"string"`
+
+	// The IAM role associated with the execution.
+	ExecutionRole *string `min:"20" type:"string"`
+
+	// A structure that describes the Amazon S3 or EFS file location. This is the
+	// file location when the execution begins: if the file is being copied, this
+	// is the initial (as opposed to destination) file location.
+	InitialFileLocation *FileLocation `type:"structure"`
+
+	// The IAM logging role associated with the execution.
+	LoggingConfiguration *LoggingConfiguration `type:"structure"`
+
+	// The full POSIX identity, including user ID (Uid), group ID (Gid), and any
+	// secondary groups IDs (SecondaryGids), that controls your users' access to
+	// your Amazon EFS file systems. The POSIX permissions that are set on files
+	// and directories in your file system determine the level of access your users
+	// get when transferring files into and out of your Amazon EFS file systems.
+	PosixProfile *PosixProfile `type:"structure"`
+
+	// A structure that describes the execution results. This includes a list of
+	// the steps along with the details of each step, error type and message (if
+	// any), and the OnExceptionSteps structure.
+	Results *ExecutionResults `type:"structure"`
+
+	// A container object for the session details associated with a workflow.
+	ServiceMetadata *ServiceMetadata `type:"structure"`
+
+	// The status is one of the execution. Can be in progress, completed, exception
+	// encountered, or handling the exception.
+	Status *string `type:"string" enum:"ExecutionStatus"`
+}
+
+// String returns the string representation
+func (s DescribedExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribedExecution) GoString() string {
+	return s.String()
+}
+
+// SetExecutionId sets the ExecutionId field's value.
+func (s *DescribedExecution) SetExecutionId(v string) *DescribedExecution {
+	s.ExecutionId = &v
+	return s
+}
+
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *DescribedExecution) SetExecutionRole(v string) *DescribedExecution {
+	s.ExecutionRole = &v
+	return s
+}
+
+// SetInitialFileLocation sets the InitialFileLocation field's value.
+func (s *DescribedExecution) SetInitialFileLocation(v *FileLocation) *DescribedExecution {
+	s.InitialFileLocation = v
+	return s
+}
+
+// SetLoggingConfiguration sets the LoggingConfiguration field's value.
+func (s *DescribedExecution) SetLoggingConfiguration(v *LoggingConfiguration) *DescribedExecution {
+	s.LoggingConfiguration = v
+	return s
+}
+
+// SetPosixProfile sets the PosixProfile field's value.
+func (s *DescribedExecution) SetPosixProfile(v *PosixProfile) *DescribedExecution {
+	s.PosixProfile = v
+	return s
+}
+
+// SetResults sets the Results field's value.
+func (s *DescribedExecution) SetResults(v *ExecutionResults) *DescribedExecution {
+	s.Results = v
+	return s
+}
+
+// SetServiceMetadata sets the ServiceMetadata field's value.
+func (s *DescribedExecution) SetServiceMetadata(v *ServiceMetadata) *DescribedExecution {
+	s.ServiceMetadata = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *DescribedExecution) SetStatus(v string) *DescribedExecution {
+	s.Status = &v
 	return s
 }
 
@@ -4599,6 +6006,10 @@ type DescribedServer struct {
 	// Specifies the number of users that are assigned to a server you specified
 	// with the ServerId.
 	UserCount *int64 `type:"integer"`
+
+	// Specifies the workflow ID for the workflow to assign and the execution role
+	// used for executing the workflow.
+	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
 // String returns the string representation
@@ -4707,6 +6118,12 @@ func (s *DescribedServer) SetUserCount(v int64) *DescribedServer {
 	return s
 }
 
+// SetWorkflowDetails sets the WorkflowDetails field's value.
+func (s *DescribedServer) SetWorkflowDetails(v *WorkflowDetails) *DescribedServer {
+	s.WorkflowDetails = v
+	return s
+}
+
 // Describes the properties of a user that was specified.
 type DescribedUser struct {
 	_ struct{} `type:"structure"`
@@ -4732,20 +6149,20 @@ type DescribedUser struct {
 	// access to paths in Target. This value can only be set when HomeDirectoryType
 	// is set to LOGICAL.
 	//
-	// In most cases, you can use this value instead of the scope-down policy to
-	// lock your user down to the designated home directory ("chroot"). To do this,
-	// you can set Entry to '/' and set Target to the HomeDirectory parameter value.
+	// In most cases, you can use this value instead of the session policy to lock
+	// your user down to the designated home directory ("chroot"). To do this, you
+	// can set Entry to '/' and set Target to the HomeDirectory parameter value.
 	HomeDirectoryMappings []*HomeDirectoryMapEntry `min:"1" type:"list"`
 
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
-	// protocol clients. If you set it LOGICAL, you will need to provide mappings
-	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// protocol clients. If you set it LOGICAL, you need to provide mappings in
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
 	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A scope-down policy for your user so that you can use the same IAM role across
+	// A session policy for your user so that you can use the same IAM role across
 	// multiple users. This policy scopes down user access to portions of their
 	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
 	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
@@ -4848,6 +6265,139 @@ func (s *DescribedUser) SetTags(v []*Tag) *DescribedUser {
 // SetUserName sets the UserName field's value.
 func (s *DescribedUser) SetUserName(v string) *DescribedUser {
 	s.UserName = &v
+	return s
+}
+
+// Describes the properties of the specified workflow
+type DescribedWorkflow struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the unique Amazon Resource Name (ARN) for the workflow.
+	//
+	// Arn is a required field
+	Arn *string `min:"20" type:"string" required:"true"`
+
+	// Specifies the text description for the workflow.
+	Description *string `type:"string"`
+
+	// Specifies the steps (actions) to take if any errors are encountered during
+	// execution of the workflow.
+	OnExceptionSteps []*WorkflowStep `type:"list"`
+
+	// Specifies the details for the steps that are in the specified workflow.
+	Steps []*WorkflowStep `type:"list"`
+
+	// Key-value pairs that can be used to group and search for workflows. Tags
+	// are metadata attached to workflows for any purpose.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// A unique identifier for the workflow.
+	WorkflowId *string `min:"19" type:"string"`
+}
+
+// String returns the string representation
+func (s DescribedWorkflow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribedWorkflow) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DescribedWorkflow) SetArn(v string) *DescribedWorkflow {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *DescribedWorkflow) SetDescription(v string) *DescribedWorkflow {
+	s.Description = &v
+	return s
+}
+
+// SetOnExceptionSteps sets the OnExceptionSteps field's value.
+func (s *DescribedWorkflow) SetOnExceptionSteps(v []*WorkflowStep) *DescribedWorkflow {
+	s.OnExceptionSteps = v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *DescribedWorkflow) SetSteps(v []*WorkflowStep) *DescribedWorkflow {
+	s.Steps = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *DescribedWorkflow) SetTags(v []*Tag) *DescribedWorkflow {
+	s.Tags = v
+	return s
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *DescribedWorkflow) SetWorkflowId(v string) *DescribedWorkflow {
+	s.WorkflowId = &v
+	return s
+}
+
+// Specifies the details for the file location for the file being used in the
+// workflow. Only applicable if you are using Amazon EFS for storage.
+//
+// You need to provide the file system ID and the pathname. The pathname can
+// represent either a path or a file. This is determined by whether or not you
+// end the path value with the forward slash (/) character. If the final character
+// is "/", then your file is copied to the folder, and its name does not change.
+// If, rather, the final character is alphanumeric, your uploaded file is renamed
+// to the path value. In this case, if a file with that name already exists,
+// it is overwritten.
+//
+// For example, if your path is shared-files/bob/, your uploaded files are copied
+// to the shared-files/bob/, folder. If your path is shared-files/today, each
+// uploaded file is copied to the shared-files folder and named today: each
+// upload overwrites the previous version of the bob file.
+type EfsFileLocation struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the file system, assigned by Amazon EFS.
+	FileSystemId *string `type:"string"`
+
+	// The pathname for the folder being used by a workflow.
+	Path *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s EfsFileLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EfsFileLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *EfsFileLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "EfsFileLocation"}
+	if s.Path != nil && len(*s.Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *EfsFileLocation) SetFileSystemId(v string) *EfsFileLocation {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *EfsFileLocation) SetPath(v string) *EfsFileLocation {
+	s.Path = &v
 	return s
 }
 
@@ -4955,6 +6505,168 @@ func (s *EndpointDetails) SetVpcEndpointId(v string) *EndpointDetails {
 // SetVpcId sets the VpcId field's value.
 func (s *EndpointDetails) SetVpcId(v string) *EndpointDetails {
 	s.VpcId = &v
+	return s
+}
+
+// Specifies the error message and type, for an error that occurs during the
+// execution of the workflow.
+type ExecutionError struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the descriptive message that corresponds to the ErrorType.
+	//
+	// Message is a required field
+	Message *string `type:"string" required:"true"`
+
+	// Specifies the error type: currently, the only valid value is PERMISSION_DENIED,
+	// which occurs if your policy does not contain the correct permissions to complete
+	// one or more of the steps in the workflow.
+	//
+	// Type is a required field
+	Type *string `type:"string" required:"true" enum:"ExecutionErrorType"`
+}
+
+// String returns the string representation
+func (s ExecutionError) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExecutionError) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *ExecutionError) SetMessage(v string) *ExecutionError {
+	s.Message = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *ExecutionError) SetType(v string) *ExecutionError {
+	s.Type = &v
+	return s
+}
+
+// Specifies the steps in the workflow, as well as the steps to execute in case
+// of any errors during workflow execution.
+type ExecutionResults struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the steps (actions) to take if any errors are encountered during
+	// execution of the workflow.
+	OnExceptionSteps []*ExecutionStepResult `min:"1" type:"list"`
+
+	// Specifies the details for the steps that are in the specified workflow.
+	Steps []*ExecutionStepResult `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s ExecutionResults) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExecutionResults) GoString() string {
+	return s.String()
+}
+
+// SetOnExceptionSteps sets the OnExceptionSteps field's value.
+func (s *ExecutionResults) SetOnExceptionSteps(v []*ExecutionStepResult) *ExecutionResults {
+	s.OnExceptionSteps = v
+	return s
+}
+
+// SetSteps sets the Steps field's value.
+func (s *ExecutionResults) SetSteps(v []*ExecutionStepResult) *ExecutionResults {
+	s.Steps = v
+	return s
+}
+
+// Specifies the following details for the step: error (if any), outputs (if
+// any), and the step type.
+type ExecutionStepResult struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the details for an error, if it occurred during execution of the
+	// specified workfow step.
+	Error *ExecutionError `type:"structure"`
+
+	// The values for the key/value pair applied as a tag to the file. Only applicable
+	// if the step type is TAG.
+	Outputs *string `type:"string"`
+
+	// One of the available step types.
+	//
+	//    * Copy: copy the file to another location
+	//
+	//    * Custom: custom step with a lambda target
+	//
+	//    * Delete: delete the file
+	//
+	//    * Tag: add a tag to the file
+	StepType *string `type:"string" enum:"WorkflowStepType"`
+}
+
+// String returns the string representation
+func (s ExecutionStepResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExecutionStepResult) GoString() string {
+	return s.String()
+}
+
+// SetError sets the Error field's value.
+func (s *ExecutionStepResult) SetError(v *ExecutionError) *ExecutionStepResult {
+	s.Error = v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *ExecutionStepResult) SetOutputs(v string) *ExecutionStepResult {
+	s.Outputs = &v
+	return s
+}
+
+// SetStepType sets the StepType field's value.
+func (s *ExecutionStepResult) SetStepType(v string) *ExecutionStepResult {
+	s.StepType = &v
+	return s
+}
+
+// Specifies the Amazon S3 or EFS file details to be used in the step.
+type FileLocation struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the Amazon EFS ID and the path for the file being used.
+	EfsFileLocation *EfsFileLocation `type:"structure"`
+
+	// Specifies the S3 details for the file being used, such as bucket, Etag, and
+	// so forth.
+	S3FileLocation *S3FileLocation `type:"structure"`
+}
+
+// String returns the string representation
+func (s FileLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileLocation) GoString() string {
+	return s.String()
+}
+
+// SetEfsFileLocation sets the EfsFileLocation field's value.
+func (s *FileLocation) SetEfsFileLocation(v *EfsFileLocation) *FileLocation {
+	s.EfsFileLocation = v
+	return s
+}
+
+// SetS3FileLocation sets the S3FileLocation field's value.
+func (s *FileLocation) SetS3FileLocation(v *S3FileLocation) *FileLocation {
+	s.S3FileLocation = v
 	return s
 }
 
@@ -5203,6 +6915,60 @@ func (s *ImportSshPublicKeyOutput) SetSshPublicKeyId(v string) *ImportSshPublicK
 // SetUserName sets the UserName field's value.
 func (s *ImportSshPublicKeyOutput) SetUserName(v string) *ImportSshPublicKeyOutput {
 	s.UserName = &v
+	return s
+}
+
+// Specifies the location for the file being copied. Only applicable for the
+// Copy type of workflow steps.
+type InputFileLocation struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the details for the Amazon EFS file being copied.
+	EfsFileLocation *EfsFileLocation `type:"structure"`
+
+	// Specifies the details for the S3 file being copied.
+	S3FileLocation *S3InputFileLocation `type:"structure"`
+}
+
+// String returns the string representation
+func (s InputFileLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s InputFileLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InputFileLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InputFileLocation"}
+	if s.EfsFileLocation != nil {
+		if err := s.EfsFileLocation.Validate(); err != nil {
+			invalidParams.AddNested("EfsFileLocation", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3FileLocation != nil {
+		if err := s.S3FileLocation.Validate(); err != nil {
+			invalidParams.AddNested("S3FileLocation", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEfsFileLocation sets the EfsFileLocation field's value.
+func (s *InputFileLocation) SetEfsFileLocation(v *EfsFileLocation) *InputFileLocation {
+	s.EfsFileLocation = v
+	return s
+}
+
+// SetS3FileLocation sets the S3FileLocation field's value.
+func (s *InputFileLocation) SetS3FileLocation(v *S3InputFileLocation) *InputFileLocation {
+	s.S3FileLocation = v
 	return s
 }
 
@@ -5489,6 +7255,147 @@ func (s *ListAccessesOutput) SetNextToken(v string) *ListAccessesOutput {
 // SetServerId sets the ServerId field's value.
 func (s *ListAccessesOutput) SetServerId(v string) *ListAccessesOutput {
 	s.ServerId = &v
+	return s
+}
+
+type ListExecutionsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the aximum number of executions to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// ListExecutions returns the NextToken parameter in the output. You can then
+	// pass the NextToken parameter in a subsequent command to continue listing
+	// additional executions.
+	//
+	// This is useful for pagination, for instance. If you have 100 executions for
+	// a workflow, you might only want to list first 10. If so, callthe API by specifing
+	// the max-results:
+	//
+	// aws transfer list-executions --max-results 10
+	//
+	// This returns details for the first 10 executions, as well as the pointer
+	// (NextToken) to the eleventh execution. You can now call the API again, suppling
+	// the NextToken value you received:
+	//
+	// aws transfer list-executions --max-results 10 --next-token $somePointerReturnedFromPreviousListResult
+	//
+	// This call returns the next 10 executions, the 11th through the 20th. You
+	// can then repeat the call until the details for all 100 executions have been
+	// returned.
+	NextToken *string `min:"1" type:"string"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListExecutionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListExecutionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListExecutionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListExecutionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListExecutionsInput) SetMaxResults(v int64) *ListExecutionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExecutionsInput) SetNextToken(v string) *ListExecutionsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *ListExecutionsInput) SetWorkflowId(v string) *ListExecutionsInput {
+	s.WorkflowId = &v
+	return s
+}
+
+type ListExecutionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returns the details for each execution.
+	//
+	//    * NextToken: returned from a call to several APIs, you can use pass it
+	//    to a subsequent command to continue listing additional executions.
+	//
+	//    * StartTime: timestamp indicating when the execution began.
+	//
+	//    * Executions: details of the execution, including the execution ID, initial
+	//    file location, and Service metadata.
+	//
+	//    * Status: one of the following values: IN_PROGRESS, COMPLETED, EXCEPTION,
+	//    HANDLING_EXEPTION.
+	//
+	// Executions is a required field
+	Executions []*ListedExecution `type:"list" required:"true"`
+
+	// ListExecutions returns the NextToken parameter in the output. You can then
+	// pass the NextToken parameter in a subsequent command to continue listing
+	// additional executions.
+	NextToken *string `min:"1" type:"string"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListExecutionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListExecutionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetExecutions sets the Executions field's value.
+func (s *ListExecutionsOutput) SetExecutions(v []*ListedExecution) *ListExecutionsOutput {
+	s.Executions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListExecutionsOutput) SetNextToken(v string) *ListExecutionsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *ListExecutionsOutput) SetWorkflowId(v string) *ListExecutionsOutput {
+	s.WorkflowId = &v
 	return s
 }
 
@@ -5898,6 +7805,92 @@ func (s *ListUsersOutput) SetUsers(v []*ListedUser) *ListUsersOutput {
 	return s
 }
 
+type ListWorkflowsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the maximum number of workflows to return.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// ListWorkflows returns the NextToken parameter in the output. You can then
+	// pass the NextToken parameter in a subsequent command to continue listing
+	// additional workflows.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListWorkflowsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListWorkflowsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListWorkflowsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListWorkflowsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListWorkflowsInput) SetMaxResults(v int64) *ListWorkflowsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWorkflowsInput) SetNextToken(v string) *ListWorkflowsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListWorkflowsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// ListWorkflows returns the NextToken parameter in the output. You can then
+	// pass the NextToken parameter in a subsequent command to continue listing
+	// additional workflows.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returns the Arn, WorkflowId, and Description for each workflow.
+	//
+	// Workflows is a required field
+	Workflows []*ListedWorkflow `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s ListWorkflowsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListWorkflowsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListWorkflowsOutput) SetNextToken(v string) *ListWorkflowsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkflows sets the Workflows field's value.
+func (s *ListWorkflowsOutput) SetWorkflows(v []*ListedWorkflow) *ListWorkflowsOutput {
+	s.Workflows = v
+	return s
+}
+
 // Lists the properties for one or more specified associated accesses.
 type ListedAccess struct {
 	_ struct{} `type:"structure"`
@@ -5928,8 +7921,8 @@ type ListedAccess struct {
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
-	// protocol clients. If you set it LOGICAL, you will need to provide mappings
-	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// protocol clients. If you set it LOGICAL, you need to provide mappings in
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
 	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
@@ -5973,6 +7966,60 @@ func (s *ListedAccess) SetHomeDirectoryType(v string) *ListedAccess {
 // SetRole sets the Role field's value.
 func (s *ListedAccess) SetRole(v string) *ListedAccess {
 	s.Role = &v
+	return s
+}
+
+// Returns properties of the execution that is specified.
+type ListedExecution struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the execution of a workflow.
+	ExecutionId *string `min:"36" type:"string"`
+
+	// A structure that describes the Amazon S3 or EFS file location. This is the
+	// file location when the execution begins: if the file is being copied, this
+	// is the initial (as opposed to destination) file location.
+	InitialFileLocation *FileLocation `type:"structure"`
+
+	// A container object for the session details associated with a workflow.
+	ServiceMetadata *ServiceMetadata `type:"structure"`
+
+	// The status is one of the execution. Can be in progress, completed, exception
+	// encountered, or handling the exception.
+	Status *string `type:"string" enum:"ExecutionStatus"`
+}
+
+// String returns the string representation
+func (s ListedExecution) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListedExecution) GoString() string {
+	return s.String()
+}
+
+// SetExecutionId sets the ExecutionId field's value.
+func (s *ListedExecution) SetExecutionId(v string) *ListedExecution {
+	s.ExecutionId = &v
+	return s
+}
+
+// SetInitialFileLocation sets the InitialFileLocation field's value.
+func (s *ListedExecution) SetInitialFileLocation(v *FileLocation) *ListedExecution {
+	s.InitialFileLocation = v
+	return s
+}
+
+// SetServiceMetadata sets the ServiceMetadata field's value.
+func (s *ListedExecution) SetServiceMetadata(v *ServiceMetadata) *ListedExecution {
+	s.ServiceMetadata = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ListedExecution) SetStatus(v string) *ListedExecution {
+	s.Status = &v
 	return s
 }
 
@@ -6111,8 +8158,8 @@ type ListedUser struct {
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
-	// protocol clients. If you set it LOGICAL, you will need to provide mappings
-	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// protocol clients. If you set it LOGICAL, you need to provide mappings in
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
 	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
@@ -6182,6 +8229,86 @@ func (s *ListedUser) SetSshPublicKeyCount(v int64) *ListedUser {
 // SetUserName sets the UserName field's value.
 func (s *ListedUser) SetUserName(v string) *ListedUser {
 	s.UserName = &v
+	return s
+}
+
+// Contains the ID, text description, and Amazon Resource Name (ARN) for the
+// workflow.
+type ListedWorkflow struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the unique Amazon Resource Name (ARN) for the workflow.
+	Arn *string `min:"20" type:"string"`
+
+	// Specifies the text description for the workflow.
+	Description *string `type:"string"`
+
+	// A unique identifier for the workflow.
+	WorkflowId *string `min:"19" type:"string"`
+}
+
+// String returns the string representation
+func (s ListedWorkflow) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListedWorkflow) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *ListedWorkflow) SetArn(v string) *ListedWorkflow {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *ListedWorkflow) SetDescription(v string) *ListedWorkflow {
+	s.Description = &v
+	return s
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *ListedWorkflow) SetWorkflowId(v string) *ListedWorkflow {
+	s.WorkflowId = &v
+	return s
+}
+
+// Consists of the logging role and the log group name.
+type LoggingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the CloudWatch logging group for the Amazon Web Services Transfer
+	// server to which this workflow belongs.
+	LogGroupName *string `min:"1" type:"string"`
+
+	// Specifies the Amazon Resource Name (ARN) of the Amazon Web Services Identity
+	// and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch
+	// logging for Amazon S3 or Amazon EFS events. When set, user activity can be
+	// viewed in your CloudWatch logs.
+	LoggingRole *string `min:"20" type:"string"`
+}
+
+// String returns the string representation
+func (s LoggingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LoggingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetLogGroupName sets the LogGroupName field's value.
+func (s *LoggingConfiguration) SetLogGroupName(v string) *LoggingConfiguration {
+	s.LogGroupName = &v
+	return s
+}
+
+// SetLoggingRole sets the LoggingRole field's value.
+func (s *LoggingConfiguration) SetLoggingRole(v string) *LoggingConfiguration {
+	s.LoggingRole = &v
 	return s
 }
 
@@ -6265,6 +8392,11 @@ type ProtocolDetails struct {
 	//
 	// Replace 0.0.0.0 in the example above with the actual IP address you want
 	// to use.
+	//
+	// If you change the PassiveIp value, you must stop and then restart your Transfer
+	// server for the change to take effect. For details on using Passive IP (PASV)
+	// in a NAT environment, see Configuring your FTPS server behind a firewall
+	// or NAT with Amazon Web Services Transfer Family (http://aws.amazon.com/blogs/storage/configuring-your-ftps-server-behind-a-firewall-or-nat-with-aws-transfer-family/).
 	PassiveIp *string `type:"string"`
 }
 
@@ -6407,6 +8539,307 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Specifies the details for the file location for the file being used in the
+// workflow. Only applicable if you are using S3 storage.
+//
+// You need to provide the bucket and key. The key can represent either a path
+// or a file. This is determined by whether or not you end the key value with
+// the forward slash (/) character. If the final character is "/", then your
+// file is copied to the folder, and its name does not change. If, rather, the
+// final character is alphanumeric, your uploaded file is renamed to the path
+// value. In this case, if a file with that name already exists, it is overwritten.
+//
+// For example, if your path is shared-files/bob/, your uploaded files are copied
+// to the shared-files/bob/, folder. If your path is shared-files/today, each
+// uploaded file is copied to the shared-files folder and named today: each
+// upload overwrites the previous version of the bob file.
+type S3FileLocation struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the S3 bucket that contains the file being used.
+	Bucket *string `min:"3" type:"string"`
+
+	// The entity tag is a hash of the object. The ETag reflects changes only to
+	// the contents of an object, not its metadata.
+	Etag *string `min:"1" type:"string"`
+
+	// The name assigned to the file when it was created in S3. You use the object
+	// key to retrieve the object.
+	Key *string `type:"string"`
+
+	// Specifies the file version.
+	VersionId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s S3FileLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3FileLocation) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3FileLocation) SetBucket(v string) *S3FileLocation {
+	s.Bucket = &v
+	return s
+}
+
+// SetEtag sets the Etag field's value.
+func (s *S3FileLocation) SetEtag(v string) *S3FileLocation {
+	s.Etag = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *S3FileLocation) SetKey(v string) *S3FileLocation {
+	s.Key = &v
+	return s
+}
+
+// SetVersionId sets the VersionId field's value.
+func (s *S3FileLocation) SetVersionId(v string) *S3FileLocation {
+	s.VersionId = &v
+	return s
+}
+
+// Specifies the details for the S3 file being copied.
+type S3InputFileLocation struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the S3 bucket that contains the file being copied.
+	Bucket *string `min:"3" type:"string"`
+
+	// The name assigned to the file when it was created in S3. You use the object
+	// key to retrieve the object.
+	Key *string `type:"string"`
+}
+
+// String returns the string representation
+func (s S3InputFileLocation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3InputFileLocation) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3InputFileLocation) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3InputFileLocation"}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *S3InputFileLocation) SetBucket(v string) *S3InputFileLocation {
+	s.Bucket = &v
+	return s
+}
+
+// SetKey sets the Key field's value.
+func (s *S3InputFileLocation) SetKey(v string) *S3InputFileLocation {
+	s.Key = &v
+	return s
+}
+
+// Specifies the key-value pair that are assigned to a file during the execution
+// of a Tagging step.
+type S3Tag struct {
+	_ struct{} `type:"structure"`
+
+	// The name assigned to the tag that you create.
+	//
+	// Key is a required field
+	Key *string `min:"1" type:"string" required:"true"`
+
+	// The value that corresponds to the key.
+	//
+	// Value is a required field
+	Value *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s S3Tag) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s S3Tag) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3Tag) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3Tag"}
+	if s.Key == nil {
+		invalidParams.Add(request.NewErrParamRequired("Key"))
+	}
+	if s.Key != nil && len(*s.Key) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Key", 1))
+	}
+	if s.Value == nil {
+		invalidParams.Add(request.NewErrParamRequired("Value"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetKey sets the Key field's value.
+func (s *S3Tag) SetKey(v string) *S3Tag {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *S3Tag) SetValue(v string) *S3Tag {
+	s.Value = &v
+	return s
+}
+
+type SendWorkflowStepStateInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the execution of a workflow.
+	//
+	// ExecutionId is a required field
+	ExecutionId *string `min:"36" type:"string" required:"true"`
+
+	// Indicates whether the specified step succeeded or failed.
+	//
+	// Status is a required field
+	Status *string `type:"string" required:"true" enum:"CustomStepStatus"`
+
+	// Used to distinguish between multiple callbacks for multiple Lambda steps
+	// within the same execution.
+	//
+	// Token is a required field
+	Token *string `min:"1" type:"string" required:"true"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s SendWorkflowStepStateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendWorkflowStepStateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SendWorkflowStepStateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SendWorkflowStepStateInput"}
+	if s.ExecutionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionId"))
+	}
+	if s.ExecutionId != nil && len(*s.ExecutionId) < 36 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionId", 36))
+	}
+	if s.Status == nil {
+		invalidParams.Add(request.NewErrParamRequired("Status"))
+	}
+	if s.Token == nil {
+		invalidParams.Add(request.NewErrParamRequired("Token"))
+	}
+	if s.Token != nil && len(*s.Token) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Token", 1))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutionId sets the ExecutionId field's value.
+func (s *SendWorkflowStepStateInput) SetExecutionId(v string) *SendWorkflowStepStateInput {
+	s.ExecutionId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *SendWorkflowStepStateInput) SetStatus(v string) *SendWorkflowStepStateInput {
+	s.Status = &v
+	return s
+}
+
+// SetToken sets the Token field's value.
+func (s *SendWorkflowStepStateInput) SetToken(v string) *SendWorkflowStepStateInput {
+	s.Token = &v
+	return s
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *SendWorkflowStepStateInput) SetWorkflowId(v string) *SendWorkflowStepStateInput {
+	s.WorkflowId = &v
+	return s
+}
+
+type SendWorkflowStepStateOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s SendWorkflowStepStateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SendWorkflowStepStateOutput) GoString() string {
+	return s.String()
+}
+
+// A container object for the session details associated with a workflow.
+type ServiceMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// The Server ID (ServerId), Session ID (SessionId) and user (UserName) make
+	// up the UserDetails.
+	//
+	// UserDetails is a required field
+	UserDetails *UserDetails `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s ServiceMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ServiceMetadata) GoString() string {
+	return s.String()
+}
+
+// SetUserDetails sets the UserDetails field's value.
+func (s *ServiceMetadata) SetUserDetails(v *UserDetails) *ServiceMetadata {
+	s.UserDetails = v
+	return s
 }
 
 // The request has failed because the Amazon Web ServicesTransfer Family service
@@ -6773,6 +9206,65 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Each step type has its own StepDetails structure.
+//
+// The key/value pairs used to tag a file during the execution of a workflow
+// step.
+type TagStepDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the step, used as an identifier.
+	Name *string `type:"string"`
+
+	// Array that contains from 1 to 10 key/value pairs.
+	Tags []*S3Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s TagStepDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagStepDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagStepDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagStepDetails"}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *TagStepDetails) SetName(v string) *TagStepDetails {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagStepDetails) SetTags(v []*S3Tag) *TagStepDetails {
+	s.Tags = v
+	return s
+}
+
 type TestIdentityProviderInput struct {
 	_ struct{} `type:"structure"`
 
@@ -7099,9 +9591,9 @@ type UpdateAccessInput struct {
 	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
 	// } ]
 	//
-	// In most cases, you can use this value instead of the scope-down policy to
-	// lock down your user to the designated home directory ("chroot"). To do this,
-	// you can set Entry to / and set Target to the HomeDirectory parameter value.
+	// In most cases, you can use this value instead of the session policy to lock
+	// down your user to the designated home directory ("chroot"). To do this, you
+	// can set Entry to / and set Target to the HomeDirectory parameter value.
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
@@ -7119,24 +9611,24 @@ type UpdateAccessInput struct {
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
-	// protocol clients. If you set it LOGICAL, you will need to provide mappings
-	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// protocol clients. If you set it LOGICAL, you need to provide mappings in
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
 	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A scope-down policy for your user so that you can use the same IAM role across
+	// A session policy for your user so that you can use the same IAM role across
 	// multiple users. This policy scopes down user access to portions of their
 	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
 	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
 	//
-	// This only applies when domain of ServerId is S3. Amazon EFS does not use
-	// scope down policy.
+	// This only applies when the domain of ServerId is S3. EFS does not use session
+	// policies.
 	//
-	// For scope-down policies, Amazon Web ServicesTransfer Family stores the policy
+	// For session policies, Amazon Web Services Transfer Family stores the policy
 	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
 	// You save the policy as a JSON blob and pass it in the Policy argument.
 	//
-	// For an example of a scope-down policy, see Example scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/scope-down-policy.html).
+	// For an example of a session policy, see Example session policy (https://docs.aws.amazon.com/transfer/latest/userguide/session-policy.html).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
 	// in the Amazon Web ServicesSecurity Token Service API Reference.
@@ -7425,6 +9917,10 @@ type UpdateServerInput struct {
 	//
 	// ServerId is a required field
 	ServerId *string `min:"19" type:"string" required:"true"`
+
+	// Specifies the workflow ID for the workflow to assign and the execution role
+	// used for executing the workflow.
+	WorkflowDetails *WorkflowDetails `type:"structure"`
 }
 
 // String returns the string representation
@@ -7457,6 +9953,11 @@ func (s *UpdateServerInput) Validate() error {
 	if s.IdentityProviderDetails != nil {
 		if err := s.IdentityProviderDetails.Validate(); err != nil {
 			invalidParams.AddNested("IdentityProviderDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.WorkflowDetails != nil {
+		if err := s.WorkflowDetails.Validate(); err != nil {
+			invalidParams.AddNested("WorkflowDetails", err.(request.ErrInvalidParams))
 		}
 	}
 
@@ -7526,6 +10027,12 @@ func (s *UpdateServerInput) SetServerId(v string) *UpdateServerInput {
 	return s
 }
 
+// SetWorkflowDetails sets the WorkflowDetails field's value.
+func (s *UpdateServerInput) SetWorkflowDetails(v *WorkflowDetails) *UpdateServerInput {
+	s.WorkflowDetails = v
+	return s
+}
+
 type UpdateServerOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -7575,9 +10082,9 @@ type UpdateUserInput struct {
 	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
 	// } ]
 	//
-	// In most cases, you can use this value instead of the scope-down policy to
-	// lock down your user to the designated home directory ("chroot"). To do this,
-	// you can set Entry to '/' and set Target to the HomeDirectory parameter value.
+	// In most cases, you can use this value instead of the session policy to lock
+	// down your user to the designated home directory ("chroot"). To do this, you
+	// can set Entry to '/' and set Target to the HomeDirectory parameter value.
 	//
 	// The following is an Entry and Target pair example for chroot.
 	//
@@ -7595,24 +10102,24 @@ type UpdateUserInput struct {
 	// The type of landing directory (folder) you want your users' home directory
 	// to be when they log into the server. If you set it to PATH, the user will
 	// see the absolute Amazon S3 bucket or EFS paths as is in their file transfer
-	// protocol clients. If you set it LOGICAL, you will need to provide mappings
-	// in the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
+	// protocol clients. If you set it LOGICAL, you need to provide mappings in
+	// the HomeDirectoryMappings for how you want to make Amazon S3 or EFS paths
 	// visible to your users.
 	HomeDirectoryType *string `type:"string" enum:"HomeDirectoryType"`
 
-	// A scope-down policy for your user so that you can use the same IAM role across
+	// A session policy for your user so that you can use the same IAM role across
 	// multiple users. This policy scopes down user access to portions of their
 	// Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName},
 	// ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket}.
 	//
-	// This only applies when domain of ServerId is S3. Amazon EFS does not use
-	// scope-down policies.
+	// This only applies when the domain of ServerId is S3. EFS does not use session
+	// policies.
 	//
-	// For scope-down policies, Amazon Web ServicesTransfer Family stores the policy
+	// For session policies, Amazon Web Services Transfer Family stores the policy
 	// as a JSON blob, instead of the Amazon Resource Name (ARN) of the policy.
 	// You save the policy as a JSON blob and pass it in the Policy argument.
 	//
-	// For an example of a scope-down policy, see Creating a scope-down policy (https://docs.aws.amazon.com/transfer/latest/userguide/users.html#users-policies-scope-down).
+	// For an example of a session policy, see Creating a session policy (https://docs.aws.amazon.com/transfer/latest/userguide/session-policy).
 	//
 	// For more information, see AssumeRole (https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html)
 	// in the Amazon Web Services Security Token Service API Reference.
@@ -7791,6 +10298,288 @@ func (s *UpdateUserOutput) SetUserName(v string) *UpdateUserOutput {
 	return s
 }
 
+// Specifies the user name, server ID, and session ID for a workflow.
+type UserDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The system-assigned unique identifier for a Transfer server instance.
+	//
+	// ServerId is a required field
+	ServerId *string `min:"19" type:"string" required:"true"`
+
+	// The system-assigned unique identifier for a session that corresponds to the
+	// workflow.
+	SessionId *string `min:"3" type:"string"`
+
+	// A unique string that identifies a user account associated with a server.
+	//
+	// UserName is a required field
+	UserName *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UserDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UserDetails) GoString() string {
+	return s.String()
+}
+
+// SetServerId sets the ServerId field's value.
+func (s *UserDetails) SetServerId(v string) *UserDetails {
+	s.ServerId = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *UserDetails) SetSessionId(v string) *UserDetails {
+	s.SessionId = &v
+	return s
+}
+
+// SetUserName sets the UserName field's value.
+func (s *UserDetails) SetUserName(v string) *UserDetails {
+	s.UserName = &v
+	return s
+}
+
+// Specifies the workflow ID for the workflow to assign and the execution role
+// used for executing the workflow.
+type WorkflowDetail struct {
+	_ struct{} `type:"structure"`
+
+	// Includes the necessary permissions for S3, EFS, and Lambda operations that
+	// Transfer can assume, so that all workflow steps can operate on the required
+	// resources
+	//
+	// ExecutionRole is a required field
+	ExecutionRole *string `min:"20" type:"string" required:"true"`
+
+	// A unique identifier for the workflow.
+	//
+	// WorkflowId is a required field
+	WorkflowId *string `min:"19" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s WorkflowDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowDetail) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowDetail) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowDetail"}
+	if s.ExecutionRole == nil {
+		invalidParams.Add(request.NewErrParamRequired("ExecutionRole"))
+	}
+	if s.ExecutionRole != nil && len(*s.ExecutionRole) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("ExecutionRole", 20))
+	}
+	if s.WorkflowId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkflowId"))
+	}
+	if s.WorkflowId != nil && len(*s.WorkflowId) < 19 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkflowId", 19))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExecutionRole sets the ExecutionRole field's value.
+func (s *WorkflowDetail) SetExecutionRole(v string) *WorkflowDetail {
+	s.ExecutionRole = &v
+	return s
+}
+
+// SetWorkflowId sets the WorkflowId field's value.
+func (s *WorkflowDetail) SetWorkflowId(v string) *WorkflowDetail {
+	s.WorkflowId = &v
+	return s
+}
+
+// Container for the WorkflowDetail data type. It is used by actions that trigger
+// a workflow to begin execution.
+type WorkflowDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A trigger that starts a workflow: the workflow begins to execute after a
+	// file is uploaded.
+	//
+	// OnUpload is a required field
+	OnUpload []*WorkflowDetail `type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s WorkflowDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowDetails"}
+	if s.OnUpload == nil {
+		invalidParams.Add(request.NewErrParamRequired("OnUpload"))
+	}
+	if s.OnUpload != nil {
+		for i, v := range s.OnUpload {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "OnUpload", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOnUpload sets the OnUpload field's value.
+func (s *WorkflowDetails) SetOnUpload(v []*WorkflowDetail) *WorkflowDetails {
+	s.OnUpload = v
+	return s
+}
+
+// The basic building block of a workflow.
+type WorkflowStep struct {
+	_ struct{} `type:"structure"`
+
+	// Details for a step that performs a file copy.
+	//
+	// Consists of the following values:
+	//
+	//    * A description
+	//
+	//    * An S3 or EFS location for the destination of the file copy.
+	//
+	//    * A flag that indicates whether or not to overwrite an existing file of
+	//    the same name. The default is FALSE.
+	CopyStepDetails *CopyStepDetails `type:"structure"`
+
+	// Details for a step that invokes a lambda function.
+	//
+	// Consists of the lambda function name, target, and timeout (in seconds).
+	CustomStepDetails *CustomStepDetails `type:"structure"`
+
+	// You need to specify the name of the file to be deleted.
+	DeleteStepDetails *DeleteStepDetails `type:"structure"`
+
+	// Details for a step that creates one or more tags.
+	//
+	// You specify one or more tags: each tag contains a key/value pair.
+	TagStepDetails *TagStepDetails `type:"structure"`
+
+	// Currently, the following step types are supported.
+	//
+	//    * Copy: copy the file to another location
+	//
+	//    * Custom: custom step with a lambda target
+	//
+	//    * Delete: delete the file
+	//
+	//    * Tag: add a tag to the file
+	Type *string `type:"string" enum:"WorkflowStepType"`
+}
+
+// String returns the string representation
+func (s WorkflowStep) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s WorkflowStep) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *WorkflowStep) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "WorkflowStep"}
+	if s.CopyStepDetails != nil {
+		if err := s.CopyStepDetails.Validate(); err != nil {
+			invalidParams.AddNested("CopyStepDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.CustomStepDetails != nil {
+		if err := s.CustomStepDetails.Validate(); err != nil {
+			invalidParams.AddNested("CustomStepDetails", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TagStepDetails != nil {
+		if err := s.TagStepDetails.Validate(); err != nil {
+			invalidParams.AddNested("TagStepDetails", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCopyStepDetails sets the CopyStepDetails field's value.
+func (s *WorkflowStep) SetCopyStepDetails(v *CopyStepDetails) *WorkflowStep {
+	s.CopyStepDetails = v
+	return s
+}
+
+// SetCustomStepDetails sets the CustomStepDetails field's value.
+func (s *WorkflowStep) SetCustomStepDetails(v *CustomStepDetails) *WorkflowStep {
+	s.CustomStepDetails = v
+	return s
+}
+
+// SetDeleteStepDetails sets the DeleteStepDetails field's value.
+func (s *WorkflowStep) SetDeleteStepDetails(v *DeleteStepDetails) *WorkflowStep {
+	s.DeleteStepDetails = v
+	return s
+}
+
+// SetTagStepDetails sets the TagStepDetails field's value.
+func (s *WorkflowStep) SetTagStepDetails(v *TagStepDetails) *WorkflowStep {
+	s.TagStepDetails = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *WorkflowStep) SetType(v string) *WorkflowStep {
+	s.Type = &v
+	return s
+}
+
+const (
+	// CustomStepStatusSuccess is a CustomStepStatus enum value
+	CustomStepStatusSuccess = "SUCCESS"
+
+	// CustomStepStatusFailure is a CustomStepStatus enum value
+	CustomStepStatusFailure = "FAILURE"
+)
+
+// CustomStepStatus_Values returns all elements of the CustomStepStatus enum
+func CustomStepStatus_Values() []string {
+	return []string{
+		CustomStepStatusSuccess,
+		CustomStepStatusFailure,
+	}
+}
+
 const (
 	// DomainS3 is a Domain enum value
 	DomainS3 = "S3"
@@ -7824,6 +10613,42 @@ func EndpointType_Values() []string {
 		EndpointTypePublic,
 		EndpointTypeVpc,
 		EndpointTypeVpcEndpoint,
+	}
+}
+
+const (
+	// ExecutionErrorTypePermissionDenied is a ExecutionErrorType enum value
+	ExecutionErrorTypePermissionDenied = "PERMISSION_DENIED"
+)
+
+// ExecutionErrorType_Values returns all elements of the ExecutionErrorType enum
+func ExecutionErrorType_Values() []string {
+	return []string{
+		ExecutionErrorTypePermissionDenied,
+	}
+}
+
+const (
+	// ExecutionStatusInProgress is a ExecutionStatus enum value
+	ExecutionStatusInProgress = "IN_PROGRESS"
+
+	// ExecutionStatusCompleted is a ExecutionStatus enum value
+	ExecutionStatusCompleted = "COMPLETED"
+
+	// ExecutionStatusException is a ExecutionStatus enum value
+	ExecutionStatusException = "EXCEPTION"
+
+	// ExecutionStatusHandlingException is a ExecutionStatus enum value
+	ExecutionStatusHandlingException = "HANDLING_EXCEPTION"
+)
+
+// ExecutionStatus_Values returns all elements of the ExecutionStatus enum
+func ExecutionStatus_Values() []string {
+	return []string{
+		ExecutionStatusInProgress,
+		ExecutionStatusCompleted,
+		ExecutionStatusException,
+		ExecutionStatusHandlingException,
 	}
 }
 
@@ -7866,6 +10691,22 @@ func IdentityProviderType_Values() []string {
 		IdentityProviderTypeServiceManaged,
 		IdentityProviderTypeApiGateway,
 		IdentityProviderTypeAwsDirectoryService,
+	}
+}
+
+const (
+	// OverwriteExistingTrue is a OverwriteExisting enum value
+	OverwriteExistingTrue = "TRUE"
+
+	// OverwriteExistingFalse is a OverwriteExisting enum value
+	OverwriteExistingFalse = "FALSE"
+)
+
+// OverwriteExisting_Values returns all elements of the OverwriteExisting enum
+func OverwriteExisting_Values() []string {
+	return []string{
+		OverwriteExistingTrue,
+		OverwriteExistingFalse,
 	}
 }
 
@@ -7928,5 +10769,29 @@ func State_Values() []string {
 		StateStopping,
 		StateStartFailed,
 		StateStopFailed,
+	}
+}
+
+const (
+	// WorkflowStepTypeCopy is a WorkflowStepType enum value
+	WorkflowStepTypeCopy = "COPY"
+
+	// WorkflowStepTypeCustom is a WorkflowStepType enum value
+	WorkflowStepTypeCustom = "CUSTOM"
+
+	// WorkflowStepTypeTag is a WorkflowStepType enum value
+	WorkflowStepTypeTag = "TAG"
+
+	// WorkflowStepTypeDelete is a WorkflowStepType enum value
+	WorkflowStepTypeDelete = "DELETE"
+)
+
+// WorkflowStepType_Values returns all elements of the WorkflowStepType enum
+func WorkflowStepType_Values() []string {
+	return []string{
+		WorkflowStepTypeCopy,
+		WorkflowStepTypeCustom,
+		WorkflowStepTypeTag,
+		WorkflowStepTypeDelete,
 	}
 }

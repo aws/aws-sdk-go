@@ -95,8 +95,7 @@ const (
 	// ErrCodeInvalidDestinationKmsKey for service response error code
 	// "InvalidDestinationKmsKey".
 	//
-	// The AWS Key Management Service (AWS KMS) key of the destination backup is
-	// invalid.
+	// The Key Management Service (KMS) key of the destination backup is invalid.
 	ErrCodeInvalidDestinationKmsKey = "InvalidDestinationKmsKey"
 
 	// ErrCodeInvalidExportPath for service response error code
@@ -114,12 +113,7 @@ const (
 	// ErrCodeInvalidNetworkSettings for service response error code
 	// "InvalidNetworkSettings".
 	//
-	// One or more network settings specified in the request are invalid. InvalidVpcId
-	// means that the ID passed for the virtual private cloud (VPC) is invalid.
-	// InvalidSubnetIds returns the list of IDs for subnets that are either invalid
-	// or not part of the VPC specified. InvalidSecurityGroupIds returns the list
-	// of IDs for security groups that are either invalid or not part of the VPC
-	// specified.
+	// One or more network settings specified in the request are invalid.
 	ErrCodeInvalidNetworkSettings = "InvalidNetworkSettings"
 
 	// ErrCodeInvalidPerUnitStorageThroughput for service response error code
@@ -132,14 +126,14 @@ const (
 	// ErrCodeInvalidRegion for service response error code
 	// "InvalidRegion".
 	//
-	// The Region provided for Source Region is invalid or is in a different AWS
-	// partition.
+	// The Region provided for Source Region is invalid or is in a different Amazon
+	// Web Services partition.
 	ErrCodeInvalidRegion = "InvalidRegion"
 
 	// ErrCodeInvalidSourceKmsKey for service response error code
 	// "InvalidSourceKmsKey".
 	//
-	// The AWS Key Management Service (AWS KMS) key of the source backup is invalid.
+	// The Key Management Service (KMS) key of the source backup is invalid.
 	ErrCodeInvalidSourceKmsKey = "InvalidSourceKmsKey"
 
 	// ErrCodeMissingFileSystemConfiguration for service response error code
@@ -147,6 +141,12 @@ const (
 	//
 	// A file system configuration is required for this operation.
 	ErrCodeMissingFileSystemConfiguration = "MissingFileSystemConfiguration"
+
+	// ErrCodeMissingVolumeConfiguration for service response error code
+	// "MissingVolumeConfiguration".
+	//
+	// A volume configuration is required for this operation.
+	ErrCodeMissingVolumeConfiguration = "MissingVolumeConfiguration"
 
 	// ErrCodeNotServiceResourceError for service response error code
 	// "NotServiceResourceError".
@@ -171,7 +171,7 @@ const (
 	// "ServiceLimitExceeded".
 	//
 	// An error indicating that a particular service limit was exceeded. You can
-	// increase some service limits by contacting AWS Support.
+	// increase some service limits by contacting Amazon Web Services Support.
 	ErrCodeServiceLimitExceeded = "ServiceLimitExceeded"
 
 	// ErrCodeSourceBackupUnavailable for service response error code
@@ -181,11 +181,24 @@ const (
 	// is not AVAILABLE.
 	ErrCodeSourceBackupUnavailable = "SourceBackupUnavailable"
 
+	// ErrCodeStorageVirtualMachineNotFound for service response error code
+	// "StorageVirtualMachineNotFound".
+	//
+	// No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+	ErrCodeStorageVirtualMachineNotFound = "StorageVirtualMachineNotFound"
+
 	// ErrCodeUnsupportedOperation for service response error code
 	// "UnsupportedOperation".
 	//
 	// The requested operation is not supported for this resource or API.
 	ErrCodeUnsupportedOperation = "UnsupportedOperation"
+
+	// ErrCodeVolumeNotFound for service response error code
+	// "VolumeNotFound".
+	//
+	// No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
+	// parameters.
+	ErrCodeVolumeNotFound = "VolumeNotFound"
 )
 
 var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
@@ -210,10 +223,13 @@ var exceptionFromCode = map[string]func(protocol.ResponseMetadata) error{
 	"InvalidRegion":                   newErrorInvalidRegion,
 	"InvalidSourceKmsKey":             newErrorInvalidSourceKmsKey,
 	"MissingFileSystemConfiguration":  newErrorMissingFileSystemConfiguration,
+	"MissingVolumeConfiguration":      newErrorMissingVolumeConfiguration,
 	"NotServiceResourceError":         newErrorNotServiceResourceError,
 	"ResourceDoesNotSupportTagging":   newErrorResourceDoesNotSupportTagging,
 	"ResourceNotFound":                newErrorResourceNotFound,
 	"ServiceLimitExceeded":            newErrorServiceLimitExceeded,
 	"SourceBackupUnavailable":         newErrorSourceBackupUnavailable,
+	"StorageVirtualMachineNotFound":   newErrorStorageVirtualMachineNotFound,
 	"UnsupportedOperation":            newErrorUnsupportedOperation,
+	"VolumeNotFound":                  newErrorVolumeNotFound,
 }

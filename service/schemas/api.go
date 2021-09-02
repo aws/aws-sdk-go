@@ -3137,6 +3137,8 @@ func (s *ConflictException) RequestID() string {
 type CreateDiscovererInput struct {
 	_ struct{} `type:"structure"`
 
+	CrossAccount *bool `type:"boolean"`
+
 	Description *string `type:"string"`
 
 	// SourceArn is a required field
@@ -3172,6 +3174,12 @@ func (s *CreateDiscovererInput) Validate() error {
 	return nil
 }
 
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *CreateDiscovererInput) SetCrossAccount(v bool) *CreateDiscovererInput {
+	s.CrossAccount = &v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *CreateDiscovererInput) SetDescription(v string) *CreateDiscovererInput {
 	s.Description = &v
@@ -3192,6 +3200,8 @@ func (s *CreateDiscovererInput) SetTags(v map[string]*string) *CreateDiscovererI
 
 type CreateDiscovererOutput struct {
 	_ struct{} `type:"structure"`
+
+	CrossAccount *bool `type:"boolean"`
 
 	Description *string `type:"string"`
 
@@ -3215,6 +3225,12 @@ func (s CreateDiscovererOutput) String() string {
 // GoString returns the string representation
 func (s CreateDiscovererOutput) GoString() string {
 	return s.String()
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *CreateDiscovererOutput) SetCrossAccount(v bool) *CreateDiscovererOutput {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -3991,6 +4007,8 @@ func (s *DescribeDiscovererInput) SetDiscovererId(v string) *DescribeDiscovererI
 type DescribeDiscovererOutput struct {
 	_ struct{} `type:"structure"`
 
+	CrossAccount *bool `type:"boolean"`
+
 	Description *string `type:"string"`
 
 	DiscovererArn *string `type:"string"`
@@ -4013,6 +4031,12 @@ func (s DescribeDiscovererOutput) String() string {
 // GoString returns the string representation
 func (s DescribeDiscovererOutput) GoString() string {
 	return s.String()
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *DescribeDiscovererOutput) SetCrossAccount(v bool) *DescribeDiscovererOutput {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -4289,6 +4313,10 @@ func (s *DescribeSchemaOutput) SetVersionCreatedDate(v time.Time) *DescribeSchem
 type DiscovererSummary struct {
 	_ struct{} `type:"structure"`
 
+	// The Status if the discoverer will discover schemas from events sent from
+	// another account.
+	CrossAccount *bool `type:"boolean"`
+
 	// The ARN of the discoverer.
 	DiscovererArn *string `type:"string"`
 
@@ -4313,6 +4341,12 @@ func (s DiscovererSummary) String() string {
 // GoString returns the string representation
 func (s DiscovererSummary) GoString() string {
 	return s.String()
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *DiscovererSummary) SetCrossAccount(v bool) *DiscovererSummary {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDiscovererArn sets the DiscovererArn field's value.
@@ -6375,6 +6409,8 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateDiscovererInput struct {
 	_ struct{} `type:"structure"`
 
+	CrossAccount *bool `type:"boolean"`
+
 	Description *string `type:"string"`
 
 	// DiscovererId is a required field
@@ -6407,6 +6443,12 @@ func (s *UpdateDiscovererInput) Validate() error {
 	return nil
 }
 
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *UpdateDiscovererInput) SetCrossAccount(v bool) *UpdateDiscovererInput {
+	s.CrossAccount = &v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *UpdateDiscovererInput) SetDescription(v string) *UpdateDiscovererInput {
 	s.Description = &v
@@ -6421,6 +6463,8 @@ func (s *UpdateDiscovererInput) SetDiscovererId(v string) *UpdateDiscovererInput
 
 type UpdateDiscovererOutput struct {
 	_ struct{} `type:"structure"`
+
+	CrossAccount *bool `type:"boolean"`
 
 	Description *string `type:"string"`
 
@@ -6444,6 +6488,12 @@ func (s UpdateDiscovererOutput) String() string {
 // GoString returns the string representation
 func (s UpdateDiscovererOutput) GoString() string {
 	return s.String()
+}
+
+// SetCrossAccount sets the CrossAccount field's value.
+func (s *UpdateDiscovererOutput) SetCrossAccount(v bool) *UpdateDiscovererOutput {
+	s.CrossAccount = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.

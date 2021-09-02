@@ -1126,12 +1126,14 @@
     },
     "LifecyclePolicies":{
       "type":"list",
-      "member":{"shape":"LifecyclePolicy"}
+      "member":{"shape":"LifecyclePolicy"},
+      "max":2
     },
     "LifecyclePolicy":{
       "type":"structure",
       "members":{
-        "TransitionToIA":{"shape":"TransitionToIARules"}
+        "TransitionToIA":{"shape":"TransitionToIARules"},
+        "TransitionToPrimaryStorageClass":{"shape":"TransitionToPrimaryStorageClassRules"}
       }
     },
     "ListTagsForResourceRequest":{
@@ -1456,7 +1458,7 @@
     "SecurityGroups":{
       "type":"list",
       "member":{"shape":"SecurityGroup"},
-      "max":5
+      "max":100
     },
     "Status":{
       "type":"string",
@@ -1573,6 +1575,10 @@
         "AFTER_60_DAYS",
         "AFTER_90_DAYS"
       ]
+    },
+    "TransitionToPrimaryStorageClassRules":{
+      "type":"string",
+      "enum":["AFTER_1_ACCESS"]
     },
     "Uid":{
       "type":"long",

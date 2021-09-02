@@ -79,6 +79,7 @@
         {"shape":"BadRequest"},
         {"shape":"UnsupportedOperation"},
         {"shape":"FileSystemNotFound"},
+        {"shape":"VolumeNotFound"},
         {"shape":"BackupInProgress"},
         {"shape":"IncompatibleParameterError"},
         {"shape":"ServiceLimitExceeded"},
@@ -146,6 +147,62 @@
         {"shape":"MissingFileSystemConfiguration"}
       ]
     },
+    "CreateStorageVirtualMachine":{
+      "name":"CreateStorageVirtualMachine",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateStorageVirtualMachineRequest"},
+      "output":{"shape":"CreateStorageVirtualMachineResponse"},
+      "errors":[
+        {"shape":"ActiveDirectoryError"},
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"ServiceLimitExceeded"},
+        {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "CreateVolume":{
+      "name":"CreateVolume",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateVolumeRequest"},
+      "output":{"shape":"CreateVolumeResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"MissingVolumeConfiguration"},
+        {"shape":"ServiceLimitExceeded"},
+        {"shape":"StorageVirtualMachineNotFound"},
+        {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "CreateVolumeFromBackup":{
+      "name":"CreateVolumeFromBackup",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateVolumeFromBackupRequest"},
+      "output":{"shape":"CreateVolumeFromBackupResponse"},
+      "errors":[
+        {"shape":"BackupNotFound"},
+        {"shape":"BadRequest"},
+        {"shape":"FileSystemNotFound"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"MissingVolumeConfiguration"},
+        {"shape":"ServiceLimitExceeded"},
+        {"shape":"StorageVirtualMachineNotFound"}
+      ]
+    },
     "DeleteBackup":{
       "name":"DeleteBackup",
       "http":{
@@ -182,6 +239,36 @@
       ],
       "idempotent":true
     },
+    "DeleteStorageVirtualMachine":{
+      "name":"DeleteStorageVirtualMachine",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteStorageVirtualMachineRequest"},
+      "output":{"shape":"DeleteStorageVirtualMachineResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"StorageVirtualMachineNotFound"}
+      ]
+    },
+    "DeleteVolume":{
+      "name":"DeleteVolume",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteVolumeRequest"},
+      "output":{"shape":"DeleteVolumeResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"VolumeNotFound"}
+      ]
+    },
     "DescribeBackups":{
       "name":"DescribeBackups",
       "http":{
@@ -193,6 +280,7 @@
       "errors":[
         {"shape":"BadRequest"},
         {"shape":"FileSystemNotFound"},
+        {"shape":"VolumeNotFound"},
         {"shape":"BackupNotFound"},
         {"shape":"InternalServerError"}
       ]
@@ -238,6 +326,34 @@
         {"shape":"BadRequest"},
         {"shape":"FileSystemNotFound"},
         {"shape":"InternalServerError"}
+      ]
+    },
+    "DescribeStorageVirtualMachines":{
+      "name":"DescribeStorageVirtualMachines",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStorageVirtualMachinesRequest"},
+      "output":{"shape":"DescribeStorageVirtualMachinesResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"StorageVirtualMachineNotFound"}
+      ]
+    },
+    "DescribeVolumes":{
+      "name":"DescribeVolumes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeVolumesRequest"},
+      "output":{"shape":"DescribeVolumesResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"InternalServerError"},
+        {"shape":"VolumeNotFound"}
       ]
     },
     "DisassociateFileSystemAliases":{
@@ -321,6 +437,38 @@
         {"shape":"MissingFileSystemConfiguration"},
         {"shape":"ServiceLimitExceeded"}
       ]
+    },
+    "UpdateStorageVirtualMachine":{
+      "name":"UpdateStorageVirtualMachine",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateStorageVirtualMachineRequest"},
+      "output":{"shape":"UpdateStorageVirtualMachineResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"StorageVirtualMachineNotFound"},
+        {"shape":"UnsupportedOperation"}
+      ]
+    },
+    "UpdateVolume":{
+      "name":"UpdateVolume",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"UpdateVolumeRequest"},
+      "output":{"shape":"UpdateVolumeResponse"},
+      "errors":[
+        {"shape":"BadRequest"},
+        {"shape":"IncompatibleParameterError"},
+        {"shape":"InternalServerError"},
+        {"shape":"MissingVolumeConfiguration"},
+        {"shape":"VolumeNotFound"}
+      ]
     }
   },
   "shapes":{
@@ -363,6 +511,13 @@
       "min":1,
       "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,255}$"
     },
+    "AdminPassword":{
+      "type":"string",
+      "max":50,
+      "min":8,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{8,50}$",
+      "sensitive":true
+    },
     "AdministrativeAction":{
       "type":"structure",
       "members":{
@@ -371,7 +526,8 @@
         "RequestTime":{"shape":"RequestTime"},
         "Status":{"shape":"Status"},
         "TargetFileSystemValues":{"shape":"FileSystem"},
-        "FailureDetails":{"shape":"AdministrativeActionFailureDetails"}
+        "FailureDetails":{"shape":"AdministrativeActionFailureDetails"},
+        "TargetVolumeValues":{"shape":"Volume"}
       }
     },
     "AdministrativeActionFailureDetails":{
@@ -490,7 +646,9 @@
         "DirectoryInformation":{"shape":"ActiveDirectoryBackupAttributes"},
         "OwnerId":{"shape":"AWSAccountId"},
         "SourceBackupId":{"shape":"BackupId"},
-        "SourceBackupRegion":{"shape":"Region"}
+        "SourceBackupRegion":{"shape":"Region"},
+        "ResourceType":{"shape":"ResourceType"},
+        "Volume":{"shape":"Volume"}
       }
     },
     "BackupBeingCopied":{
@@ -602,6 +760,11 @@
         "Scope":{"shape":"ReportScope"}
       }
     },
+    "CoolingPeriod":{
+      "type":"integer",
+      "max":183,
+      "min":2
+    },
     "CopyBackupRequest":{
       "type":"structure",
       "required":["SourceBackupId"],
@@ -625,14 +788,14 @@
     },
     "CreateBackupRequest":{
       "type":"structure",
-      "required":["FileSystemId"],
       "members":{
         "FileSystemId":{"shape":"FileSystemId"},
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
         },
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "VolumeId":{"shape":"VolumeId"}
       }
     },
     "CreateBackupResponse":{
@@ -710,6 +873,25 @@
         "DataCompressionType":{"shape":"DataCompressionType"}
       }
     },
+    "CreateFileSystemOntapConfiguration":{
+      "type":"structure",
+      "required":[
+        "DeploymentType",
+        "ThroughputCapacity"
+      ],
+      "members":{
+        "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
+        "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
+        "DeploymentType":{"shape":"OntapDeploymentType"},
+        "EndpointIpAddressRange":{"shape":"IpAddressRange"},
+        "FsxAdminPassword":{"shape":"AdminPassword"},
+        "DiskIopsConfiguration":{"shape":"DiskIopsConfiguration"},
+        "PreferredSubnetId":{"shape":"SubnetId"},
+        "RouteTableIds":{"shape":"RouteTableIds"},
+        "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
+        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"}
+      }
+    },
     "CreateFileSystemRequest":{
       "type":"structure",
       "required":[
@@ -730,7 +912,8 @@
         "Tags":{"shape":"Tags"},
         "KmsKeyId":{"shape":"KmsKeyId"},
         "WindowsConfiguration":{"shape":"CreateFileSystemWindowsConfiguration"},
-        "LustreConfiguration":{"shape":"CreateFileSystemLustreConfiguration"}
+        "LustreConfiguration":{"shape":"CreateFileSystemLustreConfiguration"},
+        "OntapConfiguration":{"shape":"CreateFileSystemOntapConfiguration"}
       }
     },
     "CreateFileSystemResponse":{
@@ -754,6 +937,102 @@
         "CopyTagsToBackups":{"shape":"Flag"},
         "Aliases":{"shape":"AlternateDNSNames"},
         "AuditLogConfiguration":{"shape":"WindowsAuditLogCreateConfiguration"}
+      }
+    },
+    "CreateOntapVolumeConfiguration":{
+      "type":"structure",
+      "required":[
+        "JunctionPath",
+        "SizeInMegabytes",
+        "StorageEfficiencyEnabled",
+        "StorageVirtualMachineId"
+      ],
+      "members":{
+        "JunctionPath":{"shape":"JunctionPath"},
+        "SecurityStyle":{"shape":"SecurityStyle"},
+        "SizeInMegabytes":{"shape":"VolumeCapacity"},
+        "StorageEfficiencyEnabled":{"shape":"Flag"},
+        "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
+        "TieringPolicy":{"shape":"TieringPolicy"}
+      }
+    },
+    "CreateStorageVirtualMachineRequest":{
+      "type":"structure",
+      "required":[
+        "FileSystemId",
+        "Name"
+      ],
+      "members":{
+        "ActiveDirectoryConfiguration":{"shape":"CreateSvmActiveDirectoryConfiguration"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "FileSystemId":{"shape":"FileSystemId"},
+        "Name":{"shape":"StorageVirtualMachineName"},
+        "SvmAdminPassword":{"shape":"AdminPassword"},
+        "Tags":{"shape":"Tags"},
+        "RootVolumeSecurityStyle":{"shape":"StorageVirtualMachineRootVolumeSecurityStyle"}
+      }
+    },
+    "CreateStorageVirtualMachineResponse":{
+      "type":"structure",
+      "members":{
+        "StorageVirtualMachine":{"shape":"StorageVirtualMachine"}
+      }
+    },
+    "CreateSvmActiveDirectoryConfiguration":{
+      "type":"structure",
+      "required":["NetBiosName"],
+      "members":{
+        "NetBiosName":{"shape":"NetBiosAlias"},
+        "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryConfiguration"}
+      }
+    },
+    "CreateVolumeFromBackupRequest":{
+      "type":"structure",
+      "required":[
+        "BackupId",
+        "Name"
+      ],
+      "members":{
+        "BackupId":{"shape":"BackupId"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "Name":{"shape":"VolumeName"},
+        "OntapConfiguration":{"shape":"CreateOntapVolumeConfiguration"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateVolumeFromBackupResponse":{
+      "type":"structure",
+      "members":{
+        "Volume":{"shape":"Volume"}
+      }
+    },
+    "CreateVolumeRequest":{
+      "type":"structure",
+      "required":[
+        "VolumeType",
+        "Name"
+      ],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "VolumeType":{"shape":"VolumeType"},
+        "Name":{"shape":"VolumeName"},
+        "OntapConfiguration":{"shape":"CreateOntapVolumeConfiguration"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateVolumeResponse":{
+      "type":"structure",
+      "members":{
+        "Volume":{"shape":"Volume"}
       }
     },
     "CreationTime":{"type":"timestamp"},
@@ -993,6 +1272,58 @@
         "FinalBackupTags":{"shape":"Tags"}
       }
     },
+    "DeleteStorageVirtualMachineRequest":{
+      "type":"structure",
+      "required":["StorageVirtualMachineId"],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"}
+      }
+    },
+    "DeleteStorageVirtualMachineResponse":{
+      "type":"structure",
+      "members":{
+        "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
+        "Lifecycle":{"shape":"StorageVirtualMachineLifecycle"}
+      }
+    },
+    "DeleteVolumeOntapConfiguration":{
+      "type":"structure",
+      "members":{
+        "SkipFinalBackup":{"shape":"Flag"},
+        "FinalBackupTags":{"shape":"Tags"}
+      }
+    },
+    "DeleteVolumeOntapResponse":{
+      "type":"structure",
+      "members":{
+        "FinalBackupId":{"shape":"BackupId"},
+        "FinalBackupTags":{"shape":"Tags"}
+      }
+    },
+    "DeleteVolumeRequest":{
+      "type":"structure",
+      "required":["VolumeId"],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "VolumeId":{"shape":"VolumeId"},
+        "OntapConfiguration":{"shape":"DeleteVolumeOntapConfiguration"}
+      }
+    },
+    "DeleteVolumeResponse":{
+      "type":"structure",
+      "members":{
+        "VolumeId":{"shape":"VolumeId"},
+        "Lifecycle":{"shape":"VolumeLifecycle"},
+        "OntapResponse":{"shape":"DeleteVolumeOntapResponse"}
+      }
+    },
     "DescribeBackupsRequest":{
       "type":"structure",
       "members":{
@@ -1060,6 +1391,38 @@
         "NextToken":{"shape":"NextToken"}
       }
     },
+    "DescribeStorageVirtualMachinesRequest":{
+      "type":"structure",
+      "members":{
+        "StorageVirtualMachineIds":{"shape":"StorageVirtualMachineIds"},
+        "Filters":{"shape":"StorageVirtualMachineFilters"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeStorageVirtualMachinesResponse":{
+      "type":"structure",
+      "members":{
+        "StorageVirtualMachines":{"shape":"StorageVirtualMachines"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeVolumesRequest":{
+      "type":"structure",
+      "members":{
+        "VolumeIds":{"shape":"VolumeIds"},
+        "Filters":{"shape":"VolumeFilters"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "DescribeVolumesResponse":{
+      "type":"structure",
+      "members":{
+        "Volumes":{"shape":"Volumes"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
     "DirectoryId":{
       "type":"string",
       "max":12,
@@ -1100,10 +1463,24 @@
         "Aliases":{"shape":"Aliases"}
       }
     },
+    "DiskIopsConfiguration":{
+      "type":"structure",
+      "members":{
+        "Mode":{"shape":"DiskIopsConfigurationMode"},
+        "Iops":{"shape":"Iops"}
+      }
+    },
+    "DiskIopsConfigurationMode":{
+      "type":"string",
+      "enum":[
+        "AUTOMATIC",
+        "USER_PROVISIONED"
+      ]
+    },
     "DnsIps":{
       "type":"list",
       "member":{"shape":"IpAddress"},
-      "max":2,
+      "max":3,
       "min":1
     },
     "DriveCacheType":{
@@ -1140,7 +1517,8 @@
         "Tags":{"shape":"Tags"},
         "WindowsConfiguration":{"shape":"WindowsFileSystemConfiguration"},
         "LustreConfiguration":{"shape":"LustreFileSystemConfiguration"},
-        "AdministrativeActions":{"shape":"AdministrativeActions"}
+        "AdministrativeActions":{"shape":"AdministrativeActions"},
+        "OntapConfiguration":{"shape":"OntapFileSystemConfiguration"}
       }
     },
     "FileSystemAdministratorsGroupName":{
@@ -1148,6 +1526,20 @@
       "max":256,
       "min":1,
       "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,256}$"
+    },
+    "FileSystemEndpoint":{
+      "type":"structure",
+      "members":{
+        "DNSName":{"shape":"DNSName"},
+        "IpAddresses":{"shape":"OntapEndpointIpAddresses"}
+      }
+    },
+    "FileSystemEndpoints":{
+      "type":"structure",
+      "members":{
+        "Intercluster":{"shape":"FileSystemEndpoint"},
+        "Management":{"shape":"FileSystemEndpoint"}
+      }
     },
     "FileSystemFailureDetails":{
       "type":"structure",
@@ -1200,7 +1592,8 @@
       "type":"string",
       "enum":[
         "WINDOWS",
-        "LUSTRE"
+        "LUSTRE",
+        "ONTAP"
       ]
     },
     "FileSystems":{
@@ -1220,7 +1613,8 @@
       "enum":[
         "file-system-id",
         "backup-type",
-        "file-system-type"
+        "file-system-type",
+        "volume-id"
       ]
     },
     "FilterValue":{
@@ -1240,6 +1634,14 @@
       "max":10
     },
     "Flag":{"type":"boolean"},
+    "FlexCacheEndpointType":{
+      "type":"string",
+      "enum":[
+        "NONE",
+        "ORIGIN",
+        "CACHE"
+      ]
+    },
     "GeneralARN":{
       "type":"string",
       "max":1024,
@@ -1296,7 +1698,8 @@
       "members":{
         "Message":{"shape":"ErrorMessage"},
         "InvalidSubnetId":{"shape":"SubnetId"},
-        "InvalidSecurityGroupId":{"shape":"SecurityGroupId"}
+        "InvalidSecurityGroupId":{"shape":"SecurityGroupId"},
+        "InvalidRouteTableId":{"shape":"RouteTableId"}
       },
       "exception":true
     },
@@ -1321,11 +1724,28 @@
       },
       "exception":true
     },
+    "Iops":{
+      "type":"long",
+      "max":80000,
+      "min":0
+    },
     "IpAddress":{
       "type":"string",
       "max":15,
       "min":7,
       "pattern":"^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
+    },
+    "IpAddressRange":{
+      "type":"string",
+      "max":17,
+      "min":9,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{9,17}$"
+    },
+    "JunctionPath":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,255}$"
     },
     "KmsKeyId":{
       "type":"string",
@@ -1334,6 +1754,12 @@
       "pattern":"^.{1,2048}$"
     },
     "LastUpdatedTime":{"type":"timestamp"},
+    "LifecycleTransitionReason":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      }
+    },
     "ListTagsForResourceRequest":{
       "type":"structure",
       "required":["ResourceARN"],
@@ -1401,6 +1827,19 @@
       },
       "exception":true
     },
+    "MissingVolumeConfiguration":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "NetBiosAlias":{
+      "type":"string",
+      "max":15,
+      "min":1,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,255}$"
+    },
     "NetworkInterfaceId":{
       "type":"string",
       "max":21,
@@ -1426,6 +1865,54 @@
         "Message":{"shape":"ErrorMessage"}
       },
       "exception":true
+    },
+    "OntapDeploymentType":{
+      "type":"string",
+      "enum":["MULTI_AZ_1"]
+    },
+    "OntapEndpointIpAddresses":{
+      "type":"list",
+      "member":{"shape":"IpAddress"},
+      "max":2,
+      "min":1
+    },
+    "OntapFileSystemConfiguration":{
+      "type":"structure",
+      "members":{
+        "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
+        "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
+        "DeploymentType":{"shape":"OntapDeploymentType"},
+        "EndpointIpAddressRange":{"shape":"IpAddressRange"},
+        "Endpoints":{"shape":"FileSystemEndpoints"},
+        "DiskIopsConfiguration":{"shape":"DiskIopsConfiguration"},
+        "PreferredSubnetId":{"shape":"SubnetId"},
+        "RouteTableIds":{"shape":"RouteTableIds"},
+        "ThroughputCapacity":{"shape":"MegabytesPerSecond"},
+        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"}
+      }
+    },
+    "OntapVolumeConfiguration":{
+      "type":"structure",
+      "members":{
+        "FlexCacheEndpointType":{"shape":"FlexCacheEndpointType"},
+        "JunctionPath":{"shape":"JunctionPath"},
+        "SecurityStyle":{"shape":"SecurityStyle"},
+        "SizeInMegabytes":{"shape":"VolumeCapacity"},
+        "StorageEfficiencyEnabled":{"shape":"Flag"},
+        "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
+        "StorageVirtualMachineRoot":{"shape":"Flag"},
+        "TieringPolicy":{"shape":"TieringPolicy"},
+        "UUID":{"shape":"UUID"},
+        "OntapVolumeType":{"shape":"OntapVolumeType"}
+      }
+    },
+    "OntapVolumeType":{
+      "type":"string",
+      "enum":[
+        "RW",
+        "DP",
+        "LS"
+      ]
     },
     "OrganizationalUnitDistinguishedName":{
       "type":"string",
@@ -1486,6 +1973,24 @@
       },
       "exception":true
     },
+    "ResourceType":{
+      "type":"string",
+      "enum":[
+        "FILE_SYSTEM",
+        "VOLUME"
+      ]
+    },
+    "RouteTableId":{
+      "type":"string",
+      "max":21,
+      "min":12,
+      "pattern":"^(rtb-[0-9a-f]{8,})$"
+    },
+    "RouteTableIds":{
+      "type":"list",
+      "member":{"shape":"RouteTableId"},
+      "max":50
+    },
     "SecurityGroupId":{
       "type":"string",
       "max":20,
@@ -1496,6 +2001,14 @@
       "type":"list",
       "member":{"shape":"SecurityGroupId"},
       "max":50
+    },
+    "SecurityStyle":{
+      "type":"string",
+      "enum":[
+        "UNIX",
+        "NTFS",
+        "MIXED"
+      ]
     },
     "SelfManagedActiveDirectoryAttributes":{
       "type":"structure",
@@ -1540,7 +2053,10 @@
         "TOTAL_STORAGE",
         "TOTAL_USER_INITIATED_BACKUPS",
         "TOTAL_USER_TAGS",
-        "TOTAL_IN_PROGRESS_COPY_BACKUPS"
+        "TOTAL_IN_PROGRESS_COPY_BACKUPS",
+        "STORAGE_VIRTUAL_MACHINES_PER_FILE_SYSTEM",
+        "VOLUMES_PER_FILE_SYSTEM",
+        "TOTAL_SSD_IOPS"
       ]
     },
     "ServiceLimitExceeded":{
@@ -1589,6 +2105,108 @@
         "HDD"
       ]
     },
+    "StorageVirtualMachine":{
+      "type":"structure",
+      "members":{
+        "ActiveDirectoryConfiguration":{"shape":"SvmActiveDirectoryConfiguration"},
+        "CreationTime":{"shape":"CreationTime"},
+        "Endpoints":{"shape":"SvmEndpoints"},
+        "FileSystemId":{"shape":"FileSystemId"},
+        "Lifecycle":{"shape":"StorageVirtualMachineLifecycle"},
+        "Name":{"shape":"StorageVirtualMachineName"},
+        "ResourceARN":{"shape":"ResourceARN"},
+        "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
+        "Subtype":{"shape":"StorageVirtualMachineSubtype"},
+        "UUID":{"shape":"UUID"},
+        "Tags":{"shape":"Tags"},
+        "LifecycleTransitionReason":{"shape":"LifecycleTransitionReason"},
+        "RootVolumeSecurityStyle":{"shape":"StorageVirtualMachineRootVolumeSecurityStyle"}
+      }
+    },
+    "StorageVirtualMachineFilter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"StorageVirtualMachineFilterName"},
+        "Values":{"shape":"StorageVirtualMachineFilterValues"}
+      }
+    },
+    "StorageVirtualMachineFilterName":{
+      "type":"string",
+      "enum":["file-system-id"]
+    },
+    "StorageVirtualMachineFilterValue":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z\\*\\.\\\\/\\?\\-\\_]*$"
+    },
+    "StorageVirtualMachineFilterValues":{
+      "type":"list",
+      "member":{"shape":"StorageVirtualMachineFilterValue"},
+      "max":20
+    },
+    "StorageVirtualMachineFilters":{
+      "type":"list",
+      "member":{"shape":"StorageVirtualMachineFilter"},
+      "max":1
+    },
+    "StorageVirtualMachineId":{
+      "type":"string",
+      "max":21,
+      "min":21,
+      "pattern":"^(svm-[0-9a-f]{17,})$"
+    },
+    "StorageVirtualMachineIds":{
+      "type":"list",
+      "member":{"shape":"StorageVirtualMachineId"},
+      "max":50
+    },
+    "StorageVirtualMachineLifecycle":{
+      "type":"string",
+      "enum":[
+        "CREATED",
+        "CREATING",
+        "DELETING",
+        "FAILED",
+        "MISCONFIGURED",
+        "PENDING"
+      ]
+    },
+    "StorageVirtualMachineName":{
+      "type":"string",
+      "max":47,
+      "min":1,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,47}$"
+    },
+    "StorageVirtualMachineNotFound":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "StorageVirtualMachineRootVolumeSecurityStyle":{
+      "type":"string",
+      "enum":[
+        "UNIX",
+        "NTFS",
+        "MIXED"
+      ]
+    },
+    "StorageVirtualMachineSubtype":{
+      "type":"string",
+      "enum":[
+        "DEFAULT",
+        "DP_DESTINATION",
+        "SYNC_DESTINATION",
+        "SYNC_SOURCE"
+      ]
+    },
+    "StorageVirtualMachines":{
+      "type":"list",
+      "member":{"shape":"StorageVirtualMachine"},
+      "max":50
+    },
     "SubnetId":{
       "type":"string",
       "max":24,
@@ -1601,6 +2219,29 @@
       "max":50
     },
     "SucceededCount":{"type":"long"},
+    "SvmActiveDirectoryConfiguration":{
+      "type":"structure",
+      "members":{
+        "NetBiosName":{"shape":"NetBiosAlias"},
+        "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryAttributes"}
+      }
+    },
+    "SvmEndpoint":{
+      "type":"structure",
+      "members":{
+        "DNSName":{"shape":"DNSName"},
+        "IpAddresses":{"shape":"OntapEndpointIpAddresses"}
+      }
+    },
+    "SvmEndpoints":{
+      "type":"structure",
+      "members":{
+        "Iscsi":{"shape":"SvmEndpoint"},
+        "Management":{"shape":"SvmEndpoint"},
+        "Nfs":{"shape":"SvmEndpoint"},
+        "Smb":{"shape":"SvmEndpoint"}
+      }
+    },
     "Tag":{
       "type":"structure",
       "required":[
@@ -1663,7 +2304,28 @@
       "member":{"shape":"TaskId"},
       "max":50
     },
+    "TieringPolicy":{
+      "type":"structure",
+      "members":{
+        "CoolingPeriod":{"shape":"CoolingPeriod"},
+        "Name":{"shape":"TieringPolicyName"}
+      }
+    },
+    "TieringPolicyName":{
+      "type":"string",
+      "enum":[
+        "SNAPSHOT_ONLY",
+        "AUTO",
+        "ALL",
+        "NONE"
+      ]
+    },
     "TotalCount":{"type":"long"},
+    "UUID":{
+      "type":"string",
+      "max":36,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,36}$"
+    },
     "UnsupportedOperation":{
       "type":"structure",
       "members":{
@@ -1697,6 +2359,15 @@
         "DataCompressionType":{"shape":"DataCompressionType"}
       }
     },
+    "UpdateFileSystemOntapConfiguration":{
+      "type":"structure",
+      "members":{
+        "AutomaticBackupRetentionDays":{"shape":"AutomaticBackupRetentionDays"},
+        "DailyAutomaticBackupStartTime":{"shape":"DailyTime"},
+        "FsxAdminPassword":{"shape":"AdminPassword"},
+        "WeeklyMaintenanceStartTime":{"shape":"WeeklyTime"}
+      }
+    },
     "UpdateFileSystemRequest":{
       "type":"structure",
       "required":["FileSystemId"],
@@ -1708,7 +2379,8 @@
         },
         "StorageCapacity":{"shape":"StorageCapacity"},
         "WindowsConfiguration":{"shape":"UpdateFileSystemWindowsConfiguration"},
-        "LustreConfiguration":{"shape":"UpdateFileSystemLustreConfiguration"}
+        "LustreConfiguration":{"shape":"UpdateFileSystemLustreConfiguration"},
+        "OntapConfiguration":{"shape":"UpdateFileSystemOntapConfiguration"}
       }
     },
     "UpdateFileSystemResponse":{
@@ -1727,6 +2399,153 @@
         "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryConfigurationUpdates"},
         "AuditLogConfiguration":{"shape":"WindowsAuditLogCreateConfiguration"}
       }
+    },
+    "UpdateOntapVolumeConfiguration":{
+      "type":"structure",
+      "members":{
+        "JunctionPath":{"shape":"JunctionPath"},
+        "SecurityStyle":{"shape":"SecurityStyle"},
+        "SizeInMegabytes":{"shape":"VolumeCapacity"},
+        "StorageEfficiencyEnabled":{"shape":"Flag"},
+        "TieringPolicy":{"shape":"TieringPolicy"}
+      }
+    },
+    "UpdateStorageVirtualMachineRequest":{
+      "type":"structure",
+      "required":["StorageVirtualMachineId"],
+      "members":{
+        "ActiveDirectoryConfiguration":{"shape":"UpdateSvmActiveDirectoryConfiguration"},
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "StorageVirtualMachineId":{"shape":"StorageVirtualMachineId"},
+        "SvmAdminPassword":{"shape":"AdminPassword"}
+      }
+    },
+    "UpdateStorageVirtualMachineResponse":{
+      "type":"structure",
+      "members":{
+        "StorageVirtualMachine":{"shape":"StorageVirtualMachine"}
+      }
+    },
+    "UpdateSvmActiveDirectoryConfiguration":{
+      "type":"structure",
+      "members":{
+        "SelfManagedActiveDirectoryConfiguration":{"shape":"SelfManagedActiveDirectoryConfigurationUpdates"}
+      }
+    },
+    "UpdateVolumeRequest":{
+      "type":"structure",
+      "required":["VolumeId"],
+      "members":{
+        "ClientRequestToken":{
+          "shape":"ClientRequestToken",
+          "idempotencyToken":true
+        },
+        "VolumeId":{"shape":"VolumeId"},
+        "OntapConfiguration":{"shape":"UpdateOntapVolumeConfiguration"}
+      }
+    },
+    "UpdateVolumeResponse":{
+      "type":"structure",
+      "members":{
+        "Volume":{"shape":"Volume"}
+      }
+    },
+    "Volume":{
+      "type":"structure",
+      "members":{
+        "CreationTime":{"shape":"CreationTime"},
+        "FileSystemId":{"shape":"FileSystemId"},
+        "Lifecycle":{"shape":"VolumeLifecycle"},
+        "Name":{"shape":"VolumeName"},
+        "OntapConfiguration":{"shape":"OntapVolumeConfiguration"},
+        "ResourceARN":{"shape":"ResourceARN"},
+        "Tags":{"shape":"Tags"},
+        "VolumeId":{"shape":"VolumeId"},
+        "VolumeType":{"shape":"VolumeType"},
+        "LifecycleTransitionReason":{"shape":"LifecycleTransitionReason"}
+      }
+    },
+    "VolumeCapacity":{
+      "type":"integer",
+      "max":2147483647,
+      "min":0
+    },
+    "VolumeFilter":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"VolumeFilterName"},
+        "Values":{"shape":"VolumeFilterValues"}
+      }
+    },
+    "VolumeFilterName":{
+      "type":"string",
+      "enum":[
+        "file-system-id",
+        "storage-virtual-machine-id"
+      ]
+    },
+    "VolumeFilterValue":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^[0-9a-zA-Z\\*\\.\\\\/\\?\\-\\_]*$"
+    },
+    "VolumeFilterValues":{
+      "type":"list",
+      "member":{"shape":"VolumeFilterValue"},
+      "max":20
+    },
+    "VolumeFilters":{
+      "type":"list",
+      "member":{"shape":"VolumeFilter"},
+      "max":2
+    },
+    "VolumeId":{
+      "type":"string",
+      "max":23,
+      "min":23,
+      "pattern":"^(fsvol-[0-9a-f]{17,})$"
+    },
+    "VolumeIds":{
+      "type":"list",
+      "member":{"shape":"VolumeId"},
+      "max":50
+    },
+    "VolumeLifecycle":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "CREATED",
+        "DELETING",
+        "FAILED",
+        "MISCONFIGURED",
+        "PENDING"
+      ]
+    },
+    "VolumeName":{
+      "type":"string",
+      "max":203,
+      "min":1,
+      "pattern":"^[^\\u0000\\u0085\\u2028\\u2029\\r\\n]{1,203}$"
+    },
+    "VolumeNotFound":{
+      "type":"structure",
+      "members":{
+        "Message":{"shape":"ErrorMessage"}
+      },
+      "exception":true
+    },
+    "VolumeType":{
+      "type":"string",
+      "enum":["ONTAP"]
+    },
+    "Volumes":{
+      "type":"list",
+      "member":{"shape":"Volume"},
+      "max":50
     },
     "VpcId":{
       "type":"string",

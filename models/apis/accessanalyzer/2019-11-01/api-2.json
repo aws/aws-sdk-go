@@ -510,7 +510,7 @@
     },
     "AccessPointArn":{
       "type":"string",
-      "pattern":"arn:[^:]*:s3:[^:]*:[^:]*:accesspoint/.*$"
+      "pattern":"arn:[^:]*:s3:[^:]*:[^:]*:accesspoint/.*"
     },
     "AccessPointPolicy":{"type":"string"},
     "AccessPreview":{
@@ -566,7 +566,7 @@
     },
     "AccessPreviewId":{
       "type":"string",
-      "pattern":"^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"
+      "pattern":"[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}"
     },
     "AccessPreviewStatus":{
       "type":"string",
@@ -678,7 +678,7 @@
     },
     "AnalyzerArn":{
       "type":"string",
-      "pattern":"^[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:analyzer/.{1,255}$"
+      "pattern":"[^:]*:[^:]*:[^:]*:[^:]*:[^:]*:analyzer/.{1,255}"
     },
     "AnalyzerStatus":{
       "type":"string",
@@ -770,7 +770,7 @@
     },
     "CloudTrailArn":{
       "type":"string",
-      "pattern":"arn:[^:]*:cloudtrail:[^:]*:[^:]*:trail/.{1,576}$"
+      "pattern":"arn:[^:]*:cloudtrail:[^:]*:[^:]*:trail/.{1,576}"
     },
     "CloudTrailDetails":{
       "type":"structure",
@@ -1655,7 +1655,7 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"^[A-Za-z][A-Za-z0-9_.-]*$"
+      "pattern":"[A-Za-z][A-Za-z0-9_.-]*"
     },
     "NetworkOriginConfiguration":{
       "type":"structure",
@@ -1738,7 +1738,7 @@
     },
     "PrincipalArn":{
       "type":"string",
-      "pattern":"arn:[^:]*:iam::[^:]*:(role|user)/.{1,576}$"
+      "pattern":"arn:[^:]*:iam::[^:]*:(role|user)/.{1,576}"
     },
     "PrincipalMap":{
       "type":"map",
@@ -1760,7 +1760,7 @@
     },
     "ResourceArn":{
       "type":"string",
-      "pattern":"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*$"
+      "pattern":"arn:[^:]*:[^:]*:[^:]*:[^:]*:.*"
     },
     "ResourceNotFoundException":{
       "type":"structure",
@@ -1795,7 +1795,7 @@
     "RetiringPrincipal":{"type":"string"},
     "RoleArn":{
       "type":"string",
-      "pattern":"arn:[^:]*:iam::[^:]*:role/.{1,576}$"
+      "pattern":"arn:[^:]*:iam::[^:]*:role/.{1,576}"
     },
     "S3AccessPointConfiguration":{
       "type":"structure",
@@ -2218,7 +2218,7 @@
     },
     "VpcId":{
       "type":"string",
-      "pattern":"^vpc-([0-9a-f]){8}(([0-9a-f]){9})?$"
+      "pattern":"vpc-([0-9a-f]){8}(([0-9a-f]){9})?"
     }
   }
 }

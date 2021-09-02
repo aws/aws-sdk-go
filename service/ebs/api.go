@@ -1976,7 +1976,7 @@ type StartSnapshotInput struct {
 	// If no value is specified, the timeout defaults to 60 minutes.
 	Timeout *int64 `min:"10" type:"integer"`
 
-	// The size of the volume, in GiB. The maximum size is 16384 GiB (16 TiB).
+	// The size of the volume, in GiB. The maximum size is 65536 GiB (64 TiB).
 	//
 	// VolumeSize is a required field
 	VolumeSize *int64 `min:"1" type:"long" required:"true"`

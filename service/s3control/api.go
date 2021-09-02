@@ -432,6 +432,108 @@ func (c *S3Control) CreateJobWithContext(ctx aws.Context, input *CreateJobInput,
 	return out, req.Send()
 }
 
+const opCreateMultiRegionAccessPoint = "CreateMultiRegionAccessPoint"
+
+// CreateMultiRegionAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the CreateMultiRegionAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateMultiRegionAccessPoint for more information on using the CreateMultiRegionAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateMultiRegionAccessPointRequest method.
+//    req, resp := client.CreateMultiRegionAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateMultiRegionAccessPoint
+func (c *S3Control) CreateMultiRegionAccessPointRequest(input *CreateMultiRegionAccessPointInput) (req *request.Request, output *CreateMultiRegionAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opCreateMultiRegionAccessPoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/async-requests/mrap/create",
+	}
+
+	if input == nil {
+		input = &CreateMultiRegionAccessPointInput{}
+	}
+
+	output = &CreateMultiRegionAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// CreateMultiRegionAccessPoint API operation for AWS S3 Control.
+//
+// Creates a Multi-Region Access Point and associates it with the specified
+// buckets. For more information about creating Multi-Region Access Points,
+// see Creating Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// This request is asynchronous, meaning that you might receive a response before
+// the command has completed. When this request provides a response, it provides
+// a token that you can use to monitor the status of the request with DescribeMultiRegionAccessPointOperation.
+//
+// The following actions are related to CreateMultiRegionAccessPoint:
+//
+//    * DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+//
+//    * DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+//
+//    * GetMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html)
+//
+//    * ListMultiRegionAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation CreateMultiRegionAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/CreateMultiRegionAccessPoint
+func (c *S3Control) CreateMultiRegionAccessPoint(input *CreateMultiRegionAccessPointInput) (*CreateMultiRegionAccessPointOutput, error) {
+	req, out := c.CreateMultiRegionAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// CreateMultiRegionAccessPointWithContext is the same as CreateMultiRegionAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateMultiRegionAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) CreateMultiRegionAccessPointWithContext(ctx aws.Context, input *CreateMultiRegionAccessPointInput, opts ...request.Option) (*CreateMultiRegionAccessPointOutput, error) {
+	req, out := c.CreateMultiRegionAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteAccessPoint = "DeleteAccessPoint"
 
 // DeleteAccessPointRequest generates a "aws/request.Request" representing the
@@ -1065,11 +1167,11 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 //
 // This implementation of the DELETE action uses the policy subresource to delete
 // the policy of a specified Amazon S3 on Outposts bucket. If you are using
-// an identity other than the root user of the account that owns the bucket,
-// the calling identity must have the s3-outposts:DeleteBucketPolicy permissions
-// on the specified Outposts bucket and belong to the bucket owner's account
-// to use this action. For more information, see Using Amazon S3 on Outposts
-// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
+// an identity other than the root user of the Amazon Web Services account that
+// owns the bucket, the calling identity must have the s3-outposts:DeleteBucketPolicy
+// permissions on the specified Outposts bucket and belong to the bucket owner's
+// account to use this action. For more information, see Using Amazon S3 on
+// Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in Amazon S3 User Guide.
 //
 // If you don't have DeleteBucketPolicy permissions, Amazon S3 returns a 403
@@ -1077,9 +1179,9 @@ func (c *S3Control) DeleteBucketPolicyRequest(input *DeleteBucketPolicyInput) (r
 // using an identity that belongs to the bucket owner's account, Amazon S3 returns
 // a 405 Method Not Allowed error.
 //
-// As a security precaution, the root user of the account that owns a bucket
-// can always use this action, even if the policy explicitly denies the root
-// user the ability to perform this action.
+// As a security precaution, the root user of the Amazon Web Services account
+// that owns a bucket can always use this action, even if the policy explicitly
+// denies the root user the ability to perform this action.
 //
 // For more information about bucket policies, see Using Bucket Policies and
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
@@ -1328,6 +1430,107 @@ func (c *S3Control) DeleteJobTaggingWithContext(ctx aws.Context, input *DeleteJo
 	return out, req.Send()
 }
 
+const opDeleteMultiRegionAccessPoint = "DeleteMultiRegionAccessPoint"
+
+// DeleteMultiRegionAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMultiRegionAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMultiRegionAccessPoint for more information on using the DeleteMultiRegionAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMultiRegionAccessPointRequest method.
+//    req, resp := client.DeleteMultiRegionAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteMultiRegionAccessPoint
+func (c *S3Control) DeleteMultiRegionAccessPointRequest(input *DeleteMultiRegionAccessPointInput) (req *request.Request, output *DeleteMultiRegionAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMultiRegionAccessPoint,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/async-requests/mrap/delete",
+	}
+
+	if input == nil {
+		input = &DeleteMultiRegionAccessPointInput{}
+	}
+
+	output = &DeleteMultiRegionAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DeleteMultiRegionAccessPoint API operation for AWS S3 Control.
+//
+// Deletes a Multi-Region Access Point. This action does not delete the buckets
+// associated with the Multi-Region Access Point, only the Multi-Region Access
+// Point itself.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// This request is asynchronous, meaning that you might receive a response before
+// the command has completed. When this request provides a response, it provides
+// a token that you can use to monitor the status of the request with DescribeMultiRegionAccessPointOperation.
+//
+// The following actions are related to DeleteMultiRegionAccessPoint:
+//
+//    * CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+//
+//    * DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+//
+//    * GetMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html)
+//
+//    * ListMultiRegionAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DeleteMultiRegionAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DeleteMultiRegionAccessPoint
+func (c *S3Control) DeleteMultiRegionAccessPoint(input *DeleteMultiRegionAccessPointInput) (*DeleteMultiRegionAccessPointOutput, error) {
+	req, out := c.DeleteMultiRegionAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMultiRegionAccessPointWithContext is the same as DeleteMultiRegionAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMultiRegionAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DeleteMultiRegionAccessPointWithContext(ctx aws.Context, input *DeleteMultiRegionAccessPointInput, opts ...request.Option) (*DeleteMultiRegionAccessPointOutput, error) {
+	req, out := c.DeleteMultiRegionAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeletePublicAccessBlock = "DeletePublicAccessBlock"
 
 // DeletePublicAccessBlockRequest generates a "aws/request.Request" representing the
@@ -1375,8 +1578,8 @@ func (c *S3Control) DeletePublicAccessBlockRequest(input *DeletePublicAccessBloc
 
 // DeletePublicAccessBlock API operation for AWS S3 Control.
 //
-// Removes the PublicAccessBlock configuration for an account. For more information,
-// see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Removes the PublicAccessBlock configuration for an Amazon Web Services account.
+// For more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -1675,6 +1878,100 @@ func (c *S3Control) DescribeJob(input *DescribeJobInput) (*DescribeJobOutput, er
 // for more information on using Contexts.
 func (c *S3Control) DescribeJobWithContext(ctx aws.Context, input *DescribeJobInput, opts ...request.Option) (*DescribeJobOutput, error) {
 	req, out := c.DescribeJobRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeMultiRegionAccessPointOperation = "DescribeMultiRegionAccessPointOperation"
+
+// DescribeMultiRegionAccessPointOperationRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeMultiRegionAccessPointOperation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeMultiRegionAccessPointOperation for more information on using the DescribeMultiRegionAccessPointOperation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeMultiRegionAccessPointOperationRequest method.
+//    req, resp := client.DescribeMultiRegionAccessPointOperationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DescribeMultiRegionAccessPointOperation
+func (c *S3Control) DescribeMultiRegionAccessPointOperationRequest(input *DescribeMultiRegionAccessPointOperationInput) (req *request.Request, output *DescribeMultiRegionAccessPointOperationOutput) {
+	op := &request.Operation{
+		Name:       opDescribeMultiRegionAccessPointOperation,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/async-requests/mrap/{request_token+}",
+	}
+
+	if input == nil {
+		input = &DescribeMultiRegionAccessPointOperationInput{}
+	}
+
+	output = &DescribeMultiRegionAccessPointOperationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// DescribeMultiRegionAccessPointOperation API operation for AWS S3 Control.
+//
+// Retrieves the status of an asynchronous request to manage a Multi-Region
+// Access Point. For more information about managing Multi-Region Access Points
+// and how asynchronous requests work, see Managing Multi-Region Access Points
+// (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to GetMultiRegionAccessPoint:
+//
+//    * CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+//
+//    * DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+//
+//    * GetMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html)
+//
+//    * ListMultiRegionAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation DescribeMultiRegionAccessPointOperation for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/DescribeMultiRegionAccessPointOperation
+func (c *S3Control) DescribeMultiRegionAccessPointOperation(input *DescribeMultiRegionAccessPointOperationInput) (*DescribeMultiRegionAccessPointOperationOutput, error) {
+	req, out := c.DescribeMultiRegionAccessPointOperationRequest(input)
+	return out, req.Send()
+}
+
+// DescribeMultiRegionAccessPointOperationWithContext is the same as DescribeMultiRegionAccessPointOperation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeMultiRegionAccessPointOperation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) DescribeMultiRegionAccessPointOperationWithContext(ctx aws.Context, input *DescribeMultiRegionAccessPointOperationInput, opts ...request.Option) (*DescribeMultiRegionAccessPointOperationOutput, error) {
+	req, out := c.DescribeMultiRegionAccessPointOperationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2316,12 +2613,12 @@ func (c *S3Control) GetBucketRequest(input *GetBucketInput) (req *request.Reques
 // S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the account that
-// owns the Outposts bucket, the calling identity must have the s3-outposts:GetBucket
-// permissions on the specified Outposts bucket and belong to the Outposts bucket
-// owner's account in order to use this action. Only users from Outposts bucket
-// owner account with the right permissions can perform actions on an Outposts
-// bucket.
+// If you are using an identity other than the root user of the Amazon Web Services
+// account that owns the Outposts bucket, the calling identity must have the
+// s3-outposts:GetBucket permissions on the specified Outposts bucket and belong
+// to the Outposts bucket owner's account in order to use this action. Only
+// users from Outposts bucket owner account with the right permissions can perform
+// actions on an Outposts bucket.
 //
 // If you don't have s3-outposts:GetBucket permissions or you're not using an
 // identity that belongs to the bucket owner's account, Amazon S3 returns a
@@ -2544,19 +2841,19 @@ func (c *S3Control) GetBucketPolicyRequest(input *GetBucketPolicyInput) (req *re
 // see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the account that
-// owns the bucket, the calling identity must have the GetBucketPolicy permissions
-// on the specified bucket and belong to the bucket owner's account in order
-// to use this action.
+// If you are using an identity other than the root user of the Amazon Web Services
+// account that owns the bucket, the calling identity must have the GetBucketPolicy
+// permissions on the specified bucket and belong to the bucket owner's account
+// in order to use this action.
 //
 // Only users from Outposts bucket owner account with the right permissions
 // can perform actions on an Outposts bucket. If you don't have s3-outposts:GetBucketPolicy
 // permissions or you're not using an identity that belongs to the bucket owner's
 // account, Amazon S3 returns a 403 Access Denied error.
 //
-// As a security precaution, the root user of the account that owns a bucket
-// can always use this action, even if the policy explicitly denies the root
-// user the ability to perform this action.
+// As a security precaution, the root user of the Amazon Web Services account
+// that owns a bucket can always use this action, even if the policy explicitly
+// denies the root user the ability to perform this action.
 //
 // For more information about bucket policies, see Using Bucket Policies and
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
@@ -2809,6 +3106,285 @@ func (c *S3Control) GetJobTaggingWithContext(ctx aws.Context, input *GetJobTaggi
 	return out, req.Send()
 }
 
+const opGetMultiRegionAccessPoint = "GetMultiRegionAccessPoint"
+
+// GetMultiRegionAccessPointRequest generates a "aws/request.Request" representing the
+// client's request for the GetMultiRegionAccessPoint operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMultiRegionAccessPoint for more information on using the GetMultiRegionAccessPoint
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMultiRegionAccessPointRequest method.
+//    req, resp := client.GetMultiRegionAccessPointRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPoint
+func (c *S3Control) GetMultiRegionAccessPointRequest(input *GetMultiRegionAccessPointInput) (req *request.Request, output *GetMultiRegionAccessPointOutput) {
+	op := &request.Operation{
+		Name:       opGetMultiRegionAccessPoint,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances/{name}",
+	}
+
+	if input == nil {
+		input = &GetMultiRegionAccessPointInput{}
+	}
+
+	output = &GetMultiRegionAccessPointOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetMultiRegionAccessPoint API operation for AWS S3 Control.
+//
+// Returns configuration information about the specified Multi-Region Access
+// Point.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to GetMultiRegionAccessPoint:
+//
+//    * CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+//
+//    * DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+//
+//    * DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+//
+//    * ListMultiRegionAccessPoints (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_ListMultiRegionAccessPoints.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetMultiRegionAccessPoint for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPoint
+func (c *S3Control) GetMultiRegionAccessPoint(input *GetMultiRegionAccessPointInput) (*GetMultiRegionAccessPointOutput, error) {
+	req, out := c.GetMultiRegionAccessPointRequest(input)
+	return out, req.Send()
+}
+
+// GetMultiRegionAccessPointWithContext is the same as GetMultiRegionAccessPoint with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMultiRegionAccessPoint for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetMultiRegionAccessPointWithContext(ctx aws.Context, input *GetMultiRegionAccessPointInput, opts ...request.Option) (*GetMultiRegionAccessPointOutput, error) {
+	req, out := c.GetMultiRegionAccessPointRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMultiRegionAccessPointPolicy = "GetMultiRegionAccessPointPolicy"
+
+// GetMultiRegionAccessPointPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetMultiRegionAccessPointPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMultiRegionAccessPointPolicy for more information on using the GetMultiRegionAccessPointPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMultiRegionAccessPointPolicyRequest method.
+//    req, resp := client.GetMultiRegionAccessPointPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointPolicy
+func (c *S3Control) GetMultiRegionAccessPointPolicyRequest(input *GetMultiRegionAccessPointPolicyInput) (req *request.Request, output *GetMultiRegionAccessPointPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetMultiRegionAccessPointPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances/{name}/policy",
+	}
+
+	if input == nil {
+		input = &GetMultiRegionAccessPointPolicyInput{}
+	}
+
+	output = &GetMultiRegionAccessPointPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetMultiRegionAccessPointPolicy API operation for AWS S3 Control.
+//
+// Returns the access control policy of the specified Multi-Region Access Point.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to GetMultiRegionAccessPointPolicy:
+//
+//    * GetMultiRegionAccessPointPolicyStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicyStatus.html)
+//
+//    * PutMultiRegionAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPointPolicy.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetMultiRegionAccessPointPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointPolicy
+func (c *S3Control) GetMultiRegionAccessPointPolicy(input *GetMultiRegionAccessPointPolicyInput) (*GetMultiRegionAccessPointPolicyOutput, error) {
+	req, out := c.GetMultiRegionAccessPointPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetMultiRegionAccessPointPolicyWithContext is the same as GetMultiRegionAccessPointPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMultiRegionAccessPointPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetMultiRegionAccessPointPolicyWithContext(ctx aws.Context, input *GetMultiRegionAccessPointPolicyInput, opts ...request.Option) (*GetMultiRegionAccessPointPolicyOutput, error) {
+	req, out := c.GetMultiRegionAccessPointPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetMultiRegionAccessPointPolicyStatus = "GetMultiRegionAccessPointPolicyStatus"
+
+// GetMultiRegionAccessPointPolicyStatusRequest generates a "aws/request.Request" representing the
+// client's request for the GetMultiRegionAccessPointPolicyStatus operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMultiRegionAccessPointPolicyStatus for more information on using the GetMultiRegionAccessPointPolicyStatus
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMultiRegionAccessPointPolicyStatusRequest method.
+//    req, resp := client.GetMultiRegionAccessPointPolicyStatusRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointPolicyStatus
+func (c *S3Control) GetMultiRegionAccessPointPolicyStatusRequest(input *GetMultiRegionAccessPointPolicyStatusInput) (req *request.Request, output *GetMultiRegionAccessPointPolicyStatusOutput) {
+	op := &request.Operation{
+		Name:       opGetMultiRegionAccessPointPolicyStatus,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances/{name}/policystatus",
+	}
+
+	if input == nil {
+		input = &GetMultiRegionAccessPointPolicyStatusInput{}
+	}
+
+	output = &GetMultiRegionAccessPointPolicyStatusOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// GetMultiRegionAccessPointPolicyStatus API operation for AWS S3 Control.
+//
+// Indicates whether the specified Multi-Region Access Point has an access control
+// policy that allows public access.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to GetMultiRegionAccessPointPolicyStatus:
+//
+//    * GetMultiRegionAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicy.html)
+//
+//    * PutMultiRegionAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPointPolicy.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation GetMultiRegionAccessPointPolicyStatus for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/GetMultiRegionAccessPointPolicyStatus
+func (c *S3Control) GetMultiRegionAccessPointPolicyStatus(input *GetMultiRegionAccessPointPolicyStatusInput) (*GetMultiRegionAccessPointPolicyStatusOutput, error) {
+	req, out := c.GetMultiRegionAccessPointPolicyStatusRequest(input)
+	return out, req.Send()
+}
+
+// GetMultiRegionAccessPointPolicyStatusWithContext is the same as GetMultiRegionAccessPointPolicyStatus with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMultiRegionAccessPointPolicyStatus for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) GetMultiRegionAccessPointPolicyStatusWithContext(ctx aws.Context, input *GetMultiRegionAccessPointPolicyStatusInput, opts ...request.Option) (*GetMultiRegionAccessPointPolicyStatusOutput, error) {
+	req, out := c.GetMultiRegionAccessPointPolicyStatusRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetPublicAccessBlock = "GetPublicAccessBlock"
 
 // GetPublicAccessBlockRequest generates a "aws/request.Request" representing the
@@ -2855,8 +3431,8 @@ func (c *S3Control) GetPublicAccessBlockRequest(input *GetPublicAccessBlockInput
 
 // GetPublicAccessBlock API operation for AWS S3 Control.
 //
-// Retrieves the PublicAccessBlock configuration for an account. For more information,
-// see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Retrieves the PublicAccessBlock configuration for an Amazon Web Services
+// account. For more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -3421,8 +3997,8 @@ func (c *S3Control) ListJobsRequest(input *ListJobsInput) (req *request.Request,
 // ListJobs API operation for AWS S3 Control.
 //
 // Lists current S3 Batch Operations jobs and jobs that have ended within the
-// last 30 days for the account making the request. For more information, see
-// S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
+// last 30 days for the Amazon Web Services account making the request. For
+// more information, see S3 Batch Operations (https://docs.aws.amazon.com/AmazonS3/latest/dev/batch-ops-basics.html)
 // in the Amazon S3 User Guide.
 //
 // Related actions include:
@@ -3516,6 +4092,162 @@ func (c *S3Control) ListJobsPagesWithContext(ctx aws.Context, input *ListJobsInp
 
 	for p.Next() {
 		if !fn(p.Page().(*ListJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMultiRegionAccessPoints = "ListMultiRegionAccessPoints"
+
+// ListMultiRegionAccessPointsRequest generates a "aws/request.Request" representing the
+// client's request for the ListMultiRegionAccessPoints operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMultiRegionAccessPoints for more information on using the ListMultiRegionAccessPoints
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMultiRegionAccessPointsRequest method.
+//    req, resp := client.ListMultiRegionAccessPointsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListMultiRegionAccessPoints
+func (c *S3Control) ListMultiRegionAccessPointsRequest(input *ListMultiRegionAccessPointsInput) (req *request.Request, output *ListMultiRegionAccessPointsOutput) {
+	op := &request.Operation{
+		Name:       opListMultiRegionAccessPoints,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v20180820/mrap/instances",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMultiRegionAccessPointsInput{}
+	}
+
+	output = &ListMultiRegionAccessPointsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// ListMultiRegionAccessPoints API operation for AWS S3 Control.
+//
+// Returns a list of the Multi-Region Access Points currently associated with
+// the specified Amazon Web Services account. Each call can return up to 100
+// Multi-Region Access Points, the maximum number of Multi-Region Access Points
+// that can be associated with a single account.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to ListMultiRegionAccessPoint:
+//
+//    * CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+//
+//    * DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+//
+//    * DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+//
+//    * GetMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPoint.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation ListMultiRegionAccessPoints for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/ListMultiRegionAccessPoints
+func (c *S3Control) ListMultiRegionAccessPoints(input *ListMultiRegionAccessPointsInput) (*ListMultiRegionAccessPointsOutput, error) {
+	req, out := c.ListMultiRegionAccessPointsRequest(input)
+	return out, req.Send()
+}
+
+// ListMultiRegionAccessPointsWithContext is the same as ListMultiRegionAccessPoints with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMultiRegionAccessPoints for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListMultiRegionAccessPointsWithContext(ctx aws.Context, input *ListMultiRegionAccessPointsInput, opts ...request.Option) (*ListMultiRegionAccessPointsOutput, error) {
+	req, out := c.ListMultiRegionAccessPointsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMultiRegionAccessPointsPages iterates over the pages of a ListMultiRegionAccessPoints operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMultiRegionAccessPoints method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMultiRegionAccessPoints operation.
+//    pageNum := 0
+//    err := client.ListMultiRegionAccessPointsPages(params,
+//        func(page *s3control.ListMultiRegionAccessPointsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *S3Control) ListMultiRegionAccessPointsPages(input *ListMultiRegionAccessPointsInput, fn func(*ListMultiRegionAccessPointsOutput, bool) bool) error {
+	return c.ListMultiRegionAccessPointsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMultiRegionAccessPointsPagesWithContext same as ListMultiRegionAccessPointsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) ListMultiRegionAccessPointsPagesWithContext(ctx aws.Context, input *ListMultiRegionAccessPointsInput, fn func(*ListMultiRegionAccessPointsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMultiRegionAccessPointsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMultiRegionAccessPointsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMultiRegionAccessPointsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4239,19 +4971,19 @@ func (c *S3Control) PutBucketPolicyRequest(input *PutBucketPolicyInput) (req *re
 // see Using Amazon S3 on Outposts (https://docs.aws.amazon.com/AmazonS3/latest/userguide/S3onOutposts.html)
 // in the Amazon S3 User Guide.
 //
-// If you are using an identity other than the root user of the account that
-// owns the Outposts bucket, the calling identity must have the PutBucketPolicy
-// permissions on the specified Outposts bucket and belong to the bucket owner's
-// account in order to use this action.
+// If you are using an identity other than the root user of the Amazon Web Services
+// account that owns the Outposts bucket, the calling identity must have the
+// PutBucketPolicy permissions on the specified Outposts bucket and belong to
+// the bucket owner's account in order to use this action.
 //
 // If you don't have PutBucketPolicy permissions, Amazon S3 returns a 403 Access
 // Denied error. If you have the correct permissions, but you're not using an
 // identity that belongs to the bucket owner's account, Amazon S3 returns a
 // 405 Method Not Allowed error.
 //
-// As a security precaution, the root user of the account that owns a bucket
-// can always use this action, even if the policy explicitly denies the root
-// user the ability to perform this action.
+// As a security precaution, the root user of the Amazon Web Services account
+// that owns a bucket can always use this action, even if the policy explicitly
+// denies the root user the ability to perform this action.
 //
 // For more information about bucket policies, see Using Bucket Policies and
 // User Policies (https://docs.aws.amazon.com/AmazonS3/latest/dev/using-iam-policies.html).
@@ -4362,13 +5094,13 @@ func (c *S3Control) PutBucketTaggingRequest(input *PutBucketTaggingInput) (req *
 // in the Amazon S3 User Guide.
 //
 // Use tags to organize your Amazon Web Services bill to reflect your own cost
-// structure. To do this, sign up to get your account bill with tag key values
-// included. Then, to see the cost of combined resources, organize your billing
-// information according to resources with the same tag key values. For example,
-// you can tag several resources with a specific application name, and then
-// organize your billing information to see the total cost of that application
-// across several services. For more information, see Cost allocation and tagging
-// (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
+// structure. To do this, sign up to get your Amazon Web Services account bill
+// with tag key values included. Then, to see the cost of combined resources,
+// organize your billing information according to resources with the same tag
+// key values. For example, you can tag several resources with a specific application
+// name, and then organize your billing information to see the total cost of
+// that application across several services. For more information, see Cost
+// allocation and tagging (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html).
 //
 // Within a bucket, if you add a tag that has the same key as an existing tag,
 // the new value overwrites the old value. For more information, see Using cost
@@ -4567,6 +5299,100 @@ func (c *S3Control) PutJobTaggingWithContext(ctx aws.Context, input *PutJobTaggi
 	return out, req.Send()
 }
 
+const opPutMultiRegionAccessPointPolicy = "PutMultiRegionAccessPointPolicy"
+
+// PutMultiRegionAccessPointPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutMultiRegionAccessPointPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutMultiRegionAccessPointPolicy for more information on using the PutMultiRegionAccessPointPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutMultiRegionAccessPointPolicyRequest method.
+//    req, resp := client.PutMultiRegionAccessPointPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutMultiRegionAccessPointPolicy
+func (c *S3Control) PutMultiRegionAccessPointPolicyRequest(input *PutMultiRegionAccessPointPolicyInput) (req *request.Request, output *PutMultiRegionAccessPointPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutMultiRegionAccessPointPolicy,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v20180820/async-requests/mrap/put-policy",
+	}
+
+	if input == nil {
+		input = &PutMultiRegionAccessPointPolicyInput{}
+	}
+
+	output = &PutMultiRegionAccessPointPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Build.PushBackNamed(protocol.NewHostPrefixHandler("{AccountId}.", input.hostLabels))
+	req.Handlers.Build.PushBackNamed(protocol.ValidateEndpointHostHandler)
+	req.Handlers.Build.PushBackNamed(request.NamedHandler{
+		Name: "contentMd5Handler",
+		Fn:   checksum.AddBodyContentMD5Handler,
+	})
+	return
+}
+
+// PutMultiRegionAccessPointPolicy API operation for AWS S3 Control.
+//
+// Associates an access control policy with the specified Multi-Region Access
+// Point. Each Multi-Region Access Point can have only one policy, so a request
+// made to this action replaces any existing policy that is associated with
+// the specified Multi-Region Access Point.
+//
+// This action will always be routed to the US West (Oregon) Region. For more
+// information about the restrictions around managing Multi-Region Access Points,
+// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/ManagingMultiRegionAccessPoints.html)
+// in the Amazon S3 User Guide.
+//
+// The following actions are related to PutMultiRegionAccessPointPolicy:
+//
+//    * GetMultiRegionAccessPointPolicy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicy.html)
+//
+//    * GetMultiRegionAccessPointPolicyStatus (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_GetMultiRegionAccessPointPolicyStatus.html)
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS S3 Control's
+// API operation PutMultiRegionAccessPointPolicy for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/s3control-2018-08-20/PutMultiRegionAccessPointPolicy
+func (c *S3Control) PutMultiRegionAccessPointPolicy(input *PutMultiRegionAccessPointPolicyInput) (*PutMultiRegionAccessPointPolicyOutput, error) {
+	req, out := c.PutMultiRegionAccessPointPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutMultiRegionAccessPointPolicyWithContext is the same as PutMultiRegionAccessPointPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutMultiRegionAccessPointPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *S3Control) PutMultiRegionAccessPointPolicyWithContext(ctx aws.Context, input *PutMultiRegionAccessPointPolicyInput, opts ...request.Option) (*PutMultiRegionAccessPointPolicyOutput, error) {
+	req, out := c.PutMultiRegionAccessPointPolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutPublicAccessBlock = "PutPublicAccessBlock"
 
 // PutPublicAccessBlockRequest generates a "aws/request.Request" representing the
@@ -4614,8 +5440,9 @@ func (c *S3Control) PutPublicAccessBlockRequest(input *PutPublicAccessBlockInput
 
 // PutPublicAccessBlock API operation for AWS S3 Control.
 //
-// Creates or modifies the PublicAccessBlock configuration for an account. For
-// more information, see Using Amazon S3 block public access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
+// Creates or modifies the PublicAccessBlock configuration for an Amazon Web
+// Services account. For more information, see Using Amazon S3 block public
+// access (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html).
 //
 // Related actions include:
 //
@@ -5204,6 +6031,205 @@ func (s *ActivityMetrics) SetIsEnabled(v bool) *ActivityMetrics {
 	return s
 }
 
+// Error details for the failed asynchronous operation.
+type AsyncErrorDetails struct {
+	_ struct{} `type:"structure"`
+
+	// A string that uniquely identifies the error condition.
+	Code *string `type:"string"`
+
+	// A generic descritpion of the error condition in English.
+	Message *string `type:"string"`
+
+	// The ID of the request associated with the error.
+	RequestId *string `type:"string"`
+
+	// The identifier of the resource associated with the error.
+	Resource *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AsyncErrorDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AsyncErrorDetails) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *AsyncErrorDetails) SetCode(v string) *AsyncErrorDetails {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *AsyncErrorDetails) SetMessage(v string) *AsyncErrorDetails {
+	s.Message = &v
+	return s
+}
+
+// SetRequestId sets the RequestId field's value.
+func (s *AsyncErrorDetails) SetRequestId(v string) *AsyncErrorDetails {
+	s.RequestId = &v
+	return s
+}
+
+// SetResource sets the Resource field's value.
+func (s *AsyncErrorDetails) SetResource(v string) *AsyncErrorDetails {
+	s.Resource = &v
+	return s
+}
+
+// A container for the information about an asynchronous operation.
+type AsyncOperation struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the request was sent to the service.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The specific operation for the asynchronous request.
+	Operation *string `type:"string" enum:"AsyncOperationName"`
+
+	// The parameters associated with the request.
+	RequestParameters *AsyncRequestParameters `type:"structure"`
+
+	// The current status of the request.
+	RequestStatus *string `type:"string"`
+
+	// The request token associated with the request.
+	RequestTokenARN *string `min:"1" type:"string"`
+
+	// The details of the response.
+	ResponseDetails *AsyncResponseDetails `type:"structure"`
+}
+
+// String returns the string representation
+func (s AsyncOperation) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AsyncOperation) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *AsyncOperation) SetCreationTime(v time.Time) *AsyncOperation {
+	s.CreationTime = &v
+	return s
+}
+
+// SetOperation sets the Operation field's value.
+func (s *AsyncOperation) SetOperation(v string) *AsyncOperation {
+	s.Operation = &v
+	return s
+}
+
+// SetRequestParameters sets the RequestParameters field's value.
+func (s *AsyncOperation) SetRequestParameters(v *AsyncRequestParameters) *AsyncOperation {
+	s.RequestParameters = v
+	return s
+}
+
+// SetRequestStatus sets the RequestStatus field's value.
+func (s *AsyncOperation) SetRequestStatus(v string) *AsyncOperation {
+	s.RequestStatus = &v
+	return s
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *AsyncOperation) SetRequestTokenARN(v string) *AsyncOperation {
+	s.RequestTokenARN = &v
+	return s
+}
+
+// SetResponseDetails sets the ResponseDetails field's value.
+func (s *AsyncOperation) SetResponseDetails(v *AsyncResponseDetails) *AsyncOperation {
+	s.ResponseDetails = v
+	return s
+}
+
+// A container for the request parameters associated with an asynchronous request.
+type AsyncRequestParameters struct {
+	_ struct{} `type:"structure"`
+
+	// A container of the parameters for a CreateMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+	// request.
+	CreateMultiRegionAccessPointRequest *CreateMultiRegionAccessPointInput_ `type:"structure"`
+
+	// A container of the parameters for a DeleteMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+	// request.
+	DeleteMultiRegionAccessPointRequest *DeleteMultiRegionAccessPointInput_ `type:"structure"`
+
+	// A container of the parameters for a PutMultiRegionAccessPoint (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPoint.html)
+	// request.
+	PutMultiRegionAccessPointPolicyRequest *PutMultiRegionAccessPointPolicyInput_ `type:"structure"`
+}
+
+// String returns the string representation
+func (s AsyncRequestParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AsyncRequestParameters) GoString() string {
+	return s.String()
+}
+
+// SetCreateMultiRegionAccessPointRequest sets the CreateMultiRegionAccessPointRequest field's value.
+func (s *AsyncRequestParameters) SetCreateMultiRegionAccessPointRequest(v *CreateMultiRegionAccessPointInput_) *AsyncRequestParameters {
+	s.CreateMultiRegionAccessPointRequest = v
+	return s
+}
+
+// SetDeleteMultiRegionAccessPointRequest sets the DeleteMultiRegionAccessPointRequest field's value.
+func (s *AsyncRequestParameters) SetDeleteMultiRegionAccessPointRequest(v *DeleteMultiRegionAccessPointInput_) *AsyncRequestParameters {
+	s.DeleteMultiRegionAccessPointRequest = v
+	return s
+}
+
+// SetPutMultiRegionAccessPointPolicyRequest sets the PutMultiRegionAccessPointPolicyRequest field's value.
+func (s *AsyncRequestParameters) SetPutMultiRegionAccessPointPolicyRequest(v *PutMultiRegionAccessPointPolicyInput_) *AsyncRequestParameters {
+	s.PutMultiRegionAccessPointPolicyRequest = v
+	return s
+}
+
+// A container for the response details that are returned when querying about
+// an asynchronous request.
+type AsyncResponseDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Error details for an asynchronous request.
+	ErrorDetails *AsyncErrorDetails `type:"structure"`
+
+	// The details for the Multi-Region Access Point.
+	MultiRegionAccessPointDetails *MultiRegionAccessPointsAsyncResponse `type:"structure"`
+}
+
+// String returns the string representation
+func (s AsyncResponseDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AsyncResponseDetails) GoString() string {
+	return s.String()
+}
+
+// SetErrorDetails sets the ErrorDetails field's value.
+func (s *AsyncResponseDetails) SetErrorDetails(v *AsyncErrorDetails) *AsyncResponseDetails {
+	s.ErrorDetails = v
+	return s
+}
+
+// SetMultiRegionAccessPointDetails sets the MultiRegionAccessPointDetails field's value.
+func (s *AsyncResponseDetails) SetMultiRegionAccessPointDetails(v *MultiRegionAccessPointsAsyncResponse) *AsyncResponseDetails {
+	s.MultiRegionAccessPointDetails = v
+	return s
+}
+
 // Lambda function used to transform objects through an Object Lambda Access
 // Point.
 type AwsLambdaTransformation struct {
@@ -5308,7 +6334,8 @@ func (s *BucketLevel) SetPrefixLevel(v *PrefixLevel) *BucketLevel {
 type CreateAccessPointForObjectLambdaInput struct {
 	_ struct{} `locationName:"CreateAccessPointForObjectLambdaRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID for owner of the specified Object Lambda Access Point.
+	// The Amazon Web Services account ID for owner of the specified Object Lambda
+	// Access Point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -5414,8 +6441,8 @@ func (s *CreateAccessPointForObjectLambdaOutput) SetObjectLambdaAccessPointArn(v
 type CreateAccessPointInput struct {
 	_ struct{} `locationName:"CreateAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID for the owner of the bucket for which you want to create an
-	// access point.
+	// The Amazon Web Services account ID for the owner of the bucket for which
+	// you want to create an access point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -5838,7 +6865,7 @@ func (s *CreateBucketOutput) SetLocation(v string) *CreateBucketOutput {
 type CreateJobInput struct {
 	_ struct{} `locationName:"CreateJobRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID that creates the job.
+	// The Amazon Web Services account ID that creates the job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -6052,6 +7079,190 @@ func (s CreateJobOutput) GoString() string {
 // SetJobId sets the JobId field's value.
 func (s *CreateJobOutput) SetJobId(v string) *CreateJobOutput {
 	s.JobId = &v
+	return s
+}
+
+type CreateMultiRegionAccessPointInput struct {
+	_ struct{} `locationName:"CreateMultiRegionAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point. The owner of the Multi-Region Access Point also must own the underlying
+	// buckets.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// An idempotency token used to identify the request and guarantee that requests
+	// are unique.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// A container element containing details about the Multi-Region Access Point.
+	//
+	// Details is a required field
+	Details *CreateMultiRegionAccessPointInput_ `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateMultiRegionAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMultiRegionAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMultiRegionAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMultiRegionAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Details == nil {
+		invalidParams.Add(request.NewErrParamRequired("Details"))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *CreateMultiRegionAccessPointInput) SetAccountId(v string) *CreateMultiRegionAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateMultiRegionAccessPointInput) SetClientToken(v string) *CreateMultiRegionAccessPointInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *CreateMultiRegionAccessPointInput) SetDetails(v *CreateMultiRegionAccessPointInput_) *CreateMultiRegionAccessPointInput {
+	s.Details = v
+	return s
+}
+
+func (s *CreateMultiRegionAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+// A container for the information associated with a CreateMultiRegionAccessPoint
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_CreateMultiRegionAccessPoint.html)
+// request.
+type CreateMultiRegionAccessPointInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Multi-Region Access Point associated with this request.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The PublicAccessBlock configuration that you want to apply to this Amazon
+	// S3 account. You can enable the configuration options in any combination.
+	// For more information about when Amazon S3 considers a bucket or object public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon S3 User Guide.
+	//
+	// This is not supported for Amazon S3 on Outposts.
+	PublicAccessBlock *PublicAccessBlockConfiguration `type:"structure"`
+
+	// The buckets in different Regions that are associated with the Multi-Region
+	// Access Point.
+	//
+	// Regions is a required field
+	Regions []*Region `locationNameList:"Region" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s CreateMultiRegionAccessPointInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMultiRegionAccessPointInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateMultiRegionAccessPointInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateMultiRegionAccessPointInput_"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Regions == nil {
+		invalidParams.Add(request.NewErrParamRequired("Regions"))
+	}
+	if s.Regions != nil {
+		for i, v := range s.Regions {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Regions", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *CreateMultiRegionAccessPointInput_) SetName(v string) *CreateMultiRegionAccessPointInput_ {
+	s.Name = &v
+	return s
+}
+
+// SetPublicAccessBlock sets the PublicAccessBlock field's value.
+func (s *CreateMultiRegionAccessPointInput_) SetPublicAccessBlock(v *PublicAccessBlockConfiguration) *CreateMultiRegionAccessPointInput_ {
+	s.PublicAccessBlock = v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *CreateMultiRegionAccessPointInput_) SetRegions(v []*Region) *CreateMultiRegionAccessPointInput_ {
+	s.Regions = v
+	return s
+}
+
+type CreateMultiRegionAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The request token associated with the request. You can use this token with
+	// DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+	// to determine the status of asynchronous requests.
+	RequestTokenARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateMultiRegionAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateMultiRegionAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *CreateMultiRegionAccessPointOutput) SetRequestTokenARN(v string) *CreateMultiRegionAccessPointOutput {
+	s.RequestTokenARN = &v
 	return s
 }
 
@@ -6864,7 +8075,7 @@ func (s DeleteBucketPolicyOutput) GoString() string {
 type DeleteBucketTaggingInput struct {
 	_ struct{} `locationName:"DeleteBucketTaggingRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket tag set to be removed.
+	// The Amazon Web Services account ID of the Outposts bucket tag set to be removed.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -6993,7 +8204,8 @@ func (s DeleteBucketTaggingOutput) GoString() string {
 type DeleteJobTaggingInput struct {
 	_ struct{} `locationName:"DeleteJobTaggingRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7068,11 +8280,154 @@ func (s DeleteJobTaggingOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteMultiRegionAccessPointInput struct {
+	_ struct{} `locationName:"DeleteMultiRegionAccessPointRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// An idempotency token used to identify the request and guarantee that requests
+	// are unique.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// A container element containing details about the Multi-Region Access Point.
+	//
+	// Details is a required field
+	Details *DeleteMultiRegionAccessPointInput_ `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteMultiRegionAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMultiRegionAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMultiRegionAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMultiRegionAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Details == nil {
+		invalidParams.Add(request.NewErrParamRequired("Details"))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DeleteMultiRegionAccessPointInput) SetAccountId(v string) *DeleteMultiRegionAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteMultiRegionAccessPointInput) SetClientToken(v string) *DeleteMultiRegionAccessPointInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *DeleteMultiRegionAccessPointInput) SetDetails(v *DeleteMultiRegionAccessPointInput_) *DeleteMultiRegionAccessPointInput {
+	s.Details = v
+	return s
+}
+
+func (s *DeleteMultiRegionAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+// A container for the information associated with a DeleteMultiRegionAccessPoint
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DeleteMultiRegionAccessPoint.html)
+// request.
+type DeleteMultiRegionAccessPointInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Multi-Region Access Point associated with this request.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteMultiRegionAccessPointInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMultiRegionAccessPointInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMultiRegionAccessPointInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMultiRegionAccessPointInput_"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteMultiRegionAccessPointInput_) SetName(v string) *DeleteMultiRegionAccessPointInput_ {
+	s.Name = &v
+	return s
+}
+
+type DeleteMultiRegionAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The request token associated with the request. You can use this token with
+	// DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+	// to determine the status of asynchronous requests.
+	RequestTokenARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteMultiRegionAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteMultiRegionAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *DeleteMultiRegionAccessPointOutput) SetRequestTokenARN(v string) *DeleteMultiRegionAccessPointOutput {
+	s.RequestTokenARN = &v
+	return s
+}
+
 type DeletePublicAccessBlockInput struct {
 	_ struct{} `locationName:"DeletePublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the account whose PublicAccessBlock configuration you
-	// want to remove.
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to remove.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7289,7 +8644,8 @@ func (s DeleteStorageLensConfigurationTaggingOutput) GoString() string {
 type DescribeJobInput struct {
 	_ struct{} `locationName:"DescribeJobRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -7371,6 +8727,126 @@ func (s DescribeJobOutput) GoString() string {
 // SetJob sets the Job field's value.
 func (s *DescribeJobOutput) SetJob(v *JobDescriptor) *DescribeJobOutput {
 	s.Job = v
+	return s
+}
+
+type DescribeMultiRegionAccessPointOperationInput struct {
+	_ struct{} `locationName:"DescribeMultiRegionAccessPointOperationRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The request token associated with the request you want to know about. This
+	// request token is returned as part of the response when you make an asynchronous
+	// request. You provide this token to query about the status of the asynchronous
+	// action.
+	//
+	// RequestTokenARN is a required field
+	RequestTokenARN *string `location:"uri" locationName:"request_token" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeMultiRegionAccessPointOperationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMultiRegionAccessPointOperationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeMultiRegionAccessPointOperationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeMultiRegionAccessPointOperationInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.RequestTokenARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RequestTokenARN"))
+	}
+	if s.RequestTokenARN != nil && len(*s.RequestTokenARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RequestTokenARN", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *DescribeMultiRegionAccessPointOperationInput) SetAccountId(v string) *DescribeMultiRegionAccessPointOperationInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *DescribeMultiRegionAccessPointOperationInput) SetRequestTokenARN(v string) *DescribeMultiRegionAccessPointOperationInput {
+	s.RequestTokenARN = &v
+	return s
+}
+
+func (s *DescribeMultiRegionAccessPointOperationInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type DescribeMultiRegionAccessPointOperationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A container element containing the details of the asynchronous operation.
+	AsyncOperation *AsyncOperation `type:"structure"`
+}
+
+// String returns the string representation
+func (s DescribeMultiRegionAccessPointOperationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeMultiRegionAccessPointOperationOutput) GoString() string {
+	return s.String()
+}
+
+// SetAsyncOperation sets the AsyncOperation field's value.
+func (s *DescribeMultiRegionAccessPointOperationOutput) SetAsyncOperation(v *AsyncOperation) *DescribeMultiRegionAccessPointOperationOutput {
+	s.AsyncOperation = v
+	return s
+}
+
+// The last established access control policy for a Multi-Region Access Point.
+//
+// When you update the policy, the update is first listed as the proposed policy.
+// After the update is finished and all Regions have been updated, the proposed
+// policy is listed as the established policy. If both policies have the same
+// version number, the proposed policy is the established policy.
+type EstablishedMultiRegionAccessPointPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the last established policy.
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s EstablishedMultiRegionAccessPointPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s EstablishedMultiRegionAccessPointPolicy) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *EstablishedMultiRegionAccessPointPolicy) SetPolicy(v string) *EstablishedMultiRegionAccessPointPolicy {
+	s.Policy = &v
 	return s
 }
 
@@ -8239,7 +9715,7 @@ func (s *GetAccessPointPolicyStatusOutput) SetPolicyStatus(v *PolicyStatus) *Get
 type GetBucketInput struct {
 	_ struct{} `locationName:"GetBucketRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8354,7 +9830,7 @@ func (s GetBucketInput) updateAccountID(accountId string) (interface{}, error) {
 type GetBucketLifecycleConfigurationInput struct {
 	_ struct{} `locationName:"GetBucketLifecycleConfigurationRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8532,7 +10008,7 @@ func (s *GetBucketOutput) SetPublicAccessBlockEnabled(v bool) *GetBucketOutput {
 type GetBucketPolicyInput struct {
 	_ struct{} `locationName:"GetBucketPolicyRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8670,7 +10146,7 @@ func (s *GetBucketPolicyOutput) SetPolicy(v string) *GetBucketPolicyOutput {
 type GetBucketTaggingInput struct {
 	_ struct{} `locationName:"GetBucketTaggingRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8810,7 +10286,8 @@ func (s *GetBucketTaggingOutput) SetTagSet(v []*S3Tag) *GetBucketTaggingOutput {
 type GetJobTaggingInput struct {
 	_ struct{} `locationName:"GetJobTaggingRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8894,11 +10371,292 @@ func (s *GetJobTaggingOutput) SetTags(v []*S3Tag) *GetJobTaggingOutput {
 	return s
 }
 
+type GetMultiRegionAccessPointInput struct {
+	_ struct{} `locationName:"GetMultiRegionAccessPointRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// The name of the Multi-Region Access Point whose configuration information
+	// you want to receive. The name of the Multi-Region Access Point is different
+	// from the alias. For more information about the distinction between the name
+	// and the alias of an Multi-Region Access Point, see Managing Multi-Region
+	// Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// in the Amazon S3 User Guide.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMultiRegionAccessPointInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMultiRegionAccessPointInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMultiRegionAccessPointInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMultiRegionAccessPointInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetMultiRegionAccessPointInput) SetAccountId(v string) *GetMultiRegionAccessPointInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetMultiRegionAccessPointInput) SetName(v string) *GetMultiRegionAccessPointInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetMultiRegionAccessPointInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetMultiRegionAccessPointOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A container element containing the details of the requested Multi-Region
+	// Access Point.
+	AccessPoint *MultiRegionAccessPointReport `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMultiRegionAccessPointOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMultiRegionAccessPointOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessPoint sets the AccessPoint field's value.
+func (s *GetMultiRegionAccessPointOutput) SetAccessPoint(v *MultiRegionAccessPointReport) *GetMultiRegionAccessPointOutput {
+	s.AccessPoint = v
+	return s
+}
+
+type GetMultiRegionAccessPointPolicyInput struct {
+	_ struct{} `locationName:"GetMultiRegionAccessPointPolicyRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Specifies the Multi-Region Access Point. The name of the Multi-Region Access
+	// Point is different from the alias. For more information about the distinction
+	// between the name and the alias of an Multi-Region Access Point, see Managing
+	// Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// in the Amazon S3 User Guide.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMultiRegionAccessPointPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMultiRegionAccessPointPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMultiRegionAccessPointPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMultiRegionAccessPointPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetMultiRegionAccessPointPolicyInput) SetAccountId(v string) *GetMultiRegionAccessPointPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetMultiRegionAccessPointPolicyInput) SetName(v string) *GetMultiRegionAccessPointPolicyInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetMultiRegionAccessPointPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetMultiRegionAccessPointPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The policy associated with the specified Multi-Region Access Point.
+	Policy *MultiRegionAccessPointPolicyDocument `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMultiRegionAccessPointPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMultiRegionAccessPointPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetMultiRegionAccessPointPolicyOutput) SetPolicy(v *MultiRegionAccessPointPolicyDocument) *GetMultiRegionAccessPointPolicyOutput {
+	s.Policy = v
+	return s
+}
+
+type GetMultiRegionAccessPointPolicyStatusInput struct {
+	_ struct{} `locationName:"GetMultiRegionAccessPointPolicyStatusRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Specifies the Multi-Region Access Point. The name of the Multi-Region Access
+	// Point is different from the alias. For more information about the distinction
+	// between the name and the alias of an Multi-Region Access Point, see Managing
+	// Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming)
+	// in the Amazon S3 User Guide.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s GetMultiRegionAccessPointPolicyStatusInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMultiRegionAccessPointPolicyStatusInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMultiRegionAccessPointPolicyStatusInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMultiRegionAccessPointPolicyStatusInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *GetMultiRegionAccessPointPolicyStatusInput) SetAccountId(v string) *GetMultiRegionAccessPointPolicyStatusInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetMultiRegionAccessPointPolicyStatusInput) SetName(v string) *GetMultiRegionAccessPointPolicyStatusInput {
+	s.Name = &v
+	return s
+}
+
+func (s *GetMultiRegionAccessPointPolicyStatusInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type GetMultiRegionAccessPointPolicyStatusOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether this access point policy is public. For more information
+	// about how Amazon S3 evaluates policies to determine whether they are public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon S3 User Guide.
+	Established *PolicyStatus `type:"structure"`
+}
+
+// String returns the string representation
+func (s GetMultiRegionAccessPointPolicyStatusOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s GetMultiRegionAccessPointPolicyStatusOutput) GoString() string {
+	return s.String()
+}
+
+// SetEstablished sets the Established field's value.
+func (s *GetMultiRegionAccessPointPolicyStatusOutput) SetEstablished(v *PolicyStatus) *GetMultiRegionAccessPointPolicyStatusOutput {
+	s.Established = v
+	return s
+}
+
 type GetPublicAccessBlockInput struct {
 	_ struct{} `locationName:"GetPublicAccessBlockRequest" type:"structure"`
 
-	// The account ID for the account whose PublicAccessBlock configuration you
-	// want to retrieve.
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to retrieve.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -8945,7 +10703,8 @@ func (s *GetPublicAccessBlockInput) hostLabels() map[string]string {
 type GetPublicAccessBlockOutput struct {
 	_ struct{} `type:"structure" payload:"PublicAccessBlockConfiguration"`
 
-	// The PublicAccessBlock configuration currently in effect for this account.
+	// The PublicAccessBlock configuration currently in effect for this Amazon Web
+	// Services account.
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `type:"structure"`
 }
 
@@ -10417,7 +12176,8 @@ func (s *ListAccessPointsForObjectLambdaOutput) SetObjectLambdaAccessPointList(v
 type ListAccessPointsInput struct {
 	_ struct{} `locationName:"ListAccessPointsRequest" type:"structure"`
 
-	// The account ID for owner of the bucket whose access points you want to list.
+	// The Amazon Web Services account ID for owner of the bucket whose access points
+	// you want to list.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10588,7 +12348,8 @@ func (s *ListAccessPointsOutput) SetNextToken(v string) *ListAccessPointsOutput 
 type ListJobsInput struct {
 	_ struct{} `locationName:"ListJobsRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10701,10 +12462,114 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 	return s
 }
 
+type ListMultiRegionAccessPointsInput struct {
+	_ struct{} `locationName:"ListMultiRegionAccessPointsRequest" type:"structure"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// Not currently used. Do not use this parameter.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
+
+	// Not currently used. Do not use this parameter.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListMultiRegionAccessPointsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMultiRegionAccessPointsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMultiRegionAccessPointsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMultiRegionAccessPointsInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *ListMultiRegionAccessPointsInput) SetAccountId(v string) *ListMultiRegionAccessPointsInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMultiRegionAccessPointsInput) SetMaxResults(v int64) *ListMultiRegionAccessPointsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMultiRegionAccessPointsInput) SetNextToken(v string) *ListMultiRegionAccessPointsInput {
+	s.NextToken = &v
+	return s
+}
+
+func (s *ListMultiRegionAccessPointsInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+type ListMultiRegionAccessPointsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of Multi-Region Access Points associated with the user.
+	AccessPoints []*MultiRegionAccessPointReport `locationNameList:"AccessPoint" type:"list"`
+
+	// If the specified bucket has more Multi-Region Access Points than can be returned
+	// in one call to this action, this field contains a continuation token. You
+	// can use this token tin subsequent calls to this action to retrieve additional
+	// Multi-Region Access Points.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s ListMultiRegionAccessPointsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListMultiRegionAccessPointsOutput) GoString() string {
+	return s.String()
+}
+
+// SetAccessPoints sets the AccessPoints field's value.
+func (s *ListMultiRegionAccessPointsOutput) SetAccessPoints(v []*MultiRegionAccessPointReport) *ListMultiRegionAccessPointsOutput {
+	s.AccessPoints = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMultiRegionAccessPointsOutput) SetNextToken(v string) *ListMultiRegionAccessPointsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListRegionalBucketsInput struct {
 	_ struct{} `locationName:"ListRegionalBucketsRequest" type:"structure"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -10976,6 +12841,189 @@ func (s *ListStorageLensConfigurationsOutput) SetNextToken(v string) *ListStorag
 // SetStorageLensConfigurationList sets the StorageLensConfigurationList field's value.
 func (s *ListStorageLensConfigurationsOutput) SetStorageLensConfigurationList(v []*ListStorageLensConfigurationEntry) *ListStorageLensConfigurationsOutput {
 	s.StorageLensConfigurationList = v
+	return s
+}
+
+// The Multi-Region Access Point access control policy.
+//
+// When you update the policy, the update is first listed as the proposed policy.
+// After the update is finished and all Regions have been updated, the proposed
+// policy is listed as the established policy. If both policies have the same
+// version number, the proposed policy is the established policy.
+type MultiRegionAccessPointPolicyDocument struct {
+	_ struct{} `type:"structure"`
+
+	// The last established policy for the Multi-Region Access Point.
+	Established *EstablishedMultiRegionAccessPointPolicy `type:"structure"`
+
+	// The proposed policy for the Multi-Region Access Point.
+	Proposed *ProposedMultiRegionAccessPointPolicy `type:"structure"`
+}
+
+// String returns the string representation
+func (s MultiRegionAccessPointPolicyDocument) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MultiRegionAccessPointPolicyDocument) GoString() string {
+	return s.String()
+}
+
+// SetEstablished sets the Established field's value.
+func (s *MultiRegionAccessPointPolicyDocument) SetEstablished(v *EstablishedMultiRegionAccessPointPolicy) *MultiRegionAccessPointPolicyDocument {
+	s.Established = v
+	return s
+}
+
+// SetProposed sets the Proposed field's value.
+func (s *MultiRegionAccessPointPolicyDocument) SetProposed(v *ProposedMultiRegionAccessPointPolicy) *MultiRegionAccessPointPolicyDocument {
+	s.Proposed = v
+	return s
+}
+
+// Status information for a single Multi-Region Access Point Region.
+type MultiRegionAccessPointRegionalResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Region in the Multi-Region Access Point.
+	Name *string `min:"1" type:"string"`
+
+	// The current status of the Multi-Region Access Point in this Region.
+	RequestStatus *string `type:"string"`
+}
+
+// String returns the string representation
+func (s MultiRegionAccessPointRegionalResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MultiRegionAccessPointRegionalResponse) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *MultiRegionAccessPointRegionalResponse) SetName(v string) *MultiRegionAccessPointRegionalResponse {
+	s.Name = &v
+	return s
+}
+
+// SetRequestStatus sets the RequestStatus field's value.
+func (s *MultiRegionAccessPointRegionalResponse) SetRequestStatus(v string) *MultiRegionAccessPointRegionalResponse {
+	s.RequestStatus = &v
+	return s
+}
+
+// A collection of statuses for a Multi-Region Access Point in the various Regions
+// it supports.
+type MultiRegionAccessPointReport struct {
+	_ struct{} `type:"structure"`
+
+	// The alias for the Multi-Region Access Point. For more information about the
+	// distinction between the name and the alias of an Multi-Region Access Point,
+	// see Managing Multi-Region Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/CreatingMultiRegionAccessPoints.html#multi-region-access-point-naming).
+	Alias *string `type:"string"`
+
+	// When the Multi-Region Access Point create request was received.
+	CreatedAt *time.Time `type:"timestamp"`
+
+	// The name of the Multi-Region Access Point.
+	Name *string `type:"string"`
+
+	// The PublicAccessBlock configuration that you want to apply to this Amazon
+	// S3 account. You can enable the configuration options in any combination.
+	// For more information about when Amazon S3 considers a bucket or object public,
+	// see The Meaning of "Public" (https://docs.aws.amazon.com/AmazonS3/latest/dev/access-control-block-public-access.html#access-control-block-public-access-policy-status)
+	// in the Amazon S3 User Guide.
+	//
+	// This is not supported for Amazon S3 on Outposts.
+	PublicAccessBlock *PublicAccessBlockConfiguration `type:"structure"`
+
+	// A collection of the Regions and buckets associated with the Multi-Region
+	// Access Point.
+	Regions []*RegionReport `locationNameList:"Region" type:"list"`
+
+	// The current status of the Multi-Region Access Point.
+	//
+	// CREATING and DELETING are temporary states that exist while the request is
+	// propogating and being completed. If a Multi-Region Access Point has a status
+	// of PARTIALLY_CREATED, you can retry creation or send a request to delete
+	// the Multi-Region Access Point. If a Multi-Region Access Point has a status
+	// of PARTIALLY_DELETED, you can retry a delete request to finish the deletion
+	// of the Multi-Region Access Point.
+	Status *string `type:"string" enum:"MultiRegionAccessPointStatus"`
+}
+
+// String returns the string representation
+func (s MultiRegionAccessPointReport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MultiRegionAccessPointReport) GoString() string {
+	return s.String()
+}
+
+// SetAlias sets the Alias field's value.
+func (s *MultiRegionAccessPointReport) SetAlias(v string) *MultiRegionAccessPointReport {
+	s.Alias = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *MultiRegionAccessPointReport) SetCreatedAt(v time.Time) *MultiRegionAccessPointReport {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *MultiRegionAccessPointReport) SetName(v string) *MultiRegionAccessPointReport {
+	s.Name = &v
+	return s
+}
+
+// SetPublicAccessBlock sets the PublicAccessBlock field's value.
+func (s *MultiRegionAccessPointReport) SetPublicAccessBlock(v *PublicAccessBlockConfiguration) *MultiRegionAccessPointReport {
+	s.PublicAccessBlock = v
+	return s
+}
+
+// SetRegions sets the Regions field's value.
+func (s *MultiRegionAccessPointReport) SetRegions(v []*RegionReport) *MultiRegionAccessPointReport {
+	s.Regions = v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *MultiRegionAccessPointReport) SetStatus(v string) *MultiRegionAccessPointReport {
+	s.Status = &v
+	return s
+}
+
+// The Multi-Region Access Point details that are returned when querying about
+// an asynchronous request.
+type MultiRegionAccessPointsAsyncResponse struct {
+	_ struct{} `type:"structure"`
+
+	// A collection of status information for the different Regions that a Multi-Region
+	// Access Point supports.
+	Regions []*MultiRegionAccessPointRegionalResponse `locationNameList:"Region" type:"list"`
+}
+
+// String returns the string representation
+func (s MultiRegionAccessPointsAsyncResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MultiRegionAccessPointsAsyncResponse) GoString() string {
+	return s.String()
+}
+
+// SetRegions sets the Regions field's value.
+func (s *MultiRegionAccessPointsAsyncResponse) SetRegions(v []*MultiRegionAccessPointRegionalResponse) *MultiRegionAccessPointsAsyncResponse {
+	s.Regions = v
 	return s
 }
 
@@ -11381,6 +13429,35 @@ func (s *PrefixLevelStorageMetrics) SetSelectionCriteria(v *SelectionCriteria) *
 	return s
 }
 
+// The proposed access control policy for the Multi-Region Access Point.
+//
+// When you update the policy, the update is first listed as the proposed policy.
+// After the update is finished and all Regions have been updated, the proposed
+// policy is listed as the established policy. If both policies have the same
+// version number, the proposed policy is the established policy.
+type ProposedMultiRegionAccessPointPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// The details of the proposed policy.
+	Policy *string `type:"string"`
+}
+
+// String returns the string representation
+func (s ProposedMultiRegionAccessPointPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ProposedMultiRegionAccessPointPolicy) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *ProposedMultiRegionAccessPointPolicy) SetPolicy(v string) *ProposedMultiRegionAccessPointPolicy {
+	s.Policy = &v
+	return s
+}
+
 // The PublicAccessBlock configuration that you want to apply to this Amazon
 // S3 account. You can enable the configuration options in any combination.
 // For more information about when Amazon S3 considers a bucket or object public,
@@ -11667,8 +13744,8 @@ func (s PutAccessPointPolicyForObjectLambdaOutput) GoString() string {
 type PutAccessPointPolicyInput struct {
 	_ struct{} `locationName:"PutAccessPointPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID for owner of the bucket associated with the specified access
-	// point.
+	// The Amazon Web Services account ID for owner of the bucket associated with
+	// the specified access point.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -11816,7 +13893,7 @@ func (s PutAccessPointPolicyOutput) GoString() string {
 type PutBucketLifecycleConfigurationInput struct {
 	_ struct{} `locationName:"PutBucketLifecycleConfigurationRequest" type:"structure" payload:"LifecycleConfiguration"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -11949,7 +14026,7 @@ func (s PutBucketLifecycleConfigurationOutput) GoString() string {
 type PutBucketPolicyInput struct {
 	_ struct{} `locationName:"PutBucketPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -12104,7 +14181,7 @@ func (s PutBucketPolicyOutput) GoString() string {
 type PutBucketTaggingInput struct {
 	_ struct{} `locationName:"PutBucketTaggingRequest" type:"structure" payload:"Tagging"`
 
-	// The account ID of the Outposts bucket.
+	// The Amazon Web Services account ID of the Outposts bucket.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -12250,7 +14327,8 @@ func (s PutBucketTaggingOutput) GoString() string {
 type PutJobTaggingInput struct {
 	_ struct{} `locationName:"PutJobTaggingRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -12349,17 +14427,175 @@ func (s PutJobTaggingOutput) GoString() string {
 	return s.String()
 }
 
+type PutMultiRegionAccessPointPolicyInput struct {
+	_ struct{} `locationName:"PutMultiRegionAccessPointPolicyRequest" type:"structure" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
+
+	// The Amazon Web Services account ID for the owner of the Multi-Region Access
+	// Point.
+	//
+	// AccountId is a required field
+	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
+
+	// An idempotency token used to identify the request and guarantee that requests
+	// are unique.
+	ClientToken *string `type:"string" idempotencyToken:"true"`
+
+	// A container element containing the details of the policy for the Multi-Region
+	// Access Point.
+	//
+	// Details is a required field
+	Details *PutMultiRegionAccessPointPolicyInput_ `type:"structure" required:"true"`
+}
+
+// String returns the string representation
+func (s PutMultiRegionAccessPointPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutMultiRegionAccessPointPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutMultiRegionAccessPointPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutMultiRegionAccessPointPolicyInput"}
+	if s.AccountId == nil {
+		invalidParams.Add(request.NewErrParamRequired("AccountId"))
+	}
+	if s.AccountId != nil && len(*s.AccountId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AccountId", 1))
+	}
+	if s.Details == nil {
+		invalidParams.Add(request.NewErrParamRequired("Details"))
+	}
+	if s.Details != nil {
+		if err := s.Details.Validate(); err != nil {
+			invalidParams.AddNested("Details", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAccountId sets the AccountId field's value.
+func (s *PutMultiRegionAccessPointPolicyInput) SetAccountId(v string) *PutMultiRegionAccessPointPolicyInput {
+	s.AccountId = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PutMultiRegionAccessPointPolicyInput) SetClientToken(v string) *PutMultiRegionAccessPointPolicyInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDetails sets the Details field's value.
+func (s *PutMultiRegionAccessPointPolicyInput) SetDetails(v *PutMultiRegionAccessPointPolicyInput_) *PutMultiRegionAccessPointPolicyInput {
+	s.Details = v
+	return s
+}
+
+func (s *PutMultiRegionAccessPointPolicyInput) hostLabels() map[string]string {
+	return map[string]string{
+		"AccountId": aws.StringValue(s.AccountId),
+	}
+}
+
+// A container for the information associated with a PutMultiRegionAccessPoint
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_PutMultiRegionAccessPoint.html)
+// request.
+type PutMultiRegionAccessPointPolicyInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Multi-Region Access Point associated with the request.
+	//
+	// Name is a required field
+	Name *string `type:"string" required:"true"`
+
+	// The policy details for the PutMultiRegionAccessPoint request.
+	//
+	// Policy is a required field
+	Policy *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s PutMultiRegionAccessPointPolicyInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutMultiRegionAccessPointPolicyInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutMultiRegionAccessPointPolicyInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutMultiRegionAccessPointPolicyInput_"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *PutMultiRegionAccessPointPolicyInput_) SetName(v string) *PutMultiRegionAccessPointPolicyInput_ {
+	s.Name = &v
+	return s
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutMultiRegionAccessPointPolicyInput_) SetPolicy(v string) *PutMultiRegionAccessPointPolicyInput_ {
+	s.Policy = &v
+	return s
+}
+
+type PutMultiRegionAccessPointPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The request token associated with the request. You can use this token with
+	// DescribeMultiRegionAccessPointOperation (https://docs.aws.amazon.com/AmazonS3/latest/API/API_control_DescribeMultiRegionAccessPointOperation.html)
+	// to determine the status of asynchronous requests.
+	RequestTokenARN *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s PutMultiRegionAccessPointPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s PutMultiRegionAccessPointPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetRequestTokenARN sets the RequestTokenARN field's value.
+func (s *PutMultiRegionAccessPointPolicyOutput) SetRequestTokenARN(v string) *PutMultiRegionAccessPointPolicyOutput {
+	s.RequestTokenARN = &v
+	return s
+}
+
 type PutPublicAccessBlockInput struct {
 	_ struct{} `locationName:"PutPublicAccessBlockRequest" type:"structure" payload:"PublicAccessBlockConfiguration"`
 
-	// The account ID for the account whose PublicAccessBlock configuration you
-	// want to set.
+	// The account ID for the Amazon Web Services account whose PublicAccessBlock
+	// configuration you want to set.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
 
 	// The PublicAccessBlock configuration that you want to apply to the specified
-	// account.
+	// Amazon Web Services account.
 	//
 	// PublicAccessBlockConfiguration is a required field
 	PublicAccessBlockConfiguration *PublicAccessBlockConfiguration `locationName:"PublicAccessBlockConfiguration" type:"structure" required:"true" xmlURI:"http://awss3control.amazonaws.com/doc/2018-08-20/"`
@@ -12646,6 +14882,83 @@ func (s PutStorageLensConfigurationTaggingOutput) String() string {
 // GoString returns the string representation
 func (s PutStorageLensConfigurationTaggingOutput) GoString() string {
 	return s.String()
+}
+
+// A Region that supports a Multi-Region Access Point as well as the associated
+// bucket for the Region.
+type Region struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the associated bucket for the Region.
+	//
+	// Bucket is a required field
+	Bucket *string `min:"3" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s Region) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Region) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Region) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Region"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+	if s.Bucket != nil && len(*s.Bucket) < 3 {
+		invalidParams.Add(request.NewErrParamMinLen("Bucket", 3))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *Region) SetBucket(v string) *Region {
+	s.Bucket = &v
+	return s
+}
+
+// A combination of a bucket and Region that's part of a Multi-Region Access
+// Point.
+type RegionReport struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the bucket.
+	Bucket *string `min:"3" type:"string"`
+
+	// The name of the Region.
+	Region *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s RegionReport) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegionReport) GoString() string {
+	return s.String()
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *RegionReport) SetBucket(v string) *RegionReport {
+	s.Bucket = &v
+	return s
+}
+
+// SetRegion sets the Region field's value.
+func (s *RegionReport) SetRegion(v string) *RegionReport {
+	s.Region = &v
+	return s
 }
 
 // The container for the regional bucket.
@@ -14348,7 +16661,8 @@ func (s *Transition) SetStorageClass(v string) *Transition {
 type UpdateJobPriorityInput struct {
 	_ struct{} `locationName:"UpdateJobPriorityRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -14462,7 +16776,8 @@ func (s *UpdateJobPriorityOutput) SetPriority(v int64) *UpdateJobPriorityOutput 
 type UpdateJobStatusInput struct {
 	_ struct{} `locationName:"UpdateJobStatusRequest" type:"structure"`
 
-	// The account ID associated with the S3 Batch Operations job.
+	// The Amazon Web Services account ID associated with the S3 Batch Operations
+	// job.
 	//
 	// AccountId is a required field
 	AccountId *string `location:"header" locationName:"x-amz-account-id" type:"string" required:"true"`
@@ -14632,6 +16947,26 @@ func (s *VpcConfiguration) Validate() error {
 func (s *VpcConfiguration) SetVpcId(v string) *VpcConfiguration {
 	s.VpcId = &v
 	return s
+}
+
+const (
+	// AsyncOperationNameCreateMultiRegionAccessPoint is a AsyncOperationName enum value
+	AsyncOperationNameCreateMultiRegionAccessPoint = "CreateMultiRegionAccessPoint"
+
+	// AsyncOperationNameDeleteMultiRegionAccessPoint is a AsyncOperationName enum value
+	AsyncOperationNameDeleteMultiRegionAccessPoint = "DeleteMultiRegionAccessPoint"
+
+	// AsyncOperationNamePutMultiRegionAccessPointPolicy is a AsyncOperationName enum value
+	AsyncOperationNamePutMultiRegionAccessPointPolicy = "PutMultiRegionAccessPointPolicy"
+)
+
+// AsyncOperationName_Values returns all elements of the AsyncOperationName enum
+func AsyncOperationName_Values() []string {
+	return []string{
+		AsyncOperationNameCreateMultiRegionAccessPoint,
+		AsyncOperationNameDeleteMultiRegionAccessPoint,
+		AsyncOperationNamePutMultiRegionAccessPointPolicy,
+	}
 }
 
 const (
@@ -14867,6 +17202,38 @@ func JobStatus_Values() []string {
 		JobStatusPreparing,
 		JobStatusReady,
 		JobStatusSuspended,
+	}
+}
+
+const (
+	// MultiRegionAccessPointStatusReady is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusReady = "READY"
+
+	// MultiRegionAccessPointStatusInconsistentAcrossRegions is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusInconsistentAcrossRegions = "INCONSISTENT_ACROSS_REGIONS"
+
+	// MultiRegionAccessPointStatusCreating is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusCreating = "CREATING"
+
+	// MultiRegionAccessPointStatusPartiallyCreated is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusPartiallyCreated = "PARTIALLY_CREATED"
+
+	// MultiRegionAccessPointStatusPartiallyDeleted is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusPartiallyDeleted = "PARTIALLY_DELETED"
+
+	// MultiRegionAccessPointStatusDeleting is a MultiRegionAccessPointStatus enum value
+	MultiRegionAccessPointStatusDeleting = "DELETING"
+)
+
+// MultiRegionAccessPointStatus_Values returns all elements of the MultiRegionAccessPointStatus enum
+func MultiRegionAccessPointStatus_Values() []string {
+	return []string{
+		MultiRegionAccessPointStatusReady,
+		MultiRegionAccessPointStatusInconsistentAcrossRegions,
+		MultiRegionAccessPointStatusCreating,
+		MultiRegionAccessPointStatusPartiallyCreated,
+		MultiRegionAccessPointStatusPartiallyDeleted,
+		MultiRegionAccessPointStatusDeleting,
 	}
 }
 

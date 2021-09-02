@@ -157,6 +157,18 @@
         "DescribeActionTargetsResponse$ActionTargets": "<p>A list of <code>ActionTarget</code> objects. Each object includes the <code>ActionTargetArn</code>, <code>Description</code>, and <code>Name</code> of a custom action target available in Security Hub.</p>"
       }
     },
+    "Adjustment": {
+      "base": "<p>An adjustment to the CVSS metric.</p>",
+      "refs": {
+        "AdjustmentList$member": null
+      }
+    },
+    "AdjustmentList": {
+      "base": null,
+      "refs": {
+        "Cvss$Adjustments": "<p>Adjustments to the CVSS metrics.</p>"
+      }
+    },
     "AdminAccount": {
       "base": "<p>Represents a Security Hub administrator account designated by an organization management account.</p>",
       "refs": {
@@ -278,6 +290,36 @@
       "base": "<p>Provides details about an auto scaling group.</p>",
       "refs": {
         "ResourceDetails$AwsAutoScalingAutoScalingGroup": "<p>Details for an autoscaling group.</p>"
+      }
+    },
+    "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails": {
+      "base": "<p>A block device for the instance.</p>",
+      "refs": {
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsList$member": null
+      }
+    },
+    "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails": {
+      "base": "<p>Parameters that are used to automatically set up EBS volumes when an instance is launched.</p>",
+      "refs": {
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails$Ebs": "<p>Parameters that are used to automatically set up Amazon EBS volumes when an instance is launched.</p>"
+      }
+    },
+    "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsList": {
+      "base": null,
+      "refs": {
+        "AwsAutoScalingLaunchConfigurationDetails$BlockDeviceMappings": "<p>Specifies the block devices for the instance.</p>"
+      }
+    },
+    "AwsAutoScalingLaunchConfigurationDetails": {
+      "base": "<p>Details about a launch configuration.</p>",
+      "refs": {
+        "ResourceDetails$AwsAutoScalingLaunchConfiguration": "<p>Provides details about a launch configuration.</p>"
+      }
+    },
+    "AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails": {
+      "base": "<p>Information about the type of monitoring for instances in the group.</p>",
+      "refs": {
+        "AwsAutoScalingLaunchConfigurationDetails$InstanceMonitoring": "<p>Indicates the type of monitoring for instances in the group.</p>"
       }
     },
     "AwsCertificateManagerCertificateDetails": {
@@ -801,6 +843,60 @@
       "base": "<p>Details about an EC2 VPC.</p>",
       "refs": {
         "ResourceDetails$AwsEc2Vpc": "<p>Details for an EC2 VPC.</p>"
+      }
+    },
+    "AwsEc2VpnConnectionDetails": {
+      "base": "<p>Details about an Amazon EC2 VPN connection.</p>",
+      "refs": {
+        "ResourceDetails$AwsEc2VpnConnection": "<p>Details about an EC2 VPN connection.</p>"
+      }
+    },
+    "AwsEc2VpnConnectionOptionsDetails": {
+      "base": "<p>VPN connection options.</p>",
+      "refs": {
+        "AwsEc2VpnConnectionDetails$Options": "<p>The VPN connection options.</p>"
+      }
+    },
+    "AwsEc2VpnConnectionOptionsTunnelOptionsDetails": {
+      "base": "<p>The VPN tunnel options.</p>",
+      "refs": {
+        "AwsEc2VpnConnectionOptionsTunnelOptionsList$member": null
+      }
+    },
+    "AwsEc2VpnConnectionOptionsTunnelOptionsList": {
+      "base": null,
+      "refs": {
+        "AwsEc2VpnConnectionOptionsDetails$TunnelOptions": "<p>The VPN tunnel options.</p>"
+      }
+    },
+    "AwsEc2VpnConnectionRoutesDetails": {
+      "base": "<p>A static routes associated with the VPN connection.</p>",
+      "refs": {
+        "AwsEc2VpnConnectionRoutesList$member": null
+      }
+    },
+    "AwsEc2VpnConnectionRoutesList": {
+      "base": null,
+      "refs": {
+        "AwsEc2VpnConnectionDetails$Routes": "<p>The static routes that are associated with the VPN connection.</p>"
+      }
+    },
+    "AwsEc2VpnConnectionVgwTelemetryDetails": {
+      "base": "<p>Information about the VPN tunnel.</p>",
+      "refs": {
+        "AwsEc2VpnConnectionVgwTelemetryList$member": null
+      }
+    },
+    "AwsEc2VpnConnectionVgwTelemetryList": {
+      "base": null,
+      "refs": {
+        "AwsEc2VpnConnectionDetails$VgwTelemetry": "<p>Information about the VPN tunnel.</p>"
+      }
+    },
+    "AwsEcrContainerImageDetails": {
+      "base": "<p>Information about an Amazon ECR image.</p>",
+      "refs": {
+        "ResourceDetails$AwsEcrContainerImage": "<p>information about an Amazon ECR image.</p>"
       }
     },
     "AwsEcsClusterClusterSettingsDetails": {
@@ -1414,7 +1510,7 @@
     "AwsElbLoadBalancerDetails": {
       "base": "<p>Contains details about a Classic Load Balancer.</p>",
       "refs": {
-        "ResourceDetails$AwsElbLoadBalancer": "<p>contains details about a Classic Load Balancer.</p>"
+        "ResourceDetails$AwsElbLoadBalancer": "<p>Contains details about a Classic Load Balancer.</p>"
       }
     },
     "AwsElbLoadBalancerHealthCheck": {
@@ -1626,7 +1722,7 @@
       }
     },
     "AwsKmsKeyDetails": {
-      "base": "<p>Contains metadata about a customer master key (CMK).</p>",
+      "base": "<p>Contains metadata about an KMS key.</p>",
       "refs": {
         "ResourceDetails$AwsKmsKey": "<p>Details about an KMS key.</p>"
       }
@@ -2123,6 +2219,66 @@
         "ResourceDetails$AwsS3Bucket": "<p>Details about an S3 bucket related to a finding.</p>"
       }
     },
+    "AwsS3BucketLoggingConfiguration": {
+      "base": "<p>Information about logging for the S3 bucket</p>",
+      "refs": {
+        "AwsS3BucketDetails$BucketLoggingConfiguration": "<p>The logging configuration for the S3 bucket.</p>"
+      }
+    },
+    "AwsS3BucketNotificationConfiguration": {
+      "base": "<p>The notification configuration for the S3 bucket.</p>",
+      "refs": {
+        "AwsS3BucketDetails$BucketNotificationConfiguration": "<p>The notification configuration for the S3 bucket.</p>"
+      }
+    },
+    "AwsS3BucketNotificationConfigurationDetail": {
+      "base": "<p>Details for an S3 bucket notification configuration.</p>",
+      "refs": {
+        "AwsS3BucketNotificationConfigurationDetails$member": null
+      }
+    },
+    "AwsS3BucketNotificationConfigurationDetails": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketNotificationConfiguration$Configurations": "<p>Configurations for S3 bucket notifications.</p>"
+      }
+    },
+    "AwsS3BucketNotificationConfigurationEvents": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketNotificationConfigurationDetail$Events": "<p>The list of events that trigger a notification.</p>"
+      }
+    },
+    "AwsS3BucketNotificationConfigurationFilter": {
+      "base": "<p>Filtering information for the notifications. The filtering is based on Amazon S3 key names.</p>",
+      "refs": {
+        "AwsS3BucketNotificationConfigurationDetail$Filter": "<p>The filters that determine which S3 buckets generate notifications.</p>"
+      }
+    },
+    "AwsS3BucketNotificationConfigurationS3KeyFilter": {
+      "base": "<p>Details for an Amazon S3 filter.</p>",
+      "refs": {
+        "AwsS3BucketNotificationConfigurationFilter$S3KeyFilter": "<p>Details for an Amazon S3 filter.</p>"
+      }
+    },
+    "AwsS3BucketNotificationConfigurationS3KeyFilterRule": {
+      "base": "<p>Details for a filter rule.</p>",
+      "refs": {
+        "AwsS3BucketNotificationConfigurationS3KeyFilterRules$member": null
+      }
+    },
+    "AwsS3BucketNotificationConfigurationS3KeyFilterRuleName": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketNotificationConfigurationS3KeyFilterRule$Name": "<p>Indicates whether the filter is based on the prefix or suffix of the Amazon S3 key.</p>"
+      }
+    },
+    "AwsS3BucketNotificationConfigurationS3KeyFilterRules": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketNotificationConfigurationS3KeyFilter$FilterRules": "<p>The filter rules for the filter.</p>"
+      }
+    },
     "AwsS3BucketServerSideEncryptionByDefault": {
       "base": "<p>Specifies the default server-side encryption to apply to new objects in the bucket.</p>",
       "refs": {
@@ -2145,6 +2301,42 @@
       "base": null,
       "refs": {
         "AwsS3BucketServerSideEncryptionConfiguration$Rules": "<p>The encryption rules that are applied to the S3 bucket.</p>"
+      }
+    },
+    "AwsS3BucketWebsiteConfiguration": {
+      "base": "<p>Website parameters for the S3 bucket.</p>",
+      "refs": {
+        "AwsS3BucketDetails$BucketWebsiteConfiguration": "<p>The website configuration parameters for the S3 bucket.</p>"
+      }
+    },
+    "AwsS3BucketWebsiteConfigurationRedirectTo": {
+      "base": "<p>The redirect behavior for requests to the website.</p>",
+      "refs": {
+        "AwsS3BucketWebsiteConfiguration$RedirectAllRequestsTo": "<p>The redirect behavior for requests to the website.</p>"
+      }
+    },
+    "AwsS3BucketWebsiteConfigurationRoutingRule": {
+      "base": "<p>A rule for redirecting requests to the website.</p>",
+      "refs": {
+        "AwsS3BucketWebsiteConfigurationRoutingRules$member": null
+      }
+    },
+    "AwsS3BucketWebsiteConfigurationRoutingRuleCondition": {
+      "base": "<p>The condition that must be met in order to apply the routing rule.</p>",
+      "refs": {
+        "AwsS3BucketWebsiteConfigurationRoutingRule$Condition": "<p>Provides the condition that must be met in order to apply the routing rule.</p>"
+      }
+    },
+    "AwsS3BucketWebsiteConfigurationRoutingRuleRedirect": {
+      "base": "<p>The rules to redirect the request if the condition in <code>Condition</code> is met.</p>",
+      "refs": {
+        "AwsS3BucketWebsiteConfigurationRoutingRule$Redirect": "<p>Provides the rules to redirect the request if the condition in <code>Condition</code> is met.</p>"
+      }
+    },
+    "AwsS3BucketWebsiteConfigurationRoutingRules": {
+      "base": null,
+      "refs": {
+        "AwsS3BucketWebsiteConfiguration$RoutingRules": "<p>The rules for applying redirects for requests to the website.</p>"
       }
     },
     "AwsS3ObjectDetails": {
@@ -2335,6 +2527,12 @@
         "AwsApiGatewayV2RouteSettings$DataTraceEnabled": "<p>Indicates whether data trace logging is enabled. Data trace logging affects the log entries that are pushed to CloudWatch Logs. Supported only for WebSocket APIs.</p>",
         "AwsApiGatewayV2StageDetails$AutoDeploy": "<p>Indicates whether updates to an API automatically trigger a new deployment.</p>",
         "AwsApiGatewayV2StageDetails$ApiGatewayManaged": "<p>Indicates whether the stage is managed by API Gateway.</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails$NoDevice": "<p>Whether to suppress the device that is included in the block device mapping of the Amazon Machine Image (AMI).</p> <p>If <code>NoDevice</code> is <code>true</code>, then you cannot specify <code>Ebs</code>.&gt;</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$DeleteOnTermination": "<p>Whether to delete the volume when the instance is terminated.</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$Encrypted": "<p>Whether to encrypt the volume.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$AssociatePublicIpAddress": "<p>For Auto Scaling groups that run in a VPC, specifies whether to assign a public IP address to the group's instances.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$EbsOptimized": "<p>Whether the launch configuration is optimized for Amazon EBS I/O.</p>",
+        "AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails$Enabled": "<p>If set to <code>true</code>, then instances in the group launch with detailed monitoring.</p> <p>If set to <code>false</code>, then instances in the group launch with basic monitoring.</p>",
         "AwsCloudFrontDistributionLogging$Enabled": "<p>With this field, you can enable or disable the selected distribution.</p>",
         "AwsCloudFrontDistributionLogging$IncludeCookies": "<p>Specifies whether you want CloudFront to include cookies in access logs.</p>",
         "AwsCloudTrailTrailDetails$HasCustomEventSelectors": "<p>Indicates whether the trail has custom event selectors.</p>",
@@ -2356,6 +2554,7 @@
         "AwsEc2SubnetDetails$MapPublicIpOnLaunch": "<p>Whether instances in this subnet receive a public IP address.</p>",
         "AwsEc2VolumeAttachment$DeleteOnTermination": "<p>Whether the EBS volume is deleted when the EC2 instance is terminated.</p>",
         "AwsEc2VolumeDetails$Encrypted": "<p>Whether the volume is encrypted.</p>",
+        "AwsEc2VpnConnectionOptionsDetails$StaticRoutesOnly": "<p>Whether the VPN connection uses static routes only.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$CloudWatchEncryptionEnabled": "<p>Whether to enable encryption on the CloudWatch logs.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$S3EncryptionEnabled": "<p>Whether to encrypt the logs that are sent to the S3 bucket.</p>",
         "AwsEcsServiceDeploymentConfigurationDeploymentCircuitBreakerDetails$Enable": "<p>Whether to enable the deployment circuit breaker logic for the service.</p>",
@@ -2386,6 +2585,7 @@
         "AwsIamAccessKeySessionContextAttributes$MfaAuthenticated": "<p>Indicates whether the session used multi-factor authentication (MFA).</p>",
         "AwsIamPolicyDetails$IsAttachable": "<p>Whether the policy can be attached to a user, group, or role.</p>",
         "AwsIamPolicyVersion$IsDefaultVersion": "<p>Whether the version is the default version.</p>",
+        "AwsKmsKeyDetails$KeyRotationStatus": "<p>Whether the key has key rotation enabled.</p>",
         "AwsRdsDbClusterDetails$MultiAz": "<p>Whether the DB cluster has instances in multiple Availability Zones.</p>",
         "AwsRdsDbClusterDetails$StorageEncrypted": "<p>Whether the DB cluster is encrypted.</p>",
         "AwsRdsDbClusterDetails$DeletionProtection": "<p>Whether the DB cluster has deletion protection enabled.</p>",
@@ -2806,7 +3006,7 @@
         "AwsApiGatewayCanarySettings$PercentTraffic": "<p>The percentage of traffic that is diverted to a canary deployment.</p>",
         "AwsApiGatewayMethodSettings$ThrottlingRateLimit": "<p>The throttling rate limit for the method.</p>",
         "AwsApiGatewayV2RouteSettings$ThrottlingRateLimit": "<p>The throttling rate limit.</p>",
-        "AwsKmsKeyDetails$CreationDate": "<p>Indicates when the CMK was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsKmsKeyDetails$CreationDate": "<p>Indicates when the KMS key was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsRedshiftClusterRestoreStatus$CurrentRestoreRateInMegaBytesPerSecond": "<p>The number of megabytes per second being transferred from the backup storage. Returns the average rate for a completed backup.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "Cvss$BaseScore": "<p>The base CVSS score.</p>",
         "GeoLocation$Lon": "<p>The longitude of the location.</p>",
@@ -3025,6 +3225,8 @@
         "AwsApiGatewayRestApiDetails$MinimumCompressionSize": "<p>The minimum size in bytes of a payload before compression is enabled.</p> <p>If <code>null</code>, then compression is disabled.</p> <p>If 0, then all payloads are compressed.</p>",
         "AwsApiGatewayV2RouteSettings$ThrottlingBurstLimit": "<p>The throttling burst limit.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckGracePeriod": "<p>The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before it checks the health status of an EC2 instance that has come into service.</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$Iops": "<p>The number of input/output (I/O) operations per second (IOPS) to provision for the volume.</p> <p>Only supported for <code>gp3</code> or <code>io1</code> volumes. Required for <code>io1</code> volumes. Not used with <code>standard</code>, <code>gp2</code>, <code>st1</code>, or <code>sc1</code> volumes.</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$VolumeSize": "<p>The volume size, in GiBs. The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p>gp2 and gp3: 1-16,384</p> </li> <li> <p>io1: 4-16,384</p> </li> <li> <p>st1 and sc1: 125-16,384</p> </li> <li> <p>standard: 1-1,024</p> </li> </ul> <p>You must specify either <code>SnapshotId</code> or <code>VolumeSize</code>. If you specify both <code>SnapshotId</code> and <code>VolumeSize</code>, the volume size must be equal or greater than the size of the snapshot.</p>",
         "AwsCloudFrontDistributionOriginGroupFailoverStatusCodes$Quantity": "<p>The number of status codes that can cause a failover.</p>",
         "AwsCloudFrontDistributionOriginGroupFailoverStatusCodesItemList$member": null,
         "AwsCodeBuildProjectSource$GitCloneDepth": "<p>Information about the Git clone depth for the build project.</p>",
@@ -3041,6 +3243,13 @@
         "AwsEc2SecurityGroupIpPermission$ToPort": "<p>The end of the port range for the TCP and UDP protocols, or an ICMP/ICMPv6 code.</p> <p>A value of -1 indicates all ICMP/ICMPv6 codes. If you specify all ICMP/ICMPv6 types, you must specify all codes.</p>",
         "AwsEc2SubnetDetails$AvailableIpAddressCount": "<p>The number of available IPV4 addresses in the subnet. Does not include addresses for stopped instances.</p>",
         "AwsEc2VolumeDetails$Size": "<p>The size of the volume, in GiBs.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$DpdTimeoutSeconds": "<p>The number of seconds after which a Dead Peer Detection (DPD) timeout occurs.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase1LifetimeSeconds": "<p>The lifetime for phase 1 of the IKE negotiation, in seconds.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase2LifetimeSeconds": "<p>The lifetime for phase 2 of the IKE negotiation, in seconds.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$RekeyFuzzPercentage": "<p>The percentage of the rekey window, which is determined by <code>RekeyMarginTimeSeconds</code> during which the rekey time is randomly selected.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$RekeyMarginTimeSeconds": "<p>The margin time, in seconds, before the phase 2 lifetime expires, during which the Amazon Web Services side of the VPN connection performs an IKE rekey.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$ReplayWindowSize": "<p>The number of packets in an IKE replay window.</p>",
+        "AwsEc2VpnConnectionVgwTelemetryDetails$AcceptedRouteCount": "<p>The number of accepted routes.</p>",
         "AwsEcsClusterDefaultCapacityProviderStrategyDetails$Base": "<p>The minimum number of tasks to run on the specified capacity provider.</p>",
         "AwsEcsClusterDefaultCapacityProviderStrategyDetails$Weight": "<p>The relative percentage of the total number of tasks launched that should use the capacity provider.</p>",
         "AwsEcsServiceCapacityProviderStrategyDetails$Base": "<p>The minimum number of tasks to run on the capacity provider. Only one strategy item can specify a value for <code>Base</code>.</p> <p>The value must be between 0 and 100000.</p>",
@@ -3150,6 +3359,7 @@
         "IcmpTypeCode$Code": "<p>The ICMP code for which to deny or allow access. To deny or allow all codes, use the value -1.</p>",
         "IcmpTypeCode$Type": "<p>The ICMP type for which to deny or allow access. To deny or allow all types, use the value -1.</p>",
         "InsightResultValue$Count": "<p>The number of findings returned for each <code>GroupByAttributeValue</code>.</p>",
+        "IntegerList$member": null,
         "IpOrganizationDetails$Asn": "<p>The Autonomous System Number (ASN) of the internet provider</p>",
         "Network$SourcePort": "<p>The source port of network-related information about a finding.</p>",
         "Network$DestinationPort": "<p>The destination port of network-related information about a finding.</p>",
@@ -3166,6 +3376,13 @@
         "ProcessDetails$Pid": "<p>The process ID.</p>",
         "ProcessDetails$ParentPid": "<p>The parent process ID.</p>",
         "Severity$Normalized": "<p>Deprecated. The normalized severity of a finding. This attribute is being deprecated. Instead of providing <code>Normalized</code>, provide <code>Label</code>.</p> <p>If you provide <code>Label</code> and do not provide <code>Normalized</code>, then <code>Normalized</code> is set automatically as follows.</p> <ul> <li> <p> <code>INFORMATIONAL</code> - 0</p> </li> <li> <p> <code>LOW</code> - 1</p> </li> <li> <p> <code>MEDIUM</code> - 40</p> </li> <li> <p> <code>HIGH</code> - 70</p> </li> <li> <p> <code>CRITICAL</code> - 90</p> </li> </ul>"
+      }
+    },
+    "IntegerList": {
+      "base": null,
+      "refs": {
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase1DhGroupNumbers": "<p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1 IKE negotiations.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase2DhGroupNumbers": "<p>The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2 IKE negotiations.</p>"
       }
     },
     "IntegrationType": {
@@ -3509,6 +3726,8 @@
         "ActionTarget$ActionTargetArn": "<p>The ARN for the target action.</p>",
         "ActionTarget$Name": "<p>The name of the action target.</p>",
         "ActionTarget$Description": "<p>The description of the target action.</p>",
+        "Adjustment$Metric": "<p>The metric to adjust.</p>",
+        "Adjustment$Reason": "<p>The reason for the adjustment.</p>",
         "AdminAccount$AccountId": "<p>The Amazon Web Services account identifier of the Security Hub administrator account.</p>",
         "ArnList$member": null,
         "AvailabilityZone$ZoneName": "<p>The name of the Availability Zone.</p>",
@@ -3562,6 +3781,22 @@
         "AwsAutoScalingAutoScalingGroupDetails$LaunchConfigurationName": "<p>The name of the launch configuration.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$HealthCheckType": "<p>The service to use for the health checks.</p>",
         "AwsAutoScalingAutoScalingGroupDetails$CreatedTime": "<p>Indicates when the auto scaling group was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails$DeviceName": "<p>The device name that is exposed to the EC2 instance. For example, <code>/dev/sdh</code> or <code>xvdh</code>.</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails$VirtualName": "<p>The name of the virtual device (for example, <code>ephemeral0</code>).</p> <p>You can provide either <code>VirtualName</code> or <code>Ebs</code>, but not both.</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$SnapshotId": "<p>The snapshot ID of the volume to use.</p> <p>You must specify either <code>VolumeSize</code> or <code>SnapshotId</code>.</p>",
+        "AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails$VolumeType": "<p>The volume type.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$ClassicLinkVpcId": "<p>The identifier of a ClassicLink-enabled VPC that EC2-Classic instances are linked to.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$CreatedTime": "<p>The creation date and time for the launch configuration.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$IamInstanceProfile": "<p>The name or the ARN of the instance profile associated with the IAM role for the instance. The instance profile contains the IAM role.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$ImageId": "<p>The identifier of the Amazon Machine Image (AMI) that is used to launch EC2 instances.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$InstanceType": "<p>The instance type for the instances.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$KernelId": "<p>The identifier of the kernel associated with the AMI.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$KeyName": "<p>The name of the key pair.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$LaunchConfigurationName": "<p>The name of the launch configuration.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$PlacementTenancy": "<p>The tenancy of the instance. An instance with <code>dedicated</code> tenancy runs on isolated, single-tenant hardware and can only be launched into a VPC.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$RamdiskId": "<p>The identifier of the RAM disk associated with the AMI.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$SpotPrice": "<p>The maximum hourly price to be paid for any Spot Instance that is launched to fulfill the request.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$UserData": "<p>The user data to make available to the launched EC2 instances. Must be base64-encoded text.</p>",
         "AwsCertificateManagerCertificateDetails$CertificateAuthorityArn": "<p>The ARN of the private certificate authority (CA) that will be used to issue the certificate.</p>",
         "AwsCertificateManagerCertificateDetails$CreatedAt": "<p>Indicates when the certificate was requested.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsCertificateManagerCertificateDetails$DomainName": "<p>The fully qualified domain name (FQDN), such as www.example.com, that is secured by the certificate.</p>",
@@ -3616,7 +3851,7 @@
         "AwsCloudTrailTrailDetails$SnsTopicArn": "<p>The ARN of the SNS topic that is used for notifications of log file delivery.</p>",
         "AwsCloudTrailTrailDetails$SnsTopicName": "<p>The name of the SNS topic that is used for notifications of log file delivery.</p>",
         "AwsCloudTrailTrailDetails$TrailArn": "<p>The ARN of the trail.</p>",
-        "AwsCodeBuildProjectDetails$EncryptionKey": "<p>The KMS customer master key (CMK) used to encrypt the build output artifacts.</p> <p>You can specify either the ARN of the CMK or, if available, the CMK alias (using the format alias/alias-name). </p>",
+        "AwsCodeBuildProjectDetails$EncryptionKey": "<p>The KMS key used to encrypt the build output artifacts.</p> <p>You can specify either the ARN of the KMS key or, if available, the KMS key alias (using the format alias/alias-name). </p>",
         "AwsCodeBuildProjectDetails$Name": "<p>The name of the build project.</p>",
         "AwsCodeBuildProjectDetails$ServiceRole": "<p>The ARN of the IAM role that enables CodeBuild to interact with dependent Amazon Web Services services on behalf of the Amazon Web Services account.</p>",
         "AwsCodeBuildProjectEnvironment$Certificate": "<p>The certificate to use with this build project.</p>",
@@ -3648,7 +3883,7 @@
         "AwsDynamoDbTableProjection$ProjectionType": "<p>The types of attributes that are projected into the index.</p>",
         "AwsDynamoDbTableProvisionedThroughput$LastDecreaseDateTime": "<p>Indicates when the provisioned throughput was last decreased.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsDynamoDbTableProvisionedThroughput$LastIncreaseDateTime": "<p>Indicates when the provisioned throughput was last increased.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
-        "AwsDynamoDbTableReplica$KmsMasterKeyId": "<p>The identifier of the KMS customer master key (CMK) that will be used for KMS encryption for the replica.</p>",
+        "AwsDynamoDbTableReplica$KmsMasterKeyId": "<p>The identifier of the KMS key that will be used for KMS encryption for the replica.</p>",
         "AwsDynamoDbTableReplica$RegionName": "<p>The name of the Region where the replica is located.</p>",
         "AwsDynamoDbTableReplica$ReplicaStatus": "<p>The current status of the replica.</p>",
         "AwsDynamoDbTableReplica$ReplicaStatusDescription": "<p>Detailed information about the replica status.</p>",
@@ -3659,7 +3894,7 @@
         "AwsDynamoDbTableSseDescription$InaccessibleEncryptionDateTime": "<p>If the key is inaccessible, the date and time when DynamoDB detected that the key was inaccessible.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsDynamoDbTableSseDescription$Status": "<p>The status of the server-side encryption.</p>",
         "AwsDynamoDbTableSseDescription$SseType": "<p>The type of server-side encryption.</p>",
-        "AwsDynamoDbTableSseDescription$KmsMasterKeyArn": "<p>The ARN of the KMS customer master key (CMK) that is used for the KMS encryption.</p>",
+        "AwsDynamoDbTableSseDescription$KmsMasterKeyArn": "<p>The ARN of the KMS key that is used for the KMS encryption.</p>",
         "AwsDynamoDbTableStreamSpecification$StreamViewType": "<p>Determines the information that is written to the table.</p>",
         "AwsEc2EipDetails$InstanceId": "<p>The identifier of the EC2 instance.</p>",
         "AwsEc2EipDetails$PublicIp": "<p>A public IP address that is associated with the EC2 instance.</p>",
@@ -3730,9 +3965,32 @@
         "AwsEc2VolumeDetails$CreateTime": "<p>Indicates when the volume was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsEc2VolumeDetails$SnapshotId": "<p>The snapshot from which the volume was created.</p>",
         "AwsEc2VolumeDetails$Status": "<p>The volume state.</p>",
-        "AwsEc2VolumeDetails$KmsKeyId": "<p>The ARN of the KMS customer master key (CMK) that was used to protect the volume encryption key for the volume.</p>",
+        "AwsEc2VolumeDetails$KmsKeyId": "<p>The ARN of the KMS key that was used to protect the volume encryption key for the volume.</p>",
         "AwsEc2VpcDetails$DhcpOptionsId": "<p>The identifier of the set of Dynamic Host Configuration Protocol (DHCP) options that are associated with the VPC. If the default options are associated with the VPC, then this is default.</p>",
         "AwsEc2VpcDetails$State": "<p>The current state of the VPC.</p>",
+        "AwsEc2VpnConnectionDetails$VpnConnectionId": "<p>The identifier of the VPN connection.</p>",
+        "AwsEc2VpnConnectionDetails$State": "<p>The current state of the VPN connection.</p>",
+        "AwsEc2VpnConnectionDetails$CustomerGatewayId": "<p>The identifier of the customer gateway that is at your end of the VPN connection.</p>",
+        "AwsEc2VpnConnectionDetails$CustomerGatewayConfiguration": "<p>The configuration information for the VPN connection's customer gateway, in the native XML format.</p>",
+        "AwsEc2VpnConnectionDetails$Type": "<p>The type of VPN connection.</p>",
+        "AwsEc2VpnConnectionDetails$VpnGatewayId": "<p>The identifier of the virtual private gateway that is at the Amazon Web Services side of the VPN connection.</p>",
+        "AwsEc2VpnConnectionDetails$Category": "<p>The category of the VPN connection. <code>VPN</code> indicates an Amazon Web Services VPN connection. <code>VPN-Classic</code> indicates an Amazon Web Services Classic VPN connection.</p>",
+        "AwsEc2VpnConnectionDetails$TransitGatewayId": "<p>The identifier of the transit gateway that is associated with the VPN connection.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$OutsideIpAddress": "<p>The external IP address of the VPN tunnel.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$PreSharedKey": "<p>The preshared key to establish initial authentication between the virtual private gateway and the customer gateway.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$TunnelInsideCidr": "<p>The range of inside IPv4 addresses for the tunnel.</p>",
+        "AwsEc2VpnConnectionRoutesDetails$DestinationCidrBlock": "<p>The CIDR block associated with the local subnet of the customer data center.</p>",
+        "AwsEc2VpnConnectionRoutesDetails$State": "<p>The current state of the static route.</p>",
+        "AwsEc2VpnConnectionVgwTelemetryDetails$CertificateArn": "<p>The ARN of the VPN tunnel endpoint certificate.</p>",
+        "AwsEc2VpnConnectionVgwTelemetryDetails$LastStatusChange": "<p>The date and time of the last change in status.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsEc2VpnConnectionVgwTelemetryDetails$OutsideIpAddress": "<p>The Internet-routable IP address of the virtual private gateway's outside interface.</p>",
+        "AwsEc2VpnConnectionVgwTelemetryDetails$Status": "<p>The status of the VPN tunnel.</p>",
+        "AwsEc2VpnConnectionVgwTelemetryDetails$StatusMessage": "<p>If an error occurs, a description of the error.</p>",
+        "AwsEcrContainerImageDetails$RegistryId": "<p>The Amazon Web Services account identifier that is associated with the registry that the image belongs to.</p>",
+        "AwsEcrContainerImageDetails$RepositoryName": "<p>The name of the repository that the image belongs to.</p>",
+        "AwsEcrContainerImageDetails$Architecture": "<p>The architecture of the image.</p>",
+        "AwsEcrContainerImageDetails$ImageDigest": "<p>The sha256 digest of the image manifest.</p>",
+        "AwsEcrContainerImageDetails$ImagePublishedAt": "<p>The date and time when the image was pushed to the repository.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsEcsClusterClusterSettingsDetails$Name": "<p>The name of the setting.</p>",
         "AwsEcsClusterClusterSettingsDetails$Value": "<p>The value of the setting.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationDetails$KmsKeyId": "<p>The identifier of the KMS key that is used to encrypt the data between the local client and the container.</p>",
@@ -3935,11 +4193,11 @@
         "AwsIamUserDetails$UserId": "<p>The unique identifier for the user.</p>",
         "AwsIamUserDetails$UserName": "<p>The name of the user.</p>",
         "AwsIamUserPolicy$PolicyName": "<p>The name of the policy.</p>",
-        "AwsKmsKeyDetails$AWSAccountId": "<p>The twelve-digit account ID of the Amazon Web Services account that owns the CMK.</p>",
-        "AwsKmsKeyDetails$KeyId": "<p>The globally unique identifier for the CMK.</p>",
-        "AwsKmsKeyDetails$KeyManager": "<p>The manager of the CMK. CMKs in your Amazon Web Services account are either customer managed or Amazon Web Services managed.</p>",
-        "AwsKmsKeyDetails$KeyState": "<p>The state of the CMK.</p>",
-        "AwsKmsKeyDetails$Origin": "<p>The source of the CMK's key material.</p> <p>When this value is <code>AWS_KMS</code>, KMS created the key material.</p> <p>When this value is <code>EXTERNAL</code>, the key material was imported from your existing key management infrastructure or the CMK lacks key material.</p> <p>When this value is <code>AWS_CLOUDHSM</code>, the key material was created in the CloudHSM cluster associated with a custom key store.</p>",
+        "AwsKmsKeyDetails$AWSAccountId": "<p>The twelve-digit account ID of the Amazon Web Services account that owns the KMS key.</p>",
+        "AwsKmsKeyDetails$KeyId": "<p>The globally unique identifier for the KMS key.</p>",
+        "AwsKmsKeyDetails$KeyManager": "<p>The manager of the KMS key. KMS keys in your Amazon Web Services account are either customer managed or Amazon Web Services managed.</p>",
+        "AwsKmsKeyDetails$KeyState": "<p>The state of the KMS key.</p>",
+        "AwsKmsKeyDetails$Origin": "<p>The source of the KMS key material.</p> <p>When this value is <code>AWS_KMS</code>, KMS created the key material.</p> <p>When this value is <code>EXTERNAL</code>, the key material was imported from your existing key management infrastructure or the KMS key lacks key material.</p> <p>When this value is <code>AWS_CLOUDHSM</code>, the key material was created in the CloudHSM cluster associated with a custom key store.</p>",
         "AwsKmsKeyDetails$Description": "<p>A description of the key.</p>",
         "AwsLambdaFunctionCode$S3Bucket": "<p>An Amazon S3 bucket in the same Amazon Web Services Region as your function. The bucket can be in a different Amazon Web Services account.</p>",
         "AwsLambdaFunctionCode$S3Key": "<p>The Amazon S3 key of the deployment package.</p>",
@@ -3949,7 +4207,7 @@
         "AwsLambdaFunctionDetails$CodeSha256": "<p>The SHA256 hash of the function's deployment package.</p>",
         "AwsLambdaFunctionDetails$FunctionName": "<p>The name of the function.</p>",
         "AwsLambdaFunctionDetails$Handler": "<p>The function that Lambda calls to begin executing your function.</p>",
-        "AwsLambdaFunctionDetails$KmsKeyArn": "<p>The KMS key that is used to encrypt the function's environment variables. This key is only returned if you've configured a customer managed CMK.</p>",
+        "AwsLambdaFunctionDetails$KmsKeyArn": "<p>The KMS key that is used to encrypt the function's environment variables. This key is only returned if you've configured a customer managed customer managed key.</p>",
         "AwsLambdaFunctionDetails$LastModified": "<p>Indicates when the function was last updated.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsLambdaFunctionDetails$MasterArn": "<p>For Lambda@Edge functions, the ARN of the master function.</p>",
         "AwsLambdaFunctionDetails$RevisionId": "<p>The latest updated revision of the function or alias.</p>",
@@ -4161,22 +4419,40 @@
         "AwsS3BucketDetails$OwnerId": "<p>The canonical user ID of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$OwnerName": "<p>The display name of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$CreatedAt": "<p>Indicates when the S3 bucket was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsS3BucketDetails$AccessControlList": "<p>The access control list for the S3 bucket.</p>",
+        "AwsS3BucketLoggingConfiguration$DestinationBucketName": "<p>The name of the S3 bucket where log files for the S3 bucket are stored.</p>",
+        "AwsS3BucketLoggingConfiguration$LogFilePrefix": "<p>The prefix added to log files for the S3 bucket.</p>",
+        "AwsS3BucketNotificationConfigurationDetail$Destination": "<p>The ARN of the Lambda function, Amazon SQS queue, or Amazon SNS topic that generates the notification.</p>",
+        "AwsS3BucketNotificationConfigurationDetail$Type": "<p>Indicates the type of notification. Notifications can be generated using Lambda functions, Amazon SQS queues or Amazon SNS topics.</p>",
+        "AwsS3BucketNotificationConfigurationEvents$member": null,
+        "AwsS3BucketNotificationConfigurationS3KeyFilterRule$Value": "<p>The filter value.</p>",
         "AwsS3BucketServerSideEncryptionByDefault$SSEAlgorithm": "<p>Server-side encryption algorithm to use for the default encryption.</p>",
-        "AwsS3BucketServerSideEncryptionByDefault$KMSMasterKeyID": "<p>KMS customer master key (CMK) ID to use for the default encryption.</p>",
+        "AwsS3BucketServerSideEncryptionByDefault$KMSMasterKeyID": "<p>KMS key ID to use for the default encryption.</p>",
+        "AwsS3BucketWebsiteConfiguration$ErrorDocument": "<p>The name of the error document for the website.</p>",
+        "AwsS3BucketWebsiteConfiguration$IndexDocumentSuffix": "<p>The name of the index document for the website.</p>",
+        "AwsS3BucketWebsiteConfigurationRedirectTo$Hostname": "<p>The name of the host to redirect requests to.</p>",
+        "AwsS3BucketWebsiteConfigurationRedirectTo$Protocol": "<p>The protocol to use when redirecting requests. By default, uses the same protocol as the original request.</p>",
+        "AwsS3BucketWebsiteConfigurationRoutingRuleCondition$HttpErrorCodeReturnedEquals": "<p>Indicates to redirect the request if the HTTP error code matches this value.</p>",
+        "AwsS3BucketWebsiteConfigurationRoutingRuleCondition$KeyPrefixEquals": "<p>Indicates to redirect the request if the key prefix matches this value.</p>",
+        "AwsS3BucketWebsiteConfigurationRoutingRuleRedirect$Hostname": "<p>The host name to use in the redirect request.</p>",
+        "AwsS3BucketWebsiteConfigurationRoutingRuleRedirect$HttpRedirectCode": "<p>The HTTP redirect code to use in the response.</p>",
+        "AwsS3BucketWebsiteConfigurationRoutingRuleRedirect$Protocol": "<p>The protocol to use to redirect the request. By default, uses the protocol from the original request.</p>",
+        "AwsS3BucketWebsiteConfigurationRoutingRuleRedirect$ReplaceKeyPrefixWith": "<p>The object key prefix to use in the redirect request.</p> <p>Cannot be provided if <code>ReplaceKeyWith</code> is present.</p>",
+        "AwsS3BucketWebsiteConfigurationRoutingRuleRedirect$ReplaceKeyWith": "<p>The specific object key to use in the redirect request.</p> <p>Cannot be provided if <code>ReplaceKeyPrefixWith</code> is present.</p>",
         "AwsS3ObjectDetails$LastModified": "<p>Indicates when the object was last modified.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsS3ObjectDetails$ETag": "<p>The opaque identifier assigned by a web server to a specific version of a resource found at a URL.</p>",
         "AwsS3ObjectDetails$VersionId": "<p>The version of the object.</p>",
         "AwsS3ObjectDetails$ContentType": "<p>A standard MIME type describing the format of the object data.</p>",
         "AwsS3ObjectDetails$ServerSideEncryption": "<p>If the object is stored using server-side encryption, the value of the server-side encryption algorithm used when storing this object in Amazon S3.</p>",
-        "AwsS3ObjectDetails$SSEKMSKeyId": "<p>The identifier of the KMS symmetric customer managed customer master key (CMK) that was used for the object.</p>",
-        "AwsSecretsManagerSecretDetails$KmsKeyId": "<p>The ARN, Key ID, or alias of the KMS customer master key (CMK) used to encrypt the <code>SecretString</code> or <code>SecretBinary</code> values for versions of this secret.</p>",
+        "AwsS3ObjectDetails$SSEKMSKeyId": "<p>The identifier of the KMS symmetric customer managed key that was used for the object.</p>",
+        "AwsSecretsManagerSecretDetails$KmsKeyId": "<p>The ARN, Key ID, or alias of the KMS key used to encrypt the <code>SecretString</code> or <code>SecretBinary</code> values for versions of this secret.</p>",
         "AwsSecretsManagerSecretDetails$RotationLambdaArn": "<p>The ARN of the Lambda function that rotates the secret.</p>",
         "AwsSecretsManagerSecretDetails$Name": "<p>The name of the secret.</p>",
         "AwsSecretsManagerSecretDetails$Description": "<p>The user-provided description of the secret.</p>",
         "AwsSecurityFinding$SchemaVersion": "<p>The schema version that a finding is formatted for.</p>",
         "AwsSecurityFinding$Id": "<p>The security findings provider-specific identifier for a finding.</p>",
         "AwsSecurityFinding$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
-        "AwsSecurityFinding$ProductName": "<p>The name of the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update it using <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is when you use a custom integration.</p> <p>When you use the Security Hub console to filter findings by product name, you use this attribute.</p> <p>When you use the Security Hub API to filter findings by product name, you use the <code>aws/securityhub/ProductyName</code> attribute under <code>ProductFields</code>.</p> <p>Security Hub does not synchronize those two attributes.</p>",
+        "AwsSecurityFinding$ProductName": "<p>The name of the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update it using <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is when you use a custom integration.</p> <p>When you use the Security Hub console to filter findings by product name, you use this attribute.</p> <p>When you use the Security Hub API to filter findings by product name, you use the <code>aws/securityhub/ProductName</code> attribute under <code>ProductFields</code>.</p> <p>Security Hub does not synchronize those two attributes.</p>",
         "AwsSecurityFinding$CompanyName": "<p>The name of the company for the product that generated the finding.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot be updated using <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>. The exception to this is when you use a custom integration.</p> <p>When you use the Security Hub console to filter findings by company name, you use this attribute.</p> <p>When you use the Security Hub API to filter findings by company name, you use the <code>aws/securityhub/CompanyName</code> attribute under <code>ProductFields</code>.</p> <p>Security Hub does not synchronize those two attributes.</p>",
         "AwsSecurityFinding$Region": "<p>The Region from which the finding was generated.</p> <p>Security Hub populates this attribute automatically for each finding. You cannot update it using <code>BatchImportFindings</code> or <code>BatchUpdateFindings</code>.</p>",
         "AwsSecurityFinding$GeneratorId": "<p>The identifier for the solution-specific component (a discrete unit of logic) that generated a finding. In various security-findings providers' solutions, this generator can be called a rule, a check, a detector, a plugin, etc. </p>",
@@ -4190,12 +4466,12 @@
         "AwsSecurityFinding$SourceUrl": "<p>A URL that links to a page about the current finding in the security-findings provider's solution.</p>",
         "AwsSecurityFindingIdentifier$Id": "<p>The identifier of the finding that was specified by the finding provider.</p>",
         "AwsSecurityFindingIdentifier$ProductArn": "<p>The ARN generated by Security Hub that uniquely identifies a product that generates findings. This can be the ARN for a third-party product that is integrated with Security Hub, or the ARN for a custom integration.</p>",
-        "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an Amazon Web Services managed customer master key (CMK) for Amazon SNS or a custom CMK.</p>",
+        "AwsSnsTopicDetails$KmsMasterKeyId": "<p>The ID of an Amazon Web Services managed key for Amazon SNS or a customer managed key.</p>",
         "AwsSnsTopicDetails$TopicName": "<p>The name of the topic.</p>",
         "AwsSnsTopicDetails$Owner": "<p>The subscription's owner.</p>",
         "AwsSnsTopicSubscription$Endpoint": "<p>The subscription's endpoint (format depends on the protocol).</p>",
         "AwsSnsTopicSubscription$Protocol": "<p>The subscription's protocol.</p>",
-        "AwsSqsQueueDetails$KmsMasterKeyId": "<p>The ID of an Amazon Web Services managed customer master key (CMK) for Amazon SQS or a custom CMK.</p>",
+        "AwsSqsQueueDetails$KmsMasterKeyId": "<p>The ID of an Amazon Web Services managed key for Amazon SQS or a custom KMS key.</p>",
         "AwsSqsQueueDetails$QueueName": "<p>The name of the new queue.</p>",
         "AwsSqsQueueDetails$DeadLetterTargetArn": "<p>The ARN of the dead-letter queue to which Amazon SQS moves messages after the value of <code>maxReceiveCount</code> is exceeded. </p>",
         "AwsSsmComplianceSummary$Status": "<p>The current patch compliance status.</p> <p>The possible status values are:</p> <ul> <li> <p> <code>COMPLIANT</code> </p> </li> <li> <p> <code>NON_COMPLIANT</code> </p> </li> <li> <p> <code>UNSPECIFIED_DATA</code> </p> </li> </ul>",
@@ -4238,6 +4514,7 @@
         "CustomDataIdentifiersDetections$Name": "<p>he name of the custom identifier that detected the sensitive data.</p>",
         "Cvss$Version": "<p>The version of CVSS for the CVSS score.</p>",
         "Cvss$BaseVector": "<p>The base scoring vector for the CVSS score.</p>",
+        "Cvss$Source": "<p>The origin of the original CVSS score and vector.</p>",
         "DataClassificationDetails$DetailedResultsLocation": "<p>The path to the folder or file that contains the sensitive data.</p>",
         "DateFilter$Start": "<p>A start date for the date filter.</p>",
         "DateFilter$End": "<p>An end date for the date filter.</p>",
@@ -4332,7 +4609,7 @@
         "Product$ProductName": "<p>The name of the product.</p>",
         "Product$CompanyName": "<p>The name of the company that provides the product.</p>",
         "Product$Description": "<p>A description of the product.</p>",
-        "Product$MarketplaceUrl": "<p>For integrations with Amazon Web Services services, the Amazon Web Services Console URL from which to activate the service.</p> <p>For integrations with third-party products, the Marketplace URL from which to subscribe to or purchase the product.</p>",
+        "Product$MarketplaceUrl": "<p>For integrations with Amazon Web Services services, the Amazon Web Services Console URL from which to activate the service.</p> <p>For integrations with third-party products, the Amazon Web Services Marketplace URL from which to subscribe to or purchase the product.</p>",
         "Product$ActivationUrl": "<p>The URL to the service or product documentation about the integration with Security Hub, including how to activate the integration.</p>",
         "Product$ProductSubscriptionResourcePolicy": "<p>The resource policy associated with the product.</p>",
         "ProductSubscriptionArnList$member": null,
@@ -4360,6 +4637,8 @@
         "SoftwarePackage$Epoch": "<p>The epoch of the software package.</p>",
         "SoftwarePackage$Release": "<p>The release of the software package.</p>",
         "SoftwarePackage$Architecture": "<p>The architecture used for the software package.</p>",
+        "SoftwarePackage$PackageManager": "<p>The source of the package.</p>",
+        "SoftwarePackage$FilePath": "<p>The file system path to the package manager inventory file.</p>",
         "SortCriterion$Field": "<p>The finding attribute used to sort findings.</p>",
         "Standard$StandardsArn": "<p>The ARN of a standard.</p>",
         "Standard$Name": "<p>The name of the standard.</p>",
@@ -4409,12 +4688,20 @@
       "refs": {
         "AwsApiGatewayEndpointConfiguration$Types": "<p>A list of endpoint types for the REST API.</p> <p>For an edge-optimized API, the endpoint type is <code>EDGE</code>. For a Regional API, the endpoint type is <code>REGIONAL</code>. For a private API, the endpoint type is <code>PRIVATE</code>.</p>",
         "AwsApiGatewayRestApiDetails$BinaryMediaTypes": "<p>The list of binary media types supported by the REST API.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$ClassicLinkVpcSecurityGroups": "<p>The identifiers of one or more security groups for the VPC that is specified in <code>ClassicLinkVPCId</code>.</p>",
+        "AwsAutoScalingLaunchConfigurationDetails$SecurityGroups": "<p>The security groups to assign to the instances in the Auto Scaling group.</p>",
         "AwsCodeBuildProjectVpcConfig$Subnets": "<p>A list of one or more subnet IDs in your VPC.</p>",
         "AwsCodeBuildProjectVpcConfig$SecurityGroupIds": "<p>A list of one or more security group IDs in your VPC.</p>",
         "AwsCorsConfiguration$AllowOrigins": "<p>The allowed origins for CORS requests.</p>",
         "AwsCorsConfiguration$ExposeHeaders": "<p>The exposed headers for CORS requests.</p>",
         "AwsCorsConfiguration$AllowMethods": "<p>The allowed methods for CORS requests.</p>",
         "AwsCorsConfiguration$AllowHeaders": "<p>The allowed headers for CORS requests.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$IkeVersions": "<p>The Internet Key Exchange (IKE) versions that are permitted for the VPN tunnel.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase1EncryptionAlgorithms": "<p>The permitted encryption algorithms for the VPN tunnel for phase 1 IKE negotiations.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase1IntegrityAlgorithms": "<p>The permitted integrity algorithms for the VPN tunnel for phase 1 IKE negotiations.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase2EncryptionAlgorithms": "<p>The permitted encryption algorithms for the VPN tunnel for phase 2 IKE negotiations.</p>",
+        "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase2IntegrityAlgorithms": "<p>The permitted integrity algorithms for the VPN tunnel for phase 2 IKE negotiations.</p>",
+        "AwsEcrContainerImageDetails$ImageTags": "<p>The list of tags that are associated with the image.</p>",
         "AwsEcsClusterDetails$CapacityProviders": "<p>The short name of one or more capacity providers to associate with the cluster.</p>",
         "AwsEcsServiceNetworkConfigurationAwsVpcConfigurationDetails$SecurityGroups": "<p>The IDs of the security groups associated with the task or service.</p> <p>You can provide up to five security groups.</p>",
         "AwsEcsServiceNetworkConfigurationAwsVpcConfigurationDetails$Subnets": "<p>The IDs of the subnets associated with the task or service.</p> <p>You can provide up to 16 subnets.</p>",
@@ -5196,8 +5483,8 @@
     "WorkflowStatus": {
       "base": null,
       "refs": {
-        "Workflow$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> <p>Security Hub also resets the workflow status from <code>NOTIFIED</code> or <code>RESOLVED</code> to <code>NEW</code> in the following cases:</p> <ul> <li> <p> <code>RecordState</code> changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.</p> </li> <li> <p> <code>ComplianceStatus</code> changes from <code>PASSED</code> to either <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.</p> </li> </ul> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
-        "WorkflowUpdate$Status": "<p>The status of the investigation into the finding. The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> <p>Security Hub also resets <code>WorkFlowStatus</code> from <code>NOTIFIED</code> or <code>RESOLVED</code> to <code>NEW</code> in the following cases:</p> <ul> <li> <p>The record state changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.</p> </li> <li> <p>The compliance status changes from <code>PASSED</code> to either <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.</p> </li> </ul> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved.</p> </li> <li> <p> <code>SUPPRESSED</code> - The finding will not be reviewed again and will not be acted upon.</p> </li> </ul>"
+        "Workflow$Status": "<p>The status of the investigation into the finding. The workflow status is specific to an individual finding. It does not affect the generation of new findings. For example, setting the workflow status to <code>SUPPRESSED</code> or <code>RESOLVED</code> does not prevent a new finding for the same issue.</p> <p>The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> <p>Security Hub also resets the workflow status from <code>NOTIFIED</code> or <code>RESOLVED</code> to <code>NEW</code> in the following cases:</p> <ul> <li> <p> <code>RecordState</code> changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.</p> </li> <li> <p> <code>ComplianceStatus</code> changes from <code>PASSED</code> to either <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.</p> </li> </ul> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>SUPPRESSED</code> - Indicates that you reviewed the finding and do not believe that any action is needed. The finding is no longer updated.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved. </p> </li> </ul>",
+        "WorkflowUpdate$Status": "<p>The status of the investigation into the finding. The workflow status is specific to an individual finding. It does not affect the generation of new findings. For example, setting the workflow status to <code>SUPPRESSED</code> or <code>RESOLVED</code> does not prevent a new finding for the same issue.</p> <p>The allowed values are the following.</p> <ul> <li> <p> <code>NEW</code> - The initial state of a finding, before it is reviewed.</p> <p>Security Hub also resets <code>WorkFlowStatus</code> from <code>NOTIFIED</code> or <code>RESOLVED</code> to <code>NEW</code> in the following cases:</p> <ul> <li> <p>The record state changes from <code>ARCHIVED</code> to <code>ACTIVE</code>.</p> </li> <li> <p>The compliance status changes from <code>PASSED</code> to either <code>WARNING</code>, <code>FAILED</code>, or <code>NOT_AVAILABLE</code>.</p> </li> </ul> </li> <li> <p> <code>NOTIFIED</code> - Indicates that you notified the resource owner about the security issue. Used when the initial reviewer is not the resource owner, and needs intervention from the resource owner.</p> </li> <li> <p> <code>RESOLVED</code> - The finding was reviewed and remediated and is now considered resolved.</p> </li> <li> <p> <code>SUPPRESSED</code> - Indicates that you reviewed the finding and do not believe that any action is needed. The finding is no longer updated.</p> </li> </ul>"
       }
     },
     "WorkflowUpdate": {

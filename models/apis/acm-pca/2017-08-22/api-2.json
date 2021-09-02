@@ -1073,6 +1073,17 @@
       "max":500,
       "min":1
     },
+    "OcspConfiguration":{
+      "type":"structure",
+      "required":["Enabled"],
+      "members":{
+        "Enabled":{
+          "shape":"Boolean",
+          "box":true
+        },
+        "OcspCustomCname":{"shape":"String253"}
+      }
+    },
     "OtherName":{
       "type":"structure",
       "required":[
@@ -1214,7 +1225,8 @@
     "RevocationConfiguration":{
       "type":"structure",
       "members":{
-        "CrlConfiguration":{"shape":"CrlConfiguration"}
+        "CrlConfiguration":{"shape":"CrlConfiguration"},
+        "OcspConfiguration":{"shape":"OcspConfiguration"}
       }
     },
     "RevocationReason":{

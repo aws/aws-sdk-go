@@ -17,7 +17,7 @@ const (
 	// ErrCodeConflictException for service response error code
 	// "ConflictException".
 	//
-	// This exception is thrown when the UpdatServer is called for a file transfer
+	// This exception is thrown when the UpdateServer is called for a file transfer
 	// protocol-enabled server that has VPC as the endpoint type and the server's
 	// VpcEndpointID is not in the available state.
 	ErrCodeConflictException = "ConflictException"

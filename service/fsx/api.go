@@ -58,7 +58,7 @@ func (c *FSx) AssociateFileSystemAliasesRequest(input *AssociateFileSystemAliase
 // AssociateFileSystemAliases API operation for Amazon FSx.
 //
 // Use this action to associate one or more Domain Name Server (DNS) aliases
-// with an existing Amazon FSx for Windows File Server file system. A file systen
+// with an existing Amazon FSx for Windows File Server file system. A file system
 // can have a maximum of 50 DNS aliases associated with it at any one time.
 // If you try to associate a DNS alias that is already associated with the file
 // system, FSx takes no action on that alias in the request. For more information,
@@ -255,25 +255,26 @@ func (c *FSx) CopyBackupRequest(input *CopyBackupInput) (req *request.Request, o
 
 // CopyBackup API operation for Amazon FSx.
 //
-// Copies an existing backup within the same AWS account to another Region (cross-Region
-// copy) or within the same Region (in-Region copy). You can have up to five
-// backup copy requests in progress to a single destination Region per account.
+// Copies an existing backup within the same Amazon Web Services account to
+// another Amazon Web Services Region (cross-Region copy) or within the same
+// Amazon Web Services Region (in-Region copy). You can have up to five backup
+// copy requests in progress to a single destination Region per account.
 //
 // You can use cross-Region backup copies for cross-region disaster recovery.
 // You periodically take backups and copy them to another Region so that in
 // the event of a disaster in the primary Region, you can restore from backup
 // and recover availability quickly in the other Region. You can make cross-Region
-// copies only within your AWS partition.
+// copies only within your Amazon Web Services partition.
 //
 // You can also use backup copies to clone your file data set to another Region
 // or within the same Region.
 //
-// You can use the SourceRegion parameter to specify the AWS Region from which
-// the backup will be copied. For example, if you make the call from the us-west-1
-// Region and want to copy a backup from the us-east-2 Region, you specify us-east-2
-// in the SourceRegion parameter to make a cross-Region copy. If you don't specify
-// a Region, the backup copy is created in the same Region where the request
-// is sent from (in-Region copy).
+// You can use the SourceRegion parameter to specify the Amazon Web Services
+// Region from which the backup will be copied. For example, if you make the
+// call from the us-west-1 Region and want to copy a backup from the us-east-2
+// Region, you specify us-east-2 in the SourceRegion parameter to make a cross-Region
+// copy. If you don't specify a Region, the backup copy is created in the same
+// Region where the request is sent from (in-Region copy).
 //
 // For more information on creating backup copies, see Copying backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html#copy-backups)
 // in the Amazon FSx for Windows User Guide and Copying backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html#copy-backups)
@@ -295,7 +296,7 @@ func (c *FSx) CopyBackupRequest(input *CopyBackupInput) (req *request.Request, o
 //
 //   * ServiceLimitExceeded
 //   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   increase some service limits by contacting Amazon Web Services Support.
 //
 //   * UnsupportedOperation
 //   The requested operation is not supported for this resource or API.
@@ -309,15 +310,14 @@ func (c *FSx) CopyBackupRequest(input *CopyBackupInput) (req *request.Request, o
 //   A generic error indicating a server-side failure.
 //
 //   * InvalidSourceKmsKey
-//   The AWS Key Management Service (AWS KMS) key of the source backup is invalid.
+//   The Key Management Service (KMS) key of the source backup is invalid.
 //
 //   * InvalidDestinationKmsKey
-//   The AWS Key Management Service (AWS KMS) key of the destination backup is
-//   invalid.
+//   The Key Management Service (KMS) key of the destination backup is invalid.
 //
 //   * InvalidRegion
-//   The Region provided for Source Region is invalid or is in a different AWS
-//   partition.
+//   The Region provided for Source Region is invalid or is in a different Amazon
+//   Web Services partition.
 //
 //   * SourceBackupUnavailable
 //   The request was rejected because the lifecycle status of the source backup
@@ -393,22 +393,28 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 
 // CreateBackup API operation for Amazon FSx.
 //
-// Creates a backup of an existing Amazon FSx file system. Creating regular
-// backups for your file system is a best practice, enabling you to restore
-// a file system from a backup if an issue arises with the original file system.
+// Creates a backup of an existing Amazon FSx for Windows File Server or Amazon
+// FSx for Lustre file system, or of an Amazon FSx for NetApp ONTAP volume.
+// Creating regular backups is a best practice, enabling you to restore a file
+// system or volume from a backup if an issue arises with the original file
+// system or volume.
 //
 // For Amazon FSx for Lustre file systems, you can create a backup only for
 // file systems with the following configuration:
 //
 //    * a Persistent deployment type
 //
-//    * is not linked to a data respository.
+//    * is not linked to a data repository.
 //
-// For more information about backing up Amazon FSx for Lustre file systems,
-// see Working with FSx for Lustre backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
+// For more information about backups, see the following:
 //
-// For more information about backing up Amazon FSx for Windows file systems,
-// see Working with FSx for Windows backups (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html).
+//    * For Amazon FSx for Lustre, see Working with FSx for Lustre backups (https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html).
+//
+//    * For Amazon FSx for Windows, see Working with FSx for Windows backups
+//    (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/using-backups.html).
+//
+//    * For Amazon FSx for NetApp ONTAP, see Working with FSx for NetApp ONTAP
+//    backups (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/using-backups.html).
 //
 // If a backup with the specified client request token exists, and the parameters
 // match, this operation returns the description of the existing backup. If
@@ -449,6 +455,10 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 //   * FileSystemNotFound
 //   No Amazon FSx file systems were found based upon supplied parameters.
 //
+//   * VolumeNotFound
+//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
+//   parameters.
+//
 //   * BackupInProgress
 //   Another backup is already under way. Wait for completion before initiating
 //   additional backups of this file system.
@@ -460,7 +470,7 @@ func (c *FSx) CreateBackupRequest(input *CreateBackupInput) (req *request.Reques
 //
 //   * ServiceLimitExceeded
 //   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   increase some service limits by contacting Amazon Web Services Support.
 //
 //   * InternalServerError
 //   A generic error indicating a server-side failure.
@@ -566,7 +576,7 @@ func (c *FSx) CreateDataRepositoryTaskRequest(input *CreateDataRepositoryTaskInp
 //
 //   * ServiceLimitExceeded
 //   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   increase some service limits by contacting Amazon Web Services Support.
 //
 //   * InternalServerError
 //   A generic error indicating a server-side failure.
@@ -697,12 +707,7 @@ func (c *FSx) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //   The path provided for data repository export isn't valid.
 //
 //   * InvalidNetworkSettings
-//   One or more network settings specified in the request are invalid. InvalidVpcId
-//   means that the ID passed for the virtual private cloud (VPC) is invalid.
-//   InvalidSubnetIds returns the list of IDs for subnets that are either invalid
-//   or not part of the VPC specified. InvalidSecurityGroupIds returns the list
-//   of IDs for security groups that are either invalid or not part of the VPC
-//   specified.
+//   One or more network settings specified in the request are invalid.
 //
 //   * InvalidPerUnitStorageThroughput
 //   An invalid value for PerUnitStorageThroughput was provided. Please create
@@ -710,7 +715,7 @@ func (c *FSx) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //
 //   * ServiceLimitExceeded
 //   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   increase some service limits by contacting Amazon Web Services Support.
 //
 //   * InternalServerError
 //   A generic error indicating a server-side failure.
@@ -784,7 +789,8 @@ func (c *FSx) CreateFileSystemFromBackupRequest(input *CreateFileSystemFromBacku
 
 // CreateFileSystemFromBackup API operation for Amazon FSx.
 //
-// Creates a new Amazon FSx file system from an existing Amazon FSx backup.
+// Creates a new Amazon FSx for Lustre or Amazon FSx for Windows File Server
+// file system from an existing Amazon FSx backup.
 //
 // If a file system with the specified client request token exists and the parameters
 // match, this operation returns the description of the file system. If a client
@@ -835,12 +841,7 @@ func (c *FSx) CreateFileSystemFromBackupRequest(input *CreateFileSystemFromBacku
 //   always uniquely identify a single request.
 //
 //   * InvalidNetworkSettings
-//   One or more network settings specified in the request are invalid. InvalidVpcId
-//   means that the ID passed for the virtual private cloud (VPC) is invalid.
-//   InvalidSubnetIds returns the list of IDs for subnets that are either invalid
-//   or not part of the VPC specified. InvalidSecurityGroupIds returns the list
-//   of IDs for security groups that are either invalid or not part of the VPC
-//   specified.
+//   One or more network settings specified in the request are invalid.
 //
 //   * InvalidPerUnitStorageThroughput
 //   An invalid value for PerUnitStorageThroughput was provided. Please create
@@ -848,7 +849,7 @@ func (c *FSx) CreateFileSystemFromBackupRequest(input *CreateFileSystemFromBacku
 //
 //   * ServiceLimitExceeded
 //   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   increase some service limits by contacting Amazon Web Services Support.
 //
 //   * BackupNotFound
 //   No Amazon FSx backups were found based upon the supplied parameters.
@@ -876,6 +877,314 @@ func (c *FSx) CreateFileSystemFromBackup(input *CreateFileSystemFromBackupInput)
 // for more information on using Contexts.
 func (c *FSx) CreateFileSystemFromBackupWithContext(ctx aws.Context, input *CreateFileSystemFromBackupInput, opts ...request.Option) (*CreateFileSystemFromBackupOutput, error) {
 	req, out := c.CreateFileSystemFromBackupRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateStorageVirtualMachine = "CreateStorageVirtualMachine"
+
+// CreateStorageVirtualMachineRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStorageVirtualMachine operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStorageVirtualMachine for more information on using the CreateStorageVirtualMachine
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateStorageVirtualMachineRequest method.
+//    req, resp := client.CreateStorageVirtualMachineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateStorageVirtualMachine
+func (c *FSx) CreateStorageVirtualMachineRequest(input *CreateStorageVirtualMachineInput) (req *request.Request, output *CreateStorageVirtualMachineOutput) {
+	op := &request.Operation{
+		Name:       opCreateStorageVirtualMachine,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateStorageVirtualMachineInput{}
+	}
+
+	output = &CreateStorageVirtualMachineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateStorageVirtualMachine API operation for Amazon FSx.
+//
+// Creates a storage virtual machine (SVM) for an Amazon FSx for ONTAP file
+// system.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateStorageVirtualMachine for usage and error information.
+//
+// Returned Error Types:
+//   * ActiveDirectoryError
+//   An Active Directory error.
+//
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * FileSystemNotFound
+//   No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   * IncompatibleParameterError
+//   The error returned when a second request is received with the same client
+//   request token but different parameters settings. A client request token should
+//   always uniquely identify a single request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * ServiceLimitExceeded
+//   An error indicating that a particular service limit was exceeded. You can
+//   increase some service limits by contacting Amazon Web Services Support.
+//
+//   * UnsupportedOperation
+//   The requested operation is not supported for this resource or API.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateStorageVirtualMachine
+func (c *FSx) CreateStorageVirtualMachine(input *CreateStorageVirtualMachineInput) (*CreateStorageVirtualMachineOutput, error) {
+	req, out := c.CreateStorageVirtualMachineRequest(input)
+	return out, req.Send()
+}
+
+// CreateStorageVirtualMachineWithContext is the same as CreateStorageVirtualMachine with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStorageVirtualMachine for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateStorageVirtualMachineWithContext(ctx aws.Context, input *CreateStorageVirtualMachineInput, opts ...request.Option) (*CreateStorageVirtualMachineOutput, error) {
+	req, out := c.CreateStorageVirtualMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateVolume = "CreateVolume"
+
+// CreateVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVolume operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVolume for more information on using the CreateVolume
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateVolumeRequest method.
+//    req, resp := client.CreateVolumeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolume
+func (c *FSx) CreateVolumeRequest(input *CreateVolumeInput) (req *request.Request, output *CreateVolumeOutput) {
+	op := &request.Operation{
+		Name:       opCreateVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateVolumeInput{}
+	}
+
+	output = &CreateVolumeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVolume API operation for Amazon FSx.
+//
+// Creates an Amazon FSx for NetApp ONTAP storage volume.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateVolume for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * FileSystemNotFound
+//   No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   * IncompatibleParameterError
+//   The error returned when a second request is received with the same client
+//   request token but different parameters settings. A client request token should
+//   always uniquely identify a single request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * MissingVolumeConfiguration
+//   A volume configuration is required for this operation.
+//
+//   * ServiceLimitExceeded
+//   An error indicating that a particular service limit was exceeded. You can
+//   increase some service limits by contacting Amazon Web Services Support.
+//
+//   * StorageVirtualMachineNotFound
+//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//
+//   * UnsupportedOperation
+//   The requested operation is not supported for this resource or API.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolume
+func (c *FSx) CreateVolume(input *CreateVolumeInput) (*CreateVolumeOutput, error) {
+	req, out := c.CreateVolumeRequest(input)
+	return out, req.Send()
+}
+
+// CreateVolumeWithContext is the same as CreateVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateVolumeWithContext(ctx aws.Context, input *CreateVolumeInput, opts ...request.Option) (*CreateVolumeOutput, error) {
+	req, out := c.CreateVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateVolumeFromBackup = "CreateVolumeFromBackup"
+
+// CreateVolumeFromBackupRequest generates a "aws/request.Request" representing the
+// client's request for the CreateVolumeFromBackup operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateVolumeFromBackup for more information on using the CreateVolumeFromBackup
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateVolumeFromBackupRequest method.
+//    req, resp := client.CreateVolumeFromBackupRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolumeFromBackup
+func (c *FSx) CreateVolumeFromBackupRequest(input *CreateVolumeFromBackupInput) (req *request.Request, output *CreateVolumeFromBackupOutput) {
+	op := &request.Operation{
+		Name:       opCreateVolumeFromBackup,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateVolumeFromBackupInput{}
+	}
+
+	output = &CreateVolumeFromBackupOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateVolumeFromBackup API operation for Amazon FSx.
+//
+// Creates a new Amazon FSx for NetApp ONTAP volume from an existing Amazon
+// FSx volume backup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation CreateVolumeFromBackup for usage and error information.
+//
+// Returned Error Types:
+//   * BackupNotFound
+//   No Amazon FSx backups were found based upon the supplied parameters.
+//
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * FileSystemNotFound
+//   No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   * IncompatibleParameterError
+//   The error returned when a second request is received with the same client
+//   request token but different parameters settings. A client request token should
+//   always uniquely identify a single request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * MissingVolumeConfiguration
+//   A volume configuration is required for this operation.
+//
+//   * ServiceLimitExceeded
+//   An error indicating that a particular service limit was exceeded. You can
+//   increase some service limits by contacting Amazon Web Services Support.
+//
+//   * StorageVirtualMachineNotFound
+//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/CreateVolumeFromBackup
+func (c *FSx) CreateVolumeFromBackup(input *CreateVolumeFromBackupInput) (*CreateVolumeFromBackupOutput, error) {
+	req, out := c.CreateVolumeFromBackupRequest(input)
+	return out, req.Send()
+}
+
+// CreateVolumeFromBackupWithContext is the same as CreateVolumeFromBackup with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateVolumeFromBackup for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) CreateVolumeFromBackupWithContext(ctx aws.Context, input *CreateVolumeFromBackupInput, opts ...request.Option) (*CreateVolumeFromBackupOutput, error) {
+	req, out := c.CreateVolumeFromBackupRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1036,6 +1345,10 @@ func (c *FSx) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 // no longer exists, and its data is gone. Any existing automatic backups will
 // also be deleted.
 //
+// To delete an Amazon FSx for NetApp ONTAP file system, first delete all the
+// volumes and SVMs on the file system. Then provide a FileSystemId value to
+// the DeleFileSystem operation.
+//
 // By default, when you delete an Amazon FSx for Windows File Server file system,
 // a final backup is created upon deletion. This final backup is not subject
 // to the file system's retention policy, and must be manually deleted.
@@ -1073,7 +1386,7 @@ func (c *FSx) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 //
 //   * ServiceLimitExceeded
 //   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   increase some service limits by contacting Amazon Web Services Support.
 //
 //   * InternalServerError
 //   A generic error indicating a server-side failure.
@@ -1095,6 +1408,192 @@ func (c *FSx) DeleteFileSystem(input *DeleteFileSystemInput) (*DeleteFileSystemO
 // for more information on using Contexts.
 func (c *FSx) DeleteFileSystemWithContext(ctx aws.Context, input *DeleteFileSystemInput, opts ...request.Option) (*DeleteFileSystemOutput, error) {
 	req, out := c.DeleteFileSystemRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteStorageVirtualMachine = "DeleteStorageVirtualMachine"
+
+// DeleteStorageVirtualMachineRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStorageVirtualMachine operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStorageVirtualMachine for more information on using the DeleteStorageVirtualMachine
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteStorageVirtualMachineRequest method.
+//    req, resp := client.DeleteStorageVirtualMachineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteStorageVirtualMachine
+func (c *FSx) DeleteStorageVirtualMachineRequest(input *DeleteStorageVirtualMachineInput) (req *request.Request, output *DeleteStorageVirtualMachineOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStorageVirtualMachine,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteStorageVirtualMachineInput{}
+	}
+
+	output = &DeleteStorageVirtualMachineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteStorageVirtualMachine API operation for Amazon FSx.
+//
+// Deletes an existing Amazon FSx for ONTAP storage virtual machine (SVM). Prior
+// to deleting an SVM, you must delete all non-root volumes in the SVM, otherwise
+// the operation will fail.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DeleteStorageVirtualMachine for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * IncompatibleParameterError
+//   The error returned when a second request is received with the same client
+//   request token but different parameters settings. A client request token should
+//   always uniquely identify a single request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * StorageVirtualMachineNotFound
+//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteStorageVirtualMachine
+func (c *FSx) DeleteStorageVirtualMachine(input *DeleteStorageVirtualMachineInput) (*DeleteStorageVirtualMachineOutput, error) {
+	req, out := c.DeleteStorageVirtualMachineRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStorageVirtualMachineWithContext is the same as DeleteStorageVirtualMachine with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStorageVirtualMachine for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DeleteStorageVirtualMachineWithContext(ctx aws.Context, input *DeleteStorageVirtualMachineInput, opts ...request.Option) (*DeleteStorageVirtualMachineOutput, error) {
+	req, out := c.DeleteStorageVirtualMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteVolume = "DeleteVolume"
+
+// DeleteVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteVolume operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteVolume for more information on using the DeleteVolume
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteVolumeRequest method.
+//    req, resp := client.DeleteVolumeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteVolume
+func (c *FSx) DeleteVolumeRequest(input *DeleteVolumeInput) (req *request.Request, output *DeleteVolumeOutput) {
+	op := &request.Operation{
+		Name:       opDeleteVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteVolumeInput{}
+	}
+
+	output = &DeleteVolumeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteVolume API operation for Amazon FSx.
+//
+// Deletes an Amazon FSx for NetApp ONTAP volume. When deleting a volume, you
+// have the option of creating a final backup. If you create a final backup,
+// you have the option to apply Tags to the backup. You need to have fsx:TagResource
+// permission in order to apply tags to the backup.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DeleteVolume for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * IncompatibleParameterError
+//   The error returned when a second request is received with the same client
+//   request token but different parameters settings. A client request token should
+//   always uniquely identify a single request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * VolumeNotFound
+//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
+//   parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DeleteVolume
+func (c *FSx) DeleteVolume(input *DeleteVolumeInput) (*DeleteVolumeOutput, error) {
+	req, out := c.DeleteVolumeRequest(input)
+	return out, req.Send()
+}
+
+// DeleteVolumeWithContext is the same as DeleteVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DeleteVolumeWithContext(ctx aws.Context, input *DeleteVolumeInput, opts ...request.Option) (*DeleteVolumeOutput, error) {
+	req, out := c.DeleteVolumeRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1152,7 +1651,8 @@ func (c *FSx) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.
 //
 // Returns the description of specific Amazon FSx backups, if a BackupIds value
 // is provided for that backup. Otherwise, it returns all backups owned by your
-// AWS account in the AWS Region of the endpoint that you're calling.
+// Amazon Web Services account in the Amazon Web Services Region of the endpoint
+// that you're calling.
 //
 // When retrieving all backups, you can optionally specify the MaxResults parameter
 // to limit the number of backups in a response. If more backups remain, Amazon
@@ -1167,7 +1667,7 @@ func (c *FSx) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.
 //
 // When using this action, keep the following in mind:
 //
-//    * The implementation might return fewer than MaxResults file system descriptions
+//    * The implementation might return fewer than MaxResults backup descriptions
 //    while still including a NextToken value.
 //
 //    * The order of backups returned in the response of one DescribeBackups
@@ -1187,6 +1687,10 @@ func (c *FSx) DescribeBackupsRequest(input *DescribeBackupsInput) (req *request.
 //
 //   * FileSystemNotFound
 //   No Amazon FSx file systems were found based upon supplied parameters.
+//
+//   * VolumeNotFound
+//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
+//   parameters.
 //
 //   * BackupNotFound
 //   No Amazon FSx backups were found based upon the supplied parameters.
@@ -1322,8 +1826,9 @@ func (c *FSx) DescribeDataRepositoryTasksRequest(input *DescribeDataRepositoryTa
 // tasks, if one or more TaskIds values are provided in the request, or if filters
 // are used in the request. You can use filters to narrow the response to include
 // just tasks for specific file systems, or tasks in a specific lifecycle state.
-// Otherwise, it returns all data repository tasks owned by your AWS account
-// in the AWS Region of the endpoint that you're calling.
+// Otherwise, it returns all data repository tasks owned by your Amazon Web
+// Services account in the Amazon Web Services Region of the endpoint that you're
+// calling.
 //
 // When retrieving all tasks, you can paginate the response by using the optional
 // MaxResults parameter to limit the number of tasks returned in a response.
@@ -1624,8 +2129,8 @@ func (c *FSx) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 //
 // Returns the description of specific Amazon FSx file systems, if a FileSystemIds
 // value is provided for that file system. Otherwise, it returns descriptions
-// of all file systems owned by your AWS account in the AWS Region of the endpoint
-// that you're calling.
+// of all file systems owned by your Amazon Web Services account in the Amazon
+// Web Services Region of the endpoint that you're calling.
 //
 // When retrieving all file system descriptions, you can optionally specify
 // the MaxResults parameter to limit the number of descriptions in a response.
@@ -1731,6 +2236,294 @@ func (c *FSx) DescribeFileSystemsPagesWithContext(ctx aws.Context, input *Descri
 
 	for p.Next() {
 		if !fn(p.Page().(*DescribeFileSystemsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeStorageVirtualMachines = "DescribeStorageVirtualMachines"
+
+// DescribeStorageVirtualMachinesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStorageVirtualMachines operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStorageVirtualMachines for more information on using the DescribeStorageVirtualMachines
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeStorageVirtualMachinesRequest method.
+//    req, resp := client.DescribeStorageVirtualMachinesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeStorageVirtualMachines
+func (c *FSx) DescribeStorageVirtualMachinesRequest(input *DescribeStorageVirtualMachinesInput) (req *request.Request, output *DescribeStorageVirtualMachinesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStorageVirtualMachines,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeStorageVirtualMachinesInput{}
+	}
+
+	output = &DescribeStorageVirtualMachinesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeStorageVirtualMachines API operation for Amazon FSx.
+//
+// Describes one or more Amazon FSx for NetApp ONTAP storage virtual machines
+// (SVMs).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeStorageVirtualMachines for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * StorageVirtualMachineNotFound
+//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeStorageVirtualMachines
+func (c *FSx) DescribeStorageVirtualMachines(input *DescribeStorageVirtualMachinesInput) (*DescribeStorageVirtualMachinesOutput, error) {
+	req, out := c.DescribeStorageVirtualMachinesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStorageVirtualMachinesWithContext is the same as DescribeStorageVirtualMachines with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStorageVirtualMachines for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeStorageVirtualMachinesWithContext(ctx aws.Context, input *DescribeStorageVirtualMachinesInput, opts ...request.Option) (*DescribeStorageVirtualMachinesOutput, error) {
+	req, out := c.DescribeStorageVirtualMachinesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeStorageVirtualMachinesPages iterates over the pages of a DescribeStorageVirtualMachines operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeStorageVirtualMachines method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeStorageVirtualMachines operation.
+//    pageNum := 0
+//    err := client.DescribeStorageVirtualMachinesPages(params,
+//        func(page *fsx.DescribeStorageVirtualMachinesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FSx) DescribeStorageVirtualMachinesPages(input *DescribeStorageVirtualMachinesInput, fn func(*DescribeStorageVirtualMachinesOutput, bool) bool) error {
+	return c.DescribeStorageVirtualMachinesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeStorageVirtualMachinesPagesWithContext same as DescribeStorageVirtualMachinesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeStorageVirtualMachinesPagesWithContext(ctx aws.Context, input *DescribeStorageVirtualMachinesInput, fn func(*DescribeStorageVirtualMachinesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeStorageVirtualMachinesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeStorageVirtualMachinesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeStorageVirtualMachinesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opDescribeVolumes = "DescribeVolumes"
+
+// DescribeVolumesRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeVolumes operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeVolumes for more information on using the DescribeVolumes
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeVolumesRequest method.
+//    req, resp := client.DescribeVolumesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeVolumes
+func (c *FSx) DescribeVolumesRequest(input *DescribeVolumesInput) (req *request.Request, output *DescribeVolumesOutput) {
+	op := &request.Operation{
+		Name:       opDescribeVolumes,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &DescribeVolumesInput{}
+	}
+
+	output = &DescribeVolumesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeVolumes API operation for Amazon FSx.
+//
+// Describes one or more Amazon FSx for NetApp ONTAP volumes.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation DescribeVolumes for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * VolumeNotFound
+//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
+//   parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/DescribeVolumes
+func (c *FSx) DescribeVolumes(input *DescribeVolumesInput) (*DescribeVolumesOutput, error) {
+	req, out := c.DescribeVolumesRequest(input)
+	return out, req.Send()
+}
+
+// DescribeVolumesWithContext is the same as DescribeVolumes with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeVolumes for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeVolumesWithContext(ctx aws.Context, input *DescribeVolumesInput, opts ...request.Option) (*DescribeVolumesOutput, error) {
+	req, out := c.DescribeVolumesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// DescribeVolumesPages iterates over the pages of a DescribeVolumes operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See DescribeVolumes method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a DescribeVolumes operation.
+//    pageNum := 0
+//    err := client.DescribeVolumesPages(params,
+//        func(page *fsx.DescribeVolumesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FSx) DescribeVolumesPages(input *DescribeVolumesInput, fn func(*DescribeVolumesOutput, bool) bool) error {
+	return c.DescribeVolumesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// DescribeVolumesPagesWithContext same as DescribeVolumesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) DescribeVolumesPagesWithContext(ctx aws.Context, input *DescribeVolumesInput, fn func(*DescribeVolumesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *DescribeVolumesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.DescribeVolumesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*DescribeVolumesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -1863,6 +2656,12 @@ func (c *FSx) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 		Name:       opListTagsForResource,
 		HTTPMethod: "POST",
 		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
 	}
 
 	if input == nil {
@@ -1943,6 +2742,58 @@ func (c *FSx) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsFor
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// ListTagsForResourcePages iterates over the pages of a ListTagsForResource operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListTagsForResource method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListTagsForResource operation.
+//    pageNum := 0
+//    err := client.ListTagsForResourcePages(params,
+//        func(page *fsx.ListTagsForResourceOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *FSx) ListTagsForResourcePages(input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool) error {
+	return c.ListTagsForResourcePagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListTagsForResourcePagesWithContext same as ListTagsForResourcePages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) ListTagsForResourcePagesWithContext(ctx aws.Context, input *ListTagsForResourceInput, fn func(*ListTagsForResourceOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListTagsForResourceInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListTagsForResourceRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListTagsForResourceOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opTagResource = "TagResource"
@@ -2209,6 +3060,17 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //    * WeeklyMaintenanceStartTime
 //
+// For Amazon FSx for NetApp ONTAP file systems, you can update the following
+// properties:
+//
+//    * AutomaticBackupRetentionDays
+//
+//    * DailyAutomaticBackupStartTime
+//
+//    * FsxAdminPassword
+//
+//    * WeeklyMaintenanceStartTime
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -2239,7 +3101,7 @@ func (c *FSx) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //   * ServiceLimitExceeded
 //   An error indicating that a particular service limit was exceeded. You can
-//   increase some service limits by contacting AWS Support.
+//   increase some service limits by contacting Amazon Web Services Support.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateFileSystem
 func (c *FSx) UpdateFileSystem(input *UpdateFileSystemInput) (*UpdateFileSystemOutput, error) {
@@ -2263,23 +3125,210 @@ func (c *FSx) UpdateFileSystemWithContext(ctx aws.Context, input *UpdateFileSyst
 	return out, req.Send()
 }
 
+const opUpdateStorageVirtualMachine = "UpdateStorageVirtualMachine"
+
+// UpdateStorageVirtualMachineRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateStorageVirtualMachine operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateStorageVirtualMachine for more information on using the UpdateStorageVirtualMachine
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateStorageVirtualMachineRequest method.
+//    req, resp := client.UpdateStorageVirtualMachineRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateStorageVirtualMachine
+func (c *FSx) UpdateStorageVirtualMachineRequest(input *UpdateStorageVirtualMachineInput) (req *request.Request, output *UpdateStorageVirtualMachineOutput) {
+	op := &request.Operation{
+		Name:       opUpdateStorageVirtualMachine,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateStorageVirtualMachineInput{}
+	}
+
+	output = &UpdateStorageVirtualMachineOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateStorageVirtualMachine API operation for Amazon FSx.
+//
+// Updates an Amazon FSx for ONTAP storage virtual machine (SVM).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateStorageVirtualMachine for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * IncompatibleParameterError
+//   The error returned when a second request is received with the same client
+//   request token but different parameters settings. A client request token should
+//   always uniquely identify a single request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * StorageVirtualMachineNotFound
+//   No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+//
+//   * UnsupportedOperation
+//   The requested operation is not supported for this resource or API.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateStorageVirtualMachine
+func (c *FSx) UpdateStorageVirtualMachine(input *UpdateStorageVirtualMachineInput) (*UpdateStorageVirtualMachineOutput, error) {
+	req, out := c.UpdateStorageVirtualMachineRequest(input)
+	return out, req.Send()
+}
+
+// UpdateStorageVirtualMachineWithContext is the same as UpdateStorageVirtualMachine with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateStorageVirtualMachine for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateStorageVirtualMachineWithContext(ctx aws.Context, input *UpdateStorageVirtualMachineInput, opts ...request.Option) (*UpdateStorageVirtualMachineOutput, error) {
+	req, out := c.UpdateStorageVirtualMachineRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateVolume = "UpdateVolume"
+
+// UpdateVolumeRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateVolume operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateVolume for more information on using the UpdateVolume
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateVolumeRequest method.
+//    req, resp := client.UpdateVolumeRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateVolume
+func (c *FSx) UpdateVolumeRequest(input *UpdateVolumeInput) (req *request.Request, output *UpdateVolumeOutput) {
+	op := &request.Operation{
+		Name:       opUpdateVolume,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &UpdateVolumeInput{}
+	}
+
+	output = &UpdateVolumeOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateVolume API operation for Amazon FSx.
+//
+// Updates an Amazon FSx for NetApp ONTAP volume's configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon FSx's
+// API operation UpdateVolume for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequest
+//   A generic error indicating a failure with a client request.
+//
+//   * IncompatibleParameterError
+//   The error returned when a second request is received with the same client
+//   request token but different parameters settings. A client request token should
+//   always uniquely identify a single request.
+//
+//   * InternalServerError
+//   A generic error indicating a server-side failure.
+//
+//   * MissingVolumeConfiguration
+//   A volume configuration is required for this operation.
+//
+//   * VolumeNotFound
+//   No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
+//   parameters.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/fsx-2018-03-01/UpdateVolume
+func (c *FSx) UpdateVolume(input *UpdateVolumeInput) (*UpdateVolumeOutput, error) {
+	req, out := c.UpdateVolumeRequest(input)
+	return out, req.Send()
+}
+
+// UpdateVolumeWithContext is the same as UpdateVolume with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateVolume for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *FSx) UpdateVolumeWithContext(ctx aws.Context, input *UpdateVolumeInput, opts ...request.Option) (*UpdateVolumeOutput, error) {
+	req, out := c.UpdateVolumeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // The Microsoft AD attributes of the Amazon FSx for Windows File Server file
 // system.
 type ActiveDirectoryBackupAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the AWS Managed Microsoft Active Directory instance to which the
-	// file system is joined.
+	// The ID of the Amazon Web Services Managed Microsoft Active Directory instance
+	// to which the file system is joined.
 	ActiveDirectoryId *string `min:"12" type:"string"`
 
 	// The fully qualified domain name of the self-managed AD directory.
 	DomainName *string `min:"1" type:"string"`
 
 	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
-	// AWS resources. We require an ARN when you need to specify a resource unambiguously
-	// across all of AWS. For more information, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	ResourceARN *string `min:"8" type:"string"`
 }
 
@@ -2440,6 +3489,9 @@ type AdministrativeAction struct {
 	// UpdateFileSystem operation. Returned for FILE_SYSTEM_UPDATE administrative
 	// actions.
 	TargetFileSystemValues *FileSystem `type:"structure"`
+
+	// Describes an Amazon FSx for NetApp ONTAP volume.
+	TargetVolumeValues *Volume `type:"structure"`
 }
 
 // String returns the string representation
@@ -2488,6 +3540,12 @@ func (s *AdministrativeAction) SetTargetFileSystemValues(v *FileSystem) *Adminis
 	return s
 }
 
+// SetTargetVolumeValues sets the TargetVolumeValues field's value.
+func (s *AdministrativeAction) SetTargetVolumeValues(v *Volume) *AdministrativeAction {
+	s.TargetVolumeValues = v
+	return s
+}
+
 // Provides information about a failed administrative action.
 type AdministrativeActionFailureDetails struct {
 	_ struct{} `type:"structure"`
@@ -2533,8 +3591,8 @@ type Alias struct {
 	//    * DELETING - Amazon FSx is disassociating the DNS alias from the file
 	//    system and deleting it.
 	//
-	//    * DELETE_FAILED - Amazon FSx was unable to disassocate the DNS alias from
-	//    the file system.
+	//    * DELETE_FAILED - Amazon FSx was unable to disassociate the DNS alias
+	//    from the file system.
 	Lifecycle *string `type:"string" enum:"AliasLifecycle"`
 
 	// The name of the DNS alias. The alias name has to meet the following requirements:
@@ -2603,7 +3661,7 @@ type AssociateFileSystemAliasesInput struct {
 
 	// (Optional) An idempotency token for resource creation, in a string of up
 	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// Specifies the file system with which you want to associate one or more DNS
@@ -2692,7 +3750,8 @@ func (s *AssociateFileSystemAliasesOutput) SetAliases(v []*Alias) *AssociateFile
 	return s
 }
 
-// A backup of an Amazon FSx file system.
+// A backup of an Amazon FSx for Windows File Server or Amazon FSx for Lustre
+// file system, or of an Amazon FSx for NetApp ONTAP volume.
 type Backup struct {
 	_ struct{} `type:"structure"`
 
@@ -2719,8 +3778,8 @@ type Backup struct {
 	// FileSystem is a required field
 	FileSystem *FileSystem `type:"structure" required:"true"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// backup of the Amazon FSx file system's data at rest.
+	// The ID of the Key Management Service (KMS) key used to encrypt the backup
+	// of the Amazon FSx file system's data at rest.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The lifecycle status of the backup.
@@ -2744,8 +3803,8 @@ type Backup struct {
 	// Lifecycle is a required field
 	Lifecycle *string `type:"string" required:"true" enum:"BackupLifecycle"`
 
-	// An AWS account ID. This ID is a 12-digit number that you use to construct
-	// Amazon Resource Names (ARNs) for resources.
+	// An Amazon Web Services account ID. This ID is a 12-digit number that you
+	// use to construct Amazon Resource Names (ARNs) for resources.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The current percent of progress of an asynchronous task.
@@ -2753,6 +3812,9 @@ type Backup struct {
 
 	// The Amazon Resource Name (ARN) for the backup resource.
 	ResourceARN *string `min:"8" type:"string"`
+
+	// Specifies the resource type that is backed up.
+	ResourceType *string `type:"string" enum:"ResourceType"`
 
 	// The ID of the source backup. Specifies the backup you are copying.
 	SourceBackupId *string `min:"12" type:"string"`
@@ -2768,6 +3830,9 @@ type Backup struct {
 	//
 	// Type is a required field
 	Type *string `type:"string" required:"true" enum:"BackupType"`
+
+	// Describes an Amazon FSx for NetApp ONTAP volume.
+	Volume *Volume `type:"structure"`
 }
 
 // String returns the string representation
@@ -2840,6 +3905,12 @@ func (s *Backup) SetResourceARN(v string) *Backup {
 	return s
 }
 
+// SetResourceType sets the ResourceType field's value.
+func (s *Backup) SetResourceType(v string) *Backup {
+	s.ResourceType = &v
+	return s
+}
+
 // SetSourceBackupId sets the SourceBackupId field's value.
 func (s *Backup) SetSourceBackupId(v string) *Backup {
 	s.SourceBackupId = &v
@@ -2861,6 +3932,12 @@ func (s *Backup) SetTags(v []*Tag) *Backup {
 // SetType sets the Type field's value.
 func (s *Backup) SetType(v string) *Backup {
 	s.Type = &v
+	return s
+}
+
+// SetVolume sets the Volume field's value.
+func (s *Backup) SetVolume(v *Volume) *Backup {
+	s.Volume = v
 	return s
 }
 
@@ -3362,7 +4439,7 @@ type CopyBackupInput struct {
 
 	// (Optional) An idempotency token for resource creation, in a string of up
 	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// A boolean flag indicating whether tags from the source backup should be copied
@@ -3376,13 +4453,14 @@ type CopyBackupInput struct {
 	// precedence.
 	CopyTags *bool `type:"boolean"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// file system's data for Amazon FSx for Windows File Server file systems and
-	// Amazon FSx for Lustre PERSISTENT_1 file systems at rest. In either case,
-	// if not specified, the Amazon FSx managed key is used. The Amazon FSx for
-	// Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted at rest
-	// using Amazon FSx managed keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the AWS Key Management Service API Reference.
+	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
+	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
+	// NetApp ONTAP file systems, and Amazon FSx for Lustre PERSISTENT_1 file systems
+	// at rest. If not specified, the Amazon FSx managed key is used. The Amazon
+	// FSx for Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted
+	// at rest using Amazon FSx managed keys. For more information, see Encrypt
+	// (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html) in
+	// the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The ID of the source backup. Specifies the ID of the backup that is being
@@ -3391,10 +4469,11 @@ type CopyBackupInput struct {
 	// SourceBackupId is a required field
 	SourceBackupId *string `min:"12" type:"string" required:"true"`
 
-	// The source AWS Region of the backup. Specifies the AWS Region from which
-	// the backup is being copied. The source and destination Regions must be in
-	// the same AWS partition. If you don't specify a Region, it defaults to the
-	// Region where the request is sent from (in-Region copy).
+	// The source Amazon Web Services Region of the backup. Specifies the Amazon
+	// Web Services Region from which the backup is being copied. The source and
+	// destination Regions must be in the same Amazon Web Services partition. If
+	// you don't specify a Region, it defaults to the Region where the request is
+	// sent from (in-Region copy).
 	SourceRegion *string `min:"1" type:"string"`
 
 	// A list of Tag values, with a maximum of 50 elements.
@@ -3488,7 +4567,8 @@ func (s *CopyBackupInput) SetTags(v []*Tag) *CopyBackupInput {
 type CopyBackupOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A backup of an Amazon FSx file system.
+	// A backup of an Amazon FSx for Windows File Server or Amazon FSx for Lustre
+	// file system, or of an Amazon FSx for NetApp ONTAP volume.
 	Backup *Backup `type:"structure"`
 }
 
@@ -3514,13 +4594,11 @@ type CreateBackupInput struct {
 
 	// (Optional) A string of up to 64 ASCII characters that Amazon FSx uses to
 	// ensure idempotent creation. This string is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The ID of the file system to back up.
-	//
-	// FileSystemId is a required field
-	FileSystemId *string `min:"11" type:"string" required:"true"`
+	FileSystemId *string `min:"11" type:"string"`
 
 	// (Optional) The tags to apply to the backup at backup creation. The key value
 	// of the Name tag appears in the console as the backup name. If you have set
@@ -3528,6 +4606,9 @@ type CreateBackupInput struct {
 	// action, no existing file system tags are copied from the file system to the
 	// backup.
 	Tags []*Tag `min:"1" type:"list"`
+
+	// The ID of he FSx for NetApp ONTAP volume to back up.
+	VolumeId *string `min:"23" type:"string"`
 }
 
 // String returns the string representation
@@ -3546,14 +4627,14 @@ func (s *CreateBackupInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}
-	if s.FileSystemId == nil {
-		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
-	}
 	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
 		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
 	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
@@ -3590,6 +4671,12 @@ func (s *CreateBackupInput) SetTags(v []*Tag) *CreateBackupInput {
 	return s
 }
 
+// SetVolumeId sets the VolumeId field's value.
+func (s *CreateBackupInput) SetVolumeId(v string) *CreateBackupInput {
+	s.VolumeId = &v
+	return s
+}
+
 // The response object for the CreateBackup operation.
 type CreateBackupOutput struct {
 	_ struct{} `type:"structure"`
@@ -3619,7 +4706,7 @@ type CreateDataRepositoryTaskInput struct {
 
 	// (Optional) An idempotency token for resource creation, in a string of up
 	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The globally unique ID of the file system, assigned by Amazon FSx.
@@ -3775,16 +4862,17 @@ type CreateFileSystemFromBackupInput struct {
 
 	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
 	// creation. This string is automatically filled on your behalf when you use
-	// the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// file system's data for Amazon FSx for Windows File Server file systems and
-	// Amazon FSx for Lustre PERSISTENT_1 file systems at rest. In either case,
-	// if not specified, the Amazon FSx managed key is used. The Amazon FSx for
-	// Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted at rest
-	// using Amazon FSx managed keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the AWS Key Management Service API Reference.
+	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
+	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
+	// NetApp ONTAP file systems, and Amazon FSx for Lustre PERSISTENT_1 file systems
+	// at rest. If not specified, the Amazon FSx managed key is used. The Amazon
+	// FSx for Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted
+	// at rest using Amazon FSx managed keys. For more information, see Encrypt
+	// (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html) in
+	// the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The Lustre configuration for the file system being created.
@@ -3977,25 +5065,31 @@ type CreateFileSystemInput struct {
 
 	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
 	// creation. This string is automatically filled on your behalf when you use
-	// the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The type of Amazon FSx file system to create, either WINDOWS or LUSTRE.
+	// The type of Amazon FSx file system to create. Valid values are WINDOWS, LUSTRE,
+	// and ONTAP.
 	//
 	// FileSystemType is a required field
 	FileSystemType *string `type:"string" required:"true" enum:"FileSystemType"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// file system's data for Amazon FSx for Windows File Server file systems and
-	// Amazon FSx for Lustre PERSISTENT_1 file systems at rest. In either case,
-	// if not specified, the Amazon FSx managed key is used. The Amazon FSx for
-	// Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted at rest
-	// using Amazon FSx managed keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the AWS Key Management Service API Reference.
+	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
+	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
+	// NetApp ONTAP file systems, and Amazon FSx for Lustre PERSISTENT_1 file systems
+	// at rest. If not specified, the Amazon FSx managed key is used. The Amazon
+	// FSx for Lustre SCRATCH_1 and SCRATCH_2 file systems are always encrypted
+	// at rest using Amazon FSx managed keys. For more information, see Encrypt
+	// (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html) in
+	// the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The Lustre configuration for the file system being created.
 	LustreConfiguration *CreateFileSystemLustreConfiguration `type:"structure"`
+
+	// The ONTAP configuration properties of the FSx for NetApp ONTAP file system
+	// that you are creating.
+	OntapConfiguration *CreateFileSystemOntapConfiguration `type:"structure"`
 
 	// A list of IDs specifying the security groups to apply to all network interfaces
 	// created for file system access. This list isn't returned in later requests
@@ -4022,6 +5116,10 @@ type CreateFileSystemInput struct {
 	//
 	//    * If StorageType=HDD, valid values are 2000 GiB - 65,536 GiB (64 TiB).
 	//
+	// For ONTAP file systems:
+	//
+	//    * Valid values are 1024 GiB - 196,608 GiB (192 TiB).
+	//
 	// StorageCapacity is a required field
 	StorageCapacity *int64 `type:"integer" required:"true"`
 
@@ -4029,7 +5127,7 @@ type CreateFileSystemInput struct {
 	// SSD and HDD.
 	//
 	//    * Set to SSD to use solid state drive storage. SSD is supported on all
-	//    Windows and Lustre deployment types.
+	//    Windows, Lustre, and ONTAP deployment types.
 	//
 	//    * Set to HDD to use hard disk drive storage. HDD is supported on SINGLE_AZ_2
 	//    and MULTI_AZ_1 Windows file system deployment types, and on PERSISTENT
@@ -4041,11 +5139,15 @@ type CreateFileSystemInput struct {
 	StorageType *string `type:"string" enum:"StorageType"`
 
 	// Specifies the IDs of the subnets that the file system will be accessible
-	// from. For Windows MULTI_AZ_1 file system deployment types, provide exactly
-	// two subnet IDs, one for the preferred file server and one for the standby
-	// file server. You specify one of these subnets as the preferred subnet using
-	// the WindowsConfiguration > PreferredSubnetID property. For more information,
-	// see Availability and durability: Single-AZ and Multi-AZ file systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html).
+	// from. For Windows and ONTAP MULTI_AZ_1 file system deployment types, provide
+	// exactly two subnet IDs, one for the preferred file server and one for the
+	// standby file server. You specify one of these subnets as the preferred subnet
+	// using the WindowsConfiguration > PreferredSubnetID or OntapConfiguration
+	// > PreferredSubnetID properties. For more information, see Availability and
+	// durability: Single-AZ and Multi-AZ file systems (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/high-availability-multiAZ.html)
+	// in the Amazon FSx for Windows User Guide and Availability and durability
+	// (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/high-availability-multiAZ.html)
+	// in the Amazon FSx for ONTAP User Guide.
 	//
 	// For Windows SINGLE_AZ_1 and SINGLE_AZ_2 file system deployment types and
 	// Lustre file systems, provide exactly one subnet ID. The file server is launched
@@ -4098,6 +5200,11 @@ func (s *CreateFileSystemInput) Validate() error {
 			invalidParams.AddNested("LustreConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Tags != nil {
 		for i, v := range s.Tags {
 			if v == nil {
@@ -4141,6 +5248,12 @@ func (s *CreateFileSystemInput) SetKmsKeyId(v string) *CreateFileSystemInput {
 // SetLustreConfiguration sets the LustreConfiguration field's value.
 func (s *CreateFileSystemInput) SetLustreConfiguration(v *CreateFileSystemLustreConfiguration) *CreateFileSystemInput {
 	s.LustreConfiguration = v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *CreateFileSystemInput) SetOntapConfiguration(v *CreateFileSystemOntapConfiguration) *CreateFileSystemInput {
+	s.OntapConfiguration = v
 	return s
 }
 
@@ -4254,8 +5367,8 @@ type CreateFileSystemLustreConfiguration struct {
 	// (Default = SCRATCH_1)
 	//
 	// Encryption of data in-transit for SCRATCH_2 and PERSISTENT_1 deployment types
-	// is supported when accessed from supported instance types in supported AWS
-	// Regions. To learn more, Encrypting Data in Transit (https://docs.aws.amazon.com/fsx/latest/LustreGuide/encryption-in-transit-fsxl.html).
+	// is supported when accessed from supported instance types in supported Amazon
+	// Web Services Regions. To learn more, Encrypting Data in Transit (https://docs.aws.amazon.com/fsx/latest/LustreGuide/encryption-in-transit-fsxl.html).
 	DeploymentType *string `type:"string" enum:"LustreDeploymentType"`
 
 	// The type of drive cache used by PERSISTENT_1 file systems that are provisioned
@@ -4427,6 +5540,172 @@ func (s *CreateFileSystemLustreConfiguration) SetWeeklyMaintenanceStartTime(v st
 	return s
 }
 
+// The ONTAP configuration properties of the FSx for NetApp ONTAP file system
+// that you are creating.
+type CreateFileSystemOntapConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days to retain automatic backups. Setting this to 0 disables
+	// automatic backups. You can retain automatic backups for a maximum of 90 days.
+	// The default is 0.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// Specifies the ONTAP file system deployment type to use in creating the file
+	// system.
+	//
+	// DeploymentType is a required field
+	DeploymentType *string `type:"string" required:"true" enum:"OntapDeploymentType"`
+
+	// The SSD IOPS configuration for the Amazon FSx for NetApp ONTAP file system.
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
+	// Specifies the IP address range in which the endpoints to access your file
+	// system will be created. By default, Amazon FSx selects an unused IP address
+	// range for you from the 198.19.* range.
+	EndpointIpAddressRange *string `min:"9" type:"string"`
+
+	// The ONTAP administrative password for the fsxadmin user that you can use
+	// to administer your file system using the ONTAP CLI and REST API.
+	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+
+	// The ID for a subnet. A subnet is a range of IP addresses in your virtual
+	// private cloud (VPC). For more information, see VPC and Subnets (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
+	// in the Amazon VPC User Guide.
+	PreferredSubnetId *string `min:"15" type:"string"`
+
+	// Specifies the VPC route tables in which your file system's endpoints will
+	// be created. You should specify all VPC route tables associated with the subnets
+	// in which your clients are located. By default, Amazon FSx selects your VPC's
+	// default route table.
+	RouteTableIds []*string `type:"list"`
+
+	// Sustained throughput of an Amazon FSx file system in MBps.
+	//
+	// ThroughputCapacity is a required field
+	ThroughputCapacity *int64 `min:"8" type:"integer" required:"true"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation
+func (s CreateFileSystemOntapConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateFileSystemOntapConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateFileSystemOntapConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateFileSystemOntapConfiguration"}
+	if s.DailyAutomaticBackupStartTime != nil && len(*s.DailyAutomaticBackupStartTime) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("DailyAutomaticBackupStartTime", 5))
+	}
+	if s.DeploymentType == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeploymentType"))
+	}
+	if s.EndpointIpAddressRange != nil && len(*s.EndpointIpAddressRange) < 9 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointIpAddressRange", 9))
+	}
+	if s.FsxAdminPassword != nil && len(*s.FsxAdminPassword) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("FsxAdminPassword", 8))
+	}
+	if s.PreferredSubnetId != nil && len(*s.PreferredSubnetId) < 15 {
+		invalidParams.Add(request.NewErrParamMinLen("PreferredSubnetId", 15))
+	}
+	if s.ThroughputCapacity == nil {
+		invalidParams.Add(request.NewErrParamRequired("ThroughputCapacity"))
+	}
+	if s.ThroughputCapacity != nil && *s.ThroughputCapacity < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThroughputCapacity", 8))
+	}
+	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *CreateFileSystemOntapConfiguration) SetAutomaticBackupRetentionDays(v int64) *CreateFileSystemOntapConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *CreateFileSystemOntapConfiguration) SetDailyAutomaticBackupStartTime(v string) *CreateFileSystemOntapConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *CreateFileSystemOntapConfiguration) SetDeploymentType(v string) *CreateFileSystemOntapConfiguration {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *CreateFileSystemOntapConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *CreateFileSystemOntapConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
+// SetEndpointIpAddressRange sets the EndpointIpAddressRange field's value.
+func (s *CreateFileSystemOntapConfiguration) SetEndpointIpAddressRange(v string) *CreateFileSystemOntapConfiguration {
+	s.EndpointIpAddressRange = &v
+	return s
+}
+
+// SetFsxAdminPassword sets the FsxAdminPassword field's value.
+func (s *CreateFileSystemOntapConfiguration) SetFsxAdminPassword(v string) *CreateFileSystemOntapConfiguration {
+	s.FsxAdminPassword = &v
+	return s
+}
+
+// SetPreferredSubnetId sets the PreferredSubnetId field's value.
+func (s *CreateFileSystemOntapConfiguration) SetPreferredSubnetId(v string) *CreateFileSystemOntapConfiguration {
+	s.PreferredSubnetId = &v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *CreateFileSystemOntapConfiguration) SetRouteTableIds(v []*string) *CreateFileSystemOntapConfiguration {
+	s.RouteTableIds = v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *CreateFileSystemOntapConfiguration) SetThroughputCapacity(v int64) *CreateFileSystemOntapConfiguration {
+	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *CreateFileSystemOntapConfiguration) SetWeeklyMaintenanceStartTime(v string) *CreateFileSystemOntapConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
 // The response object returned after the file system is created.
 type CreateFileSystemOutput struct {
 	_ struct{} `type:"structure"`
@@ -4456,8 +5735,8 @@ func (s *CreateFileSystemOutput) SetFileSystem(v *FileSystem) *CreateFileSystemO
 type CreateFileSystemWindowsConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for an existing AWS Managed Microsoft Active Directory (AD) instance
-	// that the file system should join when it's created.
+	// The ID for an existing Amazon Web Services Managed Microsoft Active Directory
+	// (AD) instance that the file system should join when it's created.
 	ActiveDirectoryId *string `min:"12" type:"string"`
 
 	// An array of one or more DNS alias names that you want to associate with the
@@ -4518,8 +5797,9 @@ type CreateFileSystemWindowsConfiguration struct {
 	//
 	//    * MULTI_AZ_1 - Deploys a high availability file system that is configured
 	//    for Multi-AZ redundancy to tolerate temporary Availability Zone (AZ) unavailability.
-	//    You can only deploy a Multi-AZ file system in AWS Regions that have a
-	//    minimum of three Availability Zones. Also supports HDD storage type
+	//    You can only deploy a Multi-AZ file system in Amazon Web Services Regions
+	//    that have a minimum of three Availability Zones. Also supports HDD storage
+	//    type
 	//
 	//    * SINGLE_AZ_1 - (Default) Choose to deploy a file system that is configured
 	//    for single AZ redundancy.
@@ -4533,16 +5813,18 @@ type CreateFileSystemWindowsConfiguration struct {
 	DeploymentType *string `type:"string" enum:"WindowsDeploymentType"`
 
 	// Required when DeploymentType is set to MULTI_AZ_1. This specifies the subnet
-	// in which you want the preferred file server to be located. For in-AWS applications,
-	// we recommend that you launch your clients in the same Availability Zone (AZ)
-	// as your preferred file server to reduce cross-AZ data transfer costs and
-	// minimize latency.
+	// in which you want the preferred file server to be located. For in-Amazon
+	// Web Services applications, we recommend that you launch your clients in the
+	// same Availability Zone (AZ) as your preferred file server to reduce cross-AZ
+	// data transfer costs and minimize latency.
 	PreferredSubnetId *string `min:"15" type:"string"`
 
-	// The configuration that Amazon FSx uses to join the Windows File Server instance
-	// to your self-managed (including on-premises) Microsoft Active Directory (AD)
-	// directory. For more information, see Using Amazon FSx with your self-managed
-	// Microsoft Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html).
+	// The configuration that Amazon FSx uses to join a Amazon FSx for Windows File
+	// Server file system or an ONTAP storage virtual machine (SVM) to a self-managed
+	// (including on-premises) Microsoft Active Directory (AD) directory. For more
+	// information, see Using Amazon FSx with your self-managed Microsoft Active
+	// Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+	// or Managing SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
 	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryConfiguration `type:"structure"`
 
 	// The throughput of an Amazon FSx file system, measured in megabytes per second,
@@ -4668,6 +5950,627 @@ func (s *CreateFileSystemWindowsConfiguration) SetThroughputCapacity(v int64) *C
 // SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
 func (s *CreateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v string) *CreateFileSystemWindowsConfiguration {
 	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// Specifies the configuration of the ONTAP volume that you are creating.
+type CreateOntapVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the location in the SVM's namespace where the volume is mounted.
+	// The JunctionPath must have a leading forward slash, such as /vol3.
+	//
+	// JunctionPath is a required field
+	JunctionPath *string `min:"1" type:"string" required:"true"`
+
+	// The security style for the volume. Specify one of the following values:
+	//
+	//    * UNIX if the file system is managed by a UNIX administrator, the majority
+	//    of users are NFS clients, and an application accessing the data uses a
+	//    UNIX user as the service account. UNIX is the default.
+	//
+	//    * NTFS if the file system is managed by a Windows administrator, the majority
+	//    of users are SMB clients, and an application accessing the data uses a
+	//    Windows user as the service account.
+	//
+	//    * MIXED if the file system is managed by both UNIX and Windows administrators
+	//    and users consist of both NFS and SMB clients.
+	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
+
+	// Specifies the size of the volume, in megabytes (MB), that you are creating.
+	//
+	// SizeInMegabytes is a required field
+	SizeInMegabytes *int64 `type:"integer" required:"true"`
+
+	// Set to true to enable deduplication, compression, and compaction storage
+	// efficiency features on the volume.
+	//
+	// StorageEfficiencyEnabled is a required field
+	StorageEfficiencyEnabled *bool `type:"boolean" required:"true"`
+
+	// Specifies the ONTAP SVM in which to create the volume.
+	//
+	// StorageVirtualMachineId is a required field
+	StorageVirtualMachineId *string `min:"21" type:"string" required:"true"`
+
+	// Describes the data tiering policy for an ONTAP volume. When enabled, Amazon
+	// FSx for ONTAP's intelligent tiering automatically transitions a volume's
+	// data between the file system's primary storage and capacity pool storage
+	// based on your access patterns.
+	TieringPolicy *TieringPolicy `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateOntapVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateOntapVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateOntapVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateOntapVolumeConfiguration"}
+	if s.JunctionPath == nil {
+		invalidParams.Add(request.NewErrParamRequired("JunctionPath"))
+	}
+	if s.JunctionPath != nil && len(*s.JunctionPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JunctionPath", 1))
+	}
+	if s.SizeInMegabytes == nil {
+		invalidParams.Add(request.NewErrParamRequired("SizeInMegabytes"))
+	}
+	if s.StorageEfficiencyEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageEfficiencyEnabled"))
+	}
+	if s.StorageVirtualMachineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineId"))
+	}
+	if s.StorageVirtualMachineId != nil && len(*s.StorageVirtualMachineId) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageVirtualMachineId", 21))
+	}
+	if s.TieringPolicy != nil {
+		if err := s.TieringPolicy.Validate(); err != nil {
+			invalidParams.AddNested("TieringPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJunctionPath sets the JunctionPath field's value.
+func (s *CreateOntapVolumeConfiguration) SetJunctionPath(v string) *CreateOntapVolumeConfiguration {
+	s.JunctionPath = &v
+	return s
+}
+
+// SetSecurityStyle sets the SecurityStyle field's value.
+func (s *CreateOntapVolumeConfiguration) SetSecurityStyle(v string) *CreateOntapVolumeConfiguration {
+	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInMegabytes sets the SizeInMegabytes field's value.
+func (s *CreateOntapVolumeConfiguration) SetSizeInMegabytes(v int64) *CreateOntapVolumeConfiguration {
+	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetStorageEfficiencyEnabled sets the StorageEfficiencyEnabled field's value.
+func (s *CreateOntapVolumeConfiguration) SetStorageEfficiencyEnabled(v bool) *CreateOntapVolumeConfiguration {
+	s.StorageEfficiencyEnabled = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *CreateOntapVolumeConfiguration) SetStorageVirtualMachineId(v string) *CreateOntapVolumeConfiguration {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetTieringPolicy sets the TieringPolicy field's value.
+func (s *CreateOntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *CreateOntapVolumeConfiguration {
+	s.TieringPolicy = v
+	return s
+}
+
+type CreateStorageVirtualMachineInput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the self-managed Microsoft Active Directory to which you want to
+	// join the SVM. Joining an Active Directory provides user authentication and
+	// access control for SMB clients, including Microsoft Windows and macOS client
+	// accessing the file system.
+	ActiveDirectoryConfiguration *CreateSvmActiveDirectoryConfiguration `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	//
+	// FileSystemId is a required field
+	FileSystemId *string `min:"11" type:"string" required:"true"`
+
+	// The name of the SVM.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The security style of the root volume of the SVM. Specify one of the following
+	// values:
+	//
+	//    * UNIX if the file system is managed by a UNIX administrator, the majority
+	//    of users are NFS clients, and an application accessing the data uses a
+	//    UNIX user as the service account.
+	//
+	//    * NTFS if the file system is managed by a Windows administrator, the majority
+	//    of users are SMB clients, and an application accessing the data uses a
+	//    Windows user as the service account.
+	//
+	//    * MIXED if the file system is managed by both UNIX and Windows administrators
+	//    and users consist of both NFS and SMB clients.
+	RootVolumeSecurityStyle *string `type:"string" enum:"StorageVirtualMachineRootVolumeSecurityStyle"`
+
+	// The password to use when managing the SVM using the NetApp ONTAP CLI or REST
+	// API. If you do not specify a password, you can still use the file system's
+	// fsxadmin user to manage the SVM.
+	SvmAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateStorageVirtualMachineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateStorageVirtualMachineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStorageVirtualMachineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStorageVirtualMachineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.FileSystemId == nil {
+		invalidParams.Add(request.NewErrParamRequired("FileSystemId"))
+	}
+	if s.FileSystemId != nil && len(*s.FileSystemId) < 11 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemId", 11))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SvmAdminPassword != nil && len(*s.SvmAdminPassword) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SvmAdminPassword", 8))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.ActiveDirectoryConfiguration != nil {
+		if err := s.ActiveDirectoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActiveDirectoryConfiguration sets the ActiveDirectoryConfiguration field's value.
+func (s *CreateStorageVirtualMachineInput) SetActiveDirectoryConfiguration(v *CreateSvmActiveDirectoryConfiguration) *CreateStorageVirtualMachineInput {
+	s.ActiveDirectoryConfiguration = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateStorageVirtualMachineInput) SetClientRequestToken(v string) *CreateStorageVirtualMachineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *CreateStorageVirtualMachineInput) SetFileSystemId(v string) *CreateStorageVirtualMachineInput {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateStorageVirtualMachineInput) SetName(v string) *CreateStorageVirtualMachineInput {
+	s.Name = &v
+	return s
+}
+
+// SetRootVolumeSecurityStyle sets the RootVolumeSecurityStyle field's value.
+func (s *CreateStorageVirtualMachineInput) SetRootVolumeSecurityStyle(v string) *CreateStorageVirtualMachineInput {
+	s.RootVolumeSecurityStyle = &v
+	return s
+}
+
+// SetSvmAdminPassword sets the SvmAdminPassword field's value.
+func (s *CreateStorageVirtualMachineInput) SetSvmAdminPassword(v string) *CreateStorageVirtualMachineInput {
+	s.SvmAdminPassword = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStorageVirtualMachineInput) SetTags(v []*Tag) *CreateStorageVirtualMachineInput {
+	s.Tags = v
+	return s
+}
+
+type CreateStorageVirtualMachineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned after a successful CreateStorageVirtualMachine operation; describes
+	// the SVM just created.
+	StorageVirtualMachine *StorageVirtualMachine `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateStorageVirtualMachineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateStorageVirtualMachineOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageVirtualMachine sets the StorageVirtualMachine field's value.
+func (s *CreateStorageVirtualMachineOutput) SetStorageVirtualMachine(v *StorageVirtualMachine) *CreateStorageVirtualMachineOutput {
+	s.StorageVirtualMachine = v
+	return s
+}
+
+// The configuration that Amazon FSx uses to join the ONTAP storage virtual
+// machine (SVM) to your self-managed (including on-premises) Microsoft Active
+// Directory (AD) directory.
+type CreateSvmActiveDirectoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The NetBIOS name of the Active Directory computer object that will be created
+	// for your SVM.
+	//
+	// NetBiosName is a required field
+	NetBiosName *string `min:"1" type:"string" required:"true"`
+
+	// The configuration that Amazon FSx uses to join a Amazon FSx for Windows File
+	// Server file system or an ONTAP storage virtual machine (SVM) to a self-managed
+	// (including on-premises) Microsoft Active Directory (AD) directory. For more
+	// information, see Using Amazon FSx with your self-managed Microsoft Active
+	// Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+	// or Managing SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
+	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryConfiguration `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateSvmActiveDirectoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateSvmActiveDirectoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateSvmActiveDirectoryConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateSvmActiveDirectoryConfiguration"}
+	if s.NetBiosName == nil {
+		invalidParams.Add(request.NewErrParamRequired("NetBiosName"))
+	}
+	if s.NetBiosName != nil && len(*s.NetBiosName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NetBiosName", 1))
+	}
+	if s.SelfManagedActiveDirectoryConfiguration != nil {
+		if err := s.SelfManagedActiveDirectoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SelfManagedActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetNetBiosName sets the NetBiosName field's value.
+func (s *CreateSvmActiveDirectoryConfiguration) SetNetBiosName(v string) *CreateSvmActiveDirectoryConfiguration {
+	s.NetBiosName = &v
+	return s
+}
+
+// SetSelfManagedActiveDirectoryConfiguration sets the SelfManagedActiveDirectoryConfiguration field's value.
+func (s *CreateSvmActiveDirectoryConfiguration) SetSelfManagedActiveDirectoryConfiguration(v *SelfManagedActiveDirectoryConfiguration) *CreateSvmActiveDirectoryConfiguration {
+	s.SelfManagedActiveDirectoryConfiguration = v
+	return s
+}
+
+type CreateVolumeFromBackupInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the source backup. Specifies the backup you are copying.
+	//
+	// BackupId is a required field
+	BackupId *string `min:"12" type:"string" required:"true"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The name of the new volume you're creating.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the configuration of the ONTAP volume that you are creating.
+	OntapConfiguration *CreateOntapVolumeConfiguration `type:"structure"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s CreateVolumeFromBackupInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateVolumeFromBackupInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVolumeFromBackupInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVolumeFromBackupInput"}
+	if s.BackupId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupId"))
+	}
+	if s.BackupId != nil && len(*s.BackupId) < 12 {
+		invalidParams.Add(request.NewErrParamMinLen("BackupId", 12))
+	}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupId sets the BackupId field's value.
+func (s *CreateVolumeFromBackupInput) SetBackupId(v string) *CreateVolumeFromBackupInput {
+	s.BackupId = &v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateVolumeFromBackupInput) SetClientRequestToken(v string) *CreateVolumeFromBackupInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateVolumeFromBackupInput) SetName(v string) *CreateVolumeFromBackupInput {
+	s.Name = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *CreateVolumeFromBackupInput) SetOntapConfiguration(v *CreateOntapVolumeConfiguration) *CreateVolumeFromBackupInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVolumeFromBackupInput) SetTags(v []*Tag) *CreateVolumeFromBackupInput {
+	s.Tags = v
+	return s
+}
+
+type CreateVolumeFromBackupOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned after a successful CreateVolumeFromBackup API operation, describing
+	// the volume just created.
+	Volume *Volume `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVolumeFromBackupOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateVolumeFromBackupOutput) GoString() string {
+	return s.String()
+}
+
+// SetVolume sets the Volume field's value.
+func (s *CreateVolumeFromBackupOutput) SetVolume(v *Volume) *CreateVolumeFromBackupOutput {
+	s.Volume = v
+	return s
+}
+
+type CreateVolumeInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// Specifies the name of the volume you're creating.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// Specifies the ONTAP configuration to use in creating the volume.
+	OntapConfiguration *CreateOntapVolumeConfiguration `type:"structure"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// Specifies the type of volume to create; ONTAP is the only valid volume type.
+	//
+	// VolumeType is a required field
+	VolumeType *string `type:"string" required:"true" enum:"VolumeType"`
+}
+
+// String returns the string representation
+func (s CreateVolumeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateVolumeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateVolumeInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.VolumeType == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeType"))
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *CreateVolumeInput) SetClientRequestToken(v string) *CreateVolumeInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateVolumeInput) SetName(v string) *CreateVolumeInput {
+	s.Name = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *CreateVolumeInput) SetOntapConfiguration(v *CreateOntapVolumeConfiguration) *CreateVolumeInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateVolumeInput) SetTags(v []*Tag) *CreateVolumeInput {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *CreateVolumeInput) SetVolumeType(v string) *CreateVolumeInput {
+	s.VolumeType = &v
+	return s
+}
+
+type CreateVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned after a successful CreateVolume API operation, describing the volume
+	// just created.
+	Volume *Volume `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateVolumeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateVolumeOutput) GoString() string {
+	return s.String()
+}
+
+// SetVolume sets the Volume field's value.
+func (s *CreateVolumeOutput) SetVolume(v *Volume) *CreateVolumeOutput {
+	s.Volume = v
 	return s
 }
 
@@ -4881,10 +6784,10 @@ type DataRepositoryTask struct {
 	Report *CompletionReport `type:"structure"`
 
 	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
-	// AWS resources. We require an ARN when you need to specify a resource unambiguously
-	// across all of AWS. For more information, see Amazon Resource Names (ARNs)
-	// and AWS Service Namespaces (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
-	// in the AWS General Reference.
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
 	ResourceARN *string `min:"8" type:"string"`
 
 	// The time that Amazon FSx began processing the task.
@@ -5305,8 +7208,8 @@ type DeleteBackupInput struct {
 	BackupId *string `min:"12" type:"string" required:"true"`
 
 	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
-	// deletion. This is automatically filled on your behalf when using the AWS
-	// CLI or SDK.
+	// deletion. This is automatically filled on your behalf when using the CLI
+	// or SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 }
 
@@ -5389,8 +7292,8 @@ type DeleteFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
 	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
-	// deletion. This is automatically filled on your behalf when using the AWS
-	// CLI or SDK.
+	// deletion. This is automatically filled on your behalf when using the Command
+	// Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The ID of the file system you want to delete.
@@ -5714,6 +7617,295 @@ func (s *DeleteFileSystemWindowsResponse) SetFinalBackupTags(v []*Tag) *DeleteFi
 	return s
 }
 
+type DeleteStorageVirtualMachineInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the SVM that you want to delete.
+	//
+	// StorageVirtualMachineId is a required field
+	StorageVirtualMachineId *string `min:"21" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteStorageVirtualMachineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStorageVirtualMachineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStorageVirtualMachineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStorageVirtualMachineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.StorageVirtualMachineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineId"))
+	}
+	if s.StorageVirtualMachineId != nil && len(*s.StorageVirtualMachineId) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageVirtualMachineId", 21))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DeleteStorageVirtualMachineInput) SetClientRequestToken(v string) *DeleteStorageVirtualMachineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *DeleteStorageVirtualMachineInput) SetStorageVirtualMachineId(v string) *DeleteStorageVirtualMachineInput {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+type DeleteStorageVirtualMachineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the lifecycle state of the SVM being deleted.
+	Lifecycle *string `type:"string" enum:"StorageVirtualMachineLifecycle"`
+
+	// The ID of the SVM Amazon FSx is deleting.
+	StorageVirtualMachineId *string `min:"21" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteStorageVirtualMachineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStorageVirtualMachineOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DeleteStorageVirtualMachineOutput) SetLifecycle(v string) *DeleteStorageVirtualMachineOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *DeleteStorageVirtualMachineOutput) SetStorageVirtualMachineId(v string) *DeleteStorageVirtualMachineOutput {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+type DeleteVolumeInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// For Amazon FSx for ONTAP volumes, specify whether to take a final backup
+	// of the volume, and apply tags to the backup.
+	OntapConfiguration *DeleteVolumeOntapConfiguration `type:"structure"`
+
+	// The ID of the volume you are deleting.
+	//
+	// VolumeId is a required field
+	VolumeId *string `min:"23" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteVolumeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVolumeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVolumeInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.VolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeId"))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *DeleteVolumeInput) SetClientRequestToken(v string) *DeleteVolumeInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *DeleteVolumeInput) SetOntapConfiguration(v *DeleteVolumeOntapConfiguration) *DeleteVolumeInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *DeleteVolumeInput) SetVolumeId(v string) *DeleteVolumeInput {
+	s.VolumeId = &v
+	return s
+}
+
+// Use to specify skipping a final backup, or to add tags to a final backup.
+type DeleteVolumeOntapConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	FinalBackupTags []*Tag `min:"1" type:"list"`
+
+	// Set to true if you want to skip taking a final backup of the volume you are
+	// deleting.
+	SkipFinalBackup *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s DeleteVolumeOntapConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVolumeOntapConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteVolumeOntapConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteVolumeOntapConfiguration"}
+	if s.FinalBackupTags != nil && len(s.FinalBackupTags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FinalBackupTags", 1))
+	}
+	if s.FinalBackupTags != nil {
+		for i, v := range s.FinalBackupTags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "FinalBackupTags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFinalBackupTags sets the FinalBackupTags field's value.
+func (s *DeleteVolumeOntapConfiguration) SetFinalBackupTags(v []*Tag) *DeleteVolumeOntapConfiguration {
+	s.FinalBackupTags = v
+	return s
+}
+
+// SetSkipFinalBackup sets the SkipFinalBackup field's value.
+func (s *DeleteVolumeOntapConfiguration) SetSkipFinalBackup(v bool) *DeleteVolumeOntapConfiguration {
+	s.SkipFinalBackup = &v
+	return s
+}
+
+// The response object for the Amazon FSx for NetApp ONTAP volume being deleted
+// in the DeleteVolume operation.
+type DeleteVolumeOntapResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the source backup. Specifies the backup you are copying.
+	FinalBackupId *string `min:"12" type:"string"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	FinalBackupTags []*Tag `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s DeleteVolumeOntapResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVolumeOntapResponse) GoString() string {
+	return s.String()
+}
+
+// SetFinalBackupId sets the FinalBackupId field's value.
+func (s *DeleteVolumeOntapResponse) SetFinalBackupId(v string) *DeleteVolumeOntapResponse {
+	s.FinalBackupId = &v
+	return s
+}
+
+// SetFinalBackupTags sets the FinalBackupTags field's value.
+func (s *DeleteVolumeOntapResponse) SetFinalBackupTags(v []*Tag) *DeleteVolumeOntapResponse {
+	s.FinalBackupTags = v
+	return s
+}
+
+type DeleteVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the lifecycle state of the volume being deleted.
+	Lifecycle *string `type:"string" enum:"VolumeLifecycle"`
+
+	// Returned after a DeleteVolume request, showing the status of the delete request.
+	OntapResponse *DeleteVolumeOntapResponse `type:"structure"`
+
+	// The ID of the volume being deleted.
+	VolumeId *string `min:"23" type:"string"`
+}
+
+// String returns the string representation
+func (s DeleteVolumeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteVolumeOutput) GoString() string {
+	return s.String()
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *DeleteVolumeOutput) SetLifecycle(v string) *DeleteVolumeOutput {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetOntapResponse sets the OntapResponse field's value.
+func (s *DeleteVolumeOutput) SetOntapResponse(v *DeleteVolumeOntapResponse) *DeleteVolumeOutput {
+	s.OntapResponse = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *DeleteVolumeOutput) SetVolumeId(v string) *DeleteVolumeOutput {
+	s.VolumeId = &v
+	return s
+}
+
 // The request object for DescribeBackups operation.
 type DescribeBackupsInput struct {
 	_ struct{} `type:"structure"`
@@ -5722,7 +7914,8 @@ type DescribeBackupsInput struct {
 	// If any IDs are not found, BackupNotFound will be thrown.
 	BackupIds []*string `type:"list"`
 
-	// Filters structure. Supported names are file-system-id and backup-type.
+	// Filters structure. Supported names are file-system-id, backup-type, file-system-type,
+	// and volume-id.
 	Filters []*Filter `type:"list"`
 
 	// Maximum number of backups to return in the response (integer). This parameter
@@ -5932,7 +8125,7 @@ type DescribeFileSystemAliasesInput struct {
 
 	// (Optional) An idempotency token for resource creation, in a string of up
 	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The ID of the file system to return the associated DNS aliases for (String).
@@ -6143,6 +8336,213 @@ func (s *DescribeFileSystemsOutput) SetNextToken(v string) *DescribeFileSystemsO
 	return s
 }
 
+type DescribeStorageVirtualMachinesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Enter a filter name:value pair to view a select set of SVMs.
+	Filters []*StorageVirtualMachineFilter `type:"list"`
+
+	// The maximum number of resources to return in the response. This value must
+	// be an integer greater than zero.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// Enter the ID of one or more SVMs that you want to view.
+	StorageVirtualMachineIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeStorageVirtualMachinesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStorageVirtualMachinesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStorageVirtualMachinesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStorageVirtualMachinesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeStorageVirtualMachinesInput) SetFilters(v []*StorageVirtualMachineFilter) *DescribeStorageVirtualMachinesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeStorageVirtualMachinesInput) SetMaxResults(v int64) *DescribeStorageVirtualMachinesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStorageVirtualMachinesInput) SetNextToken(v string) *DescribeStorageVirtualMachinesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageVirtualMachineIds sets the StorageVirtualMachineIds field's value.
+func (s *DescribeStorageVirtualMachinesInput) SetStorageVirtualMachineIds(v []*string) *DescribeStorageVirtualMachinesInput {
+	s.StorageVirtualMachineIds = v
+	return s
+}
+
+type DescribeStorageVirtualMachinesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returned after a successful DescribeStorageVirtualMachines operation, describing
+	// each SVM.
+	StorageVirtualMachines []*StorageVirtualMachine `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeStorageVirtualMachinesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStorageVirtualMachinesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeStorageVirtualMachinesOutput) SetNextToken(v string) *DescribeStorageVirtualMachinesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStorageVirtualMachines sets the StorageVirtualMachines field's value.
+func (s *DescribeStorageVirtualMachinesOutput) SetStorageVirtualMachines(v []*StorageVirtualMachine) *DescribeStorageVirtualMachinesOutput {
+	s.StorageVirtualMachines = v
+	return s
+}
+
+type DescribeVolumesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Enter a filter name:value pair to view a select set of volumes.
+	Filters []*VolumeFilter `type:"list"`
+
+	// The maximum number of resources to return in the response. This value must
+	// be an integer greater than zero.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// IDs of the volumes whose descriptions you want to retrieve.
+	VolumeIds []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeVolumesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVolumesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeVolumesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeVolumesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFilters sets the Filters field's value.
+func (s *DescribeVolumesInput) SetFilters(v []*VolumeFilter) *DescribeVolumesInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *DescribeVolumesInput) SetMaxResults(v int64) *DescribeVolumesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVolumesInput) SetNextToken(v string) *DescribeVolumesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVolumeIds sets the VolumeIds field's value.
+func (s *DescribeVolumesInput) SetVolumeIds(v []*string) *DescribeVolumesInput {
+	s.VolumeIds = v
+	return s
+}
+
+type DescribeVolumesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) Opaque pagination token returned from a previous operation (String).
+	// If present, this token indicates from what point you can continue processing
+	// the request, where the previous NextToken value left off.
+	NextToken *string `min:"1" type:"string"`
+
+	// Returned after a successful DescribeVolumes operation, describing each volume.
+	Volumes []*Volume `type:"list"`
+}
+
+// String returns the string representation
+func (s DescribeVolumesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeVolumesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *DescribeVolumesOutput) SetNextToken(v string) *DescribeVolumesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetVolumes sets the Volumes field's value.
+func (s *DescribeVolumesOutput) SetVolumes(v []*Volume) *DescribeVolumesOutput {
+	s.Volumes = v
+	return s
+}
+
 // The request object of DNS aliases to disassociate from an Amazon FSx for
 // Windows File Server file system.
 type DisassociateFileSystemAliasesInput struct {
@@ -6156,7 +8556,7 @@ type DisassociateFileSystemAliasesInput struct {
 
 	// (Optional) An idempotency token for resource creation, in a string of up
 	// to 64 ASCII characters. This token is automatically filled on your behalf
-	// when you use the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// Specifies the file system from which to disassociate the DNS aliases.
@@ -6242,13 +8642,52 @@ func (s *DisassociateFileSystemAliasesOutput) SetAliases(v []*Alias) *Disassocia
 	return s
 }
 
+// The SSD IOPS (input/output operations per second) configuration for an Amazon
+// FSx for NetApp ONTAP file system. The default is 3 IOPS per GB of storage
+// capacity, but you can provision additional IOPS per GB of storage. The configuration
+// consists of the total number of provisioned SSD IOPS and how the amount was
+// provisioned (by the customer or by the system).
+type DiskIopsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The total number of SSD IOPS provisioned for the file system.
+	Iops *int64 `type:"long"`
+
+	// Specifies whether the number of IOPS for the file system is using the system
+	// default (AUTOMATIC) or was provisioned by the customer (USER_PROVISIONED).
+	Mode *string `type:"string" enum:"DiskIopsConfigurationMode"`
+}
+
+// String returns the string representation
+func (s DiskIopsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DiskIopsConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetIops sets the Iops field's value.
+func (s *DiskIopsConfiguration) SetIops(v int64) *DiskIopsConfiguration {
+	s.Iops = &v
+	return s
+}
+
+// SetMode sets the Mode field's value.
+func (s *DiskIopsConfiguration) SetMode(v string) *DiskIopsConfiguration {
+	s.Mode = &v
+	return s
+}
+
 // A description of a specific Amazon FSx file system.
 type FileSystem struct {
 	_ struct{} `type:"structure"`
 
 	// A list of administrative actions for the file system that are in process
 	// or waiting to be processed. Administrative actions describe changes to the
-	// Windows file system that you have initiated using the UpdateFileSystem action.
+	// Amazon FSx file system that you have initiated using the UpdateFileSystem
+	// action.
 	AdministrativeActions []*AdministrativeAction `type:"list"`
 
 	// The time that the file system was created, in seconds (since 1970-01-01T00:00:00Z),
@@ -6265,16 +8704,16 @@ type FileSystem struct {
 	// The system-generated, unique 17-digit ID of the file system.
 	FileSystemId *string `min:"11" type:"string"`
 
-	// The type of Amazon FSx file system, either LUSTRE or WINDOWS.
+	// The type of Amazon FSx file system, which can be LUSTRE, WINDOWS, or ONTAP.
 	FileSystemType *string `type:"string" enum:"FileSystemType"`
 
-	// The ID of the AWS Key Management Service (AWS KMS) key used to encrypt the
-	// file system's data for Amazon FSx for Windows File Server file systems and
-	// persistent Amazon FSx for Lustre file systems at rest. In either case, if
-	// not specified, the Amazon FSx managed key is used. The scratch Amazon FSx
-	// for Lustre file systems are always encrypted at rest using Amazon FSx managed
-	// keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
-	// in the AWS Key Management Service API Reference.
+	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
+	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
+	// NetApp ONTAP file systems, and persistent Amazon FSx for Lustre file systems
+	// at rest. If not specified, the Amazon FSx managed key is used. The scratch
+	// Amazon FSx for Lustre file systems are always encrypted at rest using Amazon
+	// FSx managed keys. For more information, see Encrypt (https://docs.aws.amazon.com/kms/latest/APIReference/API_Encrypt.html)
+	// in the Key Management Service API Reference.
 	KmsKeyId *string `min:"1" type:"string"`
 
 	// The lifecycle status of the file system, following are the possible values
@@ -6312,9 +8751,12 @@ type FileSystem struct {
 	// than one.
 	NetworkInterfaceIds []*string `type:"list"`
 
-	// The AWS account that created the file system. If the file system was created
-	// by an AWS Identity and Access Management (IAM) user, the AWS account to which
-	// the IAM user belongs is the owner.
+	// The configuration for this FSx for NetApp ONTAP file system.
+	OntapConfiguration *OntapFileSystemConfiguration `type:"structure"`
+
+	// The Amazon Web Services account that created the file system. If the file
+	// system was created by an Identity and Access Management (IAM) user, the Amazon
+	// Web Services account to which the IAM user belongs is the owner.
 	OwnerId *string `min:"12" type:"string"`
 
 	// The Amazon Resource Name (ARN) for the file system resource.
@@ -6329,15 +8771,15 @@ type FileSystem struct {
 	StorageType *string `type:"string" enum:"StorageType"`
 
 	// Specifies the IDs of the subnets that the file system is accessible from.
-	// For Windows MULTI_AZ_1 file system deployment type, there are two subnet
-	// IDs, one for the preferred file server and one for the standby file server.
-	// The preferred file server subnet identified in the PreferredSubnetID property.
-	// All other file systems have only one subnet ID.
+	// For Windows and ONTAP MULTI_AZ_1 file system deployment type, there are two
+	// subnet IDs, one for the preferred file server and one for the standby file
+	// server. The preferred file server subnet identified in the PreferredSubnetID
+	// property. All other file systems have only one subnet ID.
 	//
 	// For Lustre file systems, and Single-AZ Windows file systems, this is the
 	// ID of the subnet that contains the endpoint for the file system. For MULTI_AZ_1
-	// Windows file systems, the endpoint for the file system is available in the
-	// PreferredSubnetID.
+	// Windows and ONTAP file systems, the endpoint for the file system is available
+	// in the PreferredSubnetID.
 	SubnetIds []*string `type:"list"`
 
 	// The tags to associate with the file system. For more information, see Tagging
@@ -6422,6 +8864,12 @@ func (s *FileSystem) SetNetworkInterfaceIds(v []*string) *FileSystem {
 	return s
 }
 
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *FileSystem) SetOntapConfiguration(v *OntapFileSystemConfiguration) *FileSystem {
+	s.OntapConfiguration = v
+	return s
+}
+
 // SetOwnerId sets the OwnerId field's value.
 func (s *FileSystem) SetOwnerId(v string) *FileSystem {
 	s.OwnerId = &v
@@ -6467,6 +8915,79 @@ func (s *FileSystem) SetVpcId(v string) *FileSystem {
 // SetWindowsConfiguration sets the WindowsConfiguration field's value.
 func (s *FileSystem) SetWindowsConfiguration(v *WindowsFileSystemConfiguration) *FileSystem {
 	s.WindowsConfiguration = v
+	return s
+}
+
+// An Amazon FSx for NetApp ONTAP file system has two endpoints that are used
+// to access data or to manage the file system using the NetApp ONTAP CLI, REST
+// API, or NetApp SnapMirror. They are the Management and Intercluster endpoints.
+type FileSystemEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The Domain Name Service (DNS) name for the file system. You can mount your
+	// file system using its DNS name.
+	DNSName *string `min:"16" type:"string"`
+
+	// IP addresses of the file system endpoint.
+	IpAddresses []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s FileSystemEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetDNSName sets the DNSName field's value.
+func (s *FileSystemEndpoint) SetDNSName(v string) *FileSystemEndpoint {
+	s.DNSName = &v
+	return s
+}
+
+// SetIpAddresses sets the IpAddresses field's value.
+func (s *FileSystemEndpoint) SetIpAddresses(v []*string) *FileSystemEndpoint {
+	s.IpAddresses = v
+	return s
+}
+
+// An Amazon FSx for NetApp ONTAP file system has the following endpoints that
+// are used to access data or to manage the file system using the NetApp ONTAP
+// CLI, REST API, or NetApp SnapMirror.
+type FileSystemEndpoints struct {
+	_ struct{} `type:"structure"`
+
+	// An endpoint for managing your file system by setting up NetApp SnapMirror
+	// with other ONTAP systems.
+	Intercluster *FileSystemEndpoint `type:"structure"`
+
+	// An endpoint for managing your file system using the NetApp ONTAP CLI and
+	// NetApp ONTAP API.
+	Management *FileSystemEndpoint `type:"structure"`
+}
+
+// String returns the string representation
+func (s FileSystemEndpoints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s FileSystemEndpoints) GoString() string {
+	return s.String()
+}
+
+// SetIntercluster sets the Intercluster field's value.
+func (s *FileSystemEndpoints) SetIntercluster(v *FileSystemEndpoint) *FileSystemEndpoints {
+	s.Intercluster = v
+	return s
+}
+
+// SetManagement sets the Management field's value.
+func (s *FileSystemEndpoints) SetManagement(v *FileSystemEndpoint) *FileSystemEndpoints {
+	s.Management = v
 	return s
 }
 
@@ -6766,8 +9287,7 @@ func (s *InternalServerError) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS Key Management Service (AWS KMS) key of the destination backup is
-// invalid.
+// The Key Management Service (KMS) key of the destination backup is invalid.
 type InvalidDestinationKmsKey struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6938,29 +9458,21 @@ func (s *InvalidImportPath) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// One or more network settings specified in the request are invalid. InvalidVpcId
-// means that the ID passed for the virtual private cloud (VPC) is invalid.
-// InvalidSubnetIds returns the list of IDs for subnets that are either invalid
-// or not part of the VPC specified. InvalidSecurityGroupIds returns the list
-// of IDs for security groups that are either invalid or not part of the VPC
-// specified.
+// One or more network settings specified in the request are invalid.
 type InvalidNetworkSettings struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The ID of your Amazon EC2 security group. This ID is used to control network
-	// access to the endpoint that Amazon FSx creates on your behalf in each subnet.
-	// For more information, see Amazon EC2 Security Groups for Linux Instances
-	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html)
-	// in the Amazon EC2 User Guide.
+	// The route table ID is either invalid or not part of the VPC specified.
+	InvalidRouteTableId *string `min:"12" type:"string"`
+
+	// The security group ID is either invalid or not part of the VPC specified.
 	InvalidSecurityGroupId *string `min:"11" type:"string"`
 
-	// The ID for a subnet. A subnet is a range of IP addresses in your virtual
-	// private cloud (VPC). For more information, see VPC and Subnets (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
-	// in the Amazon VPC User Guide.
+	// The subnet ID that is either invalid or not part of the VPC specified.
 	InvalidSubnetId *string `min:"15" type:"string"`
 
-	// A detailed error message.
+	// Error message explaining what's wrong with network settings.
 	Message_ *string `locationName:"Message" min:"1" type:"string"`
 }
 
@@ -7070,8 +9582,8 @@ func (s *InvalidPerUnitStorageThroughput) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The Region provided for Source Region is invalid or is in a different AWS
-// partition.
+// The Region provided for Source Region is invalid or is in a different Amazon
+// Web Services partition.
 type InvalidRegion struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7128,7 +9640,7 @@ func (s *InvalidRegion) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS Key Management Service (AWS KMS) key of the source backup is invalid.
+// The Key Management Service (KMS) key of the source backup is invalid.
 type InvalidSourceKmsKey struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7183,6 +9695,30 @@ func (s *InvalidSourceKmsKey) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidSourceKmsKey) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes why a resource lifecycle state changed.
+type LifecycleTransitionReason struct {
+	_ struct{} `type:"structure"`
+
+	// A detailed error message.
+	Message *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LifecycleTransitionReason) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LifecycleTransitionReason) GoString() string {
+	return s.String()
+}
+
+// SetMessage sets the Message field's value.
+func (s *LifecycleTransitionReason) SetMessage(v string) *LifecycleTransitionReason {
+	s.Message = &v
+	return s
 }
 
 // The request object for ListTagsForResource operation.
@@ -7353,7 +9889,7 @@ type LustreFileSystemConfiguration struct {
 	//
 	// For the SCRATCH_1 deployment type, this value is always "fsx". For SCRATCH_2
 	// and PERSISTENT_1 deployment types, this value is a string that is unique
-	// within an AWS Region.
+	// within an Amazon Web Services Region.
 	MountName *string `min:"1" type:"string"`
 
 	// Per unit storage throughput represents the megabytes per second of read or
@@ -7498,6 +10034,63 @@ func (s *MissingFileSystemConfiguration) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// A volume configuration is required for this operation.
+type MissingVolumeConfiguration struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s MissingVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s MissingVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+func newErrorMissingVolumeConfiguration(v protocol.ResponseMetadata) error {
+	return &MissingVolumeConfiguration{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *MissingVolumeConfiguration) Code() string {
+	return "MissingVolumeConfiguration"
+}
+
+// Message returns the exception's message.
+func (s *MissingVolumeConfiguration) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *MissingVolumeConfiguration) OrigErr() error {
+	return nil
+}
+
+func (s *MissingVolumeConfiguration) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *MissingVolumeConfiguration) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *MissingVolumeConfiguration) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The resource specified for the tagging operation is not a resource type owned
 // by Amazon FSx. Use the API of the relevant service to perform the operation.
 type NotServiceResourceError struct {
@@ -7559,6 +10152,265 @@ func (s *NotServiceResourceError) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *NotServiceResourceError) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Configuration for the FSx for NetApp ONTAP file system.
+type OntapFileSystemConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days to retain automatic backups. Setting this to 0 disables
+	// automatic backups. You can retain automatic backups for a maximum of 90 days.
+	// The default is 0.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// The ONTAP file system deployment type.
+	DeploymentType *string `type:"string" enum:"OntapDeploymentType"`
+
+	// The SSD IOPS configuration for the ONTAP file system, specifying the number
+	// of provisioned IOPS and the provision mode.
+	DiskIopsConfiguration *DiskIopsConfiguration `type:"structure"`
+
+	// The IP address range in which the endpoints to access your file system are
+	// created.
+	EndpointIpAddressRange *string `min:"9" type:"string"`
+
+	// The Management and Intercluster endpoints that are used to access data or
+	// to manage the file system using the NetApp ONTAP CLI, REST API, or NetApp
+	// SnapMirror.
+	Endpoints *FileSystemEndpoints `type:"structure"`
+
+	// The ID for a subnet. A subnet is a range of IP addresses in your virtual
+	// private cloud (VPC). For more information, see VPC and Subnets (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Subnets.html)
+	// in the Amazon VPC User Guide.
+	PreferredSubnetId *string `min:"15" type:"string"`
+
+	// The VPC route tables in which your file system's endpoints are created.
+	RouteTableIds []*string `type:"list"`
+
+	// Sustained throughput of an Amazon FSx file system in MBps.
+	ThroughputCapacity *int64 `min:"8" type:"integer"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation
+func (s OntapFileSystemConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OntapFileSystemConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *OntapFileSystemConfiguration) SetAutomaticBackupRetentionDays(v int64) *OntapFileSystemConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *OntapFileSystemConfiguration) SetDailyAutomaticBackupStartTime(v string) *OntapFileSystemConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetDeploymentType sets the DeploymentType field's value.
+func (s *OntapFileSystemConfiguration) SetDeploymentType(v string) *OntapFileSystemConfiguration {
+	s.DeploymentType = &v
+	return s
+}
+
+// SetDiskIopsConfiguration sets the DiskIopsConfiguration field's value.
+func (s *OntapFileSystemConfiguration) SetDiskIopsConfiguration(v *DiskIopsConfiguration) *OntapFileSystemConfiguration {
+	s.DiskIopsConfiguration = v
+	return s
+}
+
+// SetEndpointIpAddressRange sets the EndpointIpAddressRange field's value.
+func (s *OntapFileSystemConfiguration) SetEndpointIpAddressRange(v string) *OntapFileSystemConfiguration {
+	s.EndpointIpAddressRange = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *OntapFileSystemConfiguration) SetEndpoints(v *FileSystemEndpoints) *OntapFileSystemConfiguration {
+	s.Endpoints = v
+	return s
+}
+
+// SetPreferredSubnetId sets the PreferredSubnetId field's value.
+func (s *OntapFileSystemConfiguration) SetPreferredSubnetId(v string) *OntapFileSystemConfiguration {
+	s.PreferredSubnetId = &v
+	return s
+}
+
+// SetRouteTableIds sets the RouteTableIds field's value.
+func (s *OntapFileSystemConfiguration) SetRouteTableIds(v []*string) *OntapFileSystemConfiguration {
+	s.RouteTableIds = v
+	return s
+}
+
+// SetThroughputCapacity sets the ThroughputCapacity field's value.
+func (s *OntapFileSystemConfiguration) SetThroughputCapacity(v int64) *OntapFileSystemConfiguration {
+	s.ThroughputCapacity = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *OntapFileSystemConfiguration) SetWeeklyMaintenanceStartTime(v string) *OntapFileSystemConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The configuration of an Amazon FSx for NetApp ONTAP volume
+type OntapVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the FlexCache endpoint type of the volume. Valid values are the
+	// following:
+	//
+	//    * NONE specifies that the volume doesn't have a FlexCache configuration.
+	//    NONE is the default.
+	//
+	//    * ORIGIN specifies that the volume is the origin volume for a FlexCache
+	//    volume.
+	//
+	//    * CACHE specifies that the volume is a FlexCache volume.
+	FlexCacheEndpointType *string `type:"string" enum:"FlexCacheEndpointType"`
+
+	// Specifies the directory that NAS clients use to mount the volume, along with
+	// the SVM DNS name or IP address. You can create a JunctionPath directly below
+	// a parent volume junction or on a directory within a volume. A JunctionPath
+	// for a volume named vol3 might be /vol1/vol2/vol3, or /vol1/dir2/vol3, or
+	// even /dir1/dir2/vol3..
+	JunctionPath *string `min:"1" type:"string"`
+
+	// Specifies the type of volume. Valid values are the following:
+	//
+	//    * RW specifies a read-write volume. RW is the default.
+	//
+	//    * DP specifies a data protection volume. You can protect data by replicating
+	//    it to data protection mirror copies and use data protection mirror copies
+	//    to recover data when a disaster occurs.
+	//
+	//    * LS specifies a load-sharing mirror volume. A load-sharing mirror reduces
+	//    the network traffic to a FlexVol volume by providing additional read-only
+	//    access to clients.
+	OntapVolumeType *string `type:"string" enum:"OntapVolumeType"`
+
+	// The security style for the volume, which can be UNIX, NTFS, or MIXED.
+	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
+
+	// The configured size of the volume, in megabytes (MBs).
+	SizeInMegabytes *int64 `type:"integer"`
+
+	// The volume's storage efficiency setting.
+	StorageEfficiencyEnabled *bool `type:"boolean"`
+
+	// The ID of the volume's storage virtual machine.
+	StorageVirtualMachineId *string `min:"21" type:"string"`
+
+	// A boolean flag indicating whether this volume is the root volume for its
+	// storage virtual machine (SVM). Only one volume on an SVM can be the root
+	// volume. This value defaults to false. If this value is true, then this is
+	// the SVM root volume.
+	//
+	// This flag is useful when you're deleting an SVM, because you must first delete
+	// all non-root volumes. This flag, when set to false, helps you identify which
+	// volumes to delete before you can delete the SVM.
+	StorageVirtualMachineRoot *bool `type:"boolean"`
+
+	// The volume's TieringPolicy setting.
+	TieringPolicy *TieringPolicy `type:"structure"`
+
+	// The volume's UUID (universally unique identifier).
+	UUID *string `type:"string"`
+}
+
+// String returns the string representation
+func (s OntapVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OntapVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetFlexCacheEndpointType sets the FlexCacheEndpointType field's value.
+func (s *OntapVolumeConfiguration) SetFlexCacheEndpointType(v string) *OntapVolumeConfiguration {
+	s.FlexCacheEndpointType = &v
+	return s
+}
+
+// SetJunctionPath sets the JunctionPath field's value.
+func (s *OntapVolumeConfiguration) SetJunctionPath(v string) *OntapVolumeConfiguration {
+	s.JunctionPath = &v
+	return s
+}
+
+// SetOntapVolumeType sets the OntapVolumeType field's value.
+func (s *OntapVolumeConfiguration) SetOntapVolumeType(v string) *OntapVolumeConfiguration {
+	s.OntapVolumeType = &v
+	return s
+}
+
+// SetSecurityStyle sets the SecurityStyle field's value.
+func (s *OntapVolumeConfiguration) SetSecurityStyle(v string) *OntapVolumeConfiguration {
+	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInMegabytes sets the SizeInMegabytes field's value.
+func (s *OntapVolumeConfiguration) SetSizeInMegabytes(v int64) *OntapVolumeConfiguration {
+	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetStorageEfficiencyEnabled sets the StorageEfficiencyEnabled field's value.
+func (s *OntapVolumeConfiguration) SetStorageEfficiencyEnabled(v bool) *OntapVolumeConfiguration {
+	s.StorageEfficiencyEnabled = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *OntapVolumeConfiguration) SetStorageVirtualMachineId(v string) *OntapVolumeConfiguration {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetStorageVirtualMachineRoot sets the StorageVirtualMachineRoot field's value.
+func (s *OntapVolumeConfiguration) SetStorageVirtualMachineRoot(v bool) *OntapVolumeConfiguration {
+	s.StorageVirtualMachineRoot = &v
+	return s
+}
+
+// SetTieringPolicy sets the TieringPolicy field's value.
+func (s *OntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *OntapVolumeConfiguration {
+	s.TieringPolicy = v
+	return s
+}
+
+// SetUUID sets the UUID field's value.
+func (s *OntapVolumeConfiguration) SetUUID(v string) *OntapVolumeConfiguration {
+	s.UUID = &v
+	return s
 }
 
 // The resource specified does not support tagging.
@@ -7686,7 +10538,8 @@ func (s *ResourceNotFound) RequestID() string {
 }
 
 // The configuration of the self-managed Microsoft Active Directory (AD) directory
-// to which the Windows File Server instance is joined.
+// to which the Windows File Server or ONTAP storage virtual machine (SVM) instance
+// is joined.
 type SelfManagedActiveDirectoryAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -7702,8 +10555,8 @@ type SelfManagedActiveDirectoryAttributes struct {
 	FileSystemAdministratorsGroup *string `min:"1" type:"string"`
 
 	// The fully qualified distinguished name of the organizational unit within
-	// the self-managed AD directory to which the Windows File Server instance is
-	// joined.
+	// the self-managed AD directory to which the Windows File Server or ONTAP storage
+	// virtual machine (SVM) instance is joined.
 	OrganizationalUnitDistinguishedName *string `min:"1" type:"string"`
 
 	// The user name for the service account on your self-managed AD domain that
@@ -7751,10 +10604,12 @@ func (s *SelfManagedActiveDirectoryAttributes) SetUserName(v string) *SelfManage
 	return s
 }
 
-// The configuration that Amazon FSx uses to join the Windows File Server instance
-// to your self-managed (including on-premises) Microsoft Active Directory (AD)
-// directory. For more information, see Using Amazon FSx with your self-managed
-// Microsoft Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html).
+// The configuration that Amazon FSx uses to join a Amazon FSx for Windows File
+// Server file system or an ONTAP storage virtual machine (SVM) to a self-managed
+// (including on-premises) Microsoft Active Directory (AD) directory. For more
+// information, see Using Amazon FSx with your self-managed Microsoft Active
+// Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+// or Managing SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
 type SelfManagedActiveDirectoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -7780,11 +10635,11 @@ type SelfManagedActiveDirectoryConfiguration struct {
 	FileSystemAdministratorsGroup *string `min:"1" type:"string"`
 
 	// (Optional) The fully qualified distinguished name of the organizational unit
-	// within your self-managed AD directory that the Windows File Server instance
-	// will join. Amazon FSx only accepts OU as the direct parent of the file system.
-	// An example is OU=FSx,DC=yourdomain,DC=corp,DC=com. To learn more, see RFC
-	// 2253 (https://tools.ietf.org/html/rfc2253). If none is provided, the FSx
-	// file system is created in the default location of your self-managed AD directory.
+	// within your self-managed AD directory. Amazon FSx only accepts OU as the
+	// direct parent of the file system. An example is OU=FSx,DC=yourdomain,DC=corp,DC=com.
+	// To learn more, see RFC 2253 (https://tools.ietf.org/html/rfc2253). If none
+	// is provided, the FSx file system is created in the default location of your
+	// self-managed AD directory.
 	//
 	// Only Organizational Unit (OU) objects can be the direct parent of the file
 	// system that you're creating.
@@ -7960,7 +10815,7 @@ func (s *SelfManagedActiveDirectoryConfigurationUpdates) SetUserName(v string) *
 }
 
 // An error indicating that a particular service limit was exceeded. You can
-// increase some service limits by contacting AWS Support.
+// increase some service limits by contacting Amazon Web Services Support.
 type ServiceLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8081,6 +10936,381 @@ func (s *SourceBackupUnavailable) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *SourceBackupUnavailable) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuraton.
+type StorageVirtualMachine struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the Microsoft Active Directory configuration to which the SVM is
+	// joined, if applicable.
+	ActiveDirectoryConfiguration *SvmActiveDirectoryConfiguration `type:"structure"`
+
+	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
+	// also known as Unix time.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The endpoints that are used to access data or to manage the SVM using the
+	// NetApp ONTAP CLI, REST API, or NetApp CloudManager. They are the Iscsi, Management,
+	// Nfs, and Smb endpoints.
+	Endpoints *SvmEndpoints `type:"structure"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	FileSystemId *string `min:"11" type:"string"`
+
+	// Describes the SVM's lifecycle status.
+	//
+	//    * CREATED - The SVM is fully available for use.
+	//
+	//    * CREATING - Amazon FSx is creating the new SVM.
+	//
+	//    * DELETING - Amazon FSx is deleting an existing SVM.
+	//
+	//    * FAILED - Amazon FSx was unable to create the SVM.
+	//
+	//    * MISCONFIGURED - The SVM is in a failed but recoverable state.
+	//
+	//    * PENDING - Amazon FSx has not started creating the SVM.
+	Lifecycle *string `type:"string" enum:"StorageVirtualMachineLifecycle"`
+
+	// Describes why the SVM lifecycle state changed.
+	LifecycleTransitionReason *LifecycleTransitionReason `type:"structure"`
+
+	// The name of the SVM, if provisioned.
+	Name *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ResourceARN *string `min:"8" type:"string"`
+
+	// The security style of the root volume of the SVM.
+	RootVolumeSecurityStyle *string `type:"string" enum:"StorageVirtualMachineRootVolumeSecurityStyle"`
+
+	// The SVM's system generated unique ID.
+	StorageVirtualMachineId *string `min:"21" type:"string"`
+
+	// Describes the SVM's subtype.
+	Subtype *string `type:"string" enum:"StorageVirtualMachineSubtype"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The SVM's UUID (universally unique identifier).
+	UUID *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StorageVirtualMachine) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StorageVirtualMachine) GoString() string {
+	return s.String()
+}
+
+// SetActiveDirectoryConfiguration sets the ActiveDirectoryConfiguration field's value.
+func (s *StorageVirtualMachine) SetActiveDirectoryConfiguration(v *SvmActiveDirectoryConfiguration) *StorageVirtualMachine {
+	s.ActiveDirectoryConfiguration = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *StorageVirtualMachine) SetCreationTime(v time.Time) *StorageVirtualMachine {
+	s.CreationTime = &v
+	return s
+}
+
+// SetEndpoints sets the Endpoints field's value.
+func (s *StorageVirtualMachine) SetEndpoints(v *SvmEndpoints) *StorageVirtualMachine {
+	s.Endpoints = v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *StorageVirtualMachine) SetFileSystemId(v string) *StorageVirtualMachine {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *StorageVirtualMachine) SetLifecycle(v string) *StorageVirtualMachine {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetLifecycleTransitionReason sets the LifecycleTransitionReason field's value.
+func (s *StorageVirtualMachine) SetLifecycleTransitionReason(v *LifecycleTransitionReason) *StorageVirtualMachine {
+	s.LifecycleTransitionReason = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *StorageVirtualMachine) SetName(v string) *StorageVirtualMachine {
+	s.Name = &v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *StorageVirtualMachine) SetResourceARN(v string) *StorageVirtualMachine {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetRootVolumeSecurityStyle sets the RootVolumeSecurityStyle field's value.
+func (s *StorageVirtualMachine) SetRootVolumeSecurityStyle(v string) *StorageVirtualMachine {
+	s.RootVolumeSecurityStyle = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *StorageVirtualMachine) SetStorageVirtualMachineId(v string) *StorageVirtualMachine {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetSubtype sets the Subtype field's value.
+func (s *StorageVirtualMachine) SetSubtype(v string) *StorageVirtualMachine {
+	s.Subtype = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *StorageVirtualMachine) SetTags(v []*Tag) *StorageVirtualMachine {
+	s.Tags = v
+	return s
+}
+
+// SetUUID sets the UUID field's value.
+func (s *StorageVirtualMachine) SetUUID(v string) *StorageVirtualMachine {
+	s.UUID = &v
+	return s
+}
+
+// A filter used to restrict the results of describe calls for Amazon FSx for
+// NetApp ONTAP storage virtual machines (SVMs). You can use multiple filters
+// to return results that meet all applied filter requirements.
+type StorageVirtualMachineFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name for this filter.
+	Name *string `type:"string" enum:"StorageVirtualMachineFilterName"`
+
+	// The values of the filter. These are all the values for any of the applied
+	// filters.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s StorageVirtualMachineFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StorageVirtualMachineFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *StorageVirtualMachineFilter) SetName(v string) *StorageVirtualMachineFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *StorageVirtualMachineFilter) SetValues(v []*string) *StorageVirtualMachineFilter {
+	s.Values = v
+	return s
+}
+
+// No Amazon FSx for NetApp ONTAP SVMs were found based upon the supplied parameters.
+type StorageVirtualMachineNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s StorageVirtualMachineNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StorageVirtualMachineNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorStorageVirtualMachineNotFound(v protocol.ResponseMetadata) error {
+	return &StorageVirtualMachineNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *StorageVirtualMachineNotFound) Code() string {
+	return "StorageVirtualMachineNotFound"
+}
+
+// Message returns the exception's message.
+func (s *StorageVirtualMachineNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *StorageVirtualMachineNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *StorageVirtualMachineNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *StorageVirtualMachineNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *StorageVirtualMachineNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
+// Describes the configuration of the Microsoft Active Directory (AD) directory
+// to which the Amazon FSx for ONTAP storage virtual machine (SVM) is joined.
+// Pleae note, account credentials are not returned in the response payload.
+type SvmActiveDirectoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The NetBIOS name of the Active Directory computer object that is joined to
+	// your SVM.
+	NetBiosName *string `min:"1" type:"string"`
+
+	// The configuration of the self-managed Microsoft Active Directory (AD) directory
+	// to which the Windows File Server or ONTAP storage virtual machine (SVM) instance
+	// is joined.
+	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryAttributes `type:"structure"`
+}
+
+// String returns the string representation
+func (s SvmActiveDirectoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SvmActiveDirectoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetNetBiosName sets the NetBiosName field's value.
+func (s *SvmActiveDirectoryConfiguration) SetNetBiosName(v string) *SvmActiveDirectoryConfiguration {
+	s.NetBiosName = &v
+	return s
+}
+
+// SetSelfManagedActiveDirectoryConfiguration sets the SelfManagedActiveDirectoryConfiguration field's value.
+func (s *SvmActiveDirectoryConfiguration) SetSelfManagedActiveDirectoryConfiguration(v *SelfManagedActiveDirectoryAttributes) *SvmActiveDirectoryConfiguration {
+	s.SelfManagedActiveDirectoryConfiguration = v
+	return s
+}
+
+// An Amazon FSx for NetApp ONTAP storage virtual machine (SVM) has four endpoints
+// that are used to access data or to manage the SVM using the NetApp ONTAP
+// CLI, REST API, or NetApp CloudManager. They are the Iscsi, Management, Nfs,
+// and Smb endpoints.
+type SvmEndpoint struct {
+	_ struct{} `type:"structure"`
+
+	// The Domain Name Service (DNS) name for the file system. You can mount your
+	// file system using its DNS name.
+	DNSName *string `min:"16" type:"string"`
+
+	// The SVM endpoint's IP addresses.
+	IpAddresses []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s SvmEndpoint) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SvmEndpoint) GoString() string {
+	return s.String()
+}
+
+// SetDNSName sets the DNSName field's value.
+func (s *SvmEndpoint) SetDNSName(v string) *SvmEndpoint {
+	s.DNSName = &v
+	return s
+}
+
+// SetIpAddresses sets the IpAddresses field's value.
+func (s *SvmEndpoint) SetIpAddresses(v []*string) *SvmEndpoint {
+	s.IpAddresses = v
+	return s
+}
+
+// An Amazon FSx for NetApp ONTAP storage virtual machine (SVM) has the following
+// endpoints that are used to access data or to manage the SVM using the NetApp
+// ONTAP CLI, REST API, or NetApp CloudManager.
+type SvmEndpoints struct {
+	_ struct{} `type:"structure"`
+
+	// An endpoint for connecting using the Internet Small Computer Systems Interface
+	// (iSCSI) protocol.
+	Iscsi *SvmEndpoint `type:"structure"`
+
+	// An endpoint for managing SVMs using the NetApp ONTAP CLI, NetApp ONTAP API,
+	// or NetApp CloudManager.
+	Management *SvmEndpoint `type:"structure"`
+
+	// An endpoint for connecting using the Network File System (NFS) protocol.
+	Nfs *SvmEndpoint `type:"structure"`
+
+	// An endpoint for connecting using the Server Message Block (SMB) protocol.
+	Smb *SvmEndpoint `type:"structure"`
+}
+
+// String returns the string representation
+func (s SvmEndpoints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s SvmEndpoints) GoString() string {
+	return s.String()
+}
+
+// SetIscsi sets the Iscsi field's value.
+func (s *SvmEndpoints) SetIscsi(v *SvmEndpoint) *SvmEndpoints {
+	s.Iscsi = v
+	return s
+}
+
+// SetManagement sets the Management field's value.
+func (s *SvmEndpoints) SetManagement(v *SvmEndpoint) *SvmEndpoints {
+	s.Management = v
+	return s
+}
+
+// SetNfs sets the Nfs field's value.
+func (s *SvmEndpoints) SetNfs(v *SvmEndpoint) *SvmEndpoints {
+	s.Nfs = v
+	return s
+}
+
+// SetSmb sets the Smb field's value.
+func (s *SvmEndpoints) SetSmb(v *SvmEndpoint) *SvmEndpoints {
+	s.Smb = v
+	return s
 }
 
 // Specifies a key-value pair for a resource tag.
@@ -8229,6 +11459,69 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
+// Describes the data tiering policy for an ONTAP volume. When enabled, Amazon
+// FSx for ONTAP's intelligent tiering automatically transitions a volume's
+// data between the file system's primary storage and capacity pool storage
+// based on your access patterns.
+type TieringPolicy struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the number of days that user data in a volume must remain inactive
+	// before it is considered "cold" and moved to the capacity pool. Used with
+	// the AUTO and SNAPSHOT_ONLY tiering policies. Enter a whole number between
+	// 2 and 183. Default values are 31 days for AUTO and 2 days for SNAPSHOT_ONLY.
+	CoolingPeriod *int64 `min:"2" type:"integer"`
+
+	// Specifies the tiering policy used to transition data. Default value is SNAPSHOT_ONLY.
+	//
+	//    * SNAPSHOT_ONLY - moves cold snapshots to the capacity pool storage tier.
+	//
+	//    * AUTO - moves cold user data and snapshots to the capacity pool storage
+	//    tier based on your access patterns.
+	//
+	//    * ALL - moves all user data blocks in both the active file system and
+	//    Snapshot copies to the storage pool tier.
+	//
+	//    * NONE - keeps a volume's data in the primary storage tier, preventing
+	//    it from being moved to the capacity pool tier.
+	Name *string `type:"string" enum:"TieringPolicyName"`
+}
+
+// String returns the string representation
+func (s TieringPolicy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TieringPolicy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TieringPolicy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TieringPolicy"}
+	if s.CoolingPeriod != nil && *s.CoolingPeriod < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("CoolingPeriod", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCoolingPeriod sets the CoolingPeriod field's value.
+func (s *TieringPolicy) SetCoolingPeriod(v int64) *TieringPolicy {
+	s.CoolingPeriod = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *TieringPolicy) SetName(v string) *TieringPolicy {
+	s.Name = &v
+	return s
+}
+
 // The requested operation is not supported for this resource or API.
 type UnsupportedOperation struct {
 	_            struct{}                  `type:"structure"`
@@ -8367,7 +11660,7 @@ type UpdateFileSystemInput struct {
 
 	// A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent
 	// updates. This string is automatically filled on your behalf when you use
-	// the AWS Command Line Interface (AWS CLI) or an AWS SDK.
+	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// Identifies the file system that you are updating.
@@ -8379,11 +11672,14 @@ type UpdateFileSystemInput struct {
 	// UpdateFileSystem operation.
 	LustreConfiguration *UpdateFileSystemLustreConfiguration `type:"structure"`
 
-	// Use this parameter to increase the storage capacity of an Amazon FSx file
-	// system. Specifies the storage capacity target value, GiB, to increase the
-	// storage capacity for the file system that you're updating. You cannot make
-	// a storage capacity increase request if there is an existing storage capacity
-	// increase request in progress.
+	// The configuration updates for an Amazon FSx for NetApp ONTAP file system.
+	OntapConfiguration *UpdateFileSystemOntapConfiguration `type:"structure"`
+
+	// Use this parameter to increase the storage capacity of an Amazon FSx for
+	// Windows File Server or Amazon FSx for Lustre file system. Specifies the storage
+	// capacity target value, GiB, to increase the storage capacity for the file
+	// system that you're updating. You cannot make a storage capacity increase
+	// request if there is an existing storage capacity increase request in progress.
 	//
 	// For Windows file systems, the storage capacity target value must be at least
 	// 10 percent (%) greater than the current storage capacity value. In order
@@ -8440,6 +11736,11 @@ func (s *UpdateFileSystemInput) Validate() error {
 			invalidParams.AddNested("LustreConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.WindowsConfiguration != nil {
 		if err := s.WindowsConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("WindowsConfiguration", err.(request.ErrInvalidParams))
@@ -8467,6 +11768,12 @@ func (s *UpdateFileSystemInput) SetFileSystemId(v string) *UpdateFileSystemInput
 // SetLustreConfiguration sets the LustreConfiguration field's value.
 func (s *UpdateFileSystemInput) SetLustreConfiguration(v *UpdateFileSystemLustreConfiguration) *UpdateFileSystemInput {
 	s.LustreConfiguration = v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *UpdateFileSystemInput) SetOntapConfiguration(v *UpdateFileSystemOntapConfiguration) *UpdateFileSystemInput {
+	s.OntapConfiguration = v
 	return s
 }
 
@@ -8591,6 +11898,89 @@ func (s *UpdateFileSystemLustreConfiguration) SetDataCompressionType(v string) *
 
 // SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
 func (s *UpdateFileSystemLustreConfiguration) SetWeeklyMaintenanceStartTime(v string) *UpdateFileSystemLustreConfiguration {
+	s.WeeklyMaintenanceStartTime = &v
+	return s
+}
+
+// The configuration updates for an Amazon FSx for NetApp ONTAP file system.
+type UpdateFileSystemOntapConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The number of days to retain automatic backups. Setting this to 0 disables
+	// automatic backups. You can retain automatic backups for a maximum of 90 days.
+	// The default is 0.
+	AutomaticBackupRetentionDays *int64 `type:"integer"`
+
+	// A recurring daily time, in the format HH:MM. HH is the zero-padded hour of
+	// the day (0-23), and MM is the zero-padded minute of the hour. For example,
+	// 05:00 specifies 5 AM daily.
+	DailyAutomaticBackupStartTime *string `min:"5" type:"string"`
+
+	// The ONTAP administrative password for the fsxadmin user.
+	FsxAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+
+	// A recurring weekly time, in the format D:HH:MM.
+	//
+	// D is the day of the week, for which 1 represents Monday and 7 represents
+	// Sunday. For further details, see the ISO-8601 spec as described on Wikipedia
+	// (https://en.wikipedia.org/wiki/ISO_week_date).
+	//
+	// HH is the zero-padded hour of the day (0-23), and MM is the zero-padded minute
+	// of the hour.
+	//
+	// For example, 1:05:00 specifies maintenance at 5 AM Monday.
+	WeeklyMaintenanceStartTime *string `min:"7" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateFileSystemOntapConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateFileSystemOntapConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateFileSystemOntapConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateFileSystemOntapConfiguration"}
+	if s.DailyAutomaticBackupStartTime != nil && len(*s.DailyAutomaticBackupStartTime) < 5 {
+		invalidParams.Add(request.NewErrParamMinLen("DailyAutomaticBackupStartTime", 5))
+	}
+	if s.FsxAdminPassword != nil && len(*s.FsxAdminPassword) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("FsxAdminPassword", 8))
+	}
+	if s.WeeklyMaintenanceStartTime != nil && len(*s.WeeklyMaintenanceStartTime) < 7 {
+		invalidParams.Add(request.NewErrParamMinLen("WeeklyMaintenanceStartTime", 7))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAutomaticBackupRetentionDays sets the AutomaticBackupRetentionDays field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetAutomaticBackupRetentionDays(v int64) *UpdateFileSystemOntapConfiguration {
+	s.AutomaticBackupRetentionDays = &v
+	return s
+}
+
+// SetDailyAutomaticBackupStartTime sets the DailyAutomaticBackupStartTime field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetDailyAutomaticBackupStartTime(v string) *UpdateFileSystemOntapConfiguration {
+	s.DailyAutomaticBackupStartTime = &v
+	return s
+}
+
+// SetFsxAdminPassword sets the FsxAdminPassword field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetFsxAdminPassword(v string) *UpdateFileSystemOntapConfiguration {
+	s.FsxAdminPassword = &v
+	return s
+}
+
+// SetWeeklyMaintenanceStartTime sets the WeeklyMaintenanceStartTime field's value.
+func (s *UpdateFileSystemOntapConfiguration) SetWeeklyMaintenanceStartTime(v string) *UpdateFileSystemOntapConfiguration {
 	s.WeeklyMaintenanceStartTime = &v
 	return s
 }
@@ -8734,6 +12124,543 @@ func (s *UpdateFileSystemWindowsConfiguration) SetWeeklyMaintenanceStartTime(v s
 	return s
 }
 
+// Used to specify changes to the ONTAP configuration for the volume you are
+// updating.
+type UpdateOntapVolumeConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies the location in the SVM's namespace where the volume is mounted.
+	// The JunctionPath must have a leading forward slash, such as /vol3.
+	JunctionPath *string `min:"1" type:"string"`
+
+	// The security style for the volume, which can be UNIX. NTFS, or MIXED.
+	SecurityStyle *string `type:"string" enum:"SecurityStyle"`
+
+	// Specifies the size of the volume in megabytes.
+	SizeInMegabytes *int64 `type:"integer"`
+
+	// Default is false. Set to true to enable the deduplication, compression, and
+	// compaction storage efficiency features on the volume.
+	StorageEfficiencyEnabled *bool `type:"boolean"`
+
+	// Update the volume's data tiering policy.
+	TieringPolicy *TieringPolicy `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateOntapVolumeConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateOntapVolumeConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateOntapVolumeConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateOntapVolumeConfiguration"}
+	if s.JunctionPath != nil && len(*s.JunctionPath) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("JunctionPath", 1))
+	}
+	if s.TieringPolicy != nil {
+		if err := s.TieringPolicy.Validate(); err != nil {
+			invalidParams.AddNested("TieringPolicy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetJunctionPath sets the JunctionPath field's value.
+func (s *UpdateOntapVolumeConfiguration) SetJunctionPath(v string) *UpdateOntapVolumeConfiguration {
+	s.JunctionPath = &v
+	return s
+}
+
+// SetSecurityStyle sets the SecurityStyle field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSecurityStyle(v string) *UpdateOntapVolumeConfiguration {
+	s.SecurityStyle = &v
+	return s
+}
+
+// SetSizeInMegabytes sets the SizeInMegabytes field's value.
+func (s *UpdateOntapVolumeConfiguration) SetSizeInMegabytes(v int64) *UpdateOntapVolumeConfiguration {
+	s.SizeInMegabytes = &v
+	return s
+}
+
+// SetStorageEfficiencyEnabled sets the StorageEfficiencyEnabled field's value.
+func (s *UpdateOntapVolumeConfiguration) SetStorageEfficiencyEnabled(v bool) *UpdateOntapVolumeConfiguration {
+	s.StorageEfficiencyEnabled = &v
+	return s
+}
+
+// SetTieringPolicy sets the TieringPolicy field's value.
+func (s *UpdateOntapVolumeConfiguration) SetTieringPolicy(v *TieringPolicy) *UpdateOntapVolumeConfiguration {
+	s.TieringPolicy = v
+	return s
+}
+
+type UpdateStorageVirtualMachineInput struct {
+	_ struct{} `type:"structure"`
+
+	// Updates the Microsoft Active Directory (AD) configuration for an SVM that
+	// is joined to an AD.
+	ActiveDirectoryConfiguration *UpdateSvmActiveDirectoryConfiguration `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the SVM that you want to update, in the format svm-0123456789abcdef0.
+	//
+	// StorageVirtualMachineId is a required field
+	StorageVirtualMachineId *string `min:"21" type:"string" required:"true"`
+
+	// Enter a new SvmAdminPassword if you are updating it.
+	SvmAdminPassword *string `min:"8" type:"string" sensitive:"true"`
+}
+
+// String returns the string representation
+func (s UpdateStorageVirtualMachineInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStorageVirtualMachineInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateStorageVirtualMachineInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateStorageVirtualMachineInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.StorageVirtualMachineId == nil {
+		invalidParams.Add(request.NewErrParamRequired("StorageVirtualMachineId"))
+	}
+	if s.StorageVirtualMachineId != nil && len(*s.StorageVirtualMachineId) < 21 {
+		invalidParams.Add(request.NewErrParamMinLen("StorageVirtualMachineId", 21))
+	}
+	if s.SvmAdminPassword != nil && len(*s.SvmAdminPassword) < 8 {
+		invalidParams.Add(request.NewErrParamMinLen("SvmAdminPassword", 8))
+	}
+	if s.ActiveDirectoryConfiguration != nil {
+		if err := s.ActiveDirectoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActiveDirectoryConfiguration sets the ActiveDirectoryConfiguration field's value.
+func (s *UpdateStorageVirtualMachineInput) SetActiveDirectoryConfiguration(v *UpdateSvmActiveDirectoryConfiguration) *UpdateStorageVirtualMachineInput {
+	s.ActiveDirectoryConfiguration = v
+	return s
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateStorageVirtualMachineInput) SetClientRequestToken(v string) *UpdateStorageVirtualMachineInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetStorageVirtualMachineId sets the StorageVirtualMachineId field's value.
+func (s *UpdateStorageVirtualMachineInput) SetStorageVirtualMachineId(v string) *UpdateStorageVirtualMachineInput {
+	s.StorageVirtualMachineId = &v
+	return s
+}
+
+// SetSvmAdminPassword sets the SvmAdminPassword field's value.
+func (s *UpdateStorageVirtualMachineInput) SetSvmAdminPassword(v string) *UpdateStorageVirtualMachineInput {
+	s.SvmAdminPassword = &v
+	return s
+}
+
+type UpdateStorageVirtualMachineOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Describes the Amazon FSx for NetApp ONTAP storage virtual machine (SVM) configuraton.
+	StorageVirtualMachine *StorageVirtualMachine `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateStorageVirtualMachineOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateStorageVirtualMachineOutput) GoString() string {
+	return s.String()
+}
+
+// SetStorageVirtualMachine sets the StorageVirtualMachine field's value.
+func (s *UpdateStorageVirtualMachineOutput) SetStorageVirtualMachine(v *StorageVirtualMachine) *UpdateStorageVirtualMachineOutput {
+	s.StorageVirtualMachine = v
+	return s
+}
+
+// Updates the Microsoft Active Directory (AD) configuration of an SVM joined
+// to an AD. Pleae note, account credentials are not returned in the response
+// payload.
+type UpdateSvmActiveDirectoryConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration that Amazon FSx uses to join the Windows File Server instance
+	// to a self-managed Microsoft Active Directory (AD) directory.
+	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryConfigurationUpdates `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSvmActiveDirectoryConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSvmActiveDirectoryConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSvmActiveDirectoryConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSvmActiveDirectoryConfiguration"}
+	if s.SelfManagedActiveDirectoryConfiguration != nil {
+		if err := s.SelfManagedActiveDirectoryConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SelfManagedActiveDirectoryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSelfManagedActiveDirectoryConfiguration sets the SelfManagedActiveDirectoryConfiguration field's value.
+func (s *UpdateSvmActiveDirectoryConfiguration) SetSelfManagedActiveDirectoryConfiguration(v *SelfManagedActiveDirectoryConfigurationUpdates) *UpdateSvmActiveDirectoryConfiguration {
+	s.SelfManagedActiveDirectoryConfiguration = v
+	return s
+}
+
+type UpdateVolumeInput struct {
+	_ struct{} `type:"structure"`
+
+	// (Optional) An idempotency token for resource creation, in a string of up
+	// to 64 ASCII characters. This token is automatically filled on your behalf
+	// when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.
+	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ONTAP configuration of the volume you are updating.
+	OntapConfiguration *UpdateOntapVolumeConfiguration `type:"structure"`
+
+	// Specifies the volume that you want to update, formatted fsvol-0123456789abcdef0.
+	//
+	// VolumeId is a required field
+	VolumeId *string `min:"23" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s UpdateVolumeInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateVolumeInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateVolumeInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateVolumeInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
+	}
+	if s.VolumeId == nil {
+		invalidParams.Add(request.NewErrParamRequired("VolumeId"))
+	}
+	if s.VolumeId != nil && len(*s.VolumeId) < 23 {
+		invalidParams.Add(request.NewErrParamMinLen("VolumeId", 23))
+	}
+	if s.OntapConfiguration != nil {
+		if err := s.OntapConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("OntapConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *UpdateVolumeInput) SetClientRequestToken(v string) *UpdateVolumeInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *UpdateVolumeInput) SetOntapConfiguration(v *UpdateOntapVolumeConfiguration) *UpdateVolumeInput {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *UpdateVolumeInput) SetVolumeId(v string) *UpdateVolumeInput {
+	s.VolumeId = &v
+	return s
+}
+
+type UpdateVolumeOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Returned after a successful UpdateVolume API operation, describing the volume
+	// just updated.
+	Volume *Volume `type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateVolumeOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateVolumeOutput) GoString() string {
+	return s.String()
+}
+
+// SetVolume sets the Volume field's value.
+func (s *UpdateVolumeOutput) SetVolume(v *Volume) *UpdateVolumeOutput {
+	s.Volume = v
+	return s
+}
+
+// Describes an Amazon FSx for NetApp ONTAP volume.
+type Volume struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the resource was created, in seconds (since 1970-01-01T00:00:00Z),
+	// also known as Unix time.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The globally unique ID of the file system, assigned by Amazon FSx.
+	FileSystemId *string `min:"11" type:"string"`
+
+	// The lifecycle status of the volume.
+	//
+	//    * CREATED - The volume is fully available for use.
+	//
+	//    * CREATING - Amazon FSx is creating the new volume.
+	//
+	//    * DELETING - Amazon FSx is deleting an existing volume.
+	//
+	//    * FAILED - Amazon FSx was unable to create the volume.
+	//
+	//    * MISCONFIGURED - The volume is in a failed but recoverable state.
+	//
+	//    * PENDING - Amazon FSx has not started creating the volume.
+	Lifecycle *string `type:"string" enum:"VolumeLifecycle"`
+
+	// Describes why the volume lifecycle state changed.
+	LifecycleTransitionReason *LifecycleTransitionReason `type:"structure"`
+
+	// The name of the volume.
+	Name *string `min:"1" type:"string"`
+
+	// The configuration of an Amazon FSx for NetApp ONTAP volume
+	OntapConfiguration *OntapVolumeConfiguration `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for a given resource. ARNs uniquely identify
+	// Amazon Web Services resources. We require an ARN when you need to specify
+	// a resource unambiguously across all of Amazon Web Services. For more information,
+	// see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
+	// in the Amazon Web Services General Reference.
+	ResourceARN *string `min:"8" type:"string"`
+
+	// A list of Tag values, with a maximum of 50 elements.
+	Tags []*Tag `min:"1" type:"list"`
+
+	// The system-generated, unique ID of the volume.
+	VolumeId *string `min:"23" type:"string"`
+
+	// The type of volume; ONTAP is the only valid volume type.
+	VolumeType *string `type:"string" enum:"VolumeType"`
+}
+
+// String returns the string representation
+func (s Volume) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Volume) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Volume) SetCreationTime(v time.Time) *Volume {
+	s.CreationTime = &v
+	return s
+}
+
+// SetFileSystemId sets the FileSystemId field's value.
+func (s *Volume) SetFileSystemId(v string) *Volume {
+	s.FileSystemId = &v
+	return s
+}
+
+// SetLifecycle sets the Lifecycle field's value.
+func (s *Volume) SetLifecycle(v string) *Volume {
+	s.Lifecycle = &v
+	return s
+}
+
+// SetLifecycleTransitionReason sets the LifecycleTransitionReason field's value.
+func (s *Volume) SetLifecycleTransitionReason(v *LifecycleTransitionReason) *Volume {
+	s.LifecycleTransitionReason = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *Volume) SetName(v string) *Volume {
+	s.Name = &v
+	return s
+}
+
+// SetOntapConfiguration sets the OntapConfiguration field's value.
+func (s *Volume) SetOntapConfiguration(v *OntapVolumeConfiguration) *Volume {
+	s.OntapConfiguration = v
+	return s
+}
+
+// SetResourceARN sets the ResourceARN field's value.
+func (s *Volume) SetResourceARN(v string) *Volume {
+	s.ResourceARN = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Volume) SetTags(v []*Tag) *Volume {
+	s.Tags = v
+	return s
+}
+
+// SetVolumeId sets the VolumeId field's value.
+func (s *Volume) SetVolumeId(v string) *Volume {
+	s.VolumeId = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *Volume) SetVolumeType(v string) *Volume {
+	s.VolumeType = &v
+	return s
+}
+
+// A filter used to restrict the results of describe calls for Amazon FSx for
+// NetApp ONTAP volumes. You can use multiple filters to return results that
+// meet all applied filter requirements.
+type VolumeFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name for this filter.
+	Name *string `type:"string" enum:"VolumeFilterName"`
+
+	// The values of the filter. These are all the values for any of the applied
+	// filters.
+	Values []*string `type:"list"`
+}
+
+// String returns the string representation
+func (s VolumeFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VolumeFilter) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *VolumeFilter) SetName(v string) *VolumeFilter {
+	s.Name = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *VolumeFilter) SetValues(v []*string) *VolumeFilter {
+	s.Values = v
+	return s
+}
+
+// No Amazon FSx for NetApp ONTAP volumes were found based upon the supplied
+// parameters.
+type VolumeNotFound struct {
+	_            struct{}                  `type:"structure"`
+	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
+
+	// A detailed error message.
+	Message_ *string `locationName:"Message" min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s VolumeNotFound) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s VolumeNotFound) GoString() string {
+	return s.String()
+}
+
+func newErrorVolumeNotFound(v protocol.ResponseMetadata) error {
+	return &VolumeNotFound{
+		RespMetadata: v,
+	}
+}
+
+// Code returns the exception type name.
+func (s *VolumeNotFound) Code() string {
+	return "VolumeNotFound"
+}
+
+// Message returns the exception's message.
+func (s *VolumeNotFound) Message() string {
+	if s.Message_ != nil {
+		return *s.Message_
+	}
+	return ""
+}
+
+// OrigErr always returns nil, satisfies awserr.Error interface.
+func (s *VolumeNotFound) OrigErr() error {
+	return nil
+}
+
+func (s *VolumeNotFound) Error() string {
+	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+}
+
+// Status code returns the HTTP status code for the request's response error.
+func (s *VolumeNotFound) StatusCode() int {
+	return s.RespMetadata.StatusCode
+}
+
+// RequestID returns the service's response RequestID for request.
+func (s *VolumeNotFound) RequestID() string {
+	return s.RespMetadata.RequestID
+}
+
 // The configuration that Amazon FSx for Windows File Server uses to audit and
 // log user accesses of files, folders, and file shares on the Amazon FSx for
 // Windows File Server file system. For more information, see File access auditing
@@ -8750,8 +12677,9 @@ type WindowsAuditLogConfiguration struct {
 	// begin with the aws-fsx prefix.
 	//
 	// The destination ARN (either CloudWatch Logs log group or Kinesis Data Firehose
-	// delivery stream) must be in the same AWS partition, AWS region, and AWS account
-	// as your Amazon FSx file system.
+	// delivery stream) must be in the same Amazon Web Services partition, Amazon
+	// Web Services Region, and Amazon Web Services account as your Amazon FSx file
+	// system.
 	AuditLogDestination *string `min:"8" type:"string"`
 
 	// Sets which attempt type is logged by Amazon FSx for file and folder accesses.
@@ -8824,8 +12752,9 @@ type WindowsAuditLogCreateConfiguration struct {
 	// Kinesis Data Firehose delivery stream ARN, with the following requirements:
 	//
 	//    * The destination ARN that you provide (either CloudWatch Logs log group
-	//    or Kinesis Data Firehose delivery stream) must be in the same AWS partition,
-	//    AWS region, and AWS account as your Amazon FSx file system.
+	//    or Kinesis Data Firehose delivery stream) must be in the same Amazon Web
+	//    Services partition, Amazon Web Services Region, and Amazon Web Services
+	//    account as your Amazon FSx file system.
 	//
 	//    * The name of the Amazon CloudWatch Logs log group must begin with the
 	//    /aws/fsx prefix. The name of the Amazon Kinesis Data Firehouse delivery
@@ -8923,8 +12852,8 @@ func (s *WindowsAuditLogCreateConfiguration) SetFileShareAccessAuditLogLevel(v s
 type WindowsFileSystemConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The ID for an existing AWS Managed Microsoft Active Directory instance that
-	// the file system is joined to.
+	// The ID for an existing Amazon Web Services Managed Microsoft Active Directory
+	// instance that the file system is joined to.
 	ActiveDirectoryId *string `min:"12" type:"string"`
 
 	// An array of one or more DNS aliases that are currently associated with the
@@ -9011,7 +12940,8 @@ type WindowsFileSystemConfiguration struct {
 	RemoteAdministrationEndpoint *string `min:"16" type:"string"`
 
 	// The configuration of the self-managed Microsoft Active Directory (AD) directory
-	// to which the Windows File Server instance is joined.
+	// to which the Windows File Server or ONTAP storage virtual machine (SVM) instance
+	// is joined.
 	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryAttributes `type:"structure"`
 
 	// The throughput of the Amazon FSx file system, measured in megabytes per second.
@@ -9422,6 +13352,22 @@ func DataRepositoryTaskType_Values() []string {
 }
 
 const (
+	// DiskIopsConfigurationModeAutomatic is a DiskIopsConfigurationMode enum value
+	DiskIopsConfigurationModeAutomatic = "AUTOMATIC"
+
+	// DiskIopsConfigurationModeUserProvisioned is a DiskIopsConfigurationMode enum value
+	DiskIopsConfigurationModeUserProvisioned = "USER_PROVISIONED"
+)
+
+// DiskIopsConfigurationMode_Values returns all elements of the DiskIopsConfigurationMode enum
+func DiskIopsConfigurationMode_Values() []string {
+	return []string{
+		DiskIopsConfigurationModeAutomatic,
+		DiskIopsConfigurationModeUserProvisioned,
+	}
+}
+
+const (
 	// DriveCacheTypeNone is a DriveCacheType enum value
 	DriveCacheTypeNone = "NONE"
 
@@ -9494,6 +13440,9 @@ const (
 
 	// FileSystemTypeLustre is a FileSystemType enum value
 	FileSystemTypeLustre = "LUSTRE"
+
+	// FileSystemTypeOntap is a FileSystemType enum value
+	FileSystemTypeOntap = "ONTAP"
 )
 
 // FileSystemType_Values returns all elements of the FileSystemType enum
@@ -9501,6 +13450,7 @@ func FileSystemType_Values() []string {
 	return []string{
 		FileSystemTypeWindows,
 		FileSystemTypeLustre,
+		FileSystemTypeOntap,
 	}
 }
 
@@ -9514,6 +13464,9 @@ const (
 
 	// FilterNameFileSystemType is a FilterName enum value
 	FilterNameFileSystemType = "file-system-type"
+
+	// FilterNameVolumeId is a FilterName enum value
+	FilterNameVolumeId = "volume-id"
 )
 
 // FilterName_Values returns all elements of the FilterName enum
@@ -9522,6 +13475,27 @@ func FilterName_Values() []string {
 		FilterNameFileSystemId,
 		FilterNameBackupType,
 		FilterNameFileSystemType,
+		FilterNameVolumeId,
+	}
+}
+
+const (
+	// FlexCacheEndpointTypeNone is a FlexCacheEndpointType enum value
+	FlexCacheEndpointTypeNone = "NONE"
+
+	// FlexCacheEndpointTypeOrigin is a FlexCacheEndpointType enum value
+	FlexCacheEndpointTypeOrigin = "ORIGIN"
+
+	// FlexCacheEndpointTypeCache is a FlexCacheEndpointType enum value
+	FlexCacheEndpointTypeCache = "CACHE"
+)
+
+// FlexCacheEndpointType_Values returns all elements of the FlexCacheEndpointType enum
+func FlexCacheEndpointType_Values() []string {
+	return []string{
+		FlexCacheEndpointTypeNone,
+		FlexCacheEndpointTypeOrigin,
+		FlexCacheEndpointTypeCache,
 	}
 }
 
@@ -9542,6 +13516,38 @@ func LustreDeploymentType_Values() []string {
 		LustreDeploymentTypeScratch1,
 		LustreDeploymentTypeScratch2,
 		LustreDeploymentTypePersistent1,
+	}
+}
+
+const (
+	// OntapDeploymentTypeMultiAz1 is a OntapDeploymentType enum value
+	OntapDeploymentTypeMultiAz1 = "MULTI_AZ_1"
+)
+
+// OntapDeploymentType_Values returns all elements of the OntapDeploymentType enum
+func OntapDeploymentType_Values() []string {
+	return []string{
+		OntapDeploymentTypeMultiAz1,
+	}
+}
+
+const (
+	// OntapVolumeTypeRw is a OntapVolumeType enum value
+	OntapVolumeTypeRw = "RW"
+
+	// OntapVolumeTypeDp is a OntapVolumeType enum value
+	OntapVolumeTypeDp = "DP"
+
+	// OntapVolumeTypeLs is a OntapVolumeType enum value
+	OntapVolumeTypeLs = "LS"
+)
+
+// OntapVolumeType_Values returns all elements of the OntapVolumeType enum
+func OntapVolumeType_Values() []string {
+	return []string{
+		OntapVolumeTypeRw,
+		OntapVolumeTypeDp,
+		OntapVolumeTypeLs,
 	}
 }
 
@@ -9569,10 +13575,47 @@ func ReportScope_Values() []string {
 	}
 }
 
+const (
+	// ResourceTypeFileSystem is a ResourceType enum value
+	ResourceTypeFileSystem = "FILE_SYSTEM"
+
+	// ResourceTypeVolume is a ResourceType enum value
+	ResourceTypeVolume = "VOLUME"
+)
+
+// ResourceType_Values returns all elements of the ResourceType enum
+func ResourceType_Values() []string {
+	return []string{
+		ResourceTypeFileSystem,
+		ResourceTypeVolume,
+	}
+}
+
+const (
+	// SecurityStyleUnix is a SecurityStyle enum value
+	SecurityStyleUnix = "UNIX"
+
+	// SecurityStyleNtfs is a SecurityStyle enum value
+	SecurityStyleNtfs = "NTFS"
+
+	// SecurityStyleMixed is a SecurityStyle enum value
+	SecurityStyleMixed = "MIXED"
+)
+
+// SecurityStyle_Values returns all elements of the SecurityStyle enum
+func SecurityStyle_Values() []string {
+	return []string{
+		SecurityStyleUnix,
+		SecurityStyleNtfs,
+		SecurityStyleMixed,
+	}
+}
+
 // The types of limits on your service utilization. Limits include file system
 // count, total throughput capacity, total storage, and total user-initiated
-// backups. These limits apply for a specific account in a specific AWS Region.
-// You can increase some of them by contacting AWS Support.
+// backups. These limits apply for a specific account in a specific Amazon Web
+// Services Region. You can increase some of them by contacting Amazon Web Services
+// Support.
 const (
 	// ServiceLimitFileSystemCount is a ServiceLimit enum value
 	ServiceLimitFileSystemCount = "FILE_SYSTEM_COUNT"
@@ -9591,6 +13634,15 @@ const (
 
 	// ServiceLimitTotalInProgressCopyBackups is a ServiceLimit enum value
 	ServiceLimitTotalInProgressCopyBackups = "TOTAL_IN_PROGRESS_COPY_BACKUPS"
+
+	// ServiceLimitStorageVirtualMachinesPerFileSystem is a ServiceLimit enum value
+	ServiceLimitStorageVirtualMachinesPerFileSystem = "STORAGE_VIRTUAL_MACHINES_PER_FILE_SYSTEM"
+
+	// ServiceLimitVolumesPerFileSystem is a ServiceLimit enum value
+	ServiceLimitVolumesPerFileSystem = "VOLUMES_PER_FILE_SYSTEM"
+
+	// ServiceLimitTotalSsdIops is a ServiceLimit enum value
+	ServiceLimitTotalSsdIops = "TOTAL_SSD_IOPS"
 )
 
 // ServiceLimit_Values returns all elements of the ServiceLimit enum
@@ -9602,6 +13654,9 @@ func ServiceLimit_Values() []string {
 		ServiceLimitTotalUserInitiatedBackups,
 		ServiceLimitTotalUserTags,
 		ServiceLimitTotalInProgressCopyBackups,
+		ServiceLimitStorageVirtualMachinesPerFileSystem,
+		ServiceLimitVolumesPerFileSystem,
+		ServiceLimitTotalSsdIops,
 	}
 }
 
@@ -9647,6 +13702,178 @@ func StorageType_Values() []string {
 	return []string{
 		StorageTypeSsd,
 		StorageTypeHdd,
+	}
+}
+
+const (
+	// StorageVirtualMachineFilterNameFileSystemId is a StorageVirtualMachineFilterName enum value
+	StorageVirtualMachineFilterNameFileSystemId = "file-system-id"
+)
+
+// StorageVirtualMachineFilterName_Values returns all elements of the StorageVirtualMachineFilterName enum
+func StorageVirtualMachineFilterName_Values() []string {
+	return []string{
+		StorageVirtualMachineFilterNameFileSystemId,
+	}
+}
+
+const (
+	// StorageVirtualMachineLifecycleCreated is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleCreated = "CREATED"
+
+	// StorageVirtualMachineLifecycleCreating is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleCreating = "CREATING"
+
+	// StorageVirtualMachineLifecycleDeleting is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleDeleting = "DELETING"
+
+	// StorageVirtualMachineLifecycleFailed is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleFailed = "FAILED"
+
+	// StorageVirtualMachineLifecycleMisconfigured is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecycleMisconfigured = "MISCONFIGURED"
+
+	// StorageVirtualMachineLifecyclePending is a StorageVirtualMachineLifecycle enum value
+	StorageVirtualMachineLifecyclePending = "PENDING"
+)
+
+// StorageVirtualMachineLifecycle_Values returns all elements of the StorageVirtualMachineLifecycle enum
+func StorageVirtualMachineLifecycle_Values() []string {
+	return []string{
+		StorageVirtualMachineLifecycleCreated,
+		StorageVirtualMachineLifecycleCreating,
+		StorageVirtualMachineLifecycleDeleting,
+		StorageVirtualMachineLifecycleFailed,
+		StorageVirtualMachineLifecycleMisconfigured,
+		StorageVirtualMachineLifecyclePending,
+	}
+}
+
+const (
+	// StorageVirtualMachineRootVolumeSecurityStyleUnix is a StorageVirtualMachineRootVolumeSecurityStyle enum value
+	StorageVirtualMachineRootVolumeSecurityStyleUnix = "UNIX"
+
+	// StorageVirtualMachineRootVolumeSecurityStyleNtfs is a StorageVirtualMachineRootVolumeSecurityStyle enum value
+	StorageVirtualMachineRootVolumeSecurityStyleNtfs = "NTFS"
+
+	// StorageVirtualMachineRootVolumeSecurityStyleMixed is a StorageVirtualMachineRootVolumeSecurityStyle enum value
+	StorageVirtualMachineRootVolumeSecurityStyleMixed = "MIXED"
+)
+
+// StorageVirtualMachineRootVolumeSecurityStyle_Values returns all elements of the StorageVirtualMachineRootVolumeSecurityStyle enum
+func StorageVirtualMachineRootVolumeSecurityStyle_Values() []string {
+	return []string{
+		StorageVirtualMachineRootVolumeSecurityStyleUnix,
+		StorageVirtualMachineRootVolumeSecurityStyleNtfs,
+		StorageVirtualMachineRootVolumeSecurityStyleMixed,
+	}
+}
+
+const (
+	// StorageVirtualMachineSubtypeDefault is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeDefault = "DEFAULT"
+
+	// StorageVirtualMachineSubtypeDpDestination is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeDpDestination = "DP_DESTINATION"
+
+	// StorageVirtualMachineSubtypeSyncDestination is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeSyncDestination = "SYNC_DESTINATION"
+
+	// StorageVirtualMachineSubtypeSyncSource is a StorageVirtualMachineSubtype enum value
+	StorageVirtualMachineSubtypeSyncSource = "SYNC_SOURCE"
+)
+
+// StorageVirtualMachineSubtype_Values returns all elements of the StorageVirtualMachineSubtype enum
+func StorageVirtualMachineSubtype_Values() []string {
+	return []string{
+		StorageVirtualMachineSubtypeDefault,
+		StorageVirtualMachineSubtypeDpDestination,
+		StorageVirtualMachineSubtypeSyncDestination,
+		StorageVirtualMachineSubtypeSyncSource,
+	}
+}
+
+const (
+	// TieringPolicyNameSnapshotOnly is a TieringPolicyName enum value
+	TieringPolicyNameSnapshotOnly = "SNAPSHOT_ONLY"
+
+	// TieringPolicyNameAuto is a TieringPolicyName enum value
+	TieringPolicyNameAuto = "AUTO"
+
+	// TieringPolicyNameAll is a TieringPolicyName enum value
+	TieringPolicyNameAll = "ALL"
+
+	// TieringPolicyNameNone is a TieringPolicyName enum value
+	TieringPolicyNameNone = "NONE"
+)
+
+// TieringPolicyName_Values returns all elements of the TieringPolicyName enum
+func TieringPolicyName_Values() []string {
+	return []string{
+		TieringPolicyNameSnapshotOnly,
+		TieringPolicyNameAuto,
+		TieringPolicyNameAll,
+		TieringPolicyNameNone,
+	}
+}
+
+const (
+	// VolumeFilterNameFileSystemId is a VolumeFilterName enum value
+	VolumeFilterNameFileSystemId = "file-system-id"
+
+	// VolumeFilterNameStorageVirtualMachineId is a VolumeFilterName enum value
+	VolumeFilterNameStorageVirtualMachineId = "storage-virtual-machine-id"
+)
+
+// VolumeFilterName_Values returns all elements of the VolumeFilterName enum
+func VolumeFilterName_Values() []string {
+	return []string{
+		VolumeFilterNameFileSystemId,
+		VolumeFilterNameStorageVirtualMachineId,
+	}
+}
+
+const (
+	// VolumeLifecycleCreating is a VolumeLifecycle enum value
+	VolumeLifecycleCreating = "CREATING"
+
+	// VolumeLifecycleCreated is a VolumeLifecycle enum value
+	VolumeLifecycleCreated = "CREATED"
+
+	// VolumeLifecycleDeleting is a VolumeLifecycle enum value
+	VolumeLifecycleDeleting = "DELETING"
+
+	// VolumeLifecycleFailed is a VolumeLifecycle enum value
+	VolumeLifecycleFailed = "FAILED"
+
+	// VolumeLifecycleMisconfigured is a VolumeLifecycle enum value
+	VolumeLifecycleMisconfigured = "MISCONFIGURED"
+
+	// VolumeLifecyclePending is a VolumeLifecycle enum value
+	VolumeLifecyclePending = "PENDING"
+)
+
+// VolumeLifecycle_Values returns all elements of the VolumeLifecycle enum
+func VolumeLifecycle_Values() []string {
+	return []string{
+		VolumeLifecycleCreating,
+		VolumeLifecycleCreated,
+		VolumeLifecycleDeleting,
+		VolumeLifecycleFailed,
+		VolumeLifecycleMisconfigured,
+		VolumeLifecyclePending,
+	}
+}
+
+const (
+	// VolumeTypeOntap is a VolumeType enum value
+	VolumeTypeOntap = "ONTAP"
+)
+
+// VolumeType_Values returns all elements of the VolumeType enum
+func VolumeType_Values() []string {
+	return []string{
+		VolumeTypeOntap,
 	}
 }
 
