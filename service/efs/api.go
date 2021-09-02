@@ -93,11 +93,11 @@ func (c *EFS) CreateAccessPointRequest(input *CreateAccessPointInput) (req *requ
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * AccessPointLimitExceeded
-//   Returned if the AWS account has already created the maximum number of access
-//   points allowed per file system.
+//   Returned if the Amazon Web Services account has already created the maximum
+//   number of access points allowed per file system.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateAccessPoint
 func (c *EFS) CreateAccessPoint(input *CreateAccessPointInput) (*CreateAccessPointOutput, error) {
@@ -168,8 +168,8 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 // Creates a new, empty file system. The operation requires a creation token
 // in the request that Amazon EFS uses to ensure idempotent creation (calling
 // the operation with same creation token has no effect). If a file system does
-// not currently exist that is owned by the caller's AWS account with the specified
-// creation token, this operation does the following:
+// not currently exist that is owned by the caller's Amazon Web Services account
+// with the specified creation token, this operation does the following:
 //
 //    * Creates a new, empty file system. The file system will have an Amazon
 //    EFS assigned ID, and an initial lifecycle state creating.
@@ -239,8 +239,8 @@ func (c *EFS) CreateFileSystemRequest(input *CreateFileSystemInput) (req *reques
 //   the creation token you provided.
 //
 //   * FileSystemLimitExceeded
-//   Returned if the AWS account has already created the maximum number of file
-//   systems allowed per account.
+//   Returned if the Amazon Web Services account has already created the maximum
+//   number of file systems allowed per account.
 //
 //   * InsufficientThroughputCapacity
 //   Returned if there's not enough capacity to provision additional throughput.
@@ -439,7 +439,7 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
@@ -461,9 +461,9 @@ func (c *EFS) CreateMountTargetRequest(input *CreateMountTargetInput) (req *requ
 //
 //   * NetworkInterfaceLimitExceeded
 //   The calling account has reached the limit for elastic network interfaces
-//   for the specific AWS Region. The client should try to delete some elastic
-//   network interfaces or get the account limit raised. For more information,
-//   see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
+//   for the specific Amazon Web Services Region. The client should try to delete
+//   some elastic network interfaces or get the account limit raised. For more
+//   information, see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
 //   in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
 //   the table).
 //
@@ -586,7 +586,7 @@ func (c *EFS) CreateTagsRequest(input *CreateTagsInput) (req *request.Request, o
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/CreateTags
 //
@@ -684,7 +684,7 @@ func (c *EFS) DeleteAccessPointRequest(input *DeleteAccessPointInput) (req *requ
 //
 //   * AccessPointNotFound
 //   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteAccessPoint
 func (c *EFS) DeleteAccessPoint(input *DeleteAccessPointInput) (*DeleteAccessPointOutput, error) {
@@ -787,7 +787,7 @@ func (c *EFS) DeleteFileSystemRequest(input *DeleteFileSystemInput) (req *reques
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * FileSystemInUse
 //   Returned if a file system has mount targets.
@@ -880,7 +880,7 @@ func (c *EFS) DeleteFileSystemPolicyRequest(input *DeleteFileSystemPolicyInput) 
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
@@ -999,7 +999,7 @@ func (c *EFS) DeleteMountTargetRequest(input *DeleteMountTargetInput) (req *requ
 //
 //   * MountTargetNotFound
 //   Returned if there is no mount target with the specified ID found in the caller's
-//   account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteMountTarget
 func (c *EFS) DeleteMountTarget(input *DeleteMountTargetInput) (*DeleteMountTargetOutput, error) {
@@ -1080,8 +1080,8 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 // Deletes the specified tags from a file system. If the DeleteTags request
 // includes a tag key that doesn't exist, Amazon EFS ignores it and doesn't
 // cause an error. For more information about tags and related restrictions,
-// see Tag Restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
-// in the AWS Billing and Cost Management User Guide.
+// see Tag restrictions (https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html)
+// in the Billing and Cost Management User Guide.
 //
 // This operation requires permissions for the elasticfilesystem:DeleteTags
 // action.
@@ -1103,7 +1103,7 @@ func (c *EFS) DeleteTagsRequest(input *DeleteTagsInput) (req *request.Request, o
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DeleteTags
 //
@@ -1206,11 +1206,11 @@ func (c *EFS) DescribeAccessPointsRequest(input *DescribeAccessPointsInput) (req
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * AccessPointNotFound
 //   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeAccessPoints
 func (c *EFS) DescribeAccessPoints(input *DescribeAccessPointsInput) (*DescribeAccessPointsOutput, error) {
@@ -1330,6 +1330,10 @@ func (c *EFS) DescribeAccountPreferencesRequest(input *DescribeAccountPreference
 
 // DescribeAccountPreferences API operation for Amazon Elastic File System.
 //
+// Returns the account preferences settings for the Amazon Web Services account
+// associated with the user making the request, in the current Amazon Web Services
+// Region. For more information, see Managing Amazon EFS resource IDs (efs/latest/ug/manage-efs-resource-ids.html).
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1423,7 +1427,7 @@ func (c *EFS) DescribeBackupPolicyRequest(input *DescribeBackupPolicyInput) (req
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * InternalServerError
 //   Returned if an error occurred on the server side.
@@ -1433,8 +1437,8 @@ func (c *EFS) DescribeBackupPolicyRequest(input *DescribeBackupPolicyInput) (req
 //   system specified.
 //
 //   * ValidationException
-//   Returned if the AWS Backup service is not available in the Region in which
-//   the request was made.
+//   Returned if the Backup service is not available in the Amazon Web Services
+//   Region in which the request was made.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeBackupPolicy
 func (c *EFS) DescribeBackupPolicy(input *DescribeBackupPolicyInput) (*DescribeBackupPolicyOutput, error) {
@@ -1520,7 +1524,7 @@ func (c *EFS) DescribeFileSystemPolicyRequest(input *DescribeFileSystemPolicyInp
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * PolicyNotFound
 //   Returned if the default file system policy is in effect for the EFS file
@@ -1600,8 +1604,9 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 //
 // Returns the description of a specific Amazon EFS file system if either the
 // file system CreationToken or the FileSystemId is provided. Otherwise, it
-// returns descriptions of all file systems owned by the caller's AWS account
-// in the AWS Region of the endpoint that you're calling.
+// returns descriptions of all file systems owned by the caller's Amazon Web
+// Services account in the Amazon Web Services Region of the endpoint that you're
+// calling.
 //
 // When retrieving all file system descriptions, you can optionally specify
 // the MaxItems parameter to limit the number of descriptions in a response.
@@ -1640,7 +1645,7 @@ func (c *EFS) DescribeFileSystemsRequest(input *DescribeFileSystemsInput) (req *
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeFileSystems
 func (c *EFS) DescribeFileSystems(input *DescribeFileSystemsInput) (*DescribeFileSystemsOutput, error) {
@@ -1766,6 +1771,9 @@ func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConf
 // storage class. For a file system without a LifecycleConfiguration object,
 // the call returns an empty array in the response.
 //
+// When EFS Intelligent Tiering is enabled, TransitionToPrimaryStorageClass
+// has a value of AFTER_1_ACCESS.
+//
 // This operation requires permissions for the elasticfilesystem:DescribeLifecycleConfiguration
 // operation.
 //
@@ -1786,7 +1794,7 @@ func (c *EFS) DescribeLifecycleConfigurationRequest(input *DescribeLifecycleConf
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeLifecycleConfiguration
 func (c *EFS) DescribeLifecycleConfiguration(input *DescribeLifecycleConfigurationInput) (*DescribeLifecycleConfigurationOutput, error) {
@@ -1883,7 +1891,7 @@ func (c *EFS) DescribeMountTargetSecurityGroupsRequest(input *DescribeMountTarge
 //
 //   * MountTargetNotFound
 //   Returned if there is no mount target with the specified ID found in the caller's
-//   account.
+//   Amazon Web Services account.
 //
 //   * IncorrectMountTargetState
 //   Returned if the mount target is not in the correct state for the operation.
@@ -1979,15 +1987,15 @@ func (c *EFS) DescribeMountTargetsRequest(input *DescribeMountTargetsInput) (req
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * MountTargetNotFound
 //   Returned if there is no mount target with the specified ID found in the caller's
-//   account.
+//   Amazon Web Services account.
 //
 //   * AccessPointNotFound
 //   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeMountTargets
 func (c *EFS) DescribeMountTargets(input *DescribeMountTargetsInput) (*DescribeMountTargetsOutput, error) {
@@ -2094,7 +2102,7 @@ func (c *EFS) DescribeTagsRequest(input *DescribeTagsInput) (req *request.Reques
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/DescribeTags
 //
@@ -2251,11 +2259,11 @@ func (c *EFS) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * AccessPointNotFound
 //   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/ListTagsForResource
 func (c *EFS) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -2410,7 +2418,7 @@ func (c *EFS) ModifyMountTargetSecurityGroupsRequest(input *ModifyMountTargetSec
 //
 //   * MountTargetNotFound
 //   Returned if there is no mount target with the specified ID found in the caller's
-//   account.
+//   Amazon Web Services account.
 //
 //   * IncorrectMountTargetState
 //   Returned if the mount target is not in the correct state for the operation.
@@ -2488,6 +2496,13 @@ func (c *EFS) PutAccountPreferencesRequest(input *PutAccountPreferencesInput) (r
 }
 
 // PutAccountPreferences API operation for Amazon Elastic File System.
+//
+// Use this operation to set the account preference in the current Amazon Web
+// Services Region to use either long 17 character (63 bit) or short 8 character
+// (32 bit) IDs for new EFS file systems and mount targets created. All existing
+// resource IDs are not affected by any changes you make. You can set the ID
+// preference during the opt-in period as EFS transitions to long resource IDs.
+// For more information, see Managing Amazon EFS resource IDs (efs/latest/ug/manage-efs-resource-ids.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2583,7 +2598,7 @@ func (c *EFS) PutBackupPolicyRequest(input *PutBackupPolicyInput) (req *request.
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
@@ -2592,8 +2607,8 @@ func (c *EFS) PutBackupPolicyRequest(input *PutBackupPolicyInput) (req *request.
 //   Returned if an error occurred on the server side.
 //
 //   * ValidationException
-//   Returned if the AWS Backup service is not available in the Region in which
-//   the request was made.
+//   Returned if the Backup service is not available in the Amazon Web Services
+//   Region in which the request was made.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/PutBackupPolicy
 func (c *EFS) PutBackupPolicy(input *PutBackupPolicyInput) (*PutBackupPolicyOutput, error) {
@@ -2688,7 +2703,7 @@ func (c *EFS) PutFileSystemPolicyRequest(input *PutFileSystemPolicyInput) (req *
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * InvalidPolicyException
 //   Returned if the FileSystemPolicy is is malformed or contains an error such
@@ -2767,8 +2782,10 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 // Enables lifecycle management by creating a new LifecycleConfiguration object.
 // A LifecycleConfiguration object defines when files in an Amazon EFS file
 // system are automatically transitioned to the lower-cost EFS Infrequent Access
-// (IA) storage class. A LifecycleConfiguration applies to all files in a file
-// system.
+// (IA) storage class. To enable EFS Intelligent Tiering, set the value of TransitionToPrimaryStorageClass
+// to AFTER_1_ACCESS. For more information, see EFS Lifecycle Management (https://docs.aws.amazon.com/efs/latest/ug/lifecycle-management-efs.html).
+//
+// A LifecycleConfiguration applies to all files in a file system.
 //
 // Each Amazon EFS file system supports one lifecycle configuration, which applies
 // to all files in the file system. If a LifecycleConfiguration object already
@@ -2790,8 +2807,8 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 // operation.
 //
 // To apply a LifecycleConfiguration object to an encrypted file system, you
-// need the same AWS Key Management Service (AWS KMS) permissions as when you
-// created the encrypted file system.
+// need the same Key Management Service permissions as when you created the
+// encrypted file system.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2810,7 +2827,7 @@ func (c *EFS) PutLifecycleConfigurationRequest(input *PutLifecycleConfigurationI
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
@@ -2905,11 +2922,11 @@ func (c *EFS) TagResourceRequest(input *TagResourceInput) (req *request.Request,
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * AccessPointNotFound
 //   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/TagResource
 func (c *EFS) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -3001,11 +3018,11 @@ func (c *EFS) UntagResourceRequest(input *UntagResourceInput) (req *request.Requ
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * AccessPointNotFound
 //   Returned if the specified AccessPointId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticfilesystem-2015-02-01/UntagResource
 func (c *EFS) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -3090,7 +3107,7 @@ func (c *EFS) UpdateFileSystemRequest(input *UpdateFileSystemInput) (req *reques
 //
 //   * FileSystemNotFound
 //   Returned if the specified FileSystemId value doesn't exist in the requester's
-//   AWS account.
+//   Amazon Web Services account.
 //
 //   * IncorrectFileSystemLifeCycleState
 //   Returned if the file system's lifecycle state is not "available".
@@ -3220,7 +3237,7 @@ type AccessPointDescription struct {
 	// The name of the access point. This is the value of the Name tag.
 	Name *string `type:"string"`
 
-	// Identified the AWS account that owns the access point resource.
+	// Identified the Amazon Web Services account that owns the access point resource.
 	OwnerId *string `type:"string"`
 
 	// The full POSIX identity, including the user ID, group ID, and secondary group
@@ -3306,8 +3323,8 @@ func (s *AccessPointDescription) SetTags(v []*Tag) *AccessPointDescription {
 	return s
 }
 
-// Returned if the AWS account has already created the maximum number of access
-// points allowed per file system.
+// Returned if the Amazon Web Services account has already created the maximum
+// number of access points allowed per file system.
 type AccessPointLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3367,7 +3384,7 @@ func (s *AccessPointLimitExceeded) RequestID() string {
 }
 
 // Returned if the specified AccessPointId value doesn't exist in the requester's
-// AWS account.
+// Amazon Web Services account.
 type AccessPointNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3626,7 +3643,10 @@ type CreateAccessPointInput struct {
 	// directory does not exist, attempts to mount using the access point will fail.
 	RootDirectory *RootDirectory `type:"structure"`
 
-	// Creates tags associated with the access point. Each tag is a key-value pair.
+	// Creates tags associated with the access point. Each tag is a key-value pair,
+	// each key must be unique. For more information, see Tagging Amazon Web Services
+	// resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 }
 
@@ -3728,7 +3748,7 @@ type CreateAccessPointOutput struct {
 	// The name of the access point. This is the value of the Name tag.
 	Name *string `type:"string"`
 
-	// Identified the AWS account that owns the access point resource.
+	// Identified the Amazon Web Services account that owns the access point resource.
 	OwnerId *string `type:"string"`
 
 	// The full POSIX identity, including the user ID, group ID, and secondary group
@@ -3818,13 +3838,13 @@ type CreateFileSystemInput struct {
 	_ struct{} `type:"structure"`
 
 	// Used to create a file system that uses One Zone storage classes. It specifies
-	// the AWS Availability Zone in which to create the file system. Use the format
-	// us-east-1a to specify the Availability Zone. For more information about One
-	// Zone storage classes, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// the Amazon Web Services Availability Zone in which to create the file system.
+	// Use the format us-east-1a to specify the Availability Zone. For more information
+	// about One Zone storage classes, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	//
-	// One Zone storage classes are not available in all Availability Zones in AWS
-	// Regions where Amazon EFS is available.
+	// One Zone storage classes are not available in all Availability Zones in Amazon
+	// Web Services Regions where Amazon EFS is available.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
 	// Specifies whether automatic backups are enabled on the file system that you
@@ -3836,7 +3856,8 @@ type CreateFileSystemInput struct {
 	// Default is false. However, if you specify an AvailabilityZoneName, the default
 	// is true.
 	//
-	// AWS Backup is not available in all AWS Regions where Amazon EFS is available.
+	// Backup is not available in all Amazon Web Services Regionswhere Amazon EFS
+	// is available.
 	Backup *bool `type:"boolean"`
 
 	// A string of up to 64 ASCII characters. Amazon EFS uses this to ensure idempotent
@@ -3845,12 +3866,12 @@ type CreateFileSystemInput struct {
 
 	// A Boolean value that, if true, creates an encrypted file system. When creating
 	// an encrypted file system, you have the option of specifying CreateFileSystemRequest$KmsKeyId
-	// for an existing AWS Key Management Service (AWS KMS) customer master key
-	// (CMK). If you don't specify a CMK, then the default CMK for Amazon EFS, /aws/elasticfilesystem,
+	// for an existing Key Management Service (KMS customer master key (CMK). If
+	// you don't specify a CMK, then the default CMK for Amazon EFS, /aws/elasticfilesystem,
 	// is used to protect the encrypted file system.
 	Encrypted *bool `type:"boolean"`
 
-	// The ID of the AWS KMS CMK that you want to use to protect the encrypted file
+	// The ID of the KMS CMK that you want to use to protect the encrypted file
 	// system. This parameter is only required if you want to use a non-default
 	// KMS key. If this parameter is not specified, the default CMK for Amazon EFS
 	// is used. This ID can be in one of the following formats:
@@ -3883,14 +3904,16 @@ type CreateFileSystemInput struct {
 	// The throughput, measured in MiB/s, that you want to provision for a file
 	// system that you're creating. Valid values are 1-1024. Required if ThroughputMode
 	// is set to provisioned. The upper limit for throughput is 1024 MiB/s. To increase
-	// this limit, contact AWS Support. For more information, see Amazon EFS quotas
-	// that you can increase (https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits)
+	// this limit, contact Amazon Web Services Support. For more information, see
+	// Amazon EFS quotas that you can increase (https://docs.aws.amazon.com/efs/latest/ug/limits.html#soft-limits)
 	// in the Amazon EFS User Guide.
 	ProvisionedThroughputInMibps *float64 `min:"1" type:"double"`
 
-	// A value that specifies to create one or more tags associated with the file
-	// system. Each tag is a user-defined key-value pair. Name your file system
-	// on creation by including a "Key":"Name","Value":"{value}" key-value pair.
+	// Use to create one or more tags associated with the file system. Each tag
+	// is a user-defined key-value pair. Name your file system on creation by including
+	// a "Key":"Name","Value":"{value}" key-value pair. Each key must be unique.
+	// For more information, see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference Guide.
 	Tags []*Tag `type:"list"`
 
 	// Specifies the throughput mode for the file system, either bursting or provisioned.
@@ -4703,10 +4726,14 @@ func (s *DescribeAccessPointsOutput) SetNextToken(v string) *DescribeAccessPoint
 type DescribeAccountPreferencesInput struct {
 	_ struct{} `type:"structure"`
 
-	// Max results used for pagination.
+	// (Optional) When retrieving account preferences, you can optionally specify
+	// the MaxItems parameter to limit the number of objects returned in a response.
+	// The default value is 100.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// Token used for pagination.
+	// (Optional) You can use NextToken in a subsequent request to fetch the next
+	// page of Amazon Web Services account preferences if the response payload was
+	// paginated.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -4751,9 +4778,13 @@ func (s *DescribeAccountPreferencesInput) SetNextToken(v string) *DescribeAccoun
 type DescribeAccountPreferencesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Token used for pagination.
+	// Present if there are more records than returned in the response. You can
+	// use the NextToken in the subsequent request to fetch the additional descriptions.
 	NextToken *string `min:"1" type:"string"`
 
+	// Describes the resource ID preference setting for the Amazon Web Services
+	// account associated with the user making the request, in the current Amazon
+	// Web Services Region.
 	ResourceIdPreference *ResourceIdPreference `type:"structure"`
 }
 
@@ -5079,8 +5110,8 @@ func (s *DescribeLifecycleConfigurationInput) SetFileSystemId(v string) *Describ
 type DescribeLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of lifecycle management policies. Currently, EFS supports a maximum
-	// of one policy per file system.
+	// An array of lifecycle management policies. EFS supports a maximum of one
+	// policy per file system.
 	LifecyclePolicies []*LifecyclePolicy `type:"list"`
 }
 
@@ -5485,13 +5516,13 @@ type FileSystemDescription struct {
 
 	// The unique and consistent identifier of the Availability Zone in which the
 	// file system's One Zone storage classes exist. For example, use1-az1 is an
-	// Availability Zone ID for the us-east-1 AWS Region, and it has the same location
-	// in every AWS account.
+	// Availability Zone ID for the us-east-1 Amazon Web Services Region, and it
+	// has the same location in every Amazon Web Services account.
 	AvailabilityZoneId *string `type:"string"`
 
-	// Describes the AWS Availability Zone in which the file system is located,
-	// and is valid only for file systems using One Zone storage classes. For more
-	// information, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// Describes the Amazon Web Services Availability Zone in which the file system
+	// is located, and is valid only for file systems using One Zone storage classes.
+	// For more information, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
@@ -5517,8 +5548,8 @@ type FileSystemDescription struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
-	// The ID of an AWS Key Management Service (AWS KMS) customer master key (CMK)
-	// that was used to protect the encrypted file system.
+	// The ID of an Key Management Service customer master key (CMK) that was used
+	// to protect the encrypted file system.
 	KmsKeyId *string `type:"string"`
 
 	// The lifecycle phase of the file system.
@@ -5537,8 +5568,9 @@ type FileSystemDescription struct {
 	// NumberOfMountTargets is a required field
 	NumberOfMountTargets *int64 `type:"integer" required:"true"`
 
-	// The AWS account that created the file system. If the file system was created
-	// by an IAM user, the parent account to which the user belongs is the owner.
+	// The Amazon Web Services account that created the file system. If the file
+	// system was created by an IAM user, the parent account to which the user belongs
+	// is the owner.
 	//
 	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`
@@ -5747,8 +5779,8 @@ func (s *FileSystemInUse) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Returned if the AWS account has already created the maximum number of file
-// systems allowed per account.
+// Returned if the Amazon Web Services account has already created the maximum
+// number of file systems allowed per account.
 type FileSystemLimitExceeded struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5808,7 +5840,7 @@ func (s *FileSystemLimitExceeded) RequestID() string {
 }
 
 // Returned if the specified FileSystemId value doesn't exist in the requester's
-// AWS account.
+// Amazon Web Services account.
 type FileSystemNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6295,10 +6327,14 @@ func (s *IpAddressInUse) RequestID() string {
 type LifecyclePolicy struct {
 	_ struct{} `type:"structure"`
 
-	// A value that describes the period of time that a file is not accessed, after
-	// which it transitions to the IA storage class. Metadata operations such as
-	// listing the contents of a directory don't count as file access events.
+	// Describes the period of time that a file is not accessed, after which it
+	// transitions to the IA storage class. Metadata operations such as listing
+	// the contents of a directory don't count as file access events.
 	TransitionToIA *string `type:"string" enum:"TransitionToIARules"`
+
+	// Describes the policy used to transition a file from infequent access storage
+	// to primary storage.
+	TransitionToPrimaryStorageClass *string `type:"string" enum:"TransitionToPrimaryStorageClassRules"`
 }
 
 // String returns the string representation
@@ -6314,6 +6350,12 @@ func (s LifecyclePolicy) GoString() string {
 // SetTransitionToIA sets the TransitionToIA field's value.
 func (s *LifecyclePolicy) SetTransitionToIA(v string) *LifecyclePolicy {
 	s.TransitionToIA = &v
+	return s
+}
+
+// SetTransitionToPrimaryStorageClass sets the TransitionToPrimaryStorageClass field's value.
+func (s *LifecyclePolicy) SetTransitionToPrimaryStorageClass(v string) *LifecyclePolicy {
+	s.TransitionToPrimaryStorageClass = &v
 	return s
 }
 
@@ -6548,13 +6590,14 @@ type MountTargetDescription struct {
 
 	// The unique and consistent identifier of the Availability Zone that the mount
 	// target resides in. For example, use1-az1 is an AZ ID for the us-east-1 Region
-	// and it has the same location in every AWS account.
+	// and it has the same location in every Amazon Web Services account.
 	AvailabilityZoneId *string `type:"string"`
 
 	// The name of the Availability Zone in which the mount target is located. Availability
-	// Zones are independently mapped to names for each AWS account. For example,
-	// the Availability Zone us-east-1a for your AWS account might not be the same
-	// location as us-east-1a for another AWS account.
+	// Zones are independently mapped to names for each Amazon Web Services account.
+	// For example, the Availability Zone us-east-1a for your Amazon Web Services
+	// account might not be the same location as us-east-1a for another Amazon Web
+	// Services account.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
 	// The ID of the file system for which the mount target is intended.
@@ -6579,7 +6622,7 @@ type MountTargetDescription struct {
 	// mount target.
 	NetworkInterfaceId *string `type:"string"`
 
-	// AWS account ID that owns the resource.
+	// Amazon Web Services account ID that owns the resource.
 	OwnerId *string `type:"string"`
 
 	// The ID of the mount target's subnet.
@@ -6662,7 +6705,7 @@ func (s *MountTargetDescription) SetVpcId(v string) *MountTargetDescription {
 }
 
 // Returned if there is no mount target with the specified ID found in the caller's
-// account.
+// Amazon Web Services account.
 type MountTargetNotFound struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6722,9 +6765,9 @@ func (s *MountTargetNotFound) RequestID() string {
 }
 
 // The calling account has reached the limit for elastic network interfaces
-// for the specific AWS Region. The client should try to delete some elastic
-// network interfaces or get the account limit raised. For more information,
-// see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
+// for the specific Amazon Web Services Region. The client should try to delete
+// some elastic network interfaces or get the account limit raised. For more
+// information, see Amazon VPC Limits (https://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Appendix_Limits.html)
 // in the Amazon VPC User Guide (see the Network interfaces per VPC entry in
 // the table).
 type NetworkInterfaceLimitExceeded struct {
@@ -6973,8 +7016,9 @@ func (s *PosixUser) SetUid(v int64) *PosixUser {
 type PutAccountPreferencesInput struct {
 	_ struct{} `type:"structure"`
 
-	// A preference indicating a choice to use 63bit/32bit IDs for all applicable
-	// resources.
+	// Specifies the EFS resource ID preference to set for the user's Amazon Web
+	// Services account, in the current Amazon Web Services Region, either LONG_ID
+	// (17 characters), or SHORT_ID (8 characters).
 	//
 	// ResourceIdType is a required field
 	ResourceIdType *string `type:"string" required:"true" enum:"ResourceIdType"`
@@ -7012,6 +7056,8 @@ func (s *PutAccountPreferencesInput) SetResourceIdType(v string) *PutAccountPref
 type PutAccountPreferencesOutput struct {
 	_ struct{} `type:"structure"`
 
+	// Describes the resource type and its ID preference for the user's Amazon Web
+	// Services account, in the current Amazon Web Services Region.
 	ResourceIdPreference *ResourceIdPreference `type:"structure"`
 }
 
@@ -7286,8 +7332,8 @@ func (s *PutLifecycleConfigurationInput) SetLifecyclePolicies(v []*LifecyclePoli
 type PutLifecycleConfigurationOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array of lifecycle management policies. Currently, EFS supports a maximum
-	// of one policy per file system.
+	// An array of lifecycle management policies. EFS supports a maximum of one
+	// policy per file system.
 	LifecyclePolicies []*LifecyclePolicy `type:"list"`
 }
 
@@ -7307,14 +7353,17 @@ func (s *PutLifecycleConfigurationOutput) SetLifecyclePolicies(v []*LifecyclePol
 	return s
 }
 
+// Describes the resource type and its ID preference for the user's Amazon Web
+// Services account, in the current Amazon Web Services Region.
 type ResourceIdPreference struct {
 	_ struct{} `type:"structure"`
 
-	// A preference indicating a choice to use 63bit/32bit IDs for all applicable
-	// resources.
+	// Identifies the EFS resource ID preference, either LONG_ID (17 characters)
+	// or SHORT_ID (8 characters).
 	ResourceIdType *string `type:"string" enum:"ResourceIdType"`
 
-	// EFS resources to which a preference applies to.
+	// Identifies the Amazon EFS resources to which the ID preference setting applies,
+	// FILE_SYSTEM and MOUNT_TARGET.
 	Resources []*string `type:"list"`
 }
 
@@ -8049,13 +8098,13 @@ type UpdateFileSystemOutput struct {
 
 	// The unique and consistent identifier of the Availability Zone in which the
 	// file system's One Zone storage classes exist. For example, use1-az1 is an
-	// Availability Zone ID for the us-east-1 AWS Region, and it has the same location
-	// in every AWS account.
+	// Availability Zone ID for the us-east-1 Amazon Web Services Region, and it
+	// has the same location in every Amazon Web Services account.
 	AvailabilityZoneId *string `type:"string"`
 
-	// Describes the AWS Availability Zone in which the file system is located,
-	// and is valid only for file systems using One Zone storage classes. For more
-	// information, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
+	// Describes the Amazon Web Services Availability Zone in which the file system
+	// is located, and is valid only for file systems using One Zone storage classes.
+	// For more information, see Using EFS storage classes (https://docs.aws.amazon.com/efs/latest/ug/storage-classes.html)
 	// in the Amazon EFS User Guide.
 	AvailabilityZoneName *string `min:"1" type:"string"`
 
@@ -8081,8 +8130,8 @@ type UpdateFileSystemOutput struct {
 	// FileSystemId is a required field
 	FileSystemId *string `type:"string" required:"true"`
 
-	// The ID of an AWS Key Management Service (AWS KMS) customer master key (CMK)
-	// that was used to protect the encrypted file system.
+	// The ID of an Key Management Service customer master key (CMK) that was used
+	// to protect the encrypted file system.
 	KmsKeyId *string `type:"string"`
 
 	// The lifecycle phase of the file system.
@@ -8101,8 +8150,9 @@ type UpdateFileSystemOutput struct {
 	// NumberOfMountTargets is a required field
 	NumberOfMountTargets *int64 `type:"integer" required:"true"`
 
-	// The AWS account that created the file system. If the file system was created
-	// by an IAM user, the parent account to which the user belongs is the owner.
+	// The Amazon Web Services account that created the file system. If the file
+	// system was created by an IAM user, the parent account to which the user belongs
+	// is the owner.
 	//
 	// OwnerId is a required field
 	OwnerId *string `type:"string" required:"true"`
@@ -8252,8 +8302,8 @@ func (s *UpdateFileSystemOutput) SetThroughputMode(v string) *UpdateFileSystemOu
 	return s
 }
 
-// Returned if the AWS Backup service is not available in the Region in which
-// the request was made.
+// Returned if the Backup service is not available in the Amazon Web Services
+// Region in which the request was made.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8460,5 +8510,17 @@ func TransitionToIARules_Values() []string {
 		TransitionToIARulesAfter30Days,
 		TransitionToIARulesAfter60Days,
 		TransitionToIARulesAfter90Days,
+	}
+}
+
+const (
+	// TransitionToPrimaryStorageClassRulesAfter1Access is a TransitionToPrimaryStorageClassRules enum value
+	TransitionToPrimaryStorageClassRulesAfter1Access = "AFTER_1_ACCESS"
+)
+
+// TransitionToPrimaryStorageClassRules_Values returns all elements of the TransitionToPrimaryStorageClassRules enum
+func TransitionToPrimaryStorageClassRules_Values() []string {
+	return []string{
+		TransitionToPrimaryStorageClassRulesAfter1Access,
 	}
 }

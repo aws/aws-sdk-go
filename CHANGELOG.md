@@ -1,3 +1,23 @@
+Release v1.40.36 (2021-09-02)
+===
+
+### Service Client Updates
+* `service/accessanalyzer`: Updates service API and documentation
+* `service/acm-pca`: Updates service API and documentation
+* `service/ebs`: Updates service documentation
+* `service/elasticfilesystem`: Updates service API and documentation
+  * Adds support for EFS Intelligent-Tiering, which uses EFS Lifecycle Management to monitor file access patterns and is designed to automatically transition files to and from your corresponding Infrequent Access (IA) storage classes.
+* `service/fsx`: Updates service API, documentation, and paginators
+* `service/lex-models`: Updates service API
+* `service/quicksight`: Updates service API and documentation
+  * This release adds support for referencing parent datasets as sources in a child dataset.
+* `service/s3control`: Updates service API, documentation, and paginators
+  * S3 Multi-Region Access Points provide a single global endpoint to access a data set that spans multiple S3 buckets in different AWS Regions.
+* `service/schemas`: Updates service API and documentation
+* `service/securityhub`: Updates service API, documentation, and paginators
+* `service/transfer`: Updates service API, documentation, and paginators
+  * AWS Transfer Family introduces Managed Workflows for creating, executing, monitoring, and standardizing post file transfer processing
+
 Release v1.40.35 (2021-09-01)
 ===
 

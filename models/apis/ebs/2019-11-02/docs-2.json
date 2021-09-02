@@ -368,7 +368,7 @@
       "refs": {
         "ListChangedBlocksResponse$VolumeSize": "<p>The size of the volume in GB.</p>",
         "ListSnapshotBlocksResponse$VolumeSize": "<p>The size of the volume in GB.</p>",
-        "StartSnapshotRequest$VolumeSize": "<p>The size of the volume, in GiB. The maximum size is <code>16384</code> GiB (16 TiB).</p>",
+        "StartSnapshotRequest$VolumeSize": "<p>The size of the volume, in GiB. The maximum size is <code>65536</code> GiB (64 TiB).</p>",
         "StartSnapshotResponse$VolumeSize": "<p>The size of the volume, in GiB.</p>"
       }
     }

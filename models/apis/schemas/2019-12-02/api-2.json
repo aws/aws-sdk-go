@@ -1085,6 +1085,9 @@
         "SourceArn": {
           "shape": "__stringMin20Max1600"
         },
+        "CrossAccount": {
+          "shape": "__boolean"
+        },
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
@@ -1102,6 +1105,9 @@
         },
         "SourceArn": {
           "shape": "__stringMin20Max1600"
+        },
+        "CrossAccount": {
+          "shape": "__boolean"
         },
         "Tags": {
           "shape": "Tags",
@@ -1129,6 +1135,9 @@
         },
         "State": {
           "shape": "DiscovererState"
+        },
+        "CrossAccount": {
+          "shape": "__boolean"
         },
         "Tags": {
           "shape": "Tags",
@@ -1430,6 +1439,9 @@
         "State": {
           "shape": "DiscovererState"
         },
+        "CrossAccount": {
+          "shape": "__boolean"
+        },
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
@@ -1575,6 +1587,9 @@
         "State": {
           "shape": "DiscovererState"
         },
+        "CrossAccount": {
+          "shape": "__boolean"
+        },
         "Tags": {
           "shape": "Tags",
           "locationName": "tags"
@@ -1613,6 +1628,9 @@
         },
         "State": {
           "shape": "DiscovererState"
+        },
+        "CrossAccount": {
+          "shape": "__boolean"
         },
         "Tags": {
           "shape": "Tags",
@@ -2635,6 +2653,9 @@
       "members": {
         "Description": {
           "shape": "__stringMin0Max256"
+        },
+        "CrossAccount": {
+          "shape": "__boolean"
         }
       }
     },
@@ -2648,6 +2669,9 @@
           "shape": "__string",
           "location": "uri",
           "locationName": "discovererId"
+        },
+        "CrossAccount": {
+          "shape": "__boolean"
         }
       },
       "required": [
@@ -2671,6 +2695,9 @@
         },
         "State": {
           "shape": "DiscovererState"
+        },
+        "CrossAccount": {
+          "shape": "__boolean"
         },
         "Tags": {
           "shape": "Tags",

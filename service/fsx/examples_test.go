@@ -100,6 +100,8 @@ func ExampleFSx_CreateBackup_shared00() {
 				fmt.Println(fsx.ErrCodeUnsupportedOperation, aerr.Error())
 			case fsx.ErrCodeFileSystemNotFound:
 				fmt.Println(fsx.ErrCodeFileSystemNotFound, aerr.Error())
+			case fsx.ErrCodeVolumeNotFound:
+				fmt.Println(fsx.ErrCodeVolumeNotFound, aerr.Error())
 			case fsx.ErrCodeBackupInProgress:
 				fmt.Println(fsx.ErrCodeBackupInProgress, aerr.Error())
 			case fsx.ErrCodeIncompatibleParameterError:
@@ -349,6 +351,8 @@ func ExampleFSx_DescribeBackups_shared00() {
 				fmt.Println(fsx.ErrCodeBadRequest, aerr.Error())
 			case fsx.ErrCodeFileSystemNotFound:
 				fmt.Println(fsx.ErrCodeFileSystemNotFound, aerr.Error())
+			case fsx.ErrCodeVolumeNotFound:
+				fmt.Println(fsx.ErrCodeVolumeNotFound, aerr.Error())
 			case fsx.ErrCodeBackupNotFound:
 				fmt.Println(fsx.ErrCodeBackupNotFound, aerr.Error())
 			case fsx.ErrCodeInternalServerError:

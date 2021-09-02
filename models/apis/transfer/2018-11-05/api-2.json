@@ -44,6 +44,7 @@
         {"shape":"InternalServiceError"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
+        {"shape":"ResourceNotFoundException"},
         {"shape":"ThrottlingException"}
       ]
     },
@@ -61,6 +62,23 @@
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceExistsException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "CreateWorkflow":{
+      "name":"CreateWorkflow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateWorkflowRequest"},
+      "output":{"shape":"CreateWorkflowResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceExistsException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "DeleteAccess":{
@@ -121,6 +139,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DeleteWorkflow":{
+      "name":"DeleteWorkflow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteWorkflowRequest"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "DescribeAccess":{
       "name":"DescribeAccess",
       "http":{
@@ -129,6 +162,21 @@
       },
       "input":{"shape":"DescribeAccessRequest"},
       "output":{"shape":"DescribeAccessResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "DescribeExecution":{
+      "name":"DescribeExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeExecutionRequest"},
+      "output":{"shape":"DescribeExecutionResponse"},
       "errors":[
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
@@ -181,6 +229,21 @@
         {"shape":"ResourceNotFoundException"}
       ]
     },
+    "DescribeWorkflow":{
+      "name":"DescribeWorkflow",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeWorkflowRequest"},
+      "output":{"shape":"DescribeWorkflowResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
     "ImportSshPublicKey":{
       "name":"ImportSshPublicKey",
       "http":{
@@ -206,6 +269,22 @@
       },
       "input":{"shape":"ListAccessesRequest"},
       "output":{"shape":"ListAccessesResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListExecutions":{
+      "name":"ListExecutions",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListExecutionsRequest"},
+      "output":{"shape":"ListExecutionsResponse"},
       "errors":[
         {"shape":"ServiceUnavailableException"},
         {"shape":"InternalServiceError"},
@@ -273,6 +352,38 @@
         {"shape":"InvalidNextTokenException"},
         {"shape":"InvalidRequestException"},
         {"shape":"ResourceNotFoundException"}
+      ]
+    },
+    "ListWorkflows":{
+      "name":"ListWorkflows",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListWorkflowsRequest"},
+      "output":{"shape":"ListWorkflowsResponse"},
+      "errors":[
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidNextTokenException"},
+        {"shape":"InvalidRequestException"}
+      ]
+    },
+    "SendWorkflowStepState":{
+      "name":"SendWorkflowStepState",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"SendWorkflowStepStateRequest"},
+      "output":{"shape":"SendWorkflowStepStateResponse"},
+      "errors":[
+        {"shape":"AccessDeniedException"},
+        {"shape":"ServiceUnavailableException"},
+        {"shape":"InternalServiceError"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"ThrottlingException"}
       ]
     },
     "StartServer":{
@@ -420,6 +531,12 @@
       "min":20,
       "pattern":"arn:.*"
     },
+    "CallbackToken":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"\\w+"
+    },
     "Certificate":{
       "type":"string",
       "max":1600
@@ -431,6 +548,14 @@
         "Message":{"shape":"Message"}
       },
       "exception":true
+    },
+    "CopyStepDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"WorkflowStepName"},
+        "DestinationFileLocation":{"shape":"InputFileLocation"},
+        "OverwriteExisting":{"shape":"OverwriteExisting"}
+      }
     },
     "CreateAccessRequest":{
       "type":"structure",
@@ -474,7 +599,8 @@
         "LoggingRole":{"shape":"Role"},
         "Protocols":{"shape":"Protocols"},
         "SecurityPolicyName":{"shape":"SecurityPolicyName"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "WorkflowDetails":{"shape":"WorkflowDetails"}
       }
     },
     "CreateServerResponse":{
@@ -515,6 +641,48 @@
         "UserName":{"shape":"UserName"}
       }
     },
+    "CreateWorkflowRequest":{
+      "type":"structure",
+      "required":["Steps"],
+      "members":{
+        "Description":{"shape":"WorkflowDescription"},
+        "Steps":{"shape":"WorkflowSteps"},
+        "OnExceptionSteps":{"shape":"WorkflowSteps"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
+    "CreateWorkflowResponse":{
+      "type":"structure",
+      "required":["WorkflowId"],
+      "members":{
+        "WorkflowId":{"shape":"WorkflowId"}
+      }
+    },
+    "CustomStepDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"WorkflowStepName"},
+        "Target":{"shape":"CustomStepTarget"},
+        "TimeoutSeconds":{"shape":"CustomStepTimeoutSeconds"}
+      }
+    },
+    "CustomStepStatus":{
+      "type":"string",
+      "enum":[
+        "SUCCESS",
+        "FAILURE"
+      ]
+    },
+    "CustomStepTarget":{
+      "type":"string",
+      "max":170,
+      "pattern":"arn:[a-z-]+:lambda:.*$"
+    },
+    "CustomStepTimeoutSeconds":{
+      "type":"integer",
+      "max":1800,
+      "min":1
+    },
     "DateImported":{"type":"timestamp"},
     "DeleteAccessRequest":{
       "type":"structure",
@@ -547,6 +715,12 @@
         "UserName":{"shape":"UserName"}
       }
     },
+    "DeleteStepDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"WorkflowStepName"}
+      }
+    },
     "DeleteUserRequest":{
       "type":"structure",
       "required":[
@@ -556,6 +730,13 @@
       "members":{
         "ServerId":{"shape":"ServerId"},
         "UserName":{"shape":"UserName"}
+      }
+    },
+    "DeleteWorkflowRequest":{
+      "type":"structure",
+      "required":["WorkflowId"],
+      "members":{
+        "WorkflowId":{"shape":"WorkflowId"}
       }
     },
     "DescribeAccessRequest":{
@@ -578,6 +759,28 @@
       "members":{
         "ServerId":{"shape":"ServerId"},
         "Access":{"shape":"DescribedAccess"}
+      }
+    },
+    "DescribeExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "ExecutionId",
+        "WorkflowId"
+      ],
+      "members":{
+        "ExecutionId":{"shape":"ExecutionId"},
+        "WorkflowId":{"shape":"WorkflowId"}
+      }
+    },
+    "DescribeExecutionResponse":{
+      "type":"structure",
+      "required":[
+        "WorkflowId",
+        "Execution"
+      ],
+      "members":{
+        "WorkflowId":{"shape":"WorkflowId"},
+        "Execution":{"shape":"DescribedExecution"}
       }
     },
     "DescribeSecurityPolicyRequest":{
@@ -630,6 +833,20 @@
         "User":{"shape":"DescribedUser"}
       }
     },
+    "DescribeWorkflowRequest":{
+      "type":"structure",
+      "required":["WorkflowId"],
+      "members":{
+        "WorkflowId":{"shape":"WorkflowId"}
+      }
+    },
+    "DescribeWorkflowResponse":{
+      "type":"structure",
+      "required":["Workflow"],
+      "members":{
+        "Workflow":{"shape":"DescribedWorkflow"}
+      }
+    },
     "DescribedAccess":{
       "type":"structure",
       "members":{
@@ -640,6 +857,19 @@
         "PosixProfile":{"shape":"PosixProfile"},
         "Role":{"shape":"Role"},
         "ExternalId":{"shape":"ExternalId"}
+      }
+    },
+    "DescribedExecution":{
+      "type":"structure",
+      "members":{
+        "ExecutionId":{"shape":"ExecutionId"},
+        "InitialFileLocation":{"shape":"FileLocation"},
+        "ServiceMetadata":{"shape":"ServiceMetadata"},
+        "ExecutionRole":{"shape":"Role"},
+        "LoggingConfiguration":{"shape":"LoggingConfiguration"},
+        "PosixProfile":{"shape":"PosixProfile"},
+        "Status":{"shape":"ExecutionStatus"},
+        "Results":{"shape":"ExecutionResults"}
       }
     },
     "DescribedSecurityPolicy":{
@@ -673,7 +903,8 @@
         "ServerId":{"shape":"ServerId"},
         "State":{"shape":"State"},
         "Tags":{"shape":"Tags"},
-        "UserCount":{"shape":"UserCount"}
+        "UserCount":{"shape":"UserCount"},
+        "WorkflowDetails":{"shape":"WorkflowDetails"}
       }
     },
     "DescribedUser":{
@@ -692,6 +923,18 @@
         "UserName":{"shape":"UserName"}
       }
     },
+    "DescribedWorkflow":{
+      "type":"structure",
+      "required":["Arn"],
+      "members":{
+        "Arn":{"shape":"Arn"},
+        "Description":{"shape":"WorkflowDescription"},
+        "Steps":{"shape":"WorkflowSteps"},
+        "OnExceptionSteps":{"shape":"WorkflowSteps"},
+        "WorkflowId":{"shape":"WorkflowId"},
+        "Tags":{"shape":"Tags"}
+      }
+    },
     "DirectoryId":{
       "type":"string",
       "max":12,
@@ -704,6 +947,24 @@
         "S3",
         "EFS"
       ]
+    },
+    "EfsFileLocation":{
+      "type":"structure",
+      "members":{
+        "FileSystemId":{"shape":"EfsFileSystemId"},
+        "Path":{"shape":"EfsPath"}
+      }
+    },
+    "EfsFileSystemId":{
+      "type":"string",
+      "max":128,
+      "pattern":"^(arn:aws[-a-z]*:elasticfilesystem:[0-9a-z-:]+:(access-point/fsap|file-system/fs)-[0-9a-f]{8,40}|fs(ap)?-[0-9a-f]{8,40})$"
+    },
+    "EfsPath":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^(\\/|(\\/(?!\\.)+[^$#<>;`|&?{}^*/\\n]+){1,4})$"
     },
     "EndpointDetails":{
       "type":"structure",
@@ -723,11 +984,70 @@
         "VPC_ENDPOINT"
       ]
     },
+    "ExecutionError":{
+      "type":"structure",
+      "required":[
+        "Type",
+        "Message"
+      ],
+      "members":{
+        "Type":{"shape":"ExecutionErrorType"},
+        "Message":{"shape":"ExecutionErrorMessage"}
+      }
+    },
+    "ExecutionErrorMessage":{"type":"string"},
+    "ExecutionErrorType":{
+      "type":"string",
+      "enum":["PERMISSION_DENIED"]
+    },
+    "ExecutionId":{
+      "type":"string",
+      "max":36,
+      "min":36,
+      "pattern":"^[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}$"
+    },
+    "ExecutionResults":{
+      "type":"structure",
+      "members":{
+        "Steps":{"shape":"ExecutionStepResults"},
+        "OnExceptionSteps":{"shape":"ExecutionStepResults"}
+      }
+    },
+    "ExecutionStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETED",
+        "EXCEPTION",
+        "HANDLING_EXCEPTION"
+      ]
+    },
+    "ExecutionStepResult":{
+      "type":"structure",
+      "members":{
+        "StepType":{"shape":"WorkflowStepType"},
+        "Outputs":{"shape":"StepResultOutputsJson"},
+        "Error":{"shape":"ExecutionError"}
+      }
+    },
+    "ExecutionStepResults":{
+      "type":"list",
+      "member":{"shape":"ExecutionStepResult"},
+      "max":50,
+      "min":1
+    },
     "ExternalId":{
       "type":"string",
       "max":256,
       "min":1,
       "pattern":"^S-1-[\\d-]+$"
+    },
+    "FileLocation":{
+      "type":"structure",
+      "members":{
+        "S3FileLocation":{"shape":"S3FileLocation"},
+        "EfsFileLocation":{"shape":"EfsFileLocation"}
+      }
     },
     "Fips":{"type":"boolean"},
     "HomeDirectory":{
@@ -807,6 +1127,13 @@
         "UserName":{"shape":"UserName"}
       }
     },
+    "InputFileLocation":{
+      "type":"structure",
+      "members":{
+        "S3FileLocation":{"shape":"S3InputFileLocation"},
+        "EfsFileLocation":{"shape":"EfsFileLocation"}
+      }
+    },
     "InternalServiceError":{
       "type":"structure",
       "required":["Message"],
@@ -851,6 +1178,27 @@
         "NextToken":{"shape":"NextToken"},
         "ServerId":{"shape":"ServerId"},
         "Accesses":{"shape":"ListedAccesses"}
+      }
+    },
+    "ListExecutionsRequest":{
+      "type":"structure",
+      "required":["WorkflowId"],
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "WorkflowId":{"shape":"WorkflowId"}
+      }
+    },
+    "ListExecutionsResponse":{
+      "type":"structure",
+      "required":[
+        "WorkflowId",
+        "Executions"
+      ],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "WorkflowId":{"shape":"WorkflowId"},
+        "Executions":{"shape":"ListedExecutions"}
       }
     },
     "ListSecurityPoliciesRequest":{
@@ -921,6 +1269,21 @@
         "Users":{"shape":"ListedUsers"}
       }
     },
+    "ListWorkflowsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListWorkflowsResponse":{
+      "type":"structure",
+      "required":["Workflows"],
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "Workflows":{"shape":"ListedWorkflows"}
+      }
+    },
     "ListedAccess":{
       "type":"structure",
       "members":{
@@ -933,6 +1296,19 @@
     "ListedAccesses":{
       "type":"list",
       "member":{"shape":"ListedAccess"}
+    },
+    "ListedExecution":{
+      "type":"structure",
+      "members":{
+        "ExecutionId":{"shape":"ExecutionId"},
+        "InitialFileLocation":{"shape":"FileLocation"},
+        "ServiceMetadata":{"shape":"ServiceMetadata"},
+        "Status":{"shape":"ExecutionStatus"}
+      }
+    },
+    "ListedExecutions":{
+      "type":"list",
+      "member":{"shape":"ListedExecution"}
     },
     "ListedServer":{
       "type":"structure",
@@ -968,6 +1344,31 @@
       "type":"list",
       "member":{"shape":"ListedUser"}
     },
+    "ListedWorkflow":{
+      "type":"structure",
+      "members":{
+        "WorkflowId":{"shape":"WorkflowId"},
+        "Description":{"shape":"WorkflowDescription"},
+        "Arn":{"shape":"Arn"}
+      }
+    },
+    "ListedWorkflows":{
+      "type":"list",
+      "member":{"shape":"ListedWorkflow"}
+    },
+    "LogGroupName":{
+      "type":"string",
+      "max":512,
+      "min":1,
+      "pattern":"[\\.\\-_/#A-Za-z0-9]*"
+    },
+    "LoggingConfiguration":{
+      "type":"structure",
+      "members":{
+        "LoggingRole":{"shape":"Role"},
+        "LogGroupName":{"shape":"LogGroupName"}
+      }
+    },
     "MapEntry":{
       "type":"string",
       "max":1024,
@@ -993,6 +1394,18 @@
       "type":"string",
       "max":2048,
       "pattern":"^$|arn:.*role/.*"
+    },
+    "OnUploadWorkflowDetails":{
+      "type":"list",
+      "member":{"shape":"WorkflowDetail"},
+      "max":1
+    },
+    "OverwriteExisting":{
+      "type":"string",
+      "enum":[
+        "TRUE",
+        "FALSE"
+      ]
     },
     "PassiveIp":{
       "type":"string",
@@ -1077,6 +1490,73 @@
       "min":20,
       "pattern":"arn:.*role/.*"
     },
+    "S3Bucket":{
+      "type":"string",
+      "max":63,
+      "min":3,
+      "pattern":"^[a-z0-9][\\.\\-a-z0-9]{1,61}[a-z0-9]$"
+    },
+    "S3Etag":{
+      "type":"string",
+      "max":65536,
+      "min":1,
+      "pattern":"^.+$"
+    },
+    "S3FileLocation":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"S3Bucket"},
+        "Key":{"shape":"S3Key"},
+        "VersionId":{"shape":"S3VersionId"},
+        "Etag":{"shape":"S3Etag"}
+      }
+    },
+    "S3InputFileLocation":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"S3Bucket"},
+        "Key":{"shape":"S3Key"}
+      }
+    },
+    "S3Key":{
+      "type":"string",
+      "max":1024,
+      "pattern":"[\\P{M}\\p{M}]*"
+    },
+    "S3Tag":{
+      "type":"structure",
+      "required":[
+        "Key",
+        "Value"
+      ],
+      "members":{
+        "Key":{"shape":"S3TagKey"},
+        "Value":{"shape":"S3TagValue"}
+      }
+    },
+    "S3TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "S3TagValue":{
+      "type":"string",
+      "max":256,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "S3Tags":{
+      "type":"list",
+      "member":{"shape":"S3Tag"},
+      "max":10,
+      "min":1
+    },
+    "S3VersionId":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"^.+$"
+    },
     "SecondaryGids":{
       "type":"list",
       "member":{"shape":"PosixId"},
@@ -1110,6 +1590,26 @@
       "type":"list",
       "member":{"shape":"SecurityPolicyOption"}
     },
+    "SendWorkflowStepStateRequest":{
+      "type":"structure",
+      "required":[
+        "WorkflowId",
+        "ExecutionId",
+        "Token",
+        "Status"
+      ],
+      "members":{
+        "WorkflowId":{"shape":"WorkflowId"},
+        "ExecutionId":{"shape":"ExecutionId"},
+        "Token":{"shape":"CallbackToken"},
+        "Status":{"shape":"CustomStepStatus"}
+      }
+    },
+    "SendWorkflowStepStateResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "ServerId":{
       "type":"string",
       "max":19,
@@ -1117,6 +1617,13 @@
       "pattern":"^s-([0-9a-f]{17})$"
     },
     "ServiceErrorMessage":{"type":"string"},
+    "ServiceMetadata":{
+      "type":"structure",
+      "required":["UserDetails"],
+      "members":{
+        "UserDetails":{"shape":"UserDetails"}
+      }
+    },
     "ServiceUnavailableException":{
       "type":"structure",
       "members":{
@@ -1125,6 +1632,12 @@
       "exception":true,
       "fault":true,
       "synthetic":true
+    },
+    "SessionId":{
+      "type":"string",
+      "max":32,
+      "min":3,
+      "pattern":"^[\\w-]*$"
     },
     "SourceIp":{
       "type":"string",
@@ -1180,6 +1693,10 @@
       ]
     },
     "StatusCode":{"type":"integer"},
+    "StepResultOutputsJson":{
+      "type":"string",
+      "max":65536
+    },
     "StopServerRequest":{
       "type":"structure",
       "required":["ServerId"],
@@ -1222,6 +1739,13 @@
       "members":{
         "Arn":{"shape":"Arn"},
         "Tags":{"shape":"Tags"}
+      }
+    },
+    "TagStepDetails":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"WorkflowStepName"},
+        "Tags":{"shape":"S3Tags"}
       }
     },
     "TagValue":{
@@ -1320,7 +1844,8 @@
         "LoggingRole":{"shape":"NullableRole"},
         "Protocols":{"shape":"Protocols"},
         "SecurityPolicyName":{"shape":"SecurityPolicyName"},
-        "ServerId":{"shape":"ServerId"}
+        "ServerId":{"shape":"ServerId"},
+        "WorkflowDetails":{"shape":"WorkflowDetails"}
       }
     },
     "UpdateServerResponse":{
@@ -1363,6 +1888,18 @@
       "max":255
     },
     "UserCount":{"type":"integer"},
+    "UserDetails":{
+      "type":"structure",
+      "required":[
+        "UserName",
+        "ServerId"
+      ],
+      "members":{
+        "UserName":{"shape":"UserName"},
+        "ServerId":{"shape":"ServerId"},
+        "SessionId":{"shape":"SessionId"}
+      }
+    },
     "UserName":{
       "type":"string",
       "max":100,
@@ -1380,6 +1917,64 @@
       "min":22,
       "pattern":"^vpce-[0-9a-f]{17}$"
     },
-    "VpcId":{"type":"string"}
+    "VpcId":{"type":"string"},
+    "WorkflowDescription":{
+      "type":"string",
+      "max":256,
+      "pattern":"^[\\w- ]*$"
+    },
+    "WorkflowDetail":{
+      "type":"structure",
+      "required":[
+        "WorkflowId",
+        "ExecutionRole"
+      ],
+      "members":{
+        "WorkflowId":{"shape":"WorkflowId"},
+        "ExecutionRole":{"shape":"Role"}
+      }
+    },
+    "WorkflowDetails":{
+      "type":"structure",
+      "required":["OnUpload"],
+      "members":{
+        "OnUpload":{"shape":"OnUploadWorkflowDetails"}
+      }
+    },
+    "WorkflowId":{
+      "type":"string",
+      "max":19,
+      "min":19,
+      "pattern":"^w-([a-z0-9]{17})$"
+    },
+    "WorkflowStep":{
+      "type":"structure",
+      "members":{
+        "Type":{"shape":"WorkflowStepType"},
+        "CopyStepDetails":{"shape":"CopyStepDetails"},
+        "CustomStepDetails":{"shape":"CustomStepDetails"},
+        "DeleteStepDetails":{"shape":"DeleteStepDetails"},
+        "TagStepDetails":{"shape":"TagStepDetails"}
+      }
+    },
+    "WorkflowStepName":{
+      "type":"string",
+      "max":30,
+      "pattern":"^[\\w-]*$"
+    },
+    "WorkflowStepType":{
+      "type":"string",
+      "enum":[
+        "COPY",
+        "CUSTOM",
+        "TAG",
+        "DELETE"
+      ]
+    },
+    "WorkflowSteps":{
+      "type":"list",
+      "member":{"shape":"WorkflowStep"},
+      "max":8
+    }
   }
 }

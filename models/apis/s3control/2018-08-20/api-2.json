@@ -79,6 +79,23 @@
         "hostPrefix":"{AccountId}."
       }
     },
+    "CreateMultiRegionAccessPoint":{
+      "name":"CreateMultiRegionAccessPoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/async-requests/mrap/create"
+      },
+      "input":{
+        "shape":"CreateMultiRegionAccessPointRequest",
+        "locationName":"CreateMultiRegionAccessPointRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"CreateMultiRegionAccessPointResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
+    },
     "DeleteAccessPoint":{
       "name":"DeleteAccessPoint",
       "http":{
@@ -185,6 +202,23 @@
         "hostPrefix":"{AccountId}."
       }
     },
+    "DeleteMultiRegionAccessPoint":{
+      "name":"DeleteMultiRegionAccessPoint",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/async-requests/mrap/delete"
+      },
+      "input":{
+        "shape":"DeleteMultiRegionAccessPointRequest",
+        "locationName":"DeleteMultiRegionAccessPointRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"DeleteMultiRegionAccessPointResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
+    },
     "DeletePublicAccessBlock":{
       "name":"DeletePublicAccessBlock",
       "http":{
@@ -236,6 +270,19 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       }
+    },
+    "DescribeMultiRegionAccessPointOperation":{
+      "name":"DescribeMultiRegionAccessPointOperation",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/async-requests/mrap/{request_token+}"
+      },
+      "input":{"shape":"DescribeMultiRegionAccessPointOperationRequest"},
+      "output":{"shape":"DescribeMultiRegionAccessPointOperationResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
     },
     "GetAccessPoint":{
       "name":"GetAccessPoint",
@@ -386,6 +433,45 @@
         "hostPrefix":"{AccountId}."
       }
     },
+    "GetMultiRegionAccessPoint":{
+      "name":"GetMultiRegionAccessPoint",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/mrap/instances/{name}"
+      },
+      "input":{"shape":"GetMultiRegionAccessPointRequest"},
+      "output":{"shape":"GetMultiRegionAccessPointResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
+    },
+    "GetMultiRegionAccessPointPolicy":{
+      "name":"GetMultiRegionAccessPointPolicy",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/mrap/instances/{name}/policy"
+      },
+      "input":{"shape":"GetMultiRegionAccessPointPolicyRequest"},
+      "output":{"shape":"GetMultiRegionAccessPointPolicyResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
+    },
+    "GetMultiRegionAccessPointPolicyStatus":{
+      "name":"GetMultiRegionAccessPointPolicyStatus",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/mrap/instances/{name}/policystatus"
+      },
+      "input":{"shape":"GetMultiRegionAccessPointPolicyStatusRequest"},
+      "output":{"shape":"GetMultiRegionAccessPointPolicyStatusResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
+    },
     "GetPublicAccessBlock":{
       "name":"GetPublicAccessBlock",
       "http":{
@@ -465,6 +551,19 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       }
+    },
+    "ListMultiRegionAccessPoints":{
+      "name":"ListMultiRegionAccessPoints",
+      "http":{
+        "method":"GET",
+        "requestUri":"/v20180820/mrap/instances"
+      },
+      "input":{"shape":"ListMultiRegionAccessPointsRequest"},
+      "output":{"shape":"ListMultiRegionAccessPointsResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
     },
     "ListRegionalBuckets":{
       "name":"ListRegionalBuckets",
@@ -596,6 +695,23 @@
       "endpoint":{
         "hostPrefix":"{AccountId}."
       }
+    },
+    "PutMultiRegionAccessPointPolicy":{
+      "name":"PutMultiRegionAccessPointPolicy",
+      "http":{
+        "method":"POST",
+        "requestUri":"/v20180820/async-requests/mrap/put-policy"
+      },
+      "input":{
+        "shape":"PutMultiRegionAccessPointPolicyRequest",
+        "locationName":"PutMultiRegionAccessPointPolicyRequest",
+        "xmlNamespace":{"uri":"http://awss3control.amazonaws.com/doc/2018-08-20/"}
+      },
+      "output":{"shape":"PutMultiRegionAccessPointPolicyResult"},
+      "endpoint":{
+        "hostPrefix":"{AccountId}."
+      },
+      "httpChecksumRequired":true
     },
     "PutPublicAccessBlock":{
       "name":"PutPublicAccessBlock",
@@ -735,6 +851,57 @@
       "type":"string",
       "max":63,
       "pattern":"^[0-9a-z\\\\-]{63}"
+    },
+    "AsyncCreationTimestamp":{"type":"timestamp"},
+    "AsyncErrorDetails":{
+      "type":"structure",
+      "members":{
+        "Code":{"shape":"MaxLength1024String"},
+        "Message":{"shape":"MaxLength1024String"},
+        "Resource":{"shape":"MaxLength1024String"},
+        "RequestId":{"shape":"MaxLength1024String"}
+      }
+    },
+    "AsyncOperation":{
+      "type":"structure",
+      "members":{
+        "CreationTime":{"shape":"AsyncCreationTimestamp"},
+        "Operation":{"shape":"AsyncOperationName"},
+        "RequestTokenARN":{"shape":"AsyncRequestTokenARN"},
+        "RequestParameters":{"shape":"AsyncRequestParameters"},
+        "RequestStatus":{"shape":"AsyncRequestStatus"},
+        "ResponseDetails":{"shape":"AsyncResponseDetails"}
+      }
+    },
+    "AsyncOperationName":{
+      "type":"string",
+      "enum":[
+        "CreateMultiRegionAccessPoint",
+        "DeleteMultiRegionAccessPoint",
+        "PutMultiRegionAccessPointPolicy"
+      ]
+    },
+    "AsyncRequestParameters":{
+      "type":"structure",
+      "members":{
+        "CreateMultiRegionAccessPointRequest":{"shape":"CreateMultiRegionAccessPointInput"},
+        "DeleteMultiRegionAccessPointRequest":{"shape":"DeleteMultiRegionAccessPointInput"},
+        "PutMultiRegionAccessPointPolicyRequest":{"shape":"PutMultiRegionAccessPointPolicyInput"}
+      }
+    },
+    "AsyncRequestStatus":{"type":"string"},
+    "AsyncRequestTokenARN":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":"arn:.+"
+    },
+    "AsyncResponseDetails":{
+      "type":"structure",
+      "members":{
+        "MultiRegionAccessPointDetails":{"shape":"MultiRegionAccessPointsAsyncResponse"},
+        "ErrorDetails":{"shape":"AsyncErrorDetails"}
+      }
     },
     "AwsLambdaTransformation":{
       "type":"structure",
@@ -1001,7 +1168,47 @@
         "JobId":{"shape":"JobId"}
       }
     },
+    "CreateMultiRegionAccessPointInput":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Regions"
+      ],
+      "members":{
+        "Name":{"shape":"MultiRegionAccessPointName"},
+        "PublicAccessBlock":{"shape":"PublicAccessBlockConfiguration"},
+        "Regions":{"shape":"RegionCreationList"}
+      }
+    },
+    "CreateMultiRegionAccessPointRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ClientToken",
+        "Details"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "ClientToken":{
+          "shape":"MultiRegionAccessPointClientToken",
+          "idempotencyToken":true
+        },
+        "Details":{"shape":"CreateMultiRegionAccessPointInput"}
+      }
+    },
+    "CreateMultiRegionAccessPointResult":{
+      "type":"structure",
+      "members":{
+        "RequestTokenARN":{"shape":"AsyncRequestTokenARN"}
+      }
+    },
     "CreationDate":{"type":"timestamp"},
+    "CreationTimestamp":{"type":"timestamp"},
     "Date":{"type":"timestamp"},
     "Days":{"type":"integer"},
     "DaysAfterInitiation":{"type":"integer"},
@@ -1190,6 +1397,40 @@
       "members":{
       }
     },
+    "DeleteMultiRegionAccessPointInput":{
+      "type":"structure",
+      "required":["Name"],
+      "members":{
+        "Name":{"shape":"MultiRegionAccessPointName"}
+      }
+    },
+    "DeleteMultiRegionAccessPointRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ClientToken",
+        "Details"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "ClientToken":{
+          "shape":"MultiRegionAccessPointClientToken",
+          "idempotencyToken":true
+        },
+        "Details":{"shape":"DeleteMultiRegionAccessPointInput"}
+      }
+    },
+    "DeleteMultiRegionAccessPointResult":{
+      "type":"structure",
+      "members":{
+        "RequestTokenARN":{"shape":"AsyncRequestTokenARN"}
+      }
+    },
     "DeletePublicAccessBlockRequest":{
       "type":"structure",
       "required":["AccountId"],
@@ -1273,10 +1514,42 @@
         "Job":{"shape":"JobDescriptor"}
       }
     },
+    "DescribeMultiRegionAccessPointOperationRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "RequestTokenARN"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "RequestTokenARN":{
+          "shape":"AsyncRequestTokenARN",
+          "location":"uri",
+          "locationName":"request_token"
+        }
+      }
+    },
+    "DescribeMultiRegionAccessPointOperationResult":{
+      "type":"structure",
+      "members":{
+        "AsyncOperation":{"shape":"AsyncOperation"}
+      }
+    },
     "Endpoints":{
       "type":"map",
       "key":{"shape":"NonEmptyMaxLength64String"},
       "value":{"shape":"NonEmptyMaxLength1024String"}
+    },
+    "EstablishedMultiRegionAccessPointPolicy":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"Policy"}
+      }
     },
     "ExceptionMessage":{
       "type":"string",
@@ -1634,6 +1907,84 @@
       "type":"structure",
       "members":{
         "Tags":{"shape":"S3TagSet"}
+      }
+    },
+    "GetMultiRegionAccessPointPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"MultiRegionAccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetMultiRegionAccessPointPolicyResult":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"MultiRegionAccessPointPolicyDocument"}
+      }
+    },
+    "GetMultiRegionAccessPointPolicyStatusRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"MultiRegionAccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetMultiRegionAccessPointPolicyStatusResult":{
+      "type":"structure",
+      "members":{
+        "Established":{"shape":"PolicyStatus"}
+      }
+    },
+    "GetMultiRegionAccessPointRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "Name"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "Name":{
+          "shape":"MultiRegionAccessPointName",
+          "location":"uri",
+          "locationName":"name"
+        }
+      }
+    },
+    "GetMultiRegionAccessPointResult":{
+      "type":"structure",
+      "members":{
+        "AccessPoint":{"shape":"MultiRegionAccessPointReport"}
       }
     },
     "GetPublicAccessBlockOutput":{
@@ -2226,6 +2577,35 @@
         "Jobs":{"shape":"JobListDescriptorList"}
       }
     },
+    "ListMultiRegionAccessPointsRequest":{
+      "type":"structure",
+      "required":["AccountId"],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "NextToken":{
+          "shape":"NonEmptyMaxLength1024String",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "MaxResults":{
+          "shape":"MaxResults",
+          "location":"querystring",
+          "locationName":"maxResults"
+        }
+      }
+    },
+    "ListMultiRegionAccessPointsResult":{
+      "type":"structure",
+      "members":{
+        "AccessPoints":{"shape":"MultiRegionAccessPointReportList"},
+        "NextToken":{"shape":"NonEmptyMaxLength1024String"}
+      }
+    },
     "ListRegionalBucketsRequest":{
       "type":"structure",
       "required":["AccountId"],
@@ -2312,6 +2692,77 @@
       "type":"double",
       "max":100,
       "min":0.1
+    },
+    "MultiRegionAccessPointAlias":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-z][a-z0-9]*[.]mrap$"
+    },
+    "MultiRegionAccessPointClientToken":{
+      "type":"string",
+      "max":64,
+      "pattern":"\\S+"
+    },
+    "MultiRegionAccessPointName":{
+      "type":"string",
+      "max":50,
+      "pattern":"^[a-z0-9][-a-z0-9]{1,48}[a-z0-9]$"
+    },
+    "MultiRegionAccessPointPolicyDocument":{
+      "type":"structure",
+      "members":{
+        "Established":{"shape":"EstablishedMultiRegionAccessPointPolicy"},
+        "Proposed":{"shape":"ProposedMultiRegionAccessPointPolicy"}
+      }
+    },
+    "MultiRegionAccessPointRegionalResponse":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"RegionName"},
+        "RequestStatus":{"shape":"AsyncRequestStatus"}
+      }
+    },
+    "MultiRegionAccessPointRegionalResponseList":{
+      "type":"list",
+      "member":{
+        "shape":"MultiRegionAccessPointRegionalResponse",
+        "locationName":"Region"
+      }
+    },
+    "MultiRegionAccessPointReport":{
+      "type":"structure",
+      "members":{
+        "Name":{"shape":"MultiRegionAccessPointName"},
+        "Alias":{"shape":"MultiRegionAccessPointAlias"},
+        "CreatedAt":{"shape":"CreationTimestamp"},
+        "PublicAccessBlock":{"shape":"PublicAccessBlockConfiguration"},
+        "Status":{"shape":"MultiRegionAccessPointStatus"},
+        "Regions":{"shape":"RegionReportList"}
+      }
+    },
+    "MultiRegionAccessPointReportList":{
+      "type":"list",
+      "member":{
+        "shape":"MultiRegionAccessPointReport",
+        "locationName":"AccessPoint"
+      }
+    },
+    "MultiRegionAccessPointStatus":{
+      "type":"string",
+      "enum":[
+        "READY",
+        "INCONSISTENT_ACROSS_REGIONS",
+        "CREATING",
+        "PARTIALLY_CREATED",
+        "PARTIALLY_DELETED",
+        "DELETING"
+      ]
+    },
+    "MultiRegionAccessPointsAsyncResponse":{
+      "type":"structure",
+      "members":{
+        "Regions":{"shape":"MultiRegionAccessPointRegionalResponseList"}
+      }
     },
     "NetworkOrigin":{
       "type":"string",
@@ -2516,6 +2967,12 @@
         "SelectionCriteria":{"shape":"SelectionCriteria"}
       }
     },
+    "ProposedMultiRegionAccessPointPolicy":{
+      "type":"structure",
+      "members":{
+        "Policy":{"shape":"Policy"}
+      }
+    },
     "PublicAccessBlockConfiguration":{
       "type":"structure",
       "members":{
@@ -2711,6 +3168,44 @@
       "members":{
       }
     },
+    "PutMultiRegionAccessPointPolicyInput":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Policy"
+      ],
+      "members":{
+        "Name":{"shape":"MultiRegionAccessPointName"},
+        "Policy":{"shape":"Policy"}
+      }
+    },
+    "PutMultiRegionAccessPointPolicyRequest":{
+      "type":"structure",
+      "required":[
+        "AccountId",
+        "ClientToken",
+        "Details"
+      ],
+      "members":{
+        "AccountId":{
+          "shape":"AccountId",
+          "hostLabel":true,
+          "location":"header",
+          "locationName":"x-amz-account-id"
+        },
+        "ClientToken":{
+          "shape":"MultiRegionAccessPointClientToken",
+          "idempotencyToken":true
+        },
+        "Details":{"shape":"PutMultiRegionAccessPointPolicyInput"}
+      }
+    },
+    "PutMultiRegionAccessPointPolicyResult":{
+      "type":"structure",
+      "members":{
+        "RequestTokenARN":{"shape":"AsyncRequestTokenARN"}
+      }
+    },
     "PutPublicAccessBlockRequest":{
       "type":"structure",
       "required":[
@@ -2780,6 +3275,39 @@
     "PutStorageLensConfigurationTaggingResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "Region":{
+      "type":"structure",
+      "required":["Bucket"],
+      "members":{
+        "Bucket":{"shape":"BucketName"}
+      }
+    },
+    "RegionCreationList":{
+      "type":"list",
+      "member":{
+        "shape":"Region",
+        "locationName":"Region"
+      }
+    },
+    "RegionName":{
+      "type":"string",
+      "max":64,
+      "min":1
+    },
+    "RegionReport":{
+      "type":"structure",
+      "members":{
+        "Bucket":{"shape":"BucketName"},
+        "Region":{"shape":"RegionName"}
+      }
+    },
+    "RegionReportList":{
+      "type":"list",
+      "member":{
+        "shape":"RegionReport",
+        "locationName":"Region"
       }
     },
     "RegionalBucket":{

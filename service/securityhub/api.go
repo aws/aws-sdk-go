@@ -6280,6 +6280,39 @@ func (s *ActionTarget) SetName(v string) *ActionTarget {
 	return s
 }
 
+// An adjustment to the CVSS metric.
+type Adjustment struct {
+	_ struct{} `type:"structure"`
+
+	// The metric to adjust.
+	Metric *string `type:"string"`
+
+	// The reason for the adjustment.
+	Reason *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Adjustment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Adjustment) GoString() string {
+	return s.String()
+}
+
+// SetMetric sets the Metric field's value.
+func (s *Adjustment) SetMetric(v string) *Adjustment {
+	s.Metric = &v
+	return s
+}
+
+// SetReason sets the Reason field's value.
+func (s *Adjustment) SetReason(v string) *Adjustment {
+	s.Reason = &v
+	return s
+}
+
 // Represents a Security Hub administrator account designated by an organization
 // management account.
 type AdminAccount struct {
@@ -7419,6 +7452,368 @@ func (s *AwsAutoScalingAutoScalingGroupDetails) SetLaunchConfigurationName(v str
 // SetLoadBalancerNames sets the LoadBalancerNames field's value.
 func (s *AwsAutoScalingAutoScalingGroupDetails) SetLoadBalancerNames(v []*string) *AwsAutoScalingAutoScalingGroupDetails {
 	s.LoadBalancerNames = v
+	return s
+}
+
+// A block device for the instance.
+type AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The device name that is exposed to the EC2 instance. For example, /dev/sdh
+	// or xvdh.
+	DeviceName *string `type:"string"`
+
+	// Parameters that are used to automatically set up Amazon EBS volumes when
+	// an instance is launched.
+	Ebs *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails `type:"structure"`
+
+	// Whether to suppress the device that is included in the block device mapping
+	// of the Amazon Machine Image (AMI).
+	//
+	// If NoDevice is true, then you cannot specify Ebs.>
+	NoDevice *bool `type:"boolean"`
+
+	// The name of the virtual device (for example, ephemeral0).
+	//
+	// You can provide either VirtualName or Ebs, but not both.
+	VirtualName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeviceName sets the DeviceName field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails) SetDeviceName(v string) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails {
+	s.DeviceName = &v
+	return s
+}
+
+// SetEbs sets the Ebs field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails) SetEbs(v *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails {
+	s.Ebs = v
+	return s
+}
+
+// SetNoDevice sets the NoDevice field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails) SetNoDevice(v bool) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails {
+	s.NoDevice = &v
+	return s
+}
+
+// SetVirtualName sets the VirtualName field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails) SetVirtualName(v string) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails {
+	s.VirtualName = &v
+	return s
+}
+
+// Parameters that are used to automatically set up EBS volumes when an instance
+// is launched.
+type AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to delete the volume when the instance is terminated.
+	DeleteOnTermination *bool `type:"boolean"`
+
+	// Whether to encrypt the volume.
+	Encrypted *bool `type:"boolean"`
+
+	// The number of input/output (I/O) operations per second (IOPS) to provision
+	// for the volume.
+	//
+	// Only supported for gp3 or io1 volumes. Required for io1 volumes. Not used
+	// with standard, gp2, st1, or sc1 volumes.
+	Iops *int64 `type:"integer"`
+
+	// The snapshot ID of the volume to use.
+	//
+	// You must specify either VolumeSize or SnapshotId.
+	SnapshotId *string `type:"string"`
+
+	// The volume size, in GiBs. The following are the supported volumes sizes for
+	// each volume type:
+	//
+	//    * gp2 and gp3: 1-16,384
+	//
+	//    * io1: 4-16,384
+	//
+	//    * st1 and sc1: 125-16,384
+	//
+	//    * standard: 1-1,024
+	//
+	// You must specify either SnapshotId or VolumeSize. If you specify both SnapshotId
+	// and VolumeSize, the volume size must be equal or greater than the size of
+	// the snapshot.
+	VolumeSize *int64 `type:"integer"`
+
+	// The volume type.
+	VolumeType *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDeleteOnTermination sets the DeleteOnTermination field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) SetDeleteOnTermination(v bool) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails {
+	s.DeleteOnTermination = &v
+	return s
+}
+
+// SetEncrypted sets the Encrypted field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) SetEncrypted(v bool) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails {
+	s.Encrypted = &v
+	return s
+}
+
+// SetIops sets the Iops field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) SetIops(v int64) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails {
+	s.Iops = &v
+	return s
+}
+
+// SetSnapshotId sets the SnapshotId field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) SetSnapshotId(v string) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails {
+	s.SnapshotId = &v
+	return s
+}
+
+// SetVolumeSize sets the VolumeSize field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) SetVolumeSize(v int64) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails {
+	s.VolumeSize = &v
+	return s
+}
+
+// SetVolumeType sets the VolumeType field's value.
+func (s *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails) SetVolumeType(v string) *AwsAutoScalingLaunchConfigurationBlockDeviceMappingsEbsDetails {
+	s.VolumeType = &v
+	return s
+}
+
+// Details about a launch configuration.
+type AwsAutoScalingLaunchConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// For Auto Scaling groups that run in a VPC, specifies whether to assign a
+	// public IP address to the group's instances.
+	AssociatePublicIpAddress *bool `type:"boolean"`
+
+	// Specifies the block devices for the instance.
+	BlockDeviceMappings []*AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails `type:"list"`
+
+	// The identifier of a ClassicLink-enabled VPC that EC2-Classic instances are
+	// linked to.
+	ClassicLinkVpcId *string `type:"string"`
+
+	// The identifiers of one or more security groups for the VPC that is specified
+	// in ClassicLinkVPCId.
+	ClassicLinkVpcSecurityGroups []*string `type:"list"`
+
+	// The creation date and time for the launch configuration.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	CreatedTime *string `type:"string"`
+
+	// Whether the launch configuration is optimized for Amazon EBS I/O.
+	EbsOptimized *bool `type:"boolean"`
+
+	// The name or the ARN of the instance profile associated with the IAM role
+	// for the instance. The instance profile contains the IAM role.
+	IamInstanceProfile *string `type:"string"`
+
+	// The identifier of the Amazon Machine Image (AMI) that is used to launch EC2
+	// instances.
+	ImageId *string `type:"string"`
+
+	// Indicates the type of monitoring for instances in the group.
+	InstanceMonitoring *AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails `type:"structure"`
+
+	// The instance type for the instances.
+	InstanceType *string `type:"string"`
+
+	// The identifier of the kernel associated with the AMI.
+	KernelId *string `type:"string"`
+
+	// The name of the key pair.
+	KeyName *string `type:"string"`
+
+	// The name of the launch configuration.
+	LaunchConfigurationName *string `type:"string"`
+
+	// The tenancy of the instance. An instance with dedicated tenancy runs on isolated,
+	// single-tenant hardware and can only be launched into a VPC.
+	PlacementTenancy *string `type:"string"`
+
+	// The identifier of the RAM disk associated with the AMI.
+	RamdiskId *string `type:"string"`
+
+	// The security groups to assign to the instances in the Auto Scaling group.
+	SecurityGroups []*string `type:"list"`
+
+	// The maximum hourly price to be paid for any Spot Instance that is launched
+	// to fulfill the request.
+	SpotPrice *string `type:"string"`
+
+	// The user data to make available to the launched EC2 instances. Must be base64-encoded
+	// text.
+	UserData *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsAutoScalingLaunchConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsAutoScalingLaunchConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetAssociatePublicIpAddress sets the AssociatePublicIpAddress field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetAssociatePublicIpAddress(v bool) *AwsAutoScalingLaunchConfigurationDetails {
+	s.AssociatePublicIpAddress = &v
+	return s
+}
+
+// SetBlockDeviceMappings sets the BlockDeviceMappings field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetBlockDeviceMappings(v []*AwsAutoScalingLaunchConfigurationBlockDeviceMappingsDetails) *AwsAutoScalingLaunchConfigurationDetails {
+	s.BlockDeviceMappings = v
+	return s
+}
+
+// SetClassicLinkVpcId sets the ClassicLinkVpcId field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetClassicLinkVpcId(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.ClassicLinkVpcId = &v
+	return s
+}
+
+// SetClassicLinkVpcSecurityGroups sets the ClassicLinkVpcSecurityGroups field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetClassicLinkVpcSecurityGroups(v []*string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.ClassicLinkVpcSecurityGroups = v
+	return s
+}
+
+// SetCreatedTime sets the CreatedTime field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetCreatedTime(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.CreatedTime = &v
+	return s
+}
+
+// SetEbsOptimized sets the EbsOptimized field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetEbsOptimized(v bool) *AwsAutoScalingLaunchConfigurationDetails {
+	s.EbsOptimized = &v
+	return s
+}
+
+// SetIamInstanceProfile sets the IamInstanceProfile field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetIamInstanceProfile(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.IamInstanceProfile = &v
+	return s
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetImageId(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.ImageId = &v
+	return s
+}
+
+// SetInstanceMonitoring sets the InstanceMonitoring field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetInstanceMonitoring(v *AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails) *AwsAutoScalingLaunchConfigurationDetails {
+	s.InstanceMonitoring = v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetInstanceType(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.InstanceType = &v
+	return s
+}
+
+// SetKernelId sets the KernelId field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetKernelId(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.KernelId = &v
+	return s
+}
+
+// SetKeyName sets the KeyName field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetKeyName(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.KeyName = &v
+	return s
+}
+
+// SetLaunchConfigurationName sets the LaunchConfigurationName field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetLaunchConfigurationName(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.LaunchConfigurationName = &v
+	return s
+}
+
+// SetPlacementTenancy sets the PlacementTenancy field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetPlacementTenancy(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.PlacementTenancy = &v
+	return s
+}
+
+// SetRamdiskId sets the RamdiskId field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetRamdiskId(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.RamdiskId = &v
+	return s
+}
+
+// SetSecurityGroups sets the SecurityGroups field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetSecurityGroups(v []*string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.SecurityGroups = v
+	return s
+}
+
+// SetSpotPrice sets the SpotPrice field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetSpotPrice(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.SpotPrice = &v
+	return s
+}
+
+// SetUserData sets the UserData field's value.
+func (s *AwsAutoScalingLaunchConfigurationDetails) SetUserData(v string) *AwsAutoScalingLaunchConfigurationDetails {
+	s.UserData = &v
+	return s
+}
+
+// Information about the type of monitoring for instances in the group.
+type AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails struct {
+	_ struct{} `type:"structure"`
+
+	// If set to true, then instances in the group launch with detailed monitoring.
+	//
+	// If set to false, then instances in the group launch with basic monitoring.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation
+func (s AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails) SetEnabled(v bool) *AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails {
+	s.Enabled = &v
 	return s
 }
 
@@ -8606,10 +9001,10 @@ func (s *AwsCloudTrailTrailDetails) SetTrailArn(v string) *AwsCloudTrailTrailDet
 type AwsCodeBuildProjectDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The KMS customer master key (CMK) used to encrypt the build output artifacts.
+	// The KMS key used to encrypt the build output artifacts.
 	//
-	// You can specify either the ARN of the CMK or, if available, the CMK alias
-	// (using the format alias/alias-name).
+	// You can specify either the ARN of the KMS key or, if available, the KMS key
+	// alias (using the format alias/alias-name).
 	EncryptionKey *string `type:"string"`
 
 	// Information about the build environment for this build project.
@@ -9579,8 +9974,8 @@ type AwsDynamoDbTableReplica struct {
 	// List of global secondary indexes for the replica.
 	GlobalSecondaryIndexes []*AwsDynamoDbTableReplicaGlobalSecondaryIndex `type:"list"`
 
-	// The identifier of the KMS customer master key (CMK) that will be used for
-	// KMS encryption for the replica.
+	// The identifier of the KMS key that will be used for KMS encryption for the
+	// replica.
 	KmsMasterKeyId *string `type:"string"`
 
 	// Replica-specific configuration for the provisioned throughput.
@@ -9742,7 +10137,7 @@ type AwsDynamoDbTableSseDescription struct {
 	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
 	InaccessibleEncryptionDateTime *string `type:"string"`
 
-	// The ARN of the KMS customer master key (CMK) that is used for the KMS encryption.
+	// The ARN of the KMS key that is used for the KMS encryption.
 	KmsMasterKeyArn *string `type:"string"`
 
 	// The type of server-side encryption.
@@ -11053,8 +11448,8 @@ type AwsEc2VolumeDetails struct {
 	// Whether the volume is encrypted.
 	Encrypted *bool `type:"boolean"`
 
-	// The ARN of the KMS customer master key (CMK) that was used to protect the
-	// volume encryption key for the volume.
+	// The ARN of the KMS key that was used to protect the volume encryption key
+	// for the volume.
 	KmsKeyId *string `type:"string"`
 
 	// The size of the volume, in GiBs.
@@ -11169,6 +11564,503 @@ func (s *AwsEc2VpcDetails) SetIpv6CidrBlockAssociationSet(v []*Ipv6CidrBlockAsso
 // SetState sets the State field's value.
 func (s *AwsEc2VpcDetails) SetState(v string) *AwsEc2VpcDetails {
 	s.State = &v
+	return s
+}
+
+// Details about an Amazon EC2 VPN connection.
+type AwsEc2VpnConnectionDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The category of the VPN connection. VPN indicates an Amazon Web Services
+	// VPN connection. VPN-Classic indicates an Amazon Web Services Classic VPN
+	// connection.
+	Category *string `type:"string"`
+
+	// The configuration information for the VPN connection's customer gateway,
+	// in the native XML format.
+	CustomerGatewayConfiguration *string `type:"string"`
+
+	// The identifier of the customer gateway that is at your end of the VPN connection.
+	CustomerGatewayId *string `type:"string"`
+
+	// The VPN connection options.
+	Options *AwsEc2VpnConnectionOptionsDetails `type:"structure"`
+
+	// The static routes that are associated with the VPN connection.
+	Routes []*AwsEc2VpnConnectionRoutesDetails `type:"list"`
+
+	// The current state of the VPN connection.
+	State *string `type:"string"`
+
+	// The identifier of the transit gateway that is associated with the VPN connection.
+	TransitGatewayId *string `type:"string"`
+
+	// The type of VPN connection.
+	Type *string `type:"string"`
+
+	// Information about the VPN tunnel.
+	VgwTelemetry []*AwsEc2VpnConnectionVgwTelemetryDetails `type:"list"`
+
+	// The identifier of the VPN connection.
+	VpnConnectionId *string `type:"string"`
+
+	// The identifier of the virtual private gateway that is at the Amazon Web Services
+	// side of the VPN connection.
+	VpnGatewayId *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2VpnConnectionDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2VpnConnectionDetails) GoString() string {
+	return s.String()
+}
+
+// SetCategory sets the Category field's value.
+func (s *AwsEc2VpnConnectionDetails) SetCategory(v string) *AwsEc2VpnConnectionDetails {
+	s.Category = &v
+	return s
+}
+
+// SetCustomerGatewayConfiguration sets the CustomerGatewayConfiguration field's value.
+func (s *AwsEc2VpnConnectionDetails) SetCustomerGatewayConfiguration(v string) *AwsEc2VpnConnectionDetails {
+	s.CustomerGatewayConfiguration = &v
+	return s
+}
+
+// SetCustomerGatewayId sets the CustomerGatewayId field's value.
+func (s *AwsEc2VpnConnectionDetails) SetCustomerGatewayId(v string) *AwsEc2VpnConnectionDetails {
+	s.CustomerGatewayId = &v
+	return s
+}
+
+// SetOptions sets the Options field's value.
+func (s *AwsEc2VpnConnectionDetails) SetOptions(v *AwsEc2VpnConnectionOptionsDetails) *AwsEc2VpnConnectionDetails {
+	s.Options = v
+	return s
+}
+
+// SetRoutes sets the Routes field's value.
+func (s *AwsEc2VpnConnectionDetails) SetRoutes(v []*AwsEc2VpnConnectionRoutesDetails) *AwsEc2VpnConnectionDetails {
+	s.Routes = v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AwsEc2VpnConnectionDetails) SetState(v string) *AwsEc2VpnConnectionDetails {
+	s.State = &v
+	return s
+}
+
+// SetTransitGatewayId sets the TransitGatewayId field's value.
+func (s *AwsEc2VpnConnectionDetails) SetTransitGatewayId(v string) *AwsEc2VpnConnectionDetails {
+	s.TransitGatewayId = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsEc2VpnConnectionDetails) SetType(v string) *AwsEc2VpnConnectionDetails {
+	s.Type = &v
+	return s
+}
+
+// SetVgwTelemetry sets the VgwTelemetry field's value.
+func (s *AwsEc2VpnConnectionDetails) SetVgwTelemetry(v []*AwsEc2VpnConnectionVgwTelemetryDetails) *AwsEc2VpnConnectionDetails {
+	s.VgwTelemetry = v
+	return s
+}
+
+// SetVpnConnectionId sets the VpnConnectionId field's value.
+func (s *AwsEc2VpnConnectionDetails) SetVpnConnectionId(v string) *AwsEc2VpnConnectionDetails {
+	s.VpnConnectionId = &v
+	return s
+}
+
+// SetVpnGatewayId sets the VpnGatewayId field's value.
+func (s *AwsEc2VpnConnectionDetails) SetVpnGatewayId(v string) *AwsEc2VpnConnectionDetails {
+	s.VpnGatewayId = &v
+	return s
+}
+
+// VPN connection options.
+type AwsEc2VpnConnectionOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the VPN connection uses static routes only.
+	StaticRoutesOnly *bool `type:"boolean"`
+
+	// The VPN tunnel options.
+	TunnelOptions []*AwsEc2VpnConnectionOptionsTunnelOptionsDetails `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsEc2VpnConnectionOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2VpnConnectionOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetStaticRoutesOnly sets the StaticRoutesOnly field's value.
+func (s *AwsEc2VpnConnectionOptionsDetails) SetStaticRoutesOnly(v bool) *AwsEc2VpnConnectionOptionsDetails {
+	s.StaticRoutesOnly = &v
+	return s
+}
+
+// SetTunnelOptions sets the TunnelOptions field's value.
+func (s *AwsEc2VpnConnectionOptionsDetails) SetTunnelOptions(v []*AwsEc2VpnConnectionOptionsTunnelOptionsDetails) *AwsEc2VpnConnectionOptionsDetails {
+	s.TunnelOptions = v
+	return s
+}
+
+// The VPN tunnel options.
+type AwsEc2VpnConnectionOptionsTunnelOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of seconds after which a Dead Peer Detection (DPD) timeout occurs.
+	DpdTimeoutSeconds *int64 `type:"integer"`
+
+	// The Internet Key Exchange (IKE) versions that are permitted for the VPN tunnel.
+	IkeVersions []*string `type:"list"`
+
+	// The external IP address of the VPN tunnel.
+	OutsideIpAddress *string `type:"string"`
+
+	// The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 1
+	// IKE negotiations.
+	Phase1DhGroupNumbers []*int64 `type:"list"`
+
+	// The permitted encryption algorithms for the VPN tunnel for phase 1 IKE negotiations.
+	Phase1EncryptionAlgorithms []*string `type:"list"`
+
+	// The permitted integrity algorithms for the VPN tunnel for phase 1 IKE negotiations.
+	Phase1IntegrityAlgorithms []*string `type:"list"`
+
+	// The lifetime for phase 1 of the IKE negotiation, in seconds.
+	Phase1LifetimeSeconds *int64 `type:"integer"`
+
+	// The permitted Diffie-Hellman group numbers for the VPN tunnel for phase 2
+	// IKE negotiations.
+	Phase2DhGroupNumbers []*int64 `type:"list"`
+
+	// The permitted encryption algorithms for the VPN tunnel for phase 2 IKE negotiations.
+	Phase2EncryptionAlgorithms []*string `type:"list"`
+
+	// The permitted integrity algorithms for the VPN tunnel for phase 2 IKE negotiations.
+	Phase2IntegrityAlgorithms []*string `type:"list"`
+
+	// The lifetime for phase 2 of the IKE negotiation, in seconds.
+	Phase2LifetimeSeconds *int64 `type:"integer"`
+
+	// The preshared key to establish initial authentication between the virtual
+	// private gateway and the customer gateway.
+	PreSharedKey *string `type:"string"`
+
+	// The percentage of the rekey window, which is determined by RekeyMarginTimeSeconds
+	// during which the rekey time is randomly selected.
+	RekeyFuzzPercentage *int64 `type:"integer"`
+
+	// The margin time, in seconds, before the phase 2 lifetime expires, during
+	// which the Amazon Web Services side of the VPN connection performs an IKE
+	// rekey.
+	RekeyMarginTimeSeconds *int64 `type:"integer"`
+
+	// The number of packets in an IKE replay window.
+	ReplayWindowSize *int64 `type:"integer"`
+
+	// The range of inside IPv4 addresses for the tunnel.
+	TunnelInsideCidr *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2VpnConnectionOptionsTunnelOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2VpnConnectionOptionsTunnelOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetDpdTimeoutSeconds sets the DpdTimeoutSeconds field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetDpdTimeoutSeconds(v int64) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.DpdTimeoutSeconds = &v
+	return s
+}
+
+// SetIkeVersions sets the IkeVersions field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetIkeVersions(v []*string) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.IkeVersions = v
+	return s
+}
+
+// SetOutsideIpAddress sets the OutsideIpAddress field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetOutsideIpAddress(v string) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.OutsideIpAddress = &v
+	return s
+}
+
+// SetPhase1DhGroupNumbers sets the Phase1DhGroupNumbers field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPhase1DhGroupNumbers(v []*int64) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.Phase1DhGroupNumbers = v
+	return s
+}
+
+// SetPhase1EncryptionAlgorithms sets the Phase1EncryptionAlgorithms field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPhase1EncryptionAlgorithms(v []*string) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.Phase1EncryptionAlgorithms = v
+	return s
+}
+
+// SetPhase1IntegrityAlgorithms sets the Phase1IntegrityAlgorithms field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPhase1IntegrityAlgorithms(v []*string) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.Phase1IntegrityAlgorithms = v
+	return s
+}
+
+// SetPhase1LifetimeSeconds sets the Phase1LifetimeSeconds field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPhase1LifetimeSeconds(v int64) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.Phase1LifetimeSeconds = &v
+	return s
+}
+
+// SetPhase2DhGroupNumbers sets the Phase2DhGroupNumbers field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPhase2DhGroupNumbers(v []*int64) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.Phase2DhGroupNumbers = v
+	return s
+}
+
+// SetPhase2EncryptionAlgorithms sets the Phase2EncryptionAlgorithms field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPhase2EncryptionAlgorithms(v []*string) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.Phase2EncryptionAlgorithms = v
+	return s
+}
+
+// SetPhase2IntegrityAlgorithms sets the Phase2IntegrityAlgorithms field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPhase2IntegrityAlgorithms(v []*string) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.Phase2IntegrityAlgorithms = v
+	return s
+}
+
+// SetPhase2LifetimeSeconds sets the Phase2LifetimeSeconds field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPhase2LifetimeSeconds(v int64) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.Phase2LifetimeSeconds = &v
+	return s
+}
+
+// SetPreSharedKey sets the PreSharedKey field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetPreSharedKey(v string) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.PreSharedKey = &v
+	return s
+}
+
+// SetRekeyFuzzPercentage sets the RekeyFuzzPercentage field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetRekeyFuzzPercentage(v int64) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.RekeyFuzzPercentage = &v
+	return s
+}
+
+// SetRekeyMarginTimeSeconds sets the RekeyMarginTimeSeconds field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetRekeyMarginTimeSeconds(v int64) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.RekeyMarginTimeSeconds = &v
+	return s
+}
+
+// SetReplayWindowSize sets the ReplayWindowSize field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetReplayWindowSize(v int64) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.ReplayWindowSize = &v
+	return s
+}
+
+// SetTunnelInsideCidr sets the TunnelInsideCidr field's value.
+func (s *AwsEc2VpnConnectionOptionsTunnelOptionsDetails) SetTunnelInsideCidr(v string) *AwsEc2VpnConnectionOptionsTunnelOptionsDetails {
+	s.TunnelInsideCidr = &v
+	return s
+}
+
+// A static routes associated with the VPN connection.
+type AwsEc2VpnConnectionRoutesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The CIDR block associated with the local subnet of the customer data center.
+	DestinationCidrBlock *string `type:"string"`
+
+	// The current state of the static route.
+	State *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2VpnConnectionRoutesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2VpnConnectionRoutesDetails) GoString() string {
+	return s.String()
+}
+
+// SetDestinationCidrBlock sets the DestinationCidrBlock field's value.
+func (s *AwsEc2VpnConnectionRoutesDetails) SetDestinationCidrBlock(v string) *AwsEc2VpnConnectionRoutesDetails {
+	s.DestinationCidrBlock = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *AwsEc2VpnConnectionRoutesDetails) SetState(v string) *AwsEc2VpnConnectionRoutesDetails {
+	s.State = &v
+	return s
+}
+
+// Information about the VPN tunnel.
+type AwsEc2VpnConnectionVgwTelemetryDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of accepted routes.
+	AcceptedRouteCount *int64 `type:"integer"`
+
+	// The ARN of the VPN tunnel endpoint certificate.
+	CertificateArn *string `type:"string"`
+
+	// The date and time of the last change in status.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	LastStatusChange *string `type:"string"`
+
+	// The Internet-routable IP address of the virtual private gateway's outside
+	// interface.
+	OutsideIpAddress *string `type:"string"`
+
+	// The status of the VPN tunnel.
+	Status *string `type:"string"`
+
+	// If an error occurs, a description of the error.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEc2VpnConnectionVgwTelemetryDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEc2VpnConnectionVgwTelemetryDetails) GoString() string {
+	return s.String()
+}
+
+// SetAcceptedRouteCount sets the AcceptedRouteCount field's value.
+func (s *AwsEc2VpnConnectionVgwTelemetryDetails) SetAcceptedRouteCount(v int64) *AwsEc2VpnConnectionVgwTelemetryDetails {
+	s.AcceptedRouteCount = &v
+	return s
+}
+
+// SetCertificateArn sets the CertificateArn field's value.
+func (s *AwsEc2VpnConnectionVgwTelemetryDetails) SetCertificateArn(v string) *AwsEc2VpnConnectionVgwTelemetryDetails {
+	s.CertificateArn = &v
+	return s
+}
+
+// SetLastStatusChange sets the LastStatusChange field's value.
+func (s *AwsEc2VpnConnectionVgwTelemetryDetails) SetLastStatusChange(v string) *AwsEc2VpnConnectionVgwTelemetryDetails {
+	s.LastStatusChange = &v
+	return s
+}
+
+// SetOutsideIpAddress sets the OutsideIpAddress field's value.
+func (s *AwsEc2VpnConnectionVgwTelemetryDetails) SetOutsideIpAddress(v string) *AwsEc2VpnConnectionVgwTelemetryDetails {
+	s.OutsideIpAddress = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsEc2VpnConnectionVgwTelemetryDetails) SetStatus(v string) *AwsEc2VpnConnectionVgwTelemetryDetails {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *AwsEc2VpnConnectionVgwTelemetryDetails) SetStatusMessage(v string) *AwsEc2VpnConnectionVgwTelemetryDetails {
+	s.StatusMessage = &v
+	return s
+}
+
+// Information about an Amazon ECR image.
+type AwsEcrContainerImageDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The architecture of the image.
+	Architecture *string `type:"string"`
+
+	// The sha256 digest of the image manifest.
+	ImageDigest *string `type:"string"`
+
+	// The date and time when the image was pushed to the repository.
+	//
+	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
+	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
+	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
+	ImagePublishedAt *string `type:"string"`
+
+	// The list of tags that are associated with the image.
+	ImageTags []*string `type:"list"`
+
+	// The Amazon Web Services account identifier that is associated with the registry
+	// that the image belongs to.
+	RegistryId *string `type:"string"`
+
+	// The name of the repository that the image belongs to.
+	RepositoryName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsEcrContainerImageDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsEcrContainerImageDetails) GoString() string {
+	return s.String()
+}
+
+// SetArchitecture sets the Architecture field's value.
+func (s *AwsEcrContainerImageDetails) SetArchitecture(v string) *AwsEcrContainerImageDetails {
+	s.Architecture = &v
+	return s
+}
+
+// SetImageDigest sets the ImageDigest field's value.
+func (s *AwsEcrContainerImageDetails) SetImageDigest(v string) *AwsEcrContainerImageDetails {
+	s.ImageDigest = &v
+	return s
+}
+
+// SetImagePublishedAt sets the ImagePublishedAt field's value.
+func (s *AwsEcrContainerImageDetails) SetImagePublishedAt(v string) *AwsEcrContainerImageDetails {
+	s.ImagePublishedAt = &v
+	return s
+}
+
+// SetImageTags sets the ImageTags field's value.
+func (s *AwsEcrContainerImageDetails) SetImageTags(v []*string) *AwsEcrContainerImageDetails {
+	s.ImageTags = v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *AwsEcrContainerImageDetails) SetRegistryId(v string) *AwsEcrContainerImageDetails {
+	s.RegistryId = &v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *AwsEcrContainerImageDetails) SetRepositoryName(v string) *AwsEcrContainerImageDetails {
+	s.RepositoryName = &v
 	return s
 }
 
@@ -16635,15 +17527,15 @@ func (s *AwsIamUserPolicy) SetPolicyName(v string) *AwsIamUserPolicy {
 	return s
 }
 
-// Contains metadata about a customer master key (CMK).
+// Contains metadata about an KMS key.
 type AwsKmsKeyDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The twelve-digit account ID of the Amazon Web Services account that owns
-	// the CMK.
+	// the KMS key.
 	AWSAccountId *string `type:"string"`
 
-	// Indicates when the CMK was created.
+	// Indicates when the KMS key was created.
 	//
 	// Uses the date-time format specified in RFC 3339 section 5.6, Internet Date/Time
 	// Format (https://tools.ietf.org/html/rfc3339#section-5.6). The value cannot
@@ -16653,22 +17545,25 @@ type AwsKmsKeyDetails struct {
 	// A description of the key.
 	Description *string `type:"string"`
 
-	// The globally unique identifier for the CMK.
+	// The globally unique identifier for the KMS key.
 	KeyId *string `type:"string"`
 
-	// The manager of the CMK. CMKs in your Amazon Web Services account are either
-	// customer managed or Amazon Web Services managed.
+	// The manager of the KMS key. KMS keys in your Amazon Web Services account
+	// are either customer managed or Amazon Web Services managed.
 	KeyManager *string `type:"string"`
 
-	// The state of the CMK.
+	// Whether the key has key rotation enabled.
+	KeyRotationStatus *bool `type:"boolean"`
+
+	// The state of the KMS key.
 	KeyState *string `type:"string"`
 
-	// The source of the CMK's key material.
+	// The source of the KMS key material.
 	//
 	// When this value is AWS_KMS, KMS created the key material.
 	//
 	// When this value is EXTERNAL, the key material was imported from your existing
-	// key management infrastructure or the CMK lacks key material.
+	// key management infrastructure or the KMS key lacks key material.
 	//
 	// When this value is AWS_CLOUDHSM, the key material was created in the CloudHSM
 	// cluster associated with a custom key store.
@@ -16712,6 +17607,12 @@ func (s *AwsKmsKeyDetails) SetKeyId(v string) *AwsKmsKeyDetails {
 // SetKeyManager sets the KeyManager field's value.
 func (s *AwsKmsKeyDetails) SetKeyManager(v string) *AwsKmsKeyDetails {
 	s.KeyManager = &v
+	return s
+}
+
+// SetKeyRotationStatus sets the KeyRotationStatus field's value.
+func (s *AwsKmsKeyDetails) SetKeyRotationStatus(v bool) *AwsKmsKeyDetails {
+	s.KeyRotationStatus = &v
 	return s
 }
 
@@ -16828,7 +17729,8 @@ type AwsLambdaFunctionDetails struct {
 	Handler *string `type:"string"`
 
 	// The KMS key that is used to encrypt the function's environment variables.
-	// This key is only returned if you've configured a customer managed CMK.
+	// This key is only returned if you've configured a customer managed customer
+	// managed key.
 	KmsKeyArn *string `type:"string"`
 
 	// Indicates when the function was last updated.
@@ -21170,8 +22072,20 @@ func (s *AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails) SetStor
 type AwsS3BucketDetails struct {
 	_ struct{} `type:"structure"`
 
+	// The access control list for the S3 bucket.
+	AccessControlList *string `type:"string"`
+
 	// The lifecycle configuration for objects in the S3 bucket.
 	BucketLifecycleConfiguration *AwsS3BucketBucketLifecycleConfigurationDetails `type:"structure"`
+
+	// The logging configuration for the S3 bucket.
+	BucketLoggingConfiguration *AwsS3BucketLoggingConfiguration `type:"structure"`
+
+	// The notification configuration for the S3 bucket.
+	BucketNotificationConfiguration *AwsS3BucketNotificationConfiguration `type:"structure"`
+
+	// The website configuration parameters for the S3 bucket.
+	BucketWebsiteConfiguration *AwsS3BucketWebsiteConfiguration `type:"structure"`
 
 	// Indicates when the S3 bucket was created.
 	//
@@ -21204,9 +22118,33 @@ func (s AwsS3BucketDetails) GoString() string {
 	return s.String()
 }
 
+// SetAccessControlList sets the AccessControlList field's value.
+func (s *AwsS3BucketDetails) SetAccessControlList(v string) *AwsS3BucketDetails {
+	s.AccessControlList = &v
+	return s
+}
+
 // SetBucketLifecycleConfiguration sets the BucketLifecycleConfiguration field's value.
 func (s *AwsS3BucketDetails) SetBucketLifecycleConfiguration(v *AwsS3BucketBucketLifecycleConfigurationDetails) *AwsS3BucketDetails {
 	s.BucketLifecycleConfiguration = v
+	return s
+}
+
+// SetBucketLoggingConfiguration sets the BucketLoggingConfiguration field's value.
+func (s *AwsS3BucketDetails) SetBucketLoggingConfiguration(v *AwsS3BucketLoggingConfiguration) *AwsS3BucketDetails {
+	s.BucketLoggingConfiguration = v
+	return s
+}
+
+// SetBucketNotificationConfiguration sets the BucketNotificationConfiguration field's value.
+func (s *AwsS3BucketDetails) SetBucketNotificationConfiguration(v *AwsS3BucketNotificationConfiguration) *AwsS3BucketDetails {
+	s.BucketNotificationConfiguration = v
+	return s
+}
+
+// SetBucketWebsiteConfiguration sets the BucketWebsiteConfiguration field's value.
+func (s *AwsS3BucketDetails) SetBucketWebsiteConfiguration(v *AwsS3BucketWebsiteConfiguration) *AwsS3BucketDetails {
+	s.BucketWebsiteConfiguration = v
 	return s
 }
 
@@ -21240,12 +22178,205 @@ func (s *AwsS3BucketDetails) SetServerSideEncryptionConfiguration(v *AwsS3Bucket
 	return s
 }
 
+// Information about logging for the S3 bucket
+type AwsS3BucketLoggingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the S3 bucket where log files for the S3 bucket are stored.
+	DestinationBucketName *string `type:"string"`
+
+	// The prefix added to log files for the S3 bucket.
+	LogFilePrefix *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketLoggingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketLoggingConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetDestinationBucketName sets the DestinationBucketName field's value.
+func (s *AwsS3BucketLoggingConfiguration) SetDestinationBucketName(v string) *AwsS3BucketLoggingConfiguration {
+	s.DestinationBucketName = &v
+	return s
+}
+
+// SetLogFilePrefix sets the LogFilePrefix field's value.
+func (s *AwsS3BucketLoggingConfiguration) SetLogFilePrefix(v string) *AwsS3BucketLoggingConfiguration {
+	s.LogFilePrefix = &v
+	return s
+}
+
+// The notification configuration for the S3 bucket.
+type AwsS3BucketNotificationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Configurations for S3 bucket notifications.
+	Configurations []*AwsS3BucketNotificationConfigurationDetail `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketNotificationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketNotificationConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetConfigurations sets the Configurations field's value.
+func (s *AwsS3BucketNotificationConfiguration) SetConfigurations(v []*AwsS3BucketNotificationConfigurationDetail) *AwsS3BucketNotificationConfiguration {
+	s.Configurations = v
+	return s
+}
+
+// Details for an S3 bucket notification configuration.
+type AwsS3BucketNotificationConfigurationDetail struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the Lambda function, Amazon SQS queue, or Amazon SNS topic that
+	// generates the notification.
+	Destination *string `type:"string"`
+
+	// The list of events that trigger a notification.
+	Events []*string `type:"list"`
+
+	// The filters that determine which S3 buckets generate notifications.
+	Filter *AwsS3BucketNotificationConfigurationFilter `type:"structure"`
+
+	// Indicates the type of notification. Notifications can be generated using
+	// Lambda functions, Amazon SQS queues or Amazon SNS topics.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketNotificationConfigurationDetail) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketNotificationConfigurationDetail) GoString() string {
+	return s.String()
+}
+
+// SetDestination sets the Destination field's value.
+func (s *AwsS3BucketNotificationConfigurationDetail) SetDestination(v string) *AwsS3BucketNotificationConfigurationDetail {
+	s.Destination = &v
+	return s
+}
+
+// SetEvents sets the Events field's value.
+func (s *AwsS3BucketNotificationConfigurationDetail) SetEvents(v []*string) *AwsS3BucketNotificationConfigurationDetail {
+	s.Events = v
+	return s
+}
+
+// SetFilter sets the Filter field's value.
+func (s *AwsS3BucketNotificationConfigurationDetail) SetFilter(v *AwsS3BucketNotificationConfigurationFilter) *AwsS3BucketNotificationConfigurationDetail {
+	s.Filter = v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsS3BucketNotificationConfigurationDetail) SetType(v string) *AwsS3BucketNotificationConfigurationDetail {
+	s.Type = &v
+	return s
+}
+
+// Filtering information for the notifications. The filtering is based on Amazon
+// S3 key names.
+type AwsS3BucketNotificationConfigurationFilter struct {
+	_ struct{} `type:"structure"`
+
+	// Details for an Amazon S3 filter.
+	S3KeyFilter *AwsS3BucketNotificationConfigurationS3KeyFilter `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketNotificationConfigurationFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketNotificationConfigurationFilter) GoString() string {
+	return s.String()
+}
+
+// SetS3KeyFilter sets the S3KeyFilter field's value.
+func (s *AwsS3BucketNotificationConfigurationFilter) SetS3KeyFilter(v *AwsS3BucketNotificationConfigurationS3KeyFilter) *AwsS3BucketNotificationConfigurationFilter {
+	s.S3KeyFilter = v
+	return s
+}
+
+// Details for an Amazon S3 filter.
+type AwsS3BucketNotificationConfigurationS3KeyFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The filter rules for the filter.
+	FilterRules []*AwsS3BucketNotificationConfigurationS3KeyFilterRule `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketNotificationConfigurationS3KeyFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketNotificationConfigurationS3KeyFilter) GoString() string {
+	return s.String()
+}
+
+// SetFilterRules sets the FilterRules field's value.
+func (s *AwsS3BucketNotificationConfigurationS3KeyFilter) SetFilterRules(v []*AwsS3BucketNotificationConfigurationS3KeyFilterRule) *AwsS3BucketNotificationConfigurationS3KeyFilter {
+	s.FilterRules = v
+	return s
+}
+
+// Details for a filter rule.
+type AwsS3BucketNotificationConfigurationS3KeyFilterRule struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates whether the filter is based on the prefix or suffix of the Amazon
+	// S3 key.
+	Name *string `type:"string" enum:"AwsS3BucketNotificationConfigurationS3KeyFilterRuleName"`
+
+	// The filter value.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketNotificationConfigurationS3KeyFilterRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketNotificationConfigurationS3KeyFilterRule) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsS3BucketNotificationConfigurationS3KeyFilterRule) SetName(v string) *AwsS3BucketNotificationConfigurationS3KeyFilterRule {
+	s.Name = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsS3BucketNotificationConfigurationS3KeyFilterRule) SetValue(v string) *AwsS3BucketNotificationConfigurationS3KeyFilterRule {
+	s.Value = &v
+	return s
+}
+
 // Specifies the default server-side encryption to apply to new objects in the
 // bucket.
 type AwsS3BucketServerSideEncryptionByDefault struct {
 	_ struct{} `type:"structure"`
 
-	// KMS customer master key (CMK) ID to use for the default encryption.
+	// KMS key ID to use for the default encryption.
 	KMSMasterKeyID *string `type:"string"`
 
 	// Server-side encryption algorithm to use for the default encryption.
@@ -21324,6 +22455,223 @@ func (s *AwsS3BucketServerSideEncryptionRule) SetApplyServerSideEncryptionByDefa
 	return s
 }
 
+// Website parameters for the S3 bucket.
+type AwsS3BucketWebsiteConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the error document for the website.
+	ErrorDocument *string `type:"string"`
+
+	// The name of the index document for the website.
+	IndexDocumentSuffix *string `type:"string"`
+
+	// The redirect behavior for requests to the website.
+	RedirectAllRequestsTo *AwsS3BucketWebsiteConfigurationRedirectTo `type:"structure"`
+
+	// The rules for applying redirects for requests to the website.
+	RoutingRules []*AwsS3BucketWebsiteConfigurationRoutingRule `type:"list"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketWebsiteConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketWebsiteConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetErrorDocument sets the ErrorDocument field's value.
+func (s *AwsS3BucketWebsiteConfiguration) SetErrorDocument(v string) *AwsS3BucketWebsiteConfiguration {
+	s.ErrorDocument = &v
+	return s
+}
+
+// SetIndexDocumentSuffix sets the IndexDocumentSuffix field's value.
+func (s *AwsS3BucketWebsiteConfiguration) SetIndexDocumentSuffix(v string) *AwsS3BucketWebsiteConfiguration {
+	s.IndexDocumentSuffix = &v
+	return s
+}
+
+// SetRedirectAllRequestsTo sets the RedirectAllRequestsTo field's value.
+func (s *AwsS3BucketWebsiteConfiguration) SetRedirectAllRequestsTo(v *AwsS3BucketWebsiteConfigurationRedirectTo) *AwsS3BucketWebsiteConfiguration {
+	s.RedirectAllRequestsTo = v
+	return s
+}
+
+// SetRoutingRules sets the RoutingRules field's value.
+func (s *AwsS3BucketWebsiteConfiguration) SetRoutingRules(v []*AwsS3BucketWebsiteConfigurationRoutingRule) *AwsS3BucketWebsiteConfiguration {
+	s.RoutingRules = v
+	return s
+}
+
+// The redirect behavior for requests to the website.
+type AwsS3BucketWebsiteConfigurationRedirectTo struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the host to redirect requests to.
+	Hostname *string `type:"string"`
+
+	// The protocol to use when redirecting requests. By default, uses the same
+	// protocol as the original request.
+	Protocol *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketWebsiteConfigurationRedirectTo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketWebsiteConfigurationRedirectTo) GoString() string {
+	return s.String()
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *AwsS3BucketWebsiteConfigurationRedirectTo) SetHostname(v string) *AwsS3BucketWebsiteConfigurationRedirectTo {
+	s.Hostname = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *AwsS3BucketWebsiteConfigurationRedirectTo) SetProtocol(v string) *AwsS3BucketWebsiteConfigurationRedirectTo {
+	s.Protocol = &v
+	return s
+}
+
+// A rule for redirecting requests to the website.
+type AwsS3BucketWebsiteConfigurationRoutingRule struct {
+	_ struct{} `type:"structure"`
+
+	// Provides the condition that must be met in order to apply the routing rule.
+	Condition *AwsS3BucketWebsiteConfigurationRoutingRuleCondition `type:"structure"`
+
+	// Provides the rules to redirect the request if the condition in Condition
+	// is met.
+	Redirect *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect `type:"structure"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketWebsiteConfigurationRoutingRule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketWebsiteConfigurationRoutingRule) GoString() string {
+	return s.String()
+}
+
+// SetCondition sets the Condition field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRule) SetCondition(v *AwsS3BucketWebsiteConfigurationRoutingRuleCondition) *AwsS3BucketWebsiteConfigurationRoutingRule {
+	s.Condition = v
+	return s
+}
+
+// SetRedirect sets the Redirect field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRule) SetRedirect(v *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) *AwsS3BucketWebsiteConfigurationRoutingRule {
+	s.Redirect = v
+	return s
+}
+
+// The condition that must be met in order to apply the routing rule.
+type AwsS3BucketWebsiteConfigurationRoutingRuleCondition struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates to redirect the request if the HTTP error code matches this value.
+	HttpErrorCodeReturnedEquals *string `type:"string"`
+
+	// Indicates to redirect the request if the key prefix matches this value.
+	KeyPrefixEquals *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketWebsiteConfigurationRoutingRuleCondition) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketWebsiteConfigurationRoutingRuleCondition) GoString() string {
+	return s.String()
+}
+
+// SetHttpErrorCodeReturnedEquals sets the HttpErrorCodeReturnedEquals field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRuleCondition) SetHttpErrorCodeReturnedEquals(v string) *AwsS3BucketWebsiteConfigurationRoutingRuleCondition {
+	s.HttpErrorCodeReturnedEquals = &v
+	return s
+}
+
+// SetKeyPrefixEquals sets the KeyPrefixEquals field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRuleCondition) SetKeyPrefixEquals(v string) *AwsS3BucketWebsiteConfigurationRoutingRuleCondition {
+	s.KeyPrefixEquals = &v
+	return s
+}
+
+// The rules to redirect the request if the condition in Condition is met.
+type AwsS3BucketWebsiteConfigurationRoutingRuleRedirect struct {
+	_ struct{} `type:"structure"`
+
+	// The host name to use in the redirect request.
+	Hostname *string `type:"string"`
+
+	// The HTTP redirect code to use in the response.
+	HttpRedirectCode *string `type:"string"`
+
+	// The protocol to use to redirect the request. By default, uses the protocol
+	// from the original request.
+	Protocol *string `type:"string"`
+
+	// The object key prefix to use in the redirect request.
+	//
+	// Cannot be provided if ReplaceKeyWith is present.
+	ReplaceKeyPrefixWith *string `type:"string"`
+
+	// The specific object key to use in the redirect request.
+	//
+	// Cannot be provided if ReplaceKeyPrefixWith is present.
+	ReplaceKeyWith *string `type:"string"`
+}
+
+// String returns the string representation
+func (s AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) GoString() string {
+	return s.String()
+}
+
+// SetHostname sets the Hostname field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) SetHostname(v string) *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect {
+	s.Hostname = &v
+	return s
+}
+
+// SetHttpRedirectCode sets the HttpRedirectCode field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) SetHttpRedirectCode(v string) *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect {
+	s.HttpRedirectCode = &v
+	return s
+}
+
+// SetProtocol sets the Protocol field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) SetProtocol(v string) *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect {
+	s.Protocol = &v
+	return s
+}
+
+// SetReplaceKeyPrefixWith sets the ReplaceKeyPrefixWith field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) SetReplaceKeyPrefixWith(v string) *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect {
+	s.ReplaceKeyPrefixWith = &v
+	return s
+}
+
+// SetReplaceKeyWith sets the ReplaceKeyWith field's value.
+func (s *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect) SetReplaceKeyWith(v string) *AwsS3BucketWebsiteConfigurationRoutingRuleRedirect {
+	s.ReplaceKeyWith = &v
+	return s
+}
+
 // Details about an Amazon S3 object.
 type AwsS3ObjectDetails struct {
 	_ struct{} `type:"structure"`
@@ -21342,8 +22690,8 @@ type AwsS3ObjectDetails struct {
 	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
 	LastModified *string `type:"string"`
 
-	// The identifier of the KMS symmetric customer managed customer master key
-	// (CMK) that was used for the object.
+	// The identifier of the KMS symmetric customer managed key that was used for
+	// the object.
 	SSEKMSKeyId *string `type:"string"`
 
 	// If the object is stored using server-side encryption, the value of the server-side
@@ -21410,8 +22758,8 @@ type AwsSecretsManagerSecretDetails struct {
 	// The user-provided description of the secret.
 	Description *string `type:"string"`
 
-	// The ARN, Key ID, or alias of the KMS customer master key (CMK) used to encrypt
-	// the SecretString or SecretBinary values for versions of this secret.
+	// The ARN, Key ID, or alias of the KMS key used to encrypt the SecretString
+	// or SecretBinary values for versions of this secret.
 	KmsKeyId *string `type:"string"`
 
 	// The name of the secret.
@@ -21658,7 +23006,7 @@ type AwsSecurityFinding struct {
 	// you use this attribute.
 	//
 	// When you use the Security Hub API to filter findings by product name, you
-	// use the aws/securityhub/ProductyName attribute under ProductFields.
+	// use the aws/securityhub/ProductName attribute under ProductFields.
 	//
 	// Security Hub does not synchronize those two attributes.
 	ProductName *string `type:"string"`
@@ -23085,8 +24433,8 @@ func (s *AwsSecurityFindingIdentifier) SetProductArn(v string) *AwsSecurityFindi
 type AwsSnsTopicDetails struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of an Amazon Web Services managed customer master key (CMK) for Amazon
-	// SNS or a custom CMK.
+	// The ID of an Amazon Web Services managed key for Amazon SNS or a customer
+	// managed key.
 	KmsMasterKeyId *string `type:"string"`
 
 	// The subscription's owner.
@@ -23179,8 +24527,8 @@ type AwsSqsQueueDetails struct {
 	// to encrypt or decrypt messages before calling KMS again.
 	KmsDataKeyReusePeriodSeconds *int64 `type:"integer"`
 
-	// The ID of an Amazon Web Services managed customer master key (CMK) for Amazon
-	// SQS or a custom CMK.
+	// The ID of an Amazon Web Services managed key for Amazon SQS or a custom KMS
+	// key.
 	KmsMasterKeyId *string `type:"string"`
 
 	// The name of the new queue.
@@ -24859,11 +26207,17 @@ func (s *CustomDataIdentifiersResult) SetTotalCount(v int64) *CustomDataIdentifi
 type Cvss struct {
 	_ struct{} `type:"structure"`
 
+	// Adjustments to the CVSS metrics.
+	Adjustments []*Adjustment `type:"list"`
+
 	// The base CVSS score.
 	BaseScore *float64 `type:"double"`
 
 	// The base scoring vector for the CVSS score.
 	BaseVector *string `type:"string"`
+
+	// The origin of the original CVSS score and vector.
+	Source *string `type:"string"`
 
 	// The version of CVSS for the CVSS score.
 	Version *string `type:"string"`
@@ -24879,6 +26233,12 @@ func (s Cvss) GoString() string {
 	return s.String()
 }
 
+// SetAdjustments sets the Adjustments field's value.
+func (s *Cvss) SetAdjustments(v []*Adjustment) *Cvss {
+	s.Adjustments = v
+	return s
+}
+
 // SetBaseScore sets the BaseScore field's value.
 func (s *Cvss) SetBaseScore(v float64) *Cvss {
 	s.BaseScore = &v
@@ -24888,6 +26248,12 @@ func (s *Cvss) SetBaseScore(v float64) *Cvss {
 // SetBaseVector sets the BaseVector field's value.
 func (s *Cvss) SetBaseVector(v string) *Cvss {
 	s.BaseVector = &v
+	return s
+}
+
+// SetSource sets the Source field's value.
+func (s *Cvss) SetSource(v string) *Cvss {
+	s.Source = &v
 	return s
 }
 
@@ -29393,8 +30759,8 @@ type Product struct {
 	// For integrations with Amazon Web Services services, the Amazon Web Services
 	// Console URL from which to activate the service.
 	//
-	// For integrations with third-party products, the Marketplace URL from which
-	// to subscribe to or purchase the product.
+	// For integrations with third-party products, the Amazon Web Services Marketplace
+	// URL from which to subscribe to or purchase the product.
 	MarketplaceUrl *string `type:"string"`
 
 	// The ARN assigned to the product.
@@ -29875,6 +31241,9 @@ type ResourceDetails struct {
 	// Details for an autoscaling group.
 	AwsAutoScalingAutoScalingGroup *AwsAutoScalingAutoScalingGroupDetails `type:"structure"`
 
+	// Provides details about a launch configuration.
+	AwsAutoScalingLaunchConfiguration *AwsAutoScalingLaunchConfigurationDetails `type:"structure"`
+
 	// Provides details about an Certificate Manager certificate.
 	AwsCertificateManagerCertificate *AwsCertificateManagerCertificateDetails `type:"structure"`
 
@@ -29914,6 +31283,12 @@ type ResourceDetails struct {
 	// Details for an EC2 VPC.
 	AwsEc2Vpc *AwsEc2VpcDetails `type:"structure"`
 
+	// Details about an EC2 VPN connection.
+	AwsEc2VpnConnection *AwsEc2VpnConnectionDetails `type:"structure"`
+
+	// information about an Amazon ECR image.
+	AwsEcrContainerImage *AwsEcrContainerImageDetails `type:"structure"`
+
 	// Details about an ECS cluster.
 	AwsEcsCluster *AwsEcsClusterDetails `type:"structure"`
 
@@ -29930,7 +31305,7 @@ type ResourceDetails struct {
 	// Details for an Elasticsearch domain.
 	AwsElasticsearchDomain *AwsElasticsearchDomainDetails `type:"structure"`
 
-	// contains details about a Classic Load Balancer.
+	// Contains details about a Classic Load Balancer.
 	AwsElbLoadBalancer *AwsElbLoadBalancerDetails `type:"structure"`
 
 	// Details about a load balancer.
@@ -30074,6 +31449,12 @@ func (s *ResourceDetails) SetAwsAutoScalingAutoScalingGroup(v *AwsAutoScalingAut
 	return s
 }
 
+// SetAwsAutoScalingLaunchConfiguration sets the AwsAutoScalingLaunchConfiguration field's value.
+func (s *ResourceDetails) SetAwsAutoScalingLaunchConfiguration(v *AwsAutoScalingLaunchConfigurationDetails) *ResourceDetails {
+	s.AwsAutoScalingLaunchConfiguration = v
+	return s
+}
+
 // SetAwsCertificateManagerCertificate sets the AwsCertificateManagerCertificate field's value.
 func (s *ResourceDetails) SetAwsCertificateManagerCertificate(v *AwsCertificateManagerCertificateDetails) *ResourceDetails {
 	s.AwsCertificateManagerCertificate = v
@@ -30149,6 +31530,18 @@ func (s *ResourceDetails) SetAwsEc2Volume(v *AwsEc2VolumeDetails) *ResourceDetai
 // SetAwsEc2Vpc sets the AwsEc2Vpc field's value.
 func (s *ResourceDetails) SetAwsEc2Vpc(v *AwsEc2VpcDetails) *ResourceDetails {
 	s.AwsEc2Vpc = v
+	return s
+}
+
+// SetAwsEc2VpnConnection sets the AwsEc2VpnConnection field's value.
+func (s *ResourceDetails) SetAwsEc2VpnConnection(v *AwsEc2VpnConnectionDetails) *ResourceDetails {
+	s.AwsEc2VpnConnection = v
+	return s
+}
+
+// SetAwsEcrContainerImage sets the AwsEcrContainerImage field's value.
+func (s *ResourceDetails) SetAwsEcrContainerImage(v *AwsEcrContainerImageDetails) *ResourceDetails {
+	s.AwsEcrContainerImage = v
 	return s
 }
 
@@ -30694,8 +32087,14 @@ type SoftwarePackage struct {
 	// The epoch of the software package.
 	Epoch *string `type:"string"`
 
+	// The file system path to the package manager inventory file.
+	FilePath *string `type:"string"`
+
 	// The name of the software package.
 	Name *string `type:"string"`
+
+	// The source of the package.
+	PackageManager *string `type:"string"`
 
 	// The release of the software package.
 	Release *string `type:"string"`
@@ -30726,9 +32125,21 @@ func (s *SoftwarePackage) SetEpoch(v string) *SoftwarePackage {
 	return s
 }
 
+// SetFilePath sets the FilePath field's value.
+func (s *SoftwarePackage) SetFilePath(v string) *SoftwarePackage {
+	s.FilePath = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *SoftwarePackage) SetName(v string) *SoftwarePackage {
 	s.Name = &v
+	return s
+}
+
+// SetPackageManager sets the PackageManager field's value.
+func (s *SoftwarePackage) SetPackageManager(v string) *SoftwarePackage {
+	s.PackageManager = &v
 	return s
 }
 
@@ -32090,8 +33501,12 @@ func (s *WafOverrideAction) SetType(v string) *WafOverrideAction {
 type Workflow struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the investigation into the finding. The allowed values are
-	// the following.
+	// The status of the investigation into the finding. The workflow status is
+	// specific to an individual finding. It does not affect the generation of new
+	// findings. For example, setting the workflow status to SUPPRESSED or RESOLVED
+	// does not prevent a new finding for the same issue.
+	//
+	// The allowed values are the following.
 	//
 	//    * NEW - The initial state of a finding, before it is reviewed. Security
 	//    Hub also resets the workflow status from NOTIFIED or RESOLVED to NEW in
@@ -32102,8 +33517,8 @@ type Workflow struct {
 	//    security issue. Used when the initial reviewer is not the resource owner,
 	//    and needs intervention from the resource owner.
 	//
-	//    * SUPPRESSED - The finding will not be reviewed again and will not be
-	//    acted upon.
+	//    * SUPPRESSED - Indicates that you reviewed the finding and do not believe
+	//    that any action is needed. The finding is no longer updated.
 	//
 	//    * RESOLVED - The finding was reviewed and remediated and is now considered
 	//    resolved.
@@ -32130,8 +33545,12 @@ func (s *Workflow) SetStatus(v string) *Workflow {
 type WorkflowUpdate struct {
 	_ struct{} `type:"structure"`
 
-	// The status of the investigation into the finding. The allowed values are
-	// the following.
+	// The status of the investigation into the finding. The workflow status is
+	// specific to an individual finding. It does not affect the generation of new
+	// findings. For example, setting the workflow status to SUPPRESSED or RESOLVED
+	// does not prevent a new finding for the same issue.
+	//
+	// The allowed values are the following.
 	//
 	//    * NEW - The initial state of a finding, before it is reviewed. Security
 	//    Hub also resets WorkFlowStatus from NOTIFIED or RESOLVED to NEW in the
@@ -32145,8 +33564,8 @@ type WorkflowUpdate struct {
 	//    * RESOLVED - The finding was reviewed and remediated and is now considered
 	//    resolved.
 	//
-	//    * SUPPRESSED - The finding will not be reviewed again and will not be
-	//    acted upon.
+	//    * SUPPRESSED - Indicates that you reviewed the finding and do not believe
+	//    that any action is needed. The finding is no longer updated.
 	Status *string `type:"string" enum:"WorkflowStatus"`
 }
 
@@ -32195,6 +33614,22 @@ func AwsIamAccessKeyStatus_Values() []string {
 	return []string{
 		AwsIamAccessKeyStatusActive,
 		AwsIamAccessKeyStatusInactive,
+	}
+}
+
+const (
+	// AwsS3BucketNotificationConfigurationS3KeyFilterRuleNamePrefix is a AwsS3BucketNotificationConfigurationS3KeyFilterRuleName enum value
+	AwsS3BucketNotificationConfigurationS3KeyFilterRuleNamePrefix = "Prefix"
+
+	// AwsS3BucketNotificationConfigurationS3KeyFilterRuleNameSuffix is a AwsS3BucketNotificationConfigurationS3KeyFilterRuleName enum value
+	AwsS3BucketNotificationConfigurationS3KeyFilterRuleNameSuffix = "Suffix"
+)
+
+// AwsS3BucketNotificationConfigurationS3KeyFilterRuleName_Values returns all elements of the AwsS3BucketNotificationConfigurationS3KeyFilterRuleName enum
+func AwsS3BucketNotificationConfigurationS3KeyFilterRuleName_Values() []string {
+	return []string{
+		AwsS3BucketNotificationConfigurationS3KeyFilterRuleNamePrefix,
+		AwsS3BucketNotificationConfigurationS3KeyFilterRuleNameSuffix,
 	}
 }
 

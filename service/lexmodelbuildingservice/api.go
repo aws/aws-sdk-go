@@ -14153,6 +14153,9 @@ const (
 
 	// LocaleJaJp is a Locale enum value
 	LocaleJaJp = "ja-JP"
+
+	// LocaleKoKr is a Locale enum value
+	LocaleKoKr = "ko-KR"
 )
 
 // Locale_Values returns all elements of the Locale enum
@@ -14170,6 +14173,7 @@ func Locale_Values() []string {
 		LocaleFrCa,
 		LocaleItIt,
 		LocaleJaJp,
+		LocaleKoKr,
 	}
 }
 

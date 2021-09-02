@@ -2460,6 +2460,17 @@
       "max":16,
       "min":1
     },
+    "ColumnTagName":{
+      "type":"string",
+      "enum":[
+        "COLUMN_GEOGRAPHIC_ROLE",
+        "COLUMN_DESCRIPTION"
+      ]
+    },
+    "ColumnTagNames":{
+      "type":"list",
+      "member":{"shape":"ColumnTagName"}
+    },
     "ConcurrentUpdatingException":{
       "type":"structure",
       "members":{
@@ -2633,7 +2644,8 @@
         "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"},
         "RowLevelPermissionTagConfiguration":{"shape":"RowLevelPermissionTagConfiguration"},
         "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "DataSetUsageConfiguration":{"shape":"DataSetUsageConfiguration"}
       }
     },
     "CreateDataSetResponse":{
@@ -3312,7 +3324,8 @@
         "FieldFolders":{"shape":"FieldFolderMap"},
         "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"},
         "RowLevelPermissionTagConfiguration":{"shape":"RowLevelPermissionTagConfiguration"},
-        "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"}
+        "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"},
+        "DataSetUsageConfiguration":{"shape":"DataSetUsageConfiguration"}
       }
     },
     "DataSetArnsList":{
@@ -3384,6 +3397,13 @@
     "DataSetSummaryList":{
       "type":"list",
       "member":{"shape":"DataSetSummary"}
+    },
+    "DataSetUsageConfiguration":{
+      "type":"structure",
+      "members":{
+        "DisableUseAsDirectQuerySource":{"shape":"Boolean"},
+        "DisableUseAsImportedSource":{"shape":"Boolean"}
+      }
     },
     "DataSource":{
       "type":"structure",
@@ -6591,7 +6611,8 @@
       "type":"structure",
       "members":{
         "JoinInstruction":{"shape":"JoinInstruction"},
-        "PhysicalTableId":{"shape":"PhysicalTableId"}
+        "PhysicalTableId":{"shape":"PhysicalTableId"},
+        "DataSetArn":{"shape":"Arn"}
       }
     },
     "Long":{"type":"long"},
@@ -6787,7 +6808,7 @@
       "key":{"shape":"PhysicalTableId"},
       "value":{"shape":"PhysicalTable"},
       "max":32,
-      "min":1
+      "min":0
     },
     "Port":{
       "type":"integer",
@@ -7828,7 +7849,8 @@
         "CreateColumnsOperation":{"shape":"CreateColumnsOperation"},
         "RenameColumnOperation":{"shape":"RenameColumnOperation"},
         "CastColumnTypeOperation":{"shape":"CastColumnTypeOperation"},
-        "TagColumnOperation":{"shape":"TagColumnOperation"}
+        "TagColumnOperation":{"shape":"TagColumnOperation"},
+        "UntagColumnOperation":{"shape":"UntagColumnOperation"}
       }
     },
     "TransformOperationList":{
@@ -7890,6 +7912,17 @@
       },
       "error":{"httpStatusCode":403},
       "exception":true
+    },
+    "UntagColumnOperation":{
+      "type":"structure",
+      "required":[
+        "ColumnName",
+        "TagNames"
+      ],
+      "members":{
+        "ColumnName":{"shape":"ColumnName"},
+        "TagNames":{"shape":"ColumnTagNames"}
+      }
     },
     "UntagResourceRequest":{
       "type":"structure",
@@ -8222,7 +8255,8 @@
         "FieldFolders":{"shape":"FieldFolderMap"},
         "RowLevelPermissionDataSet":{"shape":"RowLevelPermissionDataSet"},
         "RowLevelPermissionTagConfiguration":{"shape":"RowLevelPermissionTagConfiguration"},
-        "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"}
+        "ColumnLevelPermissionRules":{"shape":"ColumnLevelPermissionRuleList"},
+        "DataSetUsageConfiguration":{"shape":"DataSetUsageConfiguration"}
       }
     },
     "UpdateDataSetResponse":{
