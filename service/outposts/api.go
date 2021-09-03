@@ -4,6 +4,7 @@ package outposts
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awsutil"
@@ -11,6 +12,100 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol"
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
+
+const opCreateOrder = "CreateOrder"
+
+// CreateOrderRequest generates a "aws/request.Request" representing the
+// client's request for the CreateOrder operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateOrder for more information on using the CreateOrder
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateOrderRequest method.
+//    req, resp := client.CreateOrderRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CreateOrder
+func (c *Outposts) CreateOrderRequest(input *CreateOrderInput) (req *request.Request, output *CreateOrderOutput) {
+	op := &request.Operation{
+		Name:       opCreateOrder,
+		HTTPMethod: "POST",
+		HTTPPath:   "/orders",
+	}
+
+	if input == nil {
+		input = &CreateOrderInput{}
+	}
+
+	output = &CreateOrderOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateOrder API operation for AWS Outposts.
+//
+// Creates an order for an Outpost.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Outposts's
+// API operation CreateOrder for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   A parameter is not valid.
+//
+//   * ConflictException
+//   Updating or deleting this resource can cause an inconsistent state.
+//
+//   * AccessDeniedException
+//   You do not have permission to perform this operation.
+//
+//   * NotFoundException
+//   The specified request is not valid.
+//
+//   * InternalServerException
+//   An internal error has occurred.
+//
+//   * ServiceQuotaExceededException
+//   You have exceeded a service quota.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/outposts-2019-12-03/CreateOrder
+func (c *Outposts) CreateOrder(input *CreateOrderInput) (*CreateOrderOutput, error) {
+	req, out := c.CreateOrderRequest(input)
+	return out, req.Send()
+}
+
+// CreateOrderWithContext is the same as CreateOrder with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateOrder for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Outposts) CreateOrderWithContext(ctx aws.Context, input *CreateOrderInput, opts ...request.Option) (*CreateOrderOutput, error) {
+	req, out := c.CreateOrderRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
 
 const opCreateOutpost = "CreateOutpost"
 
@@ -1134,6 +1229,120 @@ func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateOrderInput struct {
+	_ struct{} `type:"structure"`
+
+	// The line items that make up the order.
+	//
+	// LineItems is a required field
+	LineItems []*LineItemRequest `min:"1" type:"list" required:"true"`
+
+	// The ID or the Amazon Resource Name (ARN) of the Outpost.
+	//
+	// OutpostIdentifier is a required field
+	OutpostIdentifier *string `min:"1" type:"string" required:"true"`
+
+	// The payment option for the order.
+	//
+	// PaymentOption is a required field
+	PaymentOption *string `type:"string" required:"true" enum:"PaymentOption"`
+
+	// The payment terms for the order.
+	PaymentTerm *string `type:"string" enum:"PaymentTerm"`
+}
+
+// String returns the string representation
+func (s CreateOrderInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateOrderInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateOrderInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateOrderInput"}
+	if s.LineItems == nil {
+		invalidParams.Add(request.NewErrParamRequired("LineItems"))
+	}
+	if s.LineItems != nil && len(s.LineItems) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("LineItems", 1))
+	}
+	if s.OutpostIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("OutpostIdentifier"))
+	}
+	if s.OutpostIdentifier != nil && len(*s.OutpostIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OutpostIdentifier", 1))
+	}
+	if s.PaymentOption == nil {
+		invalidParams.Add(request.NewErrParamRequired("PaymentOption"))
+	}
+	if s.LineItems != nil {
+		for i, v := range s.LineItems {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "LineItems", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLineItems sets the LineItems field's value.
+func (s *CreateOrderInput) SetLineItems(v []*LineItemRequest) *CreateOrderInput {
+	s.LineItems = v
+	return s
+}
+
+// SetOutpostIdentifier sets the OutpostIdentifier field's value.
+func (s *CreateOrderInput) SetOutpostIdentifier(v string) *CreateOrderInput {
+	s.OutpostIdentifier = &v
+	return s
+}
+
+// SetPaymentOption sets the PaymentOption field's value.
+func (s *CreateOrderInput) SetPaymentOption(v string) *CreateOrderInput {
+	s.PaymentOption = &v
+	return s
+}
+
+// SetPaymentTerm sets the PaymentTerm field's value.
+func (s *CreateOrderInput) SetPaymentTerm(v string) *CreateOrderInput {
+	s.PaymentTerm = &v
+	return s
+}
+
+type CreateOrderOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about this order.
+	Order *Order `type:"structure"`
+}
+
+// String returns the string representation
+func (s CreateOrderOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateOrderOutput) GoString() string {
+	return s.String()
+}
+
+// SetOrder sets the Order field's value.
+func (s *CreateOrderOutput) SetOrder(v *Order) *CreateOrderOutput {
+	s.Order = v
+	return s
+}
+
 type CreateOutpostInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1629,6 +1838,106 @@ func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Information about a line item.
+type LineItem struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the catalog item.
+	CatalogItemId *string `min:"1" type:"string"`
+
+	// The ID of the line item.
+	LineItemId *string `type:"string"`
+
+	// The quantity of the line item.
+	Quantity *int64 `min:"1" type:"integer"`
+
+	// The status of the line item.
+	Status *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s LineItem) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LineItem) GoString() string {
+	return s.String()
+}
+
+// SetCatalogItemId sets the CatalogItemId field's value.
+func (s *LineItem) SetCatalogItemId(v string) *LineItem {
+	s.CatalogItemId = &v
+	return s
+}
+
+// SetLineItemId sets the LineItemId field's value.
+func (s *LineItem) SetLineItemId(v string) *LineItem {
+	s.LineItemId = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *LineItem) SetQuantity(v int64) *LineItem {
+	s.Quantity = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LineItem) SetStatus(v string) *LineItem {
+	s.Status = &v
+	return s
+}
+
+// Information about a line item request.
+type LineItemRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the catalog item.
+	CatalogItemId *string `min:"1" type:"string"`
+
+	// The quantity of a line item request.
+	Quantity *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation
+func (s LineItemRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s LineItemRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *LineItemRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "LineItemRequest"}
+	if s.CatalogItemId != nil && len(*s.CatalogItemId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CatalogItemId", 1))
+	}
+	if s.Quantity != nil && *s.Quantity < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Quantity", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCatalogItemId sets the CatalogItemId field's value.
+func (s *LineItemRequest) SetCatalogItemId(v string) *LineItemRequest {
+	s.CatalogItemId = &v
+	return s
+}
+
+// SetQuantity sets the Quantity field's value.
+func (s *LineItemRequest) SetQuantity(v int64) *LineItemRequest {
+	s.Quantity = &v
+	return s
+}
+
 type ListOutpostsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1955,6 +2264,84 @@ func (s *NotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *NotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Information about an order.
+type Order struct {
+	_ struct{} `type:"structure"`
+
+	// The line items for the order
+	LineItems []*LineItem `type:"list"`
+
+	// The fulfillment date of the order.
+	OrderFulfilledDate *time.Time `type:"timestamp"`
+
+	// The ID of the order.
+	OrderId *string `min:"1" type:"string"`
+
+	// The submission date for the order.
+	OrderSubmissionDate *time.Time `type:"timestamp"`
+
+	// The ID of the Outpost.
+	OutpostId *string `min:"1" type:"string"`
+
+	// The payment option for the order.
+	PaymentOption *string `type:"string" enum:"PaymentOption"`
+
+	// The status of the order
+	Status *string `type:"string" enum:"OrderStatus"`
+}
+
+// String returns the string representation
+func (s Order) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Order) GoString() string {
+	return s.String()
+}
+
+// SetLineItems sets the LineItems field's value.
+func (s *Order) SetLineItems(v []*LineItem) *Order {
+	s.LineItems = v
+	return s
+}
+
+// SetOrderFulfilledDate sets the OrderFulfilledDate field's value.
+func (s *Order) SetOrderFulfilledDate(v time.Time) *Order {
+	s.OrderFulfilledDate = &v
+	return s
+}
+
+// SetOrderId sets the OrderId field's value.
+func (s *Order) SetOrderId(v string) *Order {
+	s.OrderId = &v
+	return s
+}
+
+// SetOrderSubmissionDate sets the OrderSubmissionDate field's value.
+func (s *Order) SetOrderSubmissionDate(v time.Time) *Order {
+	s.OrderSubmissionDate = &v
+	return s
+}
+
+// SetOutpostId sets the OutpostId field's value.
+func (s *Order) SetOutpostId(v string) *Order {
+	s.OutpostId = &v
+	return s
+}
+
+// SetPaymentOption sets the PaymentOption field's value.
+func (s *Order) SetPaymentOption(v string) *Order {
+	s.PaymentOption = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *Order) SetStatus(v string) *Order {
+	s.Status = &v
+	return s
 }
 
 // Information about an Outpost.
@@ -2394,6 +2781,70 @@ func (s *ValidationException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ValidationException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+const (
+	// OrderStatusReceived is a OrderStatus enum value
+	OrderStatusReceived = "RECEIVED"
+
+	// OrderStatusPending is a OrderStatus enum value
+	OrderStatusPending = "PENDING"
+
+	// OrderStatusProcessing is a OrderStatus enum value
+	OrderStatusProcessing = "PROCESSING"
+
+	// OrderStatusInstalling is a OrderStatus enum value
+	OrderStatusInstalling = "INSTALLING"
+
+	// OrderStatusFulfilled is a OrderStatus enum value
+	OrderStatusFulfilled = "FULFILLED"
+
+	// OrderStatusCancelled is a OrderStatus enum value
+	OrderStatusCancelled = "CANCELLED"
+)
+
+// OrderStatus_Values returns all elements of the OrderStatus enum
+func OrderStatus_Values() []string {
+	return []string{
+		OrderStatusReceived,
+		OrderStatusPending,
+		OrderStatusProcessing,
+		OrderStatusInstalling,
+		OrderStatusFulfilled,
+		OrderStatusCancelled,
+	}
+}
+
+const (
+	// PaymentOptionAllUpfront is a PaymentOption enum value
+	PaymentOptionAllUpfront = "ALL_UPFRONT"
+
+	// PaymentOptionNoUpfront is a PaymentOption enum value
+	PaymentOptionNoUpfront = "NO_UPFRONT"
+
+	// PaymentOptionPartialUpfront is a PaymentOption enum value
+	PaymentOptionPartialUpfront = "PARTIAL_UPFRONT"
+)
+
+// PaymentOption_Values returns all elements of the PaymentOption enum
+func PaymentOption_Values() []string {
+	return []string{
+		PaymentOptionAllUpfront,
+		PaymentOptionNoUpfront,
+		PaymentOptionPartialUpfront,
+	}
+}
+
+const (
+	// PaymentTermThreeYears is a PaymentTerm enum value
+	PaymentTermThreeYears = "THREE_YEARS"
+)
+
+// PaymentTerm_Values returns all elements of the PaymentTerm enum
+func PaymentTerm_Values() []string {
+	return []string{
+		PaymentTermThreeYears,
+	}
 }
 
 const (

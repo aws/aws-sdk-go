@@ -13,6 +13,23 @@
     "uid":"outposts-2019-12-03"
   },
   "operations":{
+    "CreateOrder":{
+      "name":"CreateOrder",
+      "http":{
+        "method":"POST",
+        "requestUri":"/orders"
+      },
+      "input":{"shape":"CreateOrderInput"},
+      "output":{"shape":"CreateOrderOutput"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ConflictException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"NotFoundException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ]
+    },
     "CreateOutpost":{
       "name":"CreateOutpost",
       "http":{
@@ -217,6 +234,26 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "CreateOrderInput":{
+      "type":"structure",
+      "required":[
+        "OutpostIdentifier",
+        "LineItems",
+        "PaymentOption"
+      ],
+      "members":{
+        "OutpostIdentifier":{"shape":"OutpostIdentifier"},
+        "LineItems":{"shape":"LineItemRequestListDefinition"},
+        "PaymentOption":{"shape":"PaymentOption"},
+        "PaymentTerm":{"shape":"PaymentTerm"}
+      }
+    },
+    "CreateOrderOutput":{
+      "type":"structure",
+      "members":{
+        "Order":{"shape":"Order"}
+      }
+    },
     "CreateOutpostInput":{
       "type":"structure",
       "required":[
@@ -323,6 +360,7 @@
         "Outpost":{"shape":"Outpost"}
       }
     },
+    "ISO8601Timestamp":{"type":"timestamp"},
     "InstanceType":{"type":"string"},
     "InstanceTypeItem":{
       "type":"structure",
@@ -352,6 +390,41 @@
       "type":"list",
       "member":{"shape":"LifeCycleStatus"},
       "max":5,
+      "min":1
+    },
+    "LineItem":{
+      "type":"structure",
+      "members":{
+        "CatalogItemId":{"shape":"SkuCode"},
+        "LineItemId":{"shape":"LineItemId"},
+        "Quantity":{"shape":"LineItemQuantity"},
+        "Status":{"shape":"Status"}
+      }
+    },
+    "LineItemId":{
+      "type":"string",
+      "pattern":"ooi-[a-f0-9]{17}"
+    },
+    "LineItemListDefinition":{
+      "type":"list",
+      "member":{"shape":"LineItem"}
+    },
+    "LineItemQuantity":{
+      "type":"integer",
+      "max":20,
+      "min":1
+    },
+    "LineItemRequest":{
+      "type":"structure",
+      "members":{
+        "CatalogItemId":{"shape":"SkuCode"},
+        "Quantity":{"shape":"LineItemQuantity"}
+      }
+    },
+    "LineItemRequestListDefinition":{
+      "type":"list",
+      "member":{"shape":"LineItemRequest"},
+      "max":20,
       "min":1
     },
     "ListOutpostsInput":{
@@ -444,6 +517,35 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "Order":{
+      "type":"structure",
+      "members":{
+        "OutpostId":{"shape":"OutpostIdOnly"},
+        "OrderId":{"shape":"OrderId"},
+        "Status":{"shape":"OrderStatus"},
+        "LineItems":{"shape":"LineItemListDefinition"},
+        "PaymentOption":{"shape":"PaymentOption"},
+        "OrderSubmissionDate":{"shape":"ISO8601Timestamp"},
+        "OrderFulfilledDate":{"shape":"ISO8601Timestamp"}
+      }
+    },
+    "OrderId":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"oo-[a-f0-9]{17}$"
+    },
+    "OrderStatus":{
+      "type":"string",
+      "enum":[
+        "RECEIVED",
+        "PENDING",
+        "PROCESSING",
+        "INSTALLING",
+        "FULFILLED",
+        "CANCELLED"
+      ]
+    },
     "Outpost":{
       "type":"structure",
       "members":{
@@ -478,6 +580,18 @@
       "min":1,
       "pattern":"^(arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:outpost/)?op-[a-f0-9]{17}$"
     },
+    "OutpostIdOnly":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^op-[a-f0-9]{17}$"
+    },
+    "OutpostIdentifier":{
+      "type":"string",
+      "max":180,
+      "min":1,
+      "pattern":"^(arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:outpost/)?op-[a-f0-9]{17}$"
+    },
     "OutpostName":{
       "type":"string",
       "max":255,
@@ -489,6 +603,18 @@
       "max":12,
       "min":12,
       "pattern":"\\d{12}"
+    },
+    "PaymentOption":{
+      "type":"string",
+      "enum":[
+        "ALL_UPFRONT",
+        "NO_UPFRONT",
+        "PARTIAL_UPFRONT"
+      ]
+    },
+    "PaymentTerm":{
+      "type":"string",
+      "enum":["THREE_YEARS"]
     },
     "ResourceType":{
       "type":"string",
@@ -532,6 +658,18 @@
       "pattern":"^(arn:aws([a-z-]+)?:outposts:[a-z\\d-]+:\\d{12}:site/)?(os-[a-f0-9]{17})$"
     },
     "SiteName":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"^[\\S ]+$"
+    },
+    "SkuCode":{
+      "type":"string",
+      "max":10,
+      "min":1,
+      "pattern":"OR-[A-Z0-9]{7}"
+    },
+    "Status":{
       "type":"string",
       "max":1000,
       "min":1,

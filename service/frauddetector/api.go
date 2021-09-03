@@ -9622,6 +9622,72 @@ func (s *ExternalModel) SetOutputConfiguration(v *ModelOutputConfiguration) *Ext
 	return s
 }
 
+// The fraud prediction scores from Amazon SageMaker model.
+type ExternalModelOutputs struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon SageMaker model.
+	ExternalModel *ExternalModelSummary `locationName:"externalModel" type:"structure"`
+
+	// The fraud prediction scores from Amazon SageMaker model.
+	Outputs map[string]*string `locationName:"outputs" type:"map"`
+}
+
+// String returns the string representation
+func (s ExternalModelOutputs) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExternalModelOutputs) GoString() string {
+	return s.String()
+}
+
+// SetExternalModel sets the ExternalModel field's value.
+func (s *ExternalModelOutputs) SetExternalModel(v *ExternalModelSummary) *ExternalModelOutputs {
+	s.ExternalModel = v
+	return s
+}
+
+// SetOutputs sets the Outputs field's value.
+func (s *ExternalModelOutputs) SetOutputs(v map[string]*string) *ExternalModelOutputs {
+	s.Outputs = v
+	return s
+}
+
+// The Amazon SageMaker model.
+type ExternalModelSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of the Amazon SageMaker model.
+	ModelEndpoint *string `locationName:"modelEndpoint" type:"string"`
+
+	// The source of the model.
+	ModelSource *string `locationName:"modelSource" type:"string" enum:"ModelSource"`
+}
+
+// String returns the string representation
+func (s ExternalModelSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ExternalModelSummary) GoString() string {
+	return s.String()
+}
+
+// SetModelEndpoint sets the ModelEndpoint field's value.
+func (s *ExternalModelSummary) SetModelEndpoint(v string) *ExternalModelSummary {
+	s.ModelEndpoint = &v
+	return s
+}
+
+// SetModelSource sets the ModelSource field's value.
+func (s *ExternalModelSummary) SetModelSource(v string) *ExternalModelSummary {
+	s.ModelSource = &v
+	return s
+}
+
 // The message details.
 type FieldValidationMessage struct {
 	_ struct{} `type:"structure"`
@@ -10354,6 +10420,9 @@ func (s *GetEventPredictionInput) SetExternalModelEndpointDataBlobs(v map[string
 type GetEventPredictionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The model scores for Amazon SageMaker models.
+	ExternalModelOutputs []*ExternalModelOutputs `locationName:"externalModelOutputs" type:"list"`
+
 	// The model scores. Amazon Fraud Detector generates model scores between 0
 	// and 1000, where 0 is low fraud risk and 1000 is high fraud risk. Model scores
 	// are directly related to the false positive rate (FPR). For example, a score
@@ -10373,6 +10442,12 @@ func (s GetEventPredictionOutput) String() string {
 // GoString returns the string representation
 func (s GetEventPredictionOutput) GoString() string {
 	return s.String()
+}
+
+// SetExternalModelOutputs sets the ExternalModelOutputs field's value.
+func (s *GetEventPredictionOutput) SetExternalModelOutputs(v []*ExternalModelOutputs) *GetEventPredictionOutput {
+	s.ExternalModelOutputs = v
+	return s
 }
 
 // SetModelScores sets the ModelScores field's value.

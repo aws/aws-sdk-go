@@ -1548,6 +1548,25 @@
       "type":"list",
       "member":{"shape":"ExternalModel"}
     },
+    "ExternalModelOutputs":{
+      "type":"structure",
+      "members":{
+        "externalModel":{"shape":"ExternalModelSummary"},
+        "outputs":{"shape":"ExternalModelPredictionMap"}
+      }
+    },
+    "ExternalModelPredictionMap":{
+      "type":"map",
+      "key":{"shape":"string"},
+      "value":{"shape":"string"}
+    },
+    "ExternalModelSummary":{
+      "type":"structure",
+      "members":{
+        "modelEndpoint":{"shape":"string"},
+        "modelSource":{"shape":"ModelSource"}
+      }
+    },
     "ExternalModelsMaxResults":{
       "type":"integer",
       "box":true,
@@ -1669,7 +1688,8 @@
       "type":"structure",
       "members":{
         "modelScores":{"shape":"ListOfModelScores"},
-        "ruleResults":{"shape":"ListOfRuleResults"}
+        "ruleResults":{"shape":"ListOfRuleResults"},
+        "externalModelOutputs":{"shape":"ListOfExternalModelOutputs"}
       }
     },
     "GetEventTypesRequest":{
@@ -1860,6 +1880,10 @@
     "Language":{
       "type":"string",
       "enum":["DETECTORPL"]
+    },
+    "ListOfExternalModelOutputs":{
+      "type":"list",
+      "member":{"shape":"ExternalModelOutputs"}
     },
     "ListOfLogOddsMetrics":{
       "type":"list",
