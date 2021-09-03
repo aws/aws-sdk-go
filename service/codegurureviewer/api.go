@@ -5434,6 +5434,9 @@ const (
 
 	// RecommendationCategorySecurityIssues is a RecommendationCategory enum value
 	RecommendationCategorySecurityIssues = "SecurityIssues"
+
+	// RecommendationCategoryCodeInconsistencies is a RecommendationCategory enum value
+	RecommendationCategoryCodeInconsistencies = "CodeInconsistencies"
 )
 
 // RecommendationCategory_Values returns all elements of the RecommendationCategory enum
@@ -5449,6 +5452,7 @@ func RecommendationCategory_Values() []string {
 		RecommendationCategoryJavaBestPractices,
 		RecommendationCategoryResourceLeaks,
 		RecommendationCategorySecurityIssues,
+		RecommendationCategoryCodeInconsistencies,
 	}
 }
 

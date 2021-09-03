@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS Outposts.
 //    func myFunc(svc outpostsiface.OutpostsAPI) bool {
-//        // Make svc.CreateOutpost request
+//        // Make svc.CreateOrder request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockOutpostsClient struct {
 //        outpostsiface.OutpostsAPI
 //    }
-//    func (m *mockOutpostsClient) CreateOutpost(input *outposts.CreateOutpostInput) (*outposts.CreateOutpostOutput, error) {
+//    func (m *mockOutpostsClient) CreateOrder(input *outposts.CreateOrderInput) (*outposts.CreateOrderOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type OutpostsAPI interface {
+	CreateOrder(*outposts.CreateOrderInput) (*outposts.CreateOrderOutput, error)
+	CreateOrderWithContext(aws.Context, *outposts.CreateOrderInput, ...request.Option) (*outposts.CreateOrderOutput, error)
+	CreateOrderRequest(*outposts.CreateOrderInput) (*request.Request, *outposts.CreateOrderOutput)
+
 	CreateOutpost(*outposts.CreateOutpostInput) (*outposts.CreateOutpostOutput, error)
 	CreateOutpostWithContext(aws.Context, *outposts.CreateOutpostInput, ...request.Option) (*outposts.CreateOutpostOutput, error)
 	CreateOutpostRequest(*outposts.CreateOutpostInput) (*request.Request, *outposts.CreateOutpostOutput)

@@ -475,6 +475,24 @@
         "GetExternalModelsResult$externalModels": "<p>Gets the Amazon SageMaker models.</p>"
       }
     },
+    "ExternalModelOutputs": {
+      "base": "<p>The fraud prediction scores from Amazon SageMaker model.</p>",
+      "refs": {
+        "ListOfExternalModelOutputs$member": null
+      }
+    },
+    "ExternalModelPredictionMap": {
+      "base": null,
+      "refs": {
+        "ExternalModelOutputs$outputs": "<p>The fraud prediction scores from Amazon SageMaker model.</p>"
+      }
+    },
+    "ExternalModelSummary": {
+      "base": "<p>The Amazon SageMaker model.</p>",
+      "refs": {
+        "ExternalModelOutputs$externalModel": "<p>The Amazon SageMaker model.</p>"
+      }
+    },
     "ExternalModelsMaxResults": {
       "base": null,
       "refs": {
@@ -679,6 +697,12 @@
         "UpdateRuleVersionRequest$language": "<p>The language.</p>"
       }
     },
+    "ListOfExternalModelOutputs": {
+      "base": null,
+      "refs": {
+        "GetEventPredictionResult$externalModelOutputs": "<p>The model scores for Amazon SageMaker models.</p>"
+      }
+    },
     "ListOfLogOddsMetrics": {
       "base": null,
       "refs": {
@@ -801,6 +825,7 @@
       "base": null,
       "refs": {
         "ExternalModel$modelSource": "<p>The source of the model.</p>",
+        "ExternalModelSummary$modelSource": "<p>The source of the model.</p>",
         "PutExternalModelRequest$modelSource": "<p>The source of the model.</p>"
       }
     },
@@ -1546,6 +1571,9 @@
         "ExternalModel$modelEndpoint": "<p>The Amazon SageMaker model endpoints.</p>",
         "ExternalModel$invokeModelEndpointRoleArn": "<p>The role used to invoke the model. </p>",
         "ExternalModelEndpointDataBlobMap$key": null,
+        "ExternalModelPredictionMap$key": null,
+        "ExternalModelPredictionMap$value": null,
+        "ExternalModelSummary$modelEndpoint": "<p>The endpoint of the Amazon SageMaker model.</p>",
         "FieldValidationMessage$fieldName": "<p>The field name.</p>",
         "FieldValidationMessage$identifier": "<p>The message ID.</p>",
         "FieldValidationMessage$title": "<p>The message title.</p>",

@@ -1,3 +1,13 @@
+Release v1.40.37 (2021-09-03)
+===
+
+### Service Client Updates
+* `service/chime-sdk-identity`: Updates service documentation
+* `service/chime-sdk-messaging`: Updates service documentation
+* `service/codeguru-reviewer`: Updates service API
+* `service/frauddetector`: Updates service API and documentation
+* `service/outposts`: Updates service API and documentation
+
 Release v1.40.36 (2021-09-02)
 ===
 
