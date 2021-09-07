@@ -248,7 +248,7 @@
         "ModifyReplicationGroupMessage$AutomaticFailoverEnabled": "<p>Determines whether a read replica is automatically promoted to read/write primary if the existing primary encounters a failure.</p> <p>Valid values: <code>true</code> | <code>false</code> </p>",
         "ModifyReplicationGroupMessage$MultiAZEnabled": "<p>A flag to indicate MultiAZ is enabled.</p>",
         "ModifyReplicationGroupMessage$AutoMinorVersionUpgrade": "<p>This parameter is currently disabled.</p>",
-        "ModifyReplicationGroupMessage$RemoveUserGroups": "<p>Removes the user groups that can access this replication group.</p>",
+        "ModifyReplicationGroupMessage$RemoveUserGroups": "<p>Removes the user group associated with this replication group.</p>",
         "ModifyUserMessage$NoPasswordRequired": "<p>Indicates no password is required for the user.</p>",
         "ReplicationGroup$ClusterEnabled": "<p>A flag indicating whether or not this replication group is cluster enabled; i.e., whether its data can be partitioned across multiple shards (API/CLI: node groups).</p> <p>Valid values: <code>true</code> | <code>false</code> </p>",
         "ReplicationGroup$AuthTokenEnabled": "<p>A flag that enables using an <code>AuthToken</code> (password) when issuing Redis commands.</p> <p>Default: <code>false</code> </p>",
@@ -683,7 +683,7 @@
       }
     },
     "DefaultUserAssociatedToUserGroupFault": {
-      "base": "<p/>",
+      "base": "<p>The default user assigned to the user group.</p>",
       "refs": {
       }
     },
@@ -2591,12 +2591,12 @@
     "UserGroupIdList": {
       "base": null,
       "refs": {
-        "ModifyReplicationGroupMessage$UserGroupIdsToAdd": "<p>The user group you are associating with the replication group.</p>",
-        "ModifyReplicationGroupMessage$UserGroupIdsToRemove": "<p>The user group to remove, meaning the users in the group no longer can access the replication group.</p>",
-        "ReplicationGroup$UserGroupIds": "<p>The list of user group IDs that have access to the replication group.</p>",
+        "ModifyReplicationGroupMessage$UserGroupIdsToAdd": "<p>The ID of the user group you are associating with the replication group.</p>",
+        "ModifyReplicationGroupMessage$UserGroupIdsToRemove": "<p>The ID of the user group to disassociate from the replication group, meaning the users in the group no longer can access the replication group.</p>",
+        "ReplicationGroup$UserGroupIds": "<p>The ID of the user group associated to the replication group.</p>",
         "User$UserGroupIds": "<p>Returns a list of the user group IDs the user belongs to.</p>",
-        "UserGroupsUpdateStatus$UserGroupIdsToAdd": "<p>The list of user group IDs to add.</p>",
-        "UserGroupsUpdateStatus$UserGroupIdsToRemove": "<p>The list of user group IDs to remove.</p>"
+        "UserGroupsUpdateStatus$UserGroupIdsToAdd": "<p>The ID of the user group to add.</p>",
+        "UserGroupsUpdateStatus$UserGroupIdsToRemove": "<p>The ID of the user group to remove.</p>"
       }
     },
     "UserGroupIdListInput": {
@@ -2619,7 +2619,7 @@
     "UserGroupPendingChanges": {
       "base": "<p>Returns the updates being applied to the user group.</p>",
       "refs": {
-        "UserGroup$PendingChanges": "<p>A list of updates being applied to the user groups.</p>"
+        "UserGroup$PendingChanges": "<p>A list of updates being applied to the user group.</p>"
       }
     },
     "UserGroupQuotaExceededFault": {
@@ -2630,7 +2630,7 @@
     "UserGroupsUpdateStatus": {
       "base": "<p>The status of the user group update.</p>",
       "refs": {
-        "ReplicationGroupPendingModifiedValues$UserGroups": "<p>The user groups being modified.</p>"
+        "ReplicationGroupPendingModifiedValues$UserGroups": "<p>The user group being modified.</p>"
       }
     },
     "UserId": {

@@ -72,12 +72,24 @@ type PrometheusServiceAPI interface {
 	DescribeWorkspaceWithContext(aws.Context, *prometheusservice.DescribeWorkspaceInput, ...request.Option) (*prometheusservice.DescribeWorkspaceOutput, error)
 	DescribeWorkspaceRequest(*prometheusservice.DescribeWorkspaceInput) (*request.Request, *prometheusservice.DescribeWorkspaceOutput)
 
+	ListTagsForResource(*prometheusservice.ListTagsForResourceInput) (*prometheusservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceWithContext(aws.Context, *prometheusservice.ListTagsForResourceInput, ...request.Option) (*prometheusservice.ListTagsForResourceOutput, error)
+	ListTagsForResourceRequest(*prometheusservice.ListTagsForResourceInput) (*request.Request, *prometheusservice.ListTagsForResourceOutput)
+
 	ListWorkspaces(*prometheusservice.ListWorkspacesInput) (*prometheusservice.ListWorkspacesOutput, error)
 	ListWorkspacesWithContext(aws.Context, *prometheusservice.ListWorkspacesInput, ...request.Option) (*prometheusservice.ListWorkspacesOutput, error)
 	ListWorkspacesRequest(*prometheusservice.ListWorkspacesInput) (*request.Request, *prometheusservice.ListWorkspacesOutput)
 
 	ListWorkspacesPages(*prometheusservice.ListWorkspacesInput, func(*prometheusservice.ListWorkspacesOutput, bool) bool) error
 	ListWorkspacesPagesWithContext(aws.Context, *prometheusservice.ListWorkspacesInput, func(*prometheusservice.ListWorkspacesOutput, bool) bool, ...request.Option) error
+
+	TagResource(*prometheusservice.TagResourceInput) (*prometheusservice.TagResourceOutput, error)
+	TagResourceWithContext(aws.Context, *prometheusservice.TagResourceInput, ...request.Option) (*prometheusservice.TagResourceOutput, error)
+	TagResourceRequest(*prometheusservice.TagResourceInput) (*request.Request, *prometheusservice.TagResourceOutput)
+
+	UntagResource(*prometheusservice.UntagResourceInput) (*prometheusservice.UntagResourceOutput, error)
+	UntagResourceWithContext(aws.Context, *prometheusservice.UntagResourceInput, ...request.Option) (*prometheusservice.UntagResourceOutput, error)
+	UntagResourceRequest(*prometheusservice.UntagResourceInput) (*request.Request, *prometheusservice.UntagResourceOutput)
 
 	UpdateWorkspaceAlias(*prometheusservice.UpdateWorkspaceAliasInput) (*prometheusservice.UpdateWorkspaceAliasOutput, error)
 	UpdateWorkspaceAliasWithContext(aws.Context, *prometheusservice.UpdateWorkspaceAliasInput, ...request.Option) (*prometheusservice.UpdateWorkspaceAliasOutput, error)

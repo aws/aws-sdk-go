@@ -123,9 +123,9 @@
     "AutoMLOverrideStrategy": {
       "base": null,
       "refs": {
-        "CreatePredictorRequest$AutoMLOverrideStrategy": "<p>Used to overide the default AutoML strategy, which is to optimize predictor accuracy. To apply an AutoML strategy that minimizes training time, use <code>LatencyOptimized</code>.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>",
-        "DescribePredictorResponse$AutoMLOverrideStrategy": "<p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code> is specified, the AutoML strategy optimizes predictor accuracy.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>",
-        "GetAccuracyMetricsResponse$AutoMLOverrideStrategy": "<p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code> is specified, the AutoML strategy optimizes predictor accuracy.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>"
+        "CreatePredictorRequest$AutoMLOverrideStrategy": "<note> <p> The <code>LatencyOptimized</code> AutoML override strategy is only available in private beta. Contact AWS Support or your account manager to learn more about access privileges. </p> </note> <p>Used to overide the default AutoML strategy, which is to optimize predictor accuracy. To apply an AutoML strategy that minimizes training time, use <code>LatencyOptimized</code>.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>",
+        "DescribePredictorResponse$AutoMLOverrideStrategy": "<note> <p> The <code>LatencyOptimized</code> AutoML override strategy is only available in private beta. Contact AWS Support or your account manager to learn more about access privileges. </p> </note> <p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code> is specified, the AutoML strategy optimizes predictor accuracy.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>",
+        "GetAccuracyMetricsResponse$AutoMLOverrideStrategy": "<note> <p> The <code>LatencyOptimized</code> AutoML override strategy is only available in private beta. Contact AWS Support or your account manager to learn more about access privileges. </p> </note> <p>The AutoML strategy used to train the predictor. Unless <code>LatencyOptimized</code> is specified, the AutoML strategy optimizes predictor accuracy.</p> <p>This parameter is only valid for predictors trained using AutoML.</p>"
       }
     },
     "Boolean": {
@@ -422,7 +422,10 @@
         "DescribeDatasetImportJobResponse$DataSize": "<p>The size of the dataset in gigabytes (GB) after the import job has finished.</p>",
         "ErrorMetric$WAPE": "<p> The weighted absolute percentage error (WAPE). </p>",
         "ErrorMetric$RMSE": "<p> The root-mean-square error (RMSE). </p>",
+        "ErrorMetric$MASE": "<p>The Mean Absolute Scaled Error (MASE)</p>",
+        "ErrorMetric$MAPE": "<p>The Mean Absolute Percentage Error (MAPE)</p>",
         "Metrics$RMSE": "<p>The root-mean-square error (RMSE).</p>",
+        "Metrics$AverageWeightedQuantileLoss": "<p>The average value of all weighted quantile losses.</p>",
         "Statistics$Avg": "<p>For a numeric field, the average value in the field.</p>",
         "Statistics$Stddev": "<p>For a numeric field, the standard deviation.</p>",
         "WeightedQuantileLoss$Quantile": "<p>The quantile. Quantiles divide a probability distribution into regions of equal probability. For example, if the distribution was divided into 5 regions of equal probability, the quantiles would be 0.2, 0.4, 0.6, and 0.8.</p>",
@@ -465,7 +468,7 @@
     "ErrorMetrics": {
       "base": null,
       "refs": {
-        "Metrics$ErrorMetrics": "<p> Provides detailed error metrics on forecast type, root-mean square-error (RMSE), and weighted average percentage error (WAPE). </p>"
+        "Metrics$ErrorMetrics": "<p> Provides detailed error metrics for each forecast type. Metrics include root-mean square-error (RMSE), mean absolute percentage error (MAPE), mean absolute scaled error (MASE), and weighted average percentage error (WAPE). </p>"
       }
     },
     "EvaluationParameters": {
@@ -585,7 +588,7 @@
     "ForecastType": {
       "base": null,
       "refs": {
-        "ErrorMetric$ForecastType": "<p> The Forecast type used to compute WAPE and RMSE. </p>",
+        "ErrorMetric$ForecastType": "<p> The Forecast type used to compute WAPE, MAPE, MASE, and RMSE. </p>",
         "ForecastTypes$member": null
       }
     },
@@ -863,6 +866,14 @@
         "ListPredictorBacktestExportJobsResponse$NextToken": "<p>Returns this token if the response is truncated. To retrieve the next set of results, use the token in the next request.</p>",
         "ListPredictorsRequest$NextToken": "<p>If the result of the previous request was truncated, the response includes a <code>NextToken</code>. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.</p>",
         "ListPredictorsResponse$NextToken": "<p>If the response is truncated, Amazon Forecast returns this token. To retrieve the next set of results, use the token in the next request.</p>"
+      }
+    },
+    "OptimizationMetric": {
+      "base": null,
+      "refs": {
+        "CreatePredictorRequest$OptimizationMetric": "<p>The accuracy metric used to optimize the predictor.</p>",
+        "DescribePredictorResponse$OptimizationMetric": "<p>The accuracy metric used to optimize the predictor.</p>",
+        "GetAccuracyMetricsResponse$OptimizationMetric": "<p>The accuracy metric used to optimize the predictor.</p>"
       }
     },
     "ParameterKey": {

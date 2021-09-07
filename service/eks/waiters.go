@@ -205,6 +205,11 @@ func (c *EKS) WaitUntilClusterDeletedWithContext(ctx aws.Context, input *Describ
 				Expected: "CREATING",
 			},
 			{
+				State:   request.FailureWaiterState,
+				Matcher: request.PathWaiterMatch, Argument: "cluster.status",
+				Expected: "PENDING",
+			},
+			{
 				State:    request.SuccessWaiterState,
 				Matcher:  request.ErrorWaiterMatch,
 				Expected: "ResourceNotFoundException",

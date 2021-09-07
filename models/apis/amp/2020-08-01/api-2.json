@@ -65,6 +65,23 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListTagsForResource":{
+      "name":"ListTagsForResource",
+      "http":{
+        "method":"GET",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"ListTagsForResourceRequest"},
+      "output":{"shape":"ListTagsForResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListWorkspaces":{
       "name":"ListWorkspaces",
       "http":{
@@ -80,6 +97,41 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "TagResource":{
+      "name":"TagResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"TagResourceRequest"},
+      "output":{"shape":"TagResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "UntagResource":{
+      "name":"UntagResource",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/tags/{resourceArn}",
+        "responseCode":200
+      },
+      "input":{"shape":"UntagResourceRequest"},
+      "output":{"shape":"UntagResourceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
     },
     "UpdateWorkspaceAlias":{
       "name":"UpdateWorkspaceAlias",
@@ -139,7 +191,8 @@
         "clientToken":{
           "shape":"IdempotencyToken",
           "idempotencyToken":true
-        }
+        },
+        "tags":{"shape":"TagMap"}
       }
     },
     "CreateWorkspaceResponse":{
@@ -152,6 +205,7 @@
       "members":{
         "arn":{"shape":"WorkspaceArn"},
         "status":{"shape":"WorkspaceStatus"},
+        "tags":{"shape":"TagMap"},
         "workspaceId":{"shape":"WorkspaceId"}
       }
     },
@@ -215,6 +269,23 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "ListTagsForResourceRequest":{
+      "type":"structure",
+      "required":["resourceArn"],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        }
+      }
+    },
+    "ListTagsForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "tags":{"shape":"TagMap"}
+      }
     },
     "ListWorkspacesRequest":{
       "type":"structure",
@@ -292,6 +363,49 @@
       "exception":true
     },
     "String":{"type":"string"},
+    "TagKey":{
+      "type":"string",
+      "max":128,
+      "min":1,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
+    "TagKeys":{
+      "type":"list",
+      "member":{"shape":"TagKey"}
+    },
+    "TagMap":{
+      "type":"map",
+      "key":{"shape":"TagKey"},
+      "value":{"shape":"TagValue"},
+      "max":50,
+      "min":0
+    },
+    "TagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tags"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "TagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "TagValue":{
+      "type":"string",
+      "max":256,
+      "min":0,
+      "pattern":"^([\\p{L}\\p{Z}\\p{N}_.:/=+\\-@]*)$"
+    },
     "ThrottlingException":{
       "type":"structure",
       "required":["message"],
@@ -313,6 +427,30 @@
       "retryable":{"throttling":false}
     },
     "Timestamp":{"type":"timestamp"},
+    "UntagResourceRequest":{
+      "type":"structure",
+      "required":[
+        "resourceArn",
+        "tagKeys"
+      ],
+      "members":{
+        "resourceArn":{
+          "shape":"String",
+          "location":"uri",
+          "locationName":"resourceArn"
+        },
+        "tagKeys":{
+          "shape":"TagKeys",
+          "location":"querystring",
+          "locationName":"tagKeys"
+        }
+      }
+    },
+    "UntagResourceResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "UpdateWorkspaceAliasRequest":{
       "type":"structure",
       "required":["workspaceId"],
@@ -395,6 +533,7 @@
         "createdAt":{"shape":"Timestamp"},
         "prometheusEndpoint":{"shape":"Uri"},
         "status":{"shape":"WorkspaceStatus"},
+        "tags":{"shape":"TagMap"},
         "workspaceId":{"shape":"WorkspaceId"}
       }
     },
@@ -434,6 +573,7 @@
         "arn":{"shape":"WorkspaceArn"},
         "createdAt":{"shape":"Timestamp"},
         "status":{"shape":"WorkspaceStatus"},
+        "tags":{"shape":"TagMap"},
         "workspaceId":{"shape":"WorkspaceId"}
       }
     },

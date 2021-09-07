@@ -12,6 +12,7 @@
     "DeleteCluster": "<p>Deletes the Amazon EKS cluster control plane.</p> <p>If you have active services in your cluster that are associated with a load balancer, you must delete those services before deleting the cluster so that the load balancers are deleted properly. Otherwise, you can have orphaned resources in your VPC that prevent you from being able to delete the VPC. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/delete-cluster.html\">Deleting a Cluster</a> in the <i>Amazon EKS User Guide</i>.</p> <p>If you have managed node groups or Fargate profiles attached to the cluster, you must delete them first. For more information, see <a>DeleteNodegroup</a> and <a>DeleteFargateProfile</a>.</p>",
     "DeleteFargateProfile": "<p>Deletes an Fargate profile.</p> <p>When you delete a Fargate profile, any pods running on Fargate that were created with the profile are deleted. If those pods match another Fargate profile, then they are scheduled on Fargate with that profile. If they no longer match any Fargate profiles, then they are not scheduled on Fargate and they may remain in a pending state.</p> <p>Only one Fargate profile in a cluster can be in the <code>DELETING</code> status at a time. You must wait for a Fargate profile to finish deleting before you can delete any other profiles in that cluster.</p>",
     "DeleteNodegroup": "<p>Deletes an Amazon EKS node group for a cluster.</p>",
+    "DeregisterCluster": "<p>Deregisters a connected cluster to remove it from the Amazon EKS control plane.</p>",
     "DescribeAddon": "<p>Describes an Amazon EKS add-on.</p>",
     "DescribeAddonVersions": "<p>Describes the Kubernetes versions that the add-on can be used with.</p>",
     "DescribeCluster": "<p>Returns descriptive information about an Amazon EKS cluster.</p> <p>The API server endpoint and certificate authority data returned by this operation are required for <code>kubelet</code> and <code>kubectl</code> to communicate with your Kubernetes API server. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html\">Create a kubeconfig for Amazon EKS</a>.</p> <note> <p>The API server endpoint and certificate authority data aren't available until the cluster reaches the <code>ACTIVE</code> state.</p> </note>",
@@ -27,6 +28,7 @@
     "ListNodegroups": "<p>Lists the Amazon EKS managed node groups associated with the specified cluster in your Amazon Web Services account in the specified Region. Self-managed node groups are not listed.</p>",
     "ListTagsForResource": "<p>List the tags for an Amazon EKS resource.</p>",
     "ListUpdates": "<p>Lists the updates associated with an Amazon EKS cluster or managed node group in your Amazon Web Services account, in the specified Region.</p>",
+    "RegisterCluster": "<p>Connects a Kubernetes cluster to the Amazon EKS control plane. </p> <p>Any Kubernetes cluster can be connected to the Amazon EKS control plane to view current information about the cluster and its nodes. </p> <p>Cluster connection requires two steps. First, send a <code> <a>RegisterClusterRequest</a> </code> to add it to the Amazon EKS control plane.</p> <p>Second, a <a href=\"https://amazon-eks.s3.us-west-2.amazonaws.com/eks-connector/manifests/eks-connector/latest/eks-connector.yaml\">Manifest</a> containing the <code>activationID</code> and <code>activationCode</code> must be applied to the Kubernetes cluster through it's native provider to provide visibility.</p> <p>After the Manifest is updated and applied, then the connected cluster is visible to the Amazon EKS control plane. If the Manifest is not applied within a set amount of time, then the connected cluster will no longer be visible and must be deregistered. See <a>DeregisterCluster</a>.</p>",
     "TagResource": "<p>Associates the specified tags to a resource with the specified <code>resourceArn</code>. If existing tags on a resource are not specified in the request parameters, they are not changed. When a resource is deleted, the tags associated with that resource are deleted as well. Tags that you create for Amazon EKS resources do not propagate to any other resources associated with the cluster. For example, if you tag a cluster with this operation, that tag does not automatically propagate to the subnets and nodes associated with the cluster.</p>",
     "UntagResource": "<p>Deletes specified tags from a resource.</p>",
     "UpdateAddon": "<p>Updates an Amazon EKS add-on.</p>",
@@ -196,7 +198,9 @@
       "refs": {
         "CreateClusterResponse$cluster": "<p>The full description of your new cluster.</p>",
         "DeleteClusterResponse$cluster": "<p>The full description of the cluster to delete.</p>",
-        "DescribeClusterResponse$cluster": "<p>The full description of your specified cluster.</p>"
+        "DeregisterClusterResponse$cluster": null,
+        "DescribeClusterResponse$cluster": "<p>The full description of your specified cluster.</p>",
+        "RegisterClusterResponse$cluster": null
       }
     },
     "ClusterName": {
@@ -208,6 +212,7 @@
         "DeleteAddonRequest$clusterName": "<p>The name of the cluster to delete the add-on from.</p>",
         "DescribeAddonRequest$clusterName": "<p>The name of the cluster.</p>",
         "ListAddonsRequest$clusterName": "<p>The name of the cluster.</p>",
+        "RegisterClusterRequest$name": "<p>Define a unique name for this cluster within your AWS account.</p>",
         "UpdateAddonRequest$clusterName": "<p>The name of the cluster.</p>"
       }
     },
@@ -227,6 +232,24 @@
       "base": "<p>Compatibility information.</p>",
       "refs": {
         "Compatibilities$member": null
+      }
+    },
+    "ConnectorConfigProvider": {
+      "base": null,
+      "refs": {
+        "ConnectorConfigRequest$provider": "<p>The cloud provider for the target cluster to connect.</p>"
+      }
+    },
+    "ConnectorConfigRequest": {
+      "base": "<p>The configuration sent to a cluster for configuration.</p>",
+      "refs": {
+        "RegisterClusterRequest$connectorConfig": "<p>The configuration settings required to connect the Kubernetes cluster to the Amazon EKS control plane.</p>"
+      }
+    },
+    "ConnectorConfigResponse": {
+      "base": "<p>The full description of your connected cluster.</p>",
+      "refs": {
+        "Cluster$connectorConfig": "<p>The configuration used to connect to a cluster for registration.</p>"
       }
     },
     "CreateAddonRequest": {
@@ -305,6 +328,16 @@
       }
     },
     "DeleteNodegroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterClusterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DeregisterClusterResponse": {
       "base": null,
       "refs": {
       }
@@ -481,7 +514,7 @@
       }
     },
     "IdentityProviderConfigResponse": {
-      "base": "<p>An object that represents an identity configuration.</p>",
+      "base": "<p>The full description of your identity configuration.</p>",
       "refs": {
         "DescribeIdentityProviderConfigResponse$identityProviderConfig": "<p>The object that represents an OpenID Connect (OIDC) identity provider configuration.</p>"
       }
@@ -490,6 +523,12 @@
       "base": null,
       "refs": {
         "ListIdentityProviderConfigsResponse$identityProviderConfigs": "<p>The identity provider configurations for the cluster.</p>"
+      }
+    },
+    "IncludeClustersList": {
+      "base": null,
+      "refs": {
+        "ListClustersRequest$include": "<p>Indicates whether connected clusters are included in the returned list. Default value is 'ALL'.</p>"
       }
     },
     "InvalidParameterException": {
@@ -755,6 +794,16 @@
         "EncryptionConfig$provider": "<p>Key Management Service (KMS) key. Either the ARN or the alias can be used.</p>"
       }
     },
+    "RegisterClusterRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RegisterClusterResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RemoteAccessConfig": {
       "base": "<p>An object representing the remote access configuration for the managed node group.</p>",
       "refs": {
@@ -831,6 +880,11 @@
         "Cluster$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "Cluster$platformVersion": "<p>The platform version of your Amazon EKS cluster. For more information, see <a href=\"https://docs.aws.amazon.com/eks/latest/userguide/platform-versions.html\">Platform Versions</a> in the <i> <i>Amazon EKS User Guide</i> </i>.</p>",
         "Compatibility$clusterVersion": "<p>The supported Kubernetes version of the cluster.</p>",
+        "ConnectorConfigRequest$roleArn": "<p>The Amazon Resource Name (ARN) of the role that is authorized to request the connector configuration.</p>",
+        "ConnectorConfigResponse$activationId": "<p>A unique ID associated with the cluster for registration purposes.</p>",
+        "ConnectorConfigResponse$activationCode": "<p>A unique code associated with the cluster for registration purposes.</p>",
+        "ConnectorConfigResponse$provider": "<p>The cluster's cloud service provider.</p>",
+        "ConnectorConfigResponse$roleArn": "<p>The Amazon Resource Name (ARN) of the role that is used by the EKS connector to communicate with AWS services from the connected Kubernetes cluster.</p>",
         "CreateAddonRequest$addonName": "<p>The name of the add-on. The name must match one of the names returned by <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html\"> <code>DescribeAddonVersions</code> </a>.</p>",
         "CreateAddonRequest$addonVersion": "<p>The version of the add-on. The version must match one of the versions returned by <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_DescribeAddonVersions.html\"> <code>DescribeAddonVersions</code> </a>.</p>",
         "CreateAddonRequest$clientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
@@ -853,6 +907,7 @@
         "DeleteFargateProfileRequest$fargateProfileName": "<p>The name of the Fargate profile to delete.</p>",
         "DeleteNodegroupRequest$clusterName": "<p>The name of the Amazon EKS cluster that is associated with your node group.</p>",
         "DeleteNodegroupRequest$nodegroupName": "<p>The name of the node group to delete.</p>",
+        "DeregisterClusterRequest$name": "<p>The name of the connected cluster to deregister.</p>",
         "DescribeAddonRequest$addonName": "<p>The name of the add-on. The name must match one of the names returned by <a href=\"https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html\"> <code>ListAddons</code> </a>.</p>",
         "DescribeAddonVersionsRequest$kubernetesVersion": "<p>The Kubernetes versions that the add-on can be used with.</p>",
         "DescribeAddonVersionsRequest$nextToken": "<p>The <code>nextToken</code> value returned from a previous paginated <code>DescribeAddonVersionsRequest</code> where <code>maxResults</code> was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the <code>nextToken</code> value.</p> <note> <p>This token should be treated as an opaque identifier that is used only to retrieve the next items in a list and not for other programmatic purposes.</p> </note>",
@@ -880,6 +935,7 @@
         "FargateProfileSelector$namespace": "<p>The Kubernetes namespace that the selector should match.</p>",
         "IdentityProviderConfig$type": "<p>The type of the identity provider configuration.</p>",
         "IdentityProviderConfig$name": "<p>The name of the identity provider configuration.</p>",
+        "IncludeClustersList$member": null,
         "InvalidParameterException$clusterName": "<p>The Amazon EKS cluster associated with the exception.</p>",
         "InvalidParameterException$nodegroupName": "<p>The Amazon EKS managed node group associated with the exception.</p>",
         "InvalidParameterException$fargateProfileName": "<p>The Fargate profile associated with the exception.</p>",
@@ -940,6 +996,7 @@
         "OidcIdentityProviderConfigRequest$groupsClaim": "<p>The JWT claim that the provider uses to return your groups.</p>",
         "OidcIdentityProviderConfigRequest$groupsPrefix": "<p>The prefix that is prepended to group claims to prevent clashes with existing names (such as <code>system:</code> groups). For example, the value<code> oidc:</code> will create group names like <code>oidc:engineering</code> and <code>oidc:infra</code>.</p>",
         "Provider$keyArn": "<p>Amazon Resource Name (ARN) or alias of the KMS key. The KMS key must be symmetric, created in the same region as the cluster, and if the KMS key was created in a different account, the user must have access to the KMS key. For more information, see <a href=\"https://docs.aws.amazon.com/kms/latest/developerguide/key-policy-modifying-external-accounts.html\">Allowing Users in Other Accounts to Use a KMS key</a> in the <i>Key Management Service Developer Guide</i>.</p>",
+        "RegisterClusterRequest$clientRequestToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.</p>",
         "RemoteAccessConfig$ec2SshKey": "<p>The Amazon EC2 SSH key that provides access for SSH communication with the nodes in the managed node group. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-key-pairs.html\">Amazon EC2 key pairs and Linux instances</a> in the <i>Amazon Elastic Compute Cloud User Guide for Linux Instances</i>.</p>",
         "ResourceInUseException$clusterName": "<p>The Amazon EKS cluster associated with the exception.</p>",
         "ResourceInUseException$nodegroupName": "<p>The Amazon EKS managed node group associated with the exception.</p>",
@@ -1036,7 +1093,7 @@
         "Addon$tags": "<p>The metadata that you apply to the add-on to assist with categorization and organization. Each tag consists of a key and an optional value, both of which you define. Add-on tags do not propagate to any other resources associated with the cluster. </p>",
         "AssociateIdentityProviderConfigRequest$tags": "<p>The metadata to apply to the configuration to assist with categorization and organization. Each tag consists of a key and an optional value, both of which you define.</p>",
         "AssociateIdentityProviderConfigResponse$tags": "<p>The tags for the resource.</p>",
-        "Cluster$tags": "<p>The metadata that you apply to the cluster to assist with categorization and organization. Each tag consists of a key and an optional value, both of which you define. Cluster tags do not propagate to any other resources associated with the cluster. </p>",
+        "Cluster$tags": "<p>The metadata that you apply to the cluster to assist with categorization and organization. Each tag consists of a key and an optional value, both of which you define. Cluster tags do not propagate to any other resources associated with the cluster.</p>",
         "CreateAddonRequest$tags": "<p>The metadata to apply to the cluster to assist with categorization and organization. Each tag consists of a key and an optional value, both of which you define. </p>",
         "CreateClusterRequest$tags": "<p>The metadata to apply to the cluster to assist with categorization and organization. Each tag consists of a key and an optional value, both of which you define.</p>",
         "CreateFargateProfileRequest$tags": "<p>The metadata to apply to the Fargate profile to assist with categorization and organization. Each tag consists of a key and an optional value, both of which you define. Fargate profile tags do not propagate to any other resources associated with the Fargate profile, such as the pods that are scheduled with it.</p>",
@@ -1082,6 +1139,7 @@
         "Addon$createdAt": "<p>The date and time that the add-on was created.</p>",
         "Addon$modifiedAt": "<p>The date and time that the add-on was last modified.</p>",
         "Cluster$createdAt": "<p>The Unix epoch timestamp in seconds for when the cluster was created.</p>",
+        "ConnectorConfigResponse$activationExpiry": "<p>The expiration time of the connected cluster. The cluster's YAML file must be applied through the native provider.</p>",
         "FargateProfile$createdAt": "<p>The Unix epoch timestamp in seconds for when the Fargate profile was created.</p>",
         "Nodegroup$createdAt": "<p>The Unix epoch timestamp in seconds for when the managed node group was created.</p>",
         "Nodegroup$modifiedAt": "<p>The Unix epoch timestamp in seconds for when the managed node group was last modified.</p>",

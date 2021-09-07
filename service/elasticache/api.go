@@ -2675,6 +2675,7 @@ func (c *ElastiCache) DeleteUserRequest(input *DeleteUserInput) (req *request.Re
 //   The value for a parameter is invalid.
 //
 //   * ErrCodeDefaultUserAssociatedToUserGroupFault "DefaultUserAssociatedToUserGroup"
+//   The default user assigned to the user group.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticache-2015-02-02/DeleteUser
 func (c *ElastiCache) DeleteUser(input *DeleteUserInput) (*DeleteUserOutput, error) {
@@ -10951,7 +10952,7 @@ type CreateUserGroupOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
-	// A list of updates being applied to the user groups.
+	// A list of updates being applied to the user group.
 	PendingChanges *UserGroupPendingChanges `type:"structure"`
 
 	// A list of replication groups that the user group can access.
@@ -12022,7 +12023,7 @@ type DeleteUserGroupOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
-	// A list of updates being applied to the user groups.
+	// A list of updates being applied to the user group.
 	PendingChanges *UserGroupPendingChanges `type:"structure"`
 
 	// A list of replication groups that the user group can access.
@@ -16211,7 +16212,7 @@ type ModifyReplicationGroupInput struct {
 	// are read replicas.
 	PrimaryClusterId *string `type:"string"`
 
-	// Removes the user groups that can access this replication group.
+	// Removes the user group associated with this replication group.
 	RemoveUserGroups *bool `type:"boolean"`
 
 	// A description for the replication group. Maximum length is 255 characters.
@@ -16252,11 +16253,11 @@ type ModifyReplicationGroupInput struct {
 	// groups.
 	SnapshottingClusterId *string `type:"string"`
 
-	// The user group you are associating with the replication group.
+	// The ID of the user group you are associating with the replication group.
 	UserGroupIdsToAdd []*string `type:"list"`
 
-	// The user group to remove, meaning the users in the group no longer can access
-	// the replication group.
+	// The ID of the user group to disassociate from the replication group, meaning
+	// the users in the group no longer can access the replication group.
 	UserGroupIdsToRemove []*string `type:"list"`
 }
 
@@ -16676,7 +16677,7 @@ type ModifyUserGroupOutput struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
-	// A list of updates being applied to the user groups.
+	// A list of updates being applied to the user group.
 	PendingChanges *UserGroupPendingChanges `type:"structure"`
 
 	// A list of replication groups that the user group can access.
@@ -18267,7 +18268,7 @@ type ReplicationGroup struct {
 	// Default: false
 	TransitEncryptionEnabled *bool `type:"boolean"`
 
-	// The list of user group IDs that have access to the replication group.
+	// The ID of the user group associated to the replication group.
 	UserGroupIds []*string `type:"list"`
 }
 
@@ -18452,7 +18453,7 @@ type ReplicationGroupPendingModifiedValues struct {
 	// The status of an online resharding operation.
 	Resharding *ReshardingStatus `type:"structure"`
 
-	// The user groups being modified.
+	// The user group being modified.
 	UserGroups *UserGroupsUpdateStatus `type:"structure"`
 }
 
@@ -20225,7 +20226,7 @@ type UserGroup struct {
 	// The current supported value is Redis.
 	Engine *string `type:"string"`
 
-	// A list of updates being applied to the user groups.
+	// A list of updates being applied to the user group.
 	PendingChanges *UserGroupPendingChanges `type:"structure"`
 
 	// A list of replication groups that the user group can access.
@@ -20330,10 +20331,10 @@ func (s *UserGroupPendingChanges) SetUserIdsToRemove(v []*string) *UserGroupPend
 type UserGroupsUpdateStatus struct {
 	_ struct{} `type:"structure"`
 
-	// The list of user group IDs to add.
+	// The ID of the user group to add.
 	UserGroupIdsToAdd []*string `type:"list"`
 
-	// The list of user group IDs to remove.
+	// The ID of the user group to remove.
 	UserGroupIdsToRemove []*string `type:"list"`
 }
 

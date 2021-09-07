@@ -5,7 +5,10 @@
     "CreateWorkspace": "<p>Creates a new AMP workspace.</p>",
     "DeleteWorkspace": "<p>Deletes an AMP workspace.</p>",
     "DescribeWorkspace": "<p>Describes an existing AMP workspace.</p>",
+    "ListTagsForResource": "<p>Lists the tags you have assigned to the resource.</p>",
     "ListWorkspaces": "<p>Lists all AMP workspaces, including workspaces being created or deleted.</p>",
+    "TagResource": "<p>Creates tags for the specified resource.</p>",
+    "UntagResource": "<p>Deletes tags from the specified resource.</p>",
     "UpdateWorkspaceAlias": "<p>Updates an AMP workspace alias.</p>"
   },
   "shapes": {
@@ -64,6 +67,16 @@
       "refs": {
       }
     },
+    "ListTagsForResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListTagsForResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListWorkspacesRequest": {
       "base": "<p>Represents the input of a ListWorkspaces operation.</p>",
       "refs": {
@@ -105,6 +118,7 @@
         "ConflictException$resourceId": "<p>Identifier of the resource affected.</p>",
         "ConflictException$resourceType": "<p>Type of the resource affected.</p>",
         "InternalServerException$message": "<p>Description of the error.</p>",
+        "ListTagsForResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "ResourceNotFoundException$message": "<p>Description of the error.</p>",
         "ResourceNotFoundException$resourceId": "<p>Identifier of the resource affected.</p>",
         "ResourceNotFoundException$resourceType": "<p>Type of the resource affected.</p>",
@@ -113,12 +127,54 @@
         "ServiceQuotaExceededException$resourceId": "<p>Identifier of the resource affected.</p>",
         "ServiceQuotaExceededException$resourceType": "<p>Type of the resource affected.</p>",
         "ServiceQuotaExceededException$serviceCode": "<p>Service Quotas requirement to identify originating service.</p>",
+        "TagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "ThrottlingException$message": "<p>Description of the error.</p>",
         "ThrottlingException$quotaCode": "<p>Service Quotas requirement to identify originating quota.</p>",
         "ThrottlingException$serviceCode": "<p>Service Quotas requirement to identify originating service.</p>",
+        "UntagResourceRequest$resourceArn": "<p>The ARN of the resource.</p>",
         "ValidationException$message": "<p>Description of the error.</p>",
         "ValidationExceptionField$message": "<p>Message describing why the field failed validation.</p>",
         "ValidationExceptionField$name": "<p>The field name.</p>"
+      }
+    },
+    "TagKey": {
+      "base": null,
+      "refs": {
+        "TagKeys$member": null,
+        "TagMap$key": "<p>The key of the tag.</p> <p>Constraints: Tag keys are case-sensitive and accept a maximum of 128 Unicode characters. Valid characters are Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @ May not begin with <code>aws:</code>.</p>"
+      }
+    },
+    "TagKeys": {
+      "base": null,
+      "refs": {
+        "UntagResourceRequest$tagKeys": "<p>One or more tag keys</p>"
+      }
+    },
+    "TagMap": {
+      "base": "<p>The list of tags assigned to the resource.</p>",
+      "refs": {
+        "CreateWorkspaceRequest$tags": "<p>Optional, user-provided tags for this workspace.</p>",
+        "CreateWorkspaceResponse$tags": "<p>The tags of this workspace.</p>",
+        "ListTagsForResourceResponse$tags": null,
+        "TagResourceRequest$tags": null,
+        "WorkspaceDescription$tags": "<p>The tags of this workspace.</p>",
+        "WorkspaceSummary$tags": "<p>The tags of this workspace.</p>"
+      }
+    },
+    "TagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagResourceResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "TagValue": {
+      "base": null,
+      "refs": {
+        "TagMap$value": "<p>The value of the tag.</p> <p>Constraints: Tag values are case-sensitive and accept a maximum of 256 Unicode characters. Valid characters are Unicode letters, digits, white space, and any of the following symbols: _ . : / = + - @</p>"
       }
     },
     "ThrottlingException": {
@@ -131,6 +187,16 @@
       "refs": {
         "WorkspaceDescription$createdAt": "<p>The time when the workspace was created.</p>",
         "WorkspaceSummary$createdAt": "<p>The time when the workspace was created.</p>"
+      }
+    },
+    "UntagResourceRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "UntagResourceResponse": {
+      "base": null,
+      "refs": {
       }
     },
     "UpdateWorkspaceAliasRequest": {
