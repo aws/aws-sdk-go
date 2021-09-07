@@ -724,7 +724,8 @@
         "InputDataConfig":{"shape":"InputDataConfig"},
         "FeaturizationConfig":{"shape":"FeaturizationConfig"},
         "EncryptionConfig":{"shape":"EncryptionConfig"},
-        "Tags":{"shape":"Tags"}
+        "Tags":{"shape":"Tags"},
+        "OptimizationMetric":{"shape":"OptimizationMetric"}
       }
     },
     "CreatePredictorResponse":{
@@ -1016,7 +1017,8 @@
         "Status":{"shape":"Status"},
         "Message":{"shape":"Message"},
         "CreationTime":{"shape":"Timestamp"},
-        "LastModificationTime":{"shape":"Timestamp"}
+        "LastModificationTime":{"shape":"Timestamp"},
+        "OptimizationMetric":{"shape":"OptimizationMetric"}
       }
     },
     "Domain":{
@@ -1049,7 +1051,9 @@
       "members":{
         "ForecastType":{"shape":"ForecastType"},
         "WAPE":{"shape":"Double"},
-        "RMSE":{"shape":"Double"}
+        "RMSE":{"shape":"Double"},
+        "MASE":{"shape":"Double"},
+        "MAPE":{"shape":"Double"}
       }
     },
     "ErrorMetrics":{
@@ -1223,7 +1227,8 @@
       "type":"structure",
       "members":{
         "PredictorEvaluationResults":{"shape":"PredictorEvaluationResults"},
-        "AutoMLOverrideStrategy":{"shape":"AutoMLOverrideStrategy"}
+        "AutoMLOverrideStrategy":{"shape":"AutoMLOverrideStrategy"},
+        "OptimizationMetric":{"shape":"OptimizationMetric"}
       }
     },
     "HyperParameterTuningJobConfig":{
@@ -1419,7 +1424,8 @@
           "deprecatedMessage":"This property is deprecated, please refer to ErrorMetrics for both RMSE and WAPE"
         },
         "WeightedQuantileLosses":{"shape":"WeightedQuantileLosses"},
-        "ErrorMetrics":{"shape":"ErrorMetrics"}
+        "ErrorMetrics":{"shape":"ErrorMetrics"},
+        "AverageWeightedQuantileLoss":{"shape":"Double"}
       }
     },
     "Name":{
@@ -1432,6 +1438,16 @@
       "type":"string",
       "max":3000,
       "min":1
+    },
+    "OptimizationMetric":{
+      "type":"string",
+      "enum":[
+        "WAPE",
+        "RMSE",
+        "AverageWeightedQuantileLoss",
+        "MASE",
+        "MAPE"
+      ]
     },
     "ParameterKey":{
       "type":"string",

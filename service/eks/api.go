@@ -1110,6 +1110,102 @@ func (c *EKS) DeleteNodegroupWithContext(ctx aws.Context, input *DeleteNodegroup
 	return out, req.Send()
 }
 
+const opDeregisterCluster = "DeregisterCluster"
+
+// DeregisterClusterRequest generates a "aws/request.Request" representing the
+// client's request for the DeregisterCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeregisterCluster for more information on using the DeregisterCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeregisterClusterRequest method.
+//    req, resp := client.DeregisterClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DeregisterCluster
+func (c *EKS) DeregisterClusterRequest(input *DeregisterClusterInput) (req *request.Request, output *DeregisterClusterOutput) {
+	op := &request.Operation{
+		Name:       opDeregisterCluster,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/cluster-registrations/{name}",
+	}
+
+	if input == nil {
+		input = &DeregisterClusterInput{}
+	}
+
+	output = &DeregisterClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeregisterCluster API operation for Amazon Elastic Kubernetes Service.
+//
+// Deregisters a connected cluster to remove it from the Amazon EKS control
+// plane.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation DeregisterCluster for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUseException
+//   The specified resource is in use.
+//
+//   * ResourceNotFoundException
+//   The specified resource could not be found. You can view your available clusters
+//   with ListClusters. You can view your available managed node groups with ListNodegroups.
+//   Amazon EKS clusters and node groups are Region-specific.
+//
+//   * ClientException
+//   These errors are usually caused by a client action. Actions can include using
+//   an action or resource on behalf of a user that doesn't have permissions to
+//   use the action or resource or specifying an identifier that is not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * ServiceUnavailableException
+//   The service is unavailable. Back off and retry the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/DeregisterCluster
+func (c *EKS) DeregisterCluster(input *DeregisterClusterInput) (*DeregisterClusterOutput, error) {
+	req, out := c.DeregisterClusterRequest(input)
+	return out, req.Send()
+}
+
+// DeregisterClusterWithContext is the same as DeregisterCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeregisterCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) DeregisterClusterWithContext(ctx aws.Context, input *DeregisterClusterInput, opts ...request.Option) (*DeregisterClusterOutput, error) {
+	req, out := c.DeregisterClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeAddon = "DescribeAddon"
 
 // DescribeAddonRequest generates a "aws/request.Request" representing the
@@ -2942,6 +3038,115 @@ func (c *EKS) ListUpdatesPagesWithContext(ctx aws.Context, input *ListUpdatesInp
 	return p.Err()
 }
 
+const opRegisterCluster = "RegisterCluster"
+
+// RegisterClusterRequest generates a "aws/request.Request" representing the
+// client's request for the RegisterCluster operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RegisterCluster for more information on using the RegisterCluster
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RegisterClusterRequest method.
+//    req, resp := client.RegisterClusterRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/RegisterCluster
+func (c *EKS) RegisterClusterRequest(input *RegisterClusterInput) (req *request.Request, output *RegisterClusterOutput) {
+	op := &request.Operation{
+		Name:       opRegisterCluster,
+		HTTPMethod: "POST",
+		HTTPPath:   "/cluster-registrations",
+	}
+
+	if input == nil {
+		input = &RegisterClusterInput{}
+	}
+
+	output = &RegisterClusterOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RegisterCluster API operation for Amazon Elastic Kubernetes Service.
+//
+// Connects a Kubernetes cluster to the Amazon EKS control plane.
+//
+// Any Kubernetes cluster can be connected to the Amazon EKS control plane to
+// view current information about the cluster and its nodes.
+//
+// Cluster connection requires two steps. First, send a RegisterClusterRequest
+// to add it to the Amazon EKS control plane.
+//
+// Second, a Manifest (https://amazon-eks.s3.us-west-2.amazonaws.com/eks-connector/manifests/eks-connector/latest/eks-connector.yaml)
+// containing the activationID and activationCode must be applied to the Kubernetes
+// cluster through it's native provider to provide visibility.
+//
+// After the Manifest is updated and applied, then the connected cluster is
+// visible to the Amazon EKS control plane. If the Manifest is not applied within
+// a set amount of time, then the connected cluster will no longer be visible
+// and must be deregistered. See DeregisterCluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Elastic Kubernetes Service's
+// API operation RegisterCluster for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceededException
+//   You have encountered a service limit on the specified resource.
+//
+//   * InvalidParameterException
+//   The specified parameter is invalid. Review the available parameters for the
+//   API request.
+//
+//   * ClientException
+//   These errors are usually caused by a client action. Actions can include using
+//   an action or resource on behalf of a user that doesn't have permissions to
+//   use the action or resource or specifying an identifier that is not valid.
+//
+//   * ServerException
+//   These errors are usually caused by a server-side issue.
+//
+//   * ServiceUnavailableException
+//   The service is unavailable. Back off and retry the operation.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/eks-2017-11-01/RegisterCluster
+func (c *EKS) RegisterCluster(input *RegisterClusterInput) (*RegisterClusterOutput, error) {
+	req, out := c.RegisterClusterRequest(input)
+	return out, req.Send()
+}
+
+// RegisterClusterWithContext is the same as RegisterCluster with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RegisterCluster for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *EKS) RegisterClusterWithContext(ctx aws.Context, input *RegisterClusterInput, opts ...request.Option) (*RegisterClusterOutput, error) {
+	req, out := c.RegisterClusterRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opTagResource = "TagResource"
 
 // TagResourceRequest generates a "aws/request.Request" representing the
@@ -4336,6 +4541,9 @@ type Cluster struct {
 	// of the request.
 	ClientRequestToken *string `locationName:"clientRequestToken" type:"string"`
 
+	// The configuration used to connect to a cluster for registration.
+	ConnectorConfig *ConnectorConfigResponse `locationName:"connectorConfig" type:"structure"`
+
 	// The Unix epoch timestamp in seconds for when the cluster was created.
 	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp"`
 
@@ -4412,6 +4620,12 @@ func (s *Cluster) SetCertificateAuthority(v *Certificate) *Cluster {
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *Cluster) SetClientRequestToken(v string) *Cluster {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetConnectorConfig sets the ConnectorConfig field's value.
+func (s *Cluster) SetConnectorConfig(v *ConnectorConfigResponse) *Cluster {
+	s.ConnectorConfig = v
 	return s
 }
 
@@ -4532,6 +4746,122 @@ func (s *Compatibility) SetDefaultVersion(v bool) *Compatibility {
 // SetPlatformVersions sets the PlatformVersions field's value.
 func (s *Compatibility) SetPlatformVersions(v []*string) *Compatibility {
 	s.PlatformVersions = v
+	return s
+}
+
+// The configuration sent to a cluster for configuration.
+type ConnectorConfigRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The cloud provider for the target cluster to connect.
+	//
+	// Provider is a required field
+	Provider *string `locationName:"provider" type:"string" required:"true" enum:"ConnectorConfigProvider"`
+
+	// The Amazon Resource Name (ARN) of the role that is authorized to request
+	// the connector configuration.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ConnectorConfigRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConnectorConfigRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConnectorConfigRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConnectorConfigRequest"}
+	if s.Provider == nil {
+		invalidParams.Add(request.NewErrParamRequired("Provider"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetProvider sets the Provider field's value.
+func (s *ConnectorConfigRequest) SetProvider(v string) *ConnectorConfigRequest {
+	s.Provider = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ConnectorConfigRequest) SetRoleArn(v string) *ConnectorConfigRequest {
+	s.RoleArn = &v
+	return s
+}
+
+// The full description of your connected cluster.
+type ConnectorConfigResponse struct {
+	_ struct{} `type:"structure"`
+
+	// A unique code associated with the cluster for registration purposes.
+	ActivationCode *string `locationName:"activationCode" type:"string"`
+
+	// The expiration time of the connected cluster. The cluster's YAML file must
+	// be applied through the native provider.
+	ActivationExpiry *time.Time `locationName:"activationExpiry" type:"timestamp"`
+
+	// A unique ID associated with the cluster for registration purposes.
+	ActivationId *string `locationName:"activationId" type:"string"`
+
+	// The cluster's cloud service provider.
+	Provider *string `locationName:"provider" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the role that is used by the EKS connector
+	// to communicate with AWS services from the connected Kubernetes cluster.
+	RoleArn *string `locationName:"roleArn" type:"string"`
+}
+
+// String returns the string representation
+func (s ConnectorConfigResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ConnectorConfigResponse) GoString() string {
+	return s.String()
+}
+
+// SetActivationCode sets the ActivationCode field's value.
+func (s *ConnectorConfigResponse) SetActivationCode(v string) *ConnectorConfigResponse {
+	s.ActivationCode = &v
+	return s
+}
+
+// SetActivationExpiry sets the ActivationExpiry field's value.
+func (s *ConnectorConfigResponse) SetActivationExpiry(v time.Time) *ConnectorConfigResponse {
+	s.ActivationExpiry = &v
+	return s
+}
+
+// SetActivationId sets the ActivationId field's value.
+func (s *ConnectorConfigResponse) SetActivationId(v string) *ConnectorConfigResponse {
+	s.ActivationId = &v
+	return s
+}
+
+// SetProvider sets the Provider field's value.
+func (s *ConnectorConfigResponse) SetProvider(v string) *ConnectorConfigResponse {
+	s.Provider = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *ConnectorConfigResponse) SetRoleArn(v string) *ConnectorConfigResponse {
+	s.RoleArn = &v
 	return s
 }
 
@@ -5634,6 +5964,70 @@ func (s *DeleteNodegroupOutput) SetNodegroup(v *Nodegroup) *DeleteNodegroupOutpu
 	return s
 }
 
+type DeregisterClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the connected cluster to deregister.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeregisterClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeregisterClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeregisterClusterInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DeregisterClusterInput) SetName(v string) *DeregisterClusterInput {
+	s.Name = &v
+	return s
+}
+
+type DeregisterClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing an Amazon EKS cluster.
+	Cluster *Cluster `locationName:"cluster" type:"structure"`
+}
+
+// String returns the string representation
+func (s DeregisterClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeregisterClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *DeregisterClusterOutput) SetCluster(v *Cluster) *DeregisterClusterOutput {
+	s.Cluster = v
+	return s
+}
+
 type DescribeAddonInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6636,7 +7030,7 @@ func (s *IdentityProviderConfig) SetType(v string) *IdentityProviderConfig {
 	return s
 }
 
-// An object that represents an identity configuration.
+// The full description of your identity configuration.
 type IdentityProviderConfigResponse struct {
 	_ struct{} `type:"structure"`
 
@@ -7135,6 +7529,10 @@ func (s *ListAddonsOutput) SetNextToken(v string) *ListAddonsOutput {
 type ListClustersInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether connected clusters are included in the returned list. Default
+	// value is 'ALL'.
+	Include []*string `location:"querystring" locationName:"include" type:"list"`
+
 	// The maximum number of cluster results returned by ListClusters in paginated
 	// output. When you use this parameter, ListClusters returns only maxResults
 	// results in a single page along with a nextToken response element. You can
@@ -7175,6 +7573,12 @@ func (s *ListClustersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetInclude sets the Include field's value.
+func (s *ListClustersInput) SetInclude(v []*string) *ListClustersInput {
+	s.Include = v
+	return s
 }
 
 // SetMaxResults sets the MaxResults field's value.
@@ -8594,6 +8998,100 @@ func (s Provider) GoString() string {
 // SetKeyArn sets the KeyArn field's value.
 func (s *Provider) SetKeyArn(v string) *Provider {
 	s.KeyArn = &v
+	return s
+}
+
+type RegisterClusterInput struct {
+	_ struct{} `type:"structure"`
+
+	// Unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientRequestToken *string `locationName:"clientRequestToken" type:"string" idempotencyToken:"true"`
+
+	// The configuration settings required to connect the Kubernetes cluster to
+	// the Amazon EKS control plane.
+	//
+	// ConnectorConfig is a required field
+	ConnectorConfig *ConnectorConfigRequest `locationName:"connectorConfig" type:"structure" required:"true"`
+
+	// Define a unique name for this cluster within your AWS account.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s RegisterClusterInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterClusterInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegisterClusterInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegisterClusterInput"}
+	if s.ConnectorConfig == nil {
+		invalidParams.Add(request.NewErrParamRequired("ConnectorConfig"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.ConnectorConfig != nil {
+		if err := s.ConnectorConfig.Validate(); err != nil {
+			invalidParams.AddNested("ConnectorConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *RegisterClusterInput) SetClientRequestToken(v string) *RegisterClusterInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetConnectorConfig sets the ConnectorConfig field's value.
+func (s *RegisterClusterInput) SetConnectorConfig(v *ConnectorConfigRequest) *RegisterClusterInput {
+	s.ConnectorConfig = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RegisterClusterInput) SetName(v string) *RegisterClusterInput {
+	s.Name = &v
+	return s
+}
+
+type RegisterClusterOutput struct {
+	_ struct{} `type:"structure"`
+
+	// An object representing an Amazon EKS cluster.
+	Cluster *Cluster `locationName:"cluster" type:"structure"`
+}
+
+// String returns the string representation
+func (s RegisterClusterOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RegisterClusterOutput) GoString() string {
+	return s.String()
+}
+
+// SetCluster sets the Cluster field's value.
+func (s *RegisterClusterOutput) SetCluster(v *Cluster) *RegisterClusterOutput {
+	s.Cluster = v
 	return s
 }
 
@@ -10360,6 +10858,9 @@ const (
 
 	// ClusterStatusUpdating is a ClusterStatus enum value
 	ClusterStatusUpdating = "UPDATING"
+
+	// ClusterStatusPending is a ClusterStatus enum value
+	ClusterStatusPending = "PENDING"
 )
 
 // ClusterStatus_Values returns all elements of the ClusterStatus enum
@@ -10370,6 +10871,7 @@ func ClusterStatus_Values() []string {
 		ClusterStatusDeleting,
 		ClusterStatusFailed,
 		ClusterStatusUpdating,
+		ClusterStatusPending,
 	}
 }
 
@@ -10390,6 +10892,50 @@ func ConfigStatus_Values() []string {
 		ConfigStatusCreating,
 		ConfigStatusDeleting,
 		ConfigStatusActive,
+	}
+}
+
+const (
+	// ConnectorConfigProviderEksAnywhere is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderEksAnywhere = "EKS_ANYWHERE"
+
+	// ConnectorConfigProviderAnthos is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderAnthos = "ANTHOS"
+
+	// ConnectorConfigProviderGke is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderGke = "GKE"
+
+	// ConnectorConfigProviderAks is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderAks = "AKS"
+
+	// ConnectorConfigProviderOpenshift is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderOpenshift = "OPENSHIFT"
+
+	// ConnectorConfigProviderTanzu is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderTanzu = "TANZU"
+
+	// ConnectorConfigProviderRancher is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderRancher = "RANCHER"
+
+	// ConnectorConfigProviderEc2 is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderEc2 = "EC2"
+
+	// ConnectorConfigProviderOther is a ConnectorConfigProvider enum value
+	ConnectorConfigProviderOther = "OTHER"
+)
+
+// ConnectorConfigProvider_Values returns all elements of the ConnectorConfigProvider enum
+func ConnectorConfigProvider_Values() []string {
+	return []string{
+		ConnectorConfigProviderEksAnywhere,
+		ConnectorConfigProviderAnthos,
+		ConnectorConfigProviderGke,
+		ConnectorConfigProviderAks,
+		ConnectorConfigProviderOpenshift,
+		ConnectorConfigProviderTanzu,
+		ConnectorConfigProviderRancher,
+		ConnectorConfigProviderEc2,
+		ConnectorConfigProviderOther,
 	}
 }
 

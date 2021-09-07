@@ -1,3 +1,18 @@
+Release v1.40.38 (2021-09-07)
+===
+
+### Service Client Updates
+* `service/amp`: Updates service API and documentation
+* `service/eks`: Updates service API, documentation, and waiters
+* `service/elasticache`: Updates service documentation
+  * Doc only update for ElastiCache
+* `service/forecast`: Updates service API and documentation
+* `service/mediapackage`: Updates service documentation
+  * SPEKE v2 support for live CMAF packaging type. SPEKE v2 is an upgrade to the existing SPEKE API to support multiple encryption keys, it supports live DASH currently.
+* `service/ssm-contacts`: Updates service documentation and examples
+* `service/xray`: Updates service documentation
+  * Updated references to AWS KMS keys and customer managed keys to reflect current terminology.
+
 Release v1.40.37 (2021-09-03)
 ===
 

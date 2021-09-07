@@ -3,8 +3,8 @@
 // Package xray provides the client and types for making API
 // requests to AWS X-Ray.
 //
-// AWS X-Ray provides APIs for managing debug traces and retrieving service
-// maps and other data created by processing those traces.
+// Amazon Web Services X-Ray provides APIs for managing debug traces and retrieving
+// service maps and other data created by processing those traces.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/xray-2016-04-12 for more information on this service.
 //

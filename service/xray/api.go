@@ -282,12 +282,13 @@ func (c *XRay) CreateSamplingRuleRequest(input *CreateSamplingRuleInput) (req *r
 // CreateSamplingRule API operation for AWS X-Ray.
 //
 // Creates a rule to control sampling behavior for instrumented applications.
-// Services retrieve rules with GetSamplingRules, and evaluate each rule in
-// ascending order of priority for each request. If a rule matches, the service
-// records a trace, borrowing it from the reservoir size. After 10 seconds,
-// the service reports back to X-Ray with GetSamplingTargets to get updated
-// versions of each in-use rule. The updated rule contains a trace quota that
-// the service can use instead of borrowing from the reservoir.
+// Services retrieve rules with GetSamplingRules (https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingRules.html),
+// and evaluate each rule in ascending order of priority for each request. If
+// a rule matches, the service records a trace, borrowing it from the reservoir
+// size. After 10 seconds, the service reports back to X-Ray with GetSamplingTargets
+// (https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingTargets.html)
+// to get updated versions of each in-use rule. The updated rule contains a
+// trace quota that the service can use instead of borrowing from the reservoir.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1663,9 +1664,9 @@ func (c *XRay) GetServiceGraphRequest(input *GetServiceGraphInput) (req *request
 // Retrieves a document that describes services that process incoming requests,
 // and downstream services that they call as a result. Root services process
 // incoming requests and make calls to downstream services. Root services are
-// applications that use the AWS X-Ray SDK (https://docs.aws.amazon.com/xray/index.html).
-// Downstream services can be other applications, AWS resources, HTTP web APIs,
-// or SQL databases.
+// applications that use the Amazon Web Services X-Ray SDK (https://docs.aws.amazon.com/xray/index.html).
+// Downstream services can be other applications, Amazon Web Services resources,
+// HTTP web APIs, or SQL databases.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2101,7 +2102,7 @@ func (c *XRay) GetTraceSummariesRequest(input *GetTraceSummariesInput) (req *req
 //
 // For a full list of indexed fields and keywords that you can use in filter
 // expressions, see Using Filter Expressions (https://docs.aws.amazon.com/xray/latest/devguide/xray-console-filters.html)
-// in the AWS X-Ray Developer Guide.
+// in the Amazon Web Services X-Ray Developer Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2235,8 +2236,8 @@ func (c *XRay) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req 
 
 // ListTagsForResource API operation for AWS X-Ray.
 //
-// Returns a list of tags that are applied to the specified AWS X-Ray group
-// or sampling rule.
+// Returns a list of tags that are applied to the specified Amazon Web Services
+// X-Ray group or sampling rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2405,7 +2406,7 @@ func (c *XRay) PutTelemetryRecordsRequest(input *PutTelemetryRecordsInput) (req 
 
 // PutTelemetryRecords API operation for AWS X-Ray.
 //
-// Used by the AWS X-Ray daemon to upload telemetry.
+// Used by the Amazon Web Services X-Ray daemon to upload telemetry.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2487,14 +2488,14 @@ func (c *XRay) PutTraceSegmentsRequest(input *PutTraceSegmentsInput) (req *reque
 
 // PutTraceSegments API operation for AWS X-Ray.
 //
-// Uploads segment documents to AWS X-Ray. The X-Ray SDK (https://docs.aws.amazon.com/xray/index.html)
+// Uploads segment documents to Amazon Web Services X-Ray. The X-Ray SDK (https://docs.aws.amazon.com/xray/index.html)
 // generates segment documents and sends them to the X-Ray daemon, which uploads
 // them in batches. A segment document can be a completed segment, an in-progress
 // segment, or an array of subsegments.
 //
 // Segments must include the following fields. For the full segment document
-// schema, see AWS X-Ray Segment Documents (https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
-// in the AWS X-Ray Developer Guide.
+// schema, see Amazon Web Services X-Ray Segment Documents (https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
+// in the Amazon Web Services X-Ray Developer Guide.
 //
 // Required segment document fields
 //
@@ -2614,7 +2615,7 @@ func (c *XRay) TagResourceRequest(input *TagResourceInput) (req *request.Request
 
 // TagResource API operation for AWS X-Ray.
 //
-// Applies tags to an existing AWS X-Ray group or sampling rule.
+// Applies tags to an existing Amazon Web Services X-Ray group or sampling rule.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2704,8 +2705,8 @@ func (c *XRay) UntagResourceRequest(input *UntagResourceInput) (req *request.Req
 
 // UntagResource API operation for AWS X-Ray.
 //
-// Removes tags from an AWS X-Ray group or sampling rule. You cannot edit or
-// delete system tags (those with an aws: prefix).
+// Removes tags from an Amazon Web Services X-Ray group or sampling rule. You
+// cannot edit or delete system tags (those with an aws: prefix).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3216,9 +3217,9 @@ type CreateGroupInput struct {
 	InsightsConfiguration *InsightsConfiguration `type:"structure"`
 
 	// A map that contains one or more tag keys and tag values to attach to an X-Ray
-	// group. For more information about ways to use tags, see Tagging AWS resources
-	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html) in the AWS
-	// General Reference.
+	// group. For more information about ways to use tags, see Tagging Amazon Web
+	// Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// The following restrictions apply to tags:
 	//
@@ -3233,7 +3234,8 @@ type CreateGroupInput struct {
 	//
 	//    * Tag keys and values are case sensitive.
 	//
-	//    * Don't use aws: as a prefix for keys; it's reserved for AWS use.
+	//    * Don't use aws: as a prefix for keys; it's reserved for Amazon Web Services
+	//    use.
 	Tags []*Tag `type:"list"`
 }
 
@@ -3332,9 +3334,9 @@ type CreateSamplingRuleInput struct {
 	SamplingRule *SamplingRule `type:"structure" required:"true"`
 
 	// A map that contains one or more tag keys and tag values to attach to an X-Ray
-	// sampling rule. For more information about ways to use tags, see Tagging AWS
-	// resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference.
+	// sampling rule. For more information about ways to use tags, see Tagging Amazon
+	// Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// The following restrictions apply to tags:
 	//
@@ -3349,7 +3351,8 @@ type CreateSamplingRuleInput struct {
 	//
 	//    * Tag keys and values are case sensitive.
 	//
-	//    * Don't use aws: as a prefix for keys; it's reserved for AWS use.
+	//    * Don't use aws: as a prefix for keys; it's reserved for Amazon Web Services
+	//    use.
 	Tags []*Tag `type:"list"`
 }
 
@@ -3678,14 +3681,14 @@ func (s *EdgeStatistics) SetTotalResponseTime(v float64) *EdgeStatistics {
 type EncryptionConfig struct {
 	_ struct{} `type:"structure"`
 
-	// The ID of the customer master key (CMK) used for encryption, if applicable.
+	// The ID of the KMS key used for encryption, if applicable.
 	KeyId *string `type:"string"`
 
 	// The encryption status. While the status is UPDATING, X-Ray may encrypt data
 	// with a combination of the new and old settings.
 	Status *string `type:"string" enum:"EncryptionStatus"`
 
-	// The type of encryption. Set to KMS for encryption with CMKs. Set to NONE
+	// The type of encryption. Set to KMS for encryption with KMS keys. Set to NONE
 	// for default encryption.
 	Type *string `type:"string" enum:"EncryptionType"`
 }
@@ -4498,7 +4501,7 @@ type GetInsightImpactGraphOutput struct {
 	// The time, in Unix seconds, at which the service graph started.
 	ServiceGraphStartTime *time.Time `type:"timestamp"`
 
-	// The AWS instrumented services related to the insight.
+	// The Amazon Web Services instrumented services related to the insight.
 	Services []*InsightImpactGraphService `type:"list"`
 
 	// The provided start time.
@@ -4929,13 +4932,15 @@ type GetSamplingTargetsOutput struct {
 
 	// The last time a user changed the sampling rule configuration. If the sampling
 	// rule configuration changed since the service last retrieved it, the service
-	// should call GetSamplingRules to get the latest version.
+	// should call GetSamplingRules (https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingRules.html)
+	// to get the latest version.
 	LastRuleModification *time.Time `type:"timestamp"`
 
 	// Updated rules that the service should use to sample requests.
 	SamplingTargetDocuments []*SamplingTargetDocument `type:"list"`
 
-	// Information about SamplingStatisticsDocument that X-Ray could not process.
+	// Information about SamplingStatisticsDocument (https://docs.aws.amazon.com/xray/latest/api/API_SamplingStatisticsDocument.html)
+	// that X-Ray could not process.
 	UnprocessedStatistics []*UnprocessedStatistics `type:"list"`
 }
 
@@ -5529,7 +5534,7 @@ type Group struct {
 	//    * The InsightsEnabled boolean can be set to true to enable insights for
 	//    the group or false to disable insights for the group.
 	//
-	//    * The NotifcationsEnabled boolean can be set to true to enable insights
+	//    * The NotificationsEnabled boolean can be set to true to enable insights
 	//    notifications through Amazon EventBridge for the group.
 	InsightsConfiguration *InsightsConfiguration `type:"structure"`
 }
@@ -5943,7 +5948,7 @@ func (s *InsightImpactGraphEdge) SetReferenceId(v int64) *InsightImpactGraphEdge
 type InsightImpactGraphService struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the AWS account in which the service runs.
+	// Identifier of the Amazon Web Services account in which the service runs.
 	AccountId *string `type:"string"`
 
 	// Connections to downstream services.
@@ -5960,17 +5965,18 @@ type InsightImpactGraphService struct {
 
 	// Identifier for the service. Unique within the service map.
 	//
-	//    * AWS Resource - The type of an AWS resource. For example, AWS::EC2::Instance
-	//    for an application running on Amazon EC2 or AWS::DynamoDB::Table for an
-	//    Amazon DynamoDB table that the application used.
+	//    * Amazon Web Services Resource - The type of an Amazon Web Services resource.
+	//    For example, AWS::EC2::Instance for an application running on Amazon EC2
+	//    or AWS::DynamoDB::Table for an Amazon DynamoDB table that the application
+	//    used.
 	//
-	//    * AWS Service - The type of an AWS service. For example, AWS::DynamoDB
-	//    for downstream calls to Amazon DynamoDB that didn't target a specific
-	//    table.
+	//    * Amazon Web Services Service - The type of an Amazon Web Services service.
+	//    For example, AWS::DynamoDB for downstream calls to Amazon DynamoDB that
+	//    didn't target a specific table.
 	//
-	//    * AWS Service - The type of an AWS service. For example, AWS::DynamoDB
-	//    for downstream calls to Amazon DynamoDB that didn't target a specific
-	//    table.
+	//    * Amazon Web Services Service - The type of an Amazon Web Services service.
+	//    For example, AWS::DynamoDB for downstream calls to Amazon DynamoDB that
+	//    didn't target a specific table.
 	//
 	//    * remote - A downstream service of indeterminate type.
 	Type *string `type:"string"`
@@ -6362,12 +6368,12 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type PutEncryptionConfigInput struct {
 	_ struct{} `type:"structure"`
 
-	// An AWS KMS customer master key (CMK) in one of the following formats:
+	// An Amazon Web Services KMS key in one of the following formats:
 	//
 	//    * Alias - The name of the key. For example, alias/MyKey.
 	//
 	//    * Key ID - The KMS key ID of the key. For example, ae4aa6d49-a4d8-9df9-a475-4ff6d7898456.
-	//    AWS X-Ray does not support asymmetric CMKs.
+	//    Amazon Web Services X-Ray does not support asymmetric KMS keys.
 	//
 	//    * ARN - The full Amazon Resource Name of the key ID or alias. For example,
 	//    arn:aws:kms:us-east-2:123456789012:key/ae4aa6d49-a4d8-9df9-a475-4ff6d7898456.
@@ -6986,7 +6992,8 @@ type SamplingRule struct {
 	// ReservoirSize is a required field
 	ReservoirSize *int64 `type:"integer" required:"true"`
 
-	// Matches the ARN of the AWS resource on which the service runs.
+	// Matches the ARN of the Amazon Web Services resource on which the service
+	// runs.
 	//
 	// ResourceARN is a required field
 	ResourceARN *string `type:"string" required:"true"`
@@ -7157,7 +7164,8 @@ func (s *SamplingRule) SetVersion(v int64) *SamplingRule {
 	return s
 }
 
-// A SamplingRule and its metadata.
+// A SamplingRule (https://docs.aws.amazon.com/xray/latest/api/API_SamplingRule.html)
+// and its metadata.
 type SamplingRuleRecord struct {
 	_ struct{} `type:"structure"`
 
@@ -7224,7 +7232,8 @@ type SamplingRuleUpdate struct {
 	// to all services using the rule collectively.
 	ReservoirSize *int64 `type:"integer"`
 
-	// Matches the ARN of the AWS resource on which the service runs.
+	// Matches the ARN of the Amazon Web Services resource on which the service
+	// runs.
 	ResourceARN *string `type:"string"`
 
 	// The ARN of the sampling rule. Specify a rule by either name or ARN, but not
@@ -7403,7 +7412,7 @@ func (s *SamplingStatisticSummary) SetTimestamp(v time.Time) *SamplingStatisticS
 
 // Request sampling results for a single rule from a service. Results are for
 // the last 10 seconds unless the service has been assigned a longer reporting
-// interval after a previous call to GetSamplingTargets.
+// interval after a previous call to GetSamplingTargets (https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingTargets.html).
 type SamplingStatisticsDocument struct {
 	_ struct{} `type:"structure"`
 
@@ -7548,7 +7557,8 @@ func (s *SamplingStrategy) SetValue(v float64) *SamplingStrategy {
 
 // Temporary changes to a sampling rule configuration. To meet the global sampling
 // target for a rule, X-Ray calculates a new reservoir for each service based
-// on the recent sampling results of all services that called GetSamplingTargets.
+// on the recent sampling results of all services that called GetSamplingTargets
+// (https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingTargets.html).
 type SamplingTargetDocument struct {
 	_ struct{} `type:"structure"`
 
@@ -7611,12 +7621,13 @@ func (s *SamplingTargetDocument) SetRuleName(v string) *SamplingTargetDocument {
 }
 
 // A segment from a trace that has been ingested by the X-Ray service. The segment
-// can be compiled from documents uploaded with PutTraceSegments, or an inferred
-// segment for a downstream service, generated from a subsegment sent by the
-// service that called it.
+// can be compiled from documents uploaded with PutTraceSegments (https://docs.aws.amazon.com/xray/latest/api/API_PutTraceSegments.html),
+// or an inferred segment for a downstream service, generated from a subsegment
+// sent by the service that called it.
 //
-// For the full segment document schema, see AWS X-Ray Segment Documents (https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
-// in the AWS X-Ray Developer Guide.
+// For the full segment document schema, see Amazon Web Services X-Ray Segment
+// Documents (https://docs.aws.amazon.com/xray/latest/devguide/xray-api-segmentdocuments.html)
+// in the Amazon Web Services X-Ray Developer Guide.
 type Segment struct {
 	_ struct{} `type:"structure"`
 
@@ -7655,7 +7666,7 @@ func (s *Segment) SetId(v string) *Segment {
 type Service struct {
 	_ struct{} `type:"structure"`
 
-	// Identifier of the AWS account in which the service runs.
+	// Identifier of the Amazon Web Services account in which the service runs.
 	AccountId *string `type:"string"`
 
 	// A histogram that maps the spread of service durations.
@@ -7693,13 +7704,14 @@ type Service struct {
 
 	// The type of service.
 	//
-	//    * AWS Resource - The type of an AWS resource. For example, AWS::EC2::Instance
-	//    for an application running on Amazon EC2 or AWS::DynamoDB::Table for an
-	//    Amazon DynamoDB table that the application used.
+	//    * Amazon Web Services Resource - The type of an Amazon Web Services resource.
+	//    For example, AWS::EC2::Instance for an application running on Amazon EC2
+	//    or AWS::DynamoDB::Table for an Amazon DynamoDB table that the application
+	//    used.
 	//
-	//    * AWS Service - The type of an AWS service. For example, AWS::DynamoDB
-	//    for downstream calls to Amazon DynamoDB that didn't target a specific
-	//    table.
+	//    * Amazon Web Services Service - The type of an Amazon Web Services service.
+	//    For example, AWS::DynamoDB for downstream calls to Amazon DynamoDB that
+	//    didn't target a specific table.
 	//
 	//    * client - Represents the clients that sent requests to a root service.
 	//
@@ -7901,10 +7913,10 @@ func (s *ServiceStatistics) SetTotalResponseTime(v float64) *ServiceStatistics {
 	return s
 }
 
-// A map that contains tag keys and tag values to attach to an AWS X-Ray group
-// or sampling rule. For more information about ways to use tags, see Tagging
-// AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-// in the AWS General Reference.
+// A map that contains tag keys and tag values to attach to an Amazon Web Services
+// X-Ray group or sampling rule. For more information about ways to use tags,
+// see Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+// in the Amazon Web Services General Reference.
 //
 // The following restrictions apply to tags:
 //
@@ -7912,8 +7924,8 @@ func (s *ServiceStatistics) SetTotalResponseTime(v float64) *ServiceStatistics {
 //
 //    * Tag keys and values are case sensitive.
 //
-//    * Don't use aws: as a prefix for keys; it's reserved for AWS use. You
-//    cannot edit or delete system tags.
+//    * Don't use aws: as a prefix for keys; it's reserved for Amazon Web Services
+//    use. You cannot edit or delete system tags.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -7983,8 +7995,8 @@ type TagResourceInput struct {
 
 	// A map that contains one or more tag keys and tag values to attach to an X-Ray
 	// group or sampling rule. For more information about ways to use tags, see
-	// Tagging AWS resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
-	// in the AWS General Reference.
+	// Tagging Amazon Web Services resources (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html)
+	// in the Amazon Web Services General Reference.
 	//
 	// The following restrictions apply to tags:
 	//
@@ -7999,8 +8011,8 @@ type TagResourceInput struct {
 	//
 	//    * Tag keys and values are case sensitive.
 	//
-	//    * Don't use aws: as a prefix for keys; it's reserved for AWS use. You
-	//    cannot edit or delete system tags.
+	//    * Don't use aws: as a prefix for keys; it's reserved for Amazon Web Services
+	//    use. You cannot edit or delete system tags.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -8334,8 +8346,8 @@ type Trace struct {
 	Id *string `min:"1" type:"string"`
 
 	// LimitExceeded is set to true when the trace has exceeded one of the defined
-	// quotas. For more information about quotas, see AWS X-Ray endpoints and quotas
-	// (https://docs.aws.amazon.com/general/latest/gr/xray.html).
+	// quotas. For more information about quotas, see Amazon Web Services X-Ray
+	// endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/xray.html).
 	LimitExceeded *bool `type:"boolean"`
 
 	// Segment documents for the segments and subsegments that comprise the trace.
@@ -8610,8 +8622,8 @@ func (s *TraceUser) SetUserName(v string) *TraceUser {
 	return s
 }
 
-// Sampling statistics from a call to GetSamplingTargets that X-Ray could not
-// process.
+// Sampling statistics from a call to GetSamplingTargets (https://docs.aws.amazon.com/xray/latest/api/API_GetSamplingTargets.html)
+// that X-Ray could not process.
 type UnprocessedStatistics struct {
 	_ struct{} `type:"structure"`
 

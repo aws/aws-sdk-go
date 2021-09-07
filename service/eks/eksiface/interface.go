@@ -100,6 +100,10 @@ type EKSAPI interface {
 	DeleteNodegroupWithContext(aws.Context, *eks.DeleteNodegroupInput, ...request.Option) (*eks.DeleteNodegroupOutput, error)
 	DeleteNodegroupRequest(*eks.DeleteNodegroupInput) (*request.Request, *eks.DeleteNodegroupOutput)
 
+	DeregisterCluster(*eks.DeregisterClusterInput) (*eks.DeregisterClusterOutput, error)
+	DeregisterClusterWithContext(aws.Context, *eks.DeregisterClusterInput, ...request.Option) (*eks.DeregisterClusterOutput, error)
+	DeregisterClusterRequest(*eks.DeregisterClusterInput) (*request.Request, *eks.DeregisterClusterOutput)
+
 	DescribeAddon(*eks.DescribeAddonInput) (*eks.DescribeAddonOutput, error)
 	DescribeAddonWithContext(aws.Context, *eks.DescribeAddonInput, ...request.Option) (*eks.DescribeAddonOutput, error)
 	DescribeAddonRequest(*eks.DescribeAddonInput) (*request.Request, *eks.DescribeAddonOutput)
@@ -180,6 +184,10 @@ type EKSAPI interface {
 
 	ListUpdatesPages(*eks.ListUpdatesInput, func(*eks.ListUpdatesOutput, bool) bool) error
 	ListUpdatesPagesWithContext(aws.Context, *eks.ListUpdatesInput, func(*eks.ListUpdatesOutput, bool) bool, ...request.Option) error
+
+	RegisterCluster(*eks.RegisterClusterInput) (*eks.RegisterClusterOutput, error)
+	RegisterClusterWithContext(aws.Context, *eks.RegisterClusterInput, ...request.Option) (*eks.RegisterClusterOutput, error)
+	RegisterClusterRequest(*eks.RegisterClusterInput) (*request.Request, *eks.RegisterClusterOutput)
 
 	TagResource(*eks.TagResourceInput) (*eks.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *eks.TagResourceInput, ...request.Option) (*eks.TagResourceOutput, error)

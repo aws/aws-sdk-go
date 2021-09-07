@@ -1,6 +1,6 @@
 {
   "version": "2.0",
-  "service": "<p>AWS Systems Manager Incident Manager is an incident management console designed to help users mitigate and recover from incidents affecting their AWS-hosted applications. An incident is any unplanned interruption or reduction in quality of services. </p> <p>Incident Manager increases incident resolution by notifying responders of impact, highlighting relevant troubleshooting data, and providing collaboration tools to get services back up and running. To achieve the primary goal of reducing the time-to-resolution of critical incidents, Incident Manager automates response plans and enables responder team escalation. </p>",
+  "service": "<p>Systems Manager Incident Manager is an incident management console designed to help users mitigate and recover from incidents affecting their Amazon Web Services-hosted applications. An incident is any unplanned interruption or reduction in quality of services. </p> <p>Incident Manager increases incident resolution by notifying responders of impact, highlighting relevant troubleshooting data, and providing collaboration tools to get services back up and running. To achieve the primary goal of reducing the time-to-resolution of critical incidents, Incident Manager automates response plans and enables responder team escalation. </p>",
   "operations": {
     "AcceptPage": "<p>Used to acknowledge an engagement to a contact channel during an incident.</p>",
     "ActivateContactChannel": "<p>Activates a contact's contact channel. Incident Manager can't engage a contact until the contact channel has been activated.</p>",
@@ -22,7 +22,7 @@
     "ListPagesByEngagement": "<p>Lists the engagements to contact channels that occurred by engaging a contact.</p>",
     "ListTagsForResource": "<p>Lists the tags of an escalation plan or contact.</p>",
     "PutContactPolicy": "<p>Adds a resource to the specified contact or escalation plan.</p>",
-    "SendActivationCode": "<p>Sends an activation code to a contact channel. The contact can use this code to activate the contact channel in the console or with the <code>ActivateChannel</code> action. Incident Manager can't engage a contact channel until it has been activated.</p>",
+    "SendActivationCode": "<p>Sends an activation code to a contact channel. The contact can use this code to activate the contact channel in the console or with the <code>ActivateChannel</code> operation. Incident Manager can't engage a contact channel until it has been activated.</p>",
     "StartEngagement": "<p>Starts an engagement to a contact or escalation plan. The engagement engages each contact specified in the incident.</p>",
     "StopEngagement": "<p>Stops an engagement before it finishes the final stage of the escalation plan or engagement plan. Further contacts aren't engaged.</p>",
     "TagResource": "<p>Tags a contact or escalation plan. You can tag only contacts and escalation plans in the first region of your replication set. </p>",
@@ -60,7 +60,7 @@
       }
     },
     "AccessDeniedException": {
-      "base": "<p>You don't have sufficient access to perform this action.</p>",
+      "base": "<p>You don't have sufficient access to perform this operation.</p>",
       "refs": {
       }
     },
@@ -101,7 +101,7 @@
         "ContactChannel$Name": "<p>The name of the contact channel.</p>",
         "CreateContactChannelRequest$Name": "<p>The name of the contact channel.</p>",
         "GetContactChannelResult$Name": "<p>The name of the contact channel</p>",
-        "UpdateContactChannelRequest$Name": "<p>The name of the contact channel</p>"
+        "UpdateContactChannelRequest$Name": "<p>The name of the contact channel.</p>"
       }
     },
     "ChannelTargetInfo": {
@@ -218,7 +218,7 @@
       }
     },
     "DataEncryptionException": {
-      "base": "<p>The action failed to due an encryption key error.</p>",
+      "base": "<p>The operation failed to due an encryption key error.</p>",
       "refs": {
       }
     },
@@ -341,9 +341,9 @@
     "IdempotencyToken": {
       "base": null,
       "refs": {
-        "CreateContactChannelRequest$IdempotencyToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "CreateContactRequest$IdempotencyToken": "<p>A token ensuring that the action is called only once with the specified details.</p>",
-        "StartEngagementRequest$IdempotencyToken": "<p>A token ensuring that the action is called only once with the specified details.</p>"
+        "CreateContactChannelRequest$IdempotencyToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "CreateContactRequest$IdempotencyToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>",
+        "StartEngagementRequest$IdempotencyToken": "<p>A token ensuring that the operation is called only once with the specified details.</p>"
       }
     },
     "IncidentId": {
@@ -606,7 +606,7 @@
         "ContactChannel$ContactArn": "<p>The ARN of the contact that contains the contact channel.</p>",
         "ContactTargetInfo$ContactId": "<p>The Amazon Resource Name (ARN) of the contact.</p>",
         "CreateContactChannelRequest$ContactId": "<p>The Amazon Resource Name (ARN) of the contact you are adding the contact channel to.</p>",
-        "CreateContactChannelResult$ContactChannelArn": "<p>The ARN of the contact channel.</p>",
+        "CreateContactChannelResult$ContactChannelArn": "<p>The Amazon Resource Name (ARN) of the contact channel.</p>",
         "CreateContactResult$ContactArn": "<p>The Amazon Resource Name (ARN) of the created contact or escalation plan.</p>",
         "DeactivateContactChannelRequest$ContactChannelId": "<p>The Amazon Resource Name (ARN) of the contact channel you're deactivating.</p>",
         "DeleteContactChannelRequest$ContactChannelId": "<p>The Amazon Resource Name (ARN) of the contact channel.</p>",
@@ -765,7 +765,7 @@
       }
     },
     "Target": {
-      "base": "<p>The contact or contact channel that is being engaged.</p>",
+      "base": "<p>The contact or contact channel that's being engaged.</p>",
       "refs": {
         "TargetsList$member": null
       }
@@ -818,7 +818,7 @@
       }
     },
     "ValidationException": {
-      "base": "<p>The input fails to satisfy the constraints specified by an AWS service.</p>",
+      "base": "<p>The input fails to satisfy the constraints specified by an Amazon Web Services service.</p>",
       "refs": {
       }
     },

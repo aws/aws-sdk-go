@@ -290,6 +290,97 @@ func (c *PrometheusService) DescribeWorkspaceWithContext(ctx aws.Context, input 
 	return out, req.Send()
 }
 
+const opListTagsForResource = "ListTagsForResource"
+
+// ListTagsForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the ListTagsForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListTagsForResource for more information on using the ListTagsForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListTagsForResourceRequest method.
+//    req, resp := client.ListTagsForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/ListTagsForResource
+func (c *PrometheusService) ListTagsForResourceRequest(input *ListTagsForResourceInput) (req *request.Request, output *ListTagsForResourceOutput) {
+	op := &request.Operation{
+		Name:       opListTagsForResource,
+		HTTPMethod: "GET",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &ListTagsForResourceInput{}
+	}
+
+	output = &ListTagsForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListTagsForResource API operation for Amazon Prometheus Service.
+//
+// Lists the tags you have assigned to the resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation ListTagsForResource for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/ListTagsForResource
+func (c *PrometheusService) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	return out, req.Send()
+}
+
+// ListTagsForResourceWithContext is the same as ListTagsForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListTagsForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
+	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListWorkspaces = "ListWorkspaces"
 
 // ListWorkspacesRequest generates a "aws/request.Request" representing the
@@ -434,6 +525,190 @@ func (c *PrometheusService) ListWorkspacesPagesWithContext(ctx aws.Context, inpu
 	}
 
 	return p.Err()
+}
+
+const opTagResource = "TagResource"
+
+// TagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the TagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See TagResource for more information on using the TagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the TagResourceRequest method.
+//    req, resp := client.TagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/TagResource
+func (c *PrometheusService) TagResourceRequest(input *TagResourceInput) (req *request.Request, output *TagResourceOutput) {
+	op := &request.Operation{
+		Name:       opTagResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &TagResourceInput{}
+	}
+
+	output = &TagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// TagResource API operation for Amazon Prometheus Service.
+//
+// Creates tags for the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation TagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/TagResource
+func (c *PrometheusService) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	return out, req.Send()
+}
+
+// TagResourceWithContext is the same as TagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See TagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) TagResourceWithContext(ctx aws.Context, input *TagResourceInput, opts ...request.Option) (*TagResourceOutput, error) {
+	req, out := c.TagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUntagResource = "UntagResource"
+
+// UntagResourceRequest generates a "aws/request.Request" representing the
+// client's request for the UntagResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UntagResource for more information on using the UntagResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UntagResourceRequest method.
+//    req, resp := client.UntagResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/UntagResource
+func (c *PrometheusService) UntagResourceRequest(input *UntagResourceInput) (req *request.Request, output *UntagResourceOutput) {
+	op := &request.Operation{
+		Name:       opUntagResource,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/tags/{resourceArn}",
+	}
+
+	if input == nil {
+		input = &UntagResourceInput{}
+	}
+
+	output = &UntagResourceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UntagResource API operation for Amazon Prometheus Service.
+//
+// Deletes tags from the specified resource.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation UntagResource for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/UntagResource
+func (c *PrometheusService) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	return out, req.Send()
+}
+
+// UntagResourceWithContext is the same as UntagResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UntagResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) UntagResourceWithContext(ctx aws.Context, input *UntagResourceInput, opts ...request.Option) (*UntagResourceOutput, error) {
+	req, out := c.UntagResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opUpdateWorkspaceAlias = "UpdateWorkspaceAlias"
@@ -669,6 +944,9 @@ type CreateWorkspaceInput struct {
 	// Optional, unique, case-sensitive, user-provided identifier to ensure the
 	// idempotency of the request.
 	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// Optional, user-provided tags for this workspace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 }
 
 // String returns the string representation
@@ -709,6 +987,12 @@ func (s *CreateWorkspaceInput) SetClientToken(v string) *CreateWorkspaceInput {
 	return s
 }
 
+// SetTags sets the Tags field's value.
+func (s *CreateWorkspaceInput) SetTags(v map[string]*string) *CreateWorkspaceInput {
+	s.Tags = v
+	return s
+}
+
 // Represents the output of a CreateWorkspace operation.
 type CreateWorkspaceOutput struct {
 	_ struct{} `type:"structure"`
@@ -722,6 +1006,9 @@ type CreateWorkspaceOutput struct {
 	//
 	// Status is a required field
 	Status *WorkspaceStatus `locationName:"status" type:"structure" required:"true"`
+
+	// The tags of this workspace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
 
 	// The generated ID of the workspace that was just created.
 	//
@@ -748,6 +1035,12 @@ func (s *CreateWorkspaceOutput) SetArn(v string) *CreateWorkspaceOutput {
 // SetStatus sets the Status field's value.
 func (s *CreateWorkspaceOutput) SetStatus(v *WorkspaceStatus) *CreateWorkspaceOutput {
 	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateWorkspaceOutput) SetTags(v map[string]*string) *CreateWorkspaceOutput {
+	s.Tags = v
 	return s
 }
 
@@ -952,6 +1245,70 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListTagsForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListTagsForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListTagsForResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *ListTagsForResourceInput) SetResourceArn(v string) *ListTagsForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+type ListTagsForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of tags assigned to the resource.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation
+func (s ListTagsForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListTagsForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetTags sets the Tags field's value.
+func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
+	s.Tags = v
+	return s
 }
 
 // Represents the input of a ListWorkspaces operation.
@@ -1193,6 +1550,75 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type TagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// The list of tags assigned to the resource.
+	//
+	// Tags is a required field
+	Tags map[string]*string `locationName:"tags" type:"map" required:"true"`
+}
+
+// String returns the string representation
+func (s TagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *TagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "TagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.Tags == nil {
+		invalidParams.Add(request.NewErrParamRequired("Tags"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *TagResourceInput) SetResourceArn(v string) *TagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
+	s.Tags = v
+	return s
+}
+
+type TagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s TagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s TagResourceOutput) GoString() string {
+	return s.String()
+}
+
 // Request was denied due to request throttling.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
@@ -1257,6 +1683,75 @@ func (s *ThrottlingException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ThrottlingException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type UntagResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the resource.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
+
+	// One or more tag keys
+	//
+	// TagKeys is a required field
+	TagKeys []*string `location:"querystring" locationName:"tagKeys" type:"list" required:"true"`
+}
+
+// String returns the string representation
+func (s UntagResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UntagResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UntagResourceInput"}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.ResourceArn != nil && len(*s.ResourceArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ResourceArn", 1))
+	}
+	if s.TagKeys == nil {
+		invalidParams.Add(request.NewErrParamRequired("TagKeys"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *UntagResourceInput) SetResourceArn(v string) *UntagResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetTagKeys sets the TagKeys field's value.
+func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
+	s.TagKeys = v
+	return s
+}
+
+type UntagResourceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s UntagResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UntagResourceOutput) GoString() string {
+	return s.String()
 }
 
 // Represents the input of an UpdateWorkspaceAlias operation.
@@ -1469,6 +1964,9 @@ type WorkspaceDescription struct {
 	// Status is a required field
 	Status *WorkspaceStatus `locationName:"status" type:"structure" required:"true"`
 
+	// The tags of this workspace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
 	// Unique string identifying this workspace.
 	//
 	// WorkspaceId is a required field
@@ -1512,6 +2010,12 @@ func (s *WorkspaceDescription) SetPrometheusEndpoint(v string) *WorkspaceDescrip
 // SetStatus sets the Status field's value.
 func (s *WorkspaceDescription) SetStatus(v *WorkspaceStatus) *WorkspaceDescription {
 	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *WorkspaceDescription) SetTags(v map[string]*string) *WorkspaceDescription {
+	s.Tags = v
 	return s
 }
 
@@ -1569,6 +2073,9 @@ type WorkspaceSummary struct {
 	// Status is a required field
 	Status *WorkspaceStatus `locationName:"status" type:"structure" required:"true"`
 
+	// The tags of this workspace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
 	// Unique string identifying this workspace.
 	//
 	// WorkspaceId is a required field
@@ -1606,6 +2113,12 @@ func (s *WorkspaceSummary) SetCreatedAt(v time.Time) *WorkspaceSummary {
 // SetStatus sets the Status field's value.
 func (s *WorkspaceSummary) SetStatus(v *WorkspaceStatus) *WorkspaceSummary {
 	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *WorkspaceSummary) SetTags(v map[string]*string) *WorkspaceSummary {
+	s.Tags = v
 	return s
 }
 

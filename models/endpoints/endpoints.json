@@ -1028,6 +1028,13 @@
           "us-west-2" : { }
         }
       },
+      "braket" : {
+        "endpoints" : {
+          "us-east-1" : { },
+          "us-west-1" : { },
+          "us-west-2" : { }
+        }
+      },
       "budgets" : {
         "endpoints" : {
           "aws-global" : {

@@ -119,6 +119,8 @@ const (
 
 	// ErrCodeDefaultUserAssociatedToUserGroupFault for service response error code
 	// "DefaultUserAssociatedToUserGroup".
+	//
+	// The default user assigned to the user group.
 	ErrCodeDefaultUserAssociatedToUserGroupFault = "DefaultUserAssociatedToUserGroup"
 
 	// ErrCodeDefaultUserRequired for service response error code

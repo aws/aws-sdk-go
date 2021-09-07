@@ -69,7 +69,7 @@ func (c *SSMContacts) AcceptPageRequest(input *AcceptPageInput) (req *request.Re
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -81,7 +81,8 @@ func (c *SSMContacts) AcceptPageRequest(input *AcceptPageInput) (req *request.Re
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/AcceptPage
 func (c *SSMContacts) AcceptPage(input *AcceptPageInput) (*AcceptPageOutput, error) {
@@ -162,7 +163,7 @@ func (c *SSMContacts) ActivateContactChannelRequest(input *ActivateContactChanne
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -174,7 +175,8 @@ func (c *SSMContacts) ActivateContactChannelRequest(input *ActivateContactChanne
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/ActivateContactChannel
 func (c *SSMContacts) ActivateContactChannel(input *ActivateContactChannelInput) (*ActivateContactChannelOutput, error) {
@@ -255,7 +257,7 @@ func (c *SSMContacts) CreateContactRequest(input *CreateContactInput) (req *requ
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * ConflictException
 //   Updating or deleting a resource causes an inconsistent state.
@@ -270,10 +272,11 @@ func (c *SSMContacts) CreateContactRequest(input *CreateContactInput) (req *requ
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/CreateContact
 func (c *SSMContacts) CreateContact(input *CreateContactInput) (*CreateContactOutput, error) {
@@ -353,13 +356,13 @@ func (c *SSMContacts) CreateContactChannelRequest(input *CreateContactChannelInp
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * ConflictException
 //   Updating or deleting a resource causes an inconsistent state.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -368,7 +371,8 @@ func (c *SSMContacts) CreateContactChannelRequest(input *CreateContactChannelInp
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/CreateContactChannel
 func (c *SSMContacts) CreateContactChannel(input *CreateContactChannelInput) (*CreateContactChannelOutput, error) {
@@ -449,7 +453,7 @@ func (c *SSMContacts) DeactivateContactChannelRequest(input *DeactivateContactCh
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -461,7 +465,8 @@ func (c *SSMContacts) DeactivateContactChannelRequest(input *DeactivateContactCh
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/DeactivateContactChannel
 func (c *SSMContacts) DeactivateContactChannel(input *DeactivateContactChannelInput) (*DeactivateContactChannelOutput, error) {
@@ -545,7 +550,7 @@ func (c *SSMContacts) DeleteContactRequest(input *DeleteContactInput) (req *requ
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -557,7 +562,8 @@ func (c *SSMContacts) DeleteContactRequest(input *DeleteContactInput) (req *requ
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/DeleteContact
 func (c *SSMContacts) DeleteContact(input *DeleteContactInput) (*DeleteContactOutput, error) {
@@ -640,7 +646,7 @@ func (c *SSMContacts) DeleteContactChannelRequest(input *DeleteContactChannelInp
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -652,7 +658,8 @@ func (c *SSMContacts) DeleteContactChannelRequest(input *DeleteContactChannelInp
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/DeleteContactChannel
 func (c *SSMContacts) DeleteContactChannel(input *DeleteContactChannelInput) (*DeleteContactChannelOutput, error) {
@@ -733,10 +740,10 @@ func (c *SSMContacts) DescribeEngagementRequest(input *DescribeEngagementInput) 
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -748,7 +755,8 @@ func (c *SSMContacts) DescribeEngagementRequest(input *DescribeEngagementInput) 
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/DescribeEngagement
 func (c *SSMContacts) DescribeEngagement(input *DescribeEngagementInput) (*DescribeEngagementOutput, error) {
@@ -827,10 +835,10 @@ func (c *SSMContacts) DescribePageRequest(input *DescribePageInput) (req *reques
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -842,7 +850,8 @@ func (c *SSMContacts) DescribePageRequest(input *DescribePageInput) (req *reques
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/DescribePage
 func (c *SSMContacts) DescribePage(input *DescribePageInput) (*DescribePageOutput, error) {
@@ -921,7 +930,7 @@ func (c *SSMContacts) GetContactRequest(input *GetContactInput) (req *request.Re
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -933,10 +942,11 @@ func (c *SSMContacts) GetContactRequest(input *GetContactInput) (req *request.Re
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/GetContact
 func (c *SSMContacts) GetContact(input *GetContactInput) (*GetContactOutput, error) {
@@ -1015,10 +1025,10 @@ func (c *SSMContacts) GetContactChannelRequest(input *GetContactChannelInput) (r
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -1030,7 +1040,8 @@ func (c *SSMContacts) GetContactChannelRequest(input *GetContactChannelInput) (r
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/GetContactChannel
 func (c *SSMContacts) GetContactChannel(input *GetContactChannelInput) (*GetContactChannelOutput, error) {
@@ -1110,7 +1121,7 @@ func (c *SSMContacts) GetContactPolicyRequest(input *GetContactPolicyInput) (req
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -1122,7 +1133,8 @@ func (c *SSMContacts) GetContactPolicyRequest(input *GetContactPolicyInput) (req
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/GetContactPolicy
 func (c *SSMContacts) GetContactPolicy(input *GetContactPolicyInput) (*GetContactPolicyOutput, error) {
@@ -1207,10 +1219,10 @@ func (c *SSMContacts) ListContactChannelsRequest(input *ListContactChannelsInput
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -1222,7 +1234,8 @@ func (c *SSMContacts) ListContactChannelsRequest(input *ListContactChannelsInput
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/ListContactChannels
 func (c *SSMContacts) ListContactChannels(input *ListContactChannelsInput) (*ListContactChannelsOutput, error) {
@@ -1359,7 +1372,7 @@ func (c *SSMContacts) ListContactsRequest(input *ListContactsInput) (req *reques
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -1368,7 +1381,8 @@ func (c *SSMContacts) ListContactsRequest(input *ListContactsInput) (req *reques
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/ListContacts
 func (c *SSMContacts) ListContacts(input *ListContactsInput) (*ListContactsOutput, error) {
@@ -1505,7 +1519,7 @@ func (c *SSMContacts) ListEngagementsRequest(input *ListEngagementsInput) (req *
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -1514,7 +1528,8 @@ func (c *SSMContacts) ListEngagementsRequest(input *ListEngagementsInput) (req *
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/ListEngagements
 func (c *SSMContacts) ListEngagements(input *ListEngagementsInput) (*ListEngagementsOutput, error) {
@@ -1651,7 +1666,7 @@ func (c *SSMContacts) ListPageReceiptsRequest(input *ListPageReceiptsInput) (req
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -1663,7 +1678,8 @@ func (c *SSMContacts) ListPageReceiptsRequest(input *ListPageReceiptsInput) (req
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/ListPageReceipts
 func (c *SSMContacts) ListPageReceipts(input *ListPageReceiptsInput) (*ListPageReceiptsOutput, error) {
@@ -1800,7 +1816,7 @@ func (c *SSMContacts) ListPagesByContactRequest(input *ListPagesByContactInput) 
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -1812,7 +1828,8 @@ func (c *SSMContacts) ListPagesByContactRequest(input *ListPagesByContactInput) 
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/ListPagesByContact
 func (c *SSMContacts) ListPagesByContact(input *ListPagesByContactInput) (*ListPagesByContactOutput, error) {
@@ -1949,7 +1966,7 @@ func (c *SSMContacts) ListPagesByEngagementRequest(input *ListPagesByEngagementI
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -1961,7 +1978,8 @@ func (c *SSMContacts) ListPagesByEngagementRequest(input *ListPagesByEngagementI
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/ListPagesByEngagement
 func (c *SSMContacts) ListPagesByEngagement(input *ListPagesByEngagementInput) (*ListPagesByEngagementOutput, error) {
@@ -2092,7 +2110,7 @@ func (c *SSMContacts) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -2101,7 +2119,8 @@ func (c *SSMContacts) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //   Request references a resource that doesn't exist.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -2184,13 +2203,14 @@ func (c *SSMContacts) PutContactPolicyRequest(input *PutContactPolicyInput) (req
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * ConflictException
 //   Updating or deleting a resource causes an inconsistent state.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   Request references a resource that doesn't exist.
@@ -2270,7 +2290,7 @@ func (c *SSMContacts) SendActivationCodeRequest(input *SendActivationCodeInput) 
 //
 // Sends an activation code to a contact channel. The contact can use this code
 // to activate the contact channel in the console or with the ActivateChannel
-// action. Incident Manager can't engage a contact channel until it has been
+// operation. Incident Manager can't engage a contact channel until it has been
 // activated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2282,10 +2302,10 @@ func (c *SSMContacts) SendActivationCodeRequest(input *SendActivationCodeInput) 
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -2300,7 +2320,8 @@ func (c *SSMContacts) SendActivationCodeRequest(input *SendActivationCodeInput) 
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/SendActivationCode
 func (c *SSMContacts) SendActivationCode(input *SendActivationCodeInput) (*SendActivationCodeOutput, error) {
@@ -2380,10 +2401,10 @@ func (c *SSMContacts) StartEngagementRequest(input *StartEngagementInput) (req *
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -2395,7 +2416,8 @@ func (c *SSMContacts) StartEngagementRequest(input *StartEngagementInput) (req *
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/StartEngagement
 func (c *SSMContacts) StartEngagement(input *StartEngagementInput) (*StartEngagementOutput, error) {
@@ -2476,10 +2498,11 @@ func (c *SSMContacts) StopEngagementRequest(input *StopEngagementInput) (req *re
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * ResourceNotFoundException
 //   Request references a resource that doesn't exist.
@@ -2569,7 +2592,7 @@ func (c *SSMContacts) TagResourceRequest(input *TagResourceInput) (req *request.
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -2584,7 +2607,8 @@ func (c *SSMContacts) TagResourceRequest(input *TagResourceInput) (req *request.
 //   Request would cause a service quota to be exceeded.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/TagResource
 func (c *SSMContacts) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -2664,7 +2688,7 @@ func (c *SSMContacts) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * ThrottlingException
 //   The request was denied due to request throttling.
@@ -2673,7 +2697,8 @@ func (c *SSMContacts) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //   Request references a resource that doesn't exist.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -2756,7 +2781,7 @@ func (c *SSMContacts) UpdateContactRequest(input *UpdateContactInput) (req *requ
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -2771,10 +2796,11 @@ func (c *SSMContacts) UpdateContactRequest(input *UpdateContactInput) (req *requ
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/UpdateContact
 func (c *SSMContacts) UpdateContact(input *UpdateContactInput) (*UpdateContactOutput, error) {
@@ -2854,13 +2880,13 @@ func (c *SSMContacts) UpdateContactChannelRequest(input *UpdateContactChannelInp
 //
 // Returned Error Types:
 //   * AccessDeniedException
-//   You don't have sufficient access to perform this action.
+//   You don't have sufficient access to perform this operation.
 //
 //   * ConflictException
 //   Updating or deleting a resource causes an inconsistent state.
 //
 //   * DataEncryptionException
-//   The action failed to due an encryption key error.
+//   The operation failed to due an encryption key error.
 //
 //   * InternalServerException
 //   Unexpected error occurred while processing the request.
@@ -2872,7 +2898,8 @@ func (c *SSMContacts) UpdateContactChannelRequest(input *UpdateContactChannelInp
 //   The request was denied due to request throttling.
 //
 //   * ValidationException
-//   The input fails to satisfy the constraints specified by an AWS service.
+//   The input fails to satisfy the constraints specified by an Amazon Web Services
+//   service.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/ssm-contacts-2021-05-03/UpdateContactChannel
 func (c *SSMContacts) UpdateContactChannel(input *UpdateContactChannelInput) (*UpdateContactChannelOutput, error) {
@@ -3022,7 +3049,7 @@ func (s AcceptPageOutput) GoString() string {
 	return s.String()
 }
 
-// You don't have sufficient access to perform this action.
+// You don't have sufficient access to perform this operation.
 type AccessDeniedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -3541,7 +3568,8 @@ type CreateContactChannelInput struct {
 	// DeliveryAddress is a required field
 	DeliveryAddress *ContactChannelAddress `type:"structure" required:"true"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token ensuring that the operation is called only once with the specified
+	// details.
 	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
 
 	// The name of the contact channel.
@@ -3643,7 +3671,7 @@ func (s *CreateContactChannelInput) SetType(v string) *CreateContactChannelInput
 type CreateContactChannelOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the contact channel.
+	// The Amazon Resource Name (ARN) of the contact channel.
 	//
 	// ContactChannelArn is a required field
 	ContactChannelArn *string `min:"1" type:"string" required:"true"`
@@ -3677,7 +3705,8 @@ type CreateContactInput struct {
 	// The full name of the contact or escalation plan.
 	DisplayName *string `type:"string"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token ensuring that the operation is called only once with the specified
+	// details.
 	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
 
 	// A list of stages. A contact has an engagement plan with stages that contact
@@ -3805,7 +3834,7 @@ func (s *CreateContactOutput) SetContactArn(v string) *CreateContactOutput {
 	return s
 }
 
-// The action failed to due an encryption key error.
+// The operation failed to due an encryption key error.
 type DataEncryptionException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5967,7 +5996,8 @@ type StartEngagementInput struct {
 	// Content is a required field
 	Content *string `min:"1" type:"string" required:"true"`
 
-	// A token ensuring that the action is called only once with the specified details.
+	// A token ensuring that the operation is called only once with the specified
+	// details.
 	IdempotencyToken *string `type:"string" idempotencyToken:"true"`
 
 	// The ARN of the incident that the engagement is part of.
@@ -6305,7 +6335,7 @@ func (s TagResourceOutput) GoString() string {
 	return s.String()
 }
 
-// The contact or contact channel that is being engaged.
+// The contact or contact channel that's being engaged.
 type Target struct {
 	_ struct{} `type:"structure"`
 
@@ -6537,7 +6567,7 @@ type UpdateContactChannelInput struct {
 	// channel.
 	DeliveryAddress *ContactChannelAddress `type:"structure"`
 
-	// The name of the contact channel
+	// The name of the contact channel.
 	Name *string `min:"1" type:"string"`
 }
 
@@ -6687,7 +6717,8 @@ func (s UpdateContactOutput) GoString() string {
 	return s.String()
 }
 
-// The input fails to satisfy the constraints specified by an AWS service.
+// The input fails to satisfy the constraints specified by an Amazon Web Services
+// service.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`

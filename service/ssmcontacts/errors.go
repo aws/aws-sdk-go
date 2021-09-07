@@ -11,7 +11,7 @@ const (
 	// ErrCodeAccessDeniedException for service response error code
 	// "AccessDeniedException".
 	//
-	// You don't have sufficient access to perform this action.
+	// You don't have sufficient access to perform this operation.
 	ErrCodeAccessDeniedException = "AccessDeniedException"
 
 	// ErrCodeConflictException for service response error code
@@ -23,7 +23,7 @@ const (
 	// ErrCodeDataEncryptionException for service response error code
 	// "DataEncryptionException".
 	//
-	// The action failed to due an encryption key error.
+	// The operation failed to due an encryption key error.
 	ErrCodeDataEncryptionException = "DataEncryptionException"
 
 	// ErrCodeInternalServerException for service response error code
@@ -53,7 +53,8 @@ const (
 	// ErrCodeValidationException for service response error code
 	// "ValidationException".
 	//
-	// The input fails to satisfy the constraints specified by an AWS service.
+	// The input fails to satisfy the constraints specified by an Amazon Web Services
+	// service.
 	ErrCodeValidationException = "ValidationException"
 )
 

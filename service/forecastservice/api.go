@@ -4986,6 +4986,11 @@ type CreatePredictorInput struct {
 	//    * arn:aws:forecast:::algorithm/Prophet
 	AlgorithmArn *string `type:"string"`
 
+	//
+	// The LatencyOptimized AutoML override strategy is only available in private
+	// beta. Contact AWS Support or your account manager to learn more about access
+	// privileges.
+	//
 	// Used to overide the default AutoML strategy, which is to optimize predictor
 	// accuracy. To apply an AutoML strategy that minimizes training time, use LatencyOptimized.
 	//
@@ -5040,6 +5045,9 @@ type CreatePredictorInput struct {
 	//
 	// InputDataConfig is a required field
 	InputDataConfig *InputDataConfig `type:"structure" required:"true"`
+
+	// The accuracy metric used to optimize the predictor.
+	OptimizationMetric *string `type:"string" enum:"OptimizationMetric"`
 
 	// Whether to perform AutoML. When Amazon Forecast performs AutoML, it evaluates
 	// the algorithms it provides and chooses the best algorithm and configuration
@@ -5234,6 +5242,12 @@ func (s *CreatePredictorInput) SetHPOConfig(v *HyperParameterTuningJobConfig) *C
 // SetInputDataConfig sets the InputDataConfig field's value.
 func (s *CreatePredictorInput) SetInputDataConfig(v *InputDataConfig) *CreatePredictorInput {
 	s.InputDataConfig = v
+	return s
+}
+
+// SetOptimizationMetric sets the OptimizationMetric field's value.
+func (s *CreatePredictorInput) SetOptimizationMetric(v string) *CreatePredictorInput {
+	s.OptimizationMetric = &v
 	return s
 }
 
@@ -7056,6 +7070,11 @@ type DescribePredictorOutput struct {
 	// When PerformAutoML is specified, the ARN of the chosen algorithm.
 	AutoMLAlgorithmArns []*string `type:"list"`
 
+	//
+	// The LatencyOptimized AutoML override strategy is only available in private
+	// beta. Contact AWS Support or your account manager to learn more about access
+	// privileges.
+	//
 	// The AutoML strategy used to train the predictor. Unless LatencyOptimized
 	// is specified, the AutoML strategy optimizes predictor accuracy.
 	//
@@ -7115,6 +7134,9 @@ type DescribePredictorOutput struct {
 
 	// If an error occurred, an informational message about the error.
 	Message *string `type:"string"`
+
+	// The accuracy metric used to optimize the predictor.
+	OptimizationMetric *string `type:"string" enum:"OptimizationMetric"`
 
 	// Whether the predictor is set to perform AutoML.
 	PerformAutoML *bool `type:"boolean"`
@@ -7254,6 +7276,12 @@ func (s *DescribePredictorOutput) SetMessage(v string) *DescribePredictorOutput 
 	return s
 }
 
+// SetOptimizationMetric sets the OptimizationMetric field's value.
+func (s *DescribePredictorOutput) SetOptimizationMetric(v string) *DescribePredictorOutput {
+	s.OptimizationMetric = &v
+	return s
+}
+
 // SetPerformAutoML sets the PerformAutoML field's value.
 func (s *DescribePredictorOutput) SetPerformAutoML(v bool) *DescribePredictorOutput {
 	s.PerformAutoML = &v
@@ -7360,8 +7388,14 @@ func (s *EncryptionConfig) SetRoleArn(v string) *EncryptionConfig {
 type ErrorMetric struct {
 	_ struct{} `type:"structure"`
 
-	// The Forecast type used to compute WAPE and RMSE.
+	// The Forecast type used to compute WAPE, MAPE, MASE, and RMSE.
 	ForecastType *string `type:"string"`
+
+	// The Mean Absolute Percentage Error (MAPE)
+	MAPE *float64 `type:"double"`
+
+	// The Mean Absolute Scaled Error (MASE)
+	MASE *float64 `type:"double"`
 
 	// The root-mean-square error (RMSE).
 	RMSE *float64 `type:"double"`
@@ -7383,6 +7417,18 @@ func (s ErrorMetric) GoString() string {
 // SetForecastType sets the ForecastType field's value.
 func (s *ErrorMetric) SetForecastType(v string) *ErrorMetric {
 	s.ForecastType = &v
+	return s
+}
+
+// SetMAPE sets the MAPE field's value.
+func (s *ErrorMetric) SetMAPE(v float64) *ErrorMetric {
+	s.MAPE = &v
+	return s
+}
+
+// SetMASE sets the MASE field's value.
+func (s *ErrorMetric) SetMASE(v float64) *ErrorMetric {
+	s.MASE = &v
 	return s
 }
 
@@ -8093,11 +8139,19 @@ func (s *GetAccuracyMetricsInput) SetPredictorArn(v string) *GetAccuracyMetricsI
 type GetAccuracyMetricsOutput struct {
 	_ struct{} `type:"structure"`
 
+	//
+	// The LatencyOptimized AutoML override strategy is only available in private
+	// beta. Contact AWS Support or your account manager to learn more about access
+	// privileges.
+	//
 	// The AutoML strategy used to train the predictor. Unless LatencyOptimized
 	// is specified, the AutoML strategy optimizes predictor accuracy.
 	//
 	// This parameter is only valid for predictors trained using AutoML.
 	AutoMLOverrideStrategy *string `type:"string" enum:"AutoMLOverrideStrategy"`
+
+	// The accuracy metric used to optimize the predictor.
+	OptimizationMetric *string `type:"string" enum:"OptimizationMetric"`
 
 	// An array of results from evaluating the predictor.
 	PredictorEvaluationResults []*EvaluationResult `type:"list"`
@@ -8116,6 +8170,12 @@ func (s GetAccuracyMetricsOutput) GoString() string {
 // SetAutoMLOverrideStrategy sets the AutoMLOverrideStrategy field's value.
 func (s *GetAccuracyMetricsOutput) SetAutoMLOverrideStrategy(v string) *GetAccuracyMetricsOutput {
 	s.AutoMLOverrideStrategy = &v
+	return s
+}
+
+// SetOptimizationMetric sets the OptimizationMetric field's value.
+func (s *GetAccuracyMetricsOutput) SetOptimizationMetric(v string) *GetAccuracyMetricsOutput {
+	s.OptimizationMetric = &v
 	return s
 }
 
@@ -9355,8 +9415,12 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type Metrics struct {
 	_ struct{} `type:"structure"`
 
-	// Provides detailed error metrics on forecast type, root-mean square-error
-	// (RMSE), and weighted average percentage error (WAPE).
+	// The average value of all weighted quantile losses.
+	AverageWeightedQuantileLoss *float64 `type:"double"`
+
+	// Provides detailed error metrics for each forecast type. Metrics include root-mean
+	// square-error (RMSE), mean absolute percentage error (MAPE), mean absolute
+	// scaled error (MASE), and weighted average percentage error (WAPE).
 	ErrorMetrics []*ErrorMetric `type:"list"`
 
 	// The root-mean-square error (RMSE).
@@ -9378,6 +9442,12 @@ func (s Metrics) String() string {
 // GoString returns the string representation
 func (s Metrics) GoString() string {
 	return s.String()
+}
+
+// SetAverageWeightedQuantileLoss sets the AverageWeightedQuantileLoss field's value.
+func (s *Metrics) SetAverageWeightedQuantileLoss(v float64) *Metrics {
+	s.AverageWeightedQuantileLoss = &v
+	return s
 }
 
 // SetErrorMetrics sets the ErrorMetrics field's value.
@@ -11122,6 +11192,34 @@ func FilterConditionString_Values() []string {
 	return []string{
 		FilterConditionStringIs,
 		FilterConditionStringIsNot,
+	}
+}
+
+const (
+	// OptimizationMetricWape is a OptimizationMetric enum value
+	OptimizationMetricWape = "WAPE"
+
+	// OptimizationMetricRmse is a OptimizationMetric enum value
+	OptimizationMetricRmse = "RMSE"
+
+	// OptimizationMetricAverageWeightedQuantileLoss is a OptimizationMetric enum value
+	OptimizationMetricAverageWeightedQuantileLoss = "AverageWeightedQuantileLoss"
+
+	// OptimizationMetricMase is a OptimizationMetric enum value
+	OptimizationMetricMase = "MASE"
+
+	// OptimizationMetricMape is a OptimizationMetric enum value
+	OptimizationMetricMape = "MAPE"
+)
+
+// OptimizationMetric_Values returns all elements of the OptimizationMetric enum
+func OptimizationMetric_Values() []string {
+	return []string{
+		OptimizationMetricWape,
+		OptimizationMetricRmse,
+		OptimizationMetricAverageWeightedQuantileLoss,
+		OptimizationMetricMase,
+		OptimizationMetricMape,
 	}
 }
 
