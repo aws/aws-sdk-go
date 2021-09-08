@@ -1,3 +1,11 @@
+Release v1.40.39 (2021-09-08)
+===
+
+### Service Client Updates
+* `service/kafka`: Updates service API and documentation
+* `service/opensearch`: Adds new service
+* `service/ram`: Updates service documentation
+
 Release v1.40.38 (2021-09-07)
 ===
 
