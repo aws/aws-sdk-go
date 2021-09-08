@@ -3191,6 +3191,104 @@ func (c *Kafka) UpdateMonitoringWithContext(ctx aws.Context, input *UpdateMonito
 	return out, req.Send()
 }
 
+const opUpdateSecurity = "UpdateSecurity"
+
+// UpdateSecurityRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateSecurity operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateSecurity for more information on using the UpdateSecurity
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateSecurityRequest method.
+//    req, resp := client.UpdateSecurityRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateSecurity
+func (c *Kafka) UpdateSecurityRequest(input *UpdateSecurityInput) (req *request.Request, output *UpdateSecurityOutput) {
+	op := &request.Operation{
+		Name:       opUpdateSecurity,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/v1/clusters/{clusterArn}/security",
+	}
+
+	if input == nil {
+		input = &UpdateSecurityInput{}
+	}
+
+	output = &UpdateSecurityOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateSecurity API operation for Managed Streaming for Kafka.
+//
+// You can use this operation to update the encrypting and authentication settings
+// for an existing cluster.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Managed Streaming for Kafka's
+// API operation UpdateSecurity for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Returns information about an error.
+//
+//   * UnauthorizedException
+//   Returns information about an error.
+//
+//   * InternalServerErrorException
+//   Returns information about an error.
+//
+//   * ForbiddenException
+//   Returns information about an error.
+//
+//   * NotFoundException
+//   Returns information about an error.
+//
+//   * ServiceUnavailableException
+//   Returns information about an error.
+//
+//   * TooManyRequestsException
+//   Returns information about an error.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/kafka-2018-11-14/UpdateSecurity
+func (c *Kafka) UpdateSecurity(input *UpdateSecurityInput) (*UpdateSecurityOutput, error) {
+	req, out := c.UpdateSecurityRequest(input)
+	return out, req.Send()
+}
+
+// UpdateSecurityWithContext is the same as UpdateSecurity with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateSecurity for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Kafka) UpdateSecurityWithContext(ctx aws.Context, input *UpdateSecurityInput, opts ...request.Option) (*UpdateSecurityOutput, error) {
+	req, out := c.UpdateSecurityRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 // Returns information about an error.
 type BadRequestException struct {
 	_            struct{}                  `type:"structure"`
@@ -3764,6 +3862,9 @@ type ClientAuthentication struct {
 
 	// Details for ClientAuthentication using TLS.
 	Tls *Tls `locationName:"tls" type:"structure"`
+
+	// Contains information about unauthenticated traffic to the cluster.
+	Unauthenticated *Unauthenticated `locationName:"unauthenticated" type:"structure"`
 }
 
 // String returns the string representation
@@ -3785,6 +3886,12 @@ func (s *ClientAuthentication) SetSasl(v *Sasl) *ClientAuthentication {
 // SetTls sets the Tls field's value.
 func (s *ClientAuthentication) SetTls(v *Tls) *ClientAuthentication {
 	s.Tls = v
+	return s
+}
+
+// SetUnauthenticated sets the Unauthenticated field's value.
+func (s *ClientAuthentication) SetUnauthenticated(v *Unauthenticated) *ClientAuthentication {
+	s.Unauthenticated = v
 	return s
 }
 
@@ -6699,16 +6806,20 @@ type MutableClusterInfo struct {
 	// Specifies the size of the EBS volume and the ID of the associated broker.
 	BrokerEBSVolumeInfo []*BrokerEBSVolumeInfo `locationName:"brokerEBSVolumeInfo" type:"list"`
 
+	// Includes all client authentication related information.
+	ClientAuthentication *ClientAuthentication `locationName:"clientAuthentication" type:"structure"`
+
 	// Information about the changes in the configuration of the brokers.
 	ConfigurationInfo *ConfigurationInfo `locationName:"configurationInfo" type:"structure"`
+
+	// Includes all encryption-related information.
+	EncryptionInfo *EncryptionInfo `locationName:"encryptionInfo" type:"structure"`
 
 	// Specifies which Apache Kafka metrics Amazon MSK gathers and sends to Amazon
 	// CloudWatch for this cluster.
 	EnhancedMonitoring *string `locationName:"enhancedMonitoring" type:"string" enum:"EnhancedMonitoring"`
 
-	// The Amazon MSK broker type that you want all of the brokers in this cluster
-	// to be.
-	InstanceType *string `locationName:"instanceType" min:"5" type:"string"`
+	InstanceType *string `locationName:"instanceType" type:"string"`
 
 	KafkaVersion *string `locationName:"kafkaVersion" type:"string"`
 
@@ -6738,9 +6849,21 @@ func (s *MutableClusterInfo) SetBrokerEBSVolumeInfo(v []*BrokerEBSVolumeInfo) *M
 	return s
 }
 
+// SetClientAuthentication sets the ClientAuthentication field's value.
+func (s *MutableClusterInfo) SetClientAuthentication(v *ClientAuthentication) *MutableClusterInfo {
+	s.ClientAuthentication = v
+	return s
+}
+
 // SetConfigurationInfo sets the ConfigurationInfo field's value.
 func (s *MutableClusterInfo) SetConfigurationInfo(v *ConfigurationInfo) *MutableClusterInfo {
 	s.ConfigurationInfo = v
+	return s
+}
+
+// SetEncryptionInfo sets the EncryptionInfo field's value.
+func (s *MutableClusterInfo) SetEncryptionInfo(v *EncryptionInfo) *MutableClusterInfo {
+	s.EncryptionInfo = v
 	return s
 }
 
@@ -7305,6 +7428,7 @@ func (s *Sasl) SetScram(v *Scram) *Sasl {
 type Scram struct {
 	_ struct{} `type:"structure"`
 
+	// SASL/SCRAM authentication is enabled or not.
 	Enabled *bool `locationName:"enabled" type:"boolean"`
 }
 
@@ -7495,6 +7619,9 @@ type Tls struct {
 
 	// List of ACM Certificate Authority ARNs.
 	CertificateAuthorityArnList []*string `locationName:"certificateAuthorityArnList" type:"list"`
+
+	// TLS authentication is enabled or not.
+	Enabled *bool `locationName:"enabled" type:"boolean"`
 }
 
 // String returns the string representation
@@ -7510,6 +7637,12 @@ func (s Tls) GoString() string {
 // SetCertificateAuthorityArnList sets the CertificateAuthorityArnList field's value.
 func (s *Tls) SetCertificateAuthorityArnList(v []*string) *Tls {
 	s.CertificateAuthorityArnList = v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *Tls) SetEnabled(v bool) *Tls {
+	s.Enabled = &v
 	return s
 }
 
@@ -7569,6 +7702,31 @@ func (s *TooManyRequestsException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *TooManyRequestsException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains information about unauthenticated traffic to the cluster.
+type Unauthenticated struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies whether you want to enable or disable unauthenticated traffic to
+	// your cluster.
+	Enabled *bool `locationName:"enabled" type:"boolean"`
+}
+
+// String returns the string representation
+func (s Unauthenticated) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Unauthenticated) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *Unauthenticated) SetEnabled(v bool) *Unauthenticated {
+	s.Enabled = &v
+	return s
 }
 
 // Returns information about an error.
@@ -8498,6 +8656,118 @@ func (s *UpdateMonitoringOutput) SetClusterArn(v string) *UpdateMonitoringOutput
 
 // SetClusterOperationArn sets the ClusterOperationArn field's value.
 func (s *UpdateMonitoringOutput) SetClusterOperationArn(v string) *UpdateMonitoringOutput {
+	s.ClusterOperationArn = &v
+	return s
+}
+
+// Request body for UpdateSecurity.
+type UpdateSecurityInput struct {
+	_ struct{} `type:"structure"`
+
+	// Includes all client authentication related information.
+	ClientAuthentication *ClientAuthentication `locationName:"clientAuthentication" type:"structure"`
+
+	// ClusterArn is a required field
+	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
+
+	// You can use the DescribeCluster operation to get the current version of the
+	// cluster. After the security update is complete, the cluster will have a new
+	// version.
+	//
+	// CurrentVersion is a required field
+	CurrentVersion *string `locationName:"currentVersion" type:"string" required:"true"`
+
+	// Includes all encryption-related information.
+	EncryptionInfo *EncryptionInfo `locationName:"encryptionInfo" type:"structure"`
+}
+
+// String returns the string representation
+func (s UpdateSecurityInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSecurityInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateSecurityInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateSecurityInput"}
+	if s.ClusterArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ClusterArn"))
+	}
+	if s.ClusterArn != nil && len(*s.ClusterArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterArn", 1))
+	}
+	if s.CurrentVersion == nil {
+		invalidParams.Add(request.NewErrParamRequired("CurrentVersion"))
+	}
+	if s.EncryptionInfo != nil {
+		if err := s.EncryptionInfo.Validate(); err != nil {
+			invalidParams.AddNested("EncryptionInfo", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientAuthentication sets the ClientAuthentication field's value.
+func (s *UpdateSecurityInput) SetClientAuthentication(v *ClientAuthentication) *UpdateSecurityInput {
+	s.ClientAuthentication = v
+	return s
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *UpdateSecurityInput) SetClusterArn(v string) *UpdateSecurityInput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *UpdateSecurityInput) SetCurrentVersion(v string) *UpdateSecurityInput {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetEncryptionInfo sets the EncryptionInfo field's value.
+func (s *UpdateSecurityInput) SetEncryptionInfo(v *EncryptionInfo) *UpdateSecurityInput {
+	s.EncryptionInfo = v
+	return s
+}
+
+// Response body for UpdateSecurity.
+type UpdateSecurityOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the cluster.
+	ClusterArn *string `locationName:"clusterArn" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the cluster operation.
+	ClusterOperationArn *string `locationName:"clusterOperationArn" type:"string"`
+}
+
+// String returns the string representation
+func (s UpdateSecurityOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s UpdateSecurityOutput) GoString() string {
+	return s.String()
+}
+
+// SetClusterArn sets the ClusterArn field's value.
+func (s *UpdateSecurityOutput) SetClusterArn(v string) *UpdateSecurityOutput {
+	s.ClusterArn = &v
+	return s
+}
+
+// SetClusterOperationArn sets the ClusterOperationArn field's value.
+func (s *UpdateSecurityOutput) SetClusterOperationArn(v string) *UpdateSecurityOutput {
 	s.ClusterOperationArn = &v
 	return s
 }

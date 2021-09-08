@@ -200,6 +200,10 @@ type KafkaAPI interface {
 	UpdateMonitoring(*kafka.UpdateMonitoringInput) (*kafka.UpdateMonitoringOutput, error)
 	UpdateMonitoringWithContext(aws.Context, *kafka.UpdateMonitoringInput, ...request.Option) (*kafka.UpdateMonitoringOutput, error)
 	UpdateMonitoringRequest(*kafka.UpdateMonitoringInput) (*request.Request, *kafka.UpdateMonitoringOutput)
+
+	UpdateSecurity(*kafka.UpdateSecurityInput) (*kafka.UpdateSecurityOutput, error)
+	UpdateSecurityWithContext(aws.Context, *kafka.UpdateSecurityInput, ...request.Option) (*kafka.UpdateSecurityOutput, error)
+	UpdateSecurityRequest(*kafka.UpdateSecurityInput) (*request.Request, *kafka.UpdateSecurityOutput)
 }
 
 var _ KafkaAPI = (*kafka.Kafka)(nil)

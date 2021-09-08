@@ -57,7 +57,8 @@ func (c *RAM) AcceptResourceShareInvitationRequest(input *AcceptResourceShareInv
 
 // AcceptResourceShareInvitation API operation for AWS Resource Access Manager.
 //
-// Accepts an invitation to a resource share from another AWS account.
+// Accepts an invitation to a resource share from another Amazon Web Services
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -377,7 +378,15 @@ func (c *RAM) CreateResourceShareRequest(input *CreateResourceShareInput) (req *
 
 // CreateResourceShare API operation for AWS Resource Access Manager.
 //
-// Creates a resource share.
+// Creates a resource share. You must provide a list of the Amazon Resource
+// Names (ARNs) for the resources you want to share. You must also specify who
+// you want to share the resources with, and the permissions that you grant
+// them.
+//
+// Sharing a resource makes it available for use by principals outside of the
+// Amazon Web Services account that created the resource. Sharing doesn't change
+// any permissions or quotas that apply to the resource in the account that
+// created it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -702,7 +711,7 @@ func (c *RAM) DisassociateResourceSharePermissionRequest(input *DisassociateReso
 
 // DisassociateResourceSharePermission API operation for AWS Resource Access Manager.
 //
-// Disassociates an AWS RAM permission from a resource share.
+// Disassociates an RAM permission from a resource share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -802,9 +811,9 @@ func (c *RAM) EnableSharingWithAwsOrganizationRequest(input *EnableSharingWithAw
 
 // EnableSharingWithAwsOrganization API operation for AWS Resource Access Manager.
 //
-// Enables resource sharing within your AWS Organization.
+// Enables resource sharing within your organization in Organizations.
 //
-// The caller must be the master account for the AWS Organization.
+// The caller must be the master account for the organization.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -889,7 +898,7 @@ func (c *RAM) GetPermissionRequest(input *GetPermissionInput) (req *request.Requ
 
 // GetPermission API operation for AWS Resource Access Manager.
 //
-// Gets the contents of an AWS RAM permission in JSON format.
+// Gets the contents of an RAM permission in JSON format.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1769,7 +1778,7 @@ func (c *RAM) ListPermissionsRequest(input *ListPermissionsInput) (req *request.
 
 // ListPermissions API operation for AWS Resource Access Manager.
 //
-// Lists the AWS RAM permissions.
+// Lists the RAM permissions.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2071,7 +2080,7 @@ func (c *RAM) ListResourceSharePermissionsRequest(input *ListResourceSharePermis
 
 // ListResourceSharePermissions API operation for AWS Resource Access Manager.
 //
-// Lists the AWS RAM permissions that are associated with a resource share.
+// Lists the RAM permissions that are associated with a resource share.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2226,7 +2235,7 @@ func (c *RAM) ListResourceTypesRequest(input *ListResourceTypesInput) (req *requ
 
 // ListResourceTypes API operation for AWS Resource Access Manager.
 //
-// Lists the shareable resource types supported by AWS RAM.
+// Lists the shareable resource types supported by RAM.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2524,14 +2533,14 @@ func (c *RAM) PromoteResourceShareCreatedFromPolicyRequest(input *PromoteResourc
 //
 // Resource shares that were created by attaching a policy to a resource are
 // visible only to the resource share owner, and the resource share cannot be
-// modified in AWS RAM.
+// modified in RAM.
 //
 // Use this API action to promote the resource share. When you promote the resource
 // share, it becomes:
 //
 //    * Visible to all principals that it is shared with.
 //
-//    * Modifiable in AWS RAM.
+//    * Modifiable in RAM.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2631,7 +2640,8 @@ func (c *RAM) RejectResourceShareInvitationRequest(input *RejectResourceShareInv
 
 // RejectResourceShareInvitation API operation for AWS Resource Access Manager.
 //
-// Rejects an invitation to a resource share from another AWS account.
+// Rejects an invitation to a resource share from another Amazon Web Services
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3076,11 +3086,24 @@ type AssociateResourceShareInput struct {
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
 	// The principals to associate with the resource share. The possible values
-	// are IDs of AWS accounts, and the ARNs of organizational units (OU) or organizations
-	// from AWS Organizations.
+	// are:
+	//
+	//    * An Amazon Web Services account ID
+	//
+	//    * An Amazon Resource Name (ARN) of an organization in Organizations
+	//
+	//    * An ARN of an organizational unit (OU) in Organizations
+	//
+	//    * An ARN of an IAM role
+	//
+	//    * An ARN of an IAM user
+	//
+	// Not all resource types can be shared with IAM roles and IAM users. For more
+	// information, see Sharing with IAM roles and IAM users (https://docs.aws.amazon.com/ram/latest/userguide/permissions.html#permissions-rbp-supported-resource-types)
+	// in the Resource Access Manager User Guide.
 	Principals []*string `locationName:"principals" type:"list"`
 
-	// The Amazon Resource Names (ARN) of the resources.
+	// The Amazon Resource Names (ARNs) of the resources.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
 	// The Amazon Resource Name (ARN) of the resource share.
@@ -3176,13 +3199,13 @@ type AssociateResourceSharePermissionInput struct {
 	// of the request.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS RAM permissions to associate with
-	// the resource share.
+	// The Amazon Resource Name (ARN) of the RAM permission to associate with the
+	// resource share.
 	//
 	// PermissionArn is a required field
 	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
 
-	// The version of the AWS RAM permissions to associate with the resource share.
+	// The version of the RAM permissions to associate with the resource share.
 	PermissionVersion *int64 `locationName:"permissionVersion" type:"integer"`
 
 	// Indicates whether the permission should replace the permissions that are
@@ -3288,8 +3311,8 @@ func (s *AssociateResourceSharePermissionOutput) SetReturnValue(v bool) *Associa
 type CreateResourceShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether principals outside your AWS organization can be associated
-	// with a resource share.
+	// Indicates whether principals outside your organization in Organizations can
+	// be associated with a resource share.
 	AllowExternalPrincipals *bool `locationName:"allowExternalPrincipals" type:"boolean"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
@@ -3301,17 +3324,31 @@ type CreateResourceShareInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The ARNs of the permissions to associate with the resource share. If you
-	// do not specify an ARN for the permission, AWS RAM automatically attaches
-	// the default version of the permission for each resource type.
+	// The Amazon Resource Names (ARNs) of the permissions to associate with the
+	// resource share. If you do not specify an ARN for the permission, RAM automatically
+	// attaches the default version of the permission for each resource type. Only
+	// one permission can be associated with each resource type in a resource share.
 	PermissionArns []*string `locationName:"permissionArns" type:"list"`
 
 	// The principals to associate with the resource share. The possible values
-	// are IDs of AWS accounts, the ARN of an OU or organization from AWS Organizations.
+	// are:
+	//
+	//    * An Amazon Web Services account ID
+	//
+	//    * An Amazon Resource Name (ARN) of an organization in Organizations
+	//
+	//    * An ARN of an organizational unit (OU) in Organizations
+	//
+	//    * An ARN of an IAM role
+	//
+	//    * An ARN of an IAM user
+	//
+	// Not all resource types can be shared with IAM roles and IAM users. For more
+	// information, see Sharing with IAM roles and IAM users (https://docs.aws.amazon.com/ram/latest/userguide/permissions.html#permissions-rbp-supported-resource-types)
+	// in the Resource Access Manager User Guide.
 	Principals []*string `locationName:"principals" type:"list"`
 
-	// The Amazon Resource Names (ARN) of the resources to associate with the resource
-	// share.
+	// The ARNs of the resources to associate with the resource share.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
 	// One or more tags.
@@ -3603,7 +3640,8 @@ type DisassociateResourceSharePermissionInput struct {
 	// of the request.
 	ClientToken *string `locationName:"clientToken" type:"string"`
 
-	// The ARN of the permission to disassociate from the resource share.
+	// The Amazon Resource Name (ARN) of the permission to disassociate from the
+	// resource share.
 	//
 	// PermissionArn is a required field
 	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
@@ -3731,7 +3769,7 @@ func (s *EnableSharingWithAwsOrganizationOutput) SetReturnValue(v bool) *EnableS
 type GetPermissionInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the permission.
+	// The Amazon Resource Name (ARN) of the permission.
 	//
 	// PermissionArn is a required field
 	PermissionArn *string `locationName:"permissionArn" type:"string" required:"true"`
@@ -3811,7 +3849,7 @@ type GetResourcePoliciesInput struct {
 	// The principal.
 	Principal *string `locationName:"principal" type:"string"`
 
-	// The Amazon Resource Names (ARN) of the resources.
+	// The Amazon Resource Names (ARNs) of the resources.
 	//
 	// ResourceArns is a required field
 	ResourceArns []*string `locationName:"resourceArns" type:"list" required:"true"`
@@ -4143,8 +4181,8 @@ type GetResourceSharesInput struct {
 	// The token for the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The Amazon Resource Name (ARN) of the AWS RAM permission that is associated
-	// with the resource share.
+	// The Amazon Resource Name (ARN) of the RAM permission that is associated with
+	// the resource share.
 	PermissionArn *string `locationName:"permissionArn" type:"string"`
 
 	// The type of owner.
@@ -4152,7 +4190,7 @@ type GetResourceSharesInput struct {
 	// ResourceOwner is a required field
 	ResourceOwner *string `locationName:"resourceOwner" type:"string" required:"true" enum:"ResourceOwner"`
 
-	// The ARNs of the resource shares.
+	// The Amazon Resource Names (ARNs) of the resource shares.
 	ResourceShareArns []*string `locationName:"resourceShareArns" type:"list"`
 
 	// The status of the resource share.
@@ -4878,8 +4916,9 @@ type ListPrincipalsInput struct {
 	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
 	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
 	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
-	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:ResolverQueryLogConfig
-	// | route53resolver:ResolverRule
+	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
+	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule |
+	// s3-outposts:Outpost | ssm-contacts:Contact | ssm-incidents:ResponsePlan
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -5130,7 +5169,7 @@ type ListResourceTypesOutput struct {
 	// when there are no more results to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The shareable resource types supported by AWS RAM.
+	// The shareable resource types supported by RAM.
 	ResourceTypes []*ServiceNameAndResourceType `locationName:"resourceTypes" type:"list"`
 }
 
@@ -5169,7 +5208,7 @@ type ListResourcesInput struct {
 	// The principal.
 	Principal *string `locationName:"principal" type:"string"`
 
-	// The Amazon Resource Names (ARN) of the resources.
+	// The Amazon Resource Names (ARNs) of the resources.
 	ResourceArns []*string `locationName:"resourceArns" type:"list"`
 
 	// The type of owner.
@@ -5189,8 +5228,9 @@ type ListResourcesInput struct {
 	// | imagebuilder:ContainerRecipe | glue:Catalog | glue:Database | glue:Table
 	// | license-manager:LicenseConfiguration I network-firewall:FirewallPolicy
 	// | network-firewall:StatefulRuleGroup | network-firewall:StatelessRuleGroup
-	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:ResolverQueryLogConfig
-	// | route53resolver:ResolverRule
+	// | outposts:Outpost | resource-groups:Group | rds:Cluster | route53resolver:FirewallRuleGroup
+	// |route53resolver:ResolverQueryLogConfig | route53resolver:ResolverRule |
+	// s3-outposts:Outpost | ssm-contacts:Contact | ssm-incidents:ResponsePlan
 	ResourceType *string `locationName:"resourceType" type:"string"`
 }
 
@@ -5463,15 +5503,15 @@ func (s *OperationNotPermittedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Describes a principal for use with AWS Resource Access Manager.
+// Describes a principal for use with Resource Access Manager.
 type Principal struct {
 	_ struct{} `type:"structure"`
 
 	// The time when the principal was associated with the resource share.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// Indicates whether the principal belongs to the same AWS organization as the
-	// AWS account that owns the resource share.
+	// Indicates whether the principal belongs to the same organization in Organizations
+	// as the Amazon Web Services account that owns the resource share.
 	External *bool `locationName:"external" type:"boolean"`
 
 	// The ID of the principal.
@@ -5527,7 +5567,7 @@ func (s *Principal) SetResourceShareArn(v string) *Principal {
 type PromoteResourceShareCreatedFromPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the resource share to promote.
+	// The Amazon Resource Name (ARN) of the resource share to promote.
 	//
 	// ResourceShareArn is a required field
 	ResourceShareArn *string `location:"querystring" locationName:"resourceShareArn" type:"string" required:"true"`
@@ -5679,8 +5719,8 @@ type Resource struct {
 	// The time when the association was last updated.
 	LastUpdatedTime *time.Time `locationName:"lastUpdatedTime" type:"timestamp"`
 
-	// The ARN of the resource group. This value is returned only if the resource
-	// is a resource group.
+	// The Amazon Resource Name (ARN) of the resource group. This value is returned
+	// only if the resource is a resource group.
 	ResourceGroupArn *string `locationName:"resourceGroupArn" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the resource share.
@@ -5814,8 +5854,8 @@ func (s *ResourceArnNotFoundException) RequestID() string {
 type ResourceShare struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether principals outside your AWS organization can be associated
-	// with a resource share.
+	// Indicates whether principals outside your organization in Organizations can
+	// be associated with a resource share.
 	AllowExternalPrincipals *bool `locationName:"allowExternalPrincipals" type:"boolean"`
 
 	// The time when the resource share was created.
@@ -5824,16 +5864,17 @@ type ResourceShare struct {
 	// Indicates how the resource share was created. Possible values include:
 	//
 	//    * CREATED_FROM_POLICY - Indicates that the resource share was created
-	//    from an AWS Identity and Access Management (AWS IAM) policy attached to
-	//    a resource. These resource shares are visible only to the AWS account
-	//    that created it. They cannot be modified in AWS RAM.
+	//    from an Amazon Web Services Identity and Access Management (Amazon Web
+	//    Services IAM) policy attached to a resource. These resource shares are
+	//    visible only to the Amazon Web Services account that created it. They
+	//    cannot be modified in RAM.
 	//
 	//    * PROMOTING_TO_STANDARD - The resource share is in the process of being
 	//    promoted. For more information, see PromoteResourceShareCreatedFromPolicy.
 	//
-	//    * STANDARD - Indicates that the resource share was created in AWS RAM
-	//    using the console or APIs. These resource shares are visible to all principals.
-	//    They can be modified in AWS RAM.
+	//    * STANDARD - Indicates that the resource share was created in RAM using
+	//    the console or APIs. These resource shares are visible to all principals.
+	//    They can be modified in RAM.
 	FeatureSet *string `locationName:"featureSet" type:"string" enum:"ResourceShareFeatureSet"`
 
 	// The time when the resource share was last updated.
@@ -5842,7 +5883,7 @@ type ResourceShare struct {
 	// The name of the resource share.
 	Name *string `locationName:"name" type:"string"`
 
-	// The ID of the AWS account that owns the resource share.
+	// The ID of the Amazon Web Services account that owns the resource share.
 	OwningAccountId *string `locationName:"owningAccountId" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the resource share.
@@ -5932,9 +5973,19 @@ func (s *ResourceShare) SetTags(v []*Tag) *ResourceShare {
 type ResourceShareAssociation struct {
 	_ struct{} `type:"structure"`
 
-	// The associated entity. For resource associations, this is the ARN of the
-	// resource. For principal associations, this is the ID of an AWS account or
-	// the ARN of an OU or organization from AWS Organizations.
+	// The associated entity. For resource associations, this is the Amazon Resource
+	// Name (ARN) of the resource. For principal associations, this is one of the
+	// following:
+	//
+	//    * An Amazon Web Services account ID
+	//
+	//    * An ARN of an organization in Organizations
+	//
+	//    * An ARN of an organizational unit (OU) in Organizations
+	//
+	//    * An ARN of an IAM role
+	//
+	//    * An ARN of an IAM user
 	AssociatedEntity *string `locationName:"associatedEntity" type:"string"`
 
 	// The association type.
@@ -5943,8 +5994,8 @@ type ResourceShareAssociation struct {
 	// The time when the association was created.
 	CreationTime *time.Time `locationName:"creationTime" type:"timestamp"`
 
-	// Indicates whether the principal belongs to the same AWS organization as the
-	// AWS account that owns the resource share.
+	// Indicates whether the principal belongs to the same organization in Organizations
+	// as the Amazon Web Services account that owns the resource share.
 	External *bool `locationName:"external" type:"boolean"`
 
 	// The time when the association was last updated.
@@ -6034,7 +6085,7 @@ type ResourceShareInvitation struct {
 	// The date and time when the invitation was sent.
 	InvitationTimestamp *time.Time `locationName:"invitationTimestamp" type:"timestamp"`
 
-	// The ID of the AWS account that received the invitation.
+	// The ID of the Amazon Web Services account that received the invitation.
 	ReceiverAccountId *string `locationName:"receiverAccountId" type:"string"`
 
 	// The Amazon Resource Name (ARN) of the IAM user or IAM role that received
@@ -6056,7 +6107,7 @@ type ResourceShareInvitation struct {
 	// The name of the resource share.
 	ResourceShareName *string `locationName:"resourceShareName" type:"string"`
 
-	// The ID of the AWS account that sent the invitation.
+	// The ID of the Amazon Web Services account that sent the invitation.
 	SenderAccountId *string `locationName:"senderAccountId" type:"string"`
 
 	// The status of the invitation.
@@ -6407,11 +6458,11 @@ func (s *ResourceShareLimitExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about an AWS RAM permission.
+// Information about an RAM permission.
 type ResourceSharePermissionDetail struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the permission.
+	// The Amazon Resource Name (ARN) of the permission.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The date and time when the permission was created.
@@ -6511,7 +6562,7 @@ func (s *ResourceSharePermissionDetail) SetVersion(v string) *ResourceSharePermi
 type ResourceSharePermissionSummary struct {
 	_ struct{} `type:"structure"`
 
-	// The ARN of the permission.
+	// The Amazon Resource Name (ARN) of the permission.
 	Arn *string `locationName:"arn" type:"string"`
 
 	// The date and time when the permission was created.
@@ -6661,15 +6712,15 @@ func (s *ServerInternalException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Information about the shareable resource types and the AWS services to which
-// they belong.
+// Information about the shareable resource types and the Amazon Web Services
+// services to which they belong.
 type ServiceNameAndResourceType struct {
 	_ struct{} `type:"structure"`
 
 	// The shareable resource types.
 	ResourceType *string `locationName:"resourceType" type:"string"`
 
-	// The name of the AWS services to which the resources belong.
+	// The name of the Amazon Web Services services to which the resources belong.
 	ServiceName *string `locationName:"serviceName" type:"string"`
 }
 
@@ -7120,8 +7171,8 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateResourceShareInput struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether principals outside your AWS organization can be associated
-	// with a resource share.
+	// Indicates whether principals outside your organization in Organizations can
+	// be associated with a resource share.
 	AllowExternalPrincipals *bool `locationName:"allowExternalPrincipals" type:"boolean"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency

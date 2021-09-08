@@ -31,7 +31,8 @@
     "UpdateConfiguration" : "<p>Updates an existing MSK configuration. The configuration must be in the Active state.</p>",
     "UpdateClusterConfiguration" : "<p>Updates the cluster with the configuration that is specified in the request body.</p>",
     "UpdateClusterKafkaVersion" : "<p>Updates the Apache Kafka version for the cluster.</p>",
-    "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>"
+    "UpdateMonitoring" : "<p>Updates the monitoring settings for the cluster. You can use this operation to specify which Apache Kafka metrics you want Amazon MSK to send to Amazon CloudWatch. You can also specify settings for open monitoring with Prometheus.</p>",
+    "UpdateSecurity" : "<p>You can use this operation to update the encrypting and authentication settings for an existing cluster.</p>"
   },
   "shapes" : {
     "BatchAssociateScramSecretRequest" : {
@@ -88,7 +89,9 @@
       "base" : "<p>Includes all client authentication information.</p>",
       "refs" : {
         "ClusterInfo$ClientAuthentication" : "<p>Includes all client authentication information.</p>",
-        "CreateClusterRequest$ClientAuthentication" : "<p>Includes all client authentication related information.</p>"
+        "CreateClusterRequest$ClientAuthentication" : "<p>Includes all client authentication related information.</p>",
+        "MutableClusterInfo$ClientAuthentication" : "<p>Includes all client authentication related information.</p>",
+        "UpdateSecurityRequest$ClientAuthentication" : "<p>Includes all client authentication related information.</p>"
       }
     },
     "ClientBroker" : {
@@ -253,7 +256,9 @@
       "base" : "<p>Includes encryption-related information, such as the AWS KMS key used for encrypting data at rest and whether you want MSK to encrypt your data in transit.</p>",
       "refs" : {
         "ClusterInfo$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
-        "CreateClusterRequest$EncryptionInfo" : "<p>Includes all encryption-related information.</p>"
+        "CreateClusterRequest$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
+        "MutableClusterInfo$EncryptionInfo" : "<p>Includes all encryption-related information.</p>",
+        "UpdateSecurityRequest$EncryptionInfo" : "<p>Includes all encryption-related information.</p>"
       }
     },
     "EnhancedMonitoring" : {
@@ -467,6 +472,12 @@
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
     },
+    "Unauthenticated" : {
+      "base" : "<p>Contains information about unauthenticated traffic to the cluster.</p>",
+      "refs" : {
+        "ClientAuthentication$Unauthenticated" : "<p>Contains information about unauthenticated traffic to the cluster.</p>"
+      }
+    },
     "UnauthorizedException" : {
       "base" : "<p>Returns information about an error.</p>",
       "refs" : { }
@@ -527,6 +538,14 @@
       "base" : "<p>Response body for UpdateMonitoring.</p>",
       "refs" : { }
     },
+    "UpdateSecurityRequest" : {
+      "base" : "<p>Request body for UpdateSecurity.</p>",
+      "refs" : { }
+    },
+    "UpdateSecurityResponse" : {
+      "base" : "<p>Response body for UpdateSecurity.</p>",
+      "refs" : { }
+    },
     "ZookeeperNodeInfo" : {
       "base" : "<p>Zookeeper node information.</p>",
       "refs" : {
@@ -539,11 +558,15 @@
         "CloudWatchLogs$Enabled" : "<p>Specifies whether broker logs get sent to the specified CloudWatch Logs destination.</p>",
         "EncryptionInTransit$InCluster" : "<p>When set to true, it indicates that data communication among the broker nodes of the cluster is encrypted. When set to false, the communication happens in plaintext.</p> <p>The default value is true.</p>",
         "Firehose$Enabled" : "<p>Specifies whether broker logs get sent to the specified Kinesis Data Firehose delivery stream.</p>",
+        "IAM$Enabled" : "<p>IAM authentication is enabled or not.</p>",
         "JmxExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the JMX Exporter.</p>",
         "JmxExporterInfo$EnabledInBroker" : "<p>JMX Exporter being enabled in broker.</p>",
         "NodeExporter$EnabledInBroker" : "<p>Indicates whether you want to enable or disable the Node Exporter.</p>",
         "NodeExporterInfo$EnabledInBroker" : "<p>Node Exporter being enabled in broker.</p>",
-        "S3$Enabled" : "<p>Specifies whether broker logs get sent to the specified Amazon S3 destination.</p>"
+        "S3$Enabled" : "<p>Specifies whether broker logs get sent to the specified Amazon S3 destination.</p>",
+        "Scram$Enabled" : "<p>SASL/SCRAM authentication is enabled or not.</p>",
+        "Tls$Enabled" : "<p>TLS authentication is enabled or not.</p>",
+        "Unauthenticated$Enabled" : "<p>Specifies whether you want to enable or disable unauthenticated traffic to your cluster.</p>"
       }
     },
     "__double" : {
@@ -766,6 +789,9 @@
         "UpdateMonitoringRequest$CurrentVersion" : "<p>The version of cluster to update from. A successful operation will then generate a new version.</p>",
         "UpdateMonitoringResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
         "UpdateMonitoringResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
+        "UpdateSecurityRequest$CurrentVersion" : "<p>You can use the DescribeCluster operation to get the current version of the cluster. After the security update is complete, the cluster will have a new version.</p>",
+        "UpdateSecurityResponse$ClusterArn" : "<p>The Amazon Resource Name (ARN) of the cluster.</p>",
+        "UpdateSecurityResponse$ClusterOperationArn" : "<p>The Amazon Resource Name (ARN) of the cluster operation.</p>",
         "ZookeeperNodeInfo$AttachedENIId" : "<p>The attached elastic network interface of the broker.</p>",
         "ZookeeperNodeInfo$ClientVpcIpAddress" : "<p>The virtual private cloud (VPC) IP address of the client.</p>",
         "ZookeeperNodeInfo$ZookeeperVersion" : "<p>The version of Zookeeper.</p>",
