@@ -774,8 +774,8 @@ func (c *LookoutEquipment) DescribeDatasetRequest(input *DescribeDatasetInput) (
 
 // DescribeDataset API operation for Amazon Lookout for Equipment.
 //
-// Provides information on a specified dataset such as the schema location,
-// status, and so on.
+// Provides a JSON description of the data that is in each time series dataset,
+// including names, column names, and data types.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -966,8 +966,9 @@ func (c *LookoutEquipment) DescribeModelRequest(input *DescribeModelInput) (req 
 
 // DescribeModel API operation for Amazon Lookout for Equipment.
 //
-// Provides overall information about a specific ML model, including model name
-// and ARN, dataset, training and evaluation information, status, and so on.
+// Provides a JSON containing the overall information about a specific ML model,
+// including model name and ARN, dataset, training and evaluation information,
+// status, and so on.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2600,8 +2601,8 @@ type CreateDatasetInput struct {
 	// DatasetSchema is a required field
 	DatasetSchema *DatasetSchema `type:"structure" required:"true"`
 
-	// Provides the identifier of the AWS KMS customer master key (CMK) used to
-	// encrypt dataset data by Amazon Lookout for Equipment.
+	// Provides the identifier of the KMS key used to encrypt dataset data by Amazon
+	// Lookout for Equipment.
 	ServerSideKmsKeyId *string `min:"1" type:"string"`
 
 	// Any tags associated with the ingested data described in the dataset.
@@ -2780,8 +2781,8 @@ type CreateInferenceSchedulerInput struct {
 	// RoleArn is a required field
 	RoleArn *string `min:"20" type:"string" required:"true"`
 
-	// Provides the identifier of the AWS KMS customer master key (CMK) used to
-	// encrypt inference scheduler data by Amazon Lookout for Equipment.
+	// Provides the identifier of the KMS key used to encrypt inference scheduler
+	// data by Amazon Lookout for Equipment.
 	ServerSideKmsKeyId *string `min:"1" type:"string"`
 
 	// Any tags associated with the inference scheduler.
@@ -3006,12 +3007,17 @@ type CreateModelInput struct {
 	// ModelName is a required field
 	ModelName *string `min:"1" type:"string" required:"true"`
 
+	// Indicates that the asset associated with this sensor has been shut off. As
+	// long as this condition is met, Lookout for Equipment will not use data from
+	// this asset for training, evaluation, or inference.
+	OffCondition *string `min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of a role with permission to access the data
 	// source being used to create the ML model.
 	RoleArn *string `min:"20" type:"string"`
 
-	// Provides the identifier of the AWS KMS customer master key (CMK) used to
-	// encrypt model data by Amazon Lookout for Equipment.
+	// Provides the identifier of the KMS key used to encrypt model data by Amazon
+	// Lookout for Equipment.
 	ServerSideKmsKeyId *string `min:"1" type:"string"`
 
 	// Any tags associated with the ML model being created.
@@ -3053,6 +3059,9 @@ func (s *CreateModelInput) Validate() error {
 	}
 	if s.ModelName != nil && len(*s.ModelName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ModelName", 1))
+	}
+	if s.OffCondition != nil && len(*s.OffCondition) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("OffCondition", 1))
 	}
 	if s.RoleArn != nil && len(*s.RoleArn) < 20 {
 		invalidParams.Add(request.NewErrParamMinLen("RoleArn", 20))
@@ -3127,6 +3136,12 @@ func (s *CreateModelInput) SetLabelsInputConfiguration(v *LabelsInputConfigurati
 // SetModelName sets the ModelName field's value.
 func (s *CreateModelInput) SetModelName(v string) *CreateModelInput {
 	s.ModelName = &v
+	return s
+}
+
+// SetOffCondition sets the OffCondition field's value.
+func (s *CreateModelInput) SetOffCondition(v string) *CreateModelInput {
+	s.OffCondition = &v
 	return s
 }
 
@@ -3718,8 +3733,8 @@ type DescribeDatasetOutput struct {
 	// names, column names, and data types.
 	Schema aws.JSONValue `type:"jsonvalue"`
 
-	// Provides the identifier of the AWS KMS customer master key (CMK) used to
-	// encrypt dataset data by Amazon Lookout for Equipment.
+	// Provides the identifier of the KMS key used to encrypt dataset data by Amazon
+	// Lookout for Equipment.
 	ServerSideKmsKeyId *string `min:"1" type:"string"`
 
 	// Indicates the status of the dataset.
@@ -3874,8 +3889,8 @@ type DescribeInferenceSchedulerOutput struct {
 	// source for the inference scheduler being described.
 	RoleArn *string `min:"20" type:"string"`
 
-	// Provides the identifier of the AWS KMS customer master key (CMK) used to
-	// encrypt inference scheduler data by Amazon Lookout for Equipment.
+	// Provides the identifier of the KMS key used to encrypt inference scheduler
+	// data by Amazon Lookout for Equipment.
 	ServerSideKmsKeyId *string `min:"1" type:"string"`
 
 	// Indicates the status of the inference scheduler.
@@ -4071,6 +4086,11 @@ type DescribeModelOutput struct {
 	// The name of the ML model being described.
 	ModelName *string `min:"1" type:"string"`
 
+	// Indicates that the asset associated with this sensor has been shut off. As
+	// long as this condition is met, Lookout for Equipment will not use data from
+	// this asset for training, evaluation, or inference.
+	OffCondition *string `min:"1" type:"string"`
+
 	// The Amazon Resource Name (ARN) of a role with permission to access the data
 	// source for the ML model being described.
 	RoleArn *string `min:"20" type:"string"`
@@ -4079,8 +4099,8 @@ type DescribeModelOutput struct {
 	// names, column names, and data types.
 	Schema aws.JSONValue `type:"jsonvalue"`
 
-	// Provides the identifier of the AWS KMS customer master key (CMK) used to
-	// encrypt model data by Amazon Lookout for Equipment.
+	// Provides the identifier of the KMS key used to encrypt model data by Amazon
+	// Lookout for Equipment.
 	ServerSideKmsKeyId *string `min:"1" type:"string"`
 
 	// Specifies the current status of the model being described. Status describes
@@ -4181,6 +4201,12 @@ func (s *DescribeModelOutput) SetModelMetrics(v aws.JSONValue) *DescribeModelOut
 // SetModelName sets the ModelName field's value.
 func (s *DescribeModelOutput) SetModelName(v string) *DescribeModelOutput {
 	s.ModelName = &v
+	return s
+}
+
+// SetOffCondition sets the OffCondition field's value.
+func (s *DescribeModelOutput) SetOffCondition(v string) *DescribeModelOutput {
+	s.OffCondition = &v
 	return s
 }
 
@@ -4363,12 +4389,12 @@ func (s *InferenceExecutionSummary) SetStatus(v string) *InferenceExecutionSumma
 	return s
 }
 
-// > Specifies configuration information for the input data for the inference,
+// Specifies configuration information for the input data for the inference,
 // including S3 location of input data..
 type InferenceInputConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// > Specifies configuration information for the input data for the inference,
+	// Specifies configuration information for the input data for the inference,
 	// including timestamp format and delimiter.
 	InferenceInputNameConfiguration *InferenceInputNameConfiguration `type:"structure"`
 
@@ -4423,7 +4449,7 @@ func (s *InferenceInputConfiguration) SetS3InputConfiguration(v *InferenceS3Inpu
 	return s
 }
 
-// >> Specifies configuration information for the input data for the inference,
+// Specifies configuration information for the input data for the inference,
 // including timestamp format and delimiter.
 type InferenceInputNameConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -4625,9 +4651,9 @@ func (s *InferenceS3OutputConfiguration) SetPrefix(v string) *InferenceS3OutputC
 type InferenceSchedulerSummary struct {
 	_ struct{} `type:"structure"`
 
-	// > A period of time (in minutes) by which inference on the data is delayed
-	// after the data starts. For instance, if an offset delay time of five minutes
-	// was selected, inference will not begin on the data until the first data measurement
+	// A period of time (in minutes) by which inference on the data is delayed after
+	// the data starts. For instance, if an offset delay time of five minutes was
+	// selected, inference will not begin on the data until the first data measurement
 	// after the five minute mark. For example, if five minutes is selected, the
 	// inference scheduler will wake up at the configured frequency with the additional
 	// five minute delay time to check the customer S3 bucket. The customer can
@@ -6377,9 +6403,9 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateInferenceSchedulerInput struct {
 	_ struct{} `type:"structure"`
 
-	// > A period of time (in minutes) by which inference on the data is delayed
-	// after the data starts. For instance, if you select an offset delay time of
-	// five minutes, inference will not begin on the data until the first data measurement
+	// A period of time (in minutes) by which inference on the data is delayed after
+	// the data starts. For instance, if you select an offset delay time of five
+	// minutes, inference will not begin on the data until the first data measurement
 	// after the five minute mark. For example, if five minutes is selected, the
 	// inference scheduler will wake up at the configured frequency with the additional
 	// five minute delay time to check the customer S3 bucket. The customer can

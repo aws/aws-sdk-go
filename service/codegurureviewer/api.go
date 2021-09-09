@@ -57,26 +57,27 @@ func (c *CodeGuruReviewer) AssociateRepositoryRequest(input *AssociateRepository
 
 // AssociateRepository API operation for Amazon CodeGuru Reviewer.
 //
-// Use to associate an AWS CodeCommit repository or a repostory managed by AWS
-// CodeStar Connections with Amazon CodeGuru Reviewer. When you associate a
-// repository, CodeGuru Reviewer reviews source code changes in the repository's
-// pull requests and provides automatic recommendations. You can view recommendations
-// using the CodeGuru Reviewer console. For more information, see Recommendations
-// in Amazon CodeGuru Reviewer (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/recommendations.html)
+// Use to associate an Amazon Web Services CodeCommit repository or a repostory
+// managed by Amazon Web Services CodeStar Connections with Amazon CodeGuru
+// Reviewer. When you associate a repository, CodeGuru Reviewer reviews source
+// code changes in the repository's pull requests and provides automatic recommendations.
+// You can view recommendations using the CodeGuru Reviewer console. For more
+// information, see Recommendations in Amazon CodeGuru Reviewer (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/recommendations.html)
 // in the Amazon CodeGuru Reviewer User Guide.
 //
-// If you associate a CodeCommit or S3 repository, it must be in the same AWS
-// Region and AWS account where its CodeGuru Reviewer code reviews are configured.
+// If you associate a CodeCommit or S3 repository, it must be in the same Amazon
+// Web Services Region and Amazon Web Services account where its CodeGuru Reviewer
+// code reviews are configured.
 //
-// Bitbucket and GitHub Enterprise Server repositories are managed by AWS CodeStar
-// Connections to connect to CodeGuru Reviewer. For more information, see Associate
-// a repository (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-associate-repository.html)
+// Bitbucket and GitHub Enterprise Server repositories are managed by Amazon
+// Web Services CodeStar Connections to connect to CodeGuru Reviewer. For more
+// information, see Associate a repository (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-associate-repository.html)
 // in the Amazon CodeGuru Reviewer User Guide.
 //
-// You cannot use the CodeGuru Reviewer SDK or the AWS CLI to associate a GitHub
-// repository with Amazon CodeGuru Reviewer. To associate a GitHub repository,
-// use the console. For more information, see Getting started with CodeGuru
-// Reviewer (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-with-guru.html)
+// You cannot use the CodeGuru Reviewer SDK or the Amazon Web Services CLI to
+// associate a GitHub repository with Amazon CodeGuru Reviewer. To associate
+// a GitHub repository, use the console. For more information, see Getting started
+// with CodeGuru Reviewer (https://docs.aws.amazon.com/codeguru/latest/reviewer-ug/getting-started-with-guru.html)
 // in the CodeGuru Reviewer User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1605,10 +1606,11 @@ type AssociateRepositoryInput struct {
 	// A KMSKeyDetails object that contains:
 	//
 	//    * The encryption option for this repository association. It is either
-	//    owned by AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer
-	//    managed (CUSTOMER_MANAGED_CMK).
+	//    owned by Amazon Web Services Key Management Service (KMS) (AWS_OWNED_CMK)
+	//    or customer managed (CUSTOMER_MANAGED_CMK).
 	//
-	//    * The ID of the AWS KMS key that is associated with this respository association.
+	//    * The ID of the Amazon Web Services KMS key that is associated with this
+	//    respository association.
 	KMSKeyDetails *KMSKeyDetails `type:"structure"`
 
 	// The repository to associate.
@@ -1857,15 +1859,15 @@ func (s *CodeArtifacts) SetSourceCodeArtifactsObjectKey(v string) *CodeArtifacts
 	return s
 }
 
-// Information about an AWS CodeCommit repository. The CodeCommit repository
-// must be in the same AWS Region and AWS account where its CodeGuru Reviewer
-// code reviews are configured.
+// Information about an Amazon Web Services CodeCommit repository. The CodeCommit
+// repository must be in the same Amazon Web Services Region and Amazon Web
+// Services account where its CodeGuru Reviewer code reviews are configured.
 type CodeCommitRepository struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the AWS CodeCommit repository. For more information, see repositoryName
-	// (https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetRepository.html#CodeCommit-GetRepository-request-repositoryName)
-	// in the AWS CodeCommit API Reference.
+	// The name of the Amazon Web Services CodeCommit repository. For more information,
+	// see repositoryName (https://docs.aws.amazon.com/codecommit/latest/APIReference/API_GetRepository.html#CodeCommit-GetRepository-request-repositoryName)
+	// in the Amazon Web Services CodeCommit API Reference.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -1934,11 +1936,11 @@ type CodeReview struct {
 	// The name of the code review.
 	Name *string `min:"1" type:"string"`
 
-	// The owner of the repository. For an AWS CodeCommit repository, this is the
-	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
-	// Enterprise Server, or Bitbucket repository, this is the username for the
-	// account that owns the repository. For an S3 repository, it can be the username
-	// or AWS account ID.
+	// The owner of the repository. For an Amazon Web Services CodeCommit repository,
+	// this is the Amazon Web Services account ID of the account that owns the repository.
+	// For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is
+	// the username for the account that owns the repository. For an S3 repository,
+	// it can be the username or Amazon Web Services account ID.
 	Owner *string `min:"1" type:"string"`
 
 	// The type of repository that contains the reviewed code (for example, GitHub
@@ -2093,11 +2095,11 @@ type CodeReviewSummary struct {
 	// The name of the code review.
 	Name *string `min:"1" type:"string"`
 
-	// The owner of the repository. For an AWS CodeCommit repository, this is the
-	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
-	// Enterprise Server, or Bitbucket repository, this is the username for the
-	// account that owns the repository. For an S3 repository, it can be the username
-	// or AWS account ID.
+	// The owner of the repository. For an Amazon Web Services CodeCommit repository,
+	// this is the Amazon Web Services account ID of the account that owns the repository.
+	// For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is
+	// the username for the account that owns the repository. For an S3 repository,
+	// it can be the username or Amazon Web Services account ID.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
@@ -2405,8 +2407,8 @@ type CreateCodeReviewInput struct {
 	// of duplicate code reviews if there are failures and retries.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
-	// The name of the code review. The name of each code review in your AWS account
-	// must be unique.
+	// The name of the code review. The name of each code review in your Amazon
+	// Web Services account must be unique.
 	//
 	// Name is a required field
 	Name *string `min:"1" type:"string" required:"true"`
@@ -2602,10 +2604,10 @@ type DescribeRecommendationFeedbackInput struct {
 	// Optional parameter to describe the feedback for a given user. If this is
 	// not supplied, it defaults to the user making the request.
 	//
-	// The UserId is an IAM principal that can be specified as an AWS account ID
-	// or an Amazon Resource Name (ARN). For more information, see Specifying a
-	// Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying)
-	// in the AWS Identity and Access Management User Guide.
+	// The UserId is an IAM principal that can be specified as an Amazon Web Services
+	// account ID or an Amazon Resource Name (ARN). For more information, see Specifying
+	// a Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying)
+	// in the Amazon Web Services Identity and Access Management User Guide.
 	UserId *string `location:"querystring" locationName:"UserId" min:"1" type:"string"`
 }
 
@@ -2959,18 +2961,21 @@ func (s *InternalServerException) RequestID() string {
 // An object that contains:
 //
 //    * The encryption option for a repository association. It is either owned
-//    by AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer managed
-//    (CUSTOMER_MANAGED_CMK).
+//    by Amazon Web Services Key Management Service (KMS) (AWS_OWNED_CMK) or
+//    customer managed (CUSTOMER_MANAGED_CMK).
 //
-//    * The ID of the AWS KMS key that is associated with a respository association.
+//    * The ID of the Amazon Web Services KMS key that is associated with a
+//    respository association.
 type KMSKeyDetails struct {
 	_ struct{} `type:"structure"`
 
 	// The encryption option for a repository association. It is either owned by
-	// AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer managed (CUSTOMER_MANAGED_CMK).
+	// Amazon Web Services Key Management Service (KMS) (AWS_OWNED_CMK) or customer
+	// managed (CUSTOMER_MANAGED_CMK).
 	EncryptionOption *string `type:"string" enum:"EncryptionOption"`
 
-	// The ID of the AWS KMS key that is associated with a respository association.
+	// The ID of the Amazon Web Services KMS key that is associated with a respository
+	// association.
 	KMSKeyId *string `min:"1" type:"string"`
 }
 
@@ -3178,13 +3183,14 @@ type ListRecommendationFeedbackInput struct {
 	// Used to query the recommendation feedback for a given recommendation.
 	RecommendationIds []*string `location:"querystring" locationName:"RecommendationIds" min:"1" type:"list"`
 
-	// An AWS user's account ID or Amazon Resource Name (ARN). Use this ID to query
-	// the recommendation feedback for a code review from that user.
+	// An Amazon Web Services user's account ID or Amazon Resource Name (ARN). Use
+	// this ID to query the recommendation feedback for a code review from that
+	// user.
 	//
-	// The UserId is an IAM principal that can be specified as an AWS account ID
-	// or an Amazon Resource Name (ARN). For more information, see Specifying a
-	// Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying)
-	// in the AWS Identity and Access Management User Guide.
+	// The UserId is an IAM principal that can be specified as an Amazon Web Services
+	// account ID or an Amazon Resource Name (ARN). For more information, see Specifying
+	// a Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying)
+	// in the Amazon Web Services Identity and Access Management User Guide.
 	UserIds []*string `location:"querystring" locationName:"UserIds" min:"1" type:"list"`
 }
 
@@ -3414,10 +3420,10 @@ type ListRepositoryAssociationsInput struct {
 	// next items in a list and not for other programmatic purposes.
 	NextToken *string `location:"querystring" locationName:"NextToken" min:"1" type:"string"`
 
-	// List of owners to use as a filter. For AWS CodeCommit, it is the name of
-	// the CodeCommit account that was used to associate the repository. For other
-	// repository source providers, such as Bitbucket and GitHub Enterprise Server,
-	// this is name of the account that was used to associate the repository.
+	// List of owners to use as a filter. For Amazon Web Services CodeCommit, it
+	// is the name of the CodeCommit account that was used to associate the repository.
+	// For other repository source providers, such as Bitbucket and GitHub Enterprise
+	// Server, this is name of the account that was used to associate the repository.
 	Owners []*string `location:"querystring" locationName:"Owner" min:"1" type:"list"`
 
 	// List of provider types to use as a filter.
@@ -3642,17 +3648,9 @@ type Metrics struct {
 	// Total number of recommendations found in the code review.
 	FindingsCount *int64 `type:"long"`
 
-	// Lines of code metered in the code review. For the initial code review pull
-	// request and all subsequent revisions, this includes all lines of code in
-	// the files added to the pull request. In subsequent revisions, for files that
-	// already existed in the pull request, this includes only the changed lines
-	// of code. In both cases, this does not include non-code lines such as comments
-	// and import statements. For example, if you submit a pull request containing
-	// 5 files, each with 500 lines of code, and in a subsequent revision you added
-	// a new file with 200 lines of code, and also modified a total of 25 lines
-	// across the initial 5 files, MeteredLinesOfCodeCount includes the first 5
-	// files (5 * 500 = 2,500 lines), the new file (200 lines) and the 25 changed
-	// lines of code for a total of 2,725 lines of code.
+	// MeteredLinesOfCode is the number of lines of code in the repository where
+	// the code review happened. This does not include non-code lines such as comments
+	// and blank lines.
 	MeteredLinesOfCodeCount *int64 `type:"long"`
 }
 
@@ -3890,10 +3888,10 @@ type RecommendationFeedback struct {
 
 	// The ID of the user that made the API call.
 	//
-	// The UserId is an IAM principal that can be specified as an AWS account ID
-	// or an Amazon Resource Name (ARN). For more information, see Specifying a
-	// Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying)
-	// in the AWS Identity and Access Management User Guide.
+	// The UserId is an IAM principal that can be specified as an Amazon Web Services
+	// account ID or an Amazon Resource Name (ARN). For more information, see Specifying
+	// a Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying)
+	// in the Amazon Web Services Identity and Access Management User Guide.
 	UserId *string `min:"1" type:"string"`
 }
 
@@ -3956,10 +3954,10 @@ type RecommendationFeedbackSummary struct {
 
 	// The ID of the user that gave the feedback.
 	//
-	// The UserId is an IAM principal that can be specified as an AWS account ID
-	// or an Amazon Resource Name (ARN). For more information, see Specifying a
-	// Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying)
-	// in the AWS Identity and Access Management User Guide.
+	// The UserId is an IAM principal that can be specified as an Amazon Web Services
+	// account ID or an Amazon Resource Name (ARN). For more information, see Specifying
+	// a Principal (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_elements_principal.html#Principal_specifying)
+	// in the Amazon Web Services Identity and Access Management User Guide.
 	UserId *string `min:"1" type:"string"`
 }
 
@@ -4014,6 +4012,15 @@ type RecommendationSummary struct {
 	// Later on it can be used to collect the feedback.
 	RecommendationId *string `min:"1" type:"string"`
 
+	// Metadata about a rule. Rule metadata includes an ID, a name, a list of tags,
+	// and a short and long description. CodeGuru Reviewer uses rules to analyze
+	// code. A rule's recommendation is included in analysis results if code is
+	// detected that violates the rule.
+	RuleMetadata *RuleMetadata `type:"structure"`
+
+	// The severity of the issue in the code that generated this recommendation.
+	Severity *string `type:"string" enum:"Severity"`
+
 	// Start line from where the recommendation is applicable in the source commit
 	// or source branch.
 	StartLine *int64 `type:"integer"`
@@ -4059,23 +4066,35 @@ func (s *RecommendationSummary) SetRecommendationId(v string) *RecommendationSum
 	return s
 }
 
+// SetRuleMetadata sets the RuleMetadata field's value.
+func (s *RecommendationSummary) SetRuleMetadata(v *RuleMetadata) *RecommendationSummary {
+	s.RuleMetadata = v
+	return s
+}
+
+// SetSeverity sets the Severity field's value.
+func (s *RecommendationSummary) SetSeverity(v string) *RecommendationSummary {
+	s.Severity = &v
+	return s
+}
+
 // SetStartLine sets the StartLine field's value.
 func (s *RecommendationSummary) SetStartLine(v int64) *RecommendationSummary {
 	s.StartLine = &v
 	return s
 }
 
-// Information about an associated AWS CodeCommit repository or an associated
-// repository that is managed by AWS CodeStar Connections (for example, Bitbucket).
-// This Repository object is not used if your source code is in an associated
-// GitHub repository.
+// Information about an associated Amazon Web Services CodeCommit repository
+// or an associated repository that is managed by Amazon Web Services CodeStar
+// Connections (for example, Bitbucket). This Repository object is not used
+// if your source code is in an associated GitHub repository.
 type Repository struct {
 	_ struct{} `type:"structure"`
 
 	// Information about a Bitbucket repository.
 	Bitbucket *ThirdPartySourceRepository `type:"structure"`
 
-	// Information about an AWS CodeCommit repository.
+	// Information about an Amazon Web Services CodeCommit repository.
 	CodeCommit *CodeCommitRepository `type:"structure"`
 
 	// Information about a GitHub Enterprise Server repository.
@@ -4217,10 +4236,10 @@ type RepositoryAssociation struct {
 	// The ID of the repository association.
 	AssociationId *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of an AWS CodeStar Connections connection.
-	// Its format is arn:aws:codestar-connections:region-id:aws-account_id:connection/connection-id.
+	// The Amazon Resource Name (ARN) of an Amazon Web Services CodeStar Connections
+	// connection. Its format is arn:aws:codestar-connections:region-id:aws-account_id:connection/connection-id.
 	// For more information, see Connection (https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_Connection.html)
-	// in the AWS CodeStar Connections API Reference.
+	// in the Amazon Web Services CodeStar Connections API Reference.
 	ConnectionArn *string `type:"string"`
 
 	// The time, in milliseconds since the epoch, when the repository association
@@ -4230,10 +4249,11 @@ type RepositoryAssociation struct {
 	// A KMSKeyDetails object that contains:
 	//
 	//    * The encryption option for this repository association. It is either
-	//    owned by AWS Key Management Service (KMS) (AWS_OWNED_CMK) or customer
-	//    managed (CUSTOMER_MANAGED_CMK).
+	//    owned by Amazon Web Services Key Management Service (KMS) (AWS_OWNED_CMK)
+	//    or customer managed (CUSTOMER_MANAGED_CMK).
 	//
-	//    * The ID of the AWS KMS key that is associated with this respository association.
+	//    * The ID of the Amazon Web Services KMS key that is associated with this
+	//    respository association.
 	KMSKeyDetails *KMSKeyDetails `type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the repository association
@@ -4243,11 +4263,11 @@ type RepositoryAssociation struct {
 	// The name of the repository.
 	Name *string `min:"1" type:"string"`
 
-	// The owner of the repository. For an AWS CodeCommit repository, this is the
-	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
-	// Enterprise Server, or Bitbucket repository, this is the username for the
-	// account that owns the repository. For an S3 repository, it can be the username
-	// or AWS account ID.
+	// The owner of the repository. For an Amazon Web Services CodeCommit repository,
+	// this is the Amazon Web Services account ID of the account that owns the repository.
+	// For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is
+	// the username for the account that owns the repository. For an S3 repository,
+	// it can be the username or Amazon Web Services account ID.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
@@ -4386,10 +4406,10 @@ type RepositoryAssociationSummary struct {
 	// The repository association ID.
 	AssociationId *string `min:"1" type:"string"`
 
-	// The Amazon Resource Name (ARN) of an AWS CodeStar Connections connection.
-	// Its format is arn:aws:codestar-connections:region-id:aws-account_id:connection/connection-id.
+	// The Amazon Resource Name (ARN) of an Amazon Web Services CodeStar Connections
+	// connection. Its format is arn:aws:codestar-connections:region-id:aws-account_id:connection/connection-id.
 	// For more information, see Connection (https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_Connection.html)
-	// in the AWS CodeStar Connections API Reference.
+	// in the Amazon Web Services CodeStar Connections API Reference.
 	ConnectionArn *string `type:"string"`
 
 	// The time, in milliseconds since the epoch, since the repository association
@@ -4399,11 +4419,11 @@ type RepositoryAssociationSummary struct {
 	// The name of the repository association.
 	Name *string `min:"1" type:"string"`
 
-	// The owner of the repository. For an AWS CodeCommit repository, this is the
-	// AWS account ID of the account that owns the repository. For a GitHub, GitHub
-	// Enterprise Server, or Bitbucket repository, this is the username for the
-	// account that owns the repository. For an S3 repository, it can be the username
-	// or AWS account ID.
+	// The owner of the repository. For an Amazon Web Services CodeCommit repository,
+	// this is the Amazon Web Services account ID of the account that owns the repository.
+	// For a GitHub, GitHub Enterprise Server, or Bitbucket repository, this is
+	// the username for the account that owns the repository. For an S3 repository,
+	// it can be the username or Amazon Web Services account ID.
 	Owner *string `min:"1" type:"string"`
 
 	// The provider type of the repository association.
@@ -4675,6 +4695,69 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Metadata about a rule. Rule metadata includes an ID, a name, a list of tags,
+// and a short and long description. CodeGuru Reviewer uses rules to analyze
+// code. A rule's recommendation is included in analysis results if code is
+// detected that violates the rule.
+type RuleMetadata struct {
+	_ struct{} `type:"structure"`
+
+	// A long description of the rule.
+	LongDescription *string `min:"1" type:"string"`
+
+	// The ID of the rule.
+	RuleId *string `min:"1" type:"string"`
+
+	// The name of the rule.
+	RuleName *string `min:"1" type:"string"`
+
+	// Tags that are associated with the rule.
+	RuleTags []*string `min:"1" type:"list"`
+
+	// A short description of the rule.
+	ShortDescription *string `min:"1" type:"string"`
+}
+
+// String returns the string representation
+func (s RuleMetadata) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s RuleMetadata) GoString() string {
+	return s.String()
+}
+
+// SetLongDescription sets the LongDescription field's value.
+func (s *RuleMetadata) SetLongDescription(v string) *RuleMetadata {
+	s.LongDescription = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *RuleMetadata) SetRuleId(v string) *RuleMetadata {
+	s.RuleId = &v
+	return s
+}
+
+// SetRuleName sets the RuleName field's value.
+func (s *RuleMetadata) SetRuleName(v string) *RuleMetadata {
+	s.RuleName = &v
+	return s
+}
+
+// SetRuleTags sets the RuleTags field's value.
+func (s *RuleMetadata) SetRuleTags(v []*string) *RuleMetadata {
+	s.RuleTags = v
+	return s
+}
+
+// SetShortDescription sets the ShortDescription field's value.
+func (s *RuleMetadata) SetShortDescription(v string) *RuleMetadata {
+	s.ShortDescription = &v
+	return s
 }
 
 // Information about an associated repository in an S3 bucket. The associated
@@ -5045,10 +5128,10 @@ func (s TagResourceOutput) GoString() string {
 type ThirdPartySourceRepository struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of an AWS CodeStar Connections connection.
-	// Its format is arn:aws:codestar-connections:region-id:aws-account_id:connection/connection-id.
+	// The Amazon Resource Name (ARN) of an Amazon Web Services CodeStar Connections
+	// connection. Its format is arn:aws:codestar-connections:region-id:aws-account_id:connection/connection-id.
 	// For more information, see Connection (https://docs.aws.amazon.com/codestar-connections/latest/APIReference/API_Connection.html)
-	// in the AWS CodeStar Connections API Reference.
+	// in the Amazon Web Services CodeStar Connections API Reference.
 	//
 	// ConnectionArn is a required field
 	ConnectionArn *string `type:"string" required:"true"`
@@ -5060,7 +5143,8 @@ type ThirdPartySourceRepository struct {
 
 	// The owner of the repository. For a GitHub, GitHub Enterprise, or Bitbucket
 	// repository, this is the username for the account that owns the repository.
-	// For an S3 repository, this can be the username or AWS account ID.
+	// For an S3 repository, this can be the username or Amazon Web Services account
+	// ID.
 	//
 	// Owner is a required field
 	Owner *string `min:"1" type:"string" required:"true"`
@@ -5481,6 +5565,34 @@ func RepositoryAssociationState_Values() []string {
 		RepositoryAssociationStateFailed,
 		RepositoryAssociationStateDisassociating,
 		RepositoryAssociationStateDisassociated,
+	}
+}
+
+const (
+	// SeverityInfo is a Severity enum value
+	SeverityInfo = "Info"
+
+	// SeverityLow is a Severity enum value
+	SeverityLow = "Low"
+
+	// SeverityMedium is a Severity enum value
+	SeverityMedium = "Medium"
+
+	// SeverityHigh is a Severity enum value
+	SeverityHigh = "High"
+
+	// SeverityCritical is a Severity enum value
+	SeverityCritical = "Critical"
+)
+
+// Severity_Values returns all elements of the Severity enum
+func Severity_Values() []string {
+	return []string{
+		SeverityInfo,
+		SeverityLow,
+		SeverityMedium,
+		SeverityHigh,
+		SeverityCritical,
 	}
 }
 

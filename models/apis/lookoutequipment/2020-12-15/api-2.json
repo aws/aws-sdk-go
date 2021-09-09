@@ -488,7 +488,8 @@
         "RoleArn":{"shape":"IamRoleArn"},
         "DataPreProcessingConfiguration":{"shape":"DataPreProcessingConfiguration"},
         "ServerSideKmsKeyId":{"shape":"NameOrArn"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "OffCondition":{"shape":"OffCondition"}
       }
     },
     "CreateModelResponse":{
@@ -704,7 +705,8 @@
         },
         "LastUpdatedTime":{"shape":"Timestamp"},
         "CreatedAt":{"shape":"Timestamp"},
-        "ServerSideKmsKeyId":{"shape":"KmsKeyArn"}
+        "ServerSideKmsKeyId":{"shape":"KmsKeyArn"},
+        "OffCondition":{"shape":"OffCondition"}
       }
     },
     "FileNameTimestampFormat":{
@@ -1048,6 +1050,11 @@
       "type":"string",
       "max":8192,
       "pattern":"\\p{ASCII}{0,8192}"
+    },
+    "OffCondition":{
+      "type":"string",
+      "max":2048,
+      "min":1
     },
     "ResourceNotFoundException":{
       "type":"structure",

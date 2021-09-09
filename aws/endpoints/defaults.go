@@ -10422,6 +10422,19 @@ var awsusgovPartition = partition{
 				"us-gov-west-1": endpoint{},
 			},
 		},
+		"servicediscovery": service{
+
+			Endpoints: endpoints{
+				"servicediscovery-fips": endpoint{
+					Hostname: "servicediscovery-fips.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
+				"us-gov-east-1": endpoint{},
+				"us-gov-west-1": endpoint{},
+			},
+		},
 		"servicequotas": service{
 			Defaults: endpoint{
 				Protocols: []string{"https"},

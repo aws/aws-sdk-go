@@ -1,3 +1,12 @@
+Release v1.40.40 (2021-09-09)
+===
+
+### Service Client Updates
+* `service/codeguru-reviewer`: Updates service API and documentation
+* `service/elasticmapreduce`: Updates service API and documentation
+  * This release enables customers to login to EMR Studio using AWS Identity and Access Management (IAM) identities or identities in their Identity Provider (IdP) via IAM.
+* `service/lookoutequipment`: Updates service API and documentation
+
 Release v1.40.39 (2021-09-08)
 ===
 
