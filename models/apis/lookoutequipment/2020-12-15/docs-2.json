@@ -9,9 +9,9 @@
     "DeleteInferenceScheduler": "<p>Deletes an inference scheduler that has been set up. Already processed output results are not affected. </p>",
     "DeleteModel": "<p>Deletes an ML model currently available for Amazon Lookout for Equipment. This will prevent it from being used with an inference scheduler, even one that is already set up. </p>",
     "DescribeDataIngestionJob": "<p>Provides information on a specific data ingestion job such as creation time, dataset ARN, status, and so on. </p>",
-    "DescribeDataset": "<p>Provides information on a specified dataset such as the schema location, status, and so on.</p>",
+    "DescribeDataset": "<p>Provides a JSON description of the data that is in each time series dataset, including names, column names, and data types.</p>",
     "DescribeInferenceScheduler": "<p> Specifies information about the inference scheduler being used, including name, model, status, and associated metadata </p>",
-    "DescribeModel": "<p>Provides overall information about a specific ML model, including model name and ARN, dataset, training and evaluation information, status, and so on. </p>",
+    "DescribeModel": "<p>Provides a JSON containing the overall information about a specific ML model, including model name and ARN, dataset, training and evaluation information, status, and so on. </p>",
     "ListDataIngestionJobs": "<p>Provides a list of all data ingestion jobs, including dataset name and ARN, S3 location of the input data, status, and so on. </p>",
     "ListDatasets": "<p>Lists all datasets currently available in your account, filtering on the dataset name. </p>",
     "ListInferenceExecutions": "<p> Lists all inference executions that have been performed by the specified inference scheduler. </p>",
@@ -98,10 +98,10 @@
     "DataDelayOffsetInMinutes": {
       "base": null,
       "refs": {
-        "CreateInferenceSchedulerRequest$DataDelayOffsetInMinutes": "<p> A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data. </p>",
+        "CreateInferenceSchedulerRequest$DataDelayOffsetInMinutes": "<p>A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data. </p>",
         "DescribeInferenceSchedulerResponse$DataDelayOffsetInMinutes": "<p> A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data.</p>",
-        "InferenceSchedulerSummary$DataDelayOffsetInMinutes": "<p>&gt; A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if an offset delay time of five minutes was selected, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data. </p>",
-        "UpdateInferenceSchedulerRequest$DataDelayOffsetInMinutes": "<p>&gt; A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data.</p>"
+        "InferenceSchedulerSummary$DataDelayOffsetInMinutes": "<p>A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if an offset delay time of five minutes was selected, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data. </p>",
+        "UpdateInferenceSchedulerRequest$DataDelayOffsetInMinutes": "<p> A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data.</p>"
       }
     },
     "DataIngestionJobSummaries": {
@@ -297,7 +297,7 @@
       }
     },
     "InferenceInputConfiguration": {
-      "base": "<p>&gt; Specifies configuration information for the input data for the inference, including S3 location of input data.. </p>",
+      "base": "<p>Specifies configuration information for the input data for the inference, including S3 location of input data.. </p>",
       "refs": {
         "CreateInferenceSchedulerRequest$DataInputConfiguration": "<p>Specifies configuration information for the input data for the inference scheduler, including delimiter, format, and dataset location. </p>",
         "DescribeInferenceSchedulerResponse$DataInputConfiguration": "<p> Specifies configuration information for the input data for the inference scheduler, including delimiter, format, and dataset location. </p>",
@@ -306,9 +306,9 @@
       }
     },
     "InferenceInputNameConfiguration": {
-      "base": "<p>&gt;&gt; Specifies configuration information for the input data for the inference, including timestamp format and delimiter. </p>",
+      "base": "<p>Specifies configuration information for the input data for the inference, including timestamp format and delimiter. </p>",
       "refs": {
-        "InferenceInputConfiguration$InferenceInputNameConfiguration": "<p>&gt; Specifies configuration information for the input data for the inference, including timestamp format and delimiter. </p>"
+        "InferenceInputConfiguration$InferenceInputNameConfiguration": "<p>Specifies configuration information for the input data for the inference, including timestamp format and delimiter. </p>"
       }
     },
     "InferenceOutputConfiguration": {
@@ -438,9 +438,9 @@
     "KmsKeyArn": {
       "base": null,
       "refs": {
-        "DescribeDatasetResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the AWS KMS customer master key (CMK) used to encrypt dataset data by Amazon Lookout for Equipment. </p>",
-        "DescribeInferenceSchedulerResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the AWS KMS customer master key (CMK) used to encrypt inference scheduler data by Amazon Lookout for Equipment. </p>",
-        "DescribeModelResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the AWS KMS customer master key (CMK) used to encrypt model data by Amazon Lookout for Equipment. </p>"
+        "DescribeDatasetResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt dataset data by Amazon Lookout for Equipment. </p>",
+        "DescribeInferenceSchedulerResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt inference scheduler data by Amazon Lookout for Equipment. </p>",
+        "DescribeModelResponse$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt model data by Amazon Lookout for Equipment. </p>"
       }
     },
     "LabelsInputConfiguration": {
@@ -587,9 +587,9 @@
     "NameOrArn": {
       "base": null,
       "refs": {
-        "CreateDatasetRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the AWS KMS customer master key (CMK) used to encrypt dataset data by Amazon Lookout for Equipment. </p>",
-        "CreateInferenceSchedulerRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the AWS KMS customer master key (CMK) used to encrypt inference scheduler data by Amazon Lookout for Equipment. </p>",
-        "CreateModelRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the AWS KMS customer master key (CMK) used to encrypt model data by Amazon Lookout for Equipment. </p>",
+        "CreateDatasetRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt dataset data by Amazon Lookout for Equipment. </p>",
+        "CreateInferenceSchedulerRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt inference scheduler data by Amazon Lookout for Equipment. </p>",
+        "CreateModelRequest$ServerSideKmsKeyId": "<p>Provides the identifier of the KMS key used to encrypt model data by Amazon Lookout for Equipment. </p>",
         "InferenceOutputConfiguration$KmsKeyId": "<p>The ID number for the AWS KMS key used to encrypt the inference output. </p>"
       }
     },
@@ -606,6 +606,13 @@
         "ListInferenceSchedulersResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of inference schedulers. </p>",
         "ListModelsRequest$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>",
         "ListModelsResponse$NextToken": "<p> An opaque pagination token indicating where to continue the listing of ML models. </p>"
+      }
+    },
+    "OffCondition": {
+      "base": null,
+      "refs": {
+        "CreateModelRequest$OffCondition": "<p>Indicates that the asset associated with this sensor has been shut off. As long as this condition is met, Lookout for Equipment will not use data from this asset for training, evaluation, or inference.</p>",
+        "DescribeModelResponse$OffCondition": "<p>Indicates that the asset associated with this sensor has been shut off. As long as this condition is met, Lookout for Equipment will not use data from this asset for training, evaluation, or inference.</p>"
       }
     },
     "ResourceNotFoundException": {

@@ -326,9 +326,10 @@ func (c *EMR) AddTagsRequest(input *AddTagsInput) (req *request.Request, output 
 
 // AddTags API operation for Amazon EMR.
 //
-// Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters
-// in various ways, such as grouping clusters to track your Amazon EMR resource
-// allocation costs. For more information, see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
+// Adds tags to an Amazon EMR resource, such as a cluster or an Amazon EMR Studio.
+// Tags make it easier to associate resources in various ways, such as grouping
+// clusters to track your Amazon EMR resource allocation costs. For more information,
+// see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -670,6 +671,10 @@ func (c *EMR) CreateStudioSessionMappingRequest(input *CreateStudioSessionMappin
 //
 // Maps a user or group to the Amazon EMR Studio specified by StudioId, and
 // applies a session policy to refine Studio permissions for that user or group.
+// Use CreateStudioSessionMapping to assign users to a Studio when you use Amazon
+// Web Services SSO authentication. For instructions on how to assign users
+// to a Studio when you use IAM authentication, see Assign a user or group to
+// your EMR Studio (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4313,9 +4318,10 @@ func (c *EMR) RemoveTagsRequest(input *RemoveTagsInput) (req *request.Request, o
 
 // RemoveTags API operation for Amazon EMR.
 //
-// Removes tags from an Amazon EMR resource. Tags make it easier to associate
-// clusters in various ways, such as grouping clusters to track your Amazon
-// EMR resource allocation costs. For more information, see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
+// Removes tags from an Amazon EMR resource, such as a cluster or Amazon EMR
+// Studio. Tags make it easier to associate resources in various ways, such
+// as grouping clusters to track your Amazon EMR resource allocation costs.
+// For more information, see Tag Clusters (https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html).
 //
 // The following example removes the stack tag with value Prod from a cluster:
 //
@@ -5370,20 +5376,19 @@ func (s *AddJobFlowStepsOutput) SetStepIds(v []*string) *AddJobFlowStepsOutput {
 	return s
 }
 
-// This input identifies a cluster and a list of tags to attach.
+// This input identifies an Amazon EMR resource and a list of tags to attach.
 type AddTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon EMR resource identifier to which tags will be added. This value
-	// must be a cluster identifier.
+	// The Amazon EMR resource identifier to which tags will be added. For example,
+	// a cluster identifier or an Amazon EMR Studio ID.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// A list of tags to associate with a cluster and propagate to EC2 instances.
-	// Tags are user-defined key-value pairs that consist of a required key string
-	// with a maximum of 128 characters, and an optional value string with a maximum
-	// of 256 characters.
+	// A list of tags to associate with a resource. Tags are user-defined key-value
+	// pairs that consist of a required key string with a maximum of 128 characters,
+	// and an optional value string with a maximum of 256 characters.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -6303,8 +6308,8 @@ type Cluster struct {
 	// The name of the security configuration applied to the cluster.
 	SecurityConfiguration *string `type:"string"`
 
-	// The IAM role that will be assumed by the Amazon EMR service to access Amazon
-	// Web Services resources on your behalf.
+	// The IAM role that Amazon EMR assumes in order to access Amazon Web Services
+	// resources on your behalf.
 	ServiceRole *string `type:"string"`
 
 	// The current status details about the cluster.
@@ -7010,8 +7015,8 @@ func (s *CreateSecurityConfigurationOutput) SetName(v string) *CreateSecurityCon
 type CreateStudioInput struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the Studio authenticates users using single sign-on (SSO)
-	// or IAM. Amazon EMR Studio currently only supports SSO authentication.
+	// Specifies whether the Studio authenticates users using IAM or Amazon Web
+	// Services SSO.
 	//
 	// AuthMode is a required field
 	AuthMode *string `type:"string" required:"true" enum:"AuthMode"`
@@ -7032,14 +7037,26 @@ type CreateStudioInput struct {
 	// EngineSecurityGroupId is a required field
 	EngineSecurityGroupId *string `type:"string" required:"true"`
 
+	// The authentication endpoint of your identity provider (IdP). Specify this
+	// value when you use IAM authentication and want to let federated users log
+	// in to a Studio with the Studio URL and credentials from your IdP. Amazon
+	// EMR Studio redirects users to this endpoint to enter credentials.
+	IdpAuthUrl *string `type:"string"`
+
+	// The name that your identity provider (IdP) uses for its RelayState parameter.
+	// For example, RelayState or TargetSource. Specify this value when you use
+	// IAM authentication and want to let federated users log in to a Studio using
+	// the Studio URL. The RelayState parameter differs by IdP.
+	IdpRelayStateParameterName *string `type:"string"`
+
 	// A descriptive name for the Amazon EMR Studio.
 	//
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// The IAM role that will be assumed by the Amazon EMR Studio. The service role
-	// provides a way for Amazon EMR Studio to interoperate with other Amazon Web
-	// Services services.
+	// The IAM role that the Amazon EMR Studio assumes. The service role provides
+	// a way for Amazon EMR Studio to interoperate with other Amazon Web Services
+	// services.
 	//
 	// ServiceRole is a required field
 	ServiceRole *string `type:"string" required:"true"`
@@ -7056,12 +7073,11 @@ type CreateStudioInput struct {
 	// characters, and an optional value string with a maximum of 256 characters.
 	Tags []*Tag `type:"list"`
 
-	// The IAM user role that will be assumed by users and groups logged in to an
-	// Amazon EMR Studio. The permissions attached to this IAM role can be scoped
-	// down for each user or group using session policies.
-	//
-	// UserRole is a required field
-	UserRole *string `type:"string" required:"true"`
+	// The IAM user role that users and groups assume when logged in to an Amazon
+	// EMR Studio. Only specify a UserRole when you use Amazon Web Services SSO
+	// authentication. The permissions attached to the UserRole can be scoped down
+	// for each user or group using session policies.
+	UserRole *string `type:"string"`
 
 	// The ID of the Amazon Virtual Private Cloud (Amazon VPC) to associate with
 	// the Studio.
@@ -7108,9 +7124,6 @@ func (s *CreateStudioInput) Validate() error {
 	if s.SubnetIds == nil {
 		invalidParams.Add(request.NewErrParamRequired("SubnetIds"))
 	}
-	if s.UserRole == nil {
-		invalidParams.Add(request.NewErrParamRequired("UserRole"))
-	}
 	if s.VpcId == nil {
 		invalidParams.Add(request.NewErrParamRequired("VpcId"))
 	}
@@ -7145,6 +7158,18 @@ func (s *CreateStudioInput) SetDescription(v string) *CreateStudioInput {
 // SetEngineSecurityGroupId sets the EngineSecurityGroupId field's value.
 func (s *CreateStudioInput) SetEngineSecurityGroupId(v string) *CreateStudioInput {
 	s.EngineSecurityGroupId = &v
+	return s
+}
+
+// SetIdpAuthUrl sets the IdpAuthUrl field's value.
+func (s *CreateStudioInput) SetIdpAuthUrl(v string) *CreateStudioInput {
+	s.IdpAuthUrl = &v
+	return s
+}
+
+// SetIdpRelayStateParameterName sets the IdpRelayStateParameterName field's value.
+func (s *CreateStudioInput) SetIdpRelayStateParameterName(v string) *CreateStudioInput {
+	s.IdpRelayStateParameterName = &v
 	return s
 }
 
@@ -13936,17 +13961,17 @@ func (s RemoveManagedScalingPolicyOutput) GoString() string {
 	return s.String()
 }
 
-// This input identifies a cluster and a list of tags to remove.
+// This input identifies an Amazon EMR resource and a list of tags to remove.
 type RemoveTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon EMR resource identifier from which tags will be removed. This
-	// value must be a cluster identifier.
+	// The Amazon EMR resource identifier from which tags will be removed. For example,
+	// a cluster identifier or an Amazon EMR Studio ID.
 	//
 	// ResourceId is a required field
 	ResourceId *string `type:"string" required:"true"`
 
-	// A list of tag keys to remove from a resource.
+	// A list of tag keys to remove from the resource.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
@@ -13990,7 +14015,7 @@ func (s *RemoveTagsInput) SetTagKeys(v []*string) *RemoveTagsInput {
 	return s
 }
 
-// This output indicates the result of removing tags from a resource.
+// This output indicates the result of removing tags from the resource.
 type RemoveTagsOutput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14158,8 +14183,8 @@ type RunJobFlowInput struct {
 	// The name of a security configuration to apply to the cluster.
 	SecurityConfiguration *string `type:"string"`
 
-	// The IAM role that will be assumed by the Amazon EMR service to access Amazon
-	// Web Services resources on your behalf.
+	// The IAM role that Amazon EMR assumes in order to access Amazon Web Services
+	// resources on your behalf.
 	ServiceRole *string `type:"string"`
 
 	// Specifies the number of steps that can be executed concurrently. The default
@@ -16007,8 +16032,8 @@ func (s StopNotebookExecutionOutput) GoString() string {
 type Studio struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies whether the Amazon EMR Studio authenticates users using single
-	// sign-on (SSO) or IAM.
+	// Specifies whether the Amazon EMR Studio authenticates users using IAM or
+	// Amazon Web Services SSO.
 	AuthMode *string `type:"string" enum:"AuthMode"`
 
 	// The time the Amazon EMR Studio was created.
@@ -16025,6 +16050,14 @@ type Studio struct {
 	// The Engine security group allows inbound network traffic from resources in
 	// the Workspace security group.
 	EngineSecurityGroupId *string `type:"string"`
+
+	// Your identity provider's authentication endpoint. Amazon EMR Studio redirects
+	// federated users to this endpoint for authentication when logging in to a
+	// Studio with the Studio URL.
+	IdpAuthUrl *string `type:"string"`
+
+	// The name of your identity provider's RelayState parameter.
+	IdpRelayStateParameterName *string `type:"string"`
 
 	// The name of the Amazon EMR Studio.
 	Name *string `type:"string"`
@@ -16048,6 +16081,7 @@ type Studio struct {
 	Url *string `type:"string"`
 
 	// The name of the IAM role assumed by users logged in to the Amazon EMR Studio.
+	// A Studio only requires a UserRole when you use IAM authentication.
 	UserRole *string `type:"string"`
 
 	// The ID of the VPC associated with the Amazon EMR Studio.
@@ -16096,6 +16130,18 @@ func (s *Studio) SetDescription(v string) *Studio {
 // SetEngineSecurityGroupId sets the EngineSecurityGroupId field's value.
 func (s *Studio) SetEngineSecurityGroupId(v string) *Studio {
 	s.EngineSecurityGroupId = &v
+	return s
+}
+
+// SetIdpAuthUrl sets the IdpAuthUrl field's value.
+func (s *Studio) SetIdpAuthUrl(v string) *Studio {
+	s.IdpAuthUrl = &v
+	return s
+}
+
+// SetIdpRelayStateParameterName sets the IdpRelayStateParameterName field's value.
+func (s *Studio) SetIdpRelayStateParameterName(v string) *Studio {
+	s.IdpRelayStateParameterName = &v
 	return s
 }
 
@@ -16165,6 +16211,10 @@ func (s *Studio) SetWorkspaceSecurityGroupId(v string) *Studio {
 type StudioSummary struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies whether the Studio authenticates users using IAM or Amazon Web
+	// Services SSO.
+	AuthMode *string `type:"string" enum:"AuthMode"`
+
 	// The time when the Amazon EMR Studio was created.
 	CreationTime *time.Time `type:"timestamp"`
 
@@ -16193,6 +16243,12 @@ func (s StudioSummary) String() string {
 // GoString returns the string representation
 func (s StudioSummary) GoString() string {
 	return s.String()
+}
+
+// SetAuthMode sets the AuthMode field's value.
+func (s *StudioSummary) SetAuthMode(v string) *StudioSummary {
+	s.AuthMode = &v
+	return s
 }
 
 // SetCreationTime sets the CreationTime field's value.

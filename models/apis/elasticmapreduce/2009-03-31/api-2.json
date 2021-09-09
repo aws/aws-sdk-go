@@ -1104,7 +1104,6 @@
         "VpcId",
         "SubnetIds",
         "ServiceRole",
-        "UserRole",
         "WorkspaceSecurityGroupId",
         "EngineSecurityGroupId",
         "DefaultS3Location"
@@ -1120,6 +1119,8 @@
         "WorkspaceSecurityGroupId":{"shape":"XmlStringMaxLen256"},
         "EngineSecurityGroupId":{"shape":"XmlStringMaxLen256"},
         "DefaultS3Location":{"shape":"XmlString"},
+        "IdpAuthUrl":{"shape":"XmlString"},
+        "IdpRelayStateParameterName":{"shape":"XmlStringMaxLen256"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -2943,6 +2944,8 @@
         "Url":{"shape":"XmlString"},
         "CreationTime":{"shape":"Date"},
         "DefaultS3Location":{"shape":"XmlString"},
+        "IdpAuthUrl":{"shape":"XmlString"},
+        "IdpRelayStateParameterName":{"shape":"XmlStringMaxLen256"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -2954,6 +2957,7 @@
         "VpcId":{"shape":"XmlStringMaxLen256"},
         "Description":{"shape":"XmlStringMaxLen256"},
         "Url":{"shape":"XmlStringMaxLen256"},
+        "AuthMode":{"shape":"AuthMode"},
         "CreationTime":{"shape":"Date"}
       }
     },

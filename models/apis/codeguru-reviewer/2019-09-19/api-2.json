@@ -763,6 +763,12 @@
         "Tags":{"shape":"TagMap"}
       }
     },
+    "LongDescription":{
+      "type":"string",
+      "max":1000,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
+    },
     "MaxResults":{
       "type":"integer",
       "max":100,
@@ -934,7 +940,9 @@
         "StartLine":{"shape":"LineNumber"},
         "EndLine":{"shape":"LineNumber"},
         "Description":{"shape":"Text"},
-        "RecommendationCategory":{"shape":"RecommendationCategory"}
+        "RecommendationCategory":{"shape":"RecommendationCategory"},
+        "RuleMetadata":{"shape":"RuleMetadata"},
+        "Severity":{"shape":"Severity"}
       }
     },
     "Repository":{
@@ -1044,6 +1052,40 @@
       "error":{"httpStatusCode":404},
       "exception":true
     },
+    "RuleId":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"^\\S+\\/[a-zA-Z0-9-]+@v\\d+\\.\\d+$"
+    },
+    "RuleMetadata":{
+      "type":"structure",
+      "members":{
+        "RuleId":{"shape":"RuleId"},
+        "RuleName":{"shape":"RuleName"},
+        "ShortDescription":{"shape":"ShortDescription"},
+        "LongDescription":{"shape":"LongDescription"},
+        "RuleTags":{"shape":"RuleTags"}
+      }
+    },
+    "RuleName":{
+      "type":"string",
+      "max":100,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
+    },
+    "RuleTag":{
+      "type":"string",
+      "max":50,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
+    },
+    "RuleTags":{
+      "type":"list",
+      "member":{"shape":"RuleTag"},
+      "max":20,
+      "min":1
+    },
     "S3BucketName":{
       "type":"string",
       "max":63,
@@ -1075,6 +1117,22 @@
         "BucketName":{"shape":"S3BucketName"},
         "CodeArtifacts":{"shape":"CodeArtifacts"}
       }
+    },
+    "Severity":{
+      "type":"string",
+      "enum":[
+        "Info",
+        "Low",
+        "Medium",
+        "High",
+        "Critical"
+      ]
+    },
+    "ShortDescription":{
+      "type":"string",
+      "max":200,
+      "min":1,
+      "pattern":"^\\S(.*\\S)?$"
     },
     "SourceCodeArtifactsObjectKey":{
       "type":"string",

@@ -5,11 +5,11 @@
     "AddInstanceFleet": "<p>Adds an instance fleet to a running cluster.</p> <note> <p>The instance fleet configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x.</p> </note>",
     "AddInstanceGroups": "<p>Adds one or more instance groups to a running cluster.</p>",
     "AddJobFlowSteps": "<p>AddJobFlowSteps adds new steps to a running cluster. A maximum of 256 steps are allowed in each job flow.</p> <p>If your cluster is long-running (such as a Hive data warehouse) or complex, you may require more than 256 steps to process your data. You can bypass the 256-step limitation in various ways, including using SSH to connect to the master node and submitting queries directly to the software running on the master node, such as Hive and Hadoop. For more information on how to do this, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html\">Add More than 256 Steps to a Cluster</a> in the <i>Amazon EMR Management Guide</i>.</p> <p>A step specifies the location of a JAR file stored either on the master node of the cluster or in Amazon S3. Each step is performed by the main function of the main class of the JAR file. The main class can be specified either in the manifest of the JAR or by using the MainFunction parameter of the step.</p> <p>Amazon EMR executes each step in the order listed. For a step to be considered complete, the main function must exit with a zero exit code and all Hadoop jobs started while the step was running must have completed and run successfully.</p> <p>You can only add steps to a cluster that is in one of the following states: STARTING, BOOTSTRAPPING, RUNNING, or WAITING.</p>",
-    "AddTags": "<p>Adds tags to an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag Clusters</a>. </p>",
+    "AddTags": "<p>Adds tags to an Amazon EMR resource, such as a cluster or an Amazon EMR Studio. Tags make it easier to associate resources in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag Clusters</a>. </p>",
     "CancelSteps": "<p>Cancels a pending step or steps in a running cluster. Available only in Amazon EMR versions 4.8.0 and later, excluding version 5.0.0. A maximum of 256 steps are allowed in each CancelSteps request. CancelSteps is idempotent but asynchronous; it does not guarantee that a step will be canceled, even if the request is successfully submitted. When you use Amazon EMR versions 5.28.0 and later, you can cancel steps that are in a <code>PENDING</code> or <code>RUNNING</code> state. In earlier versions of Amazon EMR, you can only cancel steps that are in a <code>PENDING</code> state. </p>",
     "CreateSecurityConfiguration": "<p>Creates a security configuration, which is stored in the service and can be specified when a cluster is created.</p>",
     "CreateStudio": "<p>Creates a new Amazon EMR Studio.</p>",
-    "CreateStudioSessionMapping": "<p>Maps a user or group to the Amazon EMR Studio specified by <code>StudioId</code>, and applies a session policy to refine Studio permissions for that user or group.</p>",
+    "CreateStudioSessionMapping": "<p>Maps a user or group to the Amazon EMR Studio specified by <code>StudioId</code>, and applies a session policy to refine Studio permissions for that user or group. Use <code>CreateStudioSessionMapping</code> to assign users to a Studio when you use Amazon Web Services SSO authentication. For instructions on how to assign users to a Studio when you use IAM authentication, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-studio-manage-users.html#emr-studio-assign-users-groups\">Assign a user or group to your EMR Studio</a>.</p>",
     "DeleteSecurityConfiguration": "<p>Deletes a security configuration.</p>",
     "DeleteStudio": "<p>Removes an Amazon EMR Studio from the Studio metadata store.</p>",
     "DeleteStudioSessionMapping": "<p>Removes a user or group from an Amazon EMR Studio.</p>",
@@ -45,7 +45,7 @@
     "RemoveAutoScalingPolicy": "<p>Removes an automatic scaling policy from a specified instance group within an EMR cluster.</p>",
     "RemoveAutoTerminationPolicy": "<p>Removes an auto-termination policy from an Amazon EMR cluster.</p>",
     "RemoveManagedScalingPolicy": "<p> Removes a managed scaling policy from a specified EMR cluster. </p>",
-    "RemoveTags": "<p>Removes tags from an Amazon EMR resource. Tags make it easier to associate clusters in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag Clusters</a>. </p> <p>The following example removes the stack tag with value Prod from a cluster:</p>",
+    "RemoveTags": "<p>Removes tags from an Amazon EMR resource, such as a cluster or Amazon EMR Studio. Tags make it easier to associate resources in various ways, such as grouping clusters to track your Amazon EMR resource allocation costs. For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-plan-tags.html\">Tag Clusters</a>. </p> <p>The following example removes the stack tag with value Prod from a cluster:</p>",
     "RunJobFlow": "<p>RunJobFlow creates and starts running a new cluster (job flow). The cluster runs the steps specified. After the steps complete, the cluster stops and the HDFS partition is lost. To prevent loss of data, configure the last step of the job flow to store results in Amazon S3. If the <a>JobFlowInstancesConfig</a> <code>KeepJobFlowAliveWhenNoSteps</code> parameter is set to <code>TRUE</code>, the cluster transitions to the WAITING state rather than shutting down after the steps have completed. </p> <p>For additional protection, you can set the <a>JobFlowInstancesConfig</a> <code>TerminationProtected</code> parameter to <code>TRUE</code> to lock the cluster and prevent it from being terminated by API call, user intervention, or in the event of a job flow error.</p> <p>A maximum of 256 steps are allowed in each job flow.</p> <p>If your cluster is long-running (such as a Hive data warehouse) or complex, you may require more than 256 steps to process your data. You can bypass the 256-step limitation in various ways, including using the SSH shell to connect to the master node and submitting queries directly to the software running on the master node, such as Hive and Hadoop. For more information on how to do this, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/AddMoreThan256Steps.html\">Add More than 256 Steps to a Cluster</a> in the <i>Amazon EMR Management Guide</i>.</p> <p>For long running clusters, we recommend that you periodically store your results.</p> <note> <p>The instance fleets configuration is available only in Amazon EMR versions 4.8.0 and later, excluding 5.0.x versions. The RunJobFlow request can contain InstanceFleets parameters or InstanceGroups parameters, but not both.</p> </note>",
     "SetTerminationProtection": "<p>SetTerminationProtection locks a cluster (job flow) so the EC2 instances in the cluster cannot be terminated by user intervention, an API call, or in the event of a job-flow error. The cluster still terminates upon successful completion of the job flow. Calling <code>SetTerminationProtection</code> on a cluster is similar to calling the Amazon EC2 <code>DisableAPITermination</code> API on all EC2 instances in a cluster.</p> <p> <code>SetTerminationProtection</code> is used to prevent accidental termination of a cluster and to ensure that in the event of an error, the instances persist so that you can recover any data stored in their ephemeral instance storage.</p> <p> To terminate a cluster that has been locked by setting <code>SetTerminationProtection</code> to <code>true</code>, you must first unlock the job flow by a subsequent call to <code>SetTerminationProtection</code> in which you set the value to <code>false</code>. </p> <p> For more information, see<a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/UsingEMR_TerminationProtection.html\">Managing Cluster Termination</a> in the <i>Amazon EMR Management Guide</i>. </p>",
     "SetVisibleToAllUsers": "<p>Sets the <a>Cluster$VisibleToAllUsers</a> value for an EMR cluster. When <code>true</code>, IAM principals in the Amazon Web Services account can perform EMR cluster actions that their IAM policies allow. When <code>false</code>, only the IAM principal that created the cluster and the Amazon Web Services account root user can perform EMR actions on the cluster, regardless of IAM permissions policies attached to other IAM principals.</p> <p>This action works on running clusters. When you create a cluster, use the <a>RunJobFlowInput$VisibleToAllUsers</a> parameter.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/emr/latest/ManagementGuide/security_iam_emr-with-iam.html#security_set_visible_to_all_users\">Understanding the EMR Cluster VisibleToAllUsers Setting</a> in the <i>Amazon EMRManagement Guide</i>.</p>",
@@ -95,7 +95,7 @@
       }
     },
     "AddTagsInput": {
-      "base": "<p>This input identifies a cluster and a list of tags to attach.</p>",
+      "base": "<p>This input identifies an Amazon EMR resource and a list of tags to attach.</p>",
       "refs": {
       }
     },
@@ -138,8 +138,9 @@
     "AuthMode": {
       "base": null,
       "refs": {
-        "CreateStudioInput$AuthMode": "<p>Specifies whether the Studio authenticates users using single sign-on (SSO) or IAM. Amazon EMR Studio currently only supports SSO authentication.</p>",
-        "Studio$AuthMode": "<p>Specifies whether the Amazon EMR Studio authenticates users using single sign-on (SSO) or IAM.</p>"
+        "CreateStudioInput$AuthMode": "<p>Specifies whether the Studio authenticates users using IAM or Amazon Web Services SSO.</p>",
+        "Studio$AuthMode": "<p>Specifies whether the Amazon EMR Studio authenticates users using IAM or Amazon Web Services SSO.</p>",
+        "StudioSummary$AuthMode": "<p>Specifies whether the Studio authenticates users using IAM or Amazon Web Services SSO.</p>"
       }
     },
     "AutoScalingPolicy": {
@@ -1566,12 +1567,12 @@
       }
     },
     "RemoveTagsInput": {
-      "base": "<p>This input identifies a cluster and a list of tags to remove.</p>",
+      "base": "<p>This input identifies an Amazon EMR resource and a list of tags to remove.</p>",
       "refs": {
       }
     },
     "RemoveTagsOutput": {
-      "base": "<p>This output indicates the result of removing tags from a resource.</p>",
+      "base": "<p>This output indicates the result of removing tags from the resource.</p>",
       "refs": {
       }
     },
@@ -1585,8 +1586,8 @@
     "ResourceId": {
       "base": null,
       "refs": {
-        "AddTagsInput$ResourceId": "<p>The Amazon EMR resource identifier to which tags will be added. This value must be a cluster identifier.</p>",
-        "RemoveTagsInput$ResourceId": "<p>The Amazon EMR resource identifier from which tags will be removed. This value must be a cluster identifier.</p>"
+        "AddTagsInput$ResourceId": "<p>The Amazon EMR resource identifier to which tags will be added. For example, a cluster identifier or an Amazon EMR Studio ID.</p>",
+        "RemoveTagsInput$ResourceId": "<p>The Amazon EMR resource identifier from which tags will be removed. For example, a cluster identifier or an Amazon EMR Studio ID.</p>"
       }
     },
     "RunJobFlowInput": {
@@ -1887,7 +1888,7 @@
         "Cluster$RequestedAmiVersion": "<p>The AMI version requested for this cluster.</p>",
         "Cluster$RunningAmiVersion": "<p>The AMI version running on this cluster.</p>",
         "Cluster$ReleaseLabel": "<p>The Amazon EMR release label, which determines the version of open-source application packages installed on the cluster. Release labels are in the form <code>emr-x.x.x</code>, where x.x.x is an Amazon EMR release version such as <code>emr-5.14.0</code>. For more information about Amazon EMR release versions and included application versions and features, see <a href=\"https://docs.aws.amazon.com/emr/latest/ReleaseGuide/\">https://docs.aws.amazon.com/emr/latest/ReleaseGuide/</a>. The release label applies only to Amazon EMR releases version 4.0 and later. Earlier versions use <code>AmiVersion</code>.</p>",
-        "Cluster$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR service to access Amazon Web Services resources on your behalf.</p>",
+        "Cluster$ServiceRole": "<p>The IAM role that Amazon EMR assumes in order to access Amazon Web Services resources on your behalf.</p>",
         "Cluster$MasterPublicDnsName": "<p>The DNS name of the master node. If the cluster is on a private subnet, this is the private DNS name. On a public subnet, this is the public DNS name.</p>",
         "ClusterStateChangeReason$Message": "<p>The descriptive message for the state change reason.</p>",
         "ClusterSummary$Name": "<p>The name of the cluster.</p>",
@@ -1957,7 +1958,7 @@
         "Ec2InstanceAttributes$AdditionalSlaveSecurityGroups": "<p>A list of additional Amazon EC2 security group IDs for the core and task nodes.</p>",
         "HadoopStepConfig$Args": "<p>The list of command line arguments to pass to the JAR file's main function for execution.</p>",
         "ListReleaseLabelsOutput$ReleaseLabels": "<p>The returned release labels.</p>",
-        "RemoveTagsInput$TagKeys": "<p>A list of tag keys to remove from a resource.</p>"
+        "RemoveTagsInput$TagKeys": "<p>A list of tag keys to remove from the resource.</p>"
       }
     },
     "StringMap": {
@@ -2016,7 +2017,7 @@
     "TagList": {
       "base": null,
       "refs": {
-        "AddTagsInput$Tags": "<p>A list of tags to associate with a cluster and propagate to EC2 instances. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.</p>",
+        "AddTagsInput$Tags": "<p>A list of tags to associate with a resource. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.</p>",
         "Cluster$Tags": "<p>A list of tags associated with a cluster.</p>",
         "CreateStudioInput$Tags": "<p>A list of tags to associate with the Amazon EMR Studio. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters, and an optional value string with a maximum of 256 characters.</p>",
         "NotebookExecution$Tags": "<p>A list of tags associated with a notebook execution. Tags are user-defined key-value pairs that consist of a required key string with a maximum of 128 characters and an optional value string with a maximum of 256 characters.</p>",
@@ -2077,9 +2078,10 @@
         "Cluster$AutoScalingRole": "<p>An IAM role for automatic scaling policies. The default role is <code>EMR_AutoScaling_DefaultRole</code>. The IAM role provides permissions that the automatic scaling feature requires to launch and terminate EC2 instances in an instance group.</p>",
         "CreateSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
         "CreateSecurityConfigurationOutput$Name": "<p>The name of the security configuration.</p>",
-        "CreateStudioInput$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR Studio. The service role provides a way for Amazon EMR Studio to interoperate with other Amazon Web Services services.</p>",
-        "CreateStudioInput$UserRole": "<p>The IAM user role that will be assumed by users and groups logged in to an Amazon EMR Studio. The permissions attached to this IAM role can be scoped down for each user or group using session policies.</p>",
+        "CreateStudioInput$ServiceRole": "<p>The IAM role that the Amazon EMR Studio assumes. The service role provides a way for Amazon EMR Studio to interoperate with other Amazon Web Services services.</p>",
+        "CreateStudioInput$UserRole": "<p>The IAM user role that users and groups assume when logged in to an Amazon EMR Studio. Only specify a <code>UserRole</code> when you use Amazon Web Services SSO authentication. The permissions attached to the <code>UserRole</code> can be scoped down for each user or group using session policies.</p>",
         "CreateStudioInput$DefaultS3Location": "<p>The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook files.</p>",
+        "CreateStudioInput$IdpAuthUrl": "<p>The authentication endpoint of your identity provider (IdP). Specify this value when you use IAM authentication and want to let federated users log in to a Studio with the Studio URL and credentials from your IdP. Amazon EMR Studio redirects users to this endpoint to enter credentials.</p>",
         "CreateStudioOutput$Url": "<p>The unique Studio access URL.</p>",
         "DeleteSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
         "DescribeSecurityConfigurationInput$Name": "<p>The name of the security configuration.</p>",
@@ -2105,7 +2107,7 @@
         "RunJobFlowInput$LogEncryptionKmsKeyId": "<p>The KMS key used for encrypting log files. If a value is not provided, the logs remain encrypted by AES-256. This attribute is only available with Amazon EMR version 5.30.0 and later, excluding Amazon EMR 6.0.0.</p>",
         "RunJobFlowInput$AdditionalInfo": "<p>A JSON string for selecting additional features.</p>",
         "RunJobFlowInput$JobFlowRole": "<p>Also called instance profile and EC2 role. An IAM role for an EMR cluster. The EC2 instances of the cluster assume this role. The default role is <code>EMR_EC2_DefaultRole</code>. In order to use the default role, you must have already created it using the CLI or console.</p>",
-        "RunJobFlowInput$ServiceRole": "<p>The IAM role that will be assumed by the Amazon EMR service to access Amazon Web Services resources on your behalf.</p>",
+        "RunJobFlowInput$ServiceRole": "<p>The IAM role that Amazon EMR assumes in order to access Amazon Web Services resources on your behalf.</p>",
         "RunJobFlowInput$SecurityConfiguration": "<p>The name of a security configuration to apply to the cluster.</p>",
         "RunJobFlowInput$AutoScalingRole": "<p>An IAM role for automatic scaling policies. The default role is <code>EMR_AutoScaling_DefaultRole</code>. The IAM role provides permissions that the automatic scaling feature requires to launch and terminate EC2 instances in an instance group.</p>",
         "ScriptBootstrapActionConfig$Path": "<p>Location in Amazon S3 of the script to run during a bootstrap action.</p>",
@@ -2115,9 +2117,10 @@
         "StartNotebookExecutionInput$ServiceRole": "<p>The name or ARN of the IAM role that is used as the service role for Amazon EMR (the EMR role) for the notebook execution.</p>",
         "StepExecutionStatusDetail$LastStateChangeReason": "<p>A description of the step's current state.</p>",
         "Studio$ServiceRole": "<p>The name of the IAM role assumed by the Amazon EMR Studio.</p>",
-        "Studio$UserRole": "<p>The name of the IAM role assumed by users logged in to the Amazon EMR Studio.</p>",
+        "Studio$UserRole": "<p>The name of the IAM role assumed by users logged in to the Amazon EMR Studio. A Studio only requires a <code>UserRole</code> when you use IAM authentication.</p>",
         "Studio$Url": "<p>The unique access URL of the Amazon EMR Studio.</p>",
         "Studio$DefaultS3Location": "<p>The Amazon S3 location to back up Amazon EMR Studio Workspaces and notebook files.</p>",
+        "Studio$IdpAuthUrl": "<p>Your identity provider's authentication endpoint. Amazon EMR Studio redirects federated users to this endpoint for authentication when logging in to a Studio with the Studio URL.</p>",
         "UpdateStudioInput$DefaultS3Location": "<p>The Amazon S3 location to back up Workspaces and notebook files for the Amazon EMR Studio.</p>",
         "XmlStringList$member": null
       }
@@ -2151,6 +2154,7 @@
         "CreateStudioInput$VpcId": "<p>The ID of the Amazon Virtual Private Cloud (Amazon VPC) to associate with the Studio.</p>",
         "CreateStudioInput$WorkspaceSecurityGroupId": "<p>The ID of the Amazon EMR Studio Workspace security group. The Workspace security group allows outbound network traffic to resources in the Engine security group, and it must be in the same VPC specified by <code>VpcId</code>.</p>",
         "CreateStudioInput$EngineSecurityGroupId": "<p>The ID of the Amazon EMR Studio Engine security group. The Engine security group allows inbound network traffic from the Workspace security group, and it must be in the same VPC specified by <code>VpcId</code>.</p>",
+        "CreateStudioInput$IdpRelayStateParameterName": "<p>The name that your identity provider (IdP) uses for its <code>RelayState</code> parameter. For example, <code>RelayState</code> or <code>TargetSource</code>. Specify this value when you use IAM authentication and want to let federated users log in to a Studio using the Studio URL. The <code>RelayState</code> parameter differs by IdP.</p>",
         "CreateStudioOutput$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "CreateStudioSessionMappingInput$StudioId": "<p>The ID of the Amazon EMR Studio to which the user or group will be mapped.</p>",
         "CreateStudioSessionMappingInput$IdentityId": "<p>The globally unique identifier (GUID) of the user or group from the Amazon Web Services SSO Identity Store. For more information, see <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_User.html#singlesignon-Type-User-UserId\">UserId</a> and <a href=\"https://docs.aws.amazon.com/singlesignon/latest/IdentityStoreAPIReference/API_Group.html#singlesignon-Type-Group-GroupId\">GroupId</a> in the <i>Amazon Web Services SSO Identity Store API Reference</i>. Either <code>IdentityName</code> or <code>IdentityId</code> must be specified, but not both.</p>",
@@ -2239,6 +2243,7 @@
         "Studio$VpcId": "<p>The ID of the VPC associated with the Amazon EMR Studio.</p>",
         "Studio$WorkspaceSecurityGroupId": "<p>The ID of the Workspace security group associated with the Amazon EMR Studio. The Workspace security group allows outbound network traffic to resources in the Engine security group and to the internet.</p>",
         "Studio$EngineSecurityGroupId": "<p>The ID of the Engine security group associated with the Amazon EMR Studio. The Engine security group allows inbound network traffic from resources in the Workspace security group.</p>",
+        "Studio$IdpRelayStateParameterName": "<p>The name of your identity provider's <code>RelayState</code> parameter.</p>",
         "StudioSummary$StudioId": "<p>The ID of the Amazon EMR Studio.</p>",
         "StudioSummary$Name": "<p>The name of the Amazon EMR Studio.</p>",
         "StudioSummary$VpcId": "<p>The ID of the Virtual Private Cloud (Amazon VPC) associated with the Amazon EMR Studio.</p>",
