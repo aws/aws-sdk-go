@@ -1,12 +1,12 @@
 {
   "version": "2.0",
-  "service": "<fullname>Amazon Elastic Container Registry</fullname> <p>Amazon Elastic Container Registry (Amazon ECR) is a managed container image registry service. Customers can use the familiar Docker CLI, or their preferred client, to push, pull, and manage images. Amazon ECR provides a secure, scalable, and reliable registry for your Docker or Open Container Initiative (OCI) images. Amazon ECR supports private repositories with resource-based permissions using IAM so that specific users or Amazon EC2 instances can access repositories and images.</p>",
+  "service": "<fullname>Amazon Elastic Container Registry</fullname> <p>Amazon Elastic Container Registry (Amazon ECR) is a managed container image registry service. Customers can use the familiar Docker CLI, or their preferred client, to push, pull, and manage images. Amazon ECR provides a secure, scalable, and reliable registry for your Docker or Open Container Initiative (OCI) images. Amazon ECR supports private repositories with resource-based permissions using IAM so that specific users or Amazon EC2 instances can access repositories and images.</p> <p>Amazon ECR has service endpoints in each supported Region. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/ecr.html\">Amazon ECR endpoints</a> in the <i>Amazon Web Services General Reference</i>.</p>",
   "operations": {
     "BatchCheckLayerAvailability": "<p>Checks the availability of one or more image layers in a repository.</p> <p>When an image is pushed to a repository, each image layer is checked to verify if it has been uploaded before. If it has been uploaded, then the image layer is skipped.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "BatchDeleteImage": "<p>Deletes a list of specified images within a repository. Images are specified with either an <code>imageTag</code> or <code>imageDigest</code>.</p> <p>You can remove a tag from an image by specifying the image's tag in your request. When you remove the last tag from an image, the image is deleted from your repository.</p> <p>You can completely delete an image (and all of its tags) by specifying the image's digest in your request.</p>",
     "BatchGetImage": "<p>Gets detailed information for an image. Images are specified with either an <code>imageTag</code> or <code>imageDigest</code>.</p> <p>When an image is pulled, the BatchGetImage API is called once to retrieve the image manifest.</p>",
     "CompleteLayerUpload": "<p>Informs Amazon ECR that the image layer upload has completed for a specified registry, repository name, and upload ID. You can optionally provide a <code>sha256</code> digest of the image layer for data validation purposes.</p> <p>When an image is pushed, the CompleteLayerUpload API is called once per each new image layer to verify that the upload has completed.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
-    "CreateRepository": "<p>Creates a repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html\">Amazon ECR Repositories</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "CreateRepository": "<p>Creates a repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html\">Amazon ECR repositories</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "DeleteLifecyclePolicy": "<p>Deletes the lifecycle policy associated with the specified repository.</p>",
     "DeleteRegistryPolicy": "<p>Deletes the registry permissions policy.</p>",
     "DeleteRepository": "<p>Deletes a repository. If the repository contains images, you must either delete all images in the repository or use the <code>force</code> option to delete the repository.</p>",
@@ -15,7 +15,7 @@
     "DescribeImages": "<p>Returns metadata about the images in a repository.</p> <note> <p>Beginning with Docker version 1.9, the Docker client compresses image layers before pushing them to a V2 Docker registry. The output of the <code>docker images</code> command shows the uncompressed image size, so it may return a larger image size than the image sizes returned by <a>DescribeImages</a>.</p> </note>",
     "DescribeRegistry": "<p>Describes the settings for a registry. The replication configuration for a repository can be created or updated with the <a>PutReplicationConfiguration</a> API action.</p>",
     "DescribeRepositories": "<p>Describes image repositories in a registry.</p>",
-    "GetAuthorizationToken": "<p>Retrieves an authorization token. An authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that your IAM principal has access to. The authorization token is valid for 12 hours.</p> <p>The <code>authorizationToken</code> returned is a base64 encoded string that can be decoded and used in a <code>docker login</code> command to authenticate to a registry. The AWS CLI offers an <code>get-login-password</code> command that simplifies the login process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth\">Registry Authentication</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "GetAuthorizationToken": "<p>Retrieves an authorization token. An authorization token represents your IAM authentication credentials and can be used to access any Amazon ECR registry that your IAM principal has access to. The authorization token is valid for 12 hours.</p> <p>The <code>authorizationToken</code> returned is a base64 encoded string that can be decoded and used in a <code>docker login</code> command to authenticate to a registry. The CLI offers an <code>get-login-password</code> command that simplifies the login process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth\">Registry authentication</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "GetDownloadUrlForLayer": "<p>Retrieves the pre-signed Amazon S3 download URL corresponding to an image layer. You can only get URLs for image layers that are referenced in an image.</p> <p>When an image is pulled, the GetDownloadUrlForLayer API is called once per image layer that is not already cached.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "GetLifecyclePolicy": "<p>Retrieves the lifecycle policy for the specified repository.</p>",
     "GetLifecyclePolicyPreview": "<p>Retrieves the results of the lifecycle policy preview request for the specified repository.</p>",
@@ -26,12 +26,12 @@
     "ListTagsForResource": "<p>List the tags for an Amazon ECR resource.</p>",
     "PutImage": "<p>Creates or updates the image manifest and tags associated with an image.</p> <p>When an image is pushed and all new image layers have been uploaded, the PutImage API is called once to create or update the image manifest and the tags associated with the image.</p> <note> <p>This operation is used by the Amazon ECR proxy and is not generally used by customers for pulling and pushing images. In most cases, you should use the <code>docker</code> CLI to pull, tag, and push images.</p> </note>",
     "PutImageScanningConfiguration": "<p>Updates the image scanning configuration for the specified repository.</p>",
-    "PutImageTagMutability": "<p>Updates the image tag mutability settings for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html\">Image Tag Mutability</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
-    "PutLifecyclePolicy": "<p>Creates or updates the lifecycle policy for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle Policy Template</a>.</p>",
-    "PutRegistryPolicy": "<p>Creates or updates the permissions policy for your registry.</p> <p>A registry policy is used to specify permissions for another AWS account and is used when configuring cross-account replication. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html\">Registry permissions</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
-    "PutReplicationConfiguration": "<p>Creates or updates the replication configuration for a registry. The existing replication configuration for a repository can be retrieved with the <a>DescribeRegistry</a> API action. The first time the PutReplicationConfiguration API is called, a service-linked IAM role is created in your account for the replication process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/using-service-linked-roles.html\">Using Service-Linked Roles for Amazon ECR</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p> <note> <p>When configuring cross-account replication, the destination account must grant the source account permission to replicate. This permission is controlled using a registry permissions policy. For more information, see <a>PutRegistryPolicy</a>.</p> </note>",
-    "SetRepositoryPolicy": "<p>Applies a repository policy to the specified repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html\">Amazon ECR Repository Policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
-    "StartImageScan": "<p>Starts an image vulnerability scan. An image scan can only be started once per day on an individual image. This limit includes if an image was scanned on initial push. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html\">Image Scanning</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "PutImageTagMutability": "<p>Updates the image tag mutability settings for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html\">Image tag mutability</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "PutLifecyclePolicy": "<p>Creates or updates the lifecycle policy for the specified repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html\">Lifecycle policy template</a>.</p>",
+    "PutRegistryPolicy": "<p>Creates or updates the permissions policy for your registry.</p> <p>A registry policy is used to specify permissions for another Amazon Web Services account and is used when configuring cross-account replication. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html\">Registry permissions</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "PutReplicationConfiguration": "<p>Creates or updates the replication configuration for a registry. The existing replication configuration for a repository can be retrieved with the <a>DescribeRegistry</a> API action. The first time the PutReplicationConfiguration API is called, a service-linked IAM role is created in your account for the replication process. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/using-service-linked-roles.html\">Using service-linked roles for Amazon ECR</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p> <note> <p>When configuring cross-account replication, the destination account must grant the source account permission to replicate. This permission is controlled using a registry permissions policy. For more information, see <a>PutRegistryPolicy</a>.</p> </note>",
+    "SetRepositoryPolicy": "<p>Applies a repository policy to the specified repository to control access permissions. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html\">Amazon ECR Repository policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+    "StartImageScan": "<p>Starts an image vulnerability scan. An image scan can only be started once per 24 hours on an individual image. This limit includes if an image was scanned on initial push. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html\">Image scanning</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
     "StartLifecyclePolicyPreview": "<p>Starts a preview of a lifecycle policy for the specified repository. This allows you to see the results before associating the lifecycle policy with the repository.</p>",
     "TagResource": "<p>Adds specified tags to a resource with the specified ARN. Existing tags on a resource are not changed if they are not specified in the request parameters.</p>",
     "UntagResource": "<p>Deletes specified tags from a resource.</p>",
@@ -42,7 +42,7 @@
       "base": null,
       "refs": {
         "ListTagsForResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the only supported resource is an Amazon ECR repository.</p>",
-        "Repository$repositoryArn": "<p>The Amazon Resource Name (ARN) that identifies the repository. The ARN contains the <code>arn:aws:ecr</code> namespace, followed by the region of the repository, AWS account ID of the repository owner, repository namespace, and repository name. For example, <code>arn:aws:ecr:region:012345678910:repository/test</code>.</p>",
+        "Repository$repositoryArn": "<p>The Amazon Resource Name (ARN) that identifies the repository. The ARN contains the <code>arn:aws:ecr</code> namespace, followed by the region of the repository, Amazon Web Services account ID of the repository owner, repository namespace, and repository name. For example, <code>arn:aws:ecr:region:012345678910:repository/test</code>.</p>",
         "TagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the the resource to which to add tags. Currently, the only supported resource is an Amazon ECR repository.</p>",
         "UntagResourceRequest$resourceArn": "<p>The Amazon Resource Name (ARN) of the resource from which to remove tags. Currently, the only supported resource is an Amazon ECR repository.</p>"
       }
@@ -250,7 +250,7 @@
       }
     },
     "EncryptionConfiguration": {
-      "base": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p> <p>By default, when no encryption configuration is set or the <code>AES256</code> encryption type is used, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts your data at rest using an AES-256 encryption algorithm. This does not require any action on your part.</p> <p>For more control over the encryption of the contents of your repository, you can use server-side encryption with customer master keys (CMKs) stored in AWS Key Management Service (AWS KMS) to encrypt your images. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html\">Amazon ECR encryption at rest</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+      "base": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p> <p>By default, when no encryption configuration is set or the <code>AES256</code> encryption type is used, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts your data at rest using an AES-256 encryption algorithm. This does not require any action on your part.</p> <p>For more control over the encryption of the contents of your repository, you can use server-side encryption with Key Management Service key stored in Key Management Service (KMS) to encrypt your images. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html\">Amazon ECR encryption at rest</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
       "refs": {
         "CreateRepositoryRequest$encryptionConfiguration": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p>",
         "Repository$encryptionConfiguration": "<p>The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.</p>"
@@ -259,7 +259,7 @@
     "EncryptionType": {
       "base": null,
       "refs": {
-        "EncryptionConfiguration$encryptionType": "<p>The encryption type to use.</p> <p>If you use the <code>KMS</code> encryption type, the contents of the repository will be encrypted using server-side encryption with customer master keys (CMKs) stored in AWS KMS. When you use AWS KMS to encrypt your data, you can either use the default AWS managed CMK for Amazon ECR, or specify your own CMK, which you already created. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">Protecting Data Using Server-Side Encryption with CMKs Stored in AWS Key Management Service (SSE-KMS)</a> in the <i>Amazon Simple Storage Service Console Developer Guide.</i>.</p> <p>If you use the <code>AES256</code> encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES-256 encryption algorithm. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Protecting Data Using Server-Side Encryption with Amazon S3-Managed Encryption Keys (SSE-S3)</a> in the <i>Amazon Simple Storage Service Console Developer Guide.</i>.</p>"
+        "EncryptionConfiguration$encryptionType": "<p>The encryption type to use.</p> <p>If you use the <code>KMS</code> encryption type, the contents of the repository will be encrypted using server-side encryption with Key Management Service key stored in KMS. When you use KMS to encrypt your data, you can either use the default Amazon Web Services managed KMS key for Amazon ECR, or specify your own KMS key, which you already created. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html\">Protecting data using server-side encryption with an KMS key stored in Key Management Service (SSE-KMS)</a> in the <i>Amazon Simple Storage Service Console Developer Guide.</i>.</p> <p>If you use the <code>AES256</code> encryption type, Amazon ECR uses server-side encryption with Amazon S3-managed encryption keys which encrypts the images in the repository using an AES-256 encryption algorithm. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html\">Protecting data using server-side encryption with Amazon S3-managed encryption keys (SSE-S3)</a> in the <i>Amazon Simple Storage Service Console Developer Guide.</i>.</p>"
       }
     },
     "EvaluationTimestamp": {
@@ -346,7 +346,7 @@
     "GetAuthorizationTokenRegistryIdList": {
       "base": null,
       "refs": {
-        "GetAuthorizationTokenRequest$registryIds": "<p>A list of AWS account IDs that are associated with the registries for which to get AuthorizationData objects. If you do not specify a registry, the default registry is assumed.</p>"
+        "GetAuthorizationTokenRequest$registryIds": "<p>A list of Amazon Web Services account IDs that are associated with the registries for which to get AuthorizationData objects. If you do not specify a registry, the default registry is assumed.</p>"
       }
     },
     "GetAuthorizationTokenRequest": {
@@ -634,7 +634,7 @@
     "KmsError": {
       "base": null,
       "refs": {
-        "KmsException$kmsError": "<p>The error code returned by AWS KMS.</p>"
+        "KmsException$kmsError": "<p>The error code returned by KMS.</p>"
       }
     },
     "KmsException": {
@@ -645,7 +645,7 @@
     "KmsKey": {
       "base": null,
       "refs": {
-        "EncryptionConfiguration$kmsKey": "<p>If you use the <code>KMS</code> encryption type, specify the CMK to use for encryption. The alias, key ID, or full ARN of the CMK can be specified. The key must exist in the same Region as the repository. If no key is specified, the default AWS managed CMK for Amazon ECR will be used.</p>"
+        "EncryptionConfiguration$kmsKey": "<p>If you use the <code>KMS</code> encryption type, specify the KMS key to use for encryption. The alias, key ID, or full ARN of the KMS key can be specified. The key must exist in the same Region as the repository. If no key is specified, the default Amazon Web Services managed KMS key for Amazon ECR will be used.</p>"
       }
     },
     "Layer": {
@@ -815,7 +815,7 @@
       }
     },
     "LimitExceededException": {
-      "base": "<p>The operation did not succeed because it would have exceeded a service limit for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html\">Amazon ECR Service Quotas</a> in the Amazon Elastic Container Registry User Guide.</p>",
+      "base": "<p>The operation did not succeed because it would have exceeded a service limit for your account. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html\">Amazon ECR service quotas</a> in the Amazon Elastic Container Registry User Guide.</p>",
       "refs": {
       }
     },
@@ -983,53 +983,53 @@
     "RegistryId": {
       "base": null,
       "refs": {
-        "BatchCheckLayerAvailabilityRequest$registryId": "<p>The AWS account ID associated with the registry that contains the image layers to check. If you do not specify a registry, the default registry is assumed.</p>",
-        "BatchDeleteImageRequest$registryId": "<p>The AWS account ID associated with the registry that contains the image to delete. If you do not specify a registry, the default registry is assumed.</p>",
-        "BatchGetImageRequest$registryId": "<p>The AWS account ID associated with the registry that contains the images to describe. If you do not specify a registry, the default registry is assumed.</p>",
-        "CompleteLayerUploadRequest$registryId": "<p>The AWS account ID associated with the registry to which to upload layers. If you do not specify a registry, the default registry is assumed.</p>",
+        "BatchCheckLayerAvailabilityRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the image layers to check. If you do not specify a registry, the default registry is assumed.</p>",
+        "BatchDeleteImageRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the image to delete. If you do not specify a registry, the default registry is assumed.</p>",
+        "BatchGetImageRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the images to describe. If you do not specify a registry, the default registry is assumed.</p>",
+        "CompleteLayerUploadRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to which to upload layers. If you do not specify a registry, the default registry is assumed.</p>",
         "CompleteLayerUploadResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "DeleteLifecyclePolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
+        "DeleteLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRegistryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "DeleteRepositoryPolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository policy to delete. If you do not specify a registry, the default registry is assumed.</p>",
+        "DeleteRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository policy to delete. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "DeleteRepositoryRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository to delete. If you do not specify a registry, the default registry is assumed.</p>",
-        "DescribeImageScanFindingsRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to describe the image scan findings for. If you do not specify a registry, the default registry is assumed.</p>",
+        "DeleteRepositoryRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository to delete. If you do not specify a registry, the default registry is assumed.</p>",
+        "DescribeImageScanFindingsRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to describe the image scan findings for. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribeImageScanFindingsResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "DescribeImagesRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to describe images. If you do not specify a registry, the default registry is assumed.</p>",
+        "DescribeImagesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to describe images. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribeRegistryResponse$registryId": "<p>The ID of the registry.</p>",
-        "DescribeRepositoriesRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repositories to be described. If you do not specify a registry, the default registry is assumed.</p>",
+        "DescribeRepositoriesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repositories to be described. If you do not specify a registry, the default registry is assumed.</p>",
         "GetAuthorizationTokenRegistryIdList$member": null,
-        "GetDownloadUrlForLayerRequest$registryId": "<p>The AWS account ID associated with the registry that contains the image layer to download. If you do not specify a registry, the default registry is assumed.</p>",
-        "GetLifecyclePolicyPreviewRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
+        "GetDownloadUrlForLayerRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the image layer to download. If you do not specify a registry, the default registry is assumed.</p>",
+        "GetLifecyclePolicyPreviewRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetLifecyclePolicyPreviewResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "GetLifecyclePolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
+        "GetLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "GetRegistryPolicyResponse$registryId": "<p>The ID of the registry.</p>",
-        "GetRepositoryPolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
+        "GetRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "GetRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "Image$registryId": "<p>The AWS account ID associated with the registry containing the image.</p>",
-        "ImageDetail$registryId": "<p>The AWS account ID associated with the registry to which this image belongs.</p>",
-        "InitiateLayerUploadRequest$registryId": "<p>The AWS account ID associated with the registry to which you intend to upload layers. If you do not specify a registry, the default registry is assumed.</p>",
+        "Image$registryId": "<p>The Amazon Web Services account ID associated with the registry containing the image.</p>",
+        "ImageDetail$registryId": "<p>The Amazon Web Services account ID associated with the registry to which this image belongs.</p>",
+        "InitiateLayerUploadRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to which you intend to upload layers. If you do not specify a registry, the default registry is assumed.</p>",
         "InvalidLayerPartException$registryId": "<p>The registry ID associated with the exception.</p>",
-        "ListImagesRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to list images. If you do not specify a registry, the default registry is assumed.</p>",
-        "PutImageRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to put the image. If you do not specify a registry, the default registry is assumed.</p>",
-        "PutImageScanningConfigurationRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to update the image scanning configuration setting. If you do not specify a registry, the default registry is assumed.</p>",
+        "ListImagesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to list images. If you do not specify a registry, the default registry is assumed.</p>",
+        "PutImageRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to put the image. If you do not specify a registry, the default registry is assumed.</p>",
+        "PutImageScanningConfigurationRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to update the image scanning configuration setting. If you do not specify a registry, the default registry is assumed.</p>",
         "PutImageScanningConfigurationResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "PutImageTagMutabilityRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to update the image tag mutability settings. If you do not specify a registry, the default registry is assumed.</p>",
+        "PutImageTagMutabilityRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to update the image tag mutability settings. If you do not specify a registry, the default registry is assumed.</p>",
         "PutImageTagMutabilityResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "PutLifecyclePolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do&#x2028; not specify a registry, the default registry is assumed.</p>",
+        "PutLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do&#x2028; not specify a registry, the default registry is assumed.</p>",
         "PutLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "PutRegistryPolicyResponse$registryId": "<p>The registry ID.</p>",
         "ReplicationDestination$registryId": "<p>The account ID of the destination registry to replicate to.</p>",
-        "Repository$registryId": "<p>The AWS account ID associated with the registry that contains the repository.</p>",
-        "SetRepositoryPolicyRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
+        "Repository$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository.</p>",
+        "SetRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "SetRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "StartImageScanRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository in which to start an image scan request. If you do not specify a registry, the default registry is assumed.</p>",
+        "StartImageScanRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to start an image scan request. If you do not specify a registry, the default registry is assumed.</p>",
         "StartImageScanResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "StartLifecyclePolicyPreviewRequest$registryId": "<p>The AWS account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
+        "StartLifecyclePolicyPreviewRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "StartLifecyclePolicyPreviewResponse$registryId": "<p>The registry ID associated with the request.</p>",
-        "UploadLayerPartRequest$registryId": "<p>The AWS account ID associated with the registry to which you are uploading layer parts. If you do not specify a registry, the default registry is assumed.</p>",
+        "UploadLayerPartRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to which you are uploading layer parts. If you do not specify a registry, the default registry is assumed.</p>",
         "UploadLayerPartResponse$registryId": "<p>The registry ID associated with the request.</p>"
       }
     },
@@ -1172,7 +1172,7 @@
       "refs": {
         "DeleteRepositoryPolicyResponse$policyText": "<p>The JSON repository policy that was deleted from the repository.</p>",
         "GetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text associated with the repository.</p>",
-        "SetRepositoryPolicyRequest$policyText": "<p>The JSON repository policy text to apply to the repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html\">Amazon ECR Repository Policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
+        "SetRepositoryPolicyRequest$policyText": "<p>The JSON repository policy text to apply to the repository. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html\">Amazon ECR repository policies</a> in the <i>Amazon Elastic Container Registry User Guide</i>.</p>",
         "SetRepositoryPolicyResponse$policyText": "<p>The JSON repository policy text applied to the repository.</p>"
       }
     },
@@ -1184,7 +1184,7 @@
     "ScanOnPushFlag": {
       "base": null,
       "refs": {
-        "ImageScanningConfiguration$scanOnPush": "<p>The setting that determines whether images are scanned after being pushed to a repository. If set to <code>true</code>, images will be scanned after being pushed. If this parameter is not specified, it will default to <code>false</code> and images will not be scanned unless a scan is manually started with the <a>StartImageScan</a> API.</p>"
+        "ImageScanningConfiguration$scanOnPush": "<p>The setting that determines whether images are scanned after being pushed to a repository. If set to <code>true</code>, images will be scanned after being pushed. If this parameter is not specified, it will default to <code>false</code> and images will not be scanned unless a scan is manually started with the <a href=\"https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_StartImageScan.html\">API_StartImageScan</a> API.</p>"
       }
     },
     "ScanStatus": {

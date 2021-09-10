@@ -454,7 +454,7 @@ func (c *ECR) CreateRepositoryRequest(input *CreateRepositoryInput) (req *reques
 
 // CreateRepository API operation for Amazon EC2 Container Registry.
 //
-// Creates a repository. For more information, see Amazon ECR Repositories (https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html)
+// Creates a repository. For more information, see Amazon ECR repositories (https://docs.aws.amazon.com/AmazonECR/latest/userguide/Repositories.html)
 // in the Amazon Elastic Container Registry User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -486,7 +486,7 @@ func (c *ECR) CreateRepositoryRequest(input *CreateRepositoryInput) (req *reques
 //
 //   * LimitExceededException
 //   The operation did not succeed because it would have exceeded a service limit
-//   for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
+//   for your account. For more information, see Amazon ECR service quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 //   in the Amazon Elastic Container Registry User Guide.
 //
 //   * KmsException
@@ -1465,9 +1465,9 @@ func (c *ECR) GetAuthorizationTokenRequest(input *GetAuthorizationTokenInput) (r
 // 12 hours.
 //
 // The authorizationToken returned is a base64 encoded string that can be decoded
-// and used in a docker login command to authenticate to a registry. The AWS
-// CLI offers an get-login-password command that simplifies the login process.
-// For more information, see Registry Authentication (https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth)
+// and used in a docker login command to authenticate to a registry. The CLI
+// offers an get-login-password command that simplifies the login process. For
+// more information, see Registry authentication (https://docs.aws.amazon.com/AmazonECR/latest/userguide/Registries.html#registry_auth)
 // in the Amazon Elastic Container Registry User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2449,7 +2449,7 @@ func (c *ECR) PutImageRequest(input *PutImageInput) (req *request.Request, outpu
 //
 //   * LimitExceededException
 //   The operation did not succeed because it would have exceeded a service limit
-//   for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
+//   for your account. For more information, see Amazon ECR service quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 //   in the Amazon Elastic Container Registry User Guide.
 //
 //   * ImageTagAlreadyExistsException
@@ -2617,7 +2617,7 @@ func (c *ECR) PutImageTagMutabilityRequest(input *PutImageTagMutabilityInput) (r
 // PutImageTagMutability API operation for Amazon EC2 Container Registry.
 //
 // Updates the image tag mutability settings for the specified repository. For
-// more information, see Image Tag Mutability (https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html)
+// more information, see Image tag mutability (https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-tag-mutability.html)
 // in the Amazon Elastic Container Registry User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2706,7 +2706,7 @@ func (c *ECR) PutLifecyclePolicyRequest(input *PutLifecyclePolicyInput) (req *re
 // PutLifecyclePolicy API operation for Amazon EC2 Container Registry.
 //
 // Creates or updates the lifecycle policy for the specified repository. For
-// more information, see Lifecycle Policy Template (https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html).
+// more information, see Lifecycle policy template (https://docs.aws.amazon.com/AmazonECR/latest/userguide/LifecyclePolicies.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2795,9 +2795,9 @@ func (c *ECR) PutRegistryPolicyRequest(input *PutRegistryPolicyInput) (req *requ
 //
 // Creates or updates the permissions policy for your registry.
 //
-// A registry policy is used to specify permissions for another AWS account
-// and is used when configuring cross-account replication. For more information,
-// see Registry permissions (https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html)
+// A registry policy is used to specify permissions for another Amazon Web Services
+// account and is used when configuring cross-account replication. For more
+// information, see Registry permissions (https://docs.aws.amazon.com/AmazonECR/latest/userguide/registry-permissions.html)
 // in the Amazon Elastic Container Registry User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2885,7 +2885,7 @@ func (c *ECR) PutReplicationConfigurationRequest(input *PutReplicationConfigurat
 // replication configuration for a repository can be retrieved with the DescribeRegistry
 // API action. The first time the PutReplicationConfiguration API is called,
 // a service-linked IAM role is created in your account for the replication
-// process. For more information, see Using Service-Linked Roles for Amazon
+// process. For more information, see Using service-linked roles for Amazon
 // ECR (https://docs.aws.amazon.com/AmazonECR/latest/userguide/using-service-linked-roles.html)
 // in the Amazon Elastic Container Registry User Guide.
 //
@@ -2978,7 +2978,7 @@ func (c *ECR) SetRepositoryPolicyRequest(input *SetRepositoryPolicyInput) (req *
 // SetRepositoryPolicy API operation for Amazon EC2 Container Registry.
 //
 // Applies a repository policy to the specified repository to control access
-// permissions. For more information, see Amazon ECR Repository Policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html)
+// permissions. For more information, see Amazon ECR Repository policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policies.html)
 // in the Amazon Elastic Container Registry User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3067,8 +3067,8 @@ func (c *ECR) StartImageScanRequest(input *StartImageScanInput) (req *request.Re
 // StartImageScan API operation for Amazon EC2 Container Registry.
 //
 // Starts an image vulnerability scan. An image scan can only be started once
-// per day on an individual image. This limit includes if an image was scanned
-// on initial push. For more information, see Image Scanning (https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html)
+// per 24 hours on an individual image. This limit includes if an image was
+// scanned on initial push. For more information, see Image scanning (https://docs.aws.amazon.com/AmazonECR/latest/userguide/image-scanning.html)
 // in the Amazon Elastic Container Registry User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -3091,7 +3091,7 @@ func (c *ECR) StartImageScanRequest(input *StartImageScanInput) (req *request.Re
 //
 //   * LimitExceededException
 //   The operation did not succeed because it would have exceeded a service limit
-//   for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
+//   for your account. For more information, see Amazon ECR service quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 //   in the Amazon Elastic Container Registry User Guide.
 //
 //   * RepositoryNotFoundException
@@ -3497,7 +3497,7 @@ func (c *ECR) UploadLayerPartRequest(input *UploadLayerPartInput) (req *request.
 //
 //   * LimitExceededException
 //   The operation did not succeed because it would have exceeded a service limit
-//   for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
+//   for your account. For more information, see Amazon ECR service quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 //   in the Amazon Elastic Container Registry User Guide.
 //
 //   * KmsException
@@ -3615,8 +3615,9 @@ type BatchCheckLayerAvailabilityInput struct {
 	// LayerDigests is a required field
 	LayerDigests []*string `locationName:"layerDigests" min:"1" type:"list" required:"true"`
 
-	// The AWS account ID associated with the registry that contains the image layers
-	// to check. If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the image layers to check. If you do not specify a registry, the default
+	// registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository that is associated with the image layers to check.
@@ -3719,8 +3720,9 @@ type BatchDeleteImageInput struct {
 	// ImageIds is a required field
 	ImageIds []*ImageIdentifier `locationName:"imageIds" min:"1" type:"list" required:"true"`
 
-	// The AWS account ID associated with the registry that contains the image to
-	// delete. If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the image to delete. If you do not specify a registry, the default registry
+	// is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The repository that contains the image to delete.
@@ -3836,8 +3838,9 @@ type BatchGetImageInput struct {
 	// ImageIds is a required field
 	ImageIds []*ImageIdentifier `locationName:"imageIds" min:"1" type:"list" required:"true"`
 
-	// The AWS account ID associated with the registry that contains the images
-	// to describe. If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the images to describe. If you do not specify a registry, the default registry
+	// is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The repository that contains the images to describe.
@@ -3955,8 +3958,9 @@ type CompleteLayerUploadInput struct {
 	// LayerDigests is a required field
 	LayerDigests []*string `locationName:"layerDigests" min:"1" type:"list" required:"true"`
 
-	// The AWS account ID associated with the registry to which to upload layers.
-	// If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry to which
+	// to upload layers. If you do not specify a registry, the default registry
+	// is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to associate with the image layer.
@@ -4198,8 +4202,9 @@ func (s *CreateRepositoryOutput) SetRepository(v *Repository) *CreateRepositoryO
 type DeleteLifecyclePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID associated with the registry that contains the repository.
-	// If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository. If you do not specify a registry, the default registry is
+	// assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository.
@@ -4348,8 +4353,9 @@ type DeleteRepositoryInput struct {
 	// If a repository contains images, forces the deletion.
 	Force *bool `locationName:"force" type:"boolean"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// to delete. If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository to delete. If you do not specify a registry, the default registry
+	// is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to delete.
@@ -4428,9 +4434,9 @@ func (s *DeleteRepositoryOutput) SetRepository(v *Repository) *DeleteRepositoryO
 type DeleteRepositoryPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// policy to delete. If you do not specify a registry, the default registry
-	// is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository policy to delete. If you do not specify a registry, the default
+	// registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository that is associated with the repository policy
@@ -4544,9 +4550,9 @@ type DescribeImageScanFindingsInput struct {
 	// to return.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// in which to describe the image scan findings for. If you do not specify a
-	// registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository in which to describe the image scan findings for. If you do
+	// not specify a registry, the default registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The repository for the image for which to describe the scan findings.
@@ -4744,9 +4750,9 @@ type DescribeImagesInput struct {
 	// This option cannot be used when you specify images with imageIds.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// in which to describe images. If you do not specify a registry, the default
-	// registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository in which to describe images. If you do not specify a registry,
+	// the default registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The repository that contains the images to describe.
@@ -4938,9 +4944,9 @@ type DescribeRepositoriesInput struct {
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The AWS account ID associated with the registry that contains the repositories
-	// to be described. If you do not specify a registry, the default registry is
-	// assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repositories to be described. If you do not specify a registry, the default
+	// registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// A list of repositories to describe. If this parameter is omitted, then all
@@ -5099,9 +5105,9 @@ func (s *EmptyUploadException) RequestID() string {
 // algorithm. This does not require any action on your part.
 //
 // For more control over the encryption of the contents of your repository,
-// you can use server-side encryption with customer master keys (CMKs) stored
-// in AWS Key Management Service (AWS KMS) to encrypt your images. For more
-// information, see Amazon ECR encryption at rest (https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html)
+// you can use server-side encryption with Key Management Service key stored
+// in Key Management Service (KMS) to encrypt your images. For more information,
+// see Amazon ECR encryption at rest (https://docs.aws.amazon.com/AmazonECR/latest/userguide/encryption-at-rest.html)
 // in the Amazon Elastic Container Registry User Guide.
 type EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -5109,27 +5115,28 @@ type EncryptionConfiguration struct {
 	// The encryption type to use.
 	//
 	// If you use the KMS encryption type, the contents of the repository will be
-	// encrypted using server-side encryption with customer master keys (CMKs) stored
-	// in AWS KMS. When you use AWS KMS to encrypt your data, you can either use
-	// the default AWS managed CMK for Amazon ECR, or specify your own CMK, which
-	// you already created. For more information, see Protecting Data Using Server-Side
-	// Encryption with CMKs Stored in AWS Key Management Service (SSE-KMS) (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
+	// encrypted using server-side encryption with Key Management Service key stored
+	// in KMS. When you use KMS to encrypt your data, you can either use the default
+	// Amazon Web Services managed KMS key for Amazon ECR, or specify your own KMS
+	// key, which you already created. For more information, see Protecting data
+	// using server-side encryption with an KMS key stored in Key Management Service
+	// (SSE-KMS) (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html)
 	// in the Amazon Simple Storage Service Console Developer Guide..
 	//
 	// If you use the AES256 encryption type, Amazon ECR uses server-side encryption
 	// with Amazon S3-managed encryption keys which encrypts the images in the repository
 	// using an AES-256 encryption algorithm. For more information, see Protecting
-	// Data Using Server-Side Encryption with Amazon S3-Managed Encryption Keys
+	// data using server-side encryption with Amazon S3-managed encryption keys
 	// (SSE-S3) (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingServerSideEncryption.html)
 	// in the Amazon Simple Storage Service Console Developer Guide..
 	//
 	// EncryptionType is a required field
 	EncryptionType *string `locationName:"encryptionType" type:"string" required:"true" enum:"EncryptionType"`
 
-	// If you use the KMS encryption type, specify the CMK to use for encryption.
-	// The alias, key ID, or full ARN of the CMK can be specified. The key must
+	// If you use the KMS encryption type, specify the KMS key to use for encryption.
+	// The alias, key ID, or full ARN of the KMS key can be specified. The key must
 	// exist in the same Region as the repository. If no key is specified, the default
-	// AWS managed CMK for Amazon ECR will be used.
+	// Amazon Web Services managed KMS key for Amazon ECR will be used.
 	KmsKey *string `locationName:"kmsKey" min:"1" type:"string"`
 }
 
@@ -5174,9 +5181,9 @@ func (s *EncryptionConfiguration) SetKmsKey(v string) *EncryptionConfiguration {
 type GetAuthorizationTokenInput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of AWS account IDs that are associated with the registries for which
-	// to get AuthorizationData objects. If you do not specify a registry, the default
-	// registry is assumed.
+	// A list of Amazon Web Services account IDs that are associated with the registries
+	// for which to get AuthorizationData objects. If you do not specify a registry,
+	// the default registry is assumed.
 	//
 	// Deprecated: This field is deprecated. The returned authorization token can be used to access any Amazon ECR registry that the IAM principal has access to, specifying a registry ID doesn't change the permissions scope of the authorization token.
 	RegistryIds []*string `locationName:"registryIds" min:"1" deprecated:"true" type:"list"`
@@ -5243,8 +5250,9 @@ type GetDownloadUrlForLayerInput struct {
 	// LayerDigest is a required field
 	LayerDigest *string `locationName:"layerDigest" type:"string" required:"true"`
 
-	// The AWS account ID associated with the registry that contains the image layer
-	// to download. If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the image layer to download. If you do not specify a registry, the default
+	// registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository that is associated with the image layer to download.
@@ -5335,8 +5343,9 @@ func (s *GetDownloadUrlForLayerOutput) SetLayerDigest(v string) *GetDownloadUrlF
 type GetLifecyclePolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID associated with the registry that contains the repository.
-	// If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository. If you do not specify a registry, the default registry is
+	// assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository.
@@ -5461,8 +5470,9 @@ type GetLifecyclePolicyPreviewInput struct {
 	// to return. This option cannot be used when you specify images with imageIds.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The AWS account ID associated with the registry that contains the repository.
-	// If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository. If you do not specify a registry, the default registry is
+	// assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository.
@@ -5678,8 +5688,9 @@ func (s *GetRegistryPolicyOutput) SetRegistryId(v string) *GetRegistryPolicyOutp
 type GetRepositoryPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID associated with the registry that contains the repository.
-	// If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository. If you do not specify a registry, the default registry is
+	// assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository with the policy to retrieve.
@@ -5780,7 +5791,8 @@ type Image struct {
 	// The manifest media type of the image.
 	ImageManifestMediaType *string `locationName:"imageManifestMediaType" type:"string"`
 
-	// The AWS account ID associated with the registry containing the image.
+	// The Amazon Web Services account ID associated with the registry containing
+	// the image.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository associated with the image.
@@ -5922,7 +5934,8 @@ type ImageDetail struct {
 	// The list of tags associated with this image.
 	ImageTags []*string `locationName:"imageTags" type:"list"`
 
-	// The AWS account ID associated with the registry to which this image belongs.
+	// The Amazon Web Services account ID associated with the registry to which
+	// this image belongs.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to which this image belongs.
@@ -6393,7 +6406,8 @@ type ImageScanningConfiguration struct {
 	// The setting that determines whether images are scanned after being pushed
 	// to a repository. If set to true, images will be scanned after being pushed.
 	// If this parameter is not specified, it will default to false and images will
-	// not be scanned unless a scan is manually started with the StartImageScan
+	// not be scanned unless a scan is manually started with the API_StartImageScan
+	// (https://docs.aws.amazon.com/AmazonECR/latest/APIReference/API_StartImageScan.html)
 	// API.
 	ScanOnPush *bool `locationName:"scanOnPush" type:"boolean"`
 }
@@ -6474,8 +6488,9 @@ func (s *ImageTagAlreadyExistsException) RequestID() string {
 type InitiateLayerUploadInput struct {
 	_ struct{} `type:"structure"`
 
-	// The AWS account ID associated with the registry to which you intend to upload
-	// layers. If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry to which
+	// you intend to upload layers. If you do not specify a registry, the default
+	// registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to which you intend to upload layers.
@@ -6806,7 +6821,7 @@ type KmsException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
-	// The error code returned by AWS KMS.
+	// The error code returned by KMS.
 	KmsError *string `locationName:"kmsError" type:"string"`
 
 	Message_ *string `locationName:"message" type:"string"`
@@ -7487,7 +7502,7 @@ func (s *LifecyclePolicyRuleAction) SetType(v string) *LifecyclePolicyRuleAction
 }
 
 // The operation did not succeed because it would have exceeded a service limit
-// for your account. For more information, see Amazon ECR Service Quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
+// for your account. For more information, see Amazon ECR service quotas (https://docs.aws.amazon.com/AmazonECR/latest/userguide/service-quotas.html)
 // in the Amazon Elastic Container Registry User Guide.
 type LimitExceededException struct {
 	_            struct{}                  `type:"structure"`
@@ -7594,9 +7609,9 @@ type ListImagesInput struct {
 	// retrieve the next items in a list and not for other programmatic purposes.
 	NextToken *string `locationName:"nextToken" type:"string"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// in which to list images. If you do not specify a registry, the default registry
-	// is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository in which to list images. If you do not specify a registry,
+	// the default registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The repository with image IDs to be listed.
@@ -7782,9 +7797,9 @@ type PutImageInput struct {
 	// (OCI) formats.
 	ImageTag *string `locationName:"imageTag" min:"1" type:"string"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// in which to put the image. If you do not specify a registry, the default
-	// registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository in which to put the image. If you do not specify a registry,
+	// the default registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository in which to put the image.
@@ -7897,9 +7912,9 @@ type PutImageScanningConfigurationInput struct {
 	// ImageScanningConfiguration is a required field
 	ImageScanningConfiguration *ImageScanningConfiguration `locationName:"imageScanningConfiguration" type:"structure" required:"true"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// in which to update the image scanning configuration setting. If you do not
-	// specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository in which to update the image scanning configuration setting.
+	// If you do not specify a registry, the default registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository in which to update the image scanning configuration
@@ -8007,9 +8022,9 @@ type PutImageTagMutabilityInput struct {
 	// ImageTagMutability is a required field
 	ImageTagMutability *string `locationName:"imageTagMutability" type:"string" required:"true" enum:"ImageTagMutability"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// in which to update the image tag mutability settings. If you do not specify
-	// a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository in which to update the image tag mutability settings. If you
+	// do not specify a registry, the default registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository in which to update the image tag mutability settings.
@@ -8114,8 +8129,9 @@ type PutLifecyclePolicyInput struct {
 	// LifecyclePolicyText is a required field
 	LifecyclePolicyText *string `locationName:"lifecyclePolicyText" min:"100" type:"string" required:"true"`
 
-	// The AWS account ID associated with the registry that contains the repository.
-	// If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository. If you do not specify a registry, the default registry is
+	// assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to receive the policy.
@@ -8641,13 +8657,14 @@ type Repository struct {
 	// The tag mutability setting for the repository.
 	ImageTagMutability *string `locationName:"imageTagMutability" type:"string" enum:"ImageTagMutability"`
 
-	// The AWS account ID associated with the registry that contains the repository.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The Amazon Resource Name (ARN) that identifies the repository. The ARN contains
-	// the arn:aws:ecr namespace, followed by the region of the repository, AWS
-	// account ID of the repository owner, repository namespace, and repository
-	// name. For example, arn:aws:ecr:region:012345678910:repository/test.
+	// the arn:aws:ecr namespace, followed by the region of the repository, Amazon
+	// Web Services account ID of the repository owner, repository namespace, and
+	// repository name. For example, arn:aws:ecr:region:012345678910:repository/test.
 	RepositoryArn *string `locationName:"repositoryArn" type:"string"`
 
 	// The name of the repository.
@@ -9070,14 +9087,15 @@ type SetRepositoryPolicyInput struct {
 	Force *bool `locationName:"force" type:"boolean"`
 
 	// The JSON repository policy text to apply to the repository. For more information,
-	// see Amazon ECR Repository Policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html)
+	// see Amazon ECR repository policies (https://docs.aws.amazon.com/AmazonECR/latest/userguide/repository-policy-examples.html)
 	// in the Amazon Elastic Container Registry User Guide.
 	//
 	// PolicyText is a required field
 	PolicyText *string `locationName:"policyText" type:"string" required:"true"`
 
-	// The AWS account ID associated with the registry that contains the repository.
-	// If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository. If you do not specify a registry, the default registry is
+	// assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to receive the policy.
@@ -9188,9 +9206,9 @@ type StartImageScanInput struct {
 	// ImageId is a required field
 	ImageId *ImageIdentifier `locationName:"imageId" type:"structure" required:"true"`
 
-	// The AWS account ID associated with the registry that contains the repository
-	// in which to start an image scan request. If you do not specify a registry,
-	// the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository in which to start an image scan request. If you do not specify
+	// a registry, the default registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository that contains the images to scan.
@@ -9308,8 +9326,9 @@ type StartLifecyclePolicyPreviewInput struct {
 	// policy for the repository is used.
 	LifecyclePolicyText *string `locationName:"lifecyclePolicyText" min:"100" type:"string"`
 
-	// The AWS account ID associated with the registry that contains the repository.
-	// If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry that contains
+	// the repository. If you do not specify a registry, the default registry is
+	// assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to be evaluated.
@@ -9724,8 +9743,9 @@ type UploadLayerPartInput struct {
 	// PartLastByte is a required field
 	PartLastByte *int64 `locationName:"partLastByte" type:"long" required:"true"`
 
-	// The AWS account ID associated with the registry to which you are uploading
-	// layer parts. If you do not specify a registry, the default registry is assumed.
+	// The Amazon Web Services account ID associated with the registry to which
+	// you are uploading layer parts. If you do not specify a registry, the default
+	// registry is assumed.
 	RegistryId *string `locationName:"registryId" type:"string"`
 
 	// The name of the repository to which you are uploading layer parts.

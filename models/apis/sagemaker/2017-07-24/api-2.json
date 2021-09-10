@@ -504,6 +504,18 @@
         {"shape":"ResourceLimitExceeded"}
       ]
     },
+    "CreateStudioLifecycleConfig":{
+      "name":"CreateStudioLifecycleConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateStudioLifecycleConfigRequest"},
+      "output":{"shape":"CreateStudioLifecycleConfigResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"}
+      ]
+    },
     "CreateTrainingJob":{
       "name":"CreateTrainingJob",
       "http":{
@@ -922,6 +934,18 @@
       "input":{"shape":"DeleteProjectInput"},
       "errors":[
         {"shape":"ConflictException"}
+      ]
+    },
+    "DeleteStudioLifecycleConfig":{
+      "name":"DeleteStudioLifecycleConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DeleteStudioLifecycleConfigRequest"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceInUse"}
       ]
     },
     "DeleteTags":{
@@ -1423,6 +1447,18 @@
       },
       "input":{"shape":"DescribeProjectInput"},
       "output":{"shape":"DescribeProjectOutput"}
+    },
+    "DescribeStudioLifecycleConfig":{
+      "name":"DescribeStudioLifecycleConfig",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeStudioLifecycleConfigRequest"},
+      "output":{"shape":"DescribeStudioLifecycleConfigResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"}
+      ]
     },
     "DescribeSubscribedWorkteam":{
       "name":"DescribeSubscribedWorkteam",
@@ -1993,6 +2029,18 @@
       },
       "input":{"shape":"ListProjectsInput"},
       "output":{"shape":"ListProjectsOutput"}
+    },
+    "ListStudioLifecycleConfigs":{
+      "name":"ListStudioLifecycleConfigs",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListStudioLifecycleConfigsRequest"},
+      "output":{"shape":"ListStudioLifecycleConfigsResponse"},
+      "errors":[
+        {"shape":"ResourceInUse"}
+      ]
     },
     "ListSubscribedWorkteams":{
       "name":"ListSubscribedWorkteams",
@@ -5020,6 +5068,26 @@
         "ProjectId":{"shape":"ProjectId"}
       }
     },
+    "CreateStudioLifecycleConfigRequest":{
+      "type":"structure",
+      "required":[
+        "StudioLifecycleConfigName",
+        "StudioLifecycleConfigContent",
+        "StudioLifecycleConfigAppType"
+      ],
+      "members":{
+        "StudioLifecycleConfigName":{"shape":"StudioLifecycleConfigName"},
+        "StudioLifecycleConfigContent":{"shape":"StudioLifecycleConfigContent"},
+        "StudioLifecycleConfigAppType":{"shape":"StudioLifecycleConfigAppType"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateStudioLifecycleConfigResponse":{
+      "type":"structure",
+      "members":{
+        "StudioLifecycleConfigArn":{"shape":"StudioLifecycleConfigArn"}
+      }
+    },
     "CreateTrainingJobRequest":{
       "type":"structure",
       "required":[
@@ -5705,6 +5773,13 @@
       "required":["ProjectName"],
       "members":{
         "ProjectName":{"shape":"ProjectEntityName"}
+      }
+    },
+    "DeleteStudioLifecycleConfigRequest":{
+      "type":"structure",
+      "required":["StudioLifecycleConfigName"],
+      "members":{
+        "StudioLifecycleConfigName":{"shape":"StudioLifecycleConfigName"}
       }
     },
     "DeleteTagsInput":{
@@ -6917,6 +6992,24 @@
         "ProjectStatus":{"shape":"ProjectStatus"},
         "CreatedBy":{"shape":"UserContext"},
         "CreationTime":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeStudioLifecycleConfigRequest":{
+      "type":"structure",
+      "required":["StudioLifecycleConfigName"],
+      "members":{
+        "StudioLifecycleConfigName":{"shape":"StudioLifecycleConfigName"}
+      }
+    },
+    "DescribeStudioLifecycleConfigResponse":{
+      "type":"structure",
+      "members":{
+        "StudioLifecycleConfigArn":{"shape":"StudioLifecycleConfigArn"},
+        "StudioLifecycleConfigName":{"shape":"StudioLifecycleConfigName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "StudioLifecycleConfigContent":{"shape":"StudioLifecycleConfigContent"},
+        "StudioLifecycleConfigAppType":{"shape":"StudioLifecycleConfigAppType"}
       }
     },
     "DescribeSubscribedWorkteamRequest":{
@@ -8972,7 +9065,8 @@
     "JupyterServerAppSettings":{
       "type":"structure",
       "members":{
-        "DefaultResourceSpec":{"shape":"ResourceSpec"}
+        "DefaultResourceSpec":{"shape":"ResourceSpec"},
+        "LifecycleConfigArns":{"shape":"LifecycleConfigArns"}
       }
     },
     "KernelDisplayName":{
@@ -8983,7 +9077,8 @@
       "type":"structure",
       "members":{
         "DefaultResourceSpec":{"shape":"ResourceSpec"},
-        "CustomImages":{"shape":"CustomImages"}
+        "CustomImages":{"shape":"CustomImages"},
+        "LifecycleConfigArns":{"shape":"LifecycleConfigArns"}
       }
     },
     "KernelGatewayImageConfig":{
@@ -9210,6 +9305,10 @@
       }
     },
     "LastModifiedTime":{"type":"timestamp"},
+    "LifecycleConfigArns":{
+      "type":"list",
+      "member":{"shape":"StudioLifecycleConfigArn"}
+    },
     "LineageEntityParameters":{
       "type":"map",
       "key":{"shape":"StringParameterValue"},
@@ -10184,6 +10283,28 @@
       "members":{
         "ProjectSummaryList":{"shape":"ProjectSummaryList"},
         "NextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListStudioLifecycleConfigsRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "NameContains":{"shape":"StudioLifecycleConfigName"},
+        "AppTypeEquals":{"shape":"StudioLifecycleConfigAppType"},
+        "CreationTimeBefore":{"shape":"Timestamp"},
+        "CreationTimeAfter":{"shape":"Timestamp"},
+        "ModifiedTimeBefore":{"shape":"Timestamp"},
+        "ModifiedTimeAfter":{"shape":"Timestamp"},
+        "SortBy":{"shape":"StudioLifecycleConfigSortKey"},
+        "SortOrder":{"shape":"SortOrder"}
+      }
+    },
+    "ListStudioLifecycleConfigsResponse":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"NextToken"},
+        "StudioLifecycleConfigs":{"shape":"StudioLifecycleConfigsList"}
       }
     },
     "ListSubscribedWorkteamsRequest":{
@@ -12919,7 +13040,8 @@
       "members":{
         "SageMakerImageArn":{"shape":"ImageArn"},
         "SageMakerImageVersionArn":{"shape":"ImageVersionArn"},
-        "InstanceType":{"shape":"AppInstanceType"}
+        "InstanceType":{"shape":"AppInstanceType"},
+        "LifecycleConfigArn":{"shape":"StudioLifecycleConfigArn"}
       }
     },
     "ResourceType":{
@@ -13595,6 +13717,51 @@
       "max":256,
       "pattern":".*"
     },
+    "StudioLifecycleConfigAppType":{
+      "type":"string",
+      "enum":[
+        "JupyterServer",
+        "KernelGateway"
+      ]
+    },
+    "StudioLifecycleConfigArn":{
+      "type":"string",
+      "max":256,
+      "pattern":"arn:aws[a-z\\-]*:sagemaker:[a-z0-9\\-]*:[0-9]{12}:studio-lifecycle-config/.*"
+    },
+    "StudioLifecycleConfigContent":{
+      "type":"string",
+      "max":16384,
+      "min":1,
+      "pattern":"[\\S\\s]+"
+    },
+    "StudioLifecycleConfigDetails":{
+      "type":"structure",
+      "members":{
+        "StudioLifecycleConfigArn":{"shape":"StudioLifecycleConfigArn"},
+        "StudioLifecycleConfigName":{"shape":"StudioLifecycleConfigName"},
+        "CreationTime":{"shape":"Timestamp"},
+        "LastModifiedTime":{"shape":"Timestamp"},
+        "StudioLifecycleConfigAppType":{"shape":"StudioLifecycleConfigAppType"}
+      }
+    },
+    "StudioLifecycleConfigName":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9]){0,62}"
+    },
+    "StudioLifecycleConfigSortKey":{
+      "type":"string",
+      "enum":[
+        "CreationTime",
+        "LastModifiedTime",
+        "Name"
+      ]
+    },
+    "StudioLifecycleConfigsList":{
+      "type":"list",
+      "member":{"shape":"StudioLifecycleConfigDetails"}
+    },
     "SubnetId":{
       "type":"string",
       "max":32,
@@ -13705,7 +13872,8 @@
         "x86_win32",
         "x86_win64",
         "coreml",
-        "jacinto_tda4vm"
+        "jacinto_tda4vm",
+        "imx8mplus"
       ]
     },
     "TargetObjectiveMetricValue":{"type":"float"},

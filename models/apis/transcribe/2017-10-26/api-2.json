@@ -1080,6 +1080,13 @@
         "DataAccessRoleArn":{"shape":"DataAccessRoleArn"}
       }
     },
+    "KMSEncryptionContextMap":{
+      "type":"map",
+      "key":{"shape":"NonEmptyString"},
+      "value":{"shape":"NonEmptyString"},
+      "max":10,
+      "min":1
+    },
     "KMSKeyId":{
       "type":"string",
       "max":2048,
@@ -1613,6 +1620,7 @@
         "OutputBucketName":{"shape":"OutputBucketName"},
         "OutputKey":{"shape":"OutputKey"},
         "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
+        "KMSEncryptionContext":{"shape":"KMSEncryptionContextMap"},
         "Settings":{"shape":"MedicalTranscriptionSetting"},
         "ContentIdentificationType":{"shape":"MedicalContentIdentificationType"},
         "Specialty":{"shape":"Specialty"},
@@ -1641,6 +1649,7 @@
         "OutputBucketName":{"shape":"OutputBucketName"},
         "OutputKey":{"shape":"OutputKey"},
         "OutputEncryptionKMSKeyId":{"shape":"KMSKeyId"},
+        "KMSEncryptionContext":{"shape":"KMSEncryptionContextMap"},
         "Settings":{"shape":"Settings"},
         "ModelSettings":{"shape":"ModelSettings"},
         "JobExecutionSettings":{"shape":"JobExecutionSettings"},

@@ -331,11 +331,6 @@ func (c *SageMaker) CreateActionRequest(input *CreateActionInput) (req *request.
 // an action involves at least one input or output artifact. For more information,
 // see Amazon SageMaker ML Lineage Tracking (https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html).
 //
-// CreateAction can only be invoked from within an SageMaker managed environment.
-// This includes SageMaker training jobs, processing jobs, transform jobs, and
-// SageMaker notebooks. A call to CreateAction from outside one of these environments
-// results in an error.
-//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -660,11 +655,6 @@ func (c *SageMaker) CreateArtifactRequest(input *CreateArtifactInput) (req *requ
 // a URI addressable object or data. Some examples are the S3 URI of a dataset
 // and the ECR registry path of an image. For more information, see Amazon SageMaker
 // ML Lineage Tracking (https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html).
-//
-// CreateArtifact can only be invoked from within an SageMaker managed environment.
-// This includes SageMaker training jobs, processing jobs, transform jobs, and
-// SageMaker notebooks. A call to CreateArtifact from outside one of these environments
-// results in an error.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1028,11 +1018,6 @@ func (c *SageMaker) CreateContextRequest(input *CreateContextInput) (req *reques
 // a logical grouping of other tracking or experiment entities. Some examples
 // are an endpoint and a model package. For more information, see Amazon SageMaker
 // ML Lineage Tracking (https://docs.aws.amazon.com/sagemaker/latest/dg/lineage-tracking.html).
-//
-// CreateContext can only be invoked from within an SageMaker managed environment.
-// This includes SageMaker training jobs, processing jobs, transform jobs, and
-// SageMaker notebooks. A call to CreateContext from outside one of these environments
-// results in an error.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1644,10 +1629,6 @@ func (c *SageMaker) CreateEndpointConfigRequest(input *CreateEndpointConfigInput
 // that you want to host two models, A and B, and you assign traffic weight
 // 2 for model A and 1 for model B. Amazon SageMaker distributes two-thirds
 // of the traffic to Model A, and one-third to model B.
-//
-// For an example that calls this method when deploying a model to Amazon SageMaker
-// hosting services, see Deploy the Model to Amazon SageMaker Hosting Services
-// (Amazon Web Services SDK for Python (Boto 3)). (https://docs.aws.amazon.com/sagemaker/latest/dg/ex1-deploy-model.html#ex1-deploy-model-boto)
 //
 // When you call CreateEndpoint, a load call is made to DynamoDB to verify that
 // your endpoint configuration exists. When you read data from a DynamoDB table
@@ -3715,6 +3696,85 @@ func (c *SageMaker) CreateProject(input *CreateProjectInput) (*CreateProjectOutp
 // for more information on using Contexts.
 func (c *SageMaker) CreateProjectWithContext(ctx aws.Context, input *CreateProjectInput, opts ...request.Option) (*CreateProjectOutput, error) {
 	req, out := c.CreateProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateStudioLifecycleConfig = "CreateStudioLifecycleConfig"
+
+// CreateStudioLifecycleConfigRequest generates a "aws/request.Request" representing the
+// client's request for the CreateStudioLifecycleConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateStudioLifecycleConfig for more information on using the CreateStudioLifecycleConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateStudioLifecycleConfigRequest method.
+//    req, resp := client.CreateStudioLifecycleConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateStudioLifecycleConfig
+func (c *SageMaker) CreateStudioLifecycleConfigRequest(input *CreateStudioLifecycleConfigInput) (req *request.Request, output *CreateStudioLifecycleConfigOutput) {
+	op := &request.Operation{
+		Name:       opCreateStudioLifecycleConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateStudioLifecycleConfigInput{}
+	}
+
+	output = &CreateStudioLifecycleConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateStudioLifecycleConfig API operation for Amazon SageMaker Service.
+//
+// Creates a new Studio Lifecycle Configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation CreateStudioLifecycleConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/CreateStudioLifecycleConfig
+func (c *SageMaker) CreateStudioLifecycleConfig(input *CreateStudioLifecycleConfigInput) (*CreateStudioLifecycleConfigOutput, error) {
+	req, out := c.CreateStudioLifecycleConfigRequest(input)
+	return out, req.Send()
+}
+
+// CreateStudioLifecycleConfigWithContext is the same as CreateStudioLifecycleConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateStudioLifecycleConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) CreateStudioLifecycleConfigWithContext(ctx aws.Context, input *CreateStudioLifecycleConfigInput, opts ...request.Option) (*CreateStudioLifecycleConfigOutput, error) {
+	req, out := c.CreateStudioLifecycleConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -6917,6 +6977,92 @@ func (c *SageMaker) DeleteProject(input *DeleteProjectInput) (*DeleteProjectOutp
 // for more information on using Contexts.
 func (c *SageMaker) DeleteProjectWithContext(ctx aws.Context, input *DeleteProjectInput, opts ...request.Option) (*DeleteProjectOutput, error) {
 	req, out := c.DeleteProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteStudioLifecycleConfig = "DeleteStudioLifecycleConfig"
+
+// DeleteStudioLifecycleConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteStudioLifecycleConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteStudioLifecycleConfig for more information on using the DeleteStudioLifecycleConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteStudioLifecycleConfigRequest method.
+//    req, resp := client.DeleteStudioLifecycleConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteStudioLifecycleConfig
+func (c *SageMaker) DeleteStudioLifecycleConfigRequest(input *DeleteStudioLifecycleConfigInput) (req *request.Request, output *DeleteStudioLifecycleConfigOutput) {
+	op := &request.Operation{
+		Name:       opDeleteStudioLifecycleConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteStudioLifecycleConfigInput{}
+	}
+
+	output = &DeleteStudioLifecycleConfigOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteStudioLifecycleConfig API operation for Amazon SageMaker Service.
+//
+// Deletes the Studio Lifecycle Configuration. In order to delete the Lifecycle
+// Configuration, there must be no running apps using the Lifecycle Configuration.
+// You must also remove the Lifecycle Configuration from UserSettings in all
+// Domains and UserProfiles.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DeleteStudioLifecycleConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DeleteStudioLifecycleConfig
+func (c *SageMaker) DeleteStudioLifecycleConfig(input *DeleteStudioLifecycleConfigInput) (*DeleteStudioLifecycleConfigOutput, error) {
+	req, out := c.DeleteStudioLifecycleConfigRequest(input)
+	return out, req.Send()
+}
+
+// DeleteStudioLifecycleConfigWithContext is the same as DeleteStudioLifecycleConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteStudioLifecycleConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DeleteStudioLifecycleConfigWithContext(ctx aws.Context, input *DeleteStudioLifecycleConfigInput, opts ...request.Option) (*DeleteStudioLifecycleConfigOutput, error) {
+	req, out := c.DeleteStudioLifecycleConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -10454,6 +10600,85 @@ func (c *SageMaker) DescribeProject(input *DescribeProjectInput) (*DescribeProje
 // for more information on using Contexts.
 func (c *SageMaker) DescribeProjectWithContext(ctx aws.Context, input *DescribeProjectInput, opts ...request.Option) (*DescribeProjectOutput, error) {
 	req, out := c.DescribeProjectRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeStudioLifecycleConfig = "DescribeStudioLifecycleConfig"
+
+// DescribeStudioLifecycleConfigRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeStudioLifecycleConfig operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeStudioLifecycleConfig for more information on using the DescribeStudioLifecycleConfig
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeStudioLifecycleConfigRequest method.
+//    req, resp := client.DescribeStudioLifecycleConfigRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeStudioLifecycleConfig
+func (c *SageMaker) DescribeStudioLifecycleConfigRequest(input *DescribeStudioLifecycleConfigInput) (req *request.Request, output *DescribeStudioLifecycleConfigOutput) {
+	op := &request.Operation{
+		Name:       opDescribeStudioLifecycleConfig,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeStudioLifecycleConfigInput{}
+	}
+
+	output = &DescribeStudioLifecycleConfigOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeStudioLifecycleConfig API operation for Amazon SageMaker Service.
+//
+// Describes the Studio Lifecycle Configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation DescribeStudioLifecycleConfig for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/DescribeStudioLifecycleConfig
+func (c *SageMaker) DescribeStudioLifecycleConfig(input *DescribeStudioLifecycleConfigInput) (*DescribeStudioLifecycleConfigOutput, error) {
+	req, out := c.DescribeStudioLifecycleConfigRequest(input)
+	return out, req.Send()
+}
+
+// DescribeStudioLifecycleConfigWithContext is the same as DescribeStudioLifecycleConfig with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeStudioLifecycleConfig for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) DescribeStudioLifecycleConfigWithContext(ctx aws.Context, input *DescribeStudioLifecycleConfigInput, opts ...request.Option) (*DescribeStudioLifecycleConfigOutput, error) {
+	req, out := c.DescribeStudioLifecycleConfigRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -17363,6 +17588,143 @@ func (c *SageMaker) ListProjectsPagesWithContext(ctx aws.Context, input *ListPro
 
 	for p.Next() {
 		if !fn(p.Page().(*ListProjectsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListStudioLifecycleConfigs = "ListStudioLifecycleConfigs"
+
+// ListStudioLifecycleConfigsRequest generates a "aws/request.Request" representing the
+// client's request for the ListStudioLifecycleConfigs operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListStudioLifecycleConfigs for more information on using the ListStudioLifecycleConfigs
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListStudioLifecycleConfigsRequest method.
+//    req, resp := client.ListStudioLifecycleConfigsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListStudioLifecycleConfigs
+func (c *SageMaker) ListStudioLifecycleConfigsRequest(input *ListStudioLifecycleConfigsInput) (req *request.Request, output *ListStudioLifecycleConfigsOutput) {
+	op := &request.Operation{
+		Name:       opListStudioLifecycleConfigs,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListStudioLifecycleConfigsInput{}
+	}
+
+	output = &ListStudioLifecycleConfigsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListStudioLifecycleConfigs API operation for Amazon SageMaker Service.
+//
+// Lists the Studio Lifecycle Configurations in your Amazon Web Services Account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation ListStudioLifecycleConfigs for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceInUse
+//   Resource being accessed is in use.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/ListStudioLifecycleConfigs
+func (c *SageMaker) ListStudioLifecycleConfigs(input *ListStudioLifecycleConfigsInput) (*ListStudioLifecycleConfigsOutput, error) {
+	req, out := c.ListStudioLifecycleConfigsRequest(input)
+	return out, req.Send()
+}
+
+// ListStudioLifecycleConfigsWithContext is the same as ListStudioLifecycleConfigs with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListStudioLifecycleConfigs for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListStudioLifecycleConfigsWithContext(ctx aws.Context, input *ListStudioLifecycleConfigsInput, opts ...request.Option) (*ListStudioLifecycleConfigsOutput, error) {
+	req, out := c.ListStudioLifecycleConfigsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListStudioLifecycleConfigsPages iterates over the pages of a ListStudioLifecycleConfigs operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListStudioLifecycleConfigs method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListStudioLifecycleConfigs operation.
+//    pageNum := 0
+//    err := client.ListStudioLifecycleConfigsPages(params,
+//        func(page *sagemaker.ListStudioLifecycleConfigsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *SageMaker) ListStudioLifecycleConfigsPages(input *ListStudioLifecycleConfigsInput, fn func(*ListStudioLifecycleConfigsOutput, bool) bool) error {
+	return c.ListStudioLifecycleConfigsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListStudioLifecycleConfigsPagesWithContext same as ListStudioLifecycleConfigsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) ListStudioLifecycleConfigsPagesWithContext(ctx aws.Context, input *ListStudioLifecycleConfigsInput, fn func(*ListStudioLifecycleConfigsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListStudioLifecycleConfigsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListStudioLifecycleConfigsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListStudioLifecycleConfigsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -33519,6 +33881,120 @@ func (s *CreateProjectOutput) SetProjectId(v string) *CreateProjectOutput {
 	return s
 }
 
+type CreateStudioLifecycleConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The App type that the Lifecycle Configuration is attached to.
+	//
+	// StudioLifecycleConfigAppType is a required field
+	StudioLifecycleConfigAppType *string `type:"string" required:"true" enum:"StudioLifecycleConfigAppType"`
+
+	// The content of your Studio Lifecycle Configuration script. This content must
+	// be base64 encoded.
+	//
+	// StudioLifecycleConfigContent is a required field
+	StudioLifecycleConfigContent *string `min:"1" type:"string" required:"true"`
+
+	// The name of the Studio Lifecycle Configuration to create.
+	//
+	// StudioLifecycleConfigName is a required field
+	StudioLifecycleConfigName *string `type:"string" required:"true"`
+
+	// Tags to be associated with the Lifecycle Configuration. Each tag consists
+	// of a key and an optional value. Tag keys must be unique per resource. Tags
+	// are searchable using the Search API.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s CreateStudioLifecycleConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateStudioLifecycleConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateStudioLifecycleConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateStudioLifecycleConfigInput"}
+	if s.StudioLifecycleConfigAppType == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioLifecycleConfigAppType"))
+	}
+	if s.StudioLifecycleConfigContent == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioLifecycleConfigContent"))
+	}
+	if s.StudioLifecycleConfigContent != nil && len(*s.StudioLifecycleConfigContent) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("StudioLifecycleConfigContent", 1))
+	}
+	if s.StudioLifecycleConfigName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioLifecycleConfigName"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStudioLifecycleConfigAppType sets the StudioLifecycleConfigAppType field's value.
+func (s *CreateStudioLifecycleConfigInput) SetStudioLifecycleConfigAppType(v string) *CreateStudioLifecycleConfigInput {
+	s.StudioLifecycleConfigAppType = &v
+	return s
+}
+
+// SetStudioLifecycleConfigContent sets the StudioLifecycleConfigContent field's value.
+func (s *CreateStudioLifecycleConfigInput) SetStudioLifecycleConfigContent(v string) *CreateStudioLifecycleConfigInput {
+	s.StudioLifecycleConfigContent = &v
+	return s
+}
+
+// SetStudioLifecycleConfigName sets the StudioLifecycleConfigName field's value.
+func (s *CreateStudioLifecycleConfigInput) SetStudioLifecycleConfigName(v string) *CreateStudioLifecycleConfigInput {
+	s.StudioLifecycleConfigName = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateStudioLifecycleConfigInput) SetTags(v []*Tag) *CreateStudioLifecycleConfigInput {
+	s.Tags = v
+	return s
+}
+
+type CreateStudioLifecycleConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of your created Lifecycle Configuration.
+	StudioLifecycleConfigArn *string `type:"string"`
+}
+
+// String returns the string representation
+func (s CreateStudioLifecycleConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s CreateStudioLifecycleConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetStudioLifecycleConfigArn sets the StudioLifecycleConfigArn field's value.
+func (s *CreateStudioLifecycleConfigOutput) SetStudioLifecycleConfigArn(v string) *CreateStudioLifecycleConfigOutput {
+	s.StudioLifecycleConfigArn = &v
+	return s
+}
+
 type CreateTrainingJobInput struct {
 	_ struct{} `type:"structure"`
 
@@ -37840,6 +38316,58 @@ func (s DeleteProjectOutput) String() string {
 
 // GoString returns the string representation
 func (s DeleteProjectOutput) GoString() string {
+	return s.String()
+}
+
+type DeleteStudioLifecycleConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Studio Lifecycle Configuration to delete.
+	//
+	// StudioLifecycleConfigName is a required field
+	StudioLifecycleConfigName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DeleteStudioLifecycleConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStudioLifecycleConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteStudioLifecycleConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteStudioLifecycleConfigInput"}
+	if s.StudioLifecycleConfigName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioLifecycleConfigName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStudioLifecycleConfigName sets the StudioLifecycleConfigName field's value.
+func (s *DeleteStudioLifecycleConfigInput) SetStudioLifecycleConfigName(v string) *DeleteStudioLifecycleConfigInput {
+	s.StudioLifecycleConfigName = &v
+	return s
+}
+
+type DeleteStudioLifecycleConfigOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation
+func (s DeleteStudioLifecycleConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DeleteStudioLifecycleConfigOutput) GoString() string {
 	return s.String()
 }
 
@@ -44961,6 +45489,113 @@ func (s *DescribeProjectOutput) SetServiceCatalogProvisionedProductDetails(v *Se
 // SetServiceCatalogProvisioningDetails sets the ServiceCatalogProvisioningDetails field's value.
 func (s *DescribeProjectOutput) SetServiceCatalogProvisioningDetails(v *ServiceCatalogProvisioningDetails) *DescribeProjectOutput {
 	s.ServiceCatalogProvisioningDetails = v
+	return s
+}
+
+type DescribeStudioLifecycleConfigInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the Studio Lifecycle Configuration to describe.
+	//
+	// StudioLifecycleConfigName is a required field
+	StudioLifecycleConfigName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s DescribeStudioLifecycleConfigInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStudioLifecycleConfigInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeStudioLifecycleConfigInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeStudioLifecycleConfigInput"}
+	if s.StudioLifecycleConfigName == nil {
+		invalidParams.Add(request.NewErrParamRequired("StudioLifecycleConfigName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetStudioLifecycleConfigName sets the StudioLifecycleConfigName field's value.
+func (s *DescribeStudioLifecycleConfigInput) SetStudioLifecycleConfigName(v string) *DescribeStudioLifecycleConfigInput {
+	s.StudioLifecycleConfigName = &v
+	return s
+}
+
+type DescribeStudioLifecycleConfigOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of the Studio Lifecycle Configuration.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// This value is equivalent to CreationTime because Studio Lifecycle Configurations
+	// are immutable.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The App type that the Lifecycle Configuration is attached to.
+	StudioLifecycleConfigAppType *string `type:"string" enum:"StudioLifecycleConfigAppType"`
+
+	// The ARN of the Lifecycle Configuration to describe.
+	StudioLifecycleConfigArn *string `type:"string"`
+
+	// The content of your Studio Lifecycle Configuration script.
+	StudioLifecycleConfigContent *string `min:"1" type:"string"`
+
+	// The name of the Studio Lifecycle Configuration that is described.
+	StudioLifecycleConfigName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s DescribeStudioLifecycleConfigOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DescribeStudioLifecycleConfigOutput) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *DescribeStudioLifecycleConfigOutput) SetCreationTime(v time.Time) *DescribeStudioLifecycleConfigOutput {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *DescribeStudioLifecycleConfigOutput) SetLastModifiedTime(v time.Time) *DescribeStudioLifecycleConfigOutput {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetStudioLifecycleConfigAppType sets the StudioLifecycleConfigAppType field's value.
+func (s *DescribeStudioLifecycleConfigOutput) SetStudioLifecycleConfigAppType(v string) *DescribeStudioLifecycleConfigOutput {
+	s.StudioLifecycleConfigAppType = &v
+	return s
+}
+
+// SetStudioLifecycleConfigArn sets the StudioLifecycleConfigArn field's value.
+func (s *DescribeStudioLifecycleConfigOutput) SetStudioLifecycleConfigArn(v string) *DescribeStudioLifecycleConfigOutput {
+	s.StudioLifecycleConfigArn = &v
+	return s
+}
+
+// SetStudioLifecycleConfigContent sets the StudioLifecycleConfigContent field's value.
+func (s *DescribeStudioLifecycleConfigOutput) SetStudioLifecycleConfigContent(v string) *DescribeStudioLifecycleConfigOutput {
+	s.StudioLifecycleConfigContent = &v
+	return s
+}
+
+// SetStudioLifecycleConfigName sets the StudioLifecycleConfigName field's value.
+func (s *DescribeStudioLifecycleConfigOutput) SetStudioLifecycleConfigName(v string) *DescribeStudioLifecycleConfigOutput {
+	s.StudioLifecycleConfigName = &v
 	return s
 }
 
@@ -52685,6 +53320,10 @@ type JupyterServerAppSettings struct {
 	// The default instance type and the Amazon Resource Name (ARN) of the default
 	// SageMaker image used by the JupyterServer app.
 	DefaultResourceSpec *ResourceSpec `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to
+	// the JupyterServerApp.
+	LifecycleConfigArns []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -52703,6 +53342,12 @@ func (s *JupyterServerAppSettings) SetDefaultResourceSpec(v *ResourceSpec) *Jupy
 	return s
 }
 
+// SetLifecycleConfigArns sets the LifecycleConfigArns field's value.
+func (s *JupyterServerAppSettings) SetLifecycleConfigArns(v []*string) *JupyterServerAppSettings {
+	s.LifecycleConfigArns = v
+	return s
+}
+
 // The KernelGateway app settings.
 type KernelGatewayAppSettings struct {
 	_ struct{} `type:"structure"`
@@ -52714,6 +53359,10 @@ type KernelGatewayAppSettings struct {
 	// The default instance type and the Amazon Resource Name (ARN) of the default
 	// SageMaker image used by the KernelGateway app.
 	DefaultResourceSpec *ResourceSpec `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to
+	// the KernelGatewayApp.
+	LifecycleConfigArns []*string `type:"list"`
 }
 
 // String returns the string representation
@@ -52755,6 +53404,12 @@ func (s *KernelGatewayAppSettings) SetCustomImages(v []*CustomImage) *KernelGate
 // SetDefaultResourceSpec sets the DefaultResourceSpec field's value.
 func (s *KernelGatewayAppSettings) SetDefaultResourceSpec(v *ResourceSpec) *KernelGatewayAppSettings {
 	s.DefaultResourceSpec = v
+	return s
+}
+
+// SetLifecycleConfigArns sets the LifecycleConfigArns field's value.
+func (s *KernelGatewayAppSettings) SetLifecycleConfigArns(v []*string) *KernelGatewayAppSettings {
+	s.LifecycleConfigArns = v
 	return s
 }
 
@@ -59811,6 +60466,164 @@ func (s *ListProjectsOutput) SetNextToken(v string) *ListProjectsOutput {
 // SetProjectSummaryList sets the ProjectSummaryList field's value.
 func (s *ListProjectsOutput) SetProjectSummaryList(v []*ProjectSummary) *ListProjectsOutput {
 	s.ProjectSummaryList = v
+	return s
+}
+
+type ListStudioLifecycleConfigsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A parameter to search for the App Type to which the Lifecycle Configuration
+	// is attached.
+	AppTypeEquals *string `type:"string" enum:"StudioLifecycleConfigAppType"`
+
+	// A filter that returns only Lifecycle Configurations created on or after the
+	// specified time.
+	CreationTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only Lifecycle Configurations created on or before
+	// the specified time.
+	CreationTimeBefore *time.Time `type:"timestamp"`
+
+	// The maximum number of Studio Lifecycle Configurations to return in the response.
+	// The default value is 10.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// A filter that returns only Lifecycle Configurations modified after the specified
+	// time.
+	ModifiedTimeAfter *time.Time `type:"timestamp"`
+
+	// A filter that returns only Lifecycle Configurations modified before the specified
+	// time.
+	ModifiedTimeBefore *time.Time `type:"timestamp"`
+
+	// A string in the Lifecycle Configuration name. This filter returns only Lifecycle
+	// Configurations whose name contains the specified string.
+	NameContains *string `type:"string"`
+
+	// If the previous call to ListStudioLifecycleConfigs didn't return the full
+	// set of Lifecycle Configurations, the call returns a token for getting the
+	// next set of Lifecycle Configurations.
+	NextToken *string `type:"string"`
+
+	// The property used to sort results. The default value is CreationTime.
+	SortBy *string `type:"string" enum:"StudioLifecycleConfigSortKey"`
+
+	// The sort order. The default value is Descending.
+	SortOrder *string `type:"string" enum:"SortOrder"`
+}
+
+// String returns the string representation
+func (s ListStudioLifecycleConfigsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListStudioLifecycleConfigsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListStudioLifecycleConfigsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListStudioLifecycleConfigsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAppTypeEquals sets the AppTypeEquals field's value.
+func (s *ListStudioLifecycleConfigsInput) SetAppTypeEquals(v string) *ListStudioLifecycleConfigsInput {
+	s.AppTypeEquals = &v
+	return s
+}
+
+// SetCreationTimeAfter sets the CreationTimeAfter field's value.
+func (s *ListStudioLifecycleConfigsInput) SetCreationTimeAfter(v time.Time) *ListStudioLifecycleConfigsInput {
+	s.CreationTimeAfter = &v
+	return s
+}
+
+// SetCreationTimeBefore sets the CreationTimeBefore field's value.
+func (s *ListStudioLifecycleConfigsInput) SetCreationTimeBefore(v time.Time) *ListStudioLifecycleConfigsInput {
+	s.CreationTimeBefore = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListStudioLifecycleConfigsInput) SetMaxResults(v int64) *ListStudioLifecycleConfigsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetModifiedTimeAfter sets the ModifiedTimeAfter field's value.
+func (s *ListStudioLifecycleConfigsInput) SetModifiedTimeAfter(v time.Time) *ListStudioLifecycleConfigsInput {
+	s.ModifiedTimeAfter = &v
+	return s
+}
+
+// SetModifiedTimeBefore sets the ModifiedTimeBefore field's value.
+func (s *ListStudioLifecycleConfigsInput) SetModifiedTimeBefore(v time.Time) *ListStudioLifecycleConfigsInput {
+	s.ModifiedTimeBefore = &v
+	return s
+}
+
+// SetNameContains sets the NameContains field's value.
+func (s *ListStudioLifecycleConfigsInput) SetNameContains(v string) *ListStudioLifecycleConfigsInput {
+	s.NameContains = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStudioLifecycleConfigsInput) SetNextToken(v string) *ListStudioLifecycleConfigsInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListStudioLifecycleConfigsInput) SetSortBy(v string) *ListStudioLifecycleConfigsInput {
+	s.SortBy = &v
+	return s
+}
+
+// SetSortOrder sets the SortOrder field's value.
+func (s *ListStudioLifecycleConfigsInput) SetSortOrder(v string) *ListStudioLifecycleConfigsInput {
+	s.SortOrder = &v
+	return s
+}
+
+type ListStudioLifecycleConfigsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A token for getting the next set of actions, if there are any.
+	NextToken *string `type:"string"`
+
+	// A list of Lifecycle Configurations and their properties.
+	StudioLifecycleConfigs []*StudioLifecycleConfigDetails `type:"list"`
+}
+
+// String returns the string representation
+func (s ListStudioLifecycleConfigsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s ListStudioLifecycleConfigsOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListStudioLifecycleConfigsOutput) SetNextToken(v string) *ListStudioLifecycleConfigsOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetStudioLifecycleConfigs sets the StudioLifecycleConfigs field's value.
+func (s *ListStudioLifecycleConfigsOutput) SetStudioLifecycleConfigs(v []*StudioLifecycleConfigDetails) *ListStudioLifecycleConfigsOutput {
+	s.StudioLifecycleConfigs = v
 	return s
 }
 
@@ -69736,6 +70549,10 @@ type ResourceSpec struct {
 	// The instance type that the image version runs on.
 	InstanceType *string `type:"string" enum:"AppInstanceType"`
 
+	// The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to
+	// the Resource.
+	LifecycleConfigArn *string `type:"string"`
+
 	// The ARN of the SageMaker image that the image version belongs to.
 	SageMakerImageArn *string `type:"string"`
 
@@ -69756,6 +70573,12 @@ func (s ResourceSpec) GoString() string {
 // SetInstanceType sets the InstanceType field's value.
 func (s *ResourceSpec) SetInstanceType(v string) *ResourceSpec {
 	s.InstanceType = &v
+	return s
+}
+
+// SetLifecycleConfigArn sets the LifecycleConfigArn field's value.
+func (s *ResourceSpec) SetLifecycleConfigArn(v string) *ResourceSpec {
+	s.LifecycleConfigArn = &v
 	return s
 }
 
@@ -72126,6 +72949,67 @@ func (s *StoppingCondition) SetMaxRuntimeInSeconds(v int64) *StoppingCondition {
 // SetMaxWaitTimeInSeconds sets the MaxWaitTimeInSeconds field's value.
 func (s *StoppingCondition) SetMaxWaitTimeInSeconds(v int64) *StoppingCondition {
 	s.MaxWaitTimeInSeconds = &v
+	return s
+}
+
+// Details of the Studio Lifecycle Configuration.
+type StudioLifecycleConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The creation time of the Studio Lifecycle Configuration.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// This value is equivalent to CreationTime because Studio Lifecycle Configurations
+	// are immutable.
+	LastModifiedTime *time.Time `type:"timestamp"`
+
+	// The App type to which the Lifecycle Configuration is attached.
+	StudioLifecycleConfigAppType *string `type:"string" enum:"StudioLifecycleConfigAppType"`
+
+	// The Amazon Resource Name (ARN) of the Lifecycle Configuration.
+	StudioLifecycleConfigArn *string `type:"string"`
+
+	// The name of the Studio Lifecycle Configuration.
+	StudioLifecycleConfigName *string `type:"string"`
+}
+
+// String returns the string representation
+func (s StudioLifecycleConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s StudioLifecycleConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *StudioLifecycleConfigDetails) SetCreationTime(v time.Time) *StudioLifecycleConfigDetails {
+	s.CreationTime = &v
+	return s
+}
+
+// SetLastModifiedTime sets the LastModifiedTime field's value.
+func (s *StudioLifecycleConfigDetails) SetLastModifiedTime(v time.Time) *StudioLifecycleConfigDetails {
+	s.LastModifiedTime = &v
+	return s
+}
+
+// SetStudioLifecycleConfigAppType sets the StudioLifecycleConfigAppType field's value.
+func (s *StudioLifecycleConfigDetails) SetStudioLifecycleConfigAppType(v string) *StudioLifecycleConfigDetails {
+	s.StudioLifecycleConfigAppType = &v
+	return s
+}
+
+// SetStudioLifecycleConfigArn sets the StudioLifecycleConfigArn field's value.
+func (s *StudioLifecycleConfigDetails) SetStudioLifecycleConfigArn(v string) *StudioLifecycleConfigDetails {
+	s.StudioLifecycleConfigArn = &v
+	return s
+}
+
+// SetStudioLifecycleConfigName sets the StudioLifecycleConfigName field's value.
+func (s *StudioLifecycleConfigDetails) SetStudioLifecycleConfigName(v string) *StudioLifecycleConfigDetails {
+	s.StudioLifecycleConfigName = &v
 	return s
 }
 
@@ -82676,6 +83560,42 @@ func StepStatus_Values() []string {
 }
 
 const (
+	// StudioLifecycleConfigAppTypeJupyterServer is a StudioLifecycleConfigAppType enum value
+	StudioLifecycleConfigAppTypeJupyterServer = "JupyterServer"
+
+	// StudioLifecycleConfigAppTypeKernelGateway is a StudioLifecycleConfigAppType enum value
+	StudioLifecycleConfigAppTypeKernelGateway = "KernelGateway"
+)
+
+// StudioLifecycleConfigAppType_Values returns all elements of the StudioLifecycleConfigAppType enum
+func StudioLifecycleConfigAppType_Values() []string {
+	return []string{
+		StudioLifecycleConfigAppTypeJupyterServer,
+		StudioLifecycleConfigAppTypeKernelGateway,
+	}
+}
+
+const (
+	// StudioLifecycleConfigSortKeyCreationTime is a StudioLifecycleConfigSortKey enum value
+	StudioLifecycleConfigSortKeyCreationTime = "CreationTime"
+
+	// StudioLifecycleConfigSortKeyLastModifiedTime is a StudioLifecycleConfigSortKey enum value
+	StudioLifecycleConfigSortKeyLastModifiedTime = "LastModifiedTime"
+
+	// StudioLifecycleConfigSortKeyName is a StudioLifecycleConfigSortKey enum value
+	StudioLifecycleConfigSortKeyName = "Name"
+)
+
+// StudioLifecycleConfigSortKey_Values returns all elements of the StudioLifecycleConfigSortKey enum
+func StudioLifecycleConfigSortKey_Values() []string {
+	return []string{
+		StudioLifecycleConfigSortKeyCreationTime,
+		StudioLifecycleConfigSortKeyLastModifiedTime,
+		StudioLifecycleConfigSortKeyName,
+	}
+}
+
+const (
 	// TargetDeviceLambda is a TargetDevice enum value
 	TargetDeviceLambda = "lambda"
 
@@ -82765,6 +83685,9 @@ const (
 
 	// TargetDeviceJacintoTda4vm is a TargetDevice enum value
 	TargetDeviceJacintoTda4vm = "jacinto_tda4vm"
+
+	// TargetDeviceImx8mplus is a TargetDevice enum value
+	TargetDeviceImx8mplus = "imx8mplus"
 )
 
 // TargetDevice_Values returns all elements of the TargetDevice enum
@@ -82800,6 +83723,7 @@ func TargetDevice_Values() []string {
 		TargetDeviceX86Win64,
 		TargetDeviceCoreml,
 		TargetDeviceJacintoTda4vm,
+		TargetDeviceImx8mplus,
 	}
 }
 

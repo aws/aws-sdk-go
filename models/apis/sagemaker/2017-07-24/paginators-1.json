@@ -257,6 +257,12 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListStudioLifecycleConfigs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults",
+      "result_key": "StudioLifecycleConfigs"
+    },
     "ListSubscribedWorkteams": {
       "input_token": "NextToken",
       "output_token": "NextToken",

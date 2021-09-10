@@ -10510,7 +10510,7 @@ func (c *RDS) ModifyCurrentDBClusterCapacityRequest(input *ModifyCurrentDBCluste
 // Aurora Serverless (https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.how-it-works.html#aurora-serverless.how-it-works.auto-scaling)
 // in the Amazon Aurora User Guide.
 //
-// This action only applies to Aurora DB clusters.
+// This action only applies to Aurora Serverless DB clusters.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -34117,7 +34117,7 @@ type ModifyCurrentDBClusterCapacityInput struct {
 	// point to perform seamless scaling before enforcing the timeout action. The
 	// default is 300.
 	//
-	//    * Value must be from 10 through 600.
+	// Specify a value between 10 and 600 seconds.
 	SecondsBeforeTimeout *int64 `type:"integer"`
 
 	// The action to take when the timeout is reached, either ForceApplyCapacityChange
@@ -42985,6 +42985,13 @@ type ScalingConfiguration struct {
 	// The minimum capacity must be less than or equal to the maximum capacity.
 	MinCapacity *int64 `type:"integer"`
 
+	// The amount of time, in seconds, that Aurora Serverless tries to find a scaling
+	// point to perform seamless scaling before enforcing the timeout action. The
+	// default is 300.
+	//
+	// Specify a value between 60 and 600 seconds.
+	SecondsBeforeTimeout *int64 `type:"integer"`
+
 	// The time, in seconds, before an Aurora DB cluster in serverless mode is paused.
 	//
 	// Specify a value between 300 and 86,400 seconds.
@@ -43035,6 +43042,12 @@ func (s *ScalingConfiguration) SetMinCapacity(v int64) *ScalingConfiguration {
 	return s
 }
 
+// SetSecondsBeforeTimeout sets the SecondsBeforeTimeout field's value.
+func (s *ScalingConfiguration) SetSecondsBeforeTimeout(v int64) *ScalingConfiguration {
+	s.SecondsBeforeTimeout = &v
+	return s
+}
+
 // SetSecondsUntilAutoPause sets the SecondsUntilAutoPause field's value.
 func (s *ScalingConfiguration) SetSecondsUntilAutoPause(v int64) *ScalingConfiguration {
 	s.SecondsUntilAutoPause = &v
@@ -43068,13 +43081,24 @@ type ScalingConfigurationInfo struct {
 	// The maximum capacity for the Aurora DB cluster in serverless DB engine mode.
 	MinCapacity *int64 `type:"integer"`
 
+	// The number of seconds before scaling times out. What happens when an attempted
+	// scaling action times out is determined by the TimeoutAction setting.
+	SecondsBeforeTimeout *int64 `type:"integer"`
+
 	// The remaining amount of time, in seconds, before the Aurora DB cluster in
 	// serverless mode is paused. A DB cluster can be paused only when it's idle
 	// (it has no connections).
 	SecondsUntilAutoPause *int64 `type:"integer"`
 
-	// The timeout action of a call to ModifyCurrentDBClusterCapacity, either ForceApplyCapacityChange
+	// The action that occurs when Aurora times out while attempting to change the
+	// capacity of an Aurora Serverless cluster. The value is either ForceApplyCapacityChange
 	// or RollbackCapacityChange.
+	//
+	// ForceApplyCapacityChange, the default, sets the capacity to the specified
+	// value as soon as possible.
+	//
+	// RollbackCapacityChange ignores the capacity change if a scaling point isn't
+	// found in the timeout period.
 	TimeoutAction *string `type:"string"`
 }
 
@@ -43103,6 +43127,12 @@ func (s *ScalingConfigurationInfo) SetMaxCapacity(v int64) *ScalingConfiguration
 // SetMinCapacity sets the MinCapacity field's value.
 func (s *ScalingConfigurationInfo) SetMinCapacity(v int64) *ScalingConfigurationInfo {
 	s.MinCapacity = &v
+	return s
+}
+
+// SetSecondsBeforeTimeout sets the SecondsBeforeTimeout field's value.
+func (s *ScalingConfigurationInfo) SetSecondsBeforeTimeout(v int64) *ScalingConfigurationInfo {
+	s.SecondsBeforeTimeout = &v
 	return s
 }
 

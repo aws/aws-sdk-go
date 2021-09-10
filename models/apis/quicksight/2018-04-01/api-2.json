@@ -2076,6 +2076,13 @@
         "Domain":{"shape":"Domain"}
       }
     },
+    "AmazonOpenSearchParameters":{
+      "type":"structure",
+      "required":["Domain"],
+      "members":{
+        "Domain":{"shape":"Domain"}
+      }
+    },
     "Analysis":{
       "type":"structure",
       "members":{
@@ -3476,7 +3483,8 @@
         "SparkParameters":{"shape":"SparkParameters"},
         "SqlServerParameters":{"shape":"SqlServerParameters"},
         "TeradataParameters":{"shape":"TeradataParameters"},
-        "TwitterParameters":{"shape":"TwitterParameters"}
+        "TwitterParameters":{"shape":"TwitterParameters"},
+        "AmazonOpenSearchParameters":{"shape":"AmazonOpenSearchParameters"}
       }
     },
     "DataSourceParametersList":{
@@ -3510,7 +3518,8 @@
         "SQLSERVER",
         "TERADATA",
         "TWITTER",
-        "TIMESTREAM"
+        "TIMESTREAM",
+        "AMAZON_OPENSEARCH"
       ]
     },
     "Database":{
