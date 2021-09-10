@@ -194,6 +194,12 @@
         "DataSourceParameters$AmazonElasticsearchParameters": "<p>The parameters for Elasticsearch.</p>"
       }
     },
+    "AmazonOpenSearchParameters": {
+      "base": null,
+      "refs": {
+        "DataSourceParameters$AmazonOpenSearchParameters": null
+      }
+    },
     "Analysis": {
       "base": "<p>Metadata structure for an analysis in Amazon QuickSight</p>",
       "refs": {
@@ -1703,7 +1709,8 @@
     "Domain": {
       "base": null,
       "refs": {
-        "AmazonElasticsearchParameters$Domain": "<p>The Elasticsearch domain.</p>"
+        "AmazonElasticsearchParameters$Domain": "<p>The Elasticsearch domain.</p>",
+        "AmazonOpenSearchParameters$Domain": null
       }
     },
     "DomainNotWhitelistedException": {

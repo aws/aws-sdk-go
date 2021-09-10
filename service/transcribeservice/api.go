@@ -6968,6 +6968,8 @@ type JobExecutionSettings struct {
 	// the concurrent execution limit. If the field is false, Amazon Transcribe
 	// returns a LimitExceededException exception.
 	//
+	// Note that job queuing is enabled by default for call analytics jobs.
+	//
 	// If you specify the AllowDeferredExecution field, you must specify the DataAccessRoleArn
 	// field.
 	AllowDeferredExecution *bool `type:"boolean"`
@@ -9407,6 +9409,10 @@ type StartMedicalTranscriptionJobInput struct {
 	// health information (PHI) that it identifies in the transcription output.
 	ContentIdentificationType *string `type:"string" enum:"MedicalContentIdentificationType"`
 
+	// A map of plain text, non-secret key:value pairs, known as encryption context
+	// pairs, that provide an added layer of security for your data.
+	KMSEncryptionContext map[string]*string `min:"1" type:"map"`
+
 	// The language code for the language spoken in the input media file. US English
 	// (en-US) is the valid value for medical transcription jobs. Any other value
 	// you enter for language code results in a BadRequestException error.
@@ -9533,6 +9539,9 @@ func (s StartMedicalTranscriptionJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartMedicalTranscriptionJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartMedicalTranscriptionJobInput"}
+	if s.KMSEncryptionContext != nil && len(s.KMSEncryptionContext) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSEncryptionContext", 1))
+	}
 	if s.LanguageCode == nil {
 		invalidParams.Add(request.NewErrParamRequired("LanguageCode"))
 	}
@@ -9596,6 +9605,12 @@ func (s *StartMedicalTranscriptionJobInput) Validate() error {
 // SetContentIdentificationType sets the ContentIdentificationType field's value.
 func (s *StartMedicalTranscriptionJobInput) SetContentIdentificationType(v string) *StartMedicalTranscriptionJobInput {
 	s.ContentIdentificationType = &v
+	return s
+}
+
+// SetKMSEncryptionContext sets the KMSEncryptionContext field's value.
+func (s *StartMedicalTranscriptionJobInput) SetKMSEncryptionContext(v map[string]*string) *StartMedicalTranscriptionJobInput {
+	s.KMSEncryptionContext = v
 	return s
 }
 
@@ -9710,6 +9725,10 @@ type StartTranscriptionJobInput struct {
 	// concurrency limit is reached and there are no slots available to immediately
 	// run the job.
 	JobExecutionSettings *JobExecutionSettings `type:"structure"`
+
+	// A map of plain text, non-secret key:value pairs, known as encryption context
+	// pairs, that provide an added layer of security for your data.
+	KMSEncryptionContext map[string]*string `min:"1" type:"map"`
 
 	// The language code for the language used in the input media file.
 	//
@@ -9841,6 +9860,9 @@ func (s StartTranscriptionJobInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartTranscriptionJobInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartTranscriptionJobInput"}
+	if s.KMSEncryptionContext != nil && len(s.KMSEncryptionContext) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KMSEncryptionContext", 1))
+	}
 	if s.LanguageOptions != nil && len(s.LanguageOptions) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("LanguageOptions", 1))
 	}
@@ -9922,6 +9944,12 @@ func (s *StartTranscriptionJobInput) SetIdentifyLanguage(v bool) *StartTranscrip
 // SetJobExecutionSettings sets the JobExecutionSettings field's value.
 func (s *StartTranscriptionJobInput) SetJobExecutionSettings(v *JobExecutionSettings) *StartTranscriptionJobInput {
 	s.JobExecutionSettings = v
+	return s
+}
+
+// SetKMSEncryptionContext sets the KMSEncryptionContext field's value.
+func (s *StartTranscriptionJobInput) SetKMSEncryptionContext(v map[string]*string) *StartTranscriptionJobInput {
+	s.KMSEncryptionContext = v
 	return s
 }
 

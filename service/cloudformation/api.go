@@ -2052,7 +2052,7 @@ func (c *CloudFormation) DescribeStackResourceDriftsRequest(input *DescribeStack
 // for resources where CloudFormation detects configuration drift.
 //
 // For a given stack, there will be one StackResourceDrift for each stack resource
-// that has been checked for drift. Resources that have not yet been checked
+// that has been checked for drift. Resources that haven't yet been checked
 // for drift are not included. Resources that do not currently support drift
 // detection are not checked, and so not included. For a list of resources that
 // support drift detection, see Resources that Support Drift Detection (https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift-resource-list.html).
@@ -2445,7 +2445,7 @@ func (c *CloudFormation) DescribeStacksRequest(input *DescribeStacksInput) (req 
 // Returns the description for the specified stack; if no stack name was specified,
 // then it returns the description for all the stacks created.
 //
-// If the stack does not exist, an AmazonCloudFormationException is returned.
+// If the stack does not exist, an ValidationError is returned.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6659,7 +6659,7 @@ func (c *CloudFormation) ValidateTemplateWithContext(ctx aws.Context, input *Val
 // invokes, if present, before proceeding with a stack set operation in an account
 // and Region.
 //
-// For each account and Region, CloudFormation lets you specify a Lamdba function
+// For each account and Region, CloudFormation lets you specify a Lambda function
 // that encapsulates any requirements that must be met before CloudFormation
 // can proceed with a stack set operation in that account and Region. CloudFormation
 // invokes the function each time a stack set operation is requested for that

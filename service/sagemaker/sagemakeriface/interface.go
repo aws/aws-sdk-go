@@ -220,6 +220,10 @@ type SageMakerAPI interface {
 	CreateProjectWithContext(aws.Context, *sagemaker.CreateProjectInput, ...request.Option) (*sagemaker.CreateProjectOutput, error)
 	CreateProjectRequest(*sagemaker.CreateProjectInput) (*request.Request, *sagemaker.CreateProjectOutput)
 
+	CreateStudioLifecycleConfig(*sagemaker.CreateStudioLifecycleConfigInput) (*sagemaker.CreateStudioLifecycleConfigOutput, error)
+	CreateStudioLifecycleConfigWithContext(aws.Context, *sagemaker.CreateStudioLifecycleConfigInput, ...request.Option) (*sagemaker.CreateStudioLifecycleConfigOutput, error)
+	CreateStudioLifecycleConfigRequest(*sagemaker.CreateStudioLifecycleConfigInput) (*request.Request, *sagemaker.CreateStudioLifecycleConfigOutput)
+
 	CreateTrainingJob(*sagemaker.CreateTrainingJobInput) (*sagemaker.CreateTrainingJobOutput, error)
 	CreateTrainingJobWithContext(aws.Context, *sagemaker.CreateTrainingJobInput, ...request.Option) (*sagemaker.CreateTrainingJobOutput, error)
 	CreateTrainingJobRequest(*sagemaker.CreateTrainingJobInput) (*request.Request, *sagemaker.CreateTrainingJobOutput)
@@ -371,6 +375,10 @@ type SageMakerAPI interface {
 	DeleteProject(*sagemaker.DeleteProjectInput) (*sagemaker.DeleteProjectOutput, error)
 	DeleteProjectWithContext(aws.Context, *sagemaker.DeleteProjectInput, ...request.Option) (*sagemaker.DeleteProjectOutput, error)
 	DeleteProjectRequest(*sagemaker.DeleteProjectInput) (*request.Request, *sagemaker.DeleteProjectOutput)
+
+	DeleteStudioLifecycleConfig(*sagemaker.DeleteStudioLifecycleConfigInput) (*sagemaker.DeleteStudioLifecycleConfigOutput, error)
+	DeleteStudioLifecycleConfigWithContext(aws.Context, *sagemaker.DeleteStudioLifecycleConfigInput, ...request.Option) (*sagemaker.DeleteStudioLifecycleConfigOutput, error)
+	DeleteStudioLifecycleConfigRequest(*sagemaker.DeleteStudioLifecycleConfigInput) (*request.Request, *sagemaker.DeleteStudioLifecycleConfigOutput)
 
 	DeleteTags(*sagemaker.DeleteTagsInput) (*sagemaker.DeleteTagsOutput, error)
 	DeleteTagsWithContext(aws.Context, *sagemaker.DeleteTagsInput, ...request.Option) (*sagemaker.DeleteTagsOutput, error)
@@ -551,6 +559,10 @@ type SageMakerAPI interface {
 	DescribeProject(*sagemaker.DescribeProjectInput) (*sagemaker.DescribeProjectOutput, error)
 	DescribeProjectWithContext(aws.Context, *sagemaker.DescribeProjectInput, ...request.Option) (*sagemaker.DescribeProjectOutput, error)
 	DescribeProjectRequest(*sagemaker.DescribeProjectInput) (*request.Request, *sagemaker.DescribeProjectOutput)
+
+	DescribeStudioLifecycleConfig(*sagemaker.DescribeStudioLifecycleConfigInput) (*sagemaker.DescribeStudioLifecycleConfigOutput, error)
+	DescribeStudioLifecycleConfigWithContext(aws.Context, *sagemaker.DescribeStudioLifecycleConfigInput, ...request.Option) (*sagemaker.DescribeStudioLifecycleConfigOutput, error)
+	DescribeStudioLifecycleConfigRequest(*sagemaker.DescribeStudioLifecycleConfigInput) (*request.Request, *sagemaker.DescribeStudioLifecycleConfigOutput)
 
 	DescribeSubscribedWorkteam(*sagemaker.DescribeSubscribedWorkteamInput) (*sagemaker.DescribeSubscribedWorkteamOutput, error)
 	DescribeSubscribedWorkteamWithContext(aws.Context, *sagemaker.DescribeSubscribedWorkteamInput, ...request.Option) (*sagemaker.DescribeSubscribedWorkteamOutput, error)
@@ -912,6 +924,13 @@ type SageMakerAPI interface {
 
 	ListProjectsPages(*sagemaker.ListProjectsInput, func(*sagemaker.ListProjectsOutput, bool) bool) error
 	ListProjectsPagesWithContext(aws.Context, *sagemaker.ListProjectsInput, func(*sagemaker.ListProjectsOutput, bool) bool, ...request.Option) error
+
+	ListStudioLifecycleConfigs(*sagemaker.ListStudioLifecycleConfigsInput) (*sagemaker.ListStudioLifecycleConfigsOutput, error)
+	ListStudioLifecycleConfigsWithContext(aws.Context, *sagemaker.ListStudioLifecycleConfigsInput, ...request.Option) (*sagemaker.ListStudioLifecycleConfigsOutput, error)
+	ListStudioLifecycleConfigsRequest(*sagemaker.ListStudioLifecycleConfigsInput) (*request.Request, *sagemaker.ListStudioLifecycleConfigsOutput)
+
+	ListStudioLifecycleConfigsPages(*sagemaker.ListStudioLifecycleConfigsInput, func(*sagemaker.ListStudioLifecycleConfigsOutput, bool) bool) error
+	ListStudioLifecycleConfigsPagesWithContext(aws.Context, *sagemaker.ListStudioLifecycleConfigsInput, func(*sagemaker.ListStudioLifecycleConfigsOutput, bool) bool, ...request.Option) error
 
 	ListSubscribedWorkteams(*sagemaker.ListSubscribedWorkteamsInput) (*sagemaker.ListSubscribedWorkteamsOutput, error)
 	ListSubscribedWorkteamsWithContext(aws.Context, *sagemaker.ListSubscribedWorkteamsInput, ...request.Option) (*sagemaker.ListSubscribedWorkteamsOutput, error)

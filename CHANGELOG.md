@@ -1,3 +1,19 @@
+Release v1.40.41 (2021-09-10)
+===
+
+### Service Client Updates
+* `service/cloudformation`: Updates service documentation
+  * Doc only update for CloudFormation that fixes several customer-reported issues.
+* `service/ecr`: Updates service documentation
+  * This release updates terminology around KMS keys.
+* `service/quicksight`: Updates service API and documentation
+  * Add new data source type for Amazon OpenSearch (successor to Amazon ElasticSearch).
+* `service/rds`: Updates service API, documentation, waiters, paginators, and examples
+  * This release adds support for providing a custom timeout value for finding a scaling point during autoscaling in Aurora Serverless v1.
+* `service/sagemaker`: Updates service API, documentation, and paginators
+  * This release adds support for "Lifecycle Configurations" to SageMaker Studio
+* `service/transcribe`: Updates service API and documentation
+
 Release v1.40.40 (2021-09-09)
 ===
 

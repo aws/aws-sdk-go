@@ -69,7 +69,7 @@
       "base": null,
       "refs": {
         "InterruptionFilter$Negate": "<p>Set to <code>TRUE</code> to look for a time period where there was no interruption.</p>",
-        "JobExecutionSettings$AllowDeferredExecution": "<p>Indicates whether a job should be queued by Amazon Transcribe when the concurrent execution limit is exceeded. When the <code>AllowDeferredExecution</code> field is true, jobs are queued and executed when the number of executing jobs falls below the concurrent execution limit. If the field is false, Amazon Transcribe returns a <code>LimitExceededException</code> exception.</p> <p>If you specify the <code>AllowDeferredExecution</code> field, you must specify the <code>DataAccessRoleArn</code> field.</p>",
+        "JobExecutionSettings$AllowDeferredExecution": "<p>Indicates whether a job should be queued by Amazon Transcribe when the concurrent execution limit is exceeded. When the <code>AllowDeferredExecution</code> field is true, jobs are queued and executed when the number of executing jobs falls below the concurrent execution limit. If the field is false, Amazon Transcribe returns a <code>LimitExceededException</code> exception.</p> <p>Note that job queuing is enabled by default for call analytics jobs.</p> <p>If you specify the <code>AllowDeferredExecution</code> field, you must specify the <code>DataAccessRoleArn</code> field.</p>",
         "LanguageModel$UpgradeAvailability": "<p>Whether the base model used for the custom language model is up to date. If this field is <code>true</code> then you are running the most up-to-date version of the base model in your custom language model.</p>",
         "MedicalTranscriptionSetting$ShowSpeakerLabels": "<p>Determines whether the transcription job uses speaker recognition to identify different speakers in the input audio. Speaker recognition labels individual speakers in the audio file. If you set the <code>ShowSpeakerLabels</code> field to true, you must also set the maximum number of speaker labels in the <code>MaxSpeakerLabels</code> field.</p> <p>You can't set both <code>ShowSpeakerLabels</code> and <code>ChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
         "MedicalTranscriptionSetting$ChannelIdentification": "<p>Instructs Amazon Transcribe Medical to process each audio channel separately and then merge the transcription output of each channel into a single transcription.</p> <p>Amazon Transcribe Medical also produces a transcription of each item detected on an audio channel, including the start time and end time of the item and alternative transcriptions of item. The alternative transcriptions also come with confidence scores provided by Amazon Transcribe Medical.</p> <p>You can't set both <code>ShowSpeakerLabels</code> and <code>ChannelIdentification</code> in the same request. If you set both, your request returns a <code>BadRequestException</code> </p>",
@@ -475,6 +475,13 @@
         "TranscriptionJob$JobExecutionSettings": "<p>Provides information about how a transcription job is executed.</p>"
       }
     },
+    "KMSEncryptionContextMap": {
+      "base": null,
+      "refs": {
+        "StartMedicalTranscriptionJobRequest$KMSEncryptionContext": "<p>A map of plain text, non-secret key:value pairs, known as encryption context pairs, that provide an added layer of security for your data.</p>",
+        "StartTranscriptionJobRequest$KMSEncryptionContext": "<p>A map of plain text, non-secret key:value pairs, known as encryption context pairs, that provide an added layer of security for your data.</p>"
+      }
+    },
     "KMSKeyId": {
       "base": null,
       "refs": {
@@ -780,6 +787,8 @@
     "NonEmptyString": {
       "base": null,
       "refs": {
+        "KMSEncryptionContextMap$key": null,
+        "KMSEncryptionContextMap$value": null,
         "StringTargetList$member": null
       }
     },

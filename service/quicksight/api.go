@@ -12755,6 +12755,45 @@ func (s *AmazonElasticsearchParameters) SetDomain(v string) *AmazonElasticsearch
 	return s
 }
 
+type AmazonOpenSearchParameters struct {
+	_ struct{} `type:"structure"`
+
+	// Domain is a required field
+	Domain *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s AmazonOpenSearchParameters) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s AmazonOpenSearchParameters) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonOpenSearchParameters) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonOpenSearchParameters"}
+	if s.Domain == nil {
+		invalidParams.Add(request.NewErrParamRequired("Domain"))
+	}
+	if s.Domain != nil && len(*s.Domain) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Domain", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDomain sets the Domain field's value.
+func (s *AmazonOpenSearchParameters) SetDomain(v string) *AmazonOpenSearchParameters {
+	s.Domain = &v
+	return s
+}
+
 // Metadata structure for an analysis in Amazon QuickSight
 type Analysis struct {
 	_ struct{} `type:"structure"`
@@ -18718,6 +18757,8 @@ type DataSourceParameters struct {
 	// The parameters for Elasticsearch.
 	AmazonElasticsearchParameters *AmazonElasticsearchParameters `type:"structure"`
 
+	AmazonOpenSearchParameters *AmazonOpenSearchParameters `type:"structure"`
+
 	// The parameters for Amazon Athena.
 	AthenaParameters *AthenaParameters `type:"structure"`
 
@@ -18792,6 +18833,11 @@ func (s *DataSourceParameters) Validate() error {
 	if s.AmazonElasticsearchParameters != nil {
 		if err := s.AmazonElasticsearchParameters.Validate(); err != nil {
 			invalidParams.AddNested("AmazonElasticsearchParameters", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.AmazonOpenSearchParameters != nil {
+		if err := s.AmazonOpenSearchParameters.Validate(); err != nil {
+			invalidParams.AddNested("AmazonOpenSearchParameters", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.AthenaParameters != nil {
@@ -18899,6 +18945,12 @@ func (s *DataSourceParameters) Validate() error {
 // SetAmazonElasticsearchParameters sets the AmazonElasticsearchParameters field's value.
 func (s *DataSourceParameters) SetAmazonElasticsearchParameters(v *AmazonElasticsearchParameters) *DataSourceParameters {
 	s.AmazonElasticsearchParameters = v
+	return s
+}
+
+// SetAmazonOpenSearchParameters sets the AmazonOpenSearchParameters field's value.
+func (s *DataSourceParameters) SetAmazonOpenSearchParameters(v *AmazonOpenSearchParameters) *DataSourceParameters {
+	s.AmazonOpenSearchParameters = v
 	return s
 }
 
@@ -38639,6 +38691,9 @@ const (
 
 	// DataSourceTypeTimestream is a DataSourceType enum value
 	DataSourceTypeTimestream = "TIMESTREAM"
+
+	// DataSourceTypeAmazonOpensearch is a DataSourceType enum value
+	DataSourceTypeAmazonOpensearch = "AMAZON_OPENSEARCH"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -38667,6 +38722,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeTeradata,
 		DataSourceTypeTwitter,
 		DataSourceTypeTimestream,
+		DataSourceTypeAmazonOpensearch,
 	}
 }
 
