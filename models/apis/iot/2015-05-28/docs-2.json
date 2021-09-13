@@ -1028,6 +1028,7 @@
         "KafkaAction$destinationArn": "<p>The ARN of Kafka action's VPC <code>TopicRuleDestination</code>.</p>",
         "KinesisAction$roleArn": "<p>The ARN of the IAM role that grants access to the Amazon Kinesis stream.</p>",
         "LoggingOptionsPayload$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
+        "OpenSearchAction$roleArn": "<p>The IAM role ARN that has access to OpenSearch.</p>",
         "RepublishAction$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "S3Action$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "SetV2LoggingOptionsRequest$roleArn": "<p>The ARN of the role that allows IoT to write to Cloudwatch logs.</p>",
@@ -3057,7 +3058,7 @@
     "DisconnectReason": {
       "base": null,
       "refs": {
-        "ThingConnectivity$disconnectReason": "<p>The reason why the client is disconnected.</p>"
+        "ThingConnectivity$disconnectReason": "<p>The reason why the client is disconnected. If the thing has been disconnected for approximately an hour, the <code>disconnectReason</code> value might be missing.</p>"
       }
     },
     "DomainConfigurationArn": {
@@ -3159,33 +3160,37 @@
       }
     },
     "ElasticsearchAction": {
-      "base": "<p>Describes an action that writes data to an Amazon Elasticsearch Service domain.</p>",
+      "base": "<p>Describes an action that writes data to an Amazon Elasticsearch Service domain.</p> <note> <p>This action is deprecated. Use the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html\">OpenSearch action</a> instead.</p> </note>",
       "refs": {
-        "Action$elasticsearch": "<p>Write data to an Amazon Elasticsearch Service domain.</p>"
+        "Action$elasticsearch": "<p>Write data to an Amazon Elasticsearch Service domain.</p> <note> <p>This action is deprecated. Use the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html\">OpenSearch action</a> instead.</p> </note>"
       }
     },
     "ElasticsearchEndpoint": {
       "base": null,
       "refs": {
-        "ElasticsearchAction$endpoint": "<p>The endpoint of your Elasticsearch domain.</p>"
+        "ElasticsearchAction$endpoint": "<p>The endpoint of your Elasticsearch domain.</p>",
+        "OpenSearchAction$endpoint": "<p>The endpoint of your OpenSearch domain.</p>"
       }
     },
     "ElasticsearchId": {
       "base": null,
       "refs": {
-        "ElasticsearchAction$id": "<p>The unique identifier for the document you are storing.</p>"
+        "ElasticsearchAction$id": "<p>The unique identifier for the document you are storing.</p>",
+        "OpenSearchAction$id": "<p>The unique identifier for the document you are storing.</p>"
       }
     },
     "ElasticsearchIndex": {
       "base": null,
       "refs": {
-        "ElasticsearchAction$index": "<p>The Elasticsearch index where you want to store your data.</p>"
+        "ElasticsearchAction$index": "<p>The Elasticsearch index where you want to store your data.</p>",
+        "OpenSearchAction$index": "<p>The OpenSearch index where you want to store your data.</p>"
       }
     },
     "ElasticsearchType": {
       "base": null,
       "refs": {
-        "ElasticsearchAction$type": "<p>The type of document you are storing.</p>"
+        "ElasticsearchAction$type": "<p>The type of document you are storing.</p>",
+        "OpenSearchAction$type": "<p>The type of document you are storing.</p>"
       }
     },
     "EnableIoTLoggingParams": {
@@ -5394,6 +5399,12 @@
       "base": null,
       "refs": {
         "ListOTAUpdatesResponse$otaUpdates": "<p>A list of OTA update jobs.</p>"
+      }
+    },
+    "OpenSearchAction": {
+      "base": "<p>Describes an action that writes data to an Amazon OpenSearch Service domain.</p>",
+      "refs": {
+        "Action$openSearch": "<p>Write data to an Amazon OpenSearch Service domain.</p>"
       }
     },
     "OptionalVersion": {

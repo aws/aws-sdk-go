@@ -4919,7 +4919,8 @@
       "enum":[
         "i386",
         "x86_64",
-        "arm64"
+        "arm64",
+        "x86_64_mac"
       ]
     },
     "ArnList":{
@@ -9559,6 +9560,7 @@
       "type":"structure",
       "required":["CidrBlock"],
       "members":{
+        "CidrBlock":{"shape":"String"},
         "AmazonProvidedIpv6CidrBlock":{
           "shape":"Boolean",
           "locationName":"amazonProvidedIpv6CidrBlock"
@@ -9577,8 +9579,7 @@
         "TagSpecifications":{
           "shape":"TagSpecificationList",
           "locationName":"TagSpecification"
-        },
-        "CidrBlock":{"shape":"String"}
+        }
       }
     },
     "CreateVpcResult":{
@@ -28462,8 +28463,10 @@
     "ResourceType":{
       "type":"string",
       "enum":[
+        "capacity-reservation",
         "client-vpn-endpoint",
         "customer-gateway",
+        "carrier-gateway",
         "dedicated-host",
         "dhcp-options",
         "egress-only-internet-gateway",
@@ -28480,15 +28483,24 @@
         "instance",
         "instance-event-window",
         "internet-gateway",
+        "ipv4pool-ec2",
+        "ipv6pool-ec2",
         "key-pair",
         "launch-template",
+        "local-gateway",
+        "local-gateway-route-table",
+        "local-gateway-virtual-interface",
+        "local-gateway-virtual-interface-group",
         "local-gateway-route-table-vpc-association",
+        "local-gateway-route-table-virtual-interface-group-association",
         "natgateway",
         "network-acl",
         "network-interface",
         "network-insights-analysis",
         "network-insights-path",
         "placement-group",
+        "prefix-list",
+        "replace-root-volume-task",
         "reserved-instances",
         "route-table",
         "security-group",
@@ -28507,6 +28519,8 @@
         "transit-gateway-route-table",
         "volume",
         "vpc",
+        "vpc-endpoint",
+        "vpc-endpoint-service",
         "vpc-peering-connection",
         "vpn-connection",
         "vpn-gateway",

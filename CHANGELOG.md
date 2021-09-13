@@ -1,3 +1,12 @@
+Release v1.40.42 (2021-09-13)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * Adds support for T3 instances on Amazon EC2 Dedicated Hosts.
+* `service/iot`: Updates service API and documentation
+  * AWS IoT Rules Engine adds OpenSearch action. The OpenSearch rule action lets you stream data from IoT sensors and applications to Amazon OpenSearch Service which is a successor to Amazon Elasticsearch Service.
+
 Release v1.40.41 (2021-09-10)
 ===
 
