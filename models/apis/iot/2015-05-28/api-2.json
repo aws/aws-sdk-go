@@ -3837,7 +3837,8 @@
         "stepFunctions":{"shape":"StepFunctionsAction"},
         "timestream":{"shape":"TimestreamAction"},
         "http":{"shape":"HttpAction"},
-        "kafka":{"shape":"KafkaAction"}
+        "kafka":{"shape":"KafkaAction"},
+        "openSearch":{"shape":"OpenSearchAction"}
       }
     },
     "ActionList":{
@@ -10600,6 +10601,23 @@
     "OTAUpdatesSummary":{
       "type":"list",
       "member":{"shape":"OTAUpdateSummary"}
+    },
+    "OpenSearchAction":{
+      "type":"structure",
+      "required":[
+        "roleArn",
+        "endpoint",
+        "index",
+        "type",
+        "id"
+      ],
+      "members":{
+        "roleArn":{"shape":"AwsArn"},
+        "endpoint":{"shape":"ElasticsearchEndpoint"},
+        "index":{"shape":"ElasticsearchIndex"},
+        "type":{"shape":"ElasticsearchType"},
+        "id":{"shape":"ElasticsearchId"}
+      }
     },
     "OptionalVersion":{"type":"long"},
     "OutgoingCertificate":{

@@ -25131,6 +25131,9 @@ type Action struct {
 	DynamoDBv2 *DynamoDBv2Action `locationName:"dynamoDBv2" type:"structure"`
 
 	// Write data to an Amazon Elasticsearch Service domain.
+	//
+	// This action is deprecated. Use the OpenSearch action (https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html)
+	// instead.
 	Elasticsearch *ElasticsearchAction `locationName:"elasticsearch" type:"structure"`
 
 	// Write to an Amazon Kinesis Firehose stream.
@@ -25158,6 +25161,9 @@ type Action struct {
 
 	// Invoke a Lambda function.
 	Lambda *LambdaAction `locationName:"lambda" type:"structure"`
+
+	// Write data to an Amazon OpenSearch Service domain.
+	OpenSearch *OpenSearchAction `locationName:"openSearch" type:"structure"`
 
 	// Publish to another MQTT topic.
 	Republish *RepublishAction `locationName:"republish" type:"structure"`
@@ -25260,6 +25266,11 @@ func (s *Action) Validate() error {
 	if s.Lambda != nil {
 		if err := s.Lambda.Validate(); err != nil {
 			invalidParams.AddNested("Lambda", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.OpenSearch != nil {
+		if err := s.OpenSearch.Validate(); err != nil {
+			invalidParams.AddNested("OpenSearch", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Republish != nil {
@@ -25385,6 +25396,12 @@ func (s *Action) SetKinesis(v *KinesisAction) *Action {
 // SetLambda sets the Lambda field's value.
 func (s *Action) SetLambda(v *LambdaAction) *Action {
 	s.Lambda = v
+	return s
+}
+
+// SetOpenSearch sets the OpenSearch field's value.
+func (s *Action) SetOpenSearch(v *OpenSearchAction) *Action {
+	s.OpenSearch = v
 	return s
 }
 
@@ -40209,6 +40226,9 @@ func (s *EffectivePolicy) SetPolicyName(v string) *EffectivePolicy {
 }
 
 // Describes an action that writes data to an Amazon Elasticsearch Service domain.
+//
+// This action is deprecated. Use the OpenSearch action (https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html)
+// instead.
 type ElasticsearchAction struct {
 	_ struct{} `type:"structure"`
 
@@ -50686,6 +50706,101 @@ func (s *OTAUpdateSummary) SetOtaUpdateId(v string) *OTAUpdateSummary {
 	return s
 }
 
+// Describes an action that writes data to an Amazon OpenSearch Service domain.
+type OpenSearchAction struct {
+	_ struct{} `type:"structure"`
+
+	// The endpoint of your OpenSearch domain.
+	//
+	// Endpoint is a required field
+	Endpoint *string `locationName:"endpoint" type:"string" required:"true"`
+
+	// The unique identifier for the document you are storing.
+	//
+	// Id is a required field
+	Id *string `locationName:"id" type:"string" required:"true"`
+
+	// The OpenSearch index where you want to store your data.
+	//
+	// Index is a required field
+	Index *string `locationName:"index" type:"string" required:"true"`
+
+	// The IAM role ARN that has access to OpenSearch.
+	//
+	// RoleArn is a required field
+	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
+
+	// The type of document you are storing.
+	//
+	// Type is a required field
+	Type *string `locationName:"type" type:"string" required:"true"`
+}
+
+// String returns the string representation
+func (s OpenSearchAction) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s OpenSearchAction) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenSearchAction) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenSearchAction"}
+	if s.Endpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("Endpoint"))
+	}
+	if s.Id == nil {
+		invalidParams.Add(request.NewErrParamRequired("Id"))
+	}
+	if s.Index == nil {
+		invalidParams.Add(request.NewErrParamRequired("Index"))
+	}
+	if s.RoleArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleArn"))
+	}
+	if s.Type == nil {
+		invalidParams.Add(request.NewErrParamRequired("Type"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *OpenSearchAction) SetEndpoint(v string) *OpenSearchAction {
+	s.Endpoint = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *OpenSearchAction) SetId(v string) *OpenSearchAction {
+	s.Id = &v
+	return s
+}
+
+// SetIndex sets the Index field's value.
+func (s *OpenSearchAction) SetIndex(v string) *OpenSearchAction {
+	s.Index = &v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *OpenSearchAction) SetRoleArn(v string) *OpenSearchAction {
+	s.RoleArn = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *OpenSearchAction) SetType(v string) *OpenSearchAction {
+	s.Type = &v
+	return s
+}
+
 // A certificate that has been transferred but not yet accepted.
 type OutgoingCertificate struct {
 	_ struct{} `type:"structure"`
@@ -55650,7 +55765,8 @@ type ThingConnectivity struct {
 	// false if it is not connected.
 	Connected *bool `locationName:"connected" type:"boolean"`
 
-	// The reason why the client is disconnected.
+	// The reason why the client is disconnected. If the thing has been disconnected
+	// for approximately an hour, the disconnectReason value might be missing.
 	DisconnectReason *string `locationName:"disconnectReason" type:"string"`
 
 	// The epoch time (in milliseconds) when the thing last connected or disconnected.
