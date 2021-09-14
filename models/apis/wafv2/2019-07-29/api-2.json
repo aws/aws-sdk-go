@@ -1710,6 +1710,7 @@
         "Scope":{"shape":"Scope"},
         "WebACLName":{"shape":"EntityName"},
         "WebACLId":{"shape":"EntityId"},
+        "RuleGroupRuleName":{"shape":"EntityName"},
         "RuleName":{"shape":"EntityName"}
       }
     },
@@ -2399,7 +2400,10 @@
         "JSON_MATCH_SCOPE",
         "BODY_PARSING_FALLBACK_BEHAVIOR",
         "LOGGING_FILTER",
-        "FILTER_CONDITION"
+        "FILTER_CONDITION",
+        "EXPIRE_TIMESTAMP",
+        "CHANGE_PROPAGATION_STATUS",
+        "ASSOCIABLE_RESOURCE"
       ]
     },
     "ParameterExceptionParameter":{

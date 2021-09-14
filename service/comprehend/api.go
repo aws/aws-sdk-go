@@ -6232,6 +6232,10 @@ func (c *Comprehend) UpdateEndpointWithContext(ctx aws.Context, input *UpdateEnd
 type AugmentedManifestsListItem struct {
 	_ struct{} `type:"structure"`
 
+	// The S3 prefix to the annotation files that are referred in the augmented
+	// manifest file.
+	AnnotationDataS3Uri *string `type:"string"`
+
 	// The JSON attribute that contains the annotations for your training documents.
 	// The number of attribute names that you specify depends on whether your augmented
 	// manifest file is the output of a single labeling job or a chained labeling
@@ -6247,10 +6251,25 @@ type AugmentedManifestsListItem struct {
 	// AttributeNames is a required field
 	AttributeNames []*string `type:"list" required:"true"`
 
+	// The type of augmented manifest. PlainTextDocument or SemiStructuredDocument.
+	// If you don't specify, the default is PlainTextDocument.
+	//
+	//    * PLAIN_TEXT_DOCUMENT A document type that represents any unicode text
+	//    that is encoded in UTF-8.
+	//
+	//    * SEMI_STRUCTURED_DOCUMENT A document type with positional and structural
+	//    context, like a PDF. For training with Amazon Comprehend, only PDFs are
+	//    supported. For inference, Amazon Comprehend support PDFs, DOCX and TXT.
+	DocumentType *string `type:"string" enum:"AugmentedManifestsDocumentTypeFormat"`
+
 	// The Amazon S3 location of the augmented manifest file.
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
+
+	// The S3 prefix to the source files (PDFs) that are referred to in the augmented
+	// manifest file.
+	SourceDocumentsS3Uri *string `type:"string"`
 }
 
 // String returns the string representation
@@ -6279,15 +6298,33 @@ func (s *AugmentedManifestsListItem) Validate() error {
 	return nil
 }
 
+// SetAnnotationDataS3Uri sets the AnnotationDataS3Uri field's value.
+func (s *AugmentedManifestsListItem) SetAnnotationDataS3Uri(v string) *AugmentedManifestsListItem {
+	s.AnnotationDataS3Uri = &v
+	return s
+}
+
 // SetAttributeNames sets the AttributeNames field's value.
 func (s *AugmentedManifestsListItem) SetAttributeNames(v []*string) *AugmentedManifestsListItem {
 	s.AttributeNames = v
 	return s
 }
 
+// SetDocumentType sets the DocumentType field's value.
+func (s *AugmentedManifestsListItem) SetDocumentType(v string) *AugmentedManifestsListItem {
+	s.DocumentType = &v
+	return s
+}
+
 // SetS3Uri sets the S3Uri field's value.
 func (s *AugmentedManifestsListItem) SetS3Uri(v string) *AugmentedManifestsListItem {
 	s.S3Uri = &v
+	return s
+}
+
+// SetSourceDocumentsS3Uri sets the SourceDocumentsS3Uri field's value.
+func (s *AugmentedManifestsListItem) SetSourceDocumentsS3Uri(v string) *AugmentedManifestsListItem {
+	s.SourceDocumentsS3Uri = &v
 	return s
 }
 
@@ -10061,6 +10098,78 @@ func (s *DocumentLabel) SetScore(v float64) *DocumentLabel {
 	return s
 }
 
+// The input properties for a topic detection job.
+type DocumentReaderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// This enum field will start with two values which will apply to PDFs:
+	//
+	//    * TEXTRACT_DETECT_DOCUMENT_TEXT - The service calls DetectDocumentText
+	//    for PDF documents per page.
+	//
+	//    * TEXTRACT_ANALYZE_DOCUMENT - The service calls AnalyzeDocument for PDF
+	//    documents per page.
+	//
+	// DocumentReadAction is a required field
+	DocumentReadAction *string `type:"string" required:"true" enum:"DocumentReadAction"`
+
+	// This enum field provides two values:
+	//
+	//    * SERVICE_DEFAULT - use service defaults for Document reading. For Digital
+	//    PDF it would mean using an internal parser instead of Textract APIs
+	//
+	//    * FORCE_DOCUMENT_READ_ACTION - Always use specified action for DocumentReadAction,
+	//    including Digital PDF.
+	DocumentReadMode *string `type:"string" enum:"DocumentReadMode"`
+
+	// Specifies how the text in an input file should be processed:
+	FeatureTypes []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation
+func (s DocumentReaderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s DocumentReaderConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DocumentReaderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DocumentReaderConfig"}
+	if s.DocumentReadAction == nil {
+		invalidParams.Add(request.NewErrParamRequired("DocumentReadAction"))
+	}
+	if s.FeatureTypes != nil && len(s.FeatureTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FeatureTypes", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDocumentReadAction sets the DocumentReadAction field's value.
+func (s *DocumentReaderConfig) SetDocumentReadAction(v string) *DocumentReaderConfig {
+	s.DocumentReadAction = &v
+	return s
+}
+
+// SetDocumentReadMode sets the DocumentReadMode field's value.
+func (s *DocumentReaderConfig) SetDocumentReadMode(v string) *DocumentReaderConfig {
+	s.DocumentReadMode = &v
+	return s
+}
+
+// SetFeatureTypes sets the FeatureTypes field's value.
+func (s *DocumentReaderConfig) SetFeatureTypes(v []*string) *DocumentReaderConfig {
+	s.FeatureTypes = v
+	return s
+}
+
 // Returns the code for the dominant language in the input text and the level
 // of confidence that Amazon Comprehend has in the accuracy of the detection.
 type DominantLanguage struct {
@@ -11727,9 +11836,16 @@ func (s *EventsDetectionJobProperties) SetTargetEventTypes(v []*string) *EventsD
 	return s
 }
 
-// The input properties for a topic detection job.
+// The input properties for an inference job.
 type InputDataConfig struct {
 	_ struct{} `type:"structure"`
+
+	// The document reader config field applies only for InputDataConfig of StartEntitiesDetectionJob.
+	//
+	// Use DocumentReaderConfig to provide specifications about how you want your
+	// inference documents read. Currently it applies for PDF documents in StartEntitiesDetectionJob
+	// custom inference.
+	DocumentReaderConfig *DocumentReaderConfig `type:"structure"`
 
 	// Specifies how the text in an input file should be processed:
 	//
@@ -11770,11 +11886,22 @@ func (s *InputDataConfig) Validate() error {
 	if s.S3Uri == nil {
 		invalidParams.Add(request.NewErrParamRequired("S3Uri"))
 	}
+	if s.DocumentReaderConfig != nil {
+		if err := s.DocumentReaderConfig.Validate(); err != nil {
+			invalidParams.AddNested("DocumentReaderConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetDocumentReaderConfig sets the DocumentReaderConfig field's value.
+func (s *InputDataConfig) SetDocumentReaderConfig(v *DocumentReaderConfig) *InputDataConfig {
+	s.DocumentReaderConfig = v
+	return s
 }
 
 // SetInputFormat sets the InputFormat field's value.
@@ -17763,6 +17890,22 @@ func (s *VpcConfig) SetSubnets(v []*string) *VpcConfig {
 }
 
 const (
+	// AugmentedManifestsDocumentTypeFormatPlainTextDocument is a AugmentedManifestsDocumentTypeFormat enum value
+	AugmentedManifestsDocumentTypeFormatPlainTextDocument = "PLAIN_TEXT_DOCUMENT"
+
+	// AugmentedManifestsDocumentTypeFormatSemiStructuredDocument is a AugmentedManifestsDocumentTypeFormat enum value
+	AugmentedManifestsDocumentTypeFormatSemiStructuredDocument = "SEMI_STRUCTURED_DOCUMENT"
+)
+
+// AugmentedManifestsDocumentTypeFormat_Values returns all elements of the AugmentedManifestsDocumentTypeFormat enum
+func AugmentedManifestsDocumentTypeFormat_Values() []string {
+	return []string{
+		AugmentedManifestsDocumentTypeFormatPlainTextDocument,
+		AugmentedManifestsDocumentTypeFormatSemiStructuredDocument,
+	}
+}
+
+const (
 	// DocumentClassifierDataFormatComprehendCsv is a DocumentClassifierDataFormat enum value
 	DocumentClassifierDataFormatComprehendCsv = "COMPREHEND_CSV"
 
@@ -17791,6 +17934,62 @@ func DocumentClassifierMode_Values() []string {
 	return []string{
 		DocumentClassifierModeMultiClass,
 		DocumentClassifierModeMultiLabel,
+	}
+}
+
+const (
+	// DocumentReadActionTextractDetectDocumentText is a DocumentReadAction enum value
+	DocumentReadActionTextractDetectDocumentText = "TEXTRACT_DETECT_DOCUMENT_TEXT"
+
+	// DocumentReadActionTextractAnalyzeDocument is a DocumentReadAction enum value
+	DocumentReadActionTextractAnalyzeDocument = "TEXTRACT_ANALYZE_DOCUMENT"
+)
+
+// DocumentReadAction_Values returns all elements of the DocumentReadAction enum
+func DocumentReadAction_Values() []string {
+	return []string{
+		DocumentReadActionTextractDetectDocumentText,
+		DocumentReadActionTextractAnalyzeDocument,
+	}
+}
+
+// A list of the types of analyses to perform. This field specifies what feature
+// types need to be extracted from the document where entity recognition is
+// expected.
+//
+//    * TABLES - Add TABLES to the list to return information about the tables
+//    that are detected in the input document.
+//
+//    * FORMS - Add FORMS to return detected form data.
+const (
+	// DocumentReadFeatureTypesTables is a DocumentReadFeatureTypes enum value
+	DocumentReadFeatureTypesTables = "TABLES"
+
+	// DocumentReadFeatureTypesForms is a DocumentReadFeatureTypes enum value
+	DocumentReadFeatureTypesForms = "FORMS"
+)
+
+// DocumentReadFeatureTypes_Values returns all elements of the DocumentReadFeatureTypes enum
+func DocumentReadFeatureTypes_Values() []string {
+	return []string{
+		DocumentReadFeatureTypesTables,
+		DocumentReadFeatureTypesForms,
+	}
+}
+
+const (
+	// DocumentReadModeServiceDefault is a DocumentReadMode enum value
+	DocumentReadModeServiceDefault = "SERVICE_DEFAULT"
+
+	// DocumentReadModeForceDocumentReadAction is a DocumentReadMode enum value
+	DocumentReadModeForceDocumentReadAction = "FORCE_DOCUMENT_READ_ACTION"
+)
+
+// DocumentReadMode_Values returns all elements of the DocumentReadMode enum
+func DocumentReadMode_Values() []string {
+	return []string{
+		DocumentReadModeServiceDefault,
+		DocumentReadModeForceDocumentReadAction,
 	}
 }
 

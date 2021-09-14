@@ -1280,9 +1280,9 @@ func (c *SageMaker) CreateDomainRequest(input *CreateDomainInput) (req *request.
 //
 // SageMaker uses the Amazon Web Services Key Management Service (Amazon Web
 // Services KMS) to encrypt the EFS volume attached to the domain with an Amazon
-// Web Services managed customer master key (CMK) by default. For more control,
-// you can specify a customer managed CMK. For more information, see Protect
-// Data at Rest Using Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html).
+// Web Services managed key by default. For more control, you can specify a
+// customer managed key. For more information, see Protect Data at Rest Using
+// Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/encryption-at-rest.html).
 //
 // VPC configuration
 //
@@ -29560,8 +29560,8 @@ type CreateDomainInput struct {
 	HomeEfsFileSystemKmsKeyId *string `deprecated:"true" type:"string"`
 
 	// SageMaker uses Amazon Web Services KMS to encrypt the EFS volume attached
-	// to the domain with an Amazon Web Services managed customer master key (CMK)
-	// by default. For more control, specify a customer managed CMK.
+	// to the domain with an Amazon Web Services managed key by default. For more
+	// control, specify a customer managed key.
 	KmsKeyId *string `type:"string"`
 
 	// The VPC subnets that Studio uses for communication.
@@ -29751,8 +29751,8 @@ type CreateEdgePackagingJobInput struct {
 	// OutputConfig is a required field
 	OutputConfig *EdgeOutputConfig `type:"structure" required:"true"`
 
-	// The CMK to use when encrypting the EBS volume the edge packaging job runs
-	// on.
+	// The Amazon Web Services KMS key to use when encrypting the EBS volume the
+	// edge packaging job runs on.
 	ResourceKey *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker
@@ -41037,7 +41037,7 @@ type DescribeDomainOutput struct {
 	// Deprecated: This property is deprecated, use KmsKeyId instead.
 	HomeEfsFileSystemKmsKeyId *string `deprecated:"true" type:"string"`
 
-	// The Amazon Web Services KMS customer managed CMK used to encrypt the EFS
+	// The Amazon Web Services KMS customer managed key used to encrypt the EFS
 	// volume attached to the domain.
 	KmsKeyId *string `type:"string"`
 
@@ -41262,7 +41262,8 @@ type DescribeEdgePackagingJobOutput struct {
 	// The output of a SageMaker Edge Manager deployable resource.
 	PresetDeploymentOutput *EdgePresetDeploymentOutput `type:"structure"`
 
-	// The CMK to use when encrypting the EBS volume the job run on.
+	// The Amazon Web Services KMS key to use when encrypting the EBS volume the
+	// job run on.
 	ResourceKey *string `type:"string"`
 
 	// The Amazon Resource Name (ARN) of an IAM role that enables Amazon SageMaker
@@ -53361,7 +53362,7 @@ type KernelGatewayAppSettings struct {
 	DefaultResourceSpec *ResourceSpec `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to
-	// the KernelGatewayApp.
+	// the the user profile or domain.
 	LifecycleConfigArns []*string `type:"list"`
 }
 
@@ -54048,10 +54049,10 @@ type LabelingJobResourceConfig struct {
 	//
 	// You can only specify a VolumeKmsKeyId when you create a labeling job with
 	// automated data labeling enabled using the API operation CreateLabelingJob.
-	// You cannot specify an Amazon Web Services KMS customer managed CMK to encrypt
-	// the storage volume used for automated data labeling model training and inference
-	// when you create a labeling job using the console. To learn more, see Output
-	// Data and Storage Volume Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security.html).
+	// You cannot specify an Amazon Web Services KMS key to encrypt the storage
+	// volume used for automated data labeling model training and inference when
+	// you create a labeling job using the console. To learn more, see Output Data
+	// and Storage Volume Encryption (https://docs.aws.amazon.com/sagemaker/latest/dg/sms-security.html).
 	//
 	// The VolumeKmsKeyId can be any of the following formats:
 	//
@@ -58849,8 +58850,8 @@ type ListModelsInput struct {
 	// The maximum number of models to return in the response.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// A string in the training job name. This filter returns only models in the
-	// training job whose name contains the specified string.
+	// A string in the model name. This filter returns only models whose name contains
+	// the specified string.
 	NameContains *string `type:"string"`
 
 	// If the response to a previous ListModels request was truncated, the response
@@ -66521,7 +66522,7 @@ type OutputDataConfig struct {
 	//
 	//    * // Amazon Resource Name (ARN) of a KMS Key Alias "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
 	//
-	// If you use a KMS key ID or an alias of your master key, the Amazon SageMaker
+	// If you use a KMS key ID or an alias of your KMS key, the Amazon SageMaker
 	// execution role must include permissions to call kms:Encrypt. If you don't
 	// provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon
 	// S3 for your role's account. Amazon SageMaker uses server-side encryption
@@ -68688,7 +68689,7 @@ type ProductionVariantCoreDumpConfig struct {
 	//
 	//    * // Amazon Resource Name (ARN) of a KMS Key Alias "arn:aws:kms:us-west-2:111122223333:alias/ExampleAlias"
 	//
-	// If you use a KMS key ID or an alias of your master key, the Amazon SageMaker
+	// If you use a KMS key ID or an alias of your KMS key, the Amazon SageMaker
 	// execution role must include permissions to call kms:Encrypt. If you don't
 	// provide a KMS key ID, Amazon SageMaker uses the default KMS key for Amazon
 	// S3 for your role's account. Amazon SageMaker uses server-side encryption
@@ -69101,6 +69102,117 @@ func (s *ProfilerRuleEvaluationStatus) SetRuleEvaluationStatus(v string) *Profil
 // SetStatusDetails sets the StatusDetails field's value.
 func (s *ProfilerRuleEvaluationStatus) SetStatusDetails(v string) *ProfilerRuleEvaluationStatus {
 	s.StatusDetails = &v
+	return s
+}
+
+// The properties of a project as returned by the Search API.
+type Project struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the user who created or modified an experiment, trial,
+	// or trial component.
+	CreatedBy *UserContext `type:"structure"`
+
+	// A timestamp specifying when the project was created.
+	CreationTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the project.
+	ProjectArn *string `min:"1" type:"string"`
+
+	// The description of the project.
+	ProjectDescription *string `type:"string"`
+
+	// The ID of the project.
+	ProjectId *string `min:"1" type:"string"`
+
+	// The name of the project.
+	ProjectName *string `min:"1" type:"string"`
+
+	// The status of the project.
+	ProjectStatus *string `type:"string" enum:"ProjectStatus"`
+
+	// Details of a provisioned service catalog product. For information about service
+	// catalog, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+	ServiceCatalogProvisionedProductDetails *ServiceCatalogProvisionedProductDetails `type:"structure"`
+
+	// Details that you specify to provision a service catalog product. For information
+	// about service catalog, see .What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+	ServiceCatalogProvisioningDetails *ServiceCatalogProvisioningDetails `type:"structure"`
+
+	// An array of key-value pairs. You can use tags to categorize your Amazon Web
+	// Services resources in different ways, for example, by purpose, owner, or
+	// environment. For more information, see Tagging Amazon Web Services Resources
+	// (https://docs.aws.amazon.com/general/latest/gr/aws_tagging.html).
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation
+func (s Project) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Project) GoString() string {
+	return s.String()
+}
+
+// SetCreatedBy sets the CreatedBy field's value.
+func (s *Project) SetCreatedBy(v *UserContext) *Project {
+	s.CreatedBy = v
+	return s
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *Project) SetCreationTime(v time.Time) *Project {
+	s.CreationTime = &v
+	return s
+}
+
+// SetProjectArn sets the ProjectArn field's value.
+func (s *Project) SetProjectArn(v string) *Project {
+	s.ProjectArn = &v
+	return s
+}
+
+// SetProjectDescription sets the ProjectDescription field's value.
+func (s *Project) SetProjectDescription(v string) *Project {
+	s.ProjectDescription = &v
+	return s
+}
+
+// SetProjectId sets the ProjectId field's value.
+func (s *Project) SetProjectId(v string) *Project {
+	s.ProjectId = &v
+	return s
+}
+
+// SetProjectName sets the ProjectName field's value.
+func (s *Project) SetProjectName(v string) *Project {
+	s.ProjectName = &v
+	return s
+}
+
+// SetProjectStatus sets the ProjectStatus field's value.
+func (s *Project) SetProjectStatus(v string) *Project {
+	s.ProjectStatus = &v
+	return s
+}
+
+// SetServiceCatalogProvisionedProductDetails sets the ServiceCatalogProvisionedProductDetails field's value.
+func (s *Project) SetServiceCatalogProvisionedProductDetails(v *ServiceCatalogProvisionedProductDetails) *Project {
+	s.ServiceCatalogProvisionedProductDetails = v
+	return s
+}
+
+// SetServiceCatalogProvisioningDetails sets the ServiceCatalogProvisioningDetails field's value.
+func (s *Project) SetServiceCatalogProvisioningDetails(v *ServiceCatalogProvisioningDetails) *Project {
+	s.ServiceCatalogProvisioningDetails = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *Project) SetTags(v []*Tag) *Project {
+	s.Tags = v
 	return s
 }
 
@@ -70549,7 +70661,7 @@ type ResourceSpec struct {
 	// The instance type that the image version runs on.
 	InstanceType *string `type:"string" enum:"AppInstanceType"`
 
-	// The Amazon Resource Name (ARN) of the Lifecycle Configurations attached to
+	// The Amazon Resource Name (ARN) of the Lifecycle Configuration attached to
 	// the Resource.
 	LifecycleConfigArn *string `type:"string"`
 
@@ -71208,6 +71320,9 @@ type SearchRecord struct {
 	// An execution of a pipeline.
 	PipelineExecution *PipelineExecution `type:"structure"`
 
+	// The properties of a project.
+	Project *Project `type:"structure"`
+
 	// The properties of a training job.
 	TrainingJob *TrainingJob `type:"structure"`
 
@@ -71267,6 +71382,12 @@ func (s *SearchRecord) SetPipeline(v *Pipeline) *SearchRecord {
 // SetPipelineExecution sets the PipelineExecution field's value.
 func (s *SearchRecord) SetPipelineExecution(v *PipelineExecution) *SearchRecord {
 	s.PipelineExecution = v
+	return s
+}
+
+// SetProject sets the Project field's value.
+func (s *SearchRecord) SetProject(v *Project) *SearchRecord {
+	s.Project = v
 	return s
 }
 
@@ -83069,6 +83190,9 @@ const (
 
 	// ResourceTypeFeatureGroup is a ResourceType enum value
 	ResourceTypeFeatureGroup = "FeatureGroup"
+
+	// ResourceTypeProject is a ResourceType enum value
+	ResourceTypeProject = "Project"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -83084,6 +83208,7 @@ func ResourceType_Values() []string {
 		ResourceTypePipeline,
 		ResourceTypePipelineExecution,
 		ResourceTypeFeatureGroup,
+		ResourceTypeProject,
 	}
 }
 

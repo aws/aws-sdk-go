@@ -1,3 +1,17 @@
+Release v1.40.43 (2021-09-14)
+===
+
+### Service Client Updates
+* `service/chime`: Updates service API and documentation
+  * Adds support for SipHeaders parameter for CreateSipMediaApplicationCall.
+* `service/comprehend`: Updates service API and documentation
+* `service/ec2`: Updates service API and documentation
+  * This release adds support for vt1 3xlarge, 6xlarge and 24xlarge instances powered by Xilinx Alveo U30 Media Accelerators for video transcoding workloads
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds support for "Project Search"
+* `service/transcribe-streaming`: Updates service API and documentation
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.40.42 (2021-09-13)
 ===
 

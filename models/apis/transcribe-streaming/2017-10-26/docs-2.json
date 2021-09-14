@@ -3,7 +3,7 @@
   "service": "<p>Operations and objects for transcribing streaming speech to text.</p>",
   "operations": {
     "StartMedicalStreamTranscription": "<p>Starts a bidirectional HTTP/2 stream where audio is streamed to Amazon Transcribe Medical and the transcription results are streamed to your application.</p>",
-    "StartStreamTranscription": "<p>Starts a bidirectional HTTP2 stream where audio is streamed to Amazon Transcribe and the transcription results are streamed to your application.</p> <p>The following are encoded as HTTP2 headers:</p> <ul> <li> <p>x-amzn-transcribe-language-code</p> </li> <li> <p>x-amzn-transcribe-media-encoding</p> </li> <li> <p>x-amzn-transcribe-sample-rate</p> </li> <li> <p>x-amzn-transcribe-session-id</p> </li> </ul>"
+    "StartStreamTranscription": "<p>Starts a bidirectional HTTP/2 stream where audio is streamed to Amazon Transcribe and the transcription results are streamed to your application.</p> <p>The following are encoded as HTTP/2 headers:</p> <ul> <li> <p>x-amzn-transcribe-language-code</p> </li> <li> <p>x-amzn-transcribe-media-encoding</p> </li> <li> <p>x-amzn-transcribe-sample-rate</p> </li> <li> <p>x-amzn-transcribe-session-id</p> </li> </ul> <p>See the <a href=\"https://docs.aws.amazon.com/sdk-for-go/api/service/transcribestreamingservice/#TranscribeStreamingService.StartStreamTranscription\"> SDK for Go API Reference</a> for more detail.</p>"
   },
   "shapes": {
     "Alternative": {
@@ -25,16 +25,16 @@
       }
     },
     "AudioEvent": {
-      "base": "<p>Provides a wrapper for the audio chunks that you are sending.</p> <p>For information on audio encoding in Amazon Transcribe, see <a>input</a>. For information on audio encoding formats in Amazon Transcribe Medical, see <a>input-med</a>.</p>",
+      "base": "<p>Provides a wrapper for the audio chunks that you are sending.</p> <p>For information on audio encoding in Amazon Transcribe, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/input.html\">Speech input</a>. For information on audio encoding formats in Amazon Transcribe Medical, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/input-med.html\">Speech input</a>.</p>",
       "refs": {
-        "AudioStream$AudioEvent": "<p>A blob of audio from your application. You audio stream consists of one or more audio events.</p> <p>For information on audio encoding formats in Amazon Transcribe, see <a>input</a>. For information on audio encoding formats in Amazon Transcribe Medical, see <a>input-med</a>.</p> <p>For more information on stream encoding in Amazon Transcribe, see <a>event-stream</a>. For information on stream encoding in Amazon Transcribe Medical, see <a>event-stream-med</a>.</p>"
+        "AudioStream$AudioEvent": "<p>A blob of audio from your application. You audio stream consists of one or more audio events.</p> <p>For information on audio encoding formats in Amazon Transcribe, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/input.html\">Speech input</a>. For information on audio encoding formats in Amazon Transcribe Medical, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/input-med.html\">Speech input</a>.</p> <p>For more information on stream encoding in Amazon Transcribe, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/event-stream.html\">Event stream encoding</a>. For information on stream encoding in Amazon Transcribe Medical, see <a href=\"https://docs.aws.amazon.com/transcribe/latest/dg/event-stream-med.html\">Event stream encoding</a>.</p>"
       }
     },
     "AudioStream": {
       "base": "<p>Represents the audio stream from your application to Amazon Transcribe.</p>",
       "refs": {
         "StartMedicalStreamTranscriptionRequest$AudioStream": null,
-        "StartStreamTranscriptionRequest$AudioStream": "<p>PCM-encoded stream of audio blobs. The audio stream is encoded as an HTTP2 data frame.</p>"
+        "StartStreamTranscriptionRequest$AudioStream": "<p>PCM-encoded stream of audio blobs. The audio stream is encoded as an HTTP/2 data frame.</p>"
       }
     },
     "BadRequestException": {
@@ -65,6 +65,7 @@
     "Confidence": {
       "base": null,
       "refs": {
+        "Entity$Confidence": "<p>A value between zero and one that Amazon Transcribe assigns to PII identified in the source audio. Larger values indicate a higher confidence in PII identification.</p>",
         "Item$Confidence": "<p>A value between 0 and 1 for an item that is a confidence score that Amazon Transcribe assigns to each word or phrase that it transcribes.</p>",
         "MedicalEntity$Confidence": "<p>A value between zero and one that Amazon Transcribe Medical assigned to the personal health information that it identified in the source audio. Larger values indicate that Amazon Transcribe Medical has higher confidence in the personal health information that it identified.</p>",
         "MedicalItem$Confidence": "<p>A value between 0 and 1 for an item that is a confidence score that Amazon Transcribe Medical assigns to each word that it transcribes.</p>"
@@ -77,9 +78,25 @@
         "TranscriptResultStream$ConflictException": "<p>A new stream started with the same session ID. The current stream has been terminated.</p>"
       }
     },
+    "ContentIdentificationType": {
+      "base": null,
+      "refs": {
+        "StartStreamTranscriptionRequest$ContentIdentificationType": "<p>Set this field to PII to identify personally identifiable information (PII) in the transcription output. Content identification is performed only upon complete transcription of the audio segments.</p> <p>You can’t set both <code>ContentIdentificationType</code> and <code>ContentRedactionType</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
+        "StartStreamTranscriptionResponse$ContentIdentificationType": "<p>Shows whether content identification was enabled in this stream.</p>"
+      }
+    },
+    "ContentRedactionType": {
+      "base": null,
+      "refs": {
+        "StartStreamTranscriptionRequest$ContentRedactionType": "<p>Set this field to PII to redact personally identifiable information (PII) in the transcription output. Content redaction is performed only upon complete transcription of the audio segments.</p> <p>You can’t set both <code>ContentRedactionType</code> and <code>ContentIdentificationType</code> in the same request. If you set both, your request returns a <code>BadRequestException</code>.</p>",
+        "StartStreamTranscriptionResponse$ContentRedactionType": "<p>Shows whether content redaction was enabled in this stream.</p>"
+      }
+    },
     "Double": {
       "base": null,
       "refs": {
+        "Entity$StartTime": "<p>The start time of speech that was identified as PII.</p>",
+        "Entity$EndTime": "<p>The end time of speech that was identified as PII.</p>",
         "Item$StartTime": "<p>The offset from the beginning of the audio stream to the beginning of the audio that resulted in the item.</p>",
         "Item$EndTime": "<p>The offset from the beginning of the audio stream to the end of the audio that resulted in the item.</p>",
         "MedicalEntity$StartTime": "<p>The start time of the speech that was identified as a medical entity.</p>",
@@ -90,6 +107,18 @@
         "MedicalResult$EndTime": "<p>The time, in seconds, from the beginning of the audio stream to the end of the result.</p>",
         "Result$StartTime": "<p>The offset in seconds from the beginning of the audio stream to the beginning of the result.</p>",
         "Result$EndTime": "<p>The offset in seconds from the beginning of the audio stream to the end of the result.</p>"
+      }
+    },
+    "Entity": {
+      "base": "<p>The entity identified as personally identifiable information (PII).</p>",
+      "refs": {
+        "EntityList$member": null
+      }
+    },
+    "EntityList": {
+      "base": null,
+      "refs": {
+        "Alternative$Entities": "<p>Contains the entities identified as personally identifiable information (PII) in the transcription output.</p>"
       }
     },
     "InternalFailureException": {
@@ -146,10 +175,10 @@
     "MediaSampleRateHertz": {
       "base": null,
       "refs": {
-        "StartMedicalStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate of the input audio in Hertz. Sample rates of 16000 Hz or higher are accepted.</p>",
-        "StartMedicalStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate of the input audio in Hertz. Valid value: 16000 Hz.</p>",
-        "StartStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate, in Hertz, of the input audio. We suggest that you use 8000 Hz for low quality audio and 16000 Hz for high quality audio.</p>",
-        "StartStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate for the input audio stream. Use 8000 Hz for low quality audio and 16000 Hz for high quality audio.</p>"
+        "StartMedicalStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate of the input audio in Hertz.</p>",
+        "StartMedicalStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate of the input audio in Hertz.</p>",
+        "StartStreamTranscriptionRequest$MediaSampleRateHertz": "<p>The sample rate, in Hertz, of the input audio. We suggest that you use 8,000 Hz for low quality audio and 16,000 Hz for high quality audio.</p>",
+        "StartStreamTranscriptionResponse$MediaSampleRateHertz": "<p>The sample rate for the input audio stream. Use 8,000 Hz for low quality audio and 16,000 Hz for high quality audio.</p>"
       }
     },
     "MedicalAlternative": {
@@ -241,6 +270,13 @@
         "StartStreamTranscriptionResponse$PartialResultsStability": "<p>If partial results stabilization has been enabled in the stream, shows the stability level.</p>"
       }
     },
+    "PiiEntityTypes": {
+      "base": null,
+      "refs": {
+        "StartStreamTranscriptionRequest$PiiEntityTypes": "<p>List the PII entity types you want to identify or redact. In order to specify entity types, you must have either <code>ContentIdentificationType</code> or <code>ContentRedactionType</code> enabled.</p> <p> <code>PIIEntityTypes</code> must be comma-separated; the available values are: <code>BANK_ACCOUNT_NUMBER</code>, <code>BANK_ROUTING</code>, <code>CREDIT_DEBIT_NUMBER</code>, <code>CREDIT_DEBIT_CVV</code>, <code>CREDIT_DEBIT_EXPIRY</code>, <code>PIN</code>, <code>EMAIL</code>, <code>ADDRESS</code>, <code>NAME</code>, <code>PHONE</code>, <code>SSN</code>, and <code>ALL</code>.</p> <p> <code>PiiEntityTypes</code> is an optional parameter with a default value of <code>ALL</code>.</p>",
+        "StartStreamTranscriptionResponse$PiiEntityTypes": "<p>Lists the PII entity types you specified in your request.</p>"
+      }
+    },
     "RequestId": {
       "base": null,
       "refs": {
@@ -315,6 +351,9 @@
         "Alternative$Transcript": "<p>The text that was transcribed from the audio.</p>",
         "BadRequestException$Message": null,
         "ConflictException$Message": null,
+        "Entity$Category": "<p>The category of of information identified in this entity; for example, PII.</p>",
+        "Entity$Type": "<p>The type of PII identified in this entity; for example, name or credit card number.</p>",
+        "Entity$Content": "<p>The words in the transcription output that have been identified as a PII entity.</p>",
         "InternalFailureException$Message": null,
         "Item$Content": "<p>The word or punctuation that was recognized in the input audio.</p>",
         "Item$Speaker": "<p>If speaker identification is enabled, shows the speakers identified in the real-time stream.</p>",
@@ -359,14 +398,14 @@
     "VocabularyFilterMethod": {
       "base": null,
       "refs": {
-        "StartStreamTranscriptionRequest$VocabularyFilterMethod": "<p>The manner in which you use your vocabulary filter to filter words in your transcript. <code>Remove</code> removes filtered words from your transcription results. <code>Mask</code> masks those words with a <code>***</code> in your transcription results. <code>Tag</code> keeps the filtered words in your transcription results and tags them. The tag appears as <code>VocabularyFilterMatch</code> equal to <code>True</code> </p>",
+        "StartStreamTranscriptionRequest$VocabularyFilterMethod": "<p>The manner in which you use your vocabulary filter to filter words in your transcript. <code>Remove</code> removes filtered words from your transcription results. <code>Mask</code> masks filtered words with a <code>***</code> in your transcription results. <code>Tag</code> keeps the filtered words in your transcription results and tags them. The tag appears as <code>VocabularyFilterMatch</code> equal to <code>True</code> </p>",
         "StartStreamTranscriptionResponse$VocabularyFilterMethod": "<p>The vocabulary filtering method used in the real-time stream.</p>"
       }
     },
     "VocabularyFilterName": {
       "base": null,
       "refs": {
-        "StartStreamTranscriptionRequest$VocabularyFilterName": "<p>The name of the vocabulary filter you've created that is unique to your AWS account. Provide the name in this field to successfully use it in a stream.</p>",
+        "StartStreamTranscriptionRequest$VocabularyFilterName": "<p>The name of the vocabulary filter you've created that is unique to your account. Provide the name in this field to successfully use it in a stream.</p>",
         "StartStreamTranscriptionResponse$VocabularyFilterName": "<p>The name of the vocabulary filter used in your real-time stream.</p>"
       }
     },

@@ -2041,7 +2041,7 @@ func (c *WAFV2) GetManagedRuleSetRequest(input *GetManagedRuleSetInput) (req *re
 // Retrieves the specified managed rule set.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -2247,10 +2247,22 @@ func (c *WAFV2) GetRateBasedStatementManagedKeysRequest(input *GetRateBasedState
 
 // GetRateBasedStatementManagedKeys API operation for AWS WAFV2.
 //
-// Retrieves the keys that are currently blocked by a rate-based rule. The maximum
-// number of managed keys that can be blocked for a single rate-based rule is
-// 10,000. If more than 10,000 addresses exceed the rate limit, those with the
-// highest rates are blocked.
+// Retrieves the keys that are currently blocked by a rate-based rule instance.
+// The maximum number of managed keys that can be blocked for a single rate-based
+// rule instance is 10,000. If more than 10,000 addresses exceed the rate limit,
+// those with the highest rates are blocked.
+//
+// For a rate-based rule that you've defined inside a rule group, provide the
+// name of the rule group reference statement in your request, in addition to
+// the rate-based rule name and the web ACL name.
+//
+// WAF monitors web requests and manages keys independently for each unique
+// combination of web ACL, optional rule group, and rate-based rule. For example,
+// if you define a rate-based rule inside a rule group, and then use the rule
+// group in a web ACL, WAF monitors web requests and manages keys for that web
+// ACL, rule group reference statement, and rate-based rule instance. If you
+// use the same rule group in a second web ACL, WAF monitors web requests and
+// manages keys for this second usage completely independent of your first.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2966,7 +2978,8 @@ func (c *WAFV2) ListAvailableManagedRuleGroupsRequest(input *ListAvailableManage
 //
 // Retrieves an array of managed rule groups that are available for you to use.
 // This list includes all Amazon Web Services Managed Rules rule groups and
-// all of the Marketplace managed rule groups that you're subscribed to.
+// all of the Amazon Web Services Marketplace managed rule groups that you're
+// subscribed to.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3263,7 +3276,7 @@ func (c *WAFV2) ListManagedRuleSetsRequest(input *ListManagedRuleSetsInput) (req
 // Retrieves the managed rule sets that you own.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -4036,7 +4049,7 @@ func (c *WAFV2) PutManagedRuleSetVersionsRequest(input *PutManagedRuleSetVersion
 // customers. Customers see your offerings as managed rule groups with versioning.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -4649,7 +4662,7 @@ func (c *WAFV2) UpdateManagedRuleSetVersionExpiryDateRequest(input *UpdateManage
 // for the managed rule group.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -5165,6 +5178,8 @@ func (s *ActionCondition) SetAction(v string) *ActionCondition {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "All": {}
 type All struct {
 	_ struct{} `type:"structure"`
 }
@@ -5183,6 +5198,8 @@ func (s All) GoString() string {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "AllQueryArguments": {}
 type AllQueryArguments struct {
 	_ struct{} `type:"structure"`
 }
@@ -5418,6 +5435,8 @@ func (s *BlockAction) SetCustomResponse(v *CustomResponse) *BlockAction {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "Body": {}
 type Body struct {
 	_ struct{} `type:"structure"`
 }
@@ -7922,6 +7941,14 @@ func (s *ExcludedRule) SetName(v string) *ExcludedRule {
 // in FieldToMatch for each rule statement that requires it. To inspect more
 // than one component of a web request, create a separate rule statement for
 // each component.
+//
+// JSON specification for a QueryString field to match:
+//
+// "FieldToMatch": { "QueryString": {} }
+//
+// Example JSON for a Method field to match specification:
+//
+// "FieldToMatch": { "Method": { "Name": "DELETE" } }
 type FieldToMatch struct {
 	_ struct{} `type:"structure"`
 
@@ -8260,8 +8287,8 @@ type FirewallManagerStatement struct {
 	// rule group in this statement.
 	//
 	// You cannot nest a RuleGroupReferenceStatement, for example for use inside
-	// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-	// within a rule.
+	// a NotStatement or OrStatement. You can only use a rule group reference statement
+	// at the top level inside a web ACL.
 	RuleGroupReferenceStatement *RuleGroupReferenceStatement `type:"structure"`
 }
 
@@ -8815,7 +8842,13 @@ func (s *GetPermissionPolicyOutput) SetPolicy(v string) *GetPermissionPolicyOutp
 type GetRateBasedStatementManagedKeysInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the rate-based rule to get the keys for.
+	// The name of the rule group reference statement in your web ACL. This is required
+	// only when you have the rate-based rule nested inside a rule group.
+	RuleGroupRuleName *string `min:"1" type:"string"`
+
+	// The name of the rate-based rule to get the keys for. If you have the rule
+	// defined inside a rule group that you're using in your web ACL, also provide
+	// the name of the rule group reference statement in the request parameter RuleGroupRuleName.
 	//
 	// RuleName is a required field
 	RuleName *string `min:"1" type:"string" required:"true"`
@@ -8862,6 +8895,9 @@ func (s GetRateBasedStatementManagedKeysInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *GetRateBasedStatementManagedKeysInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "GetRateBasedStatementManagedKeysInput"}
+	if s.RuleGroupRuleName != nil && len(*s.RuleGroupRuleName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RuleGroupRuleName", 1))
+	}
 	if s.RuleName == nil {
 		invalidParams.Add(request.NewErrParamRequired("RuleName"))
 	}
@@ -8888,6 +8924,12 @@ func (s *GetRateBasedStatementManagedKeysInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetRuleGroupRuleName sets the RuleGroupRuleName field's value.
+func (s *GetRateBasedStatementManagedKeysInput) SetRuleGroupRuleName(v string) *GetRateBasedStatementManagedKeysInput {
+	s.RuleGroupRuleName = &v
+	return s
 }
 
 // SetRuleName sets the RuleName field's value.
@@ -10045,6 +10087,9 @@ func (s *IPSetSummary) SetName(v string) *IPSetSummary {
 // Use the specifications in this object to indicate which parts of the JSON
 // body to inspect using the rule's inspection criteria. WAF inspects only the
 // parts of the JSON that result from the matches that you indicate.
+//
+// Example JSON: "JsonBody": { "MatchPattern": { "All": {} }, "MatchScope":
+// "ALL" }
 type JsonBody struct {
 	_ struct{} `type:"structure"`
 
@@ -11527,10 +11572,11 @@ type LoggingConfiguration struct {
 	ManagedByFirewallManager *bool `type:"boolean"`
 
 	// The parts of the request that you want to keep out of the logs. For example,
-	// if you redact the HEADER field, the HEADER field in the firehose will be
-	// xxx.
+	// if you redact the SingleHeader field, the HEADER field in the firehose will
+	// be xxx.
 	//
-	// You must use one of the following values: URI, QUERY_STRING, HEADER, or METHOD.
+	// You can specify only the following fields for redaction: UriPath, QueryString,
+	// SingleHeader, Method, and JsonBody.
 	RedactedFields []*FieldToMatch `type:"list"`
 
 	// The Amazon Resource Name (ARN) of the web ACL that you want to associate
@@ -11813,13 +11859,13 @@ func (s *ManagedRuleGroupStatement) SetVersion(v string) *ManagedRuleGroupStatem
 // This provides information like the name and vendor name, that you provide
 // when you add a ManagedRuleGroupStatement to a web ACL. Managed rule groups
 // include Amazon Web Services Managed Rules rule groups, which are free of
-// charge to WAF customers, and Marketplace managed rule groups, which you can
-// subscribe to through Marketplace.
+// charge to WAF customers, and Amazon Web Services Marketplace managed rule
+// groups, which you can subscribe to through Amazon Web Services Marketplace.
 type ManagedRuleGroupSummary struct {
 	_ struct{} `type:"structure"`
 
 	// The description of the managed rule group, provided by Amazon Web Services
-	// Managed Rules or the Marketplace seller who manages it.
+	// Managed Rules or the Amazon Web Services Marketplace seller who manages it.
 	Description *string `min:"1" type:"string"`
 
 	// The name of the managed rule group. You use this, along with the vendor name,
@@ -11893,11 +11939,12 @@ func (s *ManagedRuleGroupVersion) SetName(v string) *ManagedRuleGroupVersion {
 	return s
 }
 
-// A set of rules that is managed by Amazon Web Services and Marketplace sellers
-// to provide versioned managed rule groups for customers of WAF.
+// A set of rules that is managed by Amazon Web Services and Amazon Web Services
+// Marketplace sellers to provide versioned managed rule groups for customers
+// of WAF.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -12005,7 +12052,7 @@ func (s *ManagedRuleSet) SetRecommendedVersion(v string) *ManagedRuleSet {
 // High-level information for a managed rule set.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -12105,7 +12152,7 @@ func (s *ManagedRuleSetSummary) SetName(v string) *ManagedRuleSetSummary {
 // Information for a single version of a managed rule set.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -12203,6 +12250,8 @@ func (s *ManagedRuleSetVersion) SetPublishTimestamp(v time.Time) *ManagedRuleSet
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "Method": {}
 type Method struct {
 	_ struct{} `type:"structure"`
 }
@@ -12222,6 +12271,8 @@ func (s Method) GoString() string {
 //
 // This is used in the context of other settings, for example to specify values
 // for RuleAction and web ACL DefaultAction.
+//
+// JSON specification: "None": {}
 type NoneAction struct {
 	_ struct{} `type:"structure"`
 }
@@ -12736,6 +12787,8 @@ func (s PutPermissionPolicyOutput) GoString() string {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "QueryString": {}
 type QueryString struct {
 	_ struct{} `type:"structure"`
 }
@@ -12755,6 +12808,14 @@ func (s QueryString) GoString() string {
 // on the number of requests in any 5-minute time span. You can use this to
 // put a temporary block on requests from an IP address that is sending excessive
 // requests.
+//
+// WAF tracks and manages web requests separately for each instance of a rate-based
+// rule that you use. For example, if you provide the same rate-based rule settings
+// in two web ACLs, each of the two rule statements represents a separate instance
+// of the rate-based rule and gets its own tracking and management by WAF. If
+// you define a rate-based rule inside a rule group, and then use that rule
+// group in multiple places, each use creates a separate instance of the rate-based
+// rule that gets its own tracking and management by WAF.
 //
 // When the rule action triggers, WAF blocks additional requests from the IP
 // address until the request rate falls below the limit.
@@ -12776,9 +12837,9 @@ func (s QueryString) GoString() string {
 // the rule action triggers. Requests that do not meet both conditions are not
 // counted towards the rate limit and are not affected by this rule.
 //
-// You cannot nest a RateBasedStatement, for example for use inside a NotStatement
-// or OrStatement. It can only be referenced as a top-level statement within
-// a rule.
+// You cannot nest a RateBasedStatement inside another statement, for example
+// inside a NotStatement or OrStatement. You can define a RateBasedStatement
+// inside a web ACL and inside a rule group.
 type RateBasedStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -12884,7 +12945,7 @@ func (s *RateBasedStatement) SetScopeDownStatement(v *Statement) *RateBasedState
 	return s
 }
 
-// The set of IP addresses that are currently blocked for a rate-based statement.
+// The set of IP addresses that are currently blocked for a RateBasedStatement.
 type RateBasedStatementManagedKeysIPSet struct {
 	_ struct{} `type:"structure"`
 
@@ -13635,8 +13696,8 @@ func (s *RuleGroup) SetVisibilityConfig(v *VisibilityConfig) *RuleGroup {
 // rule group in this statement.
 //
 // You cannot nest a RuleGroupReferenceStatement, for example for use inside
-// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-// within a rule.
+// a NotStatement or OrStatement. You can only use a rule group reference statement
+// at the top level inside a web ACL.
 type RuleGroupReferenceStatement struct {
 	_ struct{} `type:"structure"`
 
@@ -13921,6 +13982,8 @@ func (s *SampledHTTPRequest) SetWeight(v int64) *SampledHTTPRequest {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// Example JSON: "SingleHeader": { "Name": "haystack" }
 type SingleHeader struct {
 	_ struct{} `type:"structure"`
 
@@ -13964,6 +14027,8 @@ func (s *SingleHeader) SetName(v string) *SingleHeader {
 
 // One query argument in a web request, identified by name, for example UserName
 // or SalesRegion. The name can be up to 30 characters long and isn't case sensitive.
+//
+// Example JSON: "SingleQueryArgument": { "Name": "myArgument" }
 type SingleQueryArgument struct {
 	_ struct{} `type:"structure"`
 
@@ -14270,6 +14335,14 @@ type Statement struct {
 	// put a temporary block on requests from an IP address that is sending excessive
 	// requests.
 	//
+	// WAF tracks and manages web requests separately for each instance of a rate-based
+	// rule that you use. For example, if you provide the same rate-based rule settings
+	// in two web ACLs, each of the two rule statements represents a separate instance
+	// of the rate-based rule and gets its own tracking and management by WAF. If
+	// you define a rate-based rule inside a rule group, and then use that rule
+	// group in multiple places, each use creates a separate instance of the rate-based
+	// rule that gets its own tracking and management by WAF.
+	//
 	// When the rule action triggers, WAF blocks additional requests from the IP
 	// address until the request rate falls below the limit.
 	//
@@ -14290,9 +14363,9 @@ type Statement struct {
 	// the rule action triggers. Requests that do not meet both conditions are not
 	// counted towards the rate limit and are not affected by this rule.
 	//
-	// You cannot nest a RateBasedStatement, for example for use inside a NotStatement
-	// or OrStatement. It can only be referenced as a top-level statement within
-	// a rule.
+	// You cannot nest a RateBasedStatement inside another statement, for example
+	// inside a NotStatement or OrStatement. You can define a RateBasedStatement
+	// inside a web ACL and inside a rule group.
 	RateBasedStatement *RateBasedStatement `type:"structure"`
 
 	// A rule statement used to search web request components for matches with regular
@@ -14313,8 +14386,8 @@ type Statement struct {
 	// rule group in this statement.
 	//
 	// You cannot nest a RuleGroupReferenceStatement, for example for use inside
-	// a NotStatement or OrStatement. It can only be referenced as a top-level statement
-	// within a rule.
+	// a NotStatement or OrStatement. You can only use a rule group reference statement
+	// at the top level inside a web ACL.
 	RuleGroupReferenceStatement *RuleGroupReferenceStatement `type:"structure"`
 
 	// A rule statement that compares a number of bytes against the size of a request
@@ -16035,6 +16108,8 @@ func (s *UpdateWebACLOutput) SetNextLockToken(v string) *UpdateWebACLOutput {
 //
 // This is used only to indicate the web request component for WAF to inspect,
 // in the FieldToMatch specification.
+//
+// JSON specification: "UriPath": {}
 type UriPath struct {
 	_ struct{} `type:"structure"`
 }
@@ -16053,7 +16128,7 @@ func (s UriPath) GoString() string {
 // for use by customers.
 //
 // This is intended for use only by vendors of managed rule sets. Vendors are
-// Amazon Web Services and Marketplace sellers.
+// Amazon Web Services and Amazon Web Services Marketplace sellers.
 //
 // Vendors, you can use the managed rule set APIs to provide controlled rollout
 // of your versioned managed rule group offerings for your customers. The APIs
@@ -18850,6 +18925,15 @@ const (
 
 	// ParameterExceptionFieldFilterCondition is a ParameterExceptionField enum value
 	ParameterExceptionFieldFilterCondition = "FILTER_CONDITION"
+
+	// ParameterExceptionFieldExpireTimestamp is a ParameterExceptionField enum value
+	ParameterExceptionFieldExpireTimestamp = "EXPIRE_TIMESTAMP"
+
+	// ParameterExceptionFieldChangePropagationStatus is a ParameterExceptionField enum value
+	ParameterExceptionFieldChangePropagationStatus = "CHANGE_PROPAGATION_STATUS"
+
+	// ParameterExceptionFieldAssociableResource is a ParameterExceptionField enum value
+	ParameterExceptionFieldAssociableResource = "ASSOCIABLE_RESOURCE"
 )
 
 // ParameterExceptionField_Values returns all elements of the ParameterExceptionField enum
@@ -18908,6 +18992,9 @@ func ParameterExceptionField_Values() []string {
 		ParameterExceptionFieldBodyParsingFallbackBehavior,
 		ParameterExceptionFieldLoggingFilter,
 		ParameterExceptionFieldFilterCondition,
+		ParameterExceptionFieldExpireTimestamp,
+		ParameterExceptionFieldChangePropagationStatus,
+		ParameterExceptionFieldAssociableResource,
 	}
 }
 

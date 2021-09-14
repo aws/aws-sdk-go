@@ -8130,7 +8130,8 @@
         "RequestSpotLaunchSpecification$ImageId": "<p>The ID of the AMI.</p>",
         "ResetImageAttributeRequest$ImageId": "<p>The ID of the AMI.</p>",
         "RunInstancesRequest$ImageId": "<p>The ID of the AMI. An AMI ID is required to launch an instance and must be specified here or in a launch template.</p>",
-        "ScheduledInstancesLaunchSpecification$ImageId": "<p>The ID of the Amazon Machine Image (AMI).</p>"
+        "ScheduledInstancesLaunchSpecification$ImageId": "<p>The ID of the Amazon Machine Image (AMI).</p>",
+        "SpotFleetLaunchSpecification$ImageId": "<p>The ID of the AMI.</p>"
       }
     },
     "ImageIdList": {
@@ -9688,7 +9689,8 @@
         "RequestLaunchTemplateData$KeyName": "<p>The name of the key pair. You can create a key pair using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html\">CreateKeyPair</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportKeyPair.html\">ImportKeyPair</a>.</p> <important> <p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p> </important>",
         "RequestSpotLaunchSpecification$KeyName": "<p>The name of the key pair.</p>",
         "RunInstancesRequest$KeyName": "<p>The name of the key pair. You can create a key pair using <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateKeyPair.html\">CreateKeyPair</a> or <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportKeyPair.html\">ImportKeyPair</a>.</p> <important> <p>If you do not specify a key pair, you can't connect to the instance unless you choose an AMI that is configured to allow users another way to log in.</p> </important>",
-        "ScheduledInstancesLaunchSpecification$KeyName": "<p>The name of the key pair.</p>"
+        "ScheduledInstancesLaunchSpecification$KeyName": "<p>The name of the key pair.</p>",
+        "SpotFleetLaunchSpecification$KeyName": "<p>The name of the key pair.</p>"
       }
     },
     "KeyType": {
@@ -11877,7 +11879,9 @@
         "LaunchTemplatePlacementRequest$GroupName": "<p>The name of the placement group for the instance.</p>",
         "ModifyInstancePlacementRequest$GroupName": "<p>The name of the placement group in which to place the instance. For spread placement groups, the instance must have a tenancy of <code>default</code>. For cluster and partition placement groups, the instance must have a tenancy of <code>default</code> or <code>dedicated</code>.</p> <p>To remove an instance from a placement group, specify an empty string (\"\").</p>",
         "PlacementGroupStringList$member": null,
-        "ScheduledInstancesPlacement$GroupName": "<p>The name of the placement group.</p>"
+        "PlacementResponse$GroupName": "<p>The name of the placement group that the instance is in.</p>",
+        "ScheduledInstancesPlacement$GroupName": "<p>The name of the placement group.</p>",
+        "SpotPlacement$GroupName": "<p>The name of the placement group.</p>"
       }
     },
     "PlacementGroupState": {
@@ -13726,6 +13730,7 @@
         "CreateVolumeRequest$SnapshotId": "<p>The snapshot from which to create the volume. You must specify either a snapshot ID or a volume size.</p>",
         "DeleteSnapshotRequest$SnapshotId": "<p>The ID of the EBS snapshot.</p>",
         "DescribeSnapshotAttributeRequest$SnapshotId": "<p>The ID of the EBS snapshot.</p>",
+        "EbsBlockDevice$SnapshotId": "<p>The ID of the snapshot.</p>",
         "ImageDiskContainer$SnapshotId": "<p>The ID of the EBS snapshot to be used for importing the snapshot.</p>",
         "LaunchTemplateEbsBlockDevice$SnapshotId": "<p>The ID of the snapshot.</p>",
         "LaunchTemplateEbsBlockDeviceRequest$SnapshotId": "<p>The ID of the snapshot.</p>",
@@ -14686,7 +14691,6 @@
         "DiskImageVolumeDescription$Id": "<p>The volume identifier.</p>",
         "DnsEntry$DnsName": "<p>The DNS name.</p>",
         "DnsEntry$HostedZoneId": "<p>The ID of the private hosted zone.</p>",
-        "EbsBlockDevice$SnapshotId": "<p>The ID of the snapshot.</p>",
         "EbsBlockDevice$KmsKeyId": "<p>Identifier (key ID, key alias, ID ARN, or alias ARN) for a customer managed CMK under which the EBS volume is encrypted.</p> <p>This parameter is only supported on <code>BlockDeviceMapping</code> objects called by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances</a>, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotFleet.html\">RequestSpotFleet</a>, and <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RequestSpotInstances.html\">RequestSpotInstances</a>.</p>",
         "EbsBlockDevice$OutpostArn": "<p>The ARN of the Outpost on which the snapshot is stored.</p>",
         "EbsInstanceBlockDevice$VolumeId": "<p>The ID of the EBS volume.</p>",
@@ -15237,7 +15241,6 @@
         "Placement$HostResourceGroupArn": "<p>The ARN of the host resource group in which to launch the instances. If you specify a host resource group ARN, omit the <b>Tenancy</b> parameter or set it to <code>host</code>.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
         "PlacementGroup$GroupName": "<p>The name of the placement group.</p>",
         "PlacementGroup$GroupId": "<p>The ID of the placement group.</p>",
-        "PlacementResponse$GroupName": "<p>The name of the placement group that the instance is in.</p>",
         "PoolCidrBlock$Cidr": "<p>The CIDR block.</p>",
         "PrefixList$PrefixListId": "<p>The ID of the prefix.</p>",
         "PrefixList$PrefixListName": "<p>The name of the prefix.</p>",
@@ -15505,12 +15508,9 @@
         "SpotDatafeedSubscription$OwnerId": "<p>The Amazon Web Services account ID of the account.</p>",
         "SpotDatafeedSubscription$Prefix": "<p>The prefix for the data feed files.</p>",
         "SpotFleetLaunchSpecification$AddressingType": "<p>Deprecated.</p>",
-        "SpotFleetLaunchSpecification$ImageId": "<p>The ID of the AMI.</p>",
         "SpotFleetLaunchSpecification$KernelId": "<p>The ID of the kernel.</p>",
-        "SpotFleetLaunchSpecification$KeyName": "<p>The name of the key pair.</p>",
         "SpotFleetLaunchSpecification$RamdiskId": "<p>The ID of the RAM disk. Some kernels require additional drivers at launch. Check the kernel requirements for information about whether you need to specify a RAM disk. To find kernel requirements, refer to the Amazon Web Services Resource Center and search for the kernel ID.</p>",
         "SpotFleetLaunchSpecification$SpotPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance. If this value is not specified, the default is the Spot price specified for the fleet. To determine the Spot price per unit hour, divide the Spot price by the value of <code>WeightedCapacity</code>.</p>",
-        "SpotFleetLaunchSpecification$SubnetId": "<p>The IDs of the subnets in which to launch the instances. To specify multiple subnets, separate them using commas; for example, \"subnet-1234abcdeexample1, subnet-0987cdef6example2\".</p>",
         "SpotFleetLaunchSpecification$UserData": "<p>The Base64-encoded user data that instances use when starting up.</p>",
         "SpotFleetRequestConfig$SpotFleetRequestId": "<p>The ID of the Spot Fleet request.</p>",
         "SpotFleetRequestConfigData$ClientToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of your listings. This helps to avoid duplicate listings. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p>",
@@ -15533,7 +15533,6 @@
         "SpotOptions$MaxTotalPrice": "<p>The maximum amount per hour for Spot Instances that you're willing to pay.</p>",
         "SpotOptionsRequest$MaxTotalPrice": "<p>The maximum amount per hour for Spot Instances that you're willing to pay.</p>",
         "SpotPlacement$AvailabilityZone": "<p>The Availability Zone.</p> <p>[Spot Fleet only] To specify multiple Availability Zones, separate them using commas; for example, \"us-west-2a, us-west-2b\".</p>",
-        "SpotPlacement$GroupName": "<p>The name of the placement group.</p>",
         "SpotPrice$AvailabilityZone": "<p>The Availability Zone.</p>",
         "SpotPrice$SpotPrice": "<p>The maximum price per hour that you are willing to pay for a Spot Instance.</p>",
         "StaleIpPermission$IpProtocol": "<p>The IP protocol name (for <code>tcp</code>, <code>udp</code>, and <code>icmp</code>) or number (see <a href=\"http://www.iana.org/assignments/protocol-numbers/protocol-numbers.xhtml\">Protocol Numbers)</a>.</p>",
@@ -15874,6 +15873,7 @@
         "RunInstancesRequest$SubnetId": "<p>[EC2-VPC] The ID of the subnet to launch the instance into.</p> <p>If you specify a network interface, you must specify any subnets as part of the network interface.</p>",
         "ScheduledInstancesLaunchSpecification$SubnetId": "<p>The ID of the subnet in which to launch the instances.</p>",
         "ScheduledInstancesNetworkInterface$SubnetId": "<p>The ID of the subnet.</p>",
+        "SpotFleetLaunchSpecification$SubnetId": "<p>The IDs of the subnets in which to launch the instances. To specify multiple subnets, separate them using commas; for example, \"subnet-1234abcdeexample1, subnet-0987cdef6example2\".</p>",
         "SubnetCidrReservation$SubnetId": "<p>The ID of the subnet.</p>",
         "SubnetIdStringList$member": null,
         "TransitGatewaySubnetIdList$member": null,

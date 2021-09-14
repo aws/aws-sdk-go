@@ -640,6 +640,7 @@
         {"shape":"ResourceLimitExceededException"},
         {"shape":"ThrottledClientException"},
         {"shape":"UnauthorizedClientException"},
+        {"shape":"AccessDeniedException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -4889,7 +4890,8 @@
           "shape":"NonEmptyString",
           "location":"uri",
           "locationName":"sipMediaApplicationId"
-        }
+        },
+        "SipHeaders":{"shape":"SipHeadersMap"}
       }
     },
     "CreateSipMediaApplicationCallResponse":{
@@ -8574,6 +8576,13 @@
     "SipApplicationPriority":{
       "type":"integer",
       "min":1
+    },
+    "SipHeadersMap":{
+      "type":"map",
+      "key":{"shape":"SensitiveString"},
+      "value":{"shape":"SensitiveString"},
+      "max":20,
+      "min":0
     },
     "SipMediaApplication":{
       "type":"structure",
