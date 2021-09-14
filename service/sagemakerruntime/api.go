@@ -232,12 +232,20 @@ type InternalFailure struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailure) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InternalFailure) GoString() string {
 	return s.String()
 }
@@ -306,6 +314,10 @@ type InvokeEndpointAsyncInput struct {
 	//
 	// This feature is currently supported in the AWS SDKs but not in the Amazon
 	// SageMaker Python SDK.
+	//
+	// CustomAttributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InvokeEndpointAsyncInput's
+	// String and GoString methods.
 	CustomAttributes *string `location:"header" locationName:"X-Amzn-SageMaker-Custom-Attributes" type:"string" sensitive:"true"`
 
 	// The name of the endpoint that you specified when you created the endpoint
@@ -329,12 +341,20 @@ type InvokeEndpointAsyncInput struct {
 	RequestTTLSeconds *int64 `location:"header" locationName:"X-Amzn-SageMaker-RequestTTLSeconds" min:"60" type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeEndpointAsyncInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeEndpointAsyncInput) GoString() string {
 	return s.String()
 }
@@ -421,12 +441,20 @@ type InvokeEndpointAsyncOutput struct {
 	OutputLocation *string `location:"header" locationName:"X-Amzn-SageMaker-OutputLocation" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeEndpointAsyncOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeEndpointAsyncOutput) GoString() string {
 	return s.String()
 }
@@ -455,6 +483,10 @@ type InvokeEndpointInput struct {
 	// For information about the format of the request body, see Common Data Formats-Inference
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/cdf-inference.html).
 	//
+	// Body is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InvokeEndpointInput's
+	// String and GoString methods.
+	//
 	// Body is a required field
 	Body []byte `type:"blob" required:"true" sensitive:"true"`
 
@@ -478,6 +510,10 @@ type InvokeEndpointInput struct {
 	//
 	// This feature is currently supported in the AWS SDKs but not in the Amazon
 	// SageMaker Python SDK.
+	//
+	// CustomAttributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InvokeEndpointInput's
+	// String and GoString methods.
 	CustomAttributes *string `location:"header" locationName:"X-Amzn-SageMaker-Custom-Attributes" type:"string" sensitive:"true"`
 
 	// The name of the endpoint that you specified when you created the endpoint
@@ -509,12 +545,20 @@ type InvokeEndpointInput struct {
 	TargetVariant *string `location:"header" locationName:"X-Amzn-SageMaker-Target-Variant" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeEndpointInput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeEndpointInput) GoString() string {
 	return s.String()
 }
@@ -606,6 +650,10 @@ type InvokeEndpointOutput struct {
 	// For information about the format of the response body, see Common Data Formats-Inference
 	// (https://docs.aws.amazon.com/sagemaker/latest/dg/cdf-inference.html).
 	//
+	// Body is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InvokeEndpointOutput's
+	// String and GoString methods.
+	//
 	// Body is a required field
 	Body []byte `type:"blob" required:"true" sensitive:"true"`
 
@@ -631,18 +679,30 @@ type InvokeEndpointOutput struct {
 	//
 	// This feature is currently supported in the AWS SDKs but not in the Amazon
 	// SageMaker Python SDK.
+	//
+	// CustomAttributes is a sensitive parameter and its value will be
+	// replaced with "sensitive" in string returned by InvokeEndpointOutput's
+	// String and GoString methods.
 	CustomAttributes *string `location:"header" locationName:"X-Amzn-SageMaker-Custom-Attributes" type:"string" sensitive:"true"`
 
 	// Identifies the production variant that was invoked.
 	InvokedProductionVariant *string `location:"header" locationName:"x-Amzn-Invoked-Production-Variant" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeEndpointOutput) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s InvokeEndpointOutput) GoString() string {
 	return s.String()
 }
@@ -689,12 +749,20 @@ type ModelError struct {
 	OriginalStatusCode *int64 `type:"integer"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModelError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ModelError) GoString() string {
 	return s.String()
 }
@@ -745,12 +813,20 @@ type ServiceUnavailable struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailable) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ServiceUnavailable) GoString() string {
 	return s.String()
 }
@@ -801,12 +877,20 @@ type ValidationError struct {
 	Message_ *string `locationName:"Message" type:"string"`
 }
 
-// String returns the string representation
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationError) String() string {
 	return awsutil.Prettify(s)
 }
 
-// GoString returns the string representation
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
 func (s ValidationError) GoString() string {
 	return s.String()
 }
