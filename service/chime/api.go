@@ -3300,6 +3300,9 @@ func (c *Chime) CreateSipMediaApplicationCallRequest(input *CreateSipMediaApplic
 //   * UnauthorizedClientException
 //   The client is not currently authorized to make the request.
 //
+//   * AccessDeniedException
+//   You don't have permissions to perform the requested operation.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
@@ -17675,7 +17678,7 @@ func (c *Chime) StartMeetingTranscriptionRequest(input *StartMeetingTranscriptio
 
 // StartMeetingTranscription API operation for Amazon Chime.
 //
-// Start transcription for the specified meetingId.
+// Starts transcription for the specified meetingId.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -25501,6 +25504,9 @@ type CreateSipMediaApplicationCallInput struct {
 	// FromPhoneNumber is a required field
 	FromPhoneNumber *string `type:"string" required:"true" sensitive:"true"`
 
+	// The SIP headers added to an outbound call leg.
+	SipHeaders map[string]*string `type:"map"`
+
 	// The ID of the SIP media application.
 	//
 	// SipMediaApplicationId is a required field
@@ -25547,6 +25553,12 @@ func (s *CreateSipMediaApplicationCallInput) Validate() error {
 // SetFromPhoneNumber sets the FromPhoneNumber field's value.
 func (s *CreateSipMediaApplicationCallInput) SetFromPhoneNumber(v string) *CreateSipMediaApplicationCallInput {
 	s.FromPhoneNumber = &v
+	return s
+}
+
+// SetSipHeaders sets the SipHeaders field's value.
+func (s *CreateSipMediaApplicationCallInput) SetSipHeaders(v map[string]*string) *CreateSipMediaApplicationCallInput {
+	s.SipHeaders = v
 	return s
 }
 
@@ -35183,15 +35195,19 @@ func (s *OrderedPhoneNumber) SetStatus(v string) *OrderedPhoneNumber {
 
 // Origination settings enable your SIP hosts to receive inbound calls using
 // your Amazon Chime Voice Connector.
+//
+// The parameters listed below are not required, but you must use at least one.
 type Origination struct {
 	_ struct{} `type:"structure"`
 
 	// When origination settings are disabled, inbound calls are not enabled for
-	// your Amazon Chime Voice Connector.
+	// your Amazon Chime Voice Connector. This parameter is not required, but you
+	// must specify this parameter or Routes.
 	Disabled *bool `type:"boolean"`
 
 	// The call distribution properties defined for your SIP hosts. Valid range:
-	// Minimum value of 1. Maximum value of 20.
+	// Minimum value of 1. Maximum value of 20. This parameter is not required,
+	// but you must specify this parameter or Disabled.
 	Routes []*OriginationRoute `type:"list"`
 }
 
@@ -35240,6 +35256,8 @@ func (s *Origination) SetRoutes(v []*OriginationRoute) *Origination {
 // Origination routes define call distribution properties for your SIP hosts
 // to receive inbound calls using your Amazon Chime Voice Connector. Limit:
 // Ten origination routes for each Amazon Chime Voice Connector.
+//
+// The parameters listed below are not required, but you must use at least one.
 type OriginationRoute struct {
 	_ struct{} `type:"structure"`
 
@@ -39286,7 +39304,7 @@ func (s *ThrottledClientException) RequestID() string {
 type TranscriptionConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The transcription configuration settings passed to Amazon Transcribe.
+	// The transcription configuration settings passed to Amazon Transcribe Medical.
 	EngineTranscribeMedicalSettings *EngineTranscribeMedicalSettings `type:"structure"`
 
 	// The transcription configuration settings passed to Amazon Transcribe.

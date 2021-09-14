@@ -94,6 +94,12 @@
         "AttributeNamesList$member": null
       }
     },
+    "AugmentedManifestsDocumentTypeFormat": {
+      "base": null,
+      "refs": {
+        "AugmentedManifestsListItem$DocumentType": "<p>The type of augmented manifest. PlainTextDocument or SemiStructuredDocument. If you don't specify, the default is PlainTextDocument. </p> <ul> <li> <p> <code>PLAIN_TEXT_DOCUMENT</code> A document type that represents any unicode text that is encoded in UTF-8.</p> </li> <li> <p> <code>SEMI_STRUCTURED_DOCUMENT</code> A document type with positional and structural context, like a PDF. For training with Amazon Comprehend, only PDFs are supported. For inference, Amazon Comprehend support PDFs, DOCX and TXT.</p> </li> </ul>"
+      }
+    },
     "AugmentedManifestsListItem": {
       "base": "<p>An augmented manifest file that provides training data for your custom model. An augmented manifest file is a labeled dataset that is produced by Amazon SageMaker Ground Truth.</p>",
       "refs": {
@@ -664,6 +670,30 @@
         "ListOfLabels$member": null
       }
     },
+    "DocumentReadAction": {
+      "base": null,
+      "refs": {
+        "DocumentReaderConfig$DocumentReadAction": "<p>This enum field will start with two values which will apply to PDFs:</p> <ul> <li> <p> <code>TEXTRACT_DETECT_DOCUMENT_TEXT</code> - The service calls DetectDocumentText for PDF documents per page.</p> </li> <li> <p> <code>TEXTRACT_ANALYZE_DOCUMENT</code> - The service calls AnalyzeDocument for PDF documents per page.</p> </li> </ul>"
+      }
+    },
+    "DocumentReadFeatureTypes": {
+      "base": "<p>A list of the types of analyses to perform. This field specifies what feature types need to be extracted from the document where entity recognition is expected.</p> <ul> <li> <p> <code>TABLES</code> - Add TABLES to the list to return information about the tables that are detected in the input document. </p> </li> <li> <p> <code>FORMS</code> - Add FORMS to return detected form data. </p> </li> </ul>",
+      "refs": {
+        "ListOfDocumentReadFeatureTypes$member": null
+      }
+    },
+    "DocumentReadMode": {
+      "base": null,
+      "refs": {
+        "DocumentReaderConfig$DocumentReadMode": "<p>This enum field provides two values:</p> <ul> <li> <p> <code>SERVICE_DEFAULT</code> - use service defaults for Document reading. For Digital PDF it would mean using an internal parser instead of Textract APIs</p> </li> <li> <p> <code>FORCE_DOCUMENT_READ_ACTION</code> - Always use specified action for DocumentReadAction, including Digital PDF. </p> </li> </ul>"
+      }
+    },
+    "DocumentReaderConfig": {
+      "base": "<p>The input properties for a topic detection job.</p>",
+      "refs": {
+        "InputDataConfig$DocumentReaderConfig": "<p>The document reader config field applies only for InputDataConfig of StartEntitiesDetectionJob. </p> <p>Use DocumentReaderConfig to provide specifications about how you want your inference documents read. Currently it applies for PDF documents in StartEntitiesDetectionJob custom inference.</p>"
+      }
+    },
     "DominantLanguage": {
       "base": "<p>Returns the code for the dominant language in the input text and the level of confidence that Amazon Comprehend has in the accuracy of the detection.</p>",
       "refs": {
@@ -972,7 +1002,7 @@
       }
     },
     "InputDataConfig": {
-      "base": "<p>The input properties for a topic detection job.</p>",
+      "base": "<p>The input properties for an inference job.</p>",
       "refs": {
         "DocumentClassificationJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the document classification job.</p>",
         "DominantLanguageDetectionJobProperties$InputDataConfig": "<p>The input data configuration that you supplied when you created the dominant language detection job.</p>",
@@ -1357,6 +1387,12 @@
         "BatchDetectSyntaxResponse$ResultList": "<p>A list of objects containing the results of the operation. The results are sorted in ascending order by the <code>Index</code> field and match the order of the documents in the input list. If all of the documents contain an error, the <code>ResultList</code> is empty.</p>"
       }
     },
+    "ListOfDocumentReadFeatureTypes": {
+      "base": null,
+      "refs": {
+        "DocumentReaderConfig$FeatureTypes": "<p>Specifies how the text in an input file should be processed:</p>"
+      }
+    },
     "ListOfDominantLanguages": {
       "base": null,
       "refs": {
@@ -1601,6 +1637,8 @@
       "base": null,
       "refs": {
         "AugmentedManifestsListItem$S3Uri": "<p>The Amazon S3 location of the augmented manifest file.</p>",
+        "AugmentedManifestsListItem$AnnotationDataS3Uri": "<p>The S3 prefix to the annotation files that are referred in the augmented manifest file.</p>",
+        "AugmentedManifestsListItem$SourceDocumentsS3Uri": "<p>The S3 prefix to the source files (PDFs) that are referred to in the augmented manifest file.</p>",
         "DocumentClassifierInputDataConfig$S3Uri": "<p>The Amazon S3 URI for the input data. The S3 bucket must be in the same region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of input files.</p> <p>For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix is a single file, Amazon Comprehend uses that file as input. If more than one file begins with the prefix, Amazon Comprehend uses all of them as input.</p> <p>This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.</p>",
         "DocumentClassifierOutputDataConfig$S3Uri": "<p>When you use the <code>OutputDataConfig</code> object while creating a custom classifier, you specify the Amazon S3 location where you want to write the confusion matrix. The URI must be in the same region as the API endpoint that you are calling. The location is used as the prefix for the actual location of this output file.</p> <p>When the custom classifier job is finished, the service creates the output file in a directory specific to the job. The <code>S3Uri</code> field contains the location of the output file, called <code>output.tar.gz</code>. It is a compressed archive that contains the confusion matrix.</p>",
         "EntityRecognizerAnnotations$S3Uri": "<p> Specifies the Amazon S3 location where the annotations for an entity recognizer are located. The URI must be in the same region as the API endpoint that you are calling.</p>",

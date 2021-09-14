@@ -15788,7 +15788,7 @@
           "locationName":"iops"
         },
         "SnapshotId":{
-          "shape":"String",
+          "shape":"SnapshotId",
           "locationName":"snapshotId"
         },
         "VolumeSize":{
@@ -21429,7 +21429,10 @@
         "x2gd.8xlarge",
         "x2gd.12xlarge",
         "x2gd.16xlarge",
-        "x2gd.metal"
+        "x2gd.metal",
+        "vt1.3xlarge",
+        "vt1.6xlarge",
+        "vt1.24xlarge"
       ]
     },
     "InstanceTypeHypervisor":{
@@ -26148,7 +26151,7 @@
       "type":"structure",
       "members":{
         "GroupName":{
-          "shape":"String",
+          "shape":"PlacementGroupName",
           "locationName":"groupName"
         }
       }
@@ -30374,7 +30377,7 @@
           "locationName":"iamInstanceProfile"
         },
         "ImageId":{
-          "shape":"String",
+          "shape":"ImageId",
           "locationName":"imageId"
         },
         "InstanceType":{
@@ -30386,7 +30389,7 @@
           "locationName":"kernelId"
         },
         "KeyName":{
-          "shape":"String",
+          "shape":"KeyPairName",
           "locationName":"keyName"
         },
         "Monitoring":{
@@ -30410,7 +30413,7 @@
           "locationName":"spotPrice"
         },
         "SubnetId":{
-          "shape":"String",
+          "shape":"SubnetId",
           "locationName":"subnetId"
         },
         "UserData":{
@@ -30837,7 +30840,7 @@
           "locationName":"availabilityZone"
         },
         "GroupName":{
-          "shape":"String",
+          "shape":"PlacementGroupName",
           "locationName":"groupName"
         },
         "Tenancy":{

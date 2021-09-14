@@ -50,7 +50,8 @@
       "type":"structure",
       "members":{
         "Transcript":{"shape":"String"},
-        "Items":{"shape":"ItemList"}
+        "Items":{"shape":"ItemList"},
+        "Entities":{"shape":"EntityList"}
       }
     },
     "AlternativeList":{
@@ -93,7 +94,30 @@
       "error":{"httpStatusCode":409},
       "exception":true
     },
+    "ContentIdentificationType":{
+      "type":"string",
+      "enum":["PII"]
+    },
+    "ContentRedactionType":{
+      "type":"string",
+      "enum":["PII"]
+    },
     "Double":{"type":"double"},
+    "Entity":{
+      "type":"structure",
+      "members":{
+        "StartTime":{"shape":"Double"},
+        "EndTime":{"shape":"Double"},
+        "Category":{"shape":"String"},
+        "Type":{"shape":"String"},
+        "Content":{"shape":"String"},
+        "Confidence":{"shape":"Confidence"}
+      }
+    },
+    "EntityList":{
+      "type":"list",
+      "member":{"shape":"Entity"}
+    },
     "InternalFailureException":{
       "type":"structure",
       "members":{
@@ -261,6 +285,12 @@
         "medium",
         "low"
       ]
+    },
+    "PiiEntityTypes":{
+      "type":"string",
+      "max":300,
+      "min":1,
+      "pattern":"^[A-Z_, ]+"
     },
     "RequestId":{"type":"string"},
     "Result":{
@@ -510,6 +540,21 @@
           "shape":"PartialResultsStability",
           "location":"header",
           "locationName":"x-amzn-transcribe-partial-results-stability"
+        },
+        "ContentIdentificationType":{
+          "shape":"ContentIdentificationType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-identification-type"
+        },
+        "ContentRedactionType":{
+          "shape":"ContentRedactionType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-redaction-type"
+        },
+        "PiiEntityTypes":{
+          "shape":"PiiEntityTypes",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-pii-entity-types"
         }
       },
       "payload":"AudioStream"
@@ -582,6 +627,21 @@
           "shape":"PartialResultsStability",
           "location":"header",
           "locationName":"x-amzn-transcribe-partial-results-stability"
+        },
+        "ContentIdentificationType":{
+          "shape":"ContentIdentificationType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-identification-type"
+        },
+        "ContentRedactionType":{
+          "shape":"ContentRedactionType",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-content-redaction-type"
+        },
+        "PiiEntityTypes":{
+          "shape":"PiiEntityTypes",
+          "location":"header",
+          "locationName":"x-amzn-transcribe-pii-entity-types"
         }
       },
       "payload":"TranscriptResultStream"

@@ -163,7 +163,7 @@
     "RestorePhoneNumber": "<p>Moves a phone number from the <b>Deletion queue</b> back into the phone number <b>Inventory</b>.</p>",
     "SearchAvailablePhoneNumbers": "<p>Searches for phone numbers that can be ordered. For US numbers, provide at least one of the following search filters: <code>AreaCode</code>, <code>City</code>, <code>State</code>, or <code>TollFreePrefix</code>. If you provide <code>City</code>, you must also provide <code>State</code>. Numbers outside the US only support the <code>PhoneNumberType</code> filter, which you must use.</p>",
     "SendChannelMessage": "<p>Sends a message to a particular channel that the member is a part of.</p> <note> <p>The <code>x-amz-chime-bearer</code> request header is mandatory. Use the <code>AppInstanceUserArn</code> of the user that makes the API call as the value in the header.</p> <p>Also, <code>STANDARD</code> messages can contain 4KB of data and the 1KB of metadata. <code>CONTROL</code> messages can contain 30 bytes of data and no metadata.</p> </note>",
-    "StartMeetingTranscription": "<p>Start transcription for the specified <code>meetingId</code>. </p>",
+    "StartMeetingTranscription": "<p>Starts transcription for the specified <code>meetingId</code>. </p>",
     "StopMeetingTranscription": "<p>Stops transcription for the specified <code>meetingId</code>.</p>",
     "TagAttendee": "<p>Applies the specified tags to the specified Amazon Chime SDK attendee.</p>",
     "TagMeeting": "<p>Applies the specified tags to the specified Amazon Chime SDK meeting.</p>",
@@ -555,7 +555,7 @@
         "AlexaForBusinessMetadata$IsAlexaForBusinessEnabled": "<p>Starts or stops Alexa for Business.</p>",
         "CreateVoiceConnectorRequest$RequireEncryption": "<p>When enabled, requires encryption for the Amazon Chime Voice Connector.</p>",
         "LoggingConfiguration$EnableSIPLogs": "<p>When true, enables SIP message logs for sending to Amazon CloudWatch Logs.</p>",
-        "Origination$Disabled": "<p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime Voice Connector.</p>",
+        "Origination$Disabled": "<p>When origination settings are disabled, inbound calls are not enabled for your Amazon Chime Voice Connector. This parameter is not required, but you must specify this parameter or <code>Routes</code>.</p>",
         "Proxy$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
         "PutVoiceConnectorProxyRequest$Disabled": "<p>When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.</p>",
         "SipMediaApplicationLoggingConfiguration$EnableSipMediaApplicationMessageLogs": "<p>Enables application message logs for the SIP media application.</p>",
@@ -1618,7 +1618,7 @@
     "EngineTranscribeMedicalSettings": {
       "base": "<p>Settings specific to the Amazon Transcribe Medical engine.</p>",
       "refs": {
-        "TranscriptionConfiguration$EngineTranscribeMedicalSettings": "<p>The transcription configuration settings passed to Amazon Transcribe.</p>"
+        "TranscriptionConfiguration$EngineTranscribeMedicalSettings": "<p>The transcription configuration settings passed to Amazon Transcribe Medical.</p>"
       }
     },
     "EngineTranscribeSettings": {
@@ -2937,7 +2937,7 @@
       }
     },
     "Origination": {
-      "base": "<p>Origination settings enable your SIP hosts to receive inbound calls using your Amazon Chime Voice Connector.</p>",
+      "base": "<p>Origination settings enable your SIP hosts to receive inbound calls using your Amazon Chime Voice Connector.</p> <note> <p>The parameters listed below are not required, but you must use at least one. </p> </note>",
       "refs": {
         "GetVoiceConnectorOriginationResponse$Origination": "<p>The origination setting details.</p>",
         "PutVoiceConnectorOriginationRequest$Origination": "<p>The origination setting details to add.</p>",
@@ -2945,7 +2945,7 @@
       }
     },
     "OriginationRoute": {
-      "base": "<p>Origination routes define call distribution properties for your SIP hosts to receive inbound calls using your Amazon Chime Voice Connector. Limit: Ten origination routes for each Amazon Chime Voice Connector.</p>",
+      "base": "<p>Origination routes define call distribution properties for your SIP hosts to receive inbound calls using your Amazon Chime Voice Connector. Limit: Ten origination routes for each Amazon Chime Voice Connector.</p> <note> <p>The parameters listed below are not required, but you must use at least one. </p> </note>",
       "refs": {
         "OriginationRouteList$member": null
       }
@@ -2953,7 +2953,7 @@
     "OriginationRouteList": {
       "base": null,
       "refs": {
-        "Origination$Routes": "<p>The call distribution properties defined for your SIP hosts. Valid range: Minimum value of 1. Maximum value of 20.</p>"
+        "Origination$Routes": "<p>The call distribution properties defined for your SIP hosts. Valid range: Minimum value of 1. Maximum value of 20. This parameter is not required, but you must specify this parameter or <code>Disabled</code>.</p>"
       }
     },
     "OriginationRoutePriority": {
@@ -3493,6 +3493,8 @@
         "SMAUpdateCallArgumentsMap$key": null,
         "SMAUpdateCallArgumentsMap$value": null,
         "SensitiveStringList$member": null,
+        "SipHeadersMap$key": null,
+        "SipHeadersMap$value": null,
         "UpdateRoomRequest$Name": "<p>The room name.</p>",
         "User$PrimaryProvisionedNumber": "<p>The primary phone number associated with the user.</p>",
         "User$DisplayName": "<p>The display name of the user.</p>"
@@ -3532,6 +3534,12 @@
       "base": null,
       "refs": {
         "SipRuleTargetApplication$Priority": "<p>Priority of the SIP media application in the target list.</p>"
+      }
+    },
+    "SipHeadersMap": {
+      "base": null,
+      "refs": {
+        "CreateSipMediaApplicationCallRequest$SipHeaders": "<p>The SIP headers added to an outbound call leg.</p>"
       }
     },
     "SipMediaApplication": {

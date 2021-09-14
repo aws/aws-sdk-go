@@ -474,10 +474,10 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 
 // StartStreamTranscription API operation for Amazon Transcribe Streaming Service.
 //
-// Starts a bidirectional HTTP2 stream where audio is streamed to Amazon Transcribe
+// Starts a bidirectional HTTP/2 stream where audio is streamed to Amazon Transcribe
 // and the transcription results are streamed to your application.
 //
-// The following are encoded as HTTP2 headers:
+// The following are encoded as HTTP/2 headers:
 //
 //    * x-amzn-transcribe-language-code
 //
@@ -486,6 +486,9 @@ func (c *TranscribeStreamingService) StartStreamTranscriptionRequest(input *Star
 //    * x-amzn-transcribe-sample-rate
 //
 //    * x-amzn-transcribe-session-id
+//
+// See the SDK for Go API Reference (https://docs.aws.amazon.com/sdk-for-go/api/service/transcribestreamingservice/#TranscribeStreamingService.StartStreamTranscription)
+// for more detail.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -794,6 +797,10 @@ func (es *StartStreamTranscriptionEventStream) Err() error {
 type Alternative struct {
 	_ struct{} `type:"structure"`
 
+	// Contains the entities identified as personally identifiable information (PII)
+	// in the transcription output.
+	Entities []*Entity `type:"list"`
+
 	// One or more alternative interpretations of the input audio.
 	Items []*Item `type:"list"`
 
@@ -811,6 +818,12 @@ func (s Alternative) GoString() string {
 	return s.String()
 }
 
+// SetEntities sets the Entities field's value.
+func (s *Alternative) SetEntities(v []*Entity) *Alternative {
+	s.Entities = v
+	return s
+}
+
 // SetItems sets the Items field's value.
 func (s *Alternative) SetItems(v []*Item) *Alternative {
 	s.Items = v
@@ -825,8 +838,10 @@ func (s *Alternative) SetTranscript(v string) *Alternative {
 
 // Provides a wrapper for the audio chunks that you are sending.
 //
-// For information on audio encoding in Amazon Transcribe, see input. For information
-// on audio encoding formats in Amazon Transcribe Medical, see input-med.
+// For information on audio encoding in Amazon Transcribe, see Speech input
+// (https://docs.aws.amazon.com/transcribe/latest/dg/input.html). For information
+// on audio encoding formats in Amazon Transcribe Medical, see Speech input
+// (https://docs.aws.amazon.com/transcribe/latest/dg/input-med.html).
 type AudioEvent struct {
 	_ struct{} `type:"structure" payload:"AudioChunk"`
 
@@ -1107,6 +1122,78 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The entity identified as personally identifiable information (PII).
+type Entity struct {
+	_ struct{} `type:"structure"`
+
+	// The category of of information identified in this entity; for example, PII.
+	Category *string `type:"string"`
+
+	// A value between zero and one that Amazon Transcribe assigns to PII identified
+	// in the source audio. Larger values indicate a higher confidence in PII identification.
+	Confidence *float64 `type:"double"`
+
+	// The words in the transcription output that have been identified as a PII
+	// entity.
+	Content *string `type:"string"`
+
+	// The end time of speech that was identified as PII.
+	EndTime *float64 `type:"double"`
+
+	// The start time of speech that was identified as PII.
+	StartTime *float64 `type:"double"`
+
+	// The type of PII identified in this entity; for example, name or credit card
+	// number.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation
+func (s Entity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation
+func (s Entity) GoString() string {
+	return s.String()
+}
+
+// SetCategory sets the Category field's value.
+func (s *Entity) SetCategory(v string) *Entity {
+	s.Category = &v
+	return s
+}
+
+// SetConfidence sets the Confidence field's value.
+func (s *Entity) SetConfidence(v float64) *Entity {
+	s.Confidence = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *Entity) SetContent(v string) *Entity {
+	s.Content = &v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *Entity) SetEndTime(v float64) *Entity {
+	s.EndTime = &v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *Entity) SetStartTime(v float64) *Entity {
+	s.StartTime = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *Entity) SetType(v string) *Entity {
+	s.Type = &v
+	return s
 }
 
 // A problem occurred while processing the audio. Amazon Transcribe or Amazon
@@ -2095,8 +2182,7 @@ type StartMedicalStreamTranscriptionInput struct {
 	// MediaEncoding is a required field
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" required:"true" enum:"MediaEncoding"`
 
-	// The sample rate of the input audio in Hertz. Sample rates of 16000 Hz or
-	// higher are accepted.
+	// The sample rate of the input audio in Hertz.
 	//
 	// MediaSampleRateHertz is a required field
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer" required:"true"`
@@ -2261,7 +2347,7 @@ type StartMedicalStreamTranscriptionOutput struct {
 	// The encoding used for the input audio stream.
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" enum:"MediaEncoding"`
 
-	// The sample rate of the input audio in Hertz. Valid value: 16000 Hz.
+	// The sample rate of the input audio in Hertz.
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer"`
 
 	// The number of channels identified in the stream.
@@ -2378,6 +2464,22 @@ func (s *StartMedicalStreamTranscriptionOutput) GetStream() *StartMedicalStreamT
 type StartStreamTranscriptionInput struct {
 	_ struct{} `type:"structure" payload:"AudioStream"`
 
+	// Set this field to PII to identify personally identifiable information (PII)
+	// in the transcription output. Content identification is performed only upon
+	// complete transcription of the audio segments.
+	//
+	// You can’t set both ContentIdentificationType and ContentRedactionType in
+	// the same request. If you set both, your request returns a BadRequestException.
+	ContentIdentificationType *string `location:"header" locationName:"x-amzn-transcribe-content-identification-type" type:"string" enum:"ContentIdentificationType"`
+
+	// Set this field to PII to redact personally identifiable information (PII)
+	// in the transcription output. Content redaction is performed only upon complete
+	// transcription of the audio segments.
+	//
+	// You can’t set both ContentRedactionType and ContentIdentificationType in
+	// the same request. If you set both, your request returns a BadRequestException.
+	ContentRedactionType *string `location:"header" locationName:"x-amzn-transcribe-content-redaction-type" type:"string" enum:"ContentRedactionType"`
+
 	// When true, instructs Amazon Transcribe to process each audio channel separately
 	// and then merge the transcription output of each channel into a single transcription.
 	//
@@ -2405,8 +2507,8 @@ type StartStreamTranscriptionInput struct {
 	// MediaEncoding is a required field
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" required:"true" enum:"MediaEncoding"`
 
-	// The sample rate, in Hertz, of the input audio. We suggest that you use 8000
-	// Hz for low quality audio and 16000 Hz for high quality audio.
+	// The sample rate, in Hertz, of the input audio. We suggest that you use 8,000
+	// Hz for low quality audio and 16,000 Hz for high quality audio.
 	//
 	// MediaSampleRateHertz is a required field
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer" required:"true"`
@@ -2420,6 +2522,17 @@ type StartStreamTranscriptionInput struct {
 	// accuracy.
 	PartialResultsStability *string `location:"header" locationName:"x-amzn-transcribe-partial-results-stability" type:"string" enum:"PartialResultsStability"`
 
+	// List the PII entity types you want to identify or redact. In order to specify
+	// entity types, you must have either ContentIdentificationType or ContentRedactionType
+	// enabled.
+	//
+	// PIIEntityTypes must be comma-separated; the available values are: BANK_ACCOUNT_NUMBER,
+	// BANK_ROUTING, CREDIT_DEBIT_NUMBER, CREDIT_DEBIT_CVV, CREDIT_DEBIT_EXPIRY,
+	// PIN, EMAIL, ADDRESS, NAME, PHONE, SSN, and ALL.
+	//
+	// PiiEntityTypes is an optional parameter with a default value of ALL.
+	PiiEntityTypes *string `location:"header" locationName:"x-amzn-transcribe-pii-entity-types" min:"1" type:"string"`
+
 	// A identifier for the transcription session. Use this parameter when you want
 	// to retry a session. If you don't provide a session ID, Amazon Transcribe
 	// will generate one for you and return it in the response.
@@ -2430,13 +2543,13 @@ type StartStreamTranscriptionInput struct {
 
 	// The manner in which you use your vocabulary filter to filter words in your
 	// transcript. Remove removes filtered words from your transcription results.
-	// Mask masks those words with a *** in your transcription results. Tag keeps
+	// Mask masks filtered words with a *** in your transcription results. Tag keeps
 	// the filtered words in your transcription results and tags them. The tag appears
 	// as VocabularyFilterMatch equal to True
 	VocabularyFilterMethod *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-method" type:"string" enum:"VocabularyFilterMethod"`
 
-	// The name of the vocabulary filter you've created that is unique to your AWS
-	// account. Provide the name in this field to successfully use it in a stream.
+	// The name of the vocabulary filter you've created that is unique to your account.
+	// Provide the name in this field to successfully use it in a stream.
 	VocabularyFilterName *string `location:"header" locationName:"x-amzn-transcribe-vocabulary-filter-name" min:"1" type:"string"`
 
 	// The name of the vocabulary to use when processing the transcription job.
@@ -2471,6 +2584,9 @@ func (s *StartStreamTranscriptionInput) Validate() error {
 	if s.NumberOfChannels != nil && *s.NumberOfChannels < 2 {
 		invalidParams.Add(request.NewErrParamMinValue("NumberOfChannels", 2))
 	}
+	if s.PiiEntityTypes != nil && len(*s.PiiEntityTypes) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("PiiEntityTypes", 1))
+	}
 	if s.SessionId != nil && len(*s.SessionId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("SessionId", 36))
 	}
@@ -2485,6 +2601,18 @@ func (s *StartStreamTranscriptionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *StartStreamTranscriptionInput) SetContentIdentificationType(v string) *StartStreamTranscriptionInput {
+	s.ContentIdentificationType = &v
+	return s
+}
+
+// SetContentRedactionType sets the ContentRedactionType field's value.
+func (s *StartStreamTranscriptionInput) SetContentRedactionType(v string) *StartStreamTranscriptionInput {
+	s.ContentRedactionType = &v
+	return s
 }
 
 // SetEnableChannelIdentification sets the EnableChannelIdentification field's value.
@@ -2529,6 +2657,12 @@ func (s *StartStreamTranscriptionInput) SetPartialResultsStability(v string) *St
 	return s
 }
 
+// SetPiiEntityTypes sets the PiiEntityTypes field's value.
+func (s *StartStreamTranscriptionInput) SetPiiEntityTypes(v string) *StartStreamTranscriptionInput {
+	s.PiiEntityTypes = &v
+	return s
+}
+
 // SetSessionId sets the SessionId field's value.
 func (s *StartStreamTranscriptionInput) SetSessionId(v string) *StartStreamTranscriptionInput {
 	s.SessionId = &v
@@ -2564,6 +2698,12 @@ type StartStreamTranscriptionOutput struct {
 
 	eventStream *StartStreamTranscriptionEventStream
 
+	// Shows whether content identification was enabled in this stream.
+	ContentIdentificationType *string `location:"header" locationName:"x-amzn-transcribe-content-identification-type" type:"string" enum:"ContentIdentificationType"`
+
+	// Shows whether content redaction was enabled in this stream.
+	ContentRedactionType *string `location:"header" locationName:"x-amzn-transcribe-content-redaction-type" type:"string" enum:"ContentRedactionType"`
+
 	// Shows whether channel identification has been enabled in the stream.
 	EnableChannelIdentification *bool `location:"header" locationName:"x-amzn-transcribe-enable-channel-identification" type:"boolean"`
 
@@ -2576,8 +2716,8 @@ type StartStreamTranscriptionOutput struct {
 	// The encoding used for the input audio stream.
 	MediaEncoding *string `location:"header" locationName:"x-amzn-transcribe-media-encoding" type:"string" enum:"MediaEncoding"`
 
-	// The sample rate for the input audio stream. Use 8000 Hz for low quality audio
-	// and 16000 Hz for high quality audio.
+	// The sample rate for the input audio stream. Use 8,000 Hz for low quality
+	// audio and 16,000 Hz for high quality audio.
 	MediaSampleRateHertz *int64 `location:"header" locationName:"x-amzn-transcribe-sample-rate" min:"8000" type:"integer"`
 
 	// The number of channels identified in the stream.
@@ -2586,6 +2726,9 @@ type StartStreamTranscriptionOutput struct {
 	// If partial results stabilization has been enabled in the stream, shows the
 	// stability level.
 	PartialResultsStability *string `location:"header" locationName:"x-amzn-transcribe-partial-results-stability" type:"string" enum:"PartialResultsStability"`
+
+	// Lists the PII entity types you specified in your request.
+	PiiEntityTypes *string `location:"header" locationName:"x-amzn-transcribe-pii-entity-types" min:"1" type:"string"`
 
 	// An identifier for the streaming transcription.
 	RequestId *string `location:"header" locationName:"x-amzn-request-id" type:"string"`
@@ -2614,6 +2757,18 @@ func (s StartStreamTranscriptionOutput) String() string {
 // GoString returns the string representation
 func (s StartStreamTranscriptionOutput) GoString() string {
 	return s.String()
+}
+
+// SetContentIdentificationType sets the ContentIdentificationType field's value.
+func (s *StartStreamTranscriptionOutput) SetContentIdentificationType(v string) *StartStreamTranscriptionOutput {
+	s.ContentIdentificationType = &v
+	return s
+}
+
+// SetContentRedactionType sets the ContentRedactionType field's value.
+func (s *StartStreamTranscriptionOutput) SetContentRedactionType(v string) *StartStreamTranscriptionOutput {
+	s.ContentRedactionType = &v
+	return s
 }
 
 // SetEnableChannelIdentification sets the EnableChannelIdentification field's value.
@@ -2655,6 +2810,12 @@ func (s *StartStreamTranscriptionOutput) SetNumberOfChannels(v int64) *StartStre
 // SetPartialResultsStability sets the PartialResultsStability field's value.
 func (s *StartStreamTranscriptionOutput) SetPartialResultsStability(v string) *StartStreamTranscriptionOutput {
 	s.PartialResultsStability = &v
+	return s
+}
+
+// SetPiiEntityTypes sets the PiiEntityTypes field's value.
+func (s *StartStreamTranscriptionOutput) SetPiiEntityTypes(v string) *StartStreamTranscriptionOutput {
+	s.PiiEntityTypes = &v
 	return s
 }
 
@@ -2939,6 +3100,30 @@ func (e *TranscriptResultStreamUnknownEvent) UnmarshalEvent(
 ) error {
 	e.Message = msg.Clone()
 	return nil
+}
+
+const (
+	// ContentIdentificationTypePii is a ContentIdentificationType enum value
+	ContentIdentificationTypePii = "PII"
+)
+
+// ContentIdentificationType_Values returns all elements of the ContentIdentificationType enum
+func ContentIdentificationType_Values() []string {
+	return []string{
+		ContentIdentificationTypePii,
+	}
+}
+
+const (
+	// ContentRedactionTypePii is a ContentRedactionType enum value
+	ContentRedactionTypePii = "PII"
+)
+
+// ContentRedactionType_Values returns all elements of the ContentRedactionType enum
+func ContentRedactionType_Values() []string {
+	return []string{
+		ContentRedactionTypePii,
+	}
 }
 
 const (

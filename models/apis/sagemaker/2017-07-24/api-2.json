@@ -12668,6 +12668,21 @@
         "Disabled"
       ]
     },
+    "Project":{
+      "type":"structure",
+      "members":{
+        "ProjectArn":{"shape":"ProjectArn"},
+        "ProjectName":{"shape":"ProjectEntityName"},
+        "ProjectId":{"shape":"ProjectId"},
+        "ProjectDescription":{"shape":"EntityDescription"},
+        "ServiceCatalogProvisioningDetails":{"shape":"ServiceCatalogProvisioningDetails"},
+        "ServiceCatalogProvisionedProductDetails":{"shape":"ServiceCatalogProvisionedProductDetails"},
+        "ProjectStatus":{"shape":"ProjectStatus"},
+        "CreatedBy":{"shape":"UserContext"},
+        "CreationTime":{"shape":"Timestamp"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
     "ProjectArn":{
       "type":"string",
       "max":2048,
@@ -13056,7 +13071,8 @@
         "ModelPackageGroup",
         "Pipeline",
         "PipelineExecution",
-        "FeatureGroup"
+        "FeatureGroup",
+        "Project"
       ]
     },
     "ResponseMIMEType":{
@@ -13227,7 +13243,8 @@
         "ModelPackageGroup":{"shape":"ModelPackageGroup"},
         "Pipeline":{"shape":"Pipeline"},
         "PipelineExecution":{"shape":"PipelineExecution"},
-        "FeatureGroup":{"shape":"FeatureGroup"}
+        "FeatureGroup":{"shape":"FeatureGroup"},
+        "Project":{"shape":"Project"}
       }
     },
     "SearchRequest":{

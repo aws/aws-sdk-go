@@ -971,6 +971,13 @@
       "min":1,
       "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*"
     },
+    "AugmentedManifestsDocumentTypeFormat":{
+      "type":"string",
+      "enum":[
+        "PLAIN_TEXT_DOCUMENT",
+        "SEMI_STRUCTURED_DOCUMENT"
+      ]
+    },
     "AugmentedManifestsListItem":{
       "type":"structure",
       "required":[
@@ -979,7 +986,10 @@
       ],
       "members":{
         "S3Uri":{"shape":"S3Uri"},
-        "AttributeNames":{"shape":"AttributeNamesList"}
+        "AttributeNames":{"shape":"AttributeNamesList"},
+        "AnnotationDataS3Uri":{"shape":"S3Uri"},
+        "SourceDocumentsS3Uri":{"shape":"S3Uri"},
+        "DocumentType":{"shape":"AugmentedManifestsDocumentTypeFormat"}
       }
     },
     "BatchDetectDominantLanguageItemResult":{
@@ -1662,7 +1672,7 @@
     "DocumentClassifierArn":{
       "type":"string",
       "max":256,
-      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:document-classifier/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?"
     },
     "DocumentClassifierAugmentedManifestsList":{
       "type":"list",
@@ -1741,6 +1751,36 @@
       "members":{
         "Name":{"shape":"String"},
         "Score":{"shape":"Float"}
+      }
+    },
+    "DocumentReadAction":{
+      "type":"string",
+      "enum":[
+        "TEXTRACT_DETECT_DOCUMENT_TEXT",
+        "TEXTRACT_ANALYZE_DOCUMENT"
+      ]
+    },
+    "DocumentReadFeatureTypes":{
+      "type":"string",
+      "enum":[
+        "TABLES",
+        "FORMS"
+      ]
+    },
+    "DocumentReadMode":{
+      "type":"string",
+      "enum":[
+        "SERVICE_DEFAULT",
+        "FORCE_DOCUMENT_READ_ACTION"
+      ]
+    },
+    "DocumentReaderConfig":{
+      "type":"structure",
+      "required":["DocumentReadAction"],
+      "members":{
+        "DocumentReadAction":{"shape":"DocumentReadAction"},
+        "DocumentReadMode":{"shape":"DocumentReadMode"},
+        "FeatureTypes":{"shape":"ListOfDocumentReadFeatureTypes"}
       }
     },
     "DominantLanguage":{
@@ -1877,7 +1917,7 @@
     "EntityRecognizerArn":{
       "type":"string",
       "max":256,
-      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:entity-recognizer/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?"
     },
     "EntityRecognizerAugmentedManifestsList":{
       "type":"list",
@@ -2072,7 +2112,8 @@
       "required":["S3Uri"],
       "members":{
         "S3Uri":{"shape":"S3Uri"},
-        "InputFormat":{"shape":"InputFormat"}
+        "InputFormat":{"shape":"InputFormat"},
+        "DocumentReaderConfig":{"shape":"DocumentReaderConfig"}
       }
     },
     "InputFormat":{
@@ -2177,7 +2218,8 @@
     },
     "KmsKeyId":{
       "type":"string",
-      "max":2048
+      "max":2048,
+      "pattern":".*"
     },
     "KmsKeyValidationException":{
       "type":"structure",
@@ -2352,6 +2394,12 @@
     "ListOfDetectSyntaxResult":{
       "type":"list",
       "member":{"shape":"BatchDetectSyntaxItemResult"}
+    },
+    "ListOfDocumentReadFeatureTypes":{
+      "type":"list",
+      "member":{"shape":"DocumentReadFeatureTypes"},
+      "max":2,
+      "min":1
     },
     "ListOfDominantLanguages":{
       "type":"list",
