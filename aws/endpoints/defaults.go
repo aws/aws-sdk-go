@@ -67,7 +67,8 @@ const (
 //
 // Use DefaultPartitions() to get the list of the default partitions.
 func DefaultResolver() Resolver {
-	return defaultPartitions
+	parts := append(defaultPartitions, configPartitions()...)
+	return parts
 }
 
 // DefaultPartitions returns a list of the partitions the SDK is bundled
@@ -78,7 +79,8 @@ func DefaultResolver() Resolver {
 //        // ... inspect partitions
 //    }
 func DefaultPartitions() []Partition {
-	return defaultPartitions.Partitions()
+	parts := append(defaultPartitions, configPartitions()...)
+	return parts.Partitions()
 }
 
 var defaultPartitions = partitions{

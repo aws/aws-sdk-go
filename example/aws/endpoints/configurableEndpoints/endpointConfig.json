@@ -1,0 +1,34 @@
+{
+  "partitions": [
+    {
+      "defaults": {
+        "hostname": "10.01.01.01",
+        "protocols": [
+          "https"
+        ],
+        "signatureVersions": [
+          "v4"
+        ]
+      },
+      "partition": "minio",
+      "dnsSuffix": "calatrava.vmware",
+      "regionRegex": "^.*$",
+      "regions": {
+        "us-east-1": {
+          "description": "Calatrava"
+        }
+      },
+      "services": {
+        "s3": {
+          "endpoints": {
+            "us-east-1": {
+              "credentialScope": {
+                "region": "us-east-1"
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
