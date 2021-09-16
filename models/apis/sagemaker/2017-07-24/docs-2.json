@@ -200,6 +200,7 @@
     "PutModelPackageGroupPolicy": "<p>Adds a resouce policy to control access to a model group. For information about resoure policies, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_identity-vs-resource.html\">Identity-based policies and resource-based policies</a> in the <i>Amazon Web Services Identity and Access Management User Guide.</i>.</p>",
     "RegisterDevices": "<p>Register devices.</p>",
     "RenderUiTemplate": "<p>Renders the UI template so that you can preview the worker's experience. </p>",
+    "RetryPipelineExecution": "<p>Retry the execution of the pipeline.</p>",
     "Search": "<p>Finds Amazon SageMaker resources that match a search query. Matching resources are returned as a list of <code>SearchRecord</code> objects in the response. You can sort the search results by any resource property in a ascending or descending order.</p> <p>You can query against the following value types: numeric, text, Boolean, and timestamp.</p>",
     "SendPipelineExecutionStepFailure": "<p>Notifies the pipeline that the execution of a callback step failed, along with a message describing why. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS).</p>",
     "SendPipelineExecutionStepSuccess": "<p>Notifies the pipeline that the execution of a callback step succeeded and provides a list of the step's output parameters. When a callback step is run, the pipeline generates a callback token and includes the token in a message sent to Amazon Simple Queue Service (Amazon SQS).</p>",
@@ -4584,10 +4585,11 @@
       "refs": {
         "CreatePipelineRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
         "DeletePipelineRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
+        "RetryPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than once.</p>",
         "SendPipelineExecutionStepFailureRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
         "SendPipelineExecutionStepSuccessRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
-        "StartPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>",
-        "StopPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time.</p>"
+        "StartPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than once.</p>",
+        "StopPipelineExecutionRequest$ClientRequestToken": "<p>A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than once.</p>"
       }
     },
     "Image": {
@@ -7514,6 +7516,8 @@
         "ListPipelineParametersForExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "PipelineExecution$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "PipelineExecutionSummary$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
+        "RetryPipelineExecutionRequest$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
+        "RetryPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "SendPipelineExecutionStepFailureResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "SendPipelineExecutionStepSuccessResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
         "StartPipelineExecutionResponse$PipelineExecutionArn": "<p>The Amazon Resource Name (ARN) of the pipeline execution.</p>",
@@ -8373,6 +8377,16 @@
         "RetentionPolicy$HomeEfsFileSystem": "<p>The default is <code>Retain</code>, which specifies to keep the data stored on the EFS volume.</p> <p>Specify <code>Delete</code> to delete the data stored on the EFS volume.</p>"
       }
     },
+    "RetryPipelineExecutionRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "RetryPipelineExecutionResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "RetryStrategy": {
       "base": "<p>The retry strategy to use when a training job fails due to an <code>InternalServerError</code>. <code>RetryStrategy</code> is specified as part of the <code>CreateTrainingJob</code> and <code>CreateHyperParameterTuningJob</code> requests. You can add the <code>StoppingCondition</code> parameter to the request to limit the training time for the complete job.</p>",
       "refs": {
@@ -8702,7 +8716,7 @@
       }
     },
     "ServiceCatalogProvisioningDetails": {
-      "base": "<p>Details that you specify to provision a service catalog product. For information about service catalog, see .<a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
+      "base": "<p>Details that you specify to provision a service catalog product. For information about service catalog, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
       "refs": {
         "CreateProjectInput$ServiceCatalogProvisioningDetails": "<p>The product ID and provisioning artifact ID to provision a service catalog. For information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
         "DescribeProjectOutput$ServiceCatalogProvisioningDetails": "<p>Information used to provision a service catalog product. For information, see <a href=\"https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html\">What is Amazon Web Services Service Catalog</a>.</p>",
@@ -10554,7 +10568,7 @@
       }
     },
     "UserContext": {
-      "base": "<p>Information about the user who created or modified an experiment, trial, or trial component.</p>",
+      "base": "<p>Information about the user who created or modified an experiment, trial, trial component, or project.</p>",
       "refs": {
         "AssociationSummary$CreatedBy": null,
         "DescribeActionResponse$CreatedBy": null,
@@ -10573,11 +10587,11 @@
         "DescribePipelineResponse$CreatedBy": null,
         "DescribePipelineResponse$LastModifiedBy": null,
         "DescribeProjectOutput$CreatedBy": null,
-        "DescribeTrialComponentResponse$CreatedBy": "<p>Who created the component.</p>",
+        "DescribeTrialComponentResponse$CreatedBy": "<p>Who created the trial component.</p>",
         "DescribeTrialComponentResponse$LastModifiedBy": "<p>Who last modified the component.</p>",
         "DescribeTrialResponse$CreatedBy": "<p>Who created the trial.</p>",
         "DescribeTrialResponse$LastModifiedBy": "<p>Who last modified the trial.</p>",
-        "Experiment$CreatedBy": null,
+        "Experiment$CreatedBy": "<p>Who created the experiment.</p>",
         "Experiment$LastModifiedBy": null,
         "ModelPackage$CreatedBy": null,
         "ModelPackage$LastModifiedBy": null,
@@ -10586,13 +10600,13 @@
         "Pipeline$LastModifiedBy": null,
         "PipelineExecution$CreatedBy": null,
         "PipelineExecution$LastModifiedBy": null,
-        "Project$CreatedBy": null,
-        "Trial$CreatedBy": null,
+        "Project$CreatedBy": "<p>Who created the project.</p>",
+        "Trial$CreatedBy": "<p>Who created the trial.</p>",
         "Trial$LastModifiedBy": null,
-        "TrialComponent$CreatedBy": null,
+        "TrialComponent$CreatedBy": "<p>Who created the trial component.</p>",
         "TrialComponent$LastModifiedBy": null,
         "TrialComponentSimpleSummary$CreatedBy": null,
-        "TrialComponentSummary$CreatedBy": "<p>Who created the component.</p>",
+        "TrialComponentSummary$CreatedBy": "<p>Who created the trial component.</p>",
         "TrialComponentSummary$LastModifiedBy": "<p>Who last modified the component.</p>"
       }
     },

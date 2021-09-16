@@ -19342,6 +19342,93 @@ func (c *SageMaker) RenderUiTemplateWithContext(ctx aws.Context, input *RenderUi
 	return out, req.Send()
 }
 
+const opRetryPipelineExecution = "RetryPipelineExecution"
+
+// RetryPipelineExecutionRequest generates a "aws/request.Request" representing the
+// client's request for the RetryPipelineExecution operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See RetryPipelineExecution for more information on using the RetryPipelineExecution
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the RetryPipelineExecutionRequest method.
+//    req, resp := client.RetryPipelineExecutionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RetryPipelineExecution
+func (c *SageMaker) RetryPipelineExecutionRequest(input *RetryPipelineExecutionInput) (req *request.Request, output *RetryPipelineExecutionOutput) {
+	op := &request.Operation{
+		Name:       opRetryPipelineExecution,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &RetryPipelineExecutionInput{}
+	}
+
+	output = &RetryPipelineExecutionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// RetryPipelineExecution API operation for Amazon SageMaker Service.
+//
+// Retry the execution of the pipeline.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon SageMaker Service's
+// API operation RetryPipelineExecution for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFound
+//   Resource being access is not found.
+//
+//   * ResourceLimitExceeded
+//   You have exceeded an Amazon SageMaker resource limit. For example, you might
+//   have too many training jobs created.
+//
+//   * ConflictException
+//   There was a conflict when you attempted to modify a SageMaker entity such
+//   as an Experiment or Artifact.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/sagemaker-2017-07-24/RetryPipelineExecution
+func (c *SageMaker) RetryPipelineExecution(input *RetryPipelineExecutionInput) (*RetryPipelineExecutionOutput, error) {
+	req, out := c.RetryPipelineExecutionRequest(input)
+	return out, req.Send()
+}
+
+// RetryPipelineExecutionWithContext is the same as RetryPipelineExecution with the addition of
+// the ability to pass a context and additional request options.
+//
+// See RetryPipelineExecution for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *SageMaker) RetryPipelineExecutionWithContext(ctx aws.Context, input *RetryPipelineExecutionInput, opts ...request.Option) (*RetryPipelineExecutionOutput, error) {
+	req, out := c.RetryPipelineExecutionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opSearch = "Search"
 
 // SearchRequest generates a "aws/request.Request" representing the
@@ -24976,7 +25063,7 @@ type AssociationSummary struct {
 	AssociationType *string `type:"string" enum:"AssociationEdgeType"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the association was created.
@@ -41019,7 +41106,7 @@ type DescribeActionOutput struct {
 	ActionType *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the action was created.
@@ -41029,7 +41116,7 @@ type DescribeActionOutput struct {
 	Description *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the action was last modified.
@@ -41703,14 +41790,14 @@ type DescribeArtifactOutput struct {
 	ArtifactType *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the artifact was created.
 	CreationTime *time.Time `type:"timestamp"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the artifact was last modified.
@@ -42535,7 +42622,7 @@ type DescribeContextOutput struct {
 	ContextType *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the context was created.
@@ -42545,7 +42632,7 @@ type DescribeContextOutput struct {
 	Description *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the context was last modified.
@@ -46110,7 +46197,7 @@ type DescribeModelPackageGroupOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	//
 	// CreatedBy is a required field
 	CreatedBy *UserContext `type:"structure" required:"true"`
@@ -46256,7 +46343,7 @@ type DescribeModelPackageOutput struct {
 	CertifyForMarketplace *bool `type:"boolean"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// A timestamp specifying when the model package was created.
@@ -46269,7 +46356,7 @@ type DescribeModelPackageOutput struct {
 	InferenceSpecification *InferenceSpecification `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The last time the model package was modified.
@@ -47379,7 +47466,7 @@ type DescribePipelineExecutionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time when the pipeline execution was created.
@@ -47389,7 +47476,7 @@ type DescribePipelineExecutionOutput struct {
 	FailureReason *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The time when the pipeline execution was modified last.
@@ -47551,14 +47638,14 @@ type DescribePipelineOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time when the pipeline was created.
 	CreationTime *time.Time `type:"timestamp"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The time when the pipeline was last modified.
@@ -48012,7 +48099,7 @@ type DescribeProjectOutput struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time when the project was created.
@@ -49253,7 +49340,7 @@ func (s *DescribeTrialComponentInput) SetTrialComponentName(v string) *DescribeT
 type DescribeTrialComponentOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Who created the component.
+	// Who created the trial component.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the component was created.
@@ -51473,8 +51560,7 @@ func (s *EndpointSummary) SetLastModifiedTime(v time.Time) *EndpointSummary {
 type Experiment struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// Who created the experiment.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the experiment was created.
@@ -51494,7 +51580,7 @@ type Experiment struct {
 	ExperimentName *string `min:"1" type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the experiment was last modified.
@@ -67344,7 +67430,7 @@ type ModelPackage struct {
 	CertifyForMarketplace *bool `type:"boolean"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time that the model package was created.
@@ -67354,7 +67440,7 @@ type ModelPackage struct {
 	InferenceSpecification *InferenceSpecification `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The last time the model package was modified.
@@ -67669,7 +67755,7 @@ type ModelPackageGroup struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The time that the model group was created.
@@ -71899,14 +71985,14 @@ type Pipeline struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The creation time of the pipeline.
 	CreationTime *time.Time `type:"timestamp"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The time that the pipeline was last modified.
@@ -72032,7 +72118,7 @@ type PipelineExecution struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// The creation time of the pipeline execution.
@@ -72042,7 +72128,7 @@ type PipelineExecution struct {
 	FailureReason *string `type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// The time that the pipeline execution was last modified.
@@ -74281,8 +74367,7 @@ func (s *ProfilerRuleEvaluationStatus) SetStatusDetails(v string) *ProfilerRuleE
 type Project struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// Who created the project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// A timestamp specifying when the project was created.
@@ -74308,7 +74393,7 @@ type Project struct {
 	ServiceCatalogProvisionedProductDetails *ServiceCatalogProvisionedProductDetails `type:"structure"`
 
 	// Details that you specify to provision a service catalog product. For information
-	// about service catalog, see .What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+	// about service catalog, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 	ServiceCatalogProvisioningDetails *ServiceCatalogProvisioningDetails `type:"structure"`
 
 	// An array of key-value pairs. You can use tags to categorize your Amazon Web
@@ -76106,6 +76191,96 @@ func (s *RetentionPolicy) SetHomeEfsFileSystem(v string) *RetentionPolicy {
 	return s
 }
 
+type RetryPipelineExecutionInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the operation. An idempotent operation completes no more than once.
+	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
+
+	// The Amazon Resource Name (ARN) of the pipeline execution.
+	//
+	// PipelineExecutionArn is a required field
+	PipelineExecutionArn *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPipelineExecutionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPipelineExecutionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RetryPipelineExecutionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RetryPipelineExecutionInput"}
+	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 32 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 32))
+	}
+	if s.PipelineExecutionArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("PipelineExecutionArn"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientRequestToken sets the ClientRequestToken field's value.
+func (s *RetryPipelineExecutionInput) SetClientRequestToken(v string) *RetryPipelineExecutionInput {
+	s.ClientRequestToken = &v
+	return s
+}
+
+// SetPipelineExecutionArn sets the PipelineExecutionArn field's value.
+func (s *RetryPipelineExecutionInput) SetPipelineExecutionArn(v string) *RetryPipelineExecutionInput {
+	s.PipelineExecutionArn = &v
+	return s
+}
+
+type RetryPipelineExecutionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the pipeline execution.
+	PipelineExecutionArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPipelineExecutionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RetryPipelineExecutionOutput) GoString() string {
+	return s.String()
+}
+
+// SetPipelineExecutionArn sets the PipelineExecutionArn field's value.
+func (s *RetryPipelineExecutionOutput) SetPipelineExecutionArn(v string) *RetryPipelineExecutionOutput {
+	s.PipelineExecutionArn = &v
+	return s
+}
+
 // The retry strategy to use when a training job fails due to an InternalServerError.
 // RetryStrategy is specified as part of the CreateTrainingJob and CreateHyperParameterTuningJob
 // requests. You can add the StoppingCondition parameter to the request to limit
@@ -77272,7 +77447,7 @@ func (s *ServiceCatalogProvisionedProductDetails) SetProvisionedProductStatusMes
 }
 
 // Details that you specify to provision a service catalog product. For information
-// about service catalog, see .What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
+// about service catalog, see What is Amazon Web Services Service Catalog (https://docs.aws.amazon.com/servicecatalog/latest/adminguide/introduction.html).
 type ServiceCatalogProvisioningDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -77815,7 +77990,7 @@ type StartPipelineExecutionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the operation. An idempotent operation completes no more than one time.
+	// of the operation. An idempotent operation completes no more than once.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
 	// The description of the pipeline execution.
@@ -78442,7 +78617,7 @@ type StopPipelineExecutionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
-	// of the operation. An idempotent operation completes no more than one time.
+	// of the operation. An idempotent operation completes no more than once.
 	ClientRequestToken *string `min:"32" type:"string" idempotencyToken:"true"`
 
 	// The Amazon Resource Name (ARN) of the pipeline execution.
@@ -81338,8 +81513,7 @@ func (s *TransformS3DataSource) SetS3Uri(v string) *TransformS3DataSource {
 type Trial struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// Who created the trial.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the trial was created.
@@ -81353,7 +81527,7 @@ type Trial struct {
 	ExperimentName *string `min:"1" type:"string"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// Who last modified the trial.
@@ -81474,8 +81648,7 @@ func (s *Trial) SetTrialName(v string) *Trial {
 type TrialComponent struct {
 	_ struct{} `type:"structure"`
 
-	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// Who created the trial component.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the component was created.
@@ -81492,7 +81665,7 @@ type TrialComponent struct {
 	InputArtifacts map[string]*TrialComponentArtifact `type:"map"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	LastModifiedBy *UserContext `type:"structure"`
 
 	// When the component was last modified.
@@ -81890,7 +82063,7 @@ type TrialComponentSimpleSummary struct {
 	_ struct{} `type:"structure"`
 
 	// Information about the user who created or modified an experiment, trial,
-	// or trial component.
+	// trial component, or project.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the component was created.
@@ -82103,7 +82276,7 @@ func (s *TrialComponentStatus) SetPrimaryStatus(v string) *TrialComponentStatus 
 type TrialComponentSummary struct {
 	_ struct{} `type:"structure"`
 
-	// Who created the component.
+	// Who created the trial component.
 	CreatedBy *UserContext `type:"structure"`
 
 	// When the component was created.
@@ -85520,7 +85693,7 @@ func (s *UpdateWorkteamOutput) SetWorkteam(v *Workteam) *UpdateWorkteamOutput {
 }
 
 // Information about the user who created or modified an experiment, trial,
-// or trial component.
+// trial component, or project.
 type UserContext struct {
 	_ struct{} `type:"structure"`
 

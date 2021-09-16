@@ -80,6 +80,10 @@ type PinpointAPI interface {
 	CreateImportJobWithContext(aws.Context, *pinpoint.CreateImportJobInput, ...request.Option) (*pinpoint.CreateImportJobOutput, error)
 	CreateImportJobRequest(*pinpoint.CreateImportJobInput) (*request.Request, *pinpoint.CreateImportJobOutput)
 
+	CreateInAppTemplate(*pinpoint.CreateInAppTemplateInput) (*pinpoint.CreateInAppTemplateOutput, error)
+	CreateInAppTemplateWithContext(aws.Context, *pinpoint.CreateInAppTemplateInput, ...request.Option) (*pinpoint.CreateInAppTemplateOutput, error)
+	CreateInAppTemplateRequest(*pinpoint.CreateInAppTemplateInput) (*request.Request, *pinpoint.CreateInAppTemplateOutput)
+
 	CreateJourney(*pinpoint.CreateJourneyInput) (*pinpoint.CreateJourneyOutput, error)
 	CreateJourneyWithContext(aws.Context, *pinpoint.CreateJourneyInput, ...request.Option) (*pinpoint.CreateJourneyOutput, error)
 	CreateJourneyRequest(*pinpoint.CreateJourneyInput) (*request.Request, *pinpoint.CreateJourneyOutput)
@@ -155,6 +159,10 @@ type PinpointAPI interface {
 	DeleteGcmChannel(*pinpoint.DeleteGcmChannelInput) (*pinpoint.DeleteGcmChannelOutput, error)
 	DeleteGcmChannelWithContext(aws.Context, *pinpoint.DeleteGcmChannelInput, ...request.Option) (*pinpoint.DeleteGcmChannelOutput, error)
 	DeleteGcmChannelRequest(*pinpoint.DeleteGcmChannelInput) (*request.Request, *pinpoint.DeleteGcmChannelOutput)
+
+	DeleteInAppTemplate(*pinpoint.DeleteInAppTemplateInput) (*pinpoint.DeleteInAppTemplateOutput, error)
+	DeleteInAppTemplateWithContext(aws.Context, *pinpoint.DeleteInAppTemplateInput, ...request.Option) (*pinpoint.DeleteInAppTemplateOutput, error)
+	DeleteInAppTemplateRequest(*pinpoint.DeleteInAppTemplateInput) (*request.Request, *pinpoint.DeleteInAppTemplateOutput)
 
 	DeleteJourney(*pinpoint.DeleteJourneyInput) (*pinpoint.DeleteJourneyOutput, error)
 	DeleteJourneyWithContext(aws.Context, *pinpoint.DeleteJourneyInput, ...request.Option) (*pinpoint.DeleteJourneyOutput, error)
@@ -295,6 +303,14 @@ type PinpointAPI interface {
 	GetImportJobs(*pinpoint.GetImportJobsInput) (*pinpoint.GetImportJobsOutput, error)
 	GetImportJobsWithContext(aws.Context, *pinpoint.GetImportJobsInput, ...request.Option) (*pinpoint.GetImportJobsOutput, error)
 	GetImportJobsRequest(*pinpoint.GetImportJobsInput) (*request.Request, *pinpoint.GetImportJobsOutput)
+
+	GetInAppMessages(*pinpoint.GetInAppMessagesInput) (*pinpoint.GetInAppMessagesOutput, error)
+	GetInAppMessagesWithContext(aws.Context, *pinpoint.GetInAppMessagesInput, ...request.Option) (*pinpoint.GetInAppMessagesOutput, error)
+	GetInAppMessagesRequest(*pinpoint.GetInAppMessagesInput) (*request.Request, *pinpoint.GetInAppMessagesOutput)
+
+	GetInAppTemplate(*pinpoint.GetInAppTemplateInput) (*pinpoint.GetInAppTemplateOutput, error)
+	GetInAppTemplateWithContext(aws.Context, *pinpoint.GetInAppTemplateInput, ...request.Option) (*pinpoint.GetInAppTemplateOutput, error)
+	GetInAppTemplateRequest(*pinpoint.GetInAppTemplateInput) (*request.Request, *pinpoint.GetInAppTemplateOutput)
 
 	GetJourney(*pinpoint.GetJourneyInput) (*pinpoint.GetJourneyOutput, error)
 	GetJourneyWithContext(aws.Context, *pinpoint.GetJourneyInput, ...request.Option) (*pinpoint.GetJourneyOutput, error)
@@ -467,6 +483,10 @@ type PinpointAPI interface {
 	UpdateGcmChannel(*pinpoint.UpdateGcmChannelInput) (*pinpoint.UpdateGcmChannelOutput, error)
 	UpdateGcmChannelWithContext(aws.Context, *pinpoint.UpdateGcmChannelInput, ...request.Option) (*pinpoint.UpdateGcmChannelOutput, error)
 	UpdateGcmChannelRequest(*pinpoint.UpdateGcmChannelInput) (*request.Request, *pinpoint.UpdateGcmChannelOutput)
+
+	UpdateInAppTemplate(*pinpoint.UpdateInAppTemplateInput) (*pinpoint.UpdateInAppTemplateOutput, error)
+	UpdateInAppTemplateWithContext(aws.Context, *pinpoint.UpdateInAppTemplateInput, ...request.Option) (*pinpoint.UpdateInAppTemplateOutput, error)
+	UpdateInAppTemplateRequest(*pinpoint.UpdateInAppTemplateInput) (*request.Request, *pinpoint.UpdateInAppTemplateOutput)
 
 	UpdateJourney(*pinpoint.UpdateJourneyInput) (*pinpoint.UpdateJourneyOutput, error)
 	UpdateJourneyWithContext(aws.Context, *pinpoint.UpdateJourneyInput, ...request.Option) (*pinpoint.UpdateJourneyOutput, error)

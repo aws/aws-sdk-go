@@ -249,6 +249,10 @@ type Macie2API interface {
 	ListInvitationsPages(*macie2.ListInvitationsInput, func(*macie2.ListInvitationsOutput, bool) bool) error
 	ListInvitationsPagesWithContext(aws.Context, *macie2.ListInvitationsInput, func(*macie2.ListInvitationsOutput, bool) bool, ...request.Option) error
 
+	ListManagedDataIdentifiers(*macie2.ListManagedDataIdentifiersInput) (*macie2.ListManagedDataIdentifiersOutput, error)
+	ListManagedDataIdentifiersWithContext(aws.Context, *macie2.ListManagedDataIdentifiersInput, ...request.Option) (*macie2.ListManagedDataIdentifiersOutput, error)
+	ListManagedDataIdentifiersRequest(*macie2.ListManagedDataIdentifiersInput) (*request.Request, *macie2.ListManagedDataIdentifiersOutput)
+
 	ListMembers(*macie2.ListMembersInput) (*macie2.ListMembersOutput, error)
 	ListMembersWithContext(aws.Context, *macie2.ListMembersInput, ...request.Option) (*macie2.ListMembersOutput, error)
 	ListMembersRequest(*macie2.ListMembersInput) (*request.Request, *macie2.ListMembersOutput)

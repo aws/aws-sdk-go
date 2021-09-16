@@ -1,3 +1,26 @@
+Release v1.40.44 (2021-09-16)
+===
+
+### Service Client Updates
+* `service/kafkaconnect`: Adds new service
+* `service/macie2`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * This SDK release adds a new feature for Pinpoint campaigns, in-app messaging.
+* `service/robomaker`: Updates service API and documentation
+* `service/s3`: Updates service API, documentation, and examples
+  * Add support for access point arn filtering in S3 CW Request Metrics
+* `service/sagemaker`: Updates service API and documentation
+  * Add API for users to retry a failed pipeline execution or resume a stopped one.
+* `service/transcribe`: Updates service API and documentation
+
+### SDK Enhancements
+* Update SDK API client documentation for suppressed API parameters
+  * Updates the documentation for API parameters that will be suppressed in structures' String and GoString methods.
+
+### SDK Bugs
+* `aws/client`: Update client logging to only log request headers when logging is enabled
+  * Updates the SDK's base client to only log request headers when logging is enabled. This fixes an issue where event stream API operations would always log request headers. Regardless if logging was enabled or not.
+
 Release v1.40.43 (2021-09-14)
 ===
 

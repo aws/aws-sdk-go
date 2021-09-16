@@ -7240,6 +7240,30 @@
           "eu-west-1" : { },
           "eu-west-2" : { },
           "sa-east-1" : { },
+          "transcribestreaming-fips-ca-central-1" : {
+            "credentialScope" : {
+              "region" : "ca-central-1"
+            },
+            "hostname" : "transcribestreaming-fips.ca-central-1.amazonaws.com"
+          },
+          "transcribestreaming-fips-us-east-1" : {
+            "credentialScope" : {
+              "region" : "us-east-1"
+            },
+            "hostname" : "transcribestreaming-fips.us-east-1.amazonaws.com"
+          },
+          "transcribestreaming-fips-us-east-2" : {
+            "credentialScope" : {
+              "region" : "us-east-2"
+            },
+            "hostname" : "transcribestreaming-fips.us-east-2.amazonaws.com"
+          },
+          "transcribestreaming-fips-us-west-2" : {
+            "credentialScope" : {
+              "region" : "us-west-2"
+            },
+            "hostname" : "transcribestreaming-fips.us-west-2.amazonaws.com"
+          },
           "us-east-1" : { },
           "us-east-2" : { },
           "us-west-2" : { }
@@ -9802,6 +9826,16 @@
           },
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
+        }
+      },
+      "oidc" : {
+        "endpoints" : {
+          "us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "oidc.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "organizations" : {

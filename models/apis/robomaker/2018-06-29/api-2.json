@@ -1085,14 +1085,14 @@
       "type":"structure",
       "required":[
         "name",
-        "sources",
         "robotSoftwareSuite"
       ],
       "members":{
         "name":{"shape":"Name"},
         "sources":{"shape":"SourceConfigs"},
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "environment":{"shape":"Environment"}
       }
     },
     "CreateRobotApplicationResponse":{
@@ -1105,7 +1105,8 @@
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
         "revisionId":{"shape":"RevisionId"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "environment":{"shape":"Environment"}
       }
     },
     "CreateRobotApplicationVersionRequest":{
@@ -1113,7 +1114,9 @@
       "required":["application"],
       "members":{
         "application":{"shape":"Arn"},
-        "currentRevisionId":{"shape":"RevisionId"}
+        "currentRevisionId":{"shape":"RevisionId"},
+        "s3Etags":{"shape":"S3Etags"},
+        "imageDigest":{"shape":"ImageDigest"}
       }
     },
     "CreateRobotApplicationVersionResponse":{
@@ -1125,7 +1128,8 @@
         "sources":{"shape":"Sources"},
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
-        "revisionId":{"shape":"RevisionId"}
+        "revisionId":{"shape":"RevisionId"},
+        "environment":{"shape":"Environment"}
       }
     },
     "CreateRobotRequest":{
@@ -1157,7 +1161,6 @@
       "type":"structure",
       "required":[
         "name",
-        "sources",
         "simulationSoftwareSuite",
         "robotSoftwareSuite"
       ],
@@ -1167,7 +1170,8 @@
         "simulationSoftwareSuite":{"shape":"SimulationSoftwareSuite"},
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
         "renderingEngine":{"shape":"RenderingEngine"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "environment":{"shape":"Environment"}
       }
     },
     "CreateSimulationApplicationResponse":{
@@ -1182,7 +1186,8 @@
         "renderingEngine":{"shape":"RenderingEngine"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
         "revisionId":{"shape":"RevisionId"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "environment":{"shape":"Environment"}
       }
     },
     "CreateSimulationApplicationVersionRequest":{
@@ -1190,7 +1195,9 @@
       "required":["application"],
       "members":{
         "application":{"shape":"Arn"},
-        "currentRevisionId":{"shape":"RevisionId"}
+        "currentRevisionId":{"shape":"RevisionId"},
+        "s3Etags":{"shape":"S3Etags"},
+        "imageDigest":{"shape":"ImageDigest"}
       }
     },
     "CreateSimulationApplicationVersionResponse":{
@@ -1204,7 +1211,8 @@
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
         "renderingEngine":{"shape":"RenderingEngine"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
-        "revisionId":{"shape":"RevisionId"}
+        "revisionId":{"shape":"RevisionId"},
+        "environment":{"shape":"Environment"}
       }
     },
     "CreateSimulationJobRequest":{
@@ -1626,7 +1634,9 @@
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
         "revisionId":{"shape":"RevisionId"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "environment":{"shape":"Environment"},
+        "imageDigest":{"shape":"ImageDigest"}
       }
     },
     "DescribeRobotRequest":{
@@ -1671,7 +1681,9 @@
         "renderingEngine":{"shape":"RenderingEngine"},
         "revisionId":{"shape":"RevisionId"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
-        "tags":{"shape":"TagMap"}
+        "tags":{"shape":"TagMap"},
+        "environment":{"shape":"Environment"},
+        "imageDigest":{"shape":"ImageDigest"}
       }
     },
     "DescribeSimulationJobBatchRequest":{
@@ -1813,6 +1825,12 @@
         "version":{"shape":"GenericString"}
       }
     },
+    "Environment":{
+      "type":"structure",
+      "members":{
+        "uri":{"shape":"RepositoryUrl"}
+      }
+    },
     "EnvironmentVariableKey":{
       "type":"string",
       "max":1024,
@@ -1951,6 +1969,12 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "ImageDigest":{
+      "type":"string",
+      "max":72,
+      "min":0,
+      "pattern":"[Ss][Hh][Aa]256:[0-9a-fA-F]{64}"
     },
     "Integer":{"type":"integer"},
     "InteriorCountPerFloorplan":{"type":"integer"},
@@ -2323,6 +2347,12 @@
       "min":1,
       "pattern":"1.x"
     },
+    "RepositoryUrl":{
+      "type":"string",
+      "max":1024,
+      "min":1,
+      "pattern":".+"
+    },
     "ResourceAlreadyExistsException":{
       "type":"structure",
       "members":{
@@ -2489,6 +2519,10 @@
       "pattern":"[a-z0-9][a-z0-9.\\-]*[a-z0-9]"
     },
     "S3Etag":{"type":"string"},
+    "S3Etags":{
+      "type":"list",
+      "member":{"shape":"S3Etag"}
+    },
     "S3Key":{
       "type":"string",
       "max":1024,
@@ -2982,14 +3016,14 @@
       "type":"structure",
       "required":[
         "application",
-        "sources",
         "robotSoftwareSuite"
       ],
       "members":{
         "application":{"shape":"Arn"},
         "sources":{"shape":"SourceConfigs"},
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
-        "currentRevisionId":{"shape":"RevisionId"}
+        "currentRevisionId":{"shape":"RevisionId"},
+        "environment":{"shape":"Environment"}
       }
     },
     "UpdateRobotApplicationResponse":{
@@ -3001,14 +3035,14 @@
         "sources":{"shape":"Sources"},
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
-        "revisionId":{"shape":"RevisionId"}
+        "revisionId":{"shape":"RevisionId"},
+        "environment":{"shape":"Environment"}
       }
     },
     "UpdateSimulationApplicationRequest":{
       "type":"structure",
       "required":[
         "application",
-        "sources",
         "simulationSoftwareSuite",
         "robotSoftwareSuite"
       ],
@@ -3018,7 +3052,8 @@
         "simulationSoftwareSuite":{"shape":"SimulationSoftwareSuite"},
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
         "renderingEngine":{"shape":"RenderingEngine"},
-        "currentRevisionId":{"shape":"RevisionId"}
+        "currentRevisionId":{"shape":"RevisionId"},
+        "environment":{"shape":"Environment"}
       }
     },
     "UpdateSimulationApplicationResponse":{
@@ -3032,7 +3067,8 @@
         "robotSoftwareSuite":{"shape":"RobotSoftwareSuite"},
         "renderingEngine":{"shape":"RenderingEngine"},
         "lastUpdatedAt":{"shape":"LastUpdatedAt"},
-        "revisionId":{"shape":"RevisionId"}
+        "revisionId":{"shape":"RevisionId"},
+        "environment":{"shape":"Environment"}
       }
     },
     "UpdateWorldTemplateRequest":{

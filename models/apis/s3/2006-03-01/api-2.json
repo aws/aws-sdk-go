@@ -1060,6 +1060,7 @@
         "Owner":{"shape":"OwnerOverride"}
       }
     },
+    "AccessPointArn":{"type":"string"},
     "AccountId":{"type":"string"},
     "AllowQuotedRecordDelimiter":{"type":"boolean"},
     "AllowedHeader":{"type":"string"},
@@ -4938,7 +4939,8 @@
           "shape":"TagSet",
           "flattened":true,
           "locationName":"Tag"
-        }
+        },
+        "AccessPointArn":{"shape":"AccessPointArn"}
       }
     },
     "MetricsConfiguration":{
@@ -4959,6 +4961,7 @@
       "members":{
         "Prefix":{"shape":"Prefix"},
         "Tag":{"shape":"Tag"},
+        "AccessPointArn":{"shape":"AccessPointArn"},
         "And":{"shape":"MetricsAndOperator"}
       }
     },

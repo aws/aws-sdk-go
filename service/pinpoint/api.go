@@ -493,6 +493,97 @@ func (c *Pinpoint) CreateImportJobWithContext(ctx aws.Context, input *CreateImpo
 	return out, req.Send()
 }
 
+const opCreateInAppTemplate = "CreateInAppTemplate"
+
+// CreateInAppTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the CreateInAppTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateInAppTemplate for more information on using the CreateInAppTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateInAppTemplateRequest method.
+//    req, resp := client.CreateInAppTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateInAppTemplate
+func (c *Pinpoint) CreateInAppTemplateRequest(input *CreateInAppTemplateInput) (req *request.Request, output *CreateInAppTemplateOutput) {
+	op := &request.Operation{
+		Name:       opCreateInAppTemplate,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/templates/{template-name}/inapp",
+	}
+
+	if input == nil {
+		input = &CreateInAppTemplateInput{}
+	}
+
+	output = &CreateInAppTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateInAppTemplate API operation for Amazon Pinpoint.
+//
+// Creates a new message template for messages using the in-app message channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation CreateInAppTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * MethodNotAllowedException
+//   Provides information about an API request or response.
+//
+//   * TooManyRequestsException
+//   Provides information about an API request or response.
+//
+//   * BadRequestException
+//   Provides information about an API request or response.
+//
+//   * InternalServerErrorException
+//   Provides information about an API request or response.
+//
+//   * ForbiddenException
+//   Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/CreateInAppTemplate
+func (c *Pinpoint) CreateInAppTemplate(input *CreateInAppTemplateInput) (*CreateInAppTemplateOutput, error) {
+	req, out := c.CreateInAppTemplateRequest(input)
+	return out, req.Send()
+}
+
+// CreateInAppTemplateWithContext is the same as CreateInAppTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateInAppTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) CreateInAppTemplateWithContext(ctx aws.Context, input *CreateInAppTemplateInput, opts ...request.Option) (*CreateInAppTemplateOutput, error) {
+	req, out := c.CreateInAppTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateJourney = "CreateJourney"
 
 // CreateJourneyRequest generates a "aws/request.Request" representing the
@@ -2324,6 +2415,103 @@ func (c *Pinpoint) DeleteGcmChannel(input *DeleteGcmChannelInput) (*DeleteGcmCha
 // for more information on using Contexts.
 func (c *Pinpoint) DeleteGcmChannelWithContext(ctx aws.Context, input *DeleteGcmChannelInput, opts ...request.Option) (*DeleteGcmChannelOutput, error) {
 	req, out := c.DeleteGcmChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteInAppTemplate = "DeleteInAppTemplate"
+
+// DeleteInAppTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteInAppTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteInAppTemplate for more information on using the DeleteInAppTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteInAppTemplateRequest method.
+//    req, resp := client.DeleteInAppTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteInAppTemplate
+func (c *Pinpoint) DeleteInAppTemplateRequest(input *DeleteInAppTemplateInput) (req *request.Request, output *DeleteInAppTemplateOutput) {
+	op := &request.Operation{
+		Name:       opDeleteInAppTemplate,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/templates/{template-name}/inapp",
+	}
+
+	if input == nil {
+		input = &DeleteInAppTemplateInput{}
+	}
+
+	output = &DeleteInAppTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DeleteInAppTemplate API operation for Amazon Pinpoint.
+//
+// Deletes a message template for messages sent using the in-app message channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation DeleteInAppTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Provides information about an API request or response.
+//
+//   * InternalServerErrorException
+//   Provides information about an API request or response.
+//
+//   * PayloadTooLargeException
+//   Provides information about an API request or response.
+//
+//   * ForbiddenException
+//   Provides information about an API request or response.
+//
+//   * NotFoundException
+//   Provides information about an API request or response.
+//
+//   * MethodNotAllowedException
+//   Provides information about an API request or response.
+//
+//   * TooManyRequestsException
+//   Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/DeleteInAppTemplate
+func (c *Pinpoint) DeleteInAppTemplate(input *DeleteInAppTemplateInput) (*DeleteInAppTemplateOutput, error) {
+	req, out := c.DeleteInAppTemplateRequest(input)
+	return out, req.Send()
+}
+
+// DeleteInAppTemplateWithContext is the same as DeleteInAppTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteInAppTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) DeleteInAppTemplateWithContext(ctx aws.Context, input *DeleteInAppTemplateInput, opts ...request.Option) (*DeleteInAppTemplateOutput, error) {
+	req, out := c.DeleteInAppTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -5745,6 +5933,201 @@ func (c *Pinpoint) GetImportJobs(input *GetImportJobsInput) (*GetImportJobsOutpu
 // for more information on using Contexts.
 func (c *Pinpoint) GetImportJobsWithContext(ctx aws.Context, input *GetImportJobsInput, opts ...request.Option) (*GetImportJobsOutput, error) {
 	req, out := c.GetImportJobsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetInAppMessages = "GetInAppMessages"
+
+// GetInAppMessagesRequest generates a "aws/request.Request" representing the
+// client's request for the GetInAppMessages operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInAppMessages for more information on using the GetInAppMessages
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInAppMessagesRequest method.
+//    req, resp := client.GetInAppMessagesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetInAppMessages
+func (c *Pinpoint) GetInAppMessagesRequest(input *GetInAppMessagesInput) (req *request.Request, output *GetInAppMessagesOutput) {
+	op := &request.Operation{
+		Name:       opGetInAppMessages,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/apps/{application-id}/endpoints/{endpoint-id}/inappmessages",
+	}
+
+	if input == nil {
+		input = &GetInAppMessagesInput{}
+	}
+
+	output = &GetInAppMessagesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInAppMessages API operation for Amazon Pinpoint.
+//
+// Retrieves the in-app messages targeted for the provided endpoint ID.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetInAppMessages for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Provides information about an API request or response.
+//
+//   * InternalServerErrorException
+//   Provides information about an API request or response.
+//
+//   * PayloadTooLargeException
+//   Provides information about an API request or response.
+//
+//   * ForbiddenException
+//   Provides information about an API request or response.
+//
+//   * NotFoundException
+//   Provides information about an API request or response.
+//
+//   * MethodNotAllowedException
+//   Provides information about an API request or response.
+//
+//   * TooManyRequestsException
+//   Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetInAppMessages
+func (c *Pinpoint) GetInAppMessages(input *GetInAppMessagesInput) (*GetInAppMessagesOutput, error) {
+	req, out := c.GetInAppMessagesRequest(input)
+	return out, req.Send()
+}
+
+// GetInAppMessagesWithContext is the same as GetInAppMessages with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInAppMessages for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetInAppMessagesWithContext(ctx aws.Context, input *GetInAppMessagesInput, opts ...request.Option) (*GetInAppMessagesOutput, error) {
+	req, out := c.GetInAppMessagesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetInAppTemplate = "GetInAppTemplate"
+
+// GetInAppTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the GetInAppTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetInAppTemplate for more information on using the GetInAppTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetInAppTemplateRequest method.
+//    req, resp := client.GetInAppTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetInAppTemplate
+func (c *Pinpoint) GetInAppTemplateRequest(input *GetInAppTemplateInput) (req *request.Request, output *GetInAppTemplateOutput) {
+	op := &request.Operation{
+		Name:       opGetInAppTemplate,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/templates/{template-name}/inapp",
+	}
+
+	if input == nil {
+		input = &GetInAppTemplateInput{}
+	}
+
+	output = &GetInAppTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetInAppTemplate API operation for Amazon Pinpoint.
+//
+// Retrieves the content and settings of a message template for messages sent
+// through the in-app channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation GetInAppTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Provides information about an API request or response.
+//
+//   * InternalServerErrorException
+//   Provides information about an API request or response.
+//
+//   * PayloadTooLargeException
+//   Provides information about an API request or response.
+//
+//   * ForbiddenException
+//   Provides information about an API request or response.
+//
+//   * NotFoundException
+//   Provides information about an API request or response.
+//
+//   * MethodNotAllowedException
+//   Provides information about an API request or response.
+//
+//   * TooManyRequestsException
+//   Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/GetInAppTemplate
+func (c *Pinpoint) GetInAppTemplate(input *GetInAppTemplateInput) (*GetInAppTemplateOutput, error) {
+	req, out := c.GetInAppTemplateRequest(input)
+	return out, req.Send()
+}
+
+// GetInAppTemplateWithContext is the same as GetInAppTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetInAppTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) GetInAppTemplateWithContext(ctx aws.Context, input *GetInAppTemplateInput, opts ...request.Option) (*GetInAppTemplateOutput, error) {
+	req, out := c.GetInAppTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -9886,6 +10269,104 @@ func (c *Pinpoint) UpdateGcmChannel(input *UpdateGcmChannelInput) (*UpdateGcmCha
 // for more information on using Contexts.
 func (c *Pinpoint) UpdateGcmChannelWithContext(ctx aws.Context, input *UpdateGcmChannelInput, opts ...request.Option) (*UpdateGcmChannelOutput, error) {
 	req, out := c.UpdateGcmChannelRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opUpdateInAppTemplate = "UpdateInAppTemplate"
+
+// UpdateInAppTemplateRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateInAppTemplate operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateInAppTemplate for more information on using the UpdateInAppTemplate
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateInAppTemplateRequest method.
+//    req, resp := client.UpdateInAppTemplateRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateInAppTemplate
+func (c *Pinpoint) UpdateInAppTemplateRequest(input *UpdateInAppTemplateInput) (req *request.Request, output *UpdateInAppTemplateOutput) {
+	op := &request.Operation{
+		Name:       opUpdateInAppTemplate,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/v1/templates/{template-name}/inapp",
+	}
+
+	if input == nil {
+		input = &UpdateInAppTemplateInput{}
+	}
+
+	output = &UpdateInAppTemplateOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateInAppTemplate API operation for Amazon Pinpoint.
+//
+// Updates an existing message template for messages sent through the in-app
+// message channel.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Pinpoint's
+// API operation UpdateInAppTemplate for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//   Provides information about an API request or response.
+//
+//   * InternalServerErrorException
+//   Provides information about an API request or response.
+//
+//   * PayloadTooLargeException
+//   Provides information about an API request or response.
+//
+//   * ForbiddenException
+//   Provides information about an API request or response.
+//
+//   * NotFoundException
+//   Provides information about an API request or response.
+//
+//   * MethodNotAllowedException
+//   Provides information about an API request or response.
+//
+//   * TooManyRequestsException
+//   Provides information about an API request or response.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/pinpoint-2016-12-01/UpdateInAppTemplate
+func (c *Pinpoint) UpdateInAppTemplate(input *UpdateInAppTemplateInput) (*UpdateInAppTemplateOutput, error) {
+	req, out := c.UpdateInAppTemplateRequest(input)
+	return out, req.Send()
+}
+
+// UpdateInAppTemplateWithContext is the same as UpdateInAppTemplate with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateInAppTemplate for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Pinpoint) UpdateInAppTemplateWithContext(ctx aws.Context, input *UpdateInAppTemplateInput, opts ...request.Option) (*UpdateInAppTemplateOutput, error) {
+	req, out := c.UpdateInAppTemplateRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -14427,6 +14908,85 @@ func (s *CampaignHook) SetWebUrl(v string) *CampaignHook {
 	return s
 }
 
+// In-app message configuration.
+type CampaignInAppMessage struct {
+	_ struct{} `type:"structure"`
+
+	// The message body of the notification, the email body or the text message.
+	Body *string `type:"string"`
+
+	// In-app message content.
+	Content []*InAppMessageContent `type:"list"`
+
+	// Custom config to be sent to client.
+	CustomConfig map[string]*string `type:"map"`
+
+	// In-app message layout.
+	Layout *string `type:"string" enum:"Layout"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CampaignInAppMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CampaignInAppMessage) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CampaignInAppMessage) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CampaignInAppMessage"}
+	if s.Content != nil {
+		for i, v := range s.Content {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Content", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBody sets the Body field's value.
+func (s *CampaignInAppMessage) SetBody(v string) *CampaignInAppMessage {
+	s.Body = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *CampaignInAppMessage) SetContent(v []*InAppMessageContent) *CampaignInAppMessage {
+	s.Content = v
+	return s
+}
+
+// SetCustomConfig sets the CustomConfig field's value.
+func (s *CampaignInAppMessage) SetCustomConfig(v map[string]*string) *CampaignInAppMessage {
+	s.CustomConfig = v
+	return s
+}
+
+// SetLayout sets the Layout field's value.
+func (s *CampaignInAppMessage) SetLayout(v string) *CampaignInAppMessage {
+	s.Layout = &v
+	return s
+}
+
 // For a campaign, specifies limits on the messages that the campaign can send.
 // For an application, specifies the default limits for messages that campaigns
 // in the application can send.
@@ -14449,6 +15009,10 @@ type CampaignLimits struct {
 	// messages that campaigns can send each second. The minimum value is 50. The
 	// maximum value is 20,000.
 	MessagesPerSecond *int64 `type:"integer"`
+
+	// The maximum total number of messages that the campaign can send per user
+	// session.
+	Session *int64 `type:"integer"`
 
 	// The maximum number of messages that a campaign can send to a single endpoint
 	// during the course of the campaign. If a campaign recurs, this setting applies
@@ -14489,6 +15053,12 @@ func (s *CampaignLimits) SetMaximumDuration(v int64) *CampaignLimits {
 // SetMessagesPerSecond sets the MessagesPerSecond field's value.
 func (s *CampaignLimits) SetMessagesPerSecond(v int64) *CampaignLimits {
 	s.MessagesPerSecond = &v
+	return s
+}
+
+// SetSession sets the Session field's value.
+func (s *CampaignLimits) SetSession(v int64) *CampaignLimits {
+	s.Session = &v
 	return s
 }
 
@@ -14563,6 +15133,11 @@ type CampaignResponse struct {
 
 	// The name of the campaign.
 	Name *string `type:"string"`
+
+	// Defines the priority of the campaign, used to decide the order of messages
+	// displayed to user if there are multiple messages scheduled to be displayed
+	// at the same moment
+	Priority *int64 `type:"integer"`
 
 	// The schedule settings for the campaign.
 	Schedule *Schedule `type:"structure"`
@@ -14705,6 +15280,12 @@ func (s *CampaignResponse) SetMessageConfiguration(v *MessageConfiguration) *Cam
 // SetName sets the Name field's value.
 func (s *CampaignResponse) SetName(v string) *CampaignResponse {
 	s.Name = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *CampaignResponse) SetPriority(v int64) *CampaignResponse {
+	s.Priority = &v
 	return s
 }
 
@@ -15836,6 +16417,105 @@ func (s *CreateImportJobOutput) SetImportJobResponse(v *ImportJobResponse) *Crea
 	return s
 }
 
+type CreateInAppTemplateInput struct {
+	_ struct{} `type:"structure" payload:"InAppTemplateRequest"`
+
+	// In-App Template Request.
+	//
+	// InAppTemplateRequest is a required field
+	InAppTemplateRequest *InAppTemplateRequest `type:"structure" required:"true"`
+
+	// TemplateName is a required field
+	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateInAppTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateInAppTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateInAppTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateInAppTemplateInput"}
+	if s.InAppTemplateRequest == nil {
+		invalidParams.Add(request.NewErrParamRequired("InAppTemplateRequest"))
+	}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.InAppTemplateRequest != nil {
+		if err := s.InAppTemplateRequest.Validate(); err != nil {
+			invalidParams.AddNested("InAppTemplateRequest", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetInAppTemplateRequest sets the InAppTemplateRequest field's value.
+func (s *CreateInAppTemplateInput) SetInAppTemplateRequest(v *InAppTemplateRequest) *CreateInAppTemplateInput {
+	s.InAppTemplateRequest = v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *CreateInAppTemplateInput) SetTemplateName(v string) *CreateInAppTemplateInput {
+	s.TemplateName = &v
+	return s
+}
+
+type CreateInAppTemplateOutput struct {
+	_ struct{} `type:"structure" payload:"TemplateCreateMessageBody"`
+
+	// Provides information about a request to create a message template.
+	//
+	// TemplateCreateMessageBody is a required field
+	TemplateCreateMessageBody *TemplateCreateMessageBody `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateInAppTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateInAppTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetTemplateCreateMessageBody sets the TemplateCreateMessageBody field's value.
+func (s *CreateInAppTemplateOutput) SetTemplateCreateMessageBody(v *TemplateCreateMessageBody) *CreateInAppTemplateOutput {
+	s.TemplateCreateMessageBody = v
+	return s
+}
+
 type CreateJourneyInput struct {
 	_ struct{} `type:"structure" payload:"WriteJourneyRequest"`
 
@@ -16811,6 +17491,103 @@ func (s *CustomMessageActivity) SetTemplateName(v string) *CustomMessageActivity
 // SetTemplateVersion sets the TemplateVersion field's value.
 func (s *CustomMessageActivity) SetTemplateVersion(v string) *CustomMessageActivity {
 	s.TemplateVersion = &v
+	return s
+}
+
+// Default button configuration.
+type DefaultButtonConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The background color of the button.
+	BackgroundColor *string `type:"string"`
+
+	// The border radius of the button.
+	BorderRadius *int64 `type:"integer"`
+
+	// Action triggered by the button.
+	//
+	// ButtonAction is a required field
+	ButtonAction *string `type:"string" required:"true" enum:"ButtonAction"`
+
+	// Button destination.
+	Link *string `type:"string"`
+
+	// Button text.
+	//
+	// Text is a required field
+	Text *string `type:"string" required:"true"`
+
+	// The text color of the button.
+	TextColor *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultButtonConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DefaultButtonConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DefaultButtonConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DefaultButtonConfiguration"}
+	if s.ButtonAction == nil {
+		invalidParams.Add(request.NewErrParamRequired("ButtonAction"))
+	}
+	if s.Text == nil {
+		invalidParams.Add(request.NewErrParamRequired("Text"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackgroundColor sets the BackgroundColor field's value.
+func (s *DefaultButtonConfiguration) SetBackgroundColor(v string) *DefaultButtonConfiguration {
+	s.BackgroundColor = &v
+	return s
+}
+
+// SetBorderRadius sets the BorderRadius field's value.
+func (s *DefaultButtonConfiguration) SetBorderRadius(v int64) *DefaultButtonConfiguration {
+	s.BorderRadius = &v
+	return s
+}
+
+// SetButtonAction sets the ButtonAction field's value.
+func (s *DefaultButtonConfiguration) SetButtonAction(v string) *DefaultButtonConfiguration {
+	s.ButtonAction = &v
+	return s
+}
+
+// SetLink sets the Link field's value.
+func (s *DefaultButtonConfiguration) SetLink(v string) *DefaultButtonConfiguration {
+	s.Link = &v
+	return s
+}
+
+// SetText sets the Text field's value.
+func (s *DefaultButtonConfiguration) SetText(v string) *DefaultButtonConfiguration {
+	s.Text = &v
+	return s
+}
+
+// SetTextColor sets the TextColor field's value.
+func (s *DefaultButtonConfiguration) SetTextColor(v string) *DefaultButtonConfiguration {
+	s.TextColor = &v
 	return s
 }
 
@@ -18141,6 +18918,94 @@ func (s DeleteGcmChannelOutput) GoString() string {
 // SetGCMChannelResponse sets the GCMChannelResponse field's value.
 func (s *DeleteGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *DeleteGcmChannelOutput {
 	s.GCMChannelResponse = v
+	return s
+}
+
+type DeleteInAppTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// TemplateName is a required field
+	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
+
+	Version *string `location:"querystring" locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInAppTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInAppTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteInAppTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteInAppTemplateInput"}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *DeleteInAppTemplateInput) SetTemplateName(v string) *DeleteInAppTemplateInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *DeleteInAppTemplateInput) SetVersion(v string) *DeleteInAppTemplateInput {
+	s.Version = &v
+	return s
+}
+
+type DeleteInAppTemplateOutput struct {
+	_ struct{} `type:"structure" payload:"MessageBody"`
+
+	// Provides information about an API request or response.
+	//
+	// MessageBody is a required field
+	MessageBody *MessageBody `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInAppTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteInAppTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessageBody sets the MessageBody field's value.
+func (s *DeleteInAppTemplateOutput) SetMessageBody(v *MessageBody) *DeleteInAppTemplateOutput {
+	s.MessageBody = v
 	return s
 }
 
@@ -24905,6 +25770,189 @@ func (s *GetImportJobsOutput) SetImportJobsResponse(v *ImportJobsResponse) *GetI
 	return s
 }
 
+type GetInAppMessagesInput struct {
+	_ struct{} `type:"structure"`
+
+	// ApplicationId is a required field
+	ApplicationId *string `location:"uri" locationName:"application-id" type:"string" required:"true"`
+
+	// EndpointId is a required field
+	EndpointId *string `location:"uri" locationName:"endpoint-id" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInAppMessagesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInAppMessagesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetInAppMessagesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetInAppMessagesInput"}
+	if s.ApplicationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ApplicationId"))
+	}
+	if s.ApplicationId != nil && len(*s.ApplicationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ApplicationId", 1))
+	}
+	if s.EndpointId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EndpointId"))
+	}
+	if s.EndpointId != nil && len(*s.EndpointId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EndpointId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetApplicationId sets the ApplicationId field's value.
+func (s *GetInAppMessagesInput) SetApplicationId(v string) *GetInAppMessagesInput {
+	s.ApplicationId = &v
+	return s
+}
+
+// SetEndpointId sets the EndpointId field's value.
+func (s *GetInAppMessagesInput) SetEndpointId(v string) *GetInAppMessagesInput {
+	s.EndpointId = &v
+	return s
+}
+
+type GetInAppMessagesOutput struct {
+	_ struct{} `type:"structure" payload:"InAppMessagesResponse"`
+
+	// Get in-app messages response object.
+	//
+	// InAppMessagesResponse is a required field
+	InAppMessagesResponse *InAppMessagesResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInAppMessagesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInAppMessagesOutput) GoString() string {
+	return s.String()
+}
+
+// SetInAppMessagesResponse sets the InAppMessagesResponse field's value.
+func (s *GetInAppMessagesOutput) SetInAppMessagesResponse(v *InAppMessagesResponse) *GetInAppMessagesOutput {
+	s.InAppMessagesResponse = v
+	return s
+}
+
+type GetInAppTemplateInput struct {
+	_ struct{} `type:"structure"`
+
+	// TemplateName is a required field
+	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
+
+	Version *string `location:"querystring" locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInAppTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInAppTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetInAppTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetInAppTemplateInput"}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *GetInAppTemplateInput) SetTemplateName(v string) *GetInAppTemplateInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *GetInAppTemplateInput) SetVersion(v string) *GetInAppTemplateInput {
+	s.Version = &v
+	return s
+}
+
+type GetInAppTemplateOutput struct {
+	_ struct{} `type:"structure" payload:"InAppTemplateResponse"`
+
+	// In-App Template Response.
+	//
+	// InAppTemplateResponse is a required field
+	InAppTemplateResponse *InAppTemplateResponse `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInAppTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetInAppTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetInAppTemplateResponse sets the InAppTemplateResponse field's value.
+func (s *GetInAppTemplateOutput) SetInAppTemplateResponse(v *InAppTemplateResponse) *GetInAppTemplateOutput {
+	s.InAppTemplateResponse = v
+	return s
+}
+
 type GetJourneyDateRangeKpiInput struct {
 	_ struct{} `type:"structure"`
 
@@ -27248,6 +28296,803 @@ func (s *ImportJobsResponse) SetNextToken(v string) *ImportJobsResponse {
 	return s
 }
 
+type InAppCampaignSchedule struct {
+	_ struct{} `type:"structure"`
+
+	// The scheduled time after which the in-app message should not be shown. Timestamp
+	// is in ISO 8601 format.
+	EndDate *string `type:"string"`
+
+	// The event filter the SDK has to use to show the in-app message in the application.
+	EventFilter *CampaignEventFilter `type:"structure"`
+
+	// Time during which the in-app message should not be shown to the user.
+	QuietTime *QuietTime `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppCampaignSchedule) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppCampaignSchedule) GoString() string {
+	return s.String()
+}
+
+// SetEndDate sets the EndDate field's value.
+func (s *InAppCampaignSchedule) SetEndDate(v string) *InAppCampaignSchedule {
+	s.EndDate = &v
+	return s
+}
+
+// SetEventFilter sets the EventFilter field's value.
+func (s *InAppCampaignSchedule) SetEventFilter(v *CampaignEventFilter) *InAppCampaignSchedule {
+	s.EventFilter = v
+	return s
+}
+
+// SetQuietTime sets the QuietTime field's value.
+func (s *InAppCampaignSchedule) SetQuietTime(v *QuietTime) *InAppCampaignSchedule {
+	s.QuietTime = v
+	return s
+}
+
+// Provides all fields required for building an in-app message.
+type InAppMessage struct {
+	_ struct{} `type:"structure"`
+
+	// In-app message content.
+	Content []*InAppMessageContent `type:"list"`
+
+	// Custom config to be sent to SDK.
+	CustomConfig map[string]*string `type:"map"`
+
+	// The layout of the message.
+	Layout *string `type:"string" enum:"Layout"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessage) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessage) GoString() string {
+	return s.String()
+}
+
+// SetContent sets the Content field's value.
+func (s *InAppMessage) SetContent(v []*InAppMessageContent) *InAppMessage {
+	s.Content = v
+	return s
+}
+
+// SetCustomConfig sets the CustomConfig field's value.
+func (s *InAppMessage) SetCustomConfig(v map[string]*string) *InAppMessage {
+	s.CustomConfig = v
+	return s
+}
+
+// SetLayout sets the Layout field's value.
+func (s *InAppMessage) SetLayout(v string) *InAppMessage {
+	s.Layout = &v
+	return s
+}
+
+// Text config for Message Body.
+type InAppMessageBodyConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The alignment of the text. Valid values: LEFT, CENTER, RIGHT.
+	//
+	// Alignment is a required field
+	Alignment *string `type:"string" required:"true" enum:"Alignment"`
+
+	// Message Body.
+	//
+	// Body is a required field
+	Body *string `type:"string" required:"true"`
+
+	// The text color.
+	//
+	// TextColor is a required field
+	TextColor *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageBodyConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageBodyConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InAppMessageBodyConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InAppMessageBodyConfig"}
+	if s.Alignment == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alignment"))
+	}
+	if s.Body == nil {
+		invalidParams.Add(request.NewErrParamRequired("Body"))
+	}
+	if s.TextColor == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextColor"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlignment sets the Alignment field's value.
+func (s *InAppMessageBodyConfig) SetAlignment(v string) *InAppMessageBodyConfig {
+	s.Alignment = &v
+	return s
+}
+
+// SetBody sets the Body field's value.
+func (s *InAppMessageBodyConfig) SetBody(v string) *InAppMessageBodyConfig {
+	s.Body = &v
+	return s
+}
+
+// SetTextColor sets the TextColor field's value.
+func (s *InAppMessageBodyConfig) SetTextColor(v string) *InAppMessageBodyConfig {
+	s.TextColor = &v
+	return s
+}
+
+// Button Config for an in-app message.
+type InAppMessageButton struct {
+	_ struct{} `type:"structure"`
+
+	// Default button content.
+	Android *OverrideButtonConfiguration `type:"structure"`
+
+	// Default button content.
+	DefaultConfig *DefaultButtonConfiguration `type:"structure"`
+
+	// Default button content.
+	IOS *OverrideButtonConfiguration `type:"structure"`
+
+	// Default button content.
+	Web *OverrideButtonConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageButton) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageButton) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InAppMessageButton) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InAppMessageButton"}
+	if s.Android != nil {
+		if err := s.Android.Validate(); err != nil {
+			invalidParams.AddNested("Android", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.DefaultConfig != nil {
+		if err := s.DefaultConfig.Validate(); err != nil {
+			invalidParams.AddNested("DefaultConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.IOS != nil {
+		if err := s.IOS.Validate(); err != nil {
+			invalidParams.AddNested("IOS", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Web != nil {
+		if err := s.Web.Validate(); err != nil {
+			invalidParams.AddNested("Web", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAndroid sets the Android field's value.
+func (s *InAppMessageButton) SetAndroid(v *OverrideButtonConfiguration) *InAppMessageButton {
+	s.Android = v
+	return s
+}
+
+// SetDefaultConfig sets the DefaultConfig field's value.
+func (s *InAppMessageButton) SetDefaultConfig(v *DefaultButtonConfiguration) *InAppMessageButton {
+	s.DefaultConfig = v
+	return s
+}
+
+// SetIOS sets the IOS field's value.
+func (s *InAppMessageButton) SetIOS(v *OverrideButtonConfiguration) *InAppMessageButton {
+	s.IOS = v
+	return s
+}
+
+// SetWeb sets the Web field's value.
+func (s *InAppMessageButton) SetWeb(v *OverrideButtonConfiguration) *InAppMessageButton {
+	s.Web = v
+	return s
+}
+
+type InAppMessageCampaign struct {
+	_ struct{} `type:"structure"`
+
+	// Campaign id of the corresponding campaign.
+	CampaignId *string `type:"string"`
+
+	// Daily cap which controls the number of times any in-app messages can be shown
+	// to the endpoint during a day.
+	DailyCap *int64 `type:"integer"`
+
+	// In-app message content with all fields required for rendering an in-app message.
+	InAppMessage *InAppMessage `type:"structure"`
+
+	// Priority of the in-app message.
+	Priority *int64 `type:"integer"`
+
+	// Schedule of the campaign.
+	Schedule *InAppCampaignSchedule `type:"structure"`
+
+	// Session cap which controls the number of times an in-app message can be shown
+	// to the endpoint during an application session.
+	SessionCap *int64 `type:"integer"`
+
+	// Total cap which controls the number of times an in-app message can be shown
+	// to the endpoint.
+	TotalCap *int64 `type:"integer"`
+
+	// Treatment id of the campaign.
+	TreatmentId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageCampaign) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageCampaign) GoString() string {
+	return s.String()
+}
+
+// SetCampaignId sets the CampaignId field's value.
+func (s *InAppMessageCampaign) SetCampaignId(v string) *InAppMessageCampaign {
+	s.CampaignId = &v
+	return s
+}
+
+// SetDailyCap sets the DailyCap field's value.
+func (s *InAppMessageCampaign) SetDailyCap(v int64) *InAppMessageCampaign {
+	s.DailyCap = &v
+	return s
+}
+
+// SetInAppMessage sets the InAppMessage field's value.
+func (s *InAppMessageCampaign) SetInAppMessage(v *InAppMessage) *InAppMessageCampaign {
+	s.InAppMessage = v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *InAppMessageCampaign) SetPriority(v int64) *InAppMessageCampaign {
+	s.Priority = &v
+	return s
+}
+
+// SetSchedule sets the Schedule field's value.
+func (s *InAppMessageCampaign) SetSchedule(v *InAppCampaignSchedule) *InAppMessageCampaign {
+	s.Schedule = v
+	return s
+}
+
+// SetSessionCap sets the SessionCap field's value.
+func (s *InAppMessageCampaign) SetSessionCap(v int64) *InAppMessageCampaign {
+	s.SessionCap = &v
+	return s
+}
+
+// SetTotalCap sets the TotalCap field's value.
+func (s *InAppMessageCampaign) SetTotalCap(v int64) *InAppMessageCampaign {
+	s.TotalCap = &v
+	return s
+}
+
+// SetTreatmentId sets the TreatmentId field's value.
+func (s *InAppMessageCampaign) SetTreatmentId(v string) *InAppMessageCampaign {
+	s.TreatmentId = &v
+	return s
+}
+
+// The configuration for the message content.
+type InAppMessageContent struct {
+	_ struct{} `type:"structure"`
+
+	// The background color for the message.
+	BackgroundColor *string `type:"string"`
+
+	// The configuration for the message body.
+	BodyConfig *InAppMessageBodyConfig `type:"structure"`
+
+	// The configuration for the message header.
+	HeaderConfig *InAppMessageHeaderConfig `type:"structure"`
+
+	// The image url for the background of message.
+	ImageUrl *string `type:"string"`
+
+	// The first button inside the message.
+	PrimaryBtn *InAppMessageButton `type:"structure"`
+
+	// The second button inside message.
+	SecondaryBtn *InAppMessageButton `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageContent) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageContent) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InAppMessageContent) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InAppMessageContent"}
+	if s.BodyConfig != nil {
+		if err := s.BodyConfig.Validate(); err != nil {
+			invalidParams.AddNested("BodyConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.HeaderConfig != nil {
+		if err := s.HeaderConfig.Validate(); err != nil {
+			invalidParams.AddNested("HeaderConfig", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PrimaryBtn != nil {
+		if err := s.PrimaryBtn.Validate(); err != nil {
+			invalidParams.AddNested("PrimaryBtn", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SecondaryBtn != nil {
+		if err := s.SecondaryBtn.Validate(); err != nil {
+			invalidParams.AddNested("SecondaryBtn", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackgroundColor sets the BackgroundColor field's value.
+func (s *InAppMessageContent) SetBackgroundColor(v string) *InAppMessageContent {
+	s.BackgroundColor = &v
+	return s
+}
+
+// SetBodyConfig sets the BodyConfig field's value.
+func (s *InAppMessageContent) SetBodyConfig(v *InAppMessageBodyConfig) *InAppMessageContent {
+	s.BodyConfig = v
+	return s
+}
+
+// SetHeaderConfig sets the HeaderConfig field's value.
+func (s *InAppMessageContent) SetHeaderConfig(v *InAppMessageHeaderConfig) *InAppMessageContent {
+	s.HeaderConfig = v
+	return s
+}
+
+// SetImageUrl sets the ImageUrl field's value.
+func (s *InAppMessageContent) SetImageUrl(v string) *InAppMessageContent {
+	s.ImageUrl = &v
+	return s
+}
+
+// SetPrimaryBtn sets the PrimaryBtn field's value.
+func (s *InAppMessageContent) SetPrimaryBtn(v *InAppMessageButton) *InAppMessageContent {
+	s.PrimaryBtn = v
+	return s
+}
+
+// SetSecondaryBtn sets the SecondaryBtn field's value.
+func (s *InAppMessageContent) SetSecondaryBtn(v *InAppMessageButton) *InAppMessageContent {
+	s.SecondaryBtn = v
+	return s
+}
+
+// Text config for Message Header.
+type InAppMessageHeaderConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The alignment of the text. Valid values: LEFT, CENTER, RIGHT.
+	//
+	// Alignment is a required field
+	Alignment *string `type:"string" required:"true" enum:"Alignment"`
+
+	// Message Header.
+	//
+	// Header is a required field
+	Header *string `type:"string" required:"true"`
+
+	// The text color.
+	//
+	// TextColor is a required field
+	TextColor *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageHeaderConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessageHeaderConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InAppMessageHeaderConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InAppMessageHeaderConfig"}
+	if s.Alignment == nil {
+		invalidParams.Add(request.NewErrParamRequired("Alignment"))
+	}
+	if s.Header == nil {
+		invalidParams.Add(request.NewErrParamRequired("Header"))
+	}
+	if s.TextColor == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextColor"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAlignment sets the Alignment field's value.
+func (s *InAppMessageHeaderConfig) SetAlignment(v string) *InAppMessageHeaderConfig {
+	s.Alignment = &v
+	return s
+}
+
+// SetHeader sets the Header field's value.
+func (s *InAppMessageHeaderConfig) SetHeader(v string) *InAppMessageHeaderConfig {
+	s.Header = &v
+	return s
+}
+
+// SetTextColor sets the TextColor field's value.
+func (s *InAppMessageHeaderConfig) SetTextColor(v string) *InAppMessageHeaderConfig {
+	s.TextColor = &v
+	return s
+}
+
+// Get in-app messages response object.
+type InAppMessagesResponse struct {
+	_ struct{} `type:"structure"`
+
+	// List of targeted in-app message campaigns.
+	InAppMessageCampaigns []*InAppMessageCampaign `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessagesResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppMessagesResponse) GoString() string {
+	return s.String()
+}
+
+// SetInAppMessageCampaigns sets the InAppMessageCampaigns field's value.
+func (s *InAppMessagesResponse) SetInAppMessageCampaigns(v []*InAppMessageCampaign) *InAppMessagesResponse {
+	s.InAppMessageCampaigns = v
+	return s
+}
+
+// In-App Template Request.
+type InAppTemplateRequest struct {
+	_ struct{} `type:"structure"`
+
+	// The content of the message, can include up to 5 modals. Each modal must contain
+	// a message, a header, and background color. ImageUrl and buttons are optional.
+	Content []*InAppMessageContent `type:"list"`
+
+	// Custom config to be sent to client.
+	CustomConfig map[string]*string `type:"map"`
+
+	// The layout of the message.
+	Layout *string `type:"string" enum:"Layout"`
+
+	// A string-to-string map of key-value pairs that defines the tags to associate
+	// with the message template. Each tag consists of a required tag key and an
+	// associated tag value.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The description of the template.
+	TemplateDescription *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppTemplateRequest) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppTemplateRequest) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InAppTemplateRequest) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InAppTemplateRequest"}
+	if s.Content != nil {
+		for i, v := range s.Content {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Content", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetContent sets the Content field's value.
+func (s *InAppTemplateRequest) SetContent(v []*InAppMessageContent) *InAppTemplateRequest {
+	s.Content = v
+	return s
+}
+
+// SetCustomConfig sets the CustomConfig field's value.
+func (s *InAppTemplateRequest) SetCustomConfig(v map[string]*string) *InAppTemplateRequest {
+	s.CustomConfig = v
+	return s
+}
+
+// SetLayout sets the Layout field's value.
+func (s *InAppTemplateRequest) SetLayout(v string) *InAppTemplateRequest {
+	s.Layout = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *InAppTemplateRequest) SetTags(v map[string]*string) *InAppTemplateRequest {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateDescription sets the TemplateDescription field's value.
+func (s *InAppTemplateRequest) SetTemplateDescription(v string) *InAppTemplateRequest {
+	s.TemplateDescription = &v
+	return s
+}
+
+// In-App Template Response.
+type InAppTemplateResponse struct {
+	_ struct{} `type:"structure"`
+
+	// The resource arn of the template.
+	Arn *string `type:"string"`
+
+	// The content of the message, can include up to 5 modals. Each modal must contain
+	// a message, a header, and background color. ImageUrl and buttons are optional.
+	Content []*InAppMessageContent `type:"list"`
+
+	// The creation date of the template.
+	//
+	// CreationDate is a required field
+	CreationDate *string `type:"string" required:"true"`
+
+	// Custom config to be sent to client.
+	CustomConfig map[string]*string `type:"map"`
+
+	// The last modified date of the template.
+	//
+	// LastModifiedDate is a required field
+	LastModifiedDate *string `type:"string" required:"true"`
+
+	// The layout of the message.
+	Layout *string `type:"string" enum:"Layout"`
+
+	// Tags map that contains arn and InternalId for API GW.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The description of the template.
+	TemplateDescription *string `type:"string"`
+
+	// The name of the template.
+	//
+	// TemplateName is a required field
+	TemplateName *string `type:"string" required:"true"`
+
+	// The type of the template.
+	//
+	// TemplateType is a required field
+	TemplateType *string `type:"string" required:"true" enum:"TemplateType"`
+
+	// The version id of the template.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppTemplateResponse) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InAppTemplateResponse) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *InAppTemplateResponse) SetArn(v string) *InAppTemplateResponse {
+	s.Arn = &v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *InAppTemplateResponse) SetContent(v []*InAppMessageContent) *InAppTemplateResponse {
+	s.Content = v
+	return s
+}
+
+// SetCreationDate sets the CreationDate field's value.
+func (s *InAppTemplateResponse) SetCreationDate(v string) *InAppTemplateResponse {
+	s.CreationDate = &v
+	return s
+}
+
+// SetCustomConfig sets the CustomConfig field's value.
+func (s *InAppTemplateResponse) SetCustomConfig(v map[string]*string) *InAppTemplateResponse {
+	s.CustomConfig = v
+	return s
+}
+
+// SetLastModifiedDate sets the LastModifiedDate field's value.
+func (s *InAppTemplateResponse) SetLastModifiedDate(v string) *InAppTemplateResponse {
+	s.LastModifiedDate = &v
+	return s
+}
+
+// SetLayout sets the Layout field's value.
+func (s *InAppTemplateResponse) SetLayout(v string) *InAppTemplateResponse {
+	s.Layout = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *InAppTemplateResponse) SetTags(v map[string]*string) *InAppTemplateResponse {
+	s.Tags = v
+	return s
+}
+
+// SetTemplateDescription sets the TemplateDescription field's value.
+func (s *InAppTemplateResponse) SetTemplateDescription(v string) *InAppTemplateResponse {
+	s.TemplateDescription = &v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *InAppTemplateResponse) SetTemplateName(v string) *InAppTemplateResponse {
+	s.TemplateName = &v
+	return s
+}
+
+// SetTemplateType sets the TemplateType field's value.
+func (s *InAppTemplateResponse) SetTemplateType(v string) *InAppTemplateResponse {
+	s.TemplateType = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *InAppTemplateResponse) SetVersion(v string) *InAppTemplateResponse {
+	s.Version = &v
+	return s
+}
+
 // Provides information about an API request or response.
 type InternalServerErrorException struct {
 	_            struct{}                  `type:"structure"`
@@ -27363,7 +29208,6 @@ func (s *ItemResponse) SetEventsItemResponse(v map[string]*EventItemResponse) *I
 type JourneyCustomMessage struct {
 	_ struct{} `type:"structure"`
 
-	// The message content that's passed to an AWS Lambda function or to a web hook.
 	Data *string `type:"string"`
 }
 
@@ -28912,6 +30756,9 @@ type MessageConfiguration struct {
 	// message overrides the default message.
 	GCMMessage *Message `type:"structure"`
 
+	// The in-app message configuration.
+	InAppMessage *CampaignInAppMessage `type:"structure"`
+
 	// The message that the campaign sends through the SMS channel. If specified,
 	// this message overrides the default message.
 	SMSMessage *CampaignSmsMessage `type:"structure"`
@@ -28933,6 +30780,21 @@ func (s MessageConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s MessageConfiguration) GoString() string {
 	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *MessageConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "MessageConfiguration"}
+	if s.InAppMessage != nil {
+		if err := s.InAppMessage.Validate(); err != nil {
+			invalidParams.AddNested("InAppMessage", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
 }
 
 // SetADMMessage sets the ADMMessage field's value.
@@ -28974,6 +30836,12 @@ func (s *MessageConfiguration) SetEmailMessage(v *CampaignEmailMessage) *Message
 // SetGCMMessage sets the GCMMessage field's value.
 func (s *MessageConfiguration) SetGCMMessage(v *Message) *MessageConfiguration {
 	s.GCMMessage = v
+	return s
+}
+
+// SetInAppMessage sets the InAppMessage field's value.
+func (s *MessageConfiguration) SetInAppMessage(v *CampaignInAppMessage) *MessageConfiguration {
+	s.InAppMessage = v
 	return s
 }
 
@@ -29787,6 +31655,62 @@ func (s *NumberValidateResponse) SetTimezone(v string) *NumberValidateResponse {
 // SetZipCode sets the ZipCode field's value.
 func (s *NumberValidateResponse) SetZipCode(v string) *NumberValidateResponse {
 	s.ZipCode = &v
+	return s
+}
+
+// Override button configuration.
+type OverrideButtonConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// Action triggered by the button.
+	//
+	// ButtonAction is a required field
+	ButtonAction *string `type:"string" required:"true" enum:"ButtonAction"`
+
+	// Button destination.
+	Link *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverrideButtonConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OverrideButtonConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OverrideButtonConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OverrideButtonConfiguration"}
+	if s.ButtonAction == nil {
+		invalidParams.Add(request.NewErrParamRequired("ButtonAction"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetButtonAction sets the ButtonAction field's value.
+func (s *OverrideButtonConfiguration) SetButtonAction(v string) *OverrideButtonConfiguration {
+	s.ButtonAction = &v
+	return s
+}
+
+// SetLink sets the Link field's value.
+func (s *OverrideButtonConfiguration) SetLink(v string) *OverrideButtonConfiguration {
+	s.Link = &v
 	return s
 }
 
@@ -33988,6 +35912,57 @@ func (s *TemplateConfiguration) SetVoiceTemplate(v *Template) *TemplateConfigura
 	return s
 }
 
+// Provides information about a request to create a message template.
+type TemplateCreateMessageBody struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the message template that was created.
+	Arn *string `type:"string"`
+
+	// The message that's returned from the API for the request to create the message
+	// template.
+	Message *string `type:"string"`
+
+	// The unique identifier for the request to create the message template.
+	RequestID *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateCreateMessageBody) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s TemplateCreateMessageBody) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *TemplateCreateMessageBody) SetArn(v string) *TemplateCreateMessageBody {
+	s.Arn = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *TemplateCreateMessageBody) SetMessage(v string) *TemplateCreateMessageBody {
+	s.Message = &v
+	return s
+}
+
+// SetRequestID sets the RequestID field's value.
+func (s *TemplateCreateMessageBody) SetRequestID(v string) *TemplateCreateMessageBody {
+	s.RequestID = &v
+	return s
+}
+
 // Provides information about a message template that's associated with your
 // Amazon Pinpoint account.
 type TemplateResponse struct {
@@ -35947,6 +37922,121 @@ func (s *UpdateGcmChannelOutput) SetGCMChannelResponse(v *GCMChannelResponse) *U
 	return s
 }
 
+type UpdateInAppTemplateInput struct {
+	_ struct{} `type:"structure" payload:"InAppTemplateRequest"`
+
+	CreateNewVersion *bool `location:"querystring" locationName:"create-new-version" type:"boolean"`
+
+	// In-App Template Request.
+	//
+	// InAppTemplateRequest is a required field
+	InAppTemplateRequest *InAppTemplateRequest `type:"structure" required:"true"`
+
+	// TemplateName is a required field
+	TemplateName *string `location:"uri" locationName:"template-name" type:"string" required:"true"`
+
+	Version *string `location:"querystring" locationName:"version" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateInAppTemplateInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateInAppTemplateInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateInAppTemplateInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateInAppTemplateInput"}
+	if s.InAppTemplateRequest == nil {
+		invalidParams.Add(request.NewErrParamRequired("InAppTemplateRequest"))
+	}
+	if s.TemplateName == nil {
+		invalidParams.Add(request.NewErrParamRequired("TemplateName"))
+	}
+	if s.TemplateName != nil && len(*s.TemplateName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TemplateName", 1))
+	}
+	if s.InAppTemplateRequest != nil {
+		if err := s.InAppTemplateRequest.Validate(); err != nil {
+			invalidParams.AddNested("InAppTemplateRequest", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetCreateNewVersion sets the CreateNewVersion field's value.
+func (s *UpdateInAppTemplateInput) SetCreateNewVersion(v bool) *UpdateInAppTemplateInput {
+	s.CreateNewVersion = &v
+	return s
+}
+
+// SetInAppTemplateRequest sets the InAppTemplateRequest field's value.
+func (s *UpdateInAppTemplateInput) SetInAppTemplateRequest(v *InAppTemplateRequest) *UpdateInAppTemplateInput {
+	s.InAppTemplateRequest = v
+	return s
+}
+
+// SetTemplateName sets the TemplateName field's value.
+func (s *UpdateInAppTemplateInput) SetTemplateName(v string) *UpdateInAppTemplateInput {
+	s.TemplateName = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *UpdateInAppTemplateInput) SetVersion(v string) *UpdateInAppTemplateInput {
+	s.Version = &v
+	return s
+}
+
+type UpdateInAppTemplateOutput struct {
+	_ struct{} `type:"structure" payload:"MessageBody"`
+
+	// Provides information about an API request or response.
+	//
+	// MessageBody is a required field
+	MessageBody *MessageBody `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateInAppTemplateOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateInAppTemplateOutput) GoString() string {
+	return s.String()
+}
+
+// SetMessageBody sets the MessageBody field's value.
+func (s *UpdateInAppTemplateOutput) SetMessageBody(v *MessageBody) *UpdateInAppTemplateOutput {
+	s.MessageBody = v
+	return s
+}
+
 type UpdateJourneyInput struct {
 	_ struct{} `type:"structure" payload:"WriteJourneyRequest"`
 
@@ -37897,6 +39987,11 @@ type WriteCampaignRequest struct {
 	// A custom name for the campaign.
 	Name *string `type:"string"`
 
+	// Defines the priority of the campaign, used to decide the order of messages
+	// displayed to user if there are multiple messages scheduled to be displayed
+	// at the same moment.
+	Priority *int64 `type:"integer"`
+
 	// The schedule settings for the campaign.
 	Schedule *Schedule `type:"structure"`
 
@@ -37957,6 +40052,11 @@ func (s *WriteCampaignRequest) Validate() error {
 	if s.CustomDeliveryConfiguration != nil {
 		if err := s.CustomDeliveryConfiguration.Validate(); err != nil {
 			invalidParams.AddNested("CustomDeliveryConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.MessageConfiguration != nil {
+		if err := s.MessageConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MessageConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.Schedule != nil {
@@ -38022,6 +40122,12 @@ func (s *WriteCampaignRequest) SetMessageConfiguration(v *MessageConfiguration) 
 // SetName sets the Name field's value.
 func (s *WriteCampaignRequest) SetName(v string) *WriteCampaignRequest {
 	s.Name = &v
+	return s
+}
+
+// SetPriority sets the Priority field's value.
+func (s *WriteCampaignRequest) SetPriority(v int64) *WriteCampaignRequest {
+	s.Priority = &v
 	return s
 }
 
@@ -38496,6 +40602,11 @@ func (s *WriteTreatmentResource) Validate() error {
 			invalidParams.AddNested("CustomDeliveryConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.MessageConfiguration != nil {
+		if err := s.MessageConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("MessageConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Schedule != nil {
 		if err := s.Schedule.Validate(); err != nil {
 			invalidParams.AddNested("Schedule", err.(request.ErrInvalidParams))
@@ -38571,6 +40682,26 @@ func Action_Values() []string {
 }
 
 const (
+	// AlignmentLeft is a Alignment enum value
+	AlignmentLeft = "LEFT"
+
+	// AlignmentCenter is a Alignment enum value
+	AlignmentCenter = "CENTER"
+
+	// AlignmentRight is a Alignment enum value
+	AlignmentRight = "RIGHT"
+)
+
+// Alignment_Values returns all elements of the Alignment enum
+func Alignment_Values() []string {
+	return []string{
+		AlignmentLeft,
+		AlignmentCenter,
+		AlignmentRight,
+	}
+}
+
+const (
 	// AttributeTypeInclusive is a AttributeType enum value
 	AttributeTypeInclusive = "INCLUSIVE"
 
@@ -38603,6 +40734,26 @@ func AttributeType_Values() []string {
 		AttributeTypeAfter,
 		AttributeTypeBetween,
 		AttributeTypeOn,
+	}
+}
+
+const (
+	// ButtonActionLink is a ButtonAction enum value
+	ButtonActionLink = "LINK"
+
+	// ButtonActionDeepLink is a ButtonAction enum value
+	ButtonActionDeepLink = "DEEP_LINK"
+
+	// ButtonActionClose is a ButtonAction enum value
+	ButtonActionClose = "CLOSE"
+)
+
+// ButtonAction_Values returns all elements of the ButtonAction enum
+func ButtonAction_Values() []string {
+	return []string{
+		ButtonActionLink,
+		ButtonActionDeepLink,
+		ButtonActionClose,
 	}
 }
 
@@ -38678,6 +40829,9 @@ const (
 
 	// ChannelTypeCustom is a ChannelType enum value
 	ChannelTypeCustom = "CUSTOM"
+
+	// ChannelTypeInApp is a ChannelType enum value
+	ChannelTypeInApp = "IN_APP"
 )
 
 // ChannelType_Values returns all elements of the ChannelType enum
@@ -38695,6 +40849,7 @@ func ChannelType_Values() []string {
 		ChannelTypeEmail,
 		ChannelTypeBaidu,
 		ChannelTypeCustom,
+		ChannelTypeInApp,
 	}
 }
 
@@ -38810,6 +40965,9 @@ const (
 
 	// EndpointTypesElementCustom is a EndpointTypesElement enum value
 	EndpointTypesElementCustom = "CUSTOM"
+
+	// EndpointTypesElementInApp is a EndpointTypesElement enum value
+	EndpointTypesElementInApp = "IN_APP"
 )
 
 // EndpointTypesElement_Values returns all elements of the EndpointTypesElement enum
@@ -38827,6 +40985,7 @@ func EndpointTypesElement_Values() []string {
 		EndpointTypesElementEmail,
 		EndpointTypesElementBaidu,
 		EndpointTypesElementCustom,
+		EndpointTypesElementInApp,
 	}
 }
 
@@ -38880,6 +41039,9 @@ const (
 
 	// FrequencyEvent is a Frequency enum value
 	FrequencyEvent = "EVENT"
+
+	// FrequencyInAppEvent is a Frequency enum value
+	FrequencyInAppEvent = "IN_APP_EVENT"
 )
 
 // Frequency_Values returns all elements of the Frequency enum
@@ -38891,6 +41053,7 @@ func Frequency_Values() []string {
 		FrequencyWeekly,
 		FrequencyMonthly,
 		FrequencyEvent,
+		FrequencyInAppEvent,
 	}
 }
 
@@ -38955,6 +41118,38 @@ func JobStatus_Values() []string {
 		JobStatusCompleted,
 		JobStatusFailing,
 		JobStatusFailed,
+	}
+}
+
+const (
+	// LayoutBottomBanner is a Layout enum value
+	LayoutBottomBanner = "BOTTOM_BANNER"
+
+	// LayoutTopBanner is a Layout enum value
+	LayoutTopBanner = "TOP_BANNER"
+
+	// LayoutOverlays is a Layout enum value
+	LayoutOverlays = "OVERLAYS"
+
+	// LayoutMobileFeed is a Layout enum value
+	LayoutMobileFeed = "MOBILE_FEED"
+
+	// LayoutMiddleBanner is a Layout enum value
+	LayoutMiddleBanner = "MIDDLE_BANNER"
+
+	// LayoutCarousel is a Layout enum value
+	LayoutCarousel = "CAROUSEL"
+)
+
+// Layout_Values returns all elements of the Layout enum
+func Layout_Values() []string {
+	return []string{
+		LayoutBottomBanner,
+		LayoutTopBanner,
+		LayoutOverlays,
+		LayoutMobileFeed,
+		LayoutMiddleBanner,
+		LayoutCarousel,
 	}
 }
 
@@ -39102,6 +41297,9 @@ const (
 
 	// TemplateTypePush is a TemplateType enum value
 	TemplateTypePush = "PUSH"
+
+	// TemplateTypeInapp is a TemplateType enum value
+	TemplateTypeInapp = "INAPP"
 )
 
 // TemplateType_Values returns all elements of the TemplateType enum
@@ -39111,6 +41309,7 @@ func TemplateType_Values() []string {
 		TemplateTypeSms,
 		TemplateTypeVoice,
 		TemplateTypePush,
+		TemplateTypeInapp,
 	}
 }
 

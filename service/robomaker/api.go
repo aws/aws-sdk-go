@@ -7013,6 +7013,10 @@ func (s *CreateFleetOutput) SetTags(v map[string]*string) *CreateFleetOutput {
 type CreateRobotApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The object that contains that URI of the Docker image that you use for your
+	// robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The name of the robot application.
 	//
 	// Name is a required field
@@ -7024,9 +7028,7 @@ type CreateRobotApplicationInput struct {
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure" required:"true"`
 
 	// The sources of the robot application.
-	//
-	// Sources is a required field
-	Sources []*SourceConfig `locationName:"sources" type:"list" required:"true"`
+	Sources []*SourceConfig `locationName:"sources" type:"list"`
 
 	// A map that contains tag keys and tag values that are attached to the robot
 	// application.
@@ -7063,8 +7065,10 @@ func (s *CreateRobotApplicationInput) Validate() error {
 	if s.RobotSoftwareSuite == nil {
 		invalidParams.Add(request.NewErrParamRequired("RobotSoftwareSuite"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Sources != nil {
 		for i, v := range s.Sources {
@@ -7081,6 +7085,12 @@ func (s *CreateRobotApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateRobotApplicationInput) SetEnvironment(v *Environment) *CreateRobotApplicationInput {
+	s.Environment = v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -7112,6 +7122,10 @@ type CreateRobotApplicationOutput struct {
 
 	// The Amazon Resource Name (ARN) of the robot application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// An object that contains the Docker image URI used to a create your robot
+	// application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the robot application was
 	// last updated.
@@ -7157,6 +7171,12 @@ func (s CreateRobotApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateRobotApplicationOutput) SetArn(v string) *CreateRobotApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateRobotApplicationOutput) SetEnvironment(v *Environment) *CreateRobotApplicationOutput {
+	s.Environment = v
 	return s
 }
 
@@ -7213,6 +7233,13 @@ type CreateRobotApplicationVersionInput struct {
 	// The current revision id for the robot application. If you provide a value
 	// and it matches the latest revision ID, a new version will be created.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
+
+	// A SHA256 identifier for the Docker image that you use for your robot application.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
+	// The Amazon S3 identifier for the zip file bundle that you use for your robot
+	// application.
+	S3Etags []*string `locationName:"s3Etags" type:"list"`
 }
 
 // String returns the string representation.
@@ -7264,11 +7291,26 @@ func (s *CreateRobotApplicationVersionInput) SetCurrentRevisionId(v string) *Cre
 	return s
 }
 
+// SetImageDigest sets the ImageDigest field's value.
+func (s *CreateRobotApplicationVersionInput) SetImageDigest(v string) *CreateRobotApplicationVersionInput {
+	s.ImageDigest = &v
+	return s
+}
+
+// SetS3Etags sets the S3Etags field's value.
+func (s *CreateRobotApplicationVersionInput) SetS3Etags(v []*string) *CreateRobotApplicationVersionInput {
+	s.S3Etags = v
+	return s
+}
+
 type CreateRobotApplicationVersionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the robot application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The object that contains the Docker image URI used to create your robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the robot application was
 	// last updated.
@@ -7311,6 +7353,12 @@ func (s CreateRobotApplicationVersionOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateRobotApplicationVersionOutput) SetArn(v string) *CreateRobotApplicationVersionOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateRobotApplicationVersionOutput) SetEnvironment(v *Environment) *CreateRobotApplicationVersionOutput {
+	s.Environment = v
 	return s
 }
 
@@ -7519,6 +7567,10 @@ func (s *CreateRobotOutput) SetTags(v map[string]*string) *CreateRobotOutput {
 type CreateSimulationApplicationInput struct {
 	_ struct{} `type:"structure"`
 
+	// The object that contains the Docker image URI used to create your simulation
+	// application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The name of the simulation application.
 	//
 	// Name is a required field
@@ -7538,9 +7590,7 @@ type CreateSimulationApplicationInput struct {
 	SimulationSoftwareSuite *SimulationSoftwareSuite `locationName:"simulationSoftwareSuite" type:"structure" required:"true"`
 
 	// The sources of the simulation application.
-	//
-	// Sources is a required field
-	Sources []*SourceConfig `locationName:"sources" type:"list" required:"true"`
+	Sources []*SourceConfig `locationName:"sources" type:"list"`
 
 	// A map that contains tag keys and tag values that are attached to the simulation
 	// application.
@@ -7580,8 +7630,10 @@ func (s *CreateSimulationApplicationInput) Validate() error {
 	if s.SimulationSoftwareSuite == nil {
 		invalidParams.Add(request.NewErrParamRequired("SimulationSoftwareSuite"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RenderingEngine != nil {
 		if err := s.RenderingEngine.Validate(); err != nil {
@@ -7603,6 +7655,12 @@ func (s *CreateSimulationApplicationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateSimulationApplicationInput) SetEnvironment(v *Environment) *CreateSimulationApplicationInput {
+	s.Environment = v
+	return s
 }
 
 // SetName sets the Name field's value.
@@ -7646,6 +7704,10 @@ type CreateSimulationApplicationOutput struct {
 
 	// The Amazon Resource Name (ARN) of the simulation application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The object that contains the Docker image URI that you used to create your
+	// simulation application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the simulation application
 	// was last updated.
@@ -7697,6 +7759,12 @@ func (s CreateSimulationApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateSimulationApplicationOutput) SetArn(v string) *CreateSimulationApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateSimulationApplicationOutput) SetEnvironment(v *Environment) *CreateSimulationApplicationOutput {
+	s.Environment = v
 	return s
 }
 
@@ -7765,6 +7833,14 @@ type CreateSimulationApplicationVersionInput struct {
 	// The current revision id for the simulation application. If you provide a
 	// value and it matches the latest revision ID, a new version will be created.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
+
+	// The SHA256 digest used to identify the Docker image URI used to created the
+	// simulation application.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
+	// The Amazon S3 eTag identifier for the zip file bundle that you use to create
+	// the simulation application.
+	S3Etags []*string `locationName:"s3Etags" type:"list"`
 }
 
 // String returns the string representation.
@@ -7816,11 +7892,27 @@ func (s *CreateSimulationApplicationVersionInput) SetCurrentRevisionId(v string)
 	return s
 }
 
+// SetImageDigest sets the ImageDigest field's value.
+func (s *CreateSimulationApplicationVersionInput) SetImageDigest(v string) *CreateSimulationApplicationVersionInput {
+	s.ImageDigest = &v
+	return s
+}
+
+// SetS3Etags sets the S3Etags field's value.
+func (s *CreateSimulationApplicationVersionInput) SetS3Etags(v []*string) *CreateSimulationApplicationVersionInput {
+	s.S3Etags = v
+	return s
+}
+
 type CreateSimulationApplicationVersionOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Resource Name (ARN) of the simulation application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The object that contains the Docker image URI used to create the simulation
+	// application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the simulation application
 	// was last updated.
@@ -7869,6 +7961,12 @@ func (s CreateSimulationApplicationVersionOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *CreateSimulationApplicationVersionOutput) SetArn(v string) *CreateSimulationApplicationVersionOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *CreateSimulationApplicationVersionOutput) SetEnvironment(v *Environment) *CreateSimulationApplicationVersionOutput {
+	s.Environment = v
 	return s
 }
 
@@ -10431,6 +10529,12 @@ type DescribeRobotApplicationOutput struct {
 	// The Amazon Resource Name (ARN) of the robot application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI used to create the robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
+	// A SHA256 identifier for the Docker image that you use for your robot application.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
 	// The time, in milliseconds since the epoch, when the robot application was
 	// last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
@@ -10475,6 +10579,18 @@ func (s DescribeRobotApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeRobotApplicationOutput) SetArn(v string) *DescribeRobotApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *DescribeRobotApplicationOutput) SetEnvironment(v *Environment) *DescribeRobotApplicationOutput {
+	s.Environment = v
+	return s
+}
+
+// SetImageDigest sets the ImageDigest field's value.
+func (s *DescribeRobotApplicationOutput) SetImageDigest(v string) *DescribeRobotApplicationOutput {
+	s.ImageDigest = &v
 	return s
 }
 
@@ -10748,6 +10864,14 @@ type DescribeSimulationApplicationOutput struct {
 	// The Amazon Resource Name (ARN) of the robot simulation application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI used to create the simulation
+	// application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
+	// A SHA256 identifier for the Docker image that you use for your simulation
+	// application.
+	ImageDigest *string `locationName:"imageDigest" type:"string"`
+
 	// The time, in milliseconds since the epoch, when the simulation application
 	// was last updated.
 	LastUpdatedAt *time.Time `locationName:"lastUpdatedAt" type:"timestamp"`
@@ -10798,6 +10922,18 @@ func (s DescribeSimulationApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *DescribeSimulationApplicationOutput) SetArn(v string) *DescribeSimulationApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *DescribeSimulationApplicationOutput) SetEnvironment(v *Environment) *DescribeSimulationApplicationOutput {
+	s.Environment = v
+	return s
+}
+
+// SetImageDigest sets the ImageDigest field's value.
+func (s *DescribeSimulationApplicationOutput) SetImageDigest(v string) *DescribeSimulationApplicationOutput {
+	s.ImageDigest = &v
 	return s
 }
 
@@ -12104,6 +12240,52 @@ func (s *DescribeWorldTemplateOutput) SetTags(v map[string]*string) *DescribeWor
 // SetVersion sets the Version field's value.
 func (s *DescribeWorldTemplateOutput) SetVersion(v string) *DescribeWorldTemplateOutput {
 	s.Version = &v
+	return s
+}
+
+// The object that contains the Docker image URI for either your robot or simulation
+// applications.
+type Environment struct {
+	_ struct{} `type:"structure"`
+
+	// The Docker image URI for either your robot or simulation applications.
+	Uri *string `locationName:"uri" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Environment) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Environment) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Environment) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Environment"}
+	if s.Uri != nil && len(*s.Uri) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Uri", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUri sets the Uri field's value.
+func (s *Environment) SetUri(v string) *Environment {
+	s.Uri = &v
 	return s
 }
 
@@ -17759,15 +17941,16 @@ type UpdateRobotApplicationInput struct {
 	// The revision id for the robot application.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI for your robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The robot software suite (ROS distribution) used by the robot application.
 	//
 	// RobotSoftwareSuite is a required field
 	RobotSoftwareSuite *RobotSoftwareSuite `locationName:"robotSoftwareSuite" type:"structure" required:"true"`
 
 	// The sources of the robot application.
-	//
-	// Sources is a required field
-	Sources []*SourceConfig `locationName:"sources" type:"list" required:"true"`
+	Sources []*SourceConfig `locationName:"sources" type:"list"`
 }
 
 // String returns the string representation.
@@ -17803,8 +17986,10 @@ func (s *UpdateRobotApplicationInput) Validate() error {
 	if s.RobotSoftwareSuite == nil {
 		invalidParams.Add(request.NewErrParamRequired("RobotSoftwareSuite"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Sources != nil {
 		for i, v := range s.Sources {
@@ -17835,6 +18020,12 @@ func (s *UpdateRobotApplicationInput) SetCurrentRevisionId(v string) *UpdateRobo
 	return s
 }
 
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateRobotApplicationInput) SetEnvironment(v *Environment) *UpdateRobotApplicationInput {
+	s.Environment = v
+	return s
+}
+
 // SetRobotSoftwareSuite sets the RobotSoftwareSuite field's value.
 func (s *UpdateRobotApplicationInput) SetRobotSoftwareSuite(v *RobotSoftwareSuite) *UpdateRobotApplicationInput {
 	s.RobotSoftwareSuite = v
@@ -17852,6 +18043,9 @@ type UpdateRobotApplicationOutput struct {
 
 	// The Amazon Resource Name (ARN) of the updated robot application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The object that contains the Docker image URI for your robot application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the robot application was
 	// last updated.
@@ -17894,6 +18088,12 @@ func (s UpdateRobotApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *UpdateRobotApplicationOutput) SetArn(v string) *UpdateRobotApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateRobotApplicationOutput) SetEnvironment(v *Environment) *UpdateRobotApplicationOutput {
+	s.Environment = v
 	return s
 }
 
@@ -17944,6 +18144,9 @@ type UpdateSimulationApplicationInput struct {
 	// The revision id for the robot application.
 	CurrentRevisionId *string `locationName:"currentRevisionId" min:"1" type:"string"`
 
+	// The object that contains the Docker image URI for your simulation application.
+	Environment *Environment `locationName:"environment" type:"structure"`
+
 	// The rendering engine for the simulation application.
 	RenderingEngine *RenderingEngine `locationName:"renderingEngine" type:"structure"`
 
@@ -17958,9 +18161,7 @@ type UpdateSimulationApplicationInput struct {
 	SimulationSoftwareSuite *SimulationSoftwareSuite `locationName:"simulationSoftwareSuite" type:"structure" required:"true"`
 
 	// The sources of the simulation application.
-	//
-	// Sources is a required field
-	Sources []*SourceConfig `locationName:"sources" type:"list" required:"true"`
+	Sources []*SourceConfig `locationName:"sources" type:"list"`
 }
 
 // String returns the string representation.
@@ -17999,8 +18200,10 @@ func (s *UpdateSimulationApplicationInput) Validate() error {
 	if s.SimulationSoftwareSuite == nil {
 		invalidParams.Add(request.NewErrParamRequired("SimulationSoftwareSuite"))
 	}
-	if s.Sources == nil {
-		invalidParams.Add(request.NewErrParamRequired("Sources"))
+	if s.Environment != nil {
+		if err := s.Environment.Validate(); err != nil {
+			invalidParams.AddNested("Environment", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.RenderingEngine != nil {
 		if err := s.RenderingEngine.Validate(); err != nil {
@@ -18036,6 +18239,12 @@ func (s *UpdateSimulationApplicationInput) SetCurrentRevisionId(v string) *Updat
 	return s
 }
 
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateSimulationApplicationInput) SetEnvironment(v *Environment) *UpdateSimulationApplicationInput {
+	s.Environment = v
+	return s
+}
+
 // SetRenderingEngine sets the RenderingEngine field's value.
 func (s *UpdateSimulationApplicationInput) SetRenderingEngine(v *RenderingEngine) *UpdateSimulationApplicationInput {
 	s.RenderingEngine = v
@@ -18065,6 +18274,9 @@ type UpdateSimulationApplicationOutput struct {
 
 	// The Amazon Resource Name (ARN) of the updated simulation application.
 	Arn *string `locationName:"arn" min:"1" type:"string"`
+
+	// The object that contains the Docker image URI used for your simulation application.
+	Environment *Environment `locationName:"environment" type:"structure"`
 
 	// The time, in milliseconds since the epoch, when the simulation application
 	// was last updated.
@@ -18113,6 +18325,12 @@ func (s UpdateSimulationApplicationOutput) GoString() string {
 // SetArn sets the Arn field's value.
 func (s *UpdateSimulationApplicationOutput) SetArn(v string) *UpdateSimulationApplicationOutput {
 	s.Arn = &v
+	return s
+}
+
+// SetEnvironment sets the Environment field's value.
+func (s *UpdateSimulationApplicationOutput) SetEnvironment(v *Environment) *UpdateSimulationApplicationOutput {
+	s.Environment = v
 	return s
 }
 

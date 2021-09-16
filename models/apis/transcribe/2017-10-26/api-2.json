@@ -1656,6 +1656,7 @@
         "ContentRedaction":{"shape":"ContentRedaction"},
         "IdentifyLanguage":{"shape":"Boolean"},
         "LanguageOptions":{"shape":"LanguageOptions"},
+        "Subtitles":{"shape":"Subtitles"},
         "Tags":{"shape":"TagList"}
       }
     },
@@ -1670,6 +1671,34 @@
       "type":"list",
       "member":{"shape":"NonEmptyString"},
       "min":1
+    },
+    "SubtitleFileUris":{
+      "type":"list",
+      "member":{"shape":"Uri"}
+    },
+    "SubtitleFormat":{
+      "type":"string",
+      "enum":[
+        "vtt",
+        "srt"
+      ]
+    },
+    "SubtitleFormats":{
+      "type":"list",
+      "member":{"shape":"SubtitleFormat"}
+    },
+    "Subtitles":{
+      "type":"structure",
+      "members":{
+        "Formats":{"shape":"SubtitleFormats"}
+      }
+    },
+    "SubtitlesOutput":{
+      "type":"structure",
+      "members":{
+        "Formats":{"shape":"SubtitleFormats"},
+        "SubtitleFileUris":{"shape":"SubtitleFileUris"}
+      }
     },
     "Tag":{
       "type":"structure",
@@ -1778,7 +1807,8 @@
         "IdentifyLanguage":{"shape":"Boolean"},
         "LanguageOptions":{"shape":"LanguageOptions"},
         "IdentifiedLanguageScore":{"shape":"IdentifiedLanguageScore"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "Subtitles":{"shape":"SubtitlesOutput"}
       }
     },
     "TranscriptionJobName":{

@@ -7,6 +7,7 @@
     "CreateEmailTemplate" : "<p>Creates a message template for messages that are sent through the email channel.</p>",
     "CreateExportJob" : "<p>Creates an export job for an application.</p>",
     "CreateImportJob" : "<p>Creates an import job for an application.</p>",
+    "CreateInAppTemplate" : "<p>Creates a new message template for messages using the in-app message channel.</p>",
     "CreateJourney" : "<p>Creates a journey for an application.</p>",
     "CreatePushTemplate" : "<p>Creates a message template for messages that are sent through a push notification channel.</p>",
     "CreateRecommenderConfiguration" : "<p>Creates an Amazon Pinpoint configuration for a recommender model.</p>",
@@ -26,6 +27,7 @@
     "DeleteEndpoint" : "<p>Deletes an endpoint from an application.</p>",
     "DeleteEventStream" : "<p>Deletes the event stream for an application.</p>",
     "DeleteGcmChannel" : "<p>Disables the GCM channel for an application and deletes any existing settings for the channel.</p>",
+    "DeleteInAppTemplate" : "<p>Deletes a message template for messages sent using the in-app message channel.</p>",
     "DeleteJourney" : "<p>Deletes a journey from an application.</p>",
     "DeletePushTemplate" : "<p>Deletes a message template for messages that were sent through a push notification channel.</p>",
     "DeleteRecommenderConfiguration" : "<p>Deletes an Amazon Pinpoint configuration for a recommender model.</p>",
@@ -61,6 +63,8 @@
     "GetGcmChannel" : "<p>Retrieves information about the status and settings of the GCM channel for an application.</p>",
     "GetImportJob" : "<p>Retrieves information about the status and settings of a specific import job for an application.</p>",
     "GetImportJobs" : "<p>Retrieves information about the status and settings of all the import jobs for an application.</p>",
+    "GetInAppMessages" : "<p>Retrieves the in-app messages targeted for the provided endpoint ID.</p>",
+    "GetInAppTemplate" : "<p>Retrieves the content and settings of a message template for messages sent through the in-app channel.</p>",
     "GetJourney" : "<p>Retrieves information about the status, configuration, and other settings for a journey.</p>",
     "GetJourneyDateRangeKpi" : "<p>Retrieves (queries) pre-aggregated data for a standard engagement metric that applies to a journey.</p>",
     "GetJourneyExecutionActivityMetrics" : "<p>Retrieves (queries) pre-aggregated data for a standard execution metric that applies to a journey activity.</p>",
@@ -104,6 +108,7 @@
     "UpdateEndpoint" : "<p>Creates a new endpoint for an application or updates the settings and attributes of an existing endpoint for an application. You can also use this operation to define custom attributes for an endpoint. If an update includes one or more values for a custom attribute, Amazon Pinpoint replaces (overwrites) any existing values with the new values.</p>",
     "UpdateEndpointsBatch" : "<p>Creates a new batch of endpoints for an application or updates the settings and attributes of a batch of existing endpoints for an application. You can also use this operation to define custom attributes for a batch of endpoints. If an update includes one or more values for a custom attribute, Amazon Pinpoint replaces (overwrites) any existing values with the new values.</p>",
     "UpdateGcmChannel" : "<p>Enables the GCM channel for an application or updates the status and settings of the GCM channel for an application.</p>",
+    "UpdateInAppTemplate" : "<p>Updates an existing message template for messages sent through the in-app message channel.</p>",
     "UpdateJourney" : "<p>Updates the configuration and other settings for a journey.</p>",
     "UpdateJourneyState" : "<p>Pause, resume or cancels (stops) a journey.</p>",
     "UpdatePushTemplate" : "<p>Updates an existing message template for messages that are sent through a push notification channel.</p>",
@@ -211,6 +216,13 @@
         "MapOfAddressConfiguration$member" : null
       }
     },
+    "Alignment" : {
+      "base" : null,
+      "refs" : {
+        "InAppMessageBodyConfig$Alignment" : "<p>The alignment of the text. Valid values: LEFT, CENTER, RIGHT.</p>",
+        "InAppMessageHeaderConfig$Alignment" : "<p>The alignment of the text. Valid values: LEFT, CENTER, RIGHT.</p>"
+      }
+    },
     "AndroidPushNotificationTemplate" : {
       "base" : "<p>Specifies channel-specific content and settings for a message template that can be used in push notifications that are sent through the ADM (Amazon Device Messaging), Baidu (Baidu Cloud Push), or GCM (Firebase Cloud Messaging, formerly Google Cloud Messaging) channel.</p>",
       "refs" : {
@@ -282,6 +294,13 @@
         "JourneyDateRangeKpiResponse$KpiResult" : "<p>An array of objects that contains the results of the query. Each object contains the value for the metric and metadata about that value.</p>"
       }
     },
+    "ButtonAction" : {
+      "base" : null,
+      "refs" : {
+        "DefaultButtonConfiguration$ButtonAction" : "<p>Action triggered by the button.</p>",
+        "OverrideButtonConfiguration$ButtonAction" : "<p>Action triggered by the button.</p>"
+      }
+    },
     "CampaignCustomMessage" : {
       "base" : "<p>Specifies the contents of a message that's sent through a custom channel to recipients of a campaign.</p>",
       "refs" : {
@@ -301,6 +320,7 @@
     "CampaignEventFilter" : {
       "base" : "<p>Specifies the settings for events that cause a campaign to be sent.</p>",
       "refs" : {
+        "InAppCampaignSchedule$EventFilter" : "<p>The event filter the SDK has to use to show the in-app message in the application.</p>",
         "Schedule$EventFilter" : "<p>The type of event that causes the campaign to be sent, if the value of the Frequency property is EVENT.</p>"
       }
     },
@@ -311,6 +331,12 @@
         "CampaignResponse$Hook" : "<p>The settings for the AWS Lambda function to use as a code hook for the campaign. You can use this hook to customize the segment that's used by the campaign.</p>",
         "WriteApplicationSettingsRequest$CampaignHook" : "<p>The settings for the AWS Lambda function to invoke by default as a code hook for campaigns in the application. You can use this hook to customize segments that are used by campaigns in the application.</p> <p>To override these settings and define custom settings for a specific campaign, use the CampaignHook object of the <link  linkend=\"apps-application-id-campaigns-campaign-id\">Campaign</link> resource.</p>",
         "WriteCampaignRequest$Hook" : "<p>The settings for the AWS Lambda function to invoke as a code hook for the campaign. You can use this hook to customize the segment that's used by the campaign.</p>"
+      }
+    },
+    "CampaignInAppMessage" : {
+      "base" : "<p>In-app message configuration.</p>",
+      "refs" : {
+        "MessageConfiguration$InAppMessage" : "<p>The in-app message configuration.</p>"
       }
     },
     "CampaignLimits" : {
@@ -413,6 +439,12 @@
       "base" : "<p>The settings for a custom message activity. This type of activity calls an AWS Lambda function or web hook that sends messages to participants.</p>",
       "refs" : {
         "Activity$CUSTOM" : "<p>The settings for a custom message activity. This type of activity calls an AWS Lambda function or web hook that sends messages to participants.</p>"
+      }
+    },
+    "DefaultButtonConfiguration" : {
+      "base" : "<p>Default button configuration.</p>",
+      "refs" : {
+        "InAppMessageButton$DefaultConfig" : "<p>Default button content.</p>"
       }
     },
     "DefaultMessage" : {
@@ -710,6 +742,61 @@
       "base" : "<p>Provides information about the status and settings of all the import jobs that are associated with an application or segment. An import job is a job that imports endpoint definitions from one or more files.</p>",
       "refs" : { }
     },
+    "InAppCampaignSchedule" : {
+      "base" : null,
+      "refs" : {
+        "InAppMessageCampaign$Schedule" : "<p>Schedule of the campaign.</p>"
+      }
+    },
+    "InAppMessage" : {
+      "base" : "<p>Provides all fields required for building an in-app message.</p>",
+      "refs" : {
+        "InAppMessageCampaign$InAppMessage" : "<p>In-app message content with all fields required for rendering an in-app message.</p>"
+      }
+    },
+    "InAppMessageBodyConfig" : {
+      "base" : "<p>Text config for Message Body.</p>",
+      "refs" : {
+        "InAppMessageContent$BodyConfig" : "<p>The configuration for the message body.</p>"
+      }
+    },
+    "InAppMessageButton" : {
+      "base" : "<p>Button Config for an in-app message.</p>",
+      "refs" : {
+        "InAppMessageContent$PrimaryBtn" : "<p>The first button inside the message.</p>",
+        "InAppMessageContent$SecondaryBtn" : "<p>The second button inside message.</p>"
+      }
+    },
+    "InAppMessageCampaign" : {
+      "base" : null,
+      "refs" : {
+        "ListOfInAppMessageCampaign$member" : null
+      }
+    },
+    "InAppMessageContent" : {
+      "base" : "<p>The configuration for the message content.</p>",
+      "refs" : {
+        "ListOfInAppMessageContent$member" : null
+      }
+    },
+    "InAppMessageHeaderConfig" : {
+      "base" : "<p>Text config for Message Header.</p>",
+      "refs" : {
+        "InAppMessageContent$HeaderConfig" : "<p>The configuration for the message header.</p>"
+      }
+    },
+    "InAppMessagesResponse" : {
+      "base" : "<p>Get in-app messages response object.</p>",
+      "refs" : { }
+    },
+    "InAppTemplateRequest" : {
+      "base" : "<p>In-App Template Request.</p>",
+      "refs" : { }
+    },
+    "InAppTemplateResponse" : {
+      "base" : "<p>In-App Template Response.</p>",
+      "refs" : { }
+    },
     "Include" : {
       "base" : null,
       "refs" : {
@@ -796,6 +883,15 @@
     "JourneysResponse" : {
       "base" : "<p>Provides information about the status, configuration, and other settings for all the journeys that are associated with an application.</p>",
       "refs" : { }
+    },
+    "Layout" : {
+      "base" : null,
+      "refs" : {
+        "CampaignInAppMessage$Layout" : "<p>In-app message layout.</p>",
+        "InAppMessage$Layout" : "<p>The layout of the message.</p>",
+        "InAppTemplateRequest$Layout" : "<p>The layout of the message.</p>",
+        "InAppTemplateResponse$Layout" : "<p>The layout of the message.</p>"
+      }
     },
     "ListRecommenderConfigurationsResponse" : {
       "base" : "<p>Provides information about all the recommender model configurations that are associated with your Amazon Pinpoint account.</p>",
@@ -892,6 +988,14 @@
         "Condition$Operator" : "<p>Specifies how to handle multiple conditions for the activity. For example, if you specify two conditions for an activity, whether both or only one of the conditions must be met for the activity to be performed.</p>"
       }
     },
+    "OverrideButtonConfiguration" : {
+      "base" : "<p>Override button configuration.</p>",
+      "refs" : {
+        "InAppMessageButton$Android" : "<p>Default button content.</p>",
+        "InAppMessageButton$IOS" : "<p>Default button content.</p>",
+        "InAppMessageButton$Web" : "<p>Default button content.</p>"
+      }
+    },
     "PayloadTooLargeException" : {
       "base" : "<p>Provides information about an API request or response.</p>",
       "refs" : { }
@@ -920,6 +1024,7 @@
       "base" : "<p>Specifies the start and end times that define a time range when messages aren't sent to endpoints.</p>",
       "refs" : {
         "ApplicationSettingsResource$QuietTime" : "<p>The default quiet time for campaigns in the application. Quiet time is a specific time range when messages aren't sent to endpoints, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint is set to a valid value.</p></li> <li><p>The current time in the endpoint's time zone is later than or equal to the time specified by the QuietTime.Start property for the application (or a campaign or journey that has custom quiet time settings).</p></li> <li><p>The current time in the endpoint's time zone is earlier than or equal to the time specified by the QuietTime.End property for the application (or a campaign or journey that has custom quiet time settings).</p></li></ul> <p>If any of the preceding conditions isn't met, the endpoint will receive messages from a campaign or journey, even if quiet time is enabled.</p>",
+        "InAppCampaignSchedule$QuietTime" : "<p>Time during which the in-app message should not be shown to the user.</p>",
         "JourneyResponse$QuietTime" : "<p>The quiet time settings for the journey. Quiet time is a specific time range when a journey doesn't send messages to participants, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint for the participant is set to a valid value.</p></li> <li><p>The current time in the participant's time zone is later than or equal to the time specified by the QuietTime.Start property for the journey.</p></li> <li><p>The current time in the participant's time zone is earlier than or equal to the time specified by the QuietTime.End property for the journey.</p></li></ul> <p>If any of the preceding conditions isn't met, the participant will receive messages from the journey, even if quiet time is enabled.</p>",
         "Schedule$QuietTime" : "<p>The default quiet time for the campaign. Quiet time is a specific time range when a campaign doesn't send messages to endpoints, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint is set to a valid value.</p></li> <li><p>The current time in the endpoint's time zone is later than or equal to the time specified by the QuietTime.Start property for the campaign.</p></li> <li><p>The current time in the endpoint's time zone is earlier than or equal to the time specified by the QuietTime.End property for the campaign.</p></li></ul> <p>If any of the preceding conditions isn't met, the endpoint will receive messages from the campaign, even if quiet time is enabled.</p>",
         "WriteApplicationSettingsRequest$QuietTime" : "<p>The default quiet time for campaigns in the application. Quiet time is a specific time range when messages aren't sent to endpoints, if all the following conditions are met:</p> <ul><li><p>The EndpointDemographic.Timezone property of the endpoint is set to a valid value.</p></li> <li><p>The current time in the endpoint's time zone is later than or equal to the time specified by the QuietTime.Start property for the application (or a campaign or journey that has custom quiet time settings).</p></li> <li><p>The current time in the endpoint's time zone is earlier than or equal to the time specified by the QuietTime.End property for the application (or a campaign or journey that has custom quiet time settings).</p></li></ul> <p>If any of the preceding conditions isn't met, the endpoint will receive messages from a campaign or journey, even if quiet time is enabled.</p> <p>To override the default quiet time settings for a specific campaign or journey, use the <link  linkend=\"apps-application-id-campaigns-campaign-id\">Campaign</link> resource or the <link  linkend=\"apps-application-id-journeys-journey-id\">Journey</link> resource to define a custom quiet time for the campaign or journey.</p>",
@@ -1183,6 +1288,10 @@
         "WriteTreatmentResource$TemplateConfiguration" : "<p>The message template to use for the treatment.</p>"
       }
     },
+    "TemplateCreateMessageBody" : {
+      "base" : "<p>Provides information about a request to create a message template.</p>",
+      "refs" : { }
+    },
     "TemplateResponse" : {
       "base" : "<p>Provides information about a message template that's associated with your Amazon Pinpoint account.</p>",
       "refs" : {
@@ -1193,6 +1302,7 @@
       "base" : null,
       "refs" : {
         "EmailTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For an email template, this value is EMAIL.</p>",
+        "InAppTemplateResponse$TemplateType" : "<p>The type of the template.</p>",
         "PushNotificationTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For a push notification template, this value is PUSH.</p>",
         "SMSTemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. For an SMS template, this value is SMS.</p>",
         "TemplateResponse$TemplateType" : "<p>The type of channel that the message template is designed for. Possible values are: EMAIL, PUSH, SMS, and VOICE.</p>",
@@ -1405,12 +1515,15 @@
         "CampaignLimits$Daily" : "<p>The maximum number of messages that a campaign can send to a single endpoint during a 24-hour period. For an application, this value specifies the default limit for the number of messages that campaigns and journeys can send to a single endpoint during a 24-hour period. The maximum value is 100.</p>",
         "CampaignLimits$MaximumDuration" : "<p>The maximum amount of time, in seconds, that a campaign can attempt to deliver a message after the scheduled start time for the campaign. The minimum value is 60 seconds.</p>",
         "CampaignLimits$MessagesPerSecond" : "<p>The maximum number of messages that a campaign can send each second. For an application, this value specifies the default limit for the number of messages that campaigns can send each second. The minimum value is 50. The maximum value is 20,000.</p>",
+        "CampaignLimits$Session" : "<p>The maximum total number of messages that the campaign can send per user session.</p>",
         "CampaignLimits$Total" : "<p>The maximum number of messages that a campaign can send to a single endpoint during the course of the campaign. If a campaign recurs, this setting applies to all runs of the campaign. The maximum value is 100.</p>",
         "CampaignResponse$HoldoutPercent" : "<p>The allocated percentage of users (segment members) who shouldn't receive messages from the campaign.</p>",
+        "CampaignResponse$Priority" : "<p>Defines the priority of the campaign, used to decide the order of messages displayed to user if there are multiple messages scheduled to be displayed at the same moment</p>",
         "CampaignResponse$SegmentVersion" : "<p>The version number of the segment that's associated with the campaign.</p>",
         "CampaignResponse$Version" : "<p>The version number of the campaign.</p>",
         "ChannelResponse$Version" : "<p>The current version of the channel.</p>",
         "CreateRecommenderConfiguration$RecommendationsPerMessage" : "<p>The number of recommended items to retrieve from the model for each endpoint or user, depending on the value for the RecommendationProviderIdType property. This number determines how many recommended items are available for use in message variables. The minimum value is 1. The maximum value is 5. The default value is 5.</p> <p>To use multiple recommended items and custom attributes with message variables, you have to use an AWS Lambda function (RecommendationTransformerUri) to perform additional processing of recommendation data.</p>",
+        "DefaultButtonConfiguration$BorderRadius" : "<p>The border radius of the button.</p>",
         "EmailChannelResponse$MessagesPerSecond" : "<p>The maximum number of emails that can be sent through the channel each second.</p>",
         "EmailChannelResponse$Version" : "<p>The current version of the email channel.</p>",
         "EndpointItemResponse$StatusCode" : "<p>The status code that's returned in the response as a result of processing the endpoint data.</p>",
@@ -1431,6 +1544,10 @@
         "ImportJobResponse$TotalFailures" : "<p>The total number of endpoint definitions that weren't processed successfully (failed) by the import job, typically because an error, such as a syntax error, occurred.</p>",
         "ImportJobResponse$TotalPieces" : "<p>The total number of pieces that must be processed to complete the import job. Each piece consists of an approximately equal portion of the endpoint definitions that are part of the import job.</p>",
         "ImportJobResponse$TotalProcessed" : "<p>The total number of endpoint definitions that were processed by the import job.</p>",
+        "InAppMessageCampaign$DailyCap" : "<p>Daily cap which controls the number of times any in-app messages can be shown to the endpoint during a day.</p>",
+        "InAppMessageCampaign$Priority" : "<p>Priority of the in-app message.</p>",
+        "InAppMessageCampaign$SessionCap" : "<p>Session cap which controls the number of times an in-app message can be shown to the endpoint during an application session.</p>",
+        "InAppMessageCampaign$TotalCap" : "<p>Total cap which controls the number of times an in-app message can be shown to the endpoint.</p>",
         "JourneyLimits$DailyCap" : "<p>The maximum number of messages that the journey can send to a single participant during a 24-hour period. The maximum value is 100.</p>",
         "JourneyLimits$EndpointReentryCap" : "<p>The maximum number of times that a participant can enter the journey. The maximum value is 100. To allow participants to enter the journey an unlimited number of times, set this value to 0.</p>",
         "JourneyLimits$MessagesPerSecond" : "<p>The maximum number of messages that the journey can send each second.</p>",
@@ -1450,6 +1567,7 @@
         "UpdateRecommenderConfiguration$RecommendationsPerMessage" : "<p>The number of recommended items to retrieve from the model for each endpoint or user, depending on the value for the RecommendationProviderIdType property. This number determines how many recommended items are available for use in message variables. The minimum value is 1. The maximum value is 5. The default value is 5.</p> <p>To use multiple recommended items and custom attributes with message variables, you have to use an AWS Lambda function (RecommendationTransformerUri) to perform additional processing of recommendation data.</p>",
         "VoiceChannelResponse$Version" : "<p>The current version of the voice channel.</p>",
         "WriteCampaignRequest$HoldoutPercent" : "<p>The allocated percentage of users (segment members) who shouldn't receive messages from the campaign.</p>",
+        "WriteCampaignRequest$Priority" : "<p>Defines the priority of the campaign, used to decide the order of messages displayed to user if there are multiple messages scheduled to be displayed at the same moment.</p>",
         "WriteCampaignRequest$SegmentVersion" : "<p>The version of the segment to associate with the campaign.</p>",
         "WriteTreatmentResource$SizePercent" : "<p>The allocated percentage of users (segment members) to send the treatment to.</p>",
         "MapOf__integer$member" : null
@@ -1495,6 +1613,21 @@
       "base" : null,
       "refs" : {
         "ImportJobsResponse$Item" : "<p>An array of responses, one for each import job that's associated with the application (Import Jobs resource) or segment (Segment Import Jobs resource).</p>"
+      }
+    },
+    "ListOfInAppMessageCampaign" : {
+      "base" : null,
+      "refs" : {
+        "InAppMessagesResponse$InAppMessageCampaigns" : "<p>List of targeted in-app message campaigns.</p>"
+      }
+    },
+    "ListOfInAppMessageContent" : {
+      "base" : null,
+      "refs" : {
+        "CampaignInAppMessage$Content" : "<p>In-app message content.</p>",
+        "InAppMessage$Content" : "<p>In-app message content.</p>",
+        "InAppTemplateRequest$Content" : "<p>The content of the message, can include up to 5 modals. Each modal must contain a message, a header, and background color. ImageUrl and buttons are optional.</p>",
+        "InAppTemplateResponse$Content" : "<p>The content of the message, can include up to 5 modals. Each modal must contain a message, a header, and background color. ImageUrl and buttons are optional.</p>"
       }
     },
     "ListOfJourneyResponse" : {
@@ -1737,6 +1870,7 @@
         "AddressConfiguration$Context" : "<p>An object that maps custom attributes to attributes for the address and is attached to the message. Attribute names are case sensitive.</p> <p>For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "ApplicationResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the application. Each tag consists of a required tag key and an associated tag value.</p>",
         "BaiduMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
+        "CampaignInAppMessage$CustomConfig" : "<p>Custom config to be sent to client.</p>",
         "CampaignResponse$tags" : "<p>A string-to-string map of key-value pairs that identifies the tags that are associated with the campaign. Each tag consists of a required tag key and an associated tag value.</p>",
         "CreateApplicationRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the application. Each tag consists of a required tag key and an associated tag value.</p>",
         "CreateRecommenderConfiguration$Attributes" : "<p>A map of key-value pairs that defines 1-10 custom endpoint or user attributes, depending on the value for the RecommendationProviderIdType property. Each of these attributes temporarily stores a recommended item that's retrieved from the recommender model and sent to an AWS Lambda function for additional processing. Each attribute can be used as a message variable in a message template.</p> <p>In the map, the key is the name of a custom attribute and the value is a custom display name for that attribute. The display name appears in the <b>Attribute finder</b> of the template editor on the Amazon Pinpoint console. The following restrictions apply to these names:</p> <ul><li><p>An attribute name must start with a letter or number and it can contain up to 50 characters. The characters can be letters, numbers, underscores (_), or hyphens (-). Attribute names are case sensitive and must be unique.</p></li> <li><p>An attribute display name must start with a letter or number and it can contain up to 25 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-).</p></li></ul> <p>This object is required if the configuration invokes an AWS Lambda function (RecommendationTransformerUri) to process recommendation data. Otherwise, don't include this object in your request.</p>",
@@ -1746,6 +1880,11 @@
         "EndpointSendConfiguration$Context" : "<p>A map of custom attributes to attach to the message for the address. Attribute names are case sensitive.</p> <p>For a push notification, this payload is added to the data.pinpoint object. For an email or text message, this payload is added to email/SMS delivery receipt event attributes.</p>",
         "Event$Attributes" : "<p>One or more custom attributes that are associated with the event.</p>",
         "GCMMessage$Data" : "<p>The JSON data payload to use for the push notification, if the notification is a silent push notification. This payload is added to the data.pinpoint.jsonBody object of the notification.</p>",
+        "InAppMessage$CustomConfig" : "<p>Custom config to be sent to SDK.</p>",
+        "InAppTemplateRequest$CustomConfig" : "<p>Custom config to be sent to client.</p>",
+        "InAppTemplateRequest$tags" : "<p>A string-to-string map of key-value pairs that defines the tags to associate with the message template. Each tag consists of a required tag key and an associated tag value.</p>",
+        "InAppTemplateResponse$CustomConfig" : "<p>Custom config to be sent to client.</p>",
+        "InAppTemplateResponse$tags" : "<p>Tags map that contains arn and InternalId for API GW.</p>",
         "JourneyExecutionActivityMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. The results vary depending on the type of activity (ActivityType). For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com/pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "JourneyExecutionMetricsResponse$Metrics" : "<p>A JSON object that contains the results of the query. For information about the structure and contents of the results, see the <a href=\"https://docs.aws.amazon.com//pinpoint/latest/developerguide/analytics-standard-metrics.html\">Amazon Pinpoint Developer Guide</a>.</p>",
         "JourneyResponse$tags" : "<p>This object is not used or supported.</p>",
@@ -1929,6 +2068,7 @@
         "CampaignEmailMessage$Title" : "<p>The subject line, or title, of the email.</p>",
         "CampaignHook$LambdaFunctionName" : "<p>The name or Amazon Resource Name (ARN) of the AWS Lambda function that Amazon Pinpoint invokes to customize a segment for a campaign.</p>",
         "CampaignHook$WebUrl" : " <p>The web URL that Amazon Pinpoint calls to invoke the AWS Lambda function over HTTPS.</p>",
+        "CampaignInAppMessage$Body" : "<p>The message body of the notification, the email body or the text message.</p>",
         "CampaignResponse$ApplicationId" : "<p>The unique identifier for the application that the campaign applies to.</p>",
         "CampaignResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the campaign.</p>",
         "CampaignResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the campaign was created.</p>",
@@ -1968,6 +2108,10 @@
         "CustomMessageActivity$NextActivity" : "<p>The unique identifier for the next activity to perform, after Amazon Pinpoint calls the AWS Lambda function or web hook.</p>",
         "CustomMessageActivity$TemplateName" : "<p>The name of the custom message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
         "CustomMessageActivity$TemplateVersion" : "<p>The unique identifier for the version of the message template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
+        "DefaultButtonConfiguration$BackgroundColor" : "<p>The background color of the button.</p>",
+        "DefaultButtonConfiguration$Link" : "<p>Button destination.</p>",
+        "DefaultButtonConfiguration$Text" : "<p>Button text.</p>",
+        "DefaultButtonConfiguration$TextColor" : "<p>The text color of the button.</p>",
         "DefaultMessage$Body" : "<p>The default body of the message.</p>",
         "DefaultPushNotificationMessage$Body" : "<p>The default body of the notification message.</p>",
         "DefaultPushNotificationMessage$Title" : "<p>The default title to display above the notification message on a recipient's device.</p>",
@@ -2119,7 +2263,22 @@
         "ImportJobResponse$Id" : "<p>The unique identifier for the import job.</p>",
         "ImportJobResponse$Type" : "<p>The job type. This value is IMPORT for import jobs.</p>",
         "ImportJobsResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
-        "JourneyCustomMessage$Data" : "<p>The message content that's passed to an AWS Lambda function or to a web hook.</p>",
+        "InAppCampaignSchedule$EndDate" : "<p>The scheduled time after which the in-app message should not be shown. Timestamp is in ISO 8601 format.</p>",
+        "InAppMessageBodyConfig$Body" : "<p>Message Body.</p>",
+        "InAppMessageBodyConfig$TextColor" : "<p>The text color.</p>",
+        "InAppMessageCampaign$CampaignId" : "<p>Campaign id of the corresponding campaign.</p>",
+        "InAppMessageCampaign$TreatmentId" : "<p>Treatment id of the campaign.</p>",
+        "InAppMessageContent$BackgroundColor" : "<p>The background color for the message.</p>",
+        "InAppMessageContent$ImageUrl" : "<p>The image url for the background of message.</p>",
+        "InAppMessageHeaderConfig$Header" : "<p>Message Header.</p>",
+        "InAppMessageHeaderConfig$TextColor" : "<p>The text color.</p>",
+        "InAppTemplateRequest$TemplateDescription" : "<p>The description of the template.</p>",
+        "InAppTemplateResponse$Arn" : "<p>The resource arn of the template.</p>",
+        "InAppTemplateResponse$CreationDate" : "<p>The creation date of the template.</p>",
+        "InAppTemplateResponse$LastModifiedDate" : "<p>The last modified date of the template.</p>",
+        "InAppTemplateResponse$TemplateDescription" : "<p>The description of the template.</p>",
+        "InAppTemplateResponse$TemplateName" : "<p>The name of the template.</p>",
+        "InAppTemplateResponse$Version" : "<p>The version id of the template.</p>",
         "JourneyDateRangeKpiResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
         "JourneyDateRangeKpiResponse$EndTime" : "<p>The last date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
         "JourneyDateRangeKpiResponse$JourneyId" : "<p>The unique identifier for the journey that the metric applies to.</p>",
@@ -2187,6 +2346,7 @@
         "NumberValidateResponse$PhoneType" : "<p>The description of the phone type. Valid values are: MOBILE, LANDLINE, VOIP,\n                  INVALID, PREPAID, and OTHER.</p>",
         "NumberValidateResponse$Timezone" : "<p>The time zone for the location where the phone number was originally registered.</p>",
         "NumberValidateResponse$ZipCode" : "<p>The postal or ZIP code for the location where the phone number was originally registered.</p>",
+        "OverrideButtonConfiguration$Link" : "<p>Button destination.</p>",
         "PublicEndpoint$Address" : "<p>The unique identifier for the recipient, such as a device token, email address, or mobile phone number.</p>",
         "PublicEndpoint$EffectiveDate" : "<p>The date and time, in ISO 8601 format, when the endpoint was last updated.</p>",
         "PublicEndpoint$EndpointStatus" : "<p>Specifies whether to send messages or push notifications to the endpoint. Valid values are: ACTIVE, messages are sent to the endpoint; and, INACTIVE, messages aren’t sent to the endpoint.</p> <p>Amazon Pinpoint automatically sets this value to ACTIVE when you create an endpoint or update an existing endpoint. Amazon Pinpoint automatically sets this value to INACTIVE if you update another endpoint that has the same address specified by the Address property.</p>",
@@ -2283,6 +2443,9 @@
         "Template$Name" : "<p>The name of the message template to use for the message. If specified, this value must match the name of an existing message template.</p>",
         "Template$Version" : "<p>The unique identifier for the version of the message template to use for the message. If specified, this value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p> <p>If you don't specify a value for this property, Amazon Pinpoint uses the <i>active version</i> of the template. The <i>active version</i> is typically the version of a template that's been most recently reviewed and approved for use, depending on your workflow. It isn't necessarily the latest version of a template.</p>",
         "TemplateActiveVersionRequest$Version" : "<p>The version of the message template to use as the active version of the template. Valid values are: latest, for the most recent version of the template; or, the unique identifier for any existing version of the template. If you specify an identifier, the value must match the identifier for an existing template version. To retrieve a list of versions and version identifiers for a template, use the <link  linkend=\"templates-template-name-template-type-versions\">Template Versions</link> resource.</p>",
+        "TemplateCreateMessageBody$Arn" : "<p>The Amazon Resource Name (ARN) of the message template that was created.</p>",
+        "TemplateCreateMessageBody$Message" : "<p>The message that's returned from the API for the request to create the message template.</p>",
+        "TemplateCreateMessageBody$RequestID" : "<p>The unique identifier for the request to create the message template.</p>",
         "TemplateResponse$Arn" : "<p>The Amazon Resource Name (ARN) of the message template. This value isn't included in a TemplateResponse object. To retrieve the ARN of a template, use the GetEmailTemplate, GetPushTemplate, GetSmsTemplate, or GetVoiceTemplate operation, depending on the type of template that you want to retrieve the ARN for.</p>",
         "TemplateResponse$CreationDate" : "<p>The date, in ISO 8601 format, when the message template was created.</p>",
         "TemplateResponse$DefaultSubstitutions" : "<p>The JSON object that specifies the default values that are used for message variables in the message template. This object isn't included in a TemplateResponse object. To retrieve this object for a template, use the GetEmailTemplate, GetPushTemplate, GetSmsTemplate, or GetVoiceTemplate operation, depending on the type of template that you want to retrieve the object for.</p>",
