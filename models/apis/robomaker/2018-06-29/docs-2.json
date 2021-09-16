@@ -787,6 +787,23 @@
       "refs": {
       }
     },
+    "Environment": {
+      "base": "<p>The object that contains the Docker image URI for either your robot or simulation applications.</p>",
+      "refs": {
+        "CreateRobotApplicationRequest$environment": "<p>The object that contains that URI of the Docker image that you use for your robot application.</p>",
+        "CreateRobotApplicationResponse$environment": "<p>An object that contains the Docker image URI used to a create your robot application.</p>",
+        "CreateRobotApplicationVersionResponse$environment": "<p>The object that contains the Docker image URI used to create your robot application.</p>",
+        "CreateSimulationApplicationRequest$environment": "<p>The object that contains the Docker image URI used to create your simulation application.</p>",
+        "CreateSimulationApplicationResponse$environment": "<p>The object that contains the Docker image URI that you used to create your simulation application.</p>",
+        "CreateSimulationApplicationVersionResponse$environment": "<p>The object that contains the Docker image URI used to create the simulation application.</p>",
+        "DescribeRobotApplicationResponse$environment": "<p>The object that contains the Docker image URI used to create the robot application.</p>",
+        "DescribeSimulationApplicationResponse$environment": "<p>The object that contains the Docker image URI used to create the simulation application.</p>",
+        "UpdateRobotApplicationRequest$environment": "<p>The object that contains the Docker image URI for your robot application.</p>",
+        "UpdateRobotApplicationResponse$environment": "<p>The object that contains the Docker image URI for your robot application.</p>",
+        "UpdateSimulationApplicationRequest$environment": "<p>The object that contains the Docker image URI for your simulation application.</p>",
+        "UpdateSimulationApplicationResponse$environment": "<p>The object that contains the Docker image URI used for your simulation application.</p>"
+      }
+    },
     "EnvironmentVariableKey": {
       "base": null,
       "refs": {
@@ -964,6 +981,15 @@
     "IdempotentParameterMismatchException": {
       "base": "<p>The request uses the same client token as a previous, but non-identical request. Do not reuse a client token with different requests, unless the requests are identical. </p>",
       "refs": {
+      }
+    },
+    "ImageDigest": {
+      "base": null,
+      "refs": {
+        "CreateRobotApplicationVersionRequest$imageDigest": "<p>A SHA256 identifier for the Docker image that you use for your robot application.</p>",
+        "CreateSimulationApplicationVersionRequest$imageDigest": "<p>The SHA256 digest used to identify the Docker image URI used to created the simulation application.</p>",
+        "DescribeRobotApplicationResponse$imageDigest": "<p>A SHA256 identifier for the Docker image that you use for your robot application.</p>",
+        "DescribeSimulationApplicationResponse$imageDigest": "<p>A SHA256 identifier for the Docker image that you use for your simulation application.</p>"
       }
     },
     "Integer": {
@@ -1391,6 +1417,12 @@
         "RenderingEngine$version": "<p>The version of the rendering engine.</p>"
       }
     },
+    "RepositoryUrl": {
+      "base": null,
+      "refs": {
+        "Environment$uri": "<p>The Docker image URI for either your robot or simulation applications.</p>"
+      }
+    },
     "ResourceAlreadyExistsException": {
       "base": "<p>The specified resource already exists.</p>",
       "refs": {
@@ -1547,9 +1579,17 @@
     "S3Etag": {
       "base": null,
       "refs": {
+        "S3Etags$member": null,
         "S3KeyOutput$etag": "<p>The etag for the object.</p>",
         "S3Object$etag": "<p>The etag of the object.</p>",
         "Source$etag": "<p>A hash of the object specified by <code>s3Bucket</code> and <code>s3Key</code>.</p>"
+      }
+    },
+    "S3Etags": {
+      "base": null,
+      "refs": {
+        "CreateRobotApplicationVersionRequest$s3Etags": "<p>The Amazon S3 identifier for the zip file bundle that you use for your robot application.</p>",
+        "CreateSimulationApplicationVersionRequest$s3Etags": "<p>The Amazon S3 eTag identifier for the zip file bundle that you use to create the simulation application.</p>"
       }
     },
     "S3Key": {

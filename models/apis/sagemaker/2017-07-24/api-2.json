@@ -2173,6 +2173,20 @@
         {"shape":"ResourceNotFound"}
       ]
     },
+    "RetryPipelineExecution":{
+      "name":"RetryPipelineExecution",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"RetryPipelineExecutionRequest"},
+      "output":{"shape":"RetryPipelineExecutionResponse"},
+      "errors":[
+        {"shape":"ResourceNotFound"},
+        {"shape":"ResourceLimitExceeded"},
+        {"shape":"ConflictException"}
+      ]
+    },
     "Search":{
       "name":"Search",
       "http":{
@@ -13096,6 +13110,26 @@
         "Retain",
         "Delete"
       ]
+    },
+    "RetryPipelineExecutionRequest":{
+      "type":"structure",
+      "required":[
+        "PipelineExecutionArn",
+        "ClientRequestToken"
+      ],
+      "members":{
+        "PipelineExecutionArn":{"shape":"PipelineExecutionArn"},
+        "ClientRequestToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        }
+      }
+    },
+    "RetryPipelineExecutionResponse":{
+      "type":"structure",
+      "members":{
+        "PipelineExecutionArn":{"shape":"PipelineExecutionArn"}
+      }
     },
     "RetryStrategy":{
       "type":"structure",

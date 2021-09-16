@@ -190,6 +190,37 @@
         }
       ]
     },
+    "CreateInAppTemplate": {
+      "name": "CreateInAppTemplate",
+      "http": {
+        "method": "POST",
+        "requestUri": "/v1/templates/{template-name}/inapp",
+        "responseCode": 201
+      },
+      "input": {
+        "shape": "CreateInAppTemplateRequest"
+      },
+      "output": {
+        "shape": "CreateInAppTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        },
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "ForbiddenException"
+        }
+      ]
+    },
     "CreateJourney": {
       "name": "CreateJourney",
       "http": {
@@ -850,6 +881,43 @@
       },
       "output": {
         "shape": "DeleteGcmChannelResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "DeleteInAppTemplate": {
+      "name": "DeleteInAppTemplate",
+      "http": {
+        "method": "DELETE",
+        "requestUri": "/v1/templates/{template-name}/inapp",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "DeleteInAppTemplateRequest"
+      },
+      "output": {
+        "shape": "DeleteInAppTemplateResponse"
       },
       "errors": [
         {
@@ -2145,6 +2213,80 @@
       },
       "output": {
         "shape": "GetImportJobsResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "GetInAppMessages": {
+      "name": "GetInAppMessages",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/apps/{application-id}/endpoints/{endpoint-id}/inappmessages",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetInAppMessagesRequest"
+      },
+      "output": {
+        "shape": "GetInAppMessagesResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
+    "GetInAppTemplate": {
+      "name": "GetInAppTemplate",
+      "http": {
+        "method": "GET",
+        "requestUri": "/v1/templates/{template-name}/inapp",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "GetInAppTemplateRequest"
+      },
+      "output": {
+        "shape": "GetInAppTemplateResponse"
       },
       "errors": [
         {
@@ -3683,6 +3825,43 @@
         }
       ]
     },
+    "UpdateInAppTemplate": {
+      "name": "UpdateInAppTemplate",
+      "http": {
+        "method": "PUT",
+        "requestUri": "/v1/templates/{template-name}/inapp",
+        "responseCode": 202
+      },
+      "input": {
+        "shape": "UpdateInAppTemplateRequest"
+      },
+      "output": {
+        "shape": "UpdateInAppTemplateResponse"
+      },
+      "errors": [
+        {
+          "shape": "BadRequestException"
+        },
+        {
+          "shape": "InternalServerErrorException"
+        },
+        {
+          "shape": "PayloadTooLargeException"
+        },
+        {
+          "shape": "ForbiddenException"
+        },
+        {
+          "shape": "NotFoundException"
+        },
+        {
+          "shape": "MethodNotAllowedException"
+        },
+        {
+          "shape": "TooManyRequestsException"
+        }
+      ]
+    },
     "UpdateJourney": {
       "name": "UpdateJourney",
       "http": {
@@ -4673,6 +4852,14 @@
         }
       }
     },
+    "Alignment": {
+      "type": "string",
+      "enum": [
+        "LEFT",
+        "CENTER",
+        "RIGHT"
+      ]
+    },
     "AndroidPushNotificationTemplate": {
       "type": "structure",
       "members": {
@@ -4969,6 +5156,14 @@
         "Rows"
       ]
     },
+    "ButtonAction": {
+      "type": "string",
+      "enum": [
+        "LINK",
+        "DEEP_LINK",
+        "CLOSE"
+      ]
+    },
     "CampaignCustomMessage": {
       "type": "structure",
       "members": {
@@ -5057,6 +5252,23 @@
         }
       }
     },
+    "CampaignInAppMessage": {
+      "type": "structure",
+      "members": {
+        "Body": {
+          "shape": "__string"
+        },
+        "Content": {
+          "shape": "ListOfInAppMessageContent"
+        },
+        "CustomConfig": {
+          "shape": "MapOf__string"
+        },
+        "Layout": {
+          "shape": "Layout"
+        }
+      }
+    },
     "CampaignLimits": {
       "type": "structure",
       "members": {
@@ -5070,6 +5282,9 @@
           "shape": "__integer"
         },
         "Total": {
+          "shape": "__integer"
+        },
+        "Session": {
           "shape": "__integer"
         }
       }
@@ -5148,6 +5363,9 @@
           "shape": "__string"
         },
         "Version": {
+          "shape": "__integer"
+        },
+        "Priority": {
           "shape": "__integer"
         }
       },
@@ -5264,7 +5482,8 @@
         "VOICE",
         "EMAIL",
         "BAIDU",
-        "CUSTOM"
+        "CUSTOM",
+        "IN_APP"
       ]
     },
     "ChannelsResponse": {
@@ -5479,6 +5698,36 @@
         "ImportJobResponse"
       ],
       "payload": "ImportJobResponse"
+    },
+    "CreateInAppTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "InAppTemplateRequest": {
+          "shape": "InAppTemplateRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "InAppTemplateRequest"
+      ],
+      "payload": "InAppTemplateRequest"
+    },
+    "CreateInAppTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "TemplateCreateMessageBody": {
+          "shape": "TemplateCreateMessageBody"
+        }
+      },
+      "required": [
+        "TemplateCreateMessageBody"
+      ],
+      "payload": "TemplateCreateMessageBody"
     },
     "CreateJourneyRequest": {
       "type": "structure",
@@ -5740,6 +5989,33 @@
           "shape": "__string"
         }
       }
+    },
+    "DefaultButtonConfiguration": {
+      "type": "structure",
+      "members": {
+        "BackgroundColor": {
+          "shape": "__string"
+        },
+        "BorderRadius": {
+          "shape": "__integer"
+        },
+        "ButtonAction": {
+          "shape": "ButtonAction"
+        },
+        "Link": {
+          "shape": "__string"
+        },
+        "Text": {
+          "shape": "__string"
+        },
+        "TextColor": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "ButtonAction",
+        "Text"
+      ]
     },
     "DefaultMessage": {
       "type": "structure",
@@ -6139,6 +6415,36 @@
         "GCMChannelResponse"
       ],
       "payload": "GCMChannelResponse"
+    },
+    "DeleteInAppTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "DeleteInAppTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
     },
     "DeleteJourneyRequest": {
       "type": "structure",
@@ -7236,7 +7542,8 @@
         "DAILY",
         "WEEKLY",
         "MONTHLY",
-        "EVENT"
+        "EVENT",
+        "IN_APP_EVENT"
       ]
     },
     "GCMChannelRequest": {
@@ -8193,6 +8500,67 @@
       ],
       "payload": "ImportJobsResponse"
     },
+    "GetInAppMessagesRequest": {
+      "type": "structure",
+      "members": {
+        "ApplicationId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "application-id"
+        },
+        "EndpointId": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "endpoint-id"
+        }
+      },
+      "required": [
+        "ApplicationId",
+        "EndpointId"
+      ]
+    },
+    "GetInAppMessagesResponse": {
+      "type": "structure",
+      "members": {
+        "InAppMessagesResponse": {
+          "shape": "InAppMessagesResponse"
+        }
+      },
+      "required": [
+        "InAppMessagesResponse"
+      ],
+      "payload": "InAppMessagesResponse"
+    },
+    "GetInAppTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
+        }
+      },
+      "required": [
+        "TemplateName"
+      ]
+    },
+    "GetInAppTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "InAppTemplateResponse": {
+          "shape": "InAppTemplateResponse"
+        }
+      },
+      "required": [
+        "InAppTemplateResponse"
+      ],
+      "payload": "InAppTemplateResponse"
+    },
     "GetJourneyDateRangeKpiRequest": {
       "type": "structure",
       "members": {
@@ -8966,6 +9334,215 @@
         "Item"
       ]
     },
+    "InAppCampaignSchedule": {
+      "type": "structure",
+      "members": {
+        "EndDate": {
+          "shape": "__string"
+        },
+        "EventFilter": {
+          "shape": "CampaignEventFilter"
+        },
+        "QuietTime": {
+          "shape": "QuietTime"
+        }
+      }
+    },
+    "InAppMessage": {
+      "type": "structure",
+      "members": {
+        "Content": {
+          "shape": "ListOfInAppMessageContent"
+        },
+        "CustomConfig": {
+          "shape": "MapOf__string"
+        },
+        "Layout": {
+          "shape": "Layout"
+        }
+      }
+    },
+    "InAppMessageBodyConfig": {
+      "type": "structure",
+      "members": {
+        "Alignment": {
+          "shape": "Alignment"
+        },
+        "Body": {
+          "shape": "__string"
+        },
+        "TextColor": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Alignment",
+        "TextColor",
+        "Body"
+      ]
+    },
+    "InAppMessageButton": {
+      "type": "structure",
+      "members": {
+        "Android": {
+          "shape": "OverrideButtonConfiguration"
+        },
+        "DefaultConfig": {
+          "shape": "DefaultButtonConfiguration"
+        },
+        "IOS": {
+          "shape": "OverrideButtonConfiguration"
+        },
+        "Web": {
+          "shape": "OverrideButtonConfiguration"
+        }
+      }
+    },
+    "InAppMessageCampaign": {
+      "type": "structure",
+      "members": {
+        "CampaignId": {
+          "shape": "__string"
+        },
+        "DailyCap": {
+          "shape": "__integer"
+        },
+        "InAppMessage": {
+          "shape": "InAppMessage"
+        },
+        "Priority": {
+          "shape": "__integer"
+        },
+        "Schedule": {
+          "shape": "InAppCampaignSchedule"
+        },
+        "SessionCap": {
+          "shape": "__integer"
+        },
+        "TotalCap": {
+          "shape": "__integer"
+        },
+        "TreatmentId": {
+          "shape": "__string"
+        }
+      }
+    },
+    "InAppMessageContent": {
+      "type": "structure",
+      "members": {
+        "BackgroundColor": {
+          "shape": "__string"
+        },
+        "BodyConfig": {
+          "shape": "InAppMessageBodyConfig"
+        },
+        "HeaderConfig": {
+          "shape": "InAppMessageHeaderConfig"
+        },
+        "ImageUrl": {
+          "shape": "__string"
+        },
+        "PrimaryBtn": {
+          "shape": "InAppMessageButton"
+        },
+        "SecondaryBtn": {
+          "shape": "InAppMessageButton"
+        }
+      }
+    },
+    "InAppMessageHeaderConfig": {
+      "type": "structure",
+      "members": {
+        "Alignment": {
+          "shape": "Alignment"
+        },
+        "Header": {
+          "shape": "__string"
+        },
+        "TextColor": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "Alignment",
+        "Header",
+        "TextColor"
+      ]
+    },
+    "InAppMessagesResponse": {
+      "type": "structure",
+      "members": {
+        "InAppMessageCampaigns": {
+          "shape": "ListOfInAppMessageCampaign"
+        }
+      }
+    },
+    "InAppTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "Content": {
+          "shape": "ListOfInAppMessageContent"
+        },
+        "CustomConfig": {
+          "shape": "MapOf__string"
+        },
+        "Layout": {
+          "shape": "Layout"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
+        }
+      }
+    },
+    "InAppTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "Content": {
+          "shape": "ListOfInAppMessageContent"
+        },
+        "CreationDate": {
+          "shape": "__string"
+        },
+        "CustomConfig": {
+          "shape": "MapOf__string"
+        },
+        "LastModifiedDate": {
+          "shape": "__string"
+        },
+        "Layout": {
+          "shape": "Layout"
+        },
+        "tags": {
+          "shape": "MapOf__string",
+          "locationName": "tags"
+        },
+        "TemplateDescription": {
+          "shape": "__string"
+        },
+        "TemplateName": {
+          "shape": "__string"
+        },
+        "TemplateType": {
+          "shape": "TemplateType"
+        },
+        "Version": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "LastModifiedDate",
+        "CreationDate",
+        "TemplateName",
+        "TemplateType"
+      ]
+    },
     "Include": {
       "type": "string",
       "enum": [
@@ -9255,6 +9832,17 @@
         "Item"
       ]
     },
+    "Layout": {
+      "type": "string",
+      "enum": [
+        "BOTTOM_BANNER",
+        "TOP_BANNER",
+        "OVERLAYS",
+        "MOBILE_FEED",
+        "MIDDLE_BANNER",
+        "CAROUSEL"
+      ]
+    },
     "ListJourneysRequest": {
       "type": "structure",
       "members": {
@@ -9485,6 +10073,9 @@
         },
         "SMSMessage": {
           "shape": "CampaignSmsMessage"
+        },
+        "InAppMessage": {
+          "shape": "CampaignInAppMessage"
         }
       }
     },
@@ -9705,6 +10296,20 @@
       "enum": [
         "ALL",
         "ANY"
+      ]
+    },
+    "OverrideButtonConfiguration": {
+      "type": "structure",
+      "members": {
+        "ButtonAction": {
+          "shape": "ButtonAction"
+        },
+        "Link": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "ButtonAction"
       ]
     },
     "PayloadTooLargeException": {
@@ -10833,6 +11438,20 @@
         }
       }
     },
+    "TemplateCreateMessageBody": {
+      "type": "structure",
+      "members": {
+        "Arn": {
+          "shape": "__string"
+        },
+        "Message": {
+          "shape": "__string"
+        },
+        "RequestID": {
+          "shape": "__string"
+        }
+      }
+    },
     "TemplateResponse": {
       "type": "structure",
       "members": {
@@ -10878,7 +11497,8 @@
         "EMAIL",
         "SMS",
         "VOICE",
-        "PUSH"
+        "PUSH",
+        "INAPP"
       ]
     },
     "TemplateVersionResponse": {
@@ -11444,6 +12064,46 @@
         "GCMChannelResponse"
       ],
       "payload": "GCMChannelResponse"
+    },
+    "UpdateInAppTemplateRequest": {
+      "type": "structure",
+      "members": {
+        "CreateNewVersion": {
+          "shape": "__boolean",
+          "location": "querystring",
+          "locationName": "create-new-version"
+        },
+        "InAppTemplateRequest": {
+          "shape": "InAppTemplateRequest"
+        },
+        "TemplateName": {
+          "shape": "__string",
+          "location": "uri",
+          "locationName": "template-name"
+        },
+        "Version": {
+          "shape": "__string",
+          "location": "querystring",
+          "locationName": "version"
+        }
+      },
+      "required": [
+        "TemplateName",
+        "InAppTemplateRequest"
+      ],
+      "payload": "InAppTemplateRequest"
+    },
+    "UpdateInAppTemplateResponse": {
+      "type": "structure",
+      "members": {
+        "MessageBody": {
+          "shape": "MessageBody"
+        }
+      },
+      "required": [
+        "MessageBody"
+      ],
+      "payload": "MessageBody"
     },
     "UpdateJourneyRequest": {
       "type": "structure",
@@ -12063,6 +12723,9 @@
         },
         "TreatmentName": {
           "shape": "__string"
+        },
+        "Priority": {
+          "shape": "__integer"
         }
       }
     },
@@ -12192,7 +12855,8 @@
         "VOICE",
         "EMAIL",
         "BAIDU",
-        "CUSTOM"
+        "CUSTOM",
+        "IN_APP"
       ]
     },
     "__boolean": {
@@ -12244,6 +12908,18 @@
       "type": "list",
       "member": {
         "shape": "ImportJobResponse"
+      }
+    },
+    "ListOfInAppMessageCampaign": {
+      "type": "list",
+      "member": {
+        "shape": "InAppMessageCampaign"
+      }
+    },
+    "ListOfInAppMessageContent": {
+      "type": "list",
+      "member": {
+        "shape": "InAppMessageContent"
       }
     },
     "ListOfJourneyResponse": {

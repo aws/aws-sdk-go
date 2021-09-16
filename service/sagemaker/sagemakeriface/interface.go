@@ -1014,6 +1014,10 @@ type SageMakerAPI interface {
 	RenderUiTemplateWithContext(aws.Context, *sagemaker.RenderUiTemplateInput, ...request.Option) (*sagemaker.RenderUiTemplateOutput, error)
 	RenderUiTemplateRequest(*sagemaker.RenderUiTemplateInput) (*request.Request, *sagemaker.RenderUiTemplateOutput)
 
+	RetryPipelineExecution(*sagemaker.RetryPipelineExecutionInput) (*sagemaker.RetryPipelineExecutionOutput, error)
+	RetryPipelineExecutionWithContext(aws.Context, *sagemaker.RetryPipelineExecutionInput, ...request.Option) (*sagemaker.RetryPipelineExecutionOutput, error)
+	RetryPipelineExecutionRequest(*sagemaker.RetryPipelineExecutionInput) (*request.Request, *sagemaker.RetryPipelineExecutionOutput)
+
 	Search(*sagemaker.SearchInput) (*sagemaker.SearchOutput, error)
 	SearchWithContext(aws.Context, *sagemaker.SearchInput, ...request.Option) (*sagemaker.SearchOutput, error)
 	SearchRequest(*sagemaker.SearchInput) (*request.Request, *sagemaker.SearchOutput)

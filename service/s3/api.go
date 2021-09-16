@@ -726,16 +726,15 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 // You can optionally request server-side encryption. For server-side encryption,
 // Amazon S3 encrypts your data as it writes it to disks in its data centers
 // and decrypts it when you access it. You can provide your own encryption key,
-// or use Amazon Web Services Key Management Service (Amazon Web Services KMS)
-// customer master keys (CMKs) or Amazon S3-managed encryption keys. If you
-// choose to provide your own encryption key, the request headers you provide
-// in UploadPart (https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
+// or use Amazon Web Services KMS keys or Amazon S3-managed encryption keys.
+// If you choose to provide your own encryption key, the request headers you
+// provide in UploadPart (https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPart.html)
 // and UploadPartCopy (https://docs.aws.amazon.com/AmazonS3/latest/API/API_UploadPartCopy.html)
 // requests must match the headers you used in the request to initiate the upload
 // by using CreateMultipartUpload.
 //
 // To perform a multipart upload with encryption using an Amazon Web Services
-// KMS CMK, the requester must have permission to the kms:Decrypt and kms:GenerateDataKey*
+// KMS key, the requester must have permission to the kms:Decrypt and kms:GenerateDataKey*
 // actions on the key. These permissions are required because Amazon S3 must
 // decrypt and read data from the encrypted file parts before it completes the
 // multipart upload. For more information, see Multipart upload API and permissions
@@ -743,10 +742,10 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 // in the Amazon S3 User Guide.
 //
 // If your Identity and Access Management (IAM) user or role is in the same
-// Amazon Web Services account as the Amazon Web Services KMS CMK, then you
-// must have these permissions on the key policy. If your IAM user or role belongs
-// to a different account than the key, then you must have the permissions on
-// both the key policy and your IAM user or role.
+// Amazon Web Services account as the KMS key, then you must have these permissions
+// on the key policy. If your IAM user or role belongs to a different account
+// than the key, then you must have the permissions on both the key policy and
+// your IAM user or role.
 //
 // For more information, see Protecting Data Using Server-Side Encryption (https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html).
 //
@@ -776,27 +775,25 @@ func (c *S3) CreateMultipartUploadRequest(input *CreateMultipartUploadInput) (re
 // use Amazon Web Services managed encryption keys or provide your own encryption
 // key.
 //
-//    * Use encryption keys managed by Amazon S3 or customer master keys (CMKs)
-//    stored in Amazon Web Services Key Management Service (Amazon Web Services
-//    KMS) – If you want Amazon Web Services to manage the keys used to encrypt
+//    * Use encryption keys managed by Amazon S3 or customer managed key stored
+//    in Amazon Web Services Key Management Service (Amazon Web Services KMS)
+//    – If you want Amazon Web Services to manage the keys used to encrypt
 //    data, specify the following headers in the request. x-amz-server-side-encryption
 //    x-amz-server-side-encryption-aws-kms-key-id x-amz-server-side-encryption-context
 //    If you specify x-amz-server-side-encryption:aws:kms, but don't provide
 //    x-amz-server-side-encryption-aws-kms-key-id, Amazon S3 uses the Amazon
-//    Web Services managed CMK in Amazon Web Services KMS to protect the data.
+//    Web Services managed key in Amazon Web Services KMS to protect the data.
 //    All GET and PUT requests for an object protected by Amazon Web Services
 //    KMS fail if you don't make them with SSL or by using SigV4. For more information
-//    about server-side encryption with CMKs stored in Amazon Web Services KMS
-//    (SSE-KMS), see Protecting Data Using Server-Side Encryption with CMKs
-//    stored in Amazon Web Services KMS (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html).
+//    about server-side encryption with KMS key (SSE-KMS), see Protecting Data
+//    Using Server-Side Encryption with KMS keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html).
 //
 //    * Use customer-provided encryption keys – If you want to manage your
 //    own encryption keys, provide all the following headers in the request.
 //    x-amz-server-side-encryption-customer-algorithm x-amz-server-side-encryption-customer-key
 //    x-amz-server-side-encryption-customer-key-MD5 For more information about
-//    server-side encryption with CMKs stored in Amazon Web Services KMS (SSE-KMS),
-//    see Protecting Data Using Server-Side Encryption with CMKs stored in Amazon
-//    Web Services KMS (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html).
+//    server-side encryption with KMS keys (SSE-KMS), see Protecting Data Using
+//    Server-Side Encryption with KMS keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingKMSEncryption.html).
 //
 // Access-Control-List (ACL)-Specific Request Headers
 //
@@ -1279,20 +1276,21 @@ func (c *S3) DeleteBucketIntelligentTieringConfigurationRequest(input *DeleteBuc
 //
 // The S3 Intelligent-Tiering storage class is designed to optimize storage
 // costs by automatically moving data to the most cost-effective storage access
-// tier, without additional operational overhead. S3 Intelligent-Tiering delivers
-// automatic cost savings by moving data between access tiers, when access patterns
-// change.
+// tier, without performance impact or operational overhead. S3 Intelligent-Tiering
+// delivers automatic cost savings in two low latency and high throughput access
+// tiers. For data that can be accessed asynchronously, you can choose to activate
+// automatic archiving capabilities within the S3 Intelligent-Tiering storage
+// class.
 //
-// The S3 Intelligent-Tiering storage class is suitable for objects larger than
-// 128 KB that you plan to store for at least 30 days. If the size of an object
-// is less than 128 KB, it is not eligible for auto-tiering. Smaller objects
-// can be stored, but they are always charged at the frequent access tier rates
-// in the S3 Intelligent-Tiering storage class.
+// The S3 Intelligent-Tiering storage class is the ideal storage class for data
+// with unknown, changing, or unpredictable access patterns, independent of
+// object size or retention period. If the size of an object is less than 128
+// KB, it is not eligible for auto-tiering. Smaller objects can be stored, but
+// they are always charged at the Frequent Access tier rates in the S3 Intelligent-Tiering
+// storage class.
 //
-// If you delete an object before the end of the 30-day minimum storage duration
-// period, you are charged for 30 days. For more information, see Storage class
-// for automatically optimizing frequently and infrequently accessed objects
-// (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access).
+// For more information, see Storage class for automatically optimizing frequently
+// and infrequently accessed objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access).
 //
 // Operations related to DeleteBucketIntelligentTieringConfiguration include:
 //
@@ -2968,20 +2966,21 @@ func (c *S3) GetBucketIntelligentTieringConfigurationRequest(input *GetBucketInt
 //
 // The S3 Intelligent-Tiering storage class is designed to optimize storage
 // costs by automatically moving data to the most cost-effective storage access
-// tier, without additional operational overhead. S3 Intelligent-Tiering delivers
-// automatic cost savings by moving data between access tiers, when access patterns
-// change.
+// tier, without performance impact or operational overhead. S3 Intelligent-Tiering
+// delivers automatic cost savings in two low latency and high throughput access
+// tiers. For data that can be accessed asynchronously, you can choose to activate
+// automatic archiving capabilities within the S3 Intelligent-Tiering storage
+// class.
 //
-// The S3 Intelligent-Tiering storage class is suitable for objects larger than
-// 128 KB that you plan to store for at least 30 days. If the size of an object
-// is less than 128 KB, it is not eligible for auto-tiering. Smaller objects
-// can be stored, but they are always charged at the frequent access tier rates
-// in the S3 Intelligent-Tiering storage class.
+// The S3 Intelligent-Tiering storage class is the ideal storage class for data
+// with unknown, changing, or unpredictable access patterns, independent of
+// object size or retention period. If the size of an object is less than 128
+// KB, it is not eligible for auto-tiering. Smaller objects can be stored, but
+// they are always charged at the Frequent Access tier rates in the S3 Intelligent-Tiering
+// storage class.
 //
-// If you delete an object before the end of the 30-day minimum storage duration
-// period, you are charged for 30 days. For more information, see Storage class
-// for automatically optimizing frequently and infrequently accessed objects
-// (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access).
+// For more information, see Storage class for automatically optimizing frequently
+// and infrequently accessed objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access).
 //
 // Operations related to GetBucketIntelligentTieringConfiguration include:
 //
@@ -4547,9 +4546,9 @@ func (c *S3) GetObjectRequest(input *GetObjectInput) (req *request.Request, outp
 //
 // Encryption request headers, like x-amz-server-side-encryption, should not
 // be sent for GET requests if your object uses server-side encryption with
-// CMKs stored in Amazon Web Services KMS (SSE-KMS) or server-side encryption
-// with Amazon S3–managed encryption keys (SSE-S3). If your object does use
-// these types of keys, you’ll get an HTTP 400 BadRequest error.
+// KMS keys (SSE-KMS) or server-side encryption with Amazon S3–managed encryption
+// keys (SSE-S3). If your object does use these types of keys, you’ll get
+// an HTTP 400 BadRequest error.
 //
 // If you encrypt an object by using server-side encryption with customer-provided
 // encryption keys (SSE-C) when you store the object in Amazon S3, then when
@@ -5455,9 +5454,9 @@ func (c *S3) HeadObjectRequest(input *HeadObjectInput) (req *request.Request, ou
 //
 //    * Encryption request headers, like x-amz-server-side-encryption, should
 //    not be sent for GET requests if your object uses server-side encryption
-//    with CMKs stored in Amazon Web Services KMS (SSE-KMS) or server-side encryption
-//    with Amazon S3–managed encryption keys (SSE-S3). If your object does
-//    use these types of keys, you’ll get an HTTP 400 BadRequest error.
+//    with KMS keys (SSE-KMS) or server-side encryption with Amazon S3–managed
+//    encryption keys (SSE-S3). If your object does use these types of keys,
+//    you’ll get an HTTP 400 BadRequest error.
 //
 //    * The last modified property in this case is the creation date of the
 //    object.
@@ -5675,20 +5674,21 @@ func (c *S3) ListBucketIntelligentTieringConfigurationsRequest(input *ListBucket
 //
 // The S3 Intelligent-Tiering storage class is designed to optimize storage
 // costs by automatically moving data to the most cost-effective storage access
-// tier, without additional operational overhead. S3 Intelligent-Tiering delivers
-// automatic cost savings by moving data between access tiers, when access patterns
-// change.
+// tier, without performance impact or operational overhead. S3 Intelligent-Tiering
+// delivers automatic cost savings in two low latency and high throughput access
+// tiers. For data that can be accessed asynchronously, you can choose to activate
+// automatic archiving capabilities within the S3 Intelligent-Tiering storage
+// class.
 //
-// The S3 Intelligent-Tiering storage class is suitable for objects larger than
-// 128 KB that you plan to store for at least 30 days. If the size of an object
-// is less than 128 KB, it is not eligible for auto-tiering. Smaller objects
-// can be stored, but they are always charged at the frequent access tier rates
-// in the S3 Intelligent-Tiering storage class.
+// The S3 Intelligent-Tiering storage class is the ideal storage class for data
+// with unknown, changing, or unpredictable access patterns, independent of
+// object size or retention period. If the size of an object is less than 128
+// KB, it is not eligible for auto-tiering. Smaller objects can be stored, but
+// they are always charged at the Frequent Access tier rates in the S3 Intelligent-Tiering
+// storage class.
 //
-// If you delete an object before the end of the 30-day minimum storage duration
-// period, you are charged for 30 days. For more information, see Storage class
-// for automatically optimizing frequently and infrequently accessed objects
-// (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access).
+// For more information, see Storage class for automatically optimizing frequently
+// and infrequently accessed objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access).
 //
 // Operations related to ListBucketIntelligentTieringConfigurations include:
 //
@@ -7371,10 +7371,10 @@ func (c *S3) PutBucketEncryptionRequest(input *PutBucketEncryptionInput) (req *r
 // and Amazon S3 Bucket Key for an existing bucket.
 //
 // Default encryption for a bucket can use server-side encryption with Amazon
-// S3-managed keys (SSE-S3) or Amazon Web Services KMS customer master keys
-// (SSE-KMS). If you specify default encryption using SSE-KMS, you can also
-// configure Amazon S3 Bucket Key. For information about default encryption,
-// see Amazon S3 default bucket encryption (https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html)
+// S3-managed keys (SSE-S3) or customer managed keys (SSE-KMS). If you specify
+// default encryption using SSE-KMS, you can also configure Amazon S3 Bucket
+// Key. For information about default encryption, see Amazon S3 default bucket
+// encryption (https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html)
 // in the Amazon S3 User Guide. For more information about S3 Bucket Keys, see
 // Amazon S3 Bucket Keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-key.html)
 // in the Amazon S3 User Guide.
@@ -7473,20 +7473,21 @@ func (c *S3) PutBucketIntelligentTieringConfigurationRequest(input *PutBucketInt
 //
 // The S3 Intelligent-Tiering storage class is designed to optimize storage
 // costs by automatically moving data to the most cost-effective storage access
-// tier, without additional operational overhead. S3 Intelligent-Tiering delivers
-// automatic cost savings by moving data between access tiers, when access patterns
-// change.
+// tier, without performance impact or operational overhead. S3 Intelligent-Tiering
+// delivers automatic cost savings in two low latency and high throughput access
+// tiers. For data that can be accessed asynchronously, you can choose to activate
+// automatic archiving capabilities within the S3 Intelligent-Tiering storage
+// class.
 //
-// The S3 Intelligent-Tiering storage class is suitable for objects larger than
-// 128 KB that you plan to store for at least 30 days. If the size of an object
-// is less than 128 KB, it is not eligible for auto-tiering. Smaller objects
-// can be stored, but they are always charged at the frequent access tier rates
-// in the S3 Intelligent-Tiering storage class.
+// The S3 Intelligent-Tiering storage class is the ideal storage class for data
+// with unknown, changing, or unpredictable access patterns, independent of
+// object size or retention period. If the size of an object is less than 128
+// KB, it is not eligible for auto-tiering. Smaller objects can be stored, but
+// they are always charged at the Frequent Access tier rates in the S3 Intelligent-Tiering
+// storage class.
 //
-// If you delete an object before the end of the 30-day minimum storage duration
-// period, you are charged for 30 days. For more information, see Storage class
-// for automatically optimizing frequently and infrequently accessed objects
-// (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access).
+// For more information, see Storage class for automatically optimizing frequently
+// and infrequently accessed objects (https://docs.aws.amazon.com/AmazonS3/latest/dev/storage-class-intro.html#sc-dynamic-data-access).
 //
 // Operations related to PutBucketIntelligentTieringConfiguration include:
 //
@@ -8128,7 +8129,7 @@ func (c *S3) PutBucketMetricsConfigurationRequest(input *PutBucketMetricsConfigu
 //
 //    * DeleteBucketMetricsConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_DeleteBucketMetricsConfiguration.html)
 //
-//    * PutBucketMetricsConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html)
+//    * GetBucketMetricsConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetBucketMetricsConfiguration.html)
 //
 //    * ListBucketMetricsConfigurations (https://docs.aws.amazon.com/AmazonS3/latest/API/API_ListBucketMetricsConfigurations.html)
 //
@@ -8648,11 +8649,11 @@ func (c *S3) PutBucketReplicationRequest(input *PutBucketReplicationInput) (req 
 // Handling Replication of Encrypted Objects
 //
 // By default, Amazon S3 doesn't replicate objects that are stored at rest using
-// server-side encryption with CMKs stored in Amazon Web Services KMS. To replicate
-// Amazon Web Services KMS-encrypted objects, add the following: SourceSelectionCriteria,
-// SseKmsEncryptedObjects, Status, EncryptionConfiguration, and ReplicaKmsKeyID.
-// For information about replication configuration, see Replicating Objects
-// Created with SSE Using CMKs stored in Amazon Web Services KMS (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-config-for-kms-objects.html).
+// server-side encryption with KMS keys. To replicate Amazon Web Services KMS-encrypted
+// objects, add the following: SourceSelectionCriteria, SseKmsEncryptedObjects,
+// Status, EncryptionConfiguration, and ReplicaKmsKeyID. For information about
+// replication configuration, see Replicating Objects Created with SSE Using
+// KMS keys (https://docs.aws.amazon.com/AmazonS3/latest/dev/replication-config-for-kms-objects.html).
 //
 // For information on PutBucketReplication errors, see List of replication-related
 // error codes (https://docs.aws.amazon.com/AmazonS3/latest/API/ErrorResponses.html#ReplicationErrorCodeList)
@@ -10339,11 +10340,10 @@ func (c *S3) SelectObjectContentRequest(input *SelectObjectContentInput) (req *r
 //    For more information about SSE-C, see Server-Side Encryption (Using Customer-Provided
 //    Encryption Keys) (https://docs.aws.amazon.com/AmazonS3/latest/dev/ServerSideEncryptionCustomerKeys.html)
 //    in the Amazon S3 User Guide. For objects that are encrypted with Amazon
-//    S3 managed encryption keys (SSE-S3) and customer master keys (CMKs) stored
-//    in Amazon Web Services Key Management Service (SSE-KMS), server-side encryption
-//    is handled transparently, so you don't need to specify anything. For more
-//    information about server-side encryption, including SSE-S3 and SSE-KMS,
-//    see Protecting Data Using Server-Side Encryption (https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
+//    S3 managed encryption keys (SSE-S3) and Amazon Web Services KMS keys (SSE-KMS),
+//    server-side encryption is handled transparently, so you don't need to
+//    specify anything. For more information about server-side encryption, including
+//    SSE-S3 and SSE-KMS, see Protecting Data Using Server-Side Encryption (https://docs.aws.amazon.com/AmazonS3/latest/dev/serv-side-encryption.html)
 //    in the Amazon S3 User Guide.
 //
 // Working with the Response Body
@@ -10951,8 +10951,8 @@ func (c *S3) WriteGetObjectResponseRequest(input *WriteGetObjectResponseInput) (
 // WriteGetObjectResponse API operation for Amazon Simple Storage Service.
 //
 // Passes transformed objects to a GetObject operation when using Object Lambda
-// Access Points. For information about Object Lambda Access Points, see Transforming
-// objects with Object Lambda Access Points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html)
+// access points. For information about Object Lambda access points, see Transforming
+// objects with Object Lambda access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/transforming-objects.html)
 // in the Amazon S3 User Guide.
 //
 // This operation supports metadata that can be returned by GetObject (https://docs.aws.amazon.com/AmazonS3/latest/API/API_GetObject.html),
@@ -10972,7 +10972,7 @@ func (c *S3) WriteGetObjectResponseRequest(input *WriteGetObjectResponseInput) (
 // (PII) and decompress S3 objects. These Lambda functions are available in
 // the Amazon Web Services Serverless Application Repository, and can be selected
 // through the Amazon Web Services Management Console when you create your Object
-// Lambda Access Point.
+// Lambda access point.
 //
 // Example 1: PII Access Control - This Lambda function uses Amazon Comprehend,
 // a natural language processing (NLP) service using machine learning to find
@@ -12578,8 +12578,8 @@ type CompleteMultipartUploadOutput struct {
 	RequestCharged *string `location:"header" locationName:"x-amz-request-charged" type:"string" enum:"RequestCharged"`
 
 	// If present, specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) that was used for the object.
+	// (Amazon Web Services KMS) symmetric customer managed key that was used for
+	// the object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CompleteMultipartUploadOutput's
@@ -12587,9 +12587,9 @@ type CompleteMultipartUploadOutput struct {
 	SSEKMSKeyId *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" sensitive:"true"`
 
 	// If you specified server-side encryption either with an Amazon S3-managed
-	// encryption key or an Amazon Web Services KMS customer master key (CMK) in
-	// your initiate multipart upload request, the response includes this header.
-	// It confirms the encryption algorithm that Amazon S3 used to encrypt the object.
+	// encryption key or an Amazon Web Services KMS key in your initiate multipart
+	// upload request, the response includes this header. It confirms the encryption
+	// algorithm that Amazon S3 used to encrypt the object.
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// Version ID of the newly created object, in case the bucket has versioning
@@ -13475,8 +13475,8 @@ type CopyObjectOutput struct {
 	SSEKMSEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string" sensitive:"true"`
 
 	// If present, specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) that was used for the object.
+	// (Amazon Web Services KMS) symmetric customer managed key that was used for
+	// the object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CopyObjectOutput's
@@ -13991,12 +13991,12 @@ type CreateMultipartUploadInput struct {
 	// String and GoString methods.
 	SSEKMSEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string" sensitive:"true"`
 
-	// Specifies the ID of the symmetric customer managed Amazon Web Services KMS
-	// CMK to use for object encryption. All GET and PUT requests for an object
-	// protected by Amazon Web Services KMS will fail if not made via SSL or using
-	// SigV4. For information about configuring using any of the officially supported
-	// Amazon Web Services SDKs and Amazon Web Services CLI, see Specifying the
-	// Signature Version in Request Authentication (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version)
+	// Specifies the ID of the symmetric customer managed key to use for object
+	// encryption. All GET and PUT requests for an object protected by Amazon Web
+	// Services KMS will fail if not made via SSL or using SigV4. For information
+	// about configuring using any of the officially supported Amazon Web Services
+	// SDKs and Amazon Web Services CLI, see Specifying the Signature Version in
+	// Request Authentication (https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingAWSSDK.html#specify-signature-version)
 	// in the Amazon S3 User Guide.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
@@ -14349,8 +14349,8 @@ type CreateMultipartUploadOutput struct {
 	SSEKMSEncryptionContext *string `location:"header" locationName:"x-amz-server-side-encryption-context" type:"string" sensitive:"true"`
 
 	// If present, specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) that was used for the object.
+	// (Amazon Web Services KMS) symmetric customer managed key that was used for
+	// the object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateMultipartUploadOutput's
@@ -17203,9 +17203,9 @@ type Encryption struct {
 	KMSContext *string `type:"string"`
 
 	// If the encryption type is aws:kms, this optional value specifies the ID of
-	// the symmetric customer managed Amazon Web Services KMS CMK to use for encryption
-	// of job results. Amazon S3 only supports symmetric CMKs. For more information,
-	// see Using symmetric and asymmetric keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)
+	// the symmetric customer managed key to use for encryption of job results.
+	// Amazon S3 only supports symmetric keys. For more information, see Using symmetric
+	// and asymmetric keys (https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html)
 	// in the Amazon Web Services Key Management Service Developer Guide.
 	//
 	// KMSKeyId is a sensitive parameter and its value will be
@@ -20807,6 +20807,8 @@ type GetObjectInput struct {
 	// information about access point ARNs, see Using access points (https://docs.aws.amazon.com/AmazonS3/latest/userguide/using-access-points.html)
 	// in the Amazon S3 User Guide.
 	//
+	// When using an Object Lambda access point the hostname takes the form AccessPointName-AccountId.s3-object-lambda.Region.amazonaws.com.
+	//
 	// When using this action with Amazon S3 on Outposts, you must direct requests
 	// to the S3 on Outposts hostname. The S3 on Outposts hostname takes the form
 	// AccessPointName-AccountId.outpostID.s3-outposts.Region.amazonaws.com. When
@@ -21515,8 +21517,8 @@ type GetObjectOutput struct {
 	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
 
 	// If present, specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) that was used for the object.
+	// (Amazon Web Services KMS) symmetric customer managed key that was used for
+	// the object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by GetObjectOutput's
@@ -23157,8 +23159,8 @@ type HeadObjectOutput struct {
 	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
 
 	// If present, specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) that was used for the object.
+	// (Amazon Web Services KMS) symmetric customer managed key that was used for
+	// the object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by HeadObjectOutput's
@@ -23166,10 +23168,9 @@ type HeadObjectOutput struct {
 	SSEKMSKeyId *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" sensitive:"true"`
 
 	// If the object is stored using server-side encryption either with an Amazon
-	// Web Services KMS customer master key (CMK) or an Amazon S3-managed encryption
-	// key, the response includes this header with the value of the server-side
-	// encryption algorithm used when storing this object in Amazon S3 (for example,
-	// AES256, aws:kms).
+	// Web Services KMS key or an Amazon S3-managed encryption key, the response
+	// includes this header with the value of the server-side encryption algorithm
+	// used when storing this object in Amazon S3 (for example, AES256, aws:kms).
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// Provides storage class information of the object. Amazon S3 returns this
@@ -27586,6 +27587,9 @@ func (s *Metrics) SetStatus(v string) *Metrics {
 type MetricsAndOperator struct {
 	_ struct{} `type:"structure"`
 
+	// The access point ARN used when evaluating an AND predicate.
+	AccessPointArn *string `type:"string"`
+
 	// The prefix used when evaluating an AND predicate.
 	Prefix *string `type:"string"`
 
@@ -27631,6 +27635,12 @@ func (s *MetricsAndOperator) Validate() error {
 	return nil
 }
 
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *MetricsAndOperator) SetAccessPointArn(v string) *MetricsAndOperator {
+	s.AccessPointArn = &v
+	return s
+}
+
 // SetPrefix sets the Prefix field's value.
 func (s *MetricsAndOperator) SetPrefix(v string) *MetricsAndOperator {
 	s.Prefix = &v
@@ -27647,15 +27657,14 @@ func (s *MetricsAndOperator) SetTags(v []*Tag) *MetricsAndOperator {
 // by the metrics configuration ID) from an Amazon S3 bucket. If you're updating
 // an existing metrics configuration, note that this is a full replacement of
 // the existing metrics configuration. If you don't include the elements you
-// want to keep, they are erased. For more information, see PUT Bucket metrics
-// (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html)
-// in the Amazon S3 API Reference.
+// want to keep, they are erased. For more information, see PutBucketMetricsConfiguration
+// (https://docs.aws.amazon.com/AmazonS3/latest/API/RESTBucketPUTMetricConfiguration.html).
 type MetricsConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies a metrics configuration filter. The metrics configuration will
 	// only include objects that meet the filter's criteria. A filter must be a
-	// prefix, a tag, or a conjunction (MetricsAndOperator).
+	// prefix, an object tag, an access point ARN, or a conjunction (MetricsAndOperator).
 	Filter *MetricsFilter `type:"structure"`
 
 	// The ID used to identify the metrics configuration.
@@ -27714,9 +27723,13 @@ func (s *MetricsConfiguration) SetId(v string) *MetricsConfiguration {
 
 // Specifies a metrics configuration filter. The metrics configuration only
 // includes objects that meet the filter's criteria. A filter must be a prefix,
-// a tag, or a conjunction (MetricsAndOperator).
+// an object tag, an access point ARN, or a conjunction (MetricsAndOperator).
+// For more information, see PutBucketMetricsConfiguration (https://docs.aws.amazon.com/AmazonS3/latest/API/API_PutBucketMetricsConfiguration.html).
 type MetricsFilter struct {
 	_ struct{} `type:"structure"`
+
+	// The access point ARN used when evaluating a metrics filter.
+	AccessPointArn *string `type:"string"`
 
 	// A conjunction (logical AND) of predicates, which is used in evaluating a
 	// metrics filter. The operator must have at least two predicates, and an object
@@ -27766,6 +27779,12 @@ func (s *MetricsFilter) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAccessPointArn sets the AccessPointArn field's value.
+func (s *MetricsFilter) SetAccessPointArn(v string) *MetricsFilter {
+	s.AccessPointArn = &v
+	return s
 }
 
 // SetAnd sets the And field's value.
@@ -29708,9 +29727,9 @@ type PutBucketEncryptionInput struct {
 	_ struct{} `locationName:"PutBucketEncryptionRequest" type:"structure" payload:"ServerSideEncryptionConfiguration"`
 
 	// Specifies default encryption for a bucket using server-side encryption with
-	// Amazon S3-managed keys (SSE-S3) or customer master keys stored in Amazon
-	// Web Services KMS (SSE-KMS). For information about the Amazon S3 default encryption
-	// feature, see Amazon S3 Default Bucket Encryption (https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html)
+	// Amazon S3-managed keys (SSE-S3) or customer managed keys (SSE-KMS). For information
+	// about the Amazon S3 default encryption feature, see Amazon S3 Default Bucket
+	// Encryption (https://docs.aws.amazon.com/AmazonS3/latest/dev/bucket-encryption.html)
 	// in the Amazon S3 User Guide.
 	//
 	// Bucket is a required field
@@ -32336,12 +32355,12 @@ type PutObjectInput struct {
 
 	// If x-amz-server-side-encryption is present and has the value of aws:kms,
 	// this header specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetrical customer managed customer master key
-	// (CMK) that was used for the object. If you specify x-amz-server-side-encryption:aws:kms,
-	// but do not providex-amz-server-side-encryption-aws-kms-key-id, Amazon S3
-	// uses the Amazon Web Services managed CMK in Amazon Web Services to protect
-	// the data. If the KMS key does not exist in the same account issuing the command,
-	// you must use the full ARN and not just the ID.
+	// (Amazon Web Services KMS) symmetrical customer managed key that was used
+	// for the object. If you specify x-amz-server-side-encryption:aws:kms, but
+	// do not providex-amz-server-side-encryption-aws-kms-key-id, Amazon S3 uses
+	// the Amazon Web Services managed key to protect the data. If the KMS key does
+	// not exist in the same account issuing the command, you must use the full
+	// ARN and not just the ID.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutObjectInput's
@@ -33040,8 +33059,8 @@ type PutObjectOutput struct {
 
 	// If x-amz-server-side-encryption is present and has the value of aws:kms,
 	// this header specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) that was used for the object.
+	// (Amazon Web Services KMS) symmetric customer managed key that was used for
+	// the object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutObjectOutput's
@@ -33049,9 +33068,9 @@ type PutObjectOutput struct {
 	SSEKMSKeyId *string `location:"header" locationName:"x-amz-server-side-encryption-aws-kms-key-id" type:"string" sensitive:"true"`
 
 	// If you specified server-side encryption either with an Amazon Web Services
-	// KMS customer master key (CMK) or Amazon S3-managed encryption key in your
-	// PUT request, the response includes this header. It confirms the encryption
-	// algorithm that Amazon S3 used to encrypt the object.
+	// KMS key or Amazon S3-managed encryption key in your PUT request, the response
+	// includes this header. It confirms the encryption algorithm that Amazon S3
+	// used to encrypt the object.
 	ServerSideEncryption *string `location:"header" locationName:"x-amz-server-side-encryption" type:"string" enum:"ServerSideEncryption"`
 
 	// Version of the object.
@@ -34205,8 +34224,8 @@ type ReplicationRule struct {
 	// objects that you want to replicate. You can choose to enable or disable the
 	// replication of these objects. Currently, Amazon S3 supports only the filter
 	// that you can specify for objects created with server-side encryption using
-	// a customer master key (CMK) stored in Amazon Web Services Key Management
-	// Service (SSE-KMS).
+	// a customer managed key stored in Amazon Web Services Key Management Service
+	// (SSE-KMS).
 	SourceSelectionCriteria *SourceSelectionCriteria `type:"structure"`
 
 	// Specifies whether the rule is enabled.
@@ -35191,8 +35210,8 @@ type SSEKMS struct {
 	_ struct{} `locationName:"SSE-KMS" type:"structure"`
 
 	// Specifies the ID of the Amazon Web Services Key Management Service (Amazon
-	// Web Services KMS) symmetric customer managed customer master key (CMK) to
-	// use for encrypting inventory reports.
+	// Web Services KMS) symmetric customer managed key to use for encrypting inventory
+	// reports.
 	//
 	// KeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by SSEKMS's
@@ -36062,8 +36081,8 @@ func (s *ServerSideEncryptionRule) SetBucketKeyEnabled(v bool) *ServerSideEncryp
 // objects that you want to replicate. You can choose to enable or disable the
 // replication of these objects. Currently, Amazon S3 supports only the filter
 // that you can specify for objects created with server-side encryption using
-// a customer master key (CMK) stored in Amazon Web Services Key Management
-// Service (SSE-KMS).
+// a customer managed key stored in Amazon Web Services Key Management Service
+// (SSE-KMS).
 type SourceSelectionCriteria struct {
 	_ struct{} `type:"structure"`
 
@@ -37256,8 +37275,8 @@ type UploadPartCopyOutput struct {
 	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
 
 	// If present, specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) that was used for the object.
+	// (Amazon Web Services KMS) symmetric customer managed key that was used for
+	// the object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UploadPartCopyOutput's
@@ -37604,8 +37623,8 @@ type UploadPartOutput struct {
 	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-server-side-encryption-customer-key-MD5" type:"string"`
 
 	// If present, specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) was used for the object.
+	// (Amazon Web Services KMS) symmetric customer managed key was used for the
+	// object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UploadPartOutput's
@@ -37947,8 +37966,8 @@ type WriteGetObjectResponseInput struct {
 	SSECustomerKeyMD5 *string `location:"header" locationName:"x-amz-fwd-header-x-amz-server-side-encryption-customer-key-MD5" type:"string"`
 
 	// If present, specifies the ID of the Amazon Web Services Key Management Service
-	// (Amazon Web Services KMS) symmetric customer managed customer master key
-	// (CMK) that was used for stored in Amazon S3 object.
+	// (Amazon Web Services KMS) symmetric customer managed key that was used for
+	// stored in Amazon S3 object.
 	//
 	// SSEKMSKeyId is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by WriteGetObjectResponseInput's

@@ -10563,6 +10563,9 @@ type StartTranscriptionJobInput struct {
 	// A Settings object that provides optional settings for a transcription job.
 	Settings *Settings `type:"structure"`
 
+	// Add subtitles to your batch transcription job.
+	Subtitles *Subtitles `type:"structure"`
+
 	// Add tags to an Amazon Transcribe transcription job.
 	Tags []*Tag `min:"1" type:"list"`
 
@@ -10749,6 +10752,12 @@ func (s *StartTranscriptionJobInput) SetSettings(v *Settings) *StartTranscriptio
 	return s
 }
 
+// SetSubtitles sets the Subtitles field's value.
+func (s *StartTranscriptionJobInput) SetSubtitles(v *Subtitles) *StartTranscriptionJobInput {
+	s.Subtitles = v
+	return s
+}
+
 // SetTags sets the Tags field's value.
 func (s *StartTranscriptionJobInput) SetTags(v []*Tag) *StartTranscriptionJobInput {
 	s.Tags = v
@@ -10789,6 +10798,81 @@ func (s StartTranscriptionJobOutput) GoString() string {
 // SetTranscriptionJob sets the TranscriptionJob field's value.
 func (s *StartTranscriptionJobOutput) SetTranscriptionJob(v *TranscriptionJob) *StartTranscriptionJobOutput {
 	s.TranscriptionJob = v
+	return s
+}
+
+// Generate subtitles for your batch transcription job.
+type Subtitles struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the output format for your subtitle file.
+	Formats []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Subtitles) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Subtitles) GoString() string {
+	return s.String()
+}
+
+// SetFormats sets the Formats field's value.
+func (s *Subtitles) SetFormats(v []*string) *Subtitles {
+	s.Formats = v
+	return s
+}
+
+// Specify the output format for your subtitle file.
+type SubtitlesOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// Specify the output format for your subtitle file; if you select both SRT
+	// and VTT formats, two output files are genereated.
+	Formats []*string `type:"list"`
+
+	// Choose the output location for your subtitle file. This location must be
+	// an S3 bucket.
+	SubtitleFileUris []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubtitlesOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SubtitlesOutput_) GoString() string {
+	return s.String()
+}
+
+// SetFormats sets the Formats field's value.
+func (s *SubtitlesOutput_) SetFormats(v []*string) *SubtitlesOutput_ {
+	s.Formats = v
+	return s
+}
+
+// SetSubtitleFileUris sets the SubtitleFileUris field's value.
+func (s *SubtitlesOutput_) SetSubtitleFileUris(v []*string) *SubtitlesOutput_ {
+	s.SubtitleFileUris = v
 	return s
 }
 
@@ -11211,6 +11295,9 @@ type TranscriptionJob struct {
 	// A timestamp that shows when the job started processing.
 	StartTime *time.Time `type:"timestamp"`
 
+	// Generate subtitles for your batch transcription job.
+	Subtitles *SubtitlesOutput_ `type:"structure"`
+
 	// A key:value pair assigned to a given transcription job.
 	Tags []*Tag `min:"1" type:"list"`
 
@@ -11329,6 +11416,12 @@ func (s *TranscriptionJob) SetSettings(v *Settings) *TranscriptionJob {
 // SetStartTime sets the StartTime field's value.
 func (s *TranscriptionJob) SetStartTime(v time.Time) *TranscriptionJob {
 	s.StartTime = &v
+	return s
+}
+
+// SetSubtitles sets the Subtitles field's value.
+func (s *TranscriptionJob) SetSubtitles(v *SubtitlesOutput_) *TranscriptionJob {
+	s.Subtitles = v
 	return s
 }
 
@@ -12656,6 +12749,22 @@ const (
 func Specialty_Values() []string {
 	return []string{
 		SpecialtyPrimarycare,
+	}
+}
+
+const (
+	// SubtitleFormatVtt is a SubtitleFormat enum value
+	SubtitleFormatVtt = "vtt"
+
+	// SubtitleFormatSrt is a SubtitleFormat enum value
+	SubtitleFormatSrt = "srt"
+)
+
+// SubtitleFormat_Values returns all elements of the SubtitleFormat enum
+func SubtitleFormat_Values() []string {
+	return []string{
+		SubtitleFormatVtt,
+		SubtitleFormatSrt,
 	}
 }
 

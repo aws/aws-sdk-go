@@ -4707,7 +4707,7 @@ func (c *Macie2) ListInvitationsRequest(input *ListInvitationsInput) (req *reque
 
 // ListInvitations API operation for Amazon Macie 2.
 //
-// Retrieves information about all the Amazon Macie membership invitations that
+// Retrieves information about the Amazon Macie membership invitations that
 // were received by an account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -4818,6 +4818,81 @@ func (c *Macie2) ListInvitationsPagesWithContext(ctx aws.Context, input *ListInv
 	}
 
 	return p.Err()
+}
+
+const opListManagedDataIdentifiers = "ListManagedDataIdentifiers"
+
+// ListManagedDataIdentifiersRequest generates a "aws/request.Request" representing the
+// client's request for the ListManagedDataIdentifiers operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListManagedDataIdentifiers for more information on using the ListManagedDataIdentifiers
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListManagedDataIdentifiersRequest method.
+//    req, resp := client.ListManagedDataIdentifiersRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListManagedDataIdentifiers
+func (c *Macie2) ListManagedDataIdentifiersRequest(input *ListManagedDataIdentifiersInput) (req *request.Request, output *ListManagedDataIdentifiersOutput) {
+	op := &request.Operation{
+		Name:       opListManagedDataIdentifiers,
+		HTTPMethod: "POST",
+		HTTPPath:   "/managed-data-identifiers/list",
+	}
+
+	if input == nil {
+		input = &ListManagedDataIdentifiersInput{}
+	}
+
+	output = &ListManagedDataIdentifiersOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListManagedDataIdentifiers API operation for Amazon Macie 2.
+//
+// Retrieves information about all the managed data identifiers that Amazon
+// Macie currently provides.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Macie 2's
+// API operation ListManagedDataIdentifiers for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/macie2-2020-01-01/ListManagedDataIdentifiers
+func (c *Macie2) ListManagedDataIdentifiers(input *ListManagedDataIdentifiersInput) (*ListManagedDataIdentifiersOutput, error) {
+	req, out := c.ListManagedDataIdentifiersRequest(input)
+	return out, req.Send()
+}
+
+// ListManagedDataIdentifiersWithContext is the same as ListManagedDataIdentifiers with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListManagedDataIdentifiers for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Macie2) ListManagedDataIdentifiersWithContext(ctx aws.Context, input *ListManagedDataIdentifiersInput, opts ...request.Option) (*ListManagedDataIdentifiersOutput, error) {
+	req, out := c.ListManagedDataIdentifiersRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opListMembers = "ListMembers"
@@ -8260,6 +8335,12 @@ type CreateClassificationJobInput struct {
 	// JobType is a required field
 	JobType *string `locationName:"jobType" type:"string" required:"true" enum:"JobType"`
 
+	ManagedDataIdentifierIds []*string `locationName:"managedDataIdentifierIds" type:"list"`
+
+	// The selection type that determines which managed data identifiers a classification
+	// job uses to analyze data. Valid values are:
+	ManagedDataIdentifierSelector *string `locationName:"managedDataIdentifierSelector" type:"string" enum:"ManagedDataIdentifierSelector"`
+
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
@@ -8356,6 +8437,18 @@ func (s *CreateClassificationJobInput) SetJobType(v string) *CreateClassificatio
 	return s
 }
 
+// SetManagedDataIdentifierIds sets the ManagedDataIdentifierIds field's value.
+func (s *CreateClassificationJobInput) SetManagedDataIdentifierIds(v []*string) *CreateClassificationJobInput {
+	s.ManagedDataIdentifierIds = v
+	return s
+}
+
+// SetManagedDataIdentifierSelector sets the ManagedDataIdentifierSelector field's value.
+func (s *CreateClassificationJobInput) SetManagedDataIdentifierSelector(v string) *CreateClassificationJobInput {
+	s.ManagedDataIdentifierSelector = &v
+	return s
+}
+
 // SetName sets the Name field's value.
 func (s *CreateClassificationJobInput) SetName(v string) *CreateClassificationJobInput {
 	s.Name = &v
@@ -8426,10 +8519,10 @@ func (s *CreateClassificationJobOutput) SetJobId(v string) *CreateClassification
 	return s
 }
 
-// Specifies the criteria and other settings for a new custom data identifier.
-// You can't change a custom data identifier after you create it. This helps
-// ensure that you have an immutable history of sensitive data findings and
-// discovery results for data privacy and protection audits or investigations.
+// Specifies the criteria and other settings for a custom data identifier. You
+// can't change a custom data identifier after you create it. This helps ensure
+// that you have an immutable history of sensitive data findings and discovery
+// results for data privacy and protection audits or investigations.
 type CreateCustomDataIdentifierInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9223,7 +9316,7 @@ type CustomDetection struct {
 	Name *string `locationName:"name" type:"string"`
 
 	// Specifies the location of 1-15 occurrences of sensitive data that was detected
-	// by managed data identifiers or a custom data identifier and produced a sensitive
+	// by a managed data identifier or a custom data identifier and produced a sensitive
 	// data finding.
 	Occurrences *Occurrences `locationName:"occurrences" type:"structure"`
 }
@@ -9373,14 +9466,14 @@ func (s *DeclineInvitationsOutput) SetUnprocessedAccounts(v []*UnprocessedAccoun
 }
 
 // Provides information about a type of sensitive data that was detected by
-// managed data identifiers and produced a sensitive data finding.
+// a managed data identifier and produced a sensitive data finding.
 type DefaultDetection struct {
 	_ struct{} `type:"structure"`
 
 	Count *int64 `locationName:"count" type:"long"`
 
 	// Specifies the location of 1-15 occurrences of sensitive data that was detected
-	// by managed data identifiers or a custom data identifier and produced a sensitive
+	// by a managed data identifier or a custom data identifier and produced a sensitive
 	// data finding.
 	Occurrences *Occurrences `locationName:"occurrences" type:"structure"`
 
@@ -9888,6 +9981,12 @@ type DescribeClassificationJobOutput struct {
 
 	LastRunTime *time.Time `locationName:"lastRunTime" type:"timestamp" timestampFormat:"iso8601"`
 
+	ManagedDataIdentifierIds []*string `locationName:"managedDataIdentifierIds" type:"list"`
+
+	// The selection type that determines which managed data identifiers a classification
+	// job uses to analyze data. Valid values are:
+	ManagedDataIdentifierSelector *string `locationName:"managedDataIdentifierSelector" type:"string" enum:"ManagedDataIdentifierSelector"`
+
 	Name *string `locationName:"name" type:"string"`
 
 	// Specifies which S3 buckets contain the objects that a classification job
@@ -10002,6 +10101,18 @@ func (s *DescribeClassificationJobOutput) SetLastRunErrorStatus(v *LastRunErrorS
 // SetLastRunTime sets the LastRunTime field's value.
 func (s *DescribeClassificationJobOutput) SetLastRunTime(v time.Time) *DescribeClassificationJobOutput {
 	s.LastRunTime = &v
+	return s
+}
+
+// SetManagedDataIdentifierIds sets the ManagedDataIdentifierIds field's value.
+func (s *DescribeClassificationJobOutput) SetManagedDataIdentifierIds(v []*string) *DescribeClassificationJobOutput {
+	s.ManagedDataIdentifierIds = v
+	return s
+}
+
+// SetManagedDataIdentifierSelector sets the ManagedDataIdentifierSelector field's value.
+func (s *DescribeClassificationJobOutput) SetManagedDataIdentifierSelector(v string) *DescribeClassificationJobOutput {
+	s.ManagedDataIdentifierSelector = &v
 	return s
 }
 
@@ -13865,6 +13976,78 @@ func (s *ListJobsSortCriteria) SetOrderBy(v string) *ListJobsSortCriteria {
 	return s
 }
 
+// Specifies criteria for paginating the results of a request for information
+// about managed data identifiers.
+type ListManagedDataIdentifiersInput struct {
+	_ struct{} `type:"structure"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedDataIdentifiersInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedDataIdentifiersInput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListManagedDataIdentifiersInput) SetNextToken(v string) *ListManagedDataIdentifiersInput {
+	s.NextToken = &v
+	return s
+}
+
+// Provides information about the managed data identifiers that Amazon Macie
+// currently provides.
+type ListManagedDataIdentifiersOutput struct {
+	_ struct{} `type:"structure"`
+
+	Items []*ManagedDataIdentifierSummary `locationName:"items" type:"list"`
+
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedDataIdentifiersOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListManagedDataIdentifiersOutput) GoString() string {
+	return s.String()
+}
+
+// SetItems sets the Items field's value.
+func (s *ListManagedDataIdentifiersOutput) SetItems(v []*ManagedDataIdentifierSummary) *ListManagedDataIdentifiersOutput {
+	s.Items = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListManagedDataIdentifiersOutput) SetNextToken(v string) *ListManagedDataIdentifiersOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListMembersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14135,6 +14318,50 @@ func (s ListTagsForResourceOutput) GoString() string {
 // SetTags sets the Tags field's value.
 func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForResourceOutput {
 	s.Tags = v
+	return s
+}
+
+// Provides information about a managed data identifier. For additional information,
+// see Using managed data identifiers (https://docs.aws.amazon.com/macie/latest/user/managed-data-identifiers.html)
+// in the Amazon Macie User Guide.
+type ManagedDataIdentifierSummary struct {
+	_ struct{} `type:"structure"`
+
+	// For a finding, the category of sensitive data that was detected and produced
+	// the finding. For a managed data identifier, the category of sensitive data
+	// that the managed data identifier detects. Possible values are:
+	Category *string `locationName:"category" type:"string" enum:"SensitiveDataItemCategory"`
+
+	Id *string `locationName:"id" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedDataIdentifierSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ManagedDataIdentifierSummary) GoString() string {
+	return s.String()
+}
+
+// SetCategory sets the Category field's value.
+func (s *ManagedDataIdentifierSummary) SetCategory(v string) *ManagedDataIdentifierSummary {
+	s.Category = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *ManagedDataIdentifierSummary) SetId(v string) *ManagedDataIdentifierSummary {
+	s.Id = &v
 	return s
 }
 
@@ -14552,7 +14779,7 @@ func (s *ObjectLevelStatistics) SetTotal(v int64) *ObjectLevelStatistics {
 }
 
 // Specifies the location of 1-15 occurrences of sensitive data that was detected
-// by managed data identifiers or a custom data identifier and produced a sensitive
+// by a managed data identifier or a custom data identifier and produced a sensitive
 // data finding.
 type Occurrences struct {
 	_ struct{} `type:"structure"`
@@ -15147,7 +15374,8 @@ type S3Bucket struct {
 
 	Name *string `locationName:"name" type:"string"`
 
-	// Provides information about the user who owns an S3 bucket.
+	// Provides information about the Amazon Web Services account that owns an S3
+	// bucket.
 	Owner *S3BucketOwner `locationName:"owner" type:"structure"`
 
 	// Provides information about the permissions settings that determine whether
@@ -15329,7 +15557,8 @@ func (s *S3BucketDefinitionForJob) SetBuckets(v []*string) *S3BucketDefinitionFo
 	return s
 }
 
-// Provides information about the user who owns an S3 bucket.
+// Provides information about the Amazon Web Services account that owns an S3
+// bucket.
 type S3BucketOwner struct {
 	_ struct{} `type:"structure"`
 
@@ -16149,8 +16378,9 @@ func (s *SecurityHubConfiguration) SetPublishPolicyFindings(v bool) *SecurityHub
 type SensitiveDataItem struct {
 	_ struct{} `type:"structure"`
 
-	// The category of sensitive data that was detected and produced the finding.
-	// Possible values are:
+	// For a finding, the category of sensitive data that was detected and produced
+	// the finding. For a managed data identifier, the category of sensitive data
+	// that the managed data identifier detects. Possible values are:
 	Category *string `locationName:"category" type:"string" enum:"SensitiveDataItemCategory"`
 
 	// Provides information about sensitive data that was detected by managed data
@@ -18834,6 +19064,32 @@ func MacieStatus_Values() []string {
 	}
 }
 
+// The selection type that determines which managed data identifiers a classification
+// job uses to analyze data. Valid values are:
+const (
+	// ManagedDataIdentifierSelectorAll is a ManagedDataIdentifierSelector enum value
+	ManagedDataIdentifierSelectorAll = "ALL"
+
+	// ManagedDataIdentifierSelectorExclude is a ManagedDataIdentifierSelector enum value
+	ManagedDataIdentifierSelectorExclude = "EXCLUDE"
+
+	// ManagedDataIdentifierSelectorInclude is a ManagedDataIdentifierSelector enum value
+	ManagedDataIdentifierSelectorInclude = "INCLUDE"
+
+	// ManagedDataIdentifierSelectorNone is a ManagedDataIdentifierSelector enum value
+	ManagedDataIdentifierSelectorNone = "NONE"
+)
+
+// ManagedDataIdentifierSelector_Values returns all elements of the ManagedDataIdentifierSelector enum
+func ManagedDataIdentifierSelector_Values() []string {
+	return []string{
+		ManagedDataIdentifierSelectorAll,
+		ManagedDataIdentifierSelectorExclude,
+		ManagedDataIdentifierSelectorInclude,
+		ManagedDataIdentifierSelectorNone,
+	}
+}
+
 const (
 	// OrderByAsc is a OrderBy enum value
 	OrderByAsc = "ASC"
@@ -18995,8 +19251,9 @@ func SearchResourcesSortAttributeName_Values() []string {
 	}
 }
 
-// The category of sensitive data that was detected and produced the finding.
-// Possible values are:
+// For a finding, the category of sensitive data that was detected and produced
+// the finding. For a managed data identifier, the category of sensitive data
+// that the managed data identifier detects. Possible values are:
 const (
 	// SensitiveDataItemCategoryFinancialInformation is a SensitiveDataItemCategory enum value
 	SensitiveDataItemCategoryFinancialInformation = "FINANCIAL_INFORMATION"
