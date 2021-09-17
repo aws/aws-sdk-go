@@ -256,7 +256,7 @@
         "ClusterConfig$ZoneAwarenessEnabled": "<p>A boolean value to indicate whether zone awareness is enabled. See <a href=\"https://docs.aws.amazon.com/opensearch-service/latest/developerguide/managedomains-multiaz.html\" target=\"_blank\">Configuring a multi-AZ domain in Amazon OpenSearch Service </a> for more information. </p>",
         "ClusterConfig$WarmEnabled": "<p>True to enable UltraWarm storage.</p>",
         "CognitoOptions$Enabled": "<p>The option to enable Cognito for OpenSearch Dashboards authentication.</p>",
-        "ColdStorageOptions$Enabled": null,
+        "ColdStorageOptions$Enabled": "<p>Enable cold storage option. Accepted values true or false</p>",
         "DomainEndpointOptions$EnforceHTTPS": "<p>Whether only HTTPS endpoint should be enabled for the domain.</p>",
         "DomainEndpointOptions$CustomEndpointEnabled": "<p>Whether to enable a custom endpoint for the domain.</p>",
         "DomainStatus$Created": "<p>The domain creation status. <code>True</code> if the creation of a domain is complete. <code> False </code> if domain creation is still in progress. </p>",
@@ -329,9 +329,9 @@
       }
     },
     "ColdStorageOptions": {
-      "base": null,
+      "base": "<p>Specifies the configuration for cold storage options such as enabled</p>",
       "refs": {
-        "ClusterConfig$ColdStorageOptions": null
+        "ClusterConfig$ColdStorageOptions": "<p>Specifies the <code>ColdStorageOptions</code> config for a Domain</p>"
       }
     },
     "CommitMessage": {
@@ -656,7 +656,7 @@
     "DomainInfoList": {
       "base": "<p>Contains the list of domain information.</p>",
       "refs": {
-        "ListDomainNamesResponse$DomainNames": "<p>List of domain names.</p>"
+        "ListDomainNamesResponse$DomainNames": "<p>List of domain names and respective engine types.</p>"
       }
     },
     "DomainInformationContainer": {
@@ -805,6 +805,13 @@
       "base": null,
       "refs": {
         "DomainStatus$Endpoints": "<p>Map containing the domain endpoints used to submit index and search requests. Example <code>key, value</code>: <code>'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'</code>. </p>"
+      }
+    },
+    "EngineType": {
+      "base": null,
+      "refs": {
+        "DomainInfo$EngineType": "<p> Specifies the <code>EngineType</code> of the domain.</p>",
+        "ListDomainNamesRequest$EngineType": "<p> Optional parameter to filter the output by domain engine type. Acceptable values are 'Elasticsearch' and 'OpenSearch'. </p>"
       }
     },
     "ErrorDetails": {
@@ -1066,8 +1073,13 @@
         "DescribeInstanceTypeLimitsResponse$LimitsByRole": null
       }
     },
+    "ListDomainNamesRequest": {
+      "base": "<p> Container for the parameters to the <code><a>ListDomainNames</a></code> operation.</p>",
+      "refs": {
+      }
+    },
     "ListDomainNamesResponse": {
-      "base": "<p>The result of a <code>ListDomainNames</code> operation. Contains the names of all domains owned by this account. </p>",
+      "base": "<p>The result of a <code>ListDomainNames</code> operation. Contains the names of all domains owned by this account and their respective engine types.</p>",
       "refs": {
       }
     },

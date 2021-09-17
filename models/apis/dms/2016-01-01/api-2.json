@@ -2313,7 +2313,8 @@
       "required":["ReplicationInstanceArn"],
       "members":{
         "ReplicationInstanceArn":{"shape":"String"},
-        "ForceFailover":{"shape":"BooleanOptional"}
+        "ForceFailover":{"shape":"BooleanOptional"},
+        "ForcePlannedFailover":{"shape":"BooleanOptional"}
       }
     },
     "RebootReplicationInstanceResponse":{

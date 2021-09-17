@@ -246,7 +246,7 @@
         "AdvancedSecurityOptionsInput$InternalUserDatabaseEnabled": "<p>True if the internal user database is enabled.</p>",
         "AutoTuneStatus$PendingDeletion": "<p>Indicates whether the Elasticsearch domain is being deleted.</p>",
         "CognitoOptions$Enabled": "<p>Specifies the option to enable Cognito for Kibana authentication.</p>",
-        "ColdStorageOptions$Enabled": "<p>True to enable cold storage for an Elasticsearch domain.</p>",
+        "ColdStorageOptions$Enabled": "<p>Enable cold storage option. Accepted values true or false</p>",
         "DomainEndpointOptions$EnforceHTTPS": "<p>Specify if only HTTPS endpoint should be enabled for the Elasticsearch domain.</p>",
         "DomainEndpointOptions$CustomEndpointEnabled": "<p>Specify if custom endpoint should be enabled for the Elasticsearch domain.</p>",
         "EBSOptions$EBSEnabled": "<p>Specifies whether EBS-based storage is enabled.</p>",
@@ -302,9 +302,9 @@
       }
     },
     "ColdStorageOptions": {
-      "base": "<p>Specifies settings for cold storage.</p>",
+      "base": "<p>Specifies the configuration for cold storage options such as enabled</p>",
       "refs": {
-        "ElasticsearchClusterConfig$ColdStorageOptions": "<p>Specifies the <code>ColdStorageOptions</code> configuration for an Elasticsearch domain.</p>"
+        "ElasticsearchClusterConfig$ColdStorageOptions": "<p>Specifies the <code>ColdStorageOptions</code> config for Elasticsearch Domain</p>"
       }
     },
     "CommitMessage": {
@@ -622,7 +622,7 @@
     "DomainInfoList": {
       "base": "<p> Contains the list of Elasticsearch domain information.</p>",
       "refs": {
-        "ListDomainNamesResponse$DomainNames": "<p>List of Elasticsearch domain names.</p>"
+        "ListDomainNamesResponse$DomainNames": "<p>List of domain names and respective engine types.</p>"
       }
     },
     "DomainInformation": {
@@ -843,6 +843,13 @@
       "base": null,
       "refs": {
         "ElasticsearchDomainStatus$Endpoints": "<p>Map containing the Elasticsearch domain endpoints used to submit index and search requests. Example <code>key, value</code>: <code>'vpc','vpc-endpoint-h2dsd34efgyghrtguk5gt6j2foh4.us-east-1.es.amazonaws.com'</code>.</p>"
+      }
+    },
+    "EngineType": {
+      "base": null,
+      "refs": {
+        "DomainInfo$EngineType": "<p> Specifies the <code>EngineType</code> of the domain.</p>",
+        "ListDomainNamesRequest$EngineType": "<p> Optional parameter to filter the output by domain engine type. Acceptable values are 'Elasticsearch' and 'OpenSearch'. </p>"
       }
     },
     "ErrorDetails": {
@@ -1085,8 +1092,13 @@
         "DescribeElasticsearchInstanceTypeLimitsResponse$LimitsByRole": null
       }
     },
+    "ListDomainNamesRequest": {
+      "base": "<p> Container for the parameters to the <code><a>ListDomainNames</a></code> operation.</p>",
+      "refs": {
+      }
+    },
     "ListDomainNamesResponse": {
-      "base": "<p>The result of a <code>ListDomainNames</code> operation. Contains the names of all Elasticsearch domains owned by this account.</p>",
+      "base": "<p>The result of a <code>ListDomainNames</code> operation. Contains the names of all domains owned by this account and their respective engine types.</p>",
       "refs": {
       }
     },

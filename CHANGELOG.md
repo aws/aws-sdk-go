@@ -1,3 +1,13 @@
+Release v1.40.45 (2021-09-17)
+===
+
+### Service Client Updates
+* `service/dms`: Updates service API and documentation
+  * Optional flag force-planned-failover added to reboot-replication-instance API call. This flag can be used to test a planned failover scenario used during some maintenance operations.
+* `service/es`: Updates service API and documentation
+  * This release adds an optional parameter in the ListDomainNames API to filter domains based on the engine type (OpenSearch/Elasticsearch).
+* `service/opensearch`: Updates service API and documentation
+
 Release v1.40.44 (2021-09-16)
 ===
 
