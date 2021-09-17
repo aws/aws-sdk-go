@@ -5763,11 +5763,11 @@ func (s *CognitoOptionsStatus) SetStatus(v *OptionStatus) *CognitoOptionsStatus 
 	return s
 }
 
-// Specifies settings for cold storage.
+// Specifies the configuration for cold storage options such as enabled
 type ColdStorageOptions struct {
 	_ struct{} `type:"structure"`
 
-	// True to enable cold storage for an Elasticsearch domain.
+	// Enable cold storage option. Accepted values true or false
 	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
@@ -8219,6 +8219,9 @@ type DomainInfo struct {
 
 	// Specifies the DomainName.
 	DomainName *string `min:"3" type:"string"`
+
+	// Specifies the EngineType of the domain.
+	EngineType *string `type:"string" enum:"EngineType"`
 }
 
 // String returns the string representation.
@@ -8242,6 +8245,12 @@ func (s DomainInfo) GoString() string {
 // SetDomainName sets the DomainName field's value.
 func (s *DomainInfo) SetDomainName(v string) *DomainInfo {
 	s.DomainName = &v
+	return s
+}
+
+// SetEngineType sets the EngineType field's value.
+func (s *DomainInfo) SetEngineType(v string) *DomainInfo {
+	s.EngineType = &v
 	return s
 }
 
@@ -8590,7 +8599,7 @@ func (s *EBSOptionsStatus) SetStatus(v *OptionStatus) *EBSOptionsStatus {
 type ElasticsearchClusterConfig struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the ColdStorageOptions configuration for an Elasticsearch domain.
+	// Specifies the ColdStorageOptions config for Elasticsearch Domain
 	ColdStorageOptions *ColdStorageOptions `type:"structure"`
 
 	// Total number of dedicated master nodes, active and on standby, for the cluster.
@@ -10377,8 +10386,13 @@ func (s *Limits) SetStorageTypes(v []*StorageType) *Limits {
 	return s
 }
 
+// Container for the parameters to the ListDomainNames operation.
 type ListDomainNamesInput struct {
 	_ struct{} `type:"structure"`
+
+	// Optional parameter to filter the output by domain engine type. Acceptable
+	// values are 'Elasticsearch' and 'OpenSearch'.
+	EngineType *string `location:"querystring" locationName:"engineType" type:"string" enum:"EngineType"`
 }
 
 // String returns the string representation.
@@ -10399,12 +10413,18 @@ func (s ListDomainNamesInput) GoString() string {
 	return s.String()
 }
 
-// The result of a ListDomainNames operation. Contains the names of all Elasticsearch
-// domains owned by this account.
+// SetEngineType sets the EngineType field's value.
+func (s *ListDomainNamesInput) SetEngineType(v string) *ListDomainNamesInput {
+	s.EngineType = &v
+	return s
+}
+
+// The result of a ListDomainNames operation. Contains the names of all domains
+// owned by this account and their respective engine types.
 type ListDomainNamesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of Elasticsearch domain names.
+	// List of domain names and respective engine types.
 	DomainNames []*DomainInfo `type:"list"`
 }
 
@@ -14348,6 +14368,22 @@ func ESWarmPartitionInstanceType_Values() []string {
 	return []string{
 		ESWarmPartitionInstanceTypeUltrawarm1MediumElasticsearch,
 		ESWarmPartitionInstanceTypeUltrawarm1LargeElasticsearch,
+	}
+}
+
+const (
+	// EngineTypeOpenSearch is a EngineType enum value
+	EngineTypeOpenSearch = "OpenSearch"
+
+	// EngineTypeElasticsearch is a EngineType enum value
+	EngineTypeElasticsearch = "Elasticsearch"
+)
+
+// EngineType_Values returns all elements of the EngineType enum
+func EngineType_Values() []string {
+	return []string{
+		EngineTypeOpenSearch,
+		EngineTypeElasticsearch,
 	}
 }
 

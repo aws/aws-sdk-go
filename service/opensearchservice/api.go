@@ -5738,6 +5738,7 @@ func (s *CancelServiceSoftwareUpdateOutput) SetServiceSoftwareOptions(v *Service
 type ClusterConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies the ColdStorageOptions config for a Domain
 	ColdStorageOptions *ColdStorageOptions `type:"structure"`
 
 	// Total number of dedicated master nodes, active and on standby, for the cluster.
@@ -6045,9 +6046,12 @@ func (s *CognitoOptionsStatus) SetStatus(v *OptionStatus) *CognitoOptionsStatus 
 	return s
 }
 
+// Specifies the configuration for cold storage options such as enabled
 type ColdStorageOptions struct {
 	_ struct{} `type:"structure"`
 
+	// Enable cold storage option. Accepted values true or false
+	//
 	// Enabled is a required field
 	Enabled *bool `type:"boolean" required:"true"`
 }
@@ -8643,6 +8647,9 @@ type DomainInfo struct {
 
 	// The DomainName.
 	DomainName *string `min:"3" type:"string"`
+
+	// Specifies the EngineType of the domain.
+	EngineType *string `type:"string" enum:"EngineType"`
 }
 
 // String returns the string representation.
@@ -8666,6 +8673,12 @@ func (s DomainInfo) GoString() string {
 // SetDomainName sets the DomainName field's value.
 func (s *DomainInfo) SetDomainName(v string) *DomainInfo {
 	s.DomainName = &v
+	return s
+}
+
+// SetEngineType sets the EngineType field's value.
+func (s *DomainInfo) SetEngineType(v string) *DomainInfo {
+	s.EngineType = &v
 	return s
 }
 
@@ -10452,8 +10465,13 @@ func (s *Limits) SetStorageTypes(v []*StorageType) *Limits {
 	return s
 }
 
+// Container for the parameters to the ListDomainNames operation.
 type ListDomainNamesInput struct {
 	_ struct{} `type:"structure"`
+
+	// Optional parameter to filter the output by domain engine type. Acceptable
+	// values are 'Elasticsearch' and 'OpenSearch'.
+	EngineType *string `location:"querystring" locationName:"engineType" type:"string" enum:"EngineType"`
 }
 
 // String returns the string representation.
@@ -10474,12 +10492,18 @@ func (s ListDomainNamesInput) GoString() string {
 	return s.String()
 }
 
+// SetEngineType sets the EngineType field's value.
+func (s *ListDomainNamesInput) SetEngineType(v string) *ListDomainNamesInput {
+	s.EngineType = &v
+	return s
+}
+
 // The result of a ListDomainNames operation. Contains the names of all domains
-// owned by this account.
+// owned by this account and their respective engine types.
 type ListDomainNamesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// List of domain names.
+	// List of domain names and respective engine types.
 	DomainNames []*DomainInfo `type:"list"`
 }
 
@@ -14291,6 +14315,22 @@ func DomainPackageStatus_Values() []string {
 		DomainPackageStatusActive,
 		DomainPackageStatusDissociating,
 		DomainPackageStatusDissociationFailed,
+	}
+}
+
+const (
+	// EngineTypeOpenSearch is a EngineType enum value
+	EngineTypeOpenSearch = "OpenSearch"
+
+	// EngineTypeElasticsearch is a EngineType enum value
+	EngineTypeElasticsearch = "Elasticsearch"
+)
+
+// EngineType_Values returns all elements of the EngineType enum
+func EngineType_Values() []string {
+	return []string{
+		EngineTypeOpenSearch,
+		EngineTypeElasticsearch,
 	}
 }
 

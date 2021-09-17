@@ -656,6 +656,10 @@ func (c *DatabaseMigrationService) CreateReplicationSubnetGroupRequest(input *Cr
 //
 // Creates a replication subnet group given a list of the subnet IDs in a VPC.
 //
+// The VPC needs to have at least one subnet in at least two availability zones
+// in the Amazon Web Services Region, otherwise the service will throw a ReplicationSubnetGroupDoesNotCoverEnoughAZs
+// exception.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -5357,6 +5361,9 @@ func (c *DatabaseMigrationService) ReloadTablesRequest(input *ReloadTablesInput)
 //
 // Reloads the target database table with the source data.
 //
+// You can only use this operation with a task in the RUNNING state, otherwise
+// the service will throw an InvalidResourceStateFault exception.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -6154,6 +6161,8 @@ type ApplyPendingMaintenanceActionInput struct {
 
 	// The pending maintenance action to apply to this resource.
 	//
+	// Valid values: os-upgrade, system-update, db-upgrade
+	//
 	// ApplyAction is a required field
 	ApplyAction *string `type:"string" required:"true"`
 
@@ -6598,8 +6607,8 @@ type CreateEndpointInput struct {
 	//
 	// Possible settings include the following:
 	//
-	//    * ServiceAccessRoleArn - The IAM role that has permission to access the
-	//    Amazon S3 bucket. The role must allow the iam:PassRole action.
+	//    * ServiceAccessRoleArn - The Amazon Resource Name (ARN) used by the service
+	//    access IAM role. The role must allow the iam:PassRole action.
 	//
 	//    * BucketName - The name of the S3 bucket to use.
 	//
@@ -11103,9 +11112,8 @@ type DmsTransferSettings struct {
 	// The name of the S3 bucket to use.
 	BucketName *string `type:"string"`
 
-	// The IAM role that has permission to access the Amazon S3 bucket. When specified
-	// as part of request syntax, such as for the CreateEndpoint and ModifyEndpoint
-	// actions, the role must allow the iam:PassRole action.
+	// The Amazon Resource Name (ARN) used by the service access IAM role. The role
+	// must allow the iam:PassRole action.
 	ServiceAccessRoleArn *string `type:"string"`
 }
 
@@ -11450,8 +11458,8 @@ type Endpoint struct {
 	//
 	// Possible settings include the following:
 	//
-	//    * ServiceAccessRoleArn - The IAM role that has permission to access the
-	//    Amazon S3 bucket. The role must allow the iam:PassRole action.
+	//    * ServiceAccessRoleArn - - The Amazon Resource Name (ARN) used by the
+	//    service access IAM role. The role must allow the iam:PassRole action.
 	//
 	//    * BucketName - The name of the S3 bucket to use.
 	//
@@ -13817,9 +13825,8 @@ type ModifyEndpointInput struct {
 	//
 	// Attributes include the following:
 	//
-	//    * serviceAccessRoleArn - The Identity and Access Management (IAM) role
-	//    that has permission to access the Amazon S3 bucket. The role must allow
-	//    the iam:PassRole action.
+	//    * serviceAccessRoleArn - The Amazon Resource Name (ARN) used by the service
+	//    access IAM role. The role must allow the iam:PassRole action.
 	//
 	//    * BucketName - The name of the S3 bucket to use.
 	//
@@ -16504,8 +16511,16 @@ type RebootReplicationInstanceInput struct {
 	_ struct{} `type:"structure"`
 
 	// If this parameter is true, the reboot is conducted through a Multi-AZ failover.
-	// (If the instance isn't configured for Multi-AZ, then you can't specify true.)
+	// If the instance isn't configured for Multi-AZ, then you can't specify true.
+	// ( --force-planned-failover and --force-failover can't both be set to true.)
 	ForceFailover *bool `type:"boolean"`
+
+	// If this parameter is true, the reboot is conducted through a planned Multi-AZ
+	// failover where resources are released and cleaned up prior to conducting
+	// the failover. If the instance isn''t configured for Multi-AZ, then you can't
+	// specify true. ( --force-planned-failover and --force-failover can't both
+	// be set to true.)
+	ForcePlannedFailover *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the replication instance.
 	//
@@ -16547,6 +16562,12 @@ func (s *RebootReplicationInstanceInput) Validate() error {
 // SetForceFailover sets the ForceFailover field's value.
 func (s *RebootReplicationInstanceInput) SetForceFailover(v bool) *RebootReplicationInstanceInput {
 	s.ForceFailover = &v
+	return s
+}
+
+// SetForcePlannedFailover sets the ForcePlannedFailover field's value.
+func (s *RebootReplicationInstanceInput) SetForcePlannedFailover(v bool) *RebootReplicationInstanceInput {
+	s.ForcePlannedFailover = &v
 	return s
 }
 

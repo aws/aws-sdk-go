@@ -414,6 +414,7 @@
         "method":"GET",
         "requestUri":"/2021-01-01/domain"
       },
+      "input":{"shape":"ListDomainNamesRequest"},
       "output":{"shape":"ListDomainNamesResponse"},
       "errors":[
         {"shape":"BaseException"},
@@ -1428,7 +1429,8 @@
     "DomainInfo":{
       "type":"structure",
       "members":{
-        "DomainName":{"shape":"DomainName"}
+        "DomainName":{"shape":"DomainName"},
+        "EngineType":{"shape":"EngineType"}
       }
     },
     "DomainInfoList":{
@@ -1579,6 +1581,13 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"ServiceUrl"}
+    },
+    "EngineType":{
+      "type":"string",
+      "enum":[
+        "OpenSearch",
+        "Elasticsearch"
+      ]
     },
     "ErrorDetails":{
       "type":"structure",
@@ -1835,6 +1844,16 @@
       "type":"map",
       "key":{"shape":"InstanceRole"},
       "value":{"shape":"Limits"}
+    },
+    "ListDomainNamesRequest":{
+      "type":"structure",
+      "members":{
+        "EngineType":{
+          "shape":"EngineType",
+          "location":"querystring",
+          "locationName":"engineType"
+        }
+      }
     },
     "ListDomainNamesResponse":{
       "type":"structure",

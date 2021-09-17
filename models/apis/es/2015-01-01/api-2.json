@@ -426,6 +426,7 @@
         "method":"GET",
         "requestUri":"/2015-01-01/domain"
       },
+      "input":{"shape":"ListDomainNamesRequest"},
       "output":{"shape":"ListDomainNamesResponse"},
       "errors":[
         {"shape":"BaseException"},
@@ -1368,7 +1369,8 @@
     "DomainInfo":{
       "type":"structure",
       "members":{
-        "DomainName":{"shape":"DomainName"}
+        "DomainName":{"shape":"DomainName"},
+        "EngineType":{"shape":"EngineType"}
       }
     },
     "DomainInfoList":{
@@ -1635,7 +1637,10 @@
         "Status":{"shape":"OptionStatus"}
       }
     },
-    "ElasticsearchVersionString":{"type":"string"},
+    "ElasticsearchVersionString":{
+      "type":"string",
+      "pattern":"^[0-9]{1}\\.[0-9]{1,2}$|^OpenSearch_[0-9]{1,2}\\.[0-9]{1,2}$"
+    },
     "EncryptionAtRestOptions":{
       "type":"structure",
       "members":{
@@ -1658,6 +1663,13 @@
       "type":"map",
       "key":{"shape":"String"},
       "value":{"shape":"ServiceUrl"}
+    },
+    "EngineType":{
+      "type":"string",
+      "enum":[
+        "OpenSearch",
+        "Elasticsearch"
+      ]
     },
     "ErrorDetails":{
       "type":"structure",
@@ -1889,6 +1901,16 @@
       "type":"map",
       "key":{"shape":"InstanceRole"},
       "value":{"shape":"Limits"}
+    },
+    "ListDomainNamesRequest":{
+      "type":"structure",
+      "members":{
+        "EngineType":{
+          "shape":"EngineType",
+          "location":"querystring",
+          "locationName":"engineType"
+        }
+      }
     },
     "ListDomainNamesResponse":{
       "type":"structure",
