@@ -684,3 +684,46 @@ func TestDecoderFieldByIndex(t *testing.T) {
 		t.Error("expected f to be an int with value equal to outer.Inner")
 	}
 }
+
+func TestDecodeAliasType(t *testing.T) {
+	type Str string
+	type Int int
+	type Uint uint
+	type TT struct {
+		A Str
+		B Int
+		C Uint
+		S Str
+	}
+
+	expect := TT{
+		A: "12345",
+		B: 12345,
+		C: 12345,
+		S: "string",
+	}
+	m := map[string]*dynamodb.AttributeValue{
+		"A": {
+			N: aws.String("12345"),
+		},
+		"B": {
+			N: aws.String("12345"),
+		},
+		"C": {
+			N: aws.String("12345"),
+		},
+		"S": {
+			S: aws.String("string"),
+		},
+	}
+
+	var actual TT
+	err := UnmarshalMap(m, &actual)
+	if err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	if !reflect.DeepEqual(expect, actual) {
+		t.Errorf("expect:\n%v\nactual:\n%v", expect, actual)
+	}
+}
