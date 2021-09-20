@@ -143,6 +143,9 @@ type Shape struct {
 
 	// Indicates the Shape is used as an operation output
 	UsedAsOutput bool
+
+	// Indicates a structure shape is a document type
+	Document bool `json:"document"`
 }
 
 // CanBeEmpty returns if the shape value can sent request as an empty value.

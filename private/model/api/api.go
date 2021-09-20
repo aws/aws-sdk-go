@@ -1020,6 +1020,24 @@ func (a *API) addHeaderMapDocumentation() {
 	}
 }
 
+func (a *API) validateNoDocumentShapes() error {
+	var shapes []string
+	for name, shape := range a.Shapes {
+		if shape.Type != "structure" {
+			continue
+		}
+		if shape.Document {
+			shapes = append(shapes, name)
+		}
+	}
+
+	if len(shapes) == 0 {
+		return nil
+	}
+
+	return fmt.Errorf("model contains document shapes: %s", strings.Join(shapes, ", "))
+}
+
 func getDeprecatedMessage(msg string, name string) string {
 	if len(msg) == 0 {
 		return name + " has been deprecated"
