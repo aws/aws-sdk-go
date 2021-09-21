@@ -499,6 +499,20 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "ListDocumentClassifierSummaries":{
+      "name":"ListDocumentClassifierSummaries",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListDocumentClassifierSummariesRequest"},
+      "output":{"shape":"ListDocumentClassifierSummariesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "ListDocumentClassifiers":{
       "name":"ListDocumentClassifiers",
       "http":{
@@ -555,6 +569,20 @@
         {"shape":"InvalidRequestException"},
         {"shape":"TooManyRequestsException"},
         {"shape":"InvalidFilterException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListEntityRecognizerSummaries":{
+      "name":"ListEntityRecognizerSummaries",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListEntityRecognizerSummariesRequest"},
+      "output":{"shape":"ListEntityRecognizerSummariesResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"TooManyRequestsException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -986,6 +1014,7 @@
       ],
       "members":{
         "S3Uri":{"shape":"S3Uri"},
+        "Split":{"shape":"Split"},
         "AttributeNames":{"shape":"AttributeNamesList"},
         "AnnotationDataS3Uri":{"shape":"S3Uri"},
         "SourceDocumentsS3Uri":{"shape":"S3Uri"},
@@ -1209,7 +1238,7 @@
     "ComprehendArn":{
       "type":"string",
       "max":256,
-      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:[a-zA-Z0-9-]{1,64}/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?"
     },
     "ComprehendArnName":{
       "type":"string",
@@ -1229,7 +1258,7 @@
     "ComprehendModelArn":{
       "type":"string",
       "max":256,
-      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document-classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*"
+      "pattern":"arn:aws(-[^:]+)?:comprehend:[a-zA-Z0-9-]*:[0-9]{12}:(document-classifier|entity-recognizer)/[a-zA-Z0-9](-*[a-zA-Z0-9])*(/version/[a-zA-Z0-9](-*[a-zA-Z0-9])*)?"
     },
     "ConcurrentModificationException":{
       "type":"structure",
@@ -1265,6 +1294,7 @@
       ],
       "members":{
         "DocumentClassifierName":{"shape":"ComprehendArnName"},
+        "VersionName":{"shape":"VersionName"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "Tags":{"shape":"TagList"},
         "InputDataConfig":{"shape":"DocumentClassifierInputDataConfig"},
@@ -1321,6 +1351,7 @@
       ],
       "members":{
         "RecognizerName":{"shape":"ComprehendArnName"},
+        "VersionName":{"shape":"VersionName"},
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "Tags":{"shape":"TagList"},
         "InputDataConfig":{"shape":"EntityRecognizerInputDataConfig"},
@@ -1694,6 +1725,7 @@
       "type":"structure",
       "members":{
         "Status":{"shape":"ModelStatus"},
+        "DocumentClassifierName":{"shape":"ComprehendArnName"},
         "SubmitTimeBefore":{"shape":"Timestamp"},
         "SubmitTimeAfter":{"shape":"Timestamp"}
       }
@@ -1703,6 +1735,7 @@
       "members":{
         "DataFormat":{"shape":"DocumentClassifierDataFormat"},
         "S3Uri":{"shape":"S3Uri"},
+        "TestS3Uri":{"shape":"S3Uri"},
         "LabelDelimiter":{"shape":"LabelDelimiter"},
         "AugmentedManifests":{"shape":"DocumentClassifierAugmentedManifestsList"}
       }
@@ -1739,12 +1772,27 @@
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "VpcConfig":{"shape":"VpcConfig"},
         "Mode":{"shape":"DocumentClassifierMode"},
-        "ModelKmsKeyId":{"shape":"KmsKeyId"}
+        "ModelKmsKeyId":{"shape":"KmsKeyId"},
+        "VersionName":{"shape":"VersionName"}
       }
     },
     "DocumentClassifierPropertiesList":{
       "type":"list",
       "member":{"shape":"DocumentClassifierProperties"}
+    },
+    "DocumentClassifierSummariesList":{
+      "type":"list",
+      "member":{"shape":"DocumentClassifierSummary"}
+    },
+    "DocumentClassifierSummary":{
+      "type":"structure",
+      "members":{
+        "DocumentClassifierName":{"shape":"ComprehendArnName"},
+        "NumberOfVersions":{"shape":"Integer"},
+        "LatestVersionCreatedAt":{"shape":"Timestamp"},
+        "LatestVersionName":{"shape":"VersionName"},
+        "LatestVersionStatus":{"shape":"ModelStatus"}
+      }
     },
     "DocumentLabel":{
       "type":"structure",
@@ -1837,11 +1885,13 @@
         "Status":{"shape":"EndpointStatus"},
         "Message":{"shape":"AnyLengthString"},
         "ModelArn":{"shape":"ComprehendModelArn"},
+        "DesiredModelArn":{"shape":"ComprehendModelArn"},
         "DesiredInferenceUnits":{"shape":"InferenceUnitsInteger"},
         "CurrentInferenceUnits":{"shape":"InferenceUnitsInteger"},
         "CreationTime":{"shape":"Timestamp"},
         "LastModifiedTime":{"shape":"Timestamp"},
-        "DataAccessRoleArn":{"shape":"IamRoleArn"}
+        "DataAccessRoleArn":{"shape":"IamRoleArn"},
+        "DesiredDataAccessRoleArn":{"shape":"IamRoleArn"}
       }
     },
     "EndpointPropertiesList":{
@@ -1911,7 +1961,8 @@
       "type":"structure",
       "required":["S3Uri"],
       "members":{
-        "S3Uri":{"shape":"S3Uri"}
+        "S3Uri":{"shape":"S3Uri"},
+        "TestS3Uri":{"shape":"S3Uri"}
       }
     },
     "EntityRecognizerArn":{
@@ -1934,7 +1985,9 @@
       "type":"structure",
       "required":["S3Uri"],
       "members":{
-        "S3Uri":{"shape":"S3Uri"}
+        "S3Uri":{"shape":"S3Uri"},
+        "TestS3Uri":{"shape":"S3Uri"},
+        "InputFormat":{"shape":"InputFormat"}
       }
     },
     "EntityRecognizerEndpointArn":{
@@ -1961,6 +2014,7 @@
       "type":"structure",
       "members":{
         "Status":{"shape":"ModelStatus"},
+        "RecognizerName":{"shape":"ComprehendArnName"},
         "SubmitTimeBefore":{"shape":"Timestamp"},
         "SubmitTimeAfter":{"shape":"Timestamp"}
       }
@@ -2015,12 +2069,27 @@
         "DataAccessRoleArn":{"shape":"IamRoleArn"},
         "VolumeKmsKeyId":{"shape":"KmsKeyId"},
         "VpcConfig":{"shape":"VpcConfig"},
-        "ModelKmsKeyId":{"shape":"KmsKeyId"}
+        "ModelKmsKeyId":{"shape":"KmsKeyId"},
+        "VersionName":{"shape":"VersionName"}
       }
     },
     "EntityRecognizerPropertiesList":{
       "type":"list",
       "member":{"shape":"EntityRecognizerProperties"}
+    },
+    "EntityRecognizerSummariesList":{
+      "type":"list",
+      "member":{"shape":"EntityRecognizerSummary"}
+    },
+    "EntityRecognizerSummary":{
+      "type":"structure",
+      "members":{
+        "RecognizerName":{"shape":"ComprehendArnName"},
+        "NumberOfVersions":{"shape":"Integer"},
+        "LatestVersionCreatedAt":{"shape":"Timestamp"},
+        "LatestVersionName":{"shape":"VersionName"},
+        "LatestVersionStatus":{"shape":"ModelStatus"}
+      }
     },
     "EntityType":{
       "type":"string",
@@ -2266,6 +2335,20 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "ListDocumentClassifierSummariesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListDocumentClassifierSummariesResponse":{
+      "type":"structure",
+      "members":{
+        "DocumentClassifierSummariesList":{"shape":"DocumentClassifierSummariesList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
     "ListDocumentClassifiersRequest":{
       "type":"structure",
       "members":{
@@ -2323,6 +2406,20 @@
       "type":"structure",
       "members":{
         "EntitiesDetectionJobPropertiesList":{"shape":"EntitiesDetectionJobPropertiesList"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListEntityRecognizerSummariesRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"MaxResultsInteger"}
+      }
+    },
+    "ListEntityRecognizerSummariesResponse":{
+      "type":"structure",
+      "members":{
+        "EntityRecognizerSummariesList":{"shape":"EntityRecognizerSummariesList"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -2748,6 +2845,13 @@
         "NEGATIVE",
         "NEUTRAL",
         "MIXED"
+      ]
+    },
+    "Split":{
+      "type":"string",
+      "enum":[
+        "TRAIN",
+        "TEST"
       ]
     },
     "StartDocumentClassificationJobRequest":{
@@ -3274,19 +3378,23 @@
     },
     "UpdateEndpointRequest":{
       "type":"structure",
-      "required":[
-        "EndpointArn",
-        "DesiredInferenceUnits"
-      ],
+      "required":["EndpointArn"],
       "members":{
         "EndpointArn":{"shape":"ComprehendEndpointArn"},
-        "DesiredInferenceUnits":{"shape":"InferenceUnitsInteger"}
+        "DesiredModelArn":{"shape":"ComprehendModelArn"},
+        "DesiredInferenceUnits":{"shape":"InferenceUnitsInteger"},
+        "DesiredDataAccessRoleArn":{"shape":"IamRoleArn"}
       }
     },
     "UpdateEndpointResponse":{
       "type":"structure",
       "members":{
       }
+    },
+    "VersionName":{
+      "type":"string",
+      "max":63,
+      "pattern":"^[a-zA-Z0-9](-*[a-zA-Z0-9])*$"
     },
     "VpcConfig":{
       "type":"structure",

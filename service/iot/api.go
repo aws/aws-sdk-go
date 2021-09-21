@@ -20275,6 +20275,90 @@ func (c *IoT) ListViolationEventsPagesWithContext(ctx aws.Context, input *ListVi
 	return p.Err()
 }
 
+const opPutVerificationStateOnViolation = "PutVerificationStateOnViolation"
+
+// PutVerificationStateOnViolationRequest generates a "aws/request.Request" representing the
+// client's request for the PutVerificationStateOnViolation operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutVerificationStateOnViolation for more information on using the PutVerificationStateOnViolation
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutVerificationStateOnViolationRequest method.
+//    req, resp := client.PutVerificationStateOnViolationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+func (c *IoT) PutVerificationStateOnViolationRequest(input *PutVerificationStateOnViolationInput) (req *request.Request, output *PutVerificationStateOnViolationOutput) {
+	op := &request.Operation{
+		Name:       opPutVerificationStateOnViolation,
+		HTTPMethod: "POST",
+		HTTPPath:   "/violations/verification-state/{violationId}",
+	}
+
+	if input == nil {
+		input = &PutVerificationStateOnViolationInput{}
+	}
+
+	output = &PutVerificationStateOnViolationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutVerificationStateOnViolation API operation for AWS IoT.
+//
+// Set a verification state and provide a description of that verification state
+// on a violation (detect alarm).
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS IoT's
+// API operation PutVerificationStateOnViolation for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * ThrottlingException
+//   The rate exceeds the limit.
+//
+//   * InternalFailureException
+//   An unexpected error has occurred.
+//
+func (c *IoT) PutVerificationStateOnViolation(input *PutVerificationStateOnViolationInput) (*PutVerificationStateOnViolationOutput, error) {
+	req, out := c.PutVerificationStateOnViolationRequest(input)
+	return out, req.Send()
+}
+
+// PutVerificationStateOnViolationWithContext is the same as PutVerificationStateOnViolation with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutVerificationStateOnViolation for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *IoT) PutVerificationStateOnViolationWithContext(ctx aws.Context, input *PutVerificationStateOnViolationInput, opts ...request.Option) (*PutVerificationStateOnViolationOutput, error) {
+	req, out := c.PutVerificationStateOnViolationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opRegisterCACertificate = "RegisterCACertificate"
 
 // RegisterCACertificateRequest generates a "aws/request.Request" representing the
@@ -25162,10 +25246,11 @@ type Action struct {
 	// DynamoDB column.
 	DynamoDBv2 *DynamoDBv2Action `locationName:"dynamoDBv2" type:"structure"`
 
-	// Write data to an Amazon Elasticsearch Service domain.
+	// Write data to an Amazon OpenSearch Service domain.
 	//
-	// This action is deprecated. Use the OpenSearch action (https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html)
-	// instead.
+	// The Elasticsearch action can only be used by existing rule actions. To create
+	// a new rule action or to update an existing rule action, use the OpenSearch
+	// rule action instead. For more information, see OpenSearchAction (https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html).
 	Elasticsearch *ElasticsearchAction `locationName:"elasticsearch" type:"structure"`
 
 	// Write to an Amazon Kinesis Firehose stream.
@@ -25506,6 +25591,12 @@ type ActiveViolation struct {
 	// The name of the thing responsible for the active violation.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 
+	// The verification state of the violation (detect alarm).
+	VerificationState *string `locationName:"verificationState" type:"string" enum:"VerificationState"`
+
+	// The description of the verification state of the violation.
+	VerificationStateDescription *string `locationName:"verificationStateDescription" type:"string"`
+
 	// The details of a violation event.
 	ViolationEventAdditionalInfo *ViolationEventAdditionalInfo `locationName:"violationEventAdditionalInfo" type:"structure"`
 
@@ -25561,6 +25652,18 @@ func (s *ActiveViolation) SetSecurityProfileName(v string) *ActiveViolation {
 // SetThingName sets the ThingName field's value.
 func (s *ActiveViolation) SetThingName(v string) *ActiveViolation {
 	s.ThingName = &v
+	return s
+}
+
+// SetVerificationState sets the VerificationState field's value.
+func (s *ActiveViolation) SetVerificationState(v string) *ActiveViolation {
+	s.VerificationState = &v
+	return s
+}
+
+// SetVerificationStateDescription sets the VerificationStateDescription field's value.
+func (s *ActiveViolation) SetVerificationStateDescription(v string) *ActiveViolation {
+	s.VerificationStateDescription = &v
 	return s
 }
 
@@ -30526,7 +30629,10 @@ type CreateAuditSuppressionInput struct {
 	// CheckName is a required field
 	CheckName *string `locationName:"checkName" type:"string" required:"true"`
 
-	// The epoch timestamp in seconds at which this suppression expires.
+	// Each audit supression must have a unique client request token. If you try
+	// to create a new audit suppression with the same token as one that already
+	// exists, an exception occurs. If you omit this value, Amazon Web Services
+	// SDKs will automatically generate a unique client request.
 	ClientRequestToken *string `locationName:"clientRequestToken" min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description of the audit suppression.
@@ -42584,14 +42690,15 @@ func (s *EffectivePolicy) SetPolicyName(v string) *EffectivePolicy {
 	return s
 }
 
-// Describes an action that writes data to an Amazon Elasticsearch Service domain.
+// Describes an action that writes data to an Amazon OpenSearch Service domain.
 //
-// This action is deprecated. Use the OpenSearch action (https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html)
-// instead.
+// The Elasticsearch action can only be used by existing rule actions. To create
+// a new rule action or to update an existing rule action, use the OpenSearch
+// rule action instead. For more information, see OpenSearchAction (https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html).
 type ElasticsearchAction struct {
 	_ struct{} `type:"structure"`
 
-	// The endpoint of your Elasticsearch domain.
+	// The endpoint of your OpenSearch domain.
 	//
 	// Endpoint is a required field
 	Endpoint *string `locationName:"endpoint" type:"string" required:"true"`
@@ -42601,12 +42708,12 @@ type ElasticsearchAction struct {
 	// Id is a required field
 	Id *string `locationName:"id" type:"string" required:"true"`
 
-	// The Elasticsearch index where you want to store your data.
+	// The index where you want to store your data.
 	//
 	// Index is a required field
 	Index *string `locationName:"index" type:"string" required:"true"`
 
-	// The IAM role ARN that has access to Elasticsearch.
+	// The IAM role ARN that has access to OpenSearch.
 	//
 	// RoleArn is a required field
 	RoleArn *string `locationName:"roleArn" type:"string" required:"true"`
@@ -47216,6 +47323,9 @@ type ListActiveViolationsInput struct {
 
 	// The name of the thing whose active violations are listed.
 	ThingName *string `location:"querystring" locationName:"thingName" min:"1" type:"string"`
+
+	// The verification state of the violation (detect alarm).
+	VerificationState *string `location:"querystring" locationName:"verificationState" type:"string" enum:"VerificationState"`
 }
 
 // String returns the string representation.
@@ -47288,6 +47398,12 @@ func (s *ListActiveViolationsInput) SetSecurityProfileName(v string) *ListActive
 // SetThingName sets the ThingName field's value.
 func (s *ListActiveViolationsInput) SetThingName(v string) *ListActiveViolationsInput {
 	s.ThingName = &v
+	return s
+}
+
+// SetVerificationState sets the VerificationState field's value.
+func (s *ListActiveViolationsInput) SetVerificationState(v string) *ListActiveViolationsInput {
+	s.VerificationState = &v
 	return s
 }
 
@@ -53340,6 +53456,9 @@ type ListViolationEventsInput struct {
 
 	// A filter to limit results to those alerts caused by the specified thing.
 	ThingName *string `location:"querystring" locationName:"thingName" min:"1" type:"string"`
+
+	// The verification state of the violation (detect alarm).
+	VerificationState *string `location:"querystring" locationName:"verificationState" type:"string" enum:"VerificationState"`
 }
 
 // String returns the string representation.
@@ -53430,6 +53549,12 @@ func (s *ListViolationEventsInput) SetStartTime(v time.Time) *ListViolationEvent
 // SetThingName sets the ThingName field's value.
 func (s *ListViolationEventsInput) SetThingName(v string) *ListViolationEventsInput {
 	s.ThingName = &v
+	return s
+}
+
+// SetVerificationState sets the VerificationState field's value.
+func (s *ListViolationEventsInput) SetVerificationState(v string) *ListViolationEventsInput {
+	s.VerificationState = &v
 	return s
 }
 
@@ -55511,6 +55636,100 @@ func (s *PutItemInput) Validate() error {
 func (s *PutItemInput) SetTableName(v string) *PutItemInput {
 	s.TableName = &v
 	return s
+}
+
+type PutVerificationStateOnViolationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The verification state of the violation.
+	//
+	// VerificationState is a required field
+	VerificationState *string `locationName:"verificationState" type:"string" required:"true" enum:"VerificationState"`
+
+	// The description of the verification state of the violation (detect alarm).
+	VerificationStateDescription *string `locationName:"verificationStateDescription" type:"string"`
+
+	// The violation ID.
+	//
+	// ViolationId is a required field
+	ViolationId *string `location:"uri" locationName:"violationId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutVerificationStateOnViolationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutVerificationStateOnViolationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutVerificationStateOnViolationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutVerificationStateOnViolationInput"}
+	if s.VerificationState == nil {
+		invalidParams.Add(request.NewErrParamRequired("VerificationState"))
+	}
+	if s.ViolationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("ViolationId"))
+	}
+	if s.ViolationId != nil && len(*s.ViolationId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ViolationId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetVerificationState sets the VerificationState field's value.
+func (s *PutVerificationStateOnViolationInput) SetVerificationState(v string) *PutVerificationStateOnViolationInput {
+	s.VerificationState = &v
+	return s
+}
+
+// SetVerificationStateDescription sets the VerificationStateDescription field's value.
+func (s *PutVerificationStateOnViolationInput) SetVerificationStateDescription(v string) *PutVerificationStateOnViolationInput {
+	s.VerificationStateDescription = &v
+	return s
+}
+
+// SetViolationId sets the ViolationId field's value.
+func (s *PutVerificationStateOnViolationInput) SetViolationId(v string) *PutVerificationStateOnViolationInput {
+	s.ViolationId = &v
+	return s
+}
+
+type PutVerificationStateOnViolationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutVerificationStateOnViolationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutVerificationStateOnViolationOutput) GoString() string {
+	return s.String()
 }
 
 // Allows you to define a criteria to initiate the increase in rate of rollout
@@ -65989,6 +66208,12 @@ type ViolationEvent struct {
 	// The name of the thing responsible for the violation event.
 	ThingName *string `locationName:"thingName" min:"1" type:"string"`
 
+	// The verification state of the violation (detect alarm).
+	VerificationState *string `locationName:"verificationState" type:"string" enum:"VerificationState"`
+
+	// The description of the verification state of the violation.
+	VerificationStateDescription *string `locationName:"verificationStateDescription" type:"string"`
+
 	// The details of a violation event.
 	ViolationEventAdditionalInfo *ViolationEventAdditionalInfo `locationName:"violationEventAdditionalInfo" type:"structure"`
 
@@ -66041,6 +66266,18 @@ func (s *ViolationEvent) SetSecurityProfileName(v string) *ViolationEvent {
 // SetThingName sets the ThingName field's value.
 func (s *ViolationEvent) SetThingName(v string) *ViolationEvent {
 	s.ThingName = &v
+	return s
+}
+
+// SetVerificationState sets the VerificationState field's value.
+func (s *ViolationEvent) SetVerificationState(v string) *ViolationEvent {
+	s.VerificationState = &v
+	return s
+}
+
+// SetVerificationStateDescription sets the VerificationStateDescription field's value.
+func (s *ViolationEvent) SetVerificationStateDescription(v string) *ViolationEvent {
+	s.VerificationStateDescription = &v
 	return s
 }
 
@@ -67809,6 +68046,30 @@ func TopicRuleDestinationStatus_Values() []string {
 		TopicRuleDestinationStatusDisabled,
 		TopicRuleDestinationStatusError,
 		TopicRuleDestinationStatusDeleting,
+	}
+}
+
+const (
+	// VerificationStateFalsePositive is a VerificationState enum value
+	VerificationStateFalsePositive = "FALSE_POSITIVE"
+
+	// VerificationStateBenignPositive is a VerificationState enum value
+	VerificationStateBenignPositive = "BENIGN_POSITIVE"
+
+	// VerificationStateTruePositive is a VerificationState enum value
+	VerificationStateTruePositive = "TRUE_POSITIVE"
+
+	// VerificationStateUnknown is a VerificationState enum value
+	VerificationStateUnknown = "UNKNOWN"
+)
+
+// VerificationState_Values returns all elements of the VerificationState enum
+func VerificationState_Values() []string {
+	return []string{
+		VerificationStateFalsePositive,
+		VerificationStateBenignPositive,
+		VerificationStateTruePositive,
+		VerificationStateUnknown,
 	}
 }
 

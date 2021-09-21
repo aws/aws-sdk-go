@@ -2971,6 +2971,149 @@ func (c *Comprehend) ListDocumentClassificationJobsPagesWithContext(ctx aws.Cont
 	return p.Err()
 }
 
+const opListDocumentClassifierSummaries = "ListDocumentClassifierSummaries"
+
+// ListDocumentClassifierSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListDocumentClassifierSummaries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDocumentClassifierSummaries for more information on using the ListDocumentClassifierSummaries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDocumentClassifierSummariesRequest method.
+//    req, resp := client.ListDocumentClassifierSummariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListDocumentClassifierSummaries
+func (c *Comprehend) ListDocumentClassifierSummariesRequest(input *ListDocumentClassifierSummariesInput) (req *request.Request, output *ListDocumentClassifierSummariesOutput) {
+	op := &request.Operation{
+		Name:       opListDocumentClassifierSummaries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListDocumentClassifierSummariesInput{}
+	}
+
+	output = &ListDocumentClassifierSummariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDocumentClassifierSummaries API operation for Amazon Comprehend.
+//
+// Gets a list of summaries of the document classifiers that you have created
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListDocumentClassifierSummaries for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListDocumentClassifierSummaries
+func (c *Comprehend) ListDocumentClassifierSummaries(input *ListDocumentClassifierSummariesInput) (*ListDocumentClassifierSummariesOutput, error) {
+	req, out := c.ListDocumentClassifierSummariesRequest(input)
+	return out, req.Send()
+}
+
+// ListDocumentClassifierSummariesWithContext is the same as ListDocumentClassifierSummaries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDocumentClassifierSummaries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListDocumentClassifierSummariesWithContext(ctx aws.Context, input *ListDocumentClassifierSummariesInput, opts ...request.Option) (*ListDocumentClassifierSummariesOutput, error) {
+	req, out := c.ListDocumentClassifierSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListDocumentClassifierSummariesPages iterates over the pages of a ListDocumentClassifierSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListDocumentClassifierSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListDocumentClassifierSummaries operation.
+//    pageNum := 0
+//    err := client.ListDocumentClassifierSummariesPages(params,
+//        func(page *comprehend.ListDocumentClassifierSummariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Comprehend) ListDocumentClassifierSummariesPages(input *ListDocumentClassifierSummariesInput, fn func(*ListDocumentClassifierSummariesOutput, bool) bool) error {
+	return c.ListDocumentClassifierSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListDocumentClassifierSummariesPagesWithContext same as ListDocumentClassifierSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListDocumentClassifierSummariesPagesWithContext(ctx aws.Context, input *ListDocumentClassifierSummariesInput, fn func(*ListDocumentClassifierSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListDocumentClassifierSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListDocumentClassifierSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListDocumentClassifierSummariesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
 const opListDocumentClassifiers = "ListDocumentClassifiers"
 
 // ListDocumentClassifiersRequest generates a "aws/request.Request" representing the
@@ -3487,6 +3630,149 @@ func (c *Comprehend) ListEntitiesDetectionJobsPagesWithContext(ctx aws.Context, 
 
 	for p.Next() {
 		if !fn(p.Page().(*ListEntitiesDetectionJobsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEntityRecognizerSummaries = "ListEntityRecognizerSummaries"
+
+// ListEntityRecognizerSummariesRequest generates a "aws/request.Request" representing the
+// client's request for the ListEntityRecognizerSummaries operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEntityRecognizerSummaries for more information on using the ListEntityRecognizerSummaries
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEntityRecognizerSummariesRequest method.
+//    req, resp := client.ListEntityRecognizerSummariesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListEntityRecognizerSummaries
+func (c *Comprehend) ListEntityRecognizerSummariesRequest(input *ListEntityRecognizerSummariesInput) (req *request.Request, output *ListEntityRecognizerSummariesOutput) {
+	op := &request.Operation{
+		Name:       opListEntityRecognizerSummaries,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEntityRecognizerSummariesInput{}
+	}
+
+	output = &ListEntityRecognizerSummariesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEntityRecognizerSummaries API operation for Amazon Comprehend.
+//
+// Gets a list of summaries for the entity recognizers that you have created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Comprehend's
+// API operation ListEntityRecognizerSummaries for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidRequestException
+//   The request is invalid.
+//
+//   * TooManyRequestsException
+//   The number of requests exceeds the limit. Resubmit your request later.
+//
+//   * InternalServerException
+//   An internal server error occurred. Retry your request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/comprehend-2017-11-27/ListEntityRecognizerSummaries
+func (c *Comprehend) ListEntityRecognizerSummaries(input *ListEntityRecognizerSummariesInput) (*ListEntityRecognizerSummariesOutput, error) {
+	req, out := c.ListEntityRecognizerSummariesRequest(input)
+	return out, req.Send()
+}
+
+// ListEntityRecognizerSummariesWithContext is the same as ListEntityRecognizerSummaries with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEntityRecognizerSummaries for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListEntityRecognizerSummariesWithContext(ctx aws.Context, input *ListEntityRecognizerSummariesInput, opts ...request.Option) (*ListEntityRecognizerSummariesOutput, error) {
+	req, out := c.ListEntityRecognizerSummariesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEntityRecognizerSummariesPages iterates over the pages of a ListEntityRecognizerSummaries operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEntityRecognizerSummaries method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEntityRecognizerSummaries operation.
+//    pageNum := 0
+//    err := client.ListEntityRecognizerSummariesPages(params,
+//        func(page *comprehend.ListEntityRecognizerSummariesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *Comprehend) ListEntityRecognizerSummariesPages(input *ListEntityRecognizerSummariesInput, fn func(*ListEntityRecognizerSummariesOutput, bool) bool) error {
+	return c.ListEntityRecognizerSummariesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEntityRecognizerSummariesPagesWithContext same as ListEntityRecognizerSummariesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Comprehend) ListEntityRecognizerSummariesPagesWithContext(ctx aws.Context, input *ListEntityRecognizerSummariesInput, fn func(*ListEntityRecognizerSummariesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEntityRecognizerSummariesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEntityRecognizerSummariesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEntityRecognizerSummariesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -6270,6 +6556,16 @@ type AugmentedManifestsListItem struct {
 	// The S3 prefix to the source files (PDFs) that are referred to in the augmented
 	// manifest file.
 	SourceDocumentsS3Uri *string `type:"string"`
+
+	// The purpose of the data you've provided in the augmented manifest. You can
+	// either train or test this data. If you don't specify, the default is train.
+	//
+	// TRAIN - all of the documents in the manifest will be used for training. If
+	// no test documents are provided, Amazon Comprehend will automatically reserve
+	// a portion of the training documents for testing.
+	//
+	// TEST - all of the documents in the manifest will be used for testing.
+	Split *string `type:"string" enum:"Split"`
 }
 
 // String returns the string representation.
@@ -6333,6 +6629,12 @@ func (s *AugmentedManifestsListItem) SetS3Uri(v string) *AugmentedManifestsListI
 // SetSourceDocumentsS3Uri sets the SourceDocumentsS3Uri field's value.
 func (s *AugmentedManifestsListItem) SetSourceDocumentsS3Uri(v string) *AugmentedManifestsListItem {
 	s.SourceDocumentsS3Uri = &v
+	return s
+}
+
+// SetSplit sets the Split field's value.
+func (s *AugmentedManifestsListItem) SetSplit(v string) *AugmentedManifestsListItem {
+	s.Split = &v
 	return s
 }
 
@@ -7760,6 +8062,12 @@ type CreateDocumentClassifierInput struct {
 	// indicate its use by the sales department.
 	Tags []*Tag `type:"list"`
 
+	// The version name given to the newly created classifier. Version names can
+	// have a maximum of 256 characters. Alphanumeric characters, hyphens (-) and
+	// underscores (_) are allowed. The version name must be unique among all models
+	// with the same classifier name in the account/AWS Region.
+	VersionName *string `type:"string"`
+
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
 	// that process the analysis job. The VolumeKmsKeyId can be either of the following
@@ -7893,6 +8201,12 @@ func (s *CreateDocumentClassifierInput) SetOutputDataConfig(v *DocumentClassifie
 // SetTags sets the Tags field's value.
 func (s *CreateDocumentClassifierInput) SetTags(v []*Tag) *CreateDocumentClassifierInput {
 	s.Tags = v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *CreateDocumentClassifierInput) SetVersionName(v string) *CreateDocumentClassifierInput {
+	s.VersionName = &v
 	return s
 }
 
@@ -8148,6 +8462,12 @@ type CreateEntityRecognizerInput struct {
 	// indicate its use by the sales department.
 	Tags []*Tag `type:"list"`
 
+	// The version name given to the newly created recognizer. Version names can
+	// be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and
+	// underscores (_) are allowed. The version name must be unique among all models
+	// with the same recognizer name in the account/ AWS Region.
+	VersionName *string `type:"string"`
+
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
 	// that process the analysis job. The VolumeKmsKeyId can be either of the following
@@ -8269,6 +8589,12 @@ func (s *CreateEntityRecognizerInput) SetRecognizerName(v string) *CreateEntityR
 // SetTags sets the Tags field's value.
 func (s *CreateEntityRecognizerInput) SetTags(v []*Tag) *CreateEntityRecognizerInput {
 	s.Tags = v
+	return s
+}
+
+// SetVersionName sets the VersionName field's value.
+func (s *CreateEntityRecognizerInput) SetVersionName(v string) *CreateEntityRecognizerInput {
+	s.VersionName = &v
 	return s
 }
 
@@ -10314,6 +10640,9 @@ func (s *DocumentClassificationJobProperties) SetVpcConfig(v *VpcConfig) *Docume
 type DocumentClassifierFilter struct {
 	_ struct{} `type:"structure"`
 
+	// The name that you assigned to the document classifier
+	DocumentClassifierName *string `type:"string"`
+
 	// Filters the list of classifiers based on status.
 	Status *string `type:"string" enum:"ModelStatus"`
 
@@ -10344,6 +10673,12 @@ func (s DocumentClassifierFilter) String() string {
 // value will be replaced with "sensitive".
 func (s DocumentClassifierFilter) GoString() string {
 	return s.String()
+}
+
+// SetDocumentClassifierName sets the DocumentClassifierName field's value.
+func (s *DocumentClassifierFilter) SetDocumentClassifierName(v string) *DocumentClassifierFilter {
+	s.DocumentClassifierName = &v
+	return s
 }
 
 // SetStatus sets the Status field's value.
@@ -10411,6 +10746,12 @@ type DocumentClassifierInputDataConfig struct {
 	//
 	// This parameter is required if you set DataFormat to COMPREHEND_CSV.
 	S3Uri *string `type:"string"`
+
+	// The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the
+	// same AWS Region as the API endpoint that you are calling. The URI can point
+	// to a single input file or it can provide the prefix for a collection of input
+	// files.
+	TestS3Uri *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -10475,6 +10816,12 @@ func (s *DocumentClassifierInputDataConfig) SetLabelDelimiter(v string) *Documen
 // SetS3Uri sets the S3Uri field's value.
 func (s *DocumentClassifierInputDataConfig) SetS3Uri(v string) *DocumentClassifierInputDataConfig {
 	s.S3Uri = &v
+	return s
+}
+
+// SetTestS3Uri sets the TestS3Uri field's value.
+func (s *DocumentClassifierInputDataConfig) SetTestS3Uri(v string) *DocumentClassifierInputDataConfig {
+	s.TestS3Uri = &v
 	return s
 }
 
@@ -10607,6 +10954,9 @@ type DocumentClassifierProperties struct {
 	// You are billed for the time interval between this time and the value of TrainingEndTime.
 	TrainingStartTime *time.Time `type:"timestamp"`
 
+	// The version name that you assigned to the document classifier.
+	VersionName *string `type:"string"`
+
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
 	// that process the analysis job. The VolumeKmsKeyId can be either of the following
@@ -10725,6 +11075,12 @@ func (s *DocumentClassifierProperties) SetTrainingStartTime(v time.Time) *Docume
 	return s
 }
 
+// SetVersionName sets the VersionName field's value.
+func (s *DocumentClassifierProperties) SetVersionName(v string) *DocumentClassifierProperties {
+	s.VersionName = &v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *DocumentClassifierProperties) SetVolumeKmsKeyId(v string) *DocumentClassifierProperties {
 	s.VolumeKmsKeyId = &v
@@ -10734,6 +11090,74 @@ func (s *DocumentClassifierProperties) SetVolumeKmsKeyId(v string) *DocumentClas
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *DocumentClassifierProperties) SetVpcConfig(v *VpcConfig) *DocumentClassifierProperties {
 	s.VpcConfig = v
+	return s
+}
+
+// Describes information about a document classifier and its versions.
+type DocumentClassifierSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The name that you assigned the document classifier.
+	DocumentClassifierName *string `type:"string"`
+
+	// The time that the latest document classifier version was submitted for processing.
+	LatestVersionCreatedAt *time.Time `type:"timestamp"`
+
+	// The version name you assigned to the latest document classifier version.
+	LatestVersionName *string `type:"string"`
+
+	// Provides the status of the latest document classifier version.
+	LatestVersionStatus *string `type:"string" enum:"ModelStatus"`
+
+	// The number of versions you created.
+	NumberOfVersions *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentClassifierSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DocumentClassifierSummary) GoString() string {
+	return s.String()
+}
+
+// SetDocumentClassifierName sets the DocumentClassifierName field's value.
+func (s *DocumentClassifierSummary) SetDocumentClassifierName(v string) *DocumentClassifierSummary {
+	s.DocumentClassifierName = &v
+	return s
+}
+
+// SetLatestVersionCreatedAt sets the LatestVersionCreatedAt field's value.
+func (s *DocumentClassifierSummary) SetLatestVersionCreatedAt(v time.Time) *DocumentClassifierSummary {
+	s.LatestVersionCreatedAt = &v
+	return s
+}
+
+// SetLatestVersionName sets the LatestVersionName field's value.
+func (s *DocumentClassifierSummary) SetLatestVersionName(v string) *DocumentClassifierSummary {
+	s.LatestVersionName = &v
+	return s
+}
+
+// SetLatestVersionStatus sets the LatestVersionStatus field's value.
+func (s *DocumentClassifierSummary) SetLatestVersionStatus(v string) *DocumentClassifierSummary {
+	s.LatestVersionStatus = &v
+	return s
+}
+
+// SetNumberOfVersions sets the NumberOfVersions field's value.
+func (s *DocumentClassifierSummary) SetNumberOfVersions(v int64) *DocumentClassifierSummary {
+	s.NumberOfVersions = &v
 	return s
 }
 
@@ -11210,10 +11634,18 @@ type EndpointProperties struct {
 	// encrypted with a customer managed key (ModelKmsKeyId).
 	DataAccessRoleArn *string `min:"20" type:"string"`
 
+	// Data access role ARN to use in case the new model is encrypted with a customer
+	// KMS key.
+	DesiredDataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The desired number of inference units to be used by the model using this
 	// endpoint. Each inference unit represents of a throughput of 100 characters
 	// per second.
 	DesiredInferenceUnits *int64 `min:"1" type:"integer"`
+
+	// ARN of the new model to use for updating an existing endpoint. This ARN is
+	// going to be different from the model ARN when the update is in progress
+	DesiredModelArn *string `type:"string"`
 
 	// The Amazon Resource Number (ARN) of the endpoint.
 	EndpointArn *string `type:"string"`
@@ -11269,9 +11701,21 @@ func (s *EndpointProperties) SetDataAccessRoleArn(v string) *EndpointProperties 
 	return s
 }
 
+// SetDesiredDataAccessRoleArn sets the DesiredDataAccessRoleArn field's value.
+func (s *EndpointProperties) SetDesiredDataAccessRoleArn(v string) *EndpointProperties {
+	s.DesiredDataAccessRoleArn = &v
+	return s
+}
+
 // SetDesiredInferenceUnits sets the DesiredInferenceUnits field's value.
 func (s *EndpointProperties) SetDesiredInferenceUnits(v int64) *EndpointProperties {
 	s.DesiredInferenceUnits = &v
+	return s
+}
+
+// SetDesiredModelArn sets the DesiredModelArn field's value.
+func (s *EndpointProperties) SetDesiredModelArn(v string) *EndpointProperties {
+	s.DesiredModelArn = &v
 	return s
 }
 
@@ -11682,6 +12126,11 @@ type EntityRecognizerAnnotations struct {
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
+
+	// This specifies the Amazon S3 location where the test annotations for an entity
+	// recognizer are located. The URI must be in the same AWS Region as the API
+	// endpoint that you are calling.
+	TestS3Uri *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -11721,9 +12170,23 @@ func (s *EntityRecognizerAnnotations) SetS3Uri(v string) *EntityRecognizerAnnota
 	return s
 }
 
+// SetTestS3Uri sets the TestS3Uri field's value.
+func (s *EntityRecognizerAnnotations) SetTestS3Uri(v string) *EntityRecognizerAnnotations {
+	s.TestS3Uri = &v
+	return s
+}
+
 // Describes the training documents submitted with an entity recognizer.
 type EntityRecognizerDocuments struct {
 	_ struct{} `type:"structure"`
+
+	// Specifies how the text in an input file should be processed. This is optional,
+	// and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each file is considered
+	// a separate document. Use this option when you are processing large documents,
+	// such as newspaper articles or scientific papers. ONE_DOC_PER_LINE - Each
+	// line in a file is considered a separate document. Use this option when you
+	// are processing many short documents, such as text messages.
+	InputFormat *string `type:"string" enum:"InputFormat"`
 
 	// Specifies the Amazon S3 location where the training documents for an entity
 	// recognizer are located. The URI must be in the same region as the API endpoint
@@ -11731,6 +12194,11 @@ type EntityRecognizerDocuments struct {
 	//
 	// S3Uri is a required field
 	S3Uri *string `type:"string" required:"true"`
+
+	// Specifies the Amazon S3 location where the test documents for an entity recognizer
+	// are located. The URI must be in the same AWS Region as the API endpoint that
+	// you are calling.
+	TestS3Uri *string `type:"string"`
 }
 
 // String returns the string representation.
@@ -11764,9 +12232,21 @@ func (s *EntityRecognizerDocuments) Validate() error {
 	return nil
 }
 
+// SetInputFormat sets the InputFormat field's value.
+func (s *EntityRecognizerDocuments) SetInputFormat(v string) *EntityRecognizerDocuments {
+	s.InputFormat = &v
+	return s
+}
+
 // SetS3Uri sets the S3Uri field's value.
 func (s *EntityRecognizerDocuments) SetS3Uri(v string) *EntityRecognizerDocuments {
 	s.S3Uri = &v
+	return s
+}
+
+// SetTestS3Uri sets the TestS3Uri field's value.
+func (s *EntityRecognizerDocuments) SetTestS3Uri(v string) *EntityRecognizerDocuments {
+	s.TestS3Uri = &v
 	return s
 }
 
@@ -11880,6 +12360,9 @@ func (s *EntityRecognizerEvaluationMetrics) SetRecall(v float64) *EntityRecogniz
 type EntityRecognizerFilter struct {
 	_ struct{} `type:"structure"`
 
+	// The name that you assigned the entity recognizer.
+	RecognizerName *string `type:"string"`
+
 	// The status of an entity recognizer.
 	Status *string `type:"string" enum:"ModelStatus"`
 
@@ -11910,6 +12393,12 @@ func (s EntityRecognizerFilter) String() string {
 // value will be replaced with "sensitive".
 func (s EntityRecognizerFilter) GoString() string {
 	return s.String()
+}
+
+// SetRecognizerName sets the RecognizerName field's value.
+func (s *EntityRecognizerFilter) SetRecognizerName(v string) *EntityRecognizerFilter {
+	s.RecognizerName = &v
+	return s
 }
 
 // SetStatus sets the Status field's value.
@@ -12256,6 +12745,9 @@ type EntityRecognizerProperties struct {
 	// The time that training of the entity recognizer started.
 	TrainingStartTime *time.Time `type:"timestamp"`
 
+	// The version name you assigned to the entity recognizer.
+	VersionName *string `type:"string"`
+
 	// ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses
 	// to encrypt data on the storage volume attached to the ML compute instance(s)
 	// that process the analysis job. The VolumeKmsKeyId can be either of the following
@@ -12362,6 +12854,12 @@ func (s *EntityRecognizerProperties) SetTrainingStartTime(v time.Time) *EntityRe
 	return s
 }
 
+// SetVersionName sets the VersionName field's value.
+func (s *EntityRecognizerProperties) SetVersionName(v string) *EntityRecognizerProperties {
+	s.VersionName = &v
+	return s
+}
+
 // SetVolumeKmsKeyId sets the VolumeKmsKeyId field's value.
 func (s *EntityRecognizerProperties) SetVolumeKmsKeyId(v string) *EntityRecognizerProperties {
 	s.VolumeKmsKeyId = &v
@@ -12371,6 +12869,74 @@ func (s *EntityRecognizerProperties) SetVolumeKmsKeyId(v string) *EntityRecogniz
 // SetVpcConfig sets the VpcConfig field's value.
 func (s *EntityRecognizerProperties) SetVpcConfig(v *VpcConfig) *EntityRecognizerProperties {
 	s.VpcConfig = v
+	return s
+}
+
+// Describes the information about an entity recognizer and its versions.
+type EntityRecognizerSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The time that the latest entity recognizer version was submitted for processing.
+	LatestVersionCreatedAt *time.Time `type:"timestamp"`
+
+	// The version name you assigned to the latest entity recognizer version.
+	LatestVersionName *string `type:"string"`
+
+	// Provides the status of the latest entity recognizer version.
+	LatestVersionStatus *string `type:"string" enum:"ModelStatus"`
+
+	// The number of versions you created.
+	NumberOfVersions *int64 `type:"integer"`
+
+	// The name that you assigned the entity recognizer.
+	RecognizerName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityRecognizerSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EntityRecognizerSummary) GoString() string {
+	return s.String()
+}
+
+// SetLatestVersionCreatedAt sets the LatestVersionCreatedAt field's value.
+func (s *EntityRecognizerSummary) SetLatestVersionCreatedAt(v time.Time) *EntityRecognizerSummary {
+	s.LatestVersionCreatedAt = &v
+	return s
+}
+
+// SetLatestVersionName sets the LatestVersionName field's value.
+func (s *EntityRecognizerSummary) SetLatestVersionName(v string) *EntityRecognizerSummary {
+	s.LatestVersionName = &v
+	return s
+}
+
+// SetLatestVersionStatus sets the LatestVersionStatus field's value.
+func (s *EntityRecognizerSummary) SetLatestVersionStatus(v string) *EntityRecognizerSummary {
+	s.LatestVersionStatus = &v
+	return s
+}
+
+// SetNumberOfVersions sets the NumberOfVersions field's value.
+func (s *EntityRecognizerSummary) SetNumberOfVersions(v int64) *EntityRecognizerSummary {
+	s.NumberOfVersions = &v
+	return s
+}
+
+// SetRecognizerName sets the RecognizerName field's value.
+func (s *EntityRecognizerSummary) SetRecognizerName(v string) *EntityRecognizerSummary {
+	s.RecognizerName = &v
 	return s
 }
 
@@ -13531,6 +14097,102 @@ func (s *ListDocumentClassificationJobsOutput) SetNextToken(v string) *ListDocum
 	return s
 }
 
+type ListDocumentClassifierSummariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return on each page. The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDocumentClassifierSummariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDocumentClassifierSummariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDocumentClassifierSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDocumentClassifierSummariesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDocumentClassifierSummariesInput) SetMaxResults(v int64) *ListDocumentClassifierSummariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDocumentClassifierSummariesInput) SetNextToken(v string) *ListDocumentClassifierSummariesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDocumentClassifierSummariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list of summaries of document classifiers.
+	DocumentClassifierSummariesList []*DocumentClassifierSummary `type:"list"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDocumentClassifierSummariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDocumentClassifierSummariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetDocumentClassifierSummariesList sets the DocumentClassifierSummariesList field's value.
+func (s *ListDocumentClassifierSummariesOutput) SetDocumentClassifierSummariesList(v []*DocumentClassifierSummary) *ListDocumentClassifierSummariesOutput {
+	s.DocumentClassifierSummariesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDocumentClassifierSummariesOutput) SetNextToken(v string) *ListDocumentClassifierSummariesOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListDocumentClassifiersInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13966,6 +14628,102 @@ func (s *ListEntitiesDetectionJobsOutput) SetEntitiesDetectionJobPropertiesList(
 
 // SetNextToken sets the NextToken field's value.
 func (s *ListEntitiesDetectionJobsOutput) SetNextToken(v string) *ListEntitiesDetectionJobsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEntityRecognizerSummariesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return on each page. The default is 100.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// Identifies the next page of results to return.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntityRecognizerSummariesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntityRecognizerSummariesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEntityRecognizerSummariesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEntityRecognizerSummariesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEntityRecognizerSummariesInput) SetMaxResults(v int64) *ListEntityRecognizerSummariesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntityRecognizerSummariesInput) SetNextToken(v string) *ListEntityRecognizerSummariesInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEntityRecognizerSummariesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The list entity recognizer summaries.
+	EntityRecognizerSummariesList []*EntityRecognizerSummary `type:"list"`
+
+	// The list entity recognizer summaries.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntityRecognizerSummariesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEntityRecognizerSummariesOutput) GoString() string {
+	return s.String()
+}
+
+// SetEntityRecognizerSummariesList sets the EntityRecognizerSummariesList field's value.
+func (s *ListEntityRecognizerSummariesOutput) SetEntityRecognizerSummariesList(v []*EntityRecognizerSummary) *ListEntityRecognizerSummariesOutput {
+	s.EntityRecognizerSummariesList = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEntityRecognizerSummariesOutput) SetNextToken(v string) *ListEntityRecognizerSummariesOutput {
 	s.NextToken = &v
 	return s
 }
@@ -19355,12 +20113,17 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateEndpointInput struct {
 	_ struct{} `type:"structure"`
 
+	// Data access role ARN to use in case the new model is encrypted with a customer
+	// CMK.
+	DesiredDataAccessRoleArn *string `min:"20" type:"string"`
+
 	// The desired number of inference units to be used by the model using this
 	// endpoint. Each inference unit represents of a throughput of 100 characters
 	// per second.
-	//
-	// DesiredInferenceUnits is a required field
-	DesiredInferenceUnits *int64 `min:"1" type:"integer" required:"true"`
+	DesiredInferenceUnits *int64 `min:"1" type:"integer"`
+
+	// The ARN of the new model to use when updating an existing endpoint.
+	DesiredModelArn *string `type:"string"`
 
 	// The Amazon Resource Number (ARN) of the endpoint being updated.
 	//
@@ -19389,8 +20152,8 @@ func (s UpdateEndpointInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateEndpointInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateEndpointInput"}
-	if s.DesiredInferenceUnits == nil {
-		invalidParams.Add(request.NewErrParamRequired("DesiredInferenceUnits"))
+	if s.DesiredDataAccessRoleArn != nil && len(*s.DesiredDataAccessRoleArn) < 20 {
+		invalidParams.Add(request.NewErrParamMinLen("DesiredDataAccessRoleArn", 20))
 	}
 	if s.DesiredInferenceUnits != nil && *s.DesiredInferenceUnits < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("DesiredInferenceUnits", 1))
@@ -19405,9 +20168,21 @@ func (s *UpdateEndpointInput) Validate() error {
 	return nil
 }
 
+// SetDesiredDataAccessRoleArn sets the DesiredDataAccessRoleArn field's value.
+func (s *UpdateEndpointInput) SetDesiredDataAccessRoleArn(v string) *UpdateEndpointInput {
+	s.DesiredDataAccessRoleArn = &v
+	return s
+}
+
 // SetDesiredInferenceUnits sets the DesiredInferenceUnits field's value.
 func (s *UpdateEndpointInput) SetDesiredInferenceUnits(v int64) *UpdateEndpointInput {
 	s.DesiredInferenceUnits = &v
+	return s
+}
+
+// SetDesiredModelArn sets the DesiredModelArn field's value.
+func (s *UpdateEndpointInput) SetDesiredModelArn(v string) *UpdateEndpointInput {
+	s.DesiredModelArn = &v
 	return s
 }
 
@@ -20082,6 +20857,22 @@ func SentimentType_Values() []string {
 		SentimentTypeNegative,
 		SentimentTypeNeutral,
 		SentimentTypeMixed,
+	}
+}
+
+const (
+	// SplitTrain is a Split enum value
+	SplitTrain = "TRAIN"
+
+	// SplitTest is a Split enum value
+	SplitTest = "TEST"
+)
+
+// Split_Values returns all elements of the Split enum
+func Split_Values() []string {
+	return []string{
+		SplitTrain,
+		SplitTest,
 	}
 }
 

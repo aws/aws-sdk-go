@@ -5,6 +5,11 @@
       "output_token": "NextToken",
       "limit_key": "MaxResults"
     },
+    "ListDocumentClassifierSummaries": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
     "ListDocumentClassifiers": {
       "input_token": "NextToken",
       "output_token": "NextToken",
@@ -16,6 +21,11 @@
       "limit_key": "MaxResults"
     },
     "ListEntitiesDetectionJobs": {
+      "input_token": "NextToken",
+      "output_token": "NextToken",
+      "limit_key": "MaxResults"
+    },
+    "ListEntityRecognizerSummaries": {
       "input_token": "NextToken",
       "output_token": "NextToken",
       "limit_key": "MaxResults"

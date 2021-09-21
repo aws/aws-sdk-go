@@ -638,6 +638,12 @@
       "output_token": "NextToken",
       "result_key": "TransitGatewayRouteTablePropagations"
     },
+    "GetVpnConnectionDeviceTypes": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "VpnConnectionDeviceTypes"
+    },
     "SearchLocalGatewayRoutes": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

@@ -1781,6 +1781,17 @@ type EC2API interface {
 	GetTransitGatewayRouteTablePropagationsPages(*ec2.GetTransitGatewayRouteTablePropagationsInput, func(*ec2.GetTransitGatewayRouteTablePropagationsOutput, bool) bool) error
 	GetTransitGatewayRouteTablePropagationsPagesWithContext(aws.Context, *ec2.GetTransitGatewayRouteTablePropagationsInput, func(*ec2.GetTransitGatewayRouteTablePropagationsOutput, bool) bool, ...request.Option) error
 
+	GetVpnConnectionDeviceSampleConfiguration(*ec2.GetVpnConnectionDeviceSampleConfigurationInput) (*ec2.GetVpnConnectionDeviceSampleConfigurationOutput, error)
+	GetVpnConnectionDeviceSampleConfigurationWithContext(aws.Context, *ec2.GetVpnConnectionDeviceSampleConfigurationInput, ...request.Option) (*ec2.GetVpnConnectionDeviceSampleConfigurationOutput, error)
+	GetVpnConnectionDeviceSampleConfigurationRequest(*ec2.GetVpnConnectionDeviceSampleConfigurationInput) (*request.Request, *ec2.GetVpnConnectionDeviceSampleConfigurationOutput)
+
+	GetVpnConnectionDeviceTypes(*ec2.GetVpnConnectionDeviceTypesInput) (*ec2.GetVpnConnectionDeviceTypesOutput, error)
+	GetVpnConnectionDeviceTypesWithContext(aws.Context, *ec2.GetVpnConnectionDeviceTypesInput, ...request.Option) (*ec2.GetVpnConnectionDeviceTypesOutput, error)
+	GetVpnConnectionDeviceTypesRequest(*ec2.GetVpnConnectionDeviceTypesInput) (*request.Request, *ec2.GetVpnConnectionDeviceTypesOutput)
+
+	GetVpnConnectionDeviceTypesPages(*ec2.GetVpnConnectionDeviceTypesInput, func(*ec2.GetVpnConnectionDeviceTypesOutput, bool) bool) error
+	GetVpnConnectionDeviceTypesPagesWithContext(aws.Context, *ec2.GetVpnConnectionDeviceTypesInput, func(*ec2.GetVpnConnectionDeviceTypesOutput, bool) bool, ...request.Option) error
+
 	ImportClientVpnClientCertificateRevocationList(*ec2.ImportClientVpnClientCertificateRevocationListInput) (*ec2.ImportClientVpnClientCertificateRevocationListOutput, error)
 	ImportClientVpnClientCertificateRevocationListWithContext(aws.Context, *ec2.ImportClientVpnClientCertificateRevocationListInput, ...request.Option) (*ec2.ImportClientVpnClientCertificateRevocationListOutput, error)
 	ImportClientVpnClientCertificateRevocationListRequest(*ec2.ImportClientVpnClientCertificateRevocationListInput) (*request.Request, *ec2.ImportClientVpnClientCertificateRevocationListOutput)

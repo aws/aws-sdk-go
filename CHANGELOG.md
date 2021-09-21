@@ -1,3 +1,20 @@
+Release v1.40.46 (2021-09-21)
+===
+
+### Service Client Updates
+* `service/comprehend`: Updates service API, documentation, and paginators
+* `service/ec2`: Updates service API, documentation, and paginators
+  * This update adds support for downloading configuration templates using new APIs (GetVpnConnectionDeviceTypes and GetVpnConnectionDeviceSampleConfiguration) and Internet Key Exchange version 2 (IKEv2) parameters for many popular CGW devices.
+* `service/ecr`: Updates service API and documentation
+  * This release adds additional support for repository replication
+* `service/iot`: Updates service API and documentation
+  * This release adds support for verifying, viewing and filtering AWS IoT Device Defender detect violations with four verification states.
+* `service/kafka`: Updates service API
+
+### SDK Bugs
+* `service/dynamodb/dynamodbattribute`: Fix string alias unmarshal.
+  * Fixes #3983 by correcting the unmarshaler's decoding of AttributeValue number (N) parameter into type that is a string alias.
+
 Release v1.40.45 (2021-09-17)
 ===
 

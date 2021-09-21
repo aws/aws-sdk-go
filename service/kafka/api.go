@@ -4094,6 +4094,9 @@ type ClusterInfo struct {
 	// FAILED, HEALING, MAINTENANCE, REBOOTING_BROKER, and UPDATING.
 	State *string `locationName:"state" type:"string" enum:"ClusterState"`
 
+	// Contains information about the state of the Amazon MSK cluster.
+	StateInfo *StateInfo `locationName:"stateInfo" type:"structure"`
+
 	// Tags attached to the cluster.
 	Tags map[string]*string `locationName:"tags" type:"map"`
 
@@ -4203,6 +4206,12 @@ func (s *ClusterInfo) SetOpenMonitoring(v *OpenMonitoring) *ClusterInfo {
 // SetState sets the State field's value.
 func (s *ClusterInfo) SetState(v string) *ClusterInfo {
 	s.State = &v
+	return s
+}
+
+// SetStateInfo sets the StateInfo field's value.
+func (s *ClusterInfo) SetStateInfo(v *StateInfo) *ClusterInfo {
+	s.StateInfo = v
 	return s
 }
 
@@ -8184,6 +8193,49 @@ func (s *ServiceUnavailableException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ServiceUnavailableException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Contains information about the state of the Amazon MSK cluster.
+type StateInfo struct {
+	_ struct{} `type:"structure"`
+
+	// If the cluster is in an unusable state, this field contains the code that
+	// describes the issue.
+	Code *string `locationName:"code" type:"string"`
+
+	// If the cluster is in an unusable state, this field contains a message that
+	// describes the issue.
+	Message *string `locationName:"message" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StateInfo) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StateInfo) GoString() string {
+	return s.String()
+}
+
+// SetCode sets the Code field's value.
+func (s *StateInfo) SetCode(v string) *StateInfo {
+	s.Code = &v
+	return s
+}
+
+// SetMessage sets the Message field's value.
+func (s *StateInfo) SetMessage(v string) *StateInfo {
+	s.Message = &v
+	return s
 }
 
 // Contains information about storage volumes attached to MSK broker nodes.

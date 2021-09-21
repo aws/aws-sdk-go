@@ -33,10 +33,12 @@
     "DetectSentiment": "<p>Inspects text and returns an inference of the prevailing sentiment (<code>POSITIVE</code>, <code>NEUTRAL</code>, <code>MIXED</code>, or <code>NEGATIVE</code>). </p>",
     "DetectSyntax": "<p>Inspects text for syntax and the part of speech of words in the document. For more information, <a>how-syntax</a>.</p>",
     "ListDocumentClassificationJobs": "<p>Gets a list of the documentation classification jobs that you have submitted.</p>",
+    "ListDocumentClassifierSummaries": "<p>Gets a list of summaries of the document classifiers that you have created</p>",
     "ListDocumentClassifiers": "<p>Gets a list of the document classifiers that you have created.</p>",
     "ListDominantLanguageDetectionJobs": "<p>Gets a list of the dominant language detection jobs that you have submitted.</p>",
     "ListEndpoints": "<p>Gets a list of all existing endpoints that you've created.</p>",
     "ListEntitiesDetectionJobs": "<p>Gets a list of the entity detection jobs that you have submitted.</p>",
+    "ListEntityRecognizerSummaries": "<p>Gets a list of summaries for the entity recognizers that you have created.</p>",
     "ListEntityRecognizers": "<p>Gets a list of the properties of all entity recognizers that you created, including recognizers currently in training. Allows you to filter the list of recognizers based on criteria such as status and submission time. This call returns up to 500 entity recognizers in the list, with a default number of 100 recognizers in the list.</p> <p>The results of this list are not in any particular order. Please get the list and sort locally if needed.</p>",
     "ListEventsDetectionJobs": "<p>Gets a list of the events detection jobs that you have submitted.</p>",
     "ListKeyPhrasesDetectionJobs": "<p>Get a list of key phrase detection jobs that you have submitted.</p>",
@@ -275,7 +277,11 @@
       "base": null,
       "refs": {
         "CreateDocumentClassifierRequest$DocumentClassifierName": "<p>The name of the document classifier.</p>",
-        "CreateEntityRecognizerRequest$RecognizerName": "<p>The name given to the newly created recognizer. Recognizer names can be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The name must be unique in the account/region.</p>"
+        "CreateEntityRecognizerRequest$RecognizerName": "<p>The name given to the newly created recognizer. Recognizer names can be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The name must be unique in the account/region.</p>",
+        "DocumentClassifierFilter$DocumentClassifierName": "<p>The name that you assigned to the document classifier</p>",
+        "DocumentClassifierSummary$DocumentClassifierName": "<p>The name that you assigned the document classifier.</p>",
+        "EntityRecognizerFilter$RecognizerName": "<p>The name that you assigned the entity recognizer.</p>",
+        "EntityRecognizerSummary$RecognizerName": "<p> The name that you assigned the entity recognizer.</p>"
       }
     },
     "ComprehendEndpointArn": {
@@ -299,7 +305,9 @@
       "refs": {
         "CreateEndpointRequest$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint will be attached.</p>",
         "EndpointFilter$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint is attached.</p>",
-        "EndpointProperties$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint is attached.</p>"
+        "EndpointProperties$ModelArn": "<p>The Amazon Resource Number (ARN) of the model to which the endpoint is attached.</p>",
+        "EndpointProperties$DesiredModelArn": "<p>ARN of the new model to use for updating an existing endpoint. This ARN is going to be different from the model ARN when the update is in progress</p>",
+        "UpdateEndpointRequest$DesiredModelArn": "<p>The ARN of the new model to use when updating an existing endpoint.</p>"
       }
     },
     "ConcurrentModificationException": {
@@ -664,6 +672,18 @@
         "ListDocumentClassifiersResponse$DocumentClassifierPropertiesList": "<p>A list containing the properties of each job returned.</p>"
       }
     },
+    "DocumentClassifierSummariesList": {
+      "base": null,
+      "refs": {
+        "ListDocumentClassifierSummariesResponse$DocumentClassifierSummariesList": "<p>The list of summaries of document classifiers.</p>"
+      }
+    },
+    "DocumentClassifierSummary": {
+      "base": "<p>Describes information about a document classifier and its versions.</p>",
+      "refs": {
+        "DocumentClassifierSummariesList$member": null
+      }
+    },
     "DocumentLabel": {
       "base": "<p>Specifies one of the label or labels that categorize the document being analyzed.</p>",
       "refs": {
@@ -893,6 +913,18 @@
         "ListEntityRecognizersResponse$EntityRecognizerPropertiesList": "<p>The list of properties of an entity recognizer.</p>"
       }
     },
+    "EntityRecognizerSummariesList": {
+      "base": null,
+      "refs": {
+        "ListEntityRecognizerSummariesResponse$EntityRecognizerSummariesList": "<p>The list entity recognizer summaries.</p>"
+      }
+    },
+    "EntityRecognizerSummary": {
+      "base": "<p> Describes the information about an entity recognizer and its versions.</p>",
+      "refs": {
+        "EntityRecognizerSummariesList$member": null
+      }
+    },
     "EntityType": {
       "base": null,
       "refs": {
@@ -975,6 +1007,7 @@
         "DocumentClassifierProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
         "DominantLanguageDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
         "EndpointProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS identity and Access Management (IAM) role that grants Amazon Comprehend read access to trained custom models encrypted with a customer managed key (ModelKmsKeyId).</p>",
+        "EndpointProperties$DesiredDataAccessRoleArn": "<p>Data access role ARN to use in case the new model is encrypted with a customer KMS key.</p>",
         "EntitiesDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) that gives Amazon Comprehend read access to your input data.</p>",
         "EntityRecognizerProperties$DataAccessRoleArn": "<p> The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
         "EventsDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identify and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
@@ -989,7 +1022,8 @@
         "StartPiiEntitiesDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.</p>",
         "StartSentimentDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
         "StartTopicsDetectionJobRequest$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see <a href=\"https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions\">https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions</a>.</p>",
-        "TopicsDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your job data. </p>"
+        "TopicsDetectionJobProperties$DataAccessRoleArn": "<p>The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your job data. </p>",
+        "UpdateEndpointRequest$DesiredDataAccessRoleArn": "<p>Data access role ARN to use in case the new model is encrypted with a customer CMK.</p>"
       }
     },
     "InferenceUnitsInteger": {
@@ -1025,6 +1059,7 @@
     "InputFormat": {
       "base": null,
       "refs": {
+        "EntityRecognizerDocuments$InputFormat": "<p> Specifies how the text in an input file should be processed. This is optional, and the default is ONE_DOC_PER_LINE. ONE_DOC_PER_FILE - Each file is considered a separate document. Use this option when you are processing large documents, such as newspaper articles or scientific papers. ONE_DOC_PER_LINE - Each line in a file is considered a separate document. Use this option when you are processing many short documents, such as text messages.</p>",
         "InputDataConfig$InputFormat": "<p>Specifies how the text in an input file should be processed:</p> <ul> <li> <p> <code>ONE_DOC_PER_FILE</code> - Each file is considered a separate document. Use this option when you are processing large documents, such as newspaper articles or scientific papers.</p> </li> <li> <p> <code>ONE_DOC_PER_LINE</code> - Each line in a file is considered a separate document. Use this option when you are processing many short documents, such as text messages.</p> </li> </ul>"
       }
     },
@@ -1040,11 +1075,13 @@
         "ClassifierMetadata$NumberOfLabels": "<p>The number of labels in the input data. </p>",
         "ClassifierMetadata$NumberOfTrainedDocuments": "<p>The number of documents in the input data that were used to train the classifier. Typically this is 80 to 90 percent of the input documents.</p>",
         "ClassifierMetadata$NumberOfTestDocuments": "<p>The number of documents in the input data that were used to test the classifier. Typically this is 10 to 20 percent of the input documents, up to 10,000 documents.</p>",
+        "DocumentClassifierSummary$NumberOfVersions": "<p>The number of versions you created.</p>",
         "Entity$BeginOffset": "<p>A character offset in the input text that shows where the entity begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
         "Entity$EndOffset": "<p>A character offset in the input text that shows where the entity ends. The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point. </p>",
         "EntityRecognizerMetadata$NumberOfTrainedDocuments": "<p> The number of documents in the input data that were used to train the entity recognizer. Typically this is 80 to 90 percent of the input documents.</p>",
         "EntityRecognizerMetadata$NumberOfTestDocuments": "<p> The number of documents in the input data that were used to test the entity recognizer. Typically this is 10 to 20 percent of the input documents.</p>",
         "EntityRecognizerMetadataEntityTypesListItem$NumberOfTrainMentions": "<p>Indicates the number of times the given entity type was seen in the training data. </p>",
+        "EntityRecognizerSummary$NumberOfVersions": "<p> The number of versions you created.</p>",
         "KeyPhrase$BeginOffset": "<p>A character offset in the input text that shows where the key phrase begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
         "KeyPhrase$EndOffset": "<p>A character offset in the input text where the key phrase ends. The offset returns the position of each UTF-8 code point in the string. A <code>code point</code> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
         "PiiEntity$BeginOffset": "<p>A character offset in the input text that shows where the PII entity begins (the first character is at position 0). The offset returns the position of each UTF-8 code point in the string. A <i>code point</i> is the abstract character from a particular graphical representation. For example, a multi-byte UTF-8 character maps to a single code point.</p>",
@@ -1281,6 +1318,16 @@
       "refs": {
       }
     },
+    "ListDocumentClassifierSummariesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListDocumentClassifierSummariesResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "ListDocumentClassifiersRequest": {
       "base": null,
       "refs": {
@@ -1317,6 +1364,16 @@
       }
     },
     "ListEntitiesDetectionJobsResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEntityRecognizerSummariesRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ListEntityRecognizerSummariesResponse": {
       "base": null,
       "refs": {
       }
@@ -1495,10 +1552,12 @@
       "base": null,
       "refs": {
         "ListDocumentClassificationJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
+        "ListDocumentClassifierSummariesRequest$MaxResults": "<p>The maximum number of results to return on each page. The default is 100.</p>",
         "ListDocumentClassifiersRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
         "ListDominantLanguageDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
         "ListEndpointsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
         "ListEntitiesDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
+        "ListEntityRecognizerSummariesRequest$MaxResults": "<p>The maximum number of results to return on each page. The default is 100.</p>",
         "ListEntityRecognizersRequest$MaxResults": "<p> The maximum number of results to return on each page. The default is 100.</p>",
         "ListEventsDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page.</p>",
         "ListKeyPhrasesDetectionJobsRequest$MaxResults": "<p>The maximum number of results to return in each page. The default is 100.</p>",
@@ -1512,8 +1571,10 @@
       "refs": {
         "DocumentClassifierFilter$Status": "<p>Filters the list of classifiers based on status.</p>",
         "DocumentClassifierProperties$Status": "<p>The status of the document classifier. If the status is <code>TRAINED</code> the classifier is ready to use. If the status is <code>FAILED</code> you can see additional information about why the classifier wasn't trained in the <code>Message</code> field.</p>",
+        "DocumentClassifierSummary$LatestVersionStatus": "<p>Provides the status of the latest document classifier version.</p>",
         "EntityRecognizerFilter$Status": "<p>The status of an entity recognizer.</p>",
-        "EntityRecognizerProperties$Status": "<p>Provides the status of the entity recognizer.</p>"
+        "EntityRecognizerProperties$Status": "<p>Provides the status of the entity recognizer.</p>",
+        "EntityRecognizerSummary$LatestVersionStatus": "<p> Provides the status of the latest entity recognizer version.</p>"
       }
     },
     "NumberOfTopicsInteger": {
@@ -1640,9 +1701,12 @@
         "AugmentedManifestsListItem$AnnotationDataS3Uri": "<p>The S3 prefix to the annotation files that are referred in the augmented manifest file.</p>",
         "AugmentedManifestsListItem$SourceDocumentsS3Uri": "<p>The S3 prefix to the source files (PDFs) that are referred to in the augmented manifest file.</p>",
         "DocumentClassifierInputDataConfig$S3Uri": "<p>The Amazon S3 URI for the input data. The S3 bucket must be in the same region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of input files.</p> <p>For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix is a single file, Amazon Comprehend uses that file as input. If more than one file begins with the prefix, Amazon Comprehend uses all of them as input.</p> <p>This parameter is required if you set <code>DataFormat</code> to <code>COMPREHEND_CSV</code>.</p>",
+        "DocumentClassifierInputDataConfig$TestS3Uri": "<p>The Amazon S3 URI for the input data. The Amazon S3 bucket must be in the same AWS Region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of input files. </p>",
         "DocumentClassifierOutputDataConfig$S3Uri": "<p>When you use the <code>OutputDataConfig</code> object while creating a custom classifier, you specify the Amazon S3 location where you want to write the confusion matrix. The URI must be in the same region as the API endpoint that you are calling. The location is used as the prefix for the actual location of this output file.</p> <p>When the custom classifier job is finished, the service creates the output file in a directory specific to the job. The <code>S3Uri</code> field contains the location of the output file, called <code>output.tar.gz</code>. It is a compressed archive that contains the confusion matrix.</p>",
         "EntityRecognizerAnnotations$S3Uri": "<p> Specifies the Amazon S3 location where the annotations for an entity recognizer are located. The URI must be in the same region as the API endpoint that you are calling.</p>",
+        "EntityRecognizerAnnotations$TestS3Uri": "<p>This specifies the Amazon S3 location where the test annotations for an entity recognizer are located. The URI must be in the same AWS Region as the API endpoint that you are calling.</p>",
         "EntityRecognizerDocuments$S3Uri": "<p> Specifies the Amazon S3 location where the training documents for an entity recognizer are located. The URI must be in the same region as the API endpoint that you are calling.</p>",
+        "EntityRecognizerDocuments$TestS3Uri": "<p> Specifies the Amazon S3 location where the test documents for an entity recognizer are located. The URI must be in the same AWS Region as the API endpoint that you are calling.</p>",
         "EntityRecognizerEntityList$S3Uri": "<p>Specifies the Amazon S3 location where the entity list is located. The URI must be in the same region as the API endpoint that you are calling.</p>",
         "InputDataConfig$S3Uri": "<p>The Amazon S3 URI for the input data. The URI must be in same region as the API endpoint that you are calling. The URI can point to a single input file or it can provide the prefix for a collection of data files. </p> <p>For example, if you use the URI <code>S3://bucketName/prefix</code>, if the prefix is a single file, Amazon Comprehend uses that file as input. If more than one file begins with the prefix, Amazon Comprehend uses all of them as input.</p>",
         "OutputDataConfig$S3Uri": "<p>When you use the <code>OutputDataConfig</code> object with asynchronous operations, you specify the Amazon S3 location where you want to write the output data. The URI must be in the same region as the API endpoint that you are calling. The location is used as the prefix for the actual location of the output file.</p> <p>When the topic detection job is finished, the service creates an output file in a directory specific to the job. The <code>S3Uri</code> field contains the location of the output file, called <code>output.tar.gz</code>. It is a compressed archive that contains the ouput of the operation.</p>",
@@ -1692,6 +1756,12 @@
       "refs": {
         "BatchDetectSentimentItemResult$Sentiment": "<p>The sentiment detected in the document.</p>",
         "DetectSentimentResponse$Sentiment": "<p>The inferred sentiment that Amazon Comprehend has the highest level of confidence in.</p>"
+      }
+    },
+    "Split": {
+      "base": null,
+      "refs": {
+        "AugmentedManifestsListItem$Split": "<p>The purpose of the data you've provided in the augmented manifest. You can either train or test this data. If you don't specify, the default is train.</p> <p>TRAIN - all of the documents in the manifest will be used for training. If no test documents are provided, Amazon Comprehend will automatically reserve a portion of the training documents for testing.</p> <p> TEST - all of the documents in the manifest will be used for testing.</p>"
       }
     },
     "StartDocumentClassificationJobRequest": {
@@ -1875,6 +1945,8 @@
         "KmsKeyValidationException$Message": null,
         "ListDocumentClassificationJobsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListDocumentClassificationJobsResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
+        "ListDocumentClassifierSummariesRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
+        "ListDocumentClassifierSummariesResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListDocumentClassifiersRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListDocumentClassifiersResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListDominantLanguageDetectionJobsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
@@ -1883,6 +1955,8 @@
         "ListEndpointsResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListEntitiesDetectionJobsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListEntitiesDetectionJobsResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
+        "ListEntityRecognizerSummariesRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
+        "ListEntityRecognizerSummariesResponse$NextToken": "<p>The list entity recognizer summaries.</p>",
         "ListEntityRecognizersRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListEntityRecognizersResponse$NextToken": "<p>Identifies the next page of results to return.</p>",
         "ListEventsDetectionJobsRequest$NextToken": "<p>Identifies the next page of results to return.</p>",
@@ -2010,6 +2084,7 @@
         "DocumentClassifierProperties$EndTime": "<p>The time that training the document classifier completed.</p>",
         "DocumentClassifierProperties$TrainingStartTime": "<p>Indicates the time when the training starts on documentation classifiers. You are billed for the time interval between this time and the value of TrainingEndTime. </p>",
         "DocumentClassifierProperties$TrainingEndTime": "<p>The time that training of the document classifier was completed. Indicates the time when the training completes on documentation classifiers. You are billed for the time interval between this time and the value of TrainingStartTime.</p>",
+        "DocumentClassifierSummary$LatestVersionCreatedAt": "<p>The time that the latest document classifier version was submitted for processing.</p>",
         "DominantLanguageDetectionJobFilter$SubmitTimeBefore": "<p>Filters the list of jobs based on the time that the job was submitted for processing. Returns only jobs submitted before the specified time. Jobs are returned in ascending order, oldest to newest.</p>",
         "DominantLanguageDetectionJobFilter$SubmitTimeAfter": "<p>Filters the list of jobs based on the time that the job was submitted for processing. Returns only jobs submitted after the specified time. Jobs are returned in descending order, newest to oldest.</p>",
         "DominantLanguageDetectionJobProperties$SubmitTime": "<p>The time that the dominant language detection job was submitted for processing.</p>",
@@ -2028,6 +2103,7 @@
         "EntityRecognizerProperties$EndTime": "<p>The time that the recognizer creation completed.</p>",
         "EntityRecognizerProperties$TrainingStartTime": "<p>The time that training of the entity recognizer started.</p>",
         "EntityRecognizerProperties$TrainingEndTime": "<p>The time that training of the entity recognizer was completed.</p>",
+        "EntityRecognizerSummary$LatestVersionCreatedAt": "<p> The time that the latest entity recognizer version was submitted for processing.</p>",
         "EventsDetectionJobFilter$SubmitTimeBefore": "<p>Filters the list of jobs based on the time that the job was submitted for processing. Returns only jobs submitted before the specified time. Jobs are returned in ascending order, oldest to newest.</p>",
         "EventsDetectionJobFilter$SubmitTimeAfter": "<p>Filters the list of jobs based on the time that the job was submitted for processing. Returns only jobs submitted after the specified time. Jobs are returned in descending order, newest to oldest.</p>",
         "EventsDetectionJobProperties$SubmitTime": "<p>The time that the events detection job was submitted for processing.</p>",
@@ -2107,6 +2183,17 @@
     "UpdateEndpointResponse": {
       "base": null,
       "refs": {
+      }
+    },
+    "VersionName": {
+      "base": null,
+      "refs": {
+        "CreateDocumentClassifierRequest$VersionName": "<p>The version name given to the newly created classifier. Version names can have a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The version name must be unique among all models with the same classifier name in the account/AWS Region.</p>",
+        "CreateEntityRecognizerRequest$VersionName": "<p>The version name given to the newly created recognizer. Version names can be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The version name must be unique among all models with the same recognizer name in the account/ AWS Region.</p>",
+        "DocumentClassifierProperties$VersionName": "<p>The version name that you assigned to the document classifier.</p>",
+        "DocumentClassifierSummary$LatestVersionName": "<p>The version name you assigned to the latest document classifier version.</p>",
+        "EntityRecognizerProperties$VersionName": "<p>The version name you assigned to the entity recognizer.</p>",
+        "EntityRecognizerSummary$LatestVersionName": "<p> The version name you assigned to the latest entity recognizer version.</p>"
       }
     },
     "VpcConfig": {

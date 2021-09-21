@@ -2957,6 +2957,20 @@
         {"shape":"InternalFailureException"}
       ]
     },
+    "PutVerificationStateOnViolation":{
+      "name":"PutVerificationStateOnViolation",
+      "http":{
+        "method":"POST",
+        "requestUri":"/violations/verification-state/{violationId}"
+      },
+      "input":{"shape":"PutVerificationStateOnViolationRequest"},
+      "output":{"shape":"PutVerificationStateOnViolationResponse"},
+      "errors":[
+        {"shape":"InvalidRequestException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalFailureException"}
+      ]
+    },
     "RegisterCACertificate":{
       "name":"RegisterCACertificate",
       "http":{
@@ -3865,6 +3879,8 @@
         "behavior":{"shape":"Behavior"},
         "lastViolationValue":{"shape":"MetricValue"},
         "violationEventAdditionalInfo":{"shape":"ViolationEventAdditionalInfo"},
+        "verificationState":{"shape":"VerificationState"},
+        "verificationStateDescription":{"shape":"VerificationStateDescription"},
         "lastViolationTime":{"shape":"Timestamp"},
         "violationStartTime":{"shape":"Timestamp"}
       }
@@ -8623,6 +8639,11 @@
           "location":"querystring",
           "locationName":"listSuppressedAlerts"
         },
+        "verificationState":{
+          "shape":"VerificationState",
+          "location":"querystring",
+          "locationName":"verificationState"
+        },
         "nextToken":{
           "shape":"NextToken",
           "location":"querystring",
@@ -10230,6 +10251,11 @@
           "location":"querystring",
           "locationName":"listSuppressedAlerts"
         },
+        "verificationState":{
+          "shape":"VerificationState",
+          "location":"querystring",
+          "locationName":"verificationState"
+        },
         "nextToken":{
           "shape":"NextToken",
           "location":"querystring",
@@ -10866,6 +10892,27 @@
       "required":["tableName"],
       "members":{
         "tableName":{"shape":"TableName"}
+      }
+    },
+    "PutVerificationStateOnViolationRequest":{
+      "type":"structure",
+      "required":[
+        "violationId",
+        "verificationState"
+      ],
+      "members":{
+        "violationId":{
+          "shape":"ViolationId",
+          "location":"uri",
+          "locationName":"violationId"
+        },
+        "verificationState":{"shape":"VerificationState"},
+        "verificationStateDescription":{"shape":"VerificationStateDescription"}
+      }
+    },
+    "PutVerificationStateOnViolationResponse":{
+      "type":"structure",
+      "members":{
       }
     },
     "Qos":{
@@ -13068,6 +13115,20 @@
     },
     "Value":{"type":"string"},
     "Variance":{"type":"double"},
+    "VerificationState":{
+      "type":"string",
+      "enum":[
+        "FALSE_POSITIVE",
+        "BENIGN_POSITIVE",
+        "TRUE_POSITIVE",
+        "UNKNOWN"
+      ]
+    },
+    "VerificationStateDescription":{
+      "type":"string",
+      "max":1000,
+      "pattern":"[\\p{Graph}\\x20]*"
+    },
     "Version":{"type":"long"},
     "VersionConflictException":{
       "type":"structure",
@@ -13096,6 +13157,8 @@
         "metricValue":{"shape":"MetricValue"},
         "violationEventAdditionalInfo":{"shape":"ViolationEventAdditionalInfo"},
         "violationEventType":{"shape":"ViolationEventType"},
+        "verificationState":{"shape":"VerificationState"},
+        "verificationStateDescription":{"shape":"VerificationStateDescription"},
         "violationEventTime":{"shape":"Timestamp"}
       }
     },

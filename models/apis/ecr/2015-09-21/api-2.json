@@ -120,7 +120,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RegistryPolicyNotFoundException"}
+        {"shape":"RegistryPolicyNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DeleteRepository":{
@@ -152,6 +153,22 @@
         {"shape":"InvalidParameterException"},
         {"shape":"RepositoryNotFoundException"},
         {"shape":"RepositoryPolicyNotFoundException"}
+      ]
+    },
+    "DescribeImageReplicationStatus":{
+      "name":"DescribeImageReplicationStatus",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeImageReplicationStatusRequest"},
+      "output":{"shape":"DescribeImageReplicationStatusResponse"},
+      "errors":[
+        {"shape":"ServerException"},
+        {"shape":"InvalidParameterException"},
+        {"shape":"ImageNotFoundException"},
+        {"shape":"RepositoryNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "DescribeImageScanFindings":{
@@ -283,7 +300,8 @@
       "errors":[
         {"shape":"ServerException"},
         {"shape":"InvalidParameterException"},
-        {"shape":"RegistryPolicyNotFoundException"}
+        {"shape":"RegistryPolicyNotFoundException"},
+        {"shape":"ValidationException"}
       ]
     },
     "GetRepositoryPolicy":{
@@ -417,7 +435,8 @@
       "output":{"shape":"PutRegistryPolicyResponse"},
       "errors":[
         {"shape":"ServerException"},
-        {"shape":"InvalidParameterException"}
+        {"shape":"InvalidParameterException"},
+        {"shape":"ValidationException"}
       ]
     },
     "PutReplicationConfiguration":{
@@ -670,6 +689,7 @@
       "type":"structure",
       "required":["repositoryName"],
       "members":{
+        "registryId":{"shape":"RegistryId"},
         "repositoryName":{"shape":"RepositoryName"},
         "tags":{"shape":"TagList"},
         "imageTagMutability":{"shape":"ImageTagMutability"},
@@ -742,6 +762,26 @@
       "type":"structure",
       "members":{
         "repository":{"shape":"Repository"}
+      }
+    },
+    "DescribeImageReplicationStatusRequest":{
+      "type":"structure",
+      "required":[
+        "repositoryName",
+        "imageId"
+      ],
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageId":{"shape":"ImageIdentifier"},
+        "registryId":{"shape":"RegistryId"}
+      }
+    },
+    "DescribeImageReplicationStatusResponse":{
+      "type":"structure",
+      "members":{
+        "repositoryName":{"shape":"RepositoryName"},
+        "imageId":{"shape":"ImageIdentifier"},
+        "replicationStatuses":{"shape":"ImageReplicationStatusList"}
       }
     },
     "DescribeImageScanFindingsRequest":{
@@ -1081,6 +1121,19 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "ImageReplicationStatus":{
+      "type":"structure",
+      "members":{
+        "region":{"shape":"Region"},
+        "registryId":{"shape":"RegistryId"},
+        "status":{"shape":"ReplicationStatus"},
+        "failureCode":{"shape":"ReplicationError"}
+      }
+    },
+    "ImageReplicationStatusList":{
+      "type":"list",
+      "member":{"shape":"ImageReplicationStatus"}
     },
     "ImageScanFinding":{
       "type":"structure",
@@ -1595,18 +1648,28 @@
       "max":25,
       "min":0
     },
+    "ReplicationError":{"type":"string"},
     "ReplicationRule":{
       "type":"structure",
       "required":["destinations"],
       "members":{
-        "destinations":{"shape":"ReplicationDestinationList"}
+        "destinations":{"shape":"ReplicationDestinationList"},
+        "repositoryFilters":{"shape":"RepositoryFilterList"}
       }
     },
     "ReplicationRuleList":{
       "type":"list",
       "member":{"shape":"ReplicationRule"},
-      "max":1,
+      "max":10,
       "min":0
+    },
+    "ReplicationStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "COMPLETE",
+        "FAILED"
+      ]
     },
     "Repository":{
       "type":"structure",
@@ -1627,6 +1690,33 @@
         "message":{"shape":"ExceptionMessage"}
       },
       "exception":true
+    },
+    "RepositoryFilter":{
+      "type":"structure",
+      "required":[
+        "filter",
+        "filterType"
+      ],
+      "members":{
+        "filter":{"shape":"RepositoryFilterValue"},
+        "filterType":{"shape":"RepositoryFilterType"}
+      }
+    },
+    "RepositoryFilterList":{
+      "type":"list",
+      "member":{"shape":"RepositoryFilter"},
+      "max":100,
+      "min":1
+    },
+    "RepositoryFilterType":{
+      "type":"string",
+      "enum":["PREFIX_MATCH"]
+    },
+    "RepositoryFilterValue":{
+      "type":"string",
+      "max":256,
+      "min":2,
+      "pattern":"^(?:[a-z0-9]+(?:[._-][a-z0-9]*)*/)*[a-z0-9]*(?:[._-][a-z0-9]*)*$"
     },
     "RepositoryList":{
       "type":"list",
