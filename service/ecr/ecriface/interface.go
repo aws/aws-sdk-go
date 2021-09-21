@@ -96,6 +96,10 @@ type ECRAPI interface {
 	DeleteRepositoryPolicyWithContext(aws.Context, *ecr.DeleteRepositoryPolicyInput, ...request.Option) (*ecr.DeleteRepositoryPolicyOutput, error)
 	DeleteRepositoryPolicyRequest(*ecr.DeleteRepositoryPolicyInput) (*request.Request, *ecr.DeleteRepositoryPolicyOutput)
 
+	DescribeImageReplicationStatus(*ecr.DescribeImageReplicationStatusInput) (*ecr.DescribeImageReplicationStatusOutput, error)
+	DescribeImageReplicationStatusWithContext(aws.Context, *ecr.DescribeImageReplicationStatusInput, ...request.Option) (*ecr.DescribeImageReplicationStatusOutput, error)
+	DescribeImageReplicationStatusRequest(*ecr.DescribeImageReplicationStatusInput) (*request.Request, *ecr.DescribeImageReplicationStatusOutput)
+
 	DescribeImageScanFindings(*ecr.DescribeImageScanFindingsInput) (*ecr.DescribeImageScanFindingsOutput, error)
 	DescribeImageScanFindingsWithContext(aws.Context, *ecr.DescribeImageScanFindingsInput, ...request.Option) (*ecr.DescribeImageScanFindingsOutput, error)
 	DescribeImageScanFindingsRequest(*ecr.DescribeImageScanFindingsInput) (*request.Request, *ecr.DescribeImageScanFindingsOutput)

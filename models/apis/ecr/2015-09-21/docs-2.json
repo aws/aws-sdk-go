@@ -11,6 +11,7 @@
     "DeleteRegistryPolicy": "<p>Deletes the registry permissions policy.</p>",
     "DeleteRepository": "<p>Deletes a repository. If the repository contains images, you must either delete all images in the repository or use the <code>force</code> option to delete the repository.</p>",
     "DeleteRepositoryPolicy": "<p>Deletes the repository policy associated with the specified repository.</p>",
+    "DescribeImageReplicationStatus": "<p>Returns the replication status for a specified image.</p>",
     "DescribeImageScanFindings": "<p>Returns the scan findings for the specified image.</p>",
     "DescribeImages": "<p>Returns metadata about the images in a repository.</p> <note> <p>Beginning with Docker version 1.9, the Docker client compresses image layers before pushing them to a V2 Docker registry. The output of the <code>docker images</code> command shows the uncompressed image size, so it may return a larger image size than the image sizes returned by <a>DescribeImages</a>.</p> </note>",
     "DescribeRegistry": "<p>Describes the settings for a registry. The replication configuration for a repository can be created or updated with the <a>PutReplicationConfiguration</a> API action.</p>",
@@ -194,6 +195,16 @@
       }
     },
     "DeleteRepositoryResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeImageReplicationStatusRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeImageReplicationStatusResponse": {
       "base": null,
       "refs": {
       }
@@ -485,8 +496,10 @@
       }
     },
     "ImageIdentifier": {
-      "base": "<p>An object with identifying information for an Amazon ECR image.</p>",
+      "base": "<p>An object with identifying information for an image in an Amazon ECR repository.</p>",
       "refs": {
+        "DescribeImageReplicationStatusRequest$imageId": null,
+        "DescribeImageReplicationStatusResponse$imageId": null,
         "DescribeImageScanFindingsRequest$imageId": null,
         "DescribeImageScanFindingsResponse$imageId": null,
         "Image$imageId": "<p>An object containing the image tag and image digest associated with an image.</p>",
@@ -523,6 +536,18 @@
     "ImageNotFoundException": {
       "base": "<p>The image requested does not exist in the specified repository.</p>",
       "refs": {
+      }
+    },
+    "ImageReplicationStatus": {
+      "base": "<p>The status of the replication process for an image.</p>",
+      "refs": {
+        "ImageReplicationStatusList$member": null
+      }
+    },
+    "ImageReplicationStatusList": {
+      "base": null,
+      "refs": {
+        "DescribeImageReplicationStatusResponse$replicationStatuses": "<p>The replication status details for the images in the specified repository.</p>"
       }
     },
     "ImageScanFinding": {
@@ -977,7 +1002,8 @@
     "Region": {
       "base": null,
       "refs": {
-        "ReplicationDestination$region": "<p>A Region to replicate to.</p>"
+        "ImageReplicationStatus$region": "<p>The destination Region for the image replication.</p>",
+        "ReplicationDestination$region": "<p>The Region to replicate to.</p>"
       }
     },
     "RegistryId": {
@@ -988,12 +1014,14 @@
         "BatchGetImageRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the images to describe. If you do not specify a registry, the default registry is assumed.</p>",
         "CompleteLayerUploadRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to which to upload layers. If you do not specify a registry, the default registry is assumed.</p>",
         "CompleteLayerUploadResponse$registryId": "<p>The registry ID associated with the request.</p>",
+        "CreateRepositoryRequest$registryId": "<p>The AWS account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRegistryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository policy to delete. If you do not specify a registry, the default registry is assumed.</p>",
         "DeleteRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DeleteRepositoryRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository to delete. If you do not specify a registry, the default registry is assumed.</p>",
+        "DescribeImageReplicationStatusRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribeImageScanFindingsRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to describe the image scan findings for. If you do not specify a registry, the default registry is assumed.</p>",
         "DescribeImageScanFindingsResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "DescribeImagesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to describe images. If you do not specify a registry, the default registry is assumed.</p>",
@@ -1010,6 +1038,7 @@
         "GetRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "Image$registryId": "<p>The Amazon Web Services account ID associated with the registry containing the image.</p>",
         "ImageDetail$registryId": "<p>The Amazon Web Services account ID associated with the registry to which this image belongs.</p>",
+        "ImageReplicationStatus$registryId": "<p>The AWS account ID associated with the registry to which the image belongs.</p>",
         "InitiateLayerUploadRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry to which you intend to upload layers. If you do not specify a registry, the default registry is assumed.</p>",
         "InvalidLayerPartException$registryId": "<p>The registry ID associated with the exception.</p>",
         "ListImagesRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository in which to list images. If you do not specify a registry, the default registry is assumed.</p>",
@@ -1021,7 +1050,7 @@
         "PutLifecyclePolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do&#x2028; not specify a registry, the default registry is assumed.</p>",
         "PutLifecyclePolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
         "PutRegistryPolicyResponse$registryId": "<p>The registry ID.</p>",
-        "ReplicationDestination$registryId": "<p>The account ID of the destination registry to replicate to.</p>",
+        "ReplicationDestination$registryId": "<p>The Amazon Web Services account ID of the Amazon ECR private registry to replicate to. When configuring cross-Region replication within your own registry, specify your own account ID.</p>",
         "Repository$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository.</p>",
         "SetRepositoryPolicyRequest$registryId": "<p>The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.</p>",
         "SetRepositoryPolicyResponse$registryId": "<p>The registry ID associated with the request.</p>",
@@ -1056,7 +1085,7 @@
       }
     },
     "ReplicationDestination": {
-      "base": "<p>An array of objects representing the details of a replication destination.</p>",
+      "base": "<p>An array of objects representing the destination for a replication rule.</p>",
       "refs": {
         "ReplicationDestinationList$member": null
       }
@@ -1064,11 +1093,17 @@
     "ReplicationDestinationList": {
       "base": null,
       "refs": {
-        "ReplicationRule$destinations": "<p>An array of objects representing the details of a replication destination.</p>"
+        "ReplicationRule$destinations": "<p>An array of objects representing the destination for a replication rule.</p>"
+      }
+    },
+    "ReplicationError": {
+      "base": null,
+      "refs": {
+        "ImageReplicationStatus$failureCode": "<p>The failure code for a replication that has failed.</p>"
       }
     },
     "ReplicationRule": {
-      "base": "<p>An array of objects representing the replication destinations for a replication configuration. A replication configuration may contain only one replication rule but the rule may contain one or more replication destinations.</p>",
+      "base": "<p>An array of objects representing the replication destinations and repository filters for a replication configuration.</p>",
       "refs": {
         "ReplicationRuleList$member": null
       }
@@ -1076,7 +1111,13 @@
     "ReplicationRuleList": {
       "base": null,
       "refs": {
-        "ReplicationConfiguration$rules": "<p>An array of objects representing the replication rules for a replication configuration. A replication configuration may contain only one replication rule but the rule may contain one or more replication destinations.</p>"
+        "ReplicationConfiguration$rules": "<p>An array of objects representing the replication destinations and repository filters for a replication configuration.</p>"
+      }
+    },
+    "ReplicationStatus": {
+      "base": null,
+      "refs": {
+        "ImageReplicationStatus$status": "<p>The image replication status.</p>"
       }
     },
     "Repository": {
@@ -1090,6 +1131,30 @@
     "RepositoryAlreadyExistsException": {
       "base": "<p>The specified repository already exists in the specified registry.</p>",
       "refs": {
+      }
+    },
+    "RepositoryFilter": {
+      "base": "<p>The filter settings used with image replication. Specifying a repository filter to a replication rule provides a method for controlling which repositories in a private registry are replicated. If no repository filter is specified, all images in the repository are replicated.</p>",
+      "refs": {
+        "RepositoryFilterList$member": null
+      }
+    },
+    "RepositoryFilterList": {
+      "base": null,
+      "refs": {
+        "ReplicationRule$repositoryFilters": "<p>An array of objects representing the filters for a replication rule. Specifying a repository filter for a replication rule provides a method for controlling which repositories in a private registry are replicated.</p>"
+      }
+    },
+    "RepositoryFilterType": {
+      "base": null,
+      "refs": {
+        "RepositoryFilter$filterType": "<p>The repository filter type. The only supported value is <code>PREFIX_MATCH</code>, which is a repository name prefix specified with the <code>filter</code> parameter.</p>"
+      }
+    },
+    "RepositoryFilterValue": {
+      "base": null,
+      "refs": {
+        "RepositoryFilter$filter": "<p>The repository filter details. When the <code>PREFIX_MATCH</code> filter type is specified, this value is required and should be the repository name prefix to configure replication for.</p>"
       }
     },
     "RepositoryList": {
@@ -1112,6 +1177,8 @@
         "DeleteRepositoryPolicyRequest$repositoryName": "<p>The name of the repository that is associated with the repository policy to delete.</p>",
         "DeleteRepositoryPolicyResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "DeleteRepositoryRequest$repositoryName": "<p>The name of the repository to delete.</p>",
+        "DescribeImageReplicationStatusRequest$repositoryName": "<p>The name of the repository that the image is in.</p>",
+        "DescribeImageReplicationStatusResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "DescribeImageScanFindingsRequest$repositoryName": "<p>The repository for the image for which to describe the scan findings.</p>",
         "DescribeImageScanFindingsResponse$repositoryName": "<p>The repository name associated with the request.</p>",
         "DescribeImagesRequest$repositoryName": "<p>The repository that contains the images to describe.</p>",

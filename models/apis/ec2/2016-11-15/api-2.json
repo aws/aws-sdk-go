@@ -3180,6 +3180,24 @@
       "input":{"shape":"GetTransitGatewayRouteTablePropagationsRequest"},
       "output":{"shape":"GetTransitGatewayRouteTablePropagationsResult"}
     },
+    "GetVpnConnectionDeviceSampleConfiguration":{
+      "name":"GetVpnConnectionDeviceSampleConfiguration",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetVpnConnectionDeviceSampleConfigurationRequest"},
+      "output":{"shape":"GetVpnConnectionDeviceSampleConfigurationResult"}
+    },
+    "GetVpnConnectionDeviceTypes":{
+      "name":"GetVpnConnectionDeviceTypes",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetVpnConnectionDeviceTypesRequest"},
+      "output":{"shape":"GetVpnConnectionDeviceTypesResult"}
+    },
     "ImportClientVpnClientCertificateRevocationList":{
       "name":"ImportClientVpnClientCertificateRevocationList",
       "http":{
@@ -17688,6 +17706,11 @@
       }
     },
     "FreeTierEligibleFlag":{"type":"boolean"},
+    "GVCDMaxResults":{
+      "type":"integer",
+      "max":1000,
+      "min":200
+    },
     "GatewayType":{
       "type":"string",
       "enum":["ipsec.1"]
@@ -18332,6 +18355,49 @@
         }
       }
     },
+    "GetVpnConnectionDeviceSampleConfigurationRequest":{
+      "type":"structure",
+      "required":[
+        "VpnConnectionId",
+        "VpnConnectionDeviceTypeId"
+      ],
+      "members":{
+        "VpnConnectionId":{"shape":"VpnConnectionId"},
+        "VpnConnectionDeviceTypeId":{"shape":"VpnConnectionDeviceTypeId"},
+        "InternetKeyExchangeVersion":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetVpnConnectionDeviceSampleConfigurationResult":{
+      "type":"structure",
+      "members":{
+        "VpnConnectionDeviceSampleConfiguration":{
+          "shape":"VpnConnectionDeviceSampleConfiguration",
+          "locationName":"vpnConnectionDeviceSampleConfiguration"
+        }
+      }
+    },
+    "GetVpnConnectionDeviceTypesRequest":{
+      "type":"structure",
+      "members":{
+        "MaxResults":{"shape":"GVCDMaxResults"},
+        "NextToken":{"shape":"NextToken"},
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "GetVpnConnectionDeviceTypesResult":{
+      "type":"structure",
+      "members":{
+        "VpnConnectionDeviceTypes":{
+          "shape":"VpnConnectionDeviceTypeList",
+          "locationName":"vpnConnectionDeviceTypeSet"
+        },
+        "NextToken":{
+          "shape":"NextToken",
+          "locationName":"nextToken"
+        }
+      }
+    },
     "GpuDeviceCount":{"type":"integer"},
     "GpuDeviceInfo":{
       "type":"structure",
@@ -18389,7 +18455,7 @@
     "GroupIdStringList":{
       "type":"list",
       "member":{
-        "shape":"String",
+        "shape":"SecurityGroupId",
         "locationName":"groupId"
       }
     },
@@ -29556,13 +29622,13 @@
       ],
       "members":{
         "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
-        },
-        "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"String"},
-        "DryRun":{"shape":"Boolean"}
+        }
       }
     },
     "SearchLocalGatewayRoutesResult":{
@@ -34722,6 +34788,39 @@
           "shape":"VgwTelemetryList",
           "locationName":"vgwTelemetry"
         }
+      }
+    },
+    "VpnConnectionDeviceSampleConfiguration":{
+      "type":"string",
+      "sensitive":true
+    },
+    "VpnConnectionDeviceType":{
+      "type":"structure",
+      "members":{
+        "VpnConnectionDeviceTypeId":{
+          "shape":"String",
+          "locationName":"vpnConnectionDeviceTypeId"
+        },
+        "Vendor":{
+          "shape":"String",
+          "locationName":"vendor"
+        },
+        "Platform":{
+          "shape":"String",
+          "locationName":"platform"
+        },
+        "Software":{
+          "shape":"String",
+          "locationName":"software"
+        }
+      }
+    },
+    "VpnConnectionDeviceTypeId":{"type":"string"},
+    "VpnConnectionDeviceTypeList":{
+      "type":"list",
+      "member":{
+        "shape":"VpnConnectionDeviceType",
+        "locationName":"item"
       }
     },
     "VpnConnectionId":{"type":"string"},

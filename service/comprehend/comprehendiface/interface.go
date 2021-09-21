@@ -187,6 +187,13 @@ type ComprehendAPI interface {
 	ListDocumentClassificationJobsPages(*comprehend.ListDocumentClassificationJobsInput, func(*comprehend.ListDocumentClassificationJobsOutput, bool) bool) error
 	ListDocumentClassificationJobsPagesWithContext(aws.Context, *comprehend.ListDocumentClassificationJobsInput, func(*comprehend.ListDocumentClassificationJobsOutput, bool) bool, ...request.Option) error
 
+	ListDocumentClassifierSummaries(*comprehend.ListDocumentClassifierSummariesInput) (*comprehend.ListDocumentClassifierSummariesOutput, error)
+	ListDocumentClassifierSummariesWithContext(aws.Context, *comprehend.ListDocumentClassifierSummariesInput, ...request.Option) (*comprehend.ListDocumentClassifierSummariesOutput, error)
+	ListDocumentClassifierSummariesRequest(*comprehend.ListDocumentClassifierSummariesInput) (*request.Request, *comprehend.ListDocumentClassifierSummariesOutput)
+
+	ListDocumentClassifierSummariesPages(*comprehend.ListDocumentClassifierSummariesInput, func(*comprehend.ListDocumentClassifierSummariesOutput, bool) bool) error
+	ListDocumentClassifierSummariesPagesWithContext(aws.Context, *comprehend.ListDocumentClassifierSummariesInput, func(*comprehend.ListDocumentClassifierSummariesOutput, bool) bool, ...request.Option) error
+
 	ListDocumentClassifiers(*comprehend.ListDocumentClassifiersInput) (*comprehend.ListDocumentClassifiersOutput, error)
 	ListDocumentClassifiersWithContext(aws.Context, *comprehend.ListDocumentClassifiersInput, ...request.Option) (*comprehend.ListDocumentClassifiersOutput, error)
 	ListDocumentClassifiersRequest(*comprehend.ListDocumentClassifiersInput) (*request.Request, *comprehend.ListDocumentClassifiersOutput)
@@ -211,6 +218,13 @@ type ComprehendAPI interface {
 
 	ListEntitiesDetectionJobsPages(*comprehend.ListEntitiesDetectionJobsInput, func(*comprehend.ListEntitiesDetectionJobsOutput, bool) bool) error
 	ListEntitiesDetectionJobsPagesWithContext(aws.Context, *comprehend.ListEntitiesDetectionJobsInput, func(*comprehend.ListEntitiesDetectionJobsOutput, bool) bool, ...request.Option) error
+
+	ListEntityRecognizerSummaries(*comprehend.ListEntityRecognizerSummariesInput) (*comprehend.ListEntityRecognizerSummariesOutput, error)
+	ListEntityRecognizerSummariesWithContext(aws.Context, *comprehend.ListEntityRecognizerSummariesInput, ...request.Option) (*comprehend.ListEntityRecognizerSummariesOutput, error)
+	ListEntityRecognizerSummariesRequest(*comprehend.ListEntityRecognizerSummariesInput) (*request.Request, *comprehend.ListEntityRecognizerSummariesOutput)
+
+	ListEntityRecognizerSummariesPages(*comprehend.ListEntityRecognizerSummariesInput, func(*comprehend.ListEntityRecognizerSummariesOutput, bool) bool) error
+	ListEntityRecognizerSummariesPagesWithContext(aws.Context, *comprehend.ListEntityRecognizerSummariesInput, func(*comprehend.ListEntityRecognizerSummariesOutput, bool) bool, ...request.Option) error
 
 	ListEntityRecognizers(*comprehend.ListEntityRecognizersInput) (*comprehend.ListEntityRecognizersOutput, error)
 	ListEntityRecognizersWithContext(aws.Context, *comprehend.ListEntityRecognizersInput, ...request.Option) (*comprehend.ListEntityRecognizersOutput, error)

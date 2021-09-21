@@ -186,6 +186,7 @@
     "ListTopicRules": "<p>Lists the rules for the specific topic.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListTopicRules</a> action.</p>",
     "ListV2LoggingLevels": "<p>Lists logging levels.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListV2LoggingLevels</a> action.</p>",
     "ListViolationEvents": "<p>Lists the Device Defender security profile violations discovered during the given time period. You can use filters to limit the results to those alerts issued for a particular security profile, behavior, or thing (device).</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">ListViolationEvents</a> action.</p>",
+    "PutVerificationStateOnViolation": "<p>Set a verification state and provide a description of that verification state on a violation (detect alarm).</p>",
     "RegisterCACertificate": "<p>Registers a CA certificate with IoT. This CA certificate can then be used to sign device certificates, which can be then registered with IoT. You can register up to 10 CA certificates per Amazon Web Services account that have the same subject field. This enables you to have up to 10 certificate authorities sign your device certificates. If you have more than one CA certificate registered, make sure you pass the CA certificate when you register your device certificates with the <a>RegisterCertificate</a> action.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RegisterCACertificate</a> action.</p>",
     "RegisterCertificate": "<p>Registers a device certificate with IoT. If you have more than one CA certificate that has the same subject field, you must specify the CA certificate that was used to sign the device certificate being registered.</p> <p>Requires permission to access the <a href=\"https://docs.aws.amazon.com/service-authorization/latest/reference/list_awsiot.html#awsiot-actions-as-permissions\">RegisterCertificate</a> action.</p>",
     "RegisterCertificateWithoutCA": "<p>Register a certificate that does not have a certificate authority (CA).</p>",
@@ -1016,7 +1017,7 @@
         "DeleteTopicRuleDestinationRequest$arn": "<p>The ARN of the topic rule destination to delete.</p>",
         "DynamoDBAction$roleArn": "<p>The ARN of the IAM role that grants access to the DynamoDB table.</p>",
         "DynamoDBv2Action$roleArn": "<p>The ARN of the IAM role that grants access to the DynamoDB table.</p>",
-        "ElasticsearchAction$roleArn": "<p>The IAM role ARN that has access to Elasticsearch.</p>",
+        "ElasticsearchAction$roleArn": "<p>The IAM role ARN that has access to OpenSearch.</p>",
         "FirehoseAction$roleArn": "<p>The IAM role that grants access to the Amazon Kinesis Firehose stream.</p>",
         "GetLoggingOptionsResponse$roleArn": "<p>The ARN of the IAM role that grants access.</p>",
         "GetTopicRuleDestinationRequest$arn": "<p>The ARN of the topic rule destination.</p>",
@@ -1632,7 +1633,7 @@
     "ClientRequestToken": {
       "base": null,
       "refs": {
-        "CreateAuditSuppressionRequest$clientRequestToken": "<p> The epoch timestamp in seconds at which this suppression expires. </p>",
+        "CreateAuditSuppressionRequest$clientRequestToken": "<p> Each audit supression must have a unique client request token. If you try to create a new audit suppression with the same token as one that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request. </p>",
         "CreateCustomMetricRequest$clientRequestToken": "<p>Each custom metric must have a unique client request token. If you try to create a new custom metric that already exists with a different token, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request. </p>",
         "CreateDimensionRequest$clientRequestToken": "<p>Each dimension must have a unique client request token. If you try to create a new dimension with the same token as a dimension that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request.</p>",
         "StartAuditMitigationActionsTaskRequest$clientRequestToken": "<p>Each audit mitigation task must have a unique client request token. If you try to start a new task with the same token as a task that already exists, an exception occurs. If you omit this value, a unique client request token is generated automatically.</p>",
@@ -3160,15 +3161,15 @@
       }
     },
     "ElasticsearchAction": {
-      "base": "<p>Describes an action that writes data to an Amazon Elasticsearch Service domain.</p> <note> <p>This action is deprecated. Use the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html\">OpenSearch action</a> instead.</p> </note>",
+      "base": "<p>Describes an action that writes data to an Amazon OpenSearch Service domain.</p> <note> <p>The <code>Elasticsearch</code> action can only be used by existing rule actions. To create a new rule action or to update an existing rule action, use the <code>OpenSearch</code> rule action instead. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html\">OpenSearchAction</a>.</p> </note>",
       "refs": {
-        "Action$elasticsearch": "<p>Write data to an Amazon Elasticsearch Service domain.</p> <note> <p>This action is deprecated. Use the <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html\">OpenSearch action</a> instead.</p> </note>"
+        "Action$elasticsearch": "<p>Write data to an Amazon OpenSearch Service domain.</p> <note> <p>The <code>Elasticsearch</code> action can only be used by existing rule actions. To create a new rule action or to update an existing rule action, use the <code>OpenSearch</code> rule action instead. For more information, see <a href=\"https://docs.aws.amazon.com/iot/latest/apireference/API_OpenSearchAction.html\">OpenSearchAction</a>.</p> </note>"
       }
     },
     "ElasticsearchEndpoint": {
       "base": null,
       "refs": {
-        "ElasticsearchAction$endpoint": "<p>The endpoint of your Elasticsearch domain.</p>",
+        "ElasticsearchAction$endpoint": "<p>The endpoint of your OpenSearch domain.</p>",
         "OpenSearchAction$endpoint": "<p>The endpoint of your OpenSearch domain.</p>"
       }
     },
@@ -3182,7 +3183,7 @@
     "ElasticsearchIndex": {
       "base": null,
       "refs": {
-        "ElasticsearchAction$index": "<p>The Elasticsearch index where you want to store your data.</p>",
+        "ElasticsearchAction$index": "<p>The index where you want to store your data.</p>",
         "OpenSearchAction$index": "<p>The OpenSearch index where you want to store your data.</p>"
       }
     },
@@ -5835,6 +5836,16 @@
         "DynamoDBv2Action$putItem": "<p>Specifies the DynamoDB table to which the message data will be written. For example:</p> <p> <code>{ \"dynamoDBv2\": { \"roleArn\": \"aws:iam:12341251:my-role\" \"putItem\": { \"tableName\": \"my-table\" } } }</code> </p> <p>Each attribute in the message payload will be written to a separate column in the DynamoDB database.</p>"
       }
     },
+    "PutVerificationStateOnViolationRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutVerificationStateOnViolationResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
     "Qos": {
       "base": null,
       "refs": {
@@ -8159,6 +8170,24 @@
         "Statistics$variance": "<p>The variance of the aggregated field values.</p>"
       }
     },
+    "VerificationState": {
+      "base": null,
+      "refs": {
+        "ActiveViolation$verificationState": "<p>The verification state of the violation (detect alarm).</p>",
+        "ListActiveViolationsRequest$verificationState": "<p>The verification state of the violation (detect alarm).</p>",
+        "ListViolationEventsRequest$verificationState": "<p>The verification state of the violation (detect alarm).</p>",
+        "PutVerificationStateOnViolationRequest$verificationState": "<p>The verification state of the violation.</p>",
+        "ViolationEvent$verificationState": "<p>The verification state of the violation (detect alarm).</p>"
+      }
+    },
+    "VerificationStateDescription": {
+      "base": null,
+      "refs": {
+        "ActiveViolation$verificationStateDescription": "<p>The description of the verification state of the violation.</p>",
+        "PutVerificationStateOnViolationRequest$verificationStateDescription": "<p>The description of the verification state of the violation (detect alarm).</p>",
+        "ViolationEvent$verificationStateDescription": "<p>The description of the verification state of the violation.</p>"
+      }
+    },
     "Version": {
       "base": null,
       "refs": {
@@ -8228,6 +8257,7 @@
         "ActiveViolation$violationId": "<p>The ID of the active violation.</p>",
         "DetectMitigationActionExecution$violationId": "<p> The unique identifier of the violation. </p>",
         "ListDetectMitigationActionsExecutionsRequest$violationId": "<p> The unique identifier of the violation. </p>",
+        "PutVerificationStateOnViolationRequest$violationId": "<p>The violation ID.</p>",
         "TargetViolationIdsForDetectMitigationActions$member": null,
         "ViolationEvent$violationId": "<p>The ID of the violation event.</p>"
       }

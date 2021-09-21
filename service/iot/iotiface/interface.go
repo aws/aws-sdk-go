@@ -958,6 +958,10 @@ type IoTAPI interface {
 	ListViolationEventsPages(*iot.ListViolationEventsInput, func(*iot.ListViolationEventsOutput, bool) bool) error
 	ListViolationEventsPagesWithContext(aws.Context, *iot.ListViolationEventsInput, func(*iot.ListViolationEventsOutput, bool) bool, ...request.Option) error
 
+	PutVerificationStateOnViolation(*iot.PutVerificationStateOnViolationInput) (*iot.PutVerificationStateOnViolationOutput, error)
+	PutVerificationStateOnViolationWithContext(aws.Context, *iot.PutVerificationStateOnViolationInput, ...request.Option) (*iot.PutVerificationStateOnViolationOutput, error)
+	PutVerificationStateOnViolationRequest(*iot.PutVerificationStateOnViolationInput) (*request.Request, *iot.PutVerificationStateOnViolationOutput)
+
 	RegisterCACertificate(*iot.RegisterCACertificateInput) (*iot.RegisterCACertificateOutput, error)
 	RegisterCACertificateWithContext(aws.Context, *iot.RegisterCACertificateInput, ...request.Option) (*iot.RegisterCACertificateOutput, error)
 	RegisterCACertificateRequest(*iot.RegisterCACertificateInput) (*request.Request, *iot.RegisterCACertificateOutput)

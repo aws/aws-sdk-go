@@ -1225,6 +1225,10 @@
           "shape": "ClusterState",
           "locationName": "state"
         },
+        "StateInfo": {
+          "shape": "StateInfo",
+          "locationName": "stateInfo"
+        },
         "Tags": {
           "shape": "__mapOf__string",
           "locationName": "tags"
