@@ -80,3 +80,52 @@ func TestDocstring(t *testing.T) {
 		})
 	}
 }
+
+func TestApiDocumentation_missingShapes(t *testing.T) {
+	docs := apiDocumentation{
+		Service: "some service documentation",
+		Operations: map[string]string{
+			"OperationOne": "some operation documentation",
+			"OperationTwo": "some more operation documentation",
+		},
+		Shapes: map[string]shapeDocumentation{
+			"ShapeOne": {
+				Base: "some shape documentation",
+			},
+			"ShapeTwo": {
+				Base: "some more shape documentation",
+				Refs: map[string]string{
+					"ShapeOne$shapeTwo": "shape ref document",
+				},
+			},
+		},
+	}
+
+	api := API{
+		Operations: map[string]*Operation{
+			"OperationOne": {},
+		},
+		Shapes: map[string]*Shape{
+			"ShapeOne": {
+				Type:       "structure",
+				MemberRefs: map[string]*ShapeRef{},
+			},
+		},
+	}
+
+	if err := docs.setup(&api); err != nil {
+		t.Fatalf("expect no error, got %v", err)
+	}
+
+	if _, ok := api.Operations["OperationTwo"]; ok {
+		t.Errorf("expect operation shape to not be added from document model")
+	}
+
+	if _, ok := api.Shapes["ShapeTwo"]; ok {
+		t.Errorf("expect shape to not be added from document model")
+	}
+
+	if _, ok := api.Shapes["ShapeOne"].MemberRefs["shapeTwo"]; ok {
+		t.Errorf("expect shape to not be added from document model")
+	}
+}
