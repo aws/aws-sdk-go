@@ -14030,6 +14030,108 @@ func (s *Regex) SetRegexString(v string) *Regex {
 	return s
 }
 
+// A rule statement used to search web request components for a match against
+// a single regular expression.
+type RegexMatchStatement struct {
+	_ struct{} `type:"structure"`
+
+	// The part of a web request that you want WAF to inspect. For more information,
+	// see FieldToMatch.
+	//
+	// FieldToMatch is a required field
+	FieldToMatch *FieldToMatch `type:"structure" required:"true"`
+
+	// The string representing the regular expression.
+	//
+	// RegexString is a required field
+	RegexString *string `min:"1" type:"string" required:"true"`
+
+	// Text transformations eliminate some of the unusual formatting that attackers
+	// use in web requests in an effort to bypass detection. If you specify one
+	// or more transformations in a rule statement, WAF performs all transformations
+	// on the content of the request component identified by FieldToMatch, starting
+	// from the lowest priority setting, before inspecting the content for a match.
+	//
+	// TextTransformations is a required field
+	TextTransformations []*TextTransformation `min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegexMatchStatement) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RegexMatchStatement) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RegexMatchStatement) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RegexMatchStatement"}
+	if s.FieldToMatch == nil {
+		invalidParams.Add(request.NewErrParamRequired("FieldToMatch"))
+	}
+	if s.RegexString == nil {
+		invalidParams.Add(request.NewErrParamRequired("RegexString"))
+	}
+	if s.RegexString != nil && len(*s.RegexString) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RegexString", 1))
+	}
+	if s.TextTransformations == nil {
+		invalidParams.Add(request.NewErrParamRequired("TextTransformations"))
+	}
+	if s.TextTransformations != nil && len(s.TextTransformations) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("TextTransformations", 1))
+	}
+	if s.FieldToMatch != nil {
+		if err := s.FieldToMatch.Validate(); err != nil {
+			invalidParams.AddNested("FieldToMatch", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TextTransformations != nil {
+		for i, v := range s.TextTransformations {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "TextTransformations", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFieldToMatch sets the FieldToMatch field's value.
+func (s *RegexMatchStatement) SetFieldToMatch(v *FieldToMatch) *RegexMatchStatement {
+	s.FieldToMatch = v
+	return s
+}
+
+// SetRegexString sets the RegexString field's value.
+func (s *RegexMatchStatement) SetRegexString(v string) *RegexMatchStatement {
+	s.RegexString = &v
+	return s
+}
+
+// SetTextTransformations sets the TextTransformations field's value.
+func (s *RegexMatchStatement) SetTextTransformations(v []*TextTransformation) *RegexMatchStatement {
+	s.TextTransformations = v
+	return s
+}
+
 // Contains one or more regular expressions.
 //
 // WAF assigns an ARN to each RegexPatternSet that you create. To use a set
@@ -15495,6 +15597,10 @@ type Statement struct {
 	// inside a web ACL and inside a rule group.
 	RateBasedStatement *RateBasedStatement `type:"structure"`
 
+	// A rule statement used to search web request components for a match against
+	// a single regular expression.
+	RegexMatchStatement *RegexMatchStatement `type:"structure"`
+
 	// A rule statement used to search web request components for matches with regular
 	// expressions. To use this, create a RegexPatternSet that specifies the expressions
 	// that you want to detect, then use the ARN of that set in this statement.
@@ -15617,6 +15723,11 @@ func (s *Statement) Validate() error {
 			invalidParams.AddNested("RateBasedStatement", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.RegexMatchStatement != nil {
+		if err := s.RegexMatchStatement.Validate(); err != nil {
+			invalidParams.AddNested("RegexMatchStatement", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.RegexPatternSetReferenceStatement != nil {
 		if err := s.RegexPatternSetReferenceStatement.Validate(); err != nil {
 			invalidParams.AddNested("RegexPatternSetReferenceStatement", err.(request.ErrInvalidParams))
@@ -15700,6 +15811,12 @@ func (s *Statement) SetOrStatement(v *OrStatement) *Statement {
 // SetRateBasedStatement sets the RateBasedStatement field's value.
 func (s *Statement) SetRateBasedStatement(v *RateBasedStatement) *Statement {
 	s.RateBasedStatement = v
+	return s
+}
+
+// SetRegexMatchStatement sets the RegexMatchStatement field's value.
+func (s *Statement) SetRegexMatchStatement(v *RegexMatchStatement) *Statement {
+	s.RegexMatchStatement = v
 	return s
 }
 

@@ -1,3 +1,16 @@
+Release v1.40.47 (2021-09-22)
+===
+
+### Service Client Updates
+* `service/iam`: Updates service documentation
+  * Added changes to OIDC API about not using port numbers in the URL.
+* `service/imagebuilder`: Updates service API and documentation
+* `service/license-manager`: Updates service API and documentation
+* `service/mediapackage-vod`: Updates service API and documentation
+* `service/mediatailor`: Updates service API and documentation
+* `service/models.lex.v2`: Updates service API, documentation, and paginators
+* `service/wafv2`: Updates service API and documentation
+
 Release v1.40.46 (2021-09-21)
 ===
 

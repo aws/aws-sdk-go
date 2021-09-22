@@ -13,6 +13,80 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opConfigureLogsForPlaybackConfiguration = "ConfigureLogsForPlaybackConfiguration"
+
+// ConfigureLogsForPlaybackConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the ConfigureLogsForPlaybackConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ConfigureLogsForPlaybackConfiguration for more information on using the ConfigureLogsForPlaybackConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ConfigureLogsForPlaybackConfigurationRequest method.
+//    req, resp := client.ConfigureLogsForPlaybackConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ConfigureLogsForPlaybackConfiguration
+func (c *MediaTailor) ConfigureLogsForPlaybackConfigurationRequest(input *ConfigureLogsForPlaybackConfigurationInput) (req *request.Request, output *ConfigureLogsForPlaybackConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opConfigureLogsForPlaybackConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/configureLogs/playbackConfiguration",
+	}
+
+	if input == nil {
+		input = &ConfigureLogsForPlaybackConfigurationInput{}
+	}
+
+	output = &ConfigureLogsForPlaybackConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ConfigureLogsForPlaybackConfiguration API operation for AWS MediaTailor.
+//
+// Configures Amazon CloudWatch log settings for a playback configuration.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS MediaTailor's
+// API operation ConfigureLogsForPlaybackConfiguration for usage and error information.
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediatailor-2018-04-23/ConfigureLogsForPlaybackConfiguration
+func (c *MediaTailor) ConfigureLogsForPlaybackConfiguration(input *ConfigureLogsForPlaybackConfigurationInput) (*ConfigureLogsForPlaybackConfigurationOutput, error) {
+	req, out := c.ConfigureLogsForPlaybackConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// ConfigureLogsForPlaybackConfigurationWithContext is the same as ConfigureLogsForPlaybackConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ConfigureLogsForPlaybackConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaTailor) ConfigureLogsForPlaybackConfigurationWithContext(ctx aws.Context, input *ConfigureLogsForPlaybackConfigurationInput, opts ...request.Option) (*ConfigureLogsForPlaybackConfigurationOutput, error) {
+	req, out := c.ConfigureLogsForPlaybackConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateChannel = "CreateChannel"
 
 // CreateChannelRequest generates a "aws/request.Request" representing the
@@ -3336,6 +3410,117 @@ func (s *Channel) SetTags(v map[string]*string) *Channel {
 	return s
 }
 
+// Configures Amazon CloudWatch log settings for an existing MediaTailor playback
+// configuration.
+type ConfigureLogsForPlaybackConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The percentage of session logs that MediaTailor sends to your Cloudwatch
+	// Logs account. For example, if your playback configuration has 1000 sessions
+	// and percentEnabled is set to 60, MediaTailor sends logs for 600 of the sessions
+	// to CloudWatch Logs. MediaTailor decides at random which of the playback configuration
+	// sessions to send logs for. If you want to view logs for a specific session,
+	// you can use the debug log mode (https://docs.aws.amazon.com/mediatailor/latest/ug/debug-log-mode.html).
+	//
+	// Valid values: 0 - 100
+	//
+	// PercentEnabled is a required field
+	PercentEnabled *int64 `type:"integer" required:"true"`
+
+	// The name of the playback configuration.
+	//
+	// PlaybackConfigurationName is a required field
+	PlaybackConfigurationName *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigureLogsForPlaybackConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigureLogsForPlaybackConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ConfigureLogsForPlaybackConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ConfigureLogsForPlaybackConfigurationInput"}
+	if s.PercentEnabled == nil {
+		invalidParams.Add(request.NewErrParamRequired("PercentEnabled"))
+	}
+	if s.PlaybackConfigurationName == nil {
+		invalidParams.Add(request.NewErrParamRequired("PlaybackConfigurationName"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPercentEnabled sets the PercentEnabled field's value.
+func (s *ConfigureLogsForPlaybackConfigurationInput) SetPercentEnabled(v int64) *ConfigureLogsForPlaybackConfigurationInput {
+	s.PercentEnabled = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *ConfigureLogsForPlaybackConfigurationInput) SetPlaybackConfigurationName(v string) *ConfigureLogsForPlaybackConfigurationInput {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
+// Amazon CloudWatch log settings for a playback configuration.
+type ConfigureLogsForPlaybackConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The percentage of session logs that MediaTailor sends to your Cloudwatch
+	// Logs account.
+	PercentEnabled *int64 `type:"integer"`
+
+	// The name of the playback configuration.
+	PlaybackConfigurationName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigureLogsForPlaybackConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ConfigureLogsForPlaybackConfigurationOutput) GoString() string {
+	return s.String()
+}
+
+// SetPercentEnabled sets the PercentEnabled field's value.
+func (s *ConfigureLogsForPlaybackConfigurationOutput) SetPercentEnabled(v int64) *ConfigureLogsForPlaybackConfigurationOutput {
+	s.PercentEnabled = &v
+	return s
+}
+
+// SetPlaybackConfigurationName sets the PlaybackConfigurationName field's value.
+func (s *ConfigureLogsForPlaybackConfigurationOutput) SetPlaybackConfigurationName(v string) *ConfigureLogsForPlaybackConfigurationOutput {
+	s.PlaybackConfigurationName = &v
+	return s
+}
+
 // The configuration for this channel.
 type CreateChannelInput struct {
 	_ struct{} `type:"structure"`
@@ -3344,7 +3529,7 @@ type CreateChannelInput struct {
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
 
 	// The slate used to fill gaps between programs in the schedule. You must configure
-	// filler slate if your channel uses an LINEAR PlaybackMode.
+	// filler slate if your channel uses a LINEAR PlaybackMode.
 	FillerSlate *SlateSource `type:"structure"`
 
 	// The channel's output properties.
@@ -5656,6 +5841,9 @@ type GetPlaybackConfigurationOutput struct {
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
+	// The Amazon CloudWatch log settings for a playback configuration.
+	LogConfiguration *LogConfiguration `type:"structure"`
+
 	// The configuration for manifest processing rules. Manifest processing rules
 	// enable customization of the personalized manifests created by MediaTailor.
 	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
@@ -5768,6 +5956,12 @@ func (s *GetPlaybackConfigurationOutput) SetHlsConfiguration(v *HlsConfiguration
 // SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
 func (s *GetPlaybackConfigurationOutput) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *GetPlaybackConfigurationOutput {
 	s.LivePreRollConfiguration = v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *GetPlaybackConfigurationOutput) SetLogConfiguration(v *LogConfiguration) *GetPlaybackConfigurationOutput {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -6640,6 +6834,47 @@ func (s *LivePreRollConfiguration) SetMaxDurationSeconds(v int64) *LivePreRollCo
 	return s
 }
 
+// Returns Amazon CloudWatch log settings for a playback configuration.
+type LogConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The percentage of session logs that MediaTailor sends to your Cloudwatch
+	// Logs account. For example, if your playback configuration has 1000 sessions
+	// and percentEnabled is set to 60, MediaTailor sends logs for 600 of the sessions
+	// to CloudWatch Logs. MediaTailor decides at random which of the playback configuration
+	// sessions to send logs for. If you want to view logs for a specific session,
+	// you can use the debug log mode (https://docs.aws.amazon.com/mediatailor/latest/ug/debug-log-mode.html).
+	//
+	// Valid values: 0 - 100
+	//
+	// PercentEnabled is a required field
+	PercentEnabled *int64 `type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LogConfiguration) GoString() string {
+	return s.String()
+}
+
+// SetPercentEnabled sets the PercentEnabled field's value.
+func (s *LogConfiguration) SetPercentEnabled(v int64) *LogConfiguration {
+	s.PercentEnabled = &v
+	return s
+}
+
 // The configuration for manifest processing rules. Manifest processing rules
 // enable customization of the personalized manifests created by MediaTailor.
 type ManifestProcessingRules struct {
@@ -6716,6 +6951,9 @@ type PlaybackConfiguration struct {
 
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
+
+	// The Amazon CloudWatch log settings for a playback configuration.
+	LogConfiguration *LogConfiguration `type:"structure"`
 
 	// The configuration for manifest processing rules. Manifest processing rules
 	// enable customization of the personalized manifests created by MediaTailor.
@@ -6828,6 +7066,12 @@ func (s *PlaybackConfiguration) SetHlsConfiguration(v *HlsConfiguration) *Playba
 // SetLivePreRollConfiguration sets the LivePreRollConfiguration field's value.
 func (s *PlaybackConfiguration) SetLivePreRollConfiguration(v *LivePreRollConfiguration) *PlaybackConfiguration {
 	s.LivePreRollConfiguration = v
+	return s
+}
+
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *PlaybackConfiguration) SetLogConfiguration(v *LogConfiguration) *PlaybackConfiguration {
+	s.LogConfiguration = v
 	return s
 }
 
@@ -7193,6 +7437,9 @@ type PutPlaybackConfigurationOutput struct {
 	// The configuration for pre-roll ad insertion.
 	LivePreRollConfiguration *LivePreRollConfiguration `type:"structure"`
 
+	// Returns Amazon CloudWatch log settings for a playback configuration.
+	LogConfiguration *LogConfiguration `type:"structure"`
+
 	// The configuration for manifest processing rules. Manifest processing rules
 	// enable customization of the personalized manifests created by MediaTailor.
 	ManifestProcessingRules *ManifestProcessingRules `type:"structure"`
@@ -7282,6 +7529,12 @@ func (s *PutPlaybackConfigurationOutput) SetLivePreRollConfiguration(v *LivePreR
 	return s
 }
 
+// SetLogConfiguration sets the LogConfiguration field's value.
+func (s *PutPlaybackConfigurationOutput) SetLogConfiguration(v *LogConfiguration) *PutPlaybackConfigurationOutput {
+	s.LogConfiguration = v
+	return s
+}
+
 // SetManifestProcessingRules sets the ManifestProcessingRules field's value.
 func (s *PutPlaybackConfigurationOutput) SetManifestProcessingRules(v *ManifestProcessingRules) *PutPlaybackConfigurationOutput {
 	s.ManifestProcessingRules = v
@@ -7342,7 +7595,7 @@ func (s *PutPlaybackConfigurationOutput) SetVideoContentSourceUrl(v string) *Put
 	return s
 }
 
-// The ouput configuration for this channel.
+// The output configuration for this channel.
 type RequestOutputItem struct {
 	_ struct{} `type:"structure"`
 

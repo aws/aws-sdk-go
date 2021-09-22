@@ -163,6 +163,23 @@
         {"shape":"RateLimitExceededException"}
       ]
     },
+    "CreateLicenseConversionTaskForResource":{
+      "name":"CreateLicenseConversionTaskForResource",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateLicenseConversionTaskForResourceRequest"},
+      "output":{"shape":"CreateLicenseConversionTaskForResourceResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ValidationException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"AuthorizationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"RateLimitExceededException"}
+      ]
+    },
     "CreateLicenseManagerReportGenerator":{
       "name":"CreateLicenseManagerReportGenerator",
       "http":{
@@ -395,6 +412,22 @@
         {"shape":"RateLimitExceededException"}
       ]
     },
+    "GetLicenseConversionTask":{
+      "name":"GetLicenseConversionTask",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"GetLicenseConversionTaskRequest"},
+      "output":{"shape":"GetLicenseConversionTaskResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServerInternalException"},
+        {"shape":"AuthorizationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"RateLimitExceededException"}
+      ]
+    },
     "GetLicenseManagerReportGenerator":{
       "name":"GetLicenseManagerReportGenerator",
       "http":{
@@ -509,6 +542,22 @@
         {"shape":"InvalidParameterValueException"},
         {"shape":"ServerInternalException"},
         {"shape":"FilterLimitExceededException"},
+        {"shape":"AuthorizationException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"RateLimitExceededException"}
+      ]
+    },
+    "ListLicenseConversionTasks":{
+      "name":"ListLicenseConversionTasks",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ListLicenseConversionTasksRequest"},
+      "output":{"shape":"ListLicenseConversionTasksResponse"},
+      "errors":[
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"ServerInternalException"},
         {"shape":"AuthorizationException"},
         {"shape":"AccessDeniedException"},
         {"shape":"RateLimitExceededException"}
@@ -1076,6 +1125,25 @@
         "LicenseConfigurationArn":{"shape":"String"}
       }
     },
+    "CreateLicenseConversionTaskForResourceRequest":{
+      "type":"structure",
+      "required":[
+        "ResourceArn",
+        "SourceLicenseContext",
+        "DestinationLicenseContext"
+      ],
+      "members":{
+        "ResourceArn":{"shape":"Arn"},
+        "SourceLicenseContext":{"shape":"LicenseConversionContext"},
+        "DestinationLicenseContext":{"shape":"LicenseConversionContext"}
+      }
+    },
+    "CreateLicenseConversionTaskForResourceResponse":{
+      "type":"structure",
+      "members":{
+        "LicenseConversionTaskId":{"shape":"LicenseConversionTaskId"}
+      }
+    },
     "CreateLicenseManagerReportGeneratorRequest":{
       "type":"structure",
       "required":[
@@ -1515,6 +1583,27 @@
         "DisassociateWhenNotFound":{"shape":"BoxBoolean"}
       }
     },
+    "GetLicenseConversionTaskRequest":{
+      "type":"structure",
+      "required":["LicenseConversionTaskId"],
+      "members":{
+        "LicenseConversionTaskId":{"shape":"LicenseConversionTaskId"}
+      }
+    },
+    "GetLicenseConversionTaskResponse":{
+      "type":"structure",
+      "members":{
+        "LicenseConversionTaskId":{"shape":"LicenseConversionTaskId"},
+        "ResourceArn":{"shape":"String"},
+        "SourceLicenseContext":{"shape":"LicenseConversionContext"},
+        "DestinationLicenseContext":{"shape":"LicenseConversionContext"},
+        "StatusMessage":{"shape":"String"},
+        "Status":{"shape":"LicenseConversionTaskStatus"},
+        "StartTime":{"shape":"DateTime"},
+        "LicenseConversionTime":{"shape":"DateTime"},
+        "EndTime":{"shape":"DateTime"}
+      }
+    },
     "GetLicenseManagerReportGeneratorRequest":{
       "type":"structure",
       "required":["LicenseManagerReportGeneratorArn"],
@@ -1780,6 +1869,43 @@
       "type":"list",
       "member":{"shape":"LicenseConfiguration"}
     },
+    "LicenseConversionContext":{
+      "type":"structure",
+      "members":{
+        "UsageOperation":{"shape":"UsageOperation"}
+      }
+    },
+    "LicenseConversionTask":{
+      "type":"structure",
+      "members":{
+        "LicenseConversionTaskId":{"shape":"LicenseConversionTaskId"},
+        "ResourceArn":{"shape":"String"},
+        "SourceLicenseContext":{"shape":"LicenseConversionContext"},
+        "DestinationLicenseContext":{"shape":"LicenseConversionContext"},
+        "Status":{"shape":"LicenseConversionTaskStatus"},
+        "StatusMessage":{"shape":"String"},
+        "StartTime":{"shape":"DateTime"},
+        "LicenseConversionTime":{"shape":"DateTime"},
+        "EndTime":{"shape":"DateTime"}
+      }
+    },
+    "LicenseConversionTaskId":{
+      "type":"string",
+      "max":50,
+      "pattern":"^lct-[a-zA-Z0-9]*"
+    },
+    "LicenseConversionTaskStatus":{
+      "type":"string",
+      "enum":[
+        "IN_PROGRESS",
+        "SUCCEEDED",
+        "FAILED"
+      ]
+    },
+    "LicenseConversionTasks":{
+      "type":"list",
+      "member":{"shape":"LicenseConversionTask"}
+    },
     "LicenseCountingType":{
       "type":"string",
       "enum":[
@@ -1915,6 +2041,21 @@
       "type":"structure",
       "members":{
         "LicenseConfigurations":{"shape":"LicenseConfigurations"},
+        "NextToken":{"shape":"String"}
+      }
+    },
+    "ListLicenseConversionTasksRequest":{
+      "type":"structure",
+      "members":{
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"BoxInteger"},
+        "Filters":{"shape":"Filters"}
+      }
+    },
+    "ListLicenseConversionTasksResponse":{
+      "type":"structure",
+      "members":{
+        "LicenseConversionTasks":{"shape":"LicenseConversionTasks"},
         "NextToken":{"shape":"String"}
       }
     },
@@ -2505,6 +2646,10 @@
       "type":"structure",
       "members":{
       }
+    },
+    "UsageOperation":{
+      "type":"string",
+      "max":50
     },
     "ValidationException":{
       "type":"structure",

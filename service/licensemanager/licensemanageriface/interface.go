@@ -92,6 +92,10 @@ type LicenseManagerAPI interface {
 	CreateLicenseConfigurationWithContext(aws.Context, *licensemanager.CreateLicenseConfigurationInput, ...request.Option) (*licensemanager.CreateLicenseConfigurationOutput, error)
 	CreateLicenseConfigurationRequest(*licensemanager.CreateLicenseConfigurationInput) (*request.Request, *licensemanager.CreateLicenseConfigurationOutput)
 
+	CreateLicenseConversionTaskForResource(*licensemanager.CreateLicenseConversionTaskForResourceInput) (*licensemanager.CreateLicenseConversionTaskForResourceOutput, error)
+	CreateLicenseConversionTaskForResourceWithContext(aws.Context, *licensemanager.CreateLicenseConversionTaskForResourceInput, ...request.Option) (*licensemanager.CreateLicenseConversionTaskForResourceOutput, error)
+	CreateLicenseConversionTaskForResourceRequest(*licensemanager.CreateLicenseConversionTaskForResourceInput) (*request.Request, *licensemanager.CreateLicenseConversionTaskForResourceOutput)
+
 	CreateLicenseManagerReportGenerator(*licensemanager.CreateLicenseManagerReportGeneratorInput) (*licensemanager.CreateLicenseManagerReportGeneratorOutput, error)
 	CreateLicenseManagerReportGeneratorWithContext(aws.Context, *licensemanager.CreateLicenseManagerReportGeneratorInput, ...request.Option) (*licensemanager.CreateLicenseManagerReportGeneratorOutput, error)
 	CreateLicenseManagerReportGeneratorRequest(*licensemanager.CreateLicenseManagerReportGeneratorInput) (*request.Request, *licensemanager.CreateLicenseManagerReportGeneratorOutput)
@@ -144,6 +148,10 @@ type LicenseManagerAPI interface {
 	GetLicenseConfigurationWithContext(aws.Context, *licensemanager.GetLicenseConfigurationInput, ...request.Option) (*licensemanager.GetLicenseConfigurationOutput, error)
 	GetLicenseConfigurationRequest(*licensemanager.GetLicenseConfigurationInput) (*request.Request, *licensemanager.GetLicenseConfigurationOutput)
 
+	GetLicenseConversionTask(*licensemanager.GetLicenseConversionTaskInput) (*licensemanager.GetLicenseConversionTaskOutput, error)
+	GetLicenseConversionTaskWithContext(aws.Context, *licensemanager.GetLicenseConversionTaskInput, ...request.Option) (*licensemanager.GetLicenseConversionTaskOutput, error)
+	GetLicenseConversionTaskRequest(*licensemanager.GetLicenseConversionTaskInput) (*request.Request, *licensemanager.GetLicenseConversionTaskOutput)
+
 	GetLicenseManagerReportGenerator(*licensemanager.GetLicenseManagerReportGeneratorInput) (*licensemanager.GetLicenseManagerReportGeneratorOutput, error)
 	GetLicenseManagerReportGeneratorWithContext(aws.Context, *licensemanager.GetLicenseManagerReportGeneratorInput, ...request.Option) (*licensemanager.GetLicenseManagerReportGeneratorOutput, error)
 	GetLicenseManagerReportGeneratorRequest(*licensemanager.GetLicenseManagerReportGeneratorInput) (*request.Request, *licensemanager.GetLicenseManagerReportGeneratorOutput)
@@ -171,6 +179,10 @@ type LicenseManagerAPI interface {
 	ListLicenseConfigurations(*licensemanager.ListLicenseConfigurationsInput) (*licensemanager.ListLicenseConfigurationsOutput, error)
 	ListLicenseConfigurationsWithContext(aws.Context, *licensemanager.ListLicenseConfigurationsInput, ...request.Option) (*licensemanager.ListLicenseConfigurationsOutput, error)
 	ListLicenseConfigurationsRequest(*licensemanager.ListLicenseConfigurationsInput) (*request.Request, *licensemanager.ListLicenseConfigurationsOutput)
+
+	ListLicenseConversionTasks(*licensemanager.ListLicenseConversionTasksInput) (*licensemanager.ListLicenseConversionTasksOutput, error)
+	ListLicenseConversionTasksWithContext(aws.Context, *licensemanager.ListLicenseConversionTasksInput, ...request.Option) (*licensemanager.ListLicenseConversionTasksOutput, error)
+	ListLicenseConversionTasksRequest(*licensemanager.ListLicenseConversionTasksInput) (*request.Request, *licensemanager.ListLicenseConversionTasksOutput)
 
 	ListLicenseManagerReportGenerators(*licensemanager.ListLicenseManagerReportGeneratorsInput) (*licensemanager.ListLicenseManagerReportGeneratorsOutput, error)
 	ListLicenseManagerReportGeneratorsWithContext(aws.Context, *licensemanager.ListLicenseManagerReportGeneratorsInput, ...request.Option) (*licensemanager.ListLicenseManagerReportGeneratorsOutput, error)

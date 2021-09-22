@@ -1258,7 +1258,19 @@ func (c *Imagebuilder) DeleteImageRequest(input *DeleteImageInput) (req *request
 
 // DeleteImage API operation for EC2 Image Builder.
 //
-// Deletes an image.
+// Deletes an Image Builder image resource. This does not delete any EC2 AMIs
+// or ECR container images that are created during the image build process.
+// You must clean those up separately, using the appropriate Amazon EC2 or Amazon
+// ECR console actions, or API or CLI commands.
+//
+//    * To deregister an EC2 Linux AMI, see Deregister your Linux AMI (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/deregister-ami.html)
+//    in the Amazon EC2 User Guide .
+//
+//    * To deregister an EC2 Windows AMI, see Deregister your Windows AMI (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/deregister-ami.html)
+//    in the Amazon EC2 Windows Guide .
+//
+//    * To delete a container image from Amazon ECR, see Deleting an image (https://docs.aws.amazon.com/https:/docs.aws.amazon.comAmazonECR/latest/userguide/delete_image.html)
+//    in the Amazon ECR User Guide.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2828,12 +2840,10 @@ func (c *Imagebuilder) ListComponentBuildVersionsRequest(input *ListComponentBui
 // The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You
 // can assign values for the first three, and can filter on all of them.
 //
-// Filtering: When you retrieve or reference a resource with a semantic version,
-// you can use wildcards (x) to filter your results. When you use a wildcard
-// in any node, all nodes to the right of the first wildcard must also be wildcards.
-// For example, specifying "1.2.x", or "1.x.x" works to filter list results,
-// but neither "1.x.2", nor "x.2.x" will work. You do not have to specify the
-// build - Image Builder automatically uses a wildcard for that, if applicable.
+// Filtering: With semantic versioning, you have the flexibility to use wildcards
+// (x) to specify the most recent versions or nodes when selecting the source
+// image or components for your recipe. When you use a wildcard in any node,
+// all nodes to the right of the first wildcard must also be wildcards.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2995,12 +3005,10 @@ func (c *Imagebuilder) ListComponentsRequest(input *ListComponentsInput) (req *r
 // The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You
 // can assign values for the first three, and can filter on all of them.
 //
-// Filtering: When you retrieve or reference a resource with a semantic version,
-// you can use wildcards (x) to filter your results. When you use a wildcard
-// in any node, all nodes to the right of the first wildcard must also be wildcards.
-// For example, specifying "1.2.x", or "1.x.x" works to filter list results,
-// but neither "1.x.2", nor "x.2.x" will work. You do not have to specify the
-// build - Image Builder automatically uses a wildcard for that, if applicable.
+// Filtering: With semantic versioning, you have the flexibility to use wildcards
+// (x) to specify the most recent versions or nodes when selecting the source
+// image or components for your recipe. When you use a wildcard in any node,
+// all nodes to the right of the first wildcard must also be wildcards.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3629,7 +3637,7 @@ func (c *Imagebuilder) ListImagePackagesRequest(input *ListImagePackagesInput) (
 // ListImagePackages API operation for EC2 Image Builder.
 //
 // List the Packages that are associated with an Image Build Version, as determined
-// by Amazon EC2 Systems Manager Inventory at build time.
+// by Amazon Web Services Systems Manager Inventory at build time.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5647,22 +5655,22 @@ func (c *Imagebuilder) UpdateInfrastructureConfigurationWithContext(ctx aws.Cont
 
 // In addition to your infrastruction configuration, these settings provide
 // an extra layer of control over your build instances. For instances where
-// Image Builder installs the SSM agent, you can choose whether to keep it for
-// the AMI that you create. You can also specify commands to run on launch for
-// all of your build instances.
+// Image Builder installs the Systems Manager agent, you can choose whether
+// to keep it for the AMI that you create. You can also specify commands to
+// run on launch for all of your build instances.
 type AdditionalInstanceConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Contains settings for the SSM agent on your build instance.
+	// Contains settings for the Systems Manager agent on your build instance.
 	SystemsManagerAgent *SystemsManagerAgent `locationName:"systemsManagerAgent" type:"structure"`
 
 	// Use this property to provide commands or a command script to run when you
 	// launch your build instance.
 	//
 	// The userDataOverride property replaces any commands that Image Builder might
-	// have added to ensure that SSM is installed on your Linux build instance.
-	// If you override the user data, make sure that you add commands to install
-	// SSM, if it is not pre-installed on your source image.
+	// have added to ensure that Systems Manager is installed on your Linux build
+	// instance. If you override the user data, make sure that you add commands
+	// to install Systems Manager, if it is not pre-installed on your source image.
 	UserDataOverride *string `locationName:"userDataOverride" min:"1" type:"string"`
 }
 
@@ -6171,6 +6179,10 @@ type Component struct {
 	// The platform of the component.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
+	// Describes the current status of the component. This is used for components
+	// that are no longer active.
+	State *ComponentState `locationName:"state" type:"structure"`
+
 	// The operating system (OS) version supported by the component. If the OS information
 	// is available, a prefix match is performed against the parent image OS version
 	// during image recipe creation.
@@ -6268,6 +6280,12 @@ func (s *Component) SetParameters(v []*ComponentParameterDetail) *Component {
 // SetPlatform sets the Platform field's value.
 func (s *Component) SetPlatform(v string) *Component {
 	s.Platform = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *Component) SetState(v *ComponentState) *Component {
+	s.State = v
 	return s
 }
 
@@ -6494,6 +6512,48 @@ func (s *ComponentParameterDetail) SetType(v string) *ComponentParameterDetail {
 	return s
 }
 
+// A group of fields that describe the current status of components that are
+// no longer active.
+type ComponentState struct {
+	_ struct{} `type:"structure"`
+
+	// Describes how or why the component changed state.
+	Reason *string `locationName:"reason" min:"1" type:"string"`
+
+	// The current state of the component.
+	Status *string `locationName:"status" type:"string" enum:"ComponentStatus"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentState) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ComponentState) GoString() string {
+	return s.String()
+}
+
+// SetReason sets the Reason field's value.
+func (s *ComponentState) SetReason(v string) *ComponentState {
+	s.Reason = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *ComponentState) SetStatus(v string) *ComponentState {
+	s.Status = &v
+	return s
+}
+
 // A high-level summary of a component.
 type ComponentSummary struct {
 	_ struct{} `type:"structure"`
@@ -6518,6 +6578,9 @@ type ComponentSummary struct {
 
 	// The platform of the component.
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
+
+	// Describes the current status of the component.
+	State *ComponentState `locationName:"state" type:"structure"`
 
 	// The operating system (OS) version supported by the component. If the OS information
 	// is available, a prefix match is performed against the parent image OS version
@@ -6592,6 +6655,12 @@ func (s *ComponentSummary) SetOwner(v string) *ComponentSummary {
 // SetPlatform sets the Platform field's value.
 func (s *ComponentSummary) SetPlatform(v string) *ComponentSummary {
 	s.Platform = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ComponentSummary) SetState(v *ComponentState) *ComponentSummary {
+	s.State = v
 	return s
 }
 
@@ -6670,19 +6739,17 @@ type ComponentVersion struct {
 	//
 	// Assignment: For the first three nodes you can assign any positive integer
 	// value, including zero, with an upper limit of 2^30-1, or 1073741823 for each
-	// node. Image Builder automatically assigns the build number, and that is not
-	// open for updates.
+	// node. Image Builder automatically assigns the build number to the fourth
+	// node.
 	//
 	// Patterns: You can use any numeric pattern that adheres to the assignment
 	// requirements for the nodes that you can assign. For example, you might choose
 	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
 	//
-	// Filtering: When you retrieve or reference a resource with a semantic version,
-	// you can use wildcards (x) to filter your results. When you use a wildcard
-	// in any node, all nodes to the right of the first wildcard must also be wildcards.
-	// For example, specifying "1.2.x", or "1.x.x" works to filter list results,
-	// but neither "1.x.2", nor "x.2.x" will work. You do not have to specify the
-	// build - Image Builder automatically uses a wildcard for that, if applicable.
+	// Filtering: With semantic versioning, you have the flexibility to use wildcards
+	// (x) to specify the most recent versions or nodes when selecting the source
+	// image or components for your recipe. When you use a wildcard in any node,
+	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -6948,19 +7015,17 @@ type ContainerRecipe struct {
 	//
 	// Assignment: For the first three nodes you can assign any positive integer
 	// value, including zero, with an upper limit of 2^30-1, or 1073741823 for each
-	// node. Image Builder automatically assigns the build number, and that is not
-	// open for updates.
+	// node. Image Builder automatically assigns the build number to the fourth
+	// node.
 	//
 	// Patterns: You can use any numeric pattern that adheres to the assignment
 	// requirements for the nodes that you can assign. For example, you might choose
 	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
 	//
-	// Filtering: When you retrieve or reference a resource with a semantic version,
-	// you can use wildcards (x) to filter your results. When you use a wildcard
-	// in any node, all nodes to the right of the first wildcard must also be wildcards.
-	// For example, specifying "1.2.x", or "1.x.x" works to filter list results,
-	// but neither "1.x.2", nor "x.2.x" will work. You do not have to specify the
-	// build - Image Builder automatically uses a wildcard for that, if applicable.
+	// Filtering: With semantic versioning, you have the flexibility to use wildcards
+	// (x) to specify the most recent versions or nodes when selecting the source
+	// image or components for your recipe. When you use a wildcard in any node,
+	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
 
 	// The working directory for use during build and test workflows.
@@ -7221,8 +7286,8 @@ type CreateComponentInput struct {
 	//
 	// Assignment: For the first three nodes you can assign any positive integer
 	// value, including zero, with an upper limit of 2^30-1, or 1073741823 for each
-	// node. Image Builder automatically assigns the build number, and that is not
-	// open for updates.
+	// node. Image Builder automatically assigns the build number to the fourth
+	// node.
 	//
 	// Patterns: You can use any numeric pattern that adheres to the assignment
 	// requirements for the nodes that you can assign. For example, you might choose
@@ -7477,8 +7542,8 @@ type CreateContainerRecipeInput struct {
 	//
 	// Assignment: For the first three nodes you can assign any positive integer
 	// value, including zero, with an upper limit of 2^30-1, or 1073741823 for each
-	// node. Image Builder automatically assigns the build number, and that is not
-	// open for updates.
+	// node. Image Builder automatically assigns the build number to the fourth
+	// node.
 	//
 	// Patterns: You can use any numeric pattern that adheres to the assignment
 	// requirements for the nodes that you can assign. For example, you might choose
@@ -8340,8 +8405,8 @@ type CreateImageRecipeInput struct {
 	//
 	// Assignment: For the first three nodes you can assign any positive integer
 	// value, including zero, with an upper limit of 2^30-1, or 1073741823 for each
-	// node. Image Builder automatically assigns the build number, and that is not
-	// open for updates.
+	// node. Image Builder automatically assigns the build number to the fourth
+	// node.
 	//
 	// Patterns: You can use any numeric pattern that adheres to the assignment
 	// requirements for the nodes that you can assign. For example, you might choose
@@ -8559,18 +8624,28 @@ type CreateInfrastructureConfigurationInput struct {
 	// The description of the infrastructure configuration.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The instance metadata options that you can set for the HTTP requests that
+	// pipeline builds use to launch EC2 build and test instances.
+	InstanceMetadataOptions *InstanceMetadataOptions `locationName:"instanceMetadataOptions" type:"structure"`
+
 	// The instance profile to associate with the instance used to customize your
 	// Amazon EC2 AMI.
 	//
 	// InstanceProfileName is a required field
 	InstanceProfileName *string `locationName:"instanceProfileName" min:"1" type:"string" required:"true"`
 
-	// The instance types of the infrastructure configuration. You can specify one
-	// or more instance types to use for this build. The service will pick one of
-	// these instance types based on availability.
+	// The instance metadata options that you can set for the HTTP requests that
+	// pipeline builds use to launch EC2 build and test instances. For more information
+	// about instance metadata options, see one of the following links:
+	//
+	//    * Configure the instance metadata options (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html)
+	//    in the Amazon EC2 User Guide for Linux instances.
+	//
+	//    * Configure the instance metadata options (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/configuring-instance-metadata-options.html)
+	//    in the Amazon EC2 Windows Guide for Windows instances.
 	InstanceTypes []*string `locationName:"instanceTypes" type:"list"`
 
-	// The key pair of the infrastructure configuration. This can be used to log
+	// The key pair of the infrastructure configuration. You can use this to log
 	// on to and debug the instance used to create your image.
 	KeyPair *string `locationName:"keyPair" min:"1" type:"string"`
 
@@ -8653,6 +8728,11 @@ func (s *CreateInfrastructureConfigurationInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.InstanceMetadataOptions != nil {
+		if err := s.InstanceMetadataOptions.Validate(); err != nil {
+			invalidParams.AddNested("InstanceMetadataOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Logging != nil {
 		if err := s.Logging.Validate(); err != nil {
 			invalidParams.AddNested("Logging", err.(request.ErrInvalidParams))
@@ -8674,6 +8754,12 @@ func (s *CreateInfrastructureConfigurationInput) SetClientToken(v string) *Creat
 // SetDescription sets the Description field's value.
 func (s *CreateInfrastructureConfigurationInput) SetDescription(v string) *CreateInfrastructureConfigurationInput {
 	s.Description = &v
+	return s
+}
+
+// SetInstanceMetadataOptions sets the InstanceMetadataOptions field's value.
+func (s *CreateInfrastructureConfigurationInput) SetInstanceMetadataOptions(v *InstanceMetadataOptions) *CreateInfrastructureConfigurationInput {
+	s.InstanceMetadataOptions = v
 	return s
 }
 
@@ -9055,7 +9141,7 @@ func (s *DeleteDistributionConfigurationOutput) SetRequestId(v string) *DeleteDi
 type DeleteImageInput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the image to delete.
+	// The Amazon Resource Name (ARN) of the Image Builder image resource to delete.
 	//
 	// ImageBuildVersionArn is a required field
 	ImageBuildVersionArn *string `location:"querystring" locationName:"imageBuildVersionArn" type:"string" required:"true"`
@@ -9101,7 +9187,8 @@ func (s *DeleteImageInput) SetImageBuildVersionArn(v string) *DeleteImageInput {
 type DeleteImageOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the image that was deleted.
+	// The Amazon Resource Name (ARN) of the Image Builder image resource that was
+	// deleted.
 	ImageBuildVersionArn *string `locationName:"imageBuildVersionArn" type:"string"`
 
 	// The request ID that uniquely identifies this request.
@@ -9715,6 +9802,9 @@ type EbsInstanceBlockDeviceSpecification struct {
 	// The snapshot that defines the device contents.
 	SnapshotId *string `locationName:"snapshotId" min:"1" type:"string"`
 
+	// For GP3 volumes only – The throughput in MiB/s that the volume supports.
+	Throughput *int64 `locationName:"throughput" min:"125" type:"integer"`
+
 	// Use to override the device's volume size.
 	VolumeSize *int64 `locationName:"volumeSize" min:"1" type:"integer"`
 
@@ -9751,6 +9841,9 @@ func (s *EbsInstanceBlockDeviceSpecification) Validate() error {
 	}
 	if s.SnapshotId != nil && len(*s.SnapshotId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SnapshotId", 1))
+	}
+	if s.Throughput != nil && *s.Throughput < 125 {
+		invalidParams.Add(request.NewErrParamMinValue("Throughput", 125))
 	}
 	if s.VolumeSize != nil && *s.VolumeSize < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("VolumeSize", 1))
@@ -9789,6 +9882,12 @@ func (s *EbsInstanceBlockDeviceSpecification) SetKmsKeyId(v string) *EbsInstance
 // SetSnapshotId sets the SnapshotId field's value.
 func (s *EbsInstanceBlockDeviceSpecification) SetSnapshotId(v string) *EbsInstanceBlockDeviceSpecification {
 	s.SnapshotId = &v
+	return s
+}
+
+// SetThroughput sets the Throughput field's value.
+func (s *EbsInstanceBlockDeviceSpecification) SetThroughput(v int64) *EbsInstanceBlockDeviceSpecification {
+	s.Throughput = &v
 	return s
 }
 
@@ -11023,19 +11122,17 @@ type Image struct {
 	//
 	// Assignment: For the first three nodes you can assign any positive integer
 	// value, including zero, with an upper limit of 2^30-1, or 1073741823 for each
-	// node. Image Builder automatically assigns the build number, and that is not
-	// open for updates.
+	// node. Image Builder automatically assigns the build number to the fourth
+	// node.
 	//
 	// Patterns: You can use any numeric pattern that adheres to the assignment
 	// requirements for the nodes that you can assign. For example, you might choose
 	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
 	//
-	// Filtering: When you retrieve or reference a resource with a semantic version,
-	// you can use wildcards (x) to filter your results. When you use a wildcard
-	// in any node, all nodes to the right of the first wildcard must also be wildcards.
-	// For example, specifying "1.2.x", or "1.x.x" works to filter list results,
-	// but neither "1.x.2", nor "x.2.x" will work. You do not have to specify the
-	// build - Image Builder automatically uses a wildcard for that, if applicable.
+	// Filtering: With semantic versioning, you have the flexibility to use wildcards
+	// (x) to specify the most recent versions or nodes when selecting the source
+	// image or components for your recipe. When you use a wildcard in any node,
+	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -11893,19 +11990,17 @@ type ImageVersion struct {
 	//
 	// Assignment: For the first three nodes you can assign any positive integer
 	// value, including zero, with an upper limit of 2^30-1, or 1073741823 for each
-	// node. Image Builder automatically assigns the build number, and that is not
-	// open for updates.
+	// node. Image Builder automatically assigns the build number to the fourth
+	// node.
 	//
 	// Patterns: You can use any numeric pattern that adheres to the assignment
 	// requirements for the nodes that you can assign. For example, you might choose
 	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
 	//
-	// Filtering: When you retrieve or reference a resource with a semantic version,
-	// you can use wildcards (x) to filter your results. When you use a wildcard
-	// in any node, all nodes to the right of the first wildcard must also be wildcards.
-	// For example, specifying "1.2.x", or "1.x.x" works to filter list results,
-	// but neither "1.x.2", nor "x.2.x" will work. You do not have to specify the
-	// build - Image Builder automatically uses a wildcard for that, if applicable.
+	// Filtering: With semantic versioning, you have the flexibility to use wildcards
+	// (x) to specify the most recent versions or nodes when selecting the source
+	// image or components for your recipe. When you use a wildcard in any node,
+	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
 }
 
@@ -12017,12 +12112,10 @@ type ImportComponentInput struct {
 	// The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You
 	// can assign values for the first three, and can filter on all of them.
 	//
-	// Filtering: When you retrieve or reference a resource with a semantic version,
-	// you can use wildcards (x) to filter your results. When you use a wildcard
-	// in any node, all nodes to the right of the first wildcard must also be wildcards.
-	// For example, specifying "1.2.x", or "1.x.x" works to filter list results,
-	// but neither "1.x.2", nor "x.2.x" will work. You do not have to specify the
-	// build - Image Builder automatically uses a wildcard for that, if applicable.
+	// Filtering: With semantic versioning, you have the flexibility to use wildcards
+	// (x) to specify the most recent versions or nodes when selecting the source
+	// image or components for your recipe. When you use a wildcard in any node,
+	// all nodes to the right of the first wildcard must also be wildcards.
 	//
 	// SemanticVersion is a required field
 	SemanticVersion *string `locationName:"semanticVersion" type:"string" required:"true"`
@@ -12241,6 +12334,9 @@ type InfrastructureConfiguration struct {
 	// The description of the infrastructure configuration.
 	Description *string `locationName:"description" min:"1" type:"string"`
 
+	// The instance metadata option settings for the infrastructure configuration.
+	InstanceMetadataOptions *InstanceMetadataOptions `locationName:"instanceMetadataOptions" type:"structure"`
+
 	// The instance profile of the infrastructure configuration.
 	InstanceProfileName *string `locationName:"instanceProfileName" min:"1" type:"string"`
 
@@ -12314,6 +12410,12 @@ func (s *InfrastructureConfiguration) SetDateUpdated(v string) *InfrastructureCo
 // SetDescription sets the Description field's value.
 func (s *InfrastructureConfiguration) SetDescription(v string) *InfrastructureConfiguration {
 	s.Description = &v
+	return s
+}
+
+// SetInstanceMetadataOptions sets the InstanceMetadataOptions field's value.
+func (s *InfrastructureConfiguration) SetInstanceMetadataOptions(v *InstanceMetadataOptions) *InfrastructureConfiguration {
+	s.InstanceMetadataOptions = v
 	return s
 }
 
@@ -12632,6 +12734,77 @@ func (s *InstanceConfiguration) SetBlockDeviceMappings(v []*InstanceBlockDeviceM
 // SetImage sets the Image field's value.
 func (s *InstanceConfiguration) SetImage(v string) *InstanceConfiguration {
 	s.Image = &v
+	return s
+}
+
+// The instance metadata options that apply to the HTTP requests that pipeline
+// builds use to launch EC2 build and test instances. For more information about
+// instance metadata options, see Configure the instance metadata options (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html)
+// in the Amazon EC2 User Guide for Linux instances, or Configure the instance
+// metadata options (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/configuring-instance-metadata-options.html)
+// in the Amazon EC2 Windows Guide for Windows instances.
+type InstanceMetadataOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Limit the number of hops that an instance metadata request can traverse to
+	// reach its destination.
+	HttpPutResponseHopLimit *int64 `locationName:"httpPutResponseHopLimit" min:"1" type:"integer"`
+
+	// Indicates whether a signed token header is required for instance metadata
+	// retrieval requests. The values affect the response as follows:
+	//
+	//    * required – When you retrieve the IAM role credentials, version 2.0
+	//    credentials are returned in all cases.
+	//
+	//    * optional – You can include a signed token header in your request to
+	//    retrieve instance metadata, or you can leave it out. If you include it,
+	//    version 2.0 credentials are returned for the IAM role. Otherwise, version
+	//    1.0 credentials are returned.
+	//
+	// The default setting is optional.
+	HttpTokens *string `locationName:"httpTokens" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceMetadataOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s InstanceMetadataOptions) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *InstanceMetadataOptions) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "InstanceMetadataOptions"}
+	if s.HttpPutResponseHopLimit != nil && *s.HttpPutResponseHopLimit < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("HttpPutResponseHopLimit", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetHttpPutResponseHopLimit sets the HttpPutResponseHopLimit field's value.
+func (s *InstanceMetadataOptions) SetHttpPutResponseHopLimit(v int64) *InstanceMetadataOptions {
+	s.HttpPutResponseHopLimit = &v
+	return s
+}
+
+// SetHttpTokens sets the HttpTokens field's value.
+func (s *InstanceMetadataOptions) SetHttpTokens(v string) *InstanceMetadataOptions {
+	s.HttpTokens = &v
 	return s
 }
 
@@ -14558,12 +14731,10 @@ type ListImagesOutput struct {
 	// The semantic version has four nodes: <major>.<minor>.<patch>/<build>. You
 	// can assign values for the first three, and can filter on all of them.
 	//
-	// Filtering: When you retrieve or reference a resource with a semantic version,
-	// you can use wildcards (x) to filter your results. When you use a wildcard
-	// in any node, all nodes to the right of the first wildcard must also be wildcards.
-	// For example, specifying "1.2.x", or "1.x.x" works to filter list results,
-	// but neither "1.x.2", nor "x.2.x" will work. You do not have to specify the
-	// build - Image Builder automatically uses a wildcard for that, if applicable.
+	// Filtering: With semantic versioning, you have the flexibility to use wildcards
+	// (x) to specify the most recent versions or nodes when selecting the source
+	// image or components for your recipe. When you use a wildcard in any node,
+	// all nodes to the right of the first wildcard must also be wildcards.
 	ImageVersionList []*ImageVersion `locationName:"imageVersionList" type:"list"`
 
 	// The next token used for paginated responses. When this is not empty, there
@@ -16027,14 +16198,14 @@ func (s *StartImagePipelineExecutionOutput) SetRequestId(v string) *StartImagePi
 	return s
 }
 
-// Contains settings for the SSM agent on your build instance.
+// Contains settings for the Systems Manager agent on your build instance.
 type SystemsManagerAgent struct {
 	_ struct{} `type:"structure"`
 
-	// Controls whether the SSM agent is removed from your final build image, prior
-	// to creating the new AMI. If this is set to true, then the agent is removed
-	// from the final image. If it's set to false, then the agent is left in, so
-	// that it is included in the new AMI. The default value is false.
+	// Controls whether the Systems Manager agent is removed from your final build
+	// image, prior to creating the new AMI. If this is set to true, then the agent
+	// is removed from the final image. If it's set to false, then the agent is
+	// left in, so that it is included in the new AMI. The default value is false.
 	UninstallAfterBuild *bool `locationName:"uninstallAfterBuild" type:"boolean"`
 }
 
@@ -16676,6 +16847,17 @@ type UpdateInfrastructureConfigurationInput struct {
 	// InfrastructureConfigurationArn is a required field
 	InfrastructureConfigurationArn *string `locationName:"infrastructureConfigurationArn" type:"string" required:"true"`
 
+	// The instance metadata options that you can set for the HTTP requests that
+	// pipeline builds use to launch EC2 build and test instances. For more information
+	// about instance metadata options, see one of the following links:
+	//
+	//    * Configure the instance metadata options (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html)
+	//    in the Amazon EC2 User Guide for Linux instances.
+	//
+	//    * Configure the instance metadata options (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/configuring-instance-metadata-options.html)
+	//    in the Amazon EC2 Windows Guide for Windows instances.
+	InstanceMetadataOptions *InstanceMetadataOptions `locationName:"instanceMetadataOptions" type:"structure"`
+
 	// The instance profile to associate with the instance used to customize your
 	// Amazon EC2 AMI.
 	//
@@ -16687,7 +16869,7 @@ type UpdateInfrastructureConfigurationInput struct {
 	// these instance types based on availability.
 	InstanceTypes []*string `locationName:"instanceTypes" type:"list"`
 
-	// The key pair of the infrastructure configuration. This can be used to log
+	// The key pair of the infrastructure configuration. You can use this to log
 	// on to and debug the instance used to create your image.
 	KeyPair *string `locationName:"keyPair" min:"1" type:"string"`
 
@@ -16759,6 +16941,11 @@ func (s *UpdateInfrastructureConfigurationInput) Validate() error {
 	if s.SubnetId != nil && len(*s.SubnetId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SubnetId", 1))
 	}
+	if s.InstanceMetadataOptions != nil {
+		if err := s.InstanceMetadataOptions.Validate(); err != nil {
+			invalidParams.AddNested("InstanceMetadataOptions", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Logging != nil {
 		if err := s.Logging.Validate(); err != nil {
 			invalidParams.AddNested("Logging", err.(request.ErrInvalidParams))
@@ -16786,6 +16973,12 @@ func (s *UpdateInfrastructureConfigurationInput) SetDescription(v string) *Updat
 // SetInfrastructureConfigurationArn sets the InfrastructureConfigurationArn field's value.
 func (s *UpdateInfrastructureConfigurationInput) SetInfrastructureConfigurationArn(v string) *UpdateInfrastructureConfigurationInput {
 	s.InfrastructureConfigurationArn = &v
+	return s
+}
+
+// SetInstanceMetadataOptions sets the InstanceMetadataOptions field's value.
+func (s *UpdateInfrastructureConfigurationInput) SetInstanceMetadataOptions(v *InstanceMetadataOptions) *UpdateInfrastructureConfigurationInput {
+	s.InstanceMetadataOptions = v
 	return s
 }
 
@@ -16902,6 +17095,18 @@ const (
 func ComponentFormat_Values() []string {
 	return []string{
 		ComponentFormatShell,
+	}
+}
+
+const (
+	// ComponentStatusDeprecated is a ComponentStatus enum value
+	ComponentStatusDeprecated = "DEPRECATED"
+)
+
+// ComponentStatus_Values returns all elements of the ComponentStatus enum
+func ComponentStatus_Values() []string {
+	return []string{
+		ComponentStatusDeprecated,
 	}
 }
 

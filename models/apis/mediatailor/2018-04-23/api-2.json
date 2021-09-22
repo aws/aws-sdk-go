@@ -12,6 +12,21 @@
     "uid": "mediatailor-2018-04-23"
   },
   "operations": {
+    "ConfigureLogsForPlaybackConfiguration": {
+      "errors": [],
+      "http": {
+        "method": "PUT",
+        "requestUri": "/configureLogs/playbackConfiguration",
+        "responseCode": 200
+      },
+      "input": {
+        "shape": "ConfigureLogsForPlaybackConfigurationRequest"
+      },
+      "name": "ConfigureLogsForPlaybackConfiguration",
+      "output": {
+        "shape": "ConfigureLogsForPlaybackConfigurationResponse"
+      }
+    },
     "CreateChannel": {
       "errors": [],
       "http": {
@@ -679,6 +694,32 @@
       "value": {
         "shape": "__mapOf__string"
       }
+    },
+    "ConfigureLogsForPlaybackConfigurationRequest": {
+      "members": {
+        "PercentEnabled": {
+          "shape": "__integer"
+        },
+        "PlaybackConfigurationName": {
+          "shape": "__string"
+        }
+      },
+      "required": [
+        "PercentEnabled",
+        "PlaybackConfigurationName"
+      ],
+      "type": "structure"
+    },
+    "ConfigureLogsForPlaybackConfigurationResponse": {
+      "members": {
+        "PercentEnabled": {
+          "shape": "__integer"
+        },
+        "PlaybackConfigurationName": {
+          "shape": "__string"
+        }
+      },
+      "type": "structure"
     },
     "CreateChannelRequest": {
       "members": {
@@ -1361,6 +1402,9 @@
         "LivePreRollConfiguration": {
           "shape": "LivePreRollConfiguration"
         },
+        "LogConfiguration": {
+          "shape": "LogConfiguration"
+        },
         "ManifestProcessingRules": {
           "shape": "ManifestProcessingRules"
         },
@@ -1626,6 +1670,17 @@
       },
       "type": "structure"
     },
+    "LogConfiguration": {
+      "members": {
+        "PercentEnabled": {
+          "shape": "__integer"
+        }
+      },
+      "required": [
+        "PercentEnabled"
+      ],
+      "type": "structure"
+    },
     "ManifestProcessingRules": {
       "members": {
         "AdMarkerPassthrough": {
@@ -1684,6 +1739,9 @@
         },
         "LivePreRollConfiguration": {
           "shape": "LivePreRollConfiguration"
+        },
+        "LogConfiguration": {
+          "shape": "LogConfiguration"
         },
         "ManifestProcessingRules": {
           "shape": "ManifestProcessingRules"
@@ -1820,6 +1878,9 @@
         },
         "LivePreRollConfiguration": {
           "shape": "LivePreRollConfiguration"
+        },
+        "LogConfiguration": {
+          "shape": "LogConfiguration"
         },
         "ManifestProcessingRules": {
           "shape": "ManifestProcessingRules"

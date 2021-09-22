@@ -418,6 +418,21 @@
         {"shape":"InternalServerException"}
       ]
     },
+    "DeleteUtterances":{
+      "name":"DeleteUtterances",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/bots/{botId}/utterances/",
+        "responseCode":204
+      },
+      "input":{"shape":"DeleteUtterancesRequest"},
+      "output":{"shape":"DeleteUtterancesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"ThrottlingException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
     "DescribeBot":{
       "name":"DescribeBot",
       "http":{
@@ -581,6 +596,22 @@
         {"shape":"ServiceQuotaExceededException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListAggregatedUtterances":{
+      "name":"ListAggregatedUtterances",
+      "http":{
+        "method":"POST",
+        "requestUri":"/bots/{botId}/aggregatedutterances/",
+        "responseCode":200
+      },
+      "input":{"shape":"ListAggregatedUtterancesRequest"},
+      "output":{"shape":"ListAggregatedUtterancesResponse"},
+      "errors":[
+        {"shape":"ValidationException"},
+        {"shape":"PreconditionFailedException"},
+        {"shape":"ThrottlingException"},
         {"shape":"InternalServerException"}
       ]
     },
@@ -970,6 +1001,69 @@
     }
   },
   "shapes":{
+    "AggregatedUtterancesFilter":{
+      "type":"structure",
+      "required":[
+        "name",
+        "values",
+        "operator"
+      ],
+      "members":{
+        "name":{"shape":"AggregatedUtterancesFilterName"},
+        "values":{"shape":"FilterValues"},
+        "operator":{"shape":"AggregatedUtterancesFilterOperator"}
+      }
+    },
+    "AggregatedUtterancesFilterName":{
+      "type":"string",
+      "enum":["Utterance"]
+    },
+    "AggregatedUtterancesFilterOperator":{
+      "type":"string",
+      "enum":[
+        "CO",
+        "EQ"
+      ]
+    },
+    "AggregatedUtterancesFilters":{
+      "type":"list",
+      "member":{"shape":"AggregatedUtterancesFilter"},
+      "max":1,
+      "min":1
+    },
+    "AggregatedUtterancesSortAttribute":{
+      "type":"string",
+      "enum":[
+        "HitCount",
+        "MissedCount"
+      ]
+    },
+    "AggregatedUtterancesSortBy":{
+      "type":"structure",
+      "required":[
+        "attribute",
+        "order"
+      ],
+      "members":{
+        "attribute":{"shape":"AggregatedUtterancesSortAttribute"},
+        "order":{"shape":"SortOrder"}
+      }
+    },
+    "AggregatedUtterancesSummary":{
+      "type":"structure",
+      "members":{
+        "utterance":{"shape":"Utterance"},
+        "hitCount":{"shape":"HitCount"},
+        "missedCount":{"shape":"MissedCount"},
+        "utteranceFirstRecordedInAggregationDuration":{"shape":"Timestamp"},
+        "utteranceLastRecordedInAggregationDuration":{"shape":"Timestamp"},
+        "containsDataFromDeletedResources":{"shape":"BoxedBoolean"}
+      }
+    },
+    "AggregatedUtterancesSummaryList":{
+      "type":"list",
+      "member":{"shape":"AggregatedUtterancesSummary"}
+    },
     "AmazonResourceName":{
       "type":"string",
       "max":1011,
@@ -2271,6 +2365,32 @@
         }
       }
     },
+    "DeleteUtterancesRequest":{
+      "type":"structure",
+      "required":["botId"],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "localeId":{
+          "shape":"LocaleId",
+          "location":"querystring",
+          "locationName":"localeId"
+        },
+        "sessionId":{
+          "shape":"SessionId",
+          "location":"querystring",
+          "locationName":"sessionId"
+        }
+      }
+    },
+    "DeleteUtterancesResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
     "DescribeBotAliasRequest":{
       "type":"structure",
       "required":[
@@ -2761,6 +2881,7 @@
         "enabled":{"shape":"Boolean"}
       }
     },
+    "HitCount":{"type":"integer"},
     "Id":{
       "type":"string",
       "max":10,
@@ -3013,6 +3134,44 @@
       "members":{
         "lambdaARN":{"shape":"LambdaARN"},
         "codeHookInterfaceVersion":{"shape":"CodeHookInterfaceVersion"}
+      }
+    },
+    "ListAggregatedUtterancesRequest":{
+      "type":"structure",
+      "required":[
+        "botId",
+        "localeId",
+        "aggregationDuration"
+      ],
+      "members":{
+        "botId":{
+          "shape":"Id",
+          "location":"uri",
+          "locationName":"botId"
+        },
+        "botAliasId":{"shape":"BotAliasId"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "aggregationDuration":{"shape":"UtteranceAggregationDuration"},
+        "sortBy":{"shape":"AggregatedUtterancesSortBy"},
+        "filters":{"shape":"AggregatedUtterancesFilters"},
+        "maxResults":{"shape":"MaxResults"},
+        "nextToken":{"shape":"NextToken"}
+      }
+    },
+    "ListAggregatedUtterancesResponse":{
+      "type":"structure",
+      "members":{
+        "botId":{"shape":"Id"},
+        "botAliasId":{"shape":"BotAliasId"},
+        "botVersion":{"shape":"BotVersion"},
+        "localeId":{"shape":"LocaleId"},
+        "aggregationDuration":{"shape":"UtteranceAggregationDuration"},
+        "aggregationWindowStartTime":{"shape":"Timestamp"},
+        "aggregationWindowEndTime":{"shape":"Timestamp"},
+        "aggregationLastRefreshedDateTime":{"shape":"Timestamp"},
+        "aggregatedUtterancesSummaries":{"shape":"AggregatedUtterancesSummaryList"},
+        "nextToken":{"shape":"NextToken"}
       }
     },
     "ListBotAliasesRequest":{
@@ -3379,6 +3538,7 @@
       "max":2,
       "min":0
     },
+    "MissedCount":{"type":"integer"},
     "MultipleValuesSetting":{
       "type":"structure",
       "members":{
@@ -3516,8 +3676,19 @@
     },
     "RegexPattern":{
       "type":"string",
-      "max":100,
+      "max":300,
       "min":1
+    },
+    "RelativeAggregationDuration":{
+      "type":"structure",
+      "required":[
+        "timeDimension",
+        "timeValue"
+      ],
+      "members":{
+        "timeDimension":{"shape":"TimeDimension"},
+        "timeValue":{"shape":"TimeValue"}
+      }
     },
     "ResourceCount":{"type":"integer"},
     "ResourceNotFoundException":{
@@ -3617,6 +3788,12 @@
       },
       "error":{"httpStatusCode":402},
       "exception":true
+    },
+    "SessionId":{
+      "type":"string",
+      "max":100,
+      "min":2,
+      "pattern":"[0-9a-zA-Z._:-]+"
     },
     "SessionTTL":{
       "type":"integer",
@@ -3984,6 +4161,19 @@
       },
       "error":{"httpStatusCode":429},
       "exception":true
+    },
+    "TimeDimension":{
+      "type":"string",
+      "enum":[
+        "Hours",
+        "Days",
+        "Weeks"
+      ]
+    },
+    "TimeValue":{
+      "type":"integer",
+      "max":24,
+      "min":1
     },
     "Timestamp":{"type":"timestamp"},
     "UntagResourceRequest":{
@@ -4369,6 +4559,13 @@
       }
     },
     "Utterance":{"type":"string"},
+    "UtteranceAggregationDuration":{
+      "type":"structure",
+      "required":["relativeAggregationDuration"],
+      "members":{
+        "relativeAggregationDuration":{"shape":"RelativeAggregationDuration"}
+      }
+    },
     "ValidationException":{
       "type":"structure",
       "members":{

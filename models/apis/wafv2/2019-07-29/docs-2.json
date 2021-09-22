@@ -553,6 +553,7 @@
       "refs": {
         "ByteMatchStatement$FieldToMatch": "<p>The part of a web request that you want WAF to inspect. For more information, see <a>FieldToMatch</a>. </p>",
         "RedactedFields$member": null,
+        "RegexMatchStatement$FieldToMatch": "<p>The part of a web request that you want WAF to inspect. For more information, see <a>FieldToMatch</a>. </p>",
         "RegexPatternSetReferenceStatement$FieldToMatch": "<p>The part of a web request that you want WAF to inspect. For more information, see <a>FieldToMatch</a>. </p>",
         "SizeConstraintStatement$FieldToMatch": "<p>The part of a web request that you want WAF to inspect. For more information, see <a>FieldToMatch</a>. </p>",
         "SqliMatchStatement$FieldToMatch": "<p>The part of a web request that you want WAF to inspect. For more information, see <a>FieldToMatch</a>. </p>",
@@ -1340,6 +1341,12 @@
         "RegularExpressionList$member": null
       }
     },
+    "RegexMatchStatement": {
+      "base": "<p>A rule statement used to search web request components for a match against a single regular expression. </p>",
+      "refs": {
+        "Statement$RegexMatchStatement": "<p>A rule statement used to search web request components for a match against a single regular expression. </p>"
+      }
+    },
     "RegexPatternSet": {
       "base": "<p>Contains one or more regular expressions. </p> <p>WAF assigns an ARN to each <code>RegexPatternSet</code> that you create. To use a set in a rule, you provide the ARN to the <a>Rule</a> statement <a>RegexPatternSetReferenceStatement</a>. </p>",
       "refs": {
@@ -1368,7 +1375,8 @@
     "RegexPatternString": {
       "base": null,
       "refs": {
-        "Regex$RegexString": "<p>The string representing the regular expression.</p>"
+        "Regex$RegexString": "<p>The string representing the regular expression.</p>",
+        "RegexMatchStatement$RegexString": "<p>The string representing the regular expression.</p>"
       }
     },
     "RegularExpressionList": {
@@ -1702,6 +1710,7 @@
       "base": null,
       "refs": {
         "ByteMatchStatement$TextTransformations": "<p>Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. If you specify one or more transformations in a rule statement, WAF performs all transformations on the content of the request component identified by <code>FieldToMatch</code>, starting from the lowest priority setting, before inspecting the content for a match.</p>",
+        "RegexMatchStatement$TextTransformations": "<p>Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. If you specify one or more transformations in a rule statement, WAF performs all transformations on the content of the request component identified by <code>FieldToMatch</code>, starting from the lowest priority setting, before inspecting the content for a match.</p>",
         "RegexPatternSetReferenceStatement$TextTransformations": "<p>Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. If you specify one or more transformations in a rule statement, WAF performs all transformations on the content of the request component identified by <code>FieldToMatch</code>, starting from the lowest priority setting, before inspecting the content for a match.</p>",
         "SizeConstraintStatement$TextTransformations": "<p>Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. If you specify one or more transformations in a rule statement, WAF performs all transformations on the content of the request component identified by <code>FieldToMatch</code>, starting from the lowest priority setting, before inspecting the content for a match.</p>",
         "SqliMatchStatement$TextTransformations": "<p>Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. If you specify one or more transformations in a rule statement, WAF performs all transformations on the content of the request component identified by <code>FieldToMatch</code>, starting from the lowest priority setting, before inspecting the content for a match.</p>",

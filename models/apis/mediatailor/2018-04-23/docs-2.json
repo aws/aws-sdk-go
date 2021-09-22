@@ -1,5 +1,6 @@
 {
   "operations": {
+    "ConfigureLogsForPlaybackConfiguration": "<p>Configures Amazon CloudWatch log settings for a playback configuration.</p>",
     "CreateChannel": "<p>Creates a channel.</p>",
     "CreateProgram": "<p>Creates a program.</p>",
     "CreateSourceLocation": "<p>Creates a source location on a specific channel.</p>",
@@ -120,6 +121,14 @@
         "GetPlaybackConfigurationResponse$ConfigurationAliases": "<p>The player parameters and aliases used as dynamic variables during session initialization. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html\">Domain Variables</a>.</p>",
         "PlaybackConfiguration$ConfigurationAliases": "<p>The player parameters and aliases used as dynamic variables during session initialization. For more information, see <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/variables-domain.html\">Domain Variables</a>.</p>"
       }
+    },
+    "ConfigureLogsForPlaybackConfigurationRequest": {
+      "base": "<p>Configures Amazon CloudWatch log settings for an existing MediaTailor playback configuration.</p>",
+      "refs": {}
+    },
+    "ConfigureLogsForPlaybackConfigurationResponse": {
+      "base": "<p>Amazon CloudWatch log settings for a playback configuration.</p>",
+      "refs": {}
     },
     "CreateChannelRequest": {
       "base": "<p>The configuration for this channel.</p>",
@@ -288,6 +297,13 @@
         "PutPlaybackConfigurationRequest$LivePreRollConfiguration": "<p>The configuration for pre-roll ad insertion.</p>"
       }
     },
+    "LogConfiguration": {
+      "base": "<p>Returns Amazon CloudWatch log settings for a playback configuration.</p>",
+      "refs": {
+        "GetPlaybackConfigurationResponse$LogConfiguration": "<p>The Amazon CloudWatch log settings for a playback configuration.</p>",
+        "PlaybackConfiguration$LogConfiguration": "<p>The Amazon CloudWatch log settings for a playback configuration.</p>"
+      }
+    },
     "ManifestProcessingRules": {
       "base": "<p>The configuration for manifest processing rules. Manifest processing rules enable customization of the personalized manifests created by MediaTailor.</p>",
       "refs": {
@@ -346,7 +362,7 @@
       }
     },
     "RequestOutputItem": {
-      "base": "<p>The ouput configuration for this channel.</p>",
+      "base": "<p>The output configuration for this channel.</p>",
       "refs": {
         "RequestOutputs$member": null
       }
@@ -406,7 +422,7 @@
       "refs": {
         "AdBreak$Slate": "<p>Ad break slate configuration.</p>",
         "Channel$FillerSlate": "<p>Contains information about the slate used to fill gaps between programs in the schedule. You must configure FillerSlate if your channel uses an LINEAR PlaybackMode.</p>",
-        "CreateChannelRequest$FillerSlate": "<p>The slate used to fill gaps between programs in the schedule. You must configure filler slate if your channel uses an LINEAR PlaybackMode.</p>",
+        "CreateChannelRequest$FillerSlate": "<p>The slate used to fill gaps between programs in the schedule. You must configure filler slate if your channel uses a LINEAR PlaybackMode.</p>",
         "DescribeChannelResponse$FillerSlate": "<p>Contains information about the slate used to fill gaps between programs in the schedule.</p>"
       }
     },
@@ -465,12 +481,15 @@
     "__integer": {
       "base": null,
       "refs": {
+        "ConfigureLogsForPlaybackConfigurationRequest$PercentEnabled": "<p>The percentage of session logs that MediaTailor sends to your Cloudwatch Logs account. For example, if your playback configuration has 1000 sessions and percentEnabled is set to 60, MediaTailor sends logs for 600 of the sessions to CloudWatch Logs. MediaTailor decides at random which of the playback configuration sessions to send logs for. If you want to view logs for a specific session, you can use the <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/debug-log-mode.html\">debug log mode</a>.</p> <p>Valid values: 0 - 100</p>",
+        "ConfigureLogsForPlaybackConfigurationResponse$PercentEnabled": "<p>The percentage of session logs that MediaTailor sends to your Cloudwatch Logs account.</p>",
         "DashPlaylistSettings$ManifestWindowSeconds": "<p>The total duration (in seconds) of each manifest. Minimum value: 30 seconds. Maximum value: 3600 seconds.</p>",
         "DashPlaylistSettings$MinBufferTimeSeconds": "<p>Minimum amount of content (measured in seconds) that a player must keep available in the buffer. Minimum value: 2 seconds. Maximum value: 60 seconds.</p>",
         "DashPlaylistSettings$MinUpdatePeriodSeconds": "<p>Minimum amount of time (in seconds) that the player should wait before requesting updates to the manifest. Minimum value: 2 seconds. Maximum value: 60 seconds.</p>",
         "DashPlaylistSettings$SuggestedPresentationDelaySeconds": "<p>Amount of time (in seconds) that the player should be from the live point at the end of the manifest. Minimum value: 2 seconds. Maximum value: 60 seconds.</p>",
         "HlsPlaylistSettings$ManifestWindowSeconds": "<p>The total duration (in seconds) of each manifest. Minimum value: 30 seconds. Maximum value: 3600 seconds.</p>",
         "LivePreRollConfiguration$MaxDurationSeconds": "The maximum allowed duration for the pre-roll ad avail. AWS Elemental MediaTailor won't play pre-roll ads to exceed this duration, regardless of the total duration of ads that the ADS returns.",
+        "LogConfiguration$PercentEnabled": "<p>The percentage of session logs that MediaTailor sends to your Cloudwatch Logs account. For example, if your playback configuration has 1000 sessions and percentEnabled is set to 60, MediaTailor sends logs for 600 of the sessions to CloudWatch Logs. MediaTailor decides at random which of the playback configuration sessions to send logs for. If you want to view logs for a specific session, you can use the <a href=\"https://docs.aws.amazon.com/mediatailor/latest/ug/debug-log-mode.html\">debug log mode</a>.</p> <p>Valid values: 0 - 100</p>",
         "SpliceInsertMessage$AvailNum": "<p>This is written to splice_insert.avail_num, as defined in section 9.7.3.1 of the SCTE-35 specification. The default value is 0. Values must be between 0 and 256, inclusive.</p>",
         "SpliceInsertMessage$AvailsExpected": "<p>This is written to splice_insert.avails_expected, as defined in section 9.7.3.1 of the SCTE-35 specification. The default value is 0. Values must be between 0 and 256, inclusive.</p>",
         "SpliceInsertMessage$SpliceEventId": "<p>This is written to splice_insert.splice_event_id, as defined in section 9.7.3.1 of the SCTE-35 specification. The default value is 1.</p>",
@@ -585,6 +604,8 @@
         "Channel$ChannelName": "<p>The name of the channel.</p>",
         "Channel$ChannelState": "<p>Returns the state whether the channel is running or not.</p>",
         "Channel$PlaybackMode": "<p>The type of playback mode for this channel.</p> <p>LINEAR - Programs play back-to-back only once.</p> <p>LOOP - Programs play back-to-back in an endless loop. When the last program in the schedule plays, playback loops back to the first program in the schedule.</p>",
+        "ConfigureLogsForPlaybackConfigurationRequest$PlaybackConfigurationName": "<p>The name of the playback configuration.</p>",
+        "ConfigureLogsForPlaybackConfigurationResponse$PlaybackConfigurationName": "<p>The name of the playback configuration.</p>",
         "CreateProgramRequest$SourceLocationName": "<p>The name of the source location.</p>",
         "CreateProgramRequest$VodSourceName": "<p>The name that's used to refer to a VOD source.</p>",
         "DashConfiguration$ManifestEndpointPrefix": "<p>The URL generated by MediaTailor to initiate a playback session. The session uses server-side reporting. This setting is ignored in PUT operations.</p>",
@@ -619,7 +640,6 @@
         "HttpPackageConfiguration$Path": "<p>The relative path to the URL for this VOD source. This is combined with SourceLocation::HttpConfiguration::BaseUrl to form a valid URL.</p>",
         "HttpPackageConfiguration$SourceGroup": "<p>The name of the source group. This has to match one of the Channel::Outputs::SourceGroup.</p>",
         "ListAlertsResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",
-        "ListAlertsResponse$ResourceArn": "<p>The Amazon Resource Name (ARN) of the resource.</p>",
         "ListChannelsResponse$NextToken": "<p>Pagination token returned by the list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
         "ListPlaybackConfigurationsResponse$NextToken": "<p>Pagination token returned by the GET list request when results exceed the maximum allowed. Use the token to fetch the next page of results.</p>",
         "ListSourceLocationsResponse$NextToken": "<p>Pagination token from the list request. Use the token to fetch the next page of results.</p>",

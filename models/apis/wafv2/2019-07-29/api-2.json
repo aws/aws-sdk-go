@@ -2532,6 +2532,19 @@
         "RegexString":{"shape":"RegexPatternString"}
       }
     },
+    "RegexMatchStatement":{
+      "type":"structure",
+      "required":[
+        "RegexString",
+        "FieldToMatch",
+        "TextTransformations"
+      ],
+      "members":{
+        "RegexString":{"shape":"RegexPatternString"},
+        "FieldToMatch":{"shape":"FieldToMatch"},
+        "TextTransformations":{"shape":"TextTransformations"}
+      }
+    },
     "RegexPatternSet":{
       "type":"structure",
       "members":{
@@ -2800,7 +2813,8 @@
         "OrStatement":{"shape":"OrStatement"},
         "NotStatement":{"shape":"NotStatement"},
         "ManagedRuleGroupStatement":{"shape":"ManagedRuleGroupStatement"},
-        "LabelMatchStatement":{"shape":"LabelMatchStatement"}
+        "LabelMatchStatement":{"shape":"LabelMatchStatement"},
+        "RegexMatchStatement":{"shape":"RegexMatchStatement"}
       }
     },
     "Statements":{

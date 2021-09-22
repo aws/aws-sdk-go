@@ -152,6 +152,10 @@ type LexModelsV2API interface {
 	DeleteSlotTypeWithContext(aws.Context, *lexmodelsv2.DeleteSlotTypeInput, ...request.Option) (*lexmodelsv2.DeleteSlotTypeOutput, error)
 	DeleteSlotTypeRequest(*lexmodelsv2.DeleteSlotTypeInput) (*request.Request, *lexmodelsv2.DeleteSlotTypeOutput)
 
+	DeleteUtterances(*lexmodelsv2.DeleteUtterancesInput) (*lexmodelsv2.DeleteUtterancesOutput, error)
+	DeleteUtterancesWithContext(aws.Context, *lexmodelsv2.DeleteUtterancesInput, ...request.Option) (*lexmodelsv2.DeleteUtterancesOutput, error)
+	DeleteUtterancesRequest(*lexmodelsv2.DeleteUtterancesInput) (*request.Request, *lexmodelsv2.DeleteUtterancesOutput)
+
 	DescribeBot(*lexmodelsv2.DescribeBotInput) (*lexmodelsv2.DescribeBotOutput, error)
 	DescribeBotWithContext(aws.Context, *lexmodelsv2.DescribeBotInput, ...request.Option) (*lexmodelsv2.DescribeBotOutput, error)
 	DescribeBotRequest(*lexmodelsv2.DescribeBotInput) (*request.Request, *lexmodelsv2.DescribeBotOutput)
@@ -191,6 +195,13 @@ type LexModelsV2API interface {
 	DescribeSlotType(*lexmodelsv2.DescribeSlotTypeInput) (*lexmodelsv2.DescribeSlotTypeOutput, error)
 	DescribeSlotTypeWithContext(aws.Context, *lexmodelsv2.DescribeSlotTypeInput, ...request.Option) (*lexmodelsv2.DescribeSlotTypeOutput, error)
 	DescribeSlotTypeRequest(*lexmodelsv2.DescribeSlotTypeInput) (*request.Request, *lexmodelsv2.DescribeSlotTypeOutput)
+
+	ListAggregatedUtterances(*lexmodelsv2.ListAggregatedUtterancesInput) (*lexmodelsv2.ListAggregatedUtterancesOutput, error)
+	ListAggregatedUtterancesWithContext(aws.Context, *lexmodelsv2.ListAggregatedUtterancesInput, ...request.Option) (*lexmodelsv2.ListAggregatedUtterancesOutput, error)
+	ListAggregatedUtterancesRequest(*lexmodelsv2.ListAggregatedUtterancesInput) (*request.Request, *lexmodelsv2.ListAggregatedUtterancesOutput)
+
+	ListAggregatedUtterancesPages(*lexmodelsv2.ListAggregatedUtterancesInput, func(*lexmodelsv2.ListAggregatedUtterancesOutput, bool) bool) error
+	ListAggregatedUtterancesPagesWithContext(aws.Context, *lexmodelsv2.ListAggregatedUtterancesInput, func(*lexmodelsv2.ListAggregatedUtterancesOutput, bool) bool, ...request.Option) error
 
 	ListBotAliases(*lexmodelsv2.ListBotAliasesInput) (*lexmodelsv2.ListBotAliasesOutput, error)
 	ListBotAliasesWithContext(aws.Context, *lexmodelsv2.ListBotAliasesInput, ...request.Option) (*lexmodelsv2.ListBotAliasesOutput, error)
