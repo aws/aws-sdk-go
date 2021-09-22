@@ -74,8 +74,8 @@ func (c *LicenseManager) AcceptGrantRequest(input *AcceptGrantInput) (req *reque
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -180,8 +180,8 @@ func (c *LicenseManager) CheckInLicenseRequest(input *CheckInLicenseInput) (req 
 //   There was a conflict processing the request. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -291,8 +291,8 @@ func (c *LicenseManager) CheckoutBorrowLicenseRequest(input *CheckoutBorrowLicen
 //   This is not the correct Region for the resource. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -399,8 +399,8 @@ func (c *LicenseManager) CheckoutLicenseRequest(input *CheckoutLicenseInput) (re
 //   This is not the correct Region for the resource. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -478,7 +478,7 @@ func (c *LicenseManager) CreateGrantRequest(input *CreateGrantInput) (req *reque
 // CreateGrant API operation for AWS License Manager.
 //
 // Creates a grant for the specified license. A grant shares the use of license
-// entitlements with specific AWS accounts.
+// entitlements with specific Amazon Web Services accounts.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -501,8 +501,8 @@ func (c *LicenseManager) CreateGrantRequest(input *CreateGrantInput) (req *reque
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -599,8 +599,8 @@ func (c *LicenseManager) CreateGrantVersionRequest(input *CreateGrantVersionInpu
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -694,8 +694,8 @@ func (c *LicenseManager) CreateLicenseRequest(input *CreateLicenseInput) (req *r
 //   This is not the correct Region for the resource. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -799,8 +799,8 @@ func (c *LicenseManager) CreateLicenseConfigurationRequest(input *CreateLicenseC
 //   Your resource limits have been exceeded.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -825,6 +825,101 @@ func (c *LicenseManager) CreateLicenseConfiguration(input *CreateLicenseConfigur
 // for more information on using Contexts.
 func (c *LicenseManager) CreateLicenseConfigurationWithContext(ctx aws.Context, input *CreateLicenseConfigurationInput, opts ...request.Option) (*CreateLicenseConfigurationOutput, error) {
 	req, out := c.CreateLicenseConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateLicenseConversionTaskForResource = "CreateLicenseConversionTaskForResource"
+
+// CreateLicenseConversionTaskForResourceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateLicenseConversionTaskForResource operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateLicenseConversionTaskForResource for more information on using the CreateLicenseConversionTaskForResource
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateLicenseConversionTaskForResourceRequest method.
+//    req, resp := client.CreateLicenseConversionTaskForResourceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/CreateLicenseConversionTaskForResource
+func (c *LicenseManager) CreateLicenseConversionTaskForResourceRequest(input *CreateLicenseConversionTaskForResourceInput) (req *request.Request, output *CreateLicenseConversionTaskForResourceOutput) {
+	op := &request.Operation{
+		Name:       opCreateLicenseConversionTaskForResource,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateLicenseConversionTaskForResourceInput{}
+	}
+
+	output = &CreateLicenseConversionTaskForResourceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateLicenseConversionTaskForResource API operation for AWS License Manager.
+//
+// Creates a new license conversion task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation CreateLicenseConversionTaskForResource for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ValidationException
+//   The provided input is not valid. Try your request again.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/CreateLicenseConversionTaskForResource
+func (c *LicenseManager) CreateLicenseConversionTaskForResource(input *CreateLicenseConversionTaskForResourceInput) (*CreateLicenseConversionTaskForResourceOutput, error) {
+	req, out := c.CreateLicenseConversionTaskForResourceRequest(input)
+	return out, req.Send()
+}
+
+// CreateLicenseConversionTaskForResourceWithContext is the same as CreateLicenseConversionTaskForResource with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateLicenseConversionTaskForResource for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) CreateLicenseConversionTaskForResourceWithContext(ctx aws.Context, input *CreateLicenseConversionTaskForResourceInput, opts ...request.Option) (*CreateLicenseConversionTaskForResourceOutput, error) {
+	req, out := c.CreateLicenseConversionTaskForResourceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -874,7 +969,7 @@ func (c *LicenseManager) CreateLicenseManagerReportGeneratorRequest(input *Creat
 
 // CreateLicenseManagerReportGenerator API operation for AWS License Manager.
 //
-// Creates a new report generator.
+// Creates a report generator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -897,8 +992,8 @@ func (c *LicenseManager) CreateLicenseManagerReportGeneratorRequest(input *Creat
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -1004,8 +1099,8 @@ func (c *LicenseManager) CreateLicenseVersionRequest(input *CreateLicenseVersion
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -1094,8 +1189,8 @@ func (c *LicenseManager) CreateTokenRequest(input *CreateTokenInput) (req *reque
 //   The provided input is not valid. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1198,8 +1293,8 @@ func (c *LicenseManager) DeleteGrantRequest(input *DeleteGrantInput) (req *reque
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1305,8 +1400,8 @@ func (c *LicenseManager) DeleteLicenseRequest(input *DeleteLicenseInput) (req *r
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1400,8 +1495,8 @@ func (c *LicenseManager) DeleteLicenseConfigurationRequest(input *DeleteLicenseC
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1476,11 +1571,11 @@ func (c *LicenseManager) DeleteLicenseManagerReportGeneratorRequest(input *Delet
 
 // DeleteLicenseManagerReportGenerator API operation for AWS License Manager.
 //
-// Delete an existing report generator.
+// Deletes the specified report generator.
 //
 // This action deletes the report generator, which stops it from generating
-// future reports and cannot be reversed. However, the previous reports from
-// this generator will remain in your S3 bucket.
+// future reports. The action cannot be reversed. It has no effect on the previous
+// reports from this generator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1503,8 +1598,8 @@ func (c *LicenseManager) DeleteLicenseManagerReportGeneratorRequest(input *Delet
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -1596,8 +1691,8 @@ func (c *LicenseManager) DeleteTokenRequest(input *DeleteTokenInput) (req *reque
 //   The provided input is not valid. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1697,8 +1792,8 @@ func (c *LicenseManager) ExtendLicenseConsumptionRequest(input *ExtendLicenseCon
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1793,8 +1888,8 @@ func (c *LicenseManager) GetAccessTokenRequest(input *GetAccessTokenInput) (req 
 //   The provided input is not valid. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1894,8 +1989,8 @@ func (c *LicenseManager) GetGrantRequest(input *GetGrantInput) (req *request.Req
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -1986,8 +2081,8 @@ func (c *LicenseManager) GetLicenseRequest(input *GetLicenseInput) (req *request
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2081,8 +2176,8 @@ func (c *LicenseManager) GetLicenseConfigurationRequest(input *GetLicenseConfigu
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2107,6 +2202,98 @@ func (c *LicenseManager) GetLicenseConfiguration(input *GetLicenseConfigurationI
 // for more information on using Contexts.
 func (c *LicenseManager) GetLicenseConfigurationWithContext(ctx aws.Context, input *GetLicenseConfigurationInput, opts ...request.Option) (*GetLicenseConfigurationOutput, error) {
 	req, out := c.GetLicenseConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetLicenseConversionTask = "GetLicenseConversionTask"
+
+// GetLicenseConversionTaskRequest generates a "aws/request.Request" representing the
+// client's request for the GetLicenseConversionTask operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetLicenseConversionTask for more information on using the GetLicenseConversionTask
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetLicenseConversionTaskRequest method.
+//    req, resp := client.GetLicenseConversionTaskRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/GetLicenseConversionTask
+func (c *LicenseManager) GetLicenseConversionTaskRequest(input *GetLicenseConversionTaskInput) (req *request.Request, output *GetLicenseConversionTaskOutput) {
+	op := &request.Operation{
+		Name:       opGetLicenseConversionTask,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetLicenseConversionTaskInput{}
+	}
+
+	output = &GetLicenseConversionTaskOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetLicenseConversionTask API operation for AWS License Manager.
+//
+// Gets information about the specified license type conversion task.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation GetLicenseConversionTask for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/GetLicenseConversionTask
+func (c *LicenseManager) GetLicenseConversionTask(input *GetLicenseConversionTaskInput) (*GetLicenseConversionTaskOutput, error) {
+	req, out := c.GetLicenseConversionTaskRequest(input)
+	return out, req.Send()
+}
+
+// GetLicenseConversionTaskWithContext is the same as GetLicenseConversionTask with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetLicenseConversionTask for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) GetLicenseConversionTaskWithContext(ctx aws.Context, input *GetLicenseConversionTaskInput, opts ...request.Option) (*GetLicenseConversionTaskOutput, error) {
+	req, out := c.GetLicenseConversionTaskRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2156,7 +2343,7 @@ func (c *LicenseManager) GetLicenseManagerReportGeneratorRequest(input *GetLicen
 
 // GetLicenseManagerReportGenerator API operation for AWS License Manager.
 //
-// Gets information on the specified report generator.
+// Gets information about the specified report generator.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2179,8 +2366,8 @@ func (c *LicenseManager) GetLicenseManagerReportGeneratorRequest(input *GetLicen
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -2274,8 +2461,8 @@ func (c *LicenseManager) GetLicenseUsageRequest(input *GetLicenseUsageInput) (re
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2366,8 +2553,8 @@ func (c *LicenseManager) GetServiceSettingsRequest(input *GetServiceSettingsInpu
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2465,8 +2652,8 @@ func (c *LicenseManager) ListAssociationsForLicenseConfigurationRequest(input *L
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2563,8 +2750,8 @@ func (c *LicenseManager) ListDistributedGrantsRequest(input *ListDistributedGran
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2655,8 +2842,8 @@ func (c *LicenseManager) ListFailuresForLicenseConfigurationOperationsRequest(in
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2750,8 +2937,8 @@ func (c *LicenseManager) ListLicenseConfigurationsRequest(input *ListLicenseConf
 //   The request uses too many filters or too many filter values.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -2776,6 +2963,98 @@ func (c *LicenseManager) ListLicenseConfigurations(input *ListLicenseConfigurati
 // for more information on using Contexts.
 func (c *LicenseManager) ListLicenseConfigurationsWithContext(ctx aws.Context, input *ListLicenseConfigurationsInput, opts ...request.Option) (*ListLicenseConfigurationsOutput, error) {
 	req, out := c.ListLicenseConfigurationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListLicenseConversionTasks = "ListLicenseConversionTasks"
+
+// ListLicenseConversionTasksRequest generates a "aws/request.Request" representing the
+// client's request for the ListLicenseConversionTasks operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListLicenseConversionTasks for more information on using the ListLicenseConversionTasks
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListLicenseConversionTasksRequest method.
+//    req, resp := client.ListLicenseConversionTasksRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/ListLicenseConversionTasks
+func (c *LicenseManager) ListLicenseConversionTasksRequest(input *ListLicenseConversionTasksInput) (req *request.Request, output *ListLicenseConversionTasksOutput) {
+	op := &request.Operation{
+		Name:       opListLicenseConversionTasks,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &ListLicenseConversionTasksInput{}
+	}
+
+	output = &ListLicenseConversionTasksOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListLicenseConversionTasks API operation for AWS License Manager.
+//
+// Lists the license type conversion tasks for your account.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS License Manager's
+// API operation ListLicenseConversionTasks for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterValueException
+//   One or more parameter values are not valid.
+//
+//   * ServerInternalException
+//   The server experienced an internal error. Try again.
+//
+//   * AuthorizationException
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
+//
+//   * AccessDeniedException
+//   Access to resource denied.
+//
+//   * RateLimitExceededException
+//   Too many requests have been submitted. Try again after a brief wait.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/license-manager-2018-08-01/ListLicenseConversionTasks
+func (c *LicenseManager) ListLicenseConversionTasks(input *ListLicenseConversionTasksInput) (*ListLicenseConversionTasksOutput, error) {
+	req, out := c.ListLicenseConversionTasksRequest(input)
+	return out, req.Send()
+}
+
+// ListLicenseConversionTasksWithContext is the same as ListLicenseConversionTasks with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListLicenseConversionTasks for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LicenseManager) ListLicenseConversionTasksWithContext(ctx aws.Context, input *ListLicenseConversionTasksInput, opts ...request.Option) (*ListLicenseConversionTasksOutput, error) {
+	req, out := c.ListLicenseConversionTasksRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2848,8 +3127,8 @@ func (c *LicenseManager) ListLicenseManagerReportGeneratorsRequest(input *ListLi
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * RateLimitExceededException
 //   Too many requests have been submitted. Try again after a brief wait.
@@ -2943,8 +3222,8 @@ func (c *LicenseManager) ListLicenseSpecificationsForResourceRequest(input *List
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3032,8 +3311,8 @@ func (c *LicenseManager) ListLicenseVersionsRequest(input *ListLicenseVersionsIn
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3127,8 +3406,8 @@ func (c *LicenseManager) ListLicensesRequest(input *ListLicensesInput) (req *req
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3228,8 +3507,8 @@ func (c *LicenseManager) ListReceivedGrantsRequest(input *ListReceivedGrantsInpu
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3326,8 +3605,8 @@ func (c *LicenseManager) ListReceivedLicensesRequest(input *ListReceivedLicenses
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3424,8 +3703,8 @@ func (c *LicenseManager) ListResourceInventoryRequest(input *ListResourceInvento
 //   A dependency required to run the API is missing.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3516,8 +3795,8 @@ func (c *LicenseManager) ListTagsForResourceRequest(input *ListTagsForResourceIn
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3605,8 +3884,8 @@ func (c *LicenseManager) ListTokensRequest(input *ListTokensInput) (req *request
 //   The provided input is not valid. Try your request again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3705,8 +3984,8 @@ func (c *LicenseManager) ListUsageForLicenseConfigurationRequest(input *ListUsag
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3797,8 +4076,8 @@ func (c *LicenseManager) RejectGrantRequest(input *RejectGrantInput) (req *reque
 //   One or more parameter values are not valid.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3896,8 +4175,8 @@ func (c *LicenseManager) TagResourceRequest(input *TagResourceInput) (req *reque
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -3989,8 +4268,8 @@ func (c *LicenseManager) UntagResourceRequest(input *UntagResourceInput) (req *r
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4082,8 +4361,8 @@ func (c *LicenseManager) UpdateLicenseConfigurationRequest(input *UpdateLicenseC
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4163,8 +4442,8 @@ func (c *LicenseManager) UpdateLicenseManagerReportGeneratorRequest(input *Updat
 //
 // Updates a report generator.
 //
-// After you make changes to a report generator, it will start generating new
-// reports within 60 minutes of being updated.
+// After you make changes to a report generator, it starts generating new reports
+// within 60 minutes of being updated.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4187,8 +4466,8 @@ func (c *LicenseManager) UpdateLicenseManagerReportGeneratorRequest(input *Updat
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4266,13 +4545,13 @@ func (c *LicenseManager) UpdateLicenseSpecificationsForResourceRequest(input *Up
 
 // UpdateLicenseSpecificationsForResource API operation for AWS License Manager.
 //
-// Adds or removes the specified license configurations for the specified AWS
-// resource.
+// Adds or removes the specified license configurations for the specified Amazon
+// Web Services resource.
 //
 // You can update the license specifications of AMIs, instances, and hosts.
-// You cannot update the license specifications for launch templates and AWS
-// CloudFormation templates, as they send license configurations to the operation
-// that creates the resource.
+// You cannot update the license specifications for launch templates and CloudFormation
+// templates, as they send license configurations to the operation that creates
+// the resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4298,8 +4577,8 @@ func (c *LicenseManager) UpdateLicenseSpecificationsForResourceRequest(input *Up
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4391,8 +4670,8 @@ func (c *LicenseManager) UpdateServiceSettingsRequest(input *UpdateServiceSettin
 //   The server experienced an internal error. Try again.
 //
 //   * AuthorizationException
-//   The AWS user account does not have permission to perform the action. Check
-//   the IAM policy associated with this account.
+//   The Amazon Web Services user account does not have permission to perform
+//   the action. Check the IAM policy associated with this account.
 //
 //   * AccessDeniedException
 //   Access to resource denied.
@@ -4581,8 +4860,8 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// The AWS user account does not have permission to perform the action. Check
-// the IAM policy associated with this account.
+// The Amazon Web Services user account does not have permission to perform
+// the action. Check the IAM policy associated with this account.
 type AuthorizationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5619,6 +5898,7 @@ type CreateGrantVersionInput struct {
 	// Grant status.
 	Status *string `type:"string" enum:"GrantStatus"`
 
+	// Grant status reason.
 	StatusReason *string `type:"string"`
 }
 
@@ -5933,6 +6213,118 @@ func (s *CreateLicenseConfigurationOutput) SetLicenseConfigurationArn(v string) 
 	return s
 }
 
+type CreateLicenseConversionTaskForResourceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Information that identifies the license type you are converting to. For the
+	// structure of the destination license, see Convert a license type using the
+	// AWS CLI (https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli)
+	// in the License Manager User Guide.
+	//
+	// DestinationLicenseContext is a required field
+	DestinationLicenseContext *LicenseConversionContext `type:"structure" required:"true"`
+
+	// Amazon Resource Name (ARN) of the resource you are converting the license
+	// type for.
+	//
+	// ResourceArn is a required field
+	ResourceArn *string `type:"string" required:"true"`
+
+	// Information that identifies the license type you are converting from. For
+	// the structure of the source license, see Convert a license type using the
+	// AWS CLI (https://docs.aws.amazon.com/license-manager/latest/userguide/conversion-procedures.html#conversion-cli)
+	// in the License Manager User Guide.
+	//
+	// SourceLicenseContext is a required field
+	SourceLicenseContext *LicenseConversionContext `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLicenseConversionTaskForResourceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLicenseConversionTaskForResourceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateLicenseConversionTaskForResourceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateLicenseConversionTaskForResourceInput"}
+	if s.DestinationLicenseContext == nil {
+		invalidParams.Add(request.NewErrParamRequired("DestinationLicenseContext"))
+	}
+	if s.ResourceArn == nil {
+		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
+	}
+	if s.SourceLicenseContext == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceLicenseContext"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDestinationLicenseContext sets the DestinationLicenseContext field's value.
+func (s *CreateLicenseConversionTaskForResourceInput) SetDestinationLicenseContext(v *LicenseConversionContext) *CreateLicenseConversionTaskForResourceInput {
+	s.DestinationLicenseContext = v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *CreateLicenseConversionTaskForResourceInput) SetResourceArn(v string) *CreateLicenseConversionTaskForResourceInput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSourceLicenseContext sets the SourceLicenseContext field's value.
+func (s *CreateLicenseConversionTaskForResourceInput) SetSourceLicenseContext(v *LicenseConversionContext) *CreateLicenseConversionTaskForResourceInput {
+	s.SourceLicenseContext = v
+	return s
+}
+
+type CreateLicenseConversionTaskForResourceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the created license type conversion task.
+	LicenseConversionTaskId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLicenseConversionTaskForResourceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateLicenseConversionTaskForResourceOutput) GoString() string {
+	return s.String()
+}
+
+// SetLicenseConversionTaskId sets the LicenseConversionTaskId field's value.
+func (s *CreateLicenseConversionTaskForResourceOutput) SetLicenseConversionTaskId(v string) *CreateLicenseConversionTaskForResourceOutput {
+	s.LicenseConversionTaskId = &v
+	return s
+}
+
 type CreateLicenseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6175,10 +6567,10 @@ type CreateLicenseManagerReportGeneratorInput struct {
 
 	// Type of reports to generate. The following report types an be generated:
 	//
-	//    * License configuration report - Reports on the number and details of
-	//    consumed licenses for a license configuration.
+	//    * License configuration report - Reports the number and details of consumed
+	//    licenses for a license configuration.
 	//
-	//    * Resource report - Reports on the tracked licenses and resource consumption
+	//    * Resource report - Reports the tracked licenses and resource consumption
 	//    for a license configuration.
 	//
 	// Type is a required field
@@ -6284,7 +6676,7 @@ func (s *CreateLicenseManagerReportGeneratorInput) SetType(v []*string) *CreateL
 type CreateLicenseManagerReportGeneratorOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Number (ARN) of the new report generator.
+	// The Amazon Resource Name (ARN) of the new report generator.
 	LicenseManagerReportGeneratorArn *string `type:"string"`
 }
 
@@ -6832,6 +7224,7 @@ type DeleteGrantInput struct {
 	// GrantArn is a required field
 	GrantArn *string `type:"string" required:"true"`
 
+	// The Status reason for the delete request.
 	StatusReason *string `type:"string"`
 
 	// Current version of the grant.
@@ -7072,7 +7465,7 @@ func (s *DeleteLicenseInput) SetSourceVersion(v string) *DeleteLicenseInput {
 type DeleteLicenseManagerReportGeneratorInput struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Number (ARN) of the report generator that will be deleted.
+	// Amazon Resource Name (ARN) of the report generator to be deleted.
 	//
 	// LicenseManagerReportGeneratorArn is a required field
 	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
@@ -7140,7 +7533,7 @@ func (s DeleteLicenseManagerReportGeneratorOutput) GoString() string {
 type DeleteLicenseOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Date on which the license is deleted.
+	// Date when the license is deleted.
 	DeletionDate *string `type:"string"`
 
 	// License status.
@@ -8059,7 +8452,7 @@ type GetLicenseConfigurationOutput struct {
 	// Sets the number of available licenses as a hard limit.
 	LicenseCountHardLimit *bool `type:"boolean"`
 
-	// Dimension on which the licenses are counted.
+	// Dimension for which the licenses are counted.
 	LicenseCountingType *string `type:"string" enum:"LicenseCountingType"`
 
 	// License rules.
@@ -8204,6 +8597,156 @@ func (s *GetLicenseConfigurationOutput) SetTags(v []*Tag) *GetLicenseConfigurati
 	return s
 }
 
+type GetLicenseConversionTaskInput struct {
+	_ struct{} `type:"structure"`
+
+	// ID of the license type conversion task to retrieve information on.
+	//
+	// LicenseConversionTaskId is a required field
+	LicenseConversionTaskId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseConversionTaskInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseConversionTaskInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetLicenseConversionTaskInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetLicenseConversionTaskInput"}
+	if s.LicenseConversionTaskId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LicenseConversionTaskId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetLicenseConversionTaskId sets the LicenseConversionTaskId field's value.
+func (s *GetLicenseConversionTaskInput) SetLicenseConversionTaskId(v string) *GetLicenseConversionTaskInput {
+	s.LicenseConversionTaskId = &v
+	return s
+}
+
+type GetLicenseConversionTaskOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the license type converted to.
+	DestinationLicenseContext *LicenseConversionContext `type:"structure"`
+
+	// Time at which the license type conversion task was completed.
+	EndTime *time.Time `type:"timestamp"`
+
+	// ID of the license type conversion task.
+	LicenseConversionTaskId *string `type:"string"`
+
+	// Amount of time to complete the license type conversion.
+	LicenseConversionTime *time.Time `type:"timestamp"`
+
+	// Amazon Resource Names (ARN) of the resources the license conversion task
+	// is associated with.
+	ResourceArn *string `type:"string"`
+
+	// Information about the license type converted from.
+	SourceLicenseContext *LicenseConversionContext `type:"structure"`
+
+	// Time at which the license type conversion task was started .
+	StartTime *time.Time `type:"timestamp"`
+
+	// Status of the license type conversion task.
+	Status *string `type:"string" enum:"LicenseConversionTaskStatus"`
+
+	// The status message for the conversion task.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseConversionTaskOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetLicenseConversionTaskOutput) GoString() string {
+	return s.String()
+}
+
+// SetDestinationLicenseContext sets the DestinationLicenseContext field's value.
+func (s *GetLicenseConversionTaskOutput) SetDestinationLicenseContext(v *LicenseConversionContext) *GetLicenseConversionTaskOutput {
+	s.DestinationLicenseContext = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *GetLicenseConversionTaskOutput) SetEndTime(v time.Time) *GetLicenseConversionTaskOutput {
+	s.EndTime = &v
+	return s
+}
+
+// SetLicenseConversionTaskId sets the LicenseConversionTaskId field's value.
+func (s *GetLicenseConversionTaskOutput) SetLicenseConversionTaskId(v string) *GetLicenseConversionTaskOutput {
+	s.LicenseConversionTaskId = &v
+	return s
+}
+
+// SetLicenseConversionTime sets the LicenseConversionTime field's value.
+func (s *GetLicenseConversionTaskOutput) SetLicenseConversionTime(v time.Time) *GetLicenseConversionTaskOutput {
+	s.LicenseConversionTime = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *GetLicenseConversionTaskOutput) SetResourceArn(v string) *GetLicenseConversionTaskOutput {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSourceLicenseContext sets the SourceLicenseContext field's value.
+func (s *GetLicenseConversionTaskOutput) SetSourceLicenseContext(v *LicenseConversionContext) *GetLicenseConversionTaskOutput {
+	s.SourceLicenseContext = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *GetLicenseConversionTaskOutput) SetStartTime(v time.Time) *GetLicenseConversionTaskOutput {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *GetLicenseConversionTaskOutput) SetStatus(v string) *GetLicenseConversionTaskOutput {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *GetLicenseConversionTaskOutput) SetStatusMessage(v string) *GetLicenseConversionTaskOutput {
+	s.StatusMessage = &v
+	return s
+}
+
 type GetLicenseInput struct {
 	_ struct{} `type:"structure"`
 
@@ -8262,8 +8805,7 @@ func (s *GetLicenseInput) SetVersion(v string) *GetLicenseInput {
 type GetLicenseManagerReportGeneratorInput struct {
 	_ struct{} `type:"structure"`
 
-	// mazon Resource Number (ARN) of the report generator to retrieve information
-	// on.
+	// Amazon Resource Name (ARN) of the report generator.
 	//
 	// LicenseManagerReportGeneratorArn is a required field
 	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
@@ -8309,7 +8851,7 @@ func (s *GetLicenseManagerReportGeneratorInput) SetLicenseManagerReportGenerator
 type GetLicenseManagerReportGeneratorOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A report generator that creates periodic reports on your license configurations.
+	// A report generator that creates periodic reports about your license configurations.
 	ReportGenerator *ReportGenerator `type:"structure"`
 }
 
@@ -8473,12 +9015,12 @@ type GetServiceSettingsOutput struct {
 	// Indicates whether cross-account discovery is enabled.
 	EnableCrossAccountsDiscovery *bool `type:"boolean"`
 
-	// Amazon Resource Name (ARN) of the AWS resource share. The License Manager
-	// management account provides member accounts with access to this share.
+	// Amazon Resource Name (ARN) of the resource share. The License Manager management
+	// account provides member accounts with access to this share.
 	LicenseManagerResourceShareArn *string `type:"string"`
 
-	// Indicates whether AWS Organizations is integrated with License Manager for
-	// cross-account discovery.
+	// Indicates whether Organizations is integrated with License Manager for cross-account
+	// discovery.
 	OrganizationConfiguration *OrganizationConfiguration `type:"structure"`
 
 	// Regional S3 bucket path for storing reports, license trail event data, discovery
@@ -9037,8 +9579,8 @@ type Issuer struct {
 	// Name is a required field
 	Name *string `type:"string" required:"true"`
 
-	// Asymmetric CMK from AWS Key Management Service. The CMK must have a key usage
-	// of sign and verify, and support the RSASSA-PSS SHA-256 signing algorithm.
+	// Asymmetric KMS key from Key Management Service. The KMS key must have a key
+	// usage of sign and verify, and support the RSASSA-PSS SHA-256 signing algorithm.
 	SignKey *string `type:"string"`
 }
 
@@ -9095,8 +9637,8 @@ type IssuerDetails struct {
 	// Issuer name.
 	Name *string `type:"string"`
 
-	// Asymmetric CMK from AWS Key Management Service. The CMK must have a key usage
-	// of sign and verify, and support the RSASSA-PSS SHA-256 signing algorithm.
+	// Asymmetric KMS key from Key Management Service. The KMS key must have a key
+	// usage of sign and verify, and support the RSASSA-PSS SHA-256 signing algorithm.
 	SignKey *string `type:"string"`
 }
 
@@ -9136,7 +9678,7 @@ func (s *IssuerDetails) SetSignKey(v string) *IssuerDetails {
 	return s
 }
 
-// Software license that is managed in AWS License Manager.
+// Software license that is managed in License Manager.
 type License struct {
 	_ struct{} `type:"structure"`
 
@@ -9470,7 +10012,7 @@ type LicenseConfigurationAssociation struct {
 	// Amazon Resource Name (ARN) of the resource.
 	ResourceArn *string `type:"string"`
 
-	// ID of the AWS account that owns the resource consuming licenses.
+	// ID of the Amazon Web Services account that owns the resource consuming licenses.
 	ResourceOwnerId *string `type:"string"`
 
 	// Type of server resource.
@@ -9602,6 +10144,146 @@ func (s *LicenseConfigurationUsage) SetResourceType(v string) *LicenseConfigurat
 	return s
 }
 
+// Information about a license type conversion task.
+type LicenseConversionContext struct {
+	_ struct{} `type:"structure"`
+
+	// The Usage operation value that corresponds to the license type you are converting
+	// your resource from. For more information about which platforms correspond
+	// to which usage operation values see Sample data: usage operation by platform
+	// (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html#billing-info)
+	UsageOperation *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConversionContext) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConversionContext) GoString() string {
+	return s.String()
+}
+
+// SetUsageOperation sets the UsageOperation field's value.
+func (s *LicenseConversionContext) SetUsageOperation(v string) *LicenseConversionContext {
+	s.UsageOperation = &v
+	return s
+}
+
+// Information about a license type conversion task.
+type LicenseConversionTask struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the license type this conversion task converted to.
+	DestinationLicenseContext *LicenseConversionContext `type:"structure"`
+
+	// The time the conversion task was completed.
+	EndTime *time.Time `type:"timestamp"`
+
+	// The ID of the license type conversion task.
+	LicenseConversionTaskId *string `type:"string"`
+
+	// The time the usage operation value of the resource was changed.
+	LicenseConversionTime *time.Time `type:"timestamp"`
+
+	// The Amazon Resource Name (ARN) of the resource associated with the license
+	// type conversion task.
+	ResourceArn *string `type:"string"`
+
+	// Information about the license type this conversion task converted from.
+	SourceLicenseContext *LicenseConversionContext `type:"structure"`
+
+	// The time the conversion task was started at.
+	StartTime *time.Time `type:"timestamp"`
+
+	// The status of the conversion task.
+	Status *string `type:"string" enum:"LicenseConversionTaskStatus"`
+
+	// The status message for the conversion task.
+	StatusMessage *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConversionTask) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s LicenseConversionTask) GoString() string {
+	return s.String()
+}
+
+// SetDestinationLicenseContext sets the DestinationLicenseContext field's value.
+func (s *LicenseConversionTask) SetDestinationLicenseContext(v *LicenseConversionContext) *LicenseConversionTask {
+	s.DestinationLicenseContext = v
+	return s
+}
+
+// SetEndTime sets the EndTime field's value.
+func (s *LicenseConversionTask) SetEndTime(v time.Time) *LicenseConversionTask {
+	s.EndTime = &v
+	return s
+}
+
+// SetLicenseConversionTaskId sets the LicenseConversionTaskId field's value.
+func (s *LicenseConversionTask) SetLicenseConversionTaskId(v string) *LicenseConversionTask {
+	s.LicenseConversionTaskId = &v
+	return s
+}
+
+// SetLicenseConversionTime sets the LicenseConversionTime field's value.
+func (s *LicenseConversionTask) SetLicenseConversionTime(v time.Time) *LicenseConversionTask {
+	s.LicenseConversionTime = &v
+	return s
+}
+
+// SetResourceArn sets the ResourceArn field's value.
+func (s *LicenseConversionTask) SetResourceArn(v string) *LicenseConversionTask {
+	s.ResourceArn = &v
+	return s
+}
+
+// SetSourceLicenseContext sets the SourceLicenseContext field's value.
+func (s *LicenseConversionTask) SetSourceLicenseContext(v *LicenseConversionContext) *LicenseConversionTask {
+	s.SourceLicenseContext = v
+	return s
+}
+
+// SetStartTime sets the StartTime field's value.
+func (s *LicenseConversionTask) SetStartTime(v time.Time) *LicenseConversionTask {
+	s.StartTime = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *LicenseConversionTask) SetStatus(v string) *LicenseConversionTask {
+	s.Status = &v
+	return s
+}
+
+// SetStatusMessage sets the StatusMessage field's value.
+func (s *LicenseConversionTask) SetStatusMessage(v string) *LicenseConversionTask {
+	s.StatusMessage = &v
+	return s
+}
+
 // Describes the failure of a license operation.
 type LicenseOperationFailure struct {
 	_ struct{} `type:"structure"`
@@ -9624,7 +10306,7 @@ type LicenseOperationFailure struct {
 	// Amazon Resource Name (ARN) of the resource.
 	ResourceArn *string `type:"string"`
 
-	// ID of the AWS account that owns the resource.
+	// ID of the Amazon Web Services account that owns the resource.
 	ResourceOwnerId *string `type:"string"`
 
 	// Resource type.
@@ -10184,9 +10866,9 @@ type ListLicenseConfigurationsInput struct {
 	// Filters to scope the results. The following filters and logical operators
 	// are supported:
 	//
-	//    * licenseCountingType - The dimension on which licenses are counted. Possible
-	//    values are vCPU | Instance | Core | Socket. Logical operators are EQUALS
-	//    | NOT_EQUALS.
+	//    * licenseCountingType - The dimension for which licenses are counted.
+	//    Possible values are vCPU | Instance | Core | Socket. Logical operators
+	//    are EQUALS | NOT_EQUALS.
 	//
 	//    * enforceLicenseCount - A Boolean value that indicates whether hard license
 	//    enforcement is used. Logical operators are EQUALS | NOT_EQUALS.
@@ -10287,6 +10969,95 @@ func (s *ListLicenseConfigurationsOutput) SetNextToken(v string) *ListLicenseCon
 	return s
 }
 
+type ListLicenseConversionTasksInput struct {
+	_ struct{} `type:"structure"`
+
+	// Filters to scope the results. Valid filters are ResourceArns and Status.
+	Filters []*Filter `type:"list"`
+
+	// Maximum number of results to return in a single call.
+	MaxResults *int64 `type:"integer"`
+
+	// Token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLicenseConversionTasksInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLicenseConversionTasksInput) GoString() string {
+	return s.String()
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListLicenseConversionTasksInput) SetFilters(v []*Filter) *ListLicenseConversionTasksInput {
+	s.Filters = v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListLicenseConversionTasksInput) SetMaxResults(v int64) *ListLicenseConversionTasksInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLicenseConversionTasksInput) SetNextToken(v string) *ListLicenseConversionTasksInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListLicenseConversionTasksOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Information about the license configuration tasks for your account.
+	LicenseConversionTasks []*LicenseConversionTask `type:"list"`
+
+	// Token for the next set of results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLicenseConversionTasksOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListLicenseConversionTasksOutput) GoString() string {
+	return s.String()
+}
+
+// SetLicenseConversionTasks sets the LicenseConversionTasks field's value.
+func (s *ListLicenseConversionTasksOutput) SetLicenseConversionTasks(v []*LicenseConversionTask) *ListLicenseConversionTasksOutput {
+	s.LicenseConversionTasks = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListLicenseConversionTasksOutput) SetNextToken(v string) *ListLicenseConversionTasksOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListLicenseManagerReportGeneratorsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10357,7 +11128,7 @@ type ListLicenseManagerReportGeneratorsOutput struct {
 	// Token for the next set of results.
 	NextToken *string `type:"string"`
 
-	// A report generator that creates periodic reports on your license configurations.
+	// A report generator that creates periodic reports about your license configurations.
 	ReportGenerators []*ReportGenerator `type:"list"`
 }
 
@@ -10969,8 +11740,8 @@ type ListResourceInventoryInput struct {
 	// Filters to scope the results. The following filters and logical operators
 	// are supported:
 	//
-	//    * account_id - The ID of the AWS account that owns the resource. Logical
-	//    operators are EQUALS | NOT_EQUALS.
+	//    * account_id - The ID of the Amazon Web Services account that owns the
+	//    resource. Logical operators are EQUALS | NOT_EQUALS.
 	//
 	//    * application_name - The name of the application. Logical operators are
 	//    EQUALS | BEGINS_WITH.
@@ -11553,11 +12324,11 @@ func (s *NoEntitlementsAllowedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Configuration information for AWS Organizations.
+// Configuration information for Organizations.
 type OrganizationConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Enables AWS Organization integration.
+	// Enables Organizations integration.
 	//
 	// EnableIntegration is a required field
 	EnableIntegration *bool `type:"boolean" required:"true"`
@@ -11627,14 +12398,14 @@ type ProductInformation struct {
 	//
 	//    * Platform Type - The platform type. Logical operator is EQUALS.
 	//
-	//    * Tag:key - The key of a tag attached to an AWS resource you wish to exclude
-	//    from automated discovery. Logical operator is NOT_EQUALS. The key for
-	//    your tag must be appended to Tag: following the example: Tag:name-of-your-key.
+	//    * Tag:key - The key of a tag attached to an Amazon Web Services resource
+	//    you wish to exclude from automated discovery. Logical operator is NOT_EQUALS.
+	//    The key for your tag must be appended to Tag: following the example: Tag:name-of-your-key.
 	//    ProductInformationFilterValue is optional if you are not using values
 	//    for the key.
 	//
-	//    * AccountId - The 12-digit ID of an AWS account you wish to exclude from
-	//    automated discovery. Logical operator is NOT_EQUALS.
+	//    * AccountId - The 12-digit ID of an Amazon Web Services account you wish
+	//    to exclude from automated discovery. Logical operator is NOT_EQUALS.
 	//
 	//    * License Included - The type of license included. Logical operators are
 	//    EQUALS and NOT_EQUALS. Possible values are: sql-server-enterprise | sql-server-standard
@@ -11906,6 +12677,7 @@ type ReceivedMetadata struct {
 	// Received status.
 	ReceivedStatus *string `type:"string" enum:"ReceivedStatus"`
 
+	// Received status reason.
 	ReceivedStatusReason *string `type:"string"`
 }
 
@@ -12110,7 +12882,7 @@ func (s *RejectGrantOutput) SetVersion(v string) *RejectGrantOutput {
 type ReportContext struct {
 	_ struct{} `type:"structure"`
 
-	// Amazon Resource Number (ARN) of the license configuration that this generator
+	// Amazon Resource Name (ARN) of the license configuration that this generator
 	// reports on.
 	//
 	// LicenseConfigurationArns is a required field
@@ -12154,15 +12926,15 @@ func (s *ReportContext) SetLicenseConfigurationArns(v []*string) *ReportContext 
 	return s
 }
 
-// Details on how frequently reports are generated.
+// Details about how frequently reports are generated.
 type ReportFrequency struct {
 	_ struct{} `type:"structure"`
 
 	// Time period between each report. The period can be daily, weekly, or monthly.
 	Period *string `locationName:"period" type:"string" enum:"ReportFrequencyType"`
 
-	// Number of times within the frequency period that a report will be generated.
-	// Currently only 1 is supported.
+	// Number of times within the frequency period that a report is generated. The
+	// only supported value is 1.
 	Value *int64 `locationName:"value" type:"integer"`
 }
 
@@ -12215,16 +12987,16 @@ type ReportGenerator struct {
 	// Status of the last report generation attempt.
 	LastRunStatus *string `type:"string"`
 
-	// Amazon Resource Number (ARN) of the report generator.
+	// Amazon Resource Name (ARN) of the report generator.
 	LicenseManagerReportGeneratorArn *string `type:"string"`
 
-	// License configuration type this generator reports on.
+	// License configuration type for this generator.
 	ReportContext *ReportContext `type:"structure"`
 
-	// The AWS account ID used to create the report generator.
+	// The Amazon Web Services account ID used to create the report generator.
 	ReportCreatorAccount *string `type:"string"`
 
-	// Details on how frequently reports are generated.
+	// Details about how frequently reports are generated.
 	ReportFrequency *ReportFrequency `type:"structure"`
 
 	// Name of the report generator.
@@ -13164,19 +13936,17 @@ type UpdateLicenseManagerReportGeneratorInput struct {
 	// Description of the report generator.
 	Description *string `type:"string"`
 
-	// Amazon Resource Number (ARN) of the report generator to update.
+	// Amazon Resource Name (ARN) of the report generator to update.
 	//
 	// LicenseManagerReportGeneratorArn is a required field
 	LicenseManagerReportGeneratorArn *string `type:"string" required:"true"`
 
-	// ?
+	// The report context.
 	//
 	// ReportContext is a required field
 	ReportContext *ReportContext `type:"structure" required:"true"`
 
-	// Frequency by which reports are generated. The following options are avaiable:
-	//
-	// ??? What are the APi value options?
+	// Frequency by which reports are generated.
 	//
 	// ReportFrequency is a required field
 	ReportFrequency *ReportFrequency `type:"structure" required:"true"`
@@ -13186,12 +13956,12 @@ type UpdateLicenseManagerReportGeneratorInput struct {
 	// ReportGeneratorName is a required field
 	ReportGeneratorName *string `min:"1" type:"string" required:"true"`
 
-	// Type of reports to generate. The following report types an be generated:
+	// Type of reports to generate. The following report types are supported:
 	//
-	//    * License configuration report - Reports on the number and details of
-	//    consumed licenses for a license configuration.
+	//    * License configuration report - Reports the number and details of consumed
+	//    licenses for a license configuration.
 	//
-	//    * Resource report - Reports on the tracked licenses and resource consumption
+	//    * Resource report - Reports the tracked licenses and resource consumption
 	//    for a license configuration.
 	//
 	// Type is a required field
@@ -13328,7 +14098,7 @@ type UpdateLicenseSpecificationsForResourceInput struct {
 	// ARNs of the license configurations to remove.
 	RemoveLicenseSpecifications []*LicenseSpecification `type:"list"`
 
-	// Amazon Resource Name (ARN) of the AWS resource.
+	// Amazon Resource Name (ARN) of the Amazon Web Services resource.
 	//
 	// ResourceArn is a required field
 	ResourceArn *string `type:"string" required:"true"`
@@ -13431,7 +14201,7 @@ type UpdateServiceSettingsInput struct {
 	// Activates cross-account discovery.
 	EnableCrossAccountsDiscovery *bool `type:"boolean"`
 
-	// Enables integration with AWS Organizations for cross-account discovery.
+	// Enables integration with Organizations for cross-account discovery.
 	OrganizationConfiguration *OrganizationConfiguration `type:"structure"`
 
 	// Amazon Resource Name (ARN) of the Amazon S3 bucket where the License Manager
@@ -13963,6 +14733,26 @@ func LicenseConfigurationStatus_Values() []string {
 	return []string{
 		LicenseConfigurationStatusAvailable,
 		LicenseConfigurationStatusDisabled,
+	}
+}
+
+const (
+	// LicenseConversionTaskStatusInProgress is a LicenseConversionTaskStatus enum value
+	LicenseConversionTaskStatusInProgress = "IN_PROGRESS"
+
+	// LicenseConversionTaskStatusSucceeded is a LicenseConversionTaskStatus enum value
+	LicenseConversionTaskStatusSucceeded = "SUCCEEDED"
+
+	// LicenseConversionTaskStatusFailed is a LicenseConversionTaskStatus enum value
+	LicenseConversionTaskStatusFailed = "FAILED"
+)
+
+// LicenseConversionTaskStatus_Values returns all elements of the LicenseConversionTaskStatus enum
+func LicenseConversionTaskStatus_Values() []string {
+	return []string{
+		LicenseConversionTaskStatusInProgress,
+		LicenseConversionTaskStatusSucceeded,
+		LicenseConversionTaskStatusFailed,
 	}
 }
 

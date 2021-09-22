@@ -3519,6 +3519,11 @@ type EgressEndpoint struct {
 	// The ID of the PackagingConfiguration being applied to the Asset.
 	PackagingConfigurationId *string `locationName:"packagingConfigurationId" type:"string"`
 
+	// The current processing status of the asset used for the packaging configuration.
+	// The status can be either QUEUED, PROCESSING, PLAYABLE, or FAILED. Status
+	// information won't be available for most assets ingested before 2021-09-30.
+	Status *string `locationName:"status" type:"string"`
+
 	// The URL of the parent manifest for the repackaged Asset.
 	Url *string `locationName:"url" type:"string"`
 }
@@ -3544,6 +3549,12 @@ func (s EgressEndpoint) GoString() string {
 // SetPackagingConfigurationId sets the PackagingConfigurationId field's value.
 func (s *EgressEndpoint) SetPackagingConfigurationId(v string) *EgressEndpoint {
 	s.PackagingConfigurationId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *EgressEndpoint) SetStatus(v string) *EgressEndpoint {
+	s.Status = &v
 	return s
 }
 

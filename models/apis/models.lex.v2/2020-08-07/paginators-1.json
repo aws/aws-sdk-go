@@ -1,5 +1,10 @@
 {
   "pagination": {
+    "ListAggregatedUtterances": {
+      "input_token": "nextToken",
+      "output_token": "nextToken",
+      "limit_key": "maxResults"
+    },
     "ListBotAliases": {
       "input_token": "nextToken",
       "output_token": "nextToken",

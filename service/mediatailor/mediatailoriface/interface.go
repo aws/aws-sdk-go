@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // AWS MediaTailor.
 //    func myFunc(svc mediatailoriface.MediaTailorAPI) bool {
-//        // Make svc.CreateChannel request
+//        // Make svc.ConfigureLogsForPlaybackConfiguration request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockMediaTailorClient struct {
 //        mediatailoriface.MediaTailorAPI
 //    }
-//    func (m *mockMediaTailorClient) CreateChannel(input *mediatailor.CreateChannelInput) (*mediatailor.CreateChannelOutput, error) {
+//    func (m *mockMediaTailorClient) ConfigureLogsForPlaybackConfiguration(input *mediatailor.ConfigureLogsForPlaybackConfigurationInput) (*mediatailor.ConfigureLogsForPlaybackConfigurationOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,6 +60,10 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type MediaTailorAPI interface {
+	ConfigureLogsForPlaybackConfiguration(*mediatailor.ConfigureLogsForPlaybackConfigurationInput) (*mediatailor.ConfigureLogsForPlaybackConfigurationOutput, error)
+	ConfigureLogsForPlaybackConfigurationWithContext(aws.Context, *mediatailor.ConfigureLogsForPlaybackConfigurationInput, ...request.Option) (*mediatailor.ConfigureLogsForPlaybackConfigurationOutput, error)
+	ConfigureLogsForPlaybackConfigurationRequest(*mediatailor.ConfigureLogsForPlaybackConfigurationInput) (*request.Request, *mediatailor.ConfigureLogsForPlaybackConfigurationOutput)
+
 	CreateChannel(*mediatailor.CreateChannelInput) (*mediatailor.CreateChannelOutput, error)
 	CreateChannelWithContext(aws.Context, *mediatailor.CreateChannelInput, ...request.Option) (*mediatailor.CreateChannelOutput, error)
 	CreateChannelRequest(*mediatailor.CreateChannelInput) (*request.Request, *mediatailor.CreateChannelOutput)

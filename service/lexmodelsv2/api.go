@@ -70,16 +70,26 @@ func (c *LexModelsV2) BuildBotLocaleRequest(input *BuildBotLocaleInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/BuildBotLocale
 func (c *LexModelsV2) BuildBotLocale(input *BuildBotLocaleInput) (*BuildBotLocaleOutput, error) {
@@ -158,16 +168,26 @@ func (c *LexModelsV2) CreateBotRequest(input *CreateBotInput) (req *request.Requ
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateBot
 func (c *LexModelsV2) CreateBot(input *CreateBotInput) (*CreateBotOutput, error) {
@@ -251,16 +271,26 @@ func (c *LexModelsV2) CreateBotAliasRequest(input *CreateBotAliasInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateBotAlias
 func (c *LexModelsV2) CreateBotAlias(input *CreateBotAliasInput) (*CreateBotAliasOutput, error) {
@@ -342,16 +372,26 @@ func (c *LexModelsV2) CreateBotLocaleRequest(input *CreateBotLocaleInput) (req *
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateBotLocale
 func (c *LexModelsV2) CreateBotLocale(input *CreateBotLocaleInput) (*CreateBotLocaleOutput, error) {
@@ -435,16 +475,26 @@ func (c *LexModelsV2) CreateBotVersionRequest(input *CreateBotVersionInput) (req
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateBotVersion
 func (c *LexModelsV2) CreateBotVersion(input *CreateBotVersionInput) (*CreateBotVersionOutput, error) {
@@ -532,16 +582,26 @@ func (c *LexModelsV2) CreateExportRequest(input *CreateExportInput) (req *reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateExport
 func (c *LexModelsV2) CreateExport(input *CreateExportInput) (*CreateExportOutput, error) {
@@ -648,16 +708,26 @@ func (c *LexModelsV2) CreateIntentRequest(input *CreateIntentInput) (req *reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateIntent
 func (c *LexModelsV2) CreateIntent(input *CreateIntentInput) (*CreateIntentOutput, error) {
@@ -736,16 +806,25 @@ func (c *LexModelsV2) CreateResourcePolicyRequest(input *CreateResourcePolicyInp
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateResourcePolicy
 func (c *LexModelsV2) CreateResourcePolicy(input *CreateResourcePolicyInput) (*CreateResourcePolicyOutput, error) {
@@ -828,18 +907,30 @@ func (c *LexModelsV2) CreateResourcePolicyStatementRequest(input *CreateResource
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateResourcePolicyStatement
 func (c *LexModelsV2) CreateResourcePolicyStatement(input *CreateResourcePolicyStatementInput) (*CreateResourcePolicyStatementOutput, error) {
@@ -921,16 +1012,26 @@ func (c *LexModelsV2) CreateSlotRequest(input *CreateSlotInput) (req *request.Re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateSlot
 func (c *LexModelsV2) CreateSlot(input *CreateSlotInput) (*CreateSlotOutput, error) {
@@ -1012,16 +1113,26 @@ func (c *LexModelsV2) CreateSlotTypeRequest(input *CreateSlotTypeInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateSlotType
 func (c *LexModelsV2) CreateSlotType(input *CreateSlotTypeInput) (*CreateSlotTypeOutput, error) {
@@ -1101,14 +1212,23 @@ func (c *LexModelsV2) CreateUploadUrlRequest(input *CreateUploadUrlInput) (req *
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/CreateUploadUrl
 func (c *LexModelsV2) CreateUploadUrl(input *CreateUploadUrlInput) (*CreateUploadUrlOutput, error) {
@@ -1196,16 +1316,26 @@ func (c *LexModelsV2) DeleteBotRequest(input *DeleteBotInput) (req *request.Requ
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteBot
 func (c *LexModelsV2) DeleteBot(input *DeleteBotInput) (*DeleteBotOutput, error) {
@@ -1284,16 +1414,26 @@ func (c *LexModelsV2) DeleteBotAliasRequest(input *DeleteBotAliasInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteBotAlias
 func (c *LexModelsV2) DeleteBotAlias(input *DeleteBotAliasInput) (*DeleteBotAliasOutput, error) {
@@ -1375,16 +1515,26 @@ func (c *LexModelsV2) DeleteBotLocaleRequest(input *DeleteBotLocaleInput) (req *
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteBotLocale
 func (c *LexModelsV2) DeleteBotLocale(input *DeleteBotLocaleInput) (*DeleteBotLocaleOutput, error) {
@@ -1464,16 +1614,26 @@ func (c *LexModelsV2) DeleteBotVersionRequest(input *DeleteBotVersionInput) (req
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteBotVersion
 func (c *LexModelsV2) DeleteBotVersion(input *DeleteBotVersionInput) (*DeleteBotVersionOutput, error) {
@@ -1552,14 +1712,21 @@ func (c *LexModelsV2) DeleteExportRequest(input *DeleteExportInput) (req *reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteExport
 func (c *LexModelsV2) DeleteExport(input *DeleteExportInput) (*DeleteExportOutput, error) {
@@ -1638,14 +1805,21 @@ func (c *LexModelsV2) DeleteImportRequest(input *DeleteImportInput) (req *reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteImport
 func (c *LexModelsV2) DeleteImport(input *DeleteImportInput) (*DeleteImportOutput, error) {
@@ -1727,16 +1901,26 @@ func (c *LexModelsV2) DeleteIntentRequest(input *DeleteIntentInput) (req *reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteIntent
 func (c *LexModelsV2) DeleteIntent(input *DeleteIntentInput) (*DeleteIntentOutput, error) {
@@ -1816,12 +2000,18 @@ func (c *LexModelsV2) DeleteResourcePolicyRequest(input *DeleteResourcePolicyInp
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteResourcePolicy
 func (c *LexModelsV2) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
@@ -1903,12 +2093,18 @@ func (c *LexModelsV2) DeleteResourcePolicyStatementRequest(input *DeleteResource
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteResourcePolicyStatement
 func (c *LexModelsV2) DeleteResourcePolicyStatement(input *DeleteResourcePolicyStatementInput) (*DeleteResourcePolicyStatementOutput, error) {
@@ -1988,16 +2184,26 @@ func (c *LexModelsV2) DeleteSlotRequest(input *DeleteSlotInput) (req *request.Re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteSlot
 func (c *LexModelsV2) DeleteSlot(input *DeleteSlotInput) (*DeleteSlotOutput, error) {
@@ -2081,16 +2287,26 @@ func (c *LexModelsV2) DeleteSlotTypeRequest(input *DeleteSlotTypeInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteSlotType
 func (c *LexModelsV2) DeleteSlotType(input *DeleteSlotTypeInput) (*DeleteSlotTypeOutput, error) {
@@ -2109,6 +2325,103 @@ func (c *LexModelsV2) DeleteSlotType(input *DeleteSlotTypeInput) (*DeleteSlotTyp
 // for more information on using Contexts.
 func (c *LexModelsV2) DeleteSlotTypeWithContext(ctx aws.Context, input *DeleteSlotTypeInput, opts ...request.Option) (*DeleteSlotTypeOutput, error) {
 	req, out := c.DeleteSlotTypeRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteUtterances = "DeleteUtterances"
+
+// DeleteUtterancesRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteUtterances operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteUtterances for more information on using the DeleteUtterances
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteUtterancesRequest method.
+//    req, resp := client.DeleteUtterancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteUtterances
+func (c *LexModelsV2) DeleteUtterancesRequest(input *DeleteUtterancesInput) (req *request.Request, output *DeleteUtterancesOutput) {
+	op := &request.Operation{
+		Name:       opDeleteUtterances,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/bots/{botId}/utterances/",
+	}
+
+	if input == nil {
+		input = &DeleteUtterancesInput{}
+	}
+
+	output = &DeleteUtterancesOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteUtterances API operation for Amazon Lex Model Building V2.
+//
+// Deletes stored utterances.
+//
+// Amazon Lex stores the utterances that users send to your bot. Utterances
+// are stored for 15 days for use with the operation, and then stored indefinitely
+// for use in improving the ability of your bot to respond to user input..
+//
+// Use the DeleteUtterances operation to manually delete utterances for a specific
+// session. When you use the DeleteUtterances operation, utterances stored for
+// improving your bot's ability to respond to user input are deleted immediately.
+// Utterances stored for use with the ListAggregatedUtterances operation are
+// deleted after 15 days.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation DeleteUtterances for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
+//
+//   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
+//
+//   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DeleteUtterances
+func (c *LexModelsV2) DeleteUtterances(input *DeleteUtterancesInput) (*DeleteUtterancesOutput, error) {
+	req, out := c.DeleteUtterancesRequest(input)
+	return out, req.Send()
+}
+
+// DeleteUtterancesWithContext is the same as DeleteUtterances with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteUtterances for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) DeleteUtterancesWithContext(ctx aws.Context, input *DeleteUtterancesInput, opts ...request.Option) (*DeleteUtterancesOutput, error) {
+	req, out := c.DeleteUtterancesRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2169,14 +2482,21 @@ func (c *LexModelsV2) DescribeBotRequest(input *DescribeBotInput) (req *request.
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeBot
 func (c *LexModelsV2) DescribeBot(input *DescribeBotInput) (*DescribeBotOutput, error) {
@@ -2255,14 +2575,21 @@ func (c *LexModelsV2) DescribeBotAliasRequest(input *DescribeBotAliasInput) (req
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeBotAlias
 func (c *LexModelsV2) DescribeBotAlias(input *DescribeBotAliasInput) (*DescribeBotAliasOutput, error) {
@@ -2341,14 +2668,21 @@ func (c *LexModelsV2) DescribeBotLocaleRequest(input *DescribeBotLocaleInput) (r
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeBotLocale
 func (c *LexModelsV2) DescribeBotLocale(input *DescribeBotLocaleInput) (*DescribeBotLocaleOutput, error) {
@@ -2427,14 +2761,21 @@ func (c *LexModelsV2) DescribeBotVersionRequest(input *DescribeBotVersionInput) 
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeBotVersion
 func (c *LexModelsV2) DescribeBotVersion(input *DescribeBotVersionInput) (*DescribeBotVersionOutput, error) {
@@ -2513,12 +2854,18 @@ func (c *LexModelsV2) DescribeExportRequest(input *DescribeExportInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeExport
 func (c *LexModelsV2) DescribeExport(input *DescribeExportInput) (*DescribeExportOutput, error) {
@@ -2597,12 +2944,18 @@ func (c *LexModelsV2) DescribeImportRequest(input *DescribeImportInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeImport
 func (c *LexModelsV2) DescribeImport(input *DescribeImportInput) (*DescribeImportOutput, error) {
@@ -2681,14 +3034,21 @@ func (c *LexModelsV2) DescribeIntentRequest(input *DescribeIntentInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeIntent
 func (c *LexModelsV2) DescribeIntent(input *DescribeIntentInput) (*DescribeIntentOutput, error) {
@@ -2767,10 +3127,14 @@ func (c *LexModelsV2) DescribeResourcePolicyRequest(input *DescribeResourcePolic
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeResourcePolicy
 func (c *LexModelsV2) DescribeResourcePolicy(input *DescribeResourcePolicyInput) (*DescribeResourcePolicyOutput, error) {
@@ -2849,14 +3213,21 @@ func (c *LexModelsV2) DescribeSlotRequest(input *DescribeSlotInput) (req *reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeSlot
 func (c *LexModelsV2) DescribeSlot(input *DescribeSlotInput) (*DescribeSlotOutput, error) {
@@ -2935,14 +3306,21 @@ func (c *LexModelsV2) DescribeSlotTypeRequest(input *DescribeSlotTypeInput) (req
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/DescribeSlotType
 func (c *LexModelsV2) DescribeSlotType(input *DescribeSlotTypeInput) (*DescribeSlotTypeOutput, error) {
@@ -2964,6 +3342,174 @@ func (c *LexModelsV2) DescribeSlotTypeWithContext(ctx aws.Context, input *Descri
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListAggregatedUtterances = "ListAggregatedUtterances"
+
+// ListAggregatedUtterancesRequest generates a "aws/request.Request" representing the
+// client's request for the ListAggregatedUtterances operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListAggregatedUtterances for more information on using the ListAggregatedUtterances
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListAggregatedUtterancesRequest method.
+//    req, resp := client.ListAggregatedUtterancesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListAggregatedUtterances
+func (c *LexModelsV2) ListAggregatedUtterancesRequest(input *ListAggregatedUtterancesInput) (req *request.Request, output *ListAggregatedUtterancesOutput) {
+	op := &request.Operation{
+		Name:       opListAggregatedUtterances,
+		HTTPMethod: "POST",
+		HTTPPath:   "/bots/{botId}/aggregatedutterances/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListAggregatedUtterancesInput{}
+	}
+
+	output = &ListAggregatedUtterancesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListAggregatedUtterances API operation for Amazon Lex Model Building V2.
+//
+// Provides a list of utterances that users have sent to the bot.
+//
+// Utterances are aggregated by the text of the utterance. For example, all
+// instances where customers used the phrase "I want to order pizza" are aggregated
+// into the same line in the response.
+//
+// You can see both detected utterances and missed utterances. A detected utterance
+// is where the bot properly recognized the utterance and activated the associated
+// intent. A missed utterance was not recognized by the bot and didn't activate
+// an intent.
+//
+// Utterances can be aggregated for a bot alias or for a bot version, but not
+// both at the same time.
+//
+// Utterances statistics are not generated under the following conditions:
+//
+//    * The childDirected field was set to true when the bot was created.
+//
+//    * You are using slot obfuscation with one or more slots.
+//
+//    * You opted out of participating in improving Amazon Lex.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Lex Model Building V2's
+// API operation ListAggregatedUtterances for usage and error information.
+//
+// Returned Error Types:
+//   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
+//
+//   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
+//
+//   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
+//
+//   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListAggregatedUtterances
+func (c *LexModelsV2) ListAggregatedUtterances(input *ListAggregatedUtterancesInput) (*ListAggregatedUtterancesOutput, error) {
+	req, out := c.ListAggregatedUtterancesRequest(input)
+	return out, req.Send()
+}
+
+// ListAggregatedUtterancesWithContext is the same as ListAggregatedUtterances with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListAggregatedUtterances for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListAggregatedUtterancesWithContext(ctx aws.Context, input *ListAggregatedUtterancesInput, opts ...request.Option) (*ListAggregatedUtterancesOutput, error) {
+	req, out := c.ListAggregatedUtterancesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListAggregatedUtterancesPages iterates over the pages of a ListAggregatedUtterances operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListAggregatedUtterances method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListAggregatedUtterances operation.
+//    pageNum := 0
+//    err := client.ListAggregatedUtterancesPages(params,
+//        func(page *lexmodelsv2.ListAggregatedUtterancesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *LexModelsV2) ListAggregatedUtterancesPages(input *ListAggregatedUtterancesInput, fn func(*ListAggregatedUtterancesOutput, bool) bool) error {
+	return c.ListAggregatedUtterancesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListAggregatedUtterancesPagesWithContext same as ListAggregatedUtterancesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *LexModelsV2) ListAggregatedUtterancesPagesWithContext(ctx aws.Context, input *ListAggregatedUtterancesInput, fn func(*ListAggregatedUtterancesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListAggregatedUtterancesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListAggregatedUtterancesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListAggregatedUtterancesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListBotAliases = "ListBotAliases"
@@ -3027,12 +3573,17 @@ func (c *LexModelsV2) ListBotAliasesRequest(input *ListBotAliasesInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListBotAliases
 func (c *LexModelsV2) ListBotAliases(input *ListBotAliasesInput) (*ListBotAliasesOutput, error) {
@@ -3169,12 +3720,17 @@ func (c *LexModelsV2) ListBotLocalesRequest(input *ListBotLocalesInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListBotLocales
 func (c *LexModelsV2) ListBotLocales(input *ListBotLocalesInput) (*ListBotLocalesOutput, error) {
@@ -3319,12 +3875,17 @@ func (c *LexModelsV2) ListBotVersionsRequest(input *ListBotVersionsInput) (req *
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListBotVersions
 func (c *LexModelsV2) ListBotVersions(input *ListBotVersionsInput) (*ListBotVersionsOutput, error) {
@@ -3461,12 +4022,17 @@ func (c *LexModelsV2) ListBotsRequest(input *ListBotsInput) (req *request.Reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListBots
 func (c *LexModelsV2) ListBots(input *ListBotsInput) (*ListBotsOutput, error) {
@@ -3608,12 +4174,17 @@ func (c *LexModelsV2) ListBuiltInIntentsRequest(input *ListBuiltInIntentsInput) 
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListBuiltInIntents
 func (c *LexModelsV2) ListBuiltInIntents(input *ListBuiltInIntentsInput) (*ListBuiltInIntentsOutput, error) {
@@ -3750,12 +4321,17 @@ func (c *LexModelsV2) ListBuiltInSlotTypesRequest(input *ListBuiltInSlotTypesInp
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListBuiltInSlotTypes
 func (c *LexModelsV2) ListBuiltInSlotTypes(input *ListBuiltInSlotTypesInput) (*ListBuiltInSlotTypesOutput, error) {
@@ -3893,10 +4469,14 @@ func (c *LexModelsV2) ListExportsRequest(input *ListExportsInput) (req *request.
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListExports
 func (c *LexModelsV2) ListExports(input *ListExportsInput) (*ListExportsOutput, error) {
@@ -4034,10 +4614,14 @@ func (c *LexModelsV2) ListImportsRequest(input *ListImportsInput) (req *request.
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListImports
 func (c *LexModelsV2) ListImports(input *ListImportsInput) (*ListImportsOutput, error) {
@@ -4174,12 +4758,17 @@ func (c *LexModelsV2) ListIntentsRequest(input *ListIntentsInput) (req *request.
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListIntents
 func (c *LexModelsV2) ListIntents(input *ListIntentsInput) (*ListIntentsOutput, error) {
@@ -4316,12 +4905,17 @@ func (c *LexModelsV2) ListSlotTypesRequest(input *ListSlotTypesInput) (req *requ
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListSlotTypes
 func (c *LexModelsV2) ListSlotTypes(input *ListSlotTypesInput) (*ListSlotTypesOutput, error) {
@@ -4458,12 +5052,17 @@ func (c *LexModelsV2) ListSlotsRequest(input *ListSlotsInput) (req *request.Requ
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListSlots
 func (c *LexModelsV2) ListSlots(input *ListSlotsInput) (*ListSlotsOutput, error) {
@@ -4595,12 +5194,18 @@ func (c *LexModelsV2) ListTagsForResourceRequest(input *ListTagsForResourceInput
 //
 // Returned Error Types:
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/ListTagsForResource
 func (c *LexModelsV2) ListTagsForResource(input *ListTagsForResourceInput) (*ListTagsForResourceOutput, error) {
@@ -4680,16 +5285,26 @@ func (c *LexModelsV2) StartImportRequest(input *StartImportInput) (req *request.
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/StartImport
 func (c *LexModelsV2) StartImport(input *StartImportInput) (*StartImportOutput, error) {
@@ -4770,12 +5385,18 @@ func (c *LexModelsV2) TagResourceRequest(input *TagResourceInput) (req *request.
 //
 // Returned Error Types:
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/TagResource
 func (c *LexModelsV2) TagResource(input *TagResourceInput) (*TagResourceOutput, error) {
@@ -4855,12 +5476,18 @@ func (c *LexModelsV2) UntagResourceRequest(input *UntagResourceInput) (req *requ
 //
 // Returned Error Types:
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UntagResource
 func (c *LexModelsV2) UntagResource(input *UntagResourceInput) (*UntagResourceOutput, error) {
@@ -4939,16 +5566,26 @@ func (c *LexModelsV2) UpdateBotRequest(input *UpdateBotInput) (req *request.Requ
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateBot
 func (c *LexModelsV2) UpdateBot(input *UpdateBotInput) (*UpdateBotOutput, error) {
@@ -5027,16 +5664,26 @@ func (c *LexModelsV2) UpdateBotAliasRequest(input *UpdateBotAliasInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateBotAlias
 func (c *LexModelsV2) UpdateBotAlias(input *UpdateBotAliasInput) (*UpdateBotAliasOutput, error) {
@@ -5115,16 +5762,26 @@ func (c *LexModelsV2) UpdateBotLocaleRequest(input *UpdateBotLocaleInput) (req *
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateBotLocale
 func (c *LexModelsV2) UpdateBotLocale(input *UpdateBotLocaleInput) (*UpdateBotLocaleOutput, error) {
@@ -5207,16 +5864,26 @@ func (c *LexModelsV2) UpdateExportRequest(input *UpdateExportInput) (req *reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateExport
 func (c *LexModelsV2) UpdateExport(input *UpdateExportInput) (*UpdateExportOutput, error) {
@@ -5295,16 +5962,26 @@ func (c *LexModelsV2) UpdateIntentRequest(input *UpdateIntentInput) (req *reques
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateIntent
 func (c *LexModelsV2) UpdateIntent(input *UpdateIntentInput) (*UpdateIntentOutput, error) {
@@ -5384,16 +6061,25 @@ func (c *LexModelsV2) UpdateResourcePolicyRequest(input *UpdateResourcePolicyInp
 //
 // Returned Error Types:
 //   * ResourceNotFoundException
+//   You asked to describe a resource that doesn't exist. Check the resource that
+//   you are requesting and try again.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateResourcePolicy
 func (c *LexModelsV2) UpdateResourcePolicy(input *UpdateResourcePolicyInput) (*UpdateResourcePolicyOutput, error) {
@@ -5472,16 +6158,26 @@ func (c *LexModelsV2) UpdateSlotRequest(input *UpdateSlotInput) (req *request.Re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateSlot
 func (c *LexModelsV2) UpdateSlot(input *UpdateSlotInput) (*UpdateSlotOutput, error) {
@@ -5560,16 +6256,26 @@ func (c *LexModelsV2) UpdateSlotTypeRequest(input *UpdateSlotTypeInput) (req *re
 //
 // Returned Error Types:
 //   * ThrottlingException
+//   Your request rate is too high. Reduce the frequency of requests.
 //
 //   * ServiceQuotaExceededException
+//   You have reached a quota for your bot.
 //
 //   * ValidationException
+//   One of the input parameters in your request isn't valid. Check the parameters
+//   and try your request again.
 //
 //   * PreconditionFailedException
+//   Your request couldn't be completed because one or more request fields aren't
+//   valid. Check the fields in your request and try again.
 //
 //   * ConflictException
+//   The action that you tried to perform couldn't be completed because the resource
+//   is in a conflicting state. For example, deleting a bot that is in the CREATING
+//   state. Try your request again.
 //
 //   * InternalServerException
+//   The service encountered an unexpected condition. Try your request again.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/models.lex.v2-2020-08-07/UpdateSlotType
 func (c *LexModelsV2) UpdateSlotType(input *UpdateSlotTypeInput) (*UpdateSlotTypeOutput, error) {
@@ -5591,6 +6297,238 @@ func (c *LexModelsV2) UpdateSlotTypeWithContext(ctx aws.Context, input *UpdateSl
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+// Filters responses returned by the ListAggregatedUtterances operation.
+type AggregatedUtterancesFilter struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the field to filter the utterance list.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" type:"string" required:"true" enum:"AggregatedUtterancesFilterName"`
+
+	// The operator to use for the filter. Specify EQ when the ListAggregatedUtterances
+	// operation should return only utterances that equal the specified value. Specify
+	// CO when the ListAggregatedUtterances operation should return utterances that
+	// contain the specified value.
+	//
+	// Operator is a required field
+	Operator *string `locationName:"operator" type:"string" required:"true" enum:"AggregatedUtterancesFilterOperator"`
+
+	// The value to use for filtering the list of bots.
+	//
+	// Values is a required field
+	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedUtterancesFilter) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedUtterancesFilter) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AggregatedUtterancesFilter) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AggregatedUtterancesFilter"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Operator == nil {
+		invalidParams.Add(request.NewErrParamRequired("Operator"))
+	}
+	if s.Values == nil {
+		invalidParams.Add(request.NewErrParamRequired("Values"))
+	}
+	if s.Values != nil && len(s.Values) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Values", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *AggregatedUtterancesFilter) SetName(v string) *AggregatedUtterancesFilter {
+	s.Name = &v
+	return s
+}
+
+// SetOperator sets the Operator field's value.
+func (s *AggregatedUtterancesFilter) SetOperator(v string) *AggregatedUtterancesFilter {
+	s.Operator = &v
+	return s
+}
+
+// SetValues sets the Values field's value.
+func (s *AggregatedUtterancesFilter) SetValues(v []*string) *AggregatedUtterancesFilter {
+	s.Values = v
+	return s
+}
+
+// Specifies attributes for sorting a list of utterances.
+type AggregatedUtterancesSortBy struct {
+	_ struct{} `type:"structure"`
+
+	// The utterance attribute to sort by.
+	//
+	// Attribute is a required field
+	Attribute *string `locationName:"attribute" type:"string" required:"true" enum:"AggregatedUtterancesSortAttribute"`
+
+	// Specifies whether to sort the aggregated utterances in ascending or descending
+	// order.
+	//
+	// Order is a required field
+	Order *string `locationName:"order" type:"string" required:"true" enum:"SortOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedUtterancesSortBy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedUtterancesSortBy) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AggregatedUtterancesSortBy) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AggregatedUtterancesSortBy"}
+	if s.Attribute == nil {
+		invalidParams.Add(request.NewErrParamRequired("Attribute"))
+	}
+	if s.Order == nil {
+		invalidParams.Add(request.NewErrParamRequired("Order"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttribute sets the Attribute field's value.
+func (s *AggregatedUtterancesSortBy) SetAttribute(v string) *AggregatedUtterancesSortBy {
+	s.Attribute = &v
+	return s
+}
+
+// SetOrder sets the Order field's value.
+func (s *AggregatedUtterancesSortBy) SetOrder(v string) *AggregatedUtterancesSortBy {
+	s.Order = &v
+	return s
+}
+
+// Provides summary information for aggregated utterances. The ListAggregatedUtterances
+// operations combines all instances of the same utterance into a single aggregated
+// summary.
+type AggregatedUtterancesSummary struct {
+	_ struct{} `type:"structure"`
+
+	// Aggregated utterance data may contain utterances from versions of your bot
+	// that have since been deleted. When the aggregated contains this kind of data,
+	// this field is set to true.
+	ContainsDataFromDeletedResources *bool `locationName:"containsDataFromDeletedResources" type:"boolean"`
+
+	// The number of times that the utterance was detected by Amazon Lex during
+	// the time period. When an utterance is detected, it activates an intent or
+	// a slot.
+	HitCount *int64 `locationName:"hitCount" type:"integer"`
+
+	// The number of times that the utterance was missed by Amazon Lex An utterance
+	// is missed when it doesn't activate an intent or slot.
+	MissedCount *int64 `locationName:"missedCount" type:"integer"`
+
+	// The text of the utterance. If the utterance was used with the RecognizeUtterance
+	// operation, the text is the transcription of the audio utterance.
+	Utterance *string `locationName:"utterance" type:"string"`
+
+	// The date and time that the utterance was first recorded in the time window
+	// for aggregation. An utterance may have been sent to Amazon Lex before that
+	// time, but only utterances within the time window are counted.
+	UtteranceFirstRecordedInAggregationDuration *time.Time `locationName:"utteranceFirstRecordedInAggregationDuration" type:"timestamp"`
+
+	// The last date and time that an utterance was recorded in the time window
+	// for aggregation. An utterance may be sent to Amazon Lex after that time,
+	// but only utterances within the time window are counted.
+	UtteranceLastRecordedInAggregationDuration *time.Time `locationName:"utteranceLastRecordedInAggregationDuration" type:"timestamp"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedUtterancesSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AggregatedUtterancesSummary) GoString() string {
+	return s.String()
+}
+
+// SetContainsDataFromDeletedResources sets the ContainsDataFromDeletedResources field's value.
+func (s *AggregatedUtterancesSummary) SetContainsDataFromDeletedResources(v bool) *AggregatedUtterancesSummary {
+	s.ContainsDataFromDeletedResources = &v
+	return s
+}
+
+// SetHitCount sets the HitCount field's value.
+func (s *AggregatedUtterancesSummary) SetHitCount(v int64) *AggregatedUtterancesSummary {
+	s.HitCount = &v
+	return s
+}
+
+// SetMissedCount sets the MissedCount field's value.
+func (s *AggregatedUtterancesSummary) SetMissedCount(v int64) *AggregatedUtterancesSummary {
+	s.MissedCount = &v
+	return s
+}
+
+// SetUtterance sets the Utterance field's value.
+func (s *AggregatedUtterancesSummary) SetUtterance(v string) *AggregatedUtterancesSummary {
+	s.Utterance = &v
+	return s
+}
+
+// SetUtteranceFirstRecordedInAggregationDuration sets the UtteranceFirstRecordedInAggregationDuration field's value.
+func (s *AggregatedUtterancesSummary) SetUtteranceFirstRecordedInAggregationDuration(v time.Time) *AggregatedUtterancesSummary {
+	s.UtteranceFirstRecordedInAggregationDuration = &v
+	return s
+}
+
+// SetUtteranceLastRecordedInAggregationDuration sets the UtteranceLastRecordedInAggregationDuration field's value.
+func (s *AggregatedUtterancesSummary) SetUtteranceLastRecordedInAggregationDuration(v time.Time) *AggregatedUtterancesSummary {
+	s.UtteranceLastRecordedInAggregationDuration = &v
+	return s
 }
 
 // The location of audio log files collected when conversation logging is enabled
@@ -7546,6 +8484,9 @@ func (s *CodeHookSpecification) SetLambdaCodeHook(v *LambdaCodeHook) *CodeHookSp
 	return s
 }
 
+// The action that you tried to perform couldn't be completed because the resource
+// is in a conflicting state. For example, deleting a bot that is in the CREATING
+// state. Try your request again.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -11706,6 +12647,101 @@ func (s DeleteSlotTypeOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteUtterancesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier of the bot that contains the utterances.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The identifier of the language and locale where the utterances were collected.
+	// The string must match one of the supported locales. For more information,
+	// see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
+	LocaleId *string `location:"querystring" locationName:"localeId" type:"string"`
+
+	// The unique identifier of the session with the user. The ID is returned in
+	// the response from the and operations.
+	SessionId *string `location:"querystring" locationName:"sessionId" min:"2" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUtterancesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUtterancesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteUtterancesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteUtterancesInput"}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.SessionId != nil && len(*s.SessionId) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("SessionId", 2))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBotId sets the BotId field's value.
+func (s *DeleteUtterancesInput) SetBotId(v string) *DeleteUtterancesInput {
+	s.BotId = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *DeleteUtterancesInput) SetLocaleId(v string) *DeleteUtterancesInput {
+	s.LocaleId = &v
+	return s
+}
+
+// SetSessionId sets the SessionId field's value.
+func (s *DeleteUtterancesInput) SetSessionId(v string) *DeleteUtterancesInput {
+	s.SessionId = &v
+	return s
+}
+
+type DeleteUtterancesOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUtterancesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteUtterancesOutput) GoString() string {
+	return s.String()
+}
+
 type DescribeBotAliasInput struct {
 	_ struct{} `type:"structure"`
 
@@ -14887,6 +15923,7 @@ func (s *IntentSummary) SetParentIntentSignature(v string) *IntentSummary {
 	return s
 }
 
+// The service encountered an unexpected condition. Try your request again.
 type InternalServerException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -15094,6 +16131,312 @@ func (s *LambdaCodeHook) SetCodeHookInterfaceVersion(v string) *LambdaCodeHook {
 // SetLambdaARN sets the LambdaARN field's value.
 func (s *LambdaCodeHook) SetLambdaARN(v string) *LambdaCodeHook {
 	s.LambdaARN = &v
+	return s
+}
+
+type ListAggregatedUtterancesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The time window for aggregating the utterance information. You can specify
+	// a time between one hour and two weeks.
+	//
+	// AggregationDuration is a required field
+	AggregationDuration *UtteranceAggregationDuration `locationName:"aggregationDuration" type:"structure" required:"true"`
+
+	// The identifier of the bot alias associated with this request. If you specify
+	// the bot alias, you can't specify the bot version.
+	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string"`
+
+	// The unique identifier of the bot associated with this request.
+	//
+	// BotId is a required field
+	BotId *string `location:"uri" locationName:"botId" min:"10" type:"string" required:"true"`
+
+	// The identifier of the bot version associated with this request. If you specify
+	// the bot version, you can't specify the bot alias.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// Provides the specification of a filter used to limit the utterances in the
+	// response to only those that match the filter specification. You can only
+	// specify one filter and one string to filter on.
+	Filters []*AggregatedUtterancesFilter `locationName:"filters" min:"1" type:"list"`
+
+	// The identifier of the language and locale where the utterances were collected.
+	// For more information, see Supported languages (https://docs.aws.amazon.com/lexv2/latest/dg/how-languages.html).
+	//
+	// LocaleId is a required field
+	LocaleId *string `locationName:"localeId" type:"string" required:"true"`
+
+	// The maximum number of utterances to return in each page of results. If there
+	// are fewer results than the maximum page size, only the actual number of results
+	// are returned. If you don't specify the maxResults parameter, 1,000 results
+	// are returned.
+	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
+
+	// If the response from the ListAggregatedUtterances operation contains more
+	// results that specified in the maxResults parameter, a token is returned in
+	// the response. Use that token in the nextToken parameter to return the next
+	// page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// Specifies sorting parameters for the list of utterances. You can sort by
+	// the hit count, the missed count, or the number of distinct sessions the utterance
+	// appeared in.
+	SortBy *AggregatedUtterancesSortBy `locationName:"sortBy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAggregatedUtterancesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAggregatedUtterancesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListAggregatedUtterancesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListAggregatedUtterancesInput"}
+	if s.AggregationDuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("AggregationDuration"))
+	}
+	if s.BotAliasId != nil && len(*s.BotAliasId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotAliasId", 10))
+	}
+	if s.BotId == nil {
+		invalidParams.Add(request.NewErrParamRequired("BotId"))
+	}
+	if s.BotId != nil && len(*s.BotId) < 10 {
+		invalidParams.Add(request.NewErrParamMinLen("BotId", 10))
+	}
+	if s.BotVersion != nil && len(*s.BotVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BotVersion", 1))
+	}
+	if s.Filters != nil && len(s.Filters) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Filters", 1))
+	}
+	if s.LocaleId == nil {
+		invalidParams.Add(request.NewErrParamRequired("LocaleId"))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.AggregationDuration != nil {
+		if err := s.AggregationDuration.Validate(); err != nil {
+			invalidParams.AddNested("AggregationDuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Filters != nil {
+		for i, v := range s.Filters {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Filters", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+	if s.SortBy != nil {
+		if err := s.SortBy.Validate(); err != nil {
+			invalidParams.AddNested("SortBy", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAggregationDuration sets the AggregationDuration field's value.
+func (s *ListAggregatedUtterancesInput) SetAggregationDuration(v *UtteranceAggregationDuration) *ListAggregatedUtterancesInput {
+	s.AggregationDuration = v
+	return s
+}
+
+// SetBotAliasId sets the BotAliasId field's value.
+func (s *ListAggregatedUtterancesInput) SetBotAliasId(v string) *ListAggregatedUtterancesInput {
+	s.BotAliasId = &v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListAggregatedUtterancesInput) SetBotId(v string) *ListAggregatedUtterancesInput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ListAggregatedUtterancesInput) SetBotVersion(v string) *ListAggregatedUtterancesInput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetFilters sets the Filters field's value.
+func (s *ListAggregatedUtterancesInput) SetFilters(v []*AggregatedUtterancesFilter) *ListAggregatedUtterancesInput {
+	s.Filters = v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *ListAggregatedUtterancesInput) SetLocaleId(v string) *ListAggregatedUtterancesInput {
+	s.LocaleId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListAggregatedUtterancesInput) SetMaxResults(v int64) *ListAggregatedUtterancesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAggregatedUtterancesInput) SetNextToken(v string) *ListAggregatedUtterancesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetSortBy sets the SortBy field's value.
+func (s *ListAggregatedUtterancesInput) SetSortBy(v *AggregatedUtterancesSortBy) *ListAggregatedUtterancesInput {
+	s.SortBy = v
+	return s
+}
+
+type ListAggregatedUtterancesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Summaries of the aggregated utterance data. Each response contains information
+	// about the number of times that the utterance was seen during the time period,
+	// whether it was detected or missed, and when it was seen during the time period.
+	AggregatedUtterancesSummaries []*AggregatedUtterancesSummary `locationName:"aggregatedUtterancesSummaries" type:"list"`
+
+	// The time period used to aggregate the utterance data.
+	AggregationDuration *UtteranceAggregationDuration `locationName:"aggregationDuration" type:"structure"`
+
+	// The last date and time that the aggregated data was collected. The time period
+	// depends on the length of the aggregation window.
+	//
+	//    * Hours - for 1 hour time window, every half hour; otherwise every hour.
+	//
+	//    * Days - every 6 hours
+	//
+	//    * Weeks - for a one week time window, every 12 hours; otherwise, every
+	//    day
+	AggregationLastRefreshedDateTime *time.Time `locationName:"aggregationLastRefreshedDateTime" type:"timestamp"`
+
+	// The date and time that the aggregation window ends. Only data collected between
+	// the start time and the end time are returned in the results.
+	AggregationWindowEndTime *time.Time `locationName:"aggregationWindowEndTime" type:"timestamp"`
+
+	// The date and time that the aggregation window begins. Only data collected
+	// after this time is returned in the results.
+	AggregationWindowStartTime *time.Time `locationName:"aggregationWindowStartTime" type:"timestamp"`
+
+	// The identifier of the bot alias that contains the utterances. If you specified
+	// the bot version, the bot alias ID isn't returned.
+	BotAliasId *string `locationName:"botAliasId" min:"10" type:"string"`
+
+	// The identifier of the bot that contains the utterances.
+	BotId *string `locationName:"botId" min:"10" type:"string"`
+
+	// The identifier of the bot version that contains the utterances. If you specified
+	// the bot alias, the bot version isn't returned.
+	BotVersion *string `locationName:"botVersion" min:"1" type:"string"`
+
+	// The identifier of the language and locale that the utterances are in.
+	LocaleId *string `locationName:"localeId" type:"string"`
+
+	// A token that indicates whether there are more results to return in a response
+	// to the ListAggregatedUtterances operation. If the nextToken field is present,
+	// you send the contents as the nextToken parameter of a ListAggregatedUtterances
+	// operation request to get the next page of results.
+	NextToken *string `locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAggregatedUtterancesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListAggregatedUtterancesOutput) GoString() string {
+	return s.String()
+}
+
+// SetAggregatedUtterancesSummaries sets the AggregatedUtterancesSummaries field's value.
+func (s *ListAggregatedUtterancesOutput) SetAggregatedUtterancesSummaries(v []*AggregatedUtterancesSummary) *ListAggregatedUtterancesOutput {
+	s.AggregatedUtterancesSummaries = v
+	return s
+}
+
+// SetAggregationDuration sets the AggregationDuration field's value.
+func (s *ListAggregatedUtterancesOutput) SetAggregationDuration(v *UtteranceAggregationDuration) *ListAggregatedUtterancesOutput {
+	s.AggregationDuration = v
+	return s
+}
+
+// SetAggregationLastRefreshedDateTime sets the AggregationLastRefreshedDateTime field's value.
+func (s *ListAggregatedUtterancesOutput) SetAggregationLastRefreshedDateTime(v time.Time) *ListAggregatedUtterancesOutput {
+	s.AggregationLastRefreshedDateTime = &v
+	return s
+}
+
+// SetAggregationWindowEndTime sets the AggregationWindowEndTime field's value.
+func (s *ListAggregatedUtterancesOutput) SetAggregationWindowEndTime(v time.Time) *ListAggregatedUtterancesOutput {
+	s.AggregationWindowEndTime = &v
+	return s
+}
+
+// SetAggregationWindowStartTime sets the AggregationWindowStartTime field's value.
+func (s *ListAggregatedUtterancesOutput) SetAggregationWindowStartTime(v time.Time) *ListAggregatedUtterancesOutput {
+	s.AggregationWindowStartTime = &v
+	return s
+}
+
+// SetBotAliasId sets the BotAliasId field's value.
+func (s *ListAggregatedUtterancesOutput) SetBotAliasId(v string) *ListAggregatedUtterancesOutput {
+	s.BotAliasId = &v
+	return s
+}
+
+// SetBotId sets the BotId field's value.
+func (s *ListAggregatedUtterancesOutput) SetBotId(v string) *ListAggregatedUtterancesOutput {
+	s.BotId = &v
+	return s
+}
+
+// SetBotVersion sets the BotVersion field's value.
+func (s *ListAggregatedUtterancesOutput) SetBotVersion(v string) *ListAggregatedUtterancesOutput {
+	s.BotVersion = &v
+	return s
+}
+
+// SetLocaleId sets the LocaleId field's value.
+func (s *ListAggregatedUtterancesOutput) SetLocaleId(v string) *ListAggregatedUtterancesOutput {
+	s.LocaleId = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListAggregatedUtterancesOutput) SetNextToken(v string) *ListAggregatedUtterancesOutput {
+	s.NextToken = &v
 	return s
 }
 
@@ -17529,6 +18872,8 @@ func (s *PlainTextMessage) SetValue(v string) *PlainTextMessage {
 	return s
 }
 
+// Your request couldn't be completed because one or more request fields aren't
+// valid. Check the fields in your request and try again.
 type PreconditionFailedException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -17738,6 +19083,96 @@ func (s *PromptSpecification) SetMessageGroups(v []*MessageGroup) *PromptSpecifi
 	return s
 }
 
+// Specifies the time window that utterance statistics are returned for. The
+// time window is always relative to the last time that the that utterances
+// were aggregated. For example, if the ListAggregatedUtterances operation is
+// called at 1600, the time window is set to 1 hour, and the last refresh time
+// was 1530, only utterances made between 1430 and 1530 are returned.
+//
+// You can choose the time window that statistics should be returned for.
+//
+//    * Hours - You can request utterance statistics for 1, 3, 6, 12, or 24
+//    hour time windows. Statistics are refreshed every half hour for 1 hour
+//    time windows, and hourly for the other time windows.
+//
+//    * Days - You can request utterance statistics for 3 days. Statistics are
+//    refreshed every 6 hours.
+//
+//    * Weeks - You can see statistics for one or two weeks. Statistics are
+//    refreshed every 12 hours for one week time windows, and once per day for
+//    two week time windows.
+type RelativeAggregationDuration struct {
+	_ struct{} `type:"structure"`
+
+	// The type of time period that the timeValue field represents.
+	//
+	// TimeDimension is a required field
+	TimeDimension *string `locationName:"timeDimension" type:"string" required:"true" enum:"TimeDimension"`
+
+	// The period of the time window to gather statistics for. The valid value depends
+	// on the setting of the timeDimension field.
+	//
+	//    * Hours - 1/3/6/12/24
+	//
+	//    * Days - 3
+	//
+	//    * Weeks - 1/2
+	//
+	// TimeValue is a required field
+	TimeValue *int64 `locationName:"timeValue" min:"1" type:"integer" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RelativeAggregationDuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RelativeAggregationDuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RelativeAggregationDuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RelativeAggregationDuration"}
+	if s.TimeDimension == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeDimension"))
+	}
+	if s.TimeValue == nil {
+		invalidParams.Add(request.NewErrParamRequired("TimeValue"))
+	}
+	if s.TimeValue != nil && *s.TimeValue < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeValue", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetTimeDimension sets the TimeDimension field's value.
+func (s *RelativeAggregationDuration) SetTimeDimension(v string) *RelativeAggregationDuration {
+	s.TimeDimension = &v
+	return s
+}
+
+// SetTimeValue sets the TimeValue field's value.
+func (s *RelativeAggregationDuration) SetTimeValue(v int64) *RelativeAggregationDuration {
+	s.TimeValue = &v
+	return s
+}
+
+// You asked to describe a resource that doesn't exist. Check the resource that
+// you are requesting and try again.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -18148,6 +19583,7 @@ func (s *SentimentAnalysisSettings) SetDetectSentiment(v bool) *SentimentAnalysi
 	return s
 }
 
+// You have reached a quota for your bot.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -19636,6 +21072,7 @@ func (s *TextLogSetting) SetEnabled(v bool) *TextLogSetting {
 	return s
 }
 
+// Your request rate is too high. Reduce the frequency of requests.
 type ThrottlingException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -21971,6 +23408,61 @@ func (s *UpdateSlotTypeOutput) SetValueSelectionSetting(v *SlotValueSelectionSet
 	return s
 }
 
+// Provides parameters for setting the time window and duration for aggregating
+// utterance data.
+type UtteranceAggregationDuration struct {
+	_ struct{} `type:"structure"`
+
+	// The desired time window for aggregating utterances.
+	//
+	// RelativeAggregationDuration is a required field
+	RelativeAggregationDuration *RelativeAggregationDuration `locationName:"relativeAggregationDuration" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceAggregationDuration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UtteranceAggregationDuration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UtteranceAggregationDuration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UtteranceAggregationDuration"}
+	if s.RelativeAggregationDuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("RelativeAggregationDuration"))
+	}
+	if s.RelativeAggregationDuration != nil {
+		if err := s.RelativeAggregationDuration.Validate(); err != nil {
+			invalidParams.AddNested("RelativeAggregationDuration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRelativeAggregationDuration sets the RelativeAggregationDuration field's value.
+func (s *UtteranceAggregationDuration) SetRelativeAggregationDuration(v *RelativeAggregationDuration) *UtteranceAggregationDuration {
+	s.RelativeAggregationDuration = v
+	return s
+}
+
+// One of the input parameters in your request isn't valid. Check the parameters
+// and try your request again.
 type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -22180,6 +23672,50 @@ func (s *WaitAndContinueSpecification) SetStillWaitingResponse(v *StillWaitingRe
 func (s *WaitAndContinueSpecification) SetWaitingResponse(v *ResponseSpecification) *WaitAndContinueSpecification {
 	s.WaitingResponse = v
 	return s
+}
+
+const (
+	// AggregatedUtterancesFilterNameUtterance is a AggregatedUtterancesFilterName enum value
+	AggregatedUtterancesFilterNameUtterance = "Utterance"
+)
+
+// AggregatedUtterancesFilterName_Values returns all elements of the AggregatedUtterancesFilterName enum
+func AggregatedUtterancesFilterName_Values() []string {
+	return []string{
+		AggregatedUtterancesFilterNameUtterance,
+	}
+}
+
+const (
+	// AggregatedUtterancesFilterOperatorCo is a AggregatedUtterancesFilterOperator enum value
+	AggregatedUtterancesFilterOperatorCo = "CO"
+
+	// AggregatedUtterancesFilterOperatorEq is a AggregatedUtterancesFilterOperator enum value
+	AggregatedUtterancesFilterOperatorEq = "EQ"
+)
+
+// AggregatedUtterancesFilterOperator_Values returns all elements of the AggregatedUtterancesFilterOperator enum
+func AggregatedUtterancesFilterOperator_Values() []string {
+	return []string{
+		AggregatedUtterancesFilterOperatorCo,
+		AggregatedUtterancesFilterOperatorEq,
+	}
+}
+
+const (
+	// AggregatedUtterancesSortAttributeHitCount is a AggregatedUtterancesSortAttribute enum value
+	AggregatedUtterancesSortAttributeHitCount = "HitCount"
+
+	// AggregatedUtterancesSortAttributeMissedCount is a AggregatedUtterancesSortAttribute enum value
+	AggregatedUtterancesSortAttributeMissedCount = "MissedCount"
+)
+
+// AggregatedUtterancesSortAttribute_Values returns all elements of the AggregatedUtterancesSortAttribute enum
+func AggregatedUtterancesSortAttribute_Values() []string {
+	return []string{
+		AggregatedUtterancesSortAttributeHitCount,
+		AggregatedUtterancesSortAttributeMissedCount,
+	}
 }
 
 const (
@@ -22763,5 +24299,25 @@ func SortOrder_Values() []string {
 	return []string{
 		SortOrderAscending,
 		SortOrderDescending,
+	}
+}
+
+const (
+	// TimeDimensionHours is a TimeDimension enum value
+	TimeDimensionHours = "Hours"
+
+	// TimeDimensionDays is a TimeDimension enum value
+	TimeDimensionDays = "Days"
+
+	// TimeDimensionWeeks is a TimeDimension enum value
+	TimeDimensionWeeks = "Weeks"
+)
+
+// TimeDimension_Values returns all elements of the TimeDimension enum
+func TimeDimension_Values() []string {
+	return []string{
+		TimeDimensionHours,
+		TimeDimensionDays,
+		TimeDimensionWeeks,
 	}
 }

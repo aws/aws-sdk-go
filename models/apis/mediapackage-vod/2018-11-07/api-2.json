@@ -1259,6 +1259,10 @@
           "locationName": "packagingConfigurationId",
           "shape": "__string"
         },
+        "Status": {
+          "locationName": "status",
+          "shape": "__string"
+        },
         "Url": {
           "locationName": "url",
           "shape": "__string"
