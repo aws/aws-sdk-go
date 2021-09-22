@@ -197,7 +197,8 @@ func TestExampleGeneration(t *testing.T) {
 								"Field": "baz"
 							}
 						]
-					]
+					],
+          "FieldDoesNotExistInModel": true
         },
         "output": {
           "BazShape": 1
