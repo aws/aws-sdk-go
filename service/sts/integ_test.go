@@ -21,14 +21,14 @@ var _ aws.Config
 var _ awserr.Error
 var _ request.Request
 
-func TestInteg_00_GetSessionToken(t *testing.T) {
+func TestInteg_00_GetCallerIdentity(t *testing.T) {
 	ctx, cancelFn := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancelFn()
 
 	sess := integration.SessionWithDefaultRegion("us-west-2")
 	svc := sts.New(sess)
-	params := &sts.GetSessionTokenInput{}
-	_, err := svc.GetSessionTokenWithContext(ctx, params, func(r *request.Request) {
+	params := &sts.GetCallerIdentityInput{}
+	_, err := svc.GetCallerIdentityWithContext(ctx, params, func(r *request.Request) {
 		r.Handlers.Validate.RemoveByName("core.ValidateParametersHandler")
 	})
 	if err != nil {

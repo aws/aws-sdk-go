@@ -8,6 +8,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"sort"
 	"text/template"
 )
 
@@ -23,6 +24,47 @@ type SmokeTestCase struct {
 	OpName    string                 `json:"operationName"`
 	Input     map[string]interface{} `json:"input"`
 	ExpectErr bool                   `json:"errorExpectedFromService"`
+}
+
+var smokeTestsCustomizations = map[string]func(*SmokeTestSuite) error{
+	"sts": stsSmokeTestCustomization,
+}
+
+func stsSmokeTestCustomization(suite *SmokeTestSuite) error {
+	const getSessionTokenOp = "GetSessionToken"
+	const getCallerIdentityOp = "GetCallerIdentity"
+
+	opTestMap := make(map[string][]SmokeTestCase)
+	for _, testCase := range suite.TestCases {
+		opTestMap[testCase.OpName] = append(opTestMap[testCase.OpName], testCase)
+	}
+
+	if _, ok := opTestMap[getSessionTokenOp]; ok {
+		delete(opTestMap, getSessionTokenOp)
+	}
+
+	if _, ok := opTestMap[getCallerIdentityOp]; !ok {
+		opTestMap[getCallerIdentityOp] = append(opTestMap[getCallerIdentityOp], SmokeTestCase{
+			OpName:    getCallerIdentityOp,
+			Input:     map[string]interface{}{},
+			ExpectErr: false,
+		})
+	}
+
+	var testCases []SmokeTestCase
+
+	var keys []string
+	for name := range opTestMap {
+		keys = append(keys, name)
+	}
+	sort.Strings(keys)
+	for _, name := range keys {
+		testCases = append(testCases, opTestMap[name]...)
+	}
+
+	suite.TestCases = testCases
+
+	return nil
 }
 
 // BuildInputShape returns the Go code as a string for initializing the test
@@ -49,6 +91,12 @@ func (a *API) AttachSmokeTests(filename string) error {
 
 	if v := a.SmokeTests.Version; v != 1 {
 		return fmt.Errorf("invalid smoke test version, %d", v)
+	}
+
+	if fn, ok := smokeTestsCustomizations[a.PackageName()]; ok {
+		if err := fn(&a.SmokeTests); err != nil {
+			return err
+		}
 	}
 
 	return nil
