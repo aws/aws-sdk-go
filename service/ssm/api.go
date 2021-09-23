@@ -184,9 +184,9 @@ func (c *SSM) AssociateOpsItemRelatedItemRequest(input *AssociateOpsItemRelatedI
 
 // AssociateOpsItemRelatedItem API operation for Amazon Simple Systems Manager (SSM).
 //
-// Associates a related resource to a Systems Manager OpsCenter OpsItem. For
-// example, you can associate an Incident Manager incident or analysis with
-// an OpsItem. Incident Manager is a capability of Amazon Web Services Systems
+// Associates a related item to a Systems Manager OpsCenter OpsItem. For example,
+// you can associate an Incident Manager incident or analysis with an OpsItem.
+// Incident Manager and OpsCenter are capabilities of Amazon Web Services Systems
 // Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -6371,6 +6371,11 @@ func (c *SSM) DescribeParametersRequest(input *DescribeParametersInput) (req *re
 // that point and a NextToken. You can specify the NextToken in a subsequent
 // call to get the next set of results.
 //
+// If you change the KMS key alias for the KMS key used to encrypt a parameter,
+// then you must also update the key alias the parameter uses to reference KMS.
+// Otherwise, DescribeParameters retrieves whatever the original key alias was
+// referencing.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -7199,7 +7204,7 @@ func (c *SSM) DisassociateOpsItemRelatedItemRequest(input *DisassociateOpsItemRe
 
 // DisassociateOpsItemRelatedItem API operation for Amazon Simple Systems Manager (SSM).
 //
-// Deletes the association between an OpsItem and a related resource. For example,
+// Deletes the association between an OpsItem and a related item. For example,
 // this API operation can delete an Incident Manager incident from an OpsItem.
 // Incident Manager is a capability of Amazon Web Services Systems Manager.
 //
@@ -9111,6 +9116,11 @@ func (c *SSM) GetParameterHistoryRequest(input *GetParameterHistoryInput) (req *
 // GetParameterHistory API operation for Amazon Simple Systems Manager (SSM).
 //
 // Retrieves the history of all changes to a parameter.
+//
+// If you change the KMS key alias for the KMS key used to encrypt a parameter,
+// then you must also update the key alias the parameter uses to reference KMS.
+// Otherwise, GetParameterHistory retrieves whatever the original key alias
+// was referencing.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -11436,7 +11446,8 @@ func (c *SSM) ListOpsItemRelatedItemsRequest(input *ListOpsItemRelatedItemsInput
 
 // ListOpsItemRelatedItems API operation for Amazon Simple Systems Manager (SSM).
 //
-// Lists all related-item resources associated with an OpsItem.
+// Lists all related-item resources associated with a Systems Manager OpsCenter
+// OpsItem. OpsCenter is a capability of Amazon Web Services Systems Manager.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -15953,8 +15964,7 @@ type AssociateOpsItemRelatedItemInput struct {
 	// The type of resource that you want to associate with an OpsItem. OpsCenter
 	// supports the following types:
 	//
-	// AWS::SSMIncidents::IncidentRecord: an Incident Manager incident. Incident
-	// Manager is a capability of Amazon Web Services Systems Manager.
+	// AWS::SSMIncidents::IncidentRecord: an Incident Manager incident.
 	//
 	// AWS::SSM::Document: a Systems Manager (SSM) document.
 	//
@@ -19543,8 +19553,15 @@ type CommandFilter struct {
 	//    before July 7, 2021.
 	//
 	//    * Status: Specify a valid command status to see a list of all command
-	//    executions with that status. Status values you can specify include: Pending
-	//    InProgress Success Cancelled Failed TimedOut Cancelling
+	//    executions with that status. The status choices depend on the API you
+	//    call. The status values you can specify for ListCommands are: Pending
+	//    InProgress Success Cancelled Failed TimedOut (this includes both Delivery
+	//    and Execution time outs) AccessDenied DeliveryTimedOut ExecutionTimedOut
+	//    Incomplete NoInstancesInTag LimitExceeded The status values you can specify
+	//    for ListCommandInvocations are: Pending InProgress Delayed Success Cancelled
+	//    Failed TimedOut (this includes both Delivery and Execution time outs)
+	//    AccessDenied DeliveryTimedOut ExecutionTimedOut Undeliverable InvalidPlatform
+	//    Terminated
 	//
 	//    * DocumentName: Specify name of the Amazon Web Services Systems Manager
 	//    document (SSM document) for which you want to see command execution results.
@@ -19639,8 +19656,7 @@ type CommandInvocation struct {
 	// The instance ID in which this invocation was requested.
 	InstanceId *string `type:"string"`
 
-	// The name of the invocation target. For EC2 instances this is the value for
-	// the aws:Name tag. For on-premises instances, this is the name of the instance.
+	// The fully qualified host name of the managed instance.
 	InstanceName *string `type:"string"`
 
 	// Configurations for sending notifications about command status changes on
@@ -28373,13 +28389,13 @@ type DisassociateOpsItemRelatedItemInput struct {
 	_ struct{} `type:"structure"`
 
 	// The ID of the association for which you want to delete an association between
-	// the OpsItem and a related resource.
+	// the OpsItem and a related item.
 	//
 	// AssociationId is a required field
 	AssociationId *string `type:"string" required:"true"`
 
 	// The ID of the OpsItem for which you want to delete an association between
-	// the OpsItem and a related resource.
+	// the OpsItem and a related item.
 	//
 	// OpsItemId is a required field
 	OpsItemId *string `type:"string" required:"true"`
@@ -32572,6 +32588,14 @@ func (s *GetMaintenanceWindowTaskInput) SetWindowTaskId(v string) *GetMaintenanc
 type GetMaintenanceWindowTaskOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The action to take on tasks when the maintenance window cutoff time is reached.
+	// CONTINUE_TASK means that tasks continue to run. For Automation, Lambda, Step
+	// Functions tasks, CANCEL_TASK means that currently running task invocations
+	// continue, but no new task invocations are started. For Run Command tasks,
+	// CANCEL_TASK means the system attempts to stop the task by sending a CancelCommand
+	// operation.
+	CutoffBehavior *string `type:"string" enum:"MaintenanceWindowTaskCutoffBehavior"`
+
 	// The retrieved task description.
 	//
 	// Description is a sensitive parameter and its value will be
@@ -32667,6 +32691,12 @@ func (s GetMaintenanceWindowTaskOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetMaintenanceWindowTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetCutoffBehavior sets the CutoffBehavior field's value.
+func (s *GetMaintenanceWindowTaskOutput) SetCutoffBehavior(v string) *GetMaintenanceWindowTaskOutput {
+	s.CutoffBehavior = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -33356,10 +33386,10 @@ type GetParametersByPathInput struct {
 
 	// Filters to limit the request results.
 	//
-	// For GetParametersByPath, the following filter Key names are supported: Type,
-	// KeyId, Label, and DataType.
+	// The following Key values are supported for GetParametersByPath: Type, KeyId,
+	// and Label.
 	//
-	// The following Key values are not supported for GetParametersByPath: tag,
+	// The following Key values aren't supported for GetParametersByPath: tag, DataType,
 	// Name, Path, and Tier.
 	ParameterFilters []*ParameterStringFilter `type:"list"`
 
@@ -42850,6 +42880,10 @@ func (s *MaintenanceWindowTarget) SetWindowTargetId(v string) *MaintenanceWindow
 type MaintenanceWindowTask struct {
 	_ struct{} `type:"structure"`
 
+	// The specification for whether tasks should continue to run after the cutoff
+	// time specified in the maintenance windows is reached.
+	CutoffBehavior *string `type:"string" enum:"MaintenanceWindowTaskCutoffBehavior"`
+
 	// A description of the task.
 	//
 	// Description is a sensitive parameter and its value will be
@@ -42933,6 +42967,12 @@ func (s MaintenanceWindowTask) String() string {
 // value will be replaced with "sensitive".
 func (s MaintenanceWindowTask) GoString() string {
 	return s.String()
+}
+
+// SetCutoffBehavior sets the CutoffBehavior field's value.
+func (s *MaintenanceWindowTask) SetCutoffBehavior(v string) *MaintenanceWindowTask {
+	s.CutoffBehavior = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -46540,11 +46580,10 @@ type ParameterStringFilter struct {
 	// API operations. However, not all of the pattern values listed for Key can
 	// be used with both operations.
 	//
-	// For DescribeActions, all of the listed patterns are valid, with the exception
-	// of Label.
+	// For DescribeActions, all of the listed patterns are valid except Label.
 	//
 	// For GetParametersByPath, the following patterns listed for Key aren't valid:
-	// tag, Name, Path, and Tier.
+	// tag, DataType, Name, Path, and Tier.
 	//
 	// For examples of Amazon Web Services CLI commands demonstrating valid parameter
 	// filter constructions, see Searching for Systems Manager parameters (https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-search.html)
@@ -49014,6 +49053,21 @@ type RegisterTaskWithMaintenanceWindowInput struct {
 	// User-provided idempotency token.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
+	// Indicates whether tasks should continue to run after the cutoff time specified
+	// in the maintenance windows is reached.
+	//
+	//    * CONTINUE_TASK: When the cutoff time is reached, any tasks that are running
+	//    continue. The default value.
+	//
+	//    * CANCEL_TASK: For Automation, Lambda, Step Functions tasks: When the
+	//    cutoff time is reached, any task invocations that are already running
+	//    continue, but no new task invocations are started. For Run Command tasks:
+	//    When the cutoff time is reached, the system sends a CancelCommand operation
+	//    that attempts to cancel the command associated with the task. However,
+	//    there is no guarantee that the command will be terminated and the underlying
+	//    process stopped. The status for tasks that are not completed is TIMED_OUT.
+	CutoffBehavior *string `type:"string" enum:"MaintenanceWindowTaskCutoffBehavior"`
+
 	// An optional description for the task.
 	//
 	// Description is a sensitive parameter and its value will be
@@ -49199,6 +49253,12 @@ func (s *RegisterTaskWithMaintenanceWindowInput) Validate() error {
 // SetClientToken sets the ClientToken field's value.
 func (s *RegisterTaskWithMaintenanceWindowInput) SetClientToken(v string) *RegisterTaskWithMaintenanceWindowInput {
 	s.ClientToken = &v
+	return s
+}
+
+// SetCutoffBehavior sets the CutoffBehavior field's value.
+func (s *RegisterTaskWithMaintenanceWindowInput) SetCutoffBehavior(v string) *RegisterTaskWithMaintenanceWindowInput {
+	s.CutoffBehavior = &v
 	return s
 }
 
@@ -51455,10 +51515,13 @@ type SendCommandInput struct {
 
 	// The name of the Amazon Web Services Systems Manager document (SSM document)
 	// to run. This can be a public document or a custom document. To run a shared
-	// document belonging to another account, specify the document ARN. For more
-	// information about how to use shared documents, see Using shared SSM documents
-	// (https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-using-shared.html)
+	// document belonging to another account, specify the document Amazon Resource
+	// Name (ARN). For more information about how to use shared documents, see Using
+	// shared SSM documents (https://docs.aws.amazon.com/systems-manager/latest/userguide/ssm-using-shared.html)
 	// in the Amazon Web Services Systems Manager User Guide.
+	//
+	// If you specify a document name or ARN that hasn't been shared with your account,
+	// you receive an InvalidDocument error.
 	//
 	// DocumentName is a required field
 	DocumentName *string `type:"string" required:"true"`
@@ -56054,6 +56117,21 @@ func (s *UpdateMaintenanceWindowTargetOutput) SetWindowTargetId(v string) *Updat
 type UpdateMaintenanceWindowTaskInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether tasks should continue to run after the cutoff time specified
+	// in the maintenance windows is reached.
+	//
+	//    * CONTINUE_TASK: When the cutoff time is reached, any tasks that are running
+	//    continue. The default value.
+	//
+	//    * CANCEL_TASK: For Automation, Lambda, Step Functions tasks: When the
+	//    cutoff time is reached, any task invocations that are already running
+	//    continue, but no new task invocations are started. For Run Command tasks:
+	//    When the cutoff time is reached, the system sends a CancelCommand operation
+	//    that attempts to cancel the command associated with the task. However,
+	//    there is no guarantee that the command will be terminated and the underlying
+	//    process stopped. The status for tasks that are not completed is TIMED_OUT.
+	CutoffBehavior *string `type:"string" enum:"MaintenanceWindowTaskCutoffBehavior"`
+
 	// The new task description to specify.
 	//
 	// Description is a sensitive parameter and its value will be
@@ -56246,6 +56324,12 @@ func (s *UpdateMaintenanceWindowTaskInput) Validate() error {
 	return nil
 }
 
+// SetCutoffBehavior sets the CutoffBehavior field's value.
+func (s *UpdateMaintenanceWindowTaskInput) SetCutoffBehavior(v string) *UpdateMaintenanceWindowTaskInput {
+	s.CutoffBehavior = &v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *UpdateMaintenanceWindowTaskInput) SetDescription(v string) *UpdateMaintenanceWindowTaskInput {
 	s.Description = &v
@@ -56333,6 +56417,10 @@ func (s *UpdateMaintenanceWindowTaskInput) SetWindowTaskId(v string) *UpdateMain
 type UpdateMaintenanceWindowTaskOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The specification for whether tasks should continue to run after the cutoff
+	// time specified in the maintenance windows is reached.
+	CutoffBehavior *string `type:"string" enum:"MaintenanceWindowTaskCutoffBehavior"`
+
 	// The updated task description.
 	//
 	// Description is a sensitive parameter and its value will be
@@ -56410,6 +56498,12 @@ func (s UpdateMaintenanceWindowTaskOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateMaintenanceWindowTaskOutput) GoString() string {
 	return s.String()
+}
+
+// SetCutoffBehavior sets the CutoffBehavior field's value.
+func (s *UpdateMaintenanceWindowTaskOutput) SetCutoffBehavior(v string) *UpdateMaintenanceWindowTaskOutput {
+	s.CutoffBehavior = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -57424,26 +57518,23 @@ type UpdateServiceSettingInput struct {
 	// SettingId is a required field
 	SettingId *string `min:"1" type:"string" required:"true"`
 
-	// The new value to specify for the service setting. For the /ssm/parameter-store/default-parameter-tier
-	// setting ID, the setting value can be one of the following.
+	// The new value to specify for the service setting. The following list specifies
+	// the available values for each setting.
 	//
-	//    * Standard
+	//    * /ssm/parameter-store/default-parameter-tier: Standard, Advanced, Intelligent-Tiering
 	//
-	//    * Advanced
+	//    * /ssm/parameter-store/high-throughput-enabled: true or false
 	//
-	//    * Intelligent-Tiering
+	//    * /ssm/managed-instance/activation-tier: true or false
 	//
-	// For the /ssm/parameter-store/high-throughput-enabled, and /ssm/managed-instance/activation-tier
-	// setting IDs, the setting value can be true or false.
+	//    * /ssm/automation/customer-script-log-destination: CloudWatch
 	//
-	// For the /ssm/automation/customer-script-log-destination setting ID, the setting
-	// value can be CloudWatch.
+	//    * /ssm/automation/customer-script-log-group-name: the name of an Amazon
+	//    CloudWatch Logs log group
 	//
-	// For the /ssm/automation/customer-script-log-group-name setting ID, the setting
-	// value can be the name of an Amazon CloudWatch Logs log group.
+	//    * /ssm/documents/console/public-sharing-permission: Enable or Disable
 	//
-	// For the /ssm/documents/console/public-sharing-permission setting ID, the
-	// setting value can be Enable or Disable.
+	//    * /ssm/managed-instance/activation-tier: standard or advanced
 	//
 	// SettingValue is a required field
 	SettingValue *string `min:"1" type:"string" required:"true"`
@@ -58638,6 +58729,22 @@ func MaintenanceWindowResourceType_Values() []string {
 	return []string{
 		MaintenanceWindowResourceTypeInstance,
 		MaintenanceWindowResourceTypeResourceGroup,
+	}
+}
+
+const (
+	// MaintenanceWindowTaskCutoffBehaviorContinueTask is a MaintenanceWindowTaskCutoffBehavior enum value
+	MaintenanceWindowTaskCutoffBehaviorContinueTask = "CONTINUE_TASK"
+
+	// MaintenanceWindowTaskCutoffBehaviorCancelTask is a MaintenanceWindowTaskCutoffBehavior enum value
+	MaintenanceWindowTaskCutoffBehaviorCancelTask = "CANCEL_TASK"
+)
+
+// MaintenanceWindowTaskCutoffBehavior_Values returns all elements of the MaintenanceWindowTaskCutoffBehavior enum
+func MaintenanceWindowTaskCutoffBehavior_Values() []string {
+	return []string{
+		MaintenanceWindowTaskCutoffBehaviorContinueTask,
+		MaintenanceWindowTaskCutoffBehaviorCancelTask,
 	}
 }
 

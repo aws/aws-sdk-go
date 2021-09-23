@@ -1,3 +1,13 @@
+Release v1.40.48 (2021-09-23)
+===
+
+### Service Client Updates
+* `service/appsync`: Updates service API and documentation
+* `service/mediaconvert`: Updates service API and documentation
+  * This release adds style and positioning support for caption or subtitle burn-in from rich text sources such as TTML. This release also introduces configurable image-based trick play track generation.
+* `service/ssm`: Updates service API, documentation, and waiters
+  * Added cutoff behavior support for preventing new task invocations from starting when the maintenance window cutoff time is reached.
+
 Release v1.40.47 (2021-09-22)
 ===
 

@@ -3904,11 +3904,11 @@ func (s *AccessDeniedException) RequestID() string {
 type AdditionalAuthenticationProvider struct {
 	_ struct{} `type:"structure"`
 
-	// The authentication type: API key, Identity and Access Management, OIDC, or
-	// Amazon Cognito user pools.
+	// The authentication type: API key, Identity and Access Management, OIDC, Amazon
+	// Cognito user pools, or Amazon Web Services Lambda.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
 
-	// Configuration for AWS Lambda function authorization.
+	// Configuration for Amazon Web Services Lambda function authorization.
 	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
 	// The OpenID Connect configuration.
@@ -5058,7 +5058,11 @@ type CreateDataSourceInput struct {
 	// Amazon DynamoDB settings.
 	DynamodbConfig *DynamodbDataSourceConfig `locationName:"dynamodbConfig" type:"structure"`
 
-	// Amazon Elasticsearch Service settings.
+	// Amazon OpenSearch Service settings.
+	//
+	// As of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service.
+	// This configuration is deprecated. For new data sources, use CreateDataSourceRequest$openSearchServiceConfig
+	// to create an OpenSearch data source.
 	ElasticsearchConfig *ElasticsearchDataSourceConfig `locationName:"elasticsearchConfig" type:"structure"`
 
 	// HTTP endpoint settings.
@@ -5071,6 +5075,9 @@ type CreateDataSourceInput struct {
 	//
 	// Name is a required field
 	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Amazon OpenSearch Service settings.
+	OpenSearchServiceConfig *OpenSearchServiceDataSourceConfig `locationName:"openSearchServiceConfig" type:"structure"`
 
 	// Relational database settings.
 	RelationalDatabaseConfig *RelationalDatabaseDataSourceConfig `locationName:"relationalDatabaseConfig" type:"structure"`
@@ -5141,6 +5148,11 @@ func (s *CreateDataSourceInput) Validate() error {
 			invalidParams.AddNested("LambdaConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OpenSearchServiceConfig != nil {
+		if err := s.OpenSearchServiceConfig.Validate(); err != nil {
+			invalidParams.AddNested("OpenSearchServiceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -5187,6 +5199,12 @@ func (s *CreateDataSourceInput) SetLambdaConfig(v *LambdaDataSourceConfig) *Crea
 // SetName sets the Name field's value.
 func (s *CreateDataSourceInput) SetName(v string) *CreateDataSourceInput {
 	s.Name = &v
+	return s
+}
+
+// SetOpenSearchServiceConfig sets the OpenSearchServiceConfig field's value.
+func (s *CreateDataSourceInput) SetOpenSearchServiceConfig(v *OpenSearchServiceDataSourceConfig) *CreateDataSourceInput {
+	s.OpenSearchServiceConfig = v
 	return s
 }
 
@@ -5420,13 +5438,13 @@ type CreateGraphqlApiInput struct {
 	// A list of additional authentication providers for the GraphqlApi API.
 	AdditionalAuthenticationProviders []*AdditionalAuthenticationProvider `locationName:"additionalAuthenticationProviders" type:"list"`
 
-	// The authentication type: API key, Identity and Access Management, OIDC, or
-	// Amazon Cognito user pools.
+	// The authentication type: API key, Identity and Access Management, OIDC, Amazon
+	// Cognito user pools, or Amazon Web Services Lambda.
 	//
 	// AuthenticationType is a required field
 	AuthenticationType *string `locationName:"authenticationType" type:"string" required:"true" enum:"AuthenticationType"`
 
-	// Configuration for AWS Lambda function authorization.
+	// Configuration for Amazon Web Services Lambda function authorization.
 	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
 	// The Amazon CloudWatch Logs configuration.
@@ -5927,7 +5945,7 @@ type DataSource struct {
 	// Amazon DynamoDB settings.
 	DynamodbConfig *DynamodbDataSourceConfig `locationName:"dynamodbConfig" type:"structure"`
 
-	// Amazon Elasticsearch Service settings.
+	// Amazon OpenSearch Service settings.
 	ElasticsearchConfig *ElasticsearchDataSourceConfig `locationName:"elasticsearchConfig" type:"structure"`
 
 	// HTTP endpoint settings.
@@ -5939,6 +5957,9 @@ type DataSource struct {
 	// The name of the data source.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
+	// Amazon OpenSearch Service settings.
+	OpenSearchServiceConfig *OpenSearchServiceDataSourceConfig `locationName:"openSearchServiceConfig" type:"structure"`
+
 	// Relational database settings.
 	RelationalDatabaseConfig *RelationalDatabaseDataSourceConfig `locationName:"relationalDatabaseConfig" type:"structure"`
 
@@ -5948,12 +5969,15 @@ type DataSource struct {
 
 	// The type of the data source.
 	//
+	//    * AWS_LAMBDA: The data source is an Amazon Web Services Lambda function.
+	//
 	//    * AMAZON_DYNAMODB: The data source is an Amazon DynamoDB table.
 	//
-	//    * AMAZON_ELASTICSEARCH: The data source is an Amazon Elasticsearch Service
+	//    * AMAZON_ELASTICSEARCH: The data source is an Amazon OpenSearch Service
 	//    domain.
 	//
-	//    * AWS_LAMBDA: The data source is an Amazon Web Services Lambda function.
+	//    * AMAZON_OPENSEARCH_SERVICE: The data source is an Amazon OpenSearch Service
+	//    domain.
 	//
 	//    * NONE: There is no data source. This type is used when you wish to invoke
 	//    a GraphQL operation without connecting to a data source, such as performing
@@ -6023,6 +6047,12 @@ func (s *DataSource) SetLambdaConfig(v *LambdaDataSourceConfig) *DataSource {
 // SetName sets the Name field's value.
 func (s *DataSource) SetName(v string) *DataSource {
 	s.Name = &v
+	return s
+}
+
+// SetOpenSearchServiceConfig sets the OpenSearchServiceConfig field's value.
+func (s *DataSource) SetOpenSearchServiceConfig(v *OpenSearchServiceDataSourceConfig) *DataSource {
+	s.OpenSearchServiceConfig = v
 	return s
 }
 
@@ -6784,7 +6814,11 @@ func (s *DynamodbDataSourceConfig) SetVersioned(v bool) *DynamodbDataSourceConfi
 	return s
 }
 
-// Describes an Elasticsearch data source configuration.
+// Describes an OpenSearch data source configuration.
+//
+// As of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service.
+// This configuration is deprecated. For new data sources, use OpenSearchServiceDataSourceConfig
+// to specify an OpenSearch data source.
 type ElasticsearchDataSourceConfig struct {
 	_ struct{} `type:"structure"`
 
@@ -7884,7 +7918,7 @@ type GraphqlApi struct {
 	// The authentication type.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
 
-	// Configuration for AWS Lambda function authorization.
+	// Configuration for Amazon Web Services Lambda function authorization.
 	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
 	// The Amazon CloudWatch Logs configuration.
@@ -8142,12 +8176,12 @@ type LambdaAuthorizerConfig struct {
 	// key in its response. A value of 0 disables caching of responses.
 	AuthorizerResultTtlInSeconds *int64 `locationName:"authorizerResultTtlInSeconds" type:"integer"`
 
-	// The ARN of the lambda function to be called for authorization. This may be
+	// The ARN of the Lambda function to be called for authorization. This may be
 	// a standard Lambda ARN, a version ARN (.../v3) or alias ARN.
 	//
 	// Note: This Lambda function must have the following resource-based policy
 	// assigned to it. When configuring Lambda authorizers in the Console, this
-	// is done for you. To do so with the AWS CLI, run the following:
+	// is done for you. To do so with the Amazon Web Services CLI, run the following:
 	//
 	// aws lambda add-permission --function-name "arn:aws:lambda:us-east-2:111122223333:function:my-function"
 	// --statement-id "appsync" --principal appsync.amazonaws.com --action lambda:InvokeFunction
@@ -8155,7 +8189,7 @@ type LambdaAuthorizerConfig struct {
 	// AuthorizerUri is a required field
 	AuthorizerUri *string `locationName:"authorizerUri" type:"string" required:"true"`
 
-	// A regular expression for validation of tokens before the Lambda Function
+	// A regular expression for validation of tokens before the Lambda function
 	// is called.
 	IdentityValidationExpression *string `locationName:"identityValidationExpression" type:"string"`
 }
@@ -9472,6 +9506,67 @@ func (s *OpenIDConnectConfig) SetIssuer(v string) *OpenIDConnectConfig {
 	return s
 }
 
+// Describes an OpenSearch data source configuration.
+type OpenSearchServiceDataSourceConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Web Services Region.
+	//
+	// AwsRegion is a required field
+	AwsRegion *string `locationName:"awsRegion" type:"string" required:"true"`
+
+	// The endpoint.
+	//
+	// Endpoint is a required field
+	Endpoint *string `locationName:"endpoint" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenSearchServiceDataSourceConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s OpenSearchServiceDataSourceConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *OpenSearchServiceDataSourceConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "OpenSearchServiceDataSourceConfig"}
+	if s.AwsRegion == nil {
+		invalidParams.Add(request.NewErrParamRequired("AwsRegion"))
+	}
+	if s.Endpoint == nil {
+		invalidParams.Add(request.NewErrParamRequired("Endpoint"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAwsRegion sets the AwsRegion field's value.
+func (s *OpenSearchServiceDataSourceConfig) SetAwsRegion(v string) *OpenSearchServiceDataSourceConfig {
+	s.AwsRegion = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *OpenSearchServiceDataSourceConfig) SetEndpoint(v string) *OpenSearchServiceDataSourceConfig {
+	s.Endpoint = &v
+	return s
+}
+
 // The pipeline configuration for a resolver of kind PIPELINE.
 type PipelineConfig struct {
 	_ struct{} `type:"structure"`
@@ -10502,7 +10597,11 @@ type UpdateDataSourceInput struct {
 	// The new Amazon DynamoDB configuration.
 	DynamodbConfig *DynamodbDataSourceConfig `locationName:"dynamodbConfig" type:"structure"`
 
-	// The new Elasticsearch Service configuration.
+	// The new OpenSearch configuration.
+	//
+	// As of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service.
+	// This configuration is deprecated. Instead, use UpdateDataSourceRequest$openSearchServiceConfig
+	// to update an OpenSearch data source.
 	ElasticsearchConfig *ElasticsearchDataSourceConfig `locationName:"elasticsearchConfig" type:"structure"`
 
 	// The new HTTP endpoint configuration.
@@ -10515,6 +10614,9 @@ type UpdateDataSourceInput struct {
 	//
 	// Name is a required field
 	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The new OpenSearch configuration.
+	OpenSearchServiceConfig *OpenSearchServiceDataSourceConfig `locationName:"openSearchServiceConfig" type:"structure"`
 
 	// The new relational database configuration.
 	RelationalDatabaseConfig *RelationalDatabaseDataSourceConfig `locationName:"relationalDatabaseConfig" type:"structure"`
@@ -10584,6 +10686,11 @@ func (s *UpdateDataSourceInput) Validate() error {
 			invalidParams.AddNested("LambdaConfig", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.OpenSearchServiceConfig != nil {
+		if err := s.OpenSearchServiceConfig.Validate(); err != nil {
+			invalidParams.AddNested("OpenSearchServiceConfig", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -10630,6 +10737,12 @@ func (s *UpdateDataSourceInput) SetLambdaConfig(v *LambdaDataSourceConfig) *Upda
 // SetName sets the Name field's value.
 func (s *UpdateDataSourceInput) SetName(v string) *UpdateDataSourceInput {
 	s.Name = &v
+	return s
+}
+
+// SetOpenSearchServiceConfig sets the OpenSearchServiceConfig field's value.
+func (s *UpdateDataSourceInput) SetOpenSearchServiceConfig(v *OpenSearchServiceDataSourceConfig) *UpdateDataSourceInput {
+	s.OpenSearchServiceConfig = v
 	return s
 }
 
@@ -10888,7 +11001,7 @@ type UpdateGraphqlApiInput struct {
 	// The new authentication type for the GraphqlApi object.
 	AuthenticationType *string `locationName:"authenticationType" type:"string" enum:"AuthenticationType"`
 
-	// Configuration for AWS Lambda function authorization.
+	// Configuration for Amazon Web Services Lambda function authorization.
 	LambdaAuthorizerConfig *LambdaAuthorizerConfig `locationName:"lambdaAuthorizerConfig" type:"structure"`
 
 	// The Amazon CloudWatch Logs configuration for the GraphqlApi object.
@@ -11680,6 +11793,9 @@ const (
 
 	// DataSourceTypeRelationalDatabase is a DataSourceType enum value
 	DataSourceTypeRelationalDatabase = "RELATIONAL_DATABASE"
+
+	// DataSourceTypeAmazonOpensearchService is a DataSourceType enum value
+	DataSourceTypeAmazonOpensearchService = "AMAZON_OPENSEARCH_SERVICE"
 )
 
 // DataSourceType_Values returns all elements of the DataSourceType enum
@@ -11691,6 +11807,7 @@ func DataSourceType_Values() []string {
 		DataSourceTypeNone,
 		DataSourceTypeHttp,
 		DataSourceTypeRelationalDatabase,
+		DataSourceTypeAmazonOpensearchService,
 	}
 }
 

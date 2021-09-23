@@ -4680,7 +4680,9 @@
       },
       "models-v2-lex" : {
         "endpoints" : {
+          "af-south-1" : { },
           "ap-northeast-1" : { },
+          "ap-northeast-2" : { },
           "ap-southeast-1" : { },
           "ap-southeast-2" : { },
           "ca-central-1" : { },
@@ -9642,6 +9644,21 @@
           },
           "us-gov-east-1" : { },
           "us-gov-west-1" : { }
+        }
+      },
+      "iotevents" : {
+        "endpoints" : {
+          "us-gov-west-1" : { }
+        }
+      },
+      "ioteventsdata" : {
+        "endpoints" : {
+          "us-gov-west-1" : {
+            "credentialScope" : {
+              "region" : "us-gov-west-1"
+            },
+            "hostname" : "data.iotevents.us-gov-west-1.amazonaws.com"
+          }
         }
       },
       "iotsecuredtunneling" : {
