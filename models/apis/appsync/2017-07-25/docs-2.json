@@ -126,8 +126,8 @@
     "AuthenticationType": {
       "base": null,
       "refs": {
-        "AdditionalAuthenticationProvider$authenticationType": "<p>The authentication type: API key, Identity and Access Management, OIDC, or Amazon Cognito user pools.</p>",
-        "CreateGraphqlApiRequest$authenticationType": "<p>The authentication type: API key, Identity and Access Management, OIDC, or Amazon Cognito user pools.</p>",
+        "AdditionalAuthenticationProvider$authenticationType": "<p>The authentication type: API key, Identity and Access Management, OIDC, Amazon Cognito user pools, or Amazon Web Services Lambda.</p>",
+        "CreateGraphqlApiRequest$authenticationType": "<p>The authentication type: API key, Identity and Access Management, OIDC, Amazon Cognito user pools, or Amazon Web Services Lambda.</p>",
         "GraphqlApi$authenticationType": "<p>The authentication type.</p>",
         "UpdateGraphqlApiRequest$authenticationType": "<p>The new authentication type for the <code>GraphqlApi</code> object.</p>"
       }
@@ -303,7 +303,7 @@
       "base": null,
       "refs": {
         "CreateDataSourceRequest$type": "<p>The type of the <code>DataSource</code>.</p>",
-        "DataSource$type": "<p>The type of the data source.</p> <ul> <li> <p> <b>AMAZON_DYNAMODB</b>: The data source is an Amazon DynamoDB table.</p> </li> <li> <p> <b>AMAZON_ELASTICSEARCH</b>: The data source is an Amazon Elasticsearch Service domain.</p> </li> <li> <p> <b>AWS_LAMBDA</b>: The data source is an Amazon Web Services Lambda function.</p> </li> <li> <p> <b>NONE</b>: There is no data source. This type is used when you wish to invoke a GraphQL operation without connecting to a data source, such as performing data transformation with resolvers or triggering a subscription to be invoked from a mutation.</p> </li> <li> <p> <b>HTTP</b>: The data source is an HTTP endpoint.</p> </li> <li> <p> <b>RELATIONAL_DATABASE</b>: The data source is a relational database.</p> </li> </ul>",
+        "DataSource$type": "<p>The type of the data source.</p> <ul> <li> <p> <b>AWS_LAMBDA</b>: The data source is an Amazon Web Services Lambda function.</p> </li> <li> <p> <b>AMAZON_DYNAMODB</b>: The data source is an Amazon DynamoDB table.</p> </li> <li> <p> <b>AMAZON_ELASTICSEARCH</b>: The data source is an Amazon OpenSearch Service domain.</p> </li> <li> <p> <b>AMAZON_OPENSEARCH_SERVICE</b>: The data source is an Amazon OpenSearch Service domain.</p> </li> <li> <p> <b>NONE</b>: There is no data source. This type is used when you wish to invoke a GraphQL operation without connecting to a data source, such as performing data transformation with resolvers or triggering a subscription to be invoked from a mutation.</p> </li> <li> <p> <b>HTTP</b>: The data source is an HTTP endpoint.</p> </li> <li> <p> <b>RELATIONAL_DATABASE</b>: The data source is a relational database.</p> </li> </ul>",
         "UpdateDataSourceRequest$type": "<p>The new data source type.</p>"
       }
     },
@@ -404,11 +404,11 @@
       }
     },
     "ElasticsearchDataSourceConfig": {
-      "base": "<p>Describes an Elasticsearch data source configuration.</p>",
+      "base": "<p>Describes an OpenSearch data source configuration.</p> <p>As of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service. This configuration is deprecated. For new data sources, use <a>OpenSearchServiceDataSourceConfig</a> to specify an OpenSearch data source.</p>",
       "refs": {
-        "CreateDataSourceRequest$elasticsearchConfig": "<p>Amazon Elasticsearch Service settings.</p>",
-        "DataSource$elasticsearchConfig": "<p>Amazon Elasticsearch Service settings.</p>",
-        "UpdateDataSourceRequest$elasticsearchConfig": "<p>The new Elasticsearch Service configuration.</p>"
+        "CreateDataSourceRequest$elasticsearchConfig": "<p>Amazon OpenSearch Service settings.</p> <p>As of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service. This configuration is deprecated. For new data sources, use <a>CreateDataSourceRequest$openSearchServiceConfig</a> to create an OpenSearch data source.</p>",
+        "DataSource$elasticsearchConfig": "<p>Amazon OpenSearch Service settings.</p>",
+        "UpdateDataSourceRequest$elasticsearchConfig": "<p>The new OpenSearch configuration.</p> <p>As of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service. This configuration is deprecated. Instead, use <a>UpdateDataSourceRequest$openSearchServiceConfig</a> to update an OpenSearch data source.</p>"
       }
     },
     "ErrorMessage": {
@@ -572,10 +572,10 @@
     "LambdaAuthorizerConfig": {
       "base": "<p>A <code>LambdaAuthorizerConfig</code> holds configuration on how to authorize AppSync API access when using the <code>AWS_LAMBDA</code> authorizer mode. Be aware that an AppSync API may have only one Lambda authorizer configured at a time.</p>",
       "refs": {
-        "AdditionalAuthenticationProvider$lambdaAuthorizerConfig": "<p>Configuration for AWS Lambda function authorization.</p>",
-        "CreateGraphqlApiRequest$lambdaAuthorizerConfig": "<p>Configuration for AWS Lambda function authorization.</p>",
-        "GraphqlApi$lambdaAuthorizerConfig": "<p/> <p>Configuration for AWS Lambda function authorization.</p>",
-        "UpdateGraphqlApiRequest$lambdaAuthorizerConfig": "<p>Configuration for AWS Lambda function authorization.</p>"
+        "AdditionalAuthenticationProvider$lambdaAuthorizerConfig": "<p>Configuration for Amazon Web Services Lambda function authorization.</p>",
+        "CreateGraphqlApiRequest$lambdaAuthorizerConfig": "<p>Configuration for Amazon Web Services Lambda function authorization.</p>",
+        "GraphqlApi$lambdaAuthorizerConfig": "<p>Configuration for Amazon Web Services Lambda function authorization.</p>",
+        "UpdateGraphqlApiRequest$lambdaAuthorizerConfig": "<p>Configuration for Amazon Web Services Lambda function authorization.</p>"
       }
     },
     "LambdaConflictHandlerConfig": {
@@ -749,6 +749,14 @@
         "CreateGraphqlApiRequest$openIDConnectConfig": "<p>The OpenID Connect configuration.</p>",
         "GraphqlApi$openIDConnectConfig": "<p>The OpenID Connect configuration.</p>",
         "UpdateGraphqlApiRequest$openIDConnectConfig": "<p>The OpenID Connect configuration for the <code>GraphqlApi</code> object.</p>"
+      }
+    },
+    "OpenSearchServiceDataSourceConfig": {
+      "base": "<p>Describes an OpenSearch data source configuration.</p>",
+      "refs": {
+        "CreateDataSourceRequest$openSearchServiceConfig": "<p>Amazon OpenSearch Service settings.</p>",
+        "DataSource$openSearchServiceConfig": "<p>Amazon OpenSearch Service settings.</p>",
+        "UpdateDataSourceRequest$openSearchServiceConfig": "<p>The new OpenSearch configuration.</p>"
       }
     },
     "OutputType": {
@@ -954,8 +962,8 @@
         "GraphqlApi$wafWebAclArn": "<p>The ARN of the WAF ACL associated with this <code>GraphqlApi</code>, if one exists.</p>",
         "HttpDataSourceConfig$endpoint": "<p>The HTTP URL endpoint. You can either specify the domain name or IP, and port combination, and the URL scheme must be HTTP or HTTPS. If the port is not specified, AppSync uses the default port 80 for the HTTP endpoint and port 443 for HTTPS endpoints.</p>",
         "InternalFailureException$message": null,
-        "LambdaAuthorizerConfig$authorizerUri": "<p>The ARN of the lambda function to be called for authorization. This may be a standard Lambda ARN, a version ARN (<code>.../v3</code>) or alias ARN. </p> <p> <i>Note</i>: This Lambda function must have the following resource-based policy assigned to it. When configuring Lambda authorizers in the Console, this is done for you. To do so with the AWS CLI, run the following:</p> <p> <code>aws lambda add-permission --function-name \"arn:aws:lambda:us-east-2:111122223333:function:my-function\" --statement-id \"appsync\" --principal appsync.amazonaws.com --action lambda:InvokeFunction</code> </p>",
-        "LambdaAuthorizerConfig$identityValidationExpression": "<p>A regular expression for validation of tokens before the Lambda Function is called.</p>",
+        "LambdaAuthorizerConfig$authorizerUri": "<p>The ARN of the Lambda function to be called for authorization. This may be a standard Lambda ARN, a version ARN (<code>.../v3</code>) or alias ARN. </p> <p> <i>Note</i>: This Lambda function must have the following resource-based policy assigned to it. When configuring Lambda authorizers in the Console, this is done for you. To do so with the Amazon Web Services CLI, run the following:</p> <p> <code>aws lambda add-permission --function-name \"arn:aws:lambda:us-east-2:111122223333:function:my-function\" --statement-id \"appsync\" --principal appsync.amazonaws.com --action lambda:InvokeFunction</code> </p>",
+        "LambdaAuthorizerConfig$identityValidationExpression": "<p>A regular expression for validation of tokens before the Lambda function is called.</p>",
         "LambdaConflictHandlerConfig$lambdaConflictHandlerArn": "<p>The Arn for the Lambda function to use as the Conflict Handler.</p>",
         "LambdaDataSourceConfig$lambdaFunctionArn": "<p>The ARN for the Lambda function.</p>",
         "LimitExceededException$message": null,
@@ -973,6 +981,8 @@
         "NotFoundException$message": null,
         "OpenIDConnectConfig$issuer": "<p>The issuer for the OpenID Connect configuration. The issuer returned by discovery must exactly match the value of <code>iss</code> in the ID token.</p>",
         "OpenIDConnectConfig$clientId": "<p>The client identifier of the Relying party at the OpenID identity provider. This identifier is typically obtained when the Relying party is registered with the OpenID identity provider. You can specify a regular expression so the AppSync can validate against multiple client identifiers at a time.</p>",
+        "OpenSearchServiceDataSourceConfig$endpoint": "<p>The endpoint.</p>",
+        "OpenSearchServiceDataSourceConfig$awsRegion": "<p>The Amazon Web Services Region.</p>",
         "RdsHttpEndpointConfig$awsRegion": "<p>Amazon Web Services Region for RDS HTTP endpoint.</p>",
         "RdsHttpEndpointConfig$dbClusterIdentifier": "<p>Amazon RDS cluster ARN.</p>",
         "RdsHttpEndpointConfig$databaseName": "<p>Logical database name.</p>",

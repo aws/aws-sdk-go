@@ -4842,7 +4842,9 @@ var awsPartition = partition{
 		"models-v2-lex": service{
 
 			Endpoints: endpoints{
+				"af-south-1":     endpoint{},
 				"ap-northeast-1": endpoint{},
+				"ap-northeast-2": endpoint{},
 				"ap-southeast-1": endpoint{},
 				"ap-southeast-2": endpoint{},
 				"ca-central-1":   endpoint{},
@@ -9989,6 +9991,23 @@ var awsusgovPartition = partition{
 				},
 				"us-gov-east-1": endpoint{},
 				"us-gov-west-1": endpoint{},
+			},
+		},
+		"iotevents": service{
+
+			Endpoints: endpoints{
+				"us-gov-west-1": endpoint{},
+			},
+		},
+		"ioteventsdata": service{
+
+			Endpoints: endpoints{
+				"us-gov-west-1": endpoint{
+					Hostname: "data.iotevents.us-gov-west-1.amazonaws.com",
+					CredentialScope: credentialScope{
+						Region: "us-gov-west-1",
+					},
+				},
 			},
 		},
 		"iotsecuredtunneling": service{

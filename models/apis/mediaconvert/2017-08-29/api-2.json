@@ -1754,12 +1754,23 @@
         "JOB"
       ]
     },
+    "BurnInSubtitleStylePassthrough": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
+      ]
+    },
     "BurninDestinationSettings": {
       "type": "structure",
       "members": {
         "Alignment": {
           "shape": "BurninSubtitleAlignment",
           "locationName": "alignment"
+        },
+        "ApplyFontColor": {
+          "shape": "BurninSubtitleApplyFontColor",
+          "locationName": "applyFontColor"
         },
         "BackgroundColor": {
           "shape": "BurninSubtitleBackgroundColor",
@@ -1768,6 +1779,10 @@
         "BackgroundOpacity": {
           "shape": "__integerMin0Max255",
           "locationName": "backgroundOpacity"
+        },
+        "FallbackFont": {
+          "shape": "BurninSubtitleFallbackFont",
+          "locationName": "fallbackFont"
         },
         "FontColor": {
           "shape": "BurninSubtitleFontColor",
@@ -1788,6 +1803,10 @@
         "FontSize": {
           "shape": "__integerMin0Max96",
           "locationName": "fontSize"
+        },
+        "HexFontColor": {
+          "shape": "__stringMin6Max8Pattern09aFAF609aFAF2",
+          "locationName": "hexFontColor"
         },
         "OutlineColor": {
           "shape": "BurninSubtitleOutlineColor",
@@ -1813,6 +1832,10 @@
           "shape": "__integerMinNegative2147483648Max2147483647",
           "locationName": "shadowYOffset"
         },
+        "StylePassthrough": {
+          "shape": "BurnInSubtitleStylePassthrough",
+          "locationName": "stylePassthrough"
+        },
         "TeletextSpacing": {
           "shape": "BurninSubtitleTeletextSpacing",
           "locationName": "teletextSpacing"
@@ -1831,7 +1854,15 @@
       "type": "string",
       "enum": [
         "CENTERED",
-        "LEFT"
+        "LEFT",
+        "AUTO"
+      ]
+    },
+    "BurninSubtitleApplyFontColor": {
+      "type": "string",
+      "enum": [
+        "WHITE_TEXT_ONLY",
+        "ALL_TEXT"
       ]
     },
     "BurninSubtitleBackgroundColor": {
@@ -1839,7 +1870,18 @@
       "enum": [
         "NONE",
         "BLACK",
-        "WHITE"
+        "WHITE",
+        "AUTO"
+      ]
+    },
+    "BurninSubtitleFallbackFont": {
+      "type": "string",
+      "enum": [
+        "BEST_MATCH",
+        "MONOSPACED_SANSSERIF",
+        "MONOSPACED_SERIF",
+        "PROPORTIONAL_SANSSERIF",
+        "PROPORTIONAL_SERIF"
       ]
     },
     "BurninSubtitleFontColor": {
@@ -1850,7 +1892,9 @@
         "YELLOW",
         "RED",
         "GREEN",
-        "BLUE"
+        "BLUE",
+        "HEX",
+        "AUTO"
       ]
     },
     "BurninSubtitleOutlineColor": {
@@ -1861,7 +1905,8 @@
         "YELLOW",
         "RED",
         "GREEN",
-        "BLUE"
+        "BLUE",
+        "AUTO"
       ]
     },
     "BurninSubtitleShadowColor": {
@@ -1869,14 +1914,16 @@
       "enum": [
         "NONE",
         "BLACK",
-        "WHITE"
+        "WHITE",
+        "AUTO"
       ]
     },
     "BurninSubtitleTeletextSpacing": {
       "type": "string",
       "enum": [
         "FIXED_GRID",
-        "PROPORTIONAL"
+        "PROPORTIONAL",
+        "AUTO"
       ]
     },
     "CancelJobRequest": {
@@ -2202,6 +2249,10 @@
           "shape": "CmafImageBasedTrickPlay",
           "locationName": "imageBasedTrickPlay"
         },
+        "ImageBasedTrickPlaySettings": {
+          "shape": "CmafImageBasedTrickPlaySettings",
+          "locationName": "imageBasedTrickPlaySettings"
+        },
         "ManifestCompression": {
           "shape": "CmafManifestCompression",
           "locationName": "manifestCompression"
@@ -2265,14 +2316,51 @@
       "enum": [
         "NONE",
         "THUMBNAIL",
-        "THUMBNAIL_AND_FULLFRAME"
+        "THUMBNAIL_AND_FULLFRAME",
+        "ADVANCED"
       ]
+    },
+    "CmafImageBasedTrickPlaySettings": {
+      "type": "structure",
+      "members": {
+        "IntervalCadence": {
+          "shape": "CmafIntervalCadence",
+          "locationName": "intervalCadence"
+        },
+        "ThumbnailHeight": {
+          "shape": "__integerMin2Max4096",
+          "locationName": "thumbnailHeight"
+        },
+        "ThumbnailInterval": {
+          "shape": "__doubleMin0Max2147483647",
+          "locationName": "thumbnailInterval"
+        },
+        "ThumbnailWidth": {
+          "shape": "__integerMin8Max4096",
+          "locationName": "thumbnailWidth"
+        },
+        "TileHeight": {
+          "shape": "__integerMin1Max2048",
+          "locationName": "tileHeight"
+        },
+        "TileWidth": {
+          "shape": "__integerMin1Max512",
+          "locationName": "tileWidth"
+        }
+      }
     },
     "CmafInitializationVectorInManifest": {
       "type": "string",
       "enum": [
         "INCLUDE",
         "EXCLUDE"
+      ]
+    },
+    "CmafIntervalCadence": {
+      "type": "string",
+      "enum": [
+        "FOLLOW_IFRAME",
+        "FOLLOW_CUSTOM"
       ]
     },
     "CmafKeyProviderType": {
@@ -2869,6 +2957,10 @@
           "shape": "DashIsoImageBasedTrickPlay",
           "locationName": "imageBasedTrickPlay"
         },
+        "ImageBasedTrickPlaySettings": {
+          "shape": "DashIsoImageBasedTrickPlaySettings",
+          "locationName": "imageBasedTrickPlaySettings"
+        },
         "MinBufferTime": {
           "shape": "__integerMin0Max2147483647",
           "locationName": "minBufferTime"
@@ -2915,7 +3007,44 @@
       "enum": [
         "NONE",
         "THUMBNAIL",
-        "THUMBNAIL_AND_FULLFRAME"
+        "THUMBNAIL_AND_FULLFRAME",
+        "ADVANCED"
+      ]
+    },
+    "DashIsoImageBasedTrickPlaySettings": {
+      "type": "structure",
+      "members": {
+        "IntervalCadence": {
+          "shape": "DashIsoIntervalCadence",
+          "locationName": "intervalCadence"
+        },
+        "ThumbnailHeight": {
+          "shape": "__integerMin1Max4096",
+          "locationName": "thumbnailHeight"
+        },
+        "ThumbnailInterval": {
+          "shape": "__doubleMin0Max2147483647",
+          "locationName": "thumbnailInterval"
+        },
+        "ThumbnailWidth": {
+          "shape": "__integerMin8Max4096",
+          "locationName": "thumbnailWidth"
+        },
+        "TileHeight": {
+          "shape": "__integerMin1Max2048",
+          "locationName": "tileHeight"
+        },
+        "TileWidth": {
+          "shape": "__integerMin1Max512",
+          "locationName": "tileWidth"
+        }
+      }
+    },
+    "DashIsoIntervalCadence": {
+      "type": "string",
+      "enum": [
+        "FOLLOW_IFRAME",
+        "FOLLOW_CUSTOM"
       ]
     },
     "DashIsoMpdProfile": {
@@ -3223,6 +3352,10 @@
           "shape": "DvbSubtitleAlignment",
           "locationName": "alignment"
         },
+        "ApplyFontColor": {
+          "shape": "DvbSubtitleApplyFontColor",
+          "locationName": "applyFontColor"
+        },
         "BackgroundColor": {
           "shape": "DvbSubtitleBackgroundColor",
           "locationName": "backgroundColor"
@@ -3242,6 +3375,10 @@
         "DdsYCoordinate": {
           "shape": "__integerMin0Max2147483647",
           "locationName": "ddsYCoordinate"
+        },
+        "FallbackFont": {
+          "shape": "DvbSubSubtitleFallbackFont",
+          "locationName": "fallbackFont"
         },
         "FontColor": {
           "shape": "DvbSubtitleFontColor",
@@ -3267,6 +3404,10 @@
           "shape": "__integerMin1Max2147483647",
           "locationName": "height"
         },
+        "HexFontColor": {
+          "shape": "__stringMin6Max8Pattern09aFAF609aFAF2",
+          "locationName": "hexFontColor"
+        },
         "OutlineColor": {
           "shape": "DvbSubtitleOutlineColor",
           "locationName": "outlineColor"
@@ -3290,6 +3431,10 @@
         "ShadowYOffset": {
           "shape": "__integerMinNegative2147483648Max2147483647",
           "locationName": "shadowYOffset"
+        },
+        "StylePassthrough": {
+          "shape": "DvbSubtitleStylePassthrough",
+          "locationName": "stylePassthrough"
         },
         "SubtitlingType": {
           "shape": "DvbSubtitlingType",
@@ -3322,11 +3467,29 @@
         }
       }
     },
+    "DvbSubSubtitleFallbackFont": {
+      "type": "string",
+      "enum": [
+        "BEST_MATCH",
+        "MONOSPACED_SANSSERIF",
+        "MONOSPACED_SERIF",
+        "PROPORTIONAL_SANSSERIF",
+        "PROPORTIONAL_SERIF"
+      ]
+    },
     "DvbSubtitleAlignment": {
       "type": "string",
       "enum": [
         "CENTERED",
-        "LEFT"
+        "LEFT",
+        "AUTO"
+      ]
+    },
+    "DvbSubtitleApplyFontColor": {
+      "type": "string",
+      "enum": [
+        "WHITE_TEXT_ONLY",
+        "ALL_TEXT"
       ]
     },
     "DvbSubtitleBackgroundColor": {
@@ -3334,7 +3497,8 @@
       "enum": [
         "NONE",
         "BLACK",
-        "WHITE"
+        "WHITE",
+        "AUTO"
       ]
     },
     "DvbSubtitleFontColor": {
@@ -3345,7 +3509,9 @@
         "YELLOW",
         "RED",
         "GREEN",
-        "BLUE"
+        "BLUE",
+        "HEX",
+        "AUTO"
       ]
     },
     "DvbSubtitleOutlineColor": {
@@ -3356,7 +3522,8 @@
         "YELLOW",
         "RED",
         "GREEN",
-        "BLUE"
+        "BLUE",
+        "AUTO"
       ]
     },
     "DvbSubtitleShadowColor": {
@@ -3364,14 +3531,23 @@
       "enum": [
         "NONE",
         "BLACK",
-        "WHITE"
+        "WHITE",
+        "AUTO"
+      ]
+    },
+    "DvbSubtitleStylePassthrough": {
+      "type": "string",
+      "enum": [
+        "ENABLED",
+        "DISABLED"
       ]
     },
     "DvbSubtitleTeletextSpacing": {
       "type": "string",
       "enum": [
         "FIXED_GRID",
-        "PROPORTIONAL"
+        "PROPORTIONAL",
+        "AUTO"
       ]
     },
     "DvbSubtitlingType": {
@@ -5092,6 +5268,10 @@
           "shape": "HlsImageBasedTrickPlay",
           "locationName": "imageBasedTrickPlay"
         },
+        "ImageBasedTrickPlaySettings": {
+          "shape": "HlsImageBasedTrickPlaySettings",
+          "locationName": "imageBasedTrickPlaySettings"
+        },
         "ManifestCompression": {
           "shape": "HlsManifestCompression",
           "locationName": "manifestCompression"
@@ -5170,14 +5350,51 @@
       "enum": [
         "NONE",
         "THUMBNAIL",
-        "THUMBNAIL_AND_FULLFRAME"
+        "THUMBNAIL_AND_FULLFRAME",
+        "ADVANCED"
       ]
+    },
+    "HlsImageBasedTrickPlaySettings": {
+      "type": "structure",
+      "members": {
+        "IntervalCadence": {
+          "shape": "HlsIntervalCadence",
+          "locationName": "intervalCadence"
+        },
+        "ThumbnailHeight": {
+          "shape": "__integerMin2Max4096",
+          "locationName": "thumbnailHeight"
+        },
+        "ThumbnailInterval": {
+          "shape": "__doubleMin0Max2147483647",
+          "locationName": "thumbnailInterval"
+        },
+        "ThumbnailWidth": {
+          "shape": "__integerMin8Max4096",
+          "locationName": "thumbnailWidth"
+        },
+        "TileHeight": {
+          "shape": "__integerMin1Max2048",
+          "locationName": "tileHeight"
+        },
+        "TileWidth": {
+          "shape": "__integerMin1Max512",
+          "locationName": "tileWidth"
+        }
+      }
     },
     "HlsInitializationVectorInManifest": {
       "type": "string",
       "enum": [
         "INCLUDE",
         "EXCLUDE"
+      ]
+    },
+    "HlsIntervalCadence": {
+      "type": "string",
+      "enum": [
+        "FOLLOW_IFRAME",
+        "FOLLOW_CUSTOM"
       ]
     },
     "HlsKeyProviderType": {
@@ -10071,6 +10288,11 @@
       "min": 1,
       "max": 20
     },
+    "__integerMin1Max2048": {
+      "type": "integer",
+      "min": 1,
+      "max": 2048
+    },
     "__integerMin1Max2147483640": {
       "type": "integer",
       "min": 1,
@@ -10095,6 +10317,16 @@
       "type": "integer",
       "min": 1,
       "max": 4
+    },
+    "__integerMin1Max4096": {
+      "type": "integer",
+      "min": 1,
+      "max": 4096
+    },
+    "__integerMin1Max512": {
+      "type": "integer",
+      "min": 1,
+      "max": 512
     },
     "__integerMin1Max6": {
       "type": "integer",
@@ -10135,6 +10367,11 @@
       "type": "integer",
       "min": 2,
       "max": 2147483647
+    },
+    "__integerMin2Max4096": {
+      "type": "integer",
+      "min": 2,
+      "max": 4096
     },
     "__integerMin32000Max192000": {
       "type": "integer",
@@ -10205,6 +10442,11 @@
       "type": "integer",
       "min": 8,
       "max": 12
+    },
+    "__integerMin8Max4096": {
+      "type": "integer",
+      "min": 8,
+      "max": 4096
     },
     "__integerMin96Max600": {
       "type": "integer",
@@ -10617,6 +10859,12 @@
       "min": 3,
       "max": 3,
       "pattern": "^[A-Za-z]{3}$"
+    },
+    "__stringMin6Max8Pattern09aFAF609aFAF2": {
+      "type": "string",
+      "min": 6,
+      "max": 8,
+      "pattern": "^[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$"
     },
     "__stringMin9Max19PatternAZ26EastWestCentralNorthSouthEastWest1912": {
       "type": "string",

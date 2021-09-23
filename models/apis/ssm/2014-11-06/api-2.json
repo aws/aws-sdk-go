@@ -5168,7 +5168,11 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "LoggingInfo":{"shape":"LoggingInfo"},
         "Name":{"shape":"MaintenanceWindowName"},
-        "Description":{"shape":"MaintenanceWindowDescription"}
+        "Description":{"shape":"MaintenanceWindowDescription"},
+        "CutoffBehavior":{
+          "shape":"MaintenanceWindowTaskCutoffBehavior",
+          "box":true
+        }
       }
     },
     "GetOpsItemRequest":{
@@ -7025,13 +7029,24 @@
         "MaxConcurrency":{"shape":"MaxConcurrency"},
         "MaxErrors":{"shape":"MaxErrors"},
         "Name":{"shape":"MaintenanceWindowName"},
-        "Description":{"shape":"MaintenanceWindowDescription"}
+        "Description":{"shape":"MaintenanceWindowDescription"},
+        "CutoffBehavior":{
+          "shape":"MaintenanceWindowTaskCutoffBehavior",
+          "box":true
+        }
       }
     },
     "MaintenanceWindowTaskArn":{
       "type":"string",
       "max":1600,
       "min":1
+    },
+    "MaintenanceWindowTaskCutoffBehavior":{
+      "type":"string",
+      "enum":[
+        "CONTINUE_TASK",
+        "CANCEL_TASK"
+      ]
     },
     "MaintenanceWindowTaskId":{
       "type":"string",
@@ -8816,6 +8831,10 @@
         "ClientToken":{
           "shape":"ClientToken",
           "idempotencyToken":true
+        },
+        "CutoffBehavior":{
+          "shape":"MaintenanceWindowTaskCutoffBehavior",
+          "box":true
         }
       }
     },
@@ -10219,6 +10238,10 @@
         "Replace":{
           "shape":"Boolean",
           "box":true
+        },
+        "CutoffBehavior":{
+          "shape":"MaintenanceWindowTaskCutoffBehavior",
+          "box":true
         }
       }
     },
@@ -10237,7 +10260,11 @@
         "MaxErrors":{"shape":"MaxErrors"},
         "LoggingInfo":{"shape":"LoggingInfo"},
         "Name":{"shape":"MaintenanceWindowName"},
-        "Description":{"shape":"MaintenanceWindowDescription"}
+        "Description":{"shape":"MaintenanceWindowDescription"},
+        "CutoffBehavior":{
+          "shape":"MaintenanceWindowTaskCutoffBehavior",
+          "box":true
+        }
       }
     },
     "UpdateManagedInstanceRoleRequest":{

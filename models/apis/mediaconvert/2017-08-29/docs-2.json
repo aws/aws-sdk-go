@@ -428,6 +428,12 @@
         "Job$BillingTagsSource": "The tag type that AWS Billing and Cost Management will use to sort your AWS Elemental MediaConvert costs on any billing report that you set up."
       }
     },
+    "BurnInSubtitleStylePassthrough": {
+      "base": "Ignore this setting unless your output captions are burned in. Choose which set of style and position values the service applies to your output captions. When you choose ENABLED, the service uses the input style and position information from your input. When you choose DISABLED, the service uses any style values that you specify in your output settings. If you don't specify values, the service uses default style and position values. When you choose DISABLED, the service ignores all style and position values from your input.",
+      "refs": {
+        "BurninDestinationSettings$StylePassthrough": "Ignore this setting unless your output captions are burned in. Choose which set of style and position values the service applies to your output captions. When you choose ENABLED, the service uses the input style and position information from your input. When you choose DISABLED, the service uses any style values that you specify in your output settings. If you don't specify values, the service uses default style and position values. When you choose DISABLED, the service ignores all style and position values from your input."
+      }
+    },
     "BurninDestinationSettings": {
       "base": "Settings related to burn-in captions. Set up burn-in captions in the same output as your video. For more information, see https://docs.aws.amazon.com/mediaconvert/latest/ug/burn-in-output-captions.html. When you work directly in your JSON job specification, include this object and any required children when you set destinationType to BURN_IN.",
       "refs": {
@@ -440,10 +446,22 @@
         "BurninDestinationSettings$Alignment": "If no explicit x_position or y_position is provided, setting alignment to centered will place the captions at the bottom center of the output. Similarly, setting a left alignment will align captions to the bottom left of the output. If x and y positions are given in conjunction with the alignment parameter, the font will be justified (either left or centered) relative to those coordinates. This option is not valid for source captions that are STL, 608/embedded or teletext. These source settings are already pre-defined by the caption stream. All burn-in and DVB-Sub font settings must match."
       }
     },
+    "BurninSubtitleApplyFontColor": {
+      "base": "Ignore this setting unless your input captions are STL, any type of 608, teletext, or TTML, and your output captions are burned in. Specify how the service applies the color specified in the setting Font color (BurninSubtitleFontColor). By default, this color is white. When you choose WHITE_TEXT_ONLY, the service uses the specified font color only for text that is white in the input. When you choose ALL_TEXT, the service uses the specified font color for all output captions text. If you leave both settings at their default value, your output font color is the same as your input font color.",
+      "refs": {
+        "BurninDestinationSettings$ApplyFontColor": "Ignore this setting unless your input captions are STL, any type of 608, teletext, or TTML, and your output captions are burned in. Specify how the service applies the color specified in the setting Font color (BurninSubtitleFontColor). By default, this color is white. When you choose WHITE_TEXT_ONLY, the service uses the specified font color only for text that is white in the input. When you choose ALL_TEXT, the service uses the specified font color for all output captions text. If you leave both settings at their default value, your output font color is the same as your input font color."
+      }
+    },
     "BurninSubtitleBackgroundColor": {
       "base": "Specifies the color of the rectangle behind the captions.\nAll burn-in and DVB-Sub font settings must match.",
       "refs": {
         "BurninDestinationSettings$BackgroundColor": "Specifies the color of the rectangle behind the captions.\nAll burn-in and DVB-Sub font settings must match."
+      }
+    },
+    "BurninSubtitleFallbackFont": {
+      "base": "Specify the font that you want the service to use for your burn in captions when your input captions specify a font that MediaConvert doesn't support. When you keep the default value, Best match (BEST_MATCH), MediaConvert uses a supported font that most closely matches the font that your input captions specify. When there are multiple unsupported fonts in your input captions, MediaConvert matches each font with the supported font that matches best. When you explicitly choose a replacement font, MediaConvert uses that font to replace all unsupported fonts from your input.",
+      "refs": {
+        "BurninDestinationSettings$FallbackFont": "Specify the font that you want the service to use for your burn in captions when your input captions specify a font that MediaConvert doesn't support. When you keep the default value, Best match (BEST_MATCH), MediaConvert uses a supported font that most closely matches the font that your input captions specify. When there are multiple unsupported fonts in your input captions, MediaConvert matches each font with the supported font that matches best. When you explicitly choose a replacement font, MediaConvert uses that font to replace all unsupported fonts from your input."
       }
     },
     "BurninSubtitleFontColor": {
@@ -577,10 +595,22 @@
         "CmafGroupSettings$ImageBasedTrickPlay": "Specify whether MediaConvert generates images for trick play. Keep the default value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL) to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME) to generate tiled thumbnails and full-resolution images of single frames. When you enable Write HLS manifest (WriteHlsManifest), MediaConvert creates a child manifest for each set of images that you generate and adds corresponding entries to the parent manifest. When you enable Write DASH manifest (WriteDashManifest), MediaConvert adds an entry in the .mpd manifest for each set of images that you generate. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md"
       }
     },
+    "CmafImageBasedTrickPlaySettings": {
+      "base": "Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED",
+      "refs": {
+        "CmafGroupSettings$ImageBasedTrickPlaySettings": "Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED"
+      }
+    },
     "CmafInitializationVectorInManifest": {
       "base": "When you use DRM with CMAF outputs, choose whether the service writes the 128-bit encryption initialization vector in the HLS and DASH manifests.",
       "refs": {
         "CmafEncryptionSettings$InitializationVectorInManifest": "When you use DRM with CMAF outputs, choose whether the service writes the 128-bit encryption initialization vector in the HLS and DASH manifests."
+      }
+    },
+    "CmafIntervalCadence": {
+      "base": "The cadence MediaConvert follows for generating thumbnails.  If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence).  If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval.",
+      "refs": {
+        "CmafImageBasedTrickPlaySettings$IntervalCadence": "The cadence MediaConvert follows for generating thumbnails.  If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence).  If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval."
       }
     },
     "CmafKeyProviderType": {
@@ -835,6 +865,18 @@
         "DashIsoGroupSettings$ImageBasedTrickPlay": "Specify whether MediaConvert generates images for trick play. Keep the default value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL) to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME) to generate tiled thumbnails and full-resolution images of single frames. MediaConvert adds an entry in the .mpd manifest for each set of images that you generate. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md"
       }
     },
+    "DashIsoImageBasedTrickPlaySettings": {
+      "base": "Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED",
+      "refs": {
+        "DashIsoGroupSettings$ImageBasedTrickPlaySettings": "Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED"
+      }
+    },
+    "DashIsoIntervalCadence": {
+      "base": "The cadence MediaConvert follows for generating thumbnails.  If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence).  If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval.",
+      "refs": {
+        "DashIsoImageBasedTrickPlaySettings$IntervalCadence": "The cadence MediaConvert follows for generating thumbnails.  If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence).  If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval."
+      }
+    },
     "DashIsoMpdProfile": {
       "base": "Specify whether your DASH profile is on-demand or main. When you choose Main profile (MAIN_PROFILE), the service signals  urn:mpeg:dash:profile:isoff-main:2011 in your .mpd DASH manifest. When you choose On-demand (ON_DEMAND_PROFILE), the service signals urn:mpeg:dash:profile:isoff-on-demand:2011 in your .mpd. When you choose On-demand, you must also set the output group setting Segment control (SegmentControl) to Single file (SINGLE_FILE).",
       "refs": {
@@ -1021,10 +1063,22 @@
         "CaptionSourceSettings$DvbSubSourceSettings": "DVB Sub Source Settings"
       }
     },
+    "DvbSubSubtitleFallbackFont": {
+      "base": "Specify the font that you want the service to use for your burn in captions when your input captions specify a font that MediaConvert doesn't support. When you keep the default value, Best match (BEST_MATCH), MediaConvert uses a supported font that most closely matches the font that your input captions specify. When there are multiple unsupported fonts in your input captions, MediaConvert matches each font with the supported font that matches best. When you explicitly choose a replacement font, MediaConvert uses that font to replace all unsupported fonts from your input.",
+      "refs": {
+        "DvbSubDestinationSettings$FallbackFont": "Specify the font that you want the service to use for your burn in captions when your input captions specify a font that MediaConvert doesn't support. When you keep the default value, Best match (BEST_MATCH), MediaConvert uses a supported font that most closely matches the font that your input captions specify. When there are multiple unsupported fonts in your input captions, MediaConvert matches each font with the supported font that matches best. When you explicitly choose a replacement font, MediaConvert uses that font to replace all unsupported fonts from your input."
+      }
+    },
     "DvbSubtitleAlignment": {
       "base": "If no explicit x_position or y_position is provided, setting alignment to centered will place the captions at the bottom center of the output. Similarly, setting a left alignment will align captions to the bottom left of the output. If x and y positions are given in conjunction with the alignment parameter, the font will be justified (either left or centered) relative to those coordinates. This option is not valid for source captions that are STL, 608/embedded or teletext. These source settings are already pre-defined by the caption stream. All burn-in and DVB-Sub font settings must match.",
       "refs": {
         "DvbSubDestinationSettings$Alignment": "If no explicit x_position or y_position is provided, setting alignment to centered will place the captions at the bottom center of the output. Similarly, setting a left alignment will align captions to the bottom left of the output. If x and y positions are given in conjunction with the alignment parameter, the font will be justified (either left or centered) relative to those coordinates. This option is not valid for source captions that are STL, 608/embedded or teletext. These source settings are already pre-defined by the caption stream. All burn-in and DVB-Sub font settings must match."
+      }
+    },
+    "DvbSubtitleApplyFontColor": {
+      "base": "Ignore this setting unless your input captions are STL, any type of 608, teletext, or TTML, and your output captions are DVB-SUB. Specify how the service applies the color specified in the setting Font color (DvbSubtitleFontColor). By default, this color is white. When you choose WHITE_TEXT_ONLY, the service uses the specified font color only for text that is white in the input. When you choose ALL_TEXT, the service uses the specified font color for all output captions text. If you leave both settings at their default value, your output font color is the same as your input font color.",
+      "refs": {
+        "DvbSubDestinationSettings$ApplyFontColor": "Ignore this setting unless your input captions are STL, any type of 608, teletext, or TTML, and your output captions are DVB-SUB. Specify how the service applies the color specified in the setting Font color (DvbSubtitleFontColor). By default, this color is white. When you choose WHITE_TEXT_ONLY, the service uses the specified font color only for text that is white in the input. When you choose ALL_TEXT, the service uses the specified font color for all output captions text. If you leave both settings at their default value, your output font color is the same as your input font color."
       }
     },
     "DvbSubtitleBackgroundColor": {
@@ -1049,6 +1103,12 @@
       "base": "Specifies the color of the shadow cast by the captions.\nAll burn-in and DVB-Sub font settings must match.",
       "refs": {
         "DvbSubDestinationSettings$ShadowColor": "Specifies the color of the shadow cast by the captions.\nAll burn-in and DVB-Sub font settings must match."
+      }
+    },
+    "DvbSubtitleStylePassthrough": {
+      "base": "Choose which set of style and position values the service applies to your output captions. When you choose ENABLED, the service uses the input style and position information from your input. When you choose DISABLED, the service uses any style values that you specify in your output settings. If you don't specify values, the service uses default style and position values. When you choose DISABLED, the service ignores all style and position values from your input.",
+      "refs": {
+        "DvbSubDestinationSettings$StylePassthrough": "Choose which set of style and position values the service applies to your output captions. When you choose ENABLED, the service uses the input style and position information from your input. When you choose DISABLED, the service uses any style values that you specify in your output settings. If you don't specify values, the service uses default style and position values. When you choose DISABLED, the service ignores all style and position values from your input."
       }
     },
     "DvbSubtitleTeletextSpacing": {
@@ -1286,10 +1346,10 @@
       }
     },
     "ExtendedDataServices": {
-      "base": "Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h Content Advisory.",
+      "base": "If your source content has EIA-608 Line 21 Data Services, enable this feature to specify what MediaConvert does with the Extended Data Services (XDS) packets. You can choose to pass through XDS packets, or remove them from the output. For more information about XDS, see EIA-608 Line Data Services, section 9.5.1.5 05h Content Advisory.",
       "refs": {
-        "JobSettings$ExtendedDataServices": "Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h Content Advisory.",
-        "JobTemplateSettings$ExtendedDataServices": "Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h Content Advisory."
+        "JobSettings$ExtendedDataServices": "If your source content has EIA-608 Line 21 Data Services, enable this feature to specify what MediaConvert does with the Extended Data Services (XDS) packets. You can choose to pass through XDS packets, or remove them from the output. For more information about XDS, see EIA-608 Line Data Services, section 9.5.1.5 05h Content Advisory.",
+        "JobTemplateSettings$ExtendedDataServices": "If your source content has EIA-608 Line 21 Data Services, enable this feature to specify what MediaConvert does with the Extended Data Services (XDS) packets. You can choose to pass through XDS packets, or remove them from the output. For more information about XDS, see EIA-608 Line Data Services, section 9.5.1.5 05h Content Advisory."
       }
     },
     "F4vMoovPlacement": {
@@ -1807,10 +1867,22 @@
         "HlsGroupSettings$ImageBasedTrickPlay": "Specify whether MediaConvert generates images for trick play. Keep the default value, None (NONE), to not generate any images. Choose Thumbnail (THUMBNAIL) to generate tiled thumbnails. Choose Thumbnail and full frame (THUMBNAIL_AND_FULLFRAME) to generate tiled thumbnails and full-resolution images of single frames. MediaConvert creates a child manifest for each set of images that you generate and adds corresponding entries to the parent manifest. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md"
       }
     },
+    "HlsImageBasedTrickPlaySettings": {
+      "base": "Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED",
+      "refs": {
+        "HlsGroupSettings$ImageBasedTrickPlaySettings": "Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED"
+      }
+    },
     "HlsInitializationVectorInManifest": {
       "base": "The Initialization Vector is a 128-bit number used in conjunction with the key for encrypting blocks. If set to INCLUDE, Initialization Vector is listed in the manifest. Otherwise Initialization Vector is not in the manifest.",
       "refs": {
         "HlsEncryptionSettings$InitializationVectorInManifest": "The Initialization Vector is a 128-bit number used in conjunction with the key for encrypting blocks. If set to INCLUDE, Initialization Vector is listed in the manifest. Otherwise Initialization Vector is not in the manifest."
+      }
+    },
+    "HlsIntervalCadence": {
+      "base": "The cadence MediaConvert follows for generating thumbnails.  If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence).  If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval.",
+      "refs": {
+        "HlsImageBasedTrickPlaySettings$IntervalCadence": "The cadence MediaConvert follows for generating thumbnails.  If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence).  If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval."
       }
     },
     "HlsKeyProviderType": {
@@ -3575,8 +3647,11 @@
       "base": null,
       "refs": {
         "CmafGroupSettings$MinFinalSegmentLength": "Keep this setting at the default value of 0, unless you are troubleshooting a problem with how devices play back the end of your video asset. If you know that player devices are hanging on the final segment of your video because the length of your final segment is too short, use this setting to specify a minimum final segment length, in seconds. Choose a value that is greater than or equal to 1 and less than your segment length. When you specify a value for this setting, the encoder will combine any final segment that is shorter than the length that you specify with the previous segment. For example, your segment length is 3 seconds and your final segment is .5 seconds without a minimum final segment length; when you set the minimum final segment length to 1, your final segment is 3.5 seconds.",
+        "CmafImageBasedTrickPlaySettings$ThumbnailInterval": "Enter the interval, in seconds, that MediaConvert uses to generate thumbnails.  If the interval you enter doesn't align with the output frame rate, MediaConvert automatically rounds the interval to align with the output frame rate.  For example, if the output frame rate is 29.97 frames per second and you enter 5, MediaConvert uses a 150 frame interval to generate thumbnails.",
         "DashIsoGroupSettings$MinFinalSegmentLength": "Keep this setting at the default value of 0, unless you are troubleshooting a problem with how devices play back the end of your video asset. If you know that player devices are hanging on the final segment of your video because the length of your final segment is too short, use this setting to specify a minimum final segment length, in seconds. Choose a value that is greater than or equal to 1 and less than your segment length. When you specify a value for this setting, the encoder will combine any final segment that is shorter than the length that you specify with the previous segment. For example, your segment length is 3 seconds and your final segment is .5 seconds without a minimum final segment length; when you set the minimum final segment length to 1, your final segment is 3.5 seconds.",
-        "HlsGroupSettings$MinFinalSegmentLength": "Keep this setting at the default value of 0, unless you are troubleshooting a problem with how devices play back the end of your video asset. If you know that player devices are hanging on the final segment of your video because the length of your final segment is too short, use this setting to specify a minimum final segment length, in seconds. Choose a value that is greater than or equal to 1 and less than your segment length. When you specify a value for this setting, the encoder will combine any final segment that is shorter than the length that you specify with the previous segment. For example, your segment length is 3 seconds and your final segment is .5 seconds without a minimum final segment length; when you set the minimum final segment length to 1, your final segment is 3.5 seconds."
+        "DashIsoImageBasedTrickPlaySettings$ThumbnailInterval": "Enter the interval, in seconds, that MediaConvert uses to generate thumbnails.  If the interval you enter doesn't align with the output frame rate, MediaConvert automatically rounds the interval to align with the output frame rate.  For example, if the output frame rate is 29.97 frames per second and you enter 5, MediaConvert uses a 150 frame interval to generate thumbnails.",
+        "HlsGroupSettings$MinFinalSegmentLength": "Keep this setting at the default value of 0, unless you are troubleshooting a problem with how devices play back the end of your video asset. If you know that player devices are hanging on the final segment of your video because the length of your final segment is too short, use this setting to specify a minimum final segment length, in seconds. Choose a value that is greater than or equal to 1 and less than your segment length. When you specify a value for this setting, the encoder will combine any final segment that is shorter than the length that you specify with the previous segment. For example, your segment length is 3 seconds and your final segment is .5 seconds without a minimum final segment length; when you set the minimum final segment length to 1, your final segment is 3.5 seconds.",
+        "HlsImageBasedTrickPlaySettings$ThumbnailInterval": "Enter the interval, in seconds, that MediaConvert uses to generate thumbnails.  If the interval you enter doesn't align with the output frame rate, MediaConvert automatically rounds the interval to align with the output frame rate.  For example, if the output frame rate is 29.97 frames per second and you enter 5, MediaConvert uses a 150 frame interval to generate thumbnails."
       }
     },
     "__doubleMinNegative59Max0": {
@@ -4027,6 +4102,14 @@
         "ListQueuesRequest$MaxResults": "Optional. Number of queues, up to twenty, that will be returned at one time."
       }
     },
+    "__integerMin1Max2048": {
+      "base": null,
+      "refs": {
+        "CmafImageBasedTrickPlaySettings$TileHeight": "Number of thumbnails in each column of a tile image. Set a value between 2 and 2048. Must be divisible by 2.",
+        "DashIsoImageBasedTrickPlaySettings$TileHeight": "Number of thumbnails in each column of a tile image. Set a value between 2 and 2048. Must be divisible by 2.",
+        "HlsImageBasedTrickPlaySettings$TileHeight": "Number of thumbnails in each column of a tile image. Set a value between 2 and 2048. Must be divisible by 2."
+      }
+    },
     "__integerMin1Max2147483640": {
       "base": null,
       "refs": {
@@ -4102,6 +4185,20 @@
         "EmbeddedSourceSettings$Source608ChannelNumber": "Specifies the 608/708 channel number within the video track from which to extract captions. Unused for passthrough."
       }
     },
+    "__integerMin1Max4096": {
+      "base": null,
+      "refs": {
+        "DashIsoImageBasedTrickPlaySettings$ThumbnailHeight": "Height of each thumbnail within each tile image, in pixels.  Leave blank to maintain aspect ratio with thumbnail width.  If following the aspect ratio would lead to a total tile height greater than 4096, then the job will be rejected.  Must be divisible by 2."
+      }
+    },
+    "__integerMin1Max512": {
+      "base": null,
+      "refs": {
+        "CmafImageBasedTrickPlaySettings$TileWidth": "Number of thumbnails in each row of a tile image.  Set a value between 1 and 512.",
+        "DashIsoImageBasedTrickPlaySettings$TileWidth": "Number of thumbnails in each row of a tile image.  Set a value between 1 and 512.",
+        "HlsImageBasedTrickPlaySettings$TileWidth": "Number of thumbnails in each row of a tile image.  Set a value between 1 and 512."
+      }
+    },
     "__integerMin1Max6": {
       "base": null,
       "refs": {
@@ -4158,6 +4255,13 @@
       "refs": {
         "Rectangle$Height": "Height of rectangle in pixels. Specify only even numbers.",
         "Rectangle$Width": "Width of rectangle in pixels. Specify only even numbers."
+      }
+    },
+    "__integerMin2Max4096": {
+      "base": null,
+      "refs": {
+        "CmafImageBasedTrickPlaySettings$ThumbnailHeight": "Height of each thumbnail within each tile image, in pixels.  Leave blank to maintain aspect ratio with thumbnail width.  If following the aspect ratio would lead to a total tile height greater than 4096, then the job will be rejected.  Must be divisible by 2.",
+        "HlsImageBasedTrickPlaySettings$ThumbnailHeight": "Height of each thumbnail within each tile image, in pixels.  Leave blank to maintain aspect ratio with thumbnail width.  If following the aspect ratio would lead to a total tile height greater than 4096, then the job will be rejected.  Must be divisible by 2."
       }
     },
     "__integerMin32000Max192000": {
@@ -4261,6 +4365,14 @@
       "base": null,
       "refs": {
         "Xavc4kProfileSettings$Slices": "Number of slices per picture. Must be less than or equal to the number of macroblock rows for progressive pictures, and less than or equal to half the number of macroblock rows for interlaced pictures."
+      }
+    },
+    "__integerMin8Max4096": {
+      "base": null,
+      "refs": {
+        "CmafImageBasedTrickPlaySettings$ThumbnailWidth": "Width of each thumbnail within each tile image, in pixels.  Default is 312.  Must be divisible by 8.",
+        "DashIsoImageBasedTrickPlaySettings$ThumbnailWidth": "Width of each thumbnail within each tile image, in pixels.  Default is 312.  Must be divisible by 8.",
+        "HlsImageBasedTrickPlaySettings$ThumbnailWidth": "Width of each thumbnail within each tile image, in pixels.  Default is 312.  Must be divisible by 8."
       }
     },
     "__integerMin96Max600": {
@@ -4850,6 +4962,13 @@
         "AudioSelector$CustomLanguageCode": "Selects a specific language code from within an audio source, using the ISO 639-2 or ISO 639-3 three-letter language code",
         "CaptionSelector$CustomLanguageCode": "The specific language to extract from source, using the ISO 639-2 or ISO 639-3 three-letter language code. If input is SCTE-27, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub and output is Burn-in or SMPTE-TT, complete this field and/or PID to select the caption language to extract. If input is DVB-Sub that is being passed through, omit this field (and PID field); there is no way to extract a specific language with pass-through captions.",
         "HlsCaptionLanguageMapping$CustomLanguageCode": "Specify the language for this captions channel, using the ISO 639-2 or ISO 639-3 three-letter language code"
+      }
+    },
+    "__stringMin6Max8Pattern09aFAF609aFAF2": {
+      "base": null,
+      "refs": {
+        "BurninDestinationSettings$HexFontColor": "Ignore this setting unless your BurninSubtitleFontColor setting is HEX. Format is six or eight hexidecimal digits, representing the red, green, and blue components, with the two extra digits used for an optional alpha value. For example a value of 1122AABB is a red value of 0x11, a green value of 0x22, a blue value of 0xAA, and an alpha value of 0xBB.",
+        "DvbSubDestinationSettings$HexFontColor": "Ignore this setting unless your DvbSubtitleFontColor setting is HEX. Format is six or eight hexidecimal digits, representing the red, green, and blue components, with the two extra digits used for an optional alpha value. For example a value of 1122AABB is a red value of 0x11, a green value of 0x22, a blue value of 0xAA, and an alpha value of 0xBB."
       }
     },
     "__stringMin9Max19PatternAZ26EastWestCentralNorthSouthEastWest1912": {

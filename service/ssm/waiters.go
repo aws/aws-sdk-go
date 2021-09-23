@@ -71,6 +71,11 @@ func (c *SSM) WaitUntilCommandExecutedWithContext(ctx aws.Context, input *GetCom
 				Matcher: request.PathWaiterMatch, Argument: "Status",
 				Expected: "Cancelling",
 			},
+			{
+				State:    request.RetryWaiterState,
+				Matcher:  request.ErrorWaiterMatch,
+				Expected: "InvocationDoesNotExist",
+			},
 		},
 		Logger: c.Config.Logger,
 		NewRequest: func(opts []request.Option) (*request.Request, error) {

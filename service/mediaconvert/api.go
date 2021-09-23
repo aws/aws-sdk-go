@@ -4646,6 +4646,16 @@ type BurninDestinationSettings struct {
 	// All burn-in and DVB-Sub font settings must match.
 	Alignment *string `locationName:"alignment" type:"string" enum:"BurninSubtitleAlignment"`
 
+	// Ignore this setting unless your input captions are STL, any type of 608,
+	// teletext, or TTML, and your output captions are burned in. Specify how the
+	// service applies the color specified in the setting Font color (BurninSubtitleFontColor).
+	// By default, this color is white. When you choose WHITE_TEXT_ONLY, the service
+	// uses the specified font color only for text that is white in the input. When
+	// you choose ALL_TEXT, the service uses the specified font color for all output
+	// captions text. If you leave both settings at their default value, your output
+	// font color is the same as your input font color.
+	ApplyFontColor *string `locationName:"applyFontColor" type:"string" enum:"BurninSubtitleApplyFontColor"`
+
 	// Specifies the color of the rectangle behind the captions.All burn-in and
 	// DVB-Sub font settings must match.
 	BackgroundColor *string `locationName:"backgroundColor" type:"string" enum:"BurninSubtitleBackgroundColor"`
@@ -4654,6 +4664,16 @@ type BurninDestinationSettings struct {
 	// Leaving this parameter blank is equivalent to setting it to 0 (transparent).
 	// All burn-in and DVB-Sub font settings must match.
 	BackgroundOpacity *int64 `locationName:"backgroundOpacity" type:"integer"`
+
+	// Specify the font that you want the service to use for your burn in captions
+	// when your input captions specify a font that MediaConvert doesn't support.
+	// When you keep the default value, Best match (BEST_MATCH), MediaConvert uses
+	// a supported font that most closely matches the font that your input captions
+	// specify. When there are multiple unsupported fonts in your input captions,
+	// MediaConvert matches each font with the supported font that matches best.
+	// When you explicitly choose a replacement font, MediaConvert uses that font
+	// to replace all unsupported fonts from your input.
+	FallbackFont *string `locationName:"fallbackFont" type:"string" enum:"BurninSubtitleFallbackFont"`
 
 	// Specifies the color of the burned-in captions. This option is not valid for
 	// source captions that are STL, 608/embedded or teletext. These source settings
@@ -4679,6 +4699,13 @@ type BurninDestinationSettings struct {
 	// automatic font size selection. All burn-in and DVB-Sub font settings must
 	// match.
 	FontSize *int64 `locationName:"fontSize" type:"integer"`
+
+	// Ignore this setting unless your BurninSubtitleFontColor setting is HEX. Format
+	// is six or eight hexidecimal digits, representing the red, green, and blue
+	// components, with the two extra digits used for an optional alpha value. For
+	// example a value of 1122AABB is a red value of 0x11, a green value of 0x22,
+	// a blue value of 0xAA, and an alpha value of 0xBB.
+	HexFontColor *string `locationName:"hexFontColor" min:"6" type:"string"`
 
 	// Specifies font outline color. This option is not valid for source captions
 	// that are either 608/embedded or teletext. These source settings are already
@@ -4710,6 +4737,15 @@ type BurninDestinationSettings struct {
 	// A value of -2 would result in a shadow offset 2 pixels above the text. All
 	// burn-in and DVB-Sub font settings must match.
 	ShadowYOffset *int64 `locationName:"shadowYOffset" type:"integer"`
+
+	// Ignore this setting unless your output captions are burned in. Choose which
+	// set of style and position values the service applies to your output captions.
+	// When you choose ENABLED, the service uses the input style and position information
+	// from your input. When you choose DISABLED, the service uses any style values
+	// that you specify in your output settings. If you don't specify values, the
+	// service uses default style and position values. When you choose DISABLED,
+	// the service ignores all style and position values from your input.
+	StylePassthrough *string `locationName:"stylePassthrough" type:"string" enum:"BurnInSubtitleStylePassthrough"`
 
 	// Only applies to jobs with input captions in Teletext or STL formats. Specify
 	// whether the spacing between letters in your captions is set by the captions
@@ -4761,6 +4797,9 @@ func (s *BurninDestinationSettings) Validate() error {
 	if s.FontResolution != nil && *s.FontResolution < 96 {
 		invalidParams.Add(request.NewErrParamMinValue("FontResolution", 96))
 	}
+	if s.HexFontColor != nil && len(*s.HexFontColor) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("HexFontColor", 6))
+	}
 	if s.ShadowXOffset != nil && *s.ShadowXOffset < -2.147483648e+09 {
 		invalidParams.Add(request.NewErrParamMinValue("ShadowXOffset", -2.147483648e+09))
 	}
@@ -4780,6 +4819,12 @@ func (s *BurninDestinationSettings) SetAlignment(v string) *BurninDestinationSet
 	return s
 }
 
+// SetApplyFontColor sets the ApplyFontColor field's value.
+func (s *BurninDestinationSettings) SetApplyFontColor(v string) *BurninDestinationSettings {
+	s.ApplyFontColor = &v
+	return s
+}
+
 // SetBackgroundColor sets the BackgroundColor field's value.
 func (s *BurninDestinationSettings) SetBackgroundColor(v string) *BurninDestinationSettings {
 	s.BackgroundColor = &v
@@ -4789,6 +4834,12 @@ func (s *BurninDestinationSettings) SetBackgroundColor(v string) *BurninDestinat
 // SetBackgroundOpacity sets the BackgroundOpacity field's value.
 func (s *BurninDestinationSettings) SetBackgroundOpacity(v int64) *BurninDestinationSettings {
 	s.BackgroundOpacity = &v
+	return s
+}
+
+// SetFallbackFont sets the FallbackFont field's value.
+func (s *BurninDestinationSettings) SetFallbackFont(v string) *BurninDestinationSettings {
+	s.FallbackFont = &v
 	return s
 }
 
@@ -4819,6 +4870,12 @@ func (s *BurninDestinationSettings) SetFontScript(v string) *BurninDestinationSe
 // SetFontSize sets the FontSize field's value.
 func (s *BurninDestinationSettings) SetFontSize(v int64) *BurninDestinationSettings {
 	s.FontSize = &v
+	return s
+}
+
+// SetHexFontColor sets the HexFontColor field's value.
+func (s *BurninDestinationSettings) SetHexFontColor(v string) *BurninDestinationSettings {
+	s.HexFontColor = &v
 	return s
 }
 
@@ -4855,6 +4912,12 @@ func (s *BurninDestinationSettings) SetShadowXOffset(v int64) *BurninDestination
 // SetShadowYOffset sets the ShadowYOffset field's value.
 func (s *BurninDestinationSettings) SetShadowYOffset(v int64) *BurninDestinationSettings {
 	s.ShadowYOffset = &v
+	return s
+}
+
+// SetStylePassthrough sets the StylePassthrough field's value.
+func (s *BurninDestinationSettings) SetStylePassthrough(v string) *BurninDestinationSettings {
+	s.StylePassthrough = &v
 	return s
 }
 
@@ -5906,6 +5969,9 @@ type CmafGroupSettings struct {
 	// are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
 	ImageBasedTrickPlay *string `locationName:"imageBasedTrickPlay" type:"string" enum:"CmafImageBasedTrickPlay"`
 
+	// Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
+	ImageBasedTrickPlaySettings *CmafImageBasedTrickPlaySettings `locationName:"imageBasedTrickPlaySettings" type:"structure"`
+
 	// When set to GZIP, compresses HLS playlist.
 	ManifestCompression *string `locationName:"manifestCompression" type:"string" enum:"CmafManifestCompression"`
 
@@ -6040,6 +6106,11 @@ func (s *CmafGroupSettings) Validate() error {
 			invalidParams.AddNested("Encryption", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ImageBasedTrickPlaySettings != nil {
+		if err := s.ImageBasedTrickPlaySettings.Validate(); err != nil {
+			invalidParams.AddNested("ImageBasedTrickPlaySettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -6098,6 +6169,12 @@ func (s *CmafGroupSettings) SetFragmentLength(v int64) *CmafGroupSettings {
 // SetImageBasedTrickPlay sets the ImageBasedTrickPlay field's value.
 func (s *CmafGroupSettings) SetImageBasedTrickPlay(v string) *CmafGroupSettings {
 	s.ImageBasedTrickPlay = &v
+	return s
+}
+
+// SetImageBasedTrickPlaySettings sets the ImageBasedTrickPlaySettings field's value.
+func (s *CmafGroupSettings) SetImageBasedTrickPlaySettings(v *CmafImageBasedTrickPlaySettings) *CmafGroupSettings {
+	s.ImageBasedTrickPlaySettings = v
 	return s
 }
 
@@ -6182,6 +6259,118 @@ func (s *CmafGroupSettings) SetWriteHlsManifest(v string) *CmafGroupSettings {
 // SetWriteSegmentTimelineInRepresentation sets the WriteSegmentTimelineInRepresentation field's value.
 func (s *CmafGroupSettings) SetWriteSegmentTimelineInRepresentation(v string) *CmafGroupSettings {
 	s.WriteSegmentTimelineInRepresentation = &v
+	return s
+}
+
+// Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
+type CmafImageBasedTrickPlaySettings struct {
+	_ struct{} `type:"structure"`
+
+	// The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME,
+	// MediaConvert generates thumbnails for each IDR frame in the output (matching
+	// the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails
+	// according to the interval you specify in thumbnailInterval.
+	IntervalCadence *string `locationName:"intervalCadence" type:"string" enum:"CmafIntervalCadence"`
+
+	// Height of each thumbnail within each tile image, in pixels. Leave blank to
+	// maintain aspect ratio with thumbnail width. If following the aspect ratio
+	// would lead to a total tile height greater than 4096, then the job will be
+	// rejected. Must be divisible by 2.
+	ThumbnailHeight *int64 `locationName:"thumbnailHeight" min:"2" type:"integer"`
+
+	// Enter the interval, in seconds, that MediaConvert uses to generate thumbnails.
+	// If the interval you enter doesn't align with the output frame rate, MediaConvert
+	// automatically rounds the interval to align with the output frame rate. For
+	// example, if the output frame rate is 29.97 frames per second and you enter
+	// 5, MediaConvert uses a 150 frame interval to generate thumbnails.
+	ThumbnailInterval *float64 `locationName:"thumbnailInterval" type:"double"`
+
+	// Width of each thumbnail within each tile image, in pixels. Default is 312.
+	// Must be divisible by 8.
+	ThumbnailWidth *int64 `locationName:"thumbnailWidth" min:"8" type:"integer"`
+
+	// Number of thumbnails in each column of a tile image. Set a value between
+	// 2 and 2048. Must be divisible by 2.
+	TileHeight *int64 `locationName:"tileHeight" min:"1" type:"integer"`
+
+	// Number of thumbnails in each row of a tile image. Set a value between 1 and
+	// 512.
+	TileWidth *int64 `locationName:"tileWidth" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CmafImageBasedTrickPlaySettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CmafImageBasedTrickPlaySettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CmafImageBasedTrickPlaySettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CmafImageBasedTrickPlaySettings"}
+	if s.ThumbnailHeight != nil && *s.ThumbnailHeight < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("ThumbnailHeight", 2))
+	}
+	if s.ThumbnailWidth != nil && *s.ThumbnailWidth < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThumbnailWidth", 8))
+	}
+	if s.TileHeight != nil && *s.TileHeight < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TileHeight", 1))
+	}
+	if s.TileWidth != nil && *s.TileWidth < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TileWidth", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntervalCadence sets the IntervalCadence field's value.
+func (s *CmafImageBasedTrickPlaySettings) SetIntervalCadence(v string) *CmafImageBasedTrickPlaySettings {
+	s.IntervalCadence = &v
+	return s
+}
+
+// SetThumbnailHeight sets the ThumbnailHeight field's value.
+func (s *CmafImageBasedTrickPlaySettings) SetThumbnailHeight(v int64) *CmafImageBasedTrickPlaySettings {
+	s.ThumbnailHeight = &v
+	return s
+}
+
+// SetThumbnailInterval sets the ThumbnailInterval field's value.
+func (s *CmafImageBasedTrickPlaySettings) SetThumbnailInterval(v float64) *CmafImageBasedTrickPlaySettings {
+	s.ThumbnailInterval = &v
+	return s
+}
+
+// SetThumbnailWidth sets the ThumbnailWidth field's value.
+func (s *CmafImageBasedTrickPlaySettings) SetThumbnailWidth(v int64) *CmafImageBasedTrickPlaySettings {
+	s.ThumbnailWidth = &v
+	return s
+}
+
+// SetTileHeight sets the TileHeight field's value.
+func (s *CmafImageBasedTrickPlaySettings) SetTileHeight(v int64) *CmafImageBasedTrickPlaySettings {
+	s.TileHeight = &v
+	return s
+}
+
+// SetTileWidth sets the TileWidth field's value.
+func (s *CmafImageBasedTrickPlaySettings) SetTileWidth(v int64) *CmafImageBasedTrickPlaySettings {
+	s.TileWidth = &v
 	return s
 }
 
@@ -7581,6 +7770,9 @@ type DashIsoGroupSettings struct {
 	// are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
 	ImageBasedTrickPlay *string `locationName:"imageBasedTrickPlay" type:"string" enum:"DashIsoImageBasedTrickPlay"`
 
+	// Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
+	ImageBasedTrickPlaySettings *DashIsoImageBasedTrickPlaySettings `locationName:"imageBasedTrickPlaySettings" type:"structure"`
+
 	// Minimum time of initially buffered media that is needed to ensure smooth
 	// playout.
 	MinBufferTime *int64 `locationName:"minBufferTime" type:"integer"`
@@ -7684,6 +7876,11 @@ func (s *DashIsoGroupSettings) Validate() error {
 			}
 		}
 	}
+	if s.ImageBasedTrickPlaySettings != nil {
+		if err := s.ImageBasedTrickPlaySettings.Validate(); err != nil {
+			invalidParams.AddNested("ImageBasedTrickPlaySettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -7745,6 +7942,12 @@ func (s *DashIsoGroupSettings) SetImageBasedTrickPlay(v string) *DashIsoGroupSet
 	return s
 }
 
+// SetImageBasedTrickPlaySettings sets the ImageBasedTrickPlaySettings field's value.
+func (s *DashIsoGroupSettings) SetImageBasedTrickPlaySettings(v *DashIsoImageBasedTrickPlaySettings) *DashIsoGroupSettings {
+	s.ImageBasedTrickPlaySettings = v
+	return s
+}
+
 // SetMinBufferTime sets the MinBufferTime field's value.
 func (s *DashIsoGroupSettings) SetMinBufferTime(v int64) *DashIsoGroupSettings {
 	s.MinBufferTime = &v
@@ -7790,6 +7993,118 @@ func (s *DashIsoGroupSettings) SetSegmentLengthControl(v string) *DashIsoGroupSe
 // SetWriteSegmentTimelineInRepresentation sets the WriteSegmentTimelineInRepresentation field's value.
 func (s *DashIsoGroupSettings) SetWriteSegmentTimelineInRepresentation(v string) *DashIsoGroupSettings {
 	s.WriteSegmentTimelineInRepresentation = &v
+	return s
+}
+
+// Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
+type DashIsoImageBasedTrickPlaySettings struct {
+	_ struct{} `type:"structure"`
+
+	// The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME,
+	// MediaConvert generates thumbnails for each IDR frame in the output (matching
+	// the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails
+	// according to the interval you specify in thumbnailInterval.
+	IntervalCadence *string `locationName:"intervalCadence" type:"string" enum:"DashIsoIntervalCadence"`
+
+	// Height of each thumbnail within each tile image, in pixels. Leave blank to
+	// maintain aspect ratio with thumbnail width. If following the aspect ratio
+	// would lead to a total tile height greater than 4096, then the job will be
+	// rejected. Must be divisible by 2.
+	ThumbnailHeight *int64 `locationName:"thumbnailHeight" min:"1" type:"integer"`
+
+	// Enter the interval, in seconds, that MediaConvert uses to generate thumbnails.
+	// If the interval you enter doesn't align with the output frame rate, MediaConvert
+	// automatically rounds the interval to align with the output frame rate. For
+	// example, if the output frame rate is 29.97 frames per second and you enter
+	// 5, MediaConvert uses a 150 frame interval to generate thumbnails.
+	ThumbnailInterval *float64 `locationName:"thumbnailInterval" type:"double"`
+
+	// Width of each thumbnail within each tile image, in pixels. Default is 312.
+	// Must be divisible by 8.
+	ThumbnailWidth *int64 `locationName:"thumbnailWidth" min:"8" type:"integer"`
+
+	// Number of thumbnails in each column of a tile image. Set a value between
+	// 2 and 2048. Must be divisible by 2.
+	TileHeight *int64 `locationName:"tileHeight" min:"1" type:"integer"`
+
+	// Number of thumbnails in each row of a tile image. Set a value between 1 and
+	// 512.
+	TileWidth *int64 `locationName:"tileWidth" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DashIsoImageBasedTrickPlaySettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DashIsoImageBasedTrickPlaySettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DashIsoImageBasedTrickPlaySettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DashIsoImageBasedTrickPlaySettings"}
+	if s.ThumbnailHeight != nil && *s.ThumbnailHeight < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("ThumbnailHeight", 1))
+	}
+	if s.ThumbnailWidth != nil && *s.ThumbnailWidth < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThumbnailWidth", 8))
+	}
+	if s.TileHeight != nil && *s.TileHeight < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TileHeight", 1))
+	}
+	if s.TileWidth != nil && *s.TileWidth < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TileWidth", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntervalCadence sets the IntervalCadence field's value.
+func (s *DashIsoImageBasedTrickPlaySettings) SetIntervalCadence(v string) *DashIsoImageBasedTrickPlaySettings {
+	s.IntervalCadence = &v
+	return s
+}
+
+// SetThumbnailHeight sets the ThumbnailHeight field's value.
+func (s *DashIsoImageBasedTrickPlaySettings) SetThumbnailHeight(v int64) *DashIsoImageBasedTrickPlaySettings {
+	s.ThumbnailHeight = &v
+	return s
+}
+
+// SetThumbnailInterval sets the ThumbnailInterval field's value.
+func (s *DashIsoImageBasedTrickPlaySettings) SetThumbnailInterval(v float64) *DashIsoImageBasedTrickPlaySettings {
+	s.ThumbnailInterval = &v
+	return s
+}
+
+// SetThumbnailWidth sets the ThumbnailWidth field's value.
+func (s *DashIsoImageBasedTrickPlaySettings) SetThumbnailWidth(v int64) *DashIsoImageBasedTrickPlaySettings {
+	s.ThumbnailWidth = &v
+	return s
+}
+
+// SetTileHeight sets the TileHeight field's value.
+func (s *DashIsoImageBasedTrickPlaySettings) SetTileHeight(v int64) *DashIsoImageBasedTrickPlaySettings {
+	s.TileHeight = &v
+	return s
+}
+
+// SetTileWidth sets the TileWidth field's value.
+func (s *DashIsoImageBasedTrickPlaySettings) SetTileWidth(v int64) *DashIsoImageBasedTrickPlaySettings {
+	s.TileWidth = &v
 	return s
 }
 
@@ -8563,6 +8878,16 @@ type DvbSubDestinationSettings struct {
 	// All burn-in and DVB-Sub font settings must match.
 	Alignment *string `locationName:"alignment" type:"string" enum:"DvbSubtitleAlignment"`
 
+	// Ignore this setting unless your input captions are STL, any type of 608,
+	// teletext, or TTML, and your output captions are DVB-SUB. Specify how the
+	// service applies the color specified in the setting Font color (DvbSubtitleFontColor).
+	// By default, this color is white. When you choose WHITE_TEXT_ONLY, the service
+	// uses the specified font color only for text that is white in the input. When
+	// you choose ALL_TEXT, the service uses the specified font color for all output
+	// captions text. If you leave both settings at their default value, your output
+	// font color is the same as your input font color.
+	ApplyFontColor *string `locationName:"applyFontColor" type:"string" enum:"DvbSubtitleApplyFontColor"`
+
 	// Specifies the color of the rectangle behind the captions.All burn-in and
 	// DVB-Sub font settings must match.
 	BackgroundColor *string `locationName:"backgroundColor" type:"string" enum:"DvbSubtitleBackgroundColor"`
@@ -8610,6 +8935,16 @@ type DvbSubDestinationSettings struct {
 	// (PCS). All burn-in and DVB-Sub font settings must match.
 	DdsYCoordinate *int64 `locationName:"ddsYCoordinate" type:"integer"`
 
+	// Specify the font that you want the service to use for your burn in captions
+	// when your input captions specify a font that MediaConvert doesn't support.
+	// When you keep the default value, Best match (BEST_MATCH), MediaConvert uses
+	// a supported font that most closely matches the font that your input captions
+	// specify. When there are multiple unsupported fonts in your input captions,
+	// MediaConvert matches each font with the supported font that matches best.
+	// When you explicitly choose a replacement font, MediaConvert uses that font
+	// to replace all unsupported fonts from your input.
+	FallbackFont *string `locationName:"fallbackFont" type:"string" enum:"DvbSubSubtitleFallbackFont"`
+
 	// Specifies the color of the DVB-SUB captions. This option is not valid for
 	// source captions that are STL, 608/embedded or teletext. These source settings
 	// are already pre-defined by the caption stream. All burn-in and DVB-Sub font
@@ -8641,6 +8976,13 @@ type DvbSubDestinationSettings struct {
 	// and DVB-Sub font settings must match.
 	Height *int64 `locationName:"height" min:"1" type:"integer"`
 
+	// Ignore this setting unless your DvbSubtitleFontColor setting is HEX. Format
+	// is six or eight hexidecimal digits, representing the red, green, and blue
+	// components, with the two extra digits used for an optional alpha value. For
+	// example a value of 1122AABB is a red value of 0x11, a green value of 0x22,
+	// a blue value of 0xAA, and an alpha value of 0xBB.
+	HexFontColor *string `locationName:"hexFontColor" min:"6" type:"string"`
+
 	// Specifies font outline color. This option is not valid for source captions
 	// that are either 608/embedded or teletext. These source settings are already
 	// pre-defined by the caption stream. All burn-in and DVB-Sub font settings
@@ -8671,6 +9013,15 @@ type DvbSubDestinationSettings struct {
 	// A value of -2 would result in a shadow offset 2 pixels above the text. All
 	// burn-in and DVB-Sub font settings must match.
 	ShadowYOffset *int64 `locationName:"shadowYOffset" type:"integer"`
+
+	// Choose which set of style and position values the service applies to your
+	// output captions. When you choose ENABLED, the service uses the input style
+	// and position information from your input. When you choose DISABLED, the service
+	// uses any style values that you specify in your output settings. If you don't
+	// specify values, the service uses default style and position values. When
+	// you choose DISABLED, the service ignores all style and position values from
+	// your input.
+	StylePassthrough *string `locationName:"stylePassthrough" type:"string" enum:"DvbSubtitleStylePassthrough"`
 
 	// Specify whether your DVB subtitles are standard or for hearing impaired.
 	// Choose hearing impaired if your subtitles include audio descriptions and
@@ -8736,6 +9087,9 @@ func (s *DvbSubDestinationSettings) Validate() error {
 	if s.Height != nil && *s.Height < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Height", 1))
 	}
+	if s.HexFontColor != nil && len(*s.HexFontColor) < 6 {
+		invalidParams.Add(request.NewErrParamMinLen("HexFontColor", 6))
+	}
 	if s.ShadowXOffset != nil && *s.ShadowXOffset < -2.147483648e+09 {
 		invalidParams.Add(request.NewErrParamMinValue("ShadowXOffset", -2.147483648e+09))
 	}
@@ -8755,6 +9109,12 @@ func (s *DvbSubDestinationSettings) Validate() error {
 // SetAlignment sets the Alignment field's value.
 func (s *DvbSubDestinationSettings) SetAlignment(v string) *DvbSubDestinationSettings {
 	s.Alignment = &v
+	return s
+}
+
+// SetApplyFontColor sets the ApplyFontColor field's value.
+func (s *DvbSubDestinationSettings) SetApplyFontColor(v string) *DvbSubDestinationSettings {
+	s.ApplyFontColor = &v
 	return s
 }
 
@@ -8785,6 +9145,12 @@ func (s *DvbSubDestinationSettings) SetDdsXCoordinate(v int64) *DvbSubDestinatio
 // SetDdsYCoordinate sets the DdsYCoordinate field's value.
 func (s *DvbSubDestinationSettings) SetDdsYCoordinate(v int64) *DvbSubDestinationSettings {
 	s.DdsYCoordinate = &v
+	return s
+}
+
+// SetFallbackFont sets the FallbackFont field's value.
+func (s *DvbSubDestinationSettings) SetFallbackFont(v string) *DvbSubDestinationSettings {
+	s.FallbackFont = &v
 	return s
 }
 
@@ -8824,6 +9190,12 @@ func (s *DvbSubDestinationSettings) SetHeight(v int64) *DvbSubDestinationSetting
 	return s
 }
 
+// SetHexFontColor sets the HexFontColor field's value.
+func (s *DvbSubDestinationSettings) SetHexFontColor(v string) *DvbSubDestinationSettings {
+	s.HexFontColor = &v
+	return s
+}
+
 // SetOutlineColor sets the OutlineColor field's value.
 func (s *DvbSubDestinationSettings) SetOutlineColor(v string) *DvbSubDestinationSettings {
 	s.OutlineColor = &v
@@ -8857,6 +9229,12 @@ func (s *DvbSubDestinationSettings) SetShadowXOffset(v int64) *DvbSubDestination
 // SetShadowYOffset sets the ShadowYOffset field's value.
 func (s *DvbSubDestinationSettings) SetShadowYOffset(v int64) *DvbSubDestinationSettings {
 	s.ShadowYOffset = &v
+	return s
+}
+
+// SetStylePassthrough sets the StylePassthrough field's value.
+func (s *DvbSubDestinationSettings) SetStylePassthrough(v string) *DvbSubDestinationSettings {
+	s.StylePassthrough = &v
 	return s
 }
 
@@ -9862,8 +10240,11 @@ func (s *EsamSignalProcessingNotification) SetSccXml(v string) *EsamSignalProces
 	return s
 }
 
-// Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h
-// Content Advisory.
+// If your source content has EIA-608 Line 21 Data Services, enable this feature
+// to specify what MediaConvert does with the Extended Data Services (XDS) packets.
+// You can choose to pass through XDS packets, or remove them from the output.
+// For more information about XDS, see EIA-608 Line Data Services, section 9.5.1.5
+// 05h Content Advisory.
 type ExtendedDataServices struct {
 	_ struct{} `type:"structure"`
 
@@ -12489,6 +12870,9 @@ type HlsGroupSettings struct {
 	// specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
 	ImageBasedTrickPlay *string `locationName:"imageBasedTrickPlay" type:"string" enum:"HlsImageBasedTrickPlay"`
 
+	// Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
+	ImageBasedTrickPlaySettings *HlsImageBasedTrickPlaySettings `locationName:"imageBasedTrickPlaySettings" type:"structure"`
+
 	// When set to GZIP, compresses HLS playlist.
 	ManifestCompression *string `locationName:"manifestCompression" type:"string" enum:"HlsManifestCompression"`
 
@@ -12632,6 +13016,11 @@ func (s *HlsGroupSettings) Validate() error {
 			invalidParams.AddNested("Encryption", err.(request.ErrInvalidParams))
 		}
 	}
+	if s.ImageBasedTrickPlaySettings != nil {
+		if err := s.ImageBasedTrickPlaySettings.Validate(); err != nil {
+			invalidParams.AddNested("ImageBasedTrickPlaySettings", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -12714,6 +13103,12 @@ func (s *HlsGroupSettings) SetEncryption(v *HlsEncryptionSettings) *HlsGroupSett
 // SetImageBasedTrickPlay sets the ImageBasedTrickPlay field's value.
 func (s *HlsGroupSettings) SetImageBasedTrickPlay(v string) *HlsGroupSettings {
 	s.ImageBasedTrickPlay = &v
+	return s
+}
+
+// SetImageBasedTrickPlaySettings sets the ImageBasedTrickPlaySettings field's value.
+func (s *HlsGroupSettings) SetImageBasedTrickPlaySettings(v *HlsImageBasedTrickPlaySettings) *HlsGroupSettings {
+	s.ImageBasedTrickPlaySettings = v
 	return s
 }
 
@@ -12810,6 +13205,118 @@ func (s *HlsGroupSettings) SetTimedMetadataId3Period(v int64) *HlsGroupSettings 
 // SetTimestampDeltaMilliseconds sets the TimestampDeltaMilliseconds field's value.
 func (s *HlsGroupSettings) SetTimestampDeltaMilliseconds(v int64) *HlsGroupSettings {
 	s.TimestampDeltaMilliseconds = &v
+	return s
+}
+
+// Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
+type HlsImageBasedTrickPlaySettings struct {
+	_ struct{} `type:"structure"`
+
+	// The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME,
+	// MediaConvert generates thumbnails for each IDR frame in the output (matching
+	// the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails
+	// according to the interval you specify in thumbnailInterval.
+	IntervalCadence *string `locationName:"intervalCadence" type:"string" enum:"HlsIntervalCadence"`
+
+	// Height of each thumbnail within each tile image, in pixels. Leave blank to
+	// maintain aspect ratio with thumbnail width. If following the aspect ratio
+	// would lead to a total tile height greater than 4096, then the job will be
+	// rejected. Must be divisible by 2.
+	ThumbnailHeight *int64 `locationName:"thumbnailHeight" min:"2" type:"integer"`
+
+	// Enter the interval, in seconds, that MediaConvert uses to generate thumbnails.
+	// If the interval you enter doesn't align with the output frame rate, MediaConvert
+	// automatically rounds the interval to align with the output frame rate. For
+	// example, if the output frame rate is 29.97 frames per second and you enter
+	// 5, MediaConvert uses a 150 frame interval to generate thumbnails.
+	ThumbnailInterval *float64 `locationName:"thumbnailInterval" type:"double"`
+
+	// Width of each thumbnail within each tile image, in pixels. Default is 312.
+	// Must be divisible by 8.
+	ThumbnailWidth *int64 `locationName:"thumbnailWidth" min:"8" type:"integer"`
+
+	// Number of thumbnails in each column of a tile image. Set a value between
+	// 2 and 2048. Must be divisible by 2.
+	TileHeight *int64 `locationName:"tileHeight" min:"1" type:"integer"`
+
+	// Number of thumbnails in each row of a tile image. Set a value between 1 and
+	// 512.
+	TileWidth *int64 `locationName:"tileWidth" min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HlsImageBasedTrickPlaySettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s HlsImageBasedTrickPlaySettings) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *HlsImageBasedTrickPlaySettings) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "HlsImageBasedTrickPlaySettings"}
+	if s.ThumbnailHeight != nil && *s.ThumbnailHeight < 2 {
+		invalidParams.Add(request.NewErrParamMinValue("ThumbnailHeight", 2))
+	}
+	if s.ThumbnailWidth != nil && *s.ThumbnailWidth < 8 {
+		invalidParams.Add(request.NewErrParamMinValue("ThumbnailWidth", 8))
+	}
+	if s.TileHeight != nil && *s.TileHeight < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TileHeight", 1))
+	}
+	if s.TileWidth != nil && *s.TileWidth < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TileWidth", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntervalCadence sets the IntervalCadence field's value.
+func (s *HlsImageBasedTrickPlaySettings) SetIntervalCadence(v string) *HlsImageBasedTrickPlaySettings {
+	s.IntervalCadence = &v
+	return s
+}
+
+// SetThumbnailHeight sets the ThumbnailHeight field's value.
+func (s *HlsImageBasedTrickPlaySettings) SetThumbnailHeight(v int64) *HlsImageBasedTrickPlaySettings {
+	s.ThumbnailHeight = &v
+	return s
+}
+
+// SetThumbnailInterval sets the ThumbnailInterval field's value.
+func (s *HlsImageBasedTrickPlaySettings) SetThumbnailInterval(v float64) *HlsImageBasedTrickPlaySettings {
+	s.ThumbnailInterval = &v
+	return s
+}
+
+// SetThumbnailWidth sets the ThumbnailWidth field's value.
+func (s *HlsImageBasedTrickPlaySettings) SetThumbnailWidth(v int64) *HlsImageBasedTrickPlaySettings {
+	s.ThumbnailWidth = &v
+	return s
+}
+
+// SetTileHeight sets the TileHeight field's value.
+func (s *HlsImageBasedTrickPlaySettings) SetTileHeight(v int64) *HlsImageBasedTrickPlaySettings {
+	s.TileHeight = &v
+	return s
+}
+
+// SetTileWidth sets the TileWidth field's value.
+func (s *HlsImageBasedTrickPlaySettings) SetTileWidth(v int64) *HlsImageBasedTrickPlaySettings {
+	s.TileWidth = &v
 	return s
 }
 
@@ -14553,8 +15060,11 @@ type JobSettings struct {
 	// you can ignore these settings.
 	Esam *EsamSettings `locationName:"esam" type:"structure"`
 
-	// Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h
-	// Content Advisory.
+	// If your source content has EIA-608 Line 21 Data Services, enable this feature
+	// to specify what MediaConvert does with the Extended Data Services (XDS) packets.
+	// You can choose to pass through XDS packets, or remove them from the output.
+	// For more information about XDS, see EIA-608 Line Data Services, section 9.5.1.5
+	// 05h Content Advisory.
 	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
 
 	// Use Inputs (inputs) to define source file used in the transcode job. There
@@ -14927,8 +15437,11 @@ type JobTemplateSettings struct {
 	// you can ignore these settings.
 	Esam *EsamSettings `locationName:"esam" type:"structure"`
 
-	// Hexadecimal value as per EIA-608 Line 21 Data Services, section 9.5.1.5 05h
-	// Content Advisory.
+	// If your source content has EIA-608 Line 21 Data Services, enable this feature
+	// to specify what MediaConvert does with the Extended Data Services (XDS) packets.
+	// You can choose to pass through XDS packets, or remove them from the output.
+	// For more information about XDS, see EIA-608 Line Data Services, section 9.5.1.5
+	// 05h Content Advisory.
 	ExtendedDataServices *ExtendedDataServices `locationName:"extendedDataServices" type:"structure"`
 
 	// Use Inputs (inputs) to define the source file used in the transcode job.
@@ -25777,6 +26290,29 @@ func BillingTagsSource_Values() []string {
 	}
 }
 
+// Ignore this setting unless your output captions are burned in. Choose which
+// set of style and position values the service applies to your output captions.
+// When you choose ENABLED, the service uses the input style and position information
+// from your input. When you choose DISABLED, the service uses any style values
+// that you specify in your output settings. If you don't specify values, the
+// service uses default style and position values. When you choose DISABLED,
+// the service ignores all style and position values from your input.
+const (
+	// BurnInSubtitleStylePassthroughEnabled is a BurnInSubtitleStylePassthrough enum value
+	BurnInSubtitleStylePassthroughEnabled = "ENABLED"
+
+	// BurnInSubtitleStylePassthroughDisabled is a BurnInSubtitleStylePassthrough enum value
+	BurnInSubtitleStylePassthroughDisabled = "DISABLED"
+)
+
+// BurnInSubtitleStylePassthrough_Values returns all elements of the BurnInSubtitleStylePassthrough enum
+func BurnInSubtitleStylePassthrough_Values() []string {
+	return []string{
+		BurnInSubtitleStylePassthroughEnabled,
+		BurnInSubtitleStylePassthroughDisabled,
+	}
+}
+
 // If no explicit x_position or y_position is provided, setting alignment to
 // centered will place the captions at the bottom center of the output. Similarly,
 // setting a left alignment will align captions to the bottom left of the output.
@@ -25791,6 +26327,9 @@ const (
 
 	// BurninSubtitleAlignmentLeft is a BurninSubtitleAlignment enum value
 	BurninSubtitleAlignmentLeft = "LEFT"
+
+	// BurninSubtitleAlignmentAuto is a BurninSubtitleAlignment enum value
+	BurninSubtitleAlignmentAuto = "AUTO"
 )
 
 // BurninSubtitleAlignment_Values returns all elements of the BurninSubtitleAlignment enum
@@ -25798,6 +26337,31 @@ func BurninSubtitleAlignment_Values() []string {
 	return []string{
 		BurninSubtitleAlignmentCentered,
 		BurninSubtitleAlignmentLeft,
+		BurninSubtitleAlignmentAuto,
+	}
+}
+
+// Ignore this setting unless your input captions are STL, any type of 608,
+// teletext, or TTML, and your output captions are burned in. Specify how the
+// service applies the color specified in the setting Font color (BurninSubtitleFontColor).
+// By default, this color is white. When you choose WHITE_TEXT_ONLY, the service
+// uses the specified font color only for text that is white in the input. When
+// you choose ALL_TEXT, the service uses the specified font color for all output
+// captions text. If you leave both settings at their default value, your output
+// font color is the same as your input font color.
+const (
+	// BurninSubtitleApplyFontColorWhiteTextOnly is a BurninSubtitleApplyFontColor enum value
+	BurninSubtitleApplyFontColorWhiteTextOnly = "WHITE_TEXT_ONLY"
+
+	// BurninSubtitleApplyFontColorAllText is a BurninSubtitleApplyFontColor enum value
+	BurninSubtitleApplyFontColorAllText = "ALL_TEXT"
+)
+
+// BurninSubtitleApplyFontColor_Values returns all elements of the BurninSubtitleApplyFontColor enum
+func BurninSubtitleApplyFontColor_Values() []string {
+	return []string{
+		BurninSubtitleApplyFontColorWhiteTextOnly,
+		BurninSubtitleApplyFontColorAllText,
 	}
 }
 
@@ -25812,6 +26376,9 @@ const (
 
 	// BurninSubtitleBackgroundColorWhite is a BurninSubtitleBackgroundColor enum value
 	BurninSubtitleBackgroundColorWhite = "WHITE"
+
+	// BurninSubtitleBackgroundColorAuto is a BurninSubtitleBackgroundColor enum value
+	BurninSubtitleBackgroundColorAuto = "AUTO"
 )
 
 // BurninSubtitleBackgroundColor_Values returns all elements of the BurninSubtitleBackgroundColor enum
@@ -25820,6 +26387,43 @@ func BurninSubtitleBackgroundColor_Values() []string {
 		BurninSubtitleBackgroundColorNone,
 		BurninSubtitleBackgroundColorBlack,
 		BurninSubtitleBackgroundColorWhite,
+		BurninSubtitleBackgroundColorAuto,
+	}
+}
+
+// Specify the font that you want the service to use for your burn in captions
+// when your input captions specify a font that MediaConvert doesn't support.
+// When you keep the default value, Best match (BEST_MATCH), MediaConvert uses
+// a supported font that most closely matches the font that your input captions
+// specify. When there are multiple unsupported fonts in your input captions,
+// MediaConvert matches each font with the supported font that matches best.
+// When you explicitly choose a replacement font, MediaConvert uses that font
+// to replace all unsupported fonts from your input.
+const (
+	// BurninSubtitleFallbackFontBestMatch is a BurninSubtitleFallbackFont enum value
+	BurninSubtitleFallbackFontBestMatch = "BEST_MATCH"
+
+	// BurninSubtitleFallbackFontMonospacedSansserif is a BurninSubtitleFallbackFont enum value
+	BurninSubtitleFallbackFontMonospacedSansserif = "MONOSPACED_SANSSERIF"
+
+	// BurninSubtitleFallbackFontMonospacedSerif is a BurninSubtitleFallbackFont enum value
+	BurninSubtitleFallbackFontMonospacedSerif = "MONOSPACED_SERIF"
+
+	// BurninSubtitleFallbackFontProportionalSansserif is a BurninSubtitleFallbackFont enum value
+	BurninSubtitleFallbackFontProportionalSansserif = "PROPORTIONAL_SANSSERIF"
+
+	// BurninSubtitleFallbackFontProportionalSerif is a BurninSubtitleFallbackFont enum value
+	BurninSubtitleFallbackFontProportionalSerif = "PROPORTIONAL_SERIF"
+)
+
+// BurninSubtitleFallbackFont_Values returns all elements of the BurninSubtitleFallbackFont enum
+func BurninSubtitleFallbackFont_Values() []string {
+	return []string{
+		BurninSubtitleFallbackFontBestMatch,
+		BurninSubtitleFallbackFontMonospacedSansserif,
+		BurninSubtitleFallbackFontMonospacedSerif,
+		BurninSubtitleFallbackFontProportionalSansserif,
+		BurninSubtitleFallbackFontProportionalSerif,
 	}
 }
 
@@ -25845,6 +26449,12 @@ const (
 
 	// BurninSubtitleFontColorBlue is a BurninSubtitleFontColor enum value
 	BurninSubtitleFontColorBlue = "BLUE"
+
+	// BurninSubtitleFontColorHex is a BurninSubtitleFontColor enum value
+	BurninSubtitleFontColorHex = "HEX"
+
+	// BurninSubtitleFontColorAuto is a BurninSubtitleFontColor enum value
+	BurninSubtitleFontColorAuto = "AUTO"
 )
 
 // BurninSubtitleFontColor_Values returns all elements of the BurninSubtitleFontColor enum
@@ -25856,6 +26466,8 @@ func BurninSubtitleFontColor_Values() []string {
 		BurninSubtitleFontColorRed,
 		BurninSubtitleFontColorGreen,
 		BurninSubtitleFontColorBlue,
+		BurninSubtitleFontColorHex,
+		BurninSubtitleFontColorAuto,
 	}
 }
 
@@ -25881,6 +26493,9 @@ const (
 
 	// BurninSubtitleOutlineColorBlue is a BurninSubtitleOutlineColor enum value
 	BurninSubtitleOutlineColorBlue = "BLUE"
+
+	// BurninSubtitleOutlineColorAuto is a BurninSubtitleOutlineColor enum value
+	BurninSubtitleOutlineColorAuto = "AUTO"
 )
 
 // BurninSubtitleOutlineColor_Values returns all elements of the BurninSubtitleOutlineColor enum
@@ -25892,6 +26507,7 @@ func BurninSubtitleOutlineColor_Values() []string {
 		BurninSubtitleOutlineColorRed,
 		BurninSubtitleOutlineColorGreen,
 		BurninSubtitleOutlineColorBlue,
+		BurninSubtitleOutlineColorAuto,
 	}
 }
 
@@ -25906,6 +26522,9 @@ const (
 
 	// BurninSubtitleShadowColorWhite is a BurninSubtitleShadowColor enum value
 	BurninSubtitleShadowColorWhite = "WHITE"
+
+	// BurninSubtitleShadowColorAuto is a BurninSubtitleShadowColor enum value
+	BurninSubtitleShadowColorAuto = "AUTO"
 )
 
 // BurninSubtitleShadowColor_Values returns all elements of the BurninSubtitleShadowColor enum
@@ -25914,6 +26533,7 @@ func BurninSubtitleShadowColor_Values() []string {
 		BurninSubtitleShadowColorNone,
 		BurninSubtitleShadowColorBlack,
 		BurninSubtitleShadowColorWhite,
+		BurninSubtitleShadowColorAuto,
 	}
 }
 
@@ -25928,6 +26548,9 @@ const (
 
 	// BurninSubtitleTeletextSpacingProportional is a BurninSubtitleTeletextSpacing enum value
 	BurninSubtitleTeletextSpacingProportional = "PROPORTIONAL"
+
+	// BurninSubtitleTeletextSpacingAuto is a BurninSubtitleTeletextSpacing enum value
+	BurninSubtitleTeletextSpacingAuto = "AUTO"
 )
 
 // BurninSubtitleTeletextSpacing_Values returns all elements of the BurninSubtitleTeletextSpacing enum
@@ -25935,6 +26558,7 @@ func BurninSubtitleTeletextSpacing_Values() []string {
 	return []string{
 		BurninSubtitleTeletextSpacingFixedGrid,
 		BurninSubtitleTeletextSpacingProportional,
+		BurninSubtitleTeletextSpacingAuto,
 	}
 }
 
@@ -26144,6 +26768,9 @@ const (
 
 	// CmafImageBasedTrickPlayThumbnailAndFullframe is a CmafImageBasedTrickPlay enum value
 	CmafImageBasedTrickPlayThumbnailAndFullframe = "THUMBNAIL_AND_FULLFRAME"
+
+	// CmafImageBasedTrickPlayAdvanced is a CmafImageBasedTrickPlay enum value
+	CmafImageBasedTrickPlayAdvanced = "ADVANCED"
 )
 
 // CmafImageBasedTrickPlay_Values returns all elements of the CmafImageBasedTrickPlay enum
@@ -26152,6 +26779,7 @@ func CmafImageBasedTrickPlay_Values() []string {
 		CmafImageBasedTrickPlayNone,
 		CmafImageBasedTrickPlayThumbnail,
 		CmafImageBasedTrickPlayThumbnailAndFullframe,
+		CmafImageBasedTrickPlayAdvanced,
 	}
 }
 
@@ -26170,6 +26798,26 @@ func CmafInitializationVectorInManifest_Values() []string {
 	return []string{
 		CmafInitializationVectorInManifestInclude,
 		CmafInitializationVectorInManifestExclude,
+	}
+}
+
+// The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME,
+// MediaConvert generates thumbnails for each IDR frame in the output (matching
+// the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails
+// according to the interval you specify in thumbnailInterval.
+const (
+	// CmafIntervalCadenceFollowIframe is a CmafIntervalCadence enum value
+	CmafIntervalCadenceFollowIframe = "FOLLOW_IFRAME"
+
+	// CmafIntervalCadenceFollowCustom is a CmafIntervalCadence enum value
+	CmafIntervalCadenceFollowCustom = "FOLLOW_CUSTOM"
+)
+
+// CmafIntervalCadence_Values returns all elements of the CmafIntervalCadence enum
+func CmafIntervalCadence_Values() []string {
+	return []string{
+		CmafIntervalCadenceFollowIframe,
+		CmafIntervalCadenceFollowCustom,
 	}
 }
 
@@ -26819,6 +27467,9 @@ const (
 
 	// DashIsoImageBasedTrickPlayThumbnailAndFullframe is a DashIsoImageBasedTrickPlay enum value
 	DashIsoImageBasedTrickPlayThumbnailAndFullframe = "THUMBNAIL_AND_FULLFRAME"
+
+	// DashIsoImageBasedTrickPlayAdvanced is a DashIsoImageBasedTrickPlay enum value
+	DashIsoImageBasedTrickPlayAdvanced = "ADVANCED"
 )
 
 // DashIsoImageBasedTrickPlay_Values returns all elements of the DashIsoImageBasedTrickPlay enum
@@ -26827,6 +27478,27 @@ func DashIsoImageBasedTrickPlay_Values() []string {
 		DashIsoImageBasedTrickPlayNone,
 		DashIsoImageBasedTrickPlayThumbnail,
 		DashIsoImageBasedTrickPlayThumbnailAndFullframe,
+		DashIsoImageBasedTrickPlayAdvanced,
+	}
+}
+
+// The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME,
+// MediaConvert generates thumbnails for each IDR frame in the output (matching
+// the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails
+// according to the interval you specify in thumbnailInterval.
+const (
+	// DashIsoIntervalCadenceFollowIframe is a DashIsoIntervalCadence enum value
+	DashIsoIntervalCadenceFollowIframe = "FOLLOW_IFRAME"
+
+	// DashIsoIntervalCadenceFollowCustom is a DashIsoIntervalCadence enum value
+	DashIsoIntervalCadenceFollowCustom = "FOLLOW_CUSTOM"
+)
+
+// DashIsoIntervalCadence_Values returns all elements of the DashIsoIntervalCadence enum
+func DashIsoIntervalCadence_Values() []string {
+	return []string{
+		DashIsoIntervalCadenceFollowIframe,
+		DashIsoIntervalCadenceFollowCustom,
 	}
 }
 
@@ -27136,6 +27808,42 @@ func DropFrameTimecode_Values() []string {
 	}
 }
 
+// Specify the font that you want the service to use for your burn in captions
+// when your input captions specify a font that MediaConvert doesn't support.
+// When you keep the default value, Best match (BEST_MATCH), MediaConvert uses
+// a supported font that most closely matches the font that your input captions
+// specify. When there are multiple unsupported fonts in your input captions,
+// MediaConvert matches each font with the supported font that matches best.
+// When you explicitly choose a replacement font, MediaConvert uses that font
+// to replace all unsupported fonts from your input.
+const (
+	// DvbSubSubtitleFallbackFontBestMatch is a DvbSubSubtitleFallbackFont enum value
+	DvbSubSubtitleFallbackFontBestMatch = "BEST_MATCH"
+
+	// DvbSubSubtitleFallbackFontMonospacedSansserif is a DvbSubSubtitleFallbackFont enum value
+	DvbSubSubtitleFallbackFontMonospacedSansserif = "MONOSPACED_SANSSERIF"
+
+	// DvbSubSubtitleFallbackFontMonospacedSerif is a DvbSubSubtitleFallbackFont enum value
+	DvbSubSubtitleFallbackFontMonospacedSerif = "MONOSPACED_SERIF"
+
+	// DvbSubSubtitleFallbackFontProportionalSansserif is a DvbSubSubtitleFallbackFont enum value
+	DvbSubSubtitleFallbackFontProportionalSansserif = "PROPORTIONAL_SANSSERIF"
+
+	// DvbSubSubtitleFallbackFontProportionalSerif is a DvbSubSubtitleFallbackFont enum value
+	DvbSubSubtitleFallbackFontProportionalSerif = "PROPORTIONAL_SERIF"
+)
+
+// DvbSubSubtitleFallbackFont_Values returns all elements of the DvbSubSubtitleFallbackFont enum
+func DvbSubSubtitleFallbackFont_Values() []string {
+	return []string{
+		DvbSubSubtitleFallbackFontBestMatch,
+		DvbSubSubtitleFallbackFontMonospacedSansserif,
+		DvbSubSubtitleFallbackFontMonospacedSerif,
+		DvbSubSubtitleFallbackFontProportionalSansserif,
+		DvbSubSubtitleFallbackFontProportionalSerif,
+	}
+}
+
 // If no explicit x_position or y_position is provided, setting alignment to
 // centered will place the captions at the bottom center of the output. Similarly,
 // setting a left alignment will align captions to the bottom left of the output.
@@ -27150,6 +27858,9 @@ const (
 
 	// DvbSubtitleAlignmentLeft is a DvbSubtitleAlignment enum value
 	DvbSubtitleAlignmentLeft = "LEFT"
+
+	// DvbSubtitleAlignmentAuto is a DvbSubtitleAlignment enum value
+	DvbSubtitleAlignmentAuto = "AUTO"
 )
 
 // DvbSubtitleAlignment_Values returns all elements of the DvbSubtitleAlignment enum
@@ -27157,6 +27868,31 @@ func DvbSubtitleAlignment_Values() []string {
 	return []string{
 		DvbSubtitleAlignmentCentered,
 		DvbSubtitleAlignmentLeft,
+		DvbSubtitleAlignmentAuto,
+	}
+}
+
+// Ignore this setting unless your input captions are STL, any type of 608,
+// teletext, or TTML, and your output captions are DVB-SUB. Specify how the
+// service applies the color specified in the setting Font color (DvbSubtitleFontColor).
+// By default, this color is white. When you choose WHITE_TEXT_ONLY, the service
+// uses the specified font color only for text that is white in the input. When
+// you choose ALL_TEXT, the service uses the specified font color for all output
+// captions text. If you leave both settings at their default value, your output
+// font color is the same as your input font color.
+const (
+	// DvbSubtitleApplyFontColorWhiteTextOnly is a DvbSubtitleApplyFontColor enum value
+	DvbSubtitleApplyFontColorWhiteTextOnly = "WHITE_TEXT_ONLY"
+
+	// DvbSubtitleApplyFontColorAllText is a DvbSubtitleApplyFontColor enum value
+	DvbSubtitleApplyFontColorAllText = "ALL_TEXT"
+)
+
+// DvbSubtitleApplyFontColor_Values returns all elements of the DvbSubtitleApplyFontColor enum
+func DvbSubtitleApplyFontColor_Values() []string {
+	return []string{
+		DvbSubtitleApplyFontColorWhiteTextOnly,
+		DvbSubtitleApplyFontColorAllText,
 	}
 }
 
@@ -27171,6 +27907,9 @@ const (
 
 	// DvbSubtitleBackgroundColorWhite is a DvbSubtitleBackgroundColor enum value
 	DvbSubtitleBackgroundColorWhite = "WHITE"
+
+	// DvbSubtitleBackgroundColorAuto is a DvbSubtitleBackgroundColor enum value
+	DvbSubtitleBackgroundColorAuto = "AUTO"
 )
 
 // DvbSubtitleBackgroundColor_Values returns all elements of the DvbSubtitleBackgroundColor enum
@@ -27179,6 +27918,7 @@ func DvbSubtitleBackgroundColor_Values() []string {
 		DvbSubtitleBackgroundColorNone,
 		DvbSubtitleBackgroundColorBlack,
 		DvbSubtitleBackgroundColorWhite,
+		DvbSubtitleBackgroundColorAuto,
 	}
 }
 
@@ -27204,6 +27944,12 @@ const (
 
 	// DvbSubtitleFontColorBlue is a DvbSubtitleFontColor enum value
 	DvbSubtitleFontColorBlue = "BLUE"
+
+	// DvbSubtitleFontColorHex is a DvbSubtitleFontColor enum value
+	DvbSubtitleFontColorHex = "HEX"
+
+	// DvbSubtitleFontColorAuto is a DvbSubtitleFontColor enum value
+	DvbSubtitleFontColorAuto = "AUTO"
 )
 
 // DvbSubtitleFontColor_Values returns all elements of the DvbSubtitleFontColor enum
@@ -27215,6 +27961,8 @@ func DvbSubtitleFontColor_Values() []string {
 		DvbSubtitleFontColorRed,
 		DvbSubtitleFontColorGreen,
 		DvbSubtitleFontColorBlue,
+		DvbSubtitleFontColorHex,
+		DvbSubtitleFontColorAuto,
 	}
 }
 
@@ -27240,6 +27988,9 @@ const (
 
 	// DvbSubtitleOutlineColorBlue is a DvbSubtitleOutlineColor enum value
 	DvbSubtitleOutlineColorBlue = "BLUE"
+
+	// DvbSubtitleOutlineColorAuto is a DvbSubtitleOutlineColor enum value
+	DvbSubtitleOutlineColorAuto = "AUTO"
 )
 
 // DvbSubtitleOutlineColor_Values returns all elements of the DvbSubtitleOutlineColor enum
@@ -27251,6 +28002,7 @@ func DvbSubtitleOutlineColor_Values() []string {
 		DvbSubtitleOutlineColorRed,
 		DvbSubtitleOutlineColorGreen,
 		DvbSubtitleOutlineColorBlue,
+		DvbSubtitleOutlineColorAuto,
 	}
 }
 
@@ -27265,6 +28017,9 @@ const (
 
 	// DvbSubtitleShadowColorWhite is a DvbSubtitleShadowColor enum value
 	DvbSubtitleShadowColorWhite = "WHITE"
+
+	// DvbSubtitleShadowColorAuto is a DvbSubtitleShadowColor enum value
+	DvbSubtitleShadowColorAuto = "AUTO"
 )
 
 // DvbSubtitleShadowColor_Values returns all elements of the DvbSubtitleShadowColor enum
@@ -27273,6 +28028,30 @@ func DvbSubtitleShadowColor_Values() []string {
 		DvbSubtitleShadowColorNone,
 		DvbSubtitleShadowColorBlack,
 		DvbSubtitleShadowColorWhite,
+		DvbSubtitleShadowColorAuto,
+	}
+}
+
+// Choose which set of style and position values the service applies to your
+// output captions. When you choose ENABLED, the service uses the input style
+// and position information from your input. When you choose DISABLED, the service
+// uses any style values that you specify in your output settings. If you don't
+// specify values, the service uses default style and position values. When
+// you choose DISABLED, the service ignores all style and position values from
+// your input.
+const (
+	// DvbSubtitleStylePassthroughEnabled is a DvbSubtitleStylePassthrough enum value
+	DvbSubtitleStylePassthroughEnabled = "ENABLED"
+
+	// DvbSubtitleStylePassthroughDisabled is a DvbSubtitleStylePassthrough enum value
+	DvbSubtitleStylePassthroughDisabled = "DISABLED"
+)
+
+// DvbSubtitleStylePassthrough_Values returns all elements of the DvbSubtitleStylePassthrough enum
+func DvbSubtitleStylePassthrough_Values() []string {
+	return []string{
+		DvbSubtitleStylePassthroughEnabled,
+		DvbSubtitleStylePassthroughDisabled,
 	}
 }
 
@@ -27287,6 +28066,9 @@ const (
 
 	// DvbSubtitleTeletextSpacingProportional is a DvbSubtitleTeletextSpacing enum value
 	DvbSubtitleTeletextSpacingProportional = "PROPORTIONAL"
+
+	// DvbSubtitleTeletextSpacingAuto is a DvbSubtitleTeletextSpacing enum value
+	DvbSubtitleTeletextSpacingAuto = "AUTO"
 )
 
 // DvbSubtitleTeletextSpacing_Values returns all elements of the DvbSubtitleTeletextSpacing enum
@@ -27294,6 +28076,7 @@ func DvbSubtitleTeletextSpacing_Values() []string {
 	return []string{
 		DvbSubtitleTeletextSpacingFixedGrid,
 		DvbSubtitleTeletextSpacingProportional,
+		DvbSubtitleTeletextSpacingAuto,
 	}
 }
 
@@ -29669,6 +30452,9 @@ const (
 
 	// HlsImageBasedTrickPlayThumbnailAndFullframe is a HlsImageBasedTrickPlay enum value
 	HlsImageBasedTrickPlayThumbnailAndFullframe = "THUMBNAIL_AND_FULLFRAME"
+
+	// HlsImageBasedTrickPlayAdvanced is a HlsImageBasedTrickPlay enum value
+	HlsImageBasedTrickPlayAdvanced = "ADVANCED"
 )
 
 // HlsImageBasedTrickPlay_Values returns all elements of the HlsImageBasedTrickPlay enum
@@ -29677,6 +30463,7 @@ func HlsImageBasedTrickPlay_Values() []string {
 		HlsImageBasedTrickPlayNone,
 		HlsImageBasedTrickPlayThumbnail,
 		HlsImageBasedTrickPlayThumbnailAndFullframe,
+		HlsImageBasedTrickPlayAdvanced,
 	}
 }
 
@@ -29696,6 +30483,26 @@ func HlsInitializationVectorInManifest_Values() []string {
 	return []string{
 		HlsInitializationVectorInManifestInclude,
 		HlsInitializationVectorInManifestExclude,
+	}
+}
+
+// The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME,
+// MediaConvert generates thumbnails for each IDR frame in the output (matching
+// the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails
+// according to the interval you specify in thumbnailInterval.
+const (
+	// HlsIntervalCadenceFollowIframe is a HlsIntervalCadence enum value
+	HlsIntervalCadenceFollowIframe = "FOLLOW_IFRAME"
+
+	// HlsIntervalCadenceFollowCustom is a HlsIntervalCadence enum value
+	HlsIntervalCadenceFollowCustom = "FOLLOW_CUSTOM"
+)
+
+// HlsIntervalCadence_Values returns all elements of the HlsIntervalCadence enum
+func HlsIntervalCadence_Values() []string {
+	return []string{
+		HlsIntervalCadenceFollowIframe,
+		HlsIntervalCadenceFollowCustom,
 	}
 }
 
