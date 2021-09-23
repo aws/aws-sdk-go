@@ -23,8 +23,9 @@ type ProjectionBuilder struct {
 //
 //     // Used in another Projection Expression
 //     anotherProjection := expression.AddNames(projection, expression.Name("baz"))
+//
 //     // Used to make an Builder
-//     builder := expression.NewBuilder().WithProjection(newProjection)
+//     builder := expression.NewBuilder().WithProjection(anotherProjection)
 //
 // Expression Equivalent:
 //
