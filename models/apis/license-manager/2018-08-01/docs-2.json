@@ -1361,6 +1361,7 @@
         "CheckoutLicenseRequest$NodeId": "<p>Node ID.</p>",
         "CheckoutLicenseResponse$LicenseConsumptionToken": "<p>License consumption token.</p>",
         "CheckoutLicenseResponse$NodeId": "<p>Node ID.</p>",
+        "CheckoutLicenseResponse$LicenseArn": "<p>Amazon Resource Name (ARN) of the checkout license.</p>",
         "CreateGrantRequest$GrantName": "<p>Grant name.</p>",
         "CreateGrantRequest$HomeRegion": "<p>Home Region of the grant.</p>",
         "CreateGrantResponse$Version": "<p>Grant version.</p>",

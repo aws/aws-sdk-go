@@ -1,3 +1,11 @@
+Release v1.40.49 (2021-09-24)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * DescribeInstances now returns Platform Details, Usage Operation, and Usage Operation Update Time.
+* `service/license-manager`: Updates service API and documentation
+
 Release v1.40.48 (2021-09-23)
 ===
 

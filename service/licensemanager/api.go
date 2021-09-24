@@ -5455,6 +5455,9 @@ type CheckoutLicenseOutput struct {
 	// Date and time at which the license checkout is issued.
 	IssuedAt *string `type:"string"`
 
+	// Amazon Resource Name (ARN) of the checkout license.
+	LicenseArn *string `type:"string"`
+
 	// License consumption token.
 	LicenseConsumptionToken *string `type:"string"`
 
@@ -5504,6 +5507,12 @@ func (s *CheckoutLicenseOutput) SetExpiration(v string) *CheckoutLicenseOutput {
 // SetIssuedAt sets the IssuedAt field's value.
 func (s *CheckoutLicenseOutput) SetIssuedAt(v string) *CheckoutLicenseOutput {
 	s.IssuedAt = &v
+	return s
+}
+
+// SetLicenseArn sets the LicenseArn field's value.
+func (s *CheckoutLicenseOutput) SetLicenseArn(v string) *CheckoutLicenseOutput {
+	s.LicenseArn = &v
 	return s
 }
 

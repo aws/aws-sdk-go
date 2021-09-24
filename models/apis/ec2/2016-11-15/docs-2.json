@@ -384,7 +384,7 @@
     "ModifyInstanceEventStartTime": "<p>Modifies the start time for a scheduled Amazon EC2 instance event.</p>",
     "ModifyInstanceEventWindow": "<p>Modifies the specified event window.</p> <p>You can define either a set of time ranges or a cron expression when modifying the event window, but not both.</p> <p>To modify the targets associated with the event window, use the <a>AssociateInstanceEventWindow</a> and <a>DisassociateInstanceEventWindow</a> API.</p> <p>If Amazon Web Services has already scheduled an event, modifying an event window won't change the time of the scheduled event.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/event-windows.html\">Define event windows for scheduled events</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "ModifyInstanceMetadataOptions": "<p>Modify the instance metadata parameters on a running or stopped instance. When you modify the parameters on a stopped instance, they are applied when the instance is started. When you modify the parameters on a running instance, the API responds with a state of “pending”. After the parameter modifications are successfully applied to the instance, the state of the modifications changes from “pending” to “applied” in subsequent describe-instances API calls. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-instance-metadata.html\">Instance metadata and user data</a> in the <i>Amazon EC2 User Guide</i>.</p>",
-    "ModifyInstancePlacement": "<p>Modifies the placement attributes for a specified instance. You can do the following:</p> <ul> <li> <p>Modify the affinity between an instance and a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html\">Dedicated Host</a>. When affinity is set to <code>host</code> and the instance is not associated with a specific Dedicated Host, the next time the instance is launched, it is automatically associated with the host on which it lands. If the instance is restarted or rebooted, this relationship persists.</p> </li> <li> <p>Change the Dedicated Host with which an instance is associated.</p> </li> <li> <p>Change the instance tenancy of an instance from <code>host</code> to <code>dedicated</code>, or from <code>dedicated</code> to <code>host</code>.</p> </li> <li> <p>Move an instance to or from a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">placement group</a>.</p> </li> </ul> <p>At least one attribute for affinity, host ID, tenancy, or placement group name must be specified in the request. Affinity and tenancy can be modified in the same request.</p> <p>To modify the host ID, tenancy, placement group, or partition for an instance, the instance must be in the <code>stopped</code> state.</p>",
+    "ModifyInstancePlacement": "<p>Modifies the placement attributes for a specified instance. You can do the following:</p> <ul> <li> <p>Modify the affinity between an instance and a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/dedicated-hosts-overview.html\">Dedicated Host</a>. When affinity is set to <code>host</code> and the instance is not associated with a specific Dedicated Host, the next time the instance is launched, it is automatically associated with the host on which it lands. If the instance is restarted or rebooted, this relationship persists.</p> </li> <li> <p>Change the Dedicated Host with which an instance is associated.</p> </li> <li> <p>Change the instance tenancy of an instance.</p> </li> <li> <p>Move an instance to or from a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/placement-groups.html\">placement group</a>.</p> </li> </ul> <p>At least one attribute for affinity, host ID, tenancy, or placement group name must be specified in the request. Affinity and tenancy can be modified in the same request.</p> <p>To modify the host ID, tenancy, placement group, or partition for an instance, the instance must be in the <code>stopped</code> state.</p>",
     "ModifyLaunchTemplate": "<p>Modifies a launch template. You can specify which version of the launch template to set as the default version. When launching an instance, the default version applies when a launch template version is not specified.</p>",
     "ModifyManagedPrefixList": "<p>Modifies the specified managed prefix list.</p> <p>Adding or removing entries in a prefix list creates a new version of the prefix list. Changing the name of the prefix list does not affect the version.</p> <p>If you specify a current version number that does not match the true current version number, the request fails.</p>",
     "ModifyNetworkInterfaceAttribute": "<p>Modifies the specified network interface attribute. You can specify only one attribute at a time. You can use this action to attach and detach security groups from an existing EC2 instance.</p>",
@@ -7986,7 +7986,7 @@
     "HostTenancy": {
       "base": null,
       "refs": {
-        "ModifyInstancePlacementRequest$Tenancy": "<p>The tenancy for the instance.</p> <p>For T3 instances, you can't change the tenancy from <code>dedicated</code> to <code>host</code>, or from <code>host</code> to <code>dedicated</code>. Attempting to make one of these unsupported tenancy changes results in the <code>InvalidTenancy</code> error code.</p>"
+        "ModifyInstancePlacementRequest$Tenancy": "<p>The tenancy for the instance.</p> <note> <p>For T3 instances, you can't change the tenancy from <code>dedicated</code> to <code>host</code>, or from <code>host</code> to <code>dedicated</code>. Attempting to make one of these unsupported tenancy changes results in the <code>InvalidTenancy</code> error code.</p> </note>"
       }
     },
     "Hour": {
@@ -10197,7 +10197,7 @@
     "LicenseList": {
       "base": null,
       "refs": {
-        "Instance$Licenses": "<p>The license configurations.</p>"
+        "Instance$Licenses": "<p>The license configurations for the instance.</p>"
       }
     },
     "LicenseSpecificationListRequest": {
@@ -10636,6 +10636,7 @@
         "EnableFastSnapshotRestoreSuccessItem$DisabledTime": "<p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>",
         "EnableImageDeprecationRequest$DeprecateAt": "<p>The date and time to deprecate the AMI, in UTC, in the following format: <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z. If you specify a value for seconds, Amazon EC2 rounds the seconds to the nearest minute.</p> <p>You can’t specify a date in the past. The upper limit for <code>DeprecateAt</code> is 10 years from now.</p>",
         "FlowLog$CreationTime": "<p>The date and time the flow log was created.</p>",
+        "Instance$UsageOperationUpdateTime": "<p>The time that the usage operation was last updated.</p>",
         "NetworkInsightsAnalysis$StartDate": "<p>The time the analysis started.</p>",
         "NetworkInsightsPath$CreatedDate": "<p>The time stamp when the path was created.</p>",
         "SnapshotInfo$StartTime": "<p>Time this snapshot was started. This is the same for all snapshots initiated by the same request.</p>",
@@ -11910,6 +11911,7 @@
         "DeletePlacementGroupRequest$GroupName": "<p>The name of the placement group.</p>",
         "LaunchTemplatePlacementRequest$GroupName": "<p>The name of the placement group for the instance.</p>",
         "ModifyInstancePlacementRequest$GroupName": "<p>The name of the placement group in which to place the instance. For spread placement groups, the instance must have a tenancy of <code>default</code>. For cluster and partition placement groups, the instance must have a tenancy of <code>default</code> or <code>dedicated</code>.</p> <p>To remove an instance from a placement group, specify an empty string (\"\").</p>",
+        "Placement$GroupName": "<p>The name of the placement group the instance is in.</p>",
         "PlacementGroupStringList$member": null,
         "PlacementResponse$GroupName": "<p>The name of the placement group that the instance is in.</p>",
         "ScheduledInstancesPlacement$GroupName": "<p>The name of the placement group.</p>",
@@ -14990,6 +14992,8 @@
         "Instance$SpotInstanceRequestId": "<p>If the request is a Spot Instance request, the ID of the request.</p>",
         "Instance$SriovNetSupport": "<p>Specifies whether enhanced networking with the Intel 82599 Virtual Function interface is enabled.</p>",
         "Instance$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
+        "Instance$PlatformDetails": "<p>The platform details value for the instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html\">AMI billing information fields</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+        "Instance$UsageOperation": "<p>The usage operation value for the instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/billing-info-fields.html\">AMI billing information fields</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "InstanceAttribute$InstanceId": "<p>The ID of the instance.</p>",
         "InstanceBlockDeviceMapping$DeviceName": "<p>The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
         "InstanceBlockDeviceMappingSpecification$DeviceName": "<p>The device name (for example, <code>/dev/sdh</code> or <code>xvdh</code>).</p>",
@@ -15268,7 +15272,6 @@
         "Phase2IntegrityAlgorithmsRequestListValue$Value": "<p>The integrity algorithm.</p>",
         "Placement$AvailabilityZone": "<p>The Availability Zone of the instance.</p> <p>If not specified, an Availability Zone will be automatically chosen for you based on the load balancing criteria for the Region.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
         "Placement$Affinity": "<p>The affinity setting for the instance on the Dedicated Host. This parameter is not supported for the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html\">ImportInstance</a> command.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
-        "Placement$GroupName": "<p>The name of the placement group the instance is in.</p>",
         "Placement$HostId": "<p>The ID of the Dedicated Host on which the instance resides. This parameter is not supported for the <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_ImportInstance.html\">ImportInstance</a> command.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
         "Placement$SpreadDomain": "<p>Reserved for future use.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",
         "Placement$HostResourceGroupArn": "<p>The ARN of the host resource group in which to launch the instances. If you specify a host resource group ARN, omit the <b>Tenancy</b> parameter or set it to <code>host</code>.</p> <p>This parameter is not supported by <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateFleet\">CreateFleet</a>.</p>",

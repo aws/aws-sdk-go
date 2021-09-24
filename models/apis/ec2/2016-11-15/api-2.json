@@ -20017,6 +20017,18 @@
         "BootMode":{
           "shape":"BootModeValues",
           "locationName":"bootMode"
+        },
+        "PlatformDetails":{
+          "shape":"String",
+          "locationName":"platformDetails"
+        },
+        "UsageOperation":{
+          "shape":"String",
+          "locationName":"usageOperation"
+        },
+        "UsageOperationUpdateTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"usageOperationUpdateTime"
         }
       }
     },
@@ -26106,7 +26118,7 @@
           "locationName":"affinity"
         },
         "GroupName":{
-          "shape":"String",
+          "shape":"PlacementGroupName",
           "locationName":"groupName"
         },
         "PartitionNumber":{

@@ -1004,7 +1004,8 @@
         "SignedToken":{"shape":"SignedToken"},
         "NodeId":{"shape":"String"},
         "IssuedAt":{"shape":"ISO8601DateTime"},
-        "Expiration":{"shape":"ISO8601DateTime"}
+        "Expiration":{"shape":"ISO8601DateTime"},
+        "LicenseArn":{"shape":"String"}
       }
     },
     "CheckoutType":{
