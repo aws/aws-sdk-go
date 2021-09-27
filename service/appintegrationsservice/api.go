@@ -12,6 +12,104 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateDataIntegration = "CreateDataIntegration"
+
+// CreateDataIntegrationRequest generates a "aws/request.Request" representing the
+// client's request for the CreateDataIntegration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateDataIntegration for more information on using the CreateDataIntegration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateDataIntegrationRequest method.
+//    req, resp := client.CreateDataIntegrationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/CreateDataIntegration
+func (c *AppIntegrationsService) CreateDataIntegrationRequest(input *CreateDataIntegrationInput) (req *request.Request, output *CreateDataIntegrationOutput) {
+	op := &request.Operation{
+		Name:       opCreateDataIntegration,
+		HTTPMethod: "POST",
+		HTTPPath:   "/dataIntegrations",
+	}
+
+	if input == nil {
+		input = &CreateDataIntegrationInput{}
+	}
+
+	output = &CreateDataIntegrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateDataIntegration API operation for Amazon AppIntegrations Service.
+//
+// Creates and persists a DataIntegration resource.
+//
+// You cannot create a DataIntegration association for a DataIntegration that
+// has been previously associated. Use a different DataIntegration, or recreate
+// the DataIntegration using the CreateDataIntegration API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppIntegrations Service's
+// API operation CreateDataIntegration for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceError
+//   Request processing failed due to an error or failure with the service.
+//
+//   * ResourceQuotaExceededException
+//   The allowed quota for the resource has been exceeded.
+//
+//   * DuplicateResourceException
+//   A resource with the specified name already exists.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/CreateDataIntegration
+func (c *AppIntegrationsService) CreateDataIntegration(input *CreateDataIntegrationInput) (*CreateDataIntegrationOutput, error) {
+	req, out := c.CreateDataIntegrationRequest(input)
+	return out, req.Send()
+}
+
+// CreateDataIntegrationWithContext is the same as CreateDataIntegration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateDataIntegration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) CreateDataIntegrationWithContext(ctx aws.Context, input *CreateDataIntegrationInput, opts ...request.Option) (*CreateDataIntegrationOutput, error) {
+	req, out := c.CreateDataIntegrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateEventIntegration = "CreateEventIntegration"
 
 // CreateEventIntegrationRequest generates a "aws/request.Request" representing the
@@ -104,6 +202,105 @@ func (c *AppIntegrationsService) CreateEventIntegration(input *CreateEventIntegr
 // for more information on using Contexts.
 func (c *AppIntegrationsService) CreateEventIntegrationWithContext(ctx aws.Context, input *CreateEventIntegrationInput, opts ...request.Option) (*CreateEventIntegrationOutput, error) {
 	req, out := c.CreateEventIntegrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteDataIntegration = "DeleteDataIntegration"
+
+// DeleteDataIntegrationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteDataIntegration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteDataIntegration for more information on using the DeleteDataIntegration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteDataIntegrationRequest method.
+//    req, resp := client.DeleteDataIntegrationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/DeleteDataIntegration
+func (c *AppIntegrationsService) DeleteDataIntegrationRequest(input *DeleteDataIntegrationInput) (req *request.Request, output *DeleteDataIntegrationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteDataIntegration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/dataIntegrations/{Identifier}",
+	}
+
+	if input == nil {
+		input = &DeleteDataIntegrationInput{}
+	}
+
+	output = &DeleteDataIntegrationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteDataIntegration API operation for Amazon AppIntegrations Service.
+//
+// Deletes the DataIntegration. Only DataIntegrations that don't have any DataIntegrationAssociations
+// can be deleted. Deleting a DataIntegration also deletes the underlying Amazon
+// AppFlow flow and service linked role.
+//
+// You cannot create a DataIntegration association for a DataIntegration that
+// has been previously associated. Use a different DataIntegration, or recreate
+// the DataIntegration using the CreateDataIntegration (https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppIntegrations Service's
+// API operation DeleteDataIntegration for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceError
+//   Request processing failed due to an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/DeleteDataIntegration
+func (c *AppIntegrationsService) DeleteDataIntegration(input *DeleteDataIntegrationInput) (*DeleteDataIntegrationOutput, error) {
+	req, out := c.DeleteDataIntegrationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteDataIntegrationWithContext is the same as DeleteDataIntegration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteDataIntegration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) DeleteDataIntegrationWithContext(ctx aws.Context, input *DeleteDataIntegrationInput, opts ...request.Option) (*DeleteDataIntegrationOutput, error) {
+	req, out := c.DeleteDataIntegrationRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -202,6 +399,102 @@ func (c *AppIntegrationsService) DeleteEventIntegrationWithContext(ctx aws.Conte
 	return out, req.Send()
 }
 
+const opGetDataIntegration = "GetDataIntegration"
+
+// GetDataIntegrationRequest generates a "aws/request.Request" representing the
+// client's request for the GetDataIntegration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetDataIntegration for more information on using the GetDataIntegration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetDataIntegrationRequest method.
+//    req, resp := client.GetDataIntegrationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/GetDataIntegration
+func (c *AppIntegrationsService) GetDataIntegrationRequest(input *GetDataIntegrationInput) (req *request.Request, output *GetDataIntegrationOutput) {
+	op := &request.Operation{
+		Name:       opGetDataIntegration,
+		HTTPMethod: "GET",
+		HTTPPath:   "/dataIntegrations/{Identifier}",
+	}
+
+	if input == nil {
+		input = &GetDataIntegrationInput{}
+	}
+
+	output = &GetDataIntegrationOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetDataIntegration API operation for Amazon AppIntegrations Service.
+//
+// Returns information about the DataIntegration.
+//
+// You cannot create a DataIntegration association for a DataIntegration that
+// has been previously associated. Use a different DataIntegration, or recreate
+// the DataIntegration using the CreateDataIntegration (https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppIntegrations Service's
+// API operation GetDataIntegration for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceError
+//   Request processing failed due to an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/GetDataIntegration
+func (c *AppIntegrationsService) GetDataIntegration(input *GetDataIntegrationInput) (*GetDataIntegrationOutput, error) {
+	req, out := c.GetDataIntegrationRequest(input)
+	return out, req.Send()
+}
+
+// GetDataIntegrationWithContext is the same as GetDataIntegration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetDataIntegration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) GetDataIntegrationWithContext(ctx aws.Context, input *GetDataIntegrationInput, opts ...request.Option) (*GetDataIntegrationOutput, error) {
+	req, out := c.GetDataIntegrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opGetEventIntegration = "GetEventIntegration"
 
 // GetEventIntegrationRequest generates a "aws/request.Request" representing the
@@ -246,7 +539,7 @@ func (c *AppIntegrationsService) GetEventIntegrationRequest(input *GetEventInteg
 
 // GetEventIntegration API operation for Amazon AppIntegrations Service.
 //
-// Return information about the event integration.
+// Returns information about the event integration.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -288,6 +581,195 @@ func (c *AppIntegrationsService) GetEventIntegration(input *GetEventIntegrationI
 // for more information on using Contexts.
 func (c *AppIntegrationsService) GetEventIntegrationWithContext(ctx aws.Context, input *GetEventIntegrationInput, opts ...request.Option) (*GetEventIntegrationOutput, error) {
 	req, out := c.GetEventIntegrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListDataIntegrationAssociations = "ListDataIntegrationAssociations"
+
+// ListDataIntegrationAssociationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataIntegrationAssociations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataIntegrationAssociations for more information on using the ListDataIntegrationAssociations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDataIntegrationAssociationsRequest method.
+//    req, resp := client.ListDataIntegrationAssociationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/ListDataIntegrationAssociations
+func (c *AppIntegrationsService) ListDataIntegrationAssociationsRequest(input *ListDataIntegrationAssociationsInput) (req *request.Request, output *ListDataIntegrationAssociationsOutput) {
+	op := &request.Operation{
+		Name:       opListDataIntegrationAssociations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/dataIntegrations/{Identifier}/associations",
+	}
+
+	if input == nil {
+		input = &ListDataIntegrationAssociationsInput{}
+	}
+
+	output = &ListDataIntegrationAssociationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataIntegrationAssociations API operation for Amazon AppIntegrations Service.
+//
+// Returns a paginated list of DataIntegration associations in the account.
+//
+// You cannot create a DataIntegration association for a DataIntegration that
+// has been previously associated. Use a different DataIntegration, or recreate
+// the DataIntegration using the CreateDataIntegration (https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppIntegrations Service's
+// API operation ListDataIntegrationAssociations for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceError
+//   Request processing failed due to an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/ListDataIntegrationAssociations
+func (c *AppIntegrationsService) ListDataIntegrationAssociations(input *ListDataIntegrationAssociationsInput) (*ListDataIntegrationAssociationsOutput, error) {
+	req, out := c.ListDataIntegrationAssociationsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataIntegrationAssociationsWithContext is the same as ListDataIntegrationAssociations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataIntegrationAssociations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) ListDataIntegrationAssociationsWithContext(ctx aws.Context, input *ListDataIntegrationAssociationsInput, opts ...request.Option) (*ListDataIntegrationAssociationsOutput, error) {
+	req, out := c.ListDataIntegrationAssociationsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opListDataIntegrations = "ListDataIntegrations"
+
+// ListDataIntegrationsRequest generates a "aws/request.Request" representing the
+// client's request for the ListDataIntegrations operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListDataIntegrations for more information on using the ListDataIntegrations
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListDataIntegrationsRequest method.
+//    req, resp := client.ListDataIntegrationsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/ListDataIntegrations
+func (c *AppIntegrationsService) ListDataIntegrationsRequest(input *ListDataIntegrationsInput) (req *request.Request, output *ListDataIntegrationsOutput) {
+	op := &request.Operation{
+		Name:       opListDataIntegrations,
+		HTTPMethod: "GET",
+		HTTPPath:   "/dataIntegrations",
+	}
+
+	if input == nil {
+		input = &ListDataIntegrationsInput{}
+	}
+
+	output = &ListDataIntegrationsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListDataIntegrations API operation for Amazon AppIntegrations Service.
+//
+// Returns a paginated list of DataIntegrations in the account.
+//
+// You cannot create a DataIntegration association for a DataIntegration that
+// has been previously associated. Use a different DataIntegration, or recreate
+// the DataIntegration using the CreateDataIntegration (https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppIntegrations Service's
+// API operation ListDataIntegrations for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceError
+//   Request processing failed due to an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/ListDataIntegrations
+func (c *AppIntegrationsService) ListDataIntegrations(input *ListDataIntegrationsInput) (*ListDataIntegrationsOutput, error) {
+	req, out := c.ListDataIntegrationsRequest(input)
+	return out, req.Send()
+}
+
+// ListDataIntegrationsWithContext is the same as ListDataIntegrations with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListDataIntegrations for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) ListDataIntegrationsWithContext(ctx aws.Context, input *ListDataIntegrationsInput, opts ...request.Option) (*ListDataIntegrationsOutput, error) {
+	req, out := c.ListDataIntegrationsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -738,6 +1220,103 @@ func (c *AppIntegrationsService) UntagResourceWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opUpdateDataIntegration = "UpdateDataIntegration"
+
+// UpdateDataIntegrationRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateDataIntegration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateDataIntegration for more information on using the UpdateDataIntegration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateDataIntegrationRequest method.
+//    req, resp := client.UpdateDataIntegrationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/UpdateDataIntegration
+func (c *AppIntegrationsService) UpdateDataIntegrationRequest(input *UpdateDataIntegrationInput) (req *request.Request, output *UpdateDataIntegrationOutput) {
+	op := &request.Operation{
+		Name:       opUpdateDataIntegration,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/dataIntegrations/{Identifier}",
+	}
+
+	if input == nil {
+		input = &UpdateDataIntegrationInput{}
+	}
+
+	output = &UpdateDataIntegrationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// UpdateDataIntegration API operation for Amazon AppIntegrations Service.
+//
+// Updates the description of a DataIntegration.
+//
+// You cannot create a DataIntegration association for a DataIntegration that
+// has been previously associated. Use a different DataIntegration, or recreate
+// the DataIntegration using the CreateDataIntegration (https://docs.aws.amazon.com/appintegrations/latest/APIReference/API_CreateDataIntegration.html)
+// API.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon AppIntegrations Service's
+// API operation UpdateDataIntegration for usage and error information.
+//
+// Returned Error Types:
+//   * InternalServiceError
+//   Request processing failed due to an error or failure with the service.
+//
+//   * ThrottlingException
+//   The throttling limit has been exceeded.
+//
+//   * ResourceNotFoundException
+//   The specified resource was not found.
+//
+//   * InvalidRequestException
+//   The request is not valid.
+//
+//   * AccessDeniedException
+//   You do not have sufficient access to perform this action.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29/UpdateDataIntegration
+func (c *AppIntegrationsService) UpdateDataIntegration(input *UpdateDataIntegrationInput) (*UpdateDataIntegrationOutput, error) {
+	req, out := c.UpdateDataIntegrationRequest(input)
+	return out, req.Send()
+}
+
+// UpdateDataIntegrationWithContext is the same as UpdateDataIntegration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateDataIntegration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *AppIntegrationsService) UpdateDataIntegrationWithContext(ctx aws.Context, input *UpdateDataIntegrationInput, opts ...request.Option) (*UpdateDataIntegrationOutput, error) {
+	req, out := c.UpdateDataIntegrationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateEventIntegration = "UpdateEventIntegration"
 
 // UpdateEventIntegrationRequest generates a "aws/request.Request" representing the
@@ -894,6 +1473,234 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+type CreateDataIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
+
+	// A description of the DataIntegration.
+	Description *string `min:"1" type:"string"`
+
+	// The KMS key for the DataIntegration.
+	KmsKey *string `min:"1" type:"string"`
+
+	// The name of the DataIntegration.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The name of the data and how often it should be pulled from the source.
+	ScheduleConfig *ScheduleConfiguration `type:"structure"`
+
+	// The URI of the data source.
+	SourceURI *string `min:"1" type:"string"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataIntegrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataIntegrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateDataIntegrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateDataIntegrationInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.KmsKey != nil && len(*s.KmsKey) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKey", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SourceURI != nil && len(*s.SourceURI) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("SourceURI", 1))
+	}
+	if s.Tags != nil && len(s.Tags) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
+	}
+	if s.ScheduleConfig != nil {
+		if err := s.ScheduleConfig.Validate(); err != nil {
+			invalidParams.AddNested("ScheduleConfig", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateDataIntegrationInput) SetClientToken(v string) *CreateDataIntegrationInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateDataIntegrationInput) SetDescription(v string) *CreateDataIntegrationInput {
+	s.Description = &v
+	return s
+}
+
+// SetKmsKey sets the KmsKey field's value.
+func (s *CreateDataIntegrationInput) SetKmsKey(v string) *CreateDataIntegrationInput {
+	s.KmsKey = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateDataIntegrationInput) SetName(v string) *CreateDataIntegrationInput {
+	s.Name = &v
+	return s
+}
+
+// SetScheduleConfig sets the ScheduleConfig field's value.
+func (s *CreateDataIntegrationInput) SetScheduleConfig(v *ScheduleConfiguration) *CreateDataIntegrationInput {
+	s.ScheduleConfig = v
+	return s
+}
+
+// SetSourceURI sets the SourceURI field's value.
+func (s *CreateDataIntegrationInput) SetSourceURI(v string) *CreateDataIntegrationInput {
+	s.SourceURI = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDataIntegrationInput) SetTags(v map[string]*string) *CreateDataIntegrationInput {
+	s.Tags = v
+	return s
+}
+
+type CreateDataIntegrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN)
+	Arn *string `min:"1" type:"string"`
+
+	// A unique, case-sensitive identifier that you provide to ensure the idempotency
+	// of the request.
+	ClientToken *string `min:"1" type:"string"`
+
+	// A description of the DataIntegration.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier.
+	Id *string `type:"string"`
+
+	// The KMS key for the DataIntegration.
+	KmsKey *string `min:"1" type:"string"`
+
+	// The name of the DataIntegration.
+	Name *string `min:"1" type:"string"`
+
+	// The name of the data and how often it should be pulled from the source.
+	ScheduleConfiguration *ScheduleConfiguration `type:"structure"`
+
+	// The URI of the data source.
+	SourceURI *string `min:"1" type:"string"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataIntegrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateDataIntegrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateDataIntegrationOutput) SetArn(v string) *CreateDataIntegrationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateDataIntegrationOutput) SetClientToken(v string) *CreateDataIntegrationOutput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateDataIntegrationOutput) SetDescription(v string) *CreateDataIntegrationOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateDataIntegrationOutput) SetId(v string) *CreateDataIntegrationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetKmsKey sets the KmsKey field's value.
+func (s *CreateDataIntegrationOutput) SetKmsKey(v string) *CreateDataIntegrationOutput {
+	s.KmsKey = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateDataIntegrationOutput) SetName(v string) *CreateDataIntegrationOutput {
+	s.Name = &v
+	return s
+}
+
+// SetScheduleConfiguration sets the ScheduleConfiguration field's value.
+func (s *CreateDataIntegrationOutput) SetScheduleConfiguration(v *ScheduleConfiguration) *CreateDataIntegrationOutput {
+	s.ScheduleConfiguration = v
+	return s
+}
+
+// SetSourceURI sets the SourceURI field's value.
+func (s *CreateDataIntegrationOutput) SetSourceURI(v string) *CreateDataIntegrationOutput {
+	s.SourceURI = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateDataIntegrationOutput) SetTags(v map[string]*string) *CreateDataIntegrationOutput {
+	s.Tags = v
+	return s
+}
+
 type CreateEventIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1045,6 +1852,178 @@ func (s CreateEventIntegrationOutput) GoString() string {
 func (s *CreateEventIntegrationOutput) SetEventIntegrationArn(v string) *CreateEventIntegrationOutput {
 	s.EventIntegrationArn = &v
 	return s
+}
+
+// Summary information about the DataIntegration association.
+type DataIntegrationAssociationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier for teh client that is associated with the DataIntegration
+	// association.
+	ClientId *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN)of the DataIntegration.
+	DataIntegrationArn *string `min:"1" type:"string"`
+
+	// The Amazon Resource Name (ARN) of the DataIntegration association.
+	DataIntegrationAssociationArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataIntegrationAssociationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataIntegrationAssociationSummary) GoString() string {
+	return s.String()
+}
+
+// SetClientId sets the ClientId field's value.
+func (s *DataIntegrationAssociationSummary) SetClientId(v string) *DataIntegrationAssociationSummary {
+	s.ClientId = &v
+	return s
+}
+
+// SetDataIntegrationArn sets the DataIntegrationArn field's value.
+func (s *DataIntegrationAssociationSummary) SetDataIntegrationArn(v string) *DataIntegrationAssociationSummary {
+	s.DataIntegrationArn = &v
+	return s
+}
+
+// SetDataIntegrationAssociationArn sets the DataIntegrationAssociationArn field's value.
+func (s *DataIntegrationAssociationSummary) SetDataIntegrationAssociationArn(v string) *DataIntegrationAssociationSummary {
+	s.DataIntegrationAssociationArn = &v
+	return s
+}
+
+// Summary information about the DataIntegration.
+type DataIntegrationSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of the DataIntegration.
+	Arn *string `min:"1" type:"string"`
+
+	// The name of the DataIntegration.
+	Name *string `min:"1" type:"string"`
+
+	// The URI of the data source.
+	SourceURI *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataIntegrationSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DataIntegrationSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *DataIntegrationSummary) SetArn(v string) *DataIntegrationSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DataIntegrationSummary) SetName(v string) *DataIntegrationSummary {
+	s.Name = &v
+	return s
+}
+
+// SetSourceURI sets the SourceURI field's value.
+func (s *DataIntegrationSummary) SetSourceURI(v string) *DataIntegrationSummary {
+	s.SourceURI = &v
+	return s
+}
+
+type DeleteDataIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the DataIntegration.
+	//
+	// DataIntegrationIdentifier is a required field
+	DataIntegrationIdentifier *string `location:"uri" locationName:"Identifier" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataIntegrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataIntegrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteDataIntegrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteDataIntegrationInput"}
+	if s.DataIntegrationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataIntegrationIdentifier"))
+	}
+	if s.DataIntegrationIdentifier != nil && len(*s.DataIntegrationIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataIntegrationIdentifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataIntegrationIdentifier sets the DataIntegrationIdentifier field's value.
+func (s *DeleteDataIntegrationInput) SetDataIntegrationIdentifier(v string) *DeleteDataIntegrationInput {
+	s.DataIntegrationIdentifier = &v
+	return s
+}
+
+type DeleteDataIntegrationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataIntegrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteDataIntegrationOutput) GoString() string {
+	return s.String()
 }
 
 type DeleteEventIntegrationInput struct {
@@ -1386,6 +2365,149 @@ func (s *EventIntegrationAssociation) SetEventIntegrationName(v string) *EventIn
 	return s
 }
 
+type GetDataIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"Identifier" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataIntegrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataIntegrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetDataIntegrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetDataIntegrationInput"}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *GetDataIntegrationInput) SetIdentifier(v string) *GetDataIntegrationInput {
+	s.Identifier = &v
+	return s
+}
+
+type GetDataIntegrationOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) for the DataIntegration.
+	Arn *string `min:"1" type:"string"`
+
+	// The KMS key for the DataIntegration.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier.
+	Id *string `type:"string"`
+
+	// The KMS key for the DataIntegration.
+	KmsKey *string `min:"1" type:"string"`
+
+	// The name of the DataIntegration.
+	Name *string `min:"1" type:"string"`
+
+	// The name of the data and how often it should be pulled from the source.
+	ScheduleConfiguration *ScheduleConfiguration `type:"structure"`
+
+	// The URI of the data source.
+	SourceURI *string `min:"1" type:"string"`
+
+	// One or more tags.
+	Tags map[string]*string `min:"1" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataIntegrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetDataIntegrationOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetDataIntegrationOutput) SetArn(v string) *GetDataIntegrationOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetDataIntegrationOutput) SetDescription(v string) *GetDataIntegrationOutput {
+	s.Description = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetDataIntegrationOutput) SetId(v string) *GetDataIntegrationOutput {
+	s.Id = &v
+	return s
+}
+
+// SetKmsKey sets the KmsKey field's value.
+func (s *GetDataIntegrationOutput) SetKmsKey(v string) *GetDataIntegrationOutput {
+	s.KmsKey = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *GetDataIntegrationOutput) SetName(v string) *GetDataIntegrationOutput {
+	s.Name = &v
+	return s
+}
+
+// SetScheduleConfiguration sets the ScheduleConfiguration field's value.
+func (s *GetDataIntegrationOutput) SetScheduleConfiguration(v *ScheduleConfiguration) *GetDataIntegrationOutput {
+	s.ScheduleConfiguration = v
+	return s
+}
+
+// SetSourceURI sets the SourceURI field's value.
+func (s *GetDataIntegrationOutput) SetSourceURI(v string) *GetDataIntegrationOutput {
+	s.SourceURI = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *GetDataIntegrationOutput) SetTags(v map[string]*string) *GetDataIntegrationOutput {
+	s.Tags = v
+	return s
+}
+
 type GetEventIntegrationInput struct {
 	_ struct{} `type:"structure"`
 
@@ -1637,6 +2759,217 @@ func (s *InvalidRequestException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type ListDataIntegrationAssociationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier for the DataIntegration.
+	//
+	// DataIntegrationIdentifier is a required field
+	DataIntegrationIdentifier *string `location:"uri" locationName:"Identifier" min:"1" type:"string" required:"true"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataIntegrationAssociationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataIntegrationAssociationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataIntegrationAssociationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataIntegrationAssociationsInput"}
+	if s.DataIntegrationIdentifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataIntegrationIdentifier"))
+	}
+	if s.DataIntegrationIdentifier != nil && len(*s.DataIntegrationIdentifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DataIntegrationIdentifier", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataIntegrationIdentifier sets the DataIntegrationIdentifier field's value.
+func (s *ListDataIntegrationAssociationsInput) SetDataIntegrationIdentifier(v string) *ListDataIntegrationAssociationsInput {
+	s.DataIntegrationIdentifier = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataIntegrationAssociationsInput) SetMaxResults(v int64) *ListDataIntegrationAssociationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataIntegrationAssociationsInput) SetNextToken(v string) *ListDataIntegrationAssociationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataIntegrationAssociationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) and unique ID of the DataIntegration association.
+	DataIntegrationAssociations []*DataIntegrationAssociationSummary `min:"1" type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataIntegrationAssociationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataIntegrationAssociationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataIntegrationAssociations sets the DataIntegrationAssociations field's value.
+func (s *ListDataIntegrationAssociationsOutput) SetDataIntegrationAssociations(v []*DataIntegrationAssociationSummary) *ListDataIntegrationAssociationsOutput {
+	s.DataIntegrationAssociations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataIntegrationAssociationsOutput) SetNextToken(v string) *ListDataIntegrationAssociationsOutput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataIntegrationsInput struct {
+	_ struct{} `type:"structure"`
+
+	// The maximum number of results to return per page.
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// The token for the next set of results. Use the value returned in the previous
+	// response in the next request to retrieve the next set of results.
+	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataIntegrationsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataIntegrationsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListDataIntegrationsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListDataIntegrationsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListDataIntegrationsInput) SetMaxResults(v int64) *ListDataIntegrationsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataIntegrationsInput) SetNextToken(v string) *ListDataIntegrationsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListDataIntegrationsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The DataIntegrations associated with this account.
+	DataIntegrations []*DataIntegrationSummary `min:"1" type:"list"`
+
+	// If there are additional results, this is the token for the next set of results.
+	NextToken *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataIntegrationsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListDataIntegrationsOutput) GoString() string {
+	return s.String()
+}
+
+// SetDataIntegrations sets the DataIntegrations field's value.
+func (s *ListDataIntegrationsOutput) SetDataIntegrations(v []*DataIntegrationSummary) *ListDataIntegrationsOutput {
+	s.DataIntegrations = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListDataIntegrationsOutput) SetNextToken(v string) *ListDataIntegrationsOutput {
+	s.NextToken = &v
+	return s
 }
 
 type ListEventIntegrationAssociationsInput struct {
@@ -2058,6 +3391,75 @@ func (s *ResourceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The name of the data and how often it should be pulled from the source.
+type ScheduleConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The start date for objects to import in the first flow run.
+	FirstExecutionFrom *string `min:"1" type:"string"`
+
+	// The name of the object to pull from the data source.
+	Object *string `min:"1" type:"string"`
+
+	// How often the data should be pulled from data source.
+	ScheduleExpression *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduleConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ScheduleConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ScheduleConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ScheduleConfiguration"}
+	if s.FirstExecutionFrom != nil && len(*s.FirstExecutionFrom) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FirstExecutionFrom", 1))
+	}
+	if s.Object != nil && len(*s.Object) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Object", 1))
+	}
+	if s.ScheduleExpression != nil && len(*s.ScheduleExpression) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ScheduleExpression", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFirstExecutionFrom sets the FirstExecutionFrom field's value.
+func (s *ScheduleConfiguration) SetFirstExecutionFrom(v string) *ScheduleConfiguration {
+	s.FirstExecutionFrom = &v
+	return s
+}
+
+// SetObject sets the Object field's value.
+func (s *ScheduleConfiguration) SetObject(v string) *ScheduleConfiguration {
+	s.Object = &v
+	return s
+}
+
+// SetScheduleExpression sets the ScheduleExpression field's value.
+func (s *ScheduleConfiguration) SetScheduleExpression(v string) *ScheduleConfiguration {
+	s.ScheduleExpression = &v
+	return s
+}
+
 type TagResourceInput struct {
 	_ struct{} `type:"structure"`
 
@@ -2295,6 +3697,101 @@ func (s UntagResourceOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s UntagResourceOutput) GoString() string {
+	return s.String()
+}
+
+type UpdateDataIntegrationInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the DataIntegration.
+	Description *string `min:"1" type:"string"`
+
+	// A unique identifier for the DataIntegration.
+	//
+	// Identifier is a required field
+	Identifier *string `location:"uri" locationName:"Identifier" min:"1" type:"string" required:"true"`
+
+	// The name of the DataIntegration.
+	Name *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataIntegrationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataIntegrationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateDataIntegrationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateDataIntegrationInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Identifier == nil {
+		invalidParams.Add(request.NewErrParamRequired("Identifier"))
+	}
+	if s.Identifier != nil && len(*s.Identifier) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Identifier", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateDataIntegrationInput) SetDescription(v string) *UpdateDataIntegrationInput {
+	s.Description = &v
+	return s
+}
+
+// SetIdentifier sets the Identifier field's value.
+func (s *UpdateDataIntegrationInput) SetIdentifier(v string) *UpdateDataIntegrationInput {
+	s.Identifier = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *UpdateDataIntegrationInput) SetName(v string) *UpdateDataIntegrationInput {
+	s.Name = &v
+	return s
+}
+
+type UpdateDataIntegrationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataIntegrationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateDataIntegrationOutput) GoString() string {
 	return s.String()
 }
 

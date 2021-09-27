@@ -1820,6 +1820,13 @@
       "max":100,
       "min":1
     },
+    "AnswerMachineDetectionConfig":{
+      "type":"structure",
+      "members":{
+        "EnableAnswerMachineDetection":{"shape":"Boolean"},
+        "AwaitAnswerMachinePrompt":{"shape":"Boolean"}
+      }
+    },
     "AssociateApprovedOriginRequest":{
       "type":"structure",
       "required":[
@@ -2004,6 +2011,11 @@
     "BucketName":{
       "type":"string",
       "max":128,
+      "min":1
+    },
+    "CampaignId":{
+      "type":"string",
+      "max":100,
       "min":1
     },
     "Channel":{
@@ -2252,10 +2264,7 @@
       "required":[
         "InstanceId",
         "IntegrationType",
-        "IntegrationArn",
-        "SourceApplicationUrl",
-        "SourceApplicationName",
-        "SourceType"
+        "IntegrationArn"
       ],
       "members":{
         "InstanceId":{
@@ -3660,7 +3669,13 @@
     },
     "IntegrationType":{
       "type":"string",
-      "enum":["EVENT"]
+      "enum":[
+        "EVENT",
+        "VOICE_ID",
+        "PINPOINT_APP",
+        "WISDOM_ASSISTANT",
+        "WISDOM_KNOWLEDGE_BASE"
+      ]
     },
     "InternalServiceException":{
       "type":"structure",
@@ -4031,6 +4046,11 @@
           "shape":"InstanceId",
           "location":"uri",
           "locationName":"InstanceId"
+        },
+        "IntegrationType":{
+          "shape":"IntegrationType",
+          "location":"querystring",
+          "locationName":"integrationType"
         },
         "NextToken":{
           "shape":"NextToken",
@@ -5433,7 +5453,10 @@
         },
         "SourcePhoneNumber":{"shape":"PhoneNumber"},
         "QueueId":{"shape":"QueueId"},
-        "Attributes":{"shape":"Attributes"}
+        "Attributes":{"shape":"Attributes"},
+        "AnswerMachineDetectionConfig":{"shape":"AnswerMachineDetectionConfig"},
+        "CampaignId":{"shape":"CampaignId"},
+        "TrafficType":{"shape":"TrafficType"}
       }
     },
     "StartOutboundVoiceContactResponse":{
@@ -5598,6 +5621,13 @@
     },
     "TimeZone":{"type":"string"},
     "Timestamp":{"type":"timestamp"},
+    "TrafficType":{
+      "type":"string",
+      "enum":[
+        "GENERAL",
+        "CAMPAIGN"
+      ]
+    },
     "URI":{
       "type":"string",
       "max":2000,
@@ -6195,7 +6225,10 @@
     },
     "UseCaseType":{
       "type":"string",
-      "enum":["RULES_EVALUATION"]
+      "enum":[
+        "RULES_EVALUATION",
+        "CONNECT_CAMPAIGNS"
+      ]
     },
     "User":{
       "type":"structure",

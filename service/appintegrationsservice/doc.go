@@ -8,6 +8,7 @@
 //
 // For information about how you can use external applications with Amazon Connect,
 // see Set up pre-built integrations (https://docs.aws.amazon.com/connect/latest/adminguide/crm.html)
+// and Deliver information to agents using Amazon Connect Wisdom (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-wisdom.html)
 // in the Amazon Connect Administrator Guide.
 //
 // See https://docs.aws.amazon.com/goto/WebAPI/appintegrations-2020-07-29 for more information on this service.

@@ -414,6 +414,12 @@
       "base" : "<p>Provides information about an API request or response.</p>",
       "refs" : { }
     },
+    "ContactCenterActivity" : {
+      "base" : "<p>The settings for a connect activity. This type of activity initiates a contact center call to participants.</p>",
+      "refs" : {
+        "Activity$ContactCenter" : "<p>The settings for a connect activity. This type of activity initiates a contact center call to participants.</p>"
+      }
+    },
     "CreateApplicationRequest" : {
       "base" : "<p>Specifies the display name of an application and the tags to associate with the application.</p>",
       "refs" : { }
@@ -820,6 +826,13 @@
         "ImportJobResponse$JobStatus" : "<p>The status of the import job. The job status is FAILED if Amazon Pinpoint wasn't able to process one or more pieces in the job.</p>"
       }
     },
+    "JourneyChannelSettings" : {
+        "base" : "<p>The channel-specific configurations for the journey.</p>",
+        "refs" : {
+          "JourneyResponse$JourneyChannelSettings" : "<p>Amazon Resource Name (ARN) of the Connect Campaign.</p>",
+          "WriteJourneyRequest$JourneyChannelSettings" : "<p>IAM role ARN to be assumed when invoking Connect campaign execution APIs for dialing.</p>"
+        }
+      },
     "JourneyCustomMessage" : {
       "base" : "<p>Specifies the message content for a custom channel message that's sent to participants in a journey.</p>",
       "refs" : {
@@ -2092,6 +2105,7 @@
         "ChannelResponse$LastModifiedDate" : "<p>The date and time, in ISO 8601 format, when the channel was last modified.</p>",
         "ConditionalSplitActivity$FalseActivity" : "<p>The unique identifier for the activity to perform if the conditions aren't met.</p>",
         "ConditionalSplitActivity$TrueActivity" : "<p>The unique identifier for the activity to perform if the conditions are met.</p>",
+        "ContactCenterActivity$NextActivity" : "<p>The unique identifier for the next activity to perform after the this activity.</p>",
         "CreateApplicationRequest$Name" : "<p>The display name of the application. This name is displayed as the <b>Project name</b> on the Amazon Pinpoint console.</p>",
         "CreateRecommenderConfiguration$Description" : "<p>A custom description of the configuration for the recommender model. The description can contain up to 128 characters. The characters can be letters, numbers, spaces, or the following symbols: _ ; () , ‐.</p>",
         "CreateRecommenderConfiguration$Name" : "<p>A custom name of the configuration for the recommender model. The name must start with a letter or number and it can contain up to 128 characters. The characters can be letters, numbers, spaces, underscores (_), or hyphens (-).</p>",
@@ -2279,6 +2293,9 @@
         "InAppTemplateResponse$TemplateDescription" : "<p>The description of the template.</p>",
         "InAppTemplateResponse$TemplateName" : "<p>The name of the template.</p>",
         "InAppTemplateResponse$Version" : "<p>The version id of the template.</p>",
+        "JourneyChannelSettings$ConnectCampaignArn" : "<p>Amazon Resource Name (ARN) of the Connect Campaign.</p>",
+        "JourneyChannelSettings$ConnectCampaignExecutionRoleArn" : "<p>IAM role ARN to be assumed when invoking Connect campaign execution APIs for dialing.</p>",
+        "JourneyCustomMessage$Data" : "<p>The message content that's passed to an AWS Lambda function or to a web hook.</p>",
         "JourneyDateRangeKpiResponse$ApplicationId" : "<p>The unique identifier for the application that the metric applies to.</p>",
         "JourneyDateRangeKpiResponse$EndTime" : "<p>The last date and time of the date range that was used to filter the query results, in extended ISO 8601 format. The date range is inclusive.</p>",
         "JourneyDateRangeKpiResponse$JourneyId" : "<p>The unique identifier for the journey that the metric applies to.</p>",

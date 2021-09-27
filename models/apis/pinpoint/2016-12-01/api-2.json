@@ -4777,6 +4777,9 @@
         },
         "Wait": {
           "shape": "WaitActivity"
+        },
+        "ContactCenter": {
+            "shape": "ContactCenterActivity"
         }
       }
     },
@@ -5524,6 +5527,14 @@
           "shape": "__string"
         }
       }
+    },
+    "ContactCenterActivity": {
+        "type": "structure",
+        "members": {
+          "NextActivity": {
+              "shape": "__string"
+          }
+        }
     },
     "ConflictException": {
       "type": "structure",
@@ -9720,6 +9731,17 @@
         }
       }
     },
+    "JourneyChannelSettings": {
+        "type": "structure",
+        "members": {
+          "ConnectCampaignArn": {
+            "shape": "__string"
+          },
+          "ConnectCampaignExecutionRoleArn": {
+            "shape": "__string"
+          }
+        }
+    },
     "JourneyResponse": {
       "type": "structure",
       "members": {
@@ -9768,6 +9790,9 @@
         "tags": {
           "shape": "MapOf__string",
           "locationName": "tags"
+        },
+        "JourneyChannelSettings": {
+            "shape": "JourneyChannelSettings"
         }
       },
       "required": [
@@ -12788,6 +12813,9 @@
         },
         "RefreshOnSegmentUpdate": {
             "shape": "__boolean"
+        },
+        "JourneyChannelSettings": {
+            "shape": "JourneyChannelSettings"
         }
       },
       "required": [

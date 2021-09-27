@@ -1,3 +1,15 @@
+Release v1.40.50 (2021-09-27)
+===
+
+### Service Client Updates
+* `service/appintegrations`: Updates service API and documentation
+* `service/connect`: Updates service API and documentation
+* `service/elasticloadbalancingv2`: Updates service API and documentation
+* `service/pinpoint`: Updates service API and documentation
+  * Added support for journey with contact center activity
+* `service/voice-id`: Updates service API, documentation, paginators, and examples
+* `service/wisdom`: Updates service API, documentation, paginators, and examples
+
 Release v1.40.49 (2021-09-24)
 ===
 

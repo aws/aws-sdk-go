@@ -13173,6 +13173,10 @@ type Activity struct {
 	// down one of two paths in a journey, based on conditions that you specify.
 	ConditionalSplit *ConditionalSplitActivity `type:"structure"`
 
+	// The settings for a connect activity. This type of activity initiates a contact
+	// center call to participants.
+	ContactCenter *ContactCenterActivity `type:"structure"`
+
 	// The custom description of the activity.
 	Description *string `type:"string"`
 
@@ -13260,6 +13264,12 @@ func (s *Activity) SetCUSTOM(v *CustomMessageActivity) *Activity {
 // SetConditionalSplit sets the ConditionalSplit field's value.
 func (s *Activity) SetConditionalSplit(v *ConditionalSplitActivity) *Activity {
 	s.ConditionalSplit = v
+	return s
+}
+
+// SetContactCenter sets the ContactCenter field's value.
+func (s *Activity) SetContactCenter(v *ContactCenterActivity) *Activity {
+	s.ContactCenter = v
 	return s
 }
 
@@ -15869,6 +15879,39 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The settings for a connect activity. This type of activity initiates a contact
+// center call to participants.
+type ContactCenterActivity struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the next activity to perform after the this activity.
+	NextActivity *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactCenterActivity) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContactCenterActivity) GoString() string {
+	return s.String()
+}
+
+// SetNextActivity sets the NextActivity field's value.
+func (s *ContactCenterActivity) SetNextActivity(v string) *ContactCenterActivity {
+	s.NextActivity = &v
+	return s
 }
 
 type CreateAppInput struct {
@@ -29203,11 +29246,54 @@ func (s *ItemResponse) SetEventsItemResponse(v map[string]*EventItemResponse) *I
 	return s
 }
 
+// The channel-specific configurations for the journey.
+type JourneyChannelSettings struct {
+	_ struct{} `type:"structure"`
+
+	// Amazon Resource Name (ARN) of the Connect Campaign.
+	ConnectCampaignArn *string `type:"string"`
+
+	// IAM role ARN to be assumed when invoking Connect campaign execution APIs
+	// for dialing.
+	ConnectCampaignExecutionRoleArn *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyChannelSettings) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s JourneyChannelSettings) GoString() string {
+	return s.String()
+}
+
+// SetConnectCampaignArn sets the ConnectCampaignArn field's value.
+func (s *JourneyChannelSettings) SetConnectCampaignArn(v string) *JourneyChannelSettings {
+	s.ConnectCampaignArn = &v
+	return s
+}
+
+// SetConnectCampaignExecutionRoleArn sets the ConnectCampaignExecutionRoleArn field's value.
+func (s *JourneyChannelSettings) SetConnectCampaignExecutionRoleArn(v string) *JourneyChannelSettings {
+	s.ConnectCampaignExecutionRoleArn = &v
+	return s
+}
+
 // Specifies the message content for a custom channel message that's sent to
 // participants in a journey.
 type JourneyCustomMessage struct {
 	_ struct{} `type:"structure"`
 
+	// The message content that's passed to an AWS Lambda function or to a web hook.
 	Data *string `type:"string"`
 }
 
@@ -29683,6 +29769,9 @@ type JourneyResponse struct {
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
+	// Amazon Resource Name (ARN) of the Connect Campaign.
+	JourneyChannelSettings *JourneyChannelSettings `type:"structure"`
+
 	// The date, in ISO 8601 format, when the journey was last modified.
 	LastModifiedDate *string `type:"string"`
 
@@ -29801,6 +29890,12 @@ func (s *JourneyResponse) SetCreationDate(v string) *JourneyResponse {
 // SetId sets the Id field's value.
 func (s *JourneyResponse) SetId(v string) *JourneyResponse {
 	s.Id = &v
+	return s
+}
+
+// SetJourneyChannelSettings sets the JourneyChannelSettings field's value.
+func (s *JourneyResponse) SetJourneyChannelSettings(v *JourneyChannelSettings) *JourneyResponse {
+	s.JourneyChannelSettings = v
 	return s
 }
 
@@ -40257,6 +40352,10 @@ type WriteJourneyRequest struct {
 	// The date, in ISO 8601 format, when the journey was created.
 	CreationDate *string `type:"string"`
 
+	// IAM role ARN to be assumed when invoking Connect campaign execution APIs
+	// for dialing.
+	JourneyChannelSettings *JourneyChannelSettings `type:"structure"`
+
 	// The date, in ISO 8601 format, when the journey was last modified.
 	LastModifiedDate *string `type:"string"`
 
@@ -40381,6 +40480,12 @@ func (s *WriteJourneyRequest) SetActivities(v map[string]*Activity) *WriteJourne
 // SetCreationDate sets the CreationDate field's value.
 func (s *WriteJourneyRequest) SetCreationDate(v string) *WriteJourneyRequest {
 	s.CreationDate = &v
+	return s
+}
+
+// SetJourneyChannelSettings sets the JourneyChannelSettings field's value.
+func (s *WriteJourneyRequest) SetJourneyChannelSettings(v *JourneyChannelSettings) *WriteJourneyRequest {
+	s.JourneyChannelSettings = v
 	return s
 }
 
