@@ -178,6 +178,12 @@ func (c *ELBV2) AddTagsRequest(input *AddTagsInput) (req *request.Request, outpu
 //   * ErrCodeTargetGroupNotFoundException "TargetGroupNotFound"
 //   The specified target group does not exist.
 //
+//   * ErrCodeListenerNotFoundException "ListenerNotFound"
+//   The specified listener does not exist.
+//
+//   * ErrCodeRuleNotFoundException "RuleNotFound"
+//   The specified rule does not exist.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/AddTags
 func (c *ELBV2) AddTags(input *AddTagsInput) (*AddTagsOutput, error) {
 	req, out := c.AddTagsRequest(input)
@@ -769,6 +775,9 @@ func (c *ELBV2) DeleteListenerRequest(input *DeleteListenerInput) (req *request.
 // Returned Error Codes:
 //   * ErrCodeListenerNotFoundException "ListenerNotFound"
 //   The specified listener does not exist.
+//
+//   * ErrCodeResourceInUseException "ResourceInUse"
+//   A specified resource is in use.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/elasticloadbalancingv2-2015-12-01/DeleteListener
 func (c *ELBV2) DeleteListener(input *DeleteListenerInput) (*DeleteListenerOutput, error) {
@@ -4799,7 +4808,7 @@ type CreateTargetGroupInput struct {
 
 	// Indicates whether health checks are enabled. If the target type is lambda,
 	// health checks are disabled by default but can be enabled. If the target type
-	// is instance or ip, health checks are always enabled and cannot be disabled.
+	// is instance, ip, or alb, health checks are always enabled and cannot be disabled.
 	HealthCheckEnabled *bool `type:"boolean"`
 
 	// The approximate amount of time, in seconds, between health checks of an individual
@@ -4892,6 +4901,8 @@ type CreateTargetGroupInput struct {
 	//    addresses.
 	//
 	//    * lambda - Register a single Lambda function as a target.
+	//
+	//    * alb - Register a single Application Load Balancer as a target.
 	TargetType *string `type:"string" enum:"TargetTypeEnum"`
 
 	// The number of consecutive health check failures required before considering
@@ -9503,7 +9514,7 @@ type TargetDescription struct {
 	// from all enabled Availability Zones for the load balancer.
 	//
 	// This parameter is not supported if the target type of the target group is
-	// instance.
+	// instance or alb.
 	//
 	// If the target type is ip and the IP address is in a subnet of the VPC for
 	// the target group, the Availability Zone is automatically detected and this
@@ -9519,13 +9530,17 @@ type TargetDescription struct {
 
 	// The ID of the target. If the target type of the target group is instance,
 	// specify an instance ID. If the target type is ip, specify an IP address.
-	// If the target type is lambda, specify the ARN of the Lambda function.
+	// If the target type is lambda, specify the ARN of the Lambda function. If
+	// the target type is alb, specify the ARN of the Application Load Balancer
+	// target.
 	//
 	// Id is a required field
 	Id *string `type:"string" required:"true"`
 
 	// The port on which the target is listening. If the target group protocol is
-	// GENEVE, the supported port is 6081. Not used if the target is a Lambda function.
+	// GENEVE, the supported port is 6081. If the target type is alb, the targeted
+	// Application Load Balancer must have at least one listener whose port matches
+	// the target group port. Not used if the target is a Lambda function.
 	Port *int64 `min:"1" type:"integer"`
 }
 
@@ -9637,8 +9652,9 @@ type TargetGroup struct {
 
 	// The type of target that you must specify when registering targets with this
 	// target group. The possible values are instance (register targets by instance
-	// ID), ip (register targets by IP address), or lambda (register a single Lambda
-	// function as a target).
+	// ID), ip (register targets by IP address), lambda (register a single Lambda
+	// function as a target), or alb (register a single Application Load Balancer
+	// as a target).
 	TargetType *string `type:"string" enum:"TargetTypeEnum"`
 
 	// The number of consecutive health check failures required before considering
@@ -10417,6 +10433,9 @@ const (
 
 	// TargetTypeEnumLambda is a TargetTypeEnum enum value
 	TargetTypeEnumLambda = "lambda"
+
+	// TargetTypeEnumAlb is a TargetTypeEnum enum value
+	TargetTypeEnumAlb = "alb"
 )
 
 // TargetTypeEnum_Values returns all elements of the TargetTypeEnum enum
@@ -10425,5 +10444,6 @@ func TargetTypeEnum_Values() []string {
 		TargetTypeEnumInstance,
 		TargetTypeEnumIp,
 		TargetTypeEnumLambda,
+		TargetTypeEnumAlb,
 	}
 }

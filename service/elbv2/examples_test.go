@@ -58,6 +58,10 @@ func ExampleELBV2_AddTags_shared00() {
 				fmt.Println(elbv2.ErrCodeLoadBalancerNotFoundException, aerr.Error())
 			case elbv2.ErrCodeTargetGroupNotFoundException:
 				fmt.Println(elbv2.ErrCodeTargetGroupNotFoundException, aerr.Error())
+			case elbv2.ErrCodeListenerNotFoundException:
+				fmt.Println(elbv2.ErrCodeListenerNotFoundException, aerr.Error())
+			case elbv2.ErrCodeRuleNotFoundException:
+				fmt.Println(elbv2.ErrCodeRuleNotFoundException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}
@@ -470,6 +474,8 @@ func ExampleELBV2_DeleteListener_shared00() {
 			switch aerr.Code() {
 			case elbv2.ErrCodeListenerNotFoundException:
 				fmt.Println(elbv2.ErrCodeListenerNotFoundException, aerr.Error())
+			case elbv2.ErrCodeResourceInUseException:
+				fmt.Println(elbv2.ErrCodeResourceInUseException, aerr.Error())
 			default:
 				fmt.Println(aerr.Error())
 			}

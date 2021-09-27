@@ -44,7 +44,9 @@
         {"shape":"DuplicateTagKeysException"},
         {"shape":"TooManyTagsException"},
         {"shape":"LoadBalancerNotFoundException"},
-        {"shape":"TargetGroupNotFoundException"}
+        {"shape":"TargetGroupNotFoundException"},
+        {"shape":"ListenerNotFoundException"},
+        {"shape":"RuleNotFoundException"}
       ]
     },
     "CreateListener":{
@@ -165,7 +167,8 @@
         "resultWrapper":"DeleteListenerResult"
       },
       "errors":[
-        {"shape":"ListenerNotFoundException"}
+        {"shape":"ListenerNotFoundException"},
+        {"shape":"ResourceInUseException"}
       ]
     },
     "DeleteLoadBalancer":{
@@ -2261,7 +2264,8 @@
       "enum":[
         "instance",
         "ip",
-        "lambda"
+        "lambda",
+        "alb"
       ]
     },
     "TooManyActionsException":{

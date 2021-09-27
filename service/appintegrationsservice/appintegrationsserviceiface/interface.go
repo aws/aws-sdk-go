@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon AppIntegrations Service.
 //    func myFunc(svc appintegrationsserviceiface.AppIntegrationsServiceAPI) bool {
-//        // Make svc.CreateEventIntegration request
+//        // Make svc.CreateDataIntegration request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockAppIntegrationsServiceClient struct {
 //        appintegrationsserviceiface.AppIntegrationsServiceAPI
 //    }
-//    func (m *mockAppIntegrationsServiceClient) CreateEventIntegration(input *appintegrationsservice.CreateEventIntegrationInput) (*appintegrationsservice.CreateEventIntegrationOutput, error) {
+//    func (m *mockAppIntegrationsServiceClient) CreateDataIntegration(input *appintegrationsservice.CreateDataIntegrationInput) (*appintegrationsservice.CreateDataIntegrationOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,17 +60,37 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type AppIntegrationsServiceAPI interface {
+	CreateDataIntegration(*appintegrationsservice.CreateDataIntegrationInput) (*appintegrationsservice.CreateDataIntegrationOutput, error)
+	CreateDataIntegrationWithContext(aws.Context, *appintegrationsservice.CreateDataIntegrationInput, ...request.Option) (*appintegrationsservice.CreateDataIntegrationOutput, error)
+	CreateDataIntegrationRequest(*appintegrationsservice.CreateDataIntegrationInput) (*request.Request, *appintegrationsservice.CreateDataIntegrationOutput)
+
 	CreateEventIntegration(*appintegrationsservice.CreateEventIntegrationInput) (*appintegrationsservice.CreateEventIntegrationOutput, error)
 	CreateEventIntegrationWithContext(aws.Context, *appintegrationsservice.CreateEventIntegrationInput, ...request.Option) (*appintegrationsservice.CreateEventIntegrationOutput, error)
 	CreateEventIntegrationRequest(*appintegrationsservice.CreateEventIntegrationInput) (*request.Request, *appintegrationsservice.CreateEventIntegrationOutput)
+
+	DeleteDataIntegration(*appintegrationsservice.DeleteDataIntegrationInput) (*appintegrationsservice.DeleteDataIntegrationOutput, error)
+	DeleteDataIntegrationWithContext(aws.Context, *appintegrationsservice.DeleteDataIntegrationInput, ...request.Option) (*appintegrationsservice.DeleteDataIntegrationOutput, error)
+	DeleteDataIntegrationRequest(*appintegrationsservice.DeleteDataIntegrationInput) (*request.Request, *appintegrationsservice.DeleteDataIntegrationOutput)
 
 	DeleteEventIntegration(*appintegrationsservice.DeleteEventIntegrationInput) (*appintegrationsservice.DeleteEventIntegrationOutput, error)
 	DeleteEventIntegrationWithContext(aws.Context, *appintegrationsservice.DeleteEventIntegrationInput, ...request.Option) (*appintegrationsservice.DeleteEventIntegrationOutput, error)
 	DeleteEventIntegrationRequest(*appintegrationsservice.DeleteEventIntegrationInput) (*request.Request, *appintegrationsservice.DeleteEventIntegrationOutput)
 
+	GetDataIntegration(*appintegrationsservice.GetDataIntegrationInput) (*appintegrationsservice.GetDataIntegrationOutput, error)
+	GetDataIntegrationWithContext(aws.Context, *appintegrationsservice.GetDataIntegrationInput, ...request.Option) (*appintegrationsservice.GetDataIntegrationOutput, error)
+	GetDataIntegrationRequest(*appintegrationsservice.GetDataIntegrationInput) (*request.Request, *appintegrationsservice.GetDataIntegrationOutput)
+
 	GetEventIntegration(*appintegrationsservice.GetEventIntegrationInput) (*appintegrationsservice.GetEventIntegrationOutput, error)
 	GetEventIntegrationWithContext(aws.Context, *appintegrationsservice.GetEventIntegrationInput, ...request.Option) (*appintegrationsservice.GetEventIntegrationOutput, error)
 	GetEventIntegrationRequest(*appintegrationsservice.GetEventIntegrationInput) (*request.Request, *appintegrationsservice.GetEventIntegrationOutput)
+
+	ListDataIntegrationAssociations(*appintegrationsservice.ListDataIntegrationAssociationsInput) (*appintegrationsservice.ListDataIntegrationAssociationsOutput, error)
+	ListDataIntegrationAssociationsWithContext(aws.Context, *appintegrationsservice.ListDataIntegrationAssociationsInput, ...request.Option) (*appintegrationsservice.ListDataIntegrationAssociationsOutput, error)
+	ListDataIntegrationAssociationsRequest(*appintegrationsservice.ListDataIntegrationAssociationsInput) (*request.Request, *appintegrationsservice.ListDataIntegrationAssociationsOutput)
+
+	ListDataIntegrations(*appintegrationsservice.ListDataIntegrationsInput) (*appintegrationsservice.ListDataIntegrationsOutput, error)
+	ListDataIntegrationsWithContext(aws.Context, *appintegrationsservice.ListDataIntegrationsInput, ...request.Option) (*appintegrationsservice.ListDataIntegrationsOutput, error)
+	ListDataIntegrationsRequest(*appintegrationsservice.ListDataIntegrationsInput) (*request.Request, *appintegrationsservice.ListDataIntegrationsOutput)
 
 	ListEventIntegrationAssociations(*appintegrationsservice.ListEventIntegrationAssociationsInput) (*appintegrationsservice.ListEventIntegrationAssociationsOutput, error)
 	ListEventIntegrationAssociationsWithContext(aws.Context, *appintegrationsservice.ListEventIntegrationAssociationsInput, ...request.Option) (*appintegrationsservice.ListEventIntegrationAssociationsOutput, error)
@@ -91,6 +111,10 @@ type AppIntegrationsServiceAPI interface {
 	UntagResource(*appintegrationsservice.UntagResourceInput) (*appintegrationsservice.UntagResourceOutput, error)
 	UntagResourceWithContext(aws.Context, *appintegrationsservice.UntagResourceInput, ...request.Option) (*appintegrationsservice.UntagResourceOutput, error)
 	UntagResourceRequest(*appintegrationsservice.UntagResourceInput) (*request.Request, *appintegrationsservice.UntagResourceOutput)
+
+	UpdateDataIntegration(*appintegrationsservice.UpdateDataIntegrationInput) (*appintegrationsservice.UpdateDataIntegrationOutput, error)
+	UpdateDataIntegrationWithContext(aws.Context, *appintegrationsservice.UpdateDataIntegrationInput, ...request.Option) (*appintegrationsservice.UpdateDataIntegrationOutput, error)
+	UpdateDataIntegrationRequest(*appintegrationsservice.UpdateDataIntegrationInput) (*request.Request, *appintegrationsservice.UpdateDataIntegrationOutput)
 
 	UpdateEventIntegration(*appintegrationsservice.UpdateEventIntegrationInput) (*appintegrationsservice.UpdateEventIntegrationOutput, error)
 	UpdateEventIntegrationWithContext(aws.Context, *appintegrationsservice.UpdateEventIntegrationInput, ...request.Option) (*appintegrationsservice.UpdateEventIntegrationOutput, error)

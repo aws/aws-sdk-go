@@ -1254,7 +1254,7 @@ func (c *Connect) CreateIntegrationAssociationRequest(input *CreateIntegrationAs
 
 // CreateIntegrationAssociation API operation for Amazon Connect Service.
 //
-// Create an AppIntegration association with an Amazon Connect instance.
+// Creates an AWS resource association with an Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1638,7 +1638,7 @@ func (c *Connect) CreateUseCaseRequest(input *CreateUseCaseInput) (req *request.
 
 // CreateUseCase API operation for Amazon Connect Service.
 //
-// Creates a use case for an AppIntegration association.
+// Creates a use case for an integration association.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2116,7 +2116,7 @@ func (c *Connect) DeleteIntegrationAssociationRequest(input *DeleteIntegrationAs
 
 // DeleteIntegrationAssociation API operation for Amazon Connect Service.
 //
-// Deletes an AppIntegration association from an Amazon Connect instance. The
+// Deletes an AWS resource association from an Amazon Connect instance. The
 // association must not have any use cases associated with it.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -2298,7 +2298,7 @@ func (c *Connect) DeleteUseCaseRequest(input *DeleteUseCaseInput) (req *request.
 
 // DeleteUseCase API operation for Amazon Connect Service.
 //
-// Deletes a use case from an AppIntegration association.
+// Deletes a use case from an integration association.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6146,7 +6146,7 @@ func (c *Connect) ListIntegrationAssociationsRequest(input *ListIntegrationAssoc
 
 // ListIntegrationAssociations API operation for Amazon Connect Service.
 //
-// Provides summary information about the AppIntegration associations for the
+// Provides summary information about the AWS resource associations for the
 // specified Amazon Connect instance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -8060,7 +8060,7 @@ func (c *Connect) ListUseCasesRequest(input *ListUseCasesInput) (req *request.Re
 
 // ListUseCases API operation for Amazon Connect Service.
 //
-// Lists the use cases.
+// Lists the use cases for the integration association.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -8816,6 +8816,11 @@ func (c *Connect) StartOutboundVoiceContactRequest(input *StartOutboundVoiceCont
 //
 // UK numbers with a 447 prefix are not allowed by default. Before you can dial
 // these UK mobile numbers, you must submit a service quota increase request.
+// For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
+// in the Amazon Connect Administrator Guide.
+//
+// Campaign calls are not allowed by default. Before you can make a call with
+// TrafficType = CAMPAIGN, you must submit a service quota increase request.
 // For more information, see Amazon Connect Service Quotas (https://docs.aws.amazon.com/connect/latest/adminguide/amazon-connect-service-limits.html)
 // in the Amazon Connect Administrator Guide.
 //
@@ -11974,6 +11979,48 @@ func (s *AgentStatusSummary) SetType(v string) *AgentStatusSummary {
 	return s
 }
 
+// Configuration of the answering machine detection.
+type AnswerMachineDetectionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// Wait for the answering machine prompt.
+	AwaitAnswerMachinePrompt *bool `type:"boolean"`
+
+	// The flag to indicate if answer machine detection analysis needs to be performed
+	// for a voice call. If set to true, TrafficType must be set as CAMPAIGN.
+	EnableAnswerMachineDetection *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnswerMachineDetectionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AnswerMachineDetectionConfig) GoString() string {
+	return s.String()
+}
+
+// SetAwaitAnswerMachinePrompt sets the AwaitAnswerMachinePrompt field's value.
+func (s *AnswerMachineDetectionConfig) SetAwaitAnswerMachinePrompt(v bool) *AnswerMachineDetectionConfig {
+	s.AwaitAnswerMachinePrompt = &v
+	return s
+}
+
+// SetEnableAnswerMachineDetection sets the EnableAnswerMachineDetection field's value.
+func (s *AnswerMachineDetectionConfig) SetEnableAnswerMachineDetection(v bool) *AnswerMachineDetectionConfig {
+	s.EnableAnswerMachineDetection = &v
+	return s
+}
+
 type AssociateApprovedOriginInput struct {
 	_ struct{} `type:"structure"`
 
@@ -13808,20 +13855,17 @@ type CreateIntegrationAssociationInput struct {
 	// IntegrationType is a required field
 	IntegrationType *string `type:"string" required:"true" enum:"IntegrationType"`
 
-	// The name of the external application.
-	//
-	// SourceApplicationName is a required field
-	SourceApplicationName *string `min:"1" type:"string" required:"true"`
+	// The name of the external application. This field is only required for the
+	// EVENT integration type.
+	SourceApplicationName *string `min:"1" type:"string"`
 
-	// The URL for the external application.
-	//
-	// SourceApplicationUrl is a required field
-	SourceApplicationUrl *string `min:"1" type:"string" required:"true"`
+	// The URL for the external application. This field is only required for the
+	// EVENT integration type.
+	SourceApplicationUrl *string `min:"1" type:"string"`
 
-	// The type of the data source.
-	//
-	// SourceType is a required field
-	SourceType *string `type:"string" required:"true" enum:"SourceType"`
+	// The type of the data source. This field is only required for the EVENT integration
+	// type.
+	SourceType *string `type:"string" enum:"SourceType"`
 
 	// One or more tags.
 	Tags map[string]*string `min:"1" type:"map"`
@@ -13860,20 +13904,11 @@ func (s *CreateIntegrationAssociationInput) Validate() error {
 	if s.IntegrationType == nil {
 		invalidParams.Add(request.NewErrParamRequired("IntegrationType"))
 	}
-	if s.SourceApplicationName == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceApplicationName"))
-	}
 	if s.SourceApplicationName != nil && len(*s.SourceApplicationName) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceApplicationName", 1))
 	}
-	if s.SourceApplicationUrl == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceApplicationUrl"))
-	}
 	if s.SourceApplicationUrl != nil && len(*s.SourceApplicationUrl) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("SourceApplicationUrl", 1))
-	}
-	if s.SourceType == nil {
-		invalidParams.Add(request.NewErrParamRequired("SourceType"))
 	}
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
@@ -13933,7 +13968,7 @@ type CreateIntegrationAssociationOutput struct {
 	// The Amazon Resource Name (ARN) for the association.
 	IntegrationAssociationArn *string `type:"string"`
 
-	// The identifier for the association.
+	// The identifier for the integration association.
 	IntegrationAssociationId *string `min:"1" type:"string"`
 }
 
@@ -14505,7 +14540,7 @@ type CreateUseCaseInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the AppIntegration association.
+	// The identifier for the integration association.
 	//
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
@@ -14513,8 +14548,8 @@ type CreateUseCaseInput struct {
 	// One or more tags.
 	Tags map[string]*string `min:"1" type:"map"`
 
-	// The type of use case to associate to the AppIntegration association. Each
-	// AppIntegration association can have only one of each use case type.
+	// The type of use case to associate to the integration association. Each integration
+	// association can have only one of each use case type.
 	//
 	// UseCaseType is a required field
 	UseCaseType *string `type:"string" required:"true" enum:"UseCaseType"`
@@ -15331,7 +15366,7 @@ type DeleteIntegrationAssociationInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the AppIntegration association.
+	// The identifier for the integration association.
 	//
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
@@ -15509,7 +15544,7 @@ type DeleteUseCaseInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
-	// The identifier for the AppIntegration association.
+	// The identifier for the integration association.
 	//
 	// IntegrationAssociationId is a required field
 	IntegrationAssociationId *string `location:"uri" locationName:"IntegrationAssociationId" min:"1" type:"string" required:"true"`
@@ -17902,7 +17937,9 @@ type EncryptionConfig struct {
 	// EncryptionType is a required field
 	EncryptionType *string `type:"string" required:"true" enum:"EncryptionType"`
 
-	// The identifier of the encryption key.
+	// The full ARN of the encryption key.
+	//
+	// Be sure to provide the full ARN of the encryption key, not just the ID.
 	//
 	// KeyId is a required field
 	KeyId *string `min:"1" type:"string" required:"true"`
@@ -18181,8 +18218,10 @@ type GetCurrentMetricDataInput struct {
 	//
 	// Unit: SECONDS
 	//
-	// When you use groupings, Unit says SECONDS but the Value is returned in MILLISECONDS.
-	// For example, if you get a response like this:
+	// When you use groupings, Unit says SECONDS and the Value is returned in SECONDS.
+	//
+	// When you do not use groupings, Unit says SECONDS but the Value is returned
+	// in MILLISECONDS. For example, if you get a response like this:
 	//
 	// { "Metric": { "Name": "OLDEST_CONTACT_AGE", "Unit": "SECONDS" }, "Value":
 	// 24113.0 }
@@ -21743,6 +21782,8 @@ type ListIntegrationAssociationsInput struct {
 	// InstanceId is a required field
 	InstanceId *string `location:"uri" locationName:"InstanceId" min:"1" type:"string" required:"true"`
 
+	IntegrationType *string `location:"querystring" locationName:"integrationType" type:"string" enum:"IntegrationType"`
+
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -21794,6 +21835,12 @@ func (s *ListIntegrationAssociationsInput) SetInstanceId(v string) *ListIntegrat
 	return s
 }
 
+// SetIntegrationType sets the IntegrationType field's value.
+func (s *ListIntegrationAssociationsInput) SetIntegrationType(v string) *ListIntegrationAssociationsInput {
+	s.IntegrationType = &v
+	return s
+}
+
 // SetMaxResults sets the MaxResults field's value.
 func (s *ListIntegrationAssociationsInput) SetMaxResults(v int64) *ListIntegrationAssociationsInput {
 	s.MaxResults = &v
@@ -21809,7 +21856,7 @@ func (s *ListIntegrationAssociationsInput) SetNextToken(v string) *ListIntegrati
 type ListIntegrationAssociationsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// The AppIntegration associations.
+	// The associations.
 	IntegrationAssociationSummaryList []*IntegrationAssociationSummary `type:"list"`
 
 	// If there are additional results, this is the token for the next set of results.
@@ -23230,8 +23277,8 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 	return s
 }
 
-// Provides summary information about the use cases for the specified Amazon
-// Connect AppIntegration association.
+// Provides summary information about the use cases for the specified integration
+// association.
 type ListUseCasesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -25834,6 +25881,9 @@ func (s StartContactRecordingOutput) GoString() string {
 type StartOutboundVoiceContactInput struct {
 	_ struct{} `type:"structure"`
 
+	// Configuration of the answering machine detection for this outbound call.
+	AnswerMachineDetectionConfig *AnswerMachineDetectionConfig `type:"structure"`
+
 	// A custom key-value pair using an attribute map. The attributes are standard
 	// Amazon Connect attributes, and can be accessed in contact flows just like
 	// any other contact attributes.
@@ -25841,6 +25891,9 @@ type StartOutboundVoiceContactInput struct {
 	// There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact.
 	// Attribute keys can include only alphanumeric, dash, and underscore characters.
 	Attributes map[string]*string `type:"map"`
+
+	// The campaign identifier of the outbound communication.
+	CampaignId *string `min:"1" type:"string"`
 
 	// A unique, case-sensitive identifier that you provide to ensure the idempotency
 	// of the request. The token is valid for 7 days after creation. If a contact
@@ -25878,6 +25931,12 @@ type StartOutboundVoiceContactInput struct {
 	// The phone number associated with the Amazon Connect instance, in E.164 format.
 	// If you do not specify a source phone number, you must specify a queue.
 	SourcePhoneNumber *string `type:"string"`
+
+	// Denotes the class of traffic. Calls with different traffic types are handled
+	// differently by Amazon Connect. The default value is GENERAL. Use CAMPAIGN
+	// if EnableAnswerMachineDetection is set to true. For all other cases, use
+	// GENERAL.
+	TrafficType *string `type:"string" enum:"TrafficType"`
 }
 
 // String returns the string representation.
@@ -25901,6 +25960,9 @@ func (s StartOutboundVoiceContactInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StartOutboundVoiceContactInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StartOutboundVoiceContactInput"}
+	if s.CampaignId != nil && len(*s.CampaignId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("CampaignId", 1))
+	}
 	if s.ContactFlowId == nil {
 		invalidParams.Add(request.NewErrParamRequired("ContactFlowId"))
 	}
@@ -25920,9 +25982,21 @@ func (s *StartOutboundVoiceContactInput) Validate() error {
 	return nil
 }
 
+// SetAnswerMachineDetectionConfig sets the AnswerMachineDetectionConfig field's value.
+func (s *StartOutboundVoiceContactInput) SetAnswerMachineDetectionConfig(v *AnswerMachineDetectionConfig) *StartOutboundVoiceContactInput {
+	s.AnswerMachineDetectionConfig = v
+	return s
+}
+
 // SetAttributes sets the Attributes field's value.
 func (s *StartOutboundVoiceContactInput) SetAttributes(v map[string]*string) *StartOutboundVoiceContactInput {
 	s.Attributes = v
+	return s
+}
+
+// SetCampaignId sets the CampaignId field's value.
+func (s *StartOutboundVoiceContactInput) SetCampaignId(v string) *StartOutboundVoiceContactInput {
+	s.CampaignId = &v
 	return s
 }
 
@@ -25959,6 +26033,12 @@ func (s *StartOutboundVoiceContactInput) SetQueueId(v string) *StartOutboundVoic
 // SetSourcePhoneNumber sets the SourcePhoneNumber field's value.
 func (s *StartOutboundVoiceContactInput) SetSourcePhoneNumber(v string) *StartOutboundVoiceContactInput {
 	s.SourcePhoneNumber = &v
+	return s
+}
+
+// SetTrafficType sets the TrafficType field's value.
+func (s *StartOutboundVoiceContactInput) SetTrafficType(v string) *StartOutboundVoiceContactInput {
+	s.TrafficType = &v
 	return s
 }
 
@@ -27362,6 +27442,9 @@ type UpdateInstanceAttributeInput struct {
 	_ struct{} `type:"structure"`
 
 	// The type of attribute.
+	//
+	// Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this
+	// feature, contact AWS Support for allowlisting.
 	//
 	// AttributeType is a required field
 	AttributeType *string `location:"uri" locationName:"AttributeType" type:"string" required:"true" enum:"InstanceAttributeType"`
@@ -29504,8 +29587,8 @@ type UseCase struct {
 	// The identifier for the use case.
 	UseCaseId *string `min:"1" type:"string"`
 
-	// The type of use case to associate to the AppIntegration association. Each
-	// AppIntegration association can have only one of each use case type.
+	// The type of use case to associate to the integration association. Each integration
+	// association can have only one of each use case type.
 	UseCaseType *string `type:"string" enum:"UseCaseType"`
 }
 
@@ -30466,12 +30549,28 @@ func InstanceStorageResourceType_Values() []string {
 const (
 	// IntegrationTypeEvent is a IntegrationType enum value
 	IntegrationTypeEvent = "EVENT"
+
+	// IntegrationTypeVoiceId is a IntegrationType enum value
+	IntegrationTypeVoiceId = "VOICE_ID"
+
+	// IntegrationTypePinpointApp is a IntegrationType enum value
+	IntegrationTypePinpointApp = "PINPOINT_APP"
+
+	// IntegrationTypeWisdomAssistant is a IntegrationType enum value
+	IntegrationTypeWisdomAssistant = "WISDOM_ASSISTANT"
+
+	// IntegrationTypeWisdomKnowledgeBase is a IntegrationType enum value
+	IntegrationTypeWisdomKnowledgeBase = "WISDOM_KNOWLEDGE_BASE"
 )
 
 // IntegrationType_Values returns all elements of the IntegrationType enum
 func IntegrationType_Values() []string {
 	return []string{
 		IntegrationTypeEvent,
+		IntegrationTypeVoiceId,
+		IntegrationTypePinpointApp,
+		IntegrationTypeWisdomAssistant,
+		IntegrationTypeWisdomKnowledgeBase,
 	}
 }
 
@@ -31640,6 +31739,22 @@ func StorageType_Values() []string {
 }
 
 const (
+	// TrafficTypeGeneral is a TrafficType enum value
+	TrafficTypeGeneral = "GENERAL"
+
+	// TrafficTypeCampaign is a TrafficType enum value
+	TrafficTypeCampaign = "CAMPAIGN"
+)
+
+// TrafficType_Values returns all elements of the TrafficType enum
+func TrafficType_Values() []string {
+	return []string{
+		TrafficTypeGeneral,
+		TrafficTypeCampaign,
+	}
+}
+
+const (
 	// UnitSeconds is a Unit enum value
 	UnitSeconds = "SECONDS"
 
@@ -31662,12 +31777,16 @@ func Unit_Values() []string {
 const (
 	// UseCaseTypeRulesEvaluation is a UseCaseType enum value
 	UseCaseTypeRulesEvaluation = "RULES_EVALUATION"
+
+	// UseCaseTypeConnectCampaigns is a UseCaseType enum value
+	UseCaseTypeConnectCampaigns = "CONNECT_CAMPAIGNS"
 )
 
 // UseCaseType_Values returns all elements of the UseCaseType enum
 func UseCaseType_Values() []string {
 	return []string{
 		UseCaseTypeRulesEvaluation,
+		UseCaseTypeConnectCampaigns,
 	}
 }
 
