@@ -1,3 +1,11 @@
+Release v1.40.51 (2021-09-28)
+===
+
+### Service Client Updates
+* `service/imagebuilder`: Updates service documentation
+* `service/transfer`: Updates service documentation
+  * Added changes for managed workflows feature APIs.
+
 Release v1.40.50 (2021-09-27)
 ===
 
