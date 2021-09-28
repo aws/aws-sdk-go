@@ -3779,8 +3779,7 @@ type CreateAccessInput struct {
 	//
 	// The following is an Entry and Target pair example.
 	//
-	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
-	// } ]
+	// [ { "Entry": "/directory1", "Target": "/bucket_name/home/mydirectory" } ]
 	//
 	// In most cases, you can use this value instead of the session policy to lock
 	// down your user to the designated home directory ("chroot"). To do this, you
@@ -4343,8 +4342,7 @@ type CreateUserInput struct {
 	//
 	// The following is an Entry and Target pair example.
 	//
-	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
-	// } ]
+	// [ { "Entry": "/directory1", "Target": "/bucket_name/home/mydirectory" } ]
 	//
 	// In most cases, you can use this value instead of the session policy to lock
 	// your user down to the designated home directory ("chroot"). To do this, you
@@ -4617,8 +4615,12 @@ type CreateWorkflowInput struct {
 	// A textual description for the workflow.
 	Description *string `type:"string"`
 
-	// Specifies the steps (actions) to take if any errors are encountered during
-	// execution of the workflow.
+	// Specifies the steps (actions) to take if errors are encountered during execution
+	// of the workflow.
+	//
+	// For custom steps, the lambda function needs to send FAILURE to the call back
+	// API to kick off the exception steps. Additionally, if the lambda does not
+	// send SUCCESS before it times out, the exception steps are executed.
 	OnExceptionSteps []*WorkflowStep `type:"list"`
 
 	// Specifies the details for the steps that are in the specified workflow.
@@ -4633,6 +4635,8 @@ type CreateWorkflowInput struct {
 	//    * Delete: delete the file
 	//
 	//    * Tag: add a tag to the file
+	//
+	// Currently, copying and tagging are supported only on S3.
 	//
 	// For file location, you specify either the S3 bucket and key, or the EFS filesystem
 	// ID and path.
@@ -5108,7 +5112,7 @@ func (s DeleteSshPublicKeyOutput) GoString() string {
 	return s.String()
 }
 
-// The name of the step, used to identify the step that is being deleted.
+// The name of the step, used to identify the delete step.
 type DeleteStepDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -6604,8 +6608,8 @@ type DescribedWorkflow struct {
 	// Specifies the text description for the workflow.
 	Description *string `type:"string"`
 
-	// Specifies the steps (actions) to take if any errors are encountered during
-	// execution of the workflow.
+	// Specifies the steps (actions) to take if errors are encountered during execution
+	// of the workflow.
 	OnExceptionSteps []*WorkflowStep `type:"list"`
 
 	// Specifies the details for the steps that are in the specified workflow.
@@ -6673,21 +6677,7 @@ func (s *DescribedWorkflow) SetWorkflowId(v string) *DescribedWorkflow {
 	return s
 }
 
-// Specifies the details for the file location for the file being used in the
-// workflow. Only applicable if you are using Amazon EFS for storage.
-//
-// You need to provide the file system ID and the pathname. The pathname can
-// represent either a path or a file. This is determined by whether or not you
-// end the path value with the forward slash (/) character. If the final character
-// is "/", then your file is copied to the folder, and its name does not change.
-// If, rather, the final character is alphanumeric, your uploaded file is renamed
-// to the path value. In this case, if a file with that name already exists,
-// it is overwritten.
-//
-// For example, if your path is shared-files/bob/, your uploaded files are copied
-// to the shared-files/bob/, folder. If your path is shared-files/today, each
-// uploaded file is copied to the shared-files folder and named today: each
-// upload overwrites the previous version of the bob file.
+// Reserved for future use.
 type EfsFileLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -6909,8 +6899,8 @@ func (s *ExecutionError) SetType(v string) *ExecutionError {
 type ExecutionResults struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the steps (actions) to take if any errors are encountered during
-	// execution of the workflow.
+	// Specifies the steps (actions) to take if errors are encountered during execution
+	// of the workflow.
 	OnExceptionSteps []*ExecutionStepResult `min:"1" type:"list"`
 
 	// Specifies the details for the steps that are in the specified workflow.
@@ -7335,7 +7325,7 @@ func (s *ImportSshPublicKeyOutput) SetUserName(v string) *ImportSshPublicKeyOutp
 type InputFileLocation struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the details for the Amazon EFS file being copied.
+	// Reserved for future use.
 	EfsFileLocation *EfsFileLocation `type:"structure"`
 
 	// Specifies the details for the S3 file being copied.
@@ -9179,18 +9169,6 @@ func (s *ResourceNotFoundException) RequestID() string {
 
 // Specifies the details for the file location for the file being used in the
 // workflow. Only applicable if you are using S3 storage.
-//
-// You need to provide the bucket and key. The key can represent either a path
-// or a file. This is determined by whether or not you end the key value with
-// the forward slash (/) character. If the final character is "/", then your
-// file is copied to the folder, and its name does not change. If, rather, the
-// final character is alphanumeric, your uploaded file is renamed to the path
-// value. In this case, if a file with that name already exists, it is overwritten.
-//
-// For example, if your path is shared-files/bob/, your uploaded files are copied
-// to the shared-files/bob/, folder. If your path is shared-files/today, each
-// uploaded file is copied to the shared-files folder and named today: each
-// upload overwrites the previous version of the bob file.
 type S3FileLocation struct {
 	_ struct{} `type:"structure"`
 
@@ -9251,11 +9229,24 @@ func (s *S3FileLocation) SetVersionId(v string) *S3FileLocation {
 	return s
 }
 
-// Specifies the details for the S3 file being copied.
+// Specifies the customer input S3 file location. If it is used inside copyStepDetails.DestinationFileLocation,
+// it should be the S3 copy destination.
+//
+// You need to provide the bucket and key. The key can represent either a path
+// or a file. This is determined by whether or not you end the key value with
+// the forward slash (/) character. If the final character is "/", then your
+// file is copied to the folder, and its name does not change. If, rather, the
+// final character is alphanumeric, your uploaded file is renamed to the path
+// value. In this case, if a file with that name already exists, it is overwritten.
+//
+// For example, if your path is shared-files/bob/, your uploaded files are copied
+// to the shared-files/bob/, folder. If your path is shared-files/today, each
+// uploaded file is copied to the shared-files folder and named today: each
+// upload overwrites the previous version of the bob file.
 type S3InputFileLocation struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the S3 bucket that contains the file being copied.
+	// Specifies the S3 bucket for the customer input file.
 	Bucket *string `min:"3" type:"string"`
 
 	// The name assigned to the file when it was created in S3. You use the object
@@ -10396,8 +10387,7 @@ type UpdateAccessInput struct {
 	//
 	// The following is an Entry and Target pair example.
 	//
-	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
-	// } ]
+	// [ { "Entry": "/directory1", "Target": "/bucket_name/home/mydirectory" } ]
 	//
 	// In most cases, you can use this value instead of the session policy to lock
 	// down your user to the designated home directory ("chroot"). To do this, you
@@ -10923,8 +10913,7 @@ type UpdateUserInput struct {
 	//
 	// The following is an Entry and Target pair example.
 	//
-	// [ { "Entry": "your-personal-report.pdf", "Target": "/bucket3/customized-reports/${transfer:UserName}.pdf"
-	// } ]
+	// [ { "Entry": "/directory1", "Target": "/bucket_name/home/mydirectory" } ]
 	//
 	// In most cases, you can use this value instead of the session policy to lock
 	// down your user to the designated home directory ("chroot"). To do this, you
@@ -11352,7 +11341,7 @@ type WorkflowStep struct {
 	//
 	//    * A description
 	//
-	//    * An S3 or EFS location for the destination of the file copy.
+	//    * An S3 location for the destination of the file copy.
 	//
 	//    * A flag that indicates whether or not to overwrite an existing file of
 	//    the same name. The default is FALSE.
@@ -11363,7 +11352,7 @@ type WorkflowStep struct {
 	// Consists of the lambda function name, target, and timeout (in seconds).
 	CustomStepDetails *CustomStepDetails `type:"structure"`
 
-	// You need to specify the name of the file to be deleted.
+	// Details for a step that deletes the file.
 	DeleteStepDetails *DeleteStepDetails `type:"structure"`
 
 	// Details for a step that creates one or more tags.

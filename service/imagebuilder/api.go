@@ -2841,7 +2841,7 @@ func (c *Imagebuilder) ListComponentBuildVersionsRequest(input *ListComponentBui
 // can assign values for the first three, and can filter on all of them.
 //
 // Filtering: With semantic versioning, you have the flexibility to use wildcards
-// (x) to specify the most recent versions or nodes when selecting the source
+// (x) to specify the most recent versions or nodes when selecting the base
 // image or components for your recipe. When you use a wildcard in any node,
 // all nodes to the right of the first wildcard must also be wildcards.
 //
@@ -3006,7 +3006,7 @@ func (c *Imagebuilder) ListComponentsRequest(input *ListComponentsInput) (req *r
 // can assign values for the first three, and can filter on all of them.
 //
 // Filtering: With semantic versioning, you have the flexibility to use wildcards
-// (x) to specify the most recent versions or nodes when selecting the source
+// (x) to specify the most recent versions or nodes when selecting the base
 // image or components for your recipe. When you use a wildcard in any node,
 // all nodes to the right of the first wildcard must also be wildcards.
 //
@@ -5670,7 +5670,7 @@ type AdditionalInstanceConfiguration struct {
 	// The userDataOverride property replaces any commands that Image Builder might
 	// have added to ensure that Systems Manager is installed on your Linux build
 	// instance. If you override the user data, make sure that you add commands
-	// to install Systems Manager, if it is not pre-installed on your source image.
+	// to install Systems Manager, if it is not pre-installed on your base image.
 	UserDataOverride *string `locationName:"userDataOverride" min:"1" type:"string"`
 }
 
@@ -5813,7 +5813,7 @@ type AmiDistributionConfiguration struct {
 	// can use the AMI to launch instances.
 	LaunchPermission *LaunchPermissionConfiguration `locationName:"launchPermission" type:"structure"`
 
-	// The name of the distribution configuration.
+	// The name of the output AMI.
 	Name *string `locationName:"name" min:"1" type:"string"`
 
 	// The ID of an account to which you want to distribute an image.
@@ -6184,7 +6184,7 @@ type Component struct {
 	State *ComponentState `locationName:"state" type:"structure"`
 
 	// The operating system (OS) version supported by the component. If the OS information
-	// is available, a prefix match is performed against the parent image OS version
+	// is available, a prefix match is performed against the base image OS version
 	// during image recipe creation.
 	SupportedOsVersions []*string `locationName:"supportedOsVersions" min:"1" type:"list"`
 
@@ -6583,7 +6583,7 @@ type ComponentSummary struct {
 	State *ComponentState `locationName:"state" type:"structure"`
 
 	// The operating system (OS) version supported by the component. If the OS information
-	// is available, a prefix match is performed against the parent image OS version
+	// is available, a prefix match is performed against the base image OS version
 	// during image recipe creation.
 	SupportedOsVersions []*string `locationName:"supportedOsVersions" min:"1" type:"list"`
 
@@ -6724,7 +6724,7 @@ type ComponentVersion struct {
 	Platform *string `locationName:"platform" type:"string" enum:"Platform"`
 
 	// he operating system (OS) version supported by the component. If the OS information
-	// is available, a prefix match is performed against the parent image OS version
+	// is available, a prefix match is performed against the base image OS version
 	// during image recipe creation.
 	SupportedOsVersions []*string `locationName:"supportedOsVersions" min:"1" type:"list"`
 
@@ -6747,7 +6747,7 @@ type ComponentVersion struct {
 	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
 	//
 	// Filtering: With semantic versioning, you have the flexibility to use wildcards
-	// (x) to specify the most recent versions or nodes when selecting the source
+	// (x) to specify the most recent versions or nodes when selecting the base
 	// image or components for your recipe. When you use a wildcard in any node,
 	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
@@ -6996,7 +6996,7 @@ type ContainerRecipe struct {
 	// The owner of the container recipe.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
-	// The source image for the container recipe.
+	// The base image for the container recipe.
 	ParentImage *string `locationName:"parentImage" min:"1" type:"string"`
 
 	// The system platform for the container, such as Windows or Linux.
@@ -7023,7 +7023,7 @@ type ContainerRecipe struct {
 	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
 	//
 	// Filtering: With semantic versioning, you have the flexibility to use wildcards
-	// (x) to specify the most recent versions or nodes when selecting the source
+	// (x) to specify the most recent versions or nodes when selecting the base
 	// image or components for your recipe. When you use a wildcard in any node,
 	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
@@ -7171,7 +7171,7 @@ type ContainerRecipeSummary struct {
 	// The owner of the container recipe.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
-	// The source image for the container recipe.
+	// The base image for the container recipe.
 	ParentImage *string `locationName:"parentImage" min:"1" type:"string"`
 
 	// The system platform for the container, such as Windows or Linux.
@@ -7297,7 +7297,7 @@ type CreateComponentInput struct {
 	SemanticVersion *string `locationName:"semanticVersion" type:"string" required:"true"`
 
 	// The operating system (OS) version supported by the component. If the OS information
-	// is available, a prefix match is performed against the parent image OS version
+	// is available, a prefix match is performed against the base image OS version
 	// during image recipe creation.
 	SupportedOsVersions []*string `locationName:"supportedOsVersions" min:"1" type:"list"`
 
@@ -7511,7 +7511,7 @@ type CreateContainerRecipeInput struct {
 	// image.
 	DockerfileTemplateUri *string `locationName:"dockerfileTemplateUri" type:"string"`
 
-	// Specifies the operating system version for the source image.
+	// Specifies the operating system version for the base image.
 	ImageOsVersionOverride *string `locationName:"imageOsVersionOverride" min:"1" type:"string"`
 
 	// A group of options that can be used to configure an instance for building
@@ -7526,12 +7526,12 @@ type CreateContainerRecipeInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The source image for the container recipe.
+	// The base image for the container recipe.
 	//
 	// ParentImage is a required field
 	ParentImage *string `locationName:"parentImage" min:"1" type:"string" required:"true"`
 
-	// Specifies the operating system platform when you use a custom source image.
+	// Specifies the operating system platform when you use a custom base image.
 	PlatformOverride *string `locationName:"platformOverride" type:"string" enum:"Platform"`
 
 	// The semantic version of the container recipe. This version follows the semantic
@@ -8386,9 +8386,9 @@ type CreateImageRecipeInput struct {
 	// Name is a required field
 	Name *string `locationName:"name" type:"string" required:"true"`
 
-	// The parent image of the image recipe. The value of the string can be the
-	// ARN of the parent image or an AMI ID. The format for the ARN follows this
-	// example: arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x.
+	// The base image of the image recipe. The value of the string can be the ARN
+	// of the base image or an AMI ID. The format for the ARN follows this example:
+	// arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x.
 	// You can provide the specific version that you want to use, or you can use
 	// a wildcard in all of the fields. If you enter an AMI ID for the string value,
 	// you must have access to the AMI, and the AMI must be in the same Region in
@@ -8634,15 +8634,9 @@ type CreateInfrastructureConfigurationInput struct {
 	// InstanceProfileName is a required field
 	InstanceProfileName *string `locationName:"instanceProfileName" min:"1" type:"string" required:"true"`
 
-	// The instance metadata options that you can set for the HTTP requests that
-	// pipeline builds use to launch EC2 build and test instances. For more information
-	// about instance metadata options, see one of the following links:
-	//
-	//    * Configure the instance metadata options (https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html)
-	//    in the Amazon EC2 User Guide for Linux instances.
-	//
-	//    * Configure the instance metadata options (https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/configuring-instance-metadata-options.html)
-	//    in the Amazon EC2 Windows Guide for Windows instances.
+	// The instance types of the infrastructure configuration. You can specify one
+	// or more instance types to use for this build. The service will pick one of
+	// these instance types based on availability.
 	InstanceTypes []*string `locationName:"instanceTypes" type:"list"`
 
 	// The key pair of the infrastructure configuration. You can use this to log
@@ -11130,7 +11124,7 @@ type Image struct {
 	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
 	//
 	// Filtering: With semantic versioning, you have the flexibility to use wildcards
-	// (x) to specify the most recent versions or nodes when selecting the source
+	// (x) to specify the most recent versions or nodes when selecting the base
 	// image or components for your recipe. When you use a wildcard in any node,
 	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
@@ -11517,7 +11511,7 @@ type ImageRecipe struct {
 	// The owner of the image recipe.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
-	// The parent image of the image recipe.
+	// The base image of the image recipe.
 	ParentImage *string `locationName:"parentImage" min:"1" type:"string"`
 
 	// The platform of the image recipe.
@@ -11655,7 +11649,7 @@ type ImageRecipeSummary struct {
 	// The owner of the image recipe.
 	Owner *string `locationName:"owner" min:"1" type:"string"`
 
-	// The parent image of the image recipe.
+	// The base image of the image recipe.
 	ParentImage *string `locationName:"parentImage" min:"1" type:"string"`
 
 	// The platform of the image recipe.
@@ -11998,7 +11992,7 @@ type ImageVersion struct {
 	// a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.
 	//
 	// Filtering: With semantic versioning, you have the flexibility to use wildcards
-	// (x) to specify the most recent versions or nodes when selecting the source
+	// (x) to specify the most recent versions or nodes when selecting the base
 	// image or components for your recipe. When you use a wildcard in any node,
 	// all nodes to the right of the first wildcard must also be wildcards.
 	Version *string `locationName:"version" type:"string"`
@@ -12113,7 +12107,7 @@ type ImportComponentInput struct {
 	// can assign values for the first three, and can filter on all of them.
 	//
 	// Filtering: With semantic versioning, you have the flexibility to use wildcards
-	// (x) to specify the most recent versions or nodes when selecting the source
+	// (x) to specify the most recent versions or nodes when selecting the base
 	// image or components for your recipe. When you use a wildcard in any node,
 	// all nodes to the right of the first wildcard must also be wildcards.
 	//
@@ -12599,7 +12593,7 @@ type InstanceBlockDeviceMapping struct {
 	// Use to manage Amazon EBS-specific configuration for this mapping.
 	Ebs *EbsInstanceBlockDeviceSpecification `locationName:"ebs" type:"structure"`
 
-	// Use to remove a mapping from the parent image.
+	// Use to remove a mapping from the base image.
 	NoDevice *string `locationName:"noDevice" type:"string"`
 
 	// Use to manage instance ephemeral devices.
@@ -12669,8 +12663,8 @@ func (s *InstanceBlockDeviceMapping) SetVirtualName(v string) *InstanceBlockDevi
 	return s
 }
 
-// Defines a custom source AMI and block device mapping configurations of an
-// instance used for building and testing container images.
+// Defines a custom base AMI and block device mapping configurations of an instance
+// used for building and testing container images.
 type InstanceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -14732,7 +14726,7 @@ type ListImagesOutput struct {
 	// can assign values for the first three, and can filter on all of them.
 	//
 	// Filtering: With semantic versioning, you have the flexibility to use wildcards
-	// (x) to specify the most recent versions or nodes when selecting the source
+	// (x) to specify the most recent versions or nodes when selecting the base
 	// image or components for your recipe. When you use a wildcard in any node,
 	// all nodes to the right of the first wildcard must also be wildcards.
 	ImageVersionList []*ImageVersion `locationName:"imageVersionList" type:"list"`
@@ -15823,12 +15817,12 @@ type Schedule struct {
 
 	// The condition configures when the pipeline should trigger a new image build.
 	// When the pipelineExecutionStartCondition is set to EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE,
-	// and you use semantic version filters on the source image or components in
-	// your image recipe, EC2 Image Builder will build a new image only when there
-	// are new versions of the image or components in your recipe that match the
-	// semantic version filter. When it is set to EXPRESSION_MATCH_ONLY, it will
-	// build a new image every time the CRON expression matches the current time.
-	// For semantic version syntax, see CreateComponent (https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateComponent.html)
+	// and you use semantic version filters on the base image or components in your
+	// image recipe, EC2 Image Builder will build a new image only when there are
+	// new versions of the image or components in your recipe that match the semantic
+	// version filter. When it is set to EXPRESSION_MATCH_ONLY, it will build a
+	// new image every time the CRON expression matches the current time. For semantic
+	// version syntax, see CreateComponent (https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateComponent.html)
 	// in the EC2 Image Builder API Reference.
 	PipelineExecutionStartCondition *string `locationName:"pipelineExecutionStartCondition" type:"string" enum:"PipelineExecutionStartCondition"`
 

@@ -29,8 +29,8 @@
     "GetImageRecipePolicy": "<p> Gets an image recipe policy.</p>",
     "GetInfrastructureConfiguration": "<p> Gets an infrastructure configuration.</p>",
     "ImportComponent": "<p>Imports a component and transforms its data into a component document.</p>",
-    "ListComponentBuildVersions": "<p> Returns the list of component build versions for the specified semantic version.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the source image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
-    "ListComponents": "<p>Returns the list of component build versions for the specified semantic version.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the source image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
+    "ListComponentBuildVersions": "<p> Returns the list of component build versions for the specified semantic version.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
+    "ListComponents": "<p>Returns the list of component build versions for the specified semantic version.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
     "ListContainerRecipes": "<p>Returns a list of container recipes.</p>",
     "ListDistributionConfigurations": "<p>Returns a list of distribution configurations.</p>",
     "ListImageBuildVersions": "<p> Returns a list of image build versions.</p>",
@@ -95,7 +95,7 @@
     "AmiNameString": {
       "base": null,
       "refs": {
-        "AmiDistributionConfiguration$name": "<p>The name of the distribution configuration.</p>"
+        "AmiDistributionConfiguration$name": "<p>The name of the output AMI.</p>"
       }
     },
     "Arn": {
@@ -652,7 +652,7 @@
     "EmptyString": {
       "base": null,
       "refs": {
-        "InstanceBlockDeviceMapping$noDevice": "<p>Use to remove a mapping from the parent image.</p>"
+        "InstanceBlockDeviceMapping$noDevice": "<p>Use to remove a mapping from the base image.</p>"
       }
     },
     "ErrorMessage": {
@@ -1036,7 +1036,7 @@
     "ImageVersionList": {
       "base": null,
       "refs": {
-        "ListImagesResponse$imageVersionList": "<p>The list of image semantic versions.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the source image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>"
+        "ListImagesResponse$imageVersionList": "<p>The list of image semantic versions.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>"
       }
     },
     "ImportComponentRequest": {
@@ -1109,7 +1109,7 @@
       }
     },
     "InstanceConfiguration": {
-      "base": "<p>Defines a custom source AMI and block device mapping configurations of an instance used for building and testing container images.</p>",
+      "base": "<p>Defines a custom base AMI and block device mapping configurations of an instance used for building and testing container images.</p>",
       "refs": {
         "ContainerRecipe$instanceConfiguration": "<p>A group of options that can be used to configure an instance for building and testing container images.</p>",
         "CreateContainerRecipeRequest$instanceConfiguration": "<p>A group of options that can be used to configure an instance for building and testing container images.</p>"
@@ -1141,7 +1141,7 @@
     "InstanceTypeList": {
       "base": null,
       "refs": {
-        "CreateInfrastructureConfigurationRequest$instanceTypes": "<p>The instance metadata options that you can set for the HTTP requests that pipeline builds use to launch EC2 build and test instances. For more information about instance metadata options, see one of the following links:</p> <ul> <li> <p> <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/configuring-instance-metadata-options.html\">Configure the instance metadata options</a> in the <i> <i>Amazon EC2 User Guide</i> </i> for Linux instances.</p> </li> <li> <p> <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/WindowsGuide/configuring-instance-metadata-options.html\">Configure the instance metadata options</a> in the <i> <i>Amazon EC2 Windows Guide</i> </i> for Windows instances.</p> </li> </ul>",
+        "CreateInfrastructureConfigurationRequest$instanceTypes": "<p>The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability.</p>",
         "InfrastructureConfiguration$instanceTypes": "<p>The instance types of the infrastructure configuration.</p>",
         "InfrastructureConfigurationSummary$instanceTypes": "<p>The instance types of the infrastructure configuration.</p>",
         "UpdateInfrastructureConfigurationRequest$instanceTypes": "<p>The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability.</p>"
@@ -1367,17 +1367,17 @@
         "ContainerRecipe$description": "<p>The description of the container recipe.</p>",
         "ContainerRecipe$owner": "<p>The owner of the container recipe.</p>",
         "ContainerRecipe$kmsKeyId": "<p>Identifies which KMS key is used to encrypt the container image for distribution to the target Region.</p>",
-        "ContainerRecipe$parentImage": "<p>The source image for the container recipe.</p>",
+        "ContainerRecipe$parentImage": "<p>The base image for the container recipe.</p>",
         "ContainerRecipe$workingDirectory": "<p>The working directory for use during build and test workflows.</p>",
         "ContainerRecipeSummary$owner": "<p>The owner of the container recipe.</p>",
-        "ContainerRecipeSummary$parentImage": "<p>The source image for the container recipe.</p>",
+        "ContainerRecipeSummary$parentImage": "<p>The base image for the container recipe.</p>",
         "CreateComponentRequest$description": "<p>The description of the component. Describes the contents of the component.</p>",
         "CreateComponentRequest$changeDescription": "<p>The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component.</p>",
         "CreateComponentRequest$kmsKeyId": "<p>The ID of the KMS key that should be used to encrypt this component.</p>",
         "CreateComponentResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateContainerRecipeRequest$description": "<p>The description of the container recipe.</p>",
-        "CreateContainerRecipeRequest$imageOsVersionOverride": "<p>Specifies the operating system version for the source image.</p>",
-        "CreateContainerRecipeRequest$parentImage": "<p>The source image for the container recipe.</p>",
+        "CreateContainerRecipeRequest$imageOsVersionOverride": "<p>Specifies the operating system version for the base image.</p>",
+        "CreateContainerRecipeRequest$parentImage": "<p>The base image for the container recipe.</p>",
         "CreateContainerRecipeRequest$workingDirectory": "<p>The working directory for use during build and test workflows.</p>",
         "CreateContainerRecipeRequest$kmsKeyId": "<p>Identifies which KMS key is used to encrypt the container image.</p>",
         "CreateContainerRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
@@ -1386,7 +1386,7 @@
         "CreateImagePipelineRequest$description": "<p> The description of the image pipeline.</p>",
         "CreateImagePipelineResponse$requestId": "<p> The request ID that uniquely identifies this request.</p>",
         "CreateImageRecipeRequest$description": "<p> The description of the image recipe.</p>",
-        "CreateImageRecipeRequest$parentImage": "<p>The parent image of the image recipe. The value of the string can be the ARN of the parent image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x</code>. You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder.</p>",
+        "CreateImageRecipeRequest$parentImage": "<p>The base image of the image recipe. The value of the string can be the ARN of the base image or an AMI ID. The format for the ARN follows this example: <code>arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x</code>. You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder.</p>",
         "CreateImageRecipeRequest$workingDirectory": "<p>The working directory used during build and test workflows.</p>",
         "CreateImageRecipeResponse$requestId": "<p>The request ID that uniquely identifies this request.</p>",
         "CreateImageResponse$requestId": "<p> The request ID that uniquely identifies this request.</p>",
@@ -1422,10 +1422,10 @@
         "ImagePipeline$description": "<p>The description of the image pipeline.</p>",
         "ImageRecipe$description": "<p>The description of the image recipe.</p>",
         "ImageRecipe$owner": "<p>The owner of the image recipe.</p>",
-        "ImageRecipe$parentImage": "<p>The parent image of the image recipe.</p>",
+        "ImageRecipe$parentImage": "<p>The base image of the image recipe.</p>",
         "ImageRecipe$workingDirectory": "<p>The working directory to be used during build and test workflows.</p>",
         "ImageRecipeSummary$owner": "<p>The owner of the image recipe.</p>",
-        "ImageRecipeSummary$parentImage": "<p>The parent image of the image recipe.</p>",
+        "ImageRecipeSummary$parentImage": "<p>The base image of the image recipe.</p>",
         "ImageState$reason": "<p>The reason for the image's status.</p>",
         "ImageSummary$owner": "<p>The owner of the image.</p>",
         "ImageVersion$owner": "<p>The owner of the image version.</p>",
@@ -1509,10 +1509,10 @@
     "OsVersionList": {
       "base": null,
       "refs": {
-        "Component$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the parent image OS version during image recipe creation.</p>",
-        "ComponentSummary$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the parent image OS version during image recipe creation.</p>",
-        "ComponentVersion$supportedOsVersions": "<p>he operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the parent image OS version during image recipe creation.</p>",
-        "CreateComponentRequest$supportedOsVersions": "<p> The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the parent image OS version during image recipe creation.</p>"
+        "Component$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>",
+        "ComponentSummary$supportedOsVersions": "<p>The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>",
+        "ComponentVersion$supportedOsVersions": "<p>he operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>",
+        "CreateComponentRequest$supportedOsVersions": "<p> The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.</p>"
       }
     },
     "OutputResources": {
@@ -1559,7 +1559,7 @@
     "PipelineExecutionStartCondition": {
       "base": null,
       "refs": {
-        "Schedule$pipelineExecutionStartCondition": "<p>The condition configures when the pipeline should trigger a new image build. When the <code>pipelineExecutionStartCondition</code> is set to <code>EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE</code>, and you use semantic version filters on the source image or components in your image recipe, EC2 Image Builder will build a new image only when there are new versions of the image or components in your recipe that match the semantic version filter. When it is set to <code>EXPRESSION_MATCH_ONLY</code>, it will build a new image every time the CRON expression matches the current time. For semantic version syntax, see <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateComponent.html\">CreateComponent</a> in the <i> EC2 Image Builder API Reference</i>.</p>"
+        "Schedule$pipelineExecutionStartCondition": "<p>The condition configures when the pipeline should trigger a new image build. When the <code>pipelineExecutionStartCondition</code> is set to <code>EXPRESSION_MATCH_AND_DEPENDENCY_UPDATES_AVAILABLE</code>, and you use semantic version filters on the base image or components in your image recipe, EC2 Image Builder will build a new image only when there are new versions of the image or components in your recipe that match the semantic version filter. When it is set to <code>EXPRESSION_MATCH_ONLY</code>, it will build a new image every time the CRON expression matches the current time. For semantic version syntax, see <a href=\"https://docs.aws.amazon.com/imagebuilder/latest/APIReference/API_CreateComponent.html\">CreateComponent</a> in the <i> EC2 Image Builder API Reference</i>.</p>"
       }
     },
     "PipelineStatus": {
@@ -1579,7 +1579,7 @@
         "ContainerRecipe$platform": "<p>The system platform for the container, such as Windows or Linux.</p>",
         "ContainerRecipeSummary$platform": "<p>The system platform for the container, such as Windows or Linux.</p>",
         "CreateComponentRequest$platform": "<p>The platform of the component.</p>",
-        "CreateContainerRecipeRequest$platformOverride": "<p>Specifies the operating system platform when you use a custom source image.</p>",
+        "CreateContainerRecipeRequest$platformOverride": "<p>Specifies the operating system platform when you use a custom base image.</p>",
         "Image$platform": "<p>The platform of the image.</p>",
         "ImagePipeline$platform": "<p>The platform of the image pipeline.</p>",
         "ImageRecipe$platform": "<p>The platform of the image recipe.</p>",
@@ -1914,7 +1914,7 @@
     "UserDataOverride": {
       "base": null,
       "refs": {
-        "AdditionalInstanceConfiguration$userDataOverride": "<p>Use this property to provide commands or a command script to run when you launch your build instance.</p> <note> <p>The userDataOverride property replaces any commands that Image Builder might have added to ensure that Systems Manager is installed on your Linux build instance. If you override the user data, make sure that you add commands to install Systems Manager, if it is not pre-installed on your source image.</p> </note>"
+        "AdditionalInstanceConfiguration$userDataOverride": "<p>Use this property to provide commands or a command script to run when you launch your build instance.</p> <note> <p>The userDataOverride property replaces any commands that Image Builder might have added to ensure that Systems Manager is installed on your Linux build instance. If you override the user data, make sure that you add commands to install Systems Manager, if it is not pre-installed on your base image.</p> </note>"
       }
     },
     "VersionNumber": {
@@ -1922,16 +1922,16 @@
       "refs": {
         "Component$version": "<p>The version of the component.</p>",
         "ComponentSummary$version": "<p>The version of the component.</p>",
-        "ComponentVersion$version": "<p>The semantic version of the component.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the source image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
-        "ContainerRecipe$version": "<p>The semantic version of the container recipe.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the source image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
+        "ComponentVersion$version": "<p>The semantic version of the component.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
+        "ContainerRecipe$version": "<p>The semantic version of the container recipe.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
         "CreateComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>",
         "CreateContainerRecipeRequest$semanticVersion": "<p>The semantic version of the container recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>",
         "CreateImageRecipeRequest$semanticVersion": "<p>The semantic version of the image recipe. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> </note>",
-        "Image$version": "<p>The semantic version of the image.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the source image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
+        "Image$version": "<p>The semantic version of the image.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
         "ImageRecipe$version": "<p>The version of the image recipe.</p>",
         "ImageSummary$version": "<p>The version of the image.</p>",
-        "ImageVersion$version": "<p>Details for a specific version of an Image Builder image. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the source image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
-        "ImportComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the source image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>"
+        "ImageVersion$version": "<p>Details for a specific version of an Image Builder image. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Assignment:</b> For the first three nodes you can assign any positive integer value, including zero, with an upper limit of 2^30-1, or 1073741823 for each node. Image Builder automatically assigns the build number to the fourth node.</p> <p> <b>Patterns:</b> You can use any numeric pattern that adheres to the assignment requirements for the nodes that you can assign. For example, you might choose a software version pattern, such as 1.0.0, or a date, such as 2021.01.01.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>",
+        "ImportComponentRequest$semanticVersion": "<p>The semantic version of the component. This version follows the semantic version syntax.</p> <note> <p>The semantic version has four nodes: &lt;major&gt;.&lt;minor&gt;.&lt;patch&gt;/&lt;build&gt;. You can assign values for the first three, and can filter on all of them.</p> <p> <b>Filtering:</b> With semantic versioning, you have the flexibility to use wildcards (x) to specify the most recent versions or nodes when selecting the base image or components for your recipe. When you use a wildcard in any node, all nodes to the right of the first wildcard must also be wildcards.</p> </note>"
       }
     }
   }
