@@ -13,6 +13,200 @@ import (
 	"github.com/aws/aws-sdk-go/private/protocol/restjson"
 )
 
+const opCreateAlertManagerDefinition = "CreateAlertManagerDefinition"
+
+// CreateAlertManagerDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateAlertManagerDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateAlertManagerDefinition for more information on using the CreateAlertManagerDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateAlertManagerDefinitionRequest method.
+//    req, resp := client.CreateAlertManagerDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/CreateAlertManagerDefinition
+func (c *PrometheusService) CreateAlertManagerDefinitionRequest(input *CreateAlertManagerDefinitionInput) (req *request.Request, output *CreateAlertManagerDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opCreateAlertManagerDefinition,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workspaces/{workspaceId}/alertmanager/definition",
+	}
+
+	if input == nil {
+		input = &CreateAlertManagerDefinitionInput{}
+	}
+
+	output = &CreateAlertManagerDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateAlertManagerDefinition API operation for Amazon Prometheus Service.
+//
+// Create an alert manager definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation CreateAlertManagerDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+//   * ServiceQuotaExceededException
+//   Request would cause a service quota to be exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/CreateAlertManagerDefinition
+func (c *PrometheusService) CreateAlertManagerDefinition(input *CreateAlertManagerDefinitionInput) (*CreateAlertManagerDefinitionOutput, error) {
+	req, out := c.CreateAlertManagerDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// CreateAlertManagerDefinitionWithContext is the same as CreateAlertManagerDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateAlertManagerDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) CreateAlertManagerDefinitionWithContext(ctx aws.Context, input *CreateAlertManagerDefinitionInput, opts ...request.Option) (*CreateAlertManagerDefinitionOutput, error) {
+	req, out := c.CreateAlertManagerDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateRuleGroupsNamespace = "CreateRuleGroupsNamespace"
+
+// CreateRuleGroupsNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the CreateRuleGroupsNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateRuleGroupsNamespace for more information on using the CreateRuleGroupsNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateRuleGroupsNamespaceRequest method.
+//    req, resp := client.CreateRuleGroupsNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/CreateRuleGroupsNamespace
+func (c *PrometheusService) CreateRuleGroupsNamespaceRequest(input *CreateRuleGroupsNamespaceInput) (req *request.Request, output *CreateRuleGroupsNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opCreateRuleGroupsNamespace,
+		HTTPMethod: "POST",
+		HTTPPath:   "/workspaces/{workspaceId}/rulegroupsnamespaces",
+	}
+
+	if input == nil {
+		input = &CreateRuleGroupsNamespaceInput{}
+	}
+
+	output = &CreateRuleGroupsNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateRuleGroupsNamespace API operation for Amazon Prometheus Service.
+//
+// Create a rule group namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation CreateRuleGroupsNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+//   * ServiceQuotaExceededException
+//   Request would cause a service quota to be exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/CreateRuleGroupsNamespace
+func (c *PrometheusService) CreateRuleGroupsNamespace(input *CreateRuleGroupsNamespaceInput) (*CreateRuleGroupsNamespaceOutput, error) {
+	req, out := c.CreateRuleGroupsNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// CreateRuleGroupsNamespaceWithContext is the same as CreateRuleGroupsNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateRuleGroupsNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) CreateRuleGroupsNamespaceWithContext(ctx aws.Context, input *CreateRuleGroupsNamespaceInput, opts ...request.Option) (*CreateRuleGroupsNamespaceOutput, error) {
+	req, out := c.CreateRuleGroupsNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateWorkspace = "CreateWorkspace"
 
 // CreateWorkspaceRequest generates a "aws/request.Request" representing the
@@ -107,6 +301,196 @@ func (c *PrometheusService) CreateWorkspaceWithContext(ctx aws.Context, input *C
 	return out, req.Send()
 }
 
+const opDeleteAlertManagerDefinition = "DeleteAlertManagerDefinition"
+
+// DeleteAlertManagerDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteAlertManagerDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteAlertManagerDefinition for more information on using the DeleteAlertManagerDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteAlertManagerDefinitionRequest method.
+//    req, resp := client.DeleteAlertManagerDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/DeleteAlertManagerDefinition
+func (c *PrometheusService) DeleteAlertManagerDefinitionRequest(input *DeleteAlertManagerDefinitionInput) (req *request.Request, output *DeleteAlertManagerDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteAlertManagerDefinition,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/workspaces/{workspaceId}/alertmanager/definition",
+	}
+
+	if input == nil {
+		input = &DeleteAlertManagerDefinitionInput{}
+	}
+
+	output = &DeleteAlertManagerDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteAlertManagerDefinition API operation for Amazon Prometheus Service.
+//
+// Deletes an alert manager definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation DeleteAlertManagerDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/DeleteAlertManagerDefinition
+func (c *PrometheusService) DeleteAlertManagerDefinition(input *DeleteAlertManagerDefinitionInput) (*DeleteAlertManagerDefinitionOutput, error) {
+	req, out := c.DeleteAlertManagerDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteAlertManagerDefinitionWithContext is the same as DeleteAlertManagerDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteAlertManagerDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) DeleteAlertManagerDefinitionWithContext(ctx aws.Context, input *DeleteAlertManagerDefinitionInput, opts ...request.Option) (*DeleteAlertManagerDefinitionOutput, error) {
+	req, out := c.DeleteAlertManagerDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDeleteRuleGroupsNamespace = "DeleteRuleGroupsNamespace"
+
+// DeleteRuleGroupsNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteRuleGroupsNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteRuleGroupsNamespace for more information on using the DeleteRuleGroupsNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteRuleGroupsNamespaceRequest method.
+//    req, resp := client.DeleteRuleGroupsNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/DeleteRuleGroupsNamespace
+func (c *PrometheusService) DeleteRuleGroupsNamespaceRequest(input *DeleteRuleGroupsNamespaceInput) (req *request.Request, output *DeleteRuleGroupsNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opDeleteRuleGroupsNamespace,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+	}
+
+	if input == nil {
+		input = &DeleteRuleGroupsNamespaceInput{}
+	}
+
+	output = &DeleteRuleGroupsNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteRuleGroupsNamespace API operation for Amazon Prometheus Service.
+//
+// Delete a rule groups namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation DeleteRuleGroupsNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/DeleteRuleGroupsNamespace
+func (c *PrometheusService) DeleteRuleGroupsNamespace(input *DeleteRuleGroupsNamespaceInput) (*DeleteRuleGroupsNamespaceOutput, error) {
+	req, out := c.DeleteRuleGroupsNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// DeleteRuleGroupsNamespaceWithContext is the same as DeleteRuleGroupsNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteRuleGroupsNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) DeleteRuleGroupsNamespaceWithContext(ctx aws.Context, input *DeleteRuleGroupsNamespaceInput, opts ...request.Option) (*DeleteRuleGroupsNamespaceOutput, error) {
+	req, out := c.DeleteRuleGroupsNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteWorkspace = "DeleteWorkspace"
 
 // DeleteWorkspaceRequest generates a "aws/request.Request" representing the
@@ -165,6 +549,9 @@ func (c *PrometheusService) DeleteWorkspaceRequest(input *DeleteWorkspaceInput) 
 //   * ThrottlingException
 //   Request was denied due to request throttling.
 //
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
 //   * ValidationException
 //   The input fails to satisfy the constraints specified by an AWS service.
 //
@@ -194,6 +581,188 @@ func (c *PrometheusService) DeleteWorkspace(input *DeleteWorkspaceInput) (*Delet
 // for more information on using Contexts.
 func (c *PrometheusService) DeleteWorkspaceWithContext(ctx aws.Context, input *DeleteWorkspaceInput, opts ...request.Option) (*DeleteWorkspaceOutput, error) {
 	req, out := c.DeleteWorkspaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeAlertManagerDefinition = "DescribeAlertManagerDefinition"
+
+// DescribeAlertManagerDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeAlertManagerDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeAlertManagerDefinition for more information on using the DescribeAlertManagerDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeAlertManagerDefinitionRequest method.
+//    req, resp := client.DescribeAlertManagerDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/DescribeAlertManagerDefinition
+func (c *PrometheusService) DescribeAlertManagerDefinitionRequest(input *DescribeAlertManagerDefinitionInput) (req *request.Request, output *DescribeAlertManagerDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opDescribeAlertManagerDefinition,
+		HTTPMethod: "GET",
+		HTTPPath:   "/workspaces/{workspaceId}/alertmanager/definition",
+	}
+
+	if input == nil {
+		input = &DescribeAlertManagerDefinitionInput{}
+	}
+
+	output = &DescribeAlertManagerDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeAlertManagerDefinition API operation for Amazon Prometheus Service.
+//
+// Describes an alert manager definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation DescribeAlertManagerDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/DescribeAlertManagerDefinition
+func (c *PrometheusService) DescribeAlertManagerDefinition(input *DescribeAlertManagerDefinitionInput) (*DescribeAlertManagerDefinitionOutput, error) {
+	req, out := c.DescribeAlertManagerDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// DescribeAlertManagerDefinitionWithContext is the same as DescribeAlertManagerDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeAlertManagerDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) DescribeAlertManagerDefinitionWithContext(ctx aws.Context, input *DescribeAlertManagerDefinitionInput, opts ...request.Option) (*DescribeAlertManagerDefinitionOutput, error) {
+	req, out := c.DescribeAlertManagerDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opDescribeRuleGroupsNamespace = "DescribeRuleGroupsNamespace"
+
+// DescribeRuleGroupsNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeRuleGroupsNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeRuleGroupsNamespace for more information on using the DescribeRuleGroupsNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeRuleGroupsNamespaceRequest method.
+//    req, resp := client.DescribeRuleGroupsNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/DescribeRuleGroupsNamespace
+func (c *PrometheusService) DescribeRuleGroupsNamespaceRequest(input *DescribeRuleGroupsNamespaceInput) (req *request.Request, output *DescribeRuleGroupsNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opDescribeRuleGroupsNamespace,
+		HTTPMethod: "GET",
+		HTTPPath:   "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+	}
+
+	if input == nil {
+		input = &DescribeRuleGroupsNamespaceInput{}
+	}
+
+	output = &DescribeRuleGroupsNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeRuleGroupsNamespace API operation for Amazon Prometheus Service.
+//
+// Describe a rule groups namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation DescribeRuleGroupsNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/DescribeRuleGroupsNamespace
+func (c *PrometheusService) DescribeRuleGroupsNamespace(input *DescribeRuleGroupsNamespaceInput) (*DescribeRuleGroupsNamespaceOutput, error) {
+	req, out := c.DescribeRuleGroupsNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// DescribeRuleGroupsNamespaceWithContext is the same as DescribeRuleGroupsNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeRuleGroupsNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) DescribeRuleGroupsNamespaceWithContext(ctx aws.Context, input *DescribeRuleGroupsNamespaceInput, opts ...request.Option) (*DescribeRuleGroupsNamespaceOutput, error) {
+	req, out := c.DescribeRuleGroupsNamespaceRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -288,6 +857,155 @@ func (c *PrometheusService) DescribeWorkspaceWithContext(ctx aws.Context, input 
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
+}
+
+const opListRuleGroupsNamespaces = "ListRuleGroupsNamespaces"
+
+// ListRuleGroupsNamespacesRequest generates a "aws/request.Request" representing the
+// client's request for the ListRuleGroupsNamespaces operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListRuleGroupsNamespaces for more information on using the ListRuleGroupsNamespaces
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListRuleGroupsNamespacesRequest method.
+//    req, resp := client.ListRuleGroupsNamespacesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/ListRuleGroupsNamespaces
+func (c *PrometheusService) ListRuleGroupsNamespacesRequest(input *ListRuleGroupsNamespacesInput) (req *request.Request, output *ListRuleGroupsNamespacesOutput) {
+	op := &request.Operation{
+		Name:       opListRuleGroupsNamespaces,
+		HTTPMethod: "GET",
+		HTTPPath:   "/workspaces/{workspaceId}/rulegroupsnamespaces",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"nextToken"},
+			OutputTokens:    []string{"nextToken"},
+			LimitToken:      "maxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListRuleGroupsNamespacesInput{}
+	}
+
+	output = &ListRuleGroupsNamespacesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListRuleGroupsNamespaces API operation for Amazon Prometheus Service.
+//
+// Lists rule groups namespaces.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation ListRuleGroupsNamespaces for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/ListRuleGroupsNamespaces
+func (c *PrometheusService) ListRuleGroupsNamespaces(input *ListRuleGroupsNamespacesInput) (*ListRuleGroupsNamespacesOutput, error) {
+	req, out := c.ListRuleGroupsNamespacesRequest(input)
+	return out, req.Send()
+}
+
+// ListRuleGroupsNamespacesWithContext is the same as ListRuleGroupsNamespaces with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListRuleGroupsNamespaces for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) ListRuleGroupsNamespacesWithContext(ctx aws.Context, input *ListRuleGroupsNamespacesInput, opts ...request.Option) (*ListRuleGroupsNamespacesOutput, error) {
+	req, out := c.ListRuleGroupsNamespacesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListRuleGroupsNamespacesPages iterates over the pages of a ListRuleGroupsNamespaces operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListRuleGroupsNamespaces method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListRuleGroupsNamespaces operation.
+//    pageNum := 0
+//    err := client.ListRuleGroupsNamespacesPages(params,
+//        func(page *prometheusservice.ListRuleGroupsNamespacesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *PrometheusService) ListRuleGroupsNamespacesPages(input *ListRuleGroupsNamespacesInput, fn func(*ListRuleGroupsNamespacesOutput, bool) bool) error {
+	return c.ListRuleGroupsNamespacesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListRuleGroupsNamespacesPagesWithContext same as ListRuleGroupsNamespacesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) ListRuleGroupsNamespacesPagesWithContext(ctx aws.Context, input *ListRuleGroupsNamespacesInput, fn func(*ListRuleGroupsNamespacesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListRuleGroupsNamespacesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListRuleGroupsNamespacesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListRuleGroupsNamespacesOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
 }
 
 const opListTagsForResource = "ListTagsForResource"
@@ -525,6 +1243,200 @@ func (c *PrometheusService) ListWorkspacesPagesWithContext(ctx aws.Context, inpu
 	}
 
 	return p.Err()
+}
+
+const opPutAlertManagerDefinition = "PutAlertManagerDefinition"
+
+// PutAlertManagerDefinitionRequest generates a "aws/request.Request" representing the
+// client's request for the PutAlertManagerDefinition operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutAlertManagerDefinition for more information on using the PutAlertManagerDefinition
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutAlertManagerDefinitionRequest method.
+//    req, resp := client.PutAlertManagerDefinitionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/PutAlertManagerDefinition
+func (c *PrometheusService) PutAlertManagerDefinitionRequest(input *PutAlertManagerDefinitionInput) (req *request.Request, output *PutAlertManagerDefinitionOutput) {
+	op := &request.Operation{
+		Name:       opPutAlertManagerDefinition,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/workspaces/{workspaceId}/alertmanager/definition",
+	}
+
+	if input == nil {
+		input = &PutAlertManagerDefinitionInput{}
+	}
+
+	output = &PutAlertManagerDefinitionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutAlertManagerDefinition API operation for Amazon Prometheus Service.
+//
+// Update an alert manager definition.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation PutAlertManagerDefinition for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+//   * ServiceQuotaExceededException
+//   Request would cause a service quota to be exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/PutAlertManagerDefinition
+func (c *PrometheusService) PutAlertManagerDefinition(input *PutAlertManagerDefinitionInput) (*PutAlertManagerDefinitionOutput, error) {
+	req, out := c.PutAlertManagerDefinitionRequest(input)
+	return out, req.Send()
+}
+
+// PutAlertManagerDefinitionWithContext is the same as PutAlertManagerDefinition with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutAlertManagerDefinition for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) PutAlertManagerDefinitionWithContext(ctx aws.Context, input *PutAlertManagerDefinitionInput, opts ...request.Option) (*PutAlertManagerDefinitionOutput, error) {
+	req, out := c.PutAlertManagerDefinitionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutRuleGroupsNamespace = "PutRuleGroupsNamespace"
+
+// PutRuleGroupsNamespaceRequest generates a "aws/request.Request" representing the
+// client's request for the PutRuleGroupsNamespace operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutRuleGroupsNamespace for more information on using the PutRuleGroupsNamespace
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutRuleGroupsNamespaceRequest method.
+//    req, resp := client.PutRuleGroupsNamespaceRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/PutRuleGroupsNamespace
+func (c *PrometheusService) PutRuleGroupsNamespaceRequest(input *PutRuleGroupsNamespaceInput) (req *request.Request, output *PutRuleGroupsNamespaceOutput) {
+	op := &request.Operation{
+		Name:       opPutRuleGroupsNamespace,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+	}
+
+	if input == nil {
+		input = &PutRuleGroupsNamespaceInput{}
+	}
+
+	output = &PutRuleGroupsNamespaceOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutRuleGroupsNamespace API operation for Amazon Prometheus Service.
+//
+// Update a rule groups namespace.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon Prometheus Service's
+// API operation PutRuleGroupsNamespace for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   Request was denied due to request throttling.
+//
+//   * ConflictException
+//   Updating or deleting a resource can cause an inconsistent state.
+//
+//   * ValidationException
+//   The input fails to satisfy the constraints specified by an AWS service.
+//
+//   * ResourceNotFoundException
+//   Request references a resource which does not exist.
+//
+//   * AccessDeniedException
+//   User does not have sufficient access to perform this action.
+//
+//   * InternalServerException
+//   Unexpected error during processing of request.
+//
+//   * ServiceQuotaExceededException
+//   Request would cause a service quota to be exceeded.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/amp-2020-08-01/PutRuleGroupsNamespace
+func (c *PrometheusService) PutRuleGroupsNamespace(input *PutRuleGroupsNamespaceInput) (*PutRuleGroupsNamespaceOutput, error) {
+	req, out := c.PutRuleGroupsNamespaceRequest(input)
+	return out, req.Send()
+}
+
+// PutRuleGroupsNamespaceWithContext is the same as PutRuleGroupsNamespace with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutRuleGroupsNamespace for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *PrometheusService) PutRuleGroupsNamespaceWithContext(ctx aws.Context, input *PutRuleGroupsNamespaceInput, opts ...request.Option) (*PutRuleGroupsNamespaceOutput, error) {
+	req, out := c.PutRuleGroupsNamespaceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
 }
 
 const opTagResource = "TagResource"
@@ -874,6 +1786,117 @@ func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Represents the properties of an alert manager definition.
+type AlertManagerDefinitionDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The time when the alert manager definition was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The alert manager definition.
+	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
+	Data []byte `locationName:"data" type:"blob" required:"true"`
+
+	// The time when the alert manager definition was modified.
+	//
+	// ModifiedAt is a required field
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" required:"true"`
+
+	// The status of alert manager definition.
+	//
+	// Status is a required field
+	Status *AlertManagerDefinitionStatus `locationName:"status" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlertManagerDefinitionDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlertManagerDefinitionDescription) GoString() string {
+	return s.String()
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *AlertManagerDefinitionDescription) SetCreatedAt(v time.Time) *AlertManagerDefinitionDescription {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *AlertManagerDefinitionDescription) SetData(v []byte) *AlertManagerDefinitionDescription {
+	s.Data = v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *AlertManagerDefinitionDescription) SetModifiedAt(v time.Time) *AlertManagerDefinitionDescription {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AlertManagerDefinitionDescription) SetStatus(v *AlertManagerDefinitionStatus) *AlertManagerDefinitionDescription {
+	s.Status = v
+	return s
+}
+
+// Represents the status of a definition.
+type AlertManagerDefinitionStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Status code of this definition.
+	//
+	// StatusCode is a required field
+	StatusCode *string `locationName:"statusCode" type:"string" required:"true" enum:"AlertManagerDefinitionStatusCode"`
+
+	// The reason for failure if any.
+	StatusReason *string `locationName:"statusReason" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlertManagerDefinitionStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AlertManagerDefinitionStatus) GoString() string {
+	return s.String()
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *AlertManagerDefinitionStatus) SetStatusCode(v string) *AlertManagerDefinitionStatus {
+	s.StatusCode = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *AlertManagerDefinitionStatus) SetStatusReason(v string) *AlertManagerDefinitionStatus {
+	s.StatusReason = &v
+	return s
+}
+
 // Updating or deleting a resource can cause an inconsistent state.
 type ConflictException struct {
 	_            struct{}                  `type:"structure"`
@@ -947,6 +1970,287 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Represents the input of a CreateAlertManagerDefinition operation.
+type CreateAlertManagerDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional, unique, case-sensitive, user-provided identifier to ensure the
+	// idempotency of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The alert manager definition data.
+	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
+	Data []byte `locationName:"data" type:"blob" required:"true"`
+
+	// The ID of the workspace in which to create the alert manager definition.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAlertManagerDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAlertManagerDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateAlertManagerDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateAlertManagerDefinitionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateAlertManagerDefinitionInput) SetClientToken(v string) *CreateAlertManagerDefinitionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *CreateAlertManagerDefinitionInput) SetData(v []byte) *CreateAlertManagerDefinitionInput {
+	s.Data = v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *CreateAlertManagerDefinitionInput) SetWorkspaceId(v string) *CreateAlertManagerDefinitionInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+// Represents the output of a CreateAlertManagerDefinition operation.
+type CreateAlertManagerDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of alert manager definition.
+	//
+	// Status is a required field
+	Status *AlertManagerDefinitionStatus `locationName:"status" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAlertManagerDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateAlertManagerDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateAlertManagerDefinitionOutput) SetStatus(v *AlertManagerDefinitionStatus) *CreateAlertManagerDefinitionOutput {
+	s.Status = v
+	return s
+}
+
+// Represents the input of a CreateRuleGroupsNamespace operation.
+type CreateRuleGroupsNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional, unique, case-sensitive, user-provided identifier to ensure the
+	// idempotency of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The namespace data that define the rule groups.
+	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
+	Data []byte `locationName:"data" type:"blob" required:"true"`
+
+	// The rule groups namespace name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// Optional, user-provided tags for this rule groups namespace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+
+	// The ID of the workspace in which to create the rule group namespace.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRuleGroupsNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRuleGroupsNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateRuleGroupsNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateRuleGroupsNamespaceInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *CreateRuleGroupsNamespaceInput) SetClientToken(v string) *CreateRuleGroupsNamespaceInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *CreateRuleGroupsNamespaceInput) SetData(v []byte) *CreateRuleGroupsNamespaceInput {
+	s.Data = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRuleGroupsNamespaceInput) SetName(v string) *CreateRuleGroupsNamespaceInput {
+	s.Name = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRuleGroupsNamespaceInput) SetTags(v map[string]*string) *CreateRuleGroupsNamespaceInput {
+	s.Tags = v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *CreateRuleGroupsNamespaceInput) SetWorkspaceId(v string) *CreateRuleGroupsNamespaceInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+// Represents the output of a CreateRuleGroupsNamespace operation.
+type CreateRuleGroupsNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of this rule groups namespace.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The rule groups namespace name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The status of rule groups namespace.
+	//
+	// Status is a required field
+	Status *RuleGroupsNamespaceStatus `locationName:"status" type:"structure" required:"true"`
+
+	// The tags of this rule groups namespace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRuleGroupsNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateRuleGroupsNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateRuleGroupsNamespaceOutput) SetArn(v string) *CreateRuleGroupsNamespaceOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateRuleGroupsNamespaceOutput) SetName(v string) *CreateRuleGroupsNamespaceOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *CreateRuleGroupsNamespaceOutput) SetStatus(v *RuleGroupsNamespaceStatus) *CreateRuleGroupsNamespaceOutput {
+	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateRuleGroupsNamespaceOutput) SetTags(v map[string]*string) *CreateRuleGroupsNamespaceOutput {
+	s.Tags = v
+	return s
 }
 
 // Represents the input of a CreateWorkspace operation.
@@ -1082,6 +2386,193 @@ func (s *CreateWorkspaceOutput) SetWorkspaceId(v string) *CreateWorkspaceOutput 
 	return s
 }
 
+// Represents the input of a DeleteAlertManagerDefinition operation.
+type DeleteAlertManagerDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional, unique, case-sensitive, user-provided identifier to ensure the
+	// idempotency of the request.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The ID of the workspace in which to delete the alert manager definition.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAlertManagerDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAlertManagerDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteAlertManagerDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteAlertManagerDefinitionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteAlertManagerDefinitionInput) SetClientToken(v string) *DeleteAlertManagerDefinitionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *DeleteAlertManagerDefinitionInput) SetWorkspaceId(v string) *DeleteAlertManagerDefinitionInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type DeleteAlertManagerDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAlertManagerDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteAlertManagerDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// Represents the input of a DeleteRuleGroupsNamespace operation.
+type DeleteRuleGroupsNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional, unique, case-sensitive, user-provided identifier to ensure the
+	// idempotency of the request.
+	ClientToken *string `location:"querystring" locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The rule groups namespace name.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The ID of the workspace to delete rule group definition.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRuleGroupsNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRuleGroupsNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteRuleGroupsNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteRuleGroupsNamespaceInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *DeleteRuleGroupsNamespaceInput) SetClientToken(v string) *DeleteRuleGroupsNamespaceInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *DeleteRuleGroupsNamespaceInput) SetName(v string) *DeleteRuleGroupsNamespaceInput {
+	s.Name = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *DeleteRuleGroupsNamespaceInput) SetWorkspaceId(v string) *DeleteRuleGroupsNamespaceInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+type DeleteRuleGroupsNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRuleGroupsNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteRuleGroupsNamespaceOutput) GoString() string {
+	return s.String()
+}
+
 // Represents the input of a DeleteWorkspace operation.
 type DeleteWorkspaceInput struct {
 	_ struct{} `type:"structure"`
@@ -1165,6 +2656,191 @@ func (s DeleteWorkspaceOutput) String() string {
 // value will be replaced with "sensitive".
 func (s DeleteWorkspaceOutput) GoString() string {
 	return s.String()
+}
+
+// Represents the input of a DescribeAlertManagerDefinition operation.
+type DescribeAlertManagerDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// The ID of the workspace to describe.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAlertManagerDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAlertManagerDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeAlertManagerDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeAlertManagerDefinitionInput"}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *DescribeAlertManagerDefinitionInput) SetWorkspaceId(v string) *DescribeAlertManagerDefinitionInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+// Represents the output of a DescribeAlertManagerDefinition operation.
+type DescribeAlertManagerDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The properties of the selected workspace's alert manager definition.
+	//
+	// AlertManagerDefinition is a required field
+	AlertManagerDefinition *AlertManagerDefinitionDescription `locationName:"alertManagerDefinition" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAlertManagerDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeAlertManagerDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAlertManagerDefinition sets the AlertManagerDefinition field's value.
+func (s *DescribeAlertManagerDefinitionOutput) SetAlertManagerDefinition(v *AlertManagerDefinitionDescription) *DescribeAlertManagerDefinitionOutput {
+	s.AlertManagerDefinition = v
+	return s
+}
+
+// Represents the input of a DescribeRuleGroupsNamespace operation.
+type DescribeRuleGroupsNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// The rule groups namespace.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The ID of the workspace to describe.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleGroupsNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleGroupsNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeRuleGroupsNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeRuleGroupsNamespaceInput"}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetName sets the Name field's value.
+func (s *DescribeRuleGroupsNamespaceInput) SetName(v string) *DescribeRuleGroupsNamespaceInput {
+	s.Name = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *DescribeRuleGroupsNamespaceInput) SetWorkspaceId(v string) *DescribeRuleGroupsNamespaceInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+// Represents the output of a DescribeRuleGroupsNamespace operation.
+type DescribeRuleGroupsNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The selected rule groups namespace.
+	//
+	// RuleGroupsNamespace is a required field
+	RuleGroupsNamespace *RuleGroupsNamespaceDescription `locationName:"ruleGroupsNamespace" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleGroupsNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeRuleGroupsNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetRuleGroupsNamespace sets the RuleGroupsNamespace field's value.
+func (s *DescribeRuleGroupsNamespaceOutput) SetRuleGroupsNamespace(v *RuleGroupsNamespaceDescription) *DescribeRuleGroupsNamespaceOutput {
+	s.RuleGroupsNamespace = v
+	return s
 }
 
 // Represents the input of a DescribeWorkspace operation.
@@ -1317,6 +2993,134 @@ func (s *InternalServerException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *InternalServerException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Represents the input of a ListRuleGroupsNamespaces operation.
+type ListRuleGroupsNamespacesInput struct {
+	_ struct{} `type:"structure"`
+
+	// Maximum results to return in response (default=100, maximum=1000).
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	// Optional filter for rule groups namespace name. Only the rule groups namespace
+	// that begin with this value will be returned.
+	Name *string `location:"querystring" locationName:"name" min:"1" type:"string"`
+
+	// Pagination token to request the next page in a paginated list. This token
+	// is obtained from the output of the previous ListRuleGroupsNamespaces request.
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+
+	// The ID of the workspace.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleGroupsNamespacesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleGroupsNamespacesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListRuleGroupsNamespacesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListRuleGroupsNamespacesInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListRuleGroupsNamespacesInput) SetMaxResults(v int64) *ListRuleGroupsNamespacesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *ListRuleGroupsNamespacesInput) SetName(v string) *ListRuleGroupsNamespacesInput {
+	s.Name = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRuleGroupsNamespacesInput) SetNextToken(v string) *ListRuleGroupsNamespacesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *ListRuleGroupsNamespacesInput) SetWorkspaceId(v string) *ListRuleGroupsNamespacesInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+// Represents the output of a ListRuleGroupsNamespaces operation.
+type ListRuleGroupsNamespacesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Pagination token to use when requesting the next page in this list.
+	NextToken *string `locationName:"nextToken" type:"string"`
+
+	// The list of the selected rule groups namespaces.
+	//
+	// RuleGroupsNamespaces is a required field
+	RuleGroupsNamespaces []*RuleGroupsNamespaceSummary `locationName:"ruleGroupsNamespaces" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleGroupsNamespacesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListRuleGroupsNamespacesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListRuleGroupsNamespacesOutput) SetNextToken(v string) *ListRuleGroupsNamespacesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetRuleGroupsNamespaces sets the RuleGroupsNamespaces field's value.
+func (s *ListRuleGroupsNamespacesOutput) SetRuleGroupsNamespaces(v []*RuleGroupsNamespaceSummary) *ListRuleGroupsNamespacesOutput {
+	s.RuleGroupsNamespaces = v
+	return s
 }
 
 type ListTagsForResourceInput struct {
@@ -1510,6 +3314,278 @@ func (s *ListWorkspacesOutput) SetWorkspaces(v []*WorkspaceSummary) *ListWorkspa
 	return s
 }
 
+// Represents the input of a PutAlertManagerDefinition operation.
+type PutAlertManagerDefinitionInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional, unique, case-sensitive, user-provided identifier to ensure the
+	// idempotency of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The alert manager definition data.
+	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
+	Data []byte `locationName:"data" type:"blob" required:"true"`
+
+	// The ID of the workspace in which to update the alert manager definition.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAlertManagerDefinitionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAlertManagerDefinitionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutAlertManagerDefinitionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutAlertManagerDefinitionInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PutAlertManagerDefinitionInput) SetClientToken(v string) *PutAlertManagerDefinitionInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *PutAlertManagerDefinitionInput) SetData(v []byte) *PutAlertManagerDefinitionInput {
+	s.Data = v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *PutAlertManagerDefinitionInput) SetWorkspaceId(v string) *PutAlertManagerDefinitionInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+// Represents the output of a PutAlertManagerDefinition operation.
+type PutAlertManagerDefinitionOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The status of alert manager definition.
+	//
+	// Status is a required field
+	Status *AlertManagerDefinitionStatus `locationName:"status" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAlertManagerDefinitionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutAlertManagerDefinitionOutput) GoString() string {
+	return s.String()
+}
+
+// SetStatus sets the Status field's value.
+func (s *PutAlertManagerDefinitionOutput) SetStatus(v *AlertManagerDefinitionStatus) *PutAlertManagerDefinitionOutput {
+	s.Status = v
+	return s
+}
+
+// Represents the input of a PutRuleGroupsNamespace operation.
+type PutRuleGroupsNamespaceInput struct {
+	_ struct{} `type:"structure"`
+
+	// Optional, unique, case-sensitive, user-provided identifier to ensure the
+	// idempotency of the request.
+	ClientToken *string `locationName:"clientToken" min:"1" type:"string" idempotencyToken:"true"`
+
+	// The namespace data that define the rule groups.
+	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
+	Data []byte `locationName:"data" type:"blob" required:"true"`
+
+	// The rule groups namespace name.
+	//
+	// Name is a required field
+	Name *string `location:"uri" locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The ID of the workspace in which to update the rule group namespace.
+	//
+	// WorkspaceId is a required field
+	WorkspaceId *string `location:"uri" locationName:"workspaceId" min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRuleGroupsNamespaceInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRuleGroupsNamespaceInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutRuleGroupsNamespaceInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutRuleGroupsNamespaceInput"}
+	if s.ClientToken != nil && len(*s.ClientToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClientToken", 1))
+	}
+	if s.Data == nil {
+		invalidParams.Add(request.NewErrParamRequired("Data"))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.WorkspaceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("WorkspaceId"))
+	}
+	if s.WorkspaceId != nil && len(*s.WorkspaceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("WorkspaceId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetClientToken sets the ClientToken field's value.
+func (s *PutRuleGroupsNamespaceInput) SetClientToken(v string) *PutRuleGroupsNamespaceInput {
+	s.ClientToken = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *PutRuleGroupsNamespaceInput) SetData(v []byte) *PutRuleGroupsNamespaceInput {
+	s.Data = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutRuleGroupsNamespaceInput) SetName(v string) *PutRuleGroupsNamespaceInput {
+	s.Name = &v
+	return s
+}
+
+// SetWorkspaceId sets the WorkspaceId field's value.
+func (s *PutRuleGroupsNamespaceInput) SetWorkspaceId(v string) *PutRuleGroupsNamespaceInput {
+	s.WorkspaceId = &v
+	return s
+}
+
+// Represents the output of a PutRuleGroupsNamespace operation.
+type PutRuleGroupsNamespaceOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of this rule groups namespace.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The rule groups namespace name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The status of rule groups namespace.
+	//
+	// Status is a required field
+	Status *RuleGroupsNamespaceStatus `locationName:"status" type:"structure" required:"true"`
+
+	// The tags of this rule groups namespace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRuleGroupsNamespaceOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutRuleGroupsNamespaceOutput) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *PutRuleGroupsNamespaceOutput) SetArn(v string) *PutRuleGroupsNamespaceOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *PutRuleGroupsNamespaceOutput) SetName(v string) *PutRuleGroupsNamespaceOutput {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *PutRuleGroupsNamespaceOutput) SetStatus(v *RuleGroupsNamespaceStatus) *PutRuleGroupsNamespaceOutput {
+	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *PutRuleGroupsNamespaceOutput) SetTags(v map[string]*string) *PutRuleGroupsNamespaceOutput {
+	s.Tags = v
+	return s
+}
+
 // Request references a resource which does not exist.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
@@ -1583,6 +3659,235 @@ func (s *ResourceNotFoundException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// Represents a description of the rule groups namespace.
+type RuleGroupsNamespaceDescription struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of this rule groups namespace.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time when the rule groups namespace was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The rule groups namespace data.
+	// Data is automatically base64 encoded/decoded by the SDK.
+	//
+	// Data is a required field
+	Data []byte `locationName:"data" type:"blob" required:"true"`
+
+	// The time when the rule groups namespace was modified.
+	//
+	// ModifiedAt is a required field
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" required:"true"`
+
+	// The rule groups namespace name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The status of rule groups namespace.
+	//
+	// Status is a required field
+	Status *RuleGroupsNamespaceStatus `locationName:"status" type:"structure" required:"true"`
+
+	// The tags of this rule groups namespace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleGroupsNamespaceDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleGroupsNamespaceDescription) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RuleGroupsNamespaceDescription) SetArn(v string) *RuleGroupsNamespaceDescription {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *RuleGroupsNamespaceDescription) SetCreatedAt(v time.Time) *RuleGroupsNamespaceDescription {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetData sets the Data field's value.
+func (s *RuleGroupsNamespaceDescription) SetData(v []byte) *RuleGroupsNamespaceDescription {
+	s.Data = v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *RuleGroupsNamespaceDescription) SetModifiedAt(v time.Time) *RuleGroupsNamespaceDescription {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RuleGroupsNamespaceDescription) SetName(v string) *RuleGroupsNamespaceDescription {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RuleGroupsNamespaceDescription) SetStatus(v *RuleGroupsNamespaceStatus) *RuleGroupsNamespaceDescription {
+	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RuleGroupsNamespaceDescription) SetTags(v map[string]*string) *RuleGroupsNamespaceDescription {
+	s.Tags = v
+	return s
+}
+
+// Represents the status of a namespace.
+type RuleGroupsNamespaceStatus struct {
+	_ struct{} `type:"structure"`
+
+	// Status code of this namespace.
+	//
+	// StatusCode is a required field
+	StatusCode *string `locationName:"statusCode" type:"string" required:"true" enum:"RuleGroupsNamespaceStatusCode"`
+
+	// The reason for failure if any.
+	StatusReason *string `locationName:"statusReason" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleGroupsNamespaceStatus) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleGroupsNamespaceStatus) GoString() string {
+	return s.String()
+}
+
+// SetStatusCode sets the StatusCode field's value.
+func (s *RuleGroupsNamespaceStatus) SetStatusCode(v string) *RuleGroupsNamespaceStatus {
+	s.StatusCode = &v
+	return s
+}
+
+// SetStatusReason sets the StatusReason field's value.
+func (s *RuleGroupsNamespaceStatus) SetStatusReason(v string) *RuleGroupsNamespaceStatus {
+	s.StatusReason = &v
+	return s
+}
+
+// Represents a summary of the rule groups namespace.
+type RuleGroupsNamespaceSummary struct {
+	_ struct{} `type:"structure"`
+
+	// The Amazon Resource Name (ARN) of this rule groups namespace.
+	//
+	// Arn is a required field
+	Arn *string `locationName:"arn" type:"string" required:"true"`
+
+	// The time when the rule groups namespace was created.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `locationName:"createdAt" type:"timestamp" required:"true"`
+
+	// The time when the rule groups namespace was modified.
+	//
+	// ModifiedAt is a required field
+	ModifiedAt *time.Time `locationName:"modifiedAt" type:"timestamp" required:"true"`
+
+	// The rule groups namespace name.
+	//
+	// Name is a required field
+	Name *string `locationName:"name" min:"1" type:"string" required:"true"`
+
+	// The status of rule groups namespace.
+	//
+	// Status is a required field
+	Status *RuleGroupsNamespaceStatus `locationName:"status" type:"structure" required:"true"`
+
+	// The tags of this rule groups namespace.
+	Tags map[string]*string `locationName:"tags" type:"map"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleGroupsNamespaceSummary) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RuleGroupsNamespaceSummary) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *RuleGroupsNamespaceSummary) SetArn(v string) *RuleGroupsNamespaceSummary {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *RuleGroupsNamespaceSummary) SetCreatedAt(v time.Time) *RuleGroupsNamespaceSummary {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetModifiedAt sets the ModifiedAt field's value.
+func (s *RuleGroupsNamespaceSummary) SetModifiedAt(v time.Time) *RuleGroupsNamespaceSummary {
+	s.ModifiedAt = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *RuleGroupsNamespaceSummary) SetName(v string) *RuleGroupsNamespaceSummary {
+	s.Name = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *RuleGroupsNamespaceSummary) SetStatus(v *RuleGroupsNamespaceStatus) *RuleGroupsNamespaceSummary {
+	s.Status = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *RuleGroupsNamespaceSummary) SetTags(v map[string]*string) *RuleGroupsNamespaceSummary {
+	s.Tags = v
+	return s
 }
 
 // Request would cause a service quota to be exceeded.
@@ -2342,6 +4647,72 @@ func (s *WorkspaceSummary) SetTags(v map[string]*string) *WorkspaceSummary {
 func (s *WorkspaceSummary) SetWorkspaceId(v string) *WorkspaceSummary {
 	s.WorkspaceId = &v
 	return s
+}
+
+// State of an alert manager definition.
+const (
+	// AlertManagerDefinitionStatusCodeCreating is a AlertManagerDefinitionStatusCode enum value
+	AlertManagerDefinitionStatusCodeCreating = "CREATING"
+
+	// AlertManagerDefinitionStatusCodeActive is a AlertManagerDefinitionStatusCode enum value
+	AlertManagerDefinitionStatusCodeActive = "ACTIVE"
+
+	// AlertManagerDefinitionStatusCodeUpdating is a AlertManagerDefinitionStatusCode enum value
+	AlertManagerDefinitionStatusCodeUpdating = "UPDATING"
+
+	// AlertManagerDefinitionStatusCodeDeleting is a AlertManagerDefinitionStatusCode enum value
+	AlertManagerDefinitionStatusCodeDeleting = "DELETING"
+
+	// AlertManagerDefinitionStatusCodeCreationFailed is a AlertManagerDefinitionStatusCode enum value
+	AlertManagerDefinitionStatusCodeCreationFailed = "CREATION_FAILED"
+
+	// AlertManagerDefinitionStatusCodeUpdateFailed is a AlertManagerDefinitionStatusCode enum value
+	AlertManagerDefinitionStatusCodeUpdateFailed = "UPDATE_FAILED"
+)
+
+// AlertManagerDefinitionStatusCode_Values returns all elements of the AlertManagerDefinitionStatusCode enum
+func AlertManagerDefinitionStatusCode_Values() []string {
+	return []string{
+		AlertManagerDefinitionStatusCodeCreating,
+		AlertManagerDefinitionStatusCodeActive,
+		AlertManagerDefinitionStatusCodeUpdating,
+		AlertManagerDefinitionStatusCodeDeleting,
+		AlertManagerDefinitionStatusCodeCreationFailed,
+		AlertManagerDefinitionStatusCodeUpdateFailed,
+	}
+}
+
+// State of a namespace.
+const (
+	// RuleGroupsNamespaceStatusCodeCreating is a RuleGroupsNamespaceStatusCode enum value
+	RuleGroupsNamespaceStatusCodeCreating = "CREATING"
+
+	// RuleGroupsNamespaceStatusCodeActive is a RuleGroupsNamespaceStatusCode enum value
+	RuleGroupsNamespaceStatusCodeActive = "ACTIVE"
+
+	// RuleGroupsNamespaceStatusCodeUpdating is a RuleGroupsNamespaceStatusCode enum value
+	RuleGroupsNamespaceStatusCodeUpdating = "UPDATING"
+
+	// RuleGroupsNamespaceStatusCodeDeleting is a RuleGroupsNamespaceStatusCode enum value
+	RuleGroupsNamespaceStatusCodeDeleting = "DELETING"
+
+	// RuleGroupsNamespaceStatusCodeCreationFailed is a RuleGroupsNamespaceStatusCode enum value
+	RuleGroupsNamespaceStatusCodeCreationFailed = "CREATION_FAILED"
+
+	// RuleGroupsNamespaceStatusCodeUpdateFailed is a RuleGroupsNamespaceStatusCode enum value
+	RuleGroupsNamespaceStatusCodeUpdateFailed = "UPDATE_FAILED"
+)
+
+// RuleGroupsNamespaceStatusCode_Values returns all elements of the RuleGroupsNamespaceStatusCode enum
+func RuleGroupsNamespaceStatusCode_Values() []string {
+	return []string{
+		RuleGroupsNamespaceStatusCodeCreating,
+		RuleGroupsNamespaceStatusCodeActive,
+		RuleGroupsNamespaceStatusCodeUpdating,
+		RuleGroupsNamespaceStatusCodeDeleting,
+		RuleGroupsNamespaceStatusCodeCreationFailed,
+		RuleGroupsNamespaceStatusCodeUpdateFailed,
+	}
 }
 
 // Possible reasons a request failed validation.

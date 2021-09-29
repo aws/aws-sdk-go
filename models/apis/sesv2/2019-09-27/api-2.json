@@ -1933,18 +1933,18 @@
         "SigningEnabled":{"shape":"Enabled"},
         "Status":{"shape":"DkimStatus"},
         "Tokens":{"shape":"DnsTokenList"},
-        "SigningAttributesOrigin":{"shape":"DkimSigningAttributesOrigin"}
+        "SigningAttributesOrigin":{"shape":"DkimSigningAttributesOrigin"},
+        "NextSigningKeyLength":{"shape":"DkimSigningKeyLength"},
+        "CurrentSigningKeyLength":{"shape":"DkimSigningKeyLength"},
+        "LastKeyGenerationTimestamp":{"shape":"Timestamp"}
       }
     },
     "DkimSigningAttributes":{
       "type":"structure",
-      "required":[
-        "DomainSigningSelector",
-        "DomainSigningPrivateKey"
-      ],
       "members":{
         "DomainSigningSelector":{"shape":"Selector"},
-        "DomainSigningPrivateKey":{"shape":"PrivateKey"}
+        "DomainSigningPrivateKey":{"shape":"PrivateKey"},
+        "NextSigningKeyLength":{"shape":"DkimSigningKeyLength"}
       }
     },
     "DkimSigningAttributesOrigin":{
@@ -1952,6 +1952,13 @@
       "enum":[
         "AWS_SES",
         "EXTERNAL"
+      ]
+    },
+    "DkimSigningKeyLength":{
+      "type":"string",
+      "enum":[
+        "RSA_1024_BIT",
+        "RSA_2048_BIT"
       ]
     },
     "DkimStatus":{

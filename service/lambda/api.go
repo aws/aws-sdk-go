@@ -168,7 +168,8 @@ func (c *Lambda) AddPermissionRequest(input *AddPermissionInput) (req *request.R
 // a function. You can apply the policy at the function level, or specify a
 // qualifier to restrict access to a single version or alias. If you use a qualifier,
 // the invoker must use the full Amazon Resource Name (ARN) of that version
-// or alias to invoke the function.
+// or alias to invoke the function. Note: Lambda does not support adding policies
+// to version $LATEST.
 //
 // To grant permission to another account, specify the account ID as the Principal.
 // For Amazon Web Services services, the principal is a domain-style identifier
@@ -463,15 +464,13 @@ func (c *Lambda) CreateEventSourceMappingRequest(input *CreateEventSourceMapping
 // Creates a mapping between an event source and an Lambda function. Lambda
 // reads items from the event source and triggers the function.
 //
-// For details about each event source type, see the following topics. In particular,
-// each of the topics describes the required and optional parameters for the
-// specific event source.
+// For details about each event source type, see the following topics.
 //
 //    * Configuring a Dynamo DB stream as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-ddb.html#services-dynamodb-eventsourcemapping)
 //
 //    * Configuring a Kinesis stream as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-kinesis.html#services-kinesis-eventsourcemapping)
 //
-//    * Configuring an SQS queue as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource)
+//    * Configuring an Amazon SQS queue as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-sqs.html#events-sqs-eventsource)
 //
 //    * Configuring an MQ broker as an event source (https://docs.aws.amazon.com/lambda/latest/dg/with-mq.html#services-mq-eventsourcemapping)
 //
@@ -604,7 +603,10 @@ func (c *Lambda) CreateFunctionRequest(input *CreateFunctionInput) (req *request
 // You set the package type to Zip if the deployment package is a .zip file
 // archive (https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-package.html#gettingstarted-package-zip).
 // For a .zip file archive, the code property specifies the location of the
-// .zip file. You must also specify the handler and runtime properties.
+// .zip file. You must also specify the handler and runtime properties. The
+// code in the deployment package must be compatible with the target instruction
+// set architecture of the function (x86-64 or arm64). If you do not specify
+// the architecture, the default value is x86-64.
 //
 // When you create a function, Lambda provisions an instance of the function
 // and its supporting resources. If your function connects to a VPC, this process
@@ -2919,7 +2921,7 @@ func (c *Lambda) InvokeRequest(input *InvokeInput) (req *request.Request, output
 //   system, but the mount operation timed out.
 //
 //   * EFSIOException
-//   An error occured when reading from or writing to a connected file system.
+//   An error occurred when reading from or writing to a connected file system.
 //
 //   * EC2ThrottledException
 //   Lambda was throttled by Amazon EC2 during Lambda function initialization
@@ -4023,7 +4025,9 @@ func (c *Lambda) ListLayerVersionsRequest(input *ListLayerVersionsInput) (req *r
 // Lists the versions of an Lambda layer (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html).
 // Versions that have been deleted aren't listed. Specify a runtime identifier
 // (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html) to list
-// only versions that indicate that they're compatible with that runtime.
+// only versions that indicate that they're compatible with that runtime. Specify
+// a compatible architecture to include only layer versions that are compatible
+// with that architecture.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4169,10 +4173,12 @@ func (c *Lambda) ListLayersRequest(input *ListLayersInput) (req *request.Request
 
 // ListLayers API operation for AWS Lambda.
 //
-// Lists Lambda layers (https://docs.aws.amazon.com/lambda/latest/dg/configuration-layers.html)
+// Lists Lambda layers (https://docs.aws.amazon.com/lambda/latest/dg/invocation-layers.html)
 // and shows information about the latest version of each. Specify a runtime
 // identifier (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html)
 // to list only layers that indicate that they're compatible with that runtime.
+// Specify a compatible architecture to include only layers that are compatible
+// with that instruction set architecture (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6602,6 +6608,8 @@ type AddPermissionInput struct {
 	// For Amazon Web Services services, the ARN of the Amazon Web Services resource
 	// that invokes the function. For example, an Amazon S3 bucket or Amazon SNS
 	// topic.
+	//
+	// Note that Lambda configures the comparison using the StringLike operator.
 	SourceArn *string `type:"string"`
 
 	// A statement identifier that differentiates the statement from others in the
@@ -7454,7 +7462,10 @@ func (s *CreateCodeSigningConfigOutput) SetCodeSigningConfig(v *CodeSigningConfi
 type CreateEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of items to retrieve in a single batch.
+	// The maximum number of records in each batch that Lambda pulls from your stream
+	// or queue and sends to your function. Lambda passes all of the records in
+	// the batch to the function in a single call, up to the payload limit for synchronous
+	// invocation (6 MB).
 	//
 	//    * Amazon Kinesis - Default 100. Max 10,000.
 	//
@@ -7476,8 +7487,10 @@ type CreateEventSourceMappingInput struct {
 	// records.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
-	// If true, the event source mapping is active. Set to false to pause polling
-	// and invocation.
+	// When true, the event source mapping is active. When false, Lambda pauses
+	// polling and invocation.
+	//
+	// Default: True
 	Enabled *bool `type:"boolean"`
 
 	// The Amazon Resource Name (ARN) of the event source.
@@ -7513,8 +7526,13 @@ type CreateEventSourceMappingInput struct {
 	// source mapping.
 	FunctionResponseTypes []*string `type:"list"`
 
-	// (Streams and SQS standard queues) The maximum amount of time to gather records
-	// before invoking the function, in seconds.
+	// (Streams and Amazon SQS standard queues) The maximum amount of time, in seconds,
+	// that Lambda spends gathering records before invoking the function.
+	//
+	// Default: 0
+	//
+	// Related setting: When you set BatchSize to a value greater than 10, you must
+	// set MaximumBatchingWindowInSeconds to at least 1.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams only) Discard records older than the specified age. The default
@@ -7733,6 +7751,10 @@ func (s *CreateEventSourceMappingInput) SetTumblingWindowInSeconds(v int64) *Cre
 type CreateFunctionInput struct {
 	_ struct{} `type:"structure"`
 
+	// The instruction set architecture that the function supports. Enter a string
+	// array with one of the valid values. The default value is x86_64.
+	Architectures []*string `min:"1" type:"list"`
+
 	// The code for the function.
 	//
 	// Code is a required field
@@ -7854,6 +7876,9 @@ func (s CreateFunctionInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *CreateFunctionInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "CreateFunctionInput"}
+	if s.Architectures != nil && len(s.Architectures) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Architectures", 1))
+	}
 	if s.Code == nil {
 		invalidParams.Add(request.NewErrParamRequired("Code"))
 	}
@@ -7892,6 +7917,12 @@ func (s *CreateFunctionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArchitectures sets the Architectures field's value.
+func (s *CreateFunctionInput) SetArchitectures(v []*string) *CreateFunctionInput {
+	s.Architectures = v
+	return s
 }
 
 // SetCode sets the Code field's value.
@@ -9049,7 +9080,7 @@ func (s *EC2UnexpectedException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// An error occured when reading from or writing to a connected file system.
+// An error occurred when reading from or writing to a connected file system.
 type EFSIOException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -9520,7 +9551,16 @@ func (s *EnvironmentResponse) SetVariables(v map[string]*string) *EnvironmentRes
 type EventSourceMappingConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of items to retrieve in a single batch.
+	// The maximum number of records in each batch that Lambda pulls from your stream
+	// or queue and sends to your function. Lambda passes all of the records in
+	// the batch to the function in a single call, up to the payload limit for synchronous
+	// invocation (6 MB).
+	//
+	// Default value: Varies by service. For Amazon SQS, the default is 10. For
+	// all other services, the default is 100.
+	//
+	// Related setting: When you set BatchSize to a value greater than 10, you must
+	// set MaximumBatchingWindowInSeconds to at least 1.
 	BatchSize *int64 `min:"1" type:"integer"`
 
 	// (Streams only) If the function returns an error, split the batch in two and
@@ -9548,8 +9588,13 @@ type EventSourceMappingConfiguration struct {
 	// The result of the last Lambda invocation of your function.
 	LastProcessingResult *string `type:"string"`
 
-	// (Streams and Amazon SQS standard queues) The maximum amount of time to gather
-	// records before invoking the function, in seconds. The default value is zero.
+	// (Streams and Amazon SQS standard queues) The maximum amount of time, in seconds,
+	// that Lambda spends gathering records before invoking the function.
+	//
+	// Default: 0
+	//
+	// Related setting: When you set BatchSize to a value greater than 10, you must
+	// set MaximumBatchingWindowInSeconds to at least 1.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams only) Discard records older than the specified age. The default
@@ -9978,6 +10023,11 @@ func (s *FunctionCodeLocation) SetResolvedImageUri(v string) *FunctionCodeLocati
 type FunctionConfiguration struct {
 	_ struct{} `type:"structure"`
 
+	// The instruction set architecture that the function supports. Architecture
+	// is a string array with one of the valid values. The default architecture
+	// value is x86_64.
+	Architectures []*string `min:"1" type:"list"`
+
 	// The SHA256 hash of the function's deployment package.
 	CodeSha256 *string `type:"string"`
 
@@ -10095,6 +10145,12 @@ func (s FunctionConfiguration) String() string {
 // value will be replaced with "sensitive".
 func (s FunctionConfiguration) GoString() string {
 	return s.String()
+}
+
+// SetArchitectures sets the Architectures field's value.
+func (s *FunctionConfiguration) SetArchitectures(v []*string) *FunctionConfiguration {
+	s.Architectures = v
+	return s
 }
 
 // SetCodeSha256 sets the CodeSha256 field's value.
@@ -11244,6 +11300,9 @@ func (s *GetLayerVersionByArnInput) SetArn(v string) *GetLayerVersionByArnInput 
 type GetLayerVersionByArnOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
+	CompatibleArchitectures []*string `type:"list"`
+
 	// The layer's compatible runtimes.
 	CompatibleRuntimes []*string `type:"list"`
 
@@ -11286,6 +11345,12 @@ func (s GetLayerVersionByArnOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetLayerVersionByArnOutput) GoString() string {
 	return s.String()
+}
+
+// SetCompatibleArchitectures sets the CompatibleArchitectures field's value.
+func (s *GetLayerVersionByArnOutput) SetCompatibleArchitectures(v []*string) *GetLayerVersionByArnOutput {
+	s.CompatibleArchitectures = v
+	return s
 }
 
 // SetCompatibleRuntimes sets the CompatibleRuntimes field's value.
@@ -11402,6 +11467,9 @@ func (s *GetLayerVersionInput) SetVersionNumber(v int64) *GetLayerVersionInput {
 type GetLayerVersionOutput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
+	CompatibleArchitectures []*string `type:"list"`
+
 	// The layer's compatible runtimes.
 	CompatibleRuntimes []*string `type:"list"`
 
@@ -11444,6 +11512,12 @@ func (s GetLayerVersionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetLayerVersionOutput) GoString() string {
 	return s.String()
+}
+
+// SetCompatibleArchitectures sets the CompatibleArchitectures field's value.
+func (s *GetLayerVersionOutput) SetCompatibleArchitectures(v []*string) *GetLayerVersionOutput {
+	s.CompatibleArchitectures = v
+	return s
 }
 
 // SetCompatibleRuntimes sets the CompatibleRuntimes field's value.
@@ -12619,7 +12693,8 @@ type InvokeInput struct {
 	//    has permission to invoke the function.
 	InvocationType *string `location:"header" locationName:"X-Amz-Invocation-Type" type:"string" enum:"InvocationType"`
 
-	// Set to Tail to include the execution log in the response.
+	// Set to Tail to include the execution log in the response. Applies to synchronously
+	// invoked functions only.
 	LogType *string `location:"header" locationName:"X-Amz-Log-Type" type:"string" enum:"LogType"`
 
 	// The JSON that you want to provide to your Lambda function as input.
@@ -13267,6 +13342,9 @@ func (s *LayerVersionContentOutput) SetSigningProfileVersionArn(v string) *Layer
 type LayerVersionsListItem struct {
 	_ struct{} `type:"structure"`
 
+	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
+	CompatibleArchitectures []*string `type:"list"`
+
 	// The layer's compatible runtimes.
 	CompatibleRuntimes []*string `type:"list"`
 
@@ -13302,6 +13380,12 @@ func (s LayerVersionsListItem) String() string {
 // value will be replaced with "sensitive".
 func (s LayerVersionsListItem) GoString() string {
 	return s.String()
+}
+
+// SetCompatibleArchitectures sets the CompatibleArchitectures field's value.
+func (s *LayerVersionsListItem) SetCompatibleArchitectures(v []*string) *LayerVersionsListItem {
+	s.CompatibleArchitectures = v
+	return s
 }
 
 // SetCompatibleRuntimes sets the CompatibleRuntimes field's value.
@@ -14110,6 +14194,9 @@ func (s *ListFunctionsOutput) SetNextMarker(v string) *ListFunctionsOutput {
 type ListLayerVersionsInput struct {
 	_ struct{} `type:"structure"`
 
+	// The compatible instruction set architecture (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
+	CompatibleArchitecture *string `location:"querystring" locationName:"CompatibleArchitecture" type:"string" enum:"Architecture"`
+
 	// A runtime identifier. For example, go1.x.
 	CompatibleRuntime *string `location:"querystring" locationName:"CompatibleRuntime" type:"string" enum:"Runtime"`
 
@@ -14160,6 +14247,12 @@ func (s *ListLayerVersionsInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCompatibleArchitecture sets the CompatibleArchitecture field's value.
+func (s *ListLayerVersionsInput) SetCompatibleArchitecture(v string) *ListLayerVersionsInput {
+	s.CompatibleArchitecture = &v
+	return s
 }
 
 // SetCompatibleRuntime sets the CompatibleRuntime field's value.
@@ -14229,6 +14322,9 @@ func (s *ListLayerVersionsOutput) SetNextMarker(v string) *ListLayerVersionsOutp
 type ListLayersInput struct {
 	_ struct{} `type:"structure"`
 
+	// The compatible instruction set architecture (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
+	CompatibleArchitecture *string `location:"querystring" locationName:"CompatibleArchitecture" type:"string" enum:"Architecture"`
+
 	// A runtime identifier. For example, go1.x.
 	CompatibleRuntime *string `location:"querystring" locationName:"CompatibleRuntime" type:"string" enum:"Runtime"`
 
@@ -14268,6 +14364,12 @@ func (s *ListLayersInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetCompatibleArchitecture sets the CompatibleArchitecture field's value.
+func (s *ListLayersInput) SetCompatibleArchitecture(v string) *ListLayersInput {
+	s.CompatibleArchitecture = &v
+	return s
 }
 
 // SetCompatibleRuntime sets the CompatibleRuntime field's value.
@@ -14453,7 +14555,8 @@ func (s *ListProvisionedConcurrencyConfigsOutput) SetProvisionedConcurrencyConfi
 type ListTagsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The function's Amazon Resource Name (ARN).
+	// The function's Amazon Resource Name (ARN). Note: Lambda does not support
+	// adding tags to aliases or versions.
 	//
 	// Resource is a required field
 	Resource *string `location:"uri" locationName:"ARN" type:"string" required:"true"`
@@ -15012,6 +15115,9 @@ func (s *ProvisionedConcurrencyConfigNotFoundException) RequestID() string {
 type PublishLayerVersionInput struct {
 	_ struct{} `type:"structure"`
 
+	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
+	CompatibleArchitectures []*string `type:"list"`
+
 	// A list of compatible function runtimes (https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html).
 	// Used for filtering with ListLayers and ListLayerVersions.
 	CompatibleRuntimes []*string `type:"list"`
@@ -15082,6 +15188,12 @@ func (s *PublishLayerVersionInput) Validate() error {
 	return nil
 }
 
+// SetCompatibleArchitectures sets the CompatibleArchitectures field's value.
+func (s *PublishLayerVersionInput) SetCompatibleArchitectures(v []*string) *PublishLayerVersionInput {
+	s.CompatibleArchitectures = v
+	return s
+}
+
 // SetCompatibleRuntimes sets the CompatibleRuntimes field's value.
 func (s *PublishLayerVersionInput) SetCompatibleRuntimes(v []*string) *PublishLayerVersionInput {
 	s.CompatibleRuntimes = v
@@ -15114,6 +15226,9 @@ func (s *PublishLayerVersionInput) SetLicenseInfo(v string) *PublishLayerVersion
 
 type PublishLayerVersionOutput struct {
 	_ struct{} `type:"structure"`
+
+	// A list of compatible instruction set architectures (https://docs.aws.amazon.com/lambda/latest/dg/foundation-arch.html).
+	CompatibleArchitectures []*string `type:"list"`
 
 	// The layer's compatible runtimes.
 	CompatibleRuntimes []*string `type:"list"`
@@ -15157,6 +15272,12 @@ func (s PublishLayerVersionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s PublishLayerVersionOutput) GoString() string {
 	return s.String()
+}
+
+// SetCompatibleArchitectures sets the CompatibleArchitectures field's value.
+func (s *PublishLayerVersionOutput) SetCompatibleArchitectures(v []*string) *PublishLayerVersionOutput {
+	s.CompatibleArchitectures = v
+	return s
 }
 
 // SetCompatibleRuntimes sets the CompatibleRuntimes field's value.
@@ -15507,7 +15628,7 @@ type PutFunctionConcurrencyOutput struct {
 	_ struct{} `type:"structure"`
 
 	// The number of concurrent executions that are reserved for this function.
-	// For more information, see Managing Concurrency (https://docs.aws.amazon.com/lambda/latest/dg/concurrent-executions.html).
+	// For more information, see Managing Concurrency (https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html).
 	ReservedConcurrentExecutions *int64 `type:"integer"`
 }
 
@@ -17337,7 +17458,10 @@ func (s *UpdateCodeSigningConfigOutput) SetCodeSigningConfig(v *CodeSigningConfi
 type UpdateEventSourceMappingInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of items to retrieve in a single batch.
+	// The maximum number of records in each batch that Lambda pulls from your stream
+	// or queue and sends to your function. Lambda passes all of the records in
+	// the batch to the function in a single call, up to the payload limit for synchronous
+	// invocation (6 MB).
 	//
 	//    * Amazon Kinesis - Default 100. Max 10,000.
 	//
@@ -17359,8 +17483,10 @@ type UpdateEventSourceMappingInput struct {
 	// records.
 	DestinationConfig *DestinationConfig `type:"structure"`
 
-	// If true, the event source mapping is active. Set to false to pause polling
-	// and invocation.
+	// When true, the event source mapping is active. When false, Lambda pauses
+	// polling and invocation.
+	//
+	// Default: True
 	Enabled *bool `type:"boolean"`
 
 	// The name of the Lambda function.
@@ -17383,8 +17509,13 @@ type UpdateEventSourceMappingInput struct {
 	// source mapping.
 	FunctionResponseTypes []*string `type:"list"`
 
-	// (Streams and SQS standard queues) The maximum amount of time to gather records
-	// before invoking the function, in seconds.
+	// (Streams and Amazon SQS standard queues) The maximum amount of time, in seconds,
+	// that Lambda spends gathering records before invoking the function.
+	//
+	// Default: 0
+	//
+	// Related setting: When you set BatchSize to a value greater than 10, you must
+	// set MaximumBatchingWindowInSeconds to at least 1.
 	MaximumBatchingWindowInSeconds *int64 `type:"integer"`
 
 	// (Streams only) Discard records older than the specified age. The default
@@ -17553,6 +17684,10 @@ func (s *UpdateEventSourceMappingInput) SetUUID(v string) *UpdateEventSourceMapp
 type UpdateFunctionCodeInput struct {
 	_ struct{} `type:"structure"`
 
+	// The instruction set architecture that the function supports. Enter a string
+	// array with one of the valid values. The default value is x86_64.
+	Architectures []*string `min:"1" type:"list"`
+
 	// Set to true to validate the request parameters and access permissions without
 	// modifying the function code.
 	DryRun *bool `type:"boolean"`
@@ -17627,6 +17762,9 @@ func (s UpdateFunctionCodeInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateFunctionCodeInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateFunctionCodeInput"}
+	if s.Architectures != nil && len(s.Architectures) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Architectures", 1))
+	}
 	if s.FunctionName == nil {
 		invalidParams.Add(request.NewErrParamRequired("FunctionName"))
 	}
@@ -17647,6 +17785,12 @@ func (s *UpdateFunctionCodeInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArchitectures sets the Architectures field's value.
+func (s *UpdateFunctionCodeInput) SetArchitectures(v []*string) *UpdateFunctionCodeInput {
+	s.Architectures = v
+	return s
 }
 
 // SetDryRun sets the DryRun field's value.
@@ -17743,7 +17887,7 @@ type UpdateFunctionConfigurationInput struct {
 	Handler *string `type:"string"`
 
 	// Container image configuration values (https://docs.aws.amazon.com/lambda/latest/dg/images-parms.html)
-	// that override the values in the container image Dockerfile.
+	// that override the values in the container image Docker file.
 	ImageConfig *ImageConfig `type:"structure"`
 
 	// The ARN of the Amazon Web Services Key Management Service (KMS) key that's
@@ -18214,6 +18358,22 @@ func (s *VpcConfigResponse) SetSubnetIds(v []*string) *VpcConfigResponse {
 func (s *VpcConfigResponse) SetVpcId(v string) *VpcConfigResponse {
 	s.VpcId = &v
 	return s
+}
+
+const (
+	// ArchitectureX8664 is a Architecture enum value
+	ArchitectureX8664 = "x86_64"
+
+	// ArchitectureArm64 is a Architecture enum value
+	ArchitectureArm64 = "arm64"
+)
+
+// Architecture_Values returns all elements of the Architecture enum
+func Architecture_Values() []string {
+	return []string{
+		ArchitectureX8664,
+		ArchitectureArm64,
+	}
 }
 
 const (

@@ -1126,6 +1126,19 @@
         "SigningProfileVersionArns":{"shape":"SigningProfileVersionArns"}
       }
     },
+    "Architecture":{
+      "type":"string",
+      "enum":[
+        "x86_64",
+        "arm64"
+      ]
+    },
+    "ArchitecturesList":{
+      "type":"list",
+      "member":{"shape":"Architecture"},
+      "max":1,
+      "min":1
+    },
     "Arn":{
       "type":"string",
       "pattern":"arn:(aws[a-zA-Z0-9-]*):([a-zA-Z0-9\\-])+:([a-z]{2}(-gov)?-[a-z]+-\\d{1})?:(\\d{12})?:(.*)"
@@ -1215,6 +1228,11 @@
       },
       "error":{"httpStatusCode":400},
       "exception":true
+    },
+    "CompatibleArchitectures":{
+      "type":"list",
+      "member":{"shape":"Architecture"},
+      "max":2
     },
     "CompatibleRuntimes":{
       "type":"list",
@@ -1313,7 +1331,8 @@
         "Layers":{"shape":"LayerList"},
         "FileSystemConfigs":{"shape":"FileSystemConfigList"},
         "ImageConfig":{"shape":"ImageConfig"},
-        "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"}
+        "CodeSigningConfigArn":{"shape":"CodeSigningConfigArn"},
+        "Architectures":{"shape":"ArchitecturesList"}
       }
     },
     "Date":{"type":"timestamp"},
@@ -1737,7 +1756,8 @@
         "PackageType":{"shape":"PackageType"},
         "ImageConfigResponse":{"shape":"ImageConfigResponse"},
         "SigningProfileVersionArn":{"shape":"Arn"},
-        "SigningJobArn":{"shape":"Arn"}
+        "SigningJobArn":{"shape":"Arn"},
+        "Architectures":{"shape":"ArchitecturesList"}
       }
     },
     "FunctionEventInvokeConfig":{
@@ -2000,7 +2020,8 @@
         "CreatedDate":{"shape":"Timestamp"},
         "Version":{"shape":"LayerVersionNumber"},
         "CompatibleRuntimes":{"shape":"CompatibleRuntimes"},
-        "LicenseInfo":{"shape":"LicenseInfo"}
+        "LicenseInfo":{"shape":"LicenseInfo"},
+        "CompatibleArchitectures":{"shape":"CompatibleArchitectures"}
       }
     },
     "GetPolicyRequest":{
@@ -2378,7 +2399,8 @@
         "Description":{"shape":"Description"},
         "CreatedDate":{"shape":"Timestamp"},
         "CompatibleRuntimes":{"shape":"CompatibleRuntimes"},
-        "LicenseInfo":{"shape":"LicenseInfo"}
+        "LicenseInfo":{"shape":"LicenseInfo"},
+        "CompatibleArchitectures":{"shape":"CompatibleArchitectures"}
       }
     },
     "LayersList":{
@@ -2599,6 +2621,11 @@
           "shape":"MaxLayerListItems",
           "location":"querystring",
           "locationName":"MaxItems"
+        },
+        "CompatibleArchitecture":{
+          "shape":"Architecture",
+          "location":"querystring",
+          "locationName":"CompatibleArchitecture"
         }
       }
     },
@@ -2626,6 +2653,11 @@
           "shape":"MaxLayerListItems",
           "location":"querystring",
           "locationName":"MaxItems"
+        },
+        "CompatibleArchitecture":{
+          "shape":"Architecture",
+          "location":"querystring",
+          "locationName":"CompatibleArchitecture"
         }
       }
     },
@@ -2899,7 +2931,8 @@
         "Description":{"shape":"Description"},
         "Content":{"shape":"LayerVersionContentInput"},
         "CompatibleRuntimes":{"shape":"CompatibleRuntimes"},
-        "LicenseInfo":{"shape":"LicenseInfo"}
+        "LicenseInfo":{"shape":"LicenseInfo"},
+        "CompatibleArchitectures":{"shape":"CompatibleArchitectures"}
       }
     },
     "PublishLayerVersionResponse":{
@@ -2912,7 +2945,8 @@
         "CreatedDate":{"shape":"Timestamp"},
         "Version":{"shape":"LayerVersionNumber"},
         "CompatibleRuntimes":{"shape":"CompatibleRuntimes"},
-        "LicenseInfo":{"shape":"LicenseInfo"}
+        "LicenseInfo":{"shape":"LicenseInfo"},
+        "CompatibleArchitectures":{"shape":"CompatibleArchitectures"}
       }
     },
     "PublishVersionRequest":{
@@ -3529,7 +3563,8 @@
         "ImageUri":{"shape":"String"},
         "Publish":{"shape":"Boolean"},
         "DryRun":{"shape":"Boolean"},
-        "RevisionId":{"shape":"String"}
+        "RevisionId":{"shape":"String"},
+        "Architectures":{"shape":"ArchitecturesList"}
       }
     },
     "UpdateFunctionConfigurationRequest":{

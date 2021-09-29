@@ -534,10 +534,10 @@ func (c *SESV2) CreateDedicatedIpPoolRequest(input *CreateDedicatedIpPoolInput) 
 // CreateDedicatedIpPool API operation for Amazon Simple Email Service.
 //
 // Create a new pool of dedicated IP addresses. A pool can include one or more
-// dedicated IP addresses that are associated with your AWS account. You can
-// associate a pool with a configuration set. When you send an email that uses
-// that configuration set, the message is sent from one of the addresses in
-// the associated pool.
+// dedicated IP addresses that are associated with your Amazon Web Services
+// account. You can associate a pool with a configuration set. When you send
+// an email that uses that configuration set, the message is sent from one of
+// the addresses in the associated pool.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -762,8 +762,7 @@ func (c *SESV2) CreateEmailIdentityRequest(input *CreateEmailIdentityInput) (req
 // Own DKIM (BYODKIM). To use BYODKIM, your call to the CreateEmailIdentity
 // operation has to include the DkimSigningAttributes object. When you specify
 // this object, you provide a selector (a component of the DNS record name that
-// identifies the public key that you want to use for DKIM authentication) and
-// a private key.
+// identifies the public key to use for DKIM authentication) and a private key.
 //
 // When you verify a domain, this operation provides a set of DKIM tokens, which
 // you can convert into CNAME tokens. You add these CNAME tokens to the DNS
@@ -1512,7 +1511,7 @@ func (c *SESV2) DeleteCustomVerificationEmailTemplateRequest(input *DeleteCustom
 // Deletes an existing custom verification email template.
 //
 // For more information about custom verification email templates, see Using
-// Custom Verification Email Templates (https://docs.aws.amazon.com/es/latest/DeveloperGuide/send-email-verify-address-custom.html)
+// Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
 // in the Amazon SES Developer Guide.
 //
 // You can execute this operation no more than once per second.
@@ -2051,7 +2050,7 @@ func (c *SESV2) GetAccountRequest(input *GetAccountInput) (req *request.Request,
 // GetAccount API operation for Amazon Simple Email Service.
 //
 // Obtain information about the email-sending status and capabilities of your
-// Amazon SES account in the current AWS Region.
+// Amazon SES account in the current Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2760,7 +2759,8 @@ func (c *SESV2) GetDedicatedIpsRequest(input *GetDedicatedIpsInput) (req *reques
 
 // GetDedicatedIps API operation for Amazon Simple Email Service.
 //
-// List the dedicated IP addresses that are associated with your AWS account.
+// List the dedicated IP addresses that are associated with your Amazon Web
+// Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2905,8 +2905,9 @@ func (c *SESV2) GetDeliverabilityDashboardOptionsRequest(input *GetDeliverabilit
 //
 // When you use the Deliverability dashboard, you pay a monthly subscription
 // charge, in addition to any other fees that you accrue by using Amazon SES
-// and other AWS services. For more information about the features and cost
-// of a Deliverability dashboard subscription, see Amazon SES Pricing (http://aws.amazon.com/ses/pricing/).
+// and other Amazon Web Services services. For more information about the features
+// and cost of a Deliverability dashboard subscription, see Amazon SES Pricing
+// (http://aws.amazon.com/ses/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4129,7 +4130,7 @@ func (c *SESV2) ListCustomVerificationEmailTemplatesRequest(input *ListCustomVer
 // ListCustomVerificationEmailTemplates API operation for Amazon Simple Email Service.
 //
 // Lists the existing custom verification email templates for your account in
-// the current AWS Region.
+// the current Amazon Web Services Region.
 //
 // For more information about custom verification email templates, see Using
 // Custom Verification Email Templates (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-verify-address-custom.html)
@@ -4275,8 +4276,8 @@ func (c *SESV2) ListDedicatedIpPoolsRequest(input *ListDedicatedIpPoolsInput) (r
 
 // ListDedicatedIpPools API operation for Amazon Simple Email Service.
 //
-// List all of the dedicated IP pools that exist in your AWS account in the
-// current Region.
+// List all of the dedicated IP pools that exist in your Amazon Web Services
+// account in the current Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4708,10 +4709,10 @@ func (c *SESV2) ListEmailIdentitiesRequest(input *ListEmailIdentitiesInput) (req
 // ListEmailIdentities API operation for Amazon Simple Email Service.
 //
 // Returns a list of all of the email identities that are associated with your
-// AWS account. An identity can be either an email address or a domain. This
-// operation returns identities that are verified as well as those that aren't.
-// This operation returns identities that are associated with Amazon SES and
-// Amazon Pinpoint.
+// Amazon Web Services account. An identity can be either an email address or
+// a domain. This operation returns identities that are verified as well as
+// those that aren't. This operation returns identities that are associated
+// with Amazon SES and Amazon Pinpoint.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -4852,7 +4853,7 @@ func (c *SESV2) ListEmailTemplatesRequest(input *ListEmailTemplatesInput) (req *
 // ListEmailTemplates API operation for Amazon Simple Email Service.
 //
 // Lists the email templates present in your Amazon SES account in the current
-// AWS Region.
+// Amazon Web Services Region.
 //
 // You can execute this operation no more than once per second.
 //
@@ -5787,7 +5788,7 @@ func (c *SESV2) PutConfigurationSetReputationOptionsRequest(input *PutConfigurat
 // PutConfigurationSetReputationOptions API operation for Amazon Simple Email Service.
 //
 // Enable or disable collection of reputation metrics for emails that you send
-// using a particular configuration set in a specific AWS Region.
+// using a particular configuration set in a specific Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5874,7 +5875,7 @@ func (c *SESV2) PutConfigurationSetSendingOptionsRequest(input *PutConfiguration
 // PutConfigurationSetSendingOptions API operation for Amazon Simple Email Service.
 //
 // Enable or disable email sending for messages that use a particular configuration
-// set in a specific AWS Region.
+// set in a specific Amazon Web Services Region.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6136,7 +6137,7 @@ func (c *SESV2) PutDedicatedIpInPoolRequest(input *PutDedicatedIpInPoolInput) (r
 // Move a dedicated IP address to an existing dedicated IP pool.
 //
 // The dedicated IP address that you specify must already exist, and must be
-// associated with your AWS account.
+// associated with your Amazon Web Services account.
 //
 // The dedicated IP pool you specify must already exist. You can create a new
 // pool by using the CreateDedicatedIpPool operation.
@@ -6316,8 +6317,9 @@ func (c *SESV2) PutDeliverabilityDashboardOptionRequest(input *PutDeliverability
 //
 // When you use the Deliverability dashboard, you pay a monthly subscription
 // charge, in addition to any other fees that you accrue by using Amazon SES
-// and other AWS services. For more information about the features and cost
-// of a Deliverability dashboard subscription, see Amazon SES Pricing (http://aws.amazon.com/ses/pricing/).
+// and other Amazon Web Services services. For more information about the features
+// and cost of a Deliverability dashboard subscription, see Amazon SES Pricing
+// (http://aws.amazon.com/ses/pricing/).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6585,6 +6587,8 @@ func (c *SESV2) PutEmailIdentityDkimSigningAttributesRequest(input *PutEmailIden
 //
 //    * Update the signing attributes for an identity that uses Bring Your Own
 //    DKIM (BYODKIM).
+//
+//    * Update the key length that should be used for Easy DKIM.
 //
 //    * Change from using no DKIM authentication to using Easy DKIM.
 //
@@ -7047,9 +7051,9 @@ func (c *SESV2) SendCustomVerificationEmailRequest(input *SendCustomVerification
 // SendCustomVerificationEmail API operation for Amazon Simple Email Service.
 //
 // Adds an email address to the list of identities for your Amazon SES account
-// in the current AWS Region and attempts to verify it. As a result of executing
-// this operation, a customized verification email is sent to the specified
-// address.
+// in the current Amazon Web Services Region and attempts to verify it. As a
+// result of executing this operation, a customized verification email is sent
+// to the specified address.
 //
 // To use this operation, you must first create a custom verification email
 // template. For more information about creating and using custom verification
@@ -7154,8 +7158,8 @@ func (c *SESV2) SendEmailRequest(input *SendEmailInput) (req *request.Request, o
 
 // SendEmail API operation for Amazon Simple Email Service.
 //
-// Sends an email message. You can use the Amazon SES API v2 to send two types
-// of messages:
+// Sends an email message. You can use the Amazon SES API v2 to send the following
+// types of messages:
 //
 //    * Simple – A standard email message. When you create this type of message,
 //    you specify the sender, the recipient, and the message body, and Amazon
@@ -8779,10 +8783,10 @@ type CloudWatchDimensionConfiguration struct {
 	DimensionName *string `type:"string" required:"true"`
 
 	// The location where the Amazon SES API v2 finds the value of a dimension to
-	// publish to Amazon CloudWatch. If you want to use the message tags that you
-	// specify using an X-SES-MESSAGE-TAGS header or a parameter to the SendEmail
-	// or SendRawEmail API, choose messageTag. If you want to use your own email
-	// headers, choose emailHeader. If you want to use link tags, choose linkTags.
+	// publish to Amazon CloudWatch. To use the message tags that you specify using
+	// an X-SES-MESSAGE-TAGS header or a parameter to the SendEmail or SendRawEmail
+	// API, choose messageTag. To use your own email headers, choose emailHeader.
+	// To use link tags, choose linkTags.
 	//
 	// DimensionValueSource is a required field
 	DimensionValueSource *string `type:"string" required:"true" enum:"DimensionValueSource"`
@@ -9086,7 +9090,7 @@ func (s *ContactList) SetLastUpdatedTimestamp(v time.Time) *ContactList {
 type ContactListDestination struct {
 	_ struct{} `type:"structure"`
 
-	// >The type of action that you want to perform on the addresses. Acceptable
+	// >The type of action to perform on the addresses. The following are the possible
 	// values:
 	//
 	//    * PUT: add the addresses to the contact list. If the record already exists,
@@ -9213,8 +9217,7 @@ func (s *Content) SetData(v string) *Content {
 type CreateConfigurationSetEventDestinationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to add an event destination
-	// to.
+	// The name of the configuration set .
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
@@ -9321,7 +9324,8 @@ func (s CreateConfigurationSetEventDestinationOutput) GoString() string {
 type CreateConfigurationSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set.
+	// The name of the configuration set. The name can contain up to 64 alphanumeric
+	// characters, including letters, numbers, hyphens (-) and underscores (_) only.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `type:"string" required:"true"`
@@ -9342,8 +9346,8 @@ type CreateConfigurationSetInput struct {
 	// for your account.
 	SuppressionOptions *SuppressionOptions `type:"structure"`
 
-	// An array of objects that define the tags (keys and values) that you want
-	// to associate with the configuration set.
+	// An array of objects that define the tags (keys and values) to associate with
+	// the configuration set.
 	Tags []*Tag `type:"list"`
 
 	// An object that defines the open and click tracking options for emails that
@@ -10109,20 +10113,20 @@ type CreateEmailIdentityInput struct {
 	ConfigurationSetName *string `type:"string"`
 
 	// If your request includes this object, Amazon SES configures the identity
-	// to use Bring Your Own DKIM (BYODKIM) for DKIM authentication purposes, as
-	// opposed to the default method, Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
+	// to use Bring Your Own DKIM (BYODKIM) for DKIM authentication purposes, or,
+	// configures the key length to be used for Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
 	//
 	// You can only specify this object if the email identity is a domain, as opposed
 	// to an address.
 	DkimSigningAttributes *DkimSigningAttributes `type:"structure"`
 
-	// The email address or domain that you want to verify.
+	// The email address or domain to verify.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `min:"1" type:"string" required:"true"`
 
-	// An array of objects that define the tags (keys and values) that you want
-	// to associate with the email identity.
+	// An array of objects that define the tags (keys and values) to associate with
+	// the email identity.
 	Tags []*Tag `type:"list"`
 }
 
@@ -10209,7 +10213,7 @@ type CreateEmailIdentityOutput struct {
 	// An object that contains information about the DKIM attributes for the identity.
 	DkimAttributes *DkimAttributes `type:"structure"`
 
-	// The email identity type.
+	// The email identity type. Note: the MANAGED_DOMAIN identity type is not supported.
 	IdentityType *string `type:"string" enum:"IdentityType"`
 
 	// Specifies whether or not the identity is verified. You can only send email
@@ -10261,7 +10265,7 @@ func (s *CreateEmailIdentityOutput) SetVerifiedForSendingStatus(v bool) *CreateE
 type CreateEmailIdentityPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The email identity for which you want to create a policy.
+	// The email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -10382,7 +10386,7 @@ type CreateEmailTemplateInput struct {
 	// TemplateContent is a required field
 	TemplateContent *EmailTemplateContent `type:"structure" required:"true"`
 
-	// The name of the template you want to create.
+	// The name of the template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `min:"1" type:"string" required:"true"`
@@ -10772,13 +10776,13 @@ func (s *DedicatedIp) SetWarmupStatus(v string) *DedicatedIp {
 type DeleteConfigurationSetEventDestinationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that contains the event destination that
-	// you want to delete.
+	// The name of the configuration set that contains the event destination to
+	// delete.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
 
-	// The name of the event destination that you want to delete.
+	// The name of the event destination to delete.
 	//
 	// EventDestinationName is a required field
 	EventDestinationName *string `location:"uri" locationName:"EventDestinationName" type:"string" required:"true"`
@@ -10864,7 +10868,7 @@ func (s DeleteConfigurationSetEventDestinationOutput) GoString() string {
 type DeleteConfigurationSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to delete.
+	// The name of the configuration set.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
@@ -11248,7 +11252,7 @@ func (s DeleteDedicatedIpPoolOutput) GoString() string {
 type DeleteEmailIdentityInput struct {
 	_ struct{} `type:"structure"`
 
-	// The identity (that is, the email address or domain) that you want to delete.
+	// The identity (that is, the email address or domain) to delete.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -11325,7 +11329,7 @@ func (s DeleteEmailIdentityOutput) GoString() string {
 type DeleteEmailIdentityPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The email identity for which you want to delete a policy.
+	// The email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -11653,8 +11657,7 @@ func (s *DeliverabilityTestReport) SetSubject(v string) *DeliverabilityTestRepor
 type DeliveryOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the dedicated IP pool that you want to associate with the configuration
-	// set.
+	// The name of the dedicated IP pool to associate with the configuration set.
 	SendingPoolName *string `type:"string"`
 
 	// Specifies whether messages that use the configuration set are required to
@@ -11695,6 +11698,14 @@ func (s *DeliveryOptions) SetTlsPolicy(v string) *DeliveryOptions {
 }
 
 // An object that describes the recipients for an email.
+//
+// Amazon SES does not support the SMTPUTF8 extension, as described in RFC6531
+// (https://tools.ietf.org/html/rfc6531). For this reason, the local part of
+// a destination email address (the part of the email address that precedes
+// the @ sign) may only contain 7-bit ASCII characters (https://en.wikipedia.org/wiki/Email_address#Local-part).
+// If the domain part of an address (the part after the @ sign) contains non-ASCII
+// characters, they must be encoded using Punycode, as described in RFC3492
+// (https://tools.ietf.org/html/rfc3492.html).
 type Destination struct {
 	_ struct{} `type:"structure"`
 
@@ -11761,8 +11772,18 @@ func (s *Destination) SetToAddresses(v []*string) *Destination {
 type DkimAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// A string that indicates how DKIM was configured for the identity. There are
-	// two possible values:
+	// [Easy DKIM] The key length of the DKIM key pair in use.
+	CurrentSigningKeyLength *string `type:"string" enum:"DkimSigningKeyLength"`
+
+	// [Easy DKIM] The last time a key pair was generated for this identity.
+	LastKeyGenerationTimestamp *time.Time `type:"timestamp"`
+
+	// [Easy DKIM] The key length of the future DKIM key pair to be generated. This
+	// can be changed at most once per day.
+	NextSigningKeyLength *string `type:"string" enum:"DkimSigningKeyLength"`
+
+	// A string that indicates how DKIM was configured for the identity. These are
+	// the possible values:
 	//
 	//    * AWS_SES – Indicates that DKIM was configured for the identity by using
 	//    Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
@@ -11830,6 +11851,24 @@ func (s DkimAttributes) GoString() string {
 	return s.String()
 }
 
+// SetCurrentSigningKeyLength sets the CurrentSigningKeyLength field's value.
+func (s *DkimAttributes) SetCurrentSigningKeyLength(v string) *DkimAttributes {
+	s.CurrentSigningKeyLength = &v
+	return s
+}
+
+// SetLastKeyGenerationTimestamp sets the LastKeyGenerationTimestamp field's value.
+func (s *DkimAttributes) SetLastKeyGenerationTimestamp(v time.Time) *DkimAttributes {
+	s.LastKeyGenerationTimestamp = &v
+	return s
+}
+
+// SetNextSigningKeyLength sets the NextSigningKeyLength field's value.
+func (s *DkimAttributes) SetNextSigningKeyLength(v string) *DkimAttributes {
+	s.NextSigningKeyLength = &v
+	return s
+}
+
 // SetSigningAttributesOrigin sets the SigningAttributesOrigin field's value.
 func (s *DkimAttributes) SetSigningAttributesOrigin(v string) *DkimAttributes {
 	s.SigningAttributesOrigin = &v
@@ -11854,28 +11893,28 @@ func (s *DkimAttributes) SetTokens(v []*string) *DkimAttributes {
 	return s
 }
 
-// An object that contains information about the tokens used for setting up
-// Bring Your Own DKIM (BYODKIM).
+// An object that contains configuration for Bring Your Own DKIM (BYODKIM),
+// or, for Easy DKIM
 type DkimSigningAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// A private key that's used to generate a DKIM signature.
+	// [Bring Your Own DKIM] A private key that's used to generate a DKIM signature.
 	//
-	// The private key must use 1024-bit RSA encryption, and must be encoded using
-	// base64 encoding.
+	// The private key must use 1024 or 2048-bit RSA encryption, and must be encoded
+	// using base64 encoding.
 	//
 	// DomainSigningPrivateKey is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by DkimSigningAttributes's
 	// String and GoString methods.
-	//
-	// DomainSigningPrivateKey is a required field
-	DomainSigningPrivateKey *string `min:"1" type:"string" required:"true" sensitive:"true"`
+	DomainSigningPrivateKey *string `min:"1" type:"string" sensitive:"true"`
 
-	// A string that's used to identify a public key in the DNS configuration for
-	// a domain.
-	//
-	// DomainSigningSelector is a required field
-	DomainSigningSelector *string `min:"1" type:"string" required:"true"`
+	// [Bring Your Own DKIM] A string that's used to identify a public key in the
+	// DNS configuration for a domain.
+	DomainSigningSelector *string `min:"1" type:"string"`
+
+	// [Easy DKIM] The key length of the future DKIM key pair to be generated. This
+	// can be changed at most once per day.
+	NextSigningKeyLength *string `type:"string" enum:"DkimSigningKeyLength"`
 }
 
 // String returns the string representation.
@@ -11899,14 +11938,8 @@ func (s DkimSigningAttributes) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *DkimSigningAttributes) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "DkimSigningAttributes"}
-	if s.DomainSigningPrivateKey == nil {
-		invalidParams.Add(request.NewErrParamRequired("DomainSigningPrivateKey"))
-	}
 	if s.DomainSigningPrivateKey != nil && len(*s.DomainSigningPrivateKey) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainSigningPrivateKey", 1))
-	}
-	if s.DomainSigningSelector == nil {
-		invalidParams.Add(request.NewErrParamRequired("DomainSigningSelector"))
 	}
 	if s.DomainSigningSelector != nil && len(*s.DomainSigningSelector) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DomainSigningSelector", 1))
@@ -11927,6 +11960,12 @@ func (s *DkimSigningAttributes) SetDomainSigningPrivateKey(v string) *DkimSignin
 // SetDomainSigningSelector sets the DomainSigningSelector field's value.
 func (s *DkimSigningAttributes) SetDomainSigningSelector(v string) *DkimSigningAttributes {
 	s.DomainSigningSelector = &v
+	return s
+}
+
+// SetNextSigningKeyLength sets the NextSigningKeyLength field's value.
+func (s *DkimSigningAttributes) SetNextSigningKeyLength(v string) *DkimSigningAttributes {
+	s.NextSigningKeyLength = &v
 	return s
 }
 
@@ -12104,8 +12143,8 @@ func (s *DomainDeliverabilityCampaign) SetSubject(v string) *DomainDeliverabilit
 type DomainDeliverabilityTrackingOption struct {
 	_ struct{} `type:"structure"`
 
-	// A verified domain that’s associated with your AWS account and currently
-	// has an active Deliverability dashboard subscription.
+	// A verified domain that’s associated with your Amazon Web Services account
+	// and currently has an active Deliverability dashboard subscription.
 	Domain *string `type:"string"`
 
 	// An object that contains information about the inbox placement data settings
@@ -12712,7 +12751,7 @@ func (s GetAccountInput) GoString() string {
 }
 
 // A list of details about the email-sending capabilities of your Amazon SES
-// account in the current AWS Region.
+// account in the current Amazon Web Services Region.
 type GetAccountOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -12740,7 +12779,7 @@ type GetAccountOutput struct {
 	EnforcementStatus *string `type:"string"`
 
 	// Indicates whether or not your account has production access in the current
-	// AWS Region.
+	// Amazon Web Services Region.
 	//
 	// If the value is false, then your account is in the sandbox. When your account
 	// is in the sandbox, you can only send email to verified identities. Additionally,
@@ -12755,15 +12794,15 @@ type GetAccountOutput struct {
 	ProductionAccessEnabled *bool `type:"boolean"`
 
 	// An object that contains information about the per-day and per-second sending
-	// limits for your Amazon SES account in the current AWS Region.
+	// limits for your Amazon SES account in the current Amazon Web Services Region.
 	SendQuota *SendQuota `type:"structure"`
 
 	// Indicates whether or not email sending is enabled for your Amazon SES account
-	// in the current AWS Region.
+	// in the current Amazon Web Services Region.
 	SendingEnabled *bool `type:"boolean"`
 
 	// An object that contains information about the email address suppression preferences
-	// for your account in the current AWS Region.
+	// for your account in the current Amazon Web Services Region.
 	SuppressionAttributes *SuppressionAttributes `type:"structure"`
 }
 
@@ -13000,8 +13039,7 @@ func (s *GetConfigurationSetEventDestinationsOutput) SetEventDestinations(v []*E
 type GetConfigurationSetInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to obtain more information
-	// about.
+	// The name of the configuration set.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
@@ -13561,7 +13599,7 @@ type GetDedicatedIpInput struct {
 
 	// The IP address that you want to obtain more information about. The value
 	// you specify has to be a dedicated IP address that's assocaited with your
-	// AWS account.
+	// Amazon Web Services account.
 	//
 	// Ip is a required field
 	Ip *string `location:"uri" locationName:"IP" type:"string" required:"true"`
@@ -13694,11 +13732,12 @@ func (s *GetDedicatedIpsInput) SetPoolName(v string) *GetDedicatedIpsInput {
 }
 
 // Information about the dedicated IP addresses that are associated with your
-// AWS account.
+// Amazon Web Services account.
 type GetDedicatedIpsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of dedicated IP addresses that are associated with your AWS account.
+	// A list of dedicated IP addresses that are associated with your Amazon Web
+	// Services account.
 	DedicatedIps []*DedicatedIp `type:"list"`
 
 	// A token that indicates that there are additional dedicated IP addresses to
@@ -13738,14 +13777,16 @@ func (s *GetDedicatedIpsOutput) SetNextToken(v string) *GetDedicatedIpsOutput {
 }
 
 // Retrieve information about the status of the Deliverability dashboard for
-// your AWS account. When the Deliverability dashboard is enabled, you gain
-// access to reputation, deliverability, and other metrics for your domains.
-// You also gain the ability to perform predictive inbox placement tests.
+// your Amazon Web Services account. When the Deliverability dashboard is enabled,
+// you gain access to reputation, deliverability, and other metrics for your
+// domains. You also gain the ability to perform predictive inbox placement
+// tests.
 //
 // When you use the Deliverability dashboard, you pay a monthly subscription
 // charge, in addition to any other fees that you accrue by using Amazon SES
-// and other AWS services. For more information about the features and cost
-// of a Deliverability dashboard subscription, see Amazon Pinpoint Pricing (http://aws.amazon.com/pinpoint/pricing/).
+// and other Amazon Web Services services. For more information about the features
+// and cost of a Deliverability dashboard subscription, see Amazon Pinpoint
+// Pricing (http://aws.amazon.com/pinpoint/pricing/).
 type GetDeliverabilityDashboardOptionsInput struct {
 	_ struct{} `type:"structure"`
 }
@@ -14202,7 +14243,7 @@ func (s *GetDomainStatisticsReportOutput) SetOverallVolume(v *OverallVolume) *Ge
 type GetEmailIdentityInput struct {
 	_ struct{} `type:"structure"`
 
-	// The email identity that you want to retrieve details for.
+	// The email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -14270,7 +14311,7 @@ type GetEmailIdentityOutput struct {
 	// when these events occur (even if this setting is disabled).
 	FeedbackForwardingStatus *bool `type:"boolean"`
 
-	// The email identity type.
+	// The email identity type. Note: the MANAGED_DOMAIN identity type is not supported.
 	IdentityType *string `type:"string" enum:"IdentityType"`
 
 	// An object that contains information about the Mail-From attributes for the
@@ -14360,7 +14401,7 @@ func (s *GetEmailIdentityOutput) SetVerifiedForSendingStatus(v bool) *GetEmailId
 type GetEmailIdentityPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The email identity that you want to retrieve policies for.
+	// The email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -14443,7 +14484,7 @@ func (s *GetEmailIdentityPoliciesOutput) SetPolicies(v map[string]*string) *GetE
 type GetEmailTemplateInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the template you want to retrieve.
+	// The name of the template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"TemplateName" min:"1" type:"string" required:"true"`
@@ -14499,7 +14540,7 @@ type GetEmailTemplateOutput struct {
 	// TemplateContent is a required field
 	TemplateContent *EmailTemplateContent `type:"structure" required:"true"`
 
-	// The name of the template you want to retrieve.
+	// The name of the template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `min:"1" type:"string" required:"true"`
@@ -14784,13 +14825,8 @@ type IdentityInfo struct {
 	// The address or domain of the identity.
 	IdentityName *string `min:"1" type:"string"`
 
-	// The email identity type. The identity type can be one of the following:
-	//
-	//    * EMAIL_ADDRESS – The identity is an email address.
-	//
-	//    * DOMAIN – The identity is a domain.
-	//
-	//    * MANAGED_DOMAIN – The identity is a domain that is managed by AWS.
+	// The email identity type. Note: the MANAGED_DOMAIN type is not supported for
+	// email identity types.
 	IdentityType *string `type:"string" enum:"IdentityType"`
 
 	// Indicates whether or not you can send email from the identity.
@@ -15022,8 +15058,9 @@ func (s *ImportJobSummary) SetJobStatus(v string) *ImportJobSummary {
 }
 
 // An object that contains information about the inbox placement data settings
-// for a verified domain that’s associated with your AWS account. This data
-// is available only if you enabled the Deliverability dashboard for the domain.
+// for a verified domain that’s associated with your Amazon Web Services account.
+// This data is available only if you enabled the Deliverability dashboard for
+// the domain.
 type InboxPlacementTrackingOption struct {
 	_ struct{} `type:"structure"`
 
@@ -15301,7 +15338,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 // A request to obtain a list of configuration sets for your Amazon SES account
-// in the current AWS Region.
+// in the current Amazon Web Services Region.
 type ListConfigurationSetsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15346,13 +15383,13 @@ func (s *ListConfigurationSetsInput) SetPageSize(v int64) *ListConfigurationSets
 	return s
 }
 
-// A list of configuration sets in your Amazon SES account in the current AWS
-// Region.
+// A list of configuration sets in your Amazon SES account in the current Amazon
+// Web Services Region.
 type ListConfigurationSetsOutput struct {
 	_ struct{} `type:"structure"`
 
 	// An array that contains all of the configuration sets in your Amazon SES account
-	// in the current AWS Region.
+	// in the current Amazon Web Services Region.
 	ConfigurationSets []*string `type:"list"`
 
 	// A token that indicates that there are additional configuration sets to list.
@@ -15785,8 +15822,8 @@ func (s *ListDedicatedIpPoolsInput) SetPageSize(v int64) *ListDedicatedIpPoolsIn
 type ListDedicatedIpPoolsOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of all of the dedicated IP pools that are associated with your AWS
-	// account in the current Region.
+	// A list of all of the dedicated IP pools that are associated with your Amazon
+	// Web Services account in the current Region.
 	DedicatedIpPools []*string `type:"list"`
 
 	// A token that indicates that there are additional IP pools to list. To view
@@ -16076,10 +16113,10 @@ func (s *ListDomainDeliverabilityCampaignsOutput) SetNextToken(v string) *ListDo
 	return s
 }
 
-// A request to list all of the email identities associated with your AWS account.
-// This list includes identities that you've already verified, identities that
-// are unverified, and identities that were verified in the past, but are no
-// longer verified.
+// A request to list all of the email identities associated with your Amazon
+// Web Services account. This list includes identities that you've already verified,
+// identities that are unverified, and identities that were verified in the
+// past, but are no longer verified.
 type ListEmailIdentitiesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16131,8 +16168,8 @@ func (s *ListEmailIdentitiesInput) SetPageSize(v int64) *ListEmailIdentitiesInpu
 type ListEmailIdentitiesOutput struct {
 	_ struct{} `type:"structure"`
 
-	// An array that includes all of the email identities associated with your AWS
-	// account.
+	// An array that includes all of the email identities associated with your Amazon
+	// Web Services account.
 	EmailIdentities []*IdentityInfo `type:"list"`
 
 	// A token that indicates that there are additional configuration sets to list.
@@ -16172,8 +16209,8 @@ func (s *ListEmailIdentitiesOutput) SetNextToken(v string) *ListEmailIdentitiesO
 }
 
 // Represents a request to list the email templates present in your Amazon SES
-// account in the current AWS Region. For more information, see the Amazon SES
-// Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html).
+// account in the current Amazon Web Services Region. For more information,
+// see the Amazon SES Developer Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-personalized-email-api.html).
 type ListEmailTemplatesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -16628,11 +16665,11 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 type MailFromAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// The action that you want to take if the required MX record can't be found
-	// when you send an email. When you set this value to UseDefaultValue, the mail
-	// is sent using amazonses.com as the MAIL FROM domain. When you set this value
-	// to RejectMessage, the Amazon SES API v2 returns a MailFromDomainNotVerified
-	// error, and doesn't attempt to deliver the email.
+	// The action to take if the required MX record can't be found when you send
+	// an email. When you set this value to UseDefaultValue, the mail is sent using
+	// amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage,
+	// the Amazon SES API v2 returns a MailFromDomainNotVerified error, and doesn't
+	// attempt to deliver the email.
 	//
 	// These behaviors are taken when the custom MAIL FROM domain configuration
 	// is in the Pending, Failed, and TemporaryFailure states.
@@ -17101,8 +17138,8 @@ func (s *OverallVolume) SetVolumeStatistics(v *VolumeStatistics) *OverallVolume 
 type PinpointDestination struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon Pinpoint project that you want
-	// to send email events to.
+	// The Amazon Resource Name (ARN) of the Amazon Pinpoint project to send email
+	// events to.
 	ApplicationArn *string `type:"string"`
 }
 
@@ -17208,9 +17245,9 @@ type PutAccountDedicatedIpWarmupAttributesInput struct {
 	_ struct{} `type:"structure"`
 
 	// Enables or disables the automatic warm-up feature for dedicated IP addresses
-	// that are associated with your Amazon SES account in the current AWS Region.
-	// Set to true to enable the automatic warm-up feature, or set to false to disable
-	// it.
+	// that are associated with your Amazon SES account in the current Amazon Web
+	// Services Region. Set to true to enable the automatic warm-up feature, or
+	// set to false to disable it.
 	AutoWarmupEnabled *bool `type:"boolean"`
 }
 
@@ -17283,7 +17320,7 @@ type PutAccountDetailsInput struct {
 	MailType *string `type:"string" required:"true" enum:"MailType"`
 
 	// Indicates whether or not your account should have production access in the
-	// current AWS Region.
+	// current Amazon Web Services Region.
 	//
 	// If the value is false, then your account is in the sandbox. When your account
 	// is in the sandbox, you can only send email to verified identities. Additionally,
@@ -17430,8 +17467,8 @@ type PutAccountSendingAttributesInput struct {
 	// Enables or disables your account's ability to send email. Set to true to
 	// enable email sending, or set to false to disable email sending.
 	//
-	// If AWS paused your account's ability to send email, you can't use this operation
-	// to resume your account's ability to send email.
+	// If Amazon Web Services paused your account's ability to send email, you can't
+	// use this operation to resume your account's ability to send email.
 	SendingEnabled *bool `type:"boolean"`
 }
 
@@ -17552,14 +17589,12 @@ func (s PutAccountSuppressionAttributesOutput) GoString() string {
 type PutConfigurationSetDeliveryOptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to associate with a dedicated
-	// IP pool.
+	// The name of the configuration set to associate with a dedicated IP pool.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
 
-	// The name of the dedicated IP pool that you want to associate with the configuration
-	// set.
+	// The name of the dedicated IP pool to associate with the configuration set.
 	SendingPoolName *string `type:"string"`
 
 	// Specifies whether messages that use the configuration set are required to
@@ -17650,8 +17685,7 @@ func (s PutConfigurationSetDeliveryOptionsOutput) GoString() string {
 type PutConfigurationSetReputationOptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to enable or disable reputation
-	// metric tracking for.
+	// The name of the configuration set.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
@@ -17737,8 +17771,7 @@ func (s PutConfigurationSetReputationOptionsOutput) GoString() string {
 type PutConfigurationSetSendingOptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to enable or disable email
-	// sending for.
+	// The name of the configuration set to enable or disable email sending for.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
@@ -17823,8 +17856,8 @@ func (s PutConfigurationSetSendingOptionsOutput) GoString() string {
 type PutConfigurationSetSuppressionOptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to change the suppression
-	// list preferences for.
+	// The name of the configuration set to change the suppression list preferences
+	// for.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
@@ -17917,13 +17950,12 @@ func (s PutConfigurationSetSuppressionOptionsOutput) GoString() string {
 type PutConfigurationSetTrackingOptionsInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to add a custom tracking
-	// domain to.
+	// The name of the configuration set.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
 
-	// The domain that you want to use to track open and click events.
+	// The domain to use to track open and click events.
 	CustomRedirectDomain *string `type:"string"`
 }
 
@@ -18009,7 +18041,7 @@ type PutDedicatedIpInPoolInput struct {
 
 	// The IP address that you want to move to the dedicated IP pool. The value
 	// you specify has to be a dedicated IP address that's associated with your
-	// AWS account.
+	// Amazon Web Services account.
 	//
 	// Ip is a required field
 	Ip *string `location:"uri" locationName:"IP" type:"string" required:"true"`
@@ -18185,8 +18217,9 @@ func (s PutDedicatedIpWarmupAttributesOutput) GoString() string {
 //
 // When you use the Deliverability dashboard, you pay a monthly subscription
 // charge, in addition to any other fees that you accrue by using Amazon SES
-// and other AWS services. For more information about the features and cost
-// of a Deliverability dashboard subscription, see Amazon Pinpoint Pricing (http://aws.amazon.com/pinpoint/pricing/).
+// and other Amazon Web Services services. For more information about the features
+// and cost of a Deliverability dashboard subscription, see Amazon Pinpoint
+// Pricing (http://aws.amazon.com/pinpoint/pricing/).
 type PutDeliverabilityDashboardOptionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18271,11 +18304,10 @@ func (s PutDeliverabilityDashboardOptionOutput) GoString() string {
 type PutEmailIdentityConfigurationSetAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The configuration set that you want to associate with an email identity.
+	// The configuration set to associate with an email identity.
 	ConfigurationSetName *string `type:"string"`
 
-	// The email address or domain that you want to associate with a configuration
-	// set.
+	// The email address or domain to associate with a configuration set.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -18356,7 +18388,7 @@ func (s PutEmailIdentityConfigurationSetAttributesOutput) GoString() string {
 type PutEmailIdentityDkimAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The email identity that you want to change the DKIM settings for.
+	// The email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -18443,18 +18475,19 @@ func (s PutEmailIdentityDkimAttributesOutput) GoString() string {
 type PutEmailIdentityDkimSigningAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The email identity that you want to configure DKIM for.
+	// The email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
 
 	// An object that contains information about the private key and selector that
-	// you want to use to configure DKIM for the identity. This object is only required
-	// if you want to configure Bring Your Own DKIM (BYODKIM) for the identity.
+	// you want to use to configure DKIM for the identity for Bring Your Own DKIM
+	// (BYODKIM) for the identity, or, configures the key length to be used for
+	// Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
 	SigningAttributes *DkimSigningAttributes `type:"structure"`
 
-	// The method that you want to use to configure DKIM for the identity. There
-	// are two possible values:
+	// The method to use to configure DKIM for the identity. There are the following
+	// possible values:
 	//
 	//    * AWS_SES – Configure DKIM for the identity by using Easy DKIM (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/easy-dkim.html).
 	//
@@ -18624,8 +18657,7 @@ type PutEmailIdentityFeedbackAttributesInput struct {
 	// when these events occur (even if this setting is disabled).
 	EmailForwardingEnabled *bool `type:"boolean"`
 
-	// The email identity that you want to configure bounce and complaint feedback
-	// forwarding for.
+	// The email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -18705,18 +18737,17 @@ func (s PutEmailIdentityFeedbackAttributesOutput) GoString() string {
 type PutEmailIdentityMailFromAttributesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The action that you want to take if the required MX record isn't found when
-	// you send an email. When you set this value to UseDefaultValue, the mail is
-	// sent using amazonses.com as the MAIL FROM domain. When you set this value
-	// to RejectMessage, the Amazon SES API v2 returns a MailFromDomainNotVerified
-	// error, and doesn't attempt to deliver the email.
+	// The action to take if the required MX record isn't found when you send an
+	// email. When you set this value to UseDefaultValue, the mail is sent using
+	// amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage,
+	// the Amazon SES API v2 returns a MailFromDomainNotVerified error, and doesn't
+	// attempt to deliver the email.
 	//
 	// These behaviors are taken when the custom MAIL FROM domain configuration
 	// is in the Pending, Failed, and TemporaryFailure states.
 	BehaviorOnMxFailure *string `type:"string" enum:"BehaviorOnMxFailure"`
 
-	// The verified email identity that you want to set up the custom MAIL FROM
-	// domain for.
+	// The verified email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -19030,7 +19061,7 @@ func (s *ReplacementTemplate) SetReplacementTemplateData(v string) *ReplacementT
 }
 
 // Enable or disable collection of reputation metrics for emails that you send
-// using this configuration set in the current AWS Region.
+// using this configuration set in the current Amazon Web Services Region.
 type ReputationOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -19139,7 +19170,7 @@ type SendBulkEmailInput struct {
 	// BulkEmailEntries is a required field
 	BulkEmailEntries []*BulkEmailEntry `type:"list" required:"true"`
 
-	// The name of the configuration set that you want to use when sending the email.
+	// The name of the configuration set to use when sending the email.
 	ConfigurationSetName *string `type:"string"`
 
 	// An object that contains the body of the message. You can specify a template
@@ -19171,8 +19202,8 @@ type SendBulkEmailInput struct {
 	// Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 	FeedbackForwardingEmailAddressIdentityArn *string `type:"string"`
 
-	// The email address that you want to use as the "From" address for the email.
-	// The address that you specify has to be verified.
+	// The email address to use as the "From" address for the email. The address
+	// that you specify has to be verified.
 	FromEmailAddress *string `type:"string"`
 
 	// This parameter is used only for sending authorization. It is the ARN of the
@@ -19310,7 +19341,8 @@ func (s *SendBulkEmailInput) SetReplyToAddresses(v []*string) *SendBulkEmailInpu
 type SendBulkEmailOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of BulkMailEntry objects.
+	// One object per intended recipient. Check each response object and retry any
+	// messages with a failure status.
 	//
 	// BulkEmailEntryResults is a required field
 	BulkEmailEntryResults []*BulkEmailEntryResult `type:"list" required:"true"`
@@ -19452,7 +19484,7 @@ func (s *SendCustomVerificationEmailOutput) SetMessageId(v string) *SendCustomVe
 type SendEmailInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that you want to use when sending the email.
+	// The name of the configuration set to use when sending the email.
 	ConfigurationSetName *string `type:"string"`
 
 	// An object that contains the body of the message. You can send either a Simple
@@ -19487,8 +19519,8 @@ type SendEmailInput struct {
 	// Guide (https://docs.aws.amazon.com/ses/latest/DeveloperGuide/sending-authorization.html).
 	FeedbackForwardingEmailAddressIdentityArn *string `type:"string"`
 
-	// The email address that you want to use as the "From" address for the email.
-	// The address that you specify has to be verified.
+	// The email address to use as the "From" address for the email. The address
+	// that you specify has to be verified.
 	FromEmailAddress *string `type:"string"`
 
 	// This parameter is used only for sending authorization. It is the ARN of the
@@ -19666,21 +19698,22 @@ func (s *SendEmailOutput) SetMessageId(v string) *SendEmailOutput {
 }
 
 // An object that contains information about the per-day and per-second sending
-// limits for your Amazon SES account in the current AWS Region.
+// limits for your Amazon SES account in the current Amazon Web Services Region.
 type SendQuota struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of emails that you can send in the current AWS Region
-	// over a 24-hour period. This value is also called your sending quota.
+	// The maximum number of emails that you can send in the current Amazon Web
+	// Services Region over a 24-hour period. This value is also called your sending
+	// quota.
 	Max24HourSend *float64 `type:"double"`
 
 	// The maximum number of emails that you can send per second in the current
-	// AWS Region. This value is also called your maximum sending rate or your maximum
-	// TPS (transactions per second) rate.
+	// Amazon Web Services Region. This value is also called your maximum sending
+	// rate or your maximum TPS (transactions per second) rate.
 	MaxSendRate *float64 `type:"double"`
 
-	// The number of emails sent from your Amazon SES account in the current AWS
-	// Region over the past 24 hours.
+	// The number of emails sent from your Amazon SES account in the current Amazon
+	// Web Services Region over the past 24 hours.
 	SentLast24Hours *float64 `type:"double"`
 }
 
@@ -19721,7 +19754,7 @@ func (s *SendQuota) SetSentLast24Hours(v float64) *SendQuota {
 }
 
 // Used to enable or disable email sending for messages that use this configuration
-// set in the current AWS Region.
+// set in the current Amazon Web Services Region.
 type SendingOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -19824,9 +19857,9 @@ func (s *SendingPausedException) RequestID() string {
 type SnsDestination struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the Amazon SNS topic that you want to publish
-	// email events to. For more information about Amazon SNS topics, see the Amazon
-	// SNS Developer Guide (https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
+	// The Amazon Resource Name (ARN) of the Amazon SNS topic to publish email events
+	// to. For more information about Amazon SNS topics, see the Amazon SNS Developer
+	// Guide (https://docs.aws.amazon.com/sns/latest/dg/CreateTopic.html).
 	//
 	// TopicArn is a required field
 	TopicArn *string `type:"string" required:"true"`
@@ -20039,7 +20072,7 @@ func (s *SuppressedDestinationSummary) SetReason(v string) *SuppressedDestinatio
 }
 
 // An object that contains information about the email address suppression preferences
-// for your account in the current AWS Region.
+// for your account in the current Amazon Web Services Region.
 type SuppressionAttributes struct {
 	_ struct{} `type:"structure"`
 
@@ -20084,7 +20117,8 @@ func (s *SuppressionAttributes) SetSuppressedReasons(v []*string) *SuppressionAt
 type SuppressionListDestination struct {
 	_ struct{} `type:"structure"`
 
-	// The type of action that you want to perform on the address. Acceptable values:
+	// The type of action to perform on the address. The following are possible
+	// values:
 	//
 	//    * PUT: add the addresses to the suppression list. If the record already
 	//    exists, it will override it with the new value.
@@ -20193,15 +20227,16 @@ func (s *SuppressionOptions) SetSuppressedReasons(v []*string) *SuppressionOptio
 //    * For each associated resource, each tag key must be unique and it can
 //    have only one value.
 //
-//    * The aws: prefix is reserved for use by AWS; you can’t use it in any
-//    tag keys or values that you define. In addition, you can't edit or remove
-//    tag keys or values that use this prefix. Tags that use this prefix don’t
-//    count against the limit of 50 tags per resource.
+//    * The aws: prefix is reserved for use by Amazon Web Services; you can’t
+//    use it in any tag keys or values that you define. In addition, you can't
+//    edit or remove tag keys or values that use this prefix. Tags that use
+//    this prefix don’t count against the limit of 50 tags per resource.
 //
 //    * You can associate tags with public or shared resources, but the tags
-//    are available only for your AWS account, not any other accounts that share
-//    the resource. In addition, the tags are available only for resources that
-//    are located in the specified AWS Region for your AWS account.
+//    are available only for your Amazon Web Services account, not any other
+//    accounts that share the resource. In addition, the tags are available
+//    only for resources that are located in the specified Amazon Web Services
+//    Region for your Amazon Web Services account.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -20445,7 +20480,7 @@ type TestRenderEmailTemplateInput struct {
 	// TemplateData is a required field
 	TemplateData *string `type:"string" required:"true"`
 
-	// The name of the template that you want to render.
+	// The name of the template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"TemplateName" min:"1" type:"string" required:"true"`
@@ -20794,13 +20829,13 @@ func (s *TopicPreference) SetTopicName(v string) *TopicPreference {
 // contains links, those links are changed slightly in order to track when recipients
 // click them.
 //
-// These images and links include references to a domain operated by AWS. You
-// can optionally configure the Amazon SES to use a domain that you operate
-// for these images and links.
+// These images and links include references to a domain operated by Amazon
+// Web Services. You can optionally configure the Amazon SES to use a domain
+// that you operate for these images and links.
 type TrackingOptions struct {
 	_ struct{} `type:"structure"`
 
-	// The domain that you want to use for tracking open and click events.
+	// The domain to use for tracking open and click events.
 	//
 	// CustomRedirectDomain is a required field
 	CustomRedirectDomain *string `type:"string" required:"true"`
@@ -20936,8 +20971,8 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateConfigurationSetEventDestinationInput struct {
 	_ struct{} `type:"structure"`
 
-	// The name of the configuration set that contains the event destination that
-	// you want to modify.
+	// The name of the configuration set that contains the event destination to
+	// modify.
 	//
 	// ConfigurationSetName is a required field
 	ConfigurationSetName *string `location:"uri" locationName:"ConfigurationSetName" type:"string" required:"true"`
@@ -20947,7 +20982,7 @@ type UpdateConfigurationSetEventDestinationInput struct {
 	// EventDestination is a required field
 	EventDestination *EventDestinationDefinition `type:"structure" required:"true"`
 
-	// The name of the event destination that you want to modify.
+	// The name of the event destination.
 	//
 	// EventDestinationName is a required field
 	EventDestinationName *string `location:"uri" locationName:"EventDestinationName" type:"string" required:"true"`
@@ -21426,7 +21461,7 @@ func (s UpdateCustomVerificationEmailTemplateOutput) GoString() string {
 type UpdateEmailIdentityPolicyInput struct {
 	_ struct{} `type:"structure"`
 
-	// The email identity for which you want to update policy.
+	// The email identity.
 	//
 	// EmailIdentity is a required field
 	EmailIdentity *string `location:"uri" locationName:"EmailIdentity" min:"1" type:"string" required:"true"`
@@ -21547,7 +21582,7 @@ type UpdateEmailTemplateInput struct {
 	// TemplateContent is a required field
 	TemplateContent *EmailTemplateContent `type:"structure" required:"true"`
 
-	// The name of the template you want to update.
+	// The name of the template.
 	//
 	// TemplateName is a required field
 	TemplateName *string `location:"uri" locationName:"TemplateName" min:"1" type:"string" required:"true"`
@@ -21689,11 +21724,11 @@ func (s *VolumeStatistics) SetSpamRawCount(v int64) *VolumeStatistics {
 	return s
 }
 
-// The action that you want to take if the required MX record can't be found
-// when you send an email. When you set this value to UseDefaultValue, the mail
-// is sent using amazonses.com as the MAIL FROM domain. When you set this value
-// to RejectMessage, the Amazon SES API v2 returns a MailFromDomainNotVerified
-// error, and doesn't attempt to deliver the email.
+// The action to take if the required MX record can't be found when you send
+// an email. When you set this value to UseDefaultValue, the mail is sent using
+// amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage,
+// the Amazon SES API v2 returns a MailFromDomainNotVerified error, and doesn't
+// attempt to deliver the email.
 //
 // These behaviors are taken when the custom MAIL FROM domain configuration
 // is in the Pending, Failed, and TemporaryFailure states.
@@ -21871,10 +21906,10 @@ func DeliverabilityTestStatus_Values() []string {
 }
 
 // The location where the Amazon SES API v2 finds the value of a dimension to
-// publish to Amazon CloudWatch. If you want to use the message tags that you
-// specify using an X-SES-MESSAGE-TAGS header or a parameter to the SendEmail
-// or SendRawEmail API, choose messageTag. If you want to use your own email
-// headers, choose emailHeader. If you want to use link tags, choose linkTags.
+// publish to Amazon CloudWatch. To use the message tags that you specify using
+// an X-SES-MESSAGE-TAGS header or a parameter to the SendEmail or SendRawEmail
+// API, choose messageTag. To use your own email headers, choose emailHeader.
+// To use link tags, choose linkTags.
 const (
 	// DimensionValueSourceMessageTag is a DimensionValueSource enum value
 	DimensionValueSourceMessageTag = "MESSAGE_TAG"
@@ -21908,6 +21943,22 @@ func DkimSigningAttributesOrigin_Values() []string {
 	return []string{
 		DkimSigningAttributesOriginAwsSes,
 		DkimSigningAttributesOriginExternal,
+	}
+}
+
+const (
+	// DkimSigningKeyLengthRsa1024Bit is a DkimSigningKeyLength enum value
+	DkimSigningKeyLengthRsa1024Bit = "RSA_1024_BIT"
+
+	// DkimSigningKeyLengthRsa2048Bit is a DkimSigningKeyLength enum value
+	DkimSigningKeyLengthRsa2048Bit = "RSA_2048_BIT"
+)
+
+// DkimSigningKeyLength_Values returns all elements of the DkimSigningKeyLength enum
+func DkimSigningKeyLength_Values() []string {
+	return []string{
+		DkimSigningKeyLengthRsa1024Bit,
+		DkimSigningKeyLengthRsa2048Bit,
 	}
 }
 
@@ -22006,11 +22057,6 @@ func EventType_Values() []string {
 	}
 }
 
-// The email identity type. The identity type can be one of the following:
-//
-//    * EMAIL_ADDRESS – The identity is an email address.
-//
-//    * DOMAIN – The identity is a domain.
 const (
 	// IdentityTypeEmailAddress is a IdentityType enum value
 	IdentityTypeEmailAddress = "EMAIL_ADDRESS"
@@ -22166,7 +22212,8 @@ func SubscriptionStatus_Values() []string {
 	}
 }
 
-// The type of action that you want to perform on the address. Acceptable values:
+// The type of action to perform on the address. The following are possible
+// values:
 //
 //    * PUT: add the addresses to the suppression list.
 //

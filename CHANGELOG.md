@@ -1,3 +1,12 @@
+Release v1.40.52 (2021-09-29)
+===
+
+### Service Client Updates
+* `service/amp`: Updates service API, documentation, waiters, and paginators
+* `service/lambda`: Updates service API and documentation
+  * Adds support for Lambda functions powered by AWS Graviton2 processors. Customers can now select the CPU architecture for their functions.
+* `service/sesv2`: Updates service API and documentation
+
 Release v1.40.51 (2021-09-28)
 ===
 
