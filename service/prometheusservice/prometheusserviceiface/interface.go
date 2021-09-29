@@ -26,7 +26,7 @@ import (
 //    // myFunc uses an SDK service client to make a request to
 //    // Amazon Prometheus Service.
 //    func myFunc(svc prometheusserviceiface.PrometheusServiceAPI) bool {
-//        // Make svc.CreateWorkspace request
+//        // Make svc.CreateAlertManagerDefinition request
 //    }
 //
 //    func main() {
@@ -42,7 +42,7 @@ import (
 //    type mockPrometheusServiceClient struct {
 //        prometheusserviceiface.PrometheusServiceAPI
 //    }
-//    func (m *mockPrometheusServiceClient) CreateWorkspace(input *prometheusservice.CreateWorkspaceInput) (*prometheusservice.CreateWorkspaceOutput, error) {
+//    func (m *mockPrometheusServiceClient) CreateAlertManagerDefinition(input *prometheusservice.CreateAlertManagerDefinitionInput) (*prometheusservice.CreateAlertManagerDefinitionOutput, error) {
 //        // mock response/functionality
 //    }
 //
@@ -60,17 +60,48 @@ import (
 // and waiters. Its suggested to use the pattern above for testing, or using
 // tooling to generate mocks to satisfy the interfaces.
 type PrometheusServiceAPI interface {
+	CreateAlertManagerDefinition(*prometheusservice.CreateAlertManagerDefinitionInput) (*prometheusservice.CreateAlertManagerDefinitionOutput, error)
+	CreateAlertManagerDefinitionWithContext(aws.Context, *prometheusservice.CreateAlertManagerDefinitionInput, ...request.Option) (*prometheusservice.CreateAlertManagerDefinitionOutput, error)
+	CreateAlertManagerDefinitionRequest(*prometheusservice.CreateAlertManagerDefinitionInput) (*request.Request, *prometheusservice.CreateAlertManagerDefinitionOutput)
+
+	CreateRuleGroupsNamespace(*prometheusservice.CreateRuleGroupsNamespaceInput) (*prometheusservice.CreateRuleGroupsNamespaceOutput, error)
+	CreateRuleGroupsNamespaceWithContext(aws.Context, *prometheusservice.CreateRuleGroupsNamespaceInput, ...request.Option) (*prometheusservice.CreateRuleGroupsNamespaceOutput, error)
+	CreateRuleGroupsNamespaceRequest(*prometheusservice.CreateRuleGroupsNamespaceInput) (*request.Request, *prometheusservice.CreateRuleGroupsNamespaceOutput)
+
 	CreateWorkspace(*prometheusservice.CreateWorkspaceInput) (*prometheusservice.CreateWorkspaceOutput, error)
 	CreateWorkspaceWithContext(aws.Context, *prometheusservice.CreateWorkspaceInput, ...request.Option) (*prometheusservice.CreateWorkspaceOutput, error)
 	CreateWorkspaceRequest(*prometheusservice.CreateWorkspaceInput) (*request.Request, *prometheusservice.CreateWorkspaceOutput)
+
+	DeleteAlertManagerDefinition(*prometheusservice.DeleteAlertManagerDefinitionInput) (*prometheusservice.DeleteAlertManagerDefinitionOutput, error)
+	DeleteAlertManagerDefinitionWithContext(aws.Context, *prometheusservice.DeleteAlertManagerDefinitionInput, ...request.Option) (*prometheusservice.DeleteAlertManagerDefinitionOutput, error)
+	DeleteAlertManagerDefinitionRequest(*prometheusservice.DeleteAlertManagerDefinitionInput) (*request.Request, *prometheusservice.DeleteAlertManagerDefinitionOutput)
+
+	DeleteRuleGroupsNamespace(*prometheusservice.DeleteRuleGroupsNamespaceInput) (*prometheusservice.DeleteRuleGroupsNamespaceOutput, error)
+	DeleteRuleGroupsNamespaceWithContext(aws.Context, *prometheusservice.DeleteRuleGroupsNamespaceInput, ...request.Option) (*prometheusservice.DeleteRuleGroupsNamespaceOutput, error)
+	DeleteRuleGroupsNamespaceRequest(*prometheusservice.DeleteRuleGroupsNamespaceInput) (*request.Request, *prometheusservice.DeleteRuleGroupsNamespaceOutput)
 
 	DeleteWorkspace(*prometheusservice.DeleteWorkspaceInput) (*prometheusservice.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceWithContext(aws.Context, *prometheusservice.DeleteWorkspaceInput, ...request.Option) (*prometheusservice.DeleteWorkspaceOutput, error)
 	DeleteWorkspaceRequest(*prometheusservice.DeleteWorkspaceInput) (*request.Request, *prometheusservice.DeleteWorkspaceOutput)
 
+	DescribeAlertManagerDefinition(*prometheusservice.DescribeAlertManagerDefinitionInput) (*prometheusservice.DescribeAlertManagerDefinitionOutput, error)
+	DescribeAlertManagerDefinitionWithContext(aws.Context, *prometheusservice.DescribeAlertManagerDefinitionInput, ...request.Option) (*prometheusservice.DescribeAlertManagerDefinitionOutput, error)
+	DescribeAlertManagerDefinitionRequest(*prometheusservice.DescribeAlertManagerDefinitionInput) (*request.Request, *prometheusservice.DescribeAlertManagerDefinitionOutput)
+
+	DescribeRuleGroupsNamespace(*prometheusservice.DescribeRuleGroupsNamespaceInput) (*prometheusservice.DescribeRuleGroupsNamespaceOutput, error)
+	DescribeRuleGroupsNamespaceWithContext(aws.Context, *prometheusservice.DescribeRuleGroupsNamespaceInput, ...request.Option) (*prometheusservice.DescribeRuleGroupsNamespaceOutput, error)
+	DescribeRuleGroupsNamespaceRequest(*prometheusservice.DescribeRuleGroupsNamespaceInput) (*request.Request, *prometheusservice.DescribeRuleGroupsNamespaceOutput)
+
 	DescribeWorkspace(*prometheusservice.DescribeWorkspaceInput) (*prometheusservice.DescribeWorkspaceOutput, error)
 	DescribeWorkspaceWithContext(aws.Context, *prometheusservice.DescribeWorkspaceInput, ...request.Option) (*prometheusservice.DescribeWorkspaceOutput, error)
 	DescribeWorkspaceRequest(*prometheusservice.DescribeWorkspaceInput) (*request.Request, *prometheusservice.DescribeWorkspaceOutput)
+
+	ListRuleGroupsNamespaces(*prometheusservice.ListRuleGroupsNamespacesInput) (*prometheusservice.ListRuleGroupsNamespacesOutput, error)
+	ListRuleGroupsNamespacesWithContext(aws.Context, *prometheusservice.ListRuleGroupsNamespacesInput, ...request.Option) (*prometheusservice.ListRuleGroupsNamespacesOutput, error)
+	ListRuleGroupsNamespacesRequest(*prometheusservice.ListRuleGroupsNamespacesInput) (*request.Request, *prometheusservice.ListRuleGroupsNamespacesOutput)
+
+	ListRuleGroupsNamespacesPages(*prometheusservice.ListRuleGroupsNamespacesInput, func(*prometheusservice.ListRuleGroupsNamespacesOutput, bool) bool) error
+	ListRuleGroupsNamespacesPagesWithContext(aws.Context, *prometheusservice.ListRuleGroupsNamespacesInput, func(*prometheusservice.ListRuleGroupsNamespacesOutput, bool) bool, ...request.Option) error
 
 	ListTagsForResource(*prometheusservice.ListTagsForResourceInput) (*prometheusservice.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *prometheusservice.ListTagsForResourceInput, ...request.Option) (*prometheusservice.ListTagsForResourceOutput, error)
@@ -83,6 +114,14 @@ type PrometheusServiceAPI interface {
 	ListWorkspacesPages(*prometheusservice.ListWorkspacesInput, func(*prometheusservice.ListWorkspacesOutput, bool) bool) error
 	ListWorkspacesPagesWithContext(aws.Context, *prometheusservice.ListWorkspacesInput, func(*prometheusservice.ListWorkspacesOutput, bool) bool, ...request.Option) error
 
+	PutAlertManagerDefinition(*prometheusservice.PutAlertManagerDefinitionInput) (*prometheusservice.PutAlertManagerDefinitionOutput, error)
+	PutAlertManagerDefinitionWithContext(aws.Context, *prometheusservice.PutAlertManagerDefinitionInput, ...request.Option) (*prometheusservice.PutAlertManagerDefinitionOutput, error)
+	PutAlertManagerDefinitionRequest(*prometheusservice.PutAlertManagerDefinitionInput) (*request.Request, *prometheusservice.PutAlertManagerDefinitionOutput)
+
+	PutRuleGroupsNamespace(*prometheusservice.PutRuleGroupsNamespaceInput) (*prometheusservice.PutRuleGroupsNamespaceOutput, error)
+	PutRuleGroupsNamespaceWithContext(aws.Context, *prometheusservice.PutRuleGroupsNamespaceInput, ...request.Option) (*prometheusservice.PutRuleGroupsNamespaceOutput, error)
+	PutRuleGroupsNamespaceRequest(*prometheusservice.PutRuleGroupsNamespaceInput) (*request.Request, *prometheusservice.PutRuleGroupsNamespaceOutput)
+
 	TagResource(*prometheusservice.TagResourceInput) (*prometheusservice.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *prometheusservice.TagResourceInput, ...request.Option) (*prometheusservice.TagResourceOutput, error)
 	TagResourceRequest(*prometheusservice.TagResourceInput) (*request.Request, *prometheusservice.TagResourceOutput)
@@ -94,6 +133,12 @@ type PrometheusServiceAPI interface {
 	UpdateWorkspaceAlias(*prometheusservice.UpdateWorkspaceAliasInput) (*prometheusservice.UpdateWorkspaceAliasOutput, error)
 	UpdateWorkspaceAliasWithContext(aws.Context, *prometheusservice.UpdateWorkspaceAliasInput, ...request.Option) (*prometheusservice.UpdateWorkspaceAliasOutput, error)
 	UpdateWorkspaceAliasRequest(*prometheusservice.UpdateWorkspaceAliasInput) (*request.Request, *prometheusservice.UpdateWorkspaceAliasOutput)
+
+	WaitUntilWorkspaceActive(*prometheusservice.DescribeWorkspaceInput) error
+	WaitUntilWorkspaceActiveWithContext(aws.Context, *prometheusservice.DescribeWorkspaceInput, ...request.WaiterOption) error
+
+	WaitUntilWorkspaceDeleted(*prometheusservice.DescribeWorkspaceInput) error
+	WaitUntilWorkspaceDeletedWithContext(aws.Context, *prometheusservice.DescribeWorkspaceInput, ...request.WaiterOption) error
 }
 
 var _ PrometheusServiceAPI = (*prometheusservice.PrometheusService)(nil)

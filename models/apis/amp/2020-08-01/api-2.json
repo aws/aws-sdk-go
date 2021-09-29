@@ -12,6 +12,46 @@
     "uid":"amp-2020-08-01"
   },
   "operations":{
+    "CreateAlertManagerDefinition":{
+      "name":"CreateAlertManagerDefinition",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workspaces/{workspaceId}/alertmanager/definition",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateAlertManagerDefinitionRequest"},
+      "output":{"shape":"CreateAlertManagerDefinitionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
+    "CreateRuleGroupsNamespace":{
+      "name":"CreateRuleGroupsNamespace",
+      "http":{
+        "method":"POST",
+        "requestUri":"/workspaces/{workspaceId}/rulegroupsnamespaces",
+        "responseCode":202
+      },
+      "input":{"shape":"CreateRuleGroupsNamespaceRequest"},
+      "output":{"shape":"CreateRuleGroupsNamespaceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
     "CreateWorkspace":{
       "name":"CreateWorkspace",
       "http":{
@@ -31,6 +71,42 @@
       ],
       "idempotent":true
     },
+    "DeleteAlertManagerDefinition":{
+      "name":"DeleteAlertManagerDefinition",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/workspaces/{workspaceId}/alertmanager/definition",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteAlertManagerDefinitionRequest"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
+    "DeleteRuleGroupsNamespace":{
+      "name":"DeleteRuleGroupsNamespace",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+        "responseCode":202
+      },
+      "input":{"shape":"DeleteRuleGroupsNamespaceRequest"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ],
+      "idempotent":true
+    },
     "DeleteWorkspace":{
       "name":"DeleteWorkspace",
       "http":{
@@ -41,12 +117,47 @@
       "input":{"shape":"DeleteWorkspaceRequest"},
       "errors":[
         {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
         {"shape":"ValidationException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ],
       "idempotent":true
+    },
+    "DescribeAlertManagerDefinition":{
+      "name":"DescribeAlertManagerDefinition",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/alertmanager/definition",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeAlertManagerDefinitionRequest"},
+      "output":{"shape":"DescribeAlertManagerDefinitionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "DescribeRuleGroupsNamespace":{
+      "name":"DescribeRuleGroupsNamespace",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+        "responseCode":200
+      },
+      "input":{"shape":"DescribeRuleGroupsNamespaceRequest"},
+      "output":{"shape":"DescribeRuleGroupsNamespaceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
     },
     "DescribeWorkspace":{
       "name":"DescribeWorkspace",
@@ -57,6 +168,23 @@
       },
       "input":{"shape":"DescribeWorkspaceRequest"},
       "output":{"shape":"DescribeWorkspaceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"}
+      ]
+    },
+    "ListRuleGroupsNamespaces":{
+      "name":"ListRuleGroupsNamespaces",
+      "http":{
+        "method":"GET",
+        "requestUri":"/workspaces/{workspaceId}/rulegroupsnamespaces",
+        "responseCode":200
+      },
+      "input":{"shape":"ListRuleGroupsNamespacesRequest"},
+      "output":{"shape":"ListRuleGroupsNamespacesResponse"},
       "errors":[
         {"shape":"ThrottlingException"},
         {"shape":"ValidationException"},
@@ -97,6 +225,46 @@
         {"shape":"AccessDeniedException"},
         {"shape":"InternalServerException"}
       ]
+    },
+    "PutAlertManagerDefinition":{
+      "name":"PutAlertManagerDefinition",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/workspaces/{workspaceId}/alertmanager/definition",
+        "responseCode":202
+      },
+      "input":{"shape":"PutAlertManagerDefinitionRequest"},
+      "output":{"shape":"PutAlertManagerDefinitionResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
+    },
+    "PutRuleGroupsNamespace":{
+      "name":"PutRuleGroupsNamespace",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/workspaces/{workspaceId}/rulegroupsnamespaces/{name}",
+        "responseCode":202
+      },
+      "input":{"shape":"PutRuleGroupsNamespaceRequest"},
+      "output":{"shape":"PutRuleGroupsNamespaceResponse"},
+      "errors":[
+        {"shape":"ThrottlingException"},
+        {"shape":"ConflictException"},
+        {"shape":"ValidationException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InternalServerException"},
+        {"shape":"ServiceQuotaExceededException"}
+      ],
+      "idempotent":true
     },
     "TagResource":{
       "name":"TagResource",
@@ -166,6 +334,41 @@
       },
       "exception":true
     },
+    "AlertManagerDefinitionData":{"type":"blob"},
+    "AlertManagerDefinitionDescription":{
+      "type":"structure",
+      "required":[
+        "createdAt",
+        "data",
+        "modifiedAt",
+        "status"
+      ],
+      "members":{
+        "createdAt":{"shape":"Timestamp"},
+        "data":{"shape":"AlertManagerDefinitionData"},
+        "modifiedAt":{"shape":"Timestamp"},
+        "status":{"shape":"AlertManagerDefinitionStatus"}
+      }
+    },
+    "AlertManagerDefinitionStatus":{
+      "type":"structure",
+      "required":["statusCode"],
+      "members":{
+        "statusCode":{"shape":"AlertManagerDefinitionStatusCode"},
+        "statusReason":{"shape":"String"}
+      }
+    },
+    "AlertManagerDefinitionStatusCode":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "DELETING",
+        "CREATION_FAILED",
+        "UPDATE_FAILED"
+      ]
+    },
     "ConflictException":{
       "type":"structure",
       "required":[
@@ -183,6 +386,68 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "CreateAlertManagerDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "data",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "data":{"shape":"AlertManagerDefinitionData"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "CreateAlertManagerDefinitionResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"AlertManagerDefinitionStatus"}
+      }
+    },
+    "CreateRuleGroupsNamespaceRequest":{
+      "type":"structure",
+      "required":[
+        "data",
+        "name",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "data":{"shape":"RuleGroupsNamespaceData"},
+        "name":{"shape":"RuleGroupsNamespaceName"},
+        "tags":{"shape":"TagMap"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "CreateRuleGroupsNamespaceResponse":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "name",
+        "status"
+      ],
+      "members":{
+        "arn":{"shape":"RuleGroupsNamespaceArn"},
+        "name":{"shape":"RuleGroupsNamespaceName"},
+        "status":{"shape":"RuleGroupsNamespaceStatus"},
+        "tags":{"shape":"TagMap"}
+      }
     },
     "CreateWorkspaceRequest":{
       "type":"structure",
@@ -209,6 +474,48 @@
         "workspaceId":{"shape":"WorkspaceId"}
       }
     },
+    "DeleteAlertManagerDefinitionRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DeleteRuleGroupsNamespaceRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true,
+          "location":"querystring",
+          "locationName":"clientToken"
+        },
+        "name":{
+          "shape":"RuleGroupsNamespaceName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
     "DeleteWorkspaceRequest":{
       "type":"structure",
       "required":["workspaceId"],
@@ -224,6 +531,50 @@
           "location":"uri",
           "locationName":"workspaceId"
         }
+      }
+    },
+    "DescribeAlertManagerDefinitionRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DescribeAlertManagerDefinitionResponse":{
+      "type":"structure",
+      "required":["alertManagerDefinition"],
+      "members":{
+        "alertManagerDefinition":{"shape":"AlertManagerDefinitionDescription"}
+      }
+    },
+    "DescribeRuleGroupsNamespaceRequest":{
+      "type":"structure",
+      "required":[
+        "name",
+        "workspaceId"
+      ],
+      "members":{
+        "name":{
+          "shape":"RuleGroupsNamespaceName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "DescribeRuleGroupsNamespaceResponse":{
+      "type":"structure",
+      "required":["ruleGroupsNamespace"],
+      "members":{
+        "ruleGroupsNamespace":{"shape":"RuleGroupsNamespaceDescription"}
       }
     },
     "DescribeWorkspaceRequest":{
@@ -269,6 +620,46 @@
       "exception":true,
       "fault":true,
       "retryable":{"throttling":false}
+    },
+    "ListRuleGroupsNamespacesRequest":{
+      "type":"structure",
+      "required":["workspaceId"],
+      "members":{
+        "maxResults":{
+          "shape":"ListRuleGroupsNamespacesRequestMaxResultsInteger",
+          "location":"querystring",
+          "locationName":"maxResults"
+        },
+        "name":{
+          "shape":"RuleGroupsNamespaceName",
+          "location":"querystring",
+          "locationName":"name"
+        },
+        "nextToken":{
+          "shape":"PaginationToken",
+          "location":"querystring",
+          "locationName":"nextToken"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "ListRuleGroupsNamespacesRequestMaxResultsInteger":{
+      "type":"integer",
+      "box":true,
+      "max":1000,
+      "min":1
+    },
+    "ListRuleGroupsNamespacesResponse":{
+      "type":"structure",
+      "required":["ruleGroupsNamespaces"],
+      "members":{
+        "nextToken":{"shape":"PaginationToken"},
+        "ruleGroupsNamespaces":{"shape":"RuleGroupsNamespaceSummaryList"}
+      }
     },
     "ListTagsForResourceRequest":{
       "type":"structure",
@@ -322,6 +713,71 @@
       }
     },
     "PaginationToken":{"type":"string"},
+    "PutAlertManagerDefinitionRequest":{
+      "type":"structure",
+      "required":[
+        "data",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "data":{"shape":"AlertManagerDefinitionData"},
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "PutAlertManagerDefinitionResponse":{
+      "type":"structure",
+      "required":["status"],
+      "members":{
+        "status":{"shape":"AlertManagerDefinitionStatus"}
+      }
+    },
+    "PutRuleGroupsNamespaceRequest":{
+      "type":"structure",
+      "required":[
+        "data",
+        "name",
+        "workspaceId"
+      ],
+      "members":{
+        "clientToken":{
+          "shape":"IdempotencyToken",
+          "idempotencyToken":true
+        },
+        "data":{"shape":"RuleGroupsNamespaceData"},
+        "name":{
+          "shape":"RuleGroupsNamespaceName",
+          "location":"uri",
+          "locationName":"name"
+        },
+        "workspaceId":{
+          "shape":"WorkspaceId",
+          "location":"uri",
+          "locationName":"workspaceId"
+        }
+      }
+    },
+    "PutRuleGroupsNamespaceResponse":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "name",
+        "status"
+      ],
+      "members":{
+        "arn":{"shape":"RuleGroupsNamespaceArn"},
+        "name":{"shape":"RuleGroupsNamespaceName"},
+        "status":{"shape":"RuleGroupsNamespaceStatus"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
     "ResourceNotFoundException":{
       "type":"structure",
       "required":[
@@ -339,6 +795,75 @@
         "senderFault":true
       },
       "exception":true
+    },
+    "RuleGroupsNamespaceArn":{"type":"string"},
+    "RuleGroupsNamespaceData":{"type":"blob"},
+    "RuleGroupsNamespaceDescription":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createdAt",
+        "data",
+        "modifiedAt",
+        "name",
+        "status"
+      ],
+      "members":{
+        "arn":{"shape":"RuleGroupsNamespaceArn"},
+        "createdAt":{"shape":"Timestamp"},
+        "data":{"shape":"RuleGroupsNamespaceData"},
+        "modifiedAt":{"shape":"Timestamp"},
+        "name":{"shape":"RuleGroupsNamespaceName"},
+        "status":{"shape":"RuleGroupsNamespaceStatus"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "RuleGroupsNamespaceName":{
+      "type":"string",
+      "max":64,
+      "min":1,
+      "pattern":"[0-9A-Za-z][-.0-9A-Z_a-z]*"
+    },
+    "RuleGroupsNamespaceStatus":{
+      "type":"structure",
+      "required":["statusCode"],
+      "members":{
+        "statusCode":{"shape":"RuleGroupsNamespaceStatusCode"},
+        "statusReason":{"shape":"String"}
+      }
+    },
+    "RuleGroupsNamespaceStatusCode":{
+      "type":"string",
+      "enum":[
+        "CREATING",
+        "ACTIVE",
+        "UPDATING",
+        "DELETING",
+        "CREATION_FAILED",
+        "UPDATE_FAILED"
+      ]
+    },
+    "RuleGroupsNamespaceSummary":{
+      "type":"structure",
+      "required":[
+        "arn",
+        "createdAt",
+        "modifiedAt",
+        "name",
+        "status"
+      ],
+      "members":{
+        "arn":{"shape":"RuleGroupsNamespaceArn"},
+        "createdAt":{"shape":"Timestamp"},
+        "modifiedAt":{"shape":"Timestamp"},
+        "name":{"shape":"RuleGroupsNamespaceName"},
+        "status":{"shape":"RuleGroupsNamespaceStatus"},
+        "tags":{"shape":"TagMap"}
+      }
+    },
+    "RuleGroupsNamespaceSummaryList":{
+      "type":"list",
+      "member":{"shape":"RuleGroupsNamespaceSummary"}
     },
     "ServiceQuotaExceededException":{
       "type":"structure",
