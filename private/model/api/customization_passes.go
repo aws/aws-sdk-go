@@ -387,7 +387,7 @@ func backfillAuthType(typ AuthType, opNames ...string) func(*API) error {
 				panic("unable to backfill auth-type for unknown operation " + opName)
 			}
 			if v := op.AuthType; len(v) != 0 {
-				fmt.Fprintf(os.Stderr, "unable to backfill auth-type for %s, already set, %s", opName, v)
+				fmt.Fprintf(os.Stderr, "unable to backfill auth-type for %s, already set, %s\n", opName, v)
 				continue
 			}
 

@@ -17,7 +17,7 @@ type Operation struct {
 	API                 *API `json:"-"`
 	ExportedName        string
 	Name                string
-	Documentation       string
+	Documentation       string `json:"-"`
 	HTTP                HTTPInfo
 	Host                string     `json:"host"`
 	InputRef            ShapeRef   `json:"input"`
