@@ -1,3 +1,17 @@
+Release v1.40.53 (2021-09-30)
+===
+
+### Service Client Updates
+* `service/account`: Updates service API, documentation, paginators, and examples
+* `service/cloudcontrol`: Adds new service
+* `service/dataexchange`: Updates service API, documentation, and paginators
+* `service/macie2`: Updates service API and documentation
+* `service/network-firewall`: Updates service API and documentation
+* `service/workmail`: Updates service API, documentation, and paginators
+  * This release adds support for mobile device access overrides management in Amazon WorkMail.
+* `service/workspaces`: Updates service API and documentation
+  * Added CreateUpdatedWorkspaceImage API to update WorkSpace images with latest software and drivers. Updated DescribeWorkspaceImages API to display if there are updates available for WorkSpace images.
+
 Release v1.40.52 (2021-09-29)
 ===
 

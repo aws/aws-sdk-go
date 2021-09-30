@@ -2448,6 +2448,14 @@
           "shape": "__long",
           "locationName": "classifiableSizeInBytes"
         },
+        "errorCode": {
+          "shape": "BucketMetadataErrorCode",
+          "locationName": "errorCode"
+        },
+        "errorMessage": {
+          "shape": "__string",
+          "locationName": "errorMessage"
+        },
         "jobDetails": {
           "shape": "JobDetails",
           "locationName": "jobDetails"
@@ -2509,6 +2517,12 @@
           "locationName": "versioning"
         }
       }
+    },
+    "BucketMetadataErrorCode": {
+      "type": "string",
+      "enum": [
+        "ACCESS_DENIED"
+      ]
     },
     "BucketPermissionConfiguration": {
       "type": "structure",
@@ -4863,6 +4877,14 @@
         "classifiableSizeInBytes": {
           "shape": "__long",
           "locationName": "classifiableSizeInBytes"
+        },
+        "errorCode": {
+          "shape": "BucketMetadataErrorCode",
+          "locationName": "errorCode"
+        },
+        "errorMessage": {
+          "shape": "__string",
+          "locationName": "errorMessage"
         },
         "jobDetails": {
           "shape": "JobDetails",

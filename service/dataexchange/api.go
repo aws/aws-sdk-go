@@ -198,6 +198,97 @@ func (c *DataExchange) CreateDataSetWithContext(ctx aws.Context, input *CreateDa
 	return out, req.Send()
 }
 
+const opCreateEventAction = "CreateEventAction"
+
+// CreateEventActionRequest generates a "aws/request.Request" representing the
+// client's request for the CreateEventAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateEventAction for more information on using the CreateEventAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateEventActionRequest method.
+//    req, resp := client.CreateEventActionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateEventAction
+func (c *DataExchange) CreateEventActionRequest(input *CreateEventActionInput) (req *request.Request, output *CreateEventActionOutput) {
+	op := &request.Operation{
+		Name:       opCreateEventAction,
+		HTTPMethod: "POST",
+		HTTPPath:   "/v1/event-actions",
+	}
+
+	if input == nil {
+		input = &CreateEventActionInput{}
+	}
+
+	output = &CreateEventActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateEventAction API operation for AWS Data Exchange.
+//
+// This operation creates an event action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation CreateEventAction for usage and error information.
+//
+// Returned Error Types:
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * ValidationException
+//   The request was invalid.
+//
+//   * InternalServerException
+//   An exception occurred with the service.
+//
+//   * ServiceLimitExceededException
+//   The request has exceeded the quotas imposed by the service.
+//
+//   * AccessDeniedException
+//   Access to the resource is denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateEventAction
+func (c *DataExchange) CreateEventAction(input *CreateEventActionInput) (*CreateEventActionOutput, error) {
+	req, out := c.CreateEventActionRequest(input)
+	return out, req.Send()
+}
+
+// CreateEventActionWithContext is the same as CreateEventAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateEventAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) CreateEventActionWithContext(ctx aws.Context, input *CreateEventActionInput, opts ...request.Option) (*CreateEventActionOutput, error) {
+	req, out := c.CreateEventActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opCreateJob = "CreateJob"
 
 // CreateJobRequest generates a "aws/request.Request" representing the
@@ -252,12 +343,6 @@ func (c *DataExchange) CreateJobRequest(input *CreateJobInput) (req *request.Req
 // API operation CreateJob for usage and error information.
 //
 // Returned Error Types:
-//   * ResourceNotFoundException
-//   The resource couldn't be found.
-//
-//   * ThrottlingException
-//   The limit on the number of requests per second was exceeded.
-//
 //   * ValidationException
 //   The request was invalid.
 //
@@ -266,6 +351,12 @@ func (c *DataExchange) CreateJobRequest(input *CreateJobInput) (req *request.Req
 //
 //   * AccessDeniedException
 //   Access to the resource is denied.
+//
+//   * ResourceNotFoundException
+//   The resource couldn't be found.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/CreateJob
 func (c *DataExchange) CreateJob(input *CreateJobInput) (*CreateJobOutput, error) {
@@ -572,6 +663,95 @@ func (c *DataExchange) DeleteDataSetWithContext(ctx aws.Context, input *DeleteDa
 	return out, req.Send()
 }
 
+const opDeleteEventAction = "DeleteEventAction"
+
+// DeleteEventActionRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteEventAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteEventAction for more information on using the DeleteEventAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteEventActionRequest method.
+//    req, resp := client.DeleteEventActionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteEventAction
+func (c *DataExchange) DeleteEventActionRequest(input *DeleteEventActionInput) (req *request.Request, output *DeleteEventActionOutput) {
+	op := &request.Operation{
+		Name:       opDeleteEventAction,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/v1/event-actions/{EventActionId}",
+	}
+
+	if input == nil {
+		input = &DeleteEventActionInput{}
+	}
+
+	output = &DeleteEventActionOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteEventAction API operation for AWS Data Exchange.
+//
+// This operation deletes the event action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation DeleteEventAction for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource couldn't be found.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * ValidationException
+//   The request was invalid.
+//
+//   * InternalServerException
+//   An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/DeleteEventAction
+func (c *DataExchange) DeleteEventAction(input *DeleteEventActionInput) (*DeleteEventActionOutput, error) {
+	req, out := c.DeleteEventActionRequest(input)
+	return out, req.Send()
+}
+
+// DeleteEventActionWithContext is the same as DeleteEventAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteEventAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) DeleteEventActionWithContext(ctx aws.Context, input *DeleteEventActionInput, opts ...request.Option) (*DeleteEventActionOutput, error) {
+	req, out := c.DeleteEventActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteRevision = "DeleteRevision"
 
 // DeleteRevisionRequest generates a "aws/request.Request" representing the
@@ -839,6 +1019,94 @@ func (c *DataExchange) GetDataSet(input *GetDataSetInput) (*GetDataSetOutput, er
 // for more information on using Contexts.
 func (c *DataExchange) GetDataSetWithContext(ctx aws.Context, input *GetDataSetInput, opts ...request.Option) (*GetDataSetOutput, error) {
 	req, out := c.GetDataSetRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetEventAction = "GetEventAction"
+
+// GetEventActionRequest generates a "aws/request.Request" representing the
+// client's request for the GetEventAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetEventAction for more information on using the GetEventAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetEventActionRequest method.
+//    req, resp := client.GetEventActionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetEventAction
+func (c *DataExchange) GetEventActionRequest(input *GetEventActionInput) (req *request.Request, output *GetEventActionOutput) {
+	op := &request.Operation{
+		Name:       opGetEventAction,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/event-actions/{EventActionId}",
+	}
+
+	if input == nil {
+		input = &GetEventActionInput{}
+	}
+
+	output = &GetEventActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetEventAction API operation for AWS Data Exchange.
+//
+// This operation retrieves information about an event action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation GetEventAction for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource couldn't be found.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * ValidationException
+//   The request was invalid.
+//
+//   * InternalServerException
+//   An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/GetEventAction
+func (c *DataExchange) GetEventAction(input *GetEventActionInput) (*GetEventActionOutput, error) {
+	req, out := c.GetEventActionRequest(input)
+	return out, req.Send()
+}
+
+// GetEventActionWithContext is the same as GetEventAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetEventAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) GetEventActionWithContext(ctx aws.Context, input *GetEventActionInput, opts ...request.Option) (*GetEventActionOutput, error) {
+	req, out := c.GetEventActionRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1308,6 +1576,152 @@ func (c *DataExchange) ListDataSetsPagesWithContext(ctx aws.Context, input *List
 
 	for p.Next() {
 		if !fn(p.Page().(*ListDataSetsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListEventActions = "ListEventActions"
+
+// ListEventActionsRequest generates a "aws/request.Request" representing the
+// client's request for the ListEventActions operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListEventActions for more information on using the ListEventActions
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListEventActionsRequest method.
+//    req, resp := client.ListEventActionsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListEventActions
+func (c *DataExchange) ListEventActionsRequest(input *ListEventActionsInput) (req *request.Request, output *ListEventActionsOutput) {
+	op := &request.Operation{
+		Name:       opListEventActions,
+		HTTPMethod: "GET",
+		HTTPPath:   "/v1/event-actions",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListEventActionsInput{}
+	}
+
+	output = &ListEventActionsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListEventActions API operation for AWS Data Exchange.
+//
+// This operation lists your event actions.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation ListEventActions for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource couldn't be found.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * ValidationException
+//   The request was invalid.
+//
+//   * InternalServerException
+//   An exception occurred with the service.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/ListEventActions
+func (c *DataExchange) ListEventActions(input *ListEventActionsInput) (*ListEventActionsOutput, error) {
+	req, out := c.ListEventActionsRequest(input)
+	return out, req.Send()
+}
+
+// ListEventActionsWithContext is the same as ListEventActions with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListEventActions for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) ListEventActionsWithContext(ctx aws.Context, input *ListEventActionsInput, opts ...request.Option) (*ListEventActionsOutput, error) {
+	req, out := c.ListEventActionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListEventActionsPages iterates over the pages of a ListEventActions operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListEventActions method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListEventActions operation.
+//    pageNum := 0
+//    err := client.ListEventActionsPages(params,
+//        func(page *dataexchange.ListEventActionsOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *DataExchange) ListEventActionsPages(input *ListEventActionsInput, fn func(*ListEventActionsOutput, bool) bool) error {
+	return c.ListEventActionsPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListEventActionsPagesWithContext same as ListEventActionsPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) ListEventActionsPagesWithContext(ctx aws.Context, input *ListEventActionsInput, fn func(*ListEventActionsOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListEventActionsInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListEventActionsRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListEventActionsOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -2114,6 +2528,97 @@ func (c *DataExchange) UpdateDataSetWithContext(ctx aws.Context, input *UpdateDa
 	return out, req.Send()
 }
 
+const opUpdateEventAction = "UpdateEventAction"
+
+// UpdateEventActionRequest generates a "aws/request.Request" representing the
+// client's request for the UpdateEventAction operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See UpdateEventAction for more information on using the UpdateEventAction
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the UpdateEventActionRequest method.
+//    req, resp := client.UpdateEventActionRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateEventAction
+func (c *DataExchange) UpdateEventActionRequest(input *UpdateEventActionInput) (req *request.Request, output *UpdateEventActionOutput) {
+	op := &request.Operation{
+		Name:       opUpdateEventAction,
+		HTTPMethod: "PATCH",
+		HTTPPath:   "/v1/event-actions/{EventActionId}",
+	}
+
+	if input == nil {
+		input = &UpdateEventActionInput{}
+	}
+
+	output = &UpdateEventActionOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// UpdateEventAction API operation for AWS Data Exchange.
+//
+// This operation updates the event action.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Data Exchange's
+// API operation UpdateEventAction for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   The resource couldn't be found.
+//
+//   * ThrottlingException
+//   The limit on the number of requests per second was exceeded.
+//
+//   * ValidationException
+//   The request was invalid.
+//
+//   * InternalServerException
+//   An exception occurred with the service.
+//
+//   * AccessDeniedException
+//   Access to the resource is denied.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/dataexchange-2017-07-25/UpdateEventAction
+func (c *DataExchange) UpdateEventAction(input *UpdateEventActionInput) (*UpdateEventActionOutput, error) {
+	req, out := c.UpdateEventActionRequest(input)
+	return out, req.Send()
+}
+
+// UpdateEventActionWithContext is the same as UpdateEventAction with the addition of
+// the ability to pass a context and additional request options.
+//
+// See UpdateEventAction for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *DataExchange) UpdateEventActionWithContext(ctx aws.Context, input *UpdateEventActionInput, opts ...request.Option) (*UpdateEventActionOutput, error) {
+	req, out := c.UpdateEventActionRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opUpdateRevision = "UpdateRevision"
 
 // UpdateRevisionRequest generates a "aws/request.Request" representing the
@@ -2272,6 +2777,52 @@ func (s *AccessDeniedException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *AccessDeniedException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+type Action struct {
+	_ struct{} `type:"structure"`
+
+	// Details of the operation to be performed by the job.
+	ExportRevisionToS3 *AutoExportRevisionToS3RequestDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Action) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Action) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Action) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Action"}
+	if s.ExportRevisionToS3 != nil {
+		if err := s.ExportRevisionToS3.Validate(); err != nil {
+			invalidParams.AddNested("ExportRevisionToS3", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetExportRevisionToS3 sets the ExportRevisionToS3 field's value.
+func (s *Action) SetExportRevisionToS3(v *AutoExportRevisionToS3RequestDetails) *Action {
+	s.ExportRevisionToS3 = v
+	return s
 }
 
 // The destination for the asset.
@@ -2572,6 +3123,134 @@ func (s *AssetSourceEntry) SetBucket(v string) *AssetSourceEntry {
 // SetKey sets the Key field's value.
 func (s *AssetSourceEntry) SetKey(v string) *AssetSourceEntry {
 	s.Key = &v
+	return s
+}
+
+// A revision destination is the Amazon S3 bucket folder destination to where
+// the export will be sent.
+type AutoExportRevisionDestinationEntry struct {
+	_ struct{} `type:"structure"`
+
+	// The S3 bucket that is the destination for the event action.
+	//
+	// Bucket is a required field
+	Bucket *string `type:"string" required:"true"`
+
+	// A string representing the pattern for generated names of the individual assets
+	// in the revision. For more information about key patterns, see Key patterns
+	// when exporting revisions (https://docs.aws.amazon.com/data-exchange/latest/userguide/jobs.html#revision-export-keypatterns).
+	KeyPattern *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportRevisionDestinationEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportRevisionDestinationEntry) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoExportRevisionDestinationEntry) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoExportRevisionDestinationEntry"}
+	if s.Bucket == nil {
+		invalidParams.Add(request.NewErrParamRequired("Bucket"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBucket sets the Bucket field's value.
+func (s *AutoExportRevisionDestinationEntry) SetBucket(v string) *AutoExportRevisionDestinationEntry {
+	s.Bucket = &v
+	return s
+}
+
+// SetKeyPattern sets the KeyPattern field's value.
+func (s *AutoExportRevisionDestinationEntry) SetKeyPattern(v string) *AutoExportRevisionDestinationEntry {
+	s.KeyPattern = &v
+	return s
+}
+
+// Details of the operation to be performed by the job.
+type AutoExportRevisionToS3RequestDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Encryption configuration of the export job. Includes the encryption type
+	// in addition to the AWS KMS key. The KMS key is only necessary if you chose
+	// the KMS encryption. type.
+	Encryption *ExportServerSideEncryption `type:"structure"`
+
+	// A revision destination is the Amazon S3 bucket folder destination to where
+	// the export will be sent.
+	//
+	// RevisionDestination is a required field
+	RevisionDestination *AutoExportRevisionDestinationEntry `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportRevisionToS3RequestDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AutoExportRevisionToS3RequestDetails) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AutoExportRevisionToS3RequestDetails) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AutoExportRevisionToS3RequestDetails"}
+	if s.RevisionDestination == nil {
+		invalidParams.Add(request.NewErrParamRequired("RevisionDestination"))
+	}
+	if s.Encryption != nil {
+		if err := s.Encryption.Validate(); err != nil {
+			invalidParams.AddNested("Encryption", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.RevisionDestination != nil {
+		if err := s.RevisionDestination.Validate(); err != nil {
+			invalidParams.AddNested("RevisionDestination", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryption sets the Encryption field's value.
+func (s *AutoExportRevisionToS3RequestDetails) SetEncryption(v *ExportServerSideEncryption) *AutoExportRevisionToS3RequestDetails {
+	s.Encryption = v
+	return s
+}
+
+// SetRevisionDestination sets the RevisionDestination field's value.
+func (s *AutoExportRevisionToS3RequestDetails) SetRevisionDestination(v *AutoExportRevisionDestinationEntry) *AutoExportRevisionToS3RequestDetails {
+	s.RevisionDestination = v
 	return s
 }
 
@@ -2925,6 +3604,151 @@ func (s *CreateDataSetOutput) SetTags(v map[string]*string) *CreateDataSetOutput
 
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *CreateDataSetOutput) SetUpdatedAt(v time.Time) *CreateDataSetOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+// A request to create an event action.
+type CreateEventActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs after a certain event.
+	//
+	// Action is a required field
+	Action *Action `type:"structure" required:"true"`
+
+	// What occurs to start an action.
+	//
+	// Event is a required field
+	Event *Event `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateEventActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateEventActionInput"}
+	if s.Action == nil {
+		invalidParams.Add(request.NewErrParamRequired("Action"))
+	}
+	if s.Event == nil {
+		invalidParams.Add(request.NewErrParamRequired("Event"))
+	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Event != nil {
+		if err := s.Event.Validate(); err != nil {
+			invalidParams.AddNested("Event", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *CreateEventActionInput) SetAction(v *Action) *CreateEventActionInput {
+	s.Action = v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *CreateEventActionInput) SetEvent(v *Event) *CreateEventActionInput {
+	s.Event = v
+	return s
+}
+
+type CreateEventActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	Action *Action `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	Arn *string `type:"string"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	Event *Event `type:"structure"`
+
+	// A unique identifier.
+	Id *string `type:"string"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateEventActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *CreateEventActionOutput) SetAction(v *Action) *CreateEventActionOutput {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *CreateEventActionOutput) SetArn(v string) *CreateEventActionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *CreateEventActionOutput) SetCreatedAt(v time.Time) *CreateEventActionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *CreateEventActionOutput) SetEvent(v *Event) *CreateEventActionOutput {
+	s.Event = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *CreateEventActionOutput) SetId(v string) *CreateEventActionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *CreateEventActionOutput) SetUpdatedAt(v time.Time) *CreateEventActionOutput {
 	s.UpdatedAt = &v
 	return s
 }
@@ -3564,6 +4388,75 @@ func (s DeleteDataSetOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteEventActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// EventActionId is a required field
+	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteEventActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteEventActionInput"}
+	if s.EventActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventActionId"))
+	}
+	if s.EventActionId != nil && len(*s.EventActionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventActionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventActionId sets the EventActionId field's value.
+func (s *DeleteEventActionInput) SetEventActionId(v string) *DeleteEventActionInput {
+	s.EventActionId = &v
+	return s
+}
+
+type DeleteEventActionOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteEventActionOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteRevisionInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3684,6 +4577,141 @@ func (s *Details) SetImportAssetFromSignedUrlJobErrorDetails(v *ImportAssetFromS
 // SetImportAssetsFromS3JobErrorDetails sets the ImportAssetsFromS3JobErrorDetails field's value.
 func (s *Details) SetImportAssetsFromS3JobErrorDetails(v []*AssetSourceEntry) *Details {
 	s.ImportAssetsFromS3JobErrorDetails = v
+	return s
+}
+
+type Event struct {
+	_ struct{} `type:"structure"`
+
+	RevisionPublished *RevisionPublished `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Event) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Event) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *Event) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "Event"}
+	if s.RevisionPublished != nil {
+		if err := s.RevisionPublished.Validate(); err != nil {
+			invalidParams.AddNested("RevisionPublished", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetRevisionPublished sets the RevisionPublished field's value.
+func (s *Event) SetRevisionPublished(v *RevisionPublished) *Event {
+	s.RevisionPublished = v
+	return s
+}
+
+// An event action is an object that defines the relationship between a specific
+// event and an automated action that will be taken on behalf of the customer.
+type EventActionEntry struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs after a certain event.
+	//
+	// Action is a required field
+	Action *Action `type:"structure" required:"true"`
+
+	// The ARN for the event action.
+	//
+	// Arn is a required field
+	Arn *string `type:"string" required:"true"`
+
+	// The date and time that the event action was created, in ISO 8601 format.
+	//
+	// CreatedAt is a required field
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+
+	// What occurs to start an action.
+	//
+	// Event is a required field
+	Event *Event `type:"structure" required:"true"`
+
+	// The unique identifier for the event action.
+	//
+	// Id is a required field
+	Id *string `type:"string" required:"true"`
+
+	// The date and time that the event action was last updated, in ISO 8601 format.
+	//
+	// UpdatedAt is a required field
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventActionEntry) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s EventActionEntry) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *EventActionEntry) SetAction(v *Action) *EventActionEntry {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *EventActionEntry) SetArn(v string) *EventActionEntry {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *EventActionEntry) SetCreatedAt(v time.Time) *EventActionEntry {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *EventActionEntry) SetEvent(v *Event) *EventActionEntry {
+	s.Event = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *EventActionEntry) SetId(v string) *EventActionEntry {
+	s.Id = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *EventActionEntry) SetUpdatedAt(v time.Time) *EventActionEntry {
+	s.UpdatedAt = &v
 	return s
 }
 
@@ -4097,6 +5125,9 @@ type ExportRevisionsToS3ResponseDetails struct {
 	// Encryption configuration of the export job.
 	Encryption *ExportServerSideEncryption `type:"structure"`
 
+	// The ARN for the event action.
+	EventActionArn *string `type:"string"`
+
 	// The destination in Amazon S3 where the revision is exported.
 	//
 	// RevisionDestinations is a required field
@@ -4133,6 +5164,12 @@ func (s *ExportRevisionsToS3ResponseDetails) SetEncryption(v *ExportServerSideEn
 	return s
 }
 
+// SetEventActionArn sets the EventActionArn field's value.
+func (s *ExportRevisionsToS3ResponseDetails) SetEventActionArn(v string) *ExportRevisionsToS3ResponseDetails {
+	s.EventActionArn = &v
+	return s
+}
+
 // SetRevisionDestinations sets the RevisionDestinations field's value.
 func (s *ExportRevisionsToS3ResponseDetails) SetRevisionDestinations(v []*RevisionDestinationEntry) *ExportRevisionsToS3ResponseDetails {
 	s.RevisionDestinations = v
@@ -4140,14 +5177,14 @@ func (s *ExportRevisionsToS3ResponseDetails) SetRevisionDestinations(v []*Revisi
 }
 
 // Encryption configuration of the export job. Includes the encryption type
-// as well as the AWS KMS key. The KMS key is only necessary if you chose the
-// KMS encryption type.
+// in addition to the AWS KMS key. The KMS key is only necessary if you chose
+// the KMS encryption. type.
 type ExportServerSideEncryption struct {
 	_ struct{} `type:"structure"`
 
-	// The Amazon Resource Name (ARN) of the the AWS KMS key you want to use to
-	// encrypt the Amazon S3 objects. This parameter is required if you choose aws:kms
-	// as an encryption type.
+	// The Amazon Resource Name (ARN) of the AWS KMS key you want to use to encrypt
+	// the Amazon S3 objects. This parameter is required if you choose aws:kms as
+	// an encryption type.
 	KmsKeyArn *string `type:"string"`
 
 	// The type of server side encryption used for encrypting the objects in Amazon
@@ -4557,6 +5594,127 @@ func (s *GetDataSetOutput) SetTags(v map[string]*string) *GetDataSetOutput {
 
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *GetDataSetOutput) SetUpdatedAt(v time.Time) *GetDataSetOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
+type GetEventActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// EventActionId is a required field
+	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetEventActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetEventActionInput"}
+	if s.EventActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventActionId"))
+	}
+	if s.EventActionId != nil && len(*s.EventActionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventActionId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventActionId sets the EventActionId field's value.
+func (s *GetEventActionInput) SetEventActionId(v string) *GetEventActionInput {
+	s.EventActionId = &v
+	return s
+}
+
+type GetEventActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	Action *Action `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	Arn *string `type:"string"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	Event *Event `type:"structure"`
+
+	// A unique identifier.
+	Id *string `type:"string"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetEventActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *GetEventActionOutput) SetAction(v *Action) *GetEventActionOutput {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *GetEventActionOutput) SetArn(v string) *GetEventActionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *GetEventActionOutput) SetCreatedAt(v time.Time) *GetEventActionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *GetEventActionOutput) SetEvent(v *Event) *GetEventActionOutput {
+	s.Event = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *GetEventActionOutput) SetId(v string) *GetEventActionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *GetEventActionOutput) SetUpdatedAt(v time.Time) *GetEventActionOutput {
 	s.UpdatedAt = &v
 	return s
 }
@@ -5688,6 +6846,105 @@ func (s *ListDataSetsOutput) SetNextToken(v string) *ListDataSetsOutput {
 	return s
 }
 
+type ListEventActionsInput struct {
+	_ struct{} `type:"structure"`
+
+	EventSourceId *string `location:"querystring" locationName:"eventSourceId" type:"string"`
+
+	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
+
+	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventActionsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventActionsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListEventActionsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListEventActionsInput"}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEventSourceId sets the EventSourceId field's value.
+func (s *ListEventActionsInput) SetEventSourceId(v string) *ListEventActionsInput {
+	s.EventSourceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListEventActionsInput) SetMaxResults(v int64) *ListEventActionsInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventActionsInput) SetNextToken(v string) *ListEventActionsInput {
+	s.NextToken = &v
+	return s
+}
+
+type ListEventActionsOutput struct {
+	_ struct{} `type:"structure"`
+
+	EventActions []*EventActionEntry `type:"list"`
+
+	// The token value retrieved from a previous call to access the next page of
+	// results.
+	NextToken *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventActionsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListEventActionsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEventActions sets the EventActions field's value.
+func (s *ListEventActionsOutput) SetEventActions(v []*EventActionEntry) *ListEventActionsOutput {
+	s.EventActions = v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListEventActionsOutput) SetNextToken(v string) *ListEventActionsOutput {
+	s.NextToken = &v
+	return s
+}
+
 type ListJobsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -6450,6 +7707,52 @@ func (s *RevisionEntry) SetSourceId(v string) *RevisionEntry {
 // SetUpdatedAt sets the UpdatedAt field's value.
 func (s *RevisionEntry) SetUpdatedAt(v time.Time) *RevisionEntry {
 	s.UpdatedAt = &v
+	return s
+}
+
+type RevisionPublished struct {
+	_ struct{} `type:"structure"`
+
+	// A unique identifier.
+	//
+	// DataSetId is a required field
+	DataSetId *string `type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevisionPublished) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s RevisionPublished) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *RevisionPublished) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "RevisionPublished"}
+	if s.DataSetId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DataSetId"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDataSetId sets the DataSetId field's value.
+func (s *RevisionPublished) SetDataSetId(v string) *RevisionPublished {
+	s.DataSetId = &v
 	return s
 }
 
@@ -7240,6 +8543,142 @@ func (s *UpdateDataSetOutput) SetUpdatedAt(v time.Time) *UpdateDataSetOutput {
 	return s
 }
 
+// The request to update an event action.
+type UpdateEventActionInput struct {
+	_ struct{} `type:"structure"`
+
+	// What occurs after a certain event.
+	Action *Action `type:"structure"`
+
+	// EventActionId is a required field
+	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventActionInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventActionInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UpdateEventActionInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UpdateEventActionInput"}
+	if s.EventActionId == nil {
+		invalidParams.Add(request.NewErrParamRequired("EventActionId"))
+	}
+	if s.EventActionId != nil && len(*s.EventActionId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("EventActionId", 1))
+	}
+	if s.Action != nil {
+		if err := s.Action.Validate(); err != nil {
+			invalidParams.AddNested("Action", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAction sets the Action field's value.
+func (s *UpdateEventActionInput) SetAction(v *Action) *UpdateEventActionInput {
+	s.Action = v
+	return s
+}
+
+// SetEventActionId sets the EventActionId field's value.
+func (s *UpdateEventActionInput) SetEventActionId(v string) *UpdateEventActionInput {
+	s.EventActionId = &v
+	return s
+}
+
+type UpdateEventActionOutput struct {
+	_ struct{} `type:"structure"`
+
+	Action *Action `type:"structure"`
+
+	// An Amazon Resource Name (ARN) that uniquely identifies an AWS resource.
+	Arn *string `type:"string"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	CreatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+
+	Event *Event `type:"structure"`
+
+	// A unique identifier.
+	Id *string `type:"string"`
+
+	// Dates and times in AWS Data Exchange are recorded in ISO 8601 format.
+	UpdatedAt *time.Time `type:"timestamp" timestampFormat:"iso8601"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventActionOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateEventActionOutput) GoString() string {
+	return s.String()
+}
+
+// SetAction sets the Action field's value.
+func (s *UpdateEventActionOutput) SetAction(v *Action) *UpdateEventActionOutput {
+	s.Action = v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *UpdateEventActionOutput) SetArn(v string) *UpdateEventActionOutput {
+	s.Arn = &v
+	return s
+}
+
+// SetCreatedAt sets the CreatedAt field's value.
+func (s *UpdateEventActionOutput) SetCreatedAt(v time.Time) *UpdateEventActionOutput {
+	s.CreatedAt = &v
+	return s
+}
+
+// SetEvent sets the Event field's value.
+func (s *UpdateEventActionOutput) SetEvent(v *Event) *UpdateEventActionOutput {
+	s.Event = v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *UpdateEventActionOutput) SetId(v string) *UpdateEventActionOutput {
+	s.Id = &v
+	return s
+}
+
+// SetUpdatedAt sets the UpdatedAt field's value.
+func (s *UpdateEventActionOutput) SetUpdatedAt(v time.Time) *UpdateEventActionOutput {
+	s.UpdatedAt = &v
+	return s
+}
+
 // The request to update a revision.
 type UpdateRevisionInput struct {
 	_ struct{} `type:"structure"`
@@ -7420,6 +8859,9 @@ type ValidationException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
 
+	// The message that informs you about what the exception was.
+	ExceptionCause *string `type:"string" enum:"ExceptionCause"`
+
 	// The message that informs you about what was invalid about the request.
 	Message_ *string `locationName:"Message" type:"string"`
 }
@@ -7467,7 +8909,7 @@ func (s *ValidationException) OrigErr() error {
 }
 
 func (s *ValidationException) Error() string {
-	return fmt.Sprintf("%s: %s", s.Code(), s.Message())
+	return fmt.Sprintf("%s: %s\n%s", s.Code(), s.Message(), s.String())
 }
 
 // Status code returns the HTTP status code for the request's response error.
@@ -7530,6 +8972,22 @@ func Code_Values() []string {
 	}
 }
 
+const (
+	// ExceptionCauseInsufficientS3bucketPolicy is a ExceptionCause enum value
+	ExceptionCauseInsufficientS3bucketPolicy = "InsufficientS3BucketPolicy"
+
+	// ExceptionCauseS3accessDenied is a ExceptionCause enum value
+	ExceptionCauseS3accessDenied = "S3AccessDenied"
+)
+
+// ExceptionCause_Values returns all elements of the ExceptionCause enum
+func ExceptionCause_Values() []string {
+	return []string{
+		ExceptionCauseInsufficientS3bucketPolicy,
+		ExceptionCauseS3accessDenied,
+	}
+}
+
 // The name of the limit that was reached.
 const (
 	// JobErrorLimitNameAssetsperrevision is a JobErrorLimitName enum value
@@ -7554,6 +9012,9 @@ const (
 
 	// JobErrorResourceTypesAsset is a JobErrorResourceTypes enum value
 	JobErrorResourceTypesAsset = "ASSET"
+
+	// JobErrorResourceTypesDataSet is a JobErrorResourceTypes enum value
+	JobErrorResourceTypesDataSet = "DATA_SET"
 )
 
 // JobErrorResourceTypes_Values returns all elements of the JobErrorResourceTypes enum
@@ -7561,6 +9022,7 @@ func JobErrorResourceTypes_Values() []string {
 	return []string{
 		JobErrorResourceTypesRevision,
 		JobErrorResourceTypesAsset,
+		JobErrorResourceTypesDataSet,
 	}
 }
 
@@ -7600,6 +9062,15 @@ const (
 
 	// LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl is a LimitName enum value
 	LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl = "Concurrent in progress jobs to export assets to a signed URL"
+
+	// LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3 is a LimitName enum value
+	LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3 = "Concurrent in progress jobs to export revisions to Amazon S3"
+
+	// LimitNameEventactionsperaccount is a LimitName enum value
+	LimitNameEventactionsperaccount = "Event actions per account"
+
+	// LimitNameAutoexporteventactionsperdataset is a LimitName enum value
+	LimitNameAutoexporteventactionsperdataset = "Auto export event actions per data set"
 )
 
 // LimitName_Values returns all elements of the LimitName enum
@@ -7617,6 +9088,9 @@ func LimitName_Values() []string {
 		LimitNameConcurrentinprogressjobstoimportassetsfromasignedUrl,
 		LimitNameConcurrentinprogressjobstoexportassetstoAmazonS3,
 		LimitNameConcurrentinprogressjobstoexportassetstoasignedUrl,
+		LimitNameConcurrentinprogressjobstoexportrevisionstoAmazonS3,
+		LimitNameEventactionsperaccount,
+		LimitNameAutoexporteventactionsperdataset,
 	}
 }
 
@@ -7652,6 +9126,9 @@ const (
 
 	// ResourceTypeJob is a ResourceType enum value
 	ResourceTypeJob = "JOB"
+
+	// ResourceTypeEventAction is a ResourceType enum value
+	ResourceTypeEventAction = "EVENT_ACTION"
 )
 
 // ResourceType_Values returns all elements of the ResourceType enum
@@ -7661,6 +9138,7 @@ func ResourceType_Values() []string {
 		ResourceTypeRevision,
 		ResourceTypeAsset,
 		ResourceTypeJob,
+		ResourceTypeEventAction,
 	}
 }
 

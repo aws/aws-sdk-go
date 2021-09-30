@@ -352,13 +352,13 @@ func (c *WorkSpaces) CopyWorkspaceImageRequest(input *CopyWorkspaceImageInput) (
 //
 // In the China (Ningxia) Region, you can copy images only within the same Region.
 //
-// In the AWS GovCloud (US-West) Region, to copy images to and from other AWS
-// Regions, contact AWS Support.
+// In Amazon Web Services GovCloud (US), to copy images to and from other Regions,
+// contact Amazon Web Services Support.
 //
 // Before copying a shared image, be sure to verify that it has been shared
-// from the correct AWS account. To determine if an image has been shared and
-// to see the AWS account ID that owns an image, use the DescribeWorkSpaceImages
-// (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html)
+// from the correct Amazon Web Services account. To determine if an image has
+// been shared and to see the ID of the Amazon Web Services account that owns
+// an image, use the DescribeWorkSpaceImages (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html)
 // and DescribeWorkspaceImagePermissions (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImagePermissions.html)
 // API operations.
 //
@@ -693,6 +693,117 @@ func (c *WorkSpaces) CreateTags(input *CreateTagsInput) (*CreateTagsOutput, erro
 // for more information on using Contexts.
 func (c *WorkSpaces) CreateTagsWithContext(ctx aws.Context, input *CreateTagsInput, opts ...request.Option) (*CreateTagsOutput, error) {
 	req, out := c.CreateTagsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opCreateUpdatedWorkspaceImage = "CreateUpdatedWorkspaceImage"
+
+// CreateUpdatedWorkspaceImageRequest generates a "aws/request.Request" representing the
+// client's request for the CreateUpdatedWorkspaceImage operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See CreateUpdatedWorkspaceImage for more information on using the CreateUpdatedWorkspaceImage
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the CreateUpdatedWorkspaceImageRequest method.
+//    req, resp := client.CreateUpdatedWorkspaceImageRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateUpdatedWorkspaceImage
+func (c *WorkSpaces) CreateUpdatedWorkspaceImageRequest(input *CreateUpdatedWorkspaceImageInput) (req *request.Request, output *CreateUpdatedWorkspaceImageOutput) {
+	op := &request.Operation{
+		Name:       opCreateUpdatedWorkspaceImage,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &CreateUpdatedWorkspaceImageInput{}
+	}
+
+	output = &CreateUpdatedWorkspaceImageOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// CreateUpdatedWorkspaceImage API operation for Amazon WorkSpaces.
+//
+// Creates a new updated WorkSpace image based on the specified source image.
+// The new updated WorkSpace image has the latest drivers and other updates
+// required by the Amazon WorkSpaces components.
+//
+// To determine which WorkSpace images need to be updated with the latest Amazon
+// WorkSpaces requirements, use DescribeWorkspaceImages (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeWorkspaceImages.html).
+//
+//    * Only Windows 10 WorkSpace images can be programmatically updated at
+//    this time.
+//
+//    * Microsoft Windows updates and other application updates are not included
+//    in the update process.
+//
+//    * The source WorkSpace image is not deleted. You can delete the source
+//    image after you've verified your new updated image and created a new bundle.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkSpaces's
+// API operation CreateUpdatedWorkspaceImage for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceLimitExceededException
+//   Your resource limits have been exceeded.
+//
+//   * ResourceAlreadyExistsException
+//   The specified resource already exists.
+//
+//   * ResourceNotFoundException
+//   The resource could not be found.
+//
+//   * OperationNotSupportedException
+//   This operation is not supported.
+//
+//   * InvalidResourceStateException
+//   The state of the resource is not valid for this operation.
+//
+//   * AccessDeniedException
+//   The user is not authorized to access a resource.
+//
+//   * InvalidParameterValuesException
+//   One or more parameter values are not valid.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workspaces-2015-04-08/CreateUpdatedWorkspaceImage
+func (c *WorkSpaces) CreateUpdatedWorkspaceImage(input *CreateUpdatedWorkspaceImageInput) (*CreateUpdatedWorkspaceImageOutput, error) {
+	req, out := c.CreateUpdatedWorkspaceImageRequest(input)
+	return out, req.Send()
+}
+
+// CreateUpdatedWorkspaceImageWithContext is the same as CreateUpdatedWorkspaceImage with the addition of
+// the ability to pass a context and additional request options.
+//
+// See CreateUpdatedWorkspaceImage for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkSpaces) CreateUpdatedWorkspaceImageWithContext(ctx aws.Context, input *CreateUpdatedWorkspaceImageInput, opts ...request.Option) (*CreateUpdatedWorkspaceImageOutput, error) {
+	req, out := c.CreateUpdatedWorkspaceImageRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -1389,8 +1500,7 @@ func (c *WorkSpaces) DeregisterWorkspaceDirectoryRequest(input *DeregisterWorksp
 // with WorkSpaces. If there are no WorkSpaces being used with your Simple AD
 // or AD Connector directory for 30 consecutive days, this directory will be
 // automatically deregistered for use with Amazon WorkSpaces, and you will be
-// charged for this directory as per the AWS Directory Services pricing terms
-// (http://aws.amazon.com/directoryservice/pricing/).
+// charged for this directory as per the Directory Service pricing terms (http://aws.amazon.com/directoryservice/pricing/).
 //
 // To delete empty directories, see Delete the Directory for Your WorkSpaces
 // (https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html).
@@ -1732,8 +1842,9 @@ func (c *WorkSpaces) DescribeConnectionAliasPermissionsRequest(input *DescribeCo
 // DescribeConnectionAliasPermissions API operation for Amazon WorkSpaces.
 //
 // Describes the permissions that the owner of a connection alias has granted
-// to another AWS account for the specified connection alias. For more information,
-// see Cross-Region Redirection for Amazon WorkSpaces (https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html).
+// to another Amazon Web Services account for the specified connection alias.
+// For more information, see Cross-Region Redirection for Amazon WorkSpaces
+// (https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2346,7 +2457,7 @@ func (c *WorkSpaces) DescribeWorkspaceImagePermissionsRequest(input *DescribeWor
 // DescribeWorkspaceImagePermissions API operation for Amazon WorkSpaces.
 //
 // Describes the permissions that the owner of an image has granted to other
-// AWS accounts for an image.
+// Amazon Web Services accounts for an image.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -2821,8 +2932,8 @@ func (c *WorkSpaces) DisassociateConnectionAliasRequest(input *DisassociateConne
 //
 // Disassociates a connection alias from a directory. Disassociating a connection
 // alias disables cross-Region redirection between two directories in different
-// AWS Regions. For more information, see Cross-Region Redirection for Amazon
-// WorkSpaces (https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html).
+// Regions. For more information, see Cross-Region Redirection for Amazon WorkSpaces
+// (https://docs.aws.amazon.com/workspaces/latest/adminguide/cross-region-redirection.html).
 //
 // Before performing this operation, call DescribeConnectionAliases (https://docs.aws.amazon.com/workspaces/latest/api/API_DescribeConnectionAliases.html)
 // to make sure that the current state of the connection alias is CREATED.
@@ -3007,8 +3118,9 @@ func (c *WorkSpaces) ImportWorkspaceImageRequest(input *ImportWorkspaceImageInpu
 //
 // Imports the specified Windows 10 Bring Your Own License (BYOL) image into
 // Amazon WorkSpaces. The image must be an already licensed Amazon EC2 image
-// that is in your AWS account, and you must own the image. For more information
-// about creating BYOL images, see Bring Your Own Windows Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
+// that is in your Amazon Web Services account, and you must own the image.
+// For more information about creating BYOL images, see Bring Your Own Windows
+// Desktop Licenses (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -3106,8 +3218,8 @@ func (c *WorkSpaces) ListAvailableManagementCidrRangesRequest(input *ListAvailab
 // you can use for the network management interface when you enable Bring Your
 // Own License (BYOL).
 //
-// This operation can be run only by AWS accounts that are enabled for BYOL.
-// If your account isn't enabled for BYOL, you'll receive an AccessDeniedException
+// This operation can be run only by Amazon Web Services accounts that are enabled
+// for BYOL. If your account isn't enabled for BYOL, you'll receive an AccessDeniedException
 // error.
 //
 // The management network interface is connected to a secure Amazon WorkSpaces
@@ -4549,8 +4661,8 @@ func (c *WorkSpaces) TerminateWorkspacesRequest(input *TerminateWorkspacesInput)
 // Terminates the specified WorkSpaces.
 //
 // Terminating a WorkSpace is a permanent action and cannot be undone. The user's
-// data is destroyed. If you need to archive any user data, contact AWS Support
-// before terminating the WorkSpace.
+// data is destroyed. If you need to archive any user data, contact Amazon Web
+// Services Support before terminating the WorkSpace.
 //
 // You can terminate a WorkSpace that is in any state except SUSPENDED.
 //
@@ -4566,8 +4678,7 @@ func (c *WorkSpaces) TerminateWorkspacesRequest(input *TerminateWorkspacesInput)
 // with WorkSpaces. If there are no WorkSpaces being used with your Simple AD
 // or AD Connector directory for 30 consecutive days, this directory will be
 // automatically deregistered for use with Amazon WorkSpaces, and you will be
-// charged for this directory as per the AWS Directory Services pricing terms
-// (http://aws.amazon.com/directoryservice/pricing/).
+// charged for this directory as per the Directory Service pricing terms (http://aws.amazon.com/directoryservice/pricing/).
 //
 // To delete empty directories, see Delete the Directory for Your WorkSpaces
 // (https://docs.aws.amazon.com/workspaces/latest/adminguide/delete-workspaces-directory.html).
@@ -4948,18 +5059,18 @@ func (c *WorkSpaces) UpdateWorkspaceImagePermissionRequest(input *UpdateWorkspac
 
 // UpdateWorkspaceImagePermission API operation for Amazon WorkSpaces.
 //
-// Shares or unshares an image with one account in the same AWS Region by specifying
-// whether that account has permission to copy the image. If the copy image
-// permission is granted, the image is shared with that account. If the copy
-// image permission is revoked, the image is unshared with the account.
+// Shares or unshares an image with one account in the same Amazon Web Services
+// Region by specifying whether that account has permission to copy the image.
+// If the copy image permission is granted, the image is shared with that account.
+// If the copy image permission is revoked, the image is unshared with the account.
 //
 // After an image has been shared, the recipient account can copy the image
-// to other AWS Regions as needed.
+// to other Regions as needed.
 //
 // In the China (Ningxia) Region, you can copy images only within the same Region.
 //
-// In the AWS GovCloud (US-West) Region, to copy images to and from other AWS
-// Regions, contact AWS Support.
+// In Amazon Web Services GovCloud (US), to copy images to and from other Regions,
+// contact Amazon Web Services Support.
 //
 // For more information about sharing images, see Share or Unshare a Custom
 // WorkSpaces Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html).
@@ -4967,10 +5078,10 @@ func (c *WorkSpaces) UpdateWorkspaceImagePermissionRequest(input *UpdateWorkspac
 //    * To delete an image that has been shared, you must unshare the image
 //    before you delete it.
 //
-//    * Sharing Bring Your Own License (BYOL) images across AWS accounts isn't
-//    supported at this time in the AWS GovCloud (US-West) Region. To share
-//    BYOL images across accounts in the AWS GovCloud (US-West) Region, contact
-//    AWS Support.
+//    * Sharing Bring Your Own License (BYOL) images across Amazon Web Services
+//    accounts isn't supported at this time in Amazon Web Services GovCloud
+//    (US). To share BYOL images across accounts in Amazon Web Services GovCloud
+//    (US), contact Amazon Web Services Support.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -5551,7 +5662,8 @@ type ConnectionAlias struct {
 	// as www.example.com.
 	ConnectionString *string `min:"1" type:"string"`
 
-	// The identifier of the AWS account that owns the connection alias.
+	// The identifier of the Amazon Web Services account that owns the connection
+	// alias.
 	OwnerAccountId *string `type:"string"`
 
 	// The current state of the connection alias.
@@ -5612,8 +5724,8 @@ func (s *ConnectionAlias) SetState(v string) *ConnectionAlias {
 type ConnectionAliasAssociation struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS account that associated the connection alias with
-	// a directory.
+	// The identifier of the Amazon Web Services account that associated the connection
+	// alias with a directory.
 	AssociatedAccountId *string `type:"string"`
 
 	// The association status of the connection alias.
@@ -5676,13 +5788,14 @@ func (s *ConnectionAliasAssociation) SetResourceId(v string) *ConnectionAliasAss
 type ConnectionAliasPermission struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether the specified AWS account is allowed to associate the connection
-	// alias with a directory.
+	// Indicates whether the specified Amazon Web Services account is allowed to
+	// associate the connection alias with a directory.
 	//
 	// AllowAssociation is a required field
 	AllowAssociation *bool `type:"boolean" required:"true"`
 
-	// The identifier of the AWS account that the connection alias is shared with.
+	// The identifier of the Amazon Web Services account that the connection alias
+	// is shared with.
 	//
 	// SharedAccountId is a required field
 	SharedAccountId *string `type:"string" required:"true"`
@@ -5882,10 +5995,10 @@ type CreateConnectionAliasInput struct {
 	// A connection string in the form of a fully qualified domain name (FQDN),
 	// such as www.example.com.
 	//
-	// After you create a connection string, it is always associated to your AWS
-	// account. You cannot recreate the same connection string with a different
-	// account, even if you delete all instances of it from the original account.
-	// The connection string is globally reserved for your account.
+	// After you create a connection string, it is always associated to your Amazon
+	// Web Services account. You cannot recreate the same connection string with
+	// a different account, even if you delete all instances of it from the original
+	// account. The connection string is globally reserved for your account.
 	//
 	// ConnectionString is a required field
 	ConnectionString *string `min:"1" type:"string" required:"true"`
@@ -6190,6 +6303,139 @@ func (s CreateTagsOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateTagsOutput) GoString() string {
 	return s.String()
+}
+
+type CreateUpdatedWorkspaceImageInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of whether updates for the WorkSpace image are available.
+	//
+	// Description is a required field
+	Description *string `min:"1" type:"string" required:"true"`
+
+	// The name of the new updated WorkSpace image.
+	//
+	// Name is a required field
+	Name *string `min:"1" type:"string" required:"true"`
+
+	// The identifier of the source WorkSpace image.
+	//
+	// SourceImageId is a required field
+	SourceImageId *string `type:"string" required:"true"`
+
+	// The tags that you want to add to the new updated WorkSpace image.
+	//
+	// To add tags at the same time when you're creating the updated image, you
+	// must create an IAM policy that grants your IAM user permissions to use workspaces:CreateTags.
+	Tags []*Tag `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUpdatedWorkspaceImageInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUpdatedWorkspaceImageInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *CreateUpdatedWorkspaceImageInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "CreateUpdatedWorkspaceImageInput"}
+	if s.Description == nil {
+		invalidParams.Add(request.NewErrParamRequired("Description"))
+	}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.Name == nil {
+		invalidParams.Add(request.NewErrParamRequired("Name"))
+	}
+	if s.Name != nil && len(*s.Name) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
+	}
+	if s.SourceImageId == nil {
+		invalidParams.Add(request.NewErrParamRequired("SourceImageId"))
+	}
+	if s.Tags != nil {
+		for i, v := range s.Tags {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *CreateUpdatedWorkspaceImageInput) SetDescription(v string) *CreateUpdatedWorkspaceImageInput {
+	s.Description = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *CreateUpdatedWorkspaceImageInput) SetName(v string) *CreateUpdatedWorkspaceImageInput {
+	s.Name = &v
+	return s
+}
+
+// SetSourceImageId sets the SourceImageId field's value.
+func (s *CreateUpdatedWorkspaceImageInput) SetSourceImageId(v string) *CreateUpdatedWorkspaceImageInput {
+	s.SourceImageId = &v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateUpdatedWorkspaceImageInput) SetTags(v []*Tag) *CreateUpdatedWorkspaceImageInput {
+	s.Tags = v
+	return s
+}
+
+type CreateUpdatedWorkspaceImageOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the new updated WorkSpace image.
+	ImageId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUpdatedWorkspaceImageOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s CreateUpdatedWorkspaceImageOutput) GoString() string {
+	return s.String()
+}
+
+// SetImageId sets the ImageId field's value.
+func (s *CreateUpdatedWorkspaceImageOutput) SetImageId(v string) *CreateUpdatedWorkspaceImageOutput {
+	s.ImageId = &v
+	return s
 }
 
 type CreateWorkspaceBundleInput struct {
@@ -7668,8 +7914,8 @@ type DescribeWorkspaceBundlesInput struct {
 	// The owner of the bundles. You cannot combine this parameter with any other
 	// filter.
 	//
-	// To describe the bundles provided by AWS, specify AMAZON. To describe the
-	// bundles that belong to your account, don't specify a value.
+	// To describe the bundles provided by Amazon Web Services, specify AMAZON.
+	// To describe the bundles that belong to your account, don't specify a value.
 	Owner *string `type:"string"`
 }
 
@@ -7955,7 +8201,8 @@ type DescribeWorkspaceImagePermissionsOutput struct {
 	// The identifier of the image.
 	ImageId *string `type:"string"`
 
-	// The identifiers of the AWS accounts that the image has been shared with.
+	// The identifiers of the Amazon Web Services accounts that the image has been
+	// shared with.
 	ImagePermissions []*ImagePermission `type:"list"`
 
 	// The token to use to retrieve the next page of results. This value is null
@@ -8718,13 +8965,14 @@ func (s *FailedWorkspaceChangeRequest) SetWorkspaceId(v string) *FailedWorkspace
 	return s
 }
 
-// Describes the AWS accounts that have been granted permission to use a shared
-// image. For more information about sharing images, see Share or Unshare a
-// Custom WorkSpaces Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html).
+// Describes the Amazon Web Services accounts that have been granted permission
+// to use a shared image. For more information about sharing images, see Share
+// or Unshare a Custom WorkSpaces Image (https://docs.aws.amazon.com/workspaces/latest/adminguide/share-custom-image.html).
 type ImagePermission struct {
 	_ struct{} `type:"structure"`
 
-	// The identifier of the AWS account that an image has been shared with.
+	// The identifier of the Amazon Web Services account that an image has been
+	// shared with.
 	SharedAccountId *string `type:"string"`
 }
 
@@ -10450,10 +10698,10 @@ type RegisterWorkspaceDirectoryInput struct {
 
 	// Indicates whether your WorkSpace directory is dedicated or shared. To use
 	// Bring Your Own License (BYOL) images, this value must be set to DEDICATED
-	// and your AWS account must be enabled for BYOL. If your account has not been
-	// enabled for BYOL, you will receive an InvalidParameterValuesException error.
-	// For more information about BYOL images, see Bring Your Own Windows Desktop
-	// Images (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
+	// and your Amazon Web Services account must be enabled for BYOL. If your account
+	// has not been enabled for BYOL, you will receive an InvalidParameterValuesException
+	// error. For more information about BYOL images, see Bring Your Own Windows
+	// Desktop Images (https://docs.aws.amazon.com/workspaces/latest/adminguide/byol-windows-images.html).
 	Tenancy *string `type:"string" enum:"Tenancy"`
 }
 
@@ -11817,7 +12065,7 @@ type UpdateConnectionAliasPermissionInput struct {
 	AliasId *string `min:"13" type:"string" required:"true"`
 
 	// Indicates whether to share or unshare the connection alias with the specified
-	// AWS account.
+	// Amazon Web Services account.
 	//
 	// ConnectionAliasPermission is a required field
 	ConnectionAliasPermission *ConnectionAliasPermission `type:"structure" required:"true"`
@@ -11897,6 +12145,52 @@ func (s UpdateConnectionAliasPermissionOutput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateConnectionAliasPermissionOutput) GoString() string {
 	return s.String()
+}
+
+// Describes whether a WorkSpace image needs to be updated with the latest drivers
+// and other components required by Amazon WorkSpaces.
+//
+// Only Windows 10 WorkSpace images can be programmatically updated at this
+// time.
+type UpdateResult struct {
+	_ struct{} `type:"structure"`
+
+	// A description of whether updates for the WorkSpace image are pending or available.
+	Description *string `min:"1" type:"string"`
+
+	// Indicates whether updated drivers or other components are available for the
+	// specified WorkSpace image.
+	UpdateAvailable *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResult) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UpdateResult) GoString() string {
+	return s.String()
+}
+
+// SetDescription sets the Description field's value.
+func (s *UpdateResult) SetDescription(v string) *UpdateResult {
+	s.Description = &v
+	return s
+}
+
+// SetUpdateAvailable sets the UpdateAvailable field's value.
+func (s *UpdateResult) SetUpdateAvailable(v bool) *UpdateResult {
+	s.UpdateAvailable = &v
+	return s
 }
 
 type UpdateRulesOfIpGroupInput struct {
@@ -12057,10 +12351,11 @@ type UpdateWorkspaceImagePermissionInput struct {
 	// ImageId is a required field
 	ImageId *string `type:"string" required:"true"`
 
-	// The identifier of the AWS account to share or unshare the image with.
+	// The identifier of the Amazon Web Services account to share or unshare the
+	// image with.
 	//
-	// Before sharing the image, confirm that you are sharing to the correct AWS
-	// account ID.
+	// Before sharing the image, confirm that you are sharing to the correct Amazon
+	// Web Services account ID.
 	//
 	// SharedAccountId is a required field
 	SharedAccountId *string `type:"string" required:"true"`
@@ -12199,7 +12494,7 @@ type Workspace struct {
 	// this name varies. For more information, see Launch a WorkSpace (https://docs.aws.amazon.com/workspaces/latest/adminguide/launch-workspaces-tutorials.html).
 	ComputerName *string `type:"string"`
 
-	// The identifier of the AWS Directory Service directory for the WorkSpace.
+	// The identifier of the Directory Service directory for the WorkSpace.
 	DirectoryId *string `min:"10" type:"string"`
 
 	// The error code that is returned if the WorkSpace cannot be created.
@@ -12237,8 +12532,8 @@ type Workspace struct {
 	// Indicates whether the data stored on the user volume is encrypted.
 	UserVolumeEncryptionEnabled *bool `type:"boolean"`
 
-	// The symmetric AWS KMS customer master key (CMK) used to encrypt data stored
-	// on your WorkSpace. Amazon WorkSpaces does not support asymmetric CMKs.
+	// The symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon
+	// WorkSpaces does not support asymmetric KMS keys.
 	VolumeEncryptionKey *string `type:"string"`
 
 	// The identifier of the WorkSpace.
@@ -12361,7 +12656,8 @@ func (s *Workspace) SetWorkspaceProperties(v *WorkspaceProperties) *Workspace {
 type WorkspaceAccessProperties struct {
 	_ struct{} `type:"structure"`
 
-	// Indicates whether users can use Android devices to access their WorkSpaces.
+	// Indicates whether users can use Android and Android-compatible Chrome OS
+	// devices to access their WorkSpaces.
 	DeviceTypeAndroid *string `type:"string" enum:"AccessPropertyValue"`
 
 	// Indicates whether users can use Chromebooks to access their WorkSpaces.
@@ -12374,18 +12670,12 @@ type WorkspaceAccessProperties struct {
 	DeviceTypeLinux *string `type:"string" enum:"AccessPropertyValue"`
 
 	// Indicates whether users can use macOS clients to access their WorkSpaces.
-	// To restrict WorkSpaces access to trusted devices (also known as managed devices)
-	// with valid certificates, specify a value of TRUST. For more information,
-	// see Restrict WorkSpaces Access to Trusted Devices (https://docs.aws.amazon.com/workspaces/latest/adminguide/trusted-devices.html).
 	DeviceTypeOsx *string `type:"string" enum:"AccessPropertyValue"`
 
 	// Indicates whether users can access their WorkSpaces through a web browser.
 	DeviceTypeWeb *string `type:"string" enum:"AccessPropertyValue"`
 
 	// Indicates whether users can use Windows clients to access their WorkSpaces.
-	// To restrict WorkSpaces access to trusted devices (also known as managed devices)
-	// with valid certificates, specify a value of TRUST. For more information,
-	// see Restrict WorkSpaces Access to Trusted Devices (https://docs.aws.amazon.com/workspaces/latest/adminguide/trusted-devices.html).
 	DeviceTypeWindows *string `type:"string" enum:"AccessPropertyValue"`
 
 	// Indicates whether users can use zero client devices to access their WorkSpaces.
@@ -12485,7 +12775,7 @@ type WorkspaceBundle struct {
 	Name *string `min:"1" type:"string"`
 
 	// The owner of the bundle. This is the account identifier of the owner, or
-	// AMAZON if the bundle is provided by AWS.
+	// AMAZON if the bundle is provided by Amazon Web Services.
 	Owner *string `type:"string"`
 
 	// The size of the root volume.
@@ -12929,9 +13219,9 @@ func (s *WorkspaceDirectory) SetWorkspaceSecurityGroupId(v string) *WorkspaceDir
 type WorkspaceImage struct {
 	_ struct{} `type:"structure"`
 
-	// The date when the image was created. If the image has been shared, the AWS
-	// account that the image has been shared with sees the original creation date
-	// of the image.
+	// The date when the image was created. If the image has been shared, the Amazon
+	// Web Services account that the image has been shared with sees the original
+	// creation date of the image.
 	Created *time.Time `type:"timestamp"`
 
 	// The description of the image.
@@ -12952,7 +13242,7 @@ type WorkspaceImage struct {
 	// The operating system that the image is running.
 	OperatingSystem *OperatingSystem `type:"structure"`
 
-	// The identifier of the AWS account that owns the image.
+	// The identifier of the Amazon Web Services account that owns the image.
 	OwnerAccountId *string `type:"string"`
 
 	// Specifies whether the image is running on dedicated hardware. When Bring
@@ -12962,6 +13252,9 @@ type WorkspaceImage struct {
 
 	// The status of the image.
 	State *string `type:"string" enum:"WorkspaceImageState"`
+
+	// The updates (if any) that are available for the specified image.
+	Updates *UpdateResult `type:"structure"`
 }
 
 // String returns the string representation.
@@ -13039,6 +13332,12 @@ func (s *WorkspaceImage) SetRequiredTenancy(v string) *WorkspaceImage {
 // SetState sets the State field's value.
 func (s *WorkspaceImage) SetState(v string) *WorkspaceImage {
 	s.State = &v
+	return s
+}
+
+// SetUpdates sets the Updates field's value.
+func (s *WorkspaceImage) SetUpdates(v *UpdateResult) *WorkspaceImage {
+	s.Updates = v
 	return s
 }
 
@@ -13124,8 +13423,8 @@ type WorkspaceRequest struct {
 	// BundleId is a required field
 	BundleId *string `type:"string" required:"true"`
 
-	// The identifier of the AWS Directory Service directory for the WorkSpace.
-	// You can use DescribeWorkspaceDirectories to list the available directories.
+	// The identifier of the Directory Service directory for the WorkSpace. You
+	// can use DescribeWorkspaceDirectories to list the available directories.
 	//
 	// DirectoryId is a required field
 	DirectoryId *string `min:"10" type:"string" required:"true"`
@@ -13137,7 +13436,7 @@ type WorkspaceRequest struct {
 	Tags []*Tag `type:"list"`
 
 	// The user name of the user for the WorkSpace. This user name must exist in
-	// the AWS Directory Service directory for the WorkSpace.
+	// the Directory Service directory for the WorkSpace.
 	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
@@ -13145,8 +13444,8 @@ type WorkspaceRequest struct {
 	// Indicates whether the data stored on the user volume is encrypted.
 	UserVolumeEncryptionEnabled *bool `type:"boolean"`
 
-	// The symmetric AWS KMS customer master key (CMK) used to encrypt data stored
-	// on your WorkSpace. Amazon WorkSpaces does not support asymmetric CMKs.
+	// The symmetric KMS key used to encrypt data stored on your WorkSpace. Amazon
+	// WorkSpaces does not support asymmetric KMS keys.
 	VolumeEncryptionKey *string `type:"string"`
 
 	// The WorkSpace properties.

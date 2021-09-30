@@ -88,6 +88,10 @@ type WorkSpacesAPI interface {
 	CreateTagsWithContext(aws.Context, *workspaces.CreateTagsInput, ...request.Option) (*workspaces.CreateTagsOutput, error)
 	CreateTagsRequest(*workspaces.CreateTagsInput) (*request.Request, *workspaces.CreateTagsOutput)
 
+	CreateUpdatedWorkspaceImage(*workspaces.CreateUpdatedWorkspaceImageInput) (*workspaces.CreateUpdatedWorkspaceImageOutput, error)
+	CreateUpdatedWorkspaceImageWithContext(aws.Context, *workspaces.CreateUpdatedWorkspaceImageInput, ...request.Option) (*workspaces.CreateUpdatedWorkspaceImageOutput, error)
+	CreateUpdatedWorkspaceImageRequest(*workspaces.CreateUpdatedWorkspaceImageInput) (*request.Request, *workspaces.CreateUpdatedWorkspaceImageOutput)
+
 	CreateWorkspaceBundle(*workspaces.CreateWorkspaceBundleInput) (*workspaces.CreateWorkspaceBundleOutput, error)
 	CreateWorkspaceBundleWithContext(aws.Context, *workspaces.CreateWorkspaceBundleInput, ...request.Option) (*workspaces.CreateWorkspaceBundleOutput, error)
 	CreateWorkspaceBundleRequest(*workspaces.CreateWorkspaceBundleInput) (*request.Request, *workspaces.CreateWorkspaceBundleOutput)
