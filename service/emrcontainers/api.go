@@ -1489,7 +1489,7 @@ func (c *EMRContainers) UntagResourceWithContext(ctx aws.Context, input *UntagRe
 }
 
 type CancelJobRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the job run to cancel.
 	//
@@ -2302,7 +2302,7 @@ func (s *CreateVirtualClusterOutput) SetName(v string) *CreateVirtualClusterOutp
 }
 
 type DeleteManagedEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the managed endpoint.
 	//
@@ -2408,7 +2408,7 @@ func (s *DeleteManagedEndpointOutput) SetVirtualClusterId(v string) *DeleteManag
 }
 
 type DeleteVirtualClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the virtual cluster that will be deleted.
 	//
@@ -2488,7 +2488,7 @@ func (s *DeleteVirtualClusterOutput) SetId(v string) *DeleteVirtualClusterOutput
 }
 
 type DescribeJobRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the job run request.
 	//
@@ -2585,7 +2585,7 @@ func (s *DescribeJobRunOutput) SetJobRun(v *JobRun) *DescribeJobRunOutput {
 }
 
 type DescribeManagedEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// This output displays ID of the managed endpoint.
 	//
@@ -2682,7 +2682,7 @@ func (s *DescribeManagedEndpointOutput) SetEndpoint(v *Endpoint) *DescribeManage
 }
 
 type DescribeVirtualClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the virtual cluster that will be described.
 	//
@@ -3264,7 +3264,7 @@ func (s *JobRun) SetVirtualClusterId(v string) *JobRun {
 }
 
 type ListJobRunsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The date and time after which the job runs were submitted.
 	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp" timestampFormat:"iso8601"`
@@ -3413,7 +3413,7 @@ func (s *ListJobRunsOutput) SetNextToken(v string) *ListJobRunsOutput {
 }
 
 type ListManagedEndpointsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The date and time after which the endpoints are created.
 	CreatedAfter *time.Time `location:"querystring" locationName:"createdAfter" type:"timestamp" timestampFormat:"iso8601"`
@@ -3559,7 +3559,7 @@ func (s *ListManagedEndpointsOutput) SetNextToken(v string) *ListManagedEndpoint
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of tagged resources.
 	//
@@ -3639,7 +3639,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 type ListVirtualClustersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The container provider ID of the virtual cluster.
 	ContainerProviderId *string `location:"querystring" locationName:"containerProviderId" min:"1" type:"string"`
@@ -4315,7 +4315,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4337,7 +4337,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of resources.
 	//
@@ -4400,7 +4400,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

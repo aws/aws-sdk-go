@@ -8681,7 +8681,7 @@ func (s *AssociateAssetsInput) SetHierarchyId(v string) *AssociateAssetsInput {
 }
 
 type AssociateAssetsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10924,7 +10924,7 @@ func (s *DashboardSummary) SetName(v string) *DashboardSummary {
 }
 
 type DeleteAccessPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the access policy to be deleted.
 	//
@@ -10987,7 +10987,7 @@ func (s *DeleteAccessPolicyInput) SetClientToken(v string) *DeleteAccessPolicyIn
 }
 
 type DeleteAccessPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11009,7 +11009,7 @@ func (s DeleteAccessPolicyOutput) GoString() string {
 }
 
 type DeleteAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset to delete.
 	//
@@ -11072,7 +11072,7 @@ func (s *DeleteAssetInput) SetClientToken(v string) *DeleteAssetInput {
 }
 
 type DeleteAssetModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset model to delete.
 	//
@@ -11203,7 +11203,7 @@ func (s *DeleteAssetOutput) SetAssetStatus(v *AssetStatus) *DeleteAssetOutput {
 }
 
 type DeleteDashboardInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
 	// of the request. Don't reuse this client token if a new idempotent request
@@ -11266,7 +11266,7 @@ func (s *DeleteDashboardInput) SetDashboardId(v string) *DeleteDashboardInput {
 }
 
 type DeleteDashboardOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11288,7 +11288,7 @@ func (s DeleteDashboardOutput) GoString() string {
 }
 
 type DeleteGatewayInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the gateway to delete.
 	//
@@ -11337,7 +11337,7 @@ func (s *DeleteGatewayInput) SetGatewayId(v string) *DeleteGatewayInput {
 }
 
 type DeleteGatewayOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11359,7 +11359,7 @@ func (s DeleteGatewayOutput) GoString() string {
 }
 
 type DeletePortalInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
 	// of the request. Don't reuse this client token if a new idempotent request
@@ -11456,7 +11456,7 @@ func (s *DeletePortalOutput) SetPortalStatus(v *PortalStatus) *DeletePortalOutpu
 }
 
 type DeleteProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique case-sensitive identifier that you can provide to ensure the idempotency
 	// of the request. Don't reuse this client token if a new idempotent request
@@ -11519,7 +11519,7 @@ func (s *DeleteProjectInput) SetProjectId(v string) *DeleteProjectInput {
 }
 
 type DeleteProjectOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11541,7 +11541,7 @@ func (s DeleteProjectOutput) GoString() string {
 }
 
 type DescribeAccessPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the access policy.
 	//
@@ -11695,7 +11695,7 @@ func (s *DescribeAccessPolicyOutput) SetAccessPolicyResource(v *Resource) *Descr
 }
 
 type DescribeAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset.
 	//
@@ -11744,7 +11744,7 @@ func (s *DescribeAssetInput) SetAssetId(v string) *DescribeAssetInput {
 }
 
 type DescribeAssetModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset model.
 	//
@@ -12070,7 +12070,7 @@ func (s *DescribeAssetOutput) SetAssetStatus(v *AssetStatus) *DescribeAssetOutpu
 }
 
 type DescribeAssetPropertyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset.
 	//
@@ -12214,7 +12214,7 @@ func (s *DescribeAssetPropertyOutput) SetCompositeModel(v *CompositeModelPropert
 }
 
 type DescribeDashboardInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the dashboard.
 	//
@@ -12376,7 +12376,7 @@ func (s *DescribeDashboardOutput) SetProjectId(v string) *DescribeDashboardOutpu
 }
 
 type DescribeDefaultEncryptionConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12453,7 +12453,7 @@ func (s *DescribeDefaultEncryptionConfigurationOutput) SetKmsKeyArn(v string) *D
 }
 
 type DescribeGatewayCapabilityConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The namespace of the capability configuration. For example, if you configure
 	// OPC-UA sources from the IoT SiteWise console, your OPC-UA capability configuration
@@ -12597,7 +12597,7 @@ func (s *DescribeGatewayCapabilityConfigurationOutput) SetGatewayId(v string) *D
 }
 
 type DescribeGatewayInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the gateway device.
 	//
@@ -12749,7 +12749,7 @@ func (s *DescribeGatewayOutput) SetLastUpdateDate(v time.Time) *DescribeGatewayO
 }
 
 type DescribeLoggingOptionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12804,7 +12804,7 @@ func (s *DescribeLoggingOptionsOutput) SetLoggingOptions(v *LoggingOptions) *Des
 }
 
 type DescribePortalInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the portal.
 	//
@@ -13041,7 +13041,7 @@ func (s *DescribePortalOutput) SetRoleArn(v string) *DescribePortalOutput {
 }
 
 type DescribeProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the project.
 	//
@@ -13190,7 +13190,7 @@ func (s *DescribeProjectOutput) SetProjectName(v string) *DescribeProjectOutput 
 }
 
 type DescribeStorageConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -13428,7 +13428,7 @@ func (s *DisassociateAssetsInput) SetHierarchyId(v string) *DisassociateAssetsIn
 }
 
 type DisassociateAssetsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -13824,7 +13824,7 @@ func (s *GatewaySummary) SetLastUpdateDate(v time.Time) *GatewaySummary {
 }
 
 type GetAssetPropertyAggregatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The data aggregating function.
 	//
@@ -14051,7 +14051,7 @@ func (s *GetAssetPropertyAggregatesOutput) SetNextToken(v string) *GetAssetPrope
 }
 
 type GetAssetPropertyValueHistoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset.
 	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
@@ -14234,7 +14234,7 @@ func (s *GetAssetPropertyValueHistoryOutput) SetNextToken(v string) *GetAssetPro
 }
 
 type GetAssetPropertyValueInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset.
 	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
@@ -14336,7 +14336,7 @@ func (s *GetAssetPropertyValueOutput) SetPropertyValue(v *AssetPropertyValue) *G
 }
 
 type GetInterpolatedAssetPropertyValuesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset.
 	AssetId *string `location:"querystring" locationName:"assetId" min:"36" type:"string"`
@@ -15416,7 +15416,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListAccessPoliciesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the IAM user. For more information, see IAM ARNs (https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html)
 	// in the IAM User Guide. This parameter is required if you specify IAM for
@@ -15576,7 +15576,7 @@ func (s *ListAccessPoliciesOutput) SetNextToken(v string) *ListAccessPoliciesOut
 }
 
 type ListAssetModelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for each paginated request.
 	//
@@ -15677,7 +15677,7 @@ func (s *ListAssetModelsOutput) SetNextToken(v string) *ListAssetModelsOutput {
 }
 
 type ListAssetRelationshipsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset.
 	//
@@ -15812,7 +15812,7 @@ func (s *ListAssetRelationshipsOutput) SetNextToken(v string) *ListAssetRelation
 }
 
 type ListAssetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset model by which to filter the list of assets. This parameter
 	// is required if you choose ALL for filter.
@@ -15944,7 +15944,7 @@ func (s *ListAssetsOutput) SetNextToken(v string) *ListAssetsOutput {
 }
 
 type ListAssociatedAssetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the asset to query.
 	//
@@ -16096,7 +16096,7 @@ func (s *ListAssociatedAssetsOutput) SetNextToken(v string) *ListAssociatedAsset
 }
 
 type ListDashboardsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for each paginated request.
 	//
@@ -16214,7 +16214,7 @@ func (s *ListDashboardsOutput) SetNextToken(v string) *ListDashboardsOutput {
 }
 
 type ListGatewaysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for each paginated request.
 	//
@@ -16315,7 +16315,7 @@ func (s *ListGatewaysOutput) SetNextToken(v string) *ListGatewaysOutput {
 }
 
 type ListPortalsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for each paginated request.
 	//
@@ -16414,7 +16414,7 @@ func (s *ListPortalsOutput) SetPortalSummaries(v []*PortalSummary) *ListPortalsO
 }
 
 type ListProjectAssetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for each paginated request.
 	//
@@ -16532,7 +16532,7 @@ func (s *ListProjectAssetsOutput) SetNextToken(v string) *ListProjectAssetsOutpu
 }
 
 type ListProjectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for each paginated request.
 	//
@@ -16650,7 +16650,7 @@ func (s *ListProjectsOutput) SetProjectSummaries(v []*ProjectSummary) *ListProje
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the resource.
@@ -18051,7 +18051,7 @@ func (s *PutLoggingOptionsInput) SetLoggingOptions(v *LoggingOptions) *PutLoggin
 }
 
 type PutLoggingOptionsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -18535,7 +18535,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19094,7 +19094,7 @@ func (s *UnauthorizedException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
 	// of the resource to untag.
@@ -19158,7 +19158,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19298,7 +19298,7 @@ func (s *UpdateAccessPolicyInput) SetClientToken(v string) *UpdateAccessPolicyIn
 }
 
 type UpdateAccessPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19745,7 +19745,7 @@ func (s *UpdateAssetPropertyInput) SetPropertyNotificationState(v string) *Updat
 }
 
 type UpdateAssetPropertyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -19875,7 +19875,7 @@ func (s *UpdateDashboardInput) SetDashboardName(v string) *UpdateDashboardInput 
 }
 
 type UpdateDashboardOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -20105,7 +20105,7 @@ func (s *UpdateGatewayInput) SetGatewayName(v string) *UpdateGatewayInput {
 }
 
 type UpdateGatewayOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -20432,7 +20432,7 @@ func (s *UpdateProjectInput) SetProjectName(v string) *UpdateProjectInput {
 }
 
 type UpdateProjectOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

@@ -5420,7 +5420,7 @@ func (s *CustomRule) SetTarget(v string) *CustomRule {
 
 // Describes the request structure for the delete app request.
 type DeleteAppInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -5505,7 +5505,7 @@ func (s *DeleteAppOutput) SetApp(v *App) *DeleteAppOutput {
 
 // The request structure for the delete backend environment request.
 type DeleteBackendEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID of an Amplify app.
 	//
@@ -5606,7 +5606,7 @@ func (s *DeleteBackendEnvironmentOutput) SetBackendEnvironment(v *BackendEnviron
 
 // The request structure for the delete branch request.
 type DeleteBranchInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -5707,7 +5707,7 @@ func (s *DeleteBranchOutput) SetBranch(v *Branch) *DeleteBranchOutput {
 
 // The request structure for the delete domain association request.
 type DeleteDomainAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique id for an Amplify app.
 	//
@@ -5808,7 +5808,7 @@ func (s *DeleteDomainAssociationOutput) SetDomainAssociation(v *DomainAssociatio
 
 // The request structure for the delete job request.
 type DeleteJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -5926,7 +5926,7 @@ func (s *DeleteJobOutput) SetJobSummary(v *JobSummary) *DeleteJobOutput {
 
 // The request structure for the delete webhook request.
 type DeleteWebhookInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for a webhook.
 	//
@@ -6308,7 +6308,7 @@ func (s *GenerateAccessLogsOutput) SetLogUrl(v string) *GenerateAccessLogsOutput
 
 // The request structure for the get app request.
 type GetAppInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -6392,7 +6392,7 @@ func (s *GetAppOutput) SetApp(v *App) *GetAppOutput {
 
 // Returns the request structure for the get artifact request.
 type GetArtifactUrlInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an artifact.
 	//
@@ -6487,7 +6487,7 @@ func (s *GetArtifactUrlOutput) SetArtifactUrl(v string) *GetArtifactUrlOutput {
 
 // The request structure for the get backend environment request.
 type GetBackendEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique id for an Amplify app.
 	//
@@ -6588,7 +6588,7 @@ func (s *GetBackendEnvironmentOutput) SetBackendEnvironment(v *BackendEnvironmen
 
 // The request structure for the get branch request.
 type GetBranchInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -6688,7 +6688,7 @@ func (s *GetBranchOutput) SetBranch(v *Branch) *GetBranchOutput {
 
 // The request structure for the get domain association request.
 type GetDomainAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique id for an Amplify app.
 	//
@@ -6790,7 +6790,7 @@ func (s *GetDomainAssociationOutput) SetDomainAssociation(v *DomainAssociation) 
 
 // The request structure for the get job request.
 type GetJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -6907,7 +6907,7 @@ func (s *GetJobOutput) SetJob(v *Job) *GetJobOutput {
 
 // The request structure for the get webhook request.
 type GetWebhookInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for a webhook.
 	//
@@ -7287,7 +7287,7 @@ func (s *LimitExceededException) RequestID() string {
 
 // The request structure for the list apps request.
 type ListAppsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of records to list in a single response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -7374,7 +7374,7 @@ func (s *ListAppsOutput) SetNextToken(v string) *ListAppsOutput {
 
 // Describes the request structure for the list artifacts request.
 type ListArtifactsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -7522,7 +7522,7 @@ func (s *ListArtifactsOutput) SetNextToken(v string) *ListArtifactsOutput {
 
 // The request structure for the list backend environments request.
 type ListBackendEnvironmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -7648,7 +7648,7 @@ func (s *ListBackendEnvironmentsOutput) SetNextToken(v string) *ListBackendEnvir
 
 // The request structure for the list branches request.
 type ListBranchesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -7762,7 +7762,7 @@ func (s *ListBranchesOutput) SetNextToken(v string) *ListBranchesOutput {
 
 // The request structure for the list domain associations request.
 type ListDomainAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -7876,7 +7876,7 @@ func (s *ListDomainAssociationsOutput) SetNextToken(v string) *ListDomainAssocia
 
 // The request structure for the list jobs request.
 type ListJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -8007,7 +8007,7 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 
 // The request structure to use to list tags for a resource.
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) to use to list tags.
 	//
@@ -8089,7 +8089,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 
 // The request structure for the list webhooks request.
 type ListWebhooksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -8807,7 +8807,7 @@ func (s *Step) SetTestConfigUrl(v string) *Step {
 
 // The request structure for the stop job request.
 type StopJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for an Amplify app.
 	//
@@ -9112,7 +9112,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 
 // The response for the tag resource request.
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9199,7 +9199,7 @@ func (s *UnauthorizedException) RequestID() string {
 
 // The request structure for the untag resource request.
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) to use to untag a resource.
 	//
@@ -9266,7 +9266,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 
 // The response for the untag resource request.
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

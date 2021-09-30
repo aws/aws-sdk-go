@@ -5845,7 +5845,7 @@ func (s *CreateNodegroupOutput) SetNodegroup(v *Nodegroup) *CreateNodegroupOutpu
 }
 
 type DeleteAddonInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the add-on. The name must match one of the names returned by
 	// ListAddons (https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html).
@@ -5954,7 +5954,7 @@ func (s *DeleteAddonOutput) SetAddon(v *Addon) *DeleteAddonOutput {
 }
 
 type DeleteClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the cluster to delete.
 	//
@@ -6034,7 +6034,7 @@ func (s *DeleteClusterOutput) SetCluster(v *Cluster) *DeleteClusterOutput {
 }
 
 type DeleteFargateProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon EKS cluster associated with the Fargate profile to
 	// delete.
@@ -6132,7 +6132,7 @@ func (s *DeleteFargateProfileOutput) SetFargateProfile(v *FargateProfile) *Delet
 }
 
 type DeleteNodegroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon EKS cluster that is associated with your node group.
 	//
@@ -6229,7 +6229,7 @@ func (s *DeleteNodegroupOutput) SetNodegroup(v *Nodegroup) *DeleteNodegroupOutpu
 }
 
 type DeregisterClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the connected cluster to deregister.
 	//
@@ -6309,7 +6309,7 @@ func (s *DeregisterClusterOutput) SetCluster(v *Cluster) *DeregisterClusterOutpu
 }
 
 type DescribeAddonInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the add-on. The name must match one of the names returned by
 	// ListAddons (https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html).
@@ -6407,7 +6407,7 @@ func (s *DescribeAddonOutput) SetAddon(v *Addon) *DescribeAddonOutput {
 }
 
 type DescribeAddonVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the add-on. The name must match one of the names returned by
 	// ListAddons (https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html).
@@ -6531,7 +6531,7 @@ func (s *DescribeAddonVersionsOutput) SetNextToken(v string) *DescribeAddonVersi
 }
 
 type DescribeClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the cluster to describe.
 	//
@@ -6611,7 +6611,7 @@ func (s *DescribeClusterOutput) SetCluster(v *Cluster) *DescribeClusterOutput {
 }
 
 type DescribeFargateProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon EKS cluster associated with the Fargate profile.
 	//
@@ -6807,7 +6807,7 @@ func (s *DescribeIdentityProviderConfigOutput) SetIdentityProviderConfig(v *Iden
 }
 
 type DescribeNodegroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon EKS cluster associated with the node group.
 	//
@@ -6904,7 +6904,7 @@ func (s *DescribeNodegroupOutput) SetNodegroup(v *Nodegroup) *DescribeNodegroupO
 }
 
 type DescribeUpdateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the add-on. The name must match one of the names returned by
 	// ListAddons (https://docs.aws.amazon.com/eks/latest/APIReference/API_ListAddons.html).
@@ -7927,7 +7927,7 @@ func (s *LaunchTemplateSpecification) SetVersion(v string) *LaunchTemplateSpecif
 }
 
 type ListAddonsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the cluster.
 	//
@@ -8055,7 +8055,7 @@ func (s *ListAddonsOutput) SetNextToken(v string) *ListAddonsOutput {
 }
 
 type ListClustersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Indicates whether connected clusters are included in the returned list. Default
 	// value is 'ALL'.
@@ -8173,7 +8173,7 @@ func (s *ListClustersOutput) SetNextToken(v string) *ListClustersOutput {
 }
 
 type ListFargateProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon EKS cluster that you would like to list Fargate profiles
 	// in.
@@ -8296,7 +8296,7 @@ func (s *ListFargateProfilesOutput) SetNextToken(v string) *ListFargateProfilesO
 }
 
 type ListIdentityProviderConfigsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The cluster name that you want to list identity provider configurations for.
 	//
@@ -8418,7 +8418,7 @@ func (s *ListIdentityProviderConfigsOutput) SetNextToken(v string) *ListIdentity
 }
 
 type ListNodegroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Amazon EKS cluster that you would like to list node groups
 	// in.
@@ -8541,7 +8541,7 @@ func (s *ListNodegroupsOutput) SetNodegroups(v []*string) *ListNodegroupsOutput 
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) that identifies the resource for which to
 	// list the tags. Currently, the supported resources are Amazon EKS clusters
@@ -8623,7 +8623,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 type ListUpdatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The names of the installed add-ons that have available updates.
 	AddonName *string `location:"querystring" locationName:"addonName" type:"string"`
@@ -10304,7 +10304,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10466,7 +10466,7 @@ func (s *UnsupportedAvailabilityZoneException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource from which to delete tags.
 	// Currently, the supported resources are Amazon EKS clusters and managed node
@@ -10534,7 +10534,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

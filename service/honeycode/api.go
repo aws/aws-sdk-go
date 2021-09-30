@@ -2791,7 +2791,7 @@ func (s *DelimitedTextImportOptions) SetIgnoreEmptyRows(v bool) *DelimitedTextIm
 }
 
 type DescribeTableDataImportJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the job that was returned by the StartTableDataImportJob request.
 	//
@@ -3769,7 +3769,7 @@ func (s *InvokeScreenAutomationOutput) SetWorkbookCursor(v int64) *InvokeScreenA
 }
 
 type ListTableColumnsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// This parameter is optional. If a nextToken is not specified, the API returns
 	// the first page of data.
@@ -4100,7 +4100,7 @@ func (s *ListTableRowsOutput) SetWorkbookCursor(v int64) *ListTableRowsOutput {
 }
 
 type ListTablesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of tables to return in each page of the results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`

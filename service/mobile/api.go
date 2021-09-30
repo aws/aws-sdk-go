@@ -1322,7 +1322,7 @@ func (s *CreateProjectOutput) SetDetails(v *ProjectDetails) *CreateProjectOutput
 
 // Request structure used to request a project be deleted.
 type DeleteProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique project identifier.
 	//
@@ -1414,7 +1414,7 @@ func (s *DeleteProjectOutput) SetOrphanedResources(v []*Resource) *DeleteProject
 
 // Request structure to request the details of a specific bundle.
 type DescribeBundleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique bundle identifier.
 	//
@@ -1496,7 +1496,7 @@ func (s *DescribeBundleOutput) SetDetails(v *BundleDetails) *DescribeBundleOutpu
 
 // Request structure used to request details about a project.
 type DescribeProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique project identifier.
 	//
@@ -1587,7 +1587,7 @@ func (s *DescribeProjectOutput) SetDetails(v *ProjectDetails) *DescribeProjectOu
 // Request structure used to request generation of custom SDK and tool packages
 // required to integrate mobile web or app clients with backed AWS resources.
 type ExportBundleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique bundle identifier.
 	//
@@ -1691,7 +1691,7 @@ func (s *ExportBundleOutput) SetDownloadUrl(v string) *ExportBundleOutput {
 
 // Request structure used in requests to export project configuration details.
 type ExportProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Unique project identifier.
 	//
@@ -1934,7 +1934,7 @@ func (s *LimitExceededException) RequestID() string {
 
 // Request structure to request all available bundles.
 type ListBundlesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of records to list in a single response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -2019,7 +2019,7 @@ func (s *ListBundlesOutput) SetNextToken(v string) *ListBundlesOutput {
 
 // Request structure used to request projects list in AWS Mobile Hub.
 type ListProjectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum number of records to list in a single response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`

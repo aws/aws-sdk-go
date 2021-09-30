@@ -3007,7 +3007,7 @@ func (s *ActivateAnomalyDetectorInput) SetAnomalyDetectorArn(v string) *Activate
 }
 
 type ActivateAnomalyDetectorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3830,7 +3830,7 @@ func (s *BackTestAnomalyDetectorInput) SetAnomalyDetectorArn(v string) *BackTest
 }
 
 type BackTestAnomalyDetectorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4625,7 +4625,7 @@ func (s *DeleteAlertInput) SetAlertArn(v string) *DeleteAlertInput {
 }
 
 type DeleteAlertOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4693,7 +4693,7 @@ func (s *DeleteAnomalyDetectorInput) SetAnomalyDetectorArn(v string) *DeleteAnom
 }
 
 type DeleteAnomalyDetectorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6596,7 +6596,7 @@ func (s *ListMetricSetsOutput) SetNextToken(v string) *ListMetricSetsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The resource's Amazon Resource Name (ARN).
 	//
@@ -7059,7 +7059,7 @@ func (s *PutFeedbackInput) SetAnomalyGroupTimeSeriesFeedback(v *AnomalyGroupTime
 }
 
 type PutFeedbackOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7856,7 +7856,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8096,7 +8096,7 @@ func (s *TooManyRequestsException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The resource's Amazon Resource Name (ARN).
 	//
@@ -8162,7 +8162,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

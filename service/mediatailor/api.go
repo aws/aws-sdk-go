@@ -4512,7 +4512,7 @@ func (s *DefaultSegmentDeliveryConfiguration) SetBaseUrl(v string) *DefaultSegme
 }
 
 type DeleteChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -4560,7 +4560,7 @@ func (s *DeleteChannelInput) SetChannelName(v string) *DeleteChannelInput {
 
 // This response includes only the "type" : "object" property.
 type DeleteChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4583,7 +4583,7 @@ func (s DeleteChannelOutput) GoString() string {
 
 // This response includes only the "type" : "object" property.
 type DeleteChannelPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -4631,7 +4631,7 @@ func (s *DeleteChannelPolicyInput) SetChannelName(v string) *DeleteChannelPolicy
 
 // This response includes only the "type" : "object" property.
 type DeleteChannelPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4653,7 +4653,7 @@ func (s DeleteChannelPolicyOutput) GoString() string {
 }
 
 type DeletePlaybackConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
@@ -4700,7 +4700,7 @@ func (s *DeletePlaybackConfigurationInput) SetName(v string) *DeletePlaybackConf
 }
 
 type DeletePlaybackConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4722,7 +4722,7 @@ func (s DeletePlaybackConfigurationOutput) GoString() string {
 }
 
 type DeleteProgramInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -4785,7 +4785,7 @@ func (s *DeleteProgramInput) SetProgramName(v string) *DeleteProgramInput {
 
 // This response includes only the "type" : "object" property.
 type DeleteProgramOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4807,7 +4807,7 @@ func (s DeleteProgramOutput) GoString() string {
 }
 
 type DeleteSourceLocationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SourceLocationName is a required field
 	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
@@ -4855,7 +4855,7 @@ func (s *DeleteSourceLocationInput) SetSourceLocationName(v string) *DeleteSourc
 
 // This response includes only the "type" : "object" property.
 type DeleteSourceLocationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4877,7 +4877,7 @@ func (s DeleteSourceLocationOutput) GoString() string {
 }
 
 type DeleteVodSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SourceLocationName is a required field
 	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
@@ -4940,7 +4940,7 @@ func (s *DeleteVodSourceInput) SetVodSourceName(v string) *DeleteVodSourceInput 
 
 // This response includes only the "type" : "object" property.
 type DeleteVodSourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4962,7 +4962,7 @@ func (s DeleteVodSourceOutput) GoString() string {
 }
 
 type DescribeChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -5114,7 +5114,7 @@ func (s *DescribeChannelOutput) SetTags(v map[string]*string) *DescribeChannelOu
 }
 
 type DescribeProgramInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -5273,7 +5273,7 @@ func (s *DescribeProgramOutput) SetVodSourceName(v string) *DescribeProgramOutpu
 }
 
 type DescribeSourceLocationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SourceLocationName is a required field
 	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
@@ -5415,7 +5415,7 @@ func (s *DescribeSourceLocationOutput) SetTags(v map[string]*string) *DescribeSo
 }
 
 type DescribeVodSourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SourceLocationName is a required field
 	SourceLocationName *string `location:"uri" locationName:"sourceLocationName" type:"string" required:"true"`
@@ -5563,7 +5563,7 @@ func (s *DescribeVodSourceOutput) SetVodSourceName(v string) *DescribeVodSourceO
 }
 
 type GetChannelPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -5642,7 +5642,7 @@ func (s *GetChannelPolicyOutput) SetPolicy(v string) *GetChannelPolicyOutput {
 }
 
 type GetChannelScheduleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -5758,7 +5758,7 @@ func (s *GetChannelScheduleOutput) SetNextToken(v string) *GetChannelScheduleOut
 }
 
 type GetPlaybackConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Name is a required field
 	Name *string `location:"uri" locationName:"Name" type:"string" required:"true"`
@@ -6217,7 +6217,7 @@ func (s *HttpPackageConfiguration) SetType(v string) *HttpPackageConfiguration {
 }
 
 type ListAlertsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6322,7 +6322,7 @@ func (s *ListAlertsOutput) SetNextToken(v string) *ListAlertsOutput {
 }
 
 type ListChannelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6415,7 +6415,7 @@ func (s *ListChannelsOutput) SetNextToken(v string) *ListChannelsOutput {
 }
 
 type ListPlaybackConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
 
@@ -6510,7 +6510,7 @@ func (s *ListPlaybackConfigurationsOutput) SetNextToken(v string) *ListPlaybackC
 }
 
 type ListSourceLocationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6603,7 +6603,7 @@ func (s *ListSourceLocationsOutput) SetNextToken(v string) *ListSourceLocationsO
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
@@ -6680,7 +6680,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 type ListVodSourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -7199,7 +7199,7 @@ func (s *PutChannelPolicyInput) SetPolicy(v string) *PutChannelPolicyInput {
 
 // This response includes only the "type" : "object" property.
 type PutChannelPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8245,7 +8245,7 @@ func (s *SpliceInsertMessage) SetUniqueProgramId(v int64) *SpliceInsertMessage {
 }
 
 type StartChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -8292,7 +8292,7 @@ func (s *StartChannelInput) SetChannelName(v string) *StartChannelInput {
 }
 
 type StartChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8314,7 +8314,7 @@ func (s StartChannelOutput) GoString() string {
 }
 
 type StopChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ChannelName is a required field
 	ChannelName *string `location:"uri" locationName:"channelName" type:"string" required:"true"`
@@ -8361,7 +8361,7 @@ func (s *StopChannelInput) SetChannelName(v string) *StopChannelInput {
 }
 
 type StopChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8442,7 +8442,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8560,7 +8560,7 @@ func (s *Transition) SetType(v string) *Transition {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"ResourceArn" type:"string" required:"true"`
@@ -8619,7 +8619,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

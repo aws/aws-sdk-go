@@ -4363,7 +4363,7 @@ func (c *ElasticsearchService) UpgradeElasticsearchDomainWithContext(ctx aws.Con
 // Container for the parameters to the AcceptInboundCrossClusterSearchConnection
 // operation.
 type AcceptInboundCrossClusterSearchConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the inbound connection that you want to accept.
 	//
@@ -4632,7 +4632,7 @@ func (s *AddTagsInput) SetTagList(v []*Tag) *AddTagsInput {
 }
 
 type AddTagsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4937,7 +4937,7 @@ func (s *AdvancedSecurityOptionsStatus) SetStatus(v *OptionStatus) *AdvancedSecu
 
 // Container for request parameters to AssociatePackage operation.
 type AssociatePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Name of the domain that you want to associate the package with.
 	//
@@ -6474,7 +6474,7 @@ func (s *CreatePackageOutput) SetPackageDetails(v *PackageDetails) *CreatePackag
 // Container for the parameters to the DeleteElasticsearchDomain operation.
 // Specifies the name of the Elasticsearch domain that you want to delete.
 type DeleteElasticsearchDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Elasticsearch domain that you want to permanently delete.
 	//
@@ -6557,7 +6557,7 @@ func (s *DeleteElasticsearchDomainOutput) SetDomainStatus(v *ElasticsearchDomain
 }
 
 type DeleteElasticsearchServiceRoleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6579,7 +6579,7 @@ func (s DeleteElasticsearchServiceRoleInput) GoString() string {
 }
 
 type DeleteElasticsearchServiceRoleOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6603,7 +6603,7 @@ func (s DeleteElasticsearchServiceRoleOutput) GoString() string {
 // Container for the parameters to the DeleteInboundCrossClusterSearchConnection
 // operation.
 type DeleteInboundCrossClusterSearchConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the inbound connection that you want to permanently delete.
 	//
@@ -6687,7 +6687,7 @@ func (s *DeleteInboundCrossClusterSearchConnectionOutput) SetCrossClusterSearchC
 // Container for the parameters to the DeleteOutboundCrossClusterSearchConnection
 // operation.
 type DeleteOutboundCrossClusterSearchConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the outbound connection that you want to permanently delete.
 	//
@@ -6770,7 +6770,7 @@ func (s *DeleteOutboundCrossClusterSearchConnectionOutput) SetCrossClusterSearch
 
 // Container for request parameters to DeletePackage operation.
 type DeletePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Internal ID of the package that you want to delete. Use DescribePackages
 	// to find this value.
@@ -6968,7 +6968,7 @@ func (s *DescribeDomainAutoTunesOutput) SetNextToken(v string) *DescribeDomainAu
 // Container for the parameters to the DescribeElasticsearchDomainConfig operation.
 // Specifies the domain name for which you want configuration information.
 type DescribeElasticsearchDomainConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Elasticsearch domain that you want to get information about.
 	//
@@ -7054,7 +7054,7 @@ func (s *DescribeElasticsearchDomainConfigOutput) SetDomainConfig(v *Elasticsear
 
 // Container for the parameters to the DescribeElasticsearchDomain operation.
 type DescribeElasticsearchDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the Elasticsearch domain for which you want information.
 	//
@@ -7222,7 +7222,7 @@ func (s *DescribeElasticsearchDomainsOutput) SetDomainStatusList(v []*Elasticsea
 
 // Container for the parameters to DescribeElasticsearchInstanceTypeLimits operation.
 type DescribeElasticsearchInstanceTypeLimitsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DomainName represents the name of the Domain that we are trying to modify.
 	// This should be present only if we are querying for Elasticsearch Limits for
@@ -7729,7 +7729,7 @@ func (s *DescribePackagesOutput) SetPackageDetailsList(v []*PackageDetails) *Des
 
 // Container for parameters to DescribeReservedElasticsearchInstanceOfferings
 type DescribeReservedElasticsearchInstanceOfferingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. If not specified,
 	// defaults to 100.
@@ -7823,7 +7823,7 @@ func (s *DescribeReservedElasticsearchInstanceOfferingsOutput) SetReservedElasti
 
 // Container for parameters to DescribeReservedElasticsearchInstances
 type DescribeReservedElasticsearchInstancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. If not specified,
 	// defaults to 100.
@@ -7983,7 +7983,7 @@ func (s *DisabledOperationException) RequestID() string {
 
 // Container for request parameters to DissociatePackage operation.
 type DissociatePackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Name of the domain that you want to associate the package with.
 	//
@@ -9450,7 +9450,7 @@ func (s *Filter) SetValues(v []*string) *Filter {
 
 // Container for request parameters to GetCompatibleElasticsearchVersions operation.
 type GetCompatibleElasticsearchVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an Elasticsearch domain. Domain names are unique across the domains
 	// owned by an account within an AWS region. Domain names start with a letter
@@ -9531,7 +9531,7 @@ func (s *GetCompatibleElasticsearchVersionsOutput) SetCompatibleElasticsearchVer
 
 // Container for request parameters to GetPackageVersionHistory operation.
 type GetPackageVersionHistoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Limits results to a maximum number of versions.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -9648,7 +9648,7 @@ func (s *GetPackageVersionHistoryOutput) SetPackageVersionHistoryList(v []*Packa
 
 // Container for request parameters to GetUpgradeHistory operation.
 type GetUpgradeHistoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an Elasticsearch domain. Domain names are unique across the domains
 	// owned by an account within an AWS region. Domain names start with a letter
@@ -9765,7 +9765,7 @@ func (s *GetUpgradeHistoryOutput) SetUpgradeHistories(v []*UpgradeHistory) *GetU
 
 // Container for request parameters to GetUpgradeStatus operation.
 type GetUpgradeStatusInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of an Elasticsearch domain. Domain names are unique across the domains
 	// owned by an account within an AWS region. Domain names start with a letter
@@ -10388,7 +10388,7 @@ func (s *Limits) SetStorageTypes(v []*StorageType) *Limits {
 
 // Container for the parameters to the ListDomainNames operation.
 type ListDomainNamesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional parameter to filter the output by domain engine type. Acceptable
 	// values are 'Elasticsearch' and 'OpenSearch'.
@@ -10454,7 +10454,7 @@ func (s *ListDomainNamesOutput) SetDomainNames(v []*DomainInfo) *ListDomainNames
 
 // Container for request parameters to ListDomainsForPackage operation.
 type ListDomainsForPackageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Limits results to a maximum number of domains.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -10563,7 +10563,7 @@ func (s *ListDomainsForPackageOutput) SetNextToken(v string) *ListDomainsForPack
 
 // Container for the parameters to the ListElasticsearchInstanceTypes operation.
 type ListElasticsearchInstanceTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DomainName represents the name of the Domain that we are trying to modify.
 	// This should be present only if we are querying for list of available Elasticsearch
@@ -10697,7 +10697,7 @@ func (s *ListElasticsearchInstanceTypesOutput) SetNextToken(v string) *ListElast
 // Use NextToken in response to retrieve more results. If the received response
 // does not contain a NextToken, then there are no more results to retrieve.
 type ListElasticsearchVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Set this value to limit the number of results returned. Value provided must
 	// be greater than 10 else it wont be honored.
@@ -10785,7 +10785,7 @@ func (s *ListElasticsearchVersionsOutput) SetNextToken(v string) *ListElasticsea
 
 // Container for request parameters to ListPackagesForDomain operation.
 type ListPackagesForDomainInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the domain for which you want to list associated packages.
 	//
@@ -10898,7 +10898,7 @@ func (s *ListPackagesForDomainOutput) SetNextToken(v string) *ListPackagesForDom
 // the Elasticsearch domain to which the tags are attached that you want to
 // view are attached.
 type ListTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specify the ARN for the Elasticsearch domain to which the tags are attached
 	// that you want to view.
@@ -11793,7 +11793,7 @@ func (s *RecurringCharge) SetRecurringChargeFrequency(v string) *RecurringCharge
 // Container for the parameters to the RejectInboundCrossClusterSearchConnection
 // operation.
 type RejectInboundCrossClusterSearchConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The id of the inbound connection that you want to reject.
 	//
@@ -11940,7 +11940,7 @@ func (s *RemoveTagsInput) SetTagKeys(v []*string) *RemoveTagsInput {
 }
 
 type RemoveTagsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

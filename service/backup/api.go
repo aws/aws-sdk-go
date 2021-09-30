@@ -8403,7 +8403,7 @@ func (s *CreateReportPlanOutput) SetReportPlanName(v string) *CreateReportPlanOu
 }
 
 type DeleteBackupPlanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a backup plan.
 	//
@@ -8515,7 +8515,7 @@ func (s *DeleteBackupPlanOutput) SetVersionId(v string) *DeleteBackupPlanOutput 
 }
 
 type DeleteBackupSelectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a backup plan.
 	//
@@ -8582,7 +8582,7 @@ func (s *DeleteBackupSelectionInput) SetSelectionId(v string) *DeleteBackupSelec
 }
 
 type DeleteBackupSelectionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8604,7 +8604,7 @@ func (s DeleteBackupSelectionOutput) GoString() string {
 }
 
 type DeleteBackupVaultAccessPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -8656,7 +8656,7 @@ func (s *DeleteBackupVaultAccessPolicyInput) SetBackupVaultName(v string) *Delet
 }
 
 type DeleteBackupVaultAccessPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8678,7 +8678,7 @@ func (s DeleteBackupVaultAccessPolicyOutput) GoString() string {
 }
 
 type DeleteBackupVaultInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -8801,7 +8801,7 @@ func (s DeleteBackupVaultLockConfigurationOutput) GoString() string {
 }
 
 type DeleteBackupVaultNotificationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -8853,7 +8853,7 @@ func (s *DeleteBackupVaultNotificationsInput) SetBackupVaultName(v string) *Dele
 }
 
 type DeleteBackupVaultNotificationsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8875,7 +8875,7 @@ func (s DeleteBackupVaultNotificationsOutput) GoString() string {
 }
 
 type DeleteBackupVaultOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8897,7 +8897,7 @@ func (s DeleteBackupVaultOutput) GoString() string {
 }
 
 type DeleteFrameworkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of a framework.
 	//
@@ -8946,7 +8946,7 @@ func (s *DeleteFrameworkInput) SetFrameworkName(v string) *DeleteFrameworkInput 
 }
 
 type DeleteFrameworkOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8968,7 +8968,7 @@ func (s DeleteFrameworkOutput) GoString() string {
 }
 
 type DeleteRecoveryPointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -9038,7 +9038,7 @@ func (s *DeleteRecoveryPointInput) SetRecoveryPointArn(v string) *DeleteRecovery
 }
 
 type DeleteRecoveryPointOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9060,7 +9060,7 @@ func (s DeleteRecoveryPointOutput) GoString() string {
 }
 
 type DeleteReportPlanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of a report plan.
 	//
@@ -9109,7 +9109,7 @@ func (s *DeleteReportPlanInput) SetReportPlanName(v string) *DeleteReportPlanInp
 }
 
 type DeleteReportPlanOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9202,7 +9202,7 @@ func (s *DependencyFailureException) RequestID() string {
 }
 
 type DescribeBackupJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a request to Backup to back up a resource.
 	//
@@ -9484,7 +9484,7 @@ func (s *DescribeBackupJobOutput) SetStatusMessage(v string) *DescribeBackupJobO
 }
 
 type DescribeBackupVaultInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -9687,7 +9687,7 @@ func (s *DescribeBackupVaultOutput) SetNumberOfRecoveryPoints(v int64) *Describe
 }
 
 type DescribeCopyJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a copy job.
 	//
@@ -9767,7 +9767,7 @@ func (s *DescribeCopyJobOutput) SetCopyJob(v *CopyJob) *DescribeCopyJobOutput {
 }
 
 type DescribeFrameworkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of a framework.
 	//
@@ -9936,7 +9936,7 @@ func (s *DescribeFrameworkOutput) SetIdempotencyToken(v string) *DescribeFramewo
 }
 
 type DescribeGlobalSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10001,7 +10001,7 @@ func (s *DescribeGlobalSettingsOutput) SetLastUpdateTime(v time.Time) *DescribeG
 }
 
 type DescribeProtectedResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
 	// of the ARN depends on the resource type.
@@ -10105,7 +10105,7 @@ func (s *DescribeProtectedResourceOutput) SetResourceType(v string) *DescribePro
 }
 
 type DescribeRecoveryPointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -10415,7 +10415,7 @@ func (s *DescribeRecoveryPointOutput) SetStorageClass(v string) *DescribeRecover
 }
 
 type DescribeRegionSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10468,7 +10468,7 @@ func (s *DescribeRegionSettingsOutput) SetResourceTypeOptInPreference(v map[stri
 }
 
 type DescribeReportJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the report job. A unique, randomly generated, Unicode,
 	// UTF-8 encoded string that is at most 1,024 bytes long. The report job ID
@@ -10552,7 +10552,7 @@ func (s *DescribeReportJobOutput) SetReportJob(v *ReportJob) *DescribeReportJobO
 }
 
 type DescribeReportPlanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of a report plan.
 	//
@@ -10635,7 +10635,7 @@ func (s *DescribeReportPlanOutput) SetReportPlan(v *ReportPlan) *DescribeReportP
 }
 
 type DescribeRestoreJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies the job that restores a recovery point.
 	//
@@ -10835,7 +10835,7 @@ func (s *DescribeRestoreJobOutput) SetStatusMessage(v string) *DescribeRestoreJo
 }
 
 type DisassociateRecoveryPointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique name of an Backup vault.
 	//
@@ -10902,7 +10902,7 @@ func (s *DisassociateRecoveryPointInput) SetRecoveryPointArn(v string) *Disassoc
 }
 
 type DisassociateRecoveryPointOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10924,7 +10924,7 @@ func (s DisassociateRecoveryPointOutput) GoString() string {
 }
 
 type ExportBackupPlanTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a backup plan.
 	//
@@ -11247,7 +11247,7 @@ func (s *GetBackupPlanFromJSONOutput) SetBackupPlan(v *Plan) *GetBackupPlanFromJ
 }
 
 type GetBackupPlanFromTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a stored backup plan template.
 	//
@@ -11328,7 +11328,7 @@ func (s *GetBackupPlanFromTemplateOutput) SetBackupPlanDocument(v *Plan) *GetBac
 }
 
 type GetBackupPlanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a backup plan.
 	//
@@ -11504,7 +11504,7 @@ func (s *GetBackupPlanOutput) SetVersionId(v string) *GetBackupPlanOutput {
 }
 
 type GetBackupSelectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a backup plan.
 	//
@@ -11644,7 +11644,7 @@ func (s *GetBackupSelectionOutput) SetSelectionId(v string) *GetBackupSelectionO
 }
 
 type GetBackupVaultAccessPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -11749,7 +11749,7 @@ func (s *GetBackupVaultAccessPolicyOutput) SetPolicy(v string) *GetBackupVaultAc
 }
 
 type GetBackupVaultNotificationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -11865,7 +11865,7 @@ func (s *GetBackupVaultNotificationsOutput) SetSNSTopicArn(v string) *GetBackupV
 }
 
 type GetRecoveryPointRestoreMetadataInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -11990,7 +11990,7 @@ func (s *GetRecoveryPointRestoreMetadataOutput) SetRestoreMetadata(v map[string]
 }
 
 type GetSupportedResourceTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12634,7 +12634,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListBackupJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The account ID to list the jobs from. Returns only backup jobs associated
 	// with the specified account ID.
@@ -12819,7 +12819,7 @@ func (s *ListBackupJobsOutput) SetNextToken(v string) *ListBackupJobsOutput {
 }
 
 type ListBackupPlanTemplatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -12918,7 +12918,7 @@ func (s *ListBackupPlanTemplatesOutput) SetNextToken(v string) *ListBackupPlanTe
 }
 
 type ListBackupPlanVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a backup plan.
 	//
@@ -13034,7 +13034,7 @@ func (s *ListBackupPlanVersionsOutput) SetNextToken(v string) *ListBackupPlanVer
 }
 
 type ListBackupPlansInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A Boolean value with a default value of FALSE that returns deleted backup
 	// plans when set to TRUE.
@@ -13144,7 +13144,7 @@ func (s *ListBackupPlansOutput) SetNextToken(v string) *ListBackupPlansOutput {
 }
 
 type ListBackupSelectionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a backup plan.
 	//
@@ -13261,7 +13261,7 @@ func (s *ListBackupSelectionsOutput) SetNextToken(v string) *ListBackupSelection
 }
 
 type ListBackupVaultsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -13363,7 +13363,7 @@ func (s *ListBackupVaultsOutput) SetNextToken(v string) *ListBackupVaultsOutput 
 }
 
 type ListCopyJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The account ID to list the jobs from. Returns only copy jobs associated with
 	// the specified account ID.
@@ -13543,7 +13543,7 @@ func (s *ListCopyJobsOutput) SetNextToken(v string) *ListCopyJobsOutput {
 }
 
 type ListFrameworksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The number of desired results from 1 to 1000. Optional. If unspecified, the
 	// query will return 1 MB of data.
@@ -13641,7 +13641,7 @@ func (s *ListFrameworksOutput) SetNextToken(v string) *ListFrameworksOutput {
 }
 
 type ListProtectedResourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -13742,7 +13742,7 @@ func (s *ListProtectedResourcesOutput) SetResults(v []*ProtectedResource) *ListP
 }
 
 type ListRecoveryPointsByBackupVaultInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of a logical container where backups are stored. Backup vaults are
 	// identified by names that are unique to the account used to create them and
@@ -13911,7 +13911,7 @@ func (s *ListRecoveryPointsByBackupVaultOutput) SetRecoveryPoints(v []*RecoveryP
 }
 
 type ListRecoveryPointsByResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to be returned.
 	//
@@ -14033,7 +14033,7 @@ func (s *ListRecoveryPointsByResourceOutput) SetRecoveryPoints(v []*RecoveryPoin
 }
 
 type ListReportJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Returns only report jobs that were created after the date and time specified
 	// in Unix format and Coordinated Universal Time (UTC). For example, the value
@@ -14174,7 +14174,7 @@ func (s *ListReportJobsOutput) SetReportJobs(v []*ReportJob) *ListReportJobsOutp
 }
 
 type ListReportPlansInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The number of desired results from 1 to 1000. Optional. If unspecified, the
 	// query will return 1 MB of data.
@@ -14273,7 +14273,7 @@ func (s *ListReportPlansOutput) SetReportPlans(v []*ReportPlan) *ListReportPlans
 }
 
 type ListRestoreJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The account ID to list the jobs from. Returns only restore jobs associated
 	// with the specified account ID.
@@ -14410,7 +14410,7 @@ func (s *ListRestoreJobsOutput) SetRestoreJobs(v []*RestoreJobsListMember) *List
 }
 
 type ListTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -15020,7 +15020,7 @@ func (s *PutBackupVaultAccessPolicyInput) SetPolicy(v string) *PutBackupVaultAcc
 }
 
 type PutBackupVaultAccessPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15279,7 +15279,7 @@ func (s *PutBackupVaultNotificationsInput) SetSNSTopicArn(v string) *PutBackupVa
 }
 
 type PutBackupVaultNotificationsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17524,7 +17524,7 @@ func (s *StartRestoreJobOutput) SetRestoreJobId(v string) *StartRestoreJobOutput
 }
 
 type StopBackupJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Uniquely identifies a request to Backup to back up a resource.
 	//
@@ -17573,7 +17573,7 @@ func (s *StopBackupJobInput) SetBackupJobId(v string) *StopBackupJobInput {
 }
 
 type StopBackupJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17664,7 +17664,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17754,7 +17754,7 @@ func (s *UntagResourceInput) SetTagKeyList(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -18095,7 +18095,7 @@ func (s *UpdateGlobalSettingsInput) SetGlobalSettings(v map[string]*string) *Upd
 }
 
 type UpdateGlobalSettingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -18305,7 +18305,7 @@ func (s *UpdateRegionSettingsInput) SetResourceTypeOptInPreference(v map[string]
 }
 
 type UpdateRegionSettingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

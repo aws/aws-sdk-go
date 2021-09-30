@@ -14118,7 +14118,7 @@ func (s *CreateVpcLinkInput) SetTargetArns(v []*string) *CreateVpcLinkInput {
 
 // A request to delete the ApiKey resource.
 type DeleteApiKeyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the ApiKey resource to be deleted.
 	//
@@ -14167,7 +14167,7 @@ func (s *DeleteApiKeyInput) SetApiKey(v string) *DeleteApiKeyInput {
 }
 
 type DeleteApiKeyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14190,7 +14190,7 @@ func (s DeleteApiKeyOutput) GoString() string {
 
 // Request to delete an existing Authorizer resource.
 type DeleteAuthorizerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the Authorizer resource.
 	//
@@ -14256,7 +14256,7 @@ func (s *DeleteAuthorizerInput) SetRestApiId(v string) *DeleteAuthorizerInput {
 }
 
 type DeleteAuthorizerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14279,7 +14279,7 @@ func (s DeleteAuthorizerOutput) GoString() string {
 
 // A request to delete the BasePathMapping resource.
 type DeleteBasePathMappingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The base path name of the BasePathMapping resource to delete.
 	//
@@ -14347,7 +14347,7 @@ func (s *DeleteBasePathMappingInput) SetDomainName(v string) *DeleteBasePathMapp
 }
 
 type DeleteBasePathMappingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14370,7 +14370,7 @@ func (s DeleteBasePathMappingOutput) GoString() string {
 
 // A request to delete the ClientCertificate resource.
 type DeleteClientCertificateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the ClientCertificate resource to be deleted.
 	//
@@ -14419,7 +14419,7 @@ func (s *DeleteClientCertificateInput) SetClientCertificateId(v string) *DeleteC
 }
 
 type DeleteClientCertificateOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14442,7 +14442,7 @@ func (s DeleteClientCertificateOutput) GoString() string {
 
 // Requests API Gateway to delete a Deployment resource.
 type DeleteDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the Deployment resource to delete.
 	//
@@ -14508,7 +14508,7 @@ func (s *DeleteDeploymentInput) SetRestApiId(v string) *DeleteDeploymentInput {
 }
 
 type DeleteDeploymentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14531,7 +14531,7 @@ func (s DeleteDeploymentOutput) GoString() string {
 
 // Deletes an existing documentation part of an API.
 type DeleteDocumentationPartInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the to-be-deleted documentation part.
 	//
@@ -14597,7 +14597,7 @@ func (s *DeleteDocumentationPartInput) SetRestApiId(v string) *DeleteDocumentati
 }
 
 type DeleteDocumentationPartOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14620,7 +14620,7 @@ func (s DeleteDocumentationPartOutput) GoString() string {
 
 // Deletes an existing documentation version of an API.
 type DeleteDocumentationVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The version identifier of a to-be-deleted documentation snapshot.
 	//
@@ -14686,7 +14686,7 @@ func (s *DeleteDocumentationVersionInput) SetRestApiId(v string) *DeleteDocument
 }
 
 type DeleteDocumentationVersionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14709,7 +14709,7 @@ func (s DeleteDocumentationVersionOutput) GoString() string {
 
 // A request to delete the DomainName resource.
 type DeleteDomainNameInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The name of the DomainName resource to be deleted.
 	//
@@ -14758,7 +14758,7 @@ func (s *DeleteDomainNameInput) SetDomainName(v string) *DeleteDomainNameInput {
 }
 
 type DeleteDomainNameOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14782,7 +14782,7 @@ func (s DeleteDomainNameOutput) GoString() string {
 // Clears any customization of a GatewayResponse of a specified response type
 // on the given RestApi and resets it with the default settings.
 type DeleteGatewayResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required]
 	// The response type of the associated GatewayResponse.
@@ -14849,7 +14849,7 @@ func (s *DeleteGatewayResponseInput) SetRestApiId(v string) *DeleteGatewayRespon
 }
 
 type DeleteGatewayResponseOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14872,7 +14872,7 @@ func (s DeleteGatewayResponseOutput) GoString() string {
 
 // Represents a delete integration request.
 type DeleteIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] Specifies a delete integration request's HTTP method.
 	//
@@ -14955,7 +14955,7 @@ func (s *DeleteIntegrationInput) SetRestApiId(v string) *DeleteIntegrationInput 
 }
 
 type DeleteIntegrationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14978,7 +14978,7 @@ func (s DeleteIntegrationOutput) GoString() string {
 
 // Represents a delete integration response request.
 type DeleteIntegrationResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] Specifies a delete integration response request's HTTP method.
 	//
@@ -15078,7 +15078,7 @@ func (s *DeleteIntegrationResponseInput) SetStatusCode(v string) *DeleteIntegrat
 }
 
 type DeleteIntegrationResponseOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15101,7 +15101,7 @@ func (s DeleteIntegrationResponseOutput) GoString() string {
 
 // Request to delete an existing Method resource.
 type DeleteMethodInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The HTTP verb of the Method resource.
 	//
@@ -15184,7 +15184,7 @@ func (s *DeleteMethodInput) SetRestApiId(v string) *DeleteMethodInput {
 }
 
 type DeleteMethodOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15207,7 +15207,7 @@ func (s DeleteMethodOutput) GoString() string {
 
 // A request to delete an existing MethodResponse resource.
 type DeleteMethodResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The HTTP verb of the Method resource.
 	//
@@ -15307,7 +15307,7 @@ func (s *DeleteMethodResponseInput) SetStatusCode(v string) *DeleteMethodRespons
 }
 
 type DeleteMethodResponseOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15330,7 +15330,7 @@ func (s DeleteMethodResponseOutput) GoString() string {
 
 // Request to delete an existing model in an existing RestApi resource.
 type DeleteModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The name of the model to delete.
 	//
@@ -15396,7 +15396,7 @@ func (s *DeleteModelInput) SetRestApiId(v string) *DeleteModelInput {
 }
 
 type DeleteModelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15419,7 +15419,7 @@ func (s DeleteModelOutput) GoString() string {
 
 // Deletes a specified RequestValidator of a given RestApi.
 type DeleteRequestValidatorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the RequestValidator to be deleted.
 	//
@@ -15485,7 +15485,7 @@ func (s *DeleteRequestValidatorInput) SetRestApiId(v string) *DeleteRequestValid
 }
 
 type DeleteRequestValidatorOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15508,7 +15508,7 @@ func (s DeleteRequestValidatorOutput) GoString() string {
 
 // Request to delete a Resource.
 type DeleteResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the Resource resource.
 	//
@@ -15574,7 +15574,7 @@ func (s *DeleteResourceInput) SetRestApiId(v string) *DeleteResourceInput {
 }
 
 type DeleteResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15597,7 +15597,7 @@ func (s DeleteResourceOutput) GoString() string {
 
 // Request to delete the specified API from your collection.
 type DeleteRestApiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The string identifier of the associated RestApi.
 	//
@@ -15646,7 +15646,7 @@ func (s *DeleteRestApiInput) SetRestApiId(v string) *DeleteRestApiInput {
 }
 
 type DeleteRestApiOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15669,7 +15669,7 @@ func (s DeleteRestApiOutput) GoString() string {
 
 // Requests API Gateway to delete a Stage resource.
 type DeleteStageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The string identifier of the associated RestApi.
 	//
@@ -15735,7 +15735,7 @@ func (s *DeleteStageInput) SetStageName(v string) *DeleteStageInput {
 }
 
 type DeleteStageOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15758,7 +15758,7 @@ func (s DeleteStageOutput) GoString() string {
 
 // The DELETE request to delete a usage plan of a given plan Id.
 type DeleteUsagePlanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The Id of the to-be-deleted usage plan.
 	//
@@ -15809,7 +15809,7 @@ func (s *DeleteUsagePlanInput) SetUsagePlanId(v string) *DeleteUsagePlanInput {
 // The DELETE request to delete a usage plan key and remove the underlying API
 // key from the associated usage plan.
 type DeleteUsagePlanKeyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The Id of the UsagePlanKey resource to be deleted.
 	//
@@ -15876,7 +15876,7 @@ func (s *DeleteUsagePlanKeyInput) SetUsagePlanId(v string) *DeleteUsagePlanKeyIn
 }
 
 type DeleteUsagePlanKeyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15898,7 +15898,7 @@ func (s DeleteUsagePlanKeyOutput) GoString() string {
 }
 
 type DeleteUsagePlanOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15921,7 +15921,7 @@ func (s DeleteUsagePlanOutput) GoString() string {
 
 // Deletes an existing VpcLink of a specified identifier.
 type DeleteVpcLinkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the VpcLink. It is used in an Integration to
 	// reference this VpcLink.
@@ -15971,7 +15971,7 @@ func (s *DeleteVpcLinkInput) SetVpcLinkId(v string) *DeleteVpcLinkInput {
 }
 
 type DeleteVpcLinkOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -16618,7 +16618,7 @@ func (s *EndpointConfiguration) SetVpcEndpointIds(v []*string) *EndpointConfigur
 
 // Request to flush authorizer cache entries on a specified stage.
 type FlushStageAuthorizersCacheInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The string identifier of the associated RestApi.
 	//
@@ -16684,7 +16684,7 @@ func (s *FlushStageAuthorizersCacheInput) SetStageName(v string) *FlushStageAuth
 }
 
 type FlushStageAuthorizersCacheOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -16707,7 +16707,7 @@ func (s FlushStageAuthorizersCacheOutput) GoString() string {
 
 // Requests API Gateway to flush a stage's cache.
 type FlushStageCacheInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The string identifier of the associated RestApi.
 	//
@@ -16773,7 +16773,7 @@ func (s *FlushStageCacheInput) SetStageName(v string) *FlushStageCacheInput {
 }
 
 type FlushStageCacheOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -16839,7 +16839,7 @@ func (s *GenerateClientCertificateInput) SetTags(v map[string]*string) *Generate
 
 // Requests API Gateway to get information about the current Account resource.
 type GetAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -16862,7 +16862,7 @@ func (s GetAccountInput) GoString() string {
 
 // A request to get information about the current ApiKey resource.
 type GetApiKeyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the ApiKey resource.
 	//
@@ -16922,7 +16922,7 @@ func (s *GetApiKeyInput) SetIncludeValue(v bool) *GetApiKeyInput {
 
 // A request to get information about the current ApiKeys resource.
 type GetApiKeysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of a customer in AWS Marketplace or an external system, such
 	// as a developer portal.
@@ -17045,7 +17045,7 @@ func (s *GetApiKeysOutput) SetWarnings(v []*string) *GetApiKeysOutput {
 
 // Request to describe an existing Authorizer resource.
 type GetAuthorizerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the Authorizer resource.
 	//
@@ -17112,7 +17112,7 @@ func (s *GetAuthorizerInput) SetRestApiId(v string) *GetAuthorizerInput {
 
 // Request to describe an existing Authorizers resource.
 type GetAuthorizersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -17224,7 +17224,7 @@ func (s *GetAuthorizersOutput) SetPosition(v string) *GetAuthorizersOutput {
 
 // Request to describe a BasePathMapping resource.
 type GetBasePathMappingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The base path name that callers of the API must provide as part
 	// of the URL after the domain name. This value must be unique for all of the
@@ -17294,7 +17294,7 @@ func (s *GetBasePathMappingInput) SetDomainName(v string) *GetBasePathMappingInp
 
 // A request to get information about a collection of BasePathMapping resources.
 type GetBasePathMappingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The domain name of a BasePathMapping resource.
 	//
@@ -17405,7 +17405,7 @@ func (s *GetBasePathMappingsOutput) SetPosition(v string) *GetBasePathMappingsOu
 
 // A request to get information about the current ClientCertificate resource.
 type GetClientCertificateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the ClientCertificate resource to be described.
 	//
@@ -17455,7 +17455,7 @@ func (s *GetClientCertificateInput) SetClientCertificateId(v string) *GetClientC
 
 // A request to get information about a collection of ClientCertificate resources.
 type GetClientCertificatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -17539,7 +17539,7 @@ func (s *GetClientCertificatesOutput) SetPosition(v string) *GetClientCertificat
 
 // Requests API Gateway to get information about a Deployment resource.
 type GetDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the Deployment resource to get information about.
 	//
@@ -17621,7 +17621,7 @@ func (s *GetDeploymentInput) SetRestApiId(v string) *GetDeploymentInput {
 
 // Requests API Gateway to get information about a Deployments collection.
 type GetDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -17741,7 +17741,7 @@ func (s *GetDeploymentsOutput) SetPosition(v string) *GetDeploymentsOutput {
 
 // Gets a specified documentation part of a given API.
 type GetDocumentationPartInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The string identifier of the associated RestApi.
 	//
@@ -17809,7 +17809,7 @@ func (s *GetDocumentationPartInput) SetRestApiId(v string) *GetDocumentationPart
 // Gets the documentation parts of an API. The result may be filtered by the
 // type, name, or path of API entities (targets).
 type GetDocumentationPartsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -17959,7 +17959,7 @@ func (s *GetDocumentationPartsOutput) SetPosition(v string) *GetDocumentationPar
 
 // Gets a documentation snapshot of an API.
 type GetDocumentationVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The version identifier of the to-be-retrieved documentation snapshot.
 	//
@@ -18026,7 +18026,7 @@ func (s *GetDocumentationVersionInput) SetRestApiId(v string) *GetDocumentationV
 
 // Gets the documentation versions of an API.
 type GetDocumentationVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -18141,7 +18141,7 @@ func (s *GetDocumentationVersionsOutput) SetPosition(v string) *GetDocumentation
 
 // Request to get the name of a DomainName resource.
 type GetDomainNameInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The name of the DomainName resource.
 	//
@@ -18191,7 +18191,7 @@ func (s *GetDomainNameInput) SetDomainName(v string) *GetDomainNameInput {
 
 // Request to describe a collection of DomainName resources.
 type GetDomainNamesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -18275,7 +18275,7 @@ func (s *GetDomainNamesOutput) SetPosition(v string) *GetDomainNamesOutput {
 
 // Request a new export of a RestApi for a particular Stage.
 type GetExportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The content-type of the export, for example application/json. Currently application/json
 	// and application/yaml are supported for exportType ofoas30 and swagger. This
@@ -18437,7 +18437,7 @@ func (s *GetExportOutput) SetContentType(v string) *GetExportOutput {
 
 // Gets a GatewayResponse of a specified response type on the given RestApi.
 type GetGatewayResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required]
 	// The response type of the associated GatewayResponse.
@@ -18508,7 +18508,7 @@ func (s *GetGatewayResponseInput) SetRestApiId(v string) *GetGatewayResponseInpu
 // API Gateway-generated default GatewayResponses collection for the supported
 // response types.
 type GetGatewayResponsesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500. The GatewayResponses collection does not support
@@ -18779,7 +18779,7 @@ func (s *GetGatewayResponsesOutput) SetPosition(v string) *GetGatewayResponsesOu
 
 // Represents a request to get the integration configuration.
 type GetIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] Specifies a get integration request's HTTP method.
 	//
@@ -18863,7 +18863,7 @@ func (s *GetIntegrationInput) SetRestApiId(v string) *GetIntegrationInput {
 
 // Represents a get integration response request.
 type GetIntegrationResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] Specifies a get integration response request's HTTP method.
 	//
@@ -18964,7 +18964,7 @@ func (s *GetIntegrationResponseInput) SetStatusCode(v string) *GetIntegrationRes
 
 // Request to describe an existing Method resource.
 type GetMethodInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] Specifies the method request's HTTP method type.
 	//
@@ -19048,7 +19048,7 @@ func (s *GetMethodInput) SetRestApiId(v string) *GetMethodInput {
 
 // Request to describe a MethodResponse resource.
 type GetMethodResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The HTTP verb of the Method resource.
 	//
@@ -19149,7 +19149,7 @@ func (s *GetMethodResponseInput) SetStatusCode(v string) *GetMethodResponseInput
 
 // Request to list information about a model in an existing RestApi resource.
 type GetModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A query parameter of a Boolean value to resolve (true) all external model
 	// references and returns a flattened model schema or not (false) The default
@@ -19227,7 +19227,7 @@ func (s *GetModelInput) SetRestApiId(v string) *GetModelInput {
 
 // Request to generate a sample mapping template used to transform the payload.
 type GetModelTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The name of the model for which to generate a template.
 	//
@@ -19329,7 +19329,7 @@ func (s *GetModelTemplateOutput) SetValue(v string) *GetModelTemplateOutput {
 
 // Request to list existing Models defined for a RestApi resource.
 type GetModelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -19440,7 +19440,7 @@ func (s *GetModelsOutput) SetPosition(v string) *GetModelsOutput {
 
 // Gets a RequestValidator of a given RestApi.
 type GetRequestValidatorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the RequestValidator to be retrieved.
 	//
@@ -19507,7 +19507,7 @@ func (s *GetRequestValidatorInput) SetRestApiId(v string) *GetRequestValidatorIn
 
 // Gets the RequestValidators collection of a given RestApi.
 type GetRequestValidatorsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -19622,7 +19622,7 @@ func (s *GetRequestValidatorsOutput) SetPosition(v string) *GetRequestValidators
 
 // Request to list information about a resource.
 type GetResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A query parameter to retrieve the specified resources embedded in the returned
 	// Resource representation in the response. This embed parameter value is a
@@ -19703,7 +19703,7 @@ func (s *GetResourceInput) SetRestApiId(v string) *GetResourceInput {
 
 // Request to list information about a collection of resources.
 type GetResourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A query parameter used to retrieve the specified resources embedded in the
 	// returned Resources resource in the response. This embed parameter value is
@@ -19828,7 +19828,7 @@ func (s *GetResourcesOutput) SetPosition(v string) *GetResourcesOutput {
 
 // The GET request to list an existing RestApi defined for your collection.
 type GetRestApiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The string identifier of the associated RestApi.
 	//
@@ -19878,7 +19878,7 @@ func (s *GetRestApiInput) SetRestApiId(v string) *GetRestApiInput {
 
 // The GET request to list existing RestApis defined for your collection.
 type GetRestApisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -19963,7 +19963,7 @@ func (s *GetRestApisOutput) SetPosition(v string) *GetRestApisOutput {
 
 // Request a new generated client SDK for a RestApi and Stage.
 type GetSdkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A string-to-string key-value map of query parameters sdkType-dependent properties
 	// of the SDK. For sdkType of objectivec or swift, a parameter named classPrefix
@@ -20111,7 +20111,7 @@ func (s *GetSdkOutput) SetContentType(v string) *GetSdkOutput {
 
 // Get an SdkType instance.
 type GetSdkTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the queried SdkType instance.
 	//
@@ -20161,7 +20161,7 @@ func (s *GetSdkTypeInput) SetId(v string) *GetSdkTypeInput {
 
 // Get the SdkTypes collection.
 type GetSdkTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -20243,7 +20243,7 @@ func (s *GetSdkTypesOutput) SetPosition(v string) *GetSdkTypesOutput {
 
 // Requests API Gateway to get information about a Stage resource.
 type GetStageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The string identifier of the associated RestApi.
 	//
@@ -20310,7 +20310,7 @@ func (s *GetStageInput) SetStageName(v string) *GetStageInput {
 
 // Requests API Gateway to get information about one or more Stage resources.
 type GetStagesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The stages' deployment identifiers.
 	DeploymentId *string `location:"querystring" locationName:"deploymentId" type:"string"`
@@ -20403,7 +20403,7 @@ func (s *GetStagesOutput) SetItem(v []*Stage) *GetStagesOutput {
 
 // Gets the Tags collection for a given resource.
 type GetTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Not currently supported) The maximum number of returned results per page.
 	// The default value is 25 and the maximum value is 500.
@@ -20506,7 +20506,7 @@ func (s *GetTagsOutput) SetTags(v map[string]*string) *GetTagsOutput {
 // The GET request to get the usage data of a usage plan in a specified time
 // interval.
 type GetUsageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The ending date (e.g., 2016-12-31) of the usage data.
 	//
@@ -20612,7 +20612,7 @@ func (s *GetUsageInput) SetUsagePlanId(v string) *GetUsageInput {
 
 // The GET request to get a usage plan of a given plan identifier.
 type GetUsagePlanInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the UsagePlan resource to be retrieved.
 	//
@@ -20662,7 +20662,7 @@ func (s *GetUsagePlanInput) SetUsagePlanId(v string) *GetUsagePlanInput {
 
 // The GET request to get a usage plan key of a given key identifier.
 type GetUsagePlanKeyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The key Id of the to-be-retrieved UsagePlanKey resource representing
 	// a plan customer.
@@ -20732,7 +20732,7 @@ func (s *GetUsagePlanKeyInput) SetUsagePlanId(v string) *GetUsagePlanKeyInput {
 // The GET request to get all the usage plan keys representing the API keys
 // added to a specified usage plan.
 type GetUsagePlanKeysInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -20854,7 +20854,7 @@ func (s *GetUsagePlanKeysOutput) SetPosition(v string) *GetUsagePlanKeysOutput {
 
 // The GET request to get all the usage plans of the caller's account.
 type GetUsagePlansInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the API key associated with the usage plans.
 	KeyId *string `location:"querystring" locationName:"keyId" type:"string"`
@@ -20947,7 +20947,7 @@ func (s *GetUsagePlansOutput) SetPosition(v string) *GetUsagePlansOutput {
 
 // Gets a specified VPC link under the caller's account in a region.
 type GetVpcLinkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The identifier of the VpcLink. It is used in an Integration to
 	// reference this VpcLink.
@@ -20998,7 +20998,7 @@ func (s *GetVpcLinkInput) SetVpcLinkId(v string) *GetVpcLinkInput {
 
 // Gets the VpcLinks collection under the caller's account in a selected region.
 type GetVpcLinksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of returned results per page. The default value is 25
 	// and the maximum value is 500.
@@ -24530,7 +24530,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -25202,7 +25202,7 @@ func (s *UnauthorizedException) RequestID() string {
 
 // Removes a tag from a given resource.
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// [Required] The ARN of a resource that can be tagged.
 	//
@@ -25265,7 +25265,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

@@ -3079,7 +3079,7 @@ func (s *AssociateCertificateInput) SetArn(v string) *AssociateCertificateInput 
 // Successful association of Certificate Manager Amazon Resource Name (ARN)
 // with Mediaconvert returns an OK message.
 type AssociateCertificateOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4941,7 +4941,7 @@ func (s *BurninDestinationSettings) SetYPosition(v int64) *BurninDestinationSett
 
 // Cancel a job by sending a request with the job ID
 type CancelJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Job ID of the job to be cancelled.
 	//
@@ -4991,7 +4991,7 @@ func (s *CancelJobInput) SetId(v string) *CancelJobInput {
 
 // A cancel job request will receive a response with an empty body.
 type CancelJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8174,7 +8174,7 @@ func (s *Deinterlacer) SetMode(v string) *Deinterlacer {
 
 // Delete a job template by sending a request with the job template name
 type DeleteJobTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the job template to be deleted.
 	//
@@ -8225,7 +8225,7 @@ func (s *DeleteJobTemplateInput) SetName(v string) *DeleteJobTemplateInput {
 // Delete job template requests will return an OK message or error message with
 // an empty body.
 type DeleteJobTemplateOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8248,7 +8248,7 @@ func (s DeleteJobTemplateOutput) GoString() string {
 
 // Delete a preset by sending a request with the preset name
 type DeletePresetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the preset to be deleted.
 	//
@@ -8299,7 +8299,7 @@ func (s *DeletePresetInput) SetName(v string) *DeletePresetInput {
 // Delete preset requests will return an OK message or error message with an
 // empty body.
 type DeletePresetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8323,7 +8323,7 @@ func (s DeletePresetOutput) GoString() string {
 // Delete a queue by sending a request with the queue name. You can't delete
 // a queue with an active pricing plan or one that has unprocessed jobs in it.
 type DeleteQueueInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the queue that you want to delete.
 	//
@@ -8374,7 +8374,7 @@ func (s *DeleteQueueInput) SetName(v string) *DeleteQueueInput {
 // Delete queue requests return an OK message or error message with an empty
 // body.
 type DeleteQueueOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8528,7 +8528,7 @@ func (s *DestinationSettings) SetS3Settings(v *S3DestinationSettings) *Destinati
 // Removes an association between the Amazon Resource Name (ARN) of an AWS Certificate
 // Manager (ACM) certificate and an AWS Elemental MediaConvert resource.
 type DisassociateCertificateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the ACM certificate that you want to disassociate from your MediaConvert
 	// resource.
@@ -8580,7 +8580,7 @@ func (s *DisassociateCertificateInput) SetArn(v string) *DisassociateCertificate
 // Successful disassociation of Certificate Manager Amazon Resource Name (ARN)
 // with Mediaconvert returns an OK message.
 type DisassociateCertificateOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10625,7 +10625,7 @@ func (s *FrameCaptureSettings) SetQuality(v int64) *FrameCaptureSettings {
 
 // Query a job by sending a request with the job ID.
 type GetJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// the job ID of the job.
 	//
@@ -10708,7 +10708,7 @@ func (s *GetJobOutput) SetJob(v *Job) *GetJobOutput {
 
 // Query a job template by sending a request with the job template name.
 type GetJobTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the job template.
 	//
@@ -10792,7 +10792,7 @@ func (s *GetJobTemplateOutput) SetJobTemplate(v *JobTemplate) *GetJobTemplateOut
 
 // Query a preset by sending a request with the preset name.
 type GetPresetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the preset.
 	//
@@ -10875,7 +10875,7 @@ func (s *GetPresetOutput) SetPreset(v *Preset) *GetPresetOutput {
 
 // Get information about a queue by sending a request with the queue name.
 type GetQueueInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the queue that you want information about.
 	//
@@ -15850,7 +15850,7 @@ func (s *KantarWatermarkSettings) SetMetadata8(v string) *KantarWatermarkSetting
 // body. You can also optionally specify the maximum number, up to twenty, of
 // job templates to be returned.
 type ListJobTemplatesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optionally, specify a job template category to limit responses to only job
 	// templates from that category.
@@ -15983,7 +15983,7 @@ func (s *ListJobTemplatesOutput) SetNextToken(v string) *ListJobTemplatesOutput 
 // body. You can also optionally specify the maximum number, up to twenty, of
 // jobs to be returned.
 type ListJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional. Number of jobs, up to twenty, that will be returned at one time.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -16112,7 +16112,7 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 // can also optionally specify the maximum number, up to twenty, of queues to
 // be returned.
 type ListPresetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optionally, specify a preset category to limit responses to only presets
 	// from that category.
@@ -16241,7 +16241,7 @@ func (s *ListPresetsOutput) SetPresets(v []*Preset) *ListPresetsOutput {
 // You can send list queues requests with an empty body. You can optionally
 // specify the maximum number, up to twenty, of queues to be returned.
 type ListQueuesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional. When you request a list of queues, you can choose to list them
 	// alphabetically by NAME or chronologically by CREATION_DATE. If you don't
@@ -16361,7 +16361,7 @@ func (s *ListQueuesOutput) SetQueues(v []*Queue) *ListQueuesOutput {
 // with the Amazon Resource Name (ARN) of the resource. To get the ARN, send
 // a GET request with the resource name.
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want to list tags
 	// for. To get the ARN, send a GET request with the resource name.
@@ -21640,7 +21640,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 
 // A successful request to add tags to a resource returns an OK message.
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -22232,7 +22232,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 
 // A successful request to remove tags from a resource returns an OK message.
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

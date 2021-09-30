@@ -277,7 +277,7 @@ func (c *ApiGatewayManagementApi) PostToConnectionWithContext(ctx aws.Context, i
 }
 
 type DeleteConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectionId is a required field
 	ConnectionId *string `location:"uri" locationName:"connectionId" type:"string" required:"true"`
@@ -324,7 +324,7 @@ func (s *DeleteConnectionInput) SetConnectionId(v string) *DeleteConnectionInput
 }
 
 type DeleteConnectionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -410,7 +410,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetConnectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConnectionId is a required field
 	ConnectionId *string `location:"uri" locationName:"connectionId" type:"string" required:"true"`
@@ -801,7 +801,7 @@ func (s *PostToConnectionInput) SetData(v []byte) *PostToConnectionInput {
 }
 
 type PostToConnectionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

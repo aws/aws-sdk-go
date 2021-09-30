@@ -3566,7 +3566,7 @@ func (s *DeleteJobInput) SetJobID(v string) *DeleteJobInput {
 }
 
 type DeleteJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3638,7 +3638,7 @@ func (s *DeleteReplicationConfigurationTemplateInput) SetReplicationConfiguratio
 }
 
 type DeleteReplicationConfigurationTemplateOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3709,7 +3709,7 @@ func (s *DeleteSourceServerInput) SetSourceServerID(v string) *DeleteSourceServe
 }
 
 type DeleteSourceServerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5022,7 +5022,7 @@ func (s *IdentificationHints) SetVmWareUuid(v string) *IdentificationHints {
 }
 
 type InitializeServiceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5044,7 +5044,7 @@ func (s InitializeServiceInput) GoString() string {
 }
 
 type InitializeServiceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5831,7 +5831,7 @@ func (s *LifeCycleLastTestReverted) SetApiCallDateTime(v string) *LifeCycleLastT
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// List tags for resource request by ARN.
 	//
@@ -7077,7 +7077,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7331,7 +7331,7 @@ func (s *UninitializedAccountException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Untag resource by ARN.
 	//
@@ -7398,7 +7398,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

@@ -1561,7 +1561,7 @@ func (s *DeviceSummary) SetProviderName(v string) *DeviceSummary {
 }
 
 type GetDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the device to retrieve.
 	//
@@ -1698,7 +1698,7 @@ func (s *GetDeviceOutput) SetProviderName(v string) *GetDeviceOutput {
 }
 
 type GetQuantumTaskInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// the ARN of the task to retrieve.
 	//
@@ -1949,7 +1949,7 @@ func (s *InternalServiceException) RequestID() string {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specify the resourceArn for the resource whose tags to display.
 	//
@@ -2734,7 +2734,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2820,7 +2820,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specify the resourceArn for the resource from which to remove the tags.
 	//
@@ -2883,7 +2883,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

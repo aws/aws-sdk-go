@@ -2388,7 +2388,7 @@ func (s *CreateWorkspaceOutput) SetWorkspaceId(v string) *CreateWorkspaceOutput 
 
 // Represents the input of a DeleteAlertManagerDefinition operation.
 type DeleteAlertManagerDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional, unique, case-sensitive, user-provided identifier to ensure the
 	// idempotency of the request.
@@ -2450,7 +2450,7 @@ func (s *DeleteAlertManagerDefinitionInput) SetWorkspaceId(v string) *DeleteAler
 }
 
 type DeleteAlertManagerDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2473,7 +2473,7 @@ func (s DeleteAlertManagerDefinitionOutput) GoString() string {
 
 // Represents the input of a DeleteRuleGroupsNamespace operation.
 type DeleteRuleGroupsNamespaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional, unique, case-sensitive, user-provided identifier to ensure the
 	// idempotency of the request.
@@ -2552,7 +2552,7 @@ func (s *DeleteRuleGroupsNamespaceInput) SetWorkspaceId(v string) *DeleteRuleGro
 }
 
 type DeleteRuleGroupsNamespaceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2575,7 +2575,7 @@ func (s DeleteRuleGroupsNamespaceOutput) GoString() string {
 
 // Represents the input of a DeleteWorkspace operation.
 type DeleteWorkspaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional, unique, case-sensitive, user-provided identifier to ensure the
 	// idempotency of the request.
@@ -2637,7 +2637,7 @@ func (s *DeleteWorkspaceInput) SetWorkspaceId(v string) *DeleteWorkspaceInput {
 }
 
 type DeleteWorkspaceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2660,7 +2660,7 @@ func (s DeleteWorkspaceOutput) GoString() string {
 
 // Represents the input of a DescribeAlertManagerDefinition operation.
 type DescribeAlertManagerDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the workspace to describe.
 	//
@@ -2744,7 +2744,7 @@ func (s *DescribeAlertManagerDefinitionOutput) SetAlertManagerDefinition(v *Aler
 
 // Represents the input of a DescribeRuleGroupsNamespace operation.
 type DescribeRuleGroupsNamespaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The rule groups namespace.
 	//
@@ -2845,7 +2845,7 @@ func (s *DescribeRuleGroupsNamespaceOutput) SetRuleGroupsNamespace(v *RuleGroups
 
 // Represents the input of a DescribeWorkspace operation.
 type DescribeWorkspaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the workspace to describe.
 	//
@@ -2997,7 +2997,7 @@ func (s *InternalServerException) RequestID() string {
 
 // Represents the input of a ListRuleGroupsNamespaces operation.
 type ListRuleGroupsNamespacesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Maximum results to return in response (default=100, maximum=1000).
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -3124,7 +3124,7 @@ func (s *ListRuleGroupsNamespacesOutput) SetRuleGroupsNamespaces(v []*RuleGroups
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource.
 	//
@@ -3205,7 +3205,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 
 // Represents the input of a ListWorkspaces operation.
 type ListWorkspacesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Optional filter for workspace alias. Only the workspaces with aliases that
 	// begin with this value will be returned.
@@ -4039,7 +4039,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4135,7 +4135,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource.
 	//
@@ -4198,7 +4198,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4295,7 +4295,7 @@ func (s *UpdateWorkspaceAliasInput) SetWorkspaceId(v string) *UpdateWorkspaceAli
 }
 
 type UpdateWorkspaceAliasOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

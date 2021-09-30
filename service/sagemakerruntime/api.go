@@ -289,7 +289,7 @@ func (s *InternalFailure) RequestID() string {
 }
 
 type InvokeEndpointAsyncInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The desired MIME type of the inference in the response.
 	Accept *string `location:"header" locationName:"X-Amzn-SageMaker-Accept" type:"string"`

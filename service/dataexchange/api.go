@@ -3255,7 +3255,7 @@ func (s *AutoExportRevisionToS3RequestDetails) SetRevisionDestination(v *AutoExp
 }
 
 type CancelJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
@@ -3302,7 +3302,7 @@ func (s *CancelJobInput) SetJobId(v string) *CancelJobInput {
 }
 
 type CancelJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4221,7 +4221,7 @@ func (s *DataSetEntry) SetUpdatedAt(v time.Time) *DataSetEntry {
 }
 
 type DeleteAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"AssetId" type:"string" required:"true"`
@@ -4298,7 +4298,7 @@ func (s *DeleteAssetInput) SetRevisionId(v string) *DeleteAssetInput {
 }
 
 type DeleteAssetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4320,7 +4320,7 @@ func (s DeleteAssetOutput) GoString() string {
 }
 
 type DeleteDataSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -4367,7 +4367,7 @@ func (s *DeleteDataSetInput) SetDataSetId(v string) *DeleteDataSetInput {
 }
 
 type DeleteDataSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4389,7 +4389,7 @@ func (s DeleteDataSetOutput) GoString() string {
 }
 
 type DeleteEventActionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// EventActionId is a required field
 	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
@@ -4436,7 +4436,7 @@ func (s *DeleteEventActionInput) SetEventActionId(v string) *DeleteEventActionIn
 }
 
 type DeleteEventActionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4458,7 +4458,7 @@ func (s DeleteEventActionOutput) GoString() string {
 }
 
 type DeleteRevisionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -4520,7 +4520,7 @@ func (s *DeleteRevisionInput) SetRevisionId(v string) *DeleteRevisionInput {
 }
 
 type DeleteRevisionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5238,7 +5238,7 @@ func (s *ExportServerSideEncryption) SetType(v string) *ExportServerSideEncrypti
 }
 
 type GetAssetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AssetId is a required field
 	AssetId *string `location:"uri" locationName:"AssetId" type:"string" required:"true"`
@@ -5429,7 +5429,7 @@ func (s *GetAssetOutput) SetUpdatedAt(v time.Time) *GetAssetOutput {
 }
 
 type GetDataSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -5599,7 +5599,7 @@ func (s *GetDataSetOutput) SetUpdatedAt(v time.Time) *GetDataSetOutput {
 }
 
 type GetEventActionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// EventActionId is a required field
 	EventActionId *string `location:"uri" locationName:"EventActionId" type:"string" required:"true"`
@@ -5720,7 +5720,7 @@ func (s *GetEventActionOutput) SetUpdatedAt(v time.Time) *GetEventActionOutput {
 }
 
 type GetJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
@@ -5858,7 +5858,7 @@ func (s *GetJobOutput) SetUpdatedAt(v time.Time) *GetJobOutput {
 }
 
 type GetRevisionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -6642,7 +6642,7 @@ func (s *JobError) SetResourceType(v string) *JobError {
 }
 
 type ListDataSetRevisionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -6748,7 +6748,7 @@ func (s *ListDataSetRevisionsOutput) SetRevisions(v []*RevisionEntry) *ListDataS
 }
 
 type ListDataSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6847,7 +6847,7 @@ func (s *ListDataSetsOutput) SetNextToken(v string) *ListDataSetsOutput {
 }
 
 type ListEventActionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	EventSourceId *string `location:"querystring" locationName:"eventSourceId" type:"string"`
 
@@ -6946,7 +6946,7 @@ func (s *ListEventActionsOutput) SetNextToken(v string) *ListEventActionsOutput 
 }
 
 type ListJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	DataSetId *string `location:"querystring" locationName:"dataSetId" type:"string"`
 
@@ -7053,7 +7053,7 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 }
 
 type ListRevisionAssetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DataSetId is a required field
 	DataSetId *string `location:"uri" locationName:"DataSetId" type:"string" required:"true"`
@@ -7174,7 +7174,7 @@ func (s *ListRevisionAssetsOutput) SetNextToken(v string) *ListRevisionAssetsOut
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -7859,7 +7859,7 @@ func (s *ServiceLimitExceededException) RequestID() string {
 }
 
 type StartJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// JobId is a required field
 	JobId *string `location:"uri" locationName:"JobId" type:"string" required:"true"`
@@ -7906,7 +7906,7 @@ func (s *StartJobInput) SetJobId(v string) *StartJobInput {
 }
 
 type StartJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7987,7 +7987,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8074,7 +8074,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -8133,7 +8133,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

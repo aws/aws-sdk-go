@@ -5138,7 +5138,7 @@ func (s *CreateConfigurationOutput) SetState(v string) *CreateConfigurationOutpu
 }
 
 type DeleteClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
@@ -5236,7 +5236,7 @@ func (s *DeleteClusterOutput) SetState(v string) *DeleteClusterOutput {
 
 // Request body for DeleteConfiguration.
 type DeleteConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the configuration.
 	//
@@ -5327,7 +5327,7 @@ func (s *DeleteConfigurationOutput) SetState(v string) *DeleteConfigurationOutpu
 }
 
 type DescribeClusterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
@@ -5374,7 +5374,7 @@ func (s *DescribeClusterInput) SetClusterArn(v string) *DescribeClusterInput {
 }
 
 type DescribeClusterOperationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterOperationArn is a required field
 	ClusterOperationArn *string `location:"uri" locationName:"clusterOperationArn" type:"string" required:"true"`
@@ -5485,7 +5485,7 @@ func (s *DescribeClusterOutput) SetClusterInfo(v *ClusterInfo) *DescribeClusterO
 }
 
 type DescribeConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
@@ -5620,7 +5620,7 @@ func (s *DescribeConfigurationOutput) SetState(v string) *DescribeConfigurationO
 }
 
 type DescribeConfigurationRevisionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
@@ -6120,7 +6120,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetBootstrapBrokersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
@@ -6232,7 +6232,7 @@ func (s *GetBootstrapBrokersOutput) SetBootstrapBrokerStringTls(v string) *GetBo
 }
 
 type GetCompatibleKafkaVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClusterArn *string `location:"querystring" locationName:"clusterArn" type:"string"`
 }
@@ -6512,7 +6512,7 @@ func (s *KafkaVersion) SetVersion(v string) *KafkaVersion {
 }
 
 type ListClusterOperationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
@@ -6622,7 +6622,7 @@ func (s *ListClusterOperationsOutput) SetNextToken(v string) *ListClusterOperati
 }
 
 type ListClustersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClusterNameFilter *string `location:"querystring" locationName:"clusterNameFilter" type:"string"`
 
@@ -6725,7 +6725,7 @@ func (s *ListClustersOutput) SetNextToken(v string) *ListClustersOutput {
 }
 
 type ListConfigurationRevisionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Arn is a required field
 	Arn *string `location:"uri" locationName:"arn" type:"string" required:"true"`
@@ -6832,7 +6832,7 @@ func (s *ListConfigurationRevisionsOutput) SetRevisions(v []*ConfigurationRevisi
 }
 
 type ListConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -6927,7 +6927,7 @@ func (s *ListConfigurationsOutput) SetNextToken(v string) *ListConfigurationsOut
 }
 
 type ListKafkaVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -7019,7 +7019,7 @@ func (s *ListKafkaVersionsOutput) SetNextToken(v string) *ListKafkaVersionsOutpu
 }
 
 type ListNodesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
@@ -7128,7 +7128,7 @@ func (s *ListNodesOutput) SetNodeInfoList(v []*NodeInfo) *ListNodesOutput {
 }
 
 type ListScramSecretsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClusterArn is a required field
 	ClusterArn *string `location:"uri" locationName:"clusterArn" type:"string" required:"true"`
@@ -7235,7 +7235,7 @@ func (s *ListScramSecretsOutput) SetSecretArnList(v []*string) *ListScramSecrets
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -8348,7 +8348,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8622,7 +8622,7 @@ func (s *UnprocessedScramSecret) SetSecretArn(v string) *UnprocessedScramSecret 
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -8681,7 +8681,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

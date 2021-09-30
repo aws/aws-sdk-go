@@ -4472,7 +4472,7 @@ func (s *CreateHostedConfigurationVersionOutput) SetVersionNumber(v int64) *Crea
 }
 
 type DeleteApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application to delete.
 	//
@@ -4521,7 +4521,7 @@ func (s *DeleteApplicationInput) SetApplicationId(v string) *DeleteApplicationIn
 }
 
 type DeleteApplicationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4543,7 +4543,7 @@ func (s DeleteApplicationOutput) GoString() string {
 }
 
 type DeleteConfigurationProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID that includes the configuration profile you want to delete.
 	//
@@ -4609,7 +4609,7 @@ func (s *DeleteConfigurationProfileInput) SetConfigurationProfileId(v string) *D
 }
 
 type DeleteConfigurationProfileOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4631,7 +4631,7 @@ func (s DeleteConfigurationProfileOutput) GoString() string {
 }
 
 type DeleteDeploymentStrategyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the deployment strategy you want to delete.
 	//
@@ -4680,7 +4680,7 @@ func (s *DeleteDeploymentStrategyInput) SetDeploymentStrategyId(v string) *Delet
 }
 
 type DeleteDeploymentStrategyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4702,7 +4702,7 @@ func (s DeleteDeploymentStrategyOutput) GoString() string {
 }
 
 type DeleteEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID that includes the environment you want to delete.
 	//
@@ -4768,7 +4768,7 @@ func (s *DeleteEnvironmentInput) SetEnvironmentId(v string) *DeleteEnvironmentIn
 }
 
 type DeleteEnvironmentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4790,7 +4790,7 @@ func (s DeleteEnvironmentOutput) GoString() string {
 }
 
 type DeleteHostedConfigurationVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -4870,7 +4870,7 @@ func (s *DeleteHostedConfigurationVersionInput) SetVersionNumber(v int64) *Delet
 }
 
 type DeleteHostedConfigurationVersionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5254,7 +5254,7 @@ func (s *Environment) SetState(v string) *Environment {
 }
 
 type GetApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application you want to get.
 	//
@@ -5352,7 +5352,7 @@ func (s *GetApplicationOutput) SetName(v string) *GetApplicationOutput {
 }
 
 type GetConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application to get. Specify either the application name or the application
 	// ID.
@@ -5538,7 +5538,7 @@ func (s *GetConfigurationOutput) SetContentType(v string) *GetConfigurationOutpu
 }
 
 type GetConfigurationProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application that includes the configuration profile you want
 	// to get.
@@ -5691,7 +5691,7 @@ func (s *GetConfigurationProfileOutput) SetValidators(v []*Validator) *GetConfig
 }
 
 type GetDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application that includes the deployment you want to get.
 	//
@@ -5958,7 +5958,7 @@ func (s *GetDeploymentOutput) SetState(v string) *GetDeploymentOutput {
 }
 
 type GetDeploymentStrategyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the deployment strategy to get.
 	//
@@ -6103,7 +6103,7 @@ func (s *GetDeploymentStrategyOutput) SetReplicateTo(v string) *GetDeploymentStr
 }
 
 type GetEnvironmentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the application that includes the environment you want to get.
 	//
@@ -6246,7 +6246,7 @@ func (s *GetEnvironmentOutput) SetState(v string) *GetEnvironmentOutput {
 }
 
 type GetHostedConfigurationVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -6540,7 +6540,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListApplicationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to return for this call. The call also returns
 	// a token that you can specify in a subsequent call to get the next set of
@@ -6639,7 +6639,7 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 }
 
 type ListConfigurationProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -6755,7 +6755,7 @@ func (s *ListConfigurationProfilesOutput) SetNextToken(v string) *ListConfigurat
 }
 
 type ListDeploymentStrategiesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to return for this call. The call also returns
 	// a token that you can specify in a subsequent call to get the next set of
@@ -6854,7 +6854,7 @@ func (s *ListDeploymentStrategiesOutput) SetNextToken(v string) *ListDeploymentS
 }
 
 type ListDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -6987,7 +6987,7 @@ func (s *ListDeploymentsOutput) SetNextToken(v string) *ListDeploymentsOutput {
 }
 
 type ListEnvironmentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -7103,7 +7103,7 @@ func (s *ListEnvironmentsOutput) SetNextToken(v string) *ListEnvironmentsOutput 
 }
 
 type ListHostedConfigurationVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -7236,7 +7236,7 @@ func (s *ListHostedConfigurationVersionsOutput) SetNextToken(v string) *ListHost
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The resource ARN.
 	//
@@ -7894,7 +7894,7 @@ func (s *StartDeploymentOutput) SetState(v string) *StartDeploymentOutput {
 }
 
 type StopDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -8226,7 +8226,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8248,7 +8248,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource for which to remove tags.
 	//
@@ -8311,7 +8311,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9059,7 +9059,7 @@ func (s *UpdateEnvironmentOutput) SetState(v string) *UpdateEnvironmentOutput {
 }
 
 type ValidateConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The application ID.
 	//
@@ -9142,7 +9142,7 @@ func (s *ValidateConfigurationInput) SetConfigurationVersion(v string) *Validate
 }
 
 type ValidateConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

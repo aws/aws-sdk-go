@@ -8874,7 +8874,7 @@ func (s *CreateInfrastructureConfigurationOutput) SetRequestId(v string) *Create
 }
 
 type DeleteComponentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the component build version to delete.
 	//
@@ -8960,7 +8960,7 @@ func (s *DeleteComponentOutput) SetRequestId(v string) *DeleteComponentOutput {
 }
 
 type DeleteContainerRecipeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the container recipe to delete.
 	//
@@ -9046,7 +9046,7 @@ func (s *DeleteContainerRecipeOutput) SetRequestId(v string) *DeleteContainerRec
 }
 
 type DeleteDistributionConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the distribution configuration to delete.
 	//
@@ -9133,7 +9133,7 @@ func (s *DeleteDistributionConfigurationOutput) SetRequestId(v string) *DeleteDi
 }
 
 type DeleteImageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the Image Builder image resource to delete.
 	//
@@ -9220,7 +9220,7 @@ func (s *DeleteImageOutput) SetRequestId(v string) *DeleteImageOutput {
 }
 
 type DeleteImagePipelineInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the image pipeline to delete.
 	//
@@ -9306,7 +9306,7 @@ func (s *DeleteImagePipelineOutput) SetRequestId(v string) *DeleteImagePipelineO
 }
 
 type DeleteImageRecipeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the image recipe to delete.
 	//
@@ -9392,7 +9392,7 @@ func (s *DeleteImageRecipeOutput) SetRequestId(v string) *DeleteImageRecipeOutpu
 }
 
 type DeleteInfrastructureConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the infrastructure configuration to delete.
 	//
@@ -10018,7 +10018,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetComponentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the component that you want to retrieve.
 	// Regex requires "/\d+$" suffix.
@@ -10105,7 +10105,7 @@ func (s *GetComponentOutput) SetRequestId(v string) *GetComponentOutput {
 }
 
 type GetComponentPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the component whose policy you want to
 	// retrieve.
@@ -10192,7 +10192,7 @@ func (s *GetComponentPolicyOutput) SetRequestId(v string) *GetComponentPolicyOut
 }
 
 type GetContainerRecipeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the container recipe to retrieve.
 	//
@@ -10278,7 +10278,7 @@ func (s *GetContainerRecipeOutput) SetRequestId(v string) *GetContainerRecipeOut
 }
 
 type GetContainerRecipePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the container recipe for the policy being
 	// requested.
@@ -10365,7 +10365,7 @@ func (s *GetContainerRecipePolicyOutput) SetRequestId(v string) *GetContainerRec
 }
 
 type GetDistributionConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the distribution configuration that you
 	// want to retrieve.
@@ -10452,7 +10452,7 @@ func (s *GetDistributionConfigurationOutput) SetRequestId(v string) *GetDistribu
 }
 
 type GetImageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the image that you want to retrieve.
 	//
@@ -10538,7 +10538,7 @@ func (s *GetImageOutput) SetRequestId(v string) *GetImageOutput {
 }
 
 type GetImagePipelineInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the image pipeline that you want to retrieve.
 	//
@@ -10624,7 +10624,7 @@ func (s *GetImagePipelineOutput) SetRequestId(v string) *GetImagePipelineOutput 
 }
 
 type GetImagePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the image whose policy you want to retrieve.
 	//
@@ -10710,7 +10710,7 @@ func (s *GetImagePolicyOutput) SetRequestId(v string) *GetImagePolicyOutput {
 }
 
 type GetImageRecipeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the image recipe that you want to retrieve.
 	//
@@ -10796,7 +10796,7 @@ func (s *GetImageRecipeOutput) SetRequestId(v string) *GetImageRecipeOutput {
 }
 
 type GetImageRecipePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the image recipe whose policy you want
 	// to retrieve.
@@ -10884,7 +10884,7 @@ func (s *GetImageRecipePolicyOutput) SetRequestId(v string) *GetImageRecipePolic
 
 // GetInfrastructureConfiguration request object.
 type GetInfrastructureConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the infrastructure configuration that you
 	// want to retrieve.
@@ -14907,7 +14907,7 @@ func (s *ListInfrastructureConfigurationsOutput) SetRequestId(v string) *ListInf
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve.
 	//
@@ -16294,7 +16294,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -16381,7 +16381,7 @@ func (s *TargetContainerRepository) SetService(v string) *TargetContainerReposit
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want to untag.
 	//
@@ -16447,7 +16447,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

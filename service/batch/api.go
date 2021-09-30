@@ -2285,7 +2285,7 @@ func (s *CancelJobInput) SetReason(v string) *CancelJobInput {
 }
 
 type CancelJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4393,7 +4393,7 @@ func (s *DeleteComputeEnvironmentInput) SetComputeEnvironment(v string) *DeleteC
 }
 
 type DeleteComputeEnvironmentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4462,7 +4462,7 @@ func (s *DeleteJobQueueInput) SetJobQueue(v string) *DeleteJobQueueInput {
 }
 
 type DeleteJobQueueOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4531,7 +4531,7 @@ func (s *DeregisterJobDefinitionInput) SetJobDefinition(v string) *DeregisterJob
 }
 
 type DeregisterJobDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6731,7 +6731,7 @@ func (s *ListJobsOutput) SetNextToken(v string) *ListJobsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) that identifies the resource that tags are
 	// listed for. Batch resources that support tags are compute environments, jobs,
@@ -8462,7 +8462,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8547,7 +8547,7 @@ func (s *TerminateJobInput) SetReason(v string) *TerminateJobInput {
 }
 
 type TerminateJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8725,7 +8725,7 @@ func (s *Ulimit) SetSoftLimit(v int64) *Ulimit {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource from which to delete tags.
 	// Batch resources that support tags are compute environments, jobs, job definitions,
@@ -8794,7 +8794,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

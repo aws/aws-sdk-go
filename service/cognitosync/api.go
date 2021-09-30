@@ -1738,7 +1738,7 @@ func (s *AlreadyStreamedException) RequestID() string {
 
 // The input for the BulkPublish operation.
 type BulkPublishInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
@@ -2052,7 +2052,7 @@ func (s *Dataset) SetNumRecords(v int64) *Dataset {
 
 // A request to delete the specific dataset.
 type DeleteDatasetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
@@ -2176,7 +2176,7 @@ func (s *DeleteDatasetOutput) SetDataset(v *Dataset) *DeleteDatasetOutput {
 // A request for meta data about a dataset (creation date, number of records,
 // size) by owner and dataset name.
 type DescribeDatasetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
@@ -2299,7 +2299,7 @@ func (s *DescribeDatasetOutput) SetDataset(v *Dataset) *DescribeDatasetOutput {
 
 // A request for usage information about the identity pool.
 type DescribeIdentityPoolUsageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
@@ -2382,7 +2382,7 @@ func (s *DescribeIdentityPoolUsageOutput) SetIdentityPoolUsage(v *IdentityPoolUs
 
 // A request for information about the usage of an identity pool.
 type DescribeIdentityUsageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
@@ -2549,7 +2549,7 @@ func (s *DuplicateRequestException) RequestID() string {
 
 // The input for the GetBulkPublishDetails operation.
 type GetBulkPublishDetailsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
@@ -2680,7 +2680,7 @@ func (s *GetBulkPublishDetailsOutput) SetIdentityPoolId(v string) *GetBulkPublis
 
 // A request for a list of the configured Cognito Events
 type GetCognitoEventsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Cognito Identity Pool ID for the request
 	//
@@ -2762,7 +2762,7 @@ func (s *GetCognitoEventsOutput) SetEvents(v map[string]*string) *GetCognitoEven
 
 // The input for the GetIdentityPoolConfiguration operation.
 type GetIdentityPoolConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. This is the ID of the pool for which to return
@@ -3384,7 +3384,7 @@ func (s *LimitExceededException) RequestID() string {
 
 // Request for a list of datasets for an identity.
 type ListDatasetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A name-spaced GUID (for example, us-east-1:23EC4050-6AEA-7089-A2DD-08002EXAMPLE)
 	// created by Amazon Cognito. GUID generation is unique within a region.
@@ -3521,7 +3521,7 @@ func (s *ListDatasetsOutput) SetNextToken(v string) *ListDatasetsOutput {
 
 // A request for usage information on an identity pool.
 type ListIdentityPoolUsageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to be returned.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -3621,7 +3621,7 @@ func (s *ListIdentityPoolUsageOutput) SetNextToken(v string) *ListIdentityPoolUs
 
 // A request for a list of records.
 type ListRecordsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A string of up to 128 characters. Allowed characters are a-z, A-Z, 0-9, '_'
 	// (underscore), '-' (dash), and '.' (dot).
@@ -4464,7 +4464,7 @@ func (s *SetCognitoEventsInput) SetIdentityPoolId(v string) *SetCognitoEventsInp
 }
 
 type SetCognitoEventsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4617,7 +4617,7 @@ func (s *SetIdentityPoolConfigurationOutput) SetPushSync(v *PushSync) *SetIdenti
 
 // A request to SubscribeToDatasetRequest.
 type SubscribeToDatasetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the dataset to subcribe to.
 	//
@@ -4719,7 +4719,7 @@ func (s *SubscribeToDatasetInput) SetIdentityPoolId(v string) *SubscribeToDatase
 
 // Response to a SubscribeToDataset request.
 type SubscribeToDatasetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4807,7 +4807,7 @@ func (s *TooManyRequestsException) RequestID() string {
 
 // A request to UnsubscribeFromDataset.
 type UnsubscribeFromDatasetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the dataset from which to unsubcribe.
 	//
@@ -4909,7 +4909,7 @@ func (s *UnsubscribeFromDatasetInput) SetIdentityPoolId(v string) *UnsubscribeFr
 
 // Response to an UnsubscribeFromDataset request.
 type UnsubscribeFromDatasetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

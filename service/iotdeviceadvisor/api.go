@@ -1404,7 +1404,7 @@ func (s *CreateSuiteDefinitionOutput) SetSuiteDefinitionName(v string) *CreateSu
 }
 
 type DeleteSuiteDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Suite definition Id of the test suite to be deleted.
 	//
@@ -1453,7 +1453,7 @@ func (s *DeleteSuiteDefinitionInput) SetSuiteDefinitionId(v string) *DeleteSuite
 }
 
 type DeleteSuiteDefinitionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1532,7 +1532,7 @@ func (s *DeviceUnderTest) SetThingArn(v string) *DeviceUnderTest {
 }
 
 type GetSuiteDefinitionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Suite definition Id of the test suite to get.
 	//
@@ -1687,7 +1687,7 @@ func (s *GetSuiteDefinitionOutput) SetTags(v map[string]*string) *GetSuiteDefini
 }
 
 type GetSuiteRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Suite definition Id for the test suite run.
 	//
@@ -1874,7 +1874,7 @@ func (s *GetSuiteRunOutput) SetTestResult(v *TestResult) *GetSuiteRunOutput {
 }
 
 type GetSuiteRunReportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Suite definition Id of the test suite.
 	//
@@ -2086,7 +2086,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListSuiteDefinitionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return at once.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -2180,7 +2180,7 @@ func (s *ListSuiteDefinitionsOutput) SetSuiteDefinitionInformationList(v []*Suit
 }
 
 type ListSuiteRunsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return at once.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -2300,7 +2300,7 @@ func (s *ListSuiteRunsOutput) SetSuiteRunsList(v []*SuiteRunInformation) *ListSu
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the IoT Device Advisor resource.
 	//
@@ -2578,7 +2578,7 @@ func (s *StartSuiteRunOutput) SetSuiteRunId(v string) *StartSuiteRunOutput {
 }
 
 type StopSuiteRunInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Suite definition Id of the test suite run to be stopped.
 	//
@@ -2644,7 +2644,7 @@ func (s *StopSuiteRunInput) SetSuiteRunId(v string) *StopSuiteRunInput {
 }
 
 type StopSuiteRunOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3063,7 +3063,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3221,7 +3221,7 @@ func (s *TestResult) SetGroups(v []*GroupResult) *TestResult {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The resource ARN of an IoT Device Advisor resource.
 	//
@@ -3284,7 +3284,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

@@ -9986,7 +9986,7 @@ func (s *CreateVpcLinkOutput) SetVpcLinkVersion(v string) *CreateVpcLinkOutput {
 }
 
 type DeleteAccessLogSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10048,7 +10048,7 @@ func (s *DeleteAccessLogSettingsInput) SetStageName(v string) *DeleteAccessLogSe
 }
 
 type DeleteAccessLogSettingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10070,7 +10070,7 @@ func (s DeleteAccessLogSettingsOutput) GoString() string {
 }
 
 type DeleteApiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10117,7 +10117,7 @@ func (s *DeleteApiInput) SetApiId(v string) *DeleteApiInput {
 }
 
 type DeleteApiMappingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiMappingId is a required field
 	ApiMappingId *string `location:"uri" locationName:"apiMappingId" type:"string" required:"true"`
@@ -10179,7 +10179,7 @@ func (s *DeleteApiMappingInput) SetDomainName(v string) *DeleteApiMappingInput {
 }
 
 type DeleteApiMappingOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10201,7 +10201,7 @@ func (s DeleteApiMappingOutput) GoString() string {
 }
 
 type DeleteApiOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10223,7 +10223,7 @@ func (s DeleteApiOutput) GoString() string {
 }
 
 type DeleteAuthorizerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10285,7 +10285,7 @@ func (s *DeleteAuthorizerInput) SetAuthorizerId(v string) *DeleteAuthorizerInput
 }
 
 type DeleteAuthorizerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10307,7 +10307,7 @@ func (s DeleteAuthorizerOutput) GoString() string {
 }
 
 type DeleteCorsConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10354,7 +10354,7 @@ func (s *DeleteCorsConfigurationInput) SetApiId(v string) *DeleteCorsConfigurati
 }
 
 type DeleteCorsConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10376,7 +10376,7 @@ func (s DeleteCorsConfigurationOutput) GoString() string {
 }
 
 type DeleteDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10438,7 +10438,7 @@ func (s *DeleteDeploymentInput) SetDeploymentId(v string) *DeleteDeploymentInput
 }
 
 type DeleteDeploymentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10460,7 +10460,7 @@ func (s DeleteDeploymentOutput) GoString() string {
 }
 
 type DeleteDomainNameInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domainName" type:"string" required:"true"`
@@ -10507,7 +10507,7 @@ func (s *DeleteDomainNameInput) SetDomainName(v string) *DeleteDomainNameInput {
 }
 
 type DeleteDomainNameOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10529,7 +10529,7 @@ func (s DeleteDomainNameOutput) GoString() string {
 }
 
 type DeleteIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10591,7 +10591,7 @@ func (s *DeleteIntegrationInput) SetIntegrationId(v string) *DeleteIntegrationIn
 }
 
 type DeleteIntegrationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10613,7 +10613,7 @@ func (s DeleteIntegrationOutput) GoString() string {
 }
 
 type DeleteIntegrationResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10690,7 +10690,7 @@ func (s *DeleteIntegrationResponseInput) SetIntegrationResponseId(v string) *Del
 }
 
 type DeleteIntegrationResponseOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10712,7 +10712,7 @@ func (s DeleteIntegrationResponseOutput) GoString() string {
 }
 
 type DeleteModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10774,7 +10774,7 @@ func (s *DeleteModelInput) SetModelId(v string) *DeleteModelInput {
 }
 
 type DeleteModelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10796,7 +10796,7 @@ func (s DeleteModelOutput) GoString() string {
 }
 
 type DeleteRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10858,7 +10858,7 @@ func (s *DeleteRouteInput) SetRouteId(v string) *DeleteRouteInput {
 }
 
 type DeleteRouteOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10880,7 +10880,7 @@ func (s DeleteRouteOutput) GoString() string {
 }
 
 type DeleteRouteRequestParameterInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -10957,7 +10957,7 @@ func (s *DeleteRouteRequestParameterInput) SetRouteId(v string) *DeleteRouteRequ
 }
 
 type DeleteRouteRequestParameterOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10979,7 +10979,7 @@ func (s DeleteRouteRequestParameterOutput) GoString() string {
 }
 
 type DeleteRouteResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -11056,7 +11056,7 @@ func (s *DeleteRouteResponseInput) SetRouteResponseId(v string) *DeleteRouteResp
 }
 
 type DeleteRouteResponseOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11078,7 +11078,7 @@ func (s DeleteRouteResponseOutput) GoString() string {
 }
 
 type DeleteRouteSettingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -11155,7 +11155,7 @@ func (s *DeleteRouteSettingsInput) SetStageName(v string) *DeleteRouteSettingsIn
 }
 
 type DeleteRouteSettingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11177,7 +11177,7 @@ func (s DeleteRouteSettingsOutput) GoString() string {
 }
 
 type DeleteStageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -11239,7 +11239,7 @@ func (s *DeleteStageInput) SetStageName(v string) *DeleteStageInput {
 }
 
 type DeleteStageOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11261,7 +11261,7 @@ func (s DeleteStageOutput) GoString() string {
 }
 
 type DeleteVpcLinkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// VpcLinkId is a required field
 	VpcLinkId *string `location:"uri" locationName:"vpcLinkId" type:"string" required:"true"`
@@ -11308,7 +11308,7 @@ func (s *DeleteVpcLinkInput) SetVpcLinkId(v string) *DeleteVpcLinkInput {
 }
 
 type DeleteVpcLinkOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11601,7 +11601,7 @@ func (s *DomainNameConfiguration) SetSecurityPolicy(v string) *DomainNameConfigu
 }
 
 type ExportApiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -11732,7 +11732,7 @@ func (s *ExportApiOutput) SetBody(v []byte) *ExportApiOutput {
 }
 
 type GetApiInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -11779,7 +11779,7 @@ func (s *GetApiInput) SetApiId(v string) *GetApiInput {
 }
 
 type GetApiMappingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiMappingId is a required field
 	ApiMappingId *string `location:"uri" locationName:"apiMappingId" type:"string" required:"true"`
@@ -11903,7 +11903,7 @@ func (s *GetApiMappingOutput) SetStage(v string) *GetApiMappingOutput {
 }
 
 type GetApiMappingsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domainName" type:"string" required:"true"`
@@ -12171,7 +12171,7 @@ func (s *GetApiOutput) SetWarnings(v []*string) *GetApiOutput {
 }
 
 type GetApisInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"maxResults" type:"string"`
 
@@ -12249,7 +12249,7 @@ func (s *GetApisOutput) SetNextToken(v string) *GetApisOutput {
 }
 
 type GetAuthorizerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -12446,7 +12446,7 @@ func (s *GetAuthorizerOutput) SetName(v string) *GetAuthorizerOutput {
 }
 
 type GetAuthorizersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -12549,7 +12549,7 @@ func (s *GetAuthorizersOutput) SetNextToken(v string) *GetAuthorizersOutput {
 }
 
 type GetDeploymentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -12684,7 +12684,7 @@ func (s *GetDeploymentOutput) SetDescription(v string) *GetDeploymentOutput {
 }
 
 type GetDeploymentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -12787,7 +12787,7 @@ func (s *GetDeploymentsOutput) SetNextToken(v string) *GetDeploymentsOutput {
 }
 
 type GetDomainNameInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DomainName is a required field
 	DomainName *string `location:"uri" locationName:"domainName" type:"string" required:"true"`
@@ -12905,7 +12905,7 @@ func (s *GetDomainNameOutput) SetTags(v map[string]*string) *GetDomainNameOutput
 }
 
 type GetDomainNamesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"maxResults" type:"string"`
 
@@ -12983,7 +12983,7 @@ func (s *GetDomainNamesOutput) SetNextToken(v string) *GetDomainNamesOutput {
 }
 
 type GetIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -13279,7 +13279,7 @@ func (s *GetIntegrationOutput) SetTlsConfig(v *TlsConfig) *GetIntegrationOutput 
 }
 
 type GetIntegrationResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -13462,7 +13462,7 @@ func (s *GetIntegrationResponseOutput) SetTemplateSelectionExpression(v string) 
 }
 
 type GetIntegrationResponsesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -13580,7 +13580,7 @@ func (s *GetIntegrationResponsesOutput) SetNextToken(v string) *GetIntegrationRe
 }
 
 type GetIntegrationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -13683,7 +13683,7 @@ func (s *GetIntegrationsOutput) SetNextToken(v string) *GetIntegrationsOutput {
 }
 
 type GetModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -13812,7 +13812,7 @@ func (s *GetModelOutput) SetSchema(v string) *GetModelOutput {
 }
 
 type GetModelTemplateInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -13904,7 +13904,7 @@ func (s *GetModelTemplateOutput) SetValue(v string) *GetModelTemplateOutput {
 }
 
 type GetModelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -14007,7 +14007,7 @@ func (s *GetModelsOutput) SetNextToken(v string) *GetModelsOutput {
 }
 
 type GetRouteInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -14224,7 +14224,7 @@ func (s *GetRouteOutput) SetTarget(v string) *GetRouteOutput {
 }
 
 type GetRouteResponseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -14374,7 +14374,7 @@ func (s *GetRouteResponseOutput) SetRouteResponseKey(v string) *GetRouteResponse
 }
 
 type GetRouteResponsesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -14492,7 +14492,7 @@ func (s *GetRouteResponsesOutput) SetNextToken(v string) *GetRouteResponsesOutpu
 }
 
 type GetRoutesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -14595,7 +14595,7 @@ func (s *GetRoutesOutput) SetNextToken(v string) *GetRoutesOutput {
 }
 
 type GetStageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -14800,7 +14800,7 @@ func (s *GetStageOutput) SetTags(v map[string]*string) *GetStageOutput {
 }
 
 type GetStagesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -14903,7 +14903,7 @@ func (s *GetStagesOutput) SetNextToken(v string) *GetStagesOutput {
 }
 
 type GetTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -14981,7 +14981,7 @@ func (s *GetTagsOutput) SetTags(v map[string]*string) *GetTagsOutput {
 }
 
 type GetVpcLinkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// VpcLinkId is a required field
 	VpcLinkId *string `location:"uri" locationName:"vpcLinkId" type:"string" required:"true"`
@@ -15130,7 +15130,7 @@ func (s *GetVpcLinkOutput) SetVpcLinkVersion(v string) *GetVpcLinkOutput {
 }
 
 type GetVpcLinksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *string `location:"querystring" locationName:"maxResults" type:"string"`
 
@@ -16415,7 +16415,7 @@ func (s *ReimportApiOutput) SetWarnings(v []*string) *ReimportApiOutput {
 }
 
 type ResetAuthorizersCacheInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ApiId is a required field
 	ApiId *string `location:"uri" locationName:"apiId" type:"string" required:"true"`
@@ -16477,7 +16477,7 @@ func (s *ResetAuthorizersCacheInput) SetStageName(v string) *ResetAuthorizersCac
 }
 
 type ResetAuthorizersCacheOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17016,7 +17016,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -17176,7 +17176,7 @@ func (s *TooManyRequestsException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -17235,7 +17235,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

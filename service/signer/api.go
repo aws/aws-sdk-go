@@ -2088,7 +2088,7 @@ func (s *BadRequestException) RequestID() string {
 }
 
 type CancelSigningProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the signing profile to be canceled.
 	//
@@ -2137,7 +2137,7 @@ func (s *CancelSigningProfileInput) SetProfileName(v string) *CancelSigningProfi
 }
 
 type CancelSigningProfileOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2225,7 +2225,7 @@ func (s *ConflictException) RequestID() string {
 }
 
 type DescribeSigningJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the signing job on input.
 	//
@@ -2550,7 +2550,7 @@ func (s *EncryptionAlgorithmOptions) SetDefaultValue(v string) *EncryptionAlgori
 }
 
 type GetSigningPlatformInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the target signing platform.
 	//
@@ -2704,7 +2704,7 @@ func (s *GetSigningPlatformOutput) SetTarget(v string) *GetSigningPlatformOutput
 }
 
 type GetSigningProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the target signing profile.
 	//
@@ -3026,7 +3026,7 @@ func (s *InternalServiceErrorException) RequestID() string {
 }
 
 type ListProfilePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// String for specifying the next set of paginated results.
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
@@ -3142,7 +3142,7 @@ func (s *ListProfilePermissionsOutput) SetRevisionId(v string) *ListProfilePermi
 }
 
 type ListSigningJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Filters results to return only signing jobs with revoked signatures.
 	IsRevoked *bool `location:"querystring" locationName:"isRevoked" type:"boolean"`
@@ -3311,7 +3311,7 @@ func (s *ListSigningJobsOutput) SetNextToken(v string) *ListSigningJobsOutput {
 }
 
 type ListSigningPlatformsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The category type of a signing platform.
 	Category *string `location:"querystring" locationName:"category" type:"string"`
@@ -3434,7 +3434,7 @@ func (s *ListSigningPlatformsOutput) SetPlatforms(v []*SigningPlatform) *ListSig
 }
 
 type ListSigningProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Designates whether to include profiles with the status of CANCELED.
 	IncludeCanceled *bool `location:"querystring" locationName:"includeCanceled" type:"boolean"`
@@ -3560,7 +3560,7 @@ func (s *ListSigningProfilesOutput) SetProfiles(v []*SigningProfile) *ListSignin
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) for the signing profile.
 	//
@@ -3935,7 +3935,7 @@ func (s *PutSigningProfileOutput) SetProfileVersionArn(v string) *PutSigningProf
 }
 
 type RemoveProfilePermissionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A human-readable name for the signing profile with permissions to be removed.
 	//
@@ -4190,7 +4190,7 @@ func (s *RevokeSignatureInput) SetReason(v string) *RevokeSignatureInput {
 }
 
 type RevokeSignatureOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4311,7 +4311,7 @@ func (s *RevokeSigningProfileInput) SetReason(v string) *RevokeSigningProfileInp
 }
 
 type RevokeSigningProfileOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5601,7 +5601,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5761,7 +5761,7 @@ func (s *TooManyRequestsException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) for the signing profile.
 	//
@@ -5827,7 +5827,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

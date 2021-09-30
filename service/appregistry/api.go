@@ -2244,7 +2244,7 @@ func (s *ApplicationSummary) SetName(v string) *ApplicationSummary {
 }
 
 type AssociateAttributeGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -2353,7 +2353,7 @@ func (s *AssociateAttributeGroupOutput) SetAttributeGroupArn(v string) *Associat
 }
 
 type AssociateResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -2959,7 +2959,7 @@ func (s *CreateAttributeGroupOutput) SetAttributeGroup(v *AttributeGroup) *Creat
 }
 
 type DeleteApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -3039,7 +3039,7 @@ func (s *DeleteApplicationOutput) SetApplication(v *ApplicationSummary) *DeleteA
 }
 
 type DeleteAttributeGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the attribute group that holds the attributes to describe
 	// the application.
@@ -3120,7 +3120,7 @@ func (s *DeleteAttributeGroupOutput) SetAttributeGroup(v *AttributeGroupSummary)
 }
 
 type DisassociateAttributeGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -3227,7 +3227,7 @@ func (s *DisassociateAttributeGroupOutput) SetAttributeGroupArn(v string) *Disas
 }
 
 type DisassociateResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -3350,7 +3350,7 @@ func (s *DisassociateResourceOutput) SetResourceArn(v string) *DisassociateResou
 }
 
 type GetApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -3505,7 +3505,7 @@ func (s *GetApplicationOutput) SetTags(v map[string]*string) *GetApplicationOutp
 }
 
 type GetAssociatedResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -3619,7 +3619,7 @@ func (s *GetAssociatedResourceOutput) SetResource(v *Resource) *GetAssociatedRes
 }
 
 type GetAttributeGroupInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the attribute group that holds the attributes to describe
 	// the application.
@@ -3863,7 +3863,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListApplicationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The upper bound of the number of results to return (cannot exceed 25). If
 	// this parameter is omitted, it defaults to 25. This value is optional.
@@ -3960,7 +3960,7 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 }
 
 type ListAssociatedAttributeGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -4074,7 +4074,7 @@ func (s *ListAssociatedAttributeGroupsOutput) SetNextToken(v string) *ListAssoci
 }
 
 type ListAssociatedResourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name or ID of the application.
 	//
@@ -4188,7 +4188,7 @@ func (s *ListAssociatedResourcesOutput) SetResources(v []*ResourceInfo) *ListAss
 }
 
 type ListAttributeGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The upper bound of the number of results to return (cannot exceed 25). If
 	// this parameter is omitted, it defaults to 25. This value is optional.
@@ -4285,7 +4285,7 @@ func (s *ListAttributeGroupsOutput) SetNextToken(v string) *ListAttributeGroupsO
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon resource name (ARN) that specifies the resource.
 	//
@@ -4688,7 +4688,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 }
 
 type SyncResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An entity you can work with and specify with a name or ID. Examples include
 	// an Amazon EC2 instance, an Amazon Web Services CloudFormation stack, or an
@@ -4869,7 +4869,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4891,7 +4891,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon resource name (ARN) that specifies the resource.
 	//
@@ -4954,7 +4954,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

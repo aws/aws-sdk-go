@@ -1338,7 +1338,7 @@ func (s *CrossRegionCopyRule) SetTargetRegion(v string) *CrossRegionCopyRule {
 }
 
 type DeleteLifecyclePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the lifecycle policy.
 	//
@@ -1387,7 +1387,7 @@ func (s *DeleteLifecyclePolicyInput) SetPolicyId(v string) *DeleteLifecyclePolic
 }
 
 type DeleteLifecyclePolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1774,7 +1774,7 @@ func (s *FastRestoreRule) SetIntervalUnit(v string) *FastRestoreRule {
 }
 
 type GetLifecyclePoliciesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifiers of the data lifecycle policies.
 	PolicyIds []*string `location:"querystring" locationName:"policyIds" type:"list"`
@@ -1895,7 +1895,7 @@ func (s *GetLifecyclePoliciesOutput) SetPolicies(v []*LifecyclePolicySummary) *G
 }
 
 type GetLifecyclePolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the lifecycle policy.
 	//
@@ -2366,7 +2366,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -3217,7 +3217,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3239,7 +3239,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -3305,7 +3305,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3419,7 +3419,7 @@ func (s *UpdateLifecyclePolicyInput) SetState(v string) *UpdateLifecyclePolicyIn
 }
 
 type UpdateLifecyclePolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

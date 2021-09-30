@@ -2294,7 +2294,7 @@ func (s *CustomerAction) SetSnoozeActionConfiguration(v *SnoozeActionConfigurati
 }
 
 type DescribeAlarmInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -2387,7 +2387,7 @@ func (s *DescribeAlarmOutput) SetAlarm(v *Alarm) *DescribeAlarmOutput {
 }
 
 type DescribeDetectorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model whose detectors (instances) you want information
 	// about.
@@ -3197,7 +3197,7 @@ func (s *InvalidRequestException) RequestID() string {
 }
 
 type ListAlarmsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the alarm model.
 	//
@@ -3308,7 +3308,7 @@ func (s *ListAlarmsOutput) SetNextToken(v string) *ListAlarmsOutput {
 }
 
 type ListDetectorsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the detector model whose detectors (instances) are listed.
 	//

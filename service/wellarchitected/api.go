@@ -3779,7 +3779,7 @@ func (s *AssociateLensesInput) SetWorkloadId(v string) *AssociateLensesInput {
 }
 
 type AssociateLensesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4689,7 +4689,7 @@ func (s *CreateWorkloadShareOutput) SetWorkloadId(v string) *CreateWorkloadShare
 
 // Input for workload deletion.
 type DeleteWorkloadInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique case-sensitive string used to ensure that this request is idempotent
 	// (executes only once).
@@ -4756,7 +4756,7 @@ func (s *DeleteWorkloadInput) SetWorkloadId(v string) *DeleteWorkloadInput {
 }
 
 type DeleteWorkloadOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4779,7 +4779,7 @@ func (s DeleteWorkloadOutput) GoString() string {
 
 // Input for Delete Workload Share
 type DeleteWorkloadShareInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique case-sensitive string used to ensure that this request is idempotent
 	// (executes only once).
@@ -4863,7 +4863,7 @@ func (s *DeleteWorkloadShareInput) SetWorkloadId(v string) *DeleteWorkloadShareI
 }
 
 type DeleteWorkloadShareOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4954,7 +4954,7 @@ func (s *DisassociateLensesInput) SetWorkloadId(v string) *DisassociateLensesInp
 }
 
 type DisassociateLensesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4977,7 +4977,7 @@ func (s DisassociateLensesOutput) GoString() string {
 
 // Input to get answer.
 type GetAnswerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the lens, for example, serverless.
 	//
@@ -5140,7 +5140,7 @@ func (s *GetAnswerOutput) SetWorkloadId(v string) *GetAnswerOutput {
 
 // Input to get lens review.
 type GetLensReviewInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the lens, for example, serverless.
 	//
@@ -5275,7 +5275,7 @@ func (s *GetLensReviewOutput) SetWorkloadId(v string) *GetLensReviewOutput {
 
 // Input to get lens review report.
 type GetLensReviewReportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the lens, for example, serverless.
 	//
@@ -5409,7 +5409,7 @@ func (s *GetLensReviewReportOutput) SetWorkloadId(v string) *GetLensReviewReport
 }
 
 type GetLensVersionDifferenceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The base version of the lens.
 	//
@@ -5538,7 +5538,7 @@ func (s *GetLensVersionDifferenceOutput) SetVersionDifferences(v *VersionDiffere
 
 // Input to get a milestone.
 type GetMilestoneInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The milestone number.
 	//
@@ -5648,7 +5648,7 @@ func (s *GetMilestoneOutput) SetWorkloadId(v string) *GetMilestoneOutput {
 
 // Input to get a workload.
 type GetWorkloadInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID assigned to the workload. This ID is unique within an AWS Region.
 	//
@@ -6231,7 +6231,7 @@ func (s *LensUpgradeSummary) SetWorkloadName(v string) *LensUpgradeSummary {
 
 // Input to list answers.
 type ListAnswersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the lens, for example, serverless.
 	//
@@ -6421,7 +6421,7 @@ func (s *ListAnswersOutput) SetWorkloadId(v string) *ListAnswersOutput {
 
 // Input to list lens review improvements.
 type ListLensReviewImprovementsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias of the lens, for example, serverless.
 	//
@@ -6611,7 +6611,7 @@ func (s *ListLensReviewImprovementsOutput) SetWorkloadId(v string) *ListLensRevi
 
 // Input to list lens reviews.
 type ListLensReviewsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for this request.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
@@ -6757,7 +6757,7 @@ func (s *ListLensReviewsOutput) SetWorkloadId(v string) *ListLensReviewsOutput {
 
 // Input to list lenses.
 type ListLensesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for this request.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
@@ -7075,7 +7075,7 @@ func (s *ListNotificationsOutput) SetNotificationSummaries(v []*NotificationSumm
 
 // Input for List Share Invitations
 type ListShareInvitationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for this request.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
@@ -7179,7 +7179,7 @@ func (s *ListShareInvitationsOutput) SetShareInvitationSummaries(v []*ShareInvit
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN for the workload.
 	//
@@ -7260,7 +7260,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 
 // Input for List Workload Share
 type ListWorkloadSharesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return for this request.
 	MaxResults *int64 `location:"querystring" locationName:"MaxResults" min:"1" type:"integer"`
@@ -8167,7 +8167,7 @@ func (s *TagResourceInput) SetWorkloadArn(v string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8260,7 +8260,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A list of tag keys. Existing tags of the resource whose keys are members
 	// of this list are removed from the resource.
@@ -8327,7 +8327,7 @@ func (s *UntagResourceInput) SetWorkloadArn(v string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9278,7 +9278,7 @@ func (s *UpgradeLensReviewInput) SetWorkloadId(v string) *UpgradeLensReviewInput
 }
 
 type UpgradeLensReviewOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

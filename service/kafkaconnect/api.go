@@ -3252,7 +3252,7 @@ func (s *CustomPluginSummary) SetName(v string) *CustomPluginSummary {
 }
 
 type DeleteConnectorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the connector that you want to delete.
 	//
@@ -3350,7 +3350,7 @@ func (s *DeleteConnectorOutput) SetConnectorState(v string) *DeleteConnectorOutp
 }
 
 type DescribeConnectorInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the connector that you want to describe.
 	//
@@ -3569,7 +3569,7 @@ func (s *DescribeConnectorOutput) SetWorkerConfiguration(v *WorkerConfigurationD
 }
 
 type DescribeCustomPluginInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Returns information about a custom plugin.
 	//
@@ -3695,7 +3695,7 @@ func (s *DescribeCustomPluginOutput) SetName(v string) *DescribeCustomPluginOutp
 }
 
 type DescribeWorkerConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the worker configuration that you want
 	// to get information about.
@@ -4288,7 +4288,7 @@ func (s *KafkaClusterEncryptionInTransitDescription) SetEncryptionType(v string)
 }
 
 type ListConnectorsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name prefix that you want to use to search for and list connectors.
 	ConnectorNamePrefix *string `location:"querystring" locationName:"connectorNamePrefix" type:"string"`
@@ -4394,7 +4394,7 @@ func (s *ListConnectorsOutput) SetNextToken(v string) *ListConnectorsOutput {
 }
 
 type ListCustomPluginsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of custom plugins to list in one response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -4491,7 +4491,7 @@ func (s *ListCustomPluginsOutput) SetNextToken(v string) *ListCustomPluginsOutpu
 }
 
 type ListWorkerConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of worker configurations to list in one response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`

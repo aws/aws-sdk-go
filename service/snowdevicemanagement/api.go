@@ -1497,7 +1497,7 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 type CancelTaskInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the task that you are attempting to cancel. You can retrieve a
 	// task ID by using the ListTasks operation.
@@ -1959,7 +1959,7 @@ func (s *DescribeDeviceEc2InstancesOutput) SetInstances(v []*InstanceSummary) *D
 }
 
 type DescribeDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the device that you are checking the information of.
 	//
@@ -2132,7 +2132,7 @@ func (s *DescribeDeviceOutput) SetTags(v map[string]*string) *DescribeDeviceOutp
 }
 
 type DescribeExecutionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the managed device.
 	//
@@ -2274,7 +2274,7 @@ func (s *DescribeExecutionOutput) SetTaskId(v string) *DescribeExecutionOutput {
 }
 
 type DescribeTaskInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the task to be described.
 	//
@@ -2961,7 +2961,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListDeviceResourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the managed device that you are listing the resources of.
 	//
@@ -3087,7 +3087,7 @@ func (s *ListDeviceResourcesOutput) SetResources(v []*ResourceSummary) *ListDevi
 }
 
 type ListDevicesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the job used to order the device.
 	JobId *string `location:"querystring" locationName:"jobId" min:"1" type:"string"`
@@ -3195,7 +3195,7 @@ func (s *ListDevicesOutput) SetNextToken(v string) *ListDevicesOutput {
 }
 
 type ListExecutionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of tasks to list per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -3318,7 +3318,7 @@ func (s *ListExecutionsOutput) SetNextToken(v string) *ListExecutionsOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the device or task.
 	//
@@ -3398,7 +3398,7 @@ func (s *ListTagsForResourceOutput) SetTags(v map[string]*string) *ListTagsForRe
 }
 
 type ListTasksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of tasks per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -3590,7 +3590,7 @@ func (s *PhysicalNetworkInterface) SetPhysicalNetworkInterfaceId(v string) *Phys
 
 // A structure used to reboot the device.
 type Reboot struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3948,7 +3948,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4097,7 +4097,7 @@ func (s *ThrottlingException) RequestID() string {
 
 // A structure used to unlock a device.
 type Unlock struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4119,7 +4119,7 @@ func (s Unlock) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the device or task.
 	//
@@ -4183,7 +4183,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

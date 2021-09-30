@@ -3021,7 +3021,7 @@ func (s *DatasetSource) SetGroundTruthManifest(v *DatasetGroundTruthManifest) *D
 }
 
 type DeleteDatasetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to DeleteDataset
 	// completes only once. You choose the value to pass. For example, An issue,
@@ -3108,7 +3108,7 @@ func (s *DeleteDatasetInput) SetProjectName(v string) *DeleteDatasetInput {
 }
 
 type DeleteDatasetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3130,7 +3130,7 @@ func (s DeleteDatasetOutput) GoString() string {
 }
 
 type DeleteModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to DeleteModel completes
 	// only once. You choose the value to pass. For example, An issue, such as an
@@ -3246,7 +3246,7 @@ func (s *DeleteModelOutput) SetModelArn(v string) *DeleteModelOutput {
 }
 
 type DeleteProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to DeleteProject
 	// completes only once. You choose the value to pass. For example, An issue,
@@ -3345,7 +3345,7 @@ func (s *DeleteProjectOutput) SetProjectArn(v string) *DeleteProjectOutput {
 }
 
 type DescribeDatasetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of the dataset to describe. Specify train to describe the training
 	// dataset. Specify test to describe the test dataset. If you have a single
@@ -3444,7 +3444,7 @@ func (s *DescribeDatasetOutput) SetDatasetDescription(v *DatasetDescription) *De
 }
 
 type DescribeModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The version of the model that you want to describe.
 	//
@@ -3541,7 +3541,7 @@ func (s *DescribeModelOutput) SetModelDescription(v *ModelDescription) *Describe
 }
 
 type DescribeProjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the project that you want to describe.
 	//
@@ -3981,7 +3981,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListDatasetEntriesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Only includes entries after the specified date in the response. For example,
 	// 2020-06-23T00:00:00.
@@ -4174,7 +4174,7 @@ func (s *ListDatasetEntriesOutput) SetNextToken(v string) *ListDatasetEntriesOut
 }
 
 type ListModelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per paginated call. The largest value
 	// you can specify is 100. If you specify a value greater than 100, a ValidationException
@@ -4290,7 +4290,7 @@ func (s *ListModelsOutput) SetNextToken(v string) *ListModelsOutput {
 }
 
 type ListProjectsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per paginated call. The largest value
 	// you can specify is 100. If you specify a value greater than 100, a ValidationException
@@ -4388,7 +4388,7 @@ func (s *ListProjectsOutput) SetProjects(v []*ProjectMetadata) *ListProjectsOutp
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the model for which you want to list tags.
 	//
@@ -5297,7 +5297,7 @@ func (s *StartModelOutput) SetStatus(v string) *StartModelOutput {
 }
 
 type StopModelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClientToken is an idempotency token that ensures a call to StopModel completes
 	// only once. You choose the value to pass. For example, An issue, such as an
@@ -5551,7 +5551,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5647,7 +5647,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the model from which you want to remove
 	// tags.
@@ -5711,7 +5711,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

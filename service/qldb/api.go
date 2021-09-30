@@ -1986,7 +1986,7 @@ func (c *QLDB) UpdateLedgerPermissionsModeWithContext(ctx aws.Context, input *Up
 }
 
 type CancelJournalKinesisStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the ledger.
 	//
@@ -2332,7 +2332,7 @@ func (s *CreateLedgerOutput) SetState(v string) *CreateLedgerOutput {
 }
 
 type DeleteLedgerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the ledger that you want to delete.
 	//
@@ -2381,7 +2381,7 @@ func (s *DeleteLedgerInput) SetName(v string) *DeleteLedgerInput {
 }
 
 type DeleteLedgerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2403,7 +2403,7 @@ func (s DeleteLedgerOutput) GoString() string {
 }
 
 type DescribeJournalKinesisStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the ledger.
 	//
@@ -2502,7 +2502,7 @@ func (s *DescribeJournalKinesisStreamOutput) SetStream(v *JournalKinesisStreamDe
 }
 
 type DescribeJournalS3ExportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The UUID (represented in Base62-encoded text) of the journal export job to
 	// describe.
@@ -2603,7 +2603,7 @@ func (s *DescribeJournalS3ExportOutput) SetExportDescription(v *JournalS3ExportD
 }
 
 type DescribeLedgerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the ledger that you want to describe.
 	//
@@ -3065,7 +3065,7 @@ func (s *GetBlockOutput) SetProof(v *ValueHolder) *GetBlockOutput {
 }
 
 type GetDigestInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the ledger.
 	//
@@ -3933,7 +3933,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListJournalKinesisStreamsForLedgerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the ledger.
 	//
@@ -4056,7 +4056,7 @@ func (s *ListJournalKinesisStreamsForLedgerOutput) SetStreams(v []*JournalKinesi
 }
 
 type ListJournalS3ExportsForLedgerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single ListJournalS3ExportsForLedger
 	// request. (The actual number of results returned might be fewer.)
@@ -4179,7 +4179,7 @@ func (s *ListJournalS3ExportsForLedgerOutput) SetNextToken(v string) *ListJourna
 }
 
 type ListJournalS3ExportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single ListJournalS3Exports
 	// request. (The actual number of results returned might be fewer.)
@@ -4284,7 +4284,7 @@ func (s *ListJournalS3ExportsOutput) SetNextToken(v string) *ListJournalS3Export
 }
 
 type ListLedgersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in a single ListLedgers request.
 	// (The actual number of results returned might be fewer.)
@@ -4391,7 +4391,7 @@ func (s *ListLedgersOutput) SetNextToken(v string) *ListLedgersOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) for which to list the tags. For example:
 	//
@@ -5179,7 +5179,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5201,7 +5201,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) from which to remove the tags. For example:
 	//
@@ -5266,7 +5266,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

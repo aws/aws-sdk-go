@@ -1879,7 +1879,7 @@ func (s *DTMFInputEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eventst
 }
 
 type DeleteSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias identifier in use for the bot that contains the session data.
 	//
@@ -2275,7 +2275,7 @@ func (s *DisconnectionEvent) MarshalEvent(pm protocol.PayloadMarshaler) (msg eve
 }
 
 type GetSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The alias identifier in use for the bot that contains the session data.
 	//

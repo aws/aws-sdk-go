@@ -887,7 +887,7 @@ func (s *ChangedBlock) SetSecondBlockToken(v string) *ChangedBlock {
 }
 
 type CompleteSnapshotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The number of blocks that were written to the snapshot.
 	//
@@ -1146,7 +1146,7 @@ func (s *ConflictException) RequestID() string {
 }
 
 type GetSnapshotBlockInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The block index of the block from which to get data.
 	//
@@ -1355,7 +1355,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListChangedBlocksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the first snapshot to use for the comparison.
 	//
@@ -1523,7 +1523,7 @@ func (s *ListChangedBlocksOutput) SetVolumeSize(v int64) *ListChangedBlocksOutpu
 }
 
 type ListSnapshotBlocksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The number of results to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"100" type:"integer"`
@@ -1831,7 +1831,7 @@ func (s *PutSnapshotBlockInput) SetSnapshotId(v string) *PutSnapshotBlockInput {
 }
 
 type PutSnapshotBlockOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The SHA256 checksum generated for the block data by Amazon EBS.
 	Checksum *string `location:"header" locationName:"x-amz-Checksum" type:"string"`

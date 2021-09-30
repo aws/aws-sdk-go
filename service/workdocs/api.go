@@ -4227,7 +4227,7 @@ func (c *WorkDocs) UpdateUserWithContext(ctx aws.Context, input *UpdateUserInput
 }
 
 type AbortDocumentVersionUploadInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -4310,7 +4310,7 @@ func (s *AbortDocumentVersionUploadInput) SetVersionId(v string) *AbortDocumentV
 }
 
 type AbortDocumentVersionUploadOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4332,7 +4332,7 @@ func (s AbortDocumentVersionUploadOutput) GoString() string {
 }
 
 type ActivateUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -5256,7 +5256,7 @@ func (s *CreateCustomMetadataInput) SetVersionId(v string) *CreateCustomMetadata
 }
 
 type CreateCustomMetadataOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5467,7 +5467,7 @@ func (s *CreateLabelsInput) SetResourceId(v string) *CreateLabelsInput {
 }
 
 type CreateLabelsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5878,7 +5878,7 @@ func (s *CustomMetadataLimitExceededException) RequestID() string {
 }
 
 type DeactivateUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -5944,7 +5944,7 @@ func (s *DeactivateUserInput) SetUserId(v string) *DeactivateUserInput {
 }
 
 type DeactivateUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6030,7 +6030,7 @@ func (s *DeactivatingLastSystemUserException) RequestID() string {
 }
 
 type DeleteCommentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -6130,7 +6130,7 @@ func (s *DeleteCommentInput) SetVersionId(v string) *DeleteCommentInput {
 }
 
 type DeleteCommentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6152,7 +6152,7 @@ func (s DeleteCommentOutput) GoString() string {
 }
 
 type DeleteCustomMetadataInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -6250,7 +6250,7 @@ func (s *DeleteCustomMetadataInput) SetVersionId(v string) *DeleteCustomMetadata
 }
 
 type DeleteCustomMetadataOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6272,7 +6272,7 @@ func (s DeleteCustomMetadataOutput) GoString() string {
 }
 
 type DeleteDocumentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -6338,7 +6338,7 @@ func (s *DeleteDocumentInput) SetDocumentId(v string) *DeleteDocumentInput {
 }
 
 type DeleteDocumentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6360,7 +6360,7 @@ func (s DeleteDocumentOutput) GoString() string {
 }
 
 type DeleteFolderContentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -6426,7 +6426,7 @@ func (s *DeleteFolderContentsInput) SetFolderId(v string) *DeleteFolderContentsI
 }
 
 type DeleteFolderContentsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6448,7 +6448,7 @@ func (s DeleteFolderContentsOutput) GoString() string {
 }
 
 type DeleteFolderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -6514,7 +6514,7 @@ func (s *DeleteFolderInput) SetFolderId(v string) *DeleteFolderInput {
 }
 
 type DeleteFolderOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6536,7 +6536,7 @@ func (s DeleteFolderOutput) GoString() string {
 }
 
 type DeleteLabelsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -6620,7 +6620,7 @@ func (s *DeleteLabelsInput) SetResourceId(v string) *DeleteLabelsInput {
 }
 
 type DeleteLabelsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6642,7 +6642,7 @@ func (s DeleteLabelsOutput) GoString() string {
 }
 
 type DeleteNotificationSubscriptionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the organization.
 	//
@@ -6708,7 +6708,7 @@ func (s *DeleteNotificationSubscriptionInput) SetSubscriptionId(v string) *Delet
 }
 
 type DeleteNotificationSubscriptionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6730,7 +6730,7 @@ func (s DeleteNotificationSubscriptionOutput) GoString() string {
 }
 
 type DeleteUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Do not set this field when using administrative
 	// API actions, as in accessing the API using AWS credentials.
@@ -6796,7 +6796,7 @@ func (s *DeleteUserInput) SetUserId(v string) *DeleteUserInput {
 }
 
 type DeleteUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6818,7 +6818,7 @@ func (s DeleteUserOutput) GoString() string {
 }
 
 type DescribeActivitiesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies which activity types to include in the response. If this field
 	// is left empty, all activity types are returned.
@@ -7015,7 +7015,7 @@ func (s *DescribeActivitiesOutput) SetUserActivities(v []*Activity) *DescribeAct
 }
 
 type DescribeCommentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -7164,7 +7164,7 @@ func (s *DescribeCommentsOutput) SetMarker(v string) *DescribeCommentsOutput {
 }
 
 type DescribeDocumentVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -7322,7 +7322,7 @@ func (s *DescribeDocumentVersionsOutput) SetMarker(v string) *DescribeDocumentVe
 }
 
 type DescribeFolderContentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -7502,7 +7502,7 @@ func (s *DescribeFolderContentsOutput) SetMarker(v string) *DescribeFolderConten
 }
 
 type DescribeGroupsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -7650,7 +7650,7 @@ func (s *DescribeGroupsOutput) SetMarker(v string) *DescribeGroupsOutput {
 }
 
 type DescribeNotificationSubscriptionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of items to return with this call.
 	Limit *int64 `location:"querystring" locationName:"limit" min:"1" type:"integer"`
@@ -7765,7 +7765,7 @@ func (s *DescribeNotificationSubscriptionsOutput) SetSubscriptions(v []*Subscrip
 }
 
 type DescribeResourcePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -7909,7 +7909,7 @@ func (s *DescribeResourcePermissionsOutput) SetPrincipals(v []*Principal) *Descr
 }
 
 type DescribeRootFoldersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token.
 	//
@@ -8027,7 +8027,7 @@ func (s *DescribeRootFoldersOutput) SetMarker(v string) *DescribeRootFoldersOutp
 }
 
 type DescribeUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -8916,7 +8916,7 @@ func (s *FolderMetadata) SetSize(v int64) *FolderMetadata {
 }
 
 type GetCurrentUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token.
 	//
@@ -9000,7 +9000,7 @@ func (s *GetCurrentUserOutput) SetUser(v *User) *GetCurrentUserOutput {
 }
 
 type GetDocumentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -9115,7 +9115,7 @@ func (s *GetDocumentOutput) SetMetadata(v *DocumentMetadata) *GetDocumentOutput 
 }
 
 type GetDocumentPathInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -9249,7 +9249,7 @@ func (s *GetDocumentPathOutput) SetPath(v *ResourcePath) *GetDocumentPathOutput 
 }
 
 type GetDocumentVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -9394,7 +9394,7 @@ func (s *GetDocumentVersionOutput) SetMetadata(v *DocumentVersionMetadata) *GetD
 }
 
 type GetFolderInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -9509,7 +9509,7 @@ func (s *GetFolderOutput) SetMetadata(v *FolderMetadata) *GetFolderOutput {
 }
 
 type GetFolderPathInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -9643,7 +9643,7 @@ func (s *GetFolderPathOutput) SetPath(v *ResourcePath) *GetFolderPathOutput {
 }
 
 type GetResourcesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -10624,7 +10624,7 @@ func (s *ProhibitedStateException) RequestID() string {
 }
 
 type RemoveAllResourcePermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -10690,7 +10690,7 @@ func (s *RemoveAllResourcePermissionsInput) SetResourceId(v string) *RemoveAllRe
 }
 
 type RemoveAllResourcePermissionsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10712,7 +10712,7 @@ func (s RemoveAllResourcePermissionsOutput) GoString() string {
 }
 
 type RemoveResourcePermissionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Amazon WorkDocs authentication token. Not required when using AWS administrator
 	// credentials to access the API.
@@ -10804,7 +10804,7 @@ func (s *RemoveResourcePermissionInput) SetResourceId(v string) *RemoveResourceP
 }
 
 type RemoveResourcePermissionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11913,7 +11913,7 @@ func (s *UpdateDocumentInput) SetResourceState(v string) *UpdateDocumentInput {
 }
 
 type UpdateDocumentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12027,7 +12027,7 @@ func (s *UpdateDocumentVersionInput) SetVersionStatus(v string) *UpdateDocumentV
 }
 
 type UpdateDocumentVersionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -12149,7 +12149,7 @@ func (s *UpdateFolderInput) SetResourceState(v string) *UpdateFolderInput {
 }
 
 type UpdateFolderOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

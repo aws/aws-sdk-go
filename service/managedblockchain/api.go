@@ -3516,7 +3516,7 @@ func (s *CreateProposalOutput) SetProposalId(v string) *CreateProposalOutput {
 }
 
 type DeleteMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the member to remove.
 	//
@@ -3582,7 +3582,7 @@ func (s *DeleteMemberInput) SetNetworkId(v string) *DeleteMemberInput {
 }
 
 type DeleteMemberOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3604,7 +3604,7 @@ func (s DeleteMemberOutput) GoString() string {
 }
 
 type DeleteNodeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the member that owns this node.
 	//
@@ -3692,7 +3692,7 @@ func (s *DeleteNodeInput) SetNodeId(v string) *DeleteNodeInput {
 }
 
 type DeleteNodeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3714,7 +3714,7 @@ func (s DeleteNodeOutput) GoString() string {
 }
 
 type GetMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the member.
 	//
@@ -3811,7 +3811,7 @@ func (s *GetMemberOutput) SetMember(v *Member) *GetMemberOutput {
 }
 
 type GetNetworkInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the network to get information about.
 	//
@@ -3891,7 +3891,7 @@ func (s *GetNetworkOutput) SetNetwork(v *Network) *GetNetworkOutput {
 }
 
 type GetNodeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the member that owns the node.
 	//
@@ -4002,7 +4002,7 @@ func (s *GetNodeOutput) SetNode(v *Node) *GetNodeOutput {
 }
 
 type GetProposalInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the network for which the proposal is made.
 	//
@@ -4440,7 +4440,7 @@ func (s *InviteAction) SetPrincipal(v string) *InviteAction {
 }
 
 type ListInvitationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of invitations to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -4533,7 +4533,7 @@ func (s *ListInvitationsOutput) SetNextToken(v string) *ListInvitationsOutput {
 }
 
 type ListMembersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An optional Boolean value. If provided, the request is limited either to
 	// members that the current AWS account owns (true) or that other AWS accounts
@@ -4674,7 +4674,7 @@ func (s *ListMembersOutput) SetNextToken(v string) *ListMembersOutput {
 }
 
 type ListNetworksInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An optional framework specifier. If provided, only networks of this framework
 	// type are listed.
@@ -4799,7 +4799,7 @@ func (s *ListNetworksOutput) SetNextToken(v string) *ListNetworksOutput {
 }
 
 type ListNodesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of nodes to list.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -4934,7 +4934,7 @@ func (s *ListNodesOutput) SetNodes(v []*NodeSummary) *ListNodesOutput {
 }
 
 type ListProposalVotesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of votes to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -5061,7 +5061,7 @@ func (s *ListProposalVotesOutput) SetProposalVotes(v []*VoteSummary) *ListPropos
 }
 
 type ListProposalsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of proposals to return.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -5171,7 +5171,7 @@ func (s *ListProposalsOutput) SetProposals(v []*ProposalSummary) *ListProposalsO
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
@@ -7396,7 +7396,7 @@ func (s *ProposalSummary) SetStatus(v string) *ProposalSummary {
 }
 
 type RejectInvitationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the invitation to reject.
 	//
@@ -7445,7 +7445,7 @@ func (s *RejectInvitationInput) SetInvitationId(v string) *RejectInvitationInput
 }
 
 type RejectInvitationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7852,7 +7852,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8006,7 +8006,7 @@ func (s *TooManyTagsException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource. For more information about
 	// ARNs and their format, see Amazon Resource Names (ARNs) (https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html)
@@ -8071,7 +8071,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8169,7 +8169,7 @@ func (s *UpdateMemberInput) SetNetworkId(v string) *UpdateMemberInput {
 }
 
 type UpdateMemberOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8280,7 +8280,7 @@ func (s *UpdateNodeInput) SetNodeId(v string) *UpdateNodeInput {
 }
 
 type UpdateNodeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8399,7 +8399,7 @@ func (s *VoteOnProposalInput) SetVoterMemberId(v string) *VoteOnProposalInput {
 }
 
 type VoteOnProposalOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

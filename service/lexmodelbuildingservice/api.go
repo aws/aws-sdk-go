@@ -6380,7 +6380,7 @@ func (s *CreateSlotTypeVersionOutput) SetVersion(v string) *CreateSlotTypeVersio
 }
 
 type DeleteBotAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the bot that the alias points to.
 	//
@@ -6446,7 +6446,7 @@ func (s *DeleteBotAliasInput) SetName(v string) *DeleteBotAliasInput {
 }
 
 type DeleteBotAliasOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6468,7 +6468,7 @@ func (s DeleteBotAliasOutput) GoString() string {
 }
 
 type DeleteBotChannelAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An alias that points to the specific version of the Amazon Lex bot to which
 	// this association is being made.
@@ -6552,7 +6552,7 @@ func (s *DeleteBotChannelAssociationInput) SetName(v string) *DeleteBotChannelAs
 }
 
 type DeleteBotChannelAssociationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6574,7 +6574,7 @@ func (s DeleteBotChannelAssociationOutput) GoString() string {
 }
 
 type DeleteBotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the bot. The name is case sensitive.
 	//
@@ -6623,7 +6623,7 @@ func (s *DeleteBotInput) SetName(v string) *DeleteBotInput {
 }
 
 type DeleteBotOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6645,7 +6645,7 @@ func (s DeleteBotOutput) GoString() string {
 }
 
 type DeleteBotVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the bot.
 	//
@@ -6712,7 +6712,7 @@ func (s *DeleteBotVersionInput) SetVersion(v string) *DeleteBotVersionInput {
 }
 
 type DeleteBotVersionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6734,7 +6734,7 @@ func (s DeleteBotVersionOutput) GoString() string {
 }
 
 type DeleteIntentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the intent. The name is case sensitive.
 	//
@@ -6783,7 +6783,7 @@ func (s *DeleteIntentInput) SetName(v string) *DeleteIntentInput {
 }
 
 type DeleteIntentOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6805,7 +6805,7 @@ func (s DeleteIntentOutput) GoString() string {
 }
 
 type DeleteIntentVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the intent.
 	//
@@ -6872,7 +6872,7 @@ func (s *DeleteIntentVersionInput) SetVersion(v string) *DeleteIntentVersionInpu
 }
 
 type DeleteIntentVersionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6894,7 +6894,7 @@ func (s DeleteIntentVersionOutput) GoString() string {
 }
 
 type DeleteSlotTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the slot type. The name is case sensitive.
 	//
@@ -6943,7 +6943,7 @@ func (s *DeleteSlotTypeInput) SetName(v string) *DeleteSlotTypeInput {
 }
 
 type DeleteSlotTypeOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6965,7 +6965,7 @@ func (s DeleteSlotTypeOutput) GoString() string {
 }
 
 type DeleteSlotTypeVersionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the slot type.
 	//
@@ -7032,7 +7032,7 @@ func (s *DeleteSlotTypeVersionInput) SetVersion(v string) *DeleteSlotTypeVersion
 }
 
 type DeleteSlotTypeVersionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7054,7 +7054,7 @@ func (s DeleteSlotTypeVersionOutput) GoString() string {
 }
 
 type DeleteUtterancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the bot that stored the utterances.
 	//
@@ -7123,7 +7123,7 @@ func (s *DeleteUtterancesInput) SetUserId(v string) *DeleteUtterancesInput {
 }
 
 type DeleteUtterancesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7368,7 +7368,7 @@ func (s *FulfillmentActivity) SetType(v string) *FulfillmentActivity {
 }
 
 type GetBotAliasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the bot.
 	//
@@ -7530,7 +7530,7 @@ func (s *GetBotAliasOutput) SetName(v string) *GetBotAliasOutput {
 }
 
 type GetBotAliasesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the bot.
 	//
@@ -7660,7 +7660,7 @@ func (s *GetBotAliasesOutput) SetNextToken(v string) *GetBotAliasesOutput {
 }
 
 type GetBotChannelAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An alias pointing to the specific version of the Amazon Lex bot to which
 	// this association is being made.
@@ -7862,7 +7862,7 @@ func (s *GetBotChannelAssociationOutput) SetType(v string) *GetBotChannelAssocia
 }
 
 type GetBotChannelAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An alias pointing to the specific version of the Amazon Lex bot to which
 	// this association is being made.
@@ -8013,7 +8013,7 @@ func (s *GetBotChannelAssociationsOutput) SetNextToken(v string) *GetBotChannelA
 }
 
 type GetBotInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the bot. The name is case sensitive.
 	//
@@ -8311,7 +8311,7 @@ func (s *GetBotOutput) SetVoiceId(v string) *GetBotOutput {
 }
 
 type GetBotVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of bot versions to return in the response. The default
 	// is 10.
@@ -8429,7 +8429,7 @@ func (s *GetBotVersionsOutput) SetNextToken(v string) *GetBotVersionsOutput {
 }
 
 type GetBotsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of bots to return in the response that the request will
 	// return. The default is 10.
@@ -8541,7 +8541,7 @@ func (s *GetBotsOutput) SetNextToken(v string) *GetBotsOutput {
 }
 
 type GetBuiltinIntentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier for a built-in intent. To find the signature for an
 	// intent, see Standard Built-in Intents (https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/built-in-intent-ref/standard-intents)
@@ -8642,7 +8642,7 @@ func (s *GetBuiltinIntentOutput) SetSupportedLocales(v []*string) *GetBuiltinInt
 }
 
 type GetBuiltinIntentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A list of locales that the intent supports.
 	Locale *string `location:"querystring" locationName:"locale" type:"string" enum:"Locale"`
@@ -8762,7 +8762,7 @@ func (s *GetBuiltinIntentsOutput) SetNextToken(v string) *GetBuiltinIntentsOutpu
 }
 
 type GetBuiltinSlotTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A list of locales that the slot type supports.
 	Locale *string `location:"querystring" locationName:"locale" type:"string" enum:"Locale"`
@@ -8881,7 +8881,7 @@ func (s *GetBuiltinSlotTypesOutput) SetSlotTypes(v []*BuiltinSlotTypeMetadata) *
 }
 
 type GetExportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The format of the exported data.
 	//
@@ -9070,7 +9070,7 @@ func (s *GetExportOutput) SetVersion(v string) *GetExportOutput {
 }
 
 type GetImportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identifier of the import job information to return.
 	//
@@ -9206,7 +9206,7 @@ func (s *GetImportOutput) SetResourceType(v string) *GetImportOutput {
 }
 
 type GetIntentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the intent. The name is case sensitive.
 	//
@@ -9465,7 +9465,7 @@ func (s *GetIntentOutput) SetVersion(v string) *GetIntentOutput {
 }
 
 type GetIntentVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of intent versions to return in the response. The default
 	// is 10.
@@ -9583,7 +9583,7 @@ func (s *GetIntentVersionsOutput) SetNextToken(v string) *GetIntentVersionsOutpu
 }
 
 type GetIntentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of intents to return in the response. The default is 10.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -9694,7 +9694,7 @@ func (s *GetIntentsOutput) SetNextToken(v string) *GetIntentsOutput {
 }
 
 type GetMigrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier of the migration to view. The migrationID is returned
 	// by the operation.
@@ -9873,7 +9873,7 @@ func (s *GetMigrationOutput) SetV2BotRole(v string) *GetMigrationOutput {
 }
 
 type GetMigrationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of migrations to return in the response. The default is
 	// 10.
@@ -10014,7 +10014,7 @@ func (s *GetMigrationsOutput) SetNextToken(v string) *GetMigrationsOutput {
 }
 
 type GetSlotTypeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the slot type. The name is case sensitive.
 	//
@@ -10195,7 +10195,7 @@ func (s *GetSlotTypeOutput) SetVersion(v string) *GetSlotTypeOutput {
 }
 
 type GetSlotTypeVersionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of slot type versions to return in the response. The default
 	// is 10.
@@ -10313,7 +10313,7 @@ func (s *GetSlotTypeVersionsOutput) SetSlotTypes(v []*SlotTypeMetadata) *GetSlot
 }
 
 type GetSlotTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of slot types to return in the response. The default is
 	// 10.
@@ -10426,7 +10426,7 @@ func (s *GetSlotTypesOutput) SetSlotTypes(v []*SlotTypeMetadata) *GetSlotTypesOu
 }
 
 type GetUtterancesViewInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the bot for which utterance information should be returned.
 	//
@@ -10958,7 +10958,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource to get a list of tags for.
 	//
@@ -14761,7 +14761,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -14783,7 +14783,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource to remove the tags from.
 	//
@@ -14847,7 +14847,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

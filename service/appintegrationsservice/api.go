@@ -1956,7 +1956,7 @@ func (s *DataIntegrationSummary) SetSourceURI(v string) *DataIntegrationSummary 
 }
 
 type DeleteDataIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique identifier for the DataIntegration.
 	//
@@ -2005,7 +2005,7 @@ func (s *DeleteDataIntegrationInput) SetDataIntegrationIdentifier(v string) *Del
 }
 
 type DeleteDataIntegrationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2027,7 +2027,7 @@ func (s DeleteDataIntegrationOutput) GoString() string {
 }
 
 type DeleteEventIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the event integration.
 	//
@@ -2076,7 +2076,7 @@ func (s *DeleteEventIntegrationInput) SetName(v string) *DeleteEventIntegrationI
 }
 
 type DeleteEventIntegrationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2366,7 +2366,7 @@ func (s *EventIntegrationAssociation) SetEventIntegrationName(v string) *EventIn
 }
 
 type GetDataIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique identifier.
 	//
@@ -2509,7 +2509,7 @@ func (s *GetDataIntegrationOutput) SetTags(v map[string]*string) *GetDataIntegra
 }
 
 type GetEventIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the event integration.
 	//
@@ -2762,7 +2762,7 @@ func (s *InvalidRequestException) RequestID() string {
 }
 
 type ListDataIntegrationAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique identifier for the DataIntegration.
 	//
@@ -2876,7 +2876,7 @@ func (s *ListDataIntegrationAssociationsOutput) SetNextToken(v string) *ListData
 }
 
 type ListDataIntegrationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -2973,7 +2973,7 @@ func (s *ListDataIntegrationsOutput) SetNextToken(v string) *ListDataIntegration
 }
 
 type ListEventIntegrationAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the event integration.
 	//
@@ -3087,7 +3087,7 @@ func (s *ListEventIntegrationAssociationsOutput) SetNextToken(v string) *ListEve
 }
 
 type ListEventIntegrationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per page.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -3184,7 +3184,7 @@ func (s *ListEventIntegrationsOutput) SetNextToken(v string) *ListEventIntegrati
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -3527,7 +3527,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3613,7 +3613,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource.
 	//
@@ -3679,7 +3679,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3774,7 +3774,7 @@ func (s *UpdateDataIntegrationInput) SetName(v string) *UpdateDataIntegrationInp
 }
 
 type UpdateDataIntegrationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3857,7 +3857,7 @@ func (s *UpdateEventIntegrationInput) SetName(v string) *UpdateEventIntegrationI
 }
 
 type UpdateEventIntegrationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

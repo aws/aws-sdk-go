@@ -3979,7 +3979,7 @@ func (s *ApplyArchiveRuleInput) SetRuleName(v string) *ApplyArchiveRuleInput {
 }
 
 type ApplyArchiveRuleOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4068,7 +4068,7 @@ func (s *ArchiveRuleSummary) SetUpdatedAt(v time.Time) *ArchiveRuleSummary {
 }
 
 type CancelPolicyGenerationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The JobId that is returned by the StartPolicyGeneration operation. The JobId
 	// can be used with GetGeneratedPolicy to retrieve the generated policies or
@@ -4119,7 +4119,7 @@ func (s *CancelPolicyGenerationInput) SetJobId(v string) *CancelPolicyGeneration
 }
 
 type CancelPolicyGenerationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4819,7 +4819,7 @@ func (s *CreateArchiveRuleInput) SetRuleName(v string) *CreateArchiveRuleInput {
 }
 
 type CreateArchiveRuleOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4920,7 +4920,7 @@ func (s *Criterion) SetNeq(v []*string) *Criterion {
 
 // Deletes an analyzer.
 type DeleteAnalyzerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the analyzer to delete.
 	//
@@ -4978,7 +4978,7 @@ func (s *DeleteAnalyzerInput) SetClientToken(v string) *DeleteAnalyzerInput {
 }
 
 type DeleteAnalyzerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5001,7 +5001,7 @@ func (s DeleteAnalyzerOutput) GoString() string {
 
 // Deletes an archive rule.
 type DeleteArchiveRuleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the analyzer that associated with the archive rule to delete.
 	//
@@ -5076,7 +5076,7 @@ func (s *DeleteArchiveRuleInput) SetRuleName(v string) *DeleteArchiveRuleInput {
 }
 
 type DeleteArchiveRuleOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5650,7 +5650,7 @@ func (s *GeneratedPolicyResult) SetProperties(v *GeneratedPolicyProperties) *Gen
 }
 
 type GetAccessPreviewInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique ID for the access preview.
 	//
@@ -5748,7 +5748,7 @@ func (s *GetAccessPreviewOutput) SetAccessPreview(v *AccessPreview) *GetAccessPr
 
 // Retrieves an analyzed resource.
 type GetAnalyzedResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
 	// to retrieve information from.
@@ -5843,7 +5843,7 @@ func (s *GetAnalyzedResourceOutput) SetResource(v *AnalyzedResource) *GetAnalyze
 
 // Retrieves an analyzer.
 type GetAnalyzerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the analyzer retrieved.
 	//
@@ -5927,7 +5927,7 @@ func (s *GetAnalyzerOutput) SetAnalyzer(v *AnalyzerSummary) *GetAnalyzerOutput {
 
 // Retrieves an archive rule.
 type GetArchiveRuleInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the analyzer to retrieve rules from.
 	//
@@ -6028,7 +6028,7 @@ func (s *GetArchiveRuleOutput) SetArchiveRule(v *ArchiveRuleSummary) *GetArchive
 
 // Retrieves a finding.
 type GetFindingInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
 	// that generated the finding.
@@ -6124,7 +6124,7 @@ func (s *GetFindingOutput) SetFinding(v *Finding) *GetFindingOutput {
 }
 
 type GetGeneratedPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The level of detail that you want to generate. You can specify whether to
 	// generate policies with placeholders for resource ARNs for actions that support
@@ -6431,7 +6431,7 @@ func (s *InternalServerException) RequestID() string {
 // This configuration sets the network origin for the Amazon S3 access point
 // or multi-region access point to Internet.
 type InternetConfiguration struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6945,7 +6945,7 @@ func (s *ListAccessPreviewFindingsOutput) SetNextToken(v string) *ListAccessPrev
 }
 
 type ListAccessPreviewsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the analyzer (https://docs.aws.amazon.com/IAM/latest/UserGuide/access-analyzer-getting-started.html#permission-resources)
 	// used to generate the access preview.
@@ -7171,7 +7171,7 @@ func (s *ListAnalyzedResourcesOutput) SetNextToken(v string) *ListAnalyzedResour
 
 // Retrieves a list of analyzers.
 type ListAnalyzersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`
@@ -7264,7 +7264,7 @@ func (s *ListAnalyzersOutput) SetNextToken(v string) *ListAnalyzersOutput {
 
 // Retrieves a list of archive rules created for the specified analyzer.
 type ListArchiveRulesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the analyzer to retrieve rules from.
 	//
@@ -7512,7 +7512,7 @@ func (s *ListFindingsOutput) SetNextToken(v string) *ListFindingsOutput {
 }
 
 type ListPolicyGenerationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return in the response.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
@@ -7619,7 +7619,7 @@ func (s *ListPolicyGenerationsOutput) SetPolicyGenerations(v []*PolicyGeneration
 
 // Retrieves a list of tags applied to the specified resource.
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource to retrieve tags from.
 	//
@@ -8887,7 +8887,7 @@ func (s *StartResourceScanInput) SetResourceArn(v string) *StartResourceScanInpu
 }
 
 type StartResourceScanOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9057,7 +9057,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 
 // The response to the request.
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9268,7 +9268,7 @@ func (s *TrailProperties) SetRegions(v []*string) *TrailProperties {
 
 // Removes a tag from the specified resource.
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource to remove the tag from.
 	//
@@ -9332,7 +9332,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 
 // The response to the request.
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9455,7 +9455,7 @@ func (s *UpdateArchiveRuleInput) SetRuleName(v string) *UpdateArchiveRuleInput {
 }
 
 type UpdateArchiveRuleOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9568,7 +9568,7 @@ func (s *UpdateFindingsInput) SetStatus(v string) *UpdateFindingsInput {
 }
 
 type UpdateFindingsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

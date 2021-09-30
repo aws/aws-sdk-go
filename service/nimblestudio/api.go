@@ -5971,7 +5971,7 @@ func (s *CreateStudioOutput) SetStudio(v *Studio) *CreateStudioOutput {
 }
 
 type DeleteLaunchProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6044,7 +6044,7 @@ func (s *DeleteLaunchProfileInput) SetStudioId(v string) *DeleteLaunchProfileInp
 }
 
 type DeleteLaunchProfileMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6132,7 +6132,7 @@ func (s *DeleteLaunchProfileMemberInput) SetStudioId(v string) *DeleteLaunchProf
 }
 
 type DeleteLaunchProfileMemberOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6184,7 +6184,7 @@ func (s *DeleteLaunchProfileOutput) SetLaunchProfile(v *LaunchProfile) *DeleteLa
 }
 
 type DeleteStreamingImageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6287,7 +6287,7 @@ func (s *DeleteStreamingImageOutput) SetStreamingImage(v *StreamingImage) *Delet
 }
 
 type DeleteStreamingSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6390,7 +6390,7 @@ func (s *DeleteStreamingSessionOutput) SetSession(v *StreamingSession) *DeleteSt
 }
 
 type DeleteStudioComponentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6495,7 +6495,7 @@ func (s *DeleteStudioComponentOutput) SetStudioComponent(v *StudioComponent) *De
 }
 
 type DeleteStudioInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6553,7 +6553,7 @@ func (s *DeleteStudioInput) SetStudioId(v string) *DeleteStudioInput {
 }
 
 type DeleteStudioMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
@@ -6626,7 +6626,7 @@ func (s *DeleteStudioMemberInput) SetStudioId(v string) *DeleteStudioMemberInput
 }
 
 type DeleteStudioMemberOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6806,7 +6806,7 @@ func (s *EulaAcceptance) SetEulaId(v string) *EulaAcceptance {
 }
 
 type GetEulaInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// EulaId is a required field
 	EulaId *string `location:"uri" locationName:"eulaId" type:"string" required:"true"`
@@ -6884,7 +6884,7 @@ func (s *GetEulaOutput) SetEula(v *Eula) *GetEulaOutput {
 }
 
 type GetLaunchProfileDetailsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
@@ -6992,7 +6992,7 @@ func (s *GetLaunchProfileDetailsOutput) SetStudioComponentSummaries(v []*StudioC
 }
 
 type GetLaunchProfileInitializationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
@@ -7120,7 +7120,7 @@ func (s *GetLaunchProfileInitializationOutput) SetLaunchProfileInitialization(v 
 }
 
 type GetLaunchProfileInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
@@ -7182,7 +7182,7 @@ func (s *GetLaunchProfileInput) SetStudioId(v string) *GetLaunchProfileInput {
 }
 
 type GetLaunchProfileMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
@@ -7319,7 +7319,7 @@ func (s *GetLaunchProfileOutput) SetLaunchProfile(v *LaunchProfile) *GetLaunchPr
 }
 
 type GetStreamingImageInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// StreamingImageId is a required field
 	StreamingImageId *string `location:"uri" locationName:"streamingImageId" type:"string" required:"true"`
@@ -7411,7 +7411,7 @@ func (s *GetStreamingImageOutput) SetStreamingImage(v *StreamingImage) *GetStrea
 }
 
 type GetStreamingSessionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SessionId is a required field
 	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
@@ -7503,7 +7503,7 @@ func (s *GetStreamingSessionOutput) SetSession(v *StreamingSession) *GetStreamin
 }
 
 type GetStreamingSessionStreamInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// SessionId is a required field
 	SessionId *string `location:"uri" locationName:"sessionId" type:"string" required:"true"`
@@ -7610,7 +7610,7 @@ func (s *GetStreamingSessionStreamOutput) SetStream(v *StreamingSessionStream) *
 }
 
 type GetStudioComponentInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// StudioComponentId is a required field
 	StudioComponentId *string `location:"uri" locationName:"studioComponentId" type:"string" required:"true"`
@@ -7704,7 +7704,7 @@ func (s *GetStudioComponentOutput) SetStudioComponent(v *StudioComponent) *GetSt
 }
 
 type GetStudioInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// StudioId is a required field
 	StudioId *string `location:"uri" locationName:"studioId" type:"string" required:"true"`
@@ -7751,7 +7751,7 @@ func (s *GetStudioInput) SetStudioId(v string) *GetStudioInput {
 }
 
 type GetStudioMemberInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// PrincipalId is a required field
 	PrincipalId *string `location:"uri" locationName:"principalId" type:"string" required:"true"`
@@ -8401,7 +8401,7 @@ func (s *LicenseServiceConfiguration) SetEndpoint(v string) *LicenseServiceConfi
 }
 
 type ListEulaAcceptancesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	EulaIds []*string `location:"querystring" locationName:"eulaIds" type:"list"`
 
@@ -8502,7 +8502,7 @@ func (s *ListEulaAcceptancesOutput) SetNextToken(v string) *ListEulaAcceptancesO
 }
 
 type ListEulasInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	EulaIds []*string `location:"querystring" locationName:"eulaIds" type:"list"`
 
@@ -8578,7 +8578,7 @@ func (s *ListEulasOutput) SetNextToken(v string) *ListEulasOutput {
 }
 
 type ListLaunchProfileMembersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// LaunchProfileId is a required field
 	LaunchProfileId *string `location:"uri" locationName:"launchProfileId" type:"string" required:"true"`
@@ -8697,7 +8697,7 @@ func (s *ListLaunchProfileMembersOutput) SetNextToken(v string) *ListLaunchProfi
 }
 
 type ListLaunchProfilesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -8817,7 +8817,7 @@ func (s *ListLaunchProfilesOutput) SetNextToken(v string) *ListLaunchProfilesOut
 }
 
 type ListStreamingImagesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 
@@ -8918,7 +8918,7 @@ func (s *ListStreamingImagesOutput) SetStreamingImages(v []*StreamingImage) *Lis
 }
 
 type ListStreamingSessionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	CreatedBy *string `location:"querystring" locationName:"createdBy" type:"string"`
 
@@ -9035,7 +9035,7 @@ func (s *ListStreamingSessionsOutput) SetSessions(v []*StreamingSession) *ListSt
 }
 
 type ListStudioComponentsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -9155,7 +9155,7 @@ func (s *ListStudioComponentsOutput) SetStudioComponents(v []*StudioComponent) *
 }
 
 type ListStudioMembersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -9259,7 +9259,7 @@ func (s *ListStudioMembersOutput) SetNextToken(v string) *ListStudioMembersOutpu
 }
 
 type ListStudiosInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	NextToken *string `location:"querystring" locationName:"nextToken" type:"string"`
 }
@@ -9327,7 +9327,7 @@ func (s *ListStudiosOutput) SetStudios(v []*Studio) *ListStudiosOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -9626,7 +9626,7 @@ func (s *PutLaunchProfileMembersInput) SetStudioId(v string) *PutLaunchProfileMe
 }
 
 type PutLaunchProfileMembersOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9743,7 +9743,7 @@ func (s *PutStudioMembersInput) SetStudioId(v string) *PutStudioMembersInput {
 }
 
 type PutStudioMembersOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10034,7 +10034,7 @@ func (s *SharedFileSystemConfiguration) SetWindowsMountDrive(v string) *SharedFi
 }
 
 type StartStudioSSOConfigurationRepairInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	ClientToken *string `location:"header" locationName:"X-Amz-Client-Token" min:"1" type:"string" idempotencyToken:"true"`
 
@@ -11428,7 +11428,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11524,7 +11524,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resourceArn" type:"string" required:"true"`
@@ -11583,7 +11583,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

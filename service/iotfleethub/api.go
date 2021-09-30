@@ -1107,7 +1107,7 @@ func (s *CreateApplicationOutput) SetApplicationId(v string) *CreateApplicationO
 }
 
 type DeleteApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique Id of the web application.
 	//
@@ -1170,7 +1170,7 @@ func (s *DeleteApplicationInput) SetClientToken(v string) *DeleteApplicationInpu
 }
 
 type DeleteApplicationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1192,7 +1192,7 @@ func (s DeleteApplicationOutput) GoString() string {
 }
 
 type DescribeApplicationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique Id of the web application.
 	//
@@ -1581,7 +1581,7 @@ func (s *LimitExceededException) RequestID() string {
 }
 
 type ListApplicationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token used to get the next set of results.
 	NextToken *string `location:"querystring" locationName:"nextToken" min:"1" type:"string"`
@@ -1666,7 +1666,7 @@ func (s *ListApplicationsOutput) SetNextToken(v string) *ListApplicationsOutput 
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource.
 	//
@@ -1876,7 +1876,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1962,7 +1962,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ARN of the resource.
 	//
@@ -2025,7 +2025,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2134,7 +2134,7 @@ func (s *UpdateApplicationInput) SetClientToken(v string) *UpdateApplicationInpu
 }
 
 type UpdateApplicationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

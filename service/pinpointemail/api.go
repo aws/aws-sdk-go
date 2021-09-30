@@ -4860,7 +4860,7 @@ func (s *CreateConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type CreateConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4996,7 +4996,7 @@ func (s *CreateConfigurationSetInput) SetTrackingOptions(v *TrackingOptions) *Cr
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type CreateConfigurationSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5087,7 +5087,7 @@ func (s *CreateDedicatedIpPoolInput) SetTags(v []*Tag) *CreateDedicatedIpPoolInp
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type CreateDedicatedIpPoolOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5518,7 +5518,7 @@ func (s *DedicatedIp) SetWarmupStatus(v string) *DedicatedIp {
 
 // A request to delete an event destination from a configuration set.
 type DeleteConfigurationSetEventDestinationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the configuration set that contains the event destination that
 	// you want to delete.
@@ -5587,7 +5587,7 @@ func (s *DeleteConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type DeleteConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5610,7 +5610,7 @@ func (s DeleteConfigurationSetEventDestinationOutput) GoString() string {
 
 // A request to delete a configuration set.
 type DeleteConfigurationSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the configuration set that you want to delete.
 	//
@@ -5661,7 +5661,7 @@ func (s *DeleteConfigurationSetInput) SetConfigurationSetName(v string) *DeleteC
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type DeleteConfigurationSetOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5684,7 +5684,7 @@ func (s DeleteConfigurationSetOutput) GoString() string {
 
 // A request to delete a dedicated IP pool.
 type DeleteDedicatedIpPoolInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the dedicated IP pool that you want to delete.
 	//
@@ -5735,7 +5735,7 @@ func (s *DeleteDedicatedIpPoolInput) SetPoolName(v string) *DeleteDedicatedIpPoo
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type DeleteDedicatedIpPoolOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5761,7 +5761,7 @@ func (s DeleteDedicatedIpPoolOutput) GoString() string {
 // You can restore your ability to send email by completing the verification
 // process for the identity again.
 type DeleteEmailIdentityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The identity (that is, the email address or domain) that you want to delete
 	// from your Amazon Pinpoint account.
@@ -5813,7 +5813,7 @@ func (s *DeleteEmailIdentityInput) SetEmailIdentity(v string) *DeleteEmailIdenti
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type DeleteEmailIdentityOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6711,7 +6711,7 @@ func (s *EventDestinationDefinition) SetSnsDestination(v *SnsDestination) *Event
 // A request to obtain information about the email-sending capabilities of your
 // Amazon Pinpoint account.
 type GetAccountInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6832,7 +6832,7 @@ func (s *GetAccountOutput) SetSendingEnabled(v bool) *GetAccountOutput {
 // A request to retrieve a list of the blacklists that your dedicated IP addresses
 // appear on.
 type GetBlacklistReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A list of IP addresses that you want to retrieve blacklist information about.
 	// You can only specify the dedicated IP addresses that you use to send email
@@ -6917,7 +6917,7 @@ func (s *GetBlacklistReportsOutput) SetBlacklistReport(v map[string][]*Blacklist
 // A request to obtain information about the event destinations for a configuration
 // set.
 type GetConfigurationSetEventDestinationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the configuration set that contains the event destination.
 	//
@@ -7000,7 +7000,7 @@ func (s *GetConfigurationSetEventDestinationsOutput) SetEventDestinations(v []*E
 
 // A request to obtain information about a configuration set.
 type GetConfigurationSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the configuration set that you want to obtain more information
 	// about.
@@ -7133,7 +7133,7 @@ func (s *GetConfigurationSetOutput) SetTrackingOptions(v *TrackingOptions) *GetC
 
 // A request to obtain more information about a dedicated IP address.
 type GetDedicatedIpInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The IP address that you want to obtain more information about. The value
 	// you specify has to be a dedicated IP address that's assocaited with your
@@ -7217,7 +7217,7 @@ func (s *GetDedicatedIpOutput) SetDedicatedIp(v *DedicatedIp) *GetDedicatedIpOut
 
 // A request to obtain more information about dedicated IP pools.
 type GetDedicatedIpsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to GetDedicatedIps to indicate the
 	// position of the dedicated IP pool in the list of IP pools.
@@ -7325,7 +7325,7 @@ func (s *GetDedicatedIpsOutput) SetNextToken(v string) *GetDedicatedIpsOutput {
 // For more information about the features and cost of a Deliverability dashboard
 // subscription, see Amazon Pinpoint Pricing (http://aws.amazon.com/pinpoint/pricing/).
 type GetDeliverabilityDashboardOptionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7429,7 +7429,7 @@ func (s *GetDeliverabilityDashboardOptionsOutput) SetSubscriptionExpiryDate(v ti
 
 // A request to retrieve the results of a predictive inbox placement test.
 type GetDeliverabilityTestReportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A unique string that identifies the predictive inbox placement test.
 	//
@@ -7561,7 +7561,7 @@ func (s *GetDeliverabilityTestReportOutput) SetTags(v []*Tag) *GetDeliverability
 // that the Deliverability dashboard is enabled for (PutDeliverabilityDashboardOption
 // operation).
 type GetDomainDeliverabilityCampaignInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The unique identifier for the campaign. Amazon Pinpoint automatically generates
 	// and assigns this identifier to a campaign. This value is not the same as
@@ -7652,7 +7652,7 @@ func (s *GetDomainDeliverabilityCampaignOutput) SetDomainDeliverabilityCampaign(
 
 // A request to obtain deliverability metrics for a domain.
 type GetDomainStatisticsReportInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The domain that you want to obtain deliverability metrics for.
 	//
@@ -7783,7 +7783,7 @@ func (s *GetDomainStatisticsReportOutput) SetOverallVolume(v *OverallVolume) *Ge
 
 // A request to return details about an email identity.
 type GetEmailIdentityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The email identity that you want to retrieve details for.
 	//
@@ -8206,7 +8206,7 @@ func (s *LimitExceededException) RequestID() string {
 // A request to obtain a list of configuration sets for your Amazon Pinpoint
 // account in the current AWS Region.
 type ListConfigurationSetsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to ListConfigurationSets to indicate
 	// the position in the list of configuration sets.
@@ -8296,7 +8296,7 @@ func (s *ListConfigurationSetsOutput) SetNextToken(v string) *ListConfigurationS
 
 // A request to obtain a list of dedicated IP pools.
 type ListDedicatedIpPoolsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to ListDedicatedIpPools to indicate
 	// the position in the list of dedicated IP pools.
@@ -8386,7 +8386,7 @@ func (s *ListDedicatedIpPoolsOutput) SetNextToken(v string) *ListDedicatedIpPool
 // A request to list all of the predictive inbox placement tests that you've
 // performed.
 type ListDeliverabilityTestReportsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to ListDeliverabilityTestReports to
 	// indicate the position in the list of predictive inbox placement tests.
@@ -8484,7 +8484,7 @@ func (s *ListDeliverabilityTestReportsOutput) SetNextToken(v string) *ListDelive
 // domain only if you enabled the Deliverability dashboard (PutDeliverabilityDashboardOption
 // operation) for the domain.
 type ListDomainDeliverabilityCampaignsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The last day, in Unix time format, that you want to obtain deliverability
 	// data for. This value has to be less than or equal to 30 days after the value
@@ -8640,7 +8640,7 @@ func (s *ListDomainDeliverabilityCampaignsOutput) SetNextToken(v string) *ListDo
 // identities that are unverified, and identities that were verified in the
 // past, but are no longer verified.
 type ListEmailIdentitiesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// A token returned from a previous call to ListEmailIdentities to indicate
 	// the position in the list of identities.
@@ -8732,7 +8732,7 @@ func (s *ListEmailIdentitiesOutput) SetNextToken(v string) *ListEmailIdentitiesO
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want to retrieve
 	// tag information for.
@@ -9428,7 +9428,7 @@ func (s *PutAccountDedicatedIpWarmupAttributesInput) SetAutoWarmupEnabled(v bool
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutAccountDedicatedIpWarmupAttributesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9488,7 +9488,7 @@ func (s *PutAccountSendingAttributesInput) SetSendingEnabled(v bool) *PutAccount
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutAccountSendingAttributesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9585,7 +9585,7 @@ func (s *PutConfigurationSetDeliveryOptionsInput) SetTlsPolicy(v string) *PutCon
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutConfigurationSetDeliveryOptionsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9672,7 +9672,7 @@ func (s *PutConfigurationSetReputationOptionsInput) SetReputationMetricsEnabled(
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutConfigurationSetReputationOptionsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9758,7 +9758,7 @@ func (s *PutConfigurationSetSendingOptionsInput) SetSendingEnabled(v bool) *PutC
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutConfigurationSetSendingOptionsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9843,7 +9843,7 @@ func (s *PutConfigurationSetTrackingOptionsInput) SetCustomRedirectDomain(v stri
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutConfigurationSetTrackingOptionsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9934,7 +9934,7 @@ func (s *PutDedicatedIpInPoolInput) SetIp(v string) *PutDedicatedIpInPoolInput {
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutDedicatedIpInPoolOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10024,7 +10024,7 @@ func (s *PutDedicatedIpWarmupAttributesInput) SetWarmupPercentage(v int64) *PutD
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutDedicatedIpWarmupAttributesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10115,7 +10115,7 @@ func (s *PutDeliverabilityDashboardOptionInput) SetSubscribedDomains(v []*Domain
 // A response that indicates whether the Deliverability dashboard is enabled
 // for your Amazon Pinpoint account.
 type PutDeliverabilityDashboardOptionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10203,7 +10203,7 @@ func (s *PutEmailIdentityDkimAttributesInput) SetSigningEnabled(v bool) *PutEmai
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutEmailIdentityDkimAttributesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10300,7 +10300,7 @@ func (s *PutEmailIdentityFeedbackAttributesInput) SetEmailIdentity(v string) *Pu
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutEmailIdentityFeedbackAttributesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -10408,7 +10408,7 @@ func (s *PutEmailIdentityMailFromAttributesInput) SetMailFromDomain(v string) *P
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type PutEmailIdentityMailFromAttributesOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11079,7 +11079,7 @@ func (s *TagResourceInput) SetTags(v []*Tag) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11263,7 +11263,7 @@ func (s *TrackingOptions) SetCustomRedirectDomain(v string) *TrackingOptions {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the resource that you want to remove one
 	// or more tags from.
@@ -11329,7 +11329,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -11441,7 +11441,7 @@ func (s *UpdateConfigurationSetEventDestinationInput) SetEventDestinationName(v 
 // An HTTP 200 response if the request succeeds, or an error message if the
 // request fails.
 type UpdateConfigurationSetEventDestinationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

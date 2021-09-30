@@ -4114,7 +4114,7 @@ func (s *CreateBackendOutput) SetStatus(v string) *CreateBackendOutput {
 }
 
 type CreateTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -4513,7 +4513,7 @@ func (s *DeleteBackendAuthOutput) SetStatus(v string) *DeleteBackendAuthOutput {
 }
 
 type DeleteBackendInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -4645,7 +4645,7 @@ func (s *DeleteBackendOutput) SetStatus(v string) *DeleteBackendOutput {
 }
 
 type DeleteTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -5438,7 +5438,7 @@ func (s *GetBackendInput) SetBackendEnvironmentName(v string) *GetBackendInput {
 }
 
 type GetBackendJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -5679,7 +5679,7 @@ func (s *GetBackendOutput) SetError(v string) *GetBackendOutput {
 }
 
 type GetTokenInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -6358,7 +6358,7 @@ func (s *RemoveAllBackendsOutput) SetStatus(v string) *RemoveAllBackendsOutput {
 }
 
 type RemoveBackendConfigInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// AppId is a required field
 	AppId *string `location:"uri" locationName:"appId" type:"string" required:"true"`
@@ -6435,7 +6435,7 @@ func (s *RemoveBackendConfigOutput) SetError(v string) *RemoveBackendConfigOutpu
 }
 
 type ResourceConfig struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

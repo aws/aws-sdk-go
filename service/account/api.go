@@ -531,7 +531,7 @@ func (s *DeleteAlternateContactInput) SetAlternateContactType(v string) *DeleteA
 }
 
 type DeleteAlternateContactOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -885,7 +885,7 @@ func (s *PutAlternateContactInput) SetTitle(v string) *PutAlternateContactInput 
 }
 
 type PutAlternateContactOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

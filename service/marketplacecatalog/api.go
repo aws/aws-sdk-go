@@ -769,7 +769,7 @@ func (s *AccessDeniedException) RequestID() string {
 }
 
 type CancelChangeSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Required. The catalog related to the request. Fixed value: AWSMarketplace.
 	//
@@ -1151,7 +1151,7 @@ func (s *ChangeSummary) SetErrorDetailList(v []*ErrorDetail) *ChangeSummary {
 }
 
 type DescribeChangeSetInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Required. The catalog related to the request. Fixed value: AWSMarketplace
 	//
@@ -1330,7 +1330,7 @@ func (s *DescribeChangeSetOutput) SetStatus(v string) *DescribeChangeSetOutput {
 }
 
 type DescribeEntityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Required. The catalog related to the request. Fixed value: AWSMarketplace
 	//

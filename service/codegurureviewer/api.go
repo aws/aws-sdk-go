@@ -2626,7 +2626,7 @@ func (s *CreateCodeReviewOutput) SetCodeReview(v *CodeReview) *CreateCodeReviewO
 }
 
 type DescribeCodeReviewInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the CodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html)
 	// object.
@@ -2707,7 +2707,7 @@ func (s *DescribeCodeReviewOutput) SetCodeReview(v *CodeReview) *DescribeCodeRev
 }
 
 type DescribeRecommendationFeedbackInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the CodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html)
 	// object.
@@ -2824,7 +2824,7 @@ func (s *DescribeRecommendationFeedbackOutput) SetRecommendationFeedback(v *Reco
 }
 
 type DescribeRepositoryAssociationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
 	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
@@ -2922,7 +2922,7 @@ func (s *DescribeRepositoryAssociationOutput) SetTags(v map[string]*string) *Des
 }
 
 type DisassociateRepositoryInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
 	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
@@ -3207,7 +3207,7 @@ func (s *KMSKeyDetails) SetKMSKeyId(v string) *KMSKeyDetails {
 }
 
 type ListCodeReviewsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results that are returned per call. The default is
 	// 100.
@@ -3370,7 +3370,7 @@ func (s *ListCodeReviewsOutput) SetNextToken(v string) *ListCodeReviewsOutput {
 }
 
 type ListRecommendationFeedbackInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the CodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html)
 	// object.
@@ -3522,7 +3522,7 @@ func (s *ListRecommendationFeedbackOutput) SetRecommendationFeedbackSummaries(v 
 }
 
 type ListRecommendationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the CodeReview (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_CodeReview.html)
 	// object.
@@ -3637,7 +3637,7 @@ func (s *ListRecommendationsOutput) SetRecommendationSummaries(v []*Recommendati
 }
 
 type ListRepositoryAssociationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of repository association results returned by ListRepositoryAssociations
 	// in paginated output. When this parameter is used, ListRepositoryAssociations
@@ -3825,7 +3825,7 @@ func (s *ListRepositoryAssociationsOutput) SetRepositoryAssociationSummaries(v [
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
 	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
@@ -4155,7 +4155,7 @@ func (s *PutRecommendationFeedbackInput) SetRecommendationId(v string) *PutRecom
 }
 
 type PutRecommendationFeedbackOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5551,7 +5551,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5724,7 +5724,7 @@ func (s *ThrottlingException) RequestID() string {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The Amazon Resource Name (ARN) of the RepositoryAssociation (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_RepositoryAssociation.html)
 	// object. You can retrieve this ARN by calling ListRepositoryAssociations (https://docs.aws.amazon.com/codeguru/latest/reviewer-api/API_ListRepositoryAssociations.html).
@@ -5791,7 +5791,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

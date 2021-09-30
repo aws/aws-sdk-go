@@ -3724,7 +3724,7 @@ func (c *Glacier) UploadMultipartPartWithContext(ctx aws.Context, input *UploadM
 // For conceptual information, see Working with Archives in Amazon S3 Glacier
 // (https://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html).
 type AbortMultipartUploadInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -3811,7 +3811,7 @@ func (s *AbortMultipartUploadInput) SetVaultName(v string) *AbortMultipartUpload
 }
 
 type AbortMultipartUploadOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3834,7 +3834,7 @@ func (s AbortMultipartUploadOutput) GoString() string {
 
 // The input values for AbortVaultLock.
 type AbortVaultLockInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID. This value must match the AWS
 	// account ID associated with the credentials used to sign the request. You
@@ -3905,7 +3905,7 @@ func (s *AbortVaultLockInput) SetVaultName(v string) *AbortVaultLockInput {
 }
 
 type AbortVaultLockOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4008,7 +4008,7 @@ func (s *AddTagsToVaultInput) SetVaultName(v string) *AddTagsToVaultInput {
 }
 
 type AddTagsToVaultOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4035,7 +4035,7 @@ func (s AddTagsToVaultOutput) GoString() string {
 // For conceptual information, see Working with Archives in Amazon S3 Glacier
 // (https://docs.aws.amazon.com/amazonglacier/latest/dev/working-with-archives.html).
 type ArchiveCreationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the archive. This value is also included as part of the location.
 	ArchiveId *string `location:"header" locationName:"x-amz-archive-id" type:"string"`
@@ -4242,7 +4242,7 @@ func (s *CSVOutput) SetRecordDelimiter(v string) *CSVOutput {
 // and saving the archive to the vault, Glacier returns the URI path of the
 // newly created archive resource.
 type CompleteMultipartUploadInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -4353,7 +4353,7 @@ func (s *CompleteMultipartUploadInput) SetVaultName(v string) *CompleteMultipart
 
 // The input values for CompleteVaultLock.
 type CompleteVaultLockInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID. This value must match the AWS
 	// account ID associated with the credentials used to sign the request. You
@@ -4441,7 +4441,7 @@ func (s *CompleteVaultLockInput) SetVaultName(v string) *CompleteVaultLockInput 
 }
 
 type CompleteVaultLockOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4464,7 +4464,7 @@ func (s CompleteVaultLockOutput) GoString() string {
 
 // Provides options to create a vault.
 type CreateVaultInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID. This value must match the AWS
 	// account ID associated with the credentials used to sign the request. You
@@ -4536,7 +4536,7 @@ func (s *CreateVaultInput) SetVaultName(v string) *CreateVaultInput {
 
 // Contains the Amazon S3 Glacier response to your request.
 type CreateVaultOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The URI of the vault that was created.
 	Location *string `location:"header" locationName:"Location" type:"string"`
@@ -4648,7 +4648,7 @@ func (s *DataRetrievalRule) SetStrategy(v string) *DataRetrievalRule {
 
 // Provides options for deleting an archive from an Amazon S3 Glacier vault.
 type DeleteArchiveInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -4735,7 +4735,7 @@ func (s *DeleteArchiveInput) SetVaultName(v string) *DeleteArchiveInput {
 }
 
 type DeleteArchiveOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4758,7 +4758,7 @@ func (s DeleteArchiveOutput) GoString() string {
 
 // DeleteVaultAccessPolicy input.
 type DeleteVaultAccessPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -4828,7 +4828,7 @@ func (s *DeleteVaultAccessPolicyInput) SetVaultName(v string) *DeleteVaultAccess
 }
 
 type DeleteVaultAccessPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4851,7 +4851,7 @@ func (s DeleteVaultAccessPolicyOutput) GoString() string {
 
 // Provides options for deleting a vault from Amazon S3 Glacier.
 type DeleteVaultInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -4923,7 +4923,7 @@ func (s *DeleteVaultInput) SetVaultName(v string) *DeleteVaultInput {
 // Provides options for deleting a vault notification configuration from an
 // Amazon Glacier vault.
 type DeleteVaultNotificationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -4993,7 +4993,7 @@ func (s *DeleteVaultNotificationsInput) SetVaultName(v string) *DeleteVaultNotif
 }
 
 type DeleteVaultNotificationsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5015,7 +5015,7 @@ func (s DeleteVaultNotificationsOutput) GoString() string {
 }
 
 type DeleteVaultOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -5038,7 +5038,7 @@ func (s DeleteVaultOutput) GoString() string {
 
 // Provides options for retrieving a job description.
 type DescribeJobInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -5126,7 +5126,7 @@ func (s *DescribeJobInput) SetVaultName(v string) *DescribeJobInput {
 
 // Provides options for retrieving metadata for a specific vault in Amazon Glacier.
 type DescribeVaultInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -5336,7 +5336,7 @@ func (s *Encryption) SetKMSKeyId(v string) *Encryption {
 
 // Input for GetDataRetrievalPolicy.
 type GetDataRetrievalPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID. This value must match the AWS
 	// account ID associated with the credentials used to sign the request. You
@@ -5423,7 +5423,7 @@ func (s *GetDataRetrievalPolicyOutput) SetPolicy(v *DataRetrievalPolicy) *GetDat
 
 // Provides options for downloading output of an Amazon S3 Glacier job.
 type GetJobOutputInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -5657,7 +5657,7 @@ func (s *GetJobOutputOutput) SetStatus(v int64) *GetJobOutputOutput {
 
 // Input for GetVaultAccessPolicy.
 type GetVaultAccessPolicyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -5760,7 +5760,7 @@ func (s *GetVaultAccessPolicyOutput) SetPolicy(v *VaultAccessPolicy) *GetVaultAc
 
 // The input values for GetVaultLock.
 type GetVaultLockInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -5893,7 +5893,7 @@ func (s *GetVaultLockOutput) SetState(v string) *GetVaultLockOutput {
 // Provides options for retrieving the notification configuration set on an
 // Amazon Glacier vault.
 type GetVaultNotificationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -6220,7 +6220,7 @@ func (s *InitiateJobInput) SetVaultName(v string) *InitiateJobInput {
 
 // Contains the Amazon S3 Glacier response to your request.
 type InitiateJobOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the job.
 	JobId *string `location:"header" locationName:"x-amz-job-id" type:"string"`
@@ -6271,7 +6271,7 @@ func (s *InitiateJobOutput) SetLocation(v string) *InitiateJobOutput {
 // Provides options for initiating a multipart upload to an Amazon S3 Glacier
 // vault.
 type InitiateMultipartUploadInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -6366,7 +6366,7 @@ func (s *InitiateMultipartUploadInput) SetVaultName(v string) *InitiateMultipart
 
 // The Amazon S3 Glacier response to your request.
 type InitiateMultipartUploadOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The relative URI path of the multipart upload ID Amazon S3 Glacier created.
 	Location *string `location:"header" locationName:"Location" type:"string"`
@@ -6489,7 +6489,7 @@ func (s *InitiateVaultLockInput) SetVaultName(v string) *InitiateVaultLockInput 
 
 // Contains the Amazon S3 Glacier response to your request.
 type InitiateVaultLockOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The lock ID, which is used to complete the vault locking process.
 	LockId *string `location:"header" locationName:"x-amz-lock-id" type:"string"`
@@ -7310,7 +7310,7 @@ func (s *LimitExceededException) RequestID() string {
 
 // Provides options for retrieving a job list for an Amazon S3 Glacier vault.
 type ListJobsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -7468,7 +7468,7 @@ func (s *ListJobsOutput) SetMarker(v string) *ListJobsOutput {
 // Provides options for retrieving list of in-progress multipart uploads for
 // an Amazon Glacier vault.
 type ListMultipartUploadsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -7606,7 +7606,7 @@ func (s *ListMultipartUploadsOutput) SetUploadsList(v []*UploadListElement) *Lis
 // Provides options for retrieving a list of parts of an archive that have been
 // uploaded in a specific multipart upload.
 type ListPartsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -7809,7 +7809,7 @@ func (s *ListPartsOutput) SetVaultARN(v string) *ListPartsOutput {
 }
 
 type ListProvisionedCapacityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS account ID of the account that owns the vault. You can either specify
 	// an AWS account ID or optionally a single '-' (hyphen), in which case Amazon
@@ -7894,7 +7894,7 @@ func (s *ListProvisionedCapacityOutput) SetProvisionedCapacityList(v []*Provisio
 
 // The input value for ListTagsForVaultInput.
 type ListTagsForVaultInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID of the account that owns the vault.
 	// You can either specify an AWS account ID or optionally a single '-' (hyphen),
@@ -7998,7 +7998,7 @@ func (s *ListTagsForVaultOutput) SetTags(v map[string]*string) *ListTagsForVault
 // Provides options to retrieve the vault list owned by the calling user's account.
 // The list provides metadata information for each vault.
 type ListVaultsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AccountId value is the AWS account ID. This value must match the AWS
 	// account ID associated with the credentials used to sign the request. You
@@ -8432,7 +8432,7 @@ func (s *ProvisionedCapacityDescription) SetStartDate(v string) *ProvisionedCapa
 }
 
 type PurchaseProvisionedCapacityInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The AWS account ID of the account that owns the vault. You can either specify
 	// an AWS account ID or optionally a single '-' (hyphen), in which case Amazon
@@ -8485,7 +8485,7 @@ func (s *PurchaseProvisionedCapacityInput) SetAccountId(v string) *PurchaseProvi
 }
 
 type PurchaseProvisionedCapacityOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID that identifies the provisioned capacity unit.
 	CapacityId *string `location:"header" locationName:"x-amz-capacity-id" type:"string"`
@@ -8596,7 +8596,7 @@ func (s *RemoveTagsFromVaultInput) SetVaultName(v string) *RemoveTagsFromVaultIn
 }
 
 type RemoveTagsFromVaultOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9075,7 +9075,7 @@ func (s *SetDataRetrievalPolicyInput) SetPolicy(v *DataRetrievalPolicy) *SetData
 }
 
 type SetDataRetrievalPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9177,7 +9177,7 @@ func (s *SetVaultAccessPolicyInput) SetVaultName(v string) *SetVaultAccessPolicy
 }
 
 type SetVaultAccessPolicyOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9280,7 +9280,7 @@ func (s *SetVaultNotificationsInput) SetVaultNotificationConfig(v *VaultNotifica
 }
 
 type SetVaultNotificationsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -9590,7 +9590,7 @@ func (s *UploadMultipartPartInput) SetVaultName(v string) *UploadMultipartPartIn
 
 // Contains the Amazon S3 Glacier response to your request.
 type UploadMultipartPartOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The SHA256 tree hash that Amazon S3 Glacier computed for the uploaded part.
 	Checksum *string `location:"header" locationName:"x-amz-sha256-tree-hash" type:"string"`

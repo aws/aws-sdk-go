@@ -3307,7 +3307,7 @@ func (s *CreateTagsInput) SetTags(v map[string]*string) *CreateTagsInput {
 }
 
 type CreateTagsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3329,7 +3329,7 @@ func (s CreateTagsOutput) GoString() string {
 }
 
 type CreateUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3441,7 +3441,7 @@ func (s *CreateUserRequest) SetUsername(v string) *CreateUserRequest {
 }
 
 type DeleteBrokerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -3518,7 +3518,7 @@ func (s *DeleteBrokerResponse) SetBrokerId(v string) *DeleteBrokerResponse {
 }
 
 type DeleteTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -3577,7 +3577,7 @@ func (s *DeleteTagsInput) SetTagKeys(v []*string) *DeleteTagsInput {
 }
 
 type DeleteTagsOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3599,7 +3599,7 @@ func (s DeleteTagsOutput) GoString() string {
 }
 
 type DeleteUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -3661,7 +3661,7 @@ func (s *DeleteUserInput) SetUsername(v string) *DeleteUserInput {
 }
 
 type DeleteUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3683,7 +3683,7 @@ func (s DeleteUserOutput) GoString() string {
 }
 
 type DescribeBrokerEngineTypesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	EngineType *string `location:"querystring" locationName:"engineType" type:"string"`
 
@@ -3788,7 +3788,7 @@ func (s *DescribeBrokerEngineTypesOutput) SetNextToken(v string) *DescribeBroker
 }
 
 type DescribeBrokerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -3835,7 +3835,7 @@ func (s *DescribeBrokerInput) SetBrokerId(v string) *DescribeBrokerInput {
 }
 
 type DescribeBrokerInstanceOptionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	EngineType *string `location:"querystring" locationName:"engineType" type:"string"`
 
@@ -4224,7 +4224,7 @@ func (s *DescribeBrokerResponse) SetUsers(v []*UserSummary) *DescribeBrokerRespo
 }
 
 type DescribeConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConfigurationId is a required field
 	ConfigurationId *string `location:"uri" locationName:"configuration-id" type:"string" required:"true"`
@@ -4377,7 +4377,7 @@ func (s *DescribeConfigurationOutput) SetTags(v map[string]*string) *DescribeCon
 }
 
 type DescribeConfigurationRevisionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConfigurationId is a required field
 	ConfigurationId *string `location:"uri" locationName:"configuration-id" type:"string" required:"true"`
@@ -4493,7 +4493,7 @@ func (s *DescribeConfigurationRevisionResponse) SetDescription(v string) *Descri
 }
 
 type DescribeUserInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -5189,7 +5189,7 @@ func (s *LdapServerMetadataOutput) SetUserSearchSubtree(v bool) *LdapServerMetad
 }
 
 type ListBrokersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5278,7 +5278,7 @@ func (s *ListBrokersResponse) SetNextToken(v string) *ListBrokersResponse {
 }
 
 type ListConfigurationRevisionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ConfigurationId is a required field
 	ConfigurationId *string `location:"uri" locationName:"configuration-id" type:"string" required:"true"`
@@ -5398,7 +5398,7 @@ func (s *ListConfigurationRevisionsResponse) SetRevisions(v []*ConfigurationRevi
 }
 
 type ListConfigurationsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`
 
@@ -5495,7 +5495,7 @@ func (s *ListConfigurationsResponse) SetNextToken(v string) *ListConfigurationsR
 }
 
 type ListTagsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -5572,7 +5572,7 @@ func (s *ListTagsOutput) SetTags(v map[string]*string) *ListTagsOutput {
 }
 
 type ListUsersInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -5917,7 +5917,7 @@ func (s *PendingLogs) SetGeneral(v bool) *PendingLogs {
 }
 
 type RebootBrokerInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// BrokerId is a required field
 	BrokerId *string `location:"uri" locationName:"broker-id" type:"string" required:"true"`
@@ -5964,7 +5964,7 @@ func (s *RebootBrokerInput) SetBrokerId(v string) *RebootBrokerInput {
 }
 
 type RebootBrokerOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -6501,7 +6501,7 @@ func (s *UpdateConfigurationResponse) SetWarnings(v []*SanitizationWarning) *Upd
 }
 
 type UpdateUserOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

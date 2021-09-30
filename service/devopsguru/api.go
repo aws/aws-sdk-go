@@ -3341,7 +3341,7 @@ func (s *CostEstimationTimeRange) SetStartTime(v time.Time) *CostEstimationTimeR
 }
 
 type DescribeAccountHealthInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -3550,7 +3550,7 @@ func (s *DescribeAccountOverviewOutput) SetReactiveInsights(v int64) *DescribeAc
 }
 
 type DescribeAnomalyInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the anomaly.
 	//
@@ -3714,7 +3714,7 @@ func (s *DescribeFeedbackOutput) SetInsightFeedback(v *InsightFeedback) *Describ
 }
 
 type DescribeInsightInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the insight.
 	//
@@ -3803,7 +3803,7 @@ func (s *DescribeInsightOutput) SetReactiveInsight(v *ReactiveInsight) *Describe
 }
 
 type DescribeResourceCollectionHealthInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If this value is null, it retrieves the first page.
@@ -3922,7 +3922,7 @@ func (s *DescribeResourceCollectionHealthOutput) SetService(v []*ServiceHealth) 
 }
 
 type DescribeServiceIntegrationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -4236,7 +4236,7 @@ func (s *EventTimeRange) SetToTime(v time.Time) *EventTimeRange {
 }
 
 type GetCostEstimationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If this value is null, it retrieves the first page.
@@ -4363,7 +4363,7 @@ func (s *GetCostEstimationOutput) SetTotalCost(v float64) *GetCostEstimationOutp
 }
 
 type GetResourceCollectionInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The pagination token to use to retrieve the next page of results for this
 	// operation. If this value is null, it retrieves the first page.
@@ -6365,7 +6365,7 @@ func (s *PutFeedbackInput) SetInsightFeedback(v *InsightFeedback) *PutFeedbackIn
 }
 
 type PutFeedbackOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7102,7 +7102,7 @@ func (s *RecommendationRelatedEventResource) SetType(v string) *RecommendationRe
 }
 
 type RemoveNotificationChannelInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the notification channel to be removed.
 	//
@@ -7151,7 +7151,7 @@ func (s *RemoveNotificationChannelInput) SetId(v string) *RemoveNotificationChan
 }
 
 type RemoveNotificationChannelOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -7943,7 +7943,7 @@ func (s *StartCostEstimationInput) SetResourceCollection(v *CostEstimationResour
 }
 
 type StartCostEstimationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8208,7 +8208,7 @@ func (s *UpdateResourceCollectionInput) SetResourceCollection(v *UpdateResourceC
 }
 
 type UpdateResourceCollectionOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -8311,7 +8311,7 @@ func (s *UpdateServiceIntegrationInput) SetServiceIntegration(v *UpdateServiceIn
 }
 
 type UpdateServiceIntegrationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.

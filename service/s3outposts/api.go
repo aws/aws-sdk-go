@@ -635,7 +635,7 @@ func (s *CreateEndpointOutput) SetEndpointArn(v string) *CreateEndpointOutput {
 }
 
 type DeleteEndpointInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the endpoint.
 	//
@@ -695,7 +695,7 @@ func (s *DeleteEndpointInput) SetOutpostId(v string) *DeleteEndpointInput {
 }
 
 type DeleteEndpointOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -906,7 +906,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListEndpointsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The max number of endpoints that can be returned on the request.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" type:"integer"`

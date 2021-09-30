@@ -773,7 +773,7 @@ func (s *ErrorInfo) SetErrorMessage(v string) *ErrorInfo {
 }
 
 type GetProgrammaticAccessCredentialsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The time duration in which the credentials remain valid.
 	DurationInMinutes *int64 `location:"querystring" locationName:"durationInMinutes" min:"60" type:"long"`

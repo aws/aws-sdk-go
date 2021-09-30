@@ -778,7 +778,7 @@ func (s *SearchException) RequestID() string {
 
 // Container for the parameters to the Search request.
 type SearchInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Retrieves a cursor value you can use to page through large result sets. Use
 	// the size parameter to control the number of hits to include in each response.
@@ -1310,7 +1310,7 @@ func (s *SearchStatus) SetTimems(v int64) *SearchStatus {
 
 // Container for the parameters to the Suggest request.
 type SuggestInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// Specifies the string for which you want to get suggestions.
 	//

@@ -568,7 +568,7 @@ func (s *ContainerNotFoundException) RequestID() string {
 }
 
 type DeleteObjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The path (including the file name) where the object is stored in the container.
 	// Format: <folder name>/<folder name>/<file name>
@@ -618,7 +618,7 @@ func (s *DeleteObjectInput) SetPath(v string) *DeleteObjectInput {
 }
 
 type DeleteObjectOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -640,7 +640,7 @@ func (s DeleteObjectOutput) GoString() string {
 }
 
 type DescribeObjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The path (including the file name) where the object is stored in the container.
 	// Format: <folder name>/<folder name>/<file name>
@@ -690,7 +690,7 @@ func (s *DescribeObjectInput) SetPath(v string) *DescribeObjectInput {
 }
 
 type DescribeObjectOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// An optional CacheControl header that allows the caller to control the object's
 	// cache behavior. Headers can be passed in as specified in the HTTP at https://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.9
@@ -761,7 +761,7 @@ func (s *DescribeObjectOutput) SetLastModified(v time.Time) *DescribeObjectOutpu
 }
 
 type GetObjectInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The path (including the file name) where the object is stored in the container.
 	// Format: <folder name>/<folder name>/<file name>
@@ -1088,7 +1088,7 @@ func (s *Item) SetType(v string) *Item {
 }
 
 type ListItemsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of results to return per API request. For example, you
 	// submit a ListItems request with MaxResults set at 500. Although 2,000 items

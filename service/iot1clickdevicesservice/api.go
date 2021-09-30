@@ -1111,7 +1111,7 @@ func (c *IoT1ClickDevicesService) UpdateDeviceStateWithContext(ctx aws.Context, 
 }
 
 type Attributes struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -1133,7 +1133,7 @@ func (s Attributes) GoString() string {
 }
 
 type ClaimDevicesByClaimCodeInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ClaimCode is a required field
 	ClaimCode *string `location:"uri" locationName:"claimCode" type:"string" required:"true"`
@@ -1221,7 +1221,7 @@ func (s *ClaimDevicesByClaimCodeOutput) SetTotal(v int64) *ClaimDevicesByClaimCo
 }
 
 type DescribeDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceId is a required field
 	DeviceId *string `location:"uri" locationName:"deviceId" type:"string" required:"true"`
@@ -1666,7 +1666,7 @@ func (s *ForbiddenException) RequestID() string {
 }
 
 type GetDeviceMethodsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceId is a required field
 	DeviceId *string `location:"uri" locationName:"deviceId" type:"string" required:"true"`
@@ -1744,7 +1744,7 @@ func (s *GetDeviceMethodsOutput) SetDeviceMethods(v []*DeviceMethod) *GetDeviceM
 }
 
 type InitiateDeviceClaimInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceId is a required field
 	DeviceId *string `location:"uri" locationName:"deviceId" type:"string" required:"true"`
@@ -2051,7 +2051,7 @@ func (s *InvokeDeviceMethodOutput) SetDeviceMethodResponse(v string) *InvokeDevi
 }
 
 type ListDeviceEventsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceId is a required field
 	DeviceId *string `location:"uri" locationName:"deviceId" type:"string" required:"true"`
@@ -2179,7 +2179,7 @@ func (s *ListDeviceEventsOutput) SetNextToken(v string) *ListDeviceEventsOutput 
 }
 
 type ListDevicesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	DeviceType *string `location:"querystring" locationName:"deviceType" type:"string"`
 
@@ -2278,7 +2278,7 @@ func (s *ListDevicesOutput) SetNextToken(v string) *ListDevicesOutput {
 }
 
 type ListTagsForResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -2682,7 +2682,7 @@ func (s *TagResourceInput) SetTags(v map[string]*string) *TagResourceInput {
 }
 
 type TagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2704,7 +2704,7 @@ func (s TagResourceOutput) GoString() string {
 }
 
 type UnclaimDeviceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// DeviceId is a required field
 	DeviceId *string `location:"uri" locationName:"deviceId" type:"string" required:"true"`
@@ -2781,7 +2781,7 @@ func (s *UnclaimDeviceOutput) SetState(v string) *UnclaimDeviceOutput {
 }
 
 type UntagResourceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// ResourceArn is a required field
 	ResourceArn *string `location:"uri" locationName:"resource-arn" type:"string" required:"true"`
@@ -2840,7 +2840,7 @@ func (s *UntagResourceInput) SetTagKeys(v []*string) *UntagResourceInput {
 }
 
 type UntagResourceOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -2918,7 +2918,7 @@ func (s *UpdateDeviceStateInput) SetEnabled(v bool) *UpdateDeviceStateInput {
 }
 
 type UpdateDeviceStateOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
