@@ -144,7 +144,8 @@
         {"shape":"InvalidRequestException"},
         {"shape":"InternalServerError"},
         {"shape":"ResourceNotFoundException"},
-        {"shape":"ThrottlingException"}
+        {"shape":"ThrottlingException"},
+        {"shape":"InvalidResourcePolicyException"}
       ]
     },
     "DeleteRuleGroup":{
@@ -494,7 +495,7 @@
       "type":"string",
       "max":255,
       "min":1,
-      "pattern":"^([a-fA-F\\d:\\.]+/\\d{1,3})$"
+      "pattern":"^([a-fA-F\\d:\\.]+($|/\\d{1,3}))$"
     },
     "Addresses":{
       "type":"list",
@@ -902,7 +903,9 @@
         "StatelessDefaultActions":{"shape":"StatelessActions"},
         "StatelessFragmentDefaultActions":{"shape":"StatelessActions"},
         "StatelessCustomActions":{"shape":"CustomActions"},
-        "StatefulRuleGroupReferences":{"shape":"StatefulRuleGroupReferences"}
+        "StatefulRuleGroupReferences":{"shape":"StatefulRuleGroupReferences"},
+        "StatefulDefaultActions":{"shape":"StatefulActions"},
+        "StatefulEngineOptions":{"shape":"StatefulEngineOptions"}
       }
     },
     "FirewallPolicyMetadata":{
@@ -925,7 +928,10 @@
         "FirewallPolicyId":{"shape":"ResourceId"},
         "Description":{"shape":"Description"},
         "FirewallPolicyStatus":{"shape":"ResourceStatus"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ConsumedStatelessRuleCapacity":{"shape":"RuleCapacity"},
+        "ConsumedStatefulRuleCapacity":{"shape":"RuleCapacity"},
+        "NumberOfAssociations":{"shape":"NumberOfAssociations"}
       }
     },
     "FirewallStatus":{
@@ -1187,6 +1193,7 @@
         "TCPFlags":{"shape":"TCPFlags"}
       }
     },
+    "NumberOfAssociations":{"type":"integer"},
     "PaginationMaxResults":{
       "type":"integer",
       "max":100,
@@ -1348,7 +1355,8 @@
       "required":["RulesSource"],
       "members":{
         "RuleVariables":{"shape":"RuleVariables"},
-        "RulesSource":{"shape":"RulesSource"}
+        "RulesSource":{"shape":"RulesSource"},
+        "StatefulRuleOptions":{"shape":"StatefulRuleOptions"}
       }
     },
     "RuleGroupMetadata":{
@@ -1373,7 +1381,9 @@
         "Type":{"shape":"RuleGroupType"},
         "Capacity":{"shape":"RuleCapacity"},
         "RuleGroupStatus":{"shape":"ResourceStatus"},
-        "Tags":{"shape":"TagList"}
+        "Tags":{"shape":"TagList"},
+        "ConsumedCapacity":{"shape":"RuleCapacity"},
+        "NumberOfAssociations":{"shape":"NumberOfAssociations"}
       }
     },
     "RuleGroupType":{
@@ -1398,6 +1408,13 @@
     "RuleOptions":{
       "type":"list",
       "member":{"shape":"RuleOption"}
+    },
+    "RuleOrder":{
+      "type":"string",
+      "enum":[
+        "DEFAULT_ACTION_ORDER",
+        "STRICT_ORDER"
+      ]
     },
     "RuleTargets":{
       "type":"list",
@@ -1440,7 +1457,7 @@
     },
     "RulesString":{
       "type":"string",
-      "max":1000000,
+      "max":2000000,
       "min":0
     },
     "Setting":{
@@ -1467,6 +1484,16 @@
         "ALERT"
       ]
     },
+    "StatefulActions":{
+      "type":"list",
+      "member":{"shape":"CollectionMember_String"}
+    },
+    "StatefulEngineOptions":{
+      "type":"structure",
+      "members":{
+        "RuleOrder":{"shape":"RuleOrder"}
+      }
+    },
     "StatefulRule":{
       "type":"structure",
       "required":[
@@ -1491,12 +1518,22 @@
       "type":"structure",
       "required":["ResourceArn"],
       "members":{
-        "ResourceArn":{"shape":"ResourceArn"}
+        "ResourceArn":{"shape":"ResourceArn"},
+        "Priority":{
+          "shape":"Priority",
+          "box":true
+        }
       }
     },
     "StatefulRuleGroupReferences":{
       "type":"list",
       "member":{"shape":"StatefulRuleGroupReference"}
+    },
+    "StatefulRuleOptions":{
+      "type":"structure",
+      "members":{
+        "RuleOrder":{"shape":"RuleOrder"}
+      }
     },
     "StatefulRuleProtocol":{
       "type":"string",

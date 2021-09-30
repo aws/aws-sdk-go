@@ -26,8 +26,8 @@
 // includes filtering traffic going to and coming from an internet gateway,
 // NAT gateway, or over VPN or AWS Direct Connect. Network Firewall uses rules
 // that are compatible with Suricata, a free, open source intrusion detection
-// system (IDS) engine. For information about Suricata, see the Suricata website
-// (https://suricata-ids.org/).
+// system (IDS) engine. AWS Network Firewall supports Suricata version 5.0.2.
+// For information about Suricata, see the Suricata website (https://suricata-ids.org/).
 //
 // You can use Network Firewall to monitor and protect your VPC traffic in a
 // number of ways. The following are just a few examples:

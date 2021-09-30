@@ -45,6 +45,8 @@ const (
 
 	// ErrCodeInvalidResourcePolicyException for service response error code
 	// "InvalidResourcePolicyException".
+	//
+	// The policy statement failed validation.
 	ErrCodeInvalidResourcePolicyException = "InvalidResourcePolicyException"
 
 	// ErrCodeInvalidTokenException for service response error code
@@ -73,6 +75,8 @@ const (
 
 	// ErrCodeResourceOwnerCheckException for service response error code
 	// "ResourceOwnerCheckException".
+	//
+	// Unable to change the resource because your account doesn't own it.
 	ErrCodeResourceOwnerCheckException = "ResourceOwnerCheckException"
 
 	// ErrCodeThrottlingException for service response error code

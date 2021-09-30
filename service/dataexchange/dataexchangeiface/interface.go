@@ -68,6 +68,10 @@ type DataExchangeAPI interface {
 	CreateDataSetWithContext(aws.Context, *dataexchange.CreateDataSetInput, ...request.Option) (*dataexchange.CreateDataSetOutput, error)
 	CreateDataSetRequest(*dataexchange.CreateDataSetInput) (*request.Request, *dataexchange.CreateDataSetOutput)
 
+	CreateEventAction(*dataexchange.CreateEventActionInput) (*dataexchange.CreateEventActionOutput, error)
+	CreateEventActionWithContext(aws.Context, *dataexchange.CreateEventActionInput, ...request.Option) (*dataexchange.CreateEventActionOutput, error)
+	CreateEventActionRequest(*dataexchange.CreateEventActionInput) (*request.Request, *dataexchange.CreateEventActionOutput)
+
 	CreateJob(*dataexchange.CreateJobInput) (*dataexchange.CreateJobOutput, error)
 	CreateJobWithContext(aws.Context, *dataexchange.CreateJobInput, ...request.Option) (*dataexchange.CreateJobOutput, error)
 	CreateJobRequest(*dataexchange.CreateJobInput) (*request.Request, *dataexchange.CreateJobOutput)
@@ -84,6 +88,10 @@ type DataExchangeAPI interface {
 	DeleteDataSetWithContext(aws.Context, *dataexchange.DeleteDataSetInput, ...request.Option) (*dataexchange.DeleteDataSetOutput, error)
 	DeleteDataSetRequest(*dataexchange.DeleteDataSetInput) (*request.Request, *dataexchange.DeleteDataSetOutput)
 
+	DeleteEventAction(*dataexchange.DeleteEventActionInput) (*dataexchange.DeleteEventActionOutput, error)
+	DeleteEventActionWithContext(aws.Context, *dataexchange.DeleteEventActionInput, ...request.Option) (*dataexchange.DeleteEventActionOutput, error)
+	DeleteEventActionRequest(*dataexchange.DeleteEventActionInput) (*request.Request, *dataexchange.DeleteEventActionOutput)
+
 	DeleteRevision(*dataexchange.DeleteRevisionInput) (*dataexchange.DeleteRevisionOutput, error)
 	DeleteRevisionWithContext(aws.Context, *dataexchange.DeleteRevisionInput, ...request.Option) (*dataexchange.DeleteRevisionOutput, error)
 	DeleteRevisionRequest(*dataexchange.DeleteRevisionInput) (*request.Request, *dataexchange.DeleteRevisionOutput)
@@ -95,6 +103,10 @@ type DataExchangeAPI interface {
 	GetDataSet(*dataexchange.GetDataSetInput) (*dataexchange.GetDataSetOutput, error)
 	GetDataSetWithContext(aws.Context, *dataexchange.GetDataSetInput, ...request.Option) (*dataexchange.GetDataSetOutput, error)
 	GetDataSetRequest(*dataexchange.GetDataSetInput) (*request.Request, *dataexchange.GetDataSetOutput)
+
+	GetEventAction(*dataexchange.GetEventActionInput) (*dataexchange.GetEventActionOutput, error)
+	GetEventActionWithContext(aws.Context, *dataexchange.GetEventActionInput, ...request.Option) (*dataexchange.GetEventActionOutput, error)
+	GetEventActionRequest(*dataexchange.GetEventActionInput) (*request.Request, *dataexchange.GetEventActionOutput)
 
 	GetJob(*dataexchange.GetJobInput) (*dataexchange.GetJobOutput, error)
 	GetJobWithContext(aws.Context, *dataexchange.GetJobInput, ...request.Option) (*dataexchange.GetJobOutput, error)
@@ -117,6 +129,13 @@ type DataExchangeAPI interface {
 
 	ListDataSetsPages(*dataexchange.ListDataSetsInput, func(*dataexchange.ListDataSetsOutput, bool) bool) error
 	ListDataSetsPagesWithContext(aws.Context, *dataexchange.ListDataSetsInput, func(*dataexchange.ListDataSetsOutput, bool) bool, ...request.Option) error
+
+	ListEventActions(*dataexchange.ListEventActionsInput) (*dataexchange.ListEventActionsOutput, error)
+	ListEventActionsWithContext(aws.Context, *dataexchange.ListEventActionsInput, ...request.Option) (*dataexchange.ListEventActionsOutput, error)
+	ListEventActionsRequest(*dataexchange.ListEventActionsInput) (*request.Request, *dataexchange.ListEventActionsOutput)
+
+	ListEventActionsPages(*dataexchange.ListEventActionsInput, func(*dataexchange.ListEventActionsOutput, bool) bool) error
+	ListEventActionsPagesWithContext(aws.Context, *dataexchange.ListEventActionsInput, func(*dataexchange.ListEventActionsOutput, bool) bool, ...request.Option) error
 
 	ListJobs(*dataexchange.ListJobsInput) (*dataexchange.ListJobsOutput, error)
 	ListJobsWithContext(aws.Context, *dataexchange.ListJobsInput, ...request.Option) (*dataexchange.ListJobsOutput, error)
@@ -155,6 +174,10 @@ type DataExchangeAPI interface {
 	UpdateDataSet(*dataexchange.UpdateDataSetInput) (*dataexchange.UpdateDataSetOutput, error)
 	UpdateDataSetWithContext(aws.Context, *dataexchange.UpdateDataSetInput, ...request.Option) (*dataexchange.UpdateDataSetOutput, error)
 	UpdateDataSetRequest(*dataexchange.UpdateDataSetInput) (*request.Request, *dataexchange.UpdateDataSetOutput)
+
+	UpdateEventAction(*dataexchange.UpdateEventActionInput) (*dataexchange.UpdateEventActionOutput, error)
+	UpdateEventActionWithContext(aws.Context, *dataexchange.UpdateEventActionInput, ...request.Option) (*dataexchange.UpdateEventActionOutput, error)
+	UpdateEventActionRequest(*dataexchange.UpdateEventActionInput) (*request.Request, *dataexchange.UpdateEventActionOutput)
 
 	UpdateRevision(*dataexchange.UpdateRevisionInput) (*dataexchange.UpdateRevisionOutput, error)
 	UpdateRevisionWithContext(aws.Context, *dataexchange.UpdateRevisionInput, ...request.Option) (*dataexchange.UpdateRevisionOutput, error)

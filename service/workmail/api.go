@@ -1308,6 +1308,99 @@ func (c *WorkMail) DeleteMailboxPermissionsWithContext(ctx aws.Context, input *D
 	return out, req.Send()
 }
 
+const opDeleteMobileDeviceAccessOverride = "DeleteMobileDeviceAccessOverride"
+
+// DeleteMobileDeviceAccessOverrideRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteMobileDeviceAccessOverride operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteMobileDeviceAccessOverride for more information on using the DeleteMobileDeviceAccessOverride
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteMobileDeviceAccessOverrideRequest method.
+//    req, resp := client.DeleteMobileDeviceAccessOverrideRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteMobileDeviceAccessOverride
+func (c *WorkMail) DeleteMobileDeviceAccessOverrideRequest(input *DeleteMobileDeviceAccessOverrideInput) (req *request.Request, output *DeleteMobileDeviceAccessOverrideOutput) {
+	op := &request.Operation{
+		Name:       opDeleteMobileDeviceAccessOverride,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DeleteMobileDeviceAccessOverrideInput{}
+	}
+
+	output = &DeleteMobileDeviceAccessOverrideOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteMobileDeviceAccessOverride API operation for Amazon WorkMail.
+//
+// Deletes the mobile device access override for the given WorkMail organization,
+// user, and device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DeleteMobileDeviceAccessOverride for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * EntityNotFoundException
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DeleteMobileDeviceAccessOverride
+func (c *WorkMail) DeleteMobileDeviceAccessOverride(input *DeleteMobileDeviceAccessOverrideInput) (*DeleteMobileDeviceAccessOverrideOutput, error) {
+	req, out := c.DeleteMobileDeviceAccessOverrideRequest(input)
+	return out, req.Send()
+}
+
+// DeleteMobileDeviceAccessOverrideWithContext is the same as DeleteMobileDeviceAccessOverride with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteMobileDeviceAccessOverride for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DeleteMobileDeviceAccessOverrideWithContext(ctx aws.Context, input *DeleteMobileDeviceAccessOverrideInput, opts ...request.Option) (*DeleteMobileDeviceAccessOverrideOutput, error) {
+	req, out := c.DeleteMobileDeviceAccessOverrideRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteMobileDeviceAccessRule = "DeleteMobileDeviceAccessRule"
 
 // DeleteMobileDeviceAccessRuleRequest generates a "aws/request.Request" representing the
@@ -2881,6 +2974,101 @@ func (c *WorkMail) GetMobileDeviceAccessEffectWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opGetMobileDeviceAccessOverride = "GetMobileDeviceAccessOverride"
+
+// GetMobileDeviceAccessOverrideRequest generates a "aws/request.Request" representing the
+// client's request for the GetMobileDeviceAccessOverride operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetMobileDeviceAccessOverride for more information on using the GetMobileDeviceAccessOverride
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetMobileDeviceAccessOverrideRequest method.
+//    req, resp := client.GetMobileDeviceAccessOverrideRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetMobileDeviceAccessOverride
+func (c *WorkMail) GetMobileDeviceAccessOverrideRequest(input *GetMobileDeviceAccessOverrideInput) (req *request.Request, output *GetMobileDeviceAccessOverrideOutput) {
+	op := &request.Operation{
+		Name:       opGetMobileDeviceAccessOverride,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &GetMobileDeviceAccessOverrideInput{}
+	}
+
+	output = &GetMobileDeviceAccessOverrideOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetMobileDeviceAccessOverride API operation for Amazon WorkMail.
+//
+// Gets the mobile device access override for the given WorkMail organization,
+// user, and device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation GetMobileDeviceAccessOverride for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * EntityNotFoundException
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+//   * ResourceNotFoundException
+//   The resource cannot be found.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/GetMobileDeviceAccessOverride
+func (c *WorkMail) GetMobileDeviceAccessOverride(input *GetMobileDeviceAccessOverrideInput) (*GetMobileDeviceAccessOverrideOutput, error) {
+	req, out := c.GetMobileDeviceAccessOverrideRequest(input)
+	return out, req.Send()
+}
+
+// GetMobileDeviceAccessOverrideWithContext is the same as GetMobileDeviceAccessOverride with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetMobileDeviceAccessOverride for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) GetMobileDeviceAccessOverrideWithContext(ctx aws.Context, input *GetMobileDeviceAccessOverrideInput, opts ...request.Option) (*GetMobileDeviceAccessOverrideOutput, error) {
+	req, out := c.GetMobileDeviceAccessOverrideRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opListAccessControlRules = "ListAccessControlRules"
 
 // ListAccessControlRulesRequest generates a "aws/request.Request" representing the
@@ -3710,6 +3898,156 @@ func (c *WorkMail) ListMailboxPermissionsPagesWithContext(ctx aws.Context, input
 
 	for p.Next() {
 		if !fn(p.Page().(*ListMailboxPermissionsOutput), !p.HasNextPage()) {
+			break
+		}
+	}
+
+	return p.Err()
+}
+
+const opListMobileDeviceAccessOverrides = "ListMobileDeviceAccessOverrides"
+
+// ListMobileDeviceAccessOverridesRequest generates a "aws/request.Request" representing the
+// client's request for the ListMobileDeviceAccessOverrides operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See ListMobileDeviceAccessOverrides for more information on using the ListMobileDeviceAccessOverrides
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the ListMobileDeviceAccessOverridesRequest method.
+//    req, resp := client.ListMobileDeviceAccessOverridesRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListMobileDeviceAccessOverrides
+func (c *WorkMail) ListMobileDeviceAccessOverridesRequest(input *ListMobileDeviceAccessOverridesInput) (req *request.Request, output *ListMobileDeviceAccessOverridesOutput) {
+	op := &request.Operation{
+		Name:       opListMobileDeviceAccessOverrides,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+		Paginator: &request.Paginator{
+			InputTokens:     []string{"NextToken"},
+			OutputTokens:    []string{"NextToken"},
+			LimitToken:      "MaxResults",
+			TruncationToken: "",
+		},
+	}
+
+	if input == nil {
+		input = &ListMobileDeviceAccessOverridesInput{}
+	}
+
+	output = &ListMobileDeviceAccessOverridesOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// ListMobileDeviceAccessOverrides API operation for Amazon WorkMail.
+//
+// Lists all the mobile device access overrides for any given combination of
+// WorkMail organization, user, or device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation ListMobileDeviceAccessOverrides for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * EntityNotFoundException
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/ListMobileDeviceAccessOverrides
+func (c *WorkMail) ListMobileDeviceAccessOverrides(input *ListMobileDeviceAccessOverridesInput) (*ListMobileDeviceAccessOverridesOutput, error) {
+	req, out := c.ListMobileDeviceAccessOverridesRequest(input)
+	return out, req.Send()
+}
+
+// ListMobileDeviceAccessOverridesWithContext is the same as ListMobileDeviceAccessOverrides with the addition of
+// the ability to pass a context and additional request options.
+//
+// See ListMobileDeviceAccessOverrides for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListMobileDeviceAccessOverridesWithContext(ctx aws.Context, input *ListMobileDeviceAccessOverridesInput, opts ...request.Option) (*ListMobileDeviceAccessOverridesOutput, error) {
+	req, out := c.ListMobileDeviceAccessOverridesRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+// ListMobileDeviceAccessOverridesPages iterates over the pages of a ListMobileDeviceAccessOverrides operation,
+// calling the "fn" function with the response data for each page. To stop
+// iterating, return false from the fn function.
+//
+// See ListMobileDeviceAccessOverrides method for more information on how to use this operation.
+//
+// Note: This operation can generate multiple requests to a service.
+//
+//    // Example iterating over at most 3 pages of a ListMobileDeviceAccessOverrides operation.
+//    pageNum := 0
+//    err := client.ListMobileDeviceAccessOverridesPages(params,
+//        func(page *workmail.ListMobileDeviceAccessOverridesOutput, lastPage bool) bool {
+//            pageNum++
+//            fmt.Println(page)
+//            return pageNum <= 3
+//        })
+//
+func (c *WorkMail) ListMobileDeviceAccessOverridesPages(input *ListMobileDeviceAccessOverridesInput, fn func(*ListMobileDeviceAccessOverridesOutput, bool) bool) error {
+	return c.ListMobileDeviceAccessOverridesPagesWithContext(aws.BackgroundContext(), input, fn)
+}
+
+// ListMobileDeviceAccessOverridesPagesWithContext same as ListMobileDeviceAccessOverridesPages except
+// it takes a Context and allows setting request options on the pages.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) ListMobileDeviceAccessOverridesPagesWithContext(ctx aws.Context, input *ListMobileDeviceAccessOverridesInput, fn func(*ListMobileDeviceAccessOverridesOutput, bool) bool, opts ...request.Option) error {
+	p := request.Pagination{
+		NewRequest: func() (*request.Request, error) {
+			var inCpy *ListMobileDeviceAccessOverridesInput
+			if input != nil {
+				tmp := *input
+				inCpy = &tmp
+			}
+			req, _ := c.ListMobileDeviceAccessOverridesRequest(inCpy)
+			req.SetContext(ctx)
+			req.ApplyOptions(opts...)
+			return req, nil
+		},
+	}
+
+	for p.Next() {
+		if !fn(p.Page().(*ListMobileDeviceAccessOverridesOutput), !p.HasNextPage()) {
 			break
 		}
 	}
@@ -4654,6 +4992,103 @@ func (c *WorkMail) PutMailboxPermissions(input *PutMailboxPermissionsInput) (*Pu
 // for more information on using Contexts.
 func (c *WorkMail) PutMailboxPermissionsWithContext(ctx aws.Context, input *PutMailboxPermissionsInput, opts ...request.Option) (*PutMailboxPermissionsOutput, error) {
 	req, out := c.PutMailboxPermissionsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutMobileDeviceAccessOverride = "PutMobileDeviceAccessOverride"
+
+// PutMobileDeviceAccessOverrideRequest generates a "aws/request.Request" representing the
+// client's request for the PutMobileDeviceAccessOverride operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutMobileDeviceAccessOverride for more information on using the PutMobileDeviceAccessOverride
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutMobileDeviceAccessOverrideRequest method.
+//    req, resp := client.PutMobileDeviceAccessOverrideRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutMobileDeviceAccessOverride
+func (c *WorkMail) PutMobileDeviceAccessOverrideRequest(input *PutMobileDeviceAccessOverrideInput) (req *request.Request, output *PutMobileDeviceAccessOverrideOutput) {
+	op := &request.Operation{
+		Name:       opPutMobileDeviceAccessOverride,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutMobileDeviceAccessOverrideInput{}
+	}
+
+	output = &PutMobileDeviceAccessOverrideOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutMobileDeviceAccessOverride API operation for Amazon WorkMail.
+//
+// Creates or updates a mobile device access override for the given WorkMail
+// organization, user, and device.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation PutMobileDeviceAccessOverride for usage and error information.
+//
+// Returned Error Types:
+//   * InvalidParameterException
+//   One or more of the input parameters don't match the service's restrictions.
+//
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+//   * EntityNotFoundException
+//   The identifier supplied for the user, group, or resource does not exist in
+//   your organization.
+//
+//   * EntityStateException
+//   You are performing an operation on a user, group, or resource that isn't
+//   in the expected state, such as trying to delete an active user.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutMobileDeviceAccessOverride
+func (c *WorkMail) PutMobileDeviceAccessOverride(input *PutMobileDeviceAccessOverrideInput) (*PutMobileDeviceAccessOverrideOutput, error) {
+	req, out := c.PutMobileDeviceAccessOverrideRequest(input)
+	return out, req.Send()
+}
+
+// PutMobileDeviceAccessOverrideWithContext is the same as PutMobileDeviceAccessOverride with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutMobileDeviceAccessOverride for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) PutMobileDeviceAccessOverrideWithContext(ctx aws.Context, input *PutMobileDeviceAccessOverrideInput, opts ...request.Option) (*PutMobileDeviceAccessOverrideOutput, error) {
+	req, out := c.PutMobileDeviceAccessOverrideRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -7427,6 +7862,118 @@ func (s DeleteMailboxPermissionsOutput) GoString() string {
 	return s.String()
 }
 
+type DeleteMobileDeviceAccessOverrideInput struct {
+	_ struct{} `type:"structure"`
+
+	// The mobile device for which you delete the override. DeviceId is case insensitive.
+	//
+	// DeviceId is a required field
+	DeviceId *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon WorkMail organization for which the access override will be deleted.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+
+	// The WorkMail user for which you want to delete the override. Accepts the
+	// following types of user identities:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: user@domain.tld
+	//
+	//    * User name: user
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMobileDeviceAccessOverrideInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMobileDeviceAccessOverrideInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteMobileDeviceAccessOverrideInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteMobileDeviceAccessOverrideInput"}
+	if s.DeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *DeleteMobileDeviceAccessOverrideInput) SetDeviceId(v string) *DeleteMobileDeviceAccessOverrideInput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DeleteMobileDeviceAccessOverrideInput) SetOrganizationId(v string) *DeleteMobileDeviceAccessOverrideInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *DeleteMobileDeviceAccessOverrideInput) SetUserId(v string) *DeleteMobileDeviceAccessOverrideInput {
+	s.UserId = &v
+	return s
+}
+
+type DeleteMobileDeviceAccessOverrideOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMobileDeviceAccessOverrideOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteMobileDeviceAccessOverrideOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteMobileDeviceAccessRuleInput struct {
 	_ struct{} `type:"structure"`
 
@@ -10110,6 +10657,172 @@ func (s *GetMobileDeviceAccessEffectOutput) SetMatchedRules(v []*MobileDeviceAcc
 	return s
 }
 
+type GetMobileDeviceAccessOverrideInput struct {
+	_ struct{} `type:"structure"`
+
+	// The mobile device to which the override applies. DeviceId is case insensitive.
+	//
+	// DeviceId is a required field
+	DeviceId *string `min:"1" type:"string" required:"true"`
+
+	// The Amazon WorkMail organization to which you want to apply the override.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+
+	// Identifies the WorkMail user for the override. Accepts the following types
+	// of user identities:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: user@domain.tld
+	//
+	//    * User name: user
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileDeviceAccessOverrideInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileDeviceAccessOverrideInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *GetMobileDeviceAccessOverrideInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "GetMobileDeviceAccessOverrideInput"}
+	if s.DeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *GetMobileDeviceAccessOverrideInput) SetDeviceId(v string) *GetMobileDeviceAccessOverrideInput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *GetMobileDeviceAccessOverrideInput) SetOrganizationId(v string) *GetMobileDeviceAccessOverrideInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetMobileDeviceAccessOverrideInput) SetUserId(v string) *GetMobileDeviceAccessOverrideInput {
+	s.UserId = &v
+	return s
+}
+
+type GetMobileDeviceAccessOverrideOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The date the override was first created.
+	DateCreated *time.Time `type:"timestamp"`
+
+	// The date the description was last modified.
+	DateModified *time.Time `type:"timestamp"`
+
+	// A description of the override.
+	Description *string `min:"1" type:"string"`
+
+	// The device to which the access override applies.
+	DeviceId *string `min:"1" type:"string"`
+
+	// The effect of the override, ALLOW or DENY.
+	Effect *string `type:"string" enum:"MobileDeviceAccessRuleEffect"`
+
+	// The WorkMail user to which the access override applies.
+	UserId *string `min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileDeviceAccessOverrideOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetMobileDeviceAccessOverrideOutput) GoString() string {
+	return s.String()
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *GetMobileDeviceAccessOverrideOutput) SetDateCreated(v time.Time) *GetMobileDeviceAccessOverrideOutput {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateModified sets the DateModified field's value.
+func (s *GetMobileDeviceAccessOverrideOutput) SetDateModified(v time.Time) *GetMobileDeviceAccessOverrideOutput {
+	s.DateModified = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *GetMobileDeviceAccessOverrideOutput) SetDescription(v string) *GetMobileDeviceAccessOverrideOutput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *GetMobileDeviceAccessOverrideOutput) SetDeviceId(v string) *GetMobileDeviceAccessOverrideOutput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *GetMobileDeviceAccessOverrideOutput) SetEffect(v string) *GetMobileDeviceAccessOverrideOutput {
+	s.Effect = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *GetMobileDeviceAccessOverrideOutput) SetUserId(v string) *GetMobileDeviceAccessOverrideOutput {
+	s.UserId = &v
+	return s
+}
+
 // The representation of an Amazon WorkMail group.
 type Group struct {
 	_ struct{} `type:"structure"`
@@ -11152,6 +11865,154 @@ func (s *ListMailboxPermissionsOutput) SetPermissions(v []*Permission) *ListMail
 	return s
 }
 
+type ListMobileDeviceAccessOverridesInput struct {
+	_ struct{} `type:"structure"`
+
+	// The mobile device to which the access override applies.
+	DeviceId *string `min:"1" type:"string"`
+
+	// The maximum number of results to return in a single call.
+	MaxResults *int64 `min:"1" type:"integer"`
+
+	// The token to use to retrieve the next page of results. The first call does
+	// not require a token.
+	NextToken *string `min:"1" type:"string"`
+
+	// The Amazon WorkMail organization under which to list mobile device access
+	// overrides.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+
+	// The WorkMail user under which you list the mobile device access overrides.
+	// Accepts the following types of user identities:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: user@domain.tld
+	//
+	//    * User name: user
+	UserId *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileDeviceAccessOverridesInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileDeviceAccessOverridesInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ListMobileDeviceAccessOverridesInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ListMobileDeviceAccessOverridesInput"}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
+	if s.MaxResults != nil && *s.MaxResults < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("MaxResults", 1))
+	}
+	if s.NextToken != nil && len(*s.NextToken) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("NextToken", 1))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *ListMobileDeviceAccessOverridesInput) SetDeviceId(v string) *ListMobileDeviceAccessOverridesInput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetMaxResults sets the MaxResults field's value.
+func (s *ListMobileDeviceAccessOverridesInput) SetMaxResults(v int64) *ListMobileDeviceAccessOverridesInput {
+	s.MaxResults = &v
+	return s
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMobileDeviceAccessOverridesInput) SetNextToken(v string) *ListMobileDeviceAccessOverridesInput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *ListMobileDeviceAccessOverridesInput) SetOrganizationId(v string) *ListMobileDeviceAccessOverridesInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *ListMobileDeviceAccessOverridesInput) SetUserId(v string) *ListMobileDeviceAccessOverridesInput {
+	s.UserId = &v
+	return s
+}
+
+type ListMobileDeviceAccessOverridesOutput struct {
+	_ struct{} `type:"structure"`
+
+	// The token to use to retrieve the next page of results. The value is “null”
+	// when there are no more results to return.
+	NextToken *string `min:"1" type:"string"`
+
+	// The list of mobile device access overrides that exist for the specified Amazon
+	// WorkMail organization and user.
+	Overrides []*MobileDeviceAccessOverride `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileDeviceAccessOverridesOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ListMobileDeviceAccessOverridesOutput) GoString() string {
+	return s.String()
+}
+
+// SetNextToken sets the NextToken field's value.
+func (s *ListMobileDeviceAccessOverridesOutput) SetNextToken(v string) *ListMobileDeviceAccessOverridesOutput {
+	s.NextToken = &v
+	return s
+}
+
+// SetOverrides sets the Overrides field's value.
+func (s *ListMobileDeviceAccessOverridesOutput) SetOverrides(v []*MobileDeviceAccessOverride) *ListMobileDeviceAccessOverridesOutput {
+	s.Overrides = v
+	return s
+}
+
 type ListMobileDeviceAccessRulesInput struct {
 	_ struct{} `type:"structure"`
 
@@ -12129,6 +12990,83 @@ func (s *MobileDeviceAccessMatchedRule) SetName(v string) *MobileDeviceAccessMat
 	return s
 }
 
+// The override object.
+type MobileDeviceAccessOverride struct {
+	_ struct{} `type:"structure"`
+
+	// The date the override was first created.
+	DateCreated *time.Time `type:"timestamp"`
+
+	// The date the override was last modified.
+	DateModified *time.Time `type:"timestamp"`
+
+	// A description of the override.
+	Description *string `min:"1" type:"string"`
+
+	// The device to which the override applies.
+	DeviceId *string `min:"1" type:"string"`
+
+	// The effect of the override, ALLOW or DENY.
+	Effect *string `type:"string" enum:"MobileDeviceAccessRuleEffect"`
+
+	// The WorkMail user to which the access override applies.
+	UserId *string `min:"12" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MobileDeviceAccessOverride) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s MobileDeviceAccessOverride) GoString() string {
+	return s.String()
+}
+
+// SetDateCreated sets the DateCreated field's value.
+func (s *MobileDeviceAccessOverride) SetDateCreated(v time.Time) *MobileDeviceAccessOverride {
+	s.DateCreated = &v
+	return s
+}
+
+// SetDateModified sets the DateModified field's value.
+func (s *MobileDeviceAccessOverride) SetDateModified(v time.Time) *MobileDeviceAccessOverride {
+	s.DateModified = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *MobileDeviceAccessOverride) SetDescription(v string) *MobileDeviceAccessOverride {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *MobileDeviceAccessOverride) SetDeviceId(v string) *MobileDeviceAccessOverride {
+	s.DeviceId = &v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *MobileDeviceAccessOverride) SetEffect(v string) *MobileDeviceAccessOverride {
+	s.Effect = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *MobileDeviceAccessOverride) SetUserId(v string) *MobileDeviceAccessOverride {
+	s.UserId = &v
+	return s
+}
+
 // A rule that controls access to mobile devices for an Amazon WorkMail group.
 type MobileDeviceAccessRule struct {
 	_ struct{} `type:"structure"`
@@ -12902,6 +13840,144 @@ func (s PutMailboxPermissionsOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s PutMailboxPermissionsOutput) GoString() string {
+	return s.String()
+}
+
+type PutMobileDeviceAccessOverrideInput struct {
+	_ struct{} `type:"structure"`
+
+	// A description of the override.
+	Description *string `min:"1" type:"string"`
+
+	// The mobile device for which you create the override. DeviceId is case insensitive.
+	//
+	// DeviceId is a required field
+	DeviceId *string `min:"1" type:"string" required:"true"`
+
+	// The effect of the override, ALLOW or DENY.
+	//
+	// Effect is a required field
+	Effect *string `type:"string" required:"true" enum:"MobileDeviceAccessRuleEffect"`
+
+	// Identifies the Amazon WorkMail organization for which you create the override.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+
+	// The WorkMail user for which you create the override. Accepts the following
+	// types of user identities:
+	//
+	//    * User ID: 12345678-1234-1234-1234-123456789012 or S-1-1-12-1234567890-123456789-123456789-1234
+	//
+	//    * Email address: user@domain.tld
+	//
+	//    * User name: user
+	//
+	// UserId is a required field
+	UserId *string `min:"1" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMobileDeviceAccessOverrideInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMobileDeviceAccessOverrideInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutMobileDeviceAccessOverrideInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutMobileDeviceAccessOverrideInput"}
+	if s.Description != nil && len(*s.Description) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Description", 1))
+	}
+	if s.DeviceId == nil {
+		invalidParams.Add(request.NewErrParamRequired("DeviceId"))
+	}
+	if s.DeviceId != nil && len(*s.DeviceId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DeviceId", 1))
+	}
+	if s.Effect == nil {
+		invalidParams.Add(request.NewErrParamRequired("Effect"))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+	if s.UserId == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserId"))
+	}
+	if s.UserId != nil && len(*s.UserId) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("UserId", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetDescription sets the Description field's value.
+func (s *PutMobileDeviceAccessOverrideInput) SetDescription(v string) *PutMobileDeviceAccessOverrideInput {
+	s.Description = &v
+	return s
+}
+
+// SetDeviceId sets the DeviceId field's value.
+func (s *PutMobileDeviceAccessOverrideInput) SetDeviceId(v string) *PutMobileDeviceAccessOverrideInput {
+	s.DeviceId = &v
+	return s
+}
+
+// SetEffect sets the Effect field's value.
+func (s *PutMobileDeviceAccessOverrideInput) SetEffect(v string) *PutMobileDeviceAccessOverrideInput {
+	s.Effect = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *PutMobileDeviceAccessOverrideInput) SetOrganizationId(v string) *PutMobileDeviceAccessOverrideInput {
+	s.OrganizationId = &v
+	return s
+}
+
+// SetUserId sets the UserId field's value.
+func (s *PutMobileDeviceAccessOverrideInput) SetUserId(v string) *PutMobileDeviceAccessOverrideInput {
+	s.UserId = &v
+	return s
+}
+
+type PutMobileDeviceAccessOverrideOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMobileDeviceAccessOverrideOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutMobileDeviceAccessOverrideOutput) GoString() string {
 	return s.String()
 }
 

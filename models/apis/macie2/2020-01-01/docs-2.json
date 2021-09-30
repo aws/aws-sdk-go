@@ -194,9 +194,16 @@
       }
     },
     "BucketMetadata" : {
-      "base" : "<p>Provides information about an S3 bucket that Amazon Macie monitors and analyzes.</p>",
+      "base" : "<p>Provides statistical data and other information about an S3 bucket that Amazon Macie monitors and analyzes for your account. If an error occurs when Macie attempts to retrieve and process information about the bucket or the bucket's objects, the value for most of these properties is null. Exceptions are accountId, bucketArn, bucketCreatedAt, bucketName, lastUpdated, and region. To identify the cause of the error, refer to the errorCode and errorMessage values.</p>",
       "refs" : {
         "__listOfBucketMetadata$member" : null
+      }
+    },
+    "BucketMetadataErrorCode" : {
+      "base" : "<p>The error code for an error that prevented Amazon Macie from retrieving and processing information about an S3 bucket and the bucket's objects.</p>",
+      "refs" : {
+        "BucketMetadata$ErrorCode" : "<p>Specifies the error code for an error that prevented Amazon Macie from retrieving and processing information about the bucket and the bucket's objects. If this value is ACCESS_DENIED, Macie doesn't have permission to retrieve the information. For example, the bucket has a restrictive bucket policy and Amazon S3 denied the request. If this value is null, Macie was able to retrieve and process the information.</p>",
+        "MatchingBucket$ErrorCode" : "<p>Specifies the error code for an error that prevented Amazon Macie from retrieving and processing information about the bucket and the bucket's objects. If this value is ACCESS_DENIED, Macie doesn't have permission to retrieve the information. For example, the bucket has a restrictive bucket policy and Amazon S3 denied the request. If this value is null, Macie was able to retrieve and process the information.</p>"
       }
     },
     "BucketPermissionConfiguration" : {
@@ -417,7 +424,7 @@
       "refs" : { }
     },
     "DescribeBucketsResponse" : {
-      "base" : "<p>Provides the results of a query that retrieved statistical data and other information about one or more S3 buckets that Amazon Macie monitors and analyzes.</p>",
+      "base" : "<p>Provides the results of a query that retrieved statistical data and other information about one or more S3 buckets that Amazon Macie monitors and analyzes for your account.</p>",
       "refs" : { }
     },
     "DescribeClassificationJobResponse" : {
@@ -561,7 +568,7 @@
       "refs" : { }
     },
     "GetBucketStatisticsResponse" : {
-      "base" : "<p>Provides the results of a query that retrieved aggregated statistical data for all the S3 buckets that Amazon Macie monitors and analyzes for an account.</p>",
+      "base" : "<p>Provides the results of a query that retrieved aggregated statistical data for all the S3 buckets that Amazon Macie monitors and analyzes for your account.</p>",
       "refs" : { }
     },
     "GetClassificationExportConfigurationResponse" : {
@@ -887,13 +894,13 @@
       }
     },
     "MatchingBucket" : {
-      "base" : "<p>Provides statistical data and other information about an S3 bucket that Amazon Macie monitors and analyzes.</p>",
+      "base" : "<p>Provides statistical data and other information about an S3 bucket that Amazon Macie monitors and analyzes for your account. If an error occurs when Macie attempts to retrieve and process information about the bucket or the bucket's objects, the value for most of these properties is null. Exceptions are accountId and bucketName. To identify the cause of the error, refer to the errorCode and errorMessage values.</p>",
       "refs" : {
         "MatchingResource$MatchingBucket" : "<p>The details of an S3 bucket that Amazon Macie monitors and analyzes.</p>"
       }
     },
     "MatchingResource" : {
-      "base" : "<p>Provides statistical data and other information about an Amazon Web Services resource that Amazon Macie monitors and analyzes.</p>",
+      "base" : "<p>Provides statistical data and other information about an Amazon Web Services resource that Amazon Macie monitors and analyzes for your account.</p>",
       "refs" : {
         "__listOfMatchingResource$member" : null
       }
@@ -918,7 +925,7 @@
       }
     },
     "ObjectLevelStatistics" : {
-      "base" : "<p>Provides information about the total storage size (in bytes) or number of objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse object, this data is aggregated for all the buckets in the query results. If versioning is enabled for a bucket, total storage size values are based on the size of the latest version of each applicable object in the bucket.</p>",
+      "base" : "<p>Provides information about the total storage size (in bytes) or number of objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse object, this data is aggregated for the buckets in the query results. If versioning is enabled for a bucket, total storage size values are based on the size of the latest version of each applicable object in the bucket.</p>",
       "refs" : {
         "BucketMetadata$UnclassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
         "BucketMetadata$UnclassifiableObjectSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can't analyze in the bucket. These objects don't use a supported storage class or don't have a file name extension for a supported file or storage format.</p>",
@@ -1114,7 +1121,7 @@
       "refs" : { }
     },
     "SearchResourcesResponse" : {
-      "base" : "<p>Provides the results of a query that retrieved statistical data and other information about Amazon Web Services resources that Amazon Macie monitors and analyzes.</p>",
+      "base" : "<p>Provides the results of a query that retrieved statistical data and other information about Amazon Web Services resources that Amazon Macie monitors and analyzes for your account.</p>",
       "refs" : { }
     },
     "SearchResourcesSimpleCriterion" : {
@@ -1348,7 +1355,7 @@
     "Type" : {
       "base" : null,
       "refs" : {
-        "BucketServerSideEncryption$Type" : "<p>The type of server-side encryption that's used by default when storing new objects in the bucket. Possible values are:</p> <ul><li><p>AES256 - New objects are encrypted with an Amazon S3 managed key and use Amazon S3 managed encryption (SSE-S3).</p></li> <li><p>aws:kms - New objects are encrypted with an KMS CMK, specified by the kmsMasterKeyId property, and use Amazon Web Services managed KMS encryption (AWS-KMS) or customer managed KMS encryption (SSE-KMS).</p></li> <li><p>NONE - New objects aren't encrypted by default. Default encryption is disabled for the bucket.</p></li></ul>"
+        "BucketServerSideEncryption$Type" : "<p>The type of server-side encryption that's used by default when storing new objects in the bucket. Possible values are:</p> <ul><li><p>AES256 - New objects are encrypted with an Amazon S3 managed key. They use SSE-S3 encryption.</p></li> <li><p>aws:kms - New objects are encrypted with an KMS key (kmsMasterKeyId), either an Amazon Web Services managed key or a customer managed key. They use SSE-KMS encryption.</p></li> <li><p>NONE - New objects aren't encrypted by default. Default encryption is disabled for the bucket.</p></li></ul>"
       }
     },
     "Unit" : {
@@ -1715,7 +1722,7 @@
       "refs" : {
         "BatchGetCustomDataIdentifiersRequest$Ids" : "<p>An array of custom data identifier IDs, one for each custom data identifier to retrieve information about.</p>",
         "BatchGetCustomDataIdentifiersResponse$NotFoundIdentifierIds" : "<p>An array of custom data identifier IDs, one for each custom data identifier that was specified in the request but doesn't correlate to an existing custom data identifier.</p>",
-        "BucketCriteriaAdditionalProperties$Eq" : "<p>The value for the property matches (equals) the specified value. If you specify multiple values, Macie uses OR logic to join the values.</p>",
+        "BucketCriteriaAdditionalProperties$Eq" : "<p>The value for the property matches (equals) the specified value. If you specify multiple values, Amazon Macie uses OR logic to join the values.</p>",
         "BucketCriteriaAdditionalProperties$Neq" : "<p>The value for the property doesn't match (doesn't equal) the specified value. If you specify multiple values, Amazon Macie uses OR logic to join the values.</p>",
         "CreateClassificationJobRequest$CustomDataIdentifierIds" : "<p>An array of unique identifiers, one for each custom data identifier for the job to use when it analyzes data. To use only managed data identifiers, don't specify a value for this property and specify a value other than NONE for the managedDataIdentifierSelector property.</p>",
         "CreateClassificationJobRequest$ManagedDataIdentifierIds" : "<p>An array of unique identifiers, one for each managed data identifier for the job to include (use) or exclude (not use) when it analyzes data. Inclusion or exclusion depends on the managed data identifier selection type that you specify for the job (managedDataIdentifierSelector).</p><p>To retrieve a list of valid values for this property, use the ListManagedDataIdentifiers operation.</p>",
@@ -1751,7 +1758,7 @@
         "BucketCountByEffectivePermission$PubliclyReadable" : "<p>The total number of buckets that allow the general public to have read access to the bucket.</p>",
         "BucketCountByEffectivePermission$PubliclyWritable" : "<p>The total number of buckets that allow the general public to have write access to the bucket.</p>",
         "BucketCountByEffectivePermission$Unknown" : "<p>The total number of buckets that Amazon Macie wasn't able to evaluate permissions settings for. Macie can't determine whether these buckets are publicly accessible.</p>",
-        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an Key Management Service (KMS) customer master key (CMK) to encrypt new objects by default. These buckets use Amazon Web Services managed KMS encryption (AWS-KMS) or customer managed KMS encryption (SSE-KMS) by default.</p>",
+        "BucketCountByEncryptionType$KmsManaged" : " <p>The total number of buckets that use an KMS key to encrypt new objects by default, either an Amazon Web Services managed key or a customer managed key. These buckets use KMS encryption (SSE-KMS) by default.</p>",
         "BucketCountByEncryptionType$S3Managed" : "<p>The total number of buckets that use an Amazon S3 managed key to encrypt new objects by default. These buckets use Amazon S3 managed encryption (SSE-S3) by default.</p>",
         "BucketCountByEncryptionType$Unencrypted" : "<p>The total number of buckets that don't encrypt new objects by default. Default encryption is disabled for these buckets.</p>",
         "BucketCountByEncryptionType$Unknown" : "<p>The total number of buckets that Amazon Macie doesn't have current encryption metadata for. Macie can't provide current data about the default encryption settings for these buckets.</p>",
@@ -1770,7 +1777,7 @@
         "BucketMetadata$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
         "BucketMetadata$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
         "BucketMetadata$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p> <p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
-        "BucketMetadata$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the bucket.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
+        "BucketMetadata$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the bucket.</p> <p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
         "Cell$Column" : "<p>The column number of the column that contains the sensitive data. For a Microsoft Excel workbook, this value correlates to the alphabetical character(s) for a column identifier, for example: 1 for column A, 2 for column B, and so on.</p>",
         "Cell$Row" : "<p>The row number of the row that contains the sensitive data.</p>",
         "ClassificationResult$SizeClassified" : "<p>The total size, in bytes, of the data that the finding applies to.</p>",
@@ -1786,17 +1793,17 @@
         "GetBucketStatisticsResponse$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
         "GetBucketStatisticsResponse$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of all the objects that Amazon Macie can analyze in the buckets. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each applicable object in those buckets. This value doesn't reflect the storage size of all versions of all applicable objects in the buckets.</p>",
         "GetBucketStatisticsResponse$ObjectCount" : "<p>The total number of objects in the buckets.</p>",
-        "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of the buckets.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each object in those buckets. This value doesn't reflect the storage size of all versions of the objects in the buckets.</p>",
-        "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the buckets.</p> <p>If versioning is enabled for any of the buckets, Macie calculates this value based on the size of the latest version of each applicable object in those buckets. This value doesn't reflect the storage size of all versions of the applicable objects in the buckets.</p>",
+        "GetBucketStatisticsResponse$SizeInBytes" : "<p>The total storage size, in bytes, of the buckets.</p> <p>If versioning is enabled for any of the buckets, Amazon Macie calculates this value based on the size of the latest version of each object in those buckets. This value doesn't reflect the storage size of all versions of the objects in the buckets.</p>",
+        "GetBucketStatisticsResponse$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the buckets.</p> <p>If versioning is enabled for any of the buckets, Amazon Macie calculates this value based on the size of the latest version of each applicable object in those buckets. This value doesn't reflect the storage size of all versions of the applicable objects in the buckets.</p>",
         "GetInvitationsCountResponse$InvitationsCount" : "<p>The total number of invitations that were received by the account, not including the currently accepted invitation.</p>",
         "GroupCount$Count" : "<p>The total number of findings in the group of query results.</p>",
         "MatchingBucket$ClassifiableObjectCount" : "<p>The total number of objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p>",
         "MatchingBucket$ClassifiableSizeInBytes" : "<p>The total storage size, in bytes, of the objects that Amazon Macie can analyze in the bucket. These objects use a supported storage class and have a file name extension for a supported file or storage format.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
         "MatchingBucket$ObjectCount" : "<p>The total number of objects in the bucket.</p>",
         "MatchingBucket$SizeInBytes" : "<p>The total storage size, in bytes, of the bucket.</p> <p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each object in the bucket. This value doesn't reflect the storage size of all versions of each object in the bucket.</p>",
-        "MatchingBucket$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the bucket.</p> <p>If versioning is enabled for the bucket, Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
-        "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted with a customer-managed key. The objects use customer-provided server-side encryption (SSE-C).</p>",
-        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted with an Key Management Service (KMS) customer master key (CMK). The objects use Amazon Web Services managed KMS encryption (AWS-KMS) or customer managed KMS encryption (SSE-KMS).</p>",
+        "MatchingBucket$SizeInBytesCompressed" : "<p>The total storage size, in bytes, of the objects that are compressed (.gz, .gzip, .zip) files in the bucket.</p> <p>If versioning is enabled for the bucket, Amazon Macie calculates this value based on the size of the latest version of each applicable object in the bucket. This value doesn't reflect the storage size of all versions of each applicable object in the bucket.</p>",
+        "ObjectCountByEncryptionType$CustomerManaged" : "<p>The total number of objects that are encrypted with a customer-provided key. The objects use customer-provided server-side encryption (SSE-C).</p>",
+        "ObjectCountByEncryptionType$KmsManaged" : "<p>The total number of objects that are encrypted with an KMS key, either an Amazon Web Services managed key or a customer managed key. The objects use KMS encryption (SSE-KMS).</p>",
         "ObjectCountByEncryptionType$S3Managed" : "<p>The total number of objects that are encrypted with an Amazon S3 managed key. The objects use Amazon S3 managed encryption (SSE-S3).</p>",
         "ObjectCountByEncryptionType$Unencrypted" : "<p>The total number of objects that aren't encrypted or use client-side encryption.</p>",
         "ObjectCountByEncryptionType$Unknown" : "<p>The total number of objects that Amazon Macie doesn't have current encryption metadata for. Macie can't provide current data about the encryption settings for these objects.</p>",
@@ -1841,8 +1848,9 @@
         "BucketMetadata$AccountId" : "<p>The unique identifier for the Amazon Web Services account that owns the bucket.</p>",
         "BucketMetadata$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket.</p>",
         "BucketMetadata$BucketName" : "<p>The name of the bucket.</p>",
+        "BucketMetadata$ErrorMessage" : "<p>A brief description of the error (errorCode) that prevented Amazon Macie from retrieving and processing information about the bucket and the bucket's objects. This value is null if Macie was able to retrieve and process the information.</p>",
         "BucketMetadata$Region" : "<p>The Amazon Web Services Region that hosts the bucket.</p>",
-        "BucketServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the Key Management Service (KMS) customer master key (CMK) that's used by default to encrypt objects that are added to the bucket. This value is null if the bucket uses an Amazon S3 managed key to encrypt new objects or the bucket doesn't encrypt new objects by default.</p>",
+        "BucketServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the KMS key that's used by default to encrypt objects that are added to the bucket. This value is null if the bucket uses an Amazon S3 managed key to encrypt new objects or the bucket doesn't encrypt new objects by default.</p>",
         "BucketSortCriteria$AttributeName" : "<p>The name of the bucket property to sort the results by. This value can be one of the following properties that Amazon Macie defines as bucket metadata: accountId, bucketName, classifiableObjectCount, classifiableSizeInBytes, objectCount, or sizeInBytes.</p>",
         "Cell$CellReference" : "<p>The location of the cell, as an absolute cell reference, that contains the sensitive data, for example Sheet2!C5 for cell C5 on Sheet2 in a Microsoft Excel workbook. This value is null for CSV and TSV files.</p>",
         "Cell$ColumnName" : "<p>The name of the column that contains the sensitive data, if available.</p>",
@@ -1956,6 +1964,7 @@
         "ManagedDataIdentifierSummary$Id" : "<p>The unique identifier for the managed data identifier. This is a string that describes the type of sensitive data that the managed data identifier detects. For example: OPENSSH_PRIVATE_KEY for OpenSSH private keys, CREDIT_CARD_NUMBER for credit card numbers, or USA_PASSPORT_NUMBER for US passport numbers.</p>",
         "MatchingBucket$AccountId" : "<p>The unique identifier for the Amazon Web Services account that owns the bucket.</p>",
         "MatchingBucket$BucketName" : "<p>The name of the bucket.</p>",
+        "MatchingBucket$ErrorMessage" : "<p>A brief description of the error (errorCode) that prevented Amazon Macie from retrieving and processing information about the bucket and the bucket's objects. This value is null if Macie was able to retrieve and process the information.</p>",
         "Member$AccountId" : "<p>The Amazon Web Services account ID for the account.</p>",
         "Member$AdministratorAccountId" : "<p>The Amazon Web Services account ID for the administrator account.</p>",
         "Member$Arn" : "<p>The Amazon Resource Name (ARN) of the account.</p>",
@@ -1971,7 +1980,7 @@
         "S3BucketOwner$Id" : "<p>The canonical user ID for the account that owns the bucket.</p>",
         "S3Destination$BucketName" : "<p>The name of the bucket.</p>",
         "S3Destination$KeyPrefix" : "<p>The path prefix to use in the path to the location in the bucket. This prefix specifies where to store classification results in the bucket.</p>",
-        "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the Key Management Service (KMS) customer master key (CMK) to use for encryption of the results. This must be the ARN of an existing CMK that's in the same Amazon Web Services Region as the bucket.</p>",
+        "S3Destination$KmsKeyArn" : "<p>The Amazon Resource Name (ARN) of the KMS key to use for encryption of the results. This must be the ARN of an existing, symmetric, customer managed KMS key that's in the same Amazon Web Services Region as the bucket.</p>",
         "S3Object$BucketArn" : "<p>The Amazon Resource Name (ARN) of the bucket that contains the object.</p>",
         "S3Object$ETag" : "<p>The entity tag (ETag) that identifies the affected version of the object. If the object was overwritten or changed after Amazon Macie produced the finding, this value might be different from the current ETag for the object.</p>",
         "S3Object$Extension" : "<p>The file name extension of the object. If the object doesn't have a file name extension, this value is \"\".</p>",
@@ -1982,7 +1991,7 @@
         "SearchResourcesResponse$NextToken" : "<p>The string to use in a subsequent request to get the next page of results in a paginated response. This value is null if there are no additional pages.</p>",
         "SearchResourcesTagCriterionPair$Key" : "<p>The value for the tag key to use in the condition.</p>",
         "SearchResourcesTagCriterionPair$Value" : "<p>The tag value to use in the condition.</p>",
-        "ServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the Key Management Service (KMS) customer master key (CMK) that's used to encrypt data in the bucket or the object. If an KMS CMK isn't used, this value is null.</p>",
+        "ServerSideEncryption$KmsMasterKeyId" : "<p>The Amazon Resource Name (ARN) or unique identifier (key ID) for the KMS key that's used to encrypt data in the bucket or the object. This value is null if an KMS key isn't used to encrypt the data.</p>",
         "ServiceQuotaExceededException$Message" : "<p>The explanation of the error that occurred.</p>",
         "SessionIssuer$AccountId" : "<p>The unique identifier for the Amazon Web Services account that owns the entity that was used to get the credentials.</p>",
         "SessionIssuer$Arn" : "<p>The Amazon Resource Name (ARN) of the source account, IAM user, or role that was used to get the credentials.</p>",

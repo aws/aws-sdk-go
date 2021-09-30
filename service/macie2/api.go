@@ -7535,7 +7535,12 @@ func (s *BucketLevelPermissions) SetBucketPolicy(v *BucketPolicy) *BucketLevelPe
 	return s
 }
 
-// Provides information about an S3 bucket that Amazon Macie monitors and analyzes.
+// Provides statistical data and other information about an S3 bucket that Amazon
+// Macie monitors and analyzes for your account. If an error occurs when Macie
+// attempts to retrieve and process information about the bucket or the bucket's
+// objects, the value for most of these properties is null. Exceptions are accountId,
+// bucketArn, bucketCreatedAt, bucketName, lastUpdated, and region. To identify
+// the cause of the error, refer to the errorCode and errorMessage values.
 type BucketMetadata struct {
 	_ struct{} `type:"structure"`
 
@@ -7552,6 +7557,12 @@ type BucketMetadata struct {
 	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
 
 	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
+
+	// The error code for an error that prevented Amazon Macie from retrieving and
+	// processing information about an S3 bucket and the bucket's objects.
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"BucketMetadataErrorCode"`
+
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// Specifies whether any one-time or recurring classification jobs are configured
 	// to analyze data in an S3 bucket, and, if so, the details of the job that
@@ -7595,17 +7606,17 @@ type BucketMetadata struct {
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for all the buckets in the query results.
-	// If versioning is enabled for a bucket, total storage size values are based
-	// on the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for the buckets in the query results. If
+	// versioning is enabled for a bucket, total storage size values are based on
+	// the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for all the buckets in the query results.
-	// If versioning is enabled for a bucket, total storage size values are based
-	// on the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for the buckets in the query results. If
+	// versioning is enabled for a bucket, total storage size values are based on
+	// the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 
 	Versioning *bool `locationName:"versioning" type:"boolean"`
@@ -7668,6 +7679,18 @@ func (s *BucketMetadata) SetClassifiableObjectCount(v int64) *BucketMetadata {
 // SetClassifiableSizeInBytes sets the ClassifiableSizeInBytes field's value.
 func (s *BucketMetadata) SetClassifiableSizeInBytes(v int64) *BucketMetadata {
 	s.ClassifiableSizeInBytes = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *BucketMetadata) SetErrorCode(v string) *BucketMetadata {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *BucketMetadata) SetErrorMessage(v string) *BucketMetadata {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -9862,7 +9885,8 @@ func (s *DescribeBucketsInput) SetSortCriteria(v *BucketSortCriteria) *DescribeB
 }
 
 // Provides the results of a query that retrieved statistical data and other
-// information about one or more S3 buckets that Amazon Macie monitors and analyzes.
+// information about one or more S3 buckets that Amazon Macie monitors and analyzes
+// for your account.
 type DescribeBucketsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11253,7 +11277,7 @@ func (s *GetBucketStatisticsInput) SetAccountId(v string) *GetBucketStatisticsIn
 }
 
 // Provides the results of a query that retrieved aggregated statistical data
-// for all the S3 buckets that Amazon Macie monitors and analyzes for an account.
+// for all the S3 buckets that Amazon Macie monitors and analyzes for your account.
 type GetBucketStatisticsOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -11294,17 +11318,17 @@ type GetBucketStatisticsOutput struct {
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for all the buckets in the query results.
-	// If versioning is enabled for a bucket, total storage size values are based
-	// on the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for the buckets in the query results. If
+	// versioning is enabled for a bucket, total storage size values are based on
+	// the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for all the buckets in the query results.
-	// If versioning is enabled for a bucket, total storage size values are based
-	// on the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for the buckets in the query results. If
+	// versioning is enabled for a bucket, total storage size values are based on
+	// the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 }
 
@@ -14366,7 +14390,11 @@ func (s *ManagedDataIdentifierSummary) SetId(v string) *ManagedDataIdentifierSum
 }
 
 // Provides statistical data and other information about an S3 bucket that Amazon
-// Macie monitors and analyzes.
+// Macie monitors and analyzes for your account. If an error occurs when Macie
+// attempts to retrieve and process information about the bucket or the bucket's
+// objects, the value for most of these properties is null. Exceptions are accountId
+// and bucketName. To identify the cause of the error, refer to the errorCode
+// and errorMessage values.
 type MatchingBucket struct {
 	_ struct{} `type:"structure"`
 
@@ -14377,6 +14405,12 @@ type MatchingBucket struct {
 	ClassifiableObjectCount *int64 `locationName:"classifiableObjectCount" type:"long"`
 
 	ClassifiableSizeInBytes *int64 `locationName:"classifiableSizeInBytes" type:"long"`
+
+	// The error code for an error that prevented Amazon Macie from retrieving and
+	// processing information about an S3 bucket and the bucket's objects.
+	ErrorCode *string `locationName:"errorCode" type:"string" enum:"BucketMetadataErrorCode"`
+
+	ErrorMessage *string `locationName:"errorMessage" type:"string"`
 
 	// Specifies whether any one-time or recurring classification jobs are configured
 	// to analyze data in an S3 bucket, and, if so, the details of the job that
@@ -14397,17 +14431,17 @@ type MatchingBucket struct {
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for all the buckets in the query results.
-	// If versioning is enabled for a bucket, total storage size values are based
-	// on the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for the buckets in the query results. If
+	// versioning is enabled for a bucket, total storage size values are based on
+	// the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectCount *ObjectLevelStatistics `locationName:"unclassifiableObjectCount" type:"structure"`
 
 	// Provides information about the total storage size (in bytes) or number of
 	// objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 	// or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-	// object, this data is aggregated for all the buckets in the query results.
-	// If versioning is enabled for a bucket, total storage size values are based
-	// on the size of the latest version of each applicable object in the bucket.
+	// object, this data is aggregated for the buckets in the query results. If
+	// versioning is enabled for a bucket, total storage size values are based on
+	// the size of the latest version of each applicable object in the bucket.
 	UnclassifiableObjectSizeInBytes *ObjectLevelStatistics `locationName:"unclassifiableObjectSizeInBytes" type:"structure"`
 }
 
@@ -14450,6 +14484,18 @@ func (s *MatchingBucket) SetClassifiableObjectCount(v int64) *MatchingBucket {
 // SetClassifiableSizeInBytes sets the ClassifiableSizeInBytes field's value.
 func (s *MatchingBucket) SetClassifiableSizeInBytes(v int64) *MatchingBucket {
 	s.ClassifiableSizeInBytes = &v
+	return s
+}
+
+// SetErrorCode sets the ErrorCode field's value.
+func (s *MatchingBucket) SetErrorCode(v string) *MatchingBucket {
+	s.ErrorCode = &v
+	return s
+}
+
+// SetErrorMessage sets the ErrorMessage field's value.
+func (s *MatchingBucket) SetErrorMessage(v string) *MatchingBucket {
+	s.ErrorMessage = &v
 	return s
 }
 
@@ -14496,12 +14542,16 @@ func (s *MatchingBucket) SetUnclassifiableObjectSizeInBytes(v *ObjectLevelStatis
 }
 
 // Provides statistical data and other information about an Amazon Web Services
-// resource that Amazon Macie monitors and analyzes.
+// resource that Amazon Macie monitors and analyzes for your account.
 type MatchingResource struct {
 	_ struct{} `type:"structure"`
 
 	// Provides statistical data and other information about an S3 bucket that Amazon
-	// Macie monitors and analyzes.
+	// Macie monitors and analyzes for your account. If an error occurs when Macie
+	// attempts to retrieve and process information about the bucket or the bucket's
+	// objects, the value for most of these properties is null. Exceptions are accountId
+	// and bucketName. To identify the cause of the error, refer to the errorCode
+	// and errorMessage values.
 	MatchingBucket *MatchingBucket `locationName:"matchingBucket" type:"structure"`
 }
 
@@ -14729,9 +14779,9 @@ func (s *ObjectCountByEncryptionType) SetUnknown(v int64) *ObjectCountByEncrypti
 // Provides information about the total storage size (in bytes) or number of
 // objects that Amazon Macie can't analyze in one or more S3 buckets. In a BucketMetadata
 // or MatchingBucket object, this data is for a specific bucket. In a GetBucketStatisticsResponse
-// object, this data is aggregated for all the buckets in the query results.
-// If versioning is enabled for a bucket, total storage size values are based
-// on the size of the latest version of each applicable object in the bucket.
+// object, this data is aggregated for the buckets in the query results. If
+// versioning is enabled for a bucket, total storage size values are based on
+// the size of the latest version of each applicable object in the bucket.
 type ObjectLevelStatistics struct {
 	_ struct{} `type:"structure"`
 
@@ -16096,7 +16146,7 @@ func (s *SearchResourcesInput) SetSortCriteria(v *SearchResourcesSortCriteria) *
 
 // Provides the results of a query that retrieved statistical data and other
 // information about Amazon Web Services resources that Amazon Macie monitors
-// and analyzes.
+// and analyzes for your account.
 type SearchResourcesOutput struct {
 	_ struct{} `type:"structure"`
 
@@ -18564,6 +18614,20 @@ func AllowsUnencryptedObjectUploads_Values() []string {
 		AllowsUnencryptedObjectUploadsTrue,
 		AllowsUnencryptedObjectUploadsFalse,
 		AllowsUnencryptedObjectUploadsUnknown,
+	}
+}
+
+// The error code for an error that prevented Amazon Macie from retrieving and
+// processing information about an S3 bucket and the bucket's objects.
+const (
+	// BucketMetadataErrorCodeAccessDenied is a BucketMetadataErrorCode enum value
+	BucketMetadataErrorCodeAccessDenied = "ACCESS_DENIED"
+)
+
+// BucketMetadataErrorCode_Values returns all elements of the BucketMetadataErrorCode enum
+func BucketMetadataErrorCode_Values() []string {
+	return []string{
+		BucketMetadataErrorCodeAccessDenied,
 	}
 }
 

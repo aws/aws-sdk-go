@@ -127,6 +127,24 @@
         {"shape":"ResourceLimitExceededException"}
       ]
     },
+    "CreateUpdatedWorkspaceImage":{
+      "name":"CreateUpdatedWorkspaceImage",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateUpdatedWorkspaceImageRequest"},
+      "output":{"shape":"CreateUpdatedWorkspaceImageResult"},
+      "errors":[
+        {"shape":"ResourceLimitExceededException"},
+        {"shape":"ResourceAlreadyExistsException"},
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"OperationNotSupportedException"},
+        {"shape":"InvalidResourceStateException"},
+        {"shape":"AccessDeniedException"},
+        {"shape":"InvalidParameterValuesException"}
+      ]
+    },
     "CreateWorkspaceBundle":{
       "name":"CreateWorkspaceBundle",
       "http":{
@@ -1085,6 +1103,26 @@
     "CreateTagsResult":{
       "type":"structure",
       "members":{
+      }
+    },
+    "CreateUpdatedWorkspaceImageRequest":{
+      "type":"structure",
+      "required":[
+        "Name",
+        "Description",
+        "SourceImageId"
+      ],
+      "members":{
+        "Name":{"shape":"WorkspaceImageName"},
+        "Description":{"shape":"WorkspaceImageDescription"},
+        "SourceImageId":{"shape":"WorkspaceImageId"},
+        "Tags":{"shape":"TagList"}
+      }
+    },
+    "CreateUpdatedWorkspaceImageResult":{
+      "type":"structure",
+      "members":{
+        "ImageId":{"shape":"WorkspaceImageId"}
       }
     },
     "CreateWorkspaceBundleRequest":{
@@ -2210,6 +2248,19 @@
       "members":{
       }
     },
+    "UpdateDescription":{
+      "type":"string",
+      "max":255,
+      "min":1,
+      "pattern":"^[a-zA-Z0-9_./() -]+$"
+    },
+    "UpdateResult":{
+      "type":"structure",
+      "members":{
+        "UpdateAvailable":{"shape":"BooleanObject"},
+        "Description":{"shape":"UpdateDescription"}
+      }
+    },
     "UpdateRulesOfIpGroupRequest":{
       "type":"structure",
       "required":[
@@ -2414,7 +2465,8 @@
         "ErrorCode":{"shape":"WorkspaceImageErrorCode"},
         "ErrorMessage":{"shape":"Description"},
         "Created":{"shape":"Timestamp"},
-        "OwnerAccountId":{"shape":"AwsAccount"}
+        "OwnerAccountId":{"shape":"AwsAccount"},
+        "Updates":{"shape":"UpdateResult"}
       }
     },
     "WorkspaceImageDescription":{

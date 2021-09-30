@@ -863,6 +863,9 @@ func (c *NetworkFirewall) DeleteResourcePolicyRequest(input *DeleteResourcePolic
 //   * ThrottlingException
 //   Unable to process the request due to throttling limitations.
 //
+//   * InvalidResourcePolicyException
+//   The policy statement failed validation.
+//
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/DeleteResourcePolicy
 func (c *NetworkFirewall) DeleteResourcePolicy(input *DeleteResourcePolicyInput) (*DeleteResourcePolicyOutput, error) {
 	req, out := c.DeleteResourcePolicyRequest(input)
@@ -2299,6 +2302,7 @@ func (c *NetworkFirewall) PutResourcePolicyRequest(input *PutResourcePolicyInput
 //   Unable to process the request due to throttling limitations.
 //
 //   * InvalidResourcePolicyException
+//   The policy statement failed validation.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/PutResourcePolicy
 func (c *NetworkFirewall) PutResourcePolicy(input *PutResourcePolicyInput) (*PutResourcePolicyOutput, error) {
@@ -2600,6 +2604,7 @@ func (c *NetworkFirewall) UpdateFirewallDeleteProtectionRequest(input *UpdateFir
 //   The token you provided is stale or isn't valid for the operation.
 //
 //   * ResourceOwnerCheckException
+//   Unable to change the resource because your account doesn't own it.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/UpdateFirewallDeleteProtection
 func (c *NetworkFirewall) UpdateFirewallDeleteProtection(input *UpdateFirewallDeleteProtectionInput) (*UpdateFirewallDeleteProtectionOutput, error) {
@@ -2901,6 +2906,7 @@ func (c *NetworkFirewall) UpdateFirewallPolicyChangeProtectionRequest(input *Upd
 //   The token you provided is stale or isn't valid for the operation.
 //
 //   * ResourceOwnerCheckException
+//   Unable to change the resource because your account doesn't own it.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/UpdateFirewallPolicyChangeProtection
 func (c *NetworkFirewall) UpdateFirewallPolicyChangeProtection(input *UpdateFirewallPolicyChangeProtectionInput) (*UpdateFirewallPolicyChangeProtectionOutput, error) {
@@ -3231,6 +3237,7 @@ func (c *NetworkFirewall) UpdateSubnetChangeProtectionRequest(input *UpdateSubne
 //   The token you provided is stale or isn't valid for the operation.
 //
 //   * ResourceOwnerCheckException
+//   Unable to change the resource because your account doesn't own it.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/network-firewall-2020-11-12/UpdateSubnetChangeProtection
 func (c *NetworkFirewall) UpdateSubnetChangeProtection(input *UpdateSubnetChangeProtectionInput) (*UpdateSubnetChangeProtectionOutput, error) {
@@ -5938,7 +5945,15 @@ func (s *FirewallMetadata) SetFirewallName(v string) *FirewallMetadata {
 type FirewallPolicy struct {
 	_ struct{} `type:"structure"`
 
-	// References to the stateless rule groups that are used in the policy. These
+	// The default actions to take on a packet that doesn't match any stateful rules.
+	StatefulDefaultActions []*string `type:"list"`
+
+	// Additional options governing how Network Firewall handles stateful rules.
+	// The stateful rule groups that you use in your policy must have stateful rule
+	// options settings that are compatible with these settings.
+	StatefulEngineOptions *StatefulEngineOptions `type:"structure"`
+
+	// References to the stateful rule groups that are used in the policy. These
 	// define the inspection criteria in stateful rules.
 	StatefulRuleGroupReferences []*StatefulRuleGroupReference `type:"list"`
 
@@ -6048,6 +6063,18 @@ func (s *FirewallPolicy) Validate() error {
 	return nil
 }
 
+// SetStatefulDefaultActions sets the StatefulDefaultActions field's value.
+func (s *FirewallPolicy) SetStatefulDefaultActions(v []*string) *FirewallPolicy {
+	s.StatefulDefaultActions = v
+	return s
+}
+
+// SetStatefulEngineOptions sets the StatefulEngineOptions field's value.
+func (s *FirewallPolicy) SetStatefulEngineOptions(v *StatefulEngineOptions) *FirewallPolicy {
+	s.StatefulEngineOptions = v
+	return s
+}
+
 // SetStatefulRuleGroupReferences sets the StatefulRuleGroupReferences field's value.
 func (s *FirewallPolicy) SetStatefulRuleGroupReferences(v []*StatefulRuleGroupReference) *FirewallPolicy {
 	s.StatefulRuleGroupReferences = v
@@ -6129,6 +6156,14 @@ func (s *FirewallPolicyMetadata) SetName(v string) *FirewallPolicyMetadata {
 type FirewallPolicyResponse struct {
 	_ struct{} `type:"structure"`
 
+	// The number of capacity units currently consumed by the policy's stateful
+	// rules.
+	ConsumedStatefulRuleCapacity *int64 `type:"integer"`
+
+	// The number of capacity units currently consumed by the policy's stateless
+	// rules.
+	ConsumedStatelessRuleCapacity *int64 `type:"integer"`
+
 	// A description of the firewall policy.
 	Description *string `type:"string"`
 
@@ -6156,6 +6191,9 @@ type FirewallPolicyResponse struct {
 	// name or ARN.
 	FirewallPolicyStatus *string `type:"string" enum:"ResourceStatus"`
 
+	// The number of firewalls that are associated with this firewall policy.
+	NumberOfAssociations *int64 `type:"integer"`
+
 	// The key:value pairs to associate with the resource.
 	Tags []*Tag `min:"1" type:"list"`
 }
@@ -6176,6 +6214,18 @@ func (s FirewallPolicyResponse) String() string {
 // value will be replaced with "sensitive".
 func (s FirewallPolicyResponse) GoString() string {
 	return s.String()
+}
+
+// SetConsumedStatefulRuleCapacity sets the ConsumedStatefulRuleCapacity field's value.
+func (s *FirewallPolicyResponse) SetConsumedStatefulRuleCapacity(v int64) *FirewallPolicyResponse {
+	s.ConsumedStatefulRuleCapacity = &v
+	return s
+}
+
+// SetConsumedStatelessRuleCapacity sets the ConsumedStatelessRuleCapacity field's value.
+func (s *FirewallPolicyResponse) SetConsumedStatelessRuleCapacity(v int64) *FirewallPolicyResponse {
+	s.ConsumedStatelessRuleCapacity = &v
+	return s
 }
 
 // SetDescription sets the Description field's value.
@@ -6205,6 +6255,12 @@ func (s *FirewallPolicyResponse) SetFirewallPolicyName(v string) *FirewallPolicy
 // SetFirewallPolicyStatus sets the FirewallPolicyStatus field's value.
 func (s *FirewallPolicyResponse) SetFirewallPolicyStatus(v string) *FirewallPolicyResponse {
 	s.FirewallPolicyStatus = &v
+	return s
+}
+
+// SetNumberOfAssociations sets the NumberOfAssociations field's value.
+func (s *FirewallPolicyResponse) SetNumberOfAssociations(v int64) *FirewallPolicyResponse {
+	s.NumberOfAssociations = &v
 	return s
 }
 
@@ -6288,9 +6344,9 @@ func (s *FirewallStatus) SetSyncStates(v map[string]*SyncState) *FirewallStatus 
 	return s
 }
 
-// The 5-tuple criteria for AWS Network Firewall to use to inspect packet headers
-// in stateful traffic flow inspection. Traffic flows that match the criteria
-// are a match for the corresponding StatefulRule.
+// The basic rule criteria for AWS Network Firewall to use to inspect packet
+// headers in stateful traffic flow inspection. Traffic flows that match the
+// criteria are a match for the corresponding StatefulRule.
 type Header struct {
 	_ struct{} `type:"structure"`
 
@@ -6316,7 +6372,7 @@ type Header struct {
 	Destination *string `min:"1" type:"string" required:"true"`
 
 	// The destination port to inspect for. You can specify an individual port,
-	// for example 1994 and you can specify a port range, for example 1990-1994.
+	// for example 1994 and you can specify a port range, for example 1990:1994.
 	// To match with any port, specify ANY.
 	//
 	// DestinationPort is a required field
@@ -6358,7 +6414,7 @@ type Header struct {
 	Source *string `min:"1" type:"string" required:"true"`
 
 	// The source port to inspect for. You can specify an individual port, for example
-	// 1994 and you can specify a port range, for example 1990-1994. To match with
+	// 1994 and you can specify a port range, for example 1990:1994. To match with
 	// any port, specify ANY.
 	//
 	// SourcePort is a required field
@@ -6774,6 +6830,7 @@ func (s *InvalidRequestException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// The policy statement failed validation.
 type InvalidResourcePolicyException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -7663,7 +7720,7 @@ type MatchAttributes struct {
 	// 17 (UDP).
 	//
 	// You can specify individual ports, for example 1994 and you can specify port
-	// ranges, for example 1990-1994.
+	// ranges, for example 1990:1994.
 	DestinationPorts []*PortRange `type:"list"`
 
 	// The destination IP addresses and address ranges to inspect for, in CIDR notation.
@@ -7678,7 +7735,7 @@ type MatchAttributes struct {
 	// source port. This setting is only used for protocols 6 (TCP) and 17 (UDP).
 	//
 	// You can specify individual ports, for example 1994 and you can specify port
-	// ranges, for example 1990-1994.
+	// ranges, for example 1990:1994.
 	SourcePorts []*PortRange `type:"list"`
 
 	// The source IP addresses and address ranges to inspect for, in CIDR notation.
@@ -8187,6 +8244,7 @@ func (s *ResourceNotFoundException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
+// Unable to change the resource because your account doesn't own it.
 type ResourceOwnerCheckException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -8371,6 +8429,11 @@ type RuleGroup struct {
 	//
 	// RulesSource is a required field
 	RulesSource *RulesSource `type:"structure" required:"true"`
+
+	// Additional options governing how Network Firewall handles stateful rules.
+	// The policies where you use your stateful rule group must have stateful rule
+	// options settings that are compatible with these settings.
+	StatefulRuleOptions *StatefulRuleOptions `type:"structure"`
 }
 
 // String returns the string representation.
@@ -8423,6 +8486,12 @@ func (s *RuleGroup) SetRuleVariables(v *RuleVariables) *RuleGroup {
 // SetRulesSource sets the RulesSource field's value.
 func (s *RuleGroup) SetRulesSource(v *RulesSource) *RuleGroup {
 	s.RulesSource = v
+	return s
+}
+
+// SetStatefulRuleOptions sets the StatefulRuleOptions field's value.
+func (s *RuleGroup) SetStatefulRuleOptions(v *StatefulRuleOptions) *RuleGroup {
+	s.StatefulRuleOptions = v
 	return s
 }
 
@@ -8485,8 +8554,14 @@ type RuleGroupResponse struct {
 	// you create the rule group by calling CreateRuleGroup with DryRun set to TRUE.
 	Capacity *int64 `type:"integer"`
 
+	// The number of capacity units currently consumed by the rule group rules.
+	ConsumedCapacity *int64 `type:"integer"`
+
 	// A description of the rule group.
 	Description *string `type:"string"`
+
+	// The number of firewall policies that use this rule group.
+	NumberOfAssociations *int64 `type:"integer"`
 
 	// The Amazon Resource Name (ARN) of the rule group.
 	//
@@ -8543,9 +8618,21 @@ func (s *RuleGroupResponse) SetCapacity(v int64) *RuleGroupResponse {
 	return s
 }
 
+// SetConsumedCapacity sets the ConsumedCapacity field's value.
+func (s *RuleGroupResponse) SetConsumedCapacity(v int64) *RuleGroupResponse {
+	s.ConsumedCapacity = &v
+	return s
+}
+
 // SetDescription sets the Description field's value.
 func (s *RuleGroupResponse) SetDescription(v string) *RuleGroupResponse {
 	s.Description = &v
+	return s
+}
+
+// SetNumberOfAssociations sets the NumberOfAssociations field's value.
+func (s *RuleGroupResponse) SetNumberOfAssociations(v int64) *RuleGroupResponse {
+	s.NumberOfAssociations = &v
 	return s
 }
 
@@ -8722,8 +8809,10 @@ type RulesSource struct {
 	// action setting.
 	RulesString *string `type:"string"`
 
-	// The 5-tuple stateful inspection criteria. This contains an array of individual
-	// 5-tuple stateful rules to be used together in a stateful rule group.
+	// An array of individual stateful rules inspection criteria to be used together
+	// in a stateful rule group. Use this option to specify simple Suricata rules
+	// with protocol, source and destination, ports, direction, and rule options.
+	// For information about the Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/en/suricata-5.0.0/rules/intro.html#).
 	StatefulRules []*StatefulRule `type:"list"`
 
 	// Stateless inspection criteria to be used in a stateless rule group.
@@ -8813,7 +8902,7 @@ func (s *RulesSource) SetStatelessRulesAndCustomActions(v *StatelessRulesAndCust
 // to include the CIDR range of the deployment VPC plus the other CIDR ranges.
 // For more information, see RuleVariables in this guide and Stateful domain
 // list rule groups in AWS Network Firewall (https://docs.aws.amazon.com/network-firewall/latest/developerguide/stateful-rule-groups-domain-names.html)
-// in the Network Firewall Developer Guide
+// in the Network Firewall Developer Guide.
 type RulesSourceList struct {
 	_ struct{} `type:"structure"`
 
@@ -8822,7 +8911,7 @@ type RulesSourceList struct {
 	// GeneratedRulesType is a required field
 	GeneratedRulesType *string `type:"string" required:"true" enum:"GeneratedRulesType"`
 
-	// The protocols you want to inspect. Specify TLS_SNI for HTTPS. Specity HTTP_HOST
+	// The protocols you want to inspect. Specify TLS_SNI for HTTPS. Specify HTTP_HOST
 	// for HTTP. You can specify either or both.
 	//
 	// TargetTypes is a required field
@@ -8898,7 +8987,49 @@ func (s *RulesSourceList) SetTargets(v []*string) *RulesSourceList {
 	return s
 }
 
-// A single 5-tuple stateful rule, for use in a stateful rule group.
+// Configuration settings for the handling of the stateful rule groups in a
+// firewall policy.
+type StatefulEngineOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates how to manage the order of stateful rule evaluation for the policy.
+	// By default, Network Firewall leaves the rule evaluation order up to the Suricata
+	// rule processing engine. If you set this to STRICT_ORDER, your rules are evaluated
+	// in the exact order that you provide them in the policy. With strict ordering,
+	// the rule groups are evaluated by order of priority, starting from the lowest
+	// number, and the rules in each rule group are processed in the order that
+	// they're defined.
+	RuleOrder *string `type:"string" enum:"RuleOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatefulEngineOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatefulEngineOptions) GoString() string {
+	return s.String()
+}
+
+// SetRuleOrder sets the RuleOrder field's value.
+func (s *StatefulEngineOptions) SetRuleOrder(v string) *StatefulEngineOptions {
+	s.RuleOrder = &v
+	return s
+}
+
+// A single Suricata rules specification, for use in a stateful rule group.
+// Use this option to specify a simple Suricata rule with protocol, source and
+// destination, ports, direction, and rule options. For information about the
+// Suricata Rules format, see Rules Format (https://suricata.readthedocs.io/en/suricata-5.0.0/rules/intro.html#).
 type StatefulRule struct {
 	_ struct{} `type:"structure"`
 
@@ -8924,12 +9055,13 @@ type StatefulRule struct {
 	// Action is a required field
 	Action *string `type:"string" required:"true" enum:"StatefulAction"`
 
-	// The stateful 5-tuple inspection criteria for this rule, used to inspect traffic
-	// flows.
+	// The stateful inspection criteria for this rule, used to inspect traffic flows.
 	//
 	// Header is a required field
 	Header *Header `type:"structure" required:"true"`
 
+	// Additional options for the rule. These are the Suricata RuleOptions settings.
+	//
 	// RuleOptions is a required field
 	RuleOptions []*RuleOption `type:"list" required:"true"`
 }
@@ -9009,6 +9141,20 @@ func (s *StatefulRule) SetRuleOptions(v []*RuleOption) *StatefulRule {
 type StatefulRuleGroupReference struct {
 	_ struct{} `type:"structure"`
 
+	// An integer setting that indicates the order in which to run the stateful
+	// rule groups in a single FirewallPolicy. This setting only applies to firewall
+	// policies that specify the STRICT_ORDER rule order in the stateful engine
+	// options settings.
+	//
+	// Network Firewall evalutes each stateful rule group against a packet starting
+	// with the group that has the lowest priority setting. You must ensure that
+	// the priority settings are unique within each policy.
+	//
+	// You can change the priority settings of your rule groups at any time. To
+	// make it easier to insert rule groups later, number them so there's a wide
+	// range in between, for example use 100, 200, and so on.
+	Priority *int64 `min:"1" type:"integer"`
+
 	// The Amazon Resource Name (ARN) of the stateful rule group.
 	//
 	// ResourceArn is a required field
@@ -9036,6 +9182,9 @@ func (s StatefulRuleGroupReference) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *StatefulRuleGroupReference) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "StatefulRuleGroupReference"}
+	if s.Priority != nil && *s.Priority < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("Priority", 1))
+	}
 	if s.ResourceArn == nil {
 		invalidParams.Add(request.NewErrParamRequired("ResourceArn"))
 	}
@@ -9049,9 +9198,51 @@ func (s *StatefulRuleGroupReference) Validate() error {
 	return nil
 }
 
+// SetPriority sets the Priority field's value.
+func (s *StatefulRuleGroupReference) SetPriority(v int64) *StatefulRuleGroupReference {
+	s.Priority = &v
+	return s
+}
+
 // SetResourceArn sets the ResourceArn field's value.
 func (s *StatefulRuleGroupReference) SetResourceArn(v string) *StatefulRuleGroupReference {
 	s.ResourceArn = &v
+	return s
+}
+
+// Additional options governing how Network Firewall handles the rule group.
+// You can only use these for stateful rule groups.
+type StatefulRuleOptions struct {
+	_ struct{} `type:"structure"`
+
+	// Indicates how to manage the order of the rule evaluation for the rule group.
+	// By default, Network Firewall leaves the rule evaluation order up to the Suricata
+	// rule processing engine. If you set this to STRICT_ORDER, your rules are evaluated
+	// in the exact order that they're listed in your Suricata rules string.
+	RuleOrder *string `type:"string" enum:"RuleOrder"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatefulRuleOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s StatefulRuleOptions) GoString() string {
+	return s.String()
+}
+
+// SetRuleOrder sets the RuleOrder field's value.
+func (s *StatefulRuleOptions) SetRuleOrder(v string) *StatefulRuleOptions {
+	s.RuleOrder = &v
 	return s
 }
 
@@ -9059,10 +9250,10 @@ func (s *StatefulRuleGroupReference) SetResourceArn(v string) *StatefulRuleGroup
 type StatelessRule struct {
 	_ struct{} `type:"structure"`
 
-	// A setting that indicates the order in which to run this rule relative to
-	// all of the rules that are defined for a stateless rule group. Network Firewall
-	// evaluates the rules in a rule group starting with the lowest priority setting.
-	// You must ensure that the priority settings are unique for the rule group.
+	// Indicates the order in which to run this rule relative to all of the rules
+	// that are defined for a stateless rule group. Network Firewall evaluates the
+	// rules in a rule group starting with the lowest priority setting. You must
+	// ensure that the priority settings are unique for the rule group.
 	//
 	// Each stateless rule group uses exactly one StatelessRulesAndCustomActions
 	// object, and each StatelessRulesAndCustomActions contains exactly one StatelessRules
@@ -11239,6 +11430,22 @@ func RuleGroupType_Values() []string {
 	return []string{
 		RuleGroupTypeStateless,
 		RuleGroupTypeStateful,
+	}
+}
+
+const (
+	// RuleOrderDefaultActionOrder is a RuleOrder enum value
+	RuleOrderDefaultActionOrder = "DEFAULT_ACTION_ORDER"
+
+	// RuleOrderStrictOrder is a RuleOrder enum value
+	RuleOrderStrictOrder = "STRICT_ORDER"
+)
+
+// RuleOrder_Values returns all elements of the RuleOrder enum
+func RuleOrder_Values() []string {
+	return []string{
+		RuleOrderDefaultActionOrder,
+		RuleOrderStrictOrder,
 	}
 }
 

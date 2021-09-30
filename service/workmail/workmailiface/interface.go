@@ -112,6 +112,10 @@ type WorkMailAPI interface {
 	DeleteMailboxPermissionsWithContext(aws.Context, *workmail.DeleteMailboxPermissionsInput, ...request.Option) (*workmail.DeleteMailboxPermissionsOutput, error)
 	DeleteMailboxPermissionsRequest(*workmail.DeleteMailboxPermissionsInput) (*request.Request, *workmail.DeleteMailboxPermissionsOutput)
 
+	DeleteMobileDeviceAccessOverride(*workmail.DeleteMobileDeviceAccessOverrideInput) (*workmail.DeleteMobileDeviceAccessOverrideOutput, error)
+	DeleteMobileDeviceAccessOverrideWithContext(aws.Context, *workmail.DeleteMobileDeviceAccessOverrideInput, ...request.Option) (*workmail.DeleteMobileDeviceAccessOverrideOutput, error)
+	DeleteMobileDeviceAccessOverrideRequest(*workmail.DeleteMobileDeviceAccessOverrideInput) (*request.Request, *workmail.DeleteMobileDeviceAccessOverrideOutput)
+
 	DeleteMobileDeviceAccessRule(*workmail.DeleteMobileDeviceAccessRuleInput) (*workmail.DeleteMobileDeviceAccessRuleOutput, error)
 	DeleteMobileDeviceAccessRuleWithContext(aws.Context, *workmail.DeleteMobileDeviceAccessRuleInput, ...request.Option) (*workmail.DeleteMobileDeviceAccessRuleOutput, error)
 	DeleteMobileDeviceAccessRuleRequest(*workmail.DeleteMobileDeviceAccessRuleInput) (*request.Request, *workmail.DeleteMobileDeviceAccessRuleOutput)
@@ -180,6 +184,10 @@ type WorkMailAPI interface {
 	GetMobileDeviceAccessEffectWithContext(aws.Context, *workmail.GetMobileDeviceAccessEffectInput, ...request.Option) (*workmail.GetMobileDeviceAccessEffectOutput, error)
 	GetMobileDeviceAccessEffectRequest(*workmail.GetMobileDeviceAccessEffectInput) (*request.Request, *workmail.GetMobileDeviceAccessEffectOutput)
 
+	GetMobileDeviceAccessOverride(*workmail.GetMobileDeviceAccessOverrideInput) (*workmail.GetMobileDeviceAccessOverrideOutput, error)
+	GetMobileDeviceAccessOverrideWithContext(aws.Context, *workmail.GetMobileDeviceAccessOverrideInput, ...request.Option) (*workmail.GetMobileDeviceAccessOverrideOutput, error)
+	GetMobileDeviceAccessOverrideRequest(*workmail.GetMobileDeviceAccessOverrideInput) (*request.Request, *workmail.GetMobileDeviceAccessOverrideOutput)
+
 	ListAccessControlRules(*workmail.ListAccessControlRulesInput) (*workmail.ListAccessControlRulesOutput, error)
 	ListAccessControlRulesWithContext(aws.Context, *workmail.ListAccessControlRulesInput, ...request.Option) (*workmail.ListAccessControlRulesOutput, error)
 	ListAccessControlRulesRequest(*workmail.ListAccessControlRulesInput) (*request.Request, *workmail.ListAccessControlRulesOutput)
@@ -218,6 +226,13 @@ type WorkMailAPI interface {
 
 	ListMailboxPermissionsPages(*workmail.ListMailboxPermissionsInput, func(*workmail.ListMailboxPermissionsOutput, bool) bool) error
 	ListMailboxPermissionsPagesWithContext(aws.Context, *workmail.ListMailboxPermissionsInput, func(*workmail.ListMailboxPermissionsOutput, bool) bool, ...request.Option) error
+
+	ListMobileDeviceAccessOverrides(*workmail.ListMobileDeviceAccessOverridesInput) (*workmail.ListMobileDeviceAccessOverridesOutput, error)
+	ListMobileDeviceAccessOverridesWithContext(aws.Context, *workmail.ListMobileDeviceAccessOverridesInput, ...request.Option) (*workmail.ListMobileDeviceAccessOverridesOutput, error)
+	ListMobileDeviceAccessOverridesRequest(*workmail.ListMobileDeviceAccessOverridesInput) (*request.Request, *workmail.ListMobileDeviceAccessOverridesOutput)
+
+	ListMobileDeviceAccessOverridesPages(*workmail.ListMobileDeviceAccessOverridesInput, func(*workmail.ListMobileDeviceAccessOverridesOutput, bool) bool) error
+	ListMobileDeviceAccessOverridesPagesWithContext(aws.Context, *workmail.ListMobileDeviceAccessOverridesInput, func(*workmail.ListMobileDeviceAccessOverridesOutput, bool) bool, ...request.Option) error
 
 	ListMobileDeviceAccessRules(*workmail.ListMobileDeviceAccessRulesInput) (*workmail.ListMobileDeviceAccessRulesOutput, error)
 	ListMobileDeviceAccessRulesWithContext(aws.Context, *workmail.ListMobileDeviceAccessRulesInput, ...request.Option) (*workmail.ListMobileDeviceAccessRulesOutput, error)
@@ -262,6 +277,10 @@ type WorkMailAPI interface {
 	PutMailboxPermissions(*workmail.PutMailboxPermissionsInput) (*workmail.PutMailboxPermissionsOutput, error)
 	PutMailboxPermissionsWithContext(aws.Context, *workmail.PutMailboxPermissionsInput, ...request.Option) (*workmail.PutMailboxPermissionsOutput, error)
 	PutMailboxPermissionsRequest(*workmail.PutMailboxPermissionsInput) (*request.Request, *workmail.PutMailboxPermissionsOutput)
+
+	PutMobileDeviceAccessOverride(*workmail.PutMobileDeviceAccessOverrideInput) (*workmail.PutMobileDeviceAccessOverrideOutput, error)
+	PutMobileDeviceAccessOverrideWithContext(aws.Context, *workmail.PutMobileDeviceAccessOverrideInput, ...request.Option) (*workmail.PutMobileDeviceAccessOverrideOutput, error)
+	PutMobileDeviceAccessOverrideRequest(*workmail.PutMobileDeviceAccessOverrideInput) (*request.Request, *workmail.PutMobileDeviceAccessOverrideOutput)
 
 	PutRetentionPolicy(*workmail.PutRetentionPolicyInput) (*workmail.PutRetentionPolicyOutput, error)
 	PutRetentionPolicyWithContext(aws.Context, *workmail.PutRetentionPolicyInput, ...request.Option) (*workmail.PutRetentionPolicyOutput, error)
