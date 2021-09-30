@@ -6053,6 +6053,10 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6061,11 +6065,12 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><Name>foo</Name><Description>bar</Description></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService1ProtocolTestBasicXMLSerializationCase2(t *testing.T) {
@@ -6082,6 +6087,10 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6090,11 +6099,12 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase2(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><Name>foo</Name><Description>bar</Description></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService1ProtocolTestBasicXMLSerializationCase3(t *testing.T) {
@@ -6108,12 +6118,13 @@ func TestInputService1ProtocolTestBasicXMLSerializationCase3(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
@@ -6132,6 +6143,10 @@ func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6140,11 +6155,12 @@ func TestInputService2ProtocolTestSerializeOtherScalarTypesCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><First>true</First><Second>false</Second><Third>1.2</Third><Fourth>3</Fourth></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService3ProtocolTestNestedStructuresCase1(t *testing.T) {
@@ -6164,6 +6180,10 @@ func TestInputService3ProtocolTestNestedStructuresCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6172,11 +6192,12 @@ func TestInputService3ProtocolTestNestedStructuresCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><SubStructure><Foo>a</Foo><Bar>b</Bar></SubStructure><Description>baz</Description></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService3ProtocolTestNestedStructuresCase2(t *testing.T) {
@@ -6195,6 +6216,10 @@ func TestInputService3ProtocolTestNestedStructuresCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6203,11 +6228,12 @@ func TestInputService3ProtocolTestNestedStructuresCase2(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><SubStructure><Foo>a</Foo></SubStructure><Description>baz</Description></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService4ProtocolTestNestedStructuresCase1(t *testing.T) {
@@ -6224,6 +6250,10 @@ func TestInputService4ProtocolTestNestedStructuresCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6232,11 +6262,12 @@ func TestInputService4ProtocolTestNestedStructuresCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><SubStructure /><Description>baz</Description></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService5ProtocolTestNonFlattenedListsCase1(t *testing.T) {
@@ -6256,6 +6287,10 @@ func TestInputService5ProtocolTestNonFlattenedListsCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6264,11 +6299,12 @@ func TestInputService5ProtocolTestNonFlattenedListsCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><ListParam><member>one</member><member>two</member><member>three</member></ListParam></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService6ProtocolTestNonFlattenedListsWithLocationNameCase1(t *testing.T) {
@@ -6288,6 +6324,10 @@ func TestInputService6ProtocolTestNonFlattenedListsWithLocationNameCase1(t *test
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6296,11 +6336,12 @@ func TestInputService6ProtocolTestNonFlattenedListsWithLocationNameCase1(t *test
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><AlternateName><NotMember>one</NotMember><NotMember>two</NotMember><NotMember>three</NotMember></AlternateName></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService7ProtocolTestFlattenedListsCase1(t *testing.T) {
@@ -6320,6 +6361,10 @@ func TestInputService7ProtocolTestFlattenedListsCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6328,11 +6373,12 @@ func TestInputService7ProtocolTestFlattenedListsCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><ListParam>one</ListParam><ListParam>two</ListParam><ListParam>three</ListParam></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService8ProtocolTestFlattenedListsWithLocationNameCase1(t *testing.T) {
@@ -6352,6 +6398,10 @@ func TestInputService8ProtocolTestFlattenedListsWithLocationNameCase1(t *testing
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6360,11 +6410,12 @@ func TestInputService8ProtocolTestFlattenedListsWithLocationNameCase1(t *testing
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><item>one</item><item>two</item><item>three</item></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService9ProtocolTestListOfStructuresCase1(t *testing.T) {
@@ -6390,6 +6441,10 @@ func TestInputService9ProtocolTestListOfStructuresCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6398,11 +6453,12 @@ func TestInputService9ProtocolTestListOfStructuresCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><item><value>one</value></item><item><value>two</value></item><item><value>three</value></item></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService10ProtocolTestBlobShapesCase1(t *testing.T) {
@@ -6420,6 +6476,10 @@ func TestInputService10ProtocolTestBlobShapesCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6428,11 +6488,12 @@ func TestInputService10ProtocolTestBlobShapesCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><StructureParam><b>Zm9v</b></StructureParam></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService11ProtocolTestTimestampShapesCase1(t *testing.T) {
@@ -6456,6 +6517,10 @@ func TestInputService11ProtocolTestTimestampShapesCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6464,20 +6529,23 @@ func TestInputService11ProtocolTestTimestampShapesCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<TimestampStructure xmlns="https://foo/"><TimeArg>2015-01-25T08:00:00Z</TimeArg><TimeCustom>Sun, 25 Jan 2015 08:00:00 GMT</TimeCustom><TimeFormat>Sun, 25 Jan 2015 08:00:00 GMT</TimeFormat></TimestampStructure>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/hostedzone?TimeQuery=2015-01-25T08%3A00%3A00Z&TimeCustomQuery=1422172800&TimeFormatQuery=1422172800", r.URL.String())
 
 	// assert headers
 	if e, a := "Sun, 25 Jan 2015 08:00:00 GMT", r.Header.Get("x-amz-timearg"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect x-amz-timearg %v header value, got %v", e, a)
 	}
 	if e, a := "1422172800", r.Header.Get("x-amz-timecustom-header"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect x-amz-timecustom-header %v header value, got %v", e, a)
 	}
 	if e, a := "1422172800", r.Header.Get("x-amz-timeformat-header"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect x-amz-timeformat-header %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService12ProtocolTestHeaderMapsCase1(t *testing.T) {
@@ -6496,18 +6564,21 @@ func TestInputService12ProtocolTestHeaderMapsCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "b", r.Header.Get("x-foo-a"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect x-foo-a %v header value, got %v", e, a)
 	}
 	if e, a := "d", r.Header.Get("x-foo-c"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect x-foo-c %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService13ProtocolTestQuerystringListOfStringsCase1(t *testing.T) {
@@ -6526,12 +6597,13 @@ func TestInputService13ProtocolTestQuerystringListOfStringsCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path?item=value1&item=value2", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService14ProtocolTestStringToStringMapsInQuerystringCase1(t *testing.T) {
@@ -6551,12 +6623,13 @@ func TestInputService14ProtocolTestStringToStringMapsInQuerystringCase1(t *testi
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/jobsByPipeline/foo?bar=baz&fizz=buzz", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService15ProtocolTestStringToStringListMapsInQuerystringCase1(t *testing.T) {
@@ -6582,12 +6655,13 @@ func TestInputService15ProtocolTestStringToStringListMapsInQuerystringCase1(t *t
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/2014-01-01/jobsByPipeline/id?foo=bar&foo=baz&fizz=buzz&fizz=pop", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService16ProtocolTestBooleanInQuerystringCase1(t *testing.T) {
@@ -6603,12 +6677,13 @@ func TestInputService16ProtocolTestBooleanInQuerystringCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path?bool-query=true", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService16ProtocolTestBooleanInQuerystringCase2(t *testing.T) {
@@ -6624,12 +6699,13 @@ func TestInputService16ProtocolTestBooleanInQuerystringCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path?bool-query=false", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService17ProtocolTestStringPayloadCase1(t *testing.T) {
@@ -6645,6 +6721,10 @@ func TestInputService17ProtocolTestStringPayloadCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6655,11 +6735,12 @@ func TestInputService17ProtocolTestStringPayloadCase1(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService18ProtocolTestBlobPayloadCase1(t *testing.T) {
@@ -6675,6 +6756,10 @@ func TestInputService18ProtocolTestBlobPayloadCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6685,11 +6770,12 @@ func TestInputService18ProtocolTestBlobPayloadCase1(t *testing.T) {
 		t.Errorf("expect %v, got %v", e, a)
 	}
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService18ProtocolTestBlobPayloadCase2(t *testing.T) {
@@ -6703,12 +6789,13 @@ func TestInputService18ProtocolTestBlobPayloadCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService19ProtocolTestStructurePayloadCase1(t *testing.T) {
@@ -6726,6 +6813,10 @@ func TestInputService19ProtocolTestStructurePayloadCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6734,11 +6825,12 @@ func TestInputService19ProtocolTestStructurePayloadCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<foo><baz>bar</baz></foo>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService19ProtocolTestStructurePayloadCase2(t *testing.T) {
@@ -6752,12 +6844,13 @@ func TestInputService19ProtocolTestStructurePayloadCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService19ProtocolTestStructurePayloadCase3(t *testing.T) {
@@ -6773,6 +6866,10 @@ func TestInputService19ProtocolTestStructurePayloadCase3(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6781,11 +6878,12 @@ func TestInputService19ProtocolTestStructurePayloadCase3(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<foo />`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService19ProtocolTestStructurePayloadCase4(t *testing.T) {
@@ -6799,12 +6897,13 @@ func TestInputService19ProtocolTestStructurePayloadCase4(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService20ProtocolTestXMLAttributeCase1(t *testing.T) {
@@ -6825,6 +6924,10 @@ func TestInputService20ProtocolTestXMLAttributeCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6833,11 +6936,12 @@ func TestInputService20ProtocolTestXMLAttributeCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<Grant><Grantee xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="CanonicalUser"><EmailAddress>foo@example.com</EmailAddress></Grantee></Grant>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService21ProtocolTestGreedyKeysCase1(t *testing.T) {
@@ -6854,12 +6958,13 @@ func TestInputService21ProtocolTestGreedyKeysCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/my%2Fbucket/testing%20/123", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService22ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsCase1(t *testing.T) {
@@ -6873,12 +6978,13 @@ func TestInputService22ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService22ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsCase2(t *testing.T) {
@@ -6894,12 +7000,13 @@ func TestInputService22ProtocolTestOmitsNullQueryParamsButSerializesEmptyStrings
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path?abc=mno&param-name=", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService23ProtocolTestRecursiveShapesCase1(t *testing.T) {
@@ -6917,6 +7024,10 @@ func TestInputService23ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6925,11 +7036,12 @@ func TestInputService23ProtocolTestRecursiveShapesCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct><NoRecurse>foo</NoRecurse></RecursiveStruct></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService23ProtocolTestRecursiveShapesCase2(t *testing.T) {
@@ -6949,6 +7061,10 @@ func TestInputService23ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6957,11 +7073,12 @@ func TestInputService23ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct><RecursiveStruct><NoRecurse>foo</NoRecurse></RecursiveStruct></RecursiveStruct></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService23ProtocolTestRecursiveShapesCase3(t *testing.T) {
@@ -6985,6 +7102,10 @@ func TestInputService23ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -6993,11 +7114,12 @@ func TestInputService23ProtocolTestRecursiveShapesCase3(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct><RecursiveStruct><RecursiveStruct><RecursiveStruct><NoRecurse>foo</NoRecurse></RecursiveStruct></RecursiveStruct></RecursiveStruct></RecursiveStruct></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService23ProtocolTestRecursiveShapesCase4(t *testing.T) {
@@ -7022,6 +7144,10 @@ func TestInputService23ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -7030,11 +7156,12 @@ func TestInputService23ProtocolTestRecursiveShapesCase4(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct><RecursiveList><member><NoRecurse>foo</NoRecurse></member><member><NoRecurse>bar</NoRecurse></member></RecursiveList></RecursiveStruct></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService23ProtocolTestRecursiveShapesCase5(t *testing.T) {
@@ -7061,6 +7188,10 @@ func TestInputService23ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -7069,11 +7200,12 @@ func TestInputService23ProtocolTestRecursiveShapesCase5(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct><RecursiveList><member><NoRecurse>foo</NoRecurse></member><member><RecursiveStruct><NoRecurse>bar</NoRecurse></RecursiveStruct></member></RecursiveList></RecursiveStruct></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService23ProtocolTestRecursiveShapesCase6(t *testing.T) {
@@ -7098,6 +7230,10 @@ func TestInputService23ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -7106,11 +7242,12 @@ func TestInputService23ProtocolTestRecursiveShapesCase6(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<OperationRequest xmlns="https://foo/"><RecursiveStruct><RecursiveMap><entry><key>bar</key><value><NoRecurse>bar</NoRecurse></value></entry><entry><key>foo</key><value><NoRecurse>foo</NoRecurse></value></entry></RecursiveMap></RecursiveStruct></OperationRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
@@ -7126,6 +7263,10 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -7134,11 +7275,12 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<InputShape><Token>abc123</Token></InputShape>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
@@ -7152,6 +7294,10 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -7160,11 +7306,12 @@ func TestInputService24ProtocolTestIdempotencyTokenAutoFillCase2(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<InputShape><Token>00000000-0000-4000-8000-000000000000</Token></InputShape>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService25ProtocolTestEnumCase1(t *testing.T) {
@@ -7192,6 +7339,10 @@ func TestInputService25ProtocolTestEnumCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -7200,14 +7351,17 @@ func TestInputService25ProtocolTestEnumCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<InputShape><FooEnum>foo</FooEnum><ListEnums><member>foo</member><member></member><member>bar</member></ListEnums></InputShape>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://test/Enum/bar?ListEnums=0&ListEnums=&ListEnums=1", r.URL.String())
 
 	// assert headers
 	if e, a := "baz", r.Header.Get("x-amz-enum"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect x-amz-enum %v header value, got %v", e, a)
 	}
-
 }
 
 func TestInputService25ProtocolTestEnumCase2(t *testing.T) {
@@ -7223,12 +7377,13 @@ func TestInputService25ProtocolTestEnumCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/Enum/bar", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService26ProtocolTestEndpointHostTraitCase1(t *testing.T) {
@@ -7244,6 +7399,10 @@ func TestInputService26ProtocolTestEndpointHostTraitCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -7252,11 +7411,12 @@ func TestInputService26ProtocolTestEndpointHostTraitCase1(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<StaticOpRequest><Name>myname</Name></StaticOpRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://data-service.region.amazonaws.com/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService26ProtocolTestEndpointHostTraitCase2(t *testing.T) {
@@ -7272,6 +7432,10 @@ func TestInputService26ProtocolTestEndpointHostTraitCase2(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert body
 	if r.Body == nil {
@@ -7280,11 +7444,12 @@ func TestInputService26ProtocolTestEndpointHostTraitCase2(t *testing.T) {
 	body, _ := ioutil.ReadAll(r.Body)
 	awstesting.AssertXML(t, `<MemberRefOpRequest><Name>myname</Name></MemberRefOpRequest>`, util.Trim(string(body)))
 
+	if e, a := int64(len(body)), r.ContentLength; e != a {
+		t.Errorf("expect serialized body length to match %v ContentLength, got %v", e, a)
+	}
+
 	// assert URL
 	awstesting.AssertURL(t, "https://foo-myname.service.region.amazonaws.com/path", r.URL.String())
-
-	// assert headers
-
 }
 
 func TestInputService27ProtocolTestHeaderWhitespaceCase1(t *testing.T) {
@@ -7307,28 +7472,31 @@ func TestInputService27ProtocolTestHeaderWhitespaceCase1(t *testing.T) {
 	if req.Error != nil {
 		t.Errorf("expect no error, got %v", req.Error)
 	}
+	req.Sign()
+	if req.Error != nil {
+		t.Errorf("expect no error, got %v", req.Error)
+	}
 
 	// assert URL
 	awstesting.AssertURL(t, "https://test/", r.URL.String())
 
 	// assert headers
 	if e, a := "value", r.Header.Get("header-map-key-leading-space"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect header-map-key-leading-space %v header value, got %v", e, a)
 	}
 	if e, a := "value", r.Header.Get("header-map-key-with-space"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect header-map-key-with-space %v header value, got %v", e, a)
 	}
 	if e, a := "value", r.Header.Get("header-map-leading-space"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect header-map-leading-space %v header value, got %v", e, a)
 	}
 	if e, a := "value", r.Header.Get("header-map-leading-tab"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect header-map-leading-tab %v header value, got %v", e, a)
 	}
 	if e, a := "value", r.Header.Get("header-map-with-space"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect header-map-with-space %v header value, got %v", e, a)
 	}
 	if e, a := "headerValue", r.Header.Get("header1"); e != a {
-		t.Errorf("expect %v, got %v", e, a)
+		t.Errorf("expect header1 %v header value, got %v", e, a)
 	}
-
 }
