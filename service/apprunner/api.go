@@ -57,7 +57,7 @@ func (c *AppRunner) AssociateCustomDomainRequest(input *AssociateCustomDomainInp
 
 // AssociateCustomDomain API operation for AWS App Runner.
 //
-// Associate your own domain name with the AWS App Runner subdomain URL of your
+// Associate your own domain name with the App Runner subdomain URL of your
 // App Runner service.
 //
 // After you call AssociateCustomDomain and receive a successful response, use
@@ -152,7 +152,7 @@ func (c *AppRunner) CreateAutoScalingConfigurationRequest(input *CreateAutoScali
 
 // CreateAutoScalingConfiguration API operation for AWS App Runner.
 //
-// Create an AWS App Runner automatic scaling configuration resource. App Runner
+// Create an App Runner automatic scaling configuration resource. App Runner
 // requires this resource when you create App Runner services that require non-default
 // auto scaling settings. You can share an auto scaling configuration across
 // multiple services.
@@ -163,8 +163,8 @@ func (c *AppRunner) CreateAutoScalingConfigurationRequest(input *CreateAutoScali
 // configuration or a specific revision.
 //
 // Configure a higher MinSize to increase the spread of your App Runner service
-// over more Availability Zones in the AWS Region. The tradeoff is a higher
-// minimal cost.
+// over more Availability Zones in the Amazon Web Services Region. The tradeoff
+// is a higher minimal cost.
 //
 // Configure a lower MaxSize to control your cost. The tradeoff is lower responsiveness
 // during peak demand.
@@ -188,9 +188,8 @@ func (c *AppRunner) CreateAutoScalingConfigurationRequest(input *CreateAutoScali
 //   App Runner can't create this resource. You've reached your account quota
 //   for this resource type.
 //
-//   For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-//   (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-//   General Reference.
+//   For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+//   in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateAutoScalingConfiguration
 func (c *AppRunner) CreateAutoScalingConfiguration(input *CreateAutoScalingConfigurationInput) (*CreateAutoScalingConfigurationOutput, error) {
@@ -258,7 +257,7 @@ func (c *AppRunner) CreateConnectionRequest(input *CreateConnectionInput) (req *
 
 // CreateConnection API operation for AWS App Runner.
 //
-// Create an AWS App Runner connection resource. App Runner requires a connection
+// Create an App Runner connection resource. App Runner requires a connection
 // resource when you create App Runner services that access private repositories
 // from certain third-party providers. You can share a connection across multiple
 // services.
@@ -286,9 +285,8 @@ func (c *AppRunner) CreateConnectionRequest(input *CreateConnectionInput) (req *
 //   App Runner can't create this resource. You've reached your account quota
 //   for this resource type.
 //
-//   For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-//   (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-//   General Reference.
+//   For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+//   in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateConnection
 func (c *AppRunner) CreateConnection(input *CreateConnectionInput) (*CreateConnectionOutput, error) {
@@ -356,8 +354,8 @@ func (c *AppRunner) CreateServiceRequest(input *CreateServiceInput) (req *reques
 
 // CreateService API operation for AWS App Runner.
 //
-// Create an AWS App Runner service. After the service is created, the action
-// also automatically starts a deployment.
+// Create an App Runner service. After the service is created, the action also
+// automatically starts a deployment.
 //
 // This is an asynchronous operation. On a successful call, you can use the
 // returned OperationId and the ListOperations (https://docs.aws.amazon.com/apprunner/latest/api/API_ListOperations.html)
@@ -382,9 +380,8 @@ func (c *AppRunner) CreateServiceRequest(input *CreateServiceInput) (req *reques
 //   App Runner can't create this resource. You've reached your account quota
 //   for this resource type.
 //
-//   For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-//   (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-//   General Reference.
+//   For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+//   in the Amazon Web Services General Reference.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/CreateService
 func (c *AppRunner) CreateService(input *CreateServiceInput) (*CreateServiceOutput, error) {
@@ -452,9 +449,9 @@ func (c *AppRunner) DeleteAutoScalingConfigurationRequest(input *DeleteAutoScali
 
 // DeleteAutoScalingConfiguration API operation for AWS App Runner.
 //
-// Delete an AWS App Runner automatic scaling configuration resource. You can
-// delete a specific revision or the latest active revision. You can't delete
-// a configuration that's used by one or more App Runner services.
+// Delete an App Runner automatic scaling configuration resource. You can delete
+// a specific revision or the latest active revision. You can't delete a configuration
+// that's used by one or more App Runner services.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -473,7 +470,7 @@ func (c *AppRunner) DeleteAutoScalingConfigurationRequest(input *DeleteAutoScali
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DeleteAutoScalingConfiguration
 func (c *AppRunner) DeleteAutoScalingConfiguration(input *DeleteAutoScalingConfigurationInput) (*DeleteAutoScalingConfigurationOutput, error) {
@@ -541,9 +538,9 @@ func (c *AppRunner) DeleteConnectionRequest(input *DeleteConnectionInput) (req *
 
 // DeleteConnection API operation for AWS App Runner.
 //
-// Delete an AWS App Runner connection. You must first ensure that there are
-// no running App Runner services that use this connection. If there are any,
-// the DeleteConnection action fails.
+// Delete an App Runner connection. You must first ensure that there are no
+// running App Runner services that use this connection. If there are any, the
+// DeleteConnection action fails.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -559,7 +556,7 @@ func (c *AppRunner) DeleteConnectionRequest(input *DeleteConnectionInput) (req *
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -630,7 +627,7 @@ func (c *AppRunner) DeleteServiceRequest(input *DeleteServiceInput) (req *reques
 
 // DeleteService API operation for AWS App Runner.
 //
-// Delete an AWS App Runner service.
+// Delete an App Runner service.
 //
 // This is an asynchronous operation. On a successful call, you can use the
 // returned OperationId and the ListOperations call to track the operation's
@@ -650,7 +647,7 @@ func (c *AppRunner) DeleteServiceRequest(input *DeleteServiceInput) (req *reques
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InvalidStateException
 //   You can't perform this action when the resource is in its current state.
@@ -724,7 +721,7 @@ func (c *AppRunner) DescribeAutoScalingConfigurationRequest(input *DescribeAutoS
 
 // DescribeAutoScalingConfiguration API operation for AWS App Runner.
 //
-// Return a full description of an AWS App Runner automatic scaling configuration
+// Return a full description of an App Runner automatic scaling configuration
 // resource.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -744,7 +741,7 @@ func (c *AppRunner) DescribeAutoScalingConfigurationRequest(input *DescribeAutoS
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DescribeAutoScalingConfiguration
 func (c *AppRunner) DescribeAutoScalingConfiguration(input *DescribeAutoScalingConfigurationInput) (*DescribeAutoScalingConfigurationOutput, error) {
@@ -818,8 +815,8 @@ func (c *AppRunner) DescribeCustomDomainsRequest(input *DescribeCustomDomainsInp
 
 // DescribeCustomDomains API operation for AWS App Runner.
 //
-// Return a description of custom domain names that are associated with an AWS
-// App Runner service.
+// Return a description of custom domain names that are associated with an App
+// Runner service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -838,7 +835,7 @@ func (c *AppRunner) DescribeCustomDomainsRequest(input *DescribeCustomDomainsInp
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/DescribeCustomDomains
 func (c *AppRunner) DescribeCustomDomains(input *DescribeCustomDomainsInput) (*DescribeCustomDomainsOutput, error) {
@@ -958,7 +955,7 @@ func (c *AppRunner) DescribeServiceRequest(input *DescribeServiceInput) (req *re
 
 // DescribeService API operation for AWS App Runner.
 //
-// Return a full description of an AWS App Runner service.
+// Return a full description of an App Runner service.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -974,7 +971,7 @@ func (c *AppRunner) DescribeServiceRequest(input *DescribeServiceInput) (req *re
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -1045,7 +1042,7 @@ func (c *AppRunner) DisassociateCustomDomainRequest(input *DisassociateCustomDom
 
 // DisassociateCustomDomain API operation for AWS App Runner.
 //
-// Disassociate a custom domain name from an AWS App Runner service.
+// Disassociate a custom domain name from an App Runner service.
 //
 // Certificates tracking domain validity are associated with a custom domain
 // and are stored in AWS Certificate Manager (ACM) (https://docs.aws.amazon.com/acm/latest/userguide).
@@ -1070,7 +1067,7 @@ func (c *AppRunner) DisassociateCustomDomainRequest(input *DisassociateCustomDom
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InvalidStateException
 //   You can't perform this action when the resource is in its current state.
@@ -1147,9 +1144,9 @@ func (c *AppRunner) ListAutoScalingConfigurationsRequest(input *ListAutoScalingC
 
 // ListAutoScalingConfigurations API operation for AWS App Runner.
 //
-// Returns a list of AWS App Runner automatic scaling configurations in your
-// AWS account. You can query the revisions for a specific configuration name
-// or the revisions for all configurations in your account. You can optionally
+// Returns a list of App Runner automatic scaling configurations in your Amazon
+// Web Services account. You can query the revisions for a specific configuration
+// name or the revisions for all configurations in your account. You can optionally
 // query only the latest revision of each requested name.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1291,8 +1288,8 @@ func (c *AppRunner) ListConnectionsRequest(input *ListConnectionsInput) (req *re
 
 // ListConnections API operation for AWS App Runner.
 //
-// Returns a list of AWS App Runner connections that are associated with your
-// AWS account.
+// Returns a list of App Runner connections that are associated with your Amazon
+// Web Services account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1433,7 +1430,7 @@ func (c *AppRunner) ListOperationsRequest(input *ListOperationsInput) (req *requ
 
 // ListOperations API operation for AWS App Runner.
 //
-// Return a list of operations that occurred on an AWS App Runner service.
+// Return a list of operations that occurred on an App Runner service.
 //
 // The resulting list of OperationSummary objects is sorted in reverse chronological
 // order. The first object on the list represents the last started operation.
@@ -1455,7 +1452,7 @@ func (c *AppRunner) ListOperationsRequest(input *ListOperationsInput) (req *requ
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 // See also, https://docs.aws.amazon.com/goto/WebAPI/apprunner-2020-05-15/ListOperations
 func (c *AppRunner) ListOperations(input *ListOperationsInput) (*ListOperationsOutput, error) {
@@ -1581,7 +1578,8 @@ func (c *AppRunner) ListServicesRequest(input *ListServicesInput) (req *request.
 
 // ListServices API operation for AWS App Runner.
 //
-// Returns a list of running AWS App Runner services in your AWS account.
+// Returns a list of running App Runner services in your Amazon Web Services
+// account.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -1716,7 +1714,7 @@ func (c *AppRunner) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 
 // ListTagsForResource API operation for AWS App Runner.
 //
-// List tags that are associated with for an AWS App Runner resource. The response
+// List tags that are associated with for an App Runner resource. The response
 // contains a list of tag key-value pairs.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
@@ -1729,7 +1727,7 @@ func (c *AppRunner) ListTagsForResourceRequest(input *ListTagsForResourceInput) 
 // Returned Error Types:
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -1807,9 +1805,8 @@ func (c *AppRunner) PauseServiceRequest(input *PauseServiceInput) (req *request.
 
 // PauseService API operation for AWS App Runner.
 //
-// Pause an active AWS App Runner service. App Runner reduces compute capacity
-// for the service to zero and loses state (for example, ephemeral storage is
-// removed).
+// Pause an active App Runner service. App Runner reduces compute capacity for
+// the service to zero and loses state (for example, ephemeral storage is removed).
 //
 // This is an asynchronous operation. On a successful call, you can use the
 // returned OperationId and the ListOperations call to track the operation's
@@ -1829,7 +1826,7 @@ func (c *AppRunner) PauseServiceRequest(input *PauseServiceInput) (req *request.
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -1903,7 +1900,7 @@ func (c *AppRunner) ResumeServiceRequest(input *ResumeServiceInput) (req *reques
 
 // ResumeService API operation for AWS App Runner.
 //
-// Resume an active AWS App Runner service. App Runner provisions compute capacity
+// Resume an active App Runner service. App Runner provisions compute capacity
 // for the service.
 //
 // This is an asynchronous operation. On a successful call, you can use the
@@ -1924,7 +1921,7 @@ func (c *AppRunner) ResumeServiceRequest(input *ResumeServiceInput) (req *reques
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -1999,7 +1996,7 @@ func (c *AppRunner) StartDeploymentRequest(input *StartDeploymentInput) (req *re
 // StartDeployment API operation for AWS App Runner.
 //
 // Initiate a manual deployment of the latest commit in a source code repository
-// or the latest image in a source image repository to an AWS App Runner service.
+// or the latest image in a source image repository to an App Runner service.
 //
 // For a source code repository, App Runner retrieves the commit and builds
 // a Docker image. For a source image repository, App Runner retrieves the latest
@@ -2024,7 +2021,7 @@ func (c *AppRunner) StartDeploymentRequest(input *StartDeploymentInput) (req *re
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -2109,7 +2106,7 @@ func (c *AppRunner) TagResourceRequest(input *TagResourceInput) (req *request.Re
 // Returned Error Types:
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -2200,7 +2197,7 @@ func (c *AppRunner) UntagResourceRequest(input *UntagResourceInput) (req *reques
 // Returned Error Types:
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InternalServiceErrorException
 //   An unexpected service exception occurred.
@@ -2278,11 +2275,11 @@ func (c *AppRunner) UpdateServiceRequest(input *UpdateServiceInput) (req *reques
 
 // UpdateService API operation for AWS App Runner.
 //
-// Update an AWS App Runner service. You can update the source configuration
-// and instance configuration of the service. You can also update the ARN of
-// the auto scaling configuration resource that's associated with the service.
-// However, you can't change the name or the encryption configuration of the
-// service. These can be set only when you create the service.
+// Update an App Runner service. You can update the source configuration and
+// instance configuration of the service. You can also update the ARN of the
+// auto scaling configuration resource that's associated with the service. However,
+// you can't change the name or the encryption configuration of the service.
+// These can be set only when you create the service.
 //
 // To update the tags applied to your service, use the separate actions TagResource
 // and UntagResource.
@@ -2305,7 +2302,7 @@ func (c *AppRunner) UpdateServiceRequest(input *UpdateServiceInput) (req *reques
 //
 //   * ResourceNotFoundException
 //   A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-//   your AWS account.
+//   your Amazon Web Services account.
 //
 //   * InvalidStateException
 //   You can't perform this action when the resource is in its current state.
@@ -2535,12 +2532,13 @@ func (s *AuthenticationConfiguration) SetConnectionArn(v string) *Authentication
 	return s
 }
 
-// Describes an AWS App Runner automatic scaling configuration resource. Multiple
+// Describes an App Runner automatic scaling configuration resource. Multiple
 // revisions of a configuration have the same AutoScalingConfigurationName and
 // different AutoScalingConfigurationRevision values.
 //
 // A higher MinSize increases the spread of your App Runner service over more
-// Availability Zones in the AWS Region. The tradeoff is a higher minimal cost.
+// Availability Zones in the Amazon Web Services Region. The tradeoff is a higher
+// minimal cost.
 //
 // A lower MaxSize controls your cost. The tradeoff is lower responsiveness
 // during peak demand.
@@ -2674,7 +2672,7 @@ func (s *AutoScalingConfiguration) SetStatus(v string) *AutoScalingConfiguration
 	return s
 }
 
-// Provides summary information about an AWS App Runner automatic scaling configuration
+// Provides summary information about an App Runner automatic scaling configuration
 // resource.
 //
 // This type contains limited information about an auto scaling configuration.
@@ -2795,8 +2793,8 @@ func (s *CertificateValidationRecord) SetValue(v string) *CertificateValidationR
 	return s
 }
 
-// Describes the configuration that AWS App Runner uses to build and run an
-// App Runner service from a source code repository.
+// Describes the configuration that App Runner uses to build and run an App
+// Runner service from a source code repository.
 type CodeConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -2865,8 +2863,8 @@ func (s *CodeConfiguration) SetConfigurationSource(v string) *CodeConfiguration 
 	return s
 }
 
-// Describes the basic configuration needed for building and running an AWS
-// App Runner service. This type doesn't support the full set of possible configuration
+// Describes the basic configuration needed for building and running an App
+// Runner service. This type doesn't support the full set of possible configuration
 // options. Fur full configuration capabilities, use a apprunner.yaml file in
 // the source code repository.
 type CodeConfigurationValues struct {
@@ -3044,7 +3042,7 @@ func (s *CodeRepository) SetSourceCodeVersion(v *SourceCodeVersion) *CodeReposit
 	return s
 }
 
-// Describes an AWS App Runner connection resource.
+// Describes an App Runner connection resource.
 type Connection struct {
 	_ struct{} `type:"structure"`
 
@@ -3113,7 +3111,7 @@ func (s *Connection) SetStatus(v string) *Connection {
 	return s
 }
 
-// Provides summary information about an AWS App Runner connection resource.
+// Provides summary information about an App Runner connection resource.
 type ConnectionSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -3186,9 +3184,9 @@ type CreateAutoScalingConfigurationInput struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the auto scaling configuration. When you use it for the first
-	// time in an AWS Region, App Runner creates revision number 1 of this name.
-	// When you use the same name in subsequent calls, App Runner creates incremental
-	// revisions of the configuration.
+	// time in an Amazon Web Services Region, App Runner creates revision number
+	// 1 of this name. When you use the same name in subsequent calls, App Runner
+	// creates incremental revisions of the configuration.
 	//
 	// AutoScalingConfigurationName is a required field
 	AutoScalingConfigurationName *string `min:"4" type:"string" required:"true"`
@@ -3345,7 +3343,7 @@ type CreateConnectionInput struct {
 	_ struct{} `type:"structure"`
 
 	// A name for the new connection. It must be unique across all App Runner connections
-	// for the AWS account in the AWS Region.
+	// for the Amazon Web Services account in the Amazon Web Services Region.
 	//
 	// ConnectionName is a required field
 	ConnectionName *string `min:"4" type:"string" required:"true"`
@@ -3468,11 +3466,11 @@ type CreateServiceInput struct {
 
 	// An optional custom encryption key that App Runner uses to encrypt the copy
 	// of your source repository that it maintains and your service logs. By default,
-	// App Runner uses an AWS managed CMK.
+	// App Runner uses an Amazon Web Services managed CMK.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
-	// The settings for the health check that AWS App Runner performs to monitor
-	// the health of your service.
+	// The settings for the health check that App Runner performs to monitor the
+	// health of your service.
 	HealthCheckConfiguration *HealthCheckConfiguration `type:"structure"`
 
 	// The runtime configuration of instances (scaling units) of the App Runner
@@ -3480,7 +3478,8 @@ type CreateServiceInput struct {
 	InstanceConfiguration *InstanceConfiguration `type:"structure"`
 
 	// A name for the new service. It must be unique across all the running App
-	// Runner services in your AWS account in the AWS Region.
+	// Runner services in your Amazon Web Services account in the Amazon Web Services
+	// Region.
 	//
 	// ServiceName is a required field
 	ServiceName *string `min:"4" type:"string" required:"true"`
@@ -3654,7 +3653,7 @@ func (s *CreateServiceOutput) SetService(v *Service) *CreateServiceOutput {
 	return s
 }
 
-// Describes a custom domain that's associated with an AWS App Runner service.
+// Describes a custom domain that's associated with an App Runner service.
 type CustomDomain struct {
 	_ struct{} `type:"structure"`
 
@@ -4430,7 +4429,7 @@ func (s *DisassociateCustomDomainOutput) SetServiceArn(v string) *DisassociateCu
 	return s
 }
 
-// Describes a custom encryption key that AWS App Runner uses to encrypt copies
+// Describes a custom encryption key that App Runner uses to encrypt copies
 // of the source repository and service logs.
 type EncryptionConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -4478,15 +4477,15 @@ func (s *EncryptionConfiguration) SetKmsKey(v string) *EncryptionConfiguration {
 	return s
 }
 
-// Describes the settings for the health check that AWS App Runner performs
-// to monitor the health of a service.
+// Describes the settings for the health check that App Runner performs to monitor
+// the health of a service.
 type HealthCheckConfiguration struct {
 	_ struct{} `type:"structure"`
 
 	// The number of consecutive checks that must succeed before App Runner decides
 	// that the service is healthy.
 	//
-	// Default: 3
+	// Default: 1
 	HealthyThreshold *int64 `min:"1" type:"integer"`
 
 	// The time interval, in seconds, between health checks.
@@ -4499,7 +4498,7 @@ type HealthCheckConfiguration struct {
 	// Path is only applicable when you set Protocol to HTTP.
 	//
 	// Default: "/"
-	Path *string `type:"string"`
+	Path *string `min:"1" type:"string"`
 
 	// The IP protocol that App Runner uses to perform health checks for your service.
 	//
@@ -4518,7 +4517,7 @@ type HealthCheckConfiguration struct {
 	// The number of consecutive checks that must fail before App Runner decides
 	// that the service is unhealthy.
 	//
-	// Default: 3
+	// Default: 5
 	UnhealthyThreshold *int64 `min:"1" type:"integer"`
 }
 
@@ -4548,6 +4547,9 @@ func (s *HealthCheckConfiguration) Validate() error {
 	}
 	if s.Interval != nil && *s.Interval < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Interval", 1))
+	}
+	if s.Path != nil && len(*s.Path) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("Path", 1))
 	}
 	if s.Timeout != nil && *s.Timeout < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("Timeout", 1))
@@ -4598,8 +4600,8 @@ func (s *HealthCheckConfiguration) SetUnhealthyThreshold(v int64) *HealthCheckCo
 	return s
 }
 
-// Describes the configuration that AWS App Runner uses to run an App Runner
-// service using an image pulled from a source image repository.
+// Describes the configuration that App Runner uses to run an App Runner service
+// using an image pulled from a source image repository.
 type ImageConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4733,8 +4735,8 @@ func (s *ImageRepository) SetImageRepositoryType(v string) *ImageRepository {
 	return s
 }
 
-// Describes the runtime configuration of an AWS App Runner service instance
-// (scaling unit).
+// Describes the runtime configuration of an App Runner service instance (scaling
+// unit).
 type InstanceConfiguration struct {
 	_ struct{} `type:"structure"`
 
@@ -4745,7 +4747,7 @@ type InstanceConfiguration struct {
 
 	// The Amazon Resource Name (ARN) of an IAM role that provides permissions to
 	// your App Runner service. These are permissions that your code needs when
-	// it calls any AWS APIs.
+	// it calls any Amazon Web Services APIs.
 	InstanceRoleArn *string `min:"29" type:"string"`
 
 	// The amount of memory, in MB or GB, reserved for each instance of your App
@@ -5570,8 +5572,8 @@ func (s *ListTagsForResourceOutput) SetTags(v []*Tag) *ListTagsForResourceOutput
 	return s
 }
 
-// Provides summary information for an operation that occurred on an AWS App
-// Runner service.
+// Provides summary information for an operation that occurred on an App Runner
+// service.
 type OperationSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -5755,7 +5757,7 @@ func (s *PauseServiceOutput) SetService(v *Service) *PauseServiceOutput {
 }
 
 // A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-// your AWS account.
+// your Amazon Web Services account.
 type ResourceNotFoundException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -5913,7 +5915,7 @@ func (s *ResumeServiceOutput) SetService(v *Service) *ResumeServiceOutput {
 	return s
 }
 
-// Describes an AWS App Runner service. It can describe a service in any state,
+// Describes an App Runner service. It can describe a service in any state,
 // including deleted services.
 //
 // This type contains the full information about a service, including configuration
@@ -5944,7 +5946,8 @@ type Service struct {
 
 	// The encryption key that App Runner uses to encrypt the service logs and the
 	// copy of the source repository that App Runner maintains for the service.
-	// It can be either a customer-provided encryption key or an AWS managed CMK.
+	// It can be either a customer-provided encryption key or an Amazon Web Services
+	// managed CMK.
 	EncryptionConfiguration *EncryptionConfiguration `type:"structure"`
 
 	// The settings for the health check that App Runner performs to monitor the
@@ -5962,7 +5965,7 @@ type Service struct {
 	ServiceArn *string `min:"1" type:"string" required:"true"`
 
 	// An ID that App Runner generated for this service. It's unique within the
-	// AWS Region.
+	// Amazon Web Services Region.
 	//
 	// ServiceId is a required field
 	ServiceId *string `min:"32" type:"string" required:"true"`
@@ -6106,9 +6109,8 @@ func (s *Service) SetUpdatedAt(v time.Time) *Service {
 // App Runner can't create this resource. You've reached your account quota
 // for this resource type.
 //
-// For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-// (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-// General Reference.
+// For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+// in the Amazon Web Services General Reference.
 type ServiceQuotaExceededException struct {
 	_            struct{}                  `type:"structure"`
 	RespMetadata protocol.ResponseMetadata `json:"-" xml:"-"`
@@ -6172,7 +6174,7 @@ func (s *ServiceQuotaExceededException) RequestID() string {
 	return s.RespMetadata.RequestID
 }
 
-// Provides summary information for an AWS App Runner service.
+// Provides summary information for an App Runner service.
 //
 // This type contains limited information about a service. It doesn't include
 // configuration details. It's returned by the ListServices (https://docs.aws.amazon.com/apprunner/latest/api/API_ListServices.html)
@@ -6192,7 +6194,7 @@ type ServiceSummary struct {
 	ServiceArn *string `min:"1" type:"string"`
 
 	// An ID that App Runner generated for this service. It's unique within the
-	// AWS Region.
+	// Amazon Web Services Region.
 	ServiceId *string `min:"32" type:"string"`
 
 	// The customer-provided service name.
@@ -6281,8 +6283,8 @@ func (s *ServiceSummary) SetUpdatedAt(v time.Time) *ServiceSummary {
 	return s
 }
 
-// Identifies a version of code that AWS App Runner refers to within a source
-// code repository.
+// Identifies a version of code that App Runner refers to within a source code
+// repository.
 type SourceCodeVersion struct {
 	_ struct{} `type:"structure"`
 
@@ -6348,7 +6350,7 @@ func (s *SourceCodeVersion) SetValue(v string) *SourceCodeVersion {
 	return s
 }
 
-// Describes the source deployed to an AWS App Runner service. It can be a code
+// Describes the source deployed to an App Runner service. It can be a code
 // or an image repository.
 type SourceConfiguration struct {
 	_ struct{} `type:"structure"`
@@ -6358,10 +6360,14 @@ type SourceConfiguration struct {
 	AuthenticationConfiguration *AuthenticationConfiguration `type:"structure"`
 
 	// If true, continuous integration from the source repository is enabled for
-	// the App Runner service. Each repository change (source code commit or new
-	// image version) starts a deployment.
+	// the App Runner service. Each repository change (including any source code
+	// commit or new image version) starts a deployment.
 	//
-	// Default: true
+	// Default: App Runner sets to false for a source image that uses an ECR Public
+	// repository or an ECR repository that's in an Amazon Web Services account
+	// other than the one that the service is in. App Runner sets to true in all
+	// other cases (which currently include a source code repository or a source
+	// image using a same-account ECR repository).
 	AutoDeploymentsEnabled *bool `type:"boolean"`
 
 	// The description of a source code repository.
@@ -6527,8 +6533,8 @@ func (s *StartDeploymentOutput) SetOperationId(v string) *StartDeploymentOutput 
 	return s
 }
 
-// Describes a tag that is applied to an AWS App Runner resource. A tag is a
-// metadata item consisting of a key-value pair.
+// Describes a tag that is applied to an App Runner resource. A tag is a metadata
+// item consisting of a key-value pair.
 type Tag struct {
 	_ struct{} `type:"structure"`
 
@@ -6777,8 +6783,8 @@ type UpdateServiceInput struct {
 	// resource that you want to associate with your service.
 	AutoScalingConfigurationArn *string `min:"1" type:"string"`
 
-	// The settings for the health check that AWS App Runner performs to monitor
-	// the health of your service.
+	// The settings for the health check that App Runner performs to monitor the
+	// health of your service.
 	HealthCheckConfiguration *HealthCheckConfiguration `type:"structure"`
 
 	// The runtime configuration to apply to instances (scaling units) of the App

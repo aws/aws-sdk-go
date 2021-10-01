@@ -16172,7 +16172,9 @@ type Association struct {
 	// schedule runs in Coordinated Universal Time (UTC).
 	ScheduleExpression *string `min:"1" type:"string"`
 
-	// The instances targeted by the request to create an association.
+	// The instances targeted by the request to create an association. You can target
+	// all instances in an Amazon Web Services account by specifying the InstanceIds
+	// key with a value of *.
 	Targets []*Target `type:"list"`
 }
 
@@ -21246,9 +21248,10 @@ type CreateAssociationInput struct {
 
 	// The targets for the association. You can target instances by using tags,
 	// Amazon Web Services resource groups, all instances in an Amazon Web Services
-	// account, or individual instance IDs. For more information about choosing
-	// targets for an association, see Using targets and rate controls with State
-	// Manager associations (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-state-manager-targets-and-rate-controls.html)
+	// account, or individual instance IDs. You can target all instances in an Amazon
+	// Web Services account by specifying the InstanceIds key with a value of *.
+	// For more information about choosing targets for an association, see Using
+	// targets and rate controls with State Manager associations (https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-state-manager-targets-and-rate-controls.html)
 	// in the Amazon Web Services Systems Manager User Guide.
 	Targets []*Target `type:"list"`
 }
@@ -51235,9 +51238,7 @@ type S3OutputLocation struct {
 	// The S3 bucket subfolder.
 	OutputS3KeyPrefix *string `type:"string"`
 
-	// (Deprecated) You can no longer specify this parameter. The system ignores
-	// it. Instead, Amazon Web Services Systems Manager automatically determines
-	// the Region of the S3 bucket.
+	// The Amazon Web Services Region of the S3 bucket.
 	OutputS3Region *string `min:"3" type:"string"`
 }
 
@@ -52632,6 +52633,19 @@ func (s *StartAutomationExecutionOutput) SetAutomationExecutionId(v string) *Sta
 type StartChangeRequestExecutionInput struct {
 	_ struct{} `type:"structure"`
 
+	// Indicates whether the change request can be approved automatically without
+	// the need for manual approvals.
+	//
+	// If AutoApprovable is enabled in a change template, then setting AutoApprove
+	// to true in StartChangeRequestExecution creates a change request that bypasses
+	// approver review.
+	//
+	// Change Calendar restrictions are not bypassed in this scenario. If the state
+	// of an associated calendar is CLOSED, change freeze approvers must still grant
+	// permission for this change request to run. If they don't, the change won't
+	// be processed until the calendar state is again OPEN.
+	AutoApprove *bool `type:"boolean"`
+
 	// User-provided details about the change. If no details are provided, content
 	// specified in the Template information section of the associated change template
 	// is added.
@@ -52757,6 +52771,12 @@ func (s *StartChangeRequestExecutionInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAutoApprove sets the AutoApprove field's value.
+func (s *StartChangeRequestExecutionInput) SetAutoApprove(v bool) *StartChangeRequestExecutionInput {
+	s.AutoApprove = &v
+	return s
 }
 
 // SetChangeDetails sets the ChangeDetails field's value.

@@ -912,6 +912,7 @@
         "PatchRule$EnableNonSecurity": "<p>For instances identified by the approval rule filters, enables a patch baseline to apply non-security updates available in the specified repository. The default value is <code>false</code>. Applies to Linux instances only.</p>",
         "PutParameterRequest$Overwrite": "<p>Overwrite an existing parameter. The default value is <code>false</code>.</p>",
         "ResolvedTargets$Truncated": "<p>A boolean value indicating whether the resolved target list is truncated.</p>",
+        "StartChangeRequestExecutionRequest$AutoApprove": "<p>Indicates whether the change request can be approved automatically without the need for manual approvals.</p> <p>If <code>AutoApprovable</code> is enabled in a change template, then setting <code>AutoApprove</code> to <code>true</code> in <code>StartChangeRequestExecution</code> creates a change request that bypasses approver review.</p> <note> <p>Change Calendar restrictions are not bypassed in this scenario. If the state of an associated calendar is <code>CLOSED</code>, change freeze approvers must still grant permission for this change request to run. If they don't, the change won't be processed until the calendar state is again <code>OPEN</code>. </p> </note>",
         "StepExecution$IsEnd": "<p>The flag which can be used to end automation no matter whether the step succeeds or fails.</p>",
         "StepExecution$IsCritical": "<p>The flag which can be used to help decide whether the failure of current step leads to the Automation failure.</p>",
         "UpdateMaintenanceWindowRequest$Replace": "<p>If <code>True</code>, then all fields that are required by the <a>CreateMaintenanceWindow</a> operation are also required for this API request. Optional fields that aren't specified are set to null. </p>",
@@ -6917,7 +6918,7 @@
         "Command$OutputS3Region": "<p>(Deprecated) You can no longer specify this parameter. The system ignores it. Instead, Systems Manager automatically determines the Amazon Web Services Region of the S3 bucket.</p>",
         "CommandPlugin$OutputS3Region": "<p>(Deprecated) You can no longer specify this parameter. The system ignores it. Instead, Amazon Web Services Systems Manager automatically determines the S3 bucket region.</p>",
         "LoggingInfo$S3Region": "<p>The Amazon Web Services Region where the S3 bucket is located.</p>",
-        "S3OutputLocation$OutputS3Region": "<p>(Deprecated) You can no longer specify this parameter. The system ignores it. Instead, Amazon Web Services Systems Manager automatically determines the Region of the S3 bucket.</p>",
+        "S3OutputLocation$OutputS3Region": "<p>The Amazon Web Services Region of the S3 bucket.</p>",
         "SendCommandRequest$OutputS3Region": "<p>(Deprecated) You can no longer specify this parameter. The system ignores it. Instead, Systems Manager automatically determines the Amazon Web Services Region of the S3 bucket.</p>"
       }
     },
@@ -7674,14 +7675,14 @@
     "Targets": {
       "base": null,
       "refs": {
-        "Association$Targets": "<p>The instances targeted by the request to create an association. </p>",
+        "Association$Targets": "<p>The instances targeted by the request to create an association. You can target all instances in an Amazon Web Services account by specifying the <code>InstanceIds</code> key with a value of <code>*</code>.</p>",
         "AssociationDescription$Targets": "<p>The instances targeted by the request. </p>",
         "AssociationVersionInfo$Targets": "<p>The targets specified for the association when the association version was created. </p>",
         "AutomationExecution$Targets": "<p>The specified targets.</p>",
         "AutomationExecutionMetadata$Targets": "<p>The targets defined by the user when starting the automation.</p>",
         "Command$Targets": "<p>An array of search criteria that targets instances using a Key,Value combination that you specify. Targets is required if you don't provide one or more instance IDs in the call.</p>",
         "CreateAssociationBatchRequestEntry$Targets": "<p>The instances targeted by the request.</p>",
-        "CreateAssociationRequest$Targets": "<p>The targets for the association. You can target instances by using tags, Amazon Web Services resource groups, all instances in an Amazon Web Services account, or individual instance IDs. For more information about choosing targets for an association, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-state-manager-targets-and-rate-controls.html\">Using targets and rate controls with State Manager associations</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>",
+        "CreateAssociationRequest$Targets": "<p>The targets for the association. You can target instances by using tags, Amazon Web Services resource groups, all instances in an Amazon Web Services account, or individual instance IDs. You can target all instances in an Amazon Web Services account by specifying the <code>InstanceIds</code> key with a value of <code>*</code>. For more information about choosing targets for an association, see <a href=\"https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-state-manager-targets-and-rate-controls.html\">Using targets and rate controls with State Manager associations</a> in the <i>Amazon Web Services Systems Manager User Guide</i>.</p>",
         "DescribeMaintenanceWindowScheduleRequest$Targets": "<p>The instance ID or key-value pair to retrieve information about.</p>",
         "DescribeMaintenanceWindowsForTargetRequest$Targets": "<p>The instance ID or key-value pair to retrieve information about.</p>",
         "GetMaintenanceWindowTaskResult$Targets": "<p>The targets where the task should run.</p>",

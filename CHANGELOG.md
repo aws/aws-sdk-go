@@ -1,3 +1,12 @@
+Release v1.40.54 (2021-10-01)
+===
+
+### Service Client Updates
+* `service/apprunner`: Updates service API and documentation
+* `service/ssm`: Updates service API and documentation
+  * When "AutoApprovable" is true for a Change Template, then specifying --auto-approve (boolean) in Start-Change-Request-Execution will create a change request that bypasses approver review. (except for change calendar restrictions)
+* `service/synthetics`: Updates service API and documentation
+
 Release v1.40.53 (2021-09-30)
 ===
 
