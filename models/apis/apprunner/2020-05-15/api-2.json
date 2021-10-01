@@ -769,7 +769,7 @@
       "type":"structure",
       "members":{
         "Protocol":{"shape":"HealthCheckProtocol"},
-        "Path":{"shape":"String"},
+        "Path":{"shape":"HealthCheckPath"},
         "Interval":{"shape":"HealthCheckInterval"},
         "Timeout":{"shape":"HealthCheckTimeout"},
         "HealthyThreshold":{"shape":"HealthCheckHealthyThreshold"},
@@ -784,6 +784,10 @@
     "HealthCheckInterval":{
       "type":"integer",
       "max":20,
+      "min":1
+    },
+    "HealthCheckPath":{
+      "type":"string",
       "min":1
     },
     "HealthCheckProtocol":{
@@ -815,7 +819,7 @@
       "type":"string",
       "max":1024,
       "min":1,
-      "pattern":"([0-9]{12}.dkr.ecr.[a-z\\-]+-[0-9]{1}.amazonaws.com\\/.*)|(^public\\.ecr\\.aws\\/.+\\/.+)"
+      "pattern":"([0-9]{12}.dkr.ecr.[a-z\\-]+-[0-9]{1}.amazonaws.com\\/((?:[a-z0-9]+(?:[._-][a-z0-9]+)*\\/)*[a-z0-9]+(?:[._-][a-z0-9]+)*)(:([\\w\\d+\\-=._:\\/@])+|@([\\w\\d\\:]+))?)|(^public\\.ecr\\.aws\\/.+\\/((?:[a-z0-9]+(?:[._-][a-z0-9]+)*\\/)*[a-z0-9]+(?:[._-][a-z0-9]+)*)(:([\\w\\d+\\-=._:\\/@])+|@([\\w\\d\\:]+))?)"
     },
     "ImageRepository":{
       "type":"structure",
@@ -1054,9 +1058,9 @@
     },
     "RoleArn":{
       "type":"string",
-      "max":102,
+      "max":1024,
       "min":29,
-      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):iam::[0-9]{12}:role/[\\w+=,.@-]{1,64}"
+      "pattern":"arn:(aws|aws-us-gov|aws-cn|aws-iso|aws-iso-b):iam::[0-9]{12}:(role|role\\/service-role)\\/[\\w+=,.@\\-/]{1,1000}"
     },
     "Runtime":{
       "type":"string",

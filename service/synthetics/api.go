@@ -1429,6 +1429,93 @@ func (c *Synthetics) UpdateCanaryWithContext(ctx aws.Context, input *UpdateCanar
 	return out, req.Send()
 }
 
+// A structure that contains the configuration for canary artifacts, including
+// the encryption-at-rest settings for artifacts that the canary uploads to
+// Amazon S3.
+type ArtifactConfigInput_ struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains the configuration of the encryption-at-rest settings
+	// for artifacts that the canary uploads to Amazon S3. Artifact encryption functionality
+	// is available only for canaries that use Synthetics runtime version syn-nodejs-puppeteer-3.3
+	// or later. For more information, see Encrypting canary artifacts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_artifact_encryption.html)
+	S3Encryption *S3EncryptionConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArtifactConfigInput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArtifactConfigInput_) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ArtifactConfigInput_) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ArtifactConfigInput_"}
+	if s.S3Encryption != nil {
+		if err := s.S3Encryption.Validate(); err != nil {
+			invalidParams.AddNested("S3Encryption", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetS3Encryption sets the S3Encryption field's value.
+func (s *ArtifactConfigInput_) SetS3Encryption(v *S3EncryptionConfig) *ArtifactConfigInput_ {
+	s.S3Encryption = v
+	return s
+}
+
+// A structure that contains the configuration for canary artifacts, including
+// the encryption-at-rest settings for artifacts that the canary uploads to
+// Amazon S3.
+type ArtifactConfigOutput_ struct {
+	_ struct{} `type:"structure"`
+
+	// A structure that contains the configuration of encryption settings for canary
+	// artifacts that are stored in Amazon S3.
+	S3Encryption *S3EncryptionConfig `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArtifactConfigOutput_) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArtifactConfigOutput_) GoString() string {
+	return s.String()
+}
+
+// SetS3Encryption sets the S3Encryption field's value.
+func (s *ArtifactConfigOutput_) SetS3Encryption(v *S3EncryptionConfig) *ArtifactConfigOutput_ {
+	s.S3Encryption = v
+	return s
+}
+
 // A structure representing a screenshot that is used as a baseline during visual
 // monitoring comparisons made by the canary.
 type BaseScreenshot struct {
@@ -1496,6 +1583,11 @@ func (s *BaseScreenshot) SetScreenshotName(v string) *BaseScreenshot {
 // This structure contains all information about one canary in your account.
 type Canary struct {
 	_ struct{} `type:"structure"`
+
+	// A structure that contains the configuration for canary artifacts, including
+	// the encryption-at-rest settings for artifacts that the canary uploads to
+	// Amazon S3.
+	ArtifactConfig *ArtifactConfigOutput_ `type:"structure"`
 
 	// The location in Amazon S3 where Synthetics stores artifacts from the runs
 	// of this canary. Artifacts include the log file, screenshots, and HAR files.
@@ -1575,6 +1667,12 @@ func (s Canary) String() string {
 // value will be replaced with "sensitive".
 func (s Canary) GoString() string {
 	return s.String()
+}
+
+// SetArtifactConfig sets the ArtifactConfig field's value.
+func (s *Canary) SetArtifactConfig(v *ArtifactConfigOutput_) *Canary {
+	s.ArtifactConfig = v
+	return s
 }
 
 // SetArtifactS3Location sets the ArtifactS3Location field's value.
@@ -2488,6 +2586,11 @@ func (s *ConflictException) RequestID() string {
 type CreateCanaryInput struct {
 	_ struct{} `type:"structure"`
 
+	// A structure that contains the configuration for canary artifacts, including
+	// the encryption-at-rest settings for artifacts that the canary uploads to
+	// Amazon S3.
+	ArtifactConfig *ArtifactConfigInput_ `type:"structure"`
+
 	// The location in Amazon S3 where Synthetics stores artifacts from the test
 	// runs of this canary. Artifacts include the log file, screenshots, and HAR
 	// files. The name of the S3 bucket can't include a period (.).
@@ -2635,6 +2738,11 @@ func (s *CreateCanaryInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.ArtifactConfig != nil {
+		if err := s.ArtifactConfig.Validate(); err != nil {
+			invalidParams.AddNested("ArtifactConfig", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.Code != nil {
 		if err := s.Code.Validate(); err != nil {
 			invalidParams.AddNested("Code", err.(request.ErrInvalidParams))
@@ -2655,6 +2763,12 @@ func (s *CreateCanaryInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArtifactConfig sets the ArtifactConfig field's value.
+func (s *CreateCanaryInput) SetArtifactConfig(v *ArtifactConfigInput_) *CreateCanaryInput {
+	s.ArtifactConfig = v
+	return s
 }
 
 // SetArtifactS3Location sets the ArtifactS3Location field's value.
@@ -3604,6 +3718,69 @@ func (s *RuntimeVersion) SetVersionName(v string) *RuntimeVersion {
 	return s
 }
 
+// A structure that contains the configuration of encryption-at-rest settings
+// for canary artifacts that the canary uploads to Amazon S3.
+//
+// For more information, see Encrypting canary artifacts (https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_artifact_encryption.html)
+type S3EncryptionConfig struct {
+	_ struct{} `type:"structure"`
+
+	// The encryption method to use for artifacts created by this canary. Specify
+	// SSE_S3 to use server-side encryption (SSE) with an Amazon S3-managed key.
+	// Specify SSE-KMS to use server-side encryption with a customer-managed KMS
+	// key.
+	//
+	// If you omit this parameter, an Amazon Web Services-managed KMS key is used.
+	EncryptionMode *string `type:"string" enum:"EncryptionMode"`
+
+	// The ARN of the customer-managed KMS key to use, if you specify SSE-KMS for
+	// EncryptionMode
+	KmsKeyArn *string `min:"1" type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3EncryptionConfig) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s S3EncryptionConfig) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *S3EncryptionConfig) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "S3EncryptionConfig"}
+	if s.KmsKeyArn != nil && len(*s.KmsKeyArn) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("KmsKeyArn", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEncryptionMode sets the EncryptionMode field's value.
+func (s *S3EncryptionConfig) SetEncryptionMode(v string) *S3EncryptionConfig {
+	s.EncryptionMode = &v
+	return s
+}
+
+// SetKmsKeyArn sets the KmsKeyArn field's value.
+func (s *S3EncryptionConfig) SetKmsKeyArn(v string) *S3EncryptionConfig {
+	s.KmsKeyArn = &v
+	return s
+}
+
 type StartCanaryInput struct {
 	_ struct{} `type:"structure"`
 
@@ -3931,6 +4108,16 @@ func (s UntagResourceOutput) GoString() string {
 type UpdateCanaryInput struct {
 	_ struct{} `type:"structure"`
 
+	// A structure that contains the configuration for canary artifacts, including
+	// the encryption-at-rest settings for artifacts that the canary uploads to
+	// Amazon S3.
+	ArtifactConfig *ArtifactConfigInput_ `type:"structure"`
+
+	// The location in Amazon S3 where Synthetics stores artifacts from the test
+	// runs of this canary. Artifacts include the log file, screenshots, and HAR
+	// files. The name of the S3 bucket can't include a period (.).
+	ArtifactS3Location *string `min:"1" type:"string"`
+
 	// A structure that includes the entry point from which the canary should start
 	// running your script. If the script is stored in an S3 bucket, the bucket
 	// name, key, and version are also included.
@@ -4019,6 +4206,9 @@ func (s UpdateCanaryInput) GoString() string {
 // Validate inspects the fields of the type to determine if they are valid.
 func (s *UpdateCanaryInput) Validate() error {
 	invalidParams := request.ErrInvalidParams{Context: "UpdateCanaryInput"}
+	if s.ArtifactS3Location != nil && len(*s.ArtifactS3Location) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ArtifactS3Location", 1))
+	}
 	if s.ExecutionRoleArn != nil && len(*s.ExecutionRoleArn) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ExecutionRoleArn", 1))
 	}
@@ -4036,6 +4226,11 @@ func (s *UpdateCanaryInput) Validate() error {
 	}
 	if s.SuccessRetentionPeriodInDays != nil && *s.SuccessRetentionPeriodInDays < 1 {
 		invalidParams.Add(request.NewErrParamMinValue("SuccessRetentionPeriodInDays", 1))
+	}
+	if s.ArtifactConfig != nil {
+		if err := s.ArtifactConfig.Validate(); err != nil {
+			invalidParams.AddNested("ArtifactConfig", err.(request.ErrInvalidParams))
+		}
 	}
 	if s.Code != nil {
 		if err := s.Code.Validate(); err != nil {
@@ -4062,6 +4257,18 @@ func (s *UpdateCanaryInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetArtifactConfig sets the ArtifactConfig field's value.
+func (s *UpdateCanaryInput) SetArtifactConfig(v *ArtifactConfigInput_) *UpdateCanaryInput {
+	s.ArtifactConfig = v
+	return s
+}
+
+// SetArtifactS3Location sets the ArtifactS3Location field's value.
+func (s *UpdateCanaryInput) SetArtifactS3Location(v string) *UpdateCanaryInput {
+	s.ArtifactS3Location = &v
+	return s
 }
 
 // SetCode sets the Code field's value.
@@ -4525,5 +4732,21 @@ const (
 func CanaryStateReasonCode_Values() []string {
 	return []string{
 		CanaryStateReasonCodeInvalidPermissions,
+	}
+}
+
+const (
+	// EncryptionModeSseS3 is a EncryptionMode enum value
+	EncryptionModeSseS3 = "SSE_S3"
+
+	// EncryptionModeSseKms is a EncryptionMode enum value
+	EncryptionModeSseKms = "SSE_KMS"
+)
+
+// EncryptionMode_Values returns all elements of the EncryptionMode enum
+func EncryptionMode_Values() []string {
+	return []string{
+		EncryptionModeSseS3,
+		EncryptionModeSseKms,
 	}
 }

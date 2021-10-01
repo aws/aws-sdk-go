@@ -196,6 +196,18 @@
     }
   },
   "shapes":{
+    "ArtifactConfigInput":{
+      "type":"structure",
+      "members":{
+        "S3Encryption":{"shape":"S3EncryptionConfig"}
+      }
+    },
+    "ArtifactConfigOutput":{
+      "type":"structure",
+      "members":{
+        "S3Encryption":{"shape":"S3EncryptionConfig"}
+      }
+    },
     "BaseScreenshot":{
       "type":"structure",
       "required":["ScreenshotName"],
@@ -249,7 +261,8 @@
         "RuntimeVersion":{"shape":"String"},
         "VpcConfig":{"shape":"VpcConfigOutput"},
         "VisualReference":{"shape":"VisualReferenceOutput"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "ArtifactConfig":{"shape":"ArtifactConfigOutput"}
       }
     },
     "CanaryArn":{
@@ -429,7 +442,8 @@
         "FailureRetentionPeriodInDays":{"shape":"MaxSize1024"},
         "RuntimeVersion":{"shape":"String"},
         "VpcConfig":{"shape":"VpcConfigInput"},
-        "Tags":{"shape":"TagMap"}
+        "Tags":{"shape":"TagMap"},
+        "ArtifactConfig":{"shape":"ArtifactConfigInput"}
       }
     },
     "CreateCanaryResponse":{
@@ -496,6 +510,13 @@
         "NextToken":{"shape":"Token"}
       }
     },
+    "EncryptionMode":{
+      "type":"string",
+      "enum":[
+        "SSE_S3",
+        "SSE_KMS"
+      ]
+    },
     "EnvironmentVariableName":{
       "type":"string",
       "pattern":"[a-zA-Z]([a-zA-Z0-9_])+"
@@ -557,6 +578,12 @@
       },
       "error":{"httpStatusCode":500},
       "exception":true
+    },
+    "KmsKeyArn":{
+      "type":"string",
+      "max":2048,
+      "min":1,
+      "pattern":"arn:(aws[a-zA-Z-]*)?:kms:[a-z]{2}((-gov)|(-iso(b?)))?-[a-z]+-\\d{1}:\\d{12}:key/[\\w\\-\\/]+"
     },
     "ListTagsForResourceRequest":{
       "type":"structure",
@@ -632,6 +659,13 @@
     "RuntimeVersionList":{
       "type":"list",
       "member":{"shape":"RuntimeVersion"}
+    },
+    "S3EncryptionConfig":{
+      "type":"structure",
+      "members":{
+        "EncryptionMode":{"shape":"EncryptionMode"},
+        "KmsKeyArn":{"shape":"KmsKeyArn"}
+      }
     },
     "SecurityGroupId":{"type":"string"},
     "SecurityGroupIds":{
@@ -778,7 +812,9 @@
         "SuccessRetentionPeriodInDays":{"shape":"MaxSize1024"},
         "FailureRetentionPeriodInDays":{"shape":"MaxSize1024"},
         "VpcConfig":{"shape":"VpcConfigInput"},
-        "VisualReference":{"shape":"VisualReferenceInput"}
+        "VisualReference":{"shape":"VisualReferenceInput"},
+        "ArtifactS3Location":{"shape":"String"},
+        "ArtifactConfig":{"shape":"ArtifactConfigInput"}
       }
     },
     "UpdateCanaryResponse":{

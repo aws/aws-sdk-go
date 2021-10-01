@@ -31,7 +31,7 @@ const (
 	// "ResourceNotFoundException".
 	//
 	// A resource doesn't exist for the specified Amazon Resource Name (ARN) in
-	// your AWS account.
+	// your Amazon Web Services account.
 	ErrCodeResourceNotFoundException = "ResourceNotFoundException"
 
 	// ErrCodeServiceQuotaExceededException for service response error code
@@ -40,9 +40,8 @@ const (
 	// App Runner can't create this resource. You've reached your account quota
 	// for this resource type.
 	//
-	// For App Runner per-resource quotas, see AWS App Runner endpoints and quotas
-	// (https://docs.aws.amazon.com/general/latest/gr/apprunner.html) in the AWS
-	// General Reference.
+	// For App Runner per-resource quotas, see App Runner endpoints and quotas (https://docs.aws.amazon.com/general/latest/gr/apprunner.html)
+	// in the Amazon Web Services General Reference.
 	ErrCodeServiceQuotaExceededException = "ServiceQuotaExceededException"
 )
 

@@ -17,6 +17,19 @@
     "UpdateCanary": "<p>Use this operation to change the settings of a canary that has already been created.</p> <p>You can't use this operation to update the tags of an existing canary. To change the tags of an existing canary, use <a href=\"https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_TagResource.html\">TagResource</a>.</p>"
   },
   "shapes": {
+    "ArtifactConfigInput": {
+      "base": "<p>A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.</p>",
+      "refs": {
+        "CreateCanaryRequest$ArtifactConfig": "<p>A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.</p>",
+        "UpdateCanaryRequest$ArtifactConfig": "<p>A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.</p>"
+      }
+    },
+    "ArtifactConfigOutput": {
+      "base": "<p>A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.</p>",
+      "refs": {
+        "Canary$ArtifactConfig": "<p>A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.</p>"
+      }
+    },
     "BaseScreenshot": {
       "base": "<p>A structure representing a screenshot that is used as a baseline during visual monitoring comparisons made by the canary.</p>",
       "refs": {
@@ -252,6 +265,12 @@
       "refs": {
       }
     },
+    "EncryptionMode": {
+      "base": null,
+      "refs": {
+        "S3EncryptionConfig$EncryptionMode": "<p> The encryption method to use for artifacts created by this canary. Specify <code>SSE_S3</code> to use server-side encryption (SSE) with an Amazon S3-managed key. Specify <code>SSE-KMS</code> to use server-side encryption with a customer-managed KMS key.</p> <p>If you omit this parameter, an Amazon Web Services-managed KMS key is used. </p>"
+      }
+    },
     "EnvironmentVariableName": {
       "base": null,
       "refs": {
@@ -308,6 +327,12 @@
     "InternalServerException": {
       "base": "<p>An unknown internal error occurred.</p>",
       "refs": {
+      }
+    },
+    "KmsKeyArn": {
+      "base": null,
+      "refs": {
+        "S3EncryptionConfig$KmsKeyArn": "<p>The ARN of the customer-managed KMS key to use, if you specify <code>SSE-KMS</code> for <code>EncryptionMode</code> </p>"
       }
     },
     "ListTagsForResourceRequest": {
@@ -398,6 +423,13 @@
         "DescribeRuntimeVersionsResponse$RuntimeVersions": "<p>An array of objects that display the details about each Synthetics canary runtime version.</p>"
       }
     },
+    "S3EncryptionConfig": {
+      "base": "<p>A structure that contains the configuration of encryption-at-rest settings for canary artifacts that the canary uploads to Amazon S3. </p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_artifact_encryption.html\">Encrypting canary artifacts</a> </p>",
+      "refs": {
+        "ArtifactConfigInput$S3Encryption": "<p>A structure that contains the configuration of the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3. Artifact encryption functionality is available only for canaries that use Synthetics runtime version syn-nodejs-puppeteer-3.3 or later. For more information, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_artifact_encryption.html\">Encrypting canary artifacts</a> </p>",
+        "ArtifactConfigOutput$S3Encryption": "<p>A structure that contains the configuration of encryption settings for canary artifacts that are stored in Amazon S3. </p>"
+      }
+    },
     "SecurityGroupId": {
       "base": null,
       "refs": {
@@ -453,6 +485,7 @@
         "RuntimeVersion$VersionName": "<p>The name of the runtime version. For a list of valid runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
         "RuntimeVersion$Description": "<p>A description of the runtime version, created by Amazon.</p>",
         "UpdateCanaryRequest$RuntimeVersion": "<p>Specifies the runtime version to use for the canary. For a list of valid runtime versions and for more information about runtime versions, see <a href=\"https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/CloudWatch_Synthetics_Canaries_Library.html\"> Canary Runtime Versions</a>.</p>",
+        "UpdateCanaryRequest$ArtifactS3Location": "<p>The location in Amazon S3 where Synthetics stores artifacts from the test runs of this canary. Artifacts include the log file, screenshots, and HAR files. The name of the S3 bucket can't include a period (.).</p>",
         "VisualReferenceInput$BaseCanaryRunId": "<p>Specifies which canary run to use the screenshots from as the baseline for future visual monitoring with this canary. Valid values are <code>nextrun</code> to use the screenshots from the next run after this update is made, <code>lastrun</code> to use the screenshots from the most recent run before this update was made, or the value of <code>Id</code> in the <a href=\"https://docs.aws.amazon.com/AmazonSynthetics/latest/APIReference/API_CanaryRun.html\"> CanaryRun</a> from any past run of this canary.</p>",
         "VisualReferenceOutput$BaseCanaryRunId": "<p>The ID of the canary run that produced the screenshots that are used as the baseline for visual monitoring comparisons during future runs of this canary.</p>"
       }
