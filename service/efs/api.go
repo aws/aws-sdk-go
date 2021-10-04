@@ -2512,6 +2512,10 @@ func (c *EFS) PutAccountPreferencesRequest(input *PutAccountPreferencesInput) (r
 // API operation PutAccountPreferences for usage and error information.
 //
 // Returned Error Types:
+//   * BadRequest
+//   Returned if the request is malformed or contains an error such as an invalid
+//   parameter value or a missing required parameter.
+//
 //   * InternalServerError
 //   Returned if an error occurred on the server side.
 //
