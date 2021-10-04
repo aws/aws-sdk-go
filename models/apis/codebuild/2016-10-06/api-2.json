@@ -704,6 +704,13 @@
         "reportsNotFound":{"shape":"ReportArns"}
       }
     },
+    "BatchReportModeType":{
+      "type":"string",
+      "enum":[
+        "REPORT_INDIVIDUAL_BUILDS",
+        "REPORT_AGGREGATED_BATCH"
+      ]
+    },
     "BatchRestrictions":{
       "type":"structure",
       "members":{
@@ -1769,7 +1776,8 @@
         "serviceRole":{"shape":"NonEmptyString"},
         "combineArtifacts":{"shape":"WrapperBoolean"},
         "restrictions":{"shape":"BatchRestrictions"},
-        "timeoutInMins":{"shape":"WrapperInt"}
+        "timeoutInMins":{"shape":"WrapperInt"},
+        "batchReportMode":{"shape":"BatchReportModeType"}
       }
     },
     "ProjectCache":{

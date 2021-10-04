@@ -140,6 +140,12 @@
       "refs": {
       }
     },
+    "BatchReportModeType": {
+      "base": null,
+      "refs": {
+        "ProjectBuildBatchConfig$batchReportMode": "<p>Specifies how build status reports are sent to the source provider for the batch build. This property is only used when the source provider for your project is Bitbucket, GitHub, or GitHub Enterprise, and your project is configured to report build statuses to the source provider.</p> <dl> <dt>REPORT_AGGREGATED_BATCH</dt> <dd> <p>(Default) Aggregate all of the build statuses into a single status report.</p> </dd> <dt>REPORT_INDIVIDUAL_BUILDS</dt> <dd> <p>Send a separate status report for each individual build.</p> </dd> </dl>"
+      }
+    },
     "BatchRestrictions": {
       "base": "<p>Specifies restrictions for the batch build.</p>",
       "refs": {
@@ -258,7 +264,7 @@
         "BatchGetBuildsInput$ids": "<p>The IDs of the builds.</p>",
         "BatchGetBuildsOutput$buildsNotFound": "<p>The IDs of builds for which information could not be found.</p>",
         "DeleteBuildBatchOutput$buildsDeleted": "<p>An array of strings that contain the identifiers of the builds that were deleted.</p>",
-        "ListBuildsForProjectOutput$ids": "<p>A list of build IDs for the specified build project, with each build ID representing a single build.</p>",
+        "ListBuildsForProjectOutput$ids": "<p>A list of build identifiers for the specified build project, with each build ID representing a single build.</p>",
         "ListBuildsOutput$ids": "<p>A list of build IDs, with each build ID representing a single build.</p>"
       }
     },
@@ -1042,7 +1048,7 @@
         "Project$secondaryArtifacts": "<p>An array of <code>ProjectArtifacts</code> objects. </p>",
         "StartBuildBatchInput$secondaryArtifactsOverride": "<p>An array of <code>ProjectArtifacts</code> objects that override the secondary artifacts defined in the batch build project.</p>",
         "StartBuildInput$secondaryArtifactsOverride": "<p> An array of <code>ProjectArtifacts</code> objects. </p>",
-        "UpdateProjectInput$secondaryArtifacts": "<p> An array of <code>ProjectSource</code> objects. </p>"
+        "UpdateProjectInput$secondaryArtifacts": "<p> An array of <code>ProjectArtifact</code> objects. </p>"
       }
     },
     "ProjectBadge": {
@@ -1446,7 +1452,7 @@
         "DescribeCodeCoveragesInput$sortOrder": "<p>Specifies if the results are sorted in ascending or descending order.</p>",
         "ListBuildBatchesForProjectInput$sortOrder": "<p>Specifies the sort order of the returned items. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the batch build identifiers in ascending order by identifier.</p> </li> <li> <p> <code>DESCENDING</code>: List the batch build identifiers in descending order by identifier.</p> </li> </ul>",
         "ListBuildBatchesInput$sortOrder": "<p>Specifies the sort order of the returned items. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the batch build identifiers in ascending order by identifier.</p> </li> <li> <p> <code>DESCENDING</code>: List the batch build identifiers in descending order by identifier.</p> </li> </ul>",
-        "ListBuildsForProjectInput$sortOrder": "<p>The order to list results in. The results are sorted by build number, not the build identifier.</p> <p>Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the build IDs in ascending order by build ID.</p> </li> <li> <p> <code>DESCENDING</code>: List the build IDs in descending order by build ID.</p> </li> </ul> <p>If the project has more than 100 builds, setting the sort order will result in an error. </p>",
+        "ListBuildsForProjectInput$sortOrder": "<p>The order to sort the results in. The results are sorted by build number, not the build identifier. If this is not specified, the results are sorted in descending order.</p> <p>Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the build identifiers in ascending order, by build number.</p> </li> <li> <p> <code>DESCENDING</code>: List the build identifiers in descending order, by build number.</p> </li> </ul> <p>If the project has more than 100 builds, setting the sort order will result in an error. </p>",
         "ListBuildsInput$sortOrder": "<p>The order to list build IDs. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List the build IDs in ascending order by build ID.</p> </li> <li> <p> <code>DESCENDING</code>: List the build IDs in descending order by build ID.</p> </li> </ul>",
         "ListProjectsInput$sortOrder": "<p>The order in which to list build projects. Valid values include:</p> <ul> <li> <p> <code>ASCENDING</code>: List in ascending order.</p> </li> <li> <p> <code>DESCENDING</code>: List in descending order.</p> </li> </ul> <p>Use <code>sortBy</code> to specify the criterion to be used to list build project names.</p>",
         "ListReportGroupsInput$sortOrder": "<p> Used to specify the order to sort the list of returned report groups. Valid values are <code>ASCENDING</code> and <code>DESCENDING</code>. </p>",

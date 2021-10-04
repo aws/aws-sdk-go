@@ -9442,14 +9442,16 @@ type ListBuildsForProjectInput struct {
 	// ProjectName is a required field
 	ProjectName *string `locationName:"projectName" min:"1" type:"string" required:"true"`
 
-	// The order to list results in. The results are sorted by build number, not
-	// the build identifier.
+	// The order to sort the results in. The results are sorted by build number,
+	// not the build identifier. If this is not specified, the results are sorted
+	// in descending order.
 	//
 	// Valid values include:
 	//
-	//    * ASCENDING: List the build IDs in ascending order by build ID.
+	//    * ASCENDING: List the build identifiers in ascending order, by build number.
 	//
-	//    * DESCENDING: List the build IDs in descending order by build ID.
+	//    * DESCENDING: List the build identifiers in descending order, by build
+	//    number.
 	//
 	// If the project has more than 100 builds, setting the sort order will result
 	// in an error.
@@ -9511,8 +9513,8 @@ func (s *ListBuildsForProjectInput) SetSortOrder(v string) *ListBuildsForProject
 type ListBuildsForProjectOutput struct {
 	_ struct{} `type:"structure"`
 
-	// A list of build IDs for the specified build project, with each build ID representing
-	// a single build.
+	// A list of build identifiers for the specified build project, with each build
+	// ID representing a single build.
 	Ids []*string `locationName:"ids" min:"1" type:"list"`
 
 	// If there are more than 100 items in the list, only the first 100 items are
@@ -11498,6 +11500,20 @@ func (s *ProjectBadge) SetBadgeRequestUrl(v string) *ProjectBadge {
 type ProjectBuildBatchConfig struct {
 	_ struct{} `type:"structure"`
 
+	// Specifies how build status reports are sent to the source provider for the
+	// batch build. This property is only used when the source provider for your
+	// project is Bitbucket, GitHub, or GitHub Enterprise, and your project is configured
+	// to report build statuses to the source provider.
+	//
+	// REPORT_AGGREGATED_BATCH
+	//
+	// (Default) Aggregate all of the build statuses into a single status report.
+	//
+	// REPORT_INDIVIDUAL_BUILDS
+	//
+	// Send a separate status report for each individual build.
+	BatchReportMode *string `locationName:"batchReportMode" type:"string" enum:"BatchReportModeType"`
+
 	// Specifies if the build artifacts for the batch build should be combined into
 	// a single artifact location.
 	CombineArtifacts *bool `locationName:"combineArtifacts" type:"boolean"`
@@ -11543,6 +11559,12 @@ func (s *ProjectBuildBatchConfig) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetBatchReportMode sets the BatchReportMode field's value.
+func (s *ProjectBuildBatchConfig) SetBatchReportMode(v string) *ProjectBuildBatchConfig {
+	s.BatchReportMode = &v
+	return s
 }
 
 // SetCombineArtifacts sets the CombineArtifacts field's value.
@@ -15216,7 +15238,7 @@ type UpdateProjectInput struct {
 	// The number of minutes a build is allowed to be queued before it times out.
 	QueuedTimeoutInMinutes *int64 `locationName:"queuedTimeoutInMinutes" min:"5" type:"integer"`
 
-	// An array of ProjectSource objects.
+	// An array of ProjectArtifact objects.
 	SecondaryArtifacts []*ProjectArtifacts `locationName:"secondaryArtifacts" type:"list"`
 
 	// An array of ProjectSourceVersion objects. If secondarySourceVersions is specified
@@ -16288,6 +16310,22 @@ func AuthType_Values() []string {
 		AuthTypeOauth,
 		AuthTypeBasicAuth,
 		AuthTypePersonalAccessToken,
+	}
+}
+
+const (
+	// BatchReportModeTypeReportIndividualBuilds is a BatchReportModeType enum value
+	BatchReportModeTypeReportIndividualBuilds = "REPORT_INDIVIDUAL_BUILDS"
+
+	// BatchReportModeTypeReportAggregatedBatch is a BatchReportModeType enum value
+	BatchReportModeTypeReportAggregatedBatch = "REPORT_AGGREGATED_BATCH"
+)
+
+// BatchReportModeType_Values returns all elements of the BatchReportModeType enum
+func BatchReportModeType_Values() []string {
+	return []string{
+		BatchReportModeTypeReportIndividualBuilds,
+		BatchReportModeTypeReportAggregatedBatch,
 	}
 }
 

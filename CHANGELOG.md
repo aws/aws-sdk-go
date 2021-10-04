@@ -1,3 +1,14 @@
+Release v1.40.55 (2021-10-04)
+===
+
+### Service Client Updates
+* `service/codebuild`: Updates service API and documentation
+  * CodeBuild now allows you to select how batch build statuses are sent to the source provider for a project.
+* `service/elasticfilesystem`: Updates service API
+  * EFS adds a new exception for short identifiers to be thrown after its migration to long resource identifiers.
+* `service/kms`: Updates service documentation and examples
+  * Added SDK examples for ConnectCustomKeyStore, CreateCustomKeyStore, CreateKey, DeleteCustomKeyStore, DescribeCustomKeyStores, DisconnectCustomKeyStore, GenerateDataKeyPair, GenerateDataKeyPairWithoutPlaintext, GetPublicKey, ReplicateKey, Sign, UpdateCustomKeyStore and Verify APIs
+
 Release v1.40.54 (2021-10-01)
 ===
 

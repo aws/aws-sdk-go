@@ -347,6 +347,7 @@
       "input":{"shape":"PutAccountPreferencesRequest"},
       "output":{"shape":"PutAccountPreferencesResponse"},
       "errors":[
+        {"shape":"BadRequest"},
         {"shape":"InternalServerError"}
       ]
     },
