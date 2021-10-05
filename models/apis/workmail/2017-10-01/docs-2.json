@@ -23,6 +23,7 @@
     "DeleteUser": "<p>Deletes a user from Amazon WorkMail and all subsequent systems. Before you can delete a user, the user state must be <code>DISABLED</code>. Use the <a>DescribeUser</a> action to confirm the user state.</p> <p>Deleting a user is permanent and cannot be undone. WorkMail archives user mailboxes for 30 days before they are permanently removed.</p>",
     "DeregisterFromWorkMail": "<p>Mark a user, group, or resource as no longer used in Amazon WorkMail. This action disassociates the mailbox and schedules it for clean-up. WorkMail keeps mailboxes for 30 days before they are permanently removed. The functionality in the console is <i>Disable</i>.</p>",
     "DescribeGroup": "<p>Returns the data available for the group.</p>",
+    "DescribeInboundDmarcSettings": "<p>Lists the settings in a DMARC policy for a specified organization.</p>",
     "DescribeMailboxExportJob": "<p>Describes the current status of a mailbox export job.</p>",
     "DescribeOrganization": "<p>Provides more information regarding a given organization based on its identifier.</p>",
     "DescribeResource": "<p>Returns the data available for the resource.</p>",
@@ -48,6 +49,7 @@
     "ListTagsForResource": "<p>Lists the tags applied to an Amazon WorkMail organization resource.</p>",
     "ListUsers": "<p>Returns summaries of the organization's users.</p>",
     "PutAccessControlRule": "<p>Adds a new access control rule for the specified organization. The rule allows or denies access to the organization for the specified IPv4 addresses, access protocol actions, and user IDs. Adding a new rule with the same name as an existing rule replaces the older rule.</p>",
+    "PutInboundDmarcSettings": "<p>Enables or disables a DMARC policy for a given organization.</p>",
     "PutMailboxPermissions": "<p>Sets permissions for a user, group, or resource. This replaces any pre-existing permissions.</p>",
     "PutMobileDeviceAccessOverride": "<p>Creates or updates a mobile device access override for the given WorkMail organization, user, and device.</p>",
     "PutRetentionPolicy": "<p>Puts a retention policy to the specified organization.</p>",
@@ -169,7 +171,14 @@
         "BookingOptions$AutoDeclineRecurringRequests": "<p>The resource's ability to automatically decline any recurring requests.</p>",
         "BookingOptions$AutoDeclineConflictingRequests": "<p>The resource's ability to automatically decline any conflicting requests.</p>",
         "CreateOrganizationRequest$EnableInteroperability": "<p>When <code>true</code>, allows organization interoperability between Amazon WorkMail and Microsoft Exchange. Can only be set to <code>true</code> if an AD Connector directory ID is included in the request.</p>",
-        "DeleteOrganizationRequest$DeleteDirectory": "<p>If true, deletes the AWS Directory Service directory associated with the organization.</p>"
+        "DeleteOrganizationRequest$DeleteDirectory": "<p>If true, deletes the AWS Directory Service directory associated with the organization.</p>",
+        "DescribeInboundDmarcSettingsResponse$Enforced": "<p>Lists the enforcement setting of the applied policy.</p>"
+      }
+    },
+    "BooleanObject": {
+      "base": null,
+      "refs": {
+        "PutInboundDmarcSettingsRequest$Enforced": "<p>Enforces or suspends a policy after it's applied.</p>"
       }
     },
     "CancelMailboxExportJobRequest": {
@@ -364,6 +373,16 @@
       }
     },
     "DescribeGroupResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInboundDmarcSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeInboundDmarcSettingsResponse": {
       "base": null,
       "refs": {
       }
@@ -1125,6 +1144,7 @@
         "DeleteUserRequest$OrganizationId": "<p>The organization that contains the user to be deleted.</p>",
         "DeregisterFromWorkMailRequest$OrganizationId": "<p>The identifier for the organization under which the Amazon WorkMail entity exists.</p>",
         "DescribeGroupRequest$OrganizationId": "<p>The identifier for the organization under which the group exists.</p>",
+        "DescribeInboundDmarcSettingsRequest$OrganizationId": "<p>Lists the ID of the given organization.</p>",
         "DescribeMailboxExportJobRequest$OrganizationId": "<p>The organization ID.</p>",
         "DescribeOrganizationRequest$OrganizationId": "<p>The identifier for the organization to be described.</p>",
         "DescribeOrganizationResponse$OrganizationId": "<p>The identifier of an organization.</p>",
@@ -1150,6 +1170,7 @@
         "ListUsersRequest$OrganizationId": "<p>The identifier for the organization under which the users exist.</p>",
         "OrganizationSummary$OrganizationId": "<p>The identifier associated with the organization.</p>",
         "PutAccessControlRuleRequest$OrganizationId": "<p>The identifier of the organization.</p>",
+        "PutInboundDmarcSettingsRequest$OrganizationId": "<p>The ID of the organization that you are applying the DMARC policy to. </p>",
         "PutMailboxPermissionsRequest$OrganizationId": "<p>The identifier of the organization under which the user, group, or resource exists.</p>",
         "PutMobileDeviceAccessOverrideRequest$OrganizationId": "<p>Identifies the Amazon WorkMail organization for which you create the override.</p>",
         "PutRetentionPolicyRequest$OrganizationId": "<p>The organization ID.</p>",
@@ -1243,6 +1264,16 @@
       }
     },
     "PutAccessControlRuleResponse": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutInboundDmarcSettingsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "PutInboundDmarcSettingsResponse": {
       "base": null,
       "refs": {
       }

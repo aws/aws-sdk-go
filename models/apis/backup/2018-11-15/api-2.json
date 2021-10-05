@@ -931,6 +931,7 @@
       "input":{"shape":"UpdateFrameworkInput"},
       "output":{"shape":"UpdateFrameworkOutput"},
       "errors":[
+        {"shape":"AlreadyExistsException"},
         {"shape":"ResourceNotFoundException"},
         {"shape":"LimitExceededException"},
         {"shape":"InvalidParameterValueException"},
@@ -1487,7 +1488,8 @@
       "type":"structure",
       "members":{
         "ReportPlanName":{"shape":"ReportPlanName"},
-        "ReportPlanArn":{"shape":"ARN"}
+        "ReportPlanArn":{"shape":"ARN"},
+        "CreationTime":{"shape":"timestamp"}
       }
     },
     "CronExpression":{"type":"string"},
@@ -2865,7 +2867,9 @@
       "type":"structure",
       "required":["ReportTemplate"],
       "members":{
-        "ReportTemplate":{"shape":"string"}
+        "ReportTemplate":{"shape":"string"},
+        "FrameworkArns":{"shape":"stringList"},
+        "NumberOfFrameworks":{"shape":"integer"}
       }
     },
     "ResourceArns":{

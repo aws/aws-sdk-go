@@ -24,6 +24,12 @@
       "output_token": "NextToken",
       "result_key": "ByoipCidrs"
     },
+    "DescribeCapacityReservationFleets": {
+      "input_token": "NextToken",
+      "limit_key": "MaxResults",
+      "output_token": "NextToken",
+      "result_key": "CapacityReservationFleets"
+    },
     "DescribeCapacityReservations": {
       "input_token": "NextToken",
       "limit_key": "MaxResults",

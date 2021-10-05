@@ -1537,6 +1537,7 @@
       "members":{
         "Description":{"shape":"ResourceDescription"},
         "KmsKeyId":{"shape":"KmsKeyId"},
+        "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{"shape":"PricingPlan"},
         "PricingPlanDataSource":{"shape":"String"},
         "Tags":{"shape":"TagMap"},
@@ -1803,6 +1804,7 @@
         "CreateTime":{"shape":"Timestamp"},
         "Description":{"shape":"ResourceDescription"},
         "KmsKeyId":{"shape":"KmsKeyId"},
+        "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{"shape":"PricingPlan"},
         "PricingPlanDataSource":{"shape":"String"},
         "Tags":{"shape":"TagMap"},
@@ -2622,6 +2624,13 @@
       "min":2,
       "sensitive":true
     },
+    "PositionFiltering":{
+      "type":"string",
+      "enum":[
+        "TimeBased",
+        "DistanceBased"
+      ]
+    },
     "PricingPlan":{
       "type":"string",
       "enum":[
@@ -3107,6 +3116,7 @@
       "required":["TrackerName"],
       "members":{
         "Description":{"shape":"ResourceDescription"},
+        "PositionFiltering":{"shape":"PositionFiltering"},
         "PricingPlan":{"shape":"PricingPlan"},
         "PricingPlanDataSource":{"shape":"String"},
         "TrackerName":{

@@ -666,12 +666,17 @@ func (c *LocationService) BatchUpdateDevicePositionRequest(input *BatchUpdateDev
 // BatchUpdateDevicePosition API operation for Amazon Location Service.
 //
 // Uploads position update data for one or more devices to a tracker resource.
-// Amazon Location uses the data when reporting the last known device position
-// and position history.
+// Amazon Location uses the data when it reports the last known device position
+// and position history. Amazon Location retains location data for 30 days.
 //
-// Only one position update is stored per sample time. Location data is sampled
-// at a fixed rate of one position per 30-second interval and retained for 30
-// days before it's deleted.
+// Position updates are handled based on the PositionFiltering property of the
+// tracker. When PositionFiltering is set to TimeBased, updates are evaluated
+// against linked geofence collections, and location data is stored at a maximum
+// of one position per 30 second interval. If your update frequency is more
+// often than every 30 seconds, only one update per 30 seconds is stored for
+// each unique device ID. When PositionFiltering is set to DistanceBased filtering,
+// location data is stored and evaluated against linked geofence collections
+// only if the device has moved more than 30 m (98.4 ft).
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6765,6 +6770,8 @@ type CalculateRouteInput struct {
 	//
 	// If you specify a departure that's not located on a road, Amazon Location
 	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
+	// If Esri is the provider for your route calculator, specifying a route that
+	// is longer than 400 km returns a 400 RoutesValidationException error.
 	//
 	// Valid Values: [-180 to 180,-90 to 90]
 	//
@@ -6845,6 +6852,9 @@ type CalculateRouteInput struct {
 	// moves the position to the nearest road (https://docs.aws.amazon.com/location/latest/developerguide/calculate-route.html#snap-to-nearby-road).
 	//
 	// Specifying more than 23 waypoints returns a 400 ValidationException error.
+	//
+	// If Esri is the provider for your route calculator, specifying a route that
+	// is longer than 400 km returns a 400 RoutesValidationException error.
 	//
 	// Valid Values: [-180 to 180,-90 to 90]
 	WaypointPositions [][]*float64 `type:"list"`
@@ -7048,8 +7058,9 @@ type CalculateRouteSummary struct {
 	// The total distance covered by the route. The sum of the distance travelled
 	// between every stop on the route.
 	//
-	// The route distance can't be greater than 250 km. If the route exceeds 250
-	// km, the response returns a 400 RoutesValidationException error.
+	// If Esri is the data source for the route calculator, the route distance can’t
+	// be greater than 400 km. If the route exceeds 400 km, the response is a 400
+	// RoutesValidationException error.
 	//
 	// Distance is a required field
 	Distance *float64 `type:"double" required:"true"`
@@ -7081,7 +7092,7 @@ type CalculateRouteSummary struct {
 	//    * The third bbox position is the X coordinate, or longitude of the upper
 	//    northeast corner.
 	//
-	//    * The fourth bbox position is the Y coordinate, or longitude of the upper
+	//    * The fourth bbox position is the Y coordinate, or latitude of the upper
 	//    northeast corner.
 	//
 	// RouteBBox is a sensitive parameter and its value will be
@@ -7507,7 +7518,7 @@ type CreateMapInput struct {
 	// Specifies the pricing plan for your map resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -7680,7 +7691,7 @@ type CreatePlaceIndexInput struct {
 	//    coverage in your region of interest, see Esri details on geocoding coverage
 	//    (https://developers.arcgis.com/rest/geocode/api-reference/geocode-coverage.htm).
 	//
-	//    * Here – For additional information about HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)'s
+	//    * Here – For additional information about HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)'
 	//    coverage in your region of interest, see HERE details on goecoding coverage
 	//    (https://developer.here.com/documentation/geocoder/dev_guide/topics/coverage-geocoder.html).
 	//    Place index resources using HERE Technologies as a data provider can't
@@ -7717,7 +7728,7 @@ type CreatePlaceIndexInput struct {
 	// Specifies the pricing plan for your place index resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -7898,7 +7909,8 @@ type CreateRouteCalculatorInput struct {
 	// Specifies the data provider of traffic and road network data.
 	//
 	// This field is case-sensitive. Enter the valid values as shown. For example,
-	// entering HERE returns an error.
+	// entering HERE returns an error. Route calculators that use Esri as a data
+	// source only calculate routes that are shorter than 400 km.
 	//
 	// Valid values include:
 	//
@@ -7906,7 +7918,7 @@ type CreateRouteCalculatorInput struct {
 	//    coverage in your region of interest, see Esri details on street networks
 	//    and traffic coverage (https://doc.arcgis.com/en/arcgis-online/reference/network-coverage.htm).
 	//
-	//    * Here – For additional information about HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)'s
+	//    * Here – For additional information about HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)'
 	//    coverage in your region of interest, see HERE car routing coverage (https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/car-routing.html)
 	//    and HERE truck routing coverage (https://developer.here.com/documentation/routing-api/dev_guide/topics/coverage/truck-routing.html).
 	//
@@ -8093,10 +8105,29 @@ type CreateTrackerInput struct {
 	// Enter a key ID, key ARN, alias name, or alias ARN.
 	KmsKeyId *string `min:"1" type:"string"`
 
+	// Specifies the position filtering for the tracker resource.
+	//
+	// Valid values:
+	//
+	//    * TimeBased - Location updates are evaluated against linked geofence collections,
+	//    but not every location update is stored. If your update frequency is more
+	//    often than 30 seconds, only one update per 30 seconds is stored for each
+	//    unique device ID.
+	//
+	//    * DistanceBased - If the device has moved less than 30 m (98.4 ft), location
+	//    updates are ignored. Location updates within this distance are neither
+	//    evaluated against linked geofence collections, nor stored. This helps
+	//    control costs by reducing the number of geofence evaluations and device
+	//    positions to retrieve. Distance-based filtering can also reduce the jitter
+	//    effect when displaying device trajectory on a map.
+	//
+	// This field is optional. If not specified, the default value is TimeBased.
+	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
+
 	// Specifies the pricing plan for the tracker resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -8114,7 +8145,7 @@ type CreateTrackerInput struct {
 	// for your tracker resource. Your data will not be shared with the data provider,
 	// and will remain in your AWS account or Region unless you move it.
 	//
-	// Valid Values: Esri | Here
+	// Valid values: Esri | Here
 	PricingPlanDataSource *string `type:"string"`
 
 	// Applies one or more tags to the tracker resource. A tag is a key-value pair
@@ -8200,6 +8231,12 @@ func (s *CreateTrackerInput) SetDescription(v string) *CreateTrackerInput {
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *CreateTrackerInput) SetKmsKeyId(v string) *CreateTrackerInput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetPositionFiltering sets the PositionFiltering field's value.
+func (s *CreateTrackerInput) SetPositionFiltering(v string) *CreateTrackerInput {
+	s.PositionFiltering = &v
 	return s
 }
 
@@ -8955,8 +8992,8 @@ type DescribeMapOutput struct {
 	// The pricing plan selected for the specified map resource.
 	//
 	//    <p>For additional details and restrictions on each pricing plan option,
-	//    see the <a href="https://aws.amazon.com/location/pricing/">Amazon Location
-	//    Service pricing page</a>.</p>
+	//    see <a href="https://aws.amazon.com/location/pricing/">Amazon Location
+	//    Service pricing</a>.</p>
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -9107,8 +9144,8 @@ type DescribePlaceIndexOutput struct {
 	//
 	//    * Here
 	//
-	// For additional details on data providers, see the Amazon Location Service
-	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	// For additional details on data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
@@ -9139,7 +9176,7 @@ type DescribePlaceIndexOutput struct {
 	// The pricing plan selected for the specified place index resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -9470,10 +9507,13 @@ type DescribeTrackerOutput struct {
 	// assigned to the Amazon Location resource.
 	KmsKeyId *string `min:"1" type:"string"`
 
+	// The position filtering method of the tracker resource.
+	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
+
 	// The pricing plan selected for the specified tracker resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -9537,6 +9577,12 @@ func (s *DescribeTrackerOutput) SetDescription(v string) *DescribeTrackerOutput 
 // SetKmsKeyId sets the KmsKeyId field's value.
 func (s *DescribeTrackerOutput) SetKmsKeyId(v string) *DescribeTrackerOutput {
 	s.KmsKeyId = &v
+	return s
+}
+
+// SetPositionFiltering sets the PositionFiltering field's value.
+func (s *DescribeTrackerOutput) SetPositionFiltering(v string) *DescribeTrackerOutput {
+	s.PositionFiltering = &v
 	return s
 }
 
@@ -10337,7 +10383,7 @@ type GetMapGlyphsInput struct {
 	// A comma-separated list of fonts to load glyphs from in order of preference.
 	// For example, Noto Sans Regular, Arial Unicode.
 	//
-	// Valid fonts for Esri (https://docs.aws.amazon.com/location/latest/developerguide/esri.html)
+	// Valid fonts stacks for Esri (https://docs.aws.amazon.com/location/latest/developerguide/esri.html)
 	// styles:
 	//
 	//    * VectorEsriDarkGrayCanvas – Ubuntu Medium Italic | Ubuntu Medium |
@@ -10353,7 +10399,7 @@ type GetMapGlyphsInput struct {
 	//
 	//    * VectorEsriNavigation – Arial Regular | Arial Italic | Arial Bold
 	//
-	// Valid fonts for HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)
+	// Valid font stacks for HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)
 	// styles:
 	//
 	//    * VectorHereBerlin – Fira GO Regular | Fira GO Bold
@@ -11767,7 +11813,7 @@ type ListMapsResponseEntry struct {
 	// The pricing plan for the specified map resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -11954,8 +12000,8 @@ type ListPlaceIndexesResponseEntry struct {
 	//
 	//    * Here
 	//
-	// For additional details on data providers, see the Amazon Location Service
-	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	// For additional details on data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
@@ -11973,7 +12019,7 @@ type ListPlaceIndexesResponseEntry struct {
 	// The pricing plan for the specified place index resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -12578,7 +12624,7 @@ type ListTrackersResponseEntry struct {
 	// The pricing plan for the specified tracker resource.
 	//
 	// For additional details and restrictions on each pricing plan option, see
-	// the Amazon Location Service pricing page (https://aws.amazon.com/location/pricing/).
+	// Amazon Location Service pricing (https://aws.amazon.com/location/pricing/).
 	//
 	// PricingPlan is a required field
 	PricingPlan *string `type:"string" required:"true" enum:"PricingPlan"`
@@ -12656,13 +12702,9 @@ func (s *ListTrackersResponseEntry) SetUpdateTime(v time.Time) *ListTrackersResp
 type MapConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies the map style selected from an available data provider. For additional
-	// information on each map style and to preview each map style, see Esri map
-	// styles (location/latest/developerguide/esri.html#esri-map-styles) and HERE
-	// map styles (location/latest/developerguide/HERE.html#HERE-map-styles).
+	// Specifies the map style selected from an available data provider.
 	//
-	// Valid Esri (https://docs.aws.amazon.com/location/latest/developerguide/esri.html)
-	// styles:
+	// Valid Esri map styles (https://docs.aws.amazon.com/location/latest/developerguide/esri.html):
 	//
 	//    * VectorEsriDarkGrayCanvas – The Esri Dark Gray Canvas map style. A
 	//    vector basemap with a dark gray, neutral background with minimal colors,
@@ -12690,8 +12732,7 @@ type MapConfiguration struct {
 	//    provides a detailed basemap for the world symbolized with a custom navigation
 	//    map style that's designed for use during the day in mobile devices.
 	//
-	// Valid HERE Technologies (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html)
-	// styles:
+	// Valid HERE Technologies map styles (https://docs.aws.amazon.com/location/latest/developerguide/HERE.html):
 	//
 	//    * VectorHereBerlin – The HERE Berlin map style is a high contrast detailed
 	//    base map of the world that blends 3D and 2D rendering. When using HERE
@@ -13329,8 +13370,8 @@ type SearchPlaceIndexForPositionSummary struct {
 	//
 	//    * HERE
 	//
-	// For additional details on data providers, see the Amazon Location Service
-	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	// For additional details on data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
@@ -13610,8 +13651,8 @@ type SearchPlaceIndexForTextSummary struct {
 	//
 	//    * HERE
 	//
-	// For additional details on data providers, see the Amazon Location Service
-	// data providers page (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
+	// For additional details on data providers, see Amazon Location Service data
+	// providers (https://docs.aws.amazon.com/location/latest/developerguide/what-is-data-provider.html).
 	//
 	// DataSource is a required field
 	DataSource *string `type:"string" required:"true"`
@@ -14782,6 +14823,23 @@ type UpdateTrackerInput struct {
 	// Updates the description for the tracker resource.
 	Description *string `type:"string"`
 
+	// Updates the position filtering for the tracker resource.
+	//
+	// Valid values:
+	//
+	//    * TimeBased - Location updates are evaluated against linked geofence collections,
+	//    but not every location update is stored. If your update frequency is more
+	//    often than 30 seconds, only one update per 30 seconds is stored for each
+	//    unique device ID.
+	//
+	//    * DistanceBased - If the device has moved less than 30 m (98.4 ft), location
+	//    updates are ignored. Location updates within this distance are neither
+	//    evaluated against linked geofence collections, nor stored. This helps
+	//    control costs by reducing the number of geofence evaluations and device
+	//    positions to retrieve. Distance-based filtering can also reduce the jitter
+	//    effect when displaying device trajectory on a map.
+	PositionFiltering *string `type:"string" enum:"PositionFiltering"`
+
 	// Updates the pricing plan for the tracker resource.
 	//
 	// For more information about each pricing plan option restrictions, see Amazon
@@ -14846,6 +14904,12 @@ func (s *UpdateTrackerInput) Validate() error {
 // SetDescription sets the Description field's value.
 func (s *UpdateTrackerInput) SetDescription(v string) *UpdateTrackerInput {
 	s.Description = &v
+	return s
+}
+
+// SetPositionFiltering sets the PositionFiltering field's value.
+func (s *UpdateTrackerInput) SetPositionFiltering(v string) *UpdateTrackerInput {
+	s.PositionFiltering = &v
 	return s
 }
 
@@ -15123,6 +15187,22 @@ func IntendedUse_Values() []string {
 	return []string{
 		IntendedUseSingleUse,
 		IntendedUseStorage,
+	}
+}
+
+const (
+	// PositionFilteringTimeBased is a PositionFiltering enum value
+	PositionFilteringTimeBased = "TimeBased"
+
+	// PositionFilteringDistanceBased is a PositionFiltering enum value
+	PositionFilteringDistanceBased = "DistanceBased"
+)
+
+// PositionFiltering_Values returns all elements of the PositionFiltering enum
+func PositionFiltering_Values() []string {
+	return []string{
+		PositionFilteringTimeBased,
+		PositionFilteringDistanceBased,
 	}
 }
 

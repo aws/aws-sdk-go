@@ -325,6 +325,15 @@
       "input":{"shape":"CancelCapacityReservationRequest"},
       "output":{"shape":"CancelCapacityReservationResult"}
     },
+    "CancelCapacityReservationFleets":{
+      "name":"CancelCapacityReservationFleets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CancelCapacityReservationFleetsRequest"},
+      "output":{"shape":"CancelCapacityReservationFleetsResult"}
+    },
     "CancelConversionTask":{
       "name":"CancelConversionTask",
       "http":{
@@ -421,6 +430,15 @@
       },
       "input":{"shape":"CreateCapacityReservationRequest"},
       "output":{"shape":"CreateCapacityReservationResult"}
+    },
+    "CreateCapacityReservationFleet":{
+      "name":"CreateCapacityReservationFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"CreateCapacityReservationFleetRequest"},
+      "output":{"shape":"CreateCapacityReservationFleetResult"}
     },
     "CreateCarrierGateway":{
       "name":"CreateCarrierGateway",
@@ -1576,6 +1594,15 @@
       },
       "input":{"shape":"DescribeByoipCidrsRequest"},
       "output":{"shape":"DescribeByoipCidrsResult"}
+    },
+    "DescribeCapacityReservationFleets":{
+      "name":"DescribeCapacityReservationFleets",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeCapacityReservationFleetsRequest"},
+      "output":{"shape":"DescribeCapacityReservationFleetsResult"}
     },
     "DescribeCapacityReservations":{
       "name":"DescribeCapacityReservations",
@@ -3278,6 +3305,15 @@
       },
       "input":{"shape":"ModifyCapacityReservationRequest"},
       "output":{"shape":"ModifyCapacityReservationResult"}
+    },
+    "ModifyCapacityReservationFleet":{
+      "name":"ModifyCapacityReservationFleet",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"ModifyCapacityReservationFleetRequest"},
+      "output":{"shape":"ModifyCapacityReservationFleetResult"}
     },
     "ModifyClientVpnEndpoint":{
       "name":"ModifyClientVpnEndpoint",
@@ -6191,6 +6227,45 @@
         }
       }
     },
+    "CancelCapacityReservationFleetError":{
+      "type":"structure",
+      "members":{
+        "Code":{
+          "shape":"CancelCapacityReservationFleetErrorCode",
+          "locationName":"code"
+        },
+        "Message":{
+          "shape":"CancelCapacityReservationFleetErrorMessage",
+          "locationName":"message"
+        }
+      }
+    },
+    "CancelCapacityReservationFleetErrorCode":{"type":"string"},
+    "CancelCapacityReservationFleetErrorMessage":{"type":"string"},
+    "CancelCapacityReservationFleetsRequest":{
+      "type":"structure",
+      "required":["CapacityReservationFleetIds"],
+      "members":{
+        "DryRun":{"shape":"Boolean"},
+        "CapacityReservationFleetIds":{
+          "shape":"CapacityReservationFleetIdSet",
+          "locationName":"CapacityReservationFleetId"
+        }
+      }
+    },
+    "CancelCapacityReservationFleetsResult":{
+      "type":"structure",
+      "members":{
+        "SuccessfulFleetCancellations":{
+          "shape":"CapacityReservationFleetCancellationStateSet",
+          "locationName":"successfulFleetCancellationSet"
+        },
+        "FailedFleetCancellations":{
+          "shape":"FailedCapacityReservationFleetCancellationResultSet",
+          "locationName":"failedFleetCancellationSet"
+        }
+      }
+    },
     "CancelCapacityReservationRequest":{
       "type":"structure",
       "required":["CapacityReservationId"],
@@ -6506,8 +6581,118 @@
         "OutpostArn":{
           "shape":"OutpostArn",
           "locationName":"outpostArn"
+        },
+        "CapacityReservationFleetId":{
+          "shape":"String",
+          "locationName":"capacityReservationFleetId"
         }
       }
+    },
+    "CapacityReservationFleet":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationFleetId":{
+          "shape":"CapacityReservationFleetId",
+          "locationName":"capacityReservationFleetId"
+        },
+        "CapacityReservationFleetArn":{
+          "shape":"String",
+          "locationName":"capacityReservationFleetArn"
+        },
+        "State":{
+          "shape":"CapacityReservationFleetState",
+          "locationName":"state"
+        },
+        "TotalTargetCapacity":{
+          "shape":"Integer",
+          "locationName":"totalTargetCapacity"
+        },
+        "TotalFulfilledCapacity":{
+          "shape":"Double",
+          "locationName":"totalFulfilledCapacity"
+        },
+        "Tenancy":{
+          "shape":"FleetCapacityReservationTenancy",
+          "locationName":"tenancy"
+        },
+        "EndDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"endDate"
+        },
+        "CreateTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"createTime"
+        },
+        "InstanceMatchCriteria":{
+          "shape":"FleetInstanceMatchCriteria",
+          "locationName":"instanceMatchCriteria"
+        },
+        "AllocationStrategy":{
+          "shape":"String",
+          "locationName":"allocationStrategy"
+        },
+        "InstanceTypeSpecifications":{
+          "shape":"FleetCapacityReservationSet",
+          "locationName":"instanceTypeSpecificationSet"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
+      }
+    },
+    "CapacityReservationFleetCancellationState":{
+      "type":"structure",
+      "members":{
+        "CurrentFleetState":{
+          "shape":"CapacityReservationFleetState",
+          "locationName":"currentFleetState"
+        },
+        "PreviousFleetState":{
+          "shape":"CapacityReservationFleetState",
+          "locationName":"previousFleetState"
+        },
+        "CapacityReservationFleetId":{
+          "shape":"CapacityReservationFleetId",
+          "locationName":"capacityReservationFleetId"
+        }
+      }
+    },
+    "CapacityReservationFleetCancellationStateSet":{
+      "type":"list",
+      "member":{
+        "shape":"CapacityReservationFleetCancellationState",
+        "locationName":"item"
+      }
+    },
+    "CapacityReservationFleetId":{"type":"string"},
+    "CapacityReservationFleetIdSet":{
+      "type":"list",
+      "member":{
+        "shape":"CapacityReservationFleetId",
+        "locationName":"item"
+      }
+    },
+    "CapacityReservationFleetSet":{
+      "type":"list",
+      "member":{
+        "shape":"CapacityReservationFleet",
+        "locationName":"item"
+      }
+    },
+    "CapacityReservationFleetState":{
+      "type":"string",
+      "enum":[
+        "submitted",
+        "modifying",
+        "active",
+        "partially_fulfilled",
+        "expiring",
+        "expired",
+        "cancelling",
+        "cancelled",
+        "failed"
+      ]
     },
     "CapacityReservationGroup":{
       "type":"structure",
@@ -7610,6 +7795,82 @@
       "members":{
         "CoreCount":{"shape":"Integer"},
         "ThreadsPerCore":{"shape":"Integer"}
+      }
+    },
+    "CreateCapacityReservationFleetRequest":{
+      "type":"structure",
+      "required":[
+        "InstanceTypeSpecifications",
+        "TotalTargetCapacity"
+      ],
+      "members":{
+        "AllocationStrategy":{"shape":"String"},
+        "ClientToken":{
+          "shape":"String",
+          "idempotencyToken":true
+        },
+        "InstanceTypeSpecifications":{
+          "shape":"ReservationFleetInstanceSpecificationList",
+          "locationName":"InstanceTypeSpecification"
+        },
+        "Tenancy":{"shape":"FleetCapacityReservationTenancy"},
+        "TotalTargetCapacity":{"shape":"Integer"},
+        "EndDate":{"shape":"MillisecondDateTime"},
+        "InstanceMatchCriteria":{"shape":"FleetInstanceMatchCriteria"},
+        "TagSpecifications":{
+          "shape":"TagSpecificationList",
+          "locationName":"TagSpecification"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "CreateCapacityReservationFleetResult":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationFleetId":{
+          "shape":"CapacityReservationFleetId",
+          "locationName":"capacityReservationFleetId"
+        },
+        "State":{
+          "shape":"CapacityReservationFleetState",
+          "locationName":"state"
+        },
+        "TotalTargetCapacity":{
+          "shape":"Integer",
+          "locationName":"totalTargetCapacity"
+        },
+        "TotalFulfilledCapacity":{
+          "shape":"Double",
+          "locationName":"totalFulfilledCapacity"
+        },
+        "InstanceMatchCriteria":{
+          "shape":"FleetInstanceMatchCriteria",
+          "locationName":"instanceMatchCriteria"
+        },
+        "AllocationStrategy":{
+          "shape":"String",
+          "locationName":"allocationStrategy"
+        },
+        "CreateTime":{
+          "shape":"MillisecondDateTime",
+          "locationName":"createTime"
+        },
+        "EndDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"endDate"
+        },
+        "Tenancy":{
+          "shape":"FleetCapacityReservationTenancy",
+          "locationName":"tenancy"
+        },
+        "FleetCapacityReservations":{
+          "shape":"FleetCapacityReservationSet",
+          "locationName":"fleetCapacityReservationSet"
+        },
+        "Tags":{
+          "shape":"TagList",
+          "locationName":"tagSet"
+        }
       }
     },
     "CreateCapacityReservationRequest":{
@@ -11158,6 +11419,40 @@
         "ByoipCidrs":{
           "shape":"ByoipCidrSet",
           "locationName":"byoipCidrSet"
+        },
+        "NextToken":{
+          "shape":"String",
+          "locationName":"nextToken"
+        }
+      }
+    },
+    "DescribeCapacityReservationFleetsMaxResults":{
+      "type":"integer",
+      "max":100,
+      "min":1
+    },
+    "DescribeCapacityReservationFleetsRequest":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationFleetIds":{
+          "shape":"CapacityReservationFleetIdSet",
+          "locationName":"CapacityReservationFleetId"
+        },
+        "NextToken":{"shape":"String"},
+        "MaxResults":{"shape":"DescribeCapacityReservationFleetsMaxResults"},
+        "Filters":{
+          "shape":"FilterList",
+          "locationName":"Filter"
+        },
+        "DryRun":{"shape":"Boolean"}
+      }
+    },
+    "DescribeCapacityReservationFleetsResult":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationFleets":{
+          "shape":"CapacityReservationFleetSet",
+          "locationName":"capacityReservationFleetSet"
         },
         "NextToken":{
           "shape":"String",
@@ -15794,6 +16089,11 @@
       ]
     },
     "Double":{"type":"double"},
+    "DoubleWithConstraints":{
+      "type":"double",
+      "max":99.999,
+      "min":0.001
+    },
     "EbsBlockDevice":{
       "type":"structure",
       "members":{
@@ -17046,6 +17346,26 @@
       }
     },
     "ExportVmTaskId":{"type":"string"},
+    "FailedCapacityReservationFleetCancellationResult":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationFleetId":{
+          "shape":"CapacityReservationFleetId",
+          "locationName":"capacityReservationFleetId"
+        },
+        "CancelCapacityReservationFleetError":{
+          "shape":"CancelCapacityReservationFleetError",
+          "locationName":"cancelCapacityReservationFleetError"
+        }
+      }
+    },
+    "FailedCapacityReservationFleetCancellationResultSet":{
+      "type":"list",
+      "member":{
+        "shape":"FailedCapacityReservationFleetCancellationResult",
+        "locationName":"item"
+      }
+    },
     "FailedQueuedPurchaseDeletion":{
       "type":"structure",
       "members":{
@@ -17121,6 +17441,66 @@
         "pending_termination",
         "fulfilled"
       ]
+    },
+    "FleetCapacityReservation":{
+      "type":"structure",
+      "members":{
+        "CapacityReservationId":{
+          "shape":"CapacityReservationId",
+          "locationName":"capacityReservationId"
+        },
+        "AvailabilityZoneId":{
+          "shape":"String",
+          "locationName":"availabilityZoneId"
+        },
+        "InstanceType":{
+          "shape":"InstanceType",
+          "locationName":"instanceType"
+        },
+        "InstancePlatform":{
+          "shape":"CapacityReservationInstancePlatform",
+          "locationName":"instancePlatform"
+        },
+        "AvailabilityZone":{
+          "shape":"String",
+          "locationName":"availabilityZone"
+        },
+        "TotalInstanceCount":{
+          "shape":"Integer",
+          "locationName":"totalInstanceCount"
+        },
+        "FulfilledCapacity":{
+          "shape":"Double",
+          "locationName":"fulfilledCapacity"
+        },
+        "EbsOptimized":{
+          "shape":"Boolean",
+          "locationName":"ebsOptimized"
+        },
+        "CreateDate":{
+          "shape":"MillisecondDateTime",
+          "locationName":"createDate"
+        },
+        "Weight":{
+          "shape":"DoubleWithConstraints",
+          "locationName":"weight"
+        },
+        "Priority":{
+          "shape":"IntegerWithConstraints",
+          "locationName":"priority"
+        }
+      }
+    },
+    "FleetCapacityReservationSet":{
+      "type":"list",
+      "member":{
+        "shape":"FleetCapacityReservation",
+        "locationName":"item"
+      }
+    },
+    "FleetCapacityReservationTenancy":{
+      "type":"string",
+      "enum":["default"]
     },
     "FleetCapacityReservationUsageStrategy":{
       "type":"string",
@@ -17234,6 +17614,10 @@
     "FleetIdSet":{
       "type":"list",
       "member":{"shape":"FleetId"}
+    },
+    "FleetInstanceMatchCriteria":{
+      "type":"string",
+      "enum":["open"]
     },
     "FleetLaunchTemplateConfig":{
       "type":"structure",
@@ -20812,7 +21196,7 @@
           "queryName":"Ipv6Addresses"
         },
         "NetworkInterfaceId":{
-          "shape":"String",
+          "shape":"NetworkInterfaceId",
           "locationName":"networkInterfaceId"
         },
         "PrivateIpAddress":{
@@ -21677,6 +22061,10 @@
       }
     },
     "Integer":{"type":"integer"},
+    "IntegerWithConstraints":{
+      "type":"integer",
+      "min":0
+    },
     "IntegrateServices":{
       "type":"structure",
       "members":{
@@ -22813,7 +23201,7 @@
           "locationName":"spotPrice"
         },
         "SubnetId":{
-          "shape":"String",
+          "shape":"SubnetId",
           "locationName":"subnetId"
         },
         "AvailabilityZone":{
@@ -23629,6 +24017,26 @@
         "opted-in",
         "not-opted-in"
       ]
+    },
+    "ModifyCapacityReservationFleetRequest":{
+      "type":"structure",
+      "required":["CapacityReservationFleetId"],
+      "members":{
+        "CapacityReservationFleetId":{"shape":"CapacityReservationFleetId"},
+        "TotalTargetCapacity":{"shape":"Integer"},
+        "EndDate":{"shape":"MillisecondDateTime"},
+        "DryRun":{"shape":"Boolean"},
+        "RemoveEndDate":{"shape":"Boolean"}
+      }
+    },
+    "ModifyCapacityReservationFleetResult":{
+      "type":"structure",
+      "members":{
+        "Return":{
+          "shape":"Boolean",
+          "locationName":"return"
+        }
+      }
     },
     "ModifyCapacityReservationRequest":{
       "type":"structure",
@@ -27963,6 +28371,22 @@
           "locationName":"reservationId"
         }
       }
+    },
+    "ReservationFleetInstanceSpecification":{
+      "type":"structure",
+      "members":{
+        "InstanceType":{"shape":"InstanceType"},
+        "InstancePlatform":{"shape":"CapacityReservationInstancePlatform"},
+        "Weight":{"shape":"DoubleWithConstraints"},
+        "AvailabilityZone":{"shape":"String"},
+        "AvailabilityZoneId":{"shape":"String"},
+        "EbsOptimized":{"shape":"Boolean"},
+        "Priority":{"shape":"IntegerWithConstraints"}
+      }
+    },
+    "ReservationFleetInstanceSpecificationList":{
+      "type":"list",
+      "member":{"shape":"ReservationFleetInstanceSpecification"}
     },
     "ReservationId":{"type":"string"},
     "ReservationList":{

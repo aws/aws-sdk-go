@@ -2056,6 +2056,90 @@ func (c *WorkMail) DescribeGroupWithContext(ctx aws.Context, input *DescribeGrou
 	return out, req.Send()
 }
 
+const opDescribeInboundDmarcSettings = "DescribeInboundDmarcSettings"
+
+// DescribeInboundDmarcSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the DescribeInboundDmarcSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DescribeInboundDmarcSettings for more information on using the DescribeInboundDmarcSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DescribeInboundDmarcSettingsRequest method.
+//    req, resp := client.DescribeInboundDmarcSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeInboundDmarcSettings
+func (c *WorkMail) DescribeInboundDmarcSettingsRequest(input *DescribeInboundDmarcSettingsInput) (req *request.Request, output *DescribeInboundDmarcSettingsOutput) {
+	op := &request.Operation{
+		Name:       opDescribeInboundDmarcSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &DescribeInboundDmarcSettingsInput{}
+	}
+
+	output = &DescribeInboundDmarcSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// DescribeInboundDmarcSettings API operation for Amazon WorkMail.
+//
+// Lists the settings in a DMARC policy for a specified organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation DescribeInboundDmarcSettings for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/DescribeInboundDmarcSettings
+func (c *WorkMail) DescribeInboundDmarcSettings(input *DescribeInboundDmarcSettingsInput) (*DescribeInboundDmarcSettingsOutput, error) {
+	req, out := c.DescribeInboundDmarcSettingsRequest(input)
+	return out, req.Send()
+}
+
+// DescribeInboundDmarcSettingsWithContext is the same as DescribeInboundDmarcSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DescribeInboundDmarcSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) DescribeInboundDmarcSettingsWithContext(ctx aws.Context, input *DescribeInboundDmarcSettingsInput, opts ...request.Option) (*DescribeInboundDmarcSettingsOutput, error) {
+	req, out := c.DescribeInboundDmarcSettingsRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDescribeMailboxExportJob = "DescribeMailboxExportJob"
 
 // DescribeMailboxExportJobRequest generates a "aws/request.Request" representing the
@@ -4895,6 +4979,91 @@ func (c *WorkMail) PutAccessControlRule(input *PutAccessControlRuleInput) (*PutA
 // for more information on using Contexts.
 func (c *WorkMail) PutAccessControlRuleWithContext(ctx aws.Context, input *PutAccessControlRuleInput, opts ...request.Option) (*PutAccessControlRuleOutput, error) {
 	req, out := c.PutAccessControlRuleRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutInboundDmarcSettings = "PutInboundDmarcSettings"
+
+// PutInboundDmarcSettingsRequest generates a "aws/request.Request" representing the
+// client's request for the PutInboundDmarcSettings operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutInboundDmarcSettings for more information on using the PutInboundDmarcSettings
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutInboundDmarcSettingsRequest method.
+//    req, resp := client.PutInboundDmarcSettingsRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutInboundDmarcSettings
+func (c *WorkMail) PutInboundDmarcSettingsRequest(input *PutInboundDmarcSettingsInput) (req *request.Request, output *PutInboundDmarcSettingsOutput) {
+	op := &request.Operation{
+		Name:       opPutInboundDmarcSettings,
+		HTTPMethod: "POST",
+		HTTPPath:   "/",
+	}
+
+	if input == nil {
+		input = &PutInboundDmarcSettingsInput{}
+	}
+
+	output = &PutInboundDmarcSettingsOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(jsonrpc.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutInboundDmarcSettings API operation for Amazon WorkMail.
+//
+// Enables or disables a DMARC policy for a given organization.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for Amazon WorkMail's
+// API operation PutInboundDmarcSettings for usage and error information.
+//
+// Returned Error Types:
+//   * OrganizationNotFoundException
+//   An operation received a valid organization identifier that either doesn't
+//   belong or exist in the system.
+//
+//   * OrganizationStateException
+//   The organization must have a valid state to perform certain operations on
+//   the organization or its members.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/workmail-2017-10-01/PutInboundDmarcSettings
+func (c *WorkMail) PutInboundDmarcSettings(input *PutInboundDmarcSettingsInput) (*PutInboundDmarcSettingsOutput, error) {
+	req, out := c.PutInboundDmarcSettingsRequest(input)
+	return out, req.Send()
+}
+
+// PutInboundDmarcSettingsWithContext is the same as PutInboundDmarcSettings with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutInboundDmarcSettings for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *WorkMail) PutInboundDmarcSettingsWithContext(ctx aws.Context, input *PutInboundDmarcSettingsInput, opts ...request.Option) (*PutInboundDmarcSettingsOutput, error) {
+	req, out := c.PutInboundDmarcSettingsRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8674,6 +8843,86 @@ func (s *DescribeGroupOutput) SetName(v string) *DescribeGroupOutput {
 // SetState sets the State field's value.
 func (s *DescribeGroupOutput) SetState(v string) *DescribeGroupOutput {
 	s.State = &v
+	return s
+}
+
+type DescribeInboundDmarcSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the ID of the given organization.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInboundDmarcSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInboundDmarcSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DescribeInboundDmarcSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DescribeInboundDmarcSettingsInput"}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *DescribeInboundDmarcSettingsInput) SetOrganizationId(v string) *DescribeInboundDmarcSettingsInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type DescribeInboundDmarcSettingsOutput struct {
+	_ struct{} `type:"structure"`
+
+	// Lists the enforcement setting of the applied policy.
+	Enforced *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInboundDmarcSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DescribeInboundDmarcSettingsOutput) GoString() string {
+	return s.String()
+}
+
+// SetEnforced sets the Enforced field's value.
+func (s *DescribeInboundDmarcSettingsOutput) SetEnforced(v bool) *DescribeInboundDmarcSettingsOutput {
+	s.Enforced = &v
 	return s
 }
 
@@ -13714,6 +13963,91 @@ func (s PutAccessControlRuleOutput) String() string {
 // be included in the string output. The member name will be present, but the
 // value will be replaced with "sensitive".
 func (s PutAccessControlRuleOutput) GoString() string {
+	return s.String()
+}
+
+type PutInboundDmarcSettingsInput struct {
+	_ struct{} `type:"structure"`
+
+	// Enforces or suspends a policy after it's applied.
+	//
+	// Enforced is a required field
+	Enforced *bool `type:"boolean" required:"true"`
+
+	// The ID of the organization that you are applying the DMARC policy to.
+	//
+	// OrganizationId is a required field
+	OrganizationId *string `min:"34" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutInboundDmarcSettingsInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutInboundDmarcSettingsInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutInboundDmarcSettingsInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutInboundDmarcSettingsInput"}
+	if s.Enforced == nil {
+		invalidParams.Add(request.NewErrParamRequired("Enforced"))
+	}
+	if s.OrganizationId == nil {
+		invalidParams.Add(request.NewErrParamRequired("OrganizationId"))
+	}
+	if s.OrganizationId != nil && len(*s.OrganizationId) < 34 {
+		invalidParams.Add(request.NewErrParamMinLen("OrganizationId", 34))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetEnforced sets the Enforced field's value.
+func (s *PutInboundDmarcSettingsInput) SetEnforced(v bool) *PutInboundDmarcSettingsInput {
+	s.Enforced = &v
+	return s
+}
+
+// SetOrganizationId sets the OrganizationId field's value.
+func (s *PutInboundDmarcSettingsInput) SetOrganizationId(v string) *PutInboundDmarcSettingsInput {
+	s.OrganizationId = &v
+	return s
+}
+
+type PutInboundDmarcSettingsOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutInboundDmarcSettingsOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutInboundDmarcSettingsOutput) GoString() string {
 	return s.String()
 }
 

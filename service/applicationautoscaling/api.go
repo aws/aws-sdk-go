@@ -1263,6 +1263,13 @@ func (c *ApplicationAutoScaling) RegisterScalableTargetRequest(input *RegisterSc
 // dimension, and namespace. Any parameters that you don't specify are not changed
 // by this update request.
 //
+// If you call the RegisterScalableTarget API to update an existing scalable
+// target, Application Auto Scaling retrieves the current capacity of the resource.
+// If it is below the minimum capacity or above the maximum capacity, Application
+// Auto Scaling adjusts the capacity of the scalable target to place it within
+// these bounds, even if you don't include the MinCapacity or MaxCapacity request
+// parameters.
+//
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
 // the error.
@@ -1558,8 +1565,8 @@ type DeleteScalingPolicyInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -1576,8 +1583,8 @@ type DeleteScalingPolicyInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -1604,6 +1611,9 @@ type DeleteScalingPolicyInput struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1616,7 +1626,7 @@ type DeleteScalingPolicyInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -1638,7 +1648,7 @@ type DeleteScalingPolicyInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -1667,6 +1677,9 @@ type DeleteScalingPolicyInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -1780,8 +1793,8 @@ type DeleteScheduledActionInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -1798,8 +1811,8 @@ type DeleteScheduledActionInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -1826,6 +1839,9 @@ type DeleteScheduledActionInput struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -1838,7 +1854,7 @@ type DeleteScheduledActionInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -1860,7 +1876,7 @@ type DeleteScheduledActionInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -1889,6 +1905,9 @@ type DeleteScheduledActionInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2007,8 +2026,8 @@ type DeregisterScalableTargetInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2025,8 +2044,8 @@ type DeregisterScalableTargetInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -2053,6 +2072,9 @@ type DeregisterScalableTargetInput struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -2065,7 +2087,7 @@ type DeregisterScalableTargetInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2087,7 +2109,7 @@ type DeregisterScalableTargetInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2116,6 +2138,9 @@ type DeregisterScalableTargetInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -2229,8 +2254,8 @@ type DescribeScalableTargetsInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2247,8 +2272,8 @@ type DescribeScalableTargetsInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -2274,6 +2299,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
 	ResourceIds []*string `type:"list"`
 
 	// The scalable dimension associated with the scalable target. This string consists
@@ -2286,7 +2314,7 @@ type DescribeScalableTargetsInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2308,7 +2336,7 @@ type DescribeScalableTargetsInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2337,6 +2365,9 @@ type DescribeScalableTargetsInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -2470,8 +2501,8 @@ type DescribeScalingActivitiesInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2488,8 +2519,8 @@ type DescribeScalingActivitiesInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -2515,6 +2546,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2527,7 +2561,7 @@ type DescribeScalingActivitiesInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2549,7 +2583,7 @@ type DescribeScalingActivitiesInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2578,6 +2612,9 @@ type DescribeScalingActivitiesInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -2696,13 +2733,13 @@ func (s *DescribeScalingActivitiesOutput) SetScalingActivities(v []*ScalingActiv
 type DescribeScalingPoliciesInput struct {
 	_ struct{} `type:"structure"`
 
-	// The maximum number of scalable targets. This value can be between 1 and 50.
-	// The default value is 50.
+	// The maximum number of scalable targets. This value can be between 1 and 10.
+	// The default value is 10.
 	//
 	// If this parameter is used, the operation returns up to MaxResults results
 	// at a time, along with a NextToken value. To get the next set of results,
 	// include the NextToken value in a subsequent call. If this parameter is not
-	// used, the operation returns up to 50 results and a NextToken value, if applicable.
+	// used, the operation returns up to 10 results and a NextToken value, if applicable.
 	MaxResults *int64 `type:"integer"`
 
 	// The token for the next set of results.
@@ -2717,8 +2754,8 @@ type DescribeScalingPoliciesInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2735,8 +2772,8 @@ type DescribeScalingPoliciesInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -2762,6 +2799,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -2774,7 +2814,7 @@ type DescribeScalingPoliciesInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -2796,7 +2836,7 @@ type DescribeScalingPoliciesInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -2825,6 +2865,9 @@ type DescribeScalingPoliciesInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The namespace of the Amazon Web Services service that provides the resource.
@@ -2967,8 +3010,8 @@ type DescribeScheduledActionsInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -2985,8 +3028,8 @@ type DescribeScheduledActionsInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -3012,6 +3055,9 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
+	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
 	ResourceId *string `min:"1" type:"string"`
 
 	// The scalable dimension. This string consists of the service namespace, resource
@@ -3024,7 +3070,7 @@ type DescribeScheduledActionsInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -3046,7 +3092,7 @@ type DescribeScheduledActionsInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -3075,6 +3121,9 @@ type DescribeScheduledActionsInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The names of the scheduled actions to describe.
@@ -3696,7 +3745,7 @@ type PutScalingPolicyInput struct {
 	// TargetTrackingScaling—Not supported for Amazon EMR
 	//
 	// StepScaling—Not supported for DynamoDB, Amazon Comprehend, Lambda, Amazon
-	// Keyspaces (for Apache Cassandra), Amazon MSK, or Amazon ElastiCache for Redis.
+	// Keyspaces, Amazon MSK, Amazon ElastiCache, or Neptune.
 	//
 	// For more information, see Target tracking scaling policies (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-target-tracking.html)
 	// and Step scaling policies (https://docs.aws.amazon.com/autoscaling/application/userguide/application-auto-scaling-step-scaling-policies.html)
@@ -3709,8 +3758,8 @@ type PutScalingPolicyInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -3727,8 +3776,8 @@ type PutScalingPolicyInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -3755,6 +3804,9 @@ type PutScalingPolicyInput struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -3767,7 +3819,7 @@ type PutScalingPolicyInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -3789,7 +3841,7 @@ type PutScalingPolicyInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -3818,6 +3870,9 @@ type PutScalingPolicyInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -3995,8 +4050,8 @@ type PutScheduledActionInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4013,8 +4068,8 @@ type PutScheduledActionInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -4041,6 +4096,9 @@ type PutScheduledActionInput struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4053,7 +4111,7 @@ type PutScheduledActionInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4075,7 +4133,7 @@ type PutScheduledActionInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4104,6 +4162,9 @@ type PutScheduledActionInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -4328,8 +4389,8 @@ type RegisterScalableTargetInput struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4346,8 +4407,8 @@ type RegisterScalableTargetInput struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -4374,6 +4435,9 @@ type RegisterScalableTargetInput struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4395,7 +4459,7 @@ type RegisterScalableTargetInput struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4417,7 +4481,7 @@ type RegisterScalableTargetInput struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4446,6 +4510,9 @@ type RegisterScalableTargetInput struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -4610,8 +4677,8 @@ type ScalableTarget struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4628,8 +4695,8 @@ type ScalableTarget struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -4656,6 +4723,9 @@ type ScalableTarget struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4674,7 +4744,7 @@ type ScalableTarget struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4696,7 +4766,7 @@ type ScalableTarget struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -4725,6 +4795,9 @@ type ScalableTarget struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -4891,8 +4964,8 @@ type ScalingActivity struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -4909,8 +4982,8 @@ type ScalingActivity struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -4937,6 +5010,9 @@ type ScalingActivity struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -4949,7 +5025,7 @@ type ScalingActivity struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -4971,7 +5047,7 @@ type ScalingActivity struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -5000,6 +5076,9 @@ type ScalingActivity struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5145,8 +5224,8 @@ type ScalingPolicy struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -5163,8 +5242,8 @@ type ScalingPolicy struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -5191,6 +5270,9 @@ type ScalingPolicy struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5203,7 +5285,7 @@ type ScalingPolicy struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -5225,7 +5307,7 @@ type ScalingPolicy struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -5254,6 +5336,9 @@ type ScalingPolicy struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	//
 	// ScalableDimension is a required field
 	ScalableDimension *string `type:"string" required:"true" enum:"ScalableDimension"`
@@ -5367,8 +5452,8 @@ type ScheduledAction struct {
 	//    * ECS service - The resource type is service and the unique identifier
 	//    is the cluster name and service name. Example: service/default/sample-webapp.
 	//
-	//    * Spot Fleet request - The resource type is spot-fleet-request and the
-	//    unique identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
+	//    * Spot Fleet - The resource type is spot-fleet-request and the unique
+	//    identifier is the Spot Fleet request ID. Example: spot-fleet-request/sfr-73fbd2ce-aa30-494c-8788-1cee4EXAMPLE.
 	//
 	//    * EMR cluster - The resource type is instancegroup and the unique identifier
 	//    is the cluster ID and instance group ID. Example: instancegroup/j-2EEZNYKUA1NTV/ig-1791Y4E1L8YI0.
@@ -5385,8 +5470,8 @@ type ScheduledAction struct {
 	//    * Aurora DB cluster - The resource type is cluster and the unique identifier
 	//    is the cluster name. Example: cluster:my-db-cluster.
 	//
-	//    * Amazon SageMaker endpoint variant - The resource type is variant and
-	//    the unique identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
+	//    * SageMaker endpoint variant - The resource type is variant and the unique
+	//    identifier is the resource ID. Example: endpoint/my-end-point/variant/KMeansClustering.
 	//
 	//    * Custom resources are not supported with a resource type. This parameter
 	//    must specify the OutputValue from the CloudFormation template stack used
@@ -5413,6 +5498,9 @@ type ScheduledAction struct {
 	//    * Amazon ElastiCache replication group - The resource type is replication-group
 	//    and the unique identifier is the replication group name. Example: replication-group/mycluster.
 	//
+	//    * Neptune cluster - The resource type is cluster and the unique identifier
+	//    is the cluster name. Example: cluster:mycluster.
+	//
 	// ResourceId is a required field
 	ResourceId *string `min:"1" type:"string" required:"true"`
 
@@ -5425,7 +5513,7 @@ type ScheduledAction struct {
 	//    an EMR Instance Group.
 	//
 	//    * ec2:spot-fleet-request:TargetCapacity - The target capacity of a Spot
-	//    Fleet request.
+	//    Fleet.
 	//
 	//    * appstream:fleet:DesiredCapacity - The desired capacity of an AppStream
 	//    2.0 fleet.
@@ -5447,7 +5535,7 @@ type ScheduledAction struct {
 	//    edition.
 	//
 	//    * sagemaker:variant:DesiredInstanceCount - The number of EC2 instances
-	//    for an Amazon SageMaker model endpoint variant.
+	//    for an SageMaker model endpoint variant.
 	//
 	//    * custom-resource:ResourceType:Property - The scalable dimension for a
 	//    custom resource provided by your own application or service.
@@ -5476,6 +5564,9 @@ type ScheduledAction struct {
 	//
 	//    * elasticache:replication-group:Replicas - The number of replicas per
 	//    node group for an Amazon ElastiCache replication group.
+	//
+	//    * neptune:cluster:ReadReplicaCount - The count of read replicas in an
+	//    Amazon Neptune DB cluster.
 	ScalableDimension *string `type:"string" enum:"ScalableDimension"`
 
 	// The new minimum and maximum capacity. You can set both values or just one.
@@ -5766,31 +5857,31 @@ type StepScalingPolicyConfiguration struct {
 	// replication groups and a default value of 300 for the following scalable
 	// targets:
 	//
-	//    * ECS services
-	//
-	//    * Spot Fleet requests
-	//
-	//    * EMR clusters
-	//
 	//    * AppStream 2.0 fleets
 	//
 	//    * Aurora DB clusters
 	//
-	//    * Amazon SageMaker endpoint variants
+	//    * ECS services
+	//
+	//    * EMR clusters
+	//
+	//    * Neptune clusters
+	//
+	//    * SageMaker endpoint variants
+	//
+	//    * Spot Fleets
 	//
 	//    * Custom resources
 	//
 	// For all other scalable targets, the default value is 0:
 	//
-	//    * DynamoDB tables
-	//
-	//    * DynamoDB global secondary indexes
-	//
 	//    * Amazon Comprehend document classification and entity recognizer endpoints
 	//
-	//    * Lambda provisioned concurrency
+	//    * DynamoDB tables and global secondary indexes
 	//
 	//    * Amazon Keyspaces tables
+	//
+	//    * Lambda provisioned concurrency
 	//
 	//    * Amazon MSK broker storage
 	Cooldown *int64 `type:"integer"`
@@ -5975,31 +6066,31 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	// replication groups and a default value of 300 for the following scalable
 	// targets:
 	//
-	//    * ECS services
-	//
-	//    * Spot Fleet requests
-	//
-	//    * EMR clusters
-	//
 	//    * AppStream 2.0 fleets
 	//
 	//    * Aurora DB clusters
 	//
-	//    * Amazon SageMaker endpoint variants
+	//    * ECS services
+	//
+	//    * EMR clusters
+	//
+	//    * Neptune clusters
+	//
+	//    * SageMaker endpoint variants
+	//
+	//    * Spot Fleets
 	//
 	//    * Custom resources
 	//
 	// For all other scalable targets, the default value is 0:
 	//
-	//    * DynamoDB tables
-	//
-	//    * DynamoDB global secondary indexes
-	//
 	//    * Amazon Comprehend document classification and entity recognizer endpoints
 	//
-	//    * Lambda provisioned concurrency
+	//    * DynamoDB tables and global secondary indexes
 	//
 	//    * Amazon Keyspaces tables
+	//
+	//    * Lambda provisioned concurrency
 	//
 	//    * Amazon MSK broker storage
 	ScaleInCooldown *int64 `type:"integer"`
@@ -6020,31 +6111,31 @@ type TargetTrackingScalingPolicyConfiguration struct {
 	// replication groups and a default value of 300 for the following scalable
 	// targets:
 	//
-	//    * ECS services
-	//
-	//    * Spot Fleet requests
-	//
-	//    * EMR clusters
-	//
 	//    * AppStream 2.0 fleets
 	//
 	//    * Aurora DB clusters
 	//
-	//    * Amazon SageMaker endpoint variants
+	//    * ECS services
+	//
+	//    * EMR clusters
+	//
+	//    * Neptune clusters
+	//
+	//    * SageMaker endpoint variants
+	//
+	//    * Spot Fleets
 	//
 	//    * Custom resources
 	//
 	// For all other scalable targets, the default value is 0:
 	//
-	//    * DynamoDB tables
-	//
-	//    * DynamoDB global secondary indexes
-	//
 	//    * Amazon Comprehend document classification and entity recognizer endpoints
 	//
-	//    * Lambda provisioned concurrency
+	//    * DynamoDB tables and global secondary indexes
 	//
 	//    * Amazon Keyspaces tables
+	//
+	//    * Lambda provisioned concurrency
 	//
 	//    * Amazon MSK broker storage
 	ScaleOutCooldown *int64 `type:"integer"`
@@ -6330,6 +6421,9 @@ const (
 
 	// MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage is a MetricType enum value
 	MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage = "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage"
+
+	// MetricTypeNeptuneReaderAverageCpuutilization is a MetricType enum value
+	MetricTypeNeptuneReaderAverageCpuutilization = "NeptuneReaderAverageCPUUtilization"
 )
 
 // MetricType_Values returns all elements of the MetricType enum
@@ -6355,6 +6449,7 @@ func MetricType_Values() []string {
 		MetricTypeElastiCachePrimaryEngineCpuutilization,
 		MetricTypeElastiCacheReplicaEngineCpuutilization,
 		MetricTypeElastiCacheDatabaseMemoryUsageCountedForEvictPercentage,
+		MetricTypeNeptuneReaderAverageCpuutilization,
 	}
 }
 
@@ -6431,6 +6526,9 @@ const (
 
 	// ScalableDimensionElasticacheReplicationGroupReplicas is a ScalableDimension enum value
 	ScalableDimensionElasticacheReplicationGroupReplicas = "elasticache:replication-group:Replicas"
+
+	// ScalableDimensionNeptuneClusterReadReplicaCount is a ScalableDimension enum value
+	ScalableDimensionNeptuneClusterReadReplicaCount = "neptune:cluster:ReadReplicaCount"
 )
 
 // ScalableDimension_Values returns all elements of the ScalableDimension enum
@@ -6455,6 +6553,7 @@ func ScalableDimension_Values() []string {
 		ScalableDimensionKafkaBrokerStorageVolumeSize,
 		ScalableDimensionElasticacheReplicationGroupNodeGroups,
 		ScalableDimensionElasticacheReplicationGroupReplicas,
+		ScalableDimensionNeptuneClusterReadReplicaCount,
 	}
 }
 
@@ -6529,6 +6628,9 @@ const (
 
 	// ServiceNamespaceElasticache is a ServiceNamespace enum value
 	ServiceNamespaceElasticache = "elasticache"
+
+	// ServiceNamespaceNeptune is a ServiceNamespace enum value
+	ServiceNamespaceNeptune = "neptune"
 )
 
 // ServiceNamespace_Values returns all elements of the ServiceNamespace enum
@@ -6547,5 +6649,6 @@ func ServiceNamespace_Values() []string {
 		ServiceNamespaceCassandra,
 		ServiceNamespaceKafka,
 		ServiceNamespaceElasticache,
+		ServiceNamespaceNeptune,
 	}
 }

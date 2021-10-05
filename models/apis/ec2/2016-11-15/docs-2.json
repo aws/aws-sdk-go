@@ -37,6 +37,7 @@
     "BundleInstance": "<p>Bundles an Amazon instance store-backed Windows instance.</p> <p>During bundling, only the root device volume (C:\\) is bundled. Data on other instance store volumes is not preserved.</p> <note> <p>This action is not applicable for Linux/Unix instances or Windows instances that are backed by Amazon EBS.</p> </note>",
     "CancelBundleTask": "<p>Cancels a bundling operation for an instance store-backed Windows instance.</p>",
     "CancelCapacityReservation": "<p>Cancels the specified Capacity Reservation, releases the reserved capacity, and changes the Capacity Reservation's state to <code>cancelled</code>.</p> <p>Instances running in the reserved capacity continue running until you stop them. Stopped instances that target the Capacity Reservation can no longer launch. Modify these instances to either target a different Capacity Reservation, launch On-Demand Instance capacity, or run in any open Capacity Reservation that has matching attributes and sufficient capacity.</p>",
+    "CancelCapacityReservationFleets": "<p>Cancels one or more Capacity Reservation Fleets. When you cancel a Capacity Reservation Fleet, the following happens:</p> <ul> <li> <p>The Capacity Reservation Fleet's status changes to <code>cancelled</code>.</p> </li> <li> <p>The individual Capacity Reservations in the Fleet are cancelled. Instances running in the Capacity Reservations at the time of cancelling the Fleet continue to run in shared capacity.</p> </li> <li> <p>The Fleet stops creating new Capacity Reservations.</p> </li> </ul>",
     "CancelConversionTask": "<p>Cancels an active conversion task. The task can be the import of an instance or volume. The action removes all artifacts of the conversion, including a partially uploaded volume or instance. If the conversion is complete or is in the process of transferring the final disk image, the command fails and returns an exception.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/CommandLineReference/ec2-cli-vmimport-export.html\">Importing a Virtual Machine Using the Amazon EC2 CLI</a>.</p>",
     "CancelExportTask": "<p>Cancels an active export task. The request removes all artifacts of the export, including any partially-created Amazon S3 objects. If the export task is complete or is in the process of transferring the final disk image, the command fails and returns an error.</p>",
     "CancelImportTask": "<p>Cancels an in-process import virtual machine or import snapshot task.</p>",
@@ -48,6 +49,7 @@
     "CopyImage": "<p>Initiates the copy of an AMI. You can copy an AMI from one Region to another, or from a Region to an Outpost. You can't copy an AMI from an Outpost to a Region, from one Outpost to another, or within the same Outpost. To copy an AMI to another partition, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_CreateStoreImageTask.html\">CreateStoreImageTask</a>.</p> <p>To copy an AMI from one Region to another, specify the source Region using the <b>SourceRegion</b> parameter, and specify the destination Region using its endpoint. Copies of encrypted backing snapshots for the AMI are encrypted. Copies of unencrypted backing snapshots remain unencrypted, unless you set <code>Encrypted</code> during the copy operation. You cannot create an unencrypted copy of an encrypted backing snapshot.</p> <p>To copy an AMI from a Region to an Outpost, specify the source Region using the <b>SourceRegion</b> parameter, and specify the ARN of the destination Outpost using <b>DestinationOutpostArn</b>. Backing snapshots copied to an Outpost are encrypted by default using the default encryption key for the Region, or a different key that you specify in the request using <b>KmsKeyId</b>. Outposts do not support unencrypted snapshots. For more information, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami\"> Amazon EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>For more information about the prerequisites and limits when copying an AMI, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/CopyingAMIs.html\">Copying an AMI</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CopySnapshot": "<p>Copies a point-in-time snapshot of an EBS volume and stores it in Amazon S3. You can copy a snapshot within the same Region, from one Region to another, or from a Region to an Outpost. You can't copy a snapshot from an Outpost to a Region, from one Outpost to another, or within the same Outpost.</p> <p>You can use the snapshot to create EBS volumes or Amazon Machine Images (AMIs).</p> <p>When copying snapshots to a Region, copies of encrypted EBS snapshots remain encrypted. Copies of unencrypted snapshots remain unencrypted, unless you enable encryption for the snapshot copy operation. By default, encrypted snapshot copies use the default Key Management Service (KMS) KMS key; however, you can specify a different KMS key. To copy an encrypted snapshot that has been shared from another account, you must have permissions for the KMS key used to encrypt the snapshot.</p> <p>Snapshots copied to an Outpost are encrypted by default using the default encryption key for the Region, or a different key that you specify in the request using <b>KmsKeyId</b>. Outposts do not support unencrypted snapshots. For more information, <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/snapshots-outposts.html#ami\"> Amazon EBS local snapshots on Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Snapshots created by copying another snapshot have an arbitrary volume ID that should not be used for any purpose.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ebs-copy-snapshot.html\">Copy an Amazon EBS snapshot</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "CreateCapacityReservation": "<p>Creates a new Capacity Reservation with the specified attributes.</p> <p>Capacity Reservations enable you to reserve capacity for your Amazon EC2 instances in a specific Availability Zone for any duration. This gives you the flexibility to selectively add capacity reservations and still get the Regional RI discounts for that usage. By creating Capacity Reservations, you ensure that you always have access to Amazon EC2 capacity when you need it, for as long as you need it. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-capacity-reservations.html\">Capacity Reservations</a> in the <i>Amazon EC2 User Guide</i>.</p> <p>Your request to create a Capacity Reservation could fail if Amazon EC2 does not have sufficient capacity to fulfill the request. If your request fails due to Amazon EC2 capacity constraints, either try again at a later time, try in a different Availability Zone, or request a smaller capacity reservation. If your application is flexible across instance types and sizes, try to create a Capacity Reservation with different instance attributes.</p> <p>Your request could also fail if the requested quantity exceeds your On-Demand Instance limit for the selected instance type. If your request fails due to limit constraints, increase your On-Demand Instance limit for the required instance type and try again. For more information about increasing your instance limits, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html\">Amazon EC2 Service Quotas</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+    "CreateCapacityReservationFleet": "<p>Creates a Capacity Reservation Fleet. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/work-with-cr-fleets.html#create-crfleet\">Create a Capacity Reservation Fleet</a> in the Amazon EC2 User Guide.</p>",
     "CreateCarrierGateway": "<p>Creates a carrier gateway. For more information about carrier gateways, see <a href=\"https://docs.aws.amazon.com/wavelength/latest/developerguide/how-wavelengths-work.html#wavelength-carrier-gateway\">Carrier gateways</a> in the <i>Amazon Web Services Wavelength Developer Guide</i>.</p>",
     "CreateClientVpnEndpoint": "<p>Creates a Client VPN endpoint. A Client VPN endpoint is the resource you create and configure to enable and manage client VPN sessions. It is the destination endpoint at which all client VPN sessions are terminated.</p>",
     "CreateClientVpnRoute": "<p>Adds a route to a network to a Client VPN endpoint. Each Client VPN endpoint has a route table that describes the available destination network routes. Each route in the route table specifies the path for traﬃc to speciﬁc resources or networks.</p>",
@@ -179,6 +181,7 @@
     "DescribeAvailabilityZones": "<p>Describes the Availability Zones, Local Zones, and Wavelength Zones that are available to you. If there is an event impacting a zone, you can use this request to view the state and any provided messages for that zone.</p> <p>For more information about Availability Zones, Local Zones, and Wavelength Zones, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html\">Regions, Zones and Outposts</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
     "DescribeBundleTasks": "<p>Describes the specified bundle tasks or all of your bundle tasks.</p> <note> <p>Completed bundle tasks are listed for only a limited time. If your bundle task is no longer in the list, you can still register an AMI from it. Just use <code>RegisterImage</code> with the Amazon S3 bucket name and image manifest name you provided to the bundle task.</p> </note>",
     "DescribeByoipCidrs": "<p>Describes the IP address ranges that were specified in calls to <a>ProvisionByoipCidr</a>.</p> <p>To describe the address pools that were created when you provisioned the address ranges, use <a>DescribePublicIpv4Pools</a> or <a>DescribeIpv6Pools</a>.</p>",
+    "DescribeCapacityReservationFleets": "<p>Describes one or more Capacity Reservation Fleets.</p>",
     "DescribeCapacityReservations": "<p>Describes one or more of your Capacity Reservations. The results describe only the Capacity Reservations in the Amazon Web Services Region that you're currently using.</p>",
     "DescribeCarrierGateways": "<p>Describes one or more of your carrier gateways.</p>",
     "DescribeClassicLinkInstances": "<p>Describes one or more of your linked EC2-Classic instances. This request only returns information about EC2-Classic instances linked to a VPC through ClassicLink. You cannot use this request to return information about other instances.</p>",
@@ -369,6 +372,7 @@
     "ModifyAddressAttribute": "<p>Modifies an attribute of the specified Elastic IP address. For requirements, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html#Using_Elastic_Addressing_Reverse_DNS\">Using reverse DNS for email applications</a>.</p>",
     "ModifyAvailabilityZoneGroup": "<p>Changes the opt-in status of the Local Zone and Wavelength Zone group for your account.</p> <p>Use <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_DescribeAvailabilityZones.html\"> DescribeAvailabilityZones</a> to view the value for <code>GroupName</code>.</p>",
     "ModifyCapacityReservation": "<p>Modifies a Capacity Reservation's capacity and the conditions under which it is to be released. You cannot change a Capacity Reservation's instance type, EBS optimization, instance store settings, platform, Availability Zone, or instance eligibility. If you need to modify any of these attributes, we recommend that you cancel the Capacity Reservation, and then create a new one with the required attributes.</p>",
+    "ModifyCapacityReservationFleet": "<p>Modifies a Capacity Reservation Fleet.</p> <p>When you modify the total target capacity of a Capacity Reservation Fleet, the Fleet automatically creates new Capacity Reservations, or modifies or cancels existing Capacity Reservations in the Fleet to meet the new total target capacity. When you modify the end date for the Fleet, the end dates for all of the individual Capacity Reservations in the Fleet are updated accordingly.</p>",
     "ModifyClientVpnEndpoint": "<p>Modifies the specified Client VPN endpoint. Modifying the DNS server resets existing client connections.</p>",
     "ModifyDefaultCreditSpecification": "<p>Modifies the default credit option for CPU usage of burstable performance instances. The default credit option is set at the account level per Amazon Web Services Region, and is specified per instance family. All new burstable performance instances in the account launch using the default credit option.</p> <p> <code>ModifyDefaultCreditSpecification</code> is an asynchronous operation, which works at an Amazon Web Services Region level and modifies the credit option for each Availability Zone. All zones in a Region are updated within five minutes. But if instances are launched during this operation, they might not get the new credit option until the zone is updated. To verify whether the update has occurred, you can call <code>GetDefaultCreditSpecification</code> and check <code>DefaultCreditSpecification</code> for updates.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/burstable-performance-instances.html\">Burstable performance instances</a> in the <i>Amazon EC2 User Guide</i>.</p>",
     "ModifyEbsDefaultKmsKeyId": "<p>Changes the default KMS key for EBS encryption by default for your account in this Region.</p> <p>Amazon Web Services creates a unique Amazon Web Services managed KMS key in each Region for use with encryption by default. If you change the default KMS key to a symmetric customer managed KMS key, it is used instead of the Amazon Web Services managed KMS key. To reset the default KMS key to the Amazon Web Services managed KMS key for EBS, use <a>ResetEbsDefaultKmsKeyId</a>. Amazon EBS does not support asymmetric KMS keys.</p> <p>If you delete or disable the customer managed KMS key that you specified for use with encryption by default, your instances will fail to launch.</p> <p>For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
@@ -1434,6 +1438,7 @@
         "AuthorizeSecurityGroupIngressResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, returns an error.</p>",
         "BundleInstanceRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CancelBundleTaskRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CancelCapacityReservationFleetsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CancelCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CancelCapacityReservationResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "CancelConversionRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1456,6 +1461,7 @@
         "CopyImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CopySnapshotRequest$Encrypted": "<p>To encrypt a copy of an unencrypted snapshot if encryption by default is not enabled, enable encryption using this parameter. Otherwise, omit this parameter. Encrypted snapshots are encrypted, even if you omit this parameter and encryption by default is not enabled. You cannot set this parameter to false. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EBSEncryption.html\">Amazon EBS encryption</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "CopySnapshotRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "CreateCapacityReservationFleetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "CreateCapacityReservationRequest$EbsOptimized": "<p>Indicates whether the Capacity Reservation supports EBS-optimized instances. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS- optimized instance.</p>",
         "CreateCapacityReservationRequest$EphemeralStorage": "<p>Indicates whether the Capacity Reservation supports instances with temporary, block-level storage.</p>",
         "CreateCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1610,6 +1616,7 @@
         "DescribeAvailabilityZonesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeBundleTasksRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeByoipCidrsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "DescribeCapacityReservationFleetsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCapacityReservationsRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeCarrierGatewaysRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "DescribeClassicLinkInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -1774,6 +1781,7 @@
         "ExportClientVpnClientConfigurationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ExportImageRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ExportTransitGatewayRoutesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "FleetCapacityReservation$EbsOptimized": "<p>Indicates whether the Capacity Reservation reserves capacity for EBS-optimized instance types.</p>",
         "FleetData$TerminateInstancesWithExpiration": "<p>Indicates whether running instances should be terminated when the EC2 Fleet expires. </p>",
         "FleetData$ReplaceUnhealthyInstances": "<p>Indicates whether EC2 Fleet should replace unhealthy Spot Instances. Supported only for fleets of type <code>maintain</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/manage-ec2-fleet.html#ec2-fleet-health-checks\">EC2 Fleet health checks</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "FpgaImage$Public": "<p>Indicates whether the AFI is public.</p>",
@@ -1858,6 +1866,9 @@
         "ModifyAddressAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyAvailabilityZoneGroupResult$Return": "<p>Is <code>true</code> if the request succeeds, and an error otherwise.</p>",
+        "ModifyCapacityReservationFleetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
+        "ModifyCapacityReservationFleetRequest$RemoveEndDate": "<p>Indicates whether to remove the end date from the Capacity Reservation Fleet. If you remove the end date, the Capacity Reservation Fleet does not expire and it remains active until you explicitly cancel it using the <b>CancelCapacityReservationFleet</b> action.</p> <p>You can't specify <b>RemoveEndDate</b> and <b> EndDate</b> in the same request.</p>",
+        "ModifyCapacityReservationFleetResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
         "ModifyCapacityReservationRequest$Accept": "<p>Reserved. Capacity Reservations you have created are accepted by default.</p>",
         "ModifyCapacityReservationRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ModifyCapacityReservationResult$Return": "<p>Returns <code>true</code> if the request succeeds; otherwise, it returns an error.</p>",
@@ -1971,6 +1982,7 @@
         "RequestSpotFleetRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RequestSpotInstancesRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "RequestSpotLaunchSpecification$EbsOptimized": "<p>Indicates whether the instance is optimized for EBS I/O. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal EBS I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using an EBS Optimized instance.</p> <p>Default: <code>false</code> </p>",
+        "ReservationFleetInstanceSpecification$EbsOptimized": "<p>Indicates whether the Capacity Reservation Fleet supports EBS-optimized instances types. This optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal I/O performance. This optimization isn't available with all instance types. Additional usage charges apply when using EBS-optimized instance types.</p>",
         "ReservedInstancesOffering$Marketplace": "<p>Indicates whether the offering is available through the Reserved Instance Marketplace (resale) or Amazon Web Services. If it's a Reserved Instance Marketplace offering, this is <code>true</code>.</p>",
         "ResetAddressAttributeRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
         "ResetEbsDefaultKmsKeyIdRequest$DryRun": "<p>Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is <code>DryRunOperation</code>. Otherwise, it is <code>UnauthorizedOperation</code>.</p>",
@@ -2185,6 +2197,34 @@
       "refs": {
       }
     },
+    "CancelCapacityReservationFleetError": {
+      "base": "<p>Describes a Capacity Reservation Fleet cancellation error.</p>",
+      "refs": {
+        "FailedCapacityReservationFleetCancellationResult$CancelCapacityReservationFleetError": "<p>Information about the Capacity Reservation Fleet cancellation error.</p>"
+      }
+    },
+    "CancelCapacityReservationFleetErrorCode": {
+      "base": null,
+      "refs": {
+        "CancelCapacityReservationFleetError$Code": "<p>The error code.</p>"
+      }
+    },
+    "CancelCapacityReservationFleetErrorMessage": {
+      "base": null,
+      "refs": {
+        "CancelCapacityReservationFleetError$Message": "<p>The error message.</p>"
+      }
+    },
+    "CancelCapacityReservationFleetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CancelCapacityReservationFleetsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
     "CancelCapacityReservationRequest": {
       "base": null,
       "refs": {
@@ -2300,6 +2340,57 @@
         "CreateCapacityReservationResult$CapacityReservation": "<p>Information about the Capacity Reservation.</p>"
       }
     },
+    "CapacityReservationFleet": {
+      "base": "<p>Information about a Capacity Reservation Fleet.</p>",
+      "refs": {
+        "CapacityReservationFleetSet$member": null
+      }
+    },
+    "CapacityReservationFleetCancellationState": {
+      "base": "<p>Describes a Capacity Reservation Fleet that was successfully cancelled.</p>",
+      "refs": {
+        "CapacityReservationFleetCancellationStateSet$member": null
+      }
+    },
+    "CapacityReservationFleetCancellationStateSet": {
+      "base": null,
+      "refs": {
+        "CancelCapacityReservationFleetsResult$SuccessfulFleetCancellations": "<p>Information about the Capacity Reservation Fleets that were successfully cancelled.</p>"
+      }
+    },
+    "CapacityReservationFleetId": {
+      "base": null,
+      "refs": {
+        "CapacityReservationFleet$CapacityReservationFleetId": "<p>The ID of the Capacity Reservation Fleet.</p>",
+        "CapacityReservationFleetCancellationState$CapacityReservationFleetId": "<p>The ID of the Capacity Reservation Fleet that was successfully cancelled.</p>",
+        "CapacityReservationFleetIdSet$member": null,
+        "CreateCapacityReservationFleetResult$CapacityReservationFleetId": "<p>The ID of the Capacity Reservation Fleet.</p>",
+        "FailedCapacityReservationFleetCancellationResult$CapacityReservationFleetId": "<p>The ID of the Capacity Reservation Fleet that could not be cancelled.</p>",
+        "ModifyCapacityReservationFleetRequest$CapacityReservationFleetId": "<p>The ID of the Capacity Reservation Fleet to modify.</p>"
+      }
+    },
+    "CapacityReservationFleetIdSet": {
+      "base": null,
+      "refs": {
+        "CancelCapacityReservationFleetsRequest$CapacityReservationFleetIds": "<p>The IDs of the Capacity Reservation Fleets to cancel.</p>",
+        "DescribeCapacityReservationFleetsRequest$CapacityReservationFleetIds": "<p>The IDs of the Capacity Reservation Fleets to describe.</p>"
+      }
+    },
+    "CapacityReservationFleetSet": {
+      "base": null,
+      "refs": {
+        "DescribeCapacityReservationFleetsResult$CapacityReservationFleets": "<p>Information about the Capacity Reservation Fleets.</p>"
+      }
+    },
+    "CapacityReservationFleetState": {
+      "base": null,
+      "refs": {
+        "CapacityReservationFleet$State": "<p>The state of the Capacity Reservation Fleet. Possible states include:</p> <ul> <li> <p> <code>submitted</code> - The Capacity Reservation Fleet request has been submitted and Amazon Elastic Compute Cloud is preparing to create the Capacity Reservations.</p> </li> <li> <p> <code>modifying</code> - The Capacity Reservation Fleet is being modified. The Fleet remains in this state until the modification is complete.</p> </li> <li> <p> <code>active</code> - The Capacity Reservation Fleet has fulfilled its total target capacity and it is attempting to maintain this capacity. The Fleet remains in this state until it is modified or deleted.</p> </li> <li> <p> <code>partially_fulfilled</code> - The Capacity Reservation Fleet has partially fulfilled its total target capacity. There is insufficient Amazon EC2 to fulfill the total target capacity. The Fleet is attempting to asynchronously fulfill its total target capacity.</p> </li> <li> <p> <code>expiring</code> - The Capacity Reservation Fleet has reach its end date and it is in the process of expiring. One or more of its Capacity reservations might still be active.</p> </li> <li> <p> <code>expired</code> - The Capacity Reservation Fleet has reach its end date. The Fleet and its Capacity Reservations are expired. The Fleet can't create new Capacity Reservations.</p> </li> <li> <p> <code>cancelling</code> - The Capacity Reservation Fleet is in the process of being cancelled. One or more of its Capacity reservations might still be active.</p> </li> <li> <p> <code>cancelled</code> - The Capacity Reservation Fleet has been manually cancelled. The Fleet and its Capacity Reservations are cancelled and the Fleet can't create new Capacity Reservations.</p> </li> <li> <p> <code>failed</code> - The Capacity Reservation Fleet failed to reserve capacity for the specified instance types.</p> </li> </ul>",
+        "CapacityReservationFleetCancellationState$CurrentFleetState": "<p>The current state of the Capacity Reservation Fleet.</p>",
+        "CapacityReservationFleetCancellationState$PreviousFleetState": "<p>The previous state of the Capacity Reservation Fleet.</p>",
+        "CreateCapacityReservationFleetResult$State": "<p>The status of the Capacity Reservation Fleet.</p>"
+      }
+    },
     "CapacityReservationGroup": {
       "base": "<p>Describes a resource group to which a Capacity Reservation has been added.</p>",
       "refs": {
@@ -2318,6 +2409,7 @@
         "CancelCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation to be cancelled.</p>",
         "CapacityReservationIdSet$member": null,
         "CapacityReservationTarget$CapacityReservationId": "<p>The ID of the Capacity Reservation in which to run the instance.</p>",
+        "FleetCapacityReservation$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "GetCapacityReservationUsageRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "GetGroupsForCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>",
         "ModifyCapacityReservationRequest$CapacityReservationId": "<p>The ID of the Capacity Reservation.</p>"
@@ -2333,7 +2425,9 @@
       "base": null,
       "refs": {
         "CapacityReservation$InstancePlatform": "<p>The type of operating system for which the Capacity Reservation reserves capacity.</p>",
-        "CreateCapacityReservationRequest$InstancePlatform": "<p>The type of operating system for which to reserve capacity.</p>"
+        "CreateCapacityReservationRequest$InstancePlatform": "<p>The type of operating system for which to reserve capacity.</p>",
+        "FleetCapacityReservation$InstancePlatform": "<p>The type of operating system for which the Capacity Reservation reserves capacity.</p>",
+        "ReservationFleetInstanceSpecification$InstancePlatform": "<p>The type of operating system for which the Capacity Reservation Fleet reserves capacity.</p>"
       }
     },
     "CapacityReservationOptions": {
@@ -2934,6 +3028,16 @@
       "base": "<p>The CPU options for the instance. Both the core count and threads per core must be specified in the request.</p>",
       "refs": {
         "RunInstancesRequest$CpuOptions": "<p>The CPU options for the instance. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-optimize-cpu.html\">Optimizing CPU options</a> in the <i>Amazon EC2 User Guide</i>.</p>"
+      }
+    },
+    "CreateCapacityReservationFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "CreateCapacityReservationFleetResult": {
+      "base": null,
+      "refs": {
       }
     },
     "CreateCapacityReservationRequest": {
@@ -4511,6 +4615,22 @@
       }
     },
     "DescribeByoipCidrsResult": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeCapacityReservationFleetsMaxResults": {
+      "base": null,
+      "refs": {
+        "DescribeCapacityReservationFleetsRequest$MaxResults": "<p>The maximum number of results to return for the request in a single page. The remaining results can be seen by sending another request with the returned <code>nextToken</code> value. This value can be between 5 and 500. If <code>maxResults</code> is given a larger value than 500, you receive an error.</p>"
+      }
+    },
+    "DescribeCapacityReservationFleetsRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "DescribeCapacityReservationFleetsResult": {
       "base": null,
       "refs": {
       }
@@ -6401,7 +6521,10 @@
     "Double": {
       "base": null,
       "refs": {
+        "CapacityReservationFleet$TotalFulfilledCapacity": "<p>The capacity units that have been fulfilled.</p>",
         "ClientData$UploadSize": "<p>The size of the uploaded disk image, in GiB.</p>",
+        "CreateCapacityReservationFleetResult$TotalFulfilledCapacity": "<p>The requested capacity units that have been successfully reserved.</p>",
+        "FleetCapacityReservation$FulfilledCapacity": "<p>The number of capacity units fulfilled by the Capacity Reservation. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\"> Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "FleetData$FulfilledCapacity": "<p>The number of units fulfilled by this request compared to the set target capacity.</p>",
         "FleetData$FulfilledOnDemandCapacity": "<p>The number of units fulfilled by this request compared to the set target On-Demand capacity.</p>",
         "FleetLaunchTemplateOverrides$WeightedCapacity": "<p>The number of units provided by the specified instance type.</p>",
@@ -6420,6 +6543,13 @@
         "SpotFleetLaunchSpecification$WeightedCapacity": "<p>The number of units provided by the specified instance type. These are the same units that you chose to set the target capacity in terms of instances, or a performance characteristic such as vCPUs, memory, or I/O.</p> <p>If the target capacity divided by this value is not a whole number, Amazon EC2 rounds the number of instances to the next whole number. If this value is not specified, the default is 1.</p>",
         "SpotFleetRequestConfigData$FulfilledCapacity": "<p>The number of units fulfilled by this request compared to the set target capacity. You cannot set this value.</p>",
         "SpotFleetRequestConfigData$OnDemandFulfilledCapacity": "<p>The number of On-Demand units fulfilled by this request compared to the set target On-Demand capacity.</p>"
+      }
+    },
+    "DoubleWithConstraints": {
+      "base": null,
+      "refs": {
+        "FleetCapacityReservation$Weight": "<p>The weight of the instance type in the Capacity Reservation Fleet. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#instance-weight\"> Instance type weight</a> in the Amazon EC2 User Guide.</p>",
+        "ReservationFleetInstanceSpecification$Weight": "<p>The number of capacity units provided by the specified instance type. This value, together with the total target capacity that you specify for the Fleet determine the number of instances for which the Fleet reserves capacity. Both values are based on units that make sense for your workload. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>"
       }
     },
     "EbsBlockDevice": {
@@ -6983,6 +7113,18 @@
         "CancelExportTaskRequest$ExportTaskId": "<p>The ID of the export task. This is the ID returned by <code>CreateInstanceExportTask</code>.</p>"
       }
     },
+    "FailedCapacityReservationFleetCancellationResult": {
+      "base": "<p>Describes a Capacity Reservation Fleet that could not be cancelled.</p>",
+      "refs": {
+        "FailedCapacityReservationFleetCancellationResultSet$member": null
+      }
+    },
+    "FailedCapacityReservationFleetCancellationResultSet": {
+      "base": null,
+      "refs": {
+        "CancelCapacityReservationFleetsResult$FailedFleetCancellations": "<p>Information about the Capacity Reservation Fleets that could not be cancelled.</p>"
+      }
+    },
     "FailedQueuedPurchaseDeletion": {
       "base": "<p>Describes a Reserved Instance whose queued purchase was not deleted.</p>",
       "refs": {
@@ -7027,6 +7169,7 @@
         "DescribeAddressesRequest$Filters": "<p>One or more filters. Filter names and values are case-sensitive.</p> <ul> <li> <p> <code>allocation-id</code> - [EC2-VPC] The allocation ID for the address.</p> </li> <li> <p> <code>association-id</code> - [EC2-VPC] The association ID for the address.</p> </li> <li> <p> <code>domain</code> - Indicates whether the address is for use in EC2-Classic (<code>standard</code>) or in a VPC (<code>vpc</code>).</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance the address is associated with, if any.</p> </li> <li> <p> <code>network-border-group</code> - A unique set of Availability Zones, Local Zones, or Wavelength Zones from where Amazon Web Services advertises IP addresses. </p> </li> <li> <p> <code>network-interface-id</code> - [EC2-VPC] The ID of the network interface that the address is associated with, if any.</p> </li> <li> <p> <code>network-interface-owner-id</code> - The Amazon Web Services account ID of the owner.</p> </li> <li> <p> <code>private-ip-address</code> - [EC2-VPC] The private IP address associated with the Elastic IP address.</p> </li> <li> <p> <code>public-ip</code> - The Elastic IP address, or the carrier IP address.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> </ul>",
         "DescribeAvailabilityZonesRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>group-name</code> - For Availability Zones, use the Region name. For Local Zones, use the name of the group associated with the Local Zone (for example, <code>us-west-2-lax-1</code>) For Wavelength Zones, use the name of the group associated with the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>message</code> - The Zone message.</p> </li> <li> <p> <code>opt-in-status</code> - The opt-in status (<code>opted-in</code>, and <code>not-opted-in</code> | <code>opt-in-not-required</code>).</p> </li> <li> <p> <code>parent-zoneID</code> - The ID of the zone that handles some of the Local Zone and Wavelength Zone control plane operations, such as API calls.</p> </li> <li> <p> <code>parent-zoneName</code> - The ID of the zone that handles some of the Local Zone and Wavelength Zone control plane operations, such as API calls.</p> </li> <li> <p> <code>region-name</code> - The name of the Region for the Zone (for example, <code>us-east-1</code>).</p> </li> <li> <p> <code>state</code> - The state of the Availability Zone, the Local Zone, or the Wavelength Zone (<code>available</code> | <code>information</code> | <code>impaired</code> | <code>unavailable</code>).</p> </li> <li> <p> <code>zone-id</code> - The ID of the Availability Zone (for example, <code>use1-az1</code>), the Local Zone (for example, <code>usw2-lax1-az1</code>), or the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>zone-type</code> - The type of zone, for example, <code>local-zone</code>.</p> </li> <li> <p> <code>zone-name</code> - The name of the Availability Zone (for example, <code>us-east-1a</code>), the Local Zone (for example, <code>us-west-2-lax-1a</code>), or the Wavelength Zone (for example, <code>us-east-1-wl1-bos-wlz-1</code>).</p> </li> <li> <p> <code>zone-type</code> - The type of zone, for example, <code>local-zone</code>.</p> </li> </ul>",
         "DescribeBundleTasksRequest$Filters": "<p>The filters.</p> <ul> <li> <p> <code>bundle-id</code> - The ID of the bundle task.</p> </li> <li> <p> <code>error-code</code> - If the task failed, the error code returned.</p> </li> <li> <p> <code>error-message</code> - If the task failed, the error message returned.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>progress</code> - The level of task completion, as a percentage (for example, 20%).</p> </li> <li> <p> <code>s3-bucket</code> - The Amazon S3 bucket to store the AMI.</p> </li> <li> <p> <code>s3-prefix</code> - The beginning of the AMI name.</p> </li> <li> <p> <code>start-time</code> - The time the task started (for example, 2013-09-15T17:15:20.000Z).</p> </li> <li> <p> <code>state</code> - The state of the task (<code>pending</code> | <code>waiting-for-shutdown</code> | <code>bundling</code> | <code>storing</code> | <code>cancelling</code> | <code>complete</code> | <code>failed</code>).</p> </li> <li> <p> <code>update-time</code> - The time of the most recent update for the task.</p> </li> </ul>",
+        "DescribeCapacityReservationFleetsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>state</code> - The state of the Fleet (<code>submitted</code> | <code>modifying</code> | <code>active</code> | <code>partially_fulfilled</code> | <code>expiring</code> | <code>expired</code> | <code>cancelling</code> | <code>cancelled</code> | <code>failed</code>).</p> </li> <li> <p> <code>instance-match-criteria</code> - The instance matching criteria for the Fleet. Only <code>open</code> is supported.</p> </li> <li> <p> <code>tenancy</code> - The tenancy of the Fleet (<code>default</code> | <code>dedicated</code>).</p> </li> <li> <p> <code>allocation-strategy</code> - The allocation strategy used by the Fleet. Only <code>prioritized</code> is supported.</p> </li> </ul>",
         "DescribeCapacityReservationsRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>instance-type</code> - The type of instance for which the Capacity Reservation reserves capacity.</p> </li> <li> <p> <code>owner-id</code> - The ID of the Amazon Web Services account that owns the Capacity Reservation.</p> </li> <li> <p> <code>availability-zone-id</code> - The Availability Zone ID of the Capacity Reservation.</p> </li> <li> <p> <code>instance-platform</code> - The type of operating system for which the Capacity Reservation reserves capacity.</p> </li> <li> <p> <code>availability-zone</code> - The Availability Zone ID of the Capacity Reservation.</p> </li> <li> <p> <code>tenancy</code> - Indicates the tenancy of the Capacity Reservation. A Capacity Reservation can have one of the following tenancy settings:</p> <ul> <li> <p> <code>default</code> - The Capacity Reservation is created on hardware that is shared with other Amazon Web Services accounts.</p> </li> <li> <p> <code>dedicated</code> - The Capacity Reservation is created on single-tenant hardware that is dedicated to a single Amazon Web Services account.</p> </li> </ul> </li> <li> <p> <code>outpost-arn</code> - The Amazon Resource Name (ARN) of the Outpost on which the Capacity Reservation was created.</p> </li> <li> <p> <code>state</code> - The current state of the Capacity Reservation. A Capacity Reservation can be in one of the following states:</p> <ul> <li> <p> <code>active</code>- The Capacity Reservation is active and the capacity is available for your use.</p> </li> <li> <p> <code>expired</code> - The Capacity Reservation expired automatically at the date and time specified in your request. The reserved capacity is no longer available for your use.</p> </li> <li> <p> <code>cancelled</code> - The Capacity Reservation was cancelled. The reserved capacity is no longer available for your use.</p> </li> <li> <p> <code>pending</code> - The Capacity Reservation request was successful but the capacity provisioning is still pending.</p> </li> <li> <p> <code>failed</code> - The Capacity Reservation request has failed. A request might fail due to invalid request parameters, capacity constraints, or instance limit constraints. Failed requests are retained for 60 minutes.</p> </li> </ul> </li> <li> <p> <code>start-date</code> - The date and time at which the Capacity Reservation was started.</p> </li> <li> <p> <code>end-date</code> - The date and time at which the Capacity Reservation expires. When a Capacity Reservation expires, the reserved capacity is released and you can no longer launch instances into it. The Capacity Reservation's state changes to expired when it reaches its end date and time.</p> </li> <li> <p> <code>end-date-type</code> - Indicates the way in which the Capacity Reservation ends. A Capacity Reservation can have one of the following end types:</p> <ul> <li> <p> <code>unlimited</code> - The Capacity Reservation remains active until you explicitly cancel it.</p> </li> <li> <p> <code>limited</code> - The Capacity Reservation expires automatically at a specified date and time.</p> </li> </ul> </li> <li> <p> <code>instance-match-criteria</code> - Indicates the type of instance launches that the Capacity Reservation accepts. The options include:</p> <ul> <li> <p> <code>open</code> - The Capacity Reservation accepts all instances that have matching attributes (instance type, platform, and Availability Zone). Instances that have matching attributes launch into the Capacity Reservation automatically without specifying any additional parameters.</p> </li> <li> <p> <code>targeted</code> - The Capacity Reservation only accepts instances that have matching attributes (instance type, platform, and Availability Zone), and explicitly target the Capacity Reservation. This ensures that only permitted instances can use the reserved capacity.</p> </li> </ul> </li> </ul>",
         "DescribeCarrierGatewaysRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>carrier-gateway-id</code> - The ID of the carrier gateway.</p> </li> <li> <p> <code>state</code> - The state of the carrier gateway (<code>pending</code> | <code>failed</code> | <code>available</code> | <code>deleting</code> | <code>deleted</code>).</p> </li> <li> <p> <code>owner-id</code> - The Amazon Web Services account ID of the owner of the carrier gateway.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC associated with the carrier gateway.</p> </li> </ul>",
         "DescribeClassicLinkInstancesRequest$Filters": "<p>One or more filters.</p> <ul> <li> <p> <code>group-id</code> - The ID of a VPC security group that's associated with the instance.</p> </li> <li> <p> <code>instance-id</code> - The ID of the instance.</p> </li> <li> <p> <code>tag</code>:&lt;key&gt; - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value. For example, to find all resources that have a tag with the key <code>Owner</code> and the value <code>TeamA</code>, specify <code>tag:Owner</code> for the filter name and <code>TeamA</code> for the filter value.</p> </li> <li> <p> <code>tag-key</code> - The key of a tag assigned to the resource. Use this filter to find all resources assigned a tag with a specific key, regardless of the tag value.</p> </li> <li> <p> <code>vpc-id</code> - The ID of the VPC to which the instance is linked.</p> <p> <code>vpc-id</code> - The ID of the VPC that the instance is linked to.</p> </li> </ul>",
@@ -7144,6 +7287,27 @@
         "FleetData$ActivityStatus": "<p>The progress of the EC2 Fleet. If there is an error, the status is <code>error</code>. After all requests are placed, the status is <code>pending_fulfillment</code>. If the size of the EC2 Fleet is equal to or greater than its target capacity, the status is <code>fulfilled</code>. If the size of the EC2 Fleet is decreased, the status is <code>pending_termination</code> while instances are terminating.</p>"
       }
     },
+    "FleetCapacityReservation": {
+      "base": "<p>Information about a Capacity Reservation in a Capacity Reservation Fleet.</p>",
+      "refs": {
+        "FleetCapacityReservationSet$member": null
+      }
+    },
+    "FleetCapacityReservationSet": {
+      "base": null,
+      "refs": {
+        "CapacityReservationFleet$InstanceTypeSpecifications": "<p>Information about the instance types for which to reserve the capacity.</p>",
+        "CreateCapacityReservationFleetResult$FleetCapacityReservations": "<p>Information about the individual Capacity Reservations in the Capacity Reservation Fleet.</p>"
+      }
+    },
+    "FleetCapacityReservationTenancy": {
+      "base": null,
+      "refs": {
+        "CapacityReservationFleet$Tenancy": "<p>The tenancy of the Capacity Reservation Fleet. Tenancies include:</p> <ul> <li> <p> <code>default</code> - The Capacity Reservation Fleet is created on hardware that is shared with other Amazon Web Services accounts.</p> </li> <li> <p> <code>dedicated</code> - The Capacity Reservation Fleet is created on single-tenant hardware that is dedicated to a single Amazon Web Services account.</p> </li> </ul>",
+        "CreateCapacityReservationFleetRequest$Tenancy": "<p>Indicates the tenancy of the Capacity Reservation Fleet. All Capacity Reservations in the Fleet inherit this tenancy. The Capacity Reservation Fleet can have one of the following tenancy settings:</p> <ul> <li> <p> <code>default</code> - The Capacity Reservation Fleet is created on hardware that is shared with other Amazon Web Services accounts.</p> </li> <li> <p> <code>dedicated</code> - The Capacity Reservations are created on single-tenant hardware that is dedicated to a single Amazon Web Services account.</p> </li> </ul>",
+        "CreateCapacityReservationFleetResult$Tenancy": "<p>Indicates the tenancy of Capacity Reservation Fleet.</p>"
+      }
+    },
     "FleetCapacityReservationUsageStrategy": {
       "base": null,
       "refs": {
@@ -7192,6 +7356,14 @@
       "refs": {
         "DeleteFleetsRequest$FleetIds": "<p>The IDs of the EC2 Fleets.</p>",
         "DescribeFleetsRequest$FleetIds": "<p>The ID of the EC2 Fleets.</p>"
+      }
+    },
+    "FleetInstanceMatchCriteria": {
+      "base": null,
+      "refs": {
+        "CapacityReservationFleet$InstanceMatchCriteria": "<p>Indicates the type of instance launches that the Capacity Reservation Fleet accepts. All Capacity Reservations in the Fleet inherit this instance matching criteria.</p> <p>Currently, Capacity Reservation Fleets support <code>open</code> instance matching criteria only. This means that instances that have matching attributes (instance type, platform, and Availability Zone) run in the Capacity Reservations automatically. Instances do not need to explicitly target a Capacity Reservation Fleet to use its reserved capacity.</p>",
+        "CreateCapacityReservationFleetRequest$InstanceMatchCriteria": "<p>Indicates the type of instance launches that the Capacity Reservation Fleet accepts. All Capacity Reservations in the Fleet inherit this instance matching criteria.</p> <p>Currently, Capacity Reservation Fleets support <code>open</code> instance matching criteria only. This means that instances that have matching attributes (instance type, platform, and Availability Zone) run in the Capacity Reservations automatically. Instances do not need to explicitly target a Capacity Reservation Fleet to use its reserved capacity.</p>",
+        "CreateCapacityReservationFleetResult$InstanceMatchCriteria": "<p>The instance matching criteria for the Capacity Reservation Fleet.</p>"
       }
     },
     "FleetLaunchTemplateConfig": {
@@ -9001,6 +9173,7 @@
         "CreateFleetInstance$InstanceType": "<p>The instance type.</p>",
         "DescribeFleetsInstances$InstanceType": "<p>The instance type.</p>",
         "DescribeReservedInstancesOfferingsRequest$InstanceType": "<p>The instance type that the reservation will cover (for example, <code>m1.small</code>). For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon EC2 User Guide</i>.</p>",
+        "FleetCapacityReservation$InstanceType": "<p>The instance type for which the Capacity Reservation reserves capacity.</p>",
         "FleetLaunchTemplateOverrides$InstanceType": "<p>The instance type.</p>",
         "FleetLaunchTemplateOverridesRequest$InstanceType": "<p>The instance type.</p>",
         "ImportInstanceLaunchSpecification$InstanceType": "<p>The instance type. For more information about the instance types that you can import, see <a href=\"https://docs.aws.amazon.com/vm-import/latest/userguide/vmie_prereqs.html#vmimport-instance-types\">Instance Types</a> in the VM Import/Export User Guide.</p>",
@@ -9013,6 +9186,7 @@
         "RequestInstanceTypeList$member": null,
         "RequestLaunchTemplateData$InstanceType": "<p>The instance type. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance Types</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p>",
         "RequestSpotLaunchSpecification$InstanceType": "<p>The instance type.</p>",
+        "ReservationFleetInstanceSpecification$InstanceType": "<p>The instance type for which the Capacity Reservation Fleet reserves capacity.</p>",
         "ReservedInstances$InstanceType": "<p>The instance type on which the Reserved Instance can be used.</p>",
         "ReservedInstancesConfiguration$InstanceType": "<p>The instance type for the modified Reserved Instances.</p>",
         "ReservedInstancesOffering$InstanceType": "<p>The instance type on which the Reserved Instance can be used.</p>",
@@ -9091,11 +9265,14 @@
         "AvailableCapacity$AvailableVCpus": "<p>The number of vCPUs available for launching instances onto the Dedicated Host.</p>",
         "CapacityReservation$TotalInstanceCount": "<p>The total number of instances for which the Capacity Reservation reserves capacity.</p>",
         "CapacityReservation$AvailableInstanceCount": "<p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>",
+        "CapacityReservationFleet$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "ClientVpnEndpoint$VpnPort": "<p>The port number for the Client VPN endpoint.</p>",
         "CpuOptions$CoreCount": "<p>The number of CPU cores for the instance.</p>",
         "CpuOptions$ThreadsPerCore": "<p>The number of threads per CPU core.</p>",
         "CpuOptionsRequest$CoreCount": "<p>The number of CPU cores for the instance.</p>",
         "CpuOptionsRequest$ThreadsPerCore": "<p>The number of threads per CPU core. To disable multithreading for the instance, specify a value of <code>1</code>. Otherwise, specify the default value of <code>2</code>.</p>",
+        "CreateCapacityReservationFleetRequest$TotalTargetCapacity": "<p>The total number of capacity units to be reserved by the Capacity Reservation Fleet. This value, together with the instance type weights that you assign to each instance type used by the Fleet determine the number of instances for which the Fleet reserves capacity. Both values are based on units that make sense for your workload. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\"> Total target capacity</a> in the Amazon EC2 User Guide.</p>",
+        "CreateCapacityReservationFleetResult$TotalTargetCapacity": "<p>The total number of capacity units for which the Capacity Reservation Fleet reserves capacity.</p>",
         "CreateCapacityReservationRequest$InstanceCount": "<p>The number of instances for which to reserve capacity.</p> <p>Valid range: 1 - 1000</p>",
         "CreateClientVpnEndpointRequest$VpnPort": "<p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p> <p>Valid Values: <code>443</code> | <code>1194</code> </p> <p>Default Value: <code>443</code> </p>",
         "CreateCustomerGatewayRequest$BgpAsn": "<p>For devices that support BGP, the customer gateway's BGP ASN.</p> <p>Default: 65000</p>",
@@ -9154,6 +9331,7 @@
         "EbsBlockDevice$Iops": "<p>The number of I/O operations per second (IOPS). For <code>gp3</code>, <code>io1</code>, and <code>io2</code> volumes, this represents the number of IOPS that are provisioned for the volume. For <code>gp2</code> volumes, this represents the baseline performance of the volume and the rate at which the volume accumulates I/O credits for bursting.</p> <p>The following are the supported values for each volume type:</p> <ul> <li> <p> <code>gp3</code>: 3,000-16,000 IOPS</p> </li> <li> <p> <code>io1</code>: 100-64,000 IOPS</p> </li> <li> <p> <code>io2</code>: 100-64,000 IOPS</p> </li> </ul> <p>For <code>io1</code> and <code>io2</code> volumes, we guarantee 64,000 IOPS only for <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Instances built on the Nitro System</a>. Other instance families guarantee performance up to 32,000 IOPS.</p> <p>This parameter is required for <code>io1</code> and <code>io2</code> volumes. The default for <code>gp3</code> volumes is 3,000 IOPS. This parameter is not supported for <code>gp2</code>, <code>st1</code>, <code>sc1</code>, or <code>standard</code> volumes.</p>",
         "EbsBlockDevice$VolumeSize": "<p>The size of the volume, in GiBs. You must specify either a snapshot ID or a volume size. If you specify a snapshot, the default is the snapshot size. You can specify a volume size that is equal to or larger than the snapshot size.</p> <p>The following are the supported volumes sizes for each volume type:</p> <ul> <li> <p> <code>gp2</code> and <code>gp3</code>:1-16,384</p> </li> <li> <p> <code>io1</code> and <code>io2</code>: 4-16,384</p> </li> <li> <p> <code>st1</code> and <code>sc1</code>: 125-16,384</p> </li> <li> <p> <code>standard</code>: 1-1,024</p> </li> </ul>",
         "EbsBlockDevice$Throughput": "<p>The throughput that the volume supports, in MiB/s.</p> <p>This parameter is valid only for <code>gp3</code> volumes.</p> <p>Valid Range: Minimum value of 125. Maximum value of 1000.</p>",
+        "FleetCapacityReservation$TotalInstanceCount": "<p>The total number of instances for which the Capacity Reservation reserves capacity.</p>",
         "FlowLog$MaxAggregationInterval": "<p>The maximum interval of time, in seconds, during which a flow of packets is captured and aggregated into a flow log record.</p> <p>When a network interface is attached to a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html#ec2-nitro-instances\">Nitro-based instance</a>, the aggregation interval is always 60 seconds (1 minute) or less, regardless of the specified value.</p> <p>Valid Values: <code>60</code> | <code>600</code> </p>",
         "GetCapacityReservationUsageResult$TotalInstanceCount": "<p>The number of instances for which the Capacity Reservation reserves capacity.</p>",
         "GetCapacityReservationUsageResult$AvailableInstanceCount": "<p>The remaining capacity. Indicates the number of instances that can be launched in the Capacity Reservation.</p>",
@@ -9216,6 +9394,7 @@
         "LocalGatewayVirtualInterface$LocalBgpAsn": "<p>The Border Gateway Protocol (BGP) Autonomous System Number (ASN) of the local gateway.</p>",
         "LocalGatewayVirtualInterface$PeerBgpAsn": "<p>The peer BGP ASN.</p>",
         "ManagedPrefixList$MaxEntries": "<p>The maximum number of entries for the prefix list.</p>",
+        "ModifyCapacityReservationFleetRequest$TotalTargetCapacity": "<p>The total number of capacity units to be reserved by the Capacity Reservation Fleet. This value, together with the instance type weights that you assign to each instance type used by the Fleet determine the number of instances for which the Fleet reserves capacity. Both values are based on units that make sense for your workload. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#target-capacity\">Total target capacity</a> in the Amazon EC2 User Guide.</p>",
         "ModifyCapacityReservationRequest$InstanceCount": "<p>The number of instances for which to reserve capacity. The number of instances can't be increased or decreased by more than <code>1000</code> in a single request.</p>",
         "ModifyClientVpnEndpointRequest$VpnPort": "<p>The port number to assign to the Client VPN endpoint for TCP and UDP traffic.</p> <p>Valid Values: <code>443</code> | <code>1194</code> </p> <p>Default Value: <code>443</code> </p>",
         "ModifyInstanceMetadataOptionsRequest$HttpPutResponseHopLimit": "<p>The desired HTTP PUT response hop limit for instance metadata requests. The larger the number, the further instance metadata requests can travel. If no parameter is specified, the existing state is maintained.</p> <p>Possible values: Integers from 1 to 64</p>",
@@ -9350,6 +9529,13 @@
         "VpnTunnelOptionsSpecification$RekeyFuzzPercentage": "<p>The percentage of the rekey window (determined by <code>RekeyMarginTimeSeconds</code>) during which the rekey time is randomly selected.</p> <p>Constraints: A value between 0 and 100.</p> <p>Default: <code>100</code> </p>",
         "VpnTunnelOptionsSpecification$ReplayWindowSize": "<p>The number of packets in an IKE replay window.</p> <p>Constraints: A value between 64 and 2048.</p> <p>Default: <code>1024</code> </p>",
         "VpnTunnelOptionsSpecification$DPDTimeoutSeconds": "<p>The number of seconds after which a DPD timeout occurs.</p> <p>Constraints: A value between 0 and 30.</p> <p>Default: <code>30</code> </p>"
+      }
+    },
+    "IntegerWithConstraints": {
+      "base": null,
+      "refs": {
+        "FleetCapacityReservation$Priority": "<p>The priority of the instance type in the Capacity Reservation Fleet. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#instance-priority\"> Instance type priority</a> in the Amazon EC2 User Guide.</p>",
+        "ReservationFleetInstanceSpecification$Priority": "<p>The priority to assign to the instance type. This value is used to determine which of the instance types specified for the Fleet should be prioritized for use. A lower value indicates a high priority. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#instance-priority\">Instance type priority</a> in the Amazon EC2 User Guide.</p>"
       }
     },
     "IntegrateServices": {
@@ -10617,6 +10803,11 @@
         "AthenaIntegration$PartitionStartDate": "<p>The start date for the partition.</p>",
         "AthenaIntegration$PartitionEndDate": "<p>The end date for the partition.</p>",
         "CapacityReservation$StartDate": "<p>The date and time at which the Capacity Reservation was started.</p>",
+        "CapacityReservationFleet$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires.</p>",
+        "CapacityReservationFleet$CreateTime": "<p>The date and time at which the Capacity Reservation Fleet was created.</p>",
+        "CreateCapacityReservationFleetRequest$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires. When the Capacity Reservation Fleet expires, its state changes to <code>expired</code> and all of the Capacity Reservations in the Fleet expire.</p> <p>The Capacity Reservation Fleet expires within an hour after the specified time. For example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code> on <code>5/31/2019</code>. </p>",
+        "CreateCapacityReservationFleetResult$CreateTime": "<p>The date and time at which the Capacity Reservation Fleet was created.</p>",
+        "CreateCapacityReservationFleetResult$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$EnablingTime": "<p>The time at which fast snapshot restores entered the <code>enabling</code> state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$OptimizingTime": "<p>The time at which fast snapshot restores entered the <code>optimizing</code> state.</p>",
         "DescribeFastSnapshotRestoreSuccessItem$EnabledTime": "<p>The time at which fast snapshot restores entered the <code>enabled</code> state.</p>",
@@ -10635,8 +10826,10 @@
         "EnableFastSnapshotRestoreSuccessItem$DisablingTime": "<p>The time at which fast snapshot restores entered the <code>disabling</code> state.</p>",
         "EnableFastSnapshotRestoreSuccessItem$DisabledTime": "<p>The time at which fast snapshot restores entered the <code>disabled</code> state.</p>",
         "EnableImageDeprecationRequest$DeprecateAt": "<p>The date and time to deprecate the AMI, in UTC, in the following format: <i>YYYY</i>-<i>MM</i>-<i>DD</i>T<i>HH</i>:<i>MM</i>:<i>SS</i>Z. If you specify a value for seconds, Amazon EC2 rounds the seconds to the nearest minute.</p> <p>You can’t specify a date in the past. The upper limit for <code>DeprecateAt</code> is 10 years from now.</p>",
+        "FleetCapacityReservation$CreateDate": "<p>The date and time at which the Capacity Reservation was created.</p>",
         "FlowLog$CreationTime": "<p>The date and time the flow log was created.</p>",
         "Instance$UsageOperationUpdateTime": "<p>The time that the usage operation was last updated.</p>",
+        "ModifyCapacityReservationFleetRequest$EndDate": "<p>The date and time at which the Capacity Reservation Fleet expires. When the Capacity Reservation Fleet expires, its state changes to <code>expired</code> and all of the Capacity Reservations in the Fleet expire.</p> <p>The Capacity Reservation Fleet expires within an hour after the specified time. For example, if you specify <code>5/31/2019</code>, <code>13:30:55</code>, the Capacity Reservation Fleet is guaranteed to expire between <code>13:30:55</code> and <code>14:30:55</code> on <code>5/31/2019</code>.</p> <p>You can't specify <b>EndDate</b> and <b> RemoveEndDate</b> in the same request.</p>",
         "NetworkInsightsAnalysis$StartDate": "<p>The time the analysis started.</p>",
         "NetworkInsightsPath$CreatedDate": "<p>The time stamp when the path was created.</p>",
         "SnapshotInfo$StartTime": "<p>Time this snapshot was started. This is the same for all snapshots initiated by the same request.</p>",
@@ -10672,6 +10865,16 @@
       "base": null,
       "refs": {
         "ModifyAvailabilityZoneGroupRequest$OptInStatus": "<p>Indicates whether you are opted in to the Local Zone group or Wavelength Zone group. The only valid value is <code>opted-in</code>. You must contact <a href=\"https://console.aws.amazon.com/support/home#/case/create%3FissueType=customer-service%26serviceCode=general-info%26getting-started%26categoryCode=using-aws%26services\">AWS Support</a> to opt out of a Local Zone group, or Wavelength Zone group.</p>"
+      }
+    },
+    "ModifyCapacityReservationFleetRequest": {
+      "base": null,
+      "refs": {
+      }
+    },
+    "ModifyCapacityReservationFleetResult": {
+      "base": null,
+      "refs": {
       }
     },
     "ModifyCapacityReservationRequest": {
@@ -11402,6 +11605,7 @@
         "CreateTrafficMirrorTargetRequest$NetworkInterfaceId": "<p>The network interface ID that is associated with the target.</p>",
         "DeleteNetworkInterfaceRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "DescribeNetworkInterfaceAttributeRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
+        "InstanceNetworkInterfaceSpecification$NetworkInterfaceId": "<p>The ID of the network interface.</p> <p>If you are creating a Spot Fleet, omit this parameter because you can’t specify a network interface ID in a launch specification.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
         "ModifyNetworkInterfaceAttributeRequest$NetworkInterfaceId": "<p>The ID of the network interface.</p>",
@@ -12785,6 +12989,18 @@
       "base": "<p>Describes a launch request for one or more instances, and includes owner, requester, and security group information that applies to all instances in the launch request.</p>",
       "refs": {
         "ReservationList$member": null
+      }
+    },
+    "ReservationFleetInstanceSpecification": {
+      "base": "<p>Information about an instance type to use in a Capacity Reservation Fleet.</p>",
+      "refs": {
+        "ReservationFleetInstanceSpecificationList$member": null
+      }
+    },
+    "ReservationFleetInstanceSpecificationList": {
+      "base": null,
+      "refs": {
+        "CreateCapacityReservationFleetRequest$InstanceTypeSpecifications": "<p>Information about the instance types for which to reserve the capacity.</p>"
       }
     },
     "ReservationId": {
@@ -14276,6 +14492,9 @@
         "CapacityReservation$AvailabilityZoneId": "<p>The Availability Zone ID of the Capacity Reservation.</p>",
         "CapacityReservation$InstanceType": "<p>The type of instance for which the Capacity Reservation reserves capacity.</p>",
         "CapacityReservation$AvailabilityZone": "<p>The Availability Zone in which the capacity is reserved.</p>",
+        "CapacityReservation$CapacityReservationFleetId": "<p>The ID of the Capacity Reservation Fleet to which the Capacity Reservation belongs. Only valid for Capacity Reservations that were created by a Capacity Reservation Fleet.</p>",
+        "CapacityReservationFleet$CapacityReservationFleetArn": "<p>The ARN of the Capacity Reservation Fleet.</p>",
+        "CapacityReservationFleet$AllocationStrategy": "<p>The strategy used by the Capacity Reservation Fleet to determine which of the specified instance types to use. For more information, see For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#allocation-strategy\"> Allocation strategy</a> in the Amazon EC2 User Guide.</p>",
         "CapacityReservationGroup$GroupArn": "<p>The ARN of the resource group.</p>",
         "CapacityReservationGroup$OwnerId": "<p>The ID of the Amazon Web Services account that owns the resource group.</p>",
         "CapacityReservationTarget$CapacityReservationResourceGroupArn": "<p>The ARN of the Capacity Reservation resource group in which to run the instance.</p>",
@@ -14363,6 +14582,9 @@
         "CopySnapshotRequest$SourceRegion": "<p>The ID of the Region that contains the snapshot to be copied.</p>",
         "CopySnapshotRequest$SourceSnapshotId": "<p>The ID of the EBS snapshot to copy.</p>",
         "CopySnapshotResult$SnapshotId": "<p>The ID of the new snapshot.</p>",
+        "CreateCapacityReservationFleetRequest$AllocationStrategy": "<p>The strategy used by the Capacity Reservation Fleet to determine which of the specified instance types to use. Currently, only the <code>prioritized</code> allocation strategy is supported. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/crfleet-concepts.html#allocation-strategy\"> Allocation strategy</a> in the Amazon EC2 User Guide.</p> <p>Valid values: <code>prioritized</code> </p>",
+        "CreateCapacityReservationFleetRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensure Idempotency</a>.</p>",
+        "CreateCapacityReservationFleetResult$AllocationStrategy": "<p>The allocation strategy used by the Capacity Reservation Fleet.</p>",
         "CreateCapacityReservationRequest$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensure Idempotency</a>.</p>",
         "CreateCapacityReservationRequest$InstanceType": "<p>The instance type for which to reserve capacity. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instance-types.html\">Instance types</a> in the <i>Amazon EC2 User Guide</i>.</p>",
         "CreateCapacityReservationRequest$AvailabilityZone": "<p>The Availability Zone in which to create the Capacity Reservation.</p>",
@@ -14526,6 +14748,8 @@
         "DeregisterTransitGatewayMulticastGroupMembersRequest$GroupIpAddress": "<p>The IP address assigned to the transit gateway multicast group.</p>",
         "DeregisterTransitGatewayMulticastGroupSourcesRequest$GroupIpAddress": "<p>The IP address assigned to the transit gateway multicast group.</p>",
         "DescribeByoipCidrsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
+        "DescribeCapacityReservationFleetsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
+        "DescribeCapacityReservationFleetsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeCapacityReservationsRequest$NextToken": "<p>The token to use to retrieve the next page of results.</p>",
         "DescribeCapacityReservationsResult$NextToken": "<p>The token to use to retrieve the next page of results. This value is <code>null</code> when there are no more results to return.</p>",
         "DescribeCarrierGatewaysRequest$NextToken": "<p>The token for the next page of results.</p>",
@@ -14798,6 +15022,8 @@
         "FederatedAuthenticationRequest$SAMLProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider.</p>",
         "FederatedAuthenticationRequest$SelfServiceSAMLProviderArn": "<p>The Amazon Resource Name (ARN) of the IAM SAML identity provider for the self-service portal.</p>",
         "Filter$Name": "<p>The name of the filter. Filter names are case-sensitive.</p>",
+        "FleetCapacityReservation$AvailabilityZoneId": "<p>The ID of the Availability Zone in which the Capacity Reservation reserves capacity.</p>",
+        "FleetCapacityReservation$AvailabilityZone": "<p>The Availability Zone in which the Capacity Reservation reserves capacity.</p>",
         "FleetData$ClientToken": "<p>Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/Run_Instance_Idempotency.html\">Ensuring Idempotency</a>.</p> <p>Constraints: Maximum 64 ASCII characters</p>",
         "FleetData$Context": "<p>Reserved.</p>",
         "FleetLaunchTemplateOverrides$MaxPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance.</p>",
@@ -15026,7 +15252,6 @@
         "InstanceNetworkInterfaceAssociation$PublicIp": "<p>The public IP address or Elastic IP address bound to the network interface.</p>",
         "InstanceNetworkInterfaceAttachment$AttachmentId": "<p>The ID of the network interface attachment.</p>",
         "InstanceNetworkInterfaceSpecification$Description": "<p>The description of the network interface. Applies only if creating a network interface when launching an instance.</p>",
-        "InstanceNetworkInterfaceSpecification$NetworkInterfaceId": "<p>The ID of the network interface.</p> <p>If you are creating a Spot Fleet, omit this parameter because you can’t specify a network interface ID in a launch specification.</p>",
         "InstanceNetworkInterfaceSpecification$PrivateIpAddress": "<p>The private IPv4 address of the network interface. Applies only if creating a network interface when launching an instance. You cannot specify this option if you're launching more than one instance in a <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/APIReference/API_RunInstances.html\">RunInstances</a> request.</p>",
         "InstanceNetworkInterfaceSpecification$SubnetId": "<p>The ID of the subnet associated with the network interface. Applies only if creating a network interface when launching an instance.</p>",
         "InstanceNetworkInterfaceSpecification$InterfaceType": "<p>The type of network interface.</p> <p>To create an Elastic Fabric Adapter (EFA), specify <code>efa</code>. For more information, see <a href=\"https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/efa.html\">Elastic Fabric Adapter</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.</p> <p>Valid values: <code>interface</code> | <code>efa</code> </p>",
@@ -15100,7 +15325,6 @@
         "LaunchTemplateLicenseConfiguration$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
         "LaunchTemplateLicenseConfigurationRequest$LicenseConfigurationArn": "<p>The Amazon Resource Name (ARN) of the license configuration.</p>",
         "LaunchTemplateOverrides$SpotPrice": "<p>The maximum price per unit hour that you are willing to pay for a Spot Instance.</p>",
-        "LaunchTemplateOverrides$SubnetId": "<p>The ID of the subnet in which to launch the instances.</p>",
         "LaunchTemplateOverrides$AvailabilityZone": "<p>The Availability Zone in which to launch the instances.</p>",
         "LaunchTemplatePlacement$AvailabilityZone": "<p>The Availability Zone of the instance.</p>",
         "LaunchTemplatePlacement$Affinity": "<p>The affinity setting for the instance on the Dedicated Host.</p>",
@@ -15369,6 +15593,8 @@
         "Reservation$OwnerId": "<p>The ID of the Amazon Web Services account that owns the reservation.</p>",
         "Reservation$RequesterId": "<p>The ID of the requester that launched the instances on your behalf (for example, Amazon Web Services Management Console or Auto Scaling).</p>",
         "Reservation$ReservationId": "<p>The ID of the reservation.</p>",
+        "ReservationFleetInstanceSpecification$AvailabilityZone": "<p>The Availability Zone in which the Capacity Reservation Fleet reserves the capacity. A Capacity Reservation Fleet can't span Availability Zones. All instance type specifications that you specify for the Fleet must use the same Availability Zone.</p>",
+        "ReservationFleetInstanceSpecification$AvailabilityZoneId": "<p>The ID of the Availability Zone in which the Capacity Reservation Fleet reserves the capacity. A Capacity Reservation Fleet can't span Availability Zones. All instance type specifications that you specify for the Fleet must use the same Availability Zone.</p>",
         "ReservationValue$HourlyPrice": "<p>The hourly rate of the reservation.</p>",
         "ReservationValue$RemainingTotalValue": "<p>The balance of the total value (the sum of remainingUpfrontValue + hourlyPrice * number of hours remaining).</p>",
         "ReservationValue$RemainingUpfrontValue": "<p>The remaining upfront cost of the reservation.</p>",
@@ -15908,6 +16134,7 @@
         "ImportInstanceLaunchSpecification$SubnetId": "<p>[EC2-VPC] The ID of the subnet in which to launch the instance.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecification$SubnetId": "<p>The ID of the subnet for the network interface.</p>",
         "LaunchTemplateInstanceNetworkInterfaceSpecificationRequest$SubnetId": "<p>The ID of the subnet for the network interface.</p>",
+        "LaunchTemplateOverrides$SubnetId": "<p>The ID of the subnet in which to launch the instances.</p>",
         "ModifySubnetAttributeRequest$SubnetId": "<p>The ID of the subnet.</p>",
         "RequestSpotLaunchSpecification$SubnetId": "<p>The ID of the subnet in which to launch the instance.</p>",
         "RunInstancesRequest$SubnetId": "<p>[EC2-VPC] The ID of the subnet to launch the instance into.</p> <p>If you specify a network interface, you must specify any subnets as part of the network interface.</p>",
@@ -16005,12 +16232,14 @@
       "refs": {
         "Address$Tags": "<p>Any tags assigned to the Elastic IP address.</p>",
         "CapacityReservation$Tags": "<p>Any tags assigned to the Capacity Reservation.</p>",
+        "CapacityReservationFleet$Tags": "<p>The tags assigned to the Capacity Reservation Fleet.</p>",
         "CarrierGateway$Tags": "<p>The tags assigned to the carrier gateway.</p>",
         "ClassicLinkInstance$Tags": "<p>Any tags assigned to the instance.</p>",
         "ClientVpnEndpoint$Tags": "<p>Any tags assigned to the Client VPN endpoint.</p>",
         "CoipPool$Tags": "<p>The tags.</p>",
         "ConversionTask$Tags": "<p>Any tags assigned to the task.</p>",
         "CopySnapshotResult$Tags": "<p>Any tags applied to the new snapshot.</p>",
+        "CreateCapacityReservationFleetResult$Tags": "<p>The tags assigned to the Capacity Reservation Fleet.</p>",
         "CreateSecurityGroupResult$Tags": "<p>The tags assigned to the security group.</p>",
         "CreateTagsRequest$Tags": "<p>The tags. The <code>value</code> parameter is required, but if you don't want the tag to have a value, specify the parameter with no value, and we set the value to an empty string.</p>",
         "CustomerGateway$Tags": "<p>Any tags assigned to the customer gateway.</p>",
@@ -16109,6 +16338,7 @@
         "AuthorizeSecurityGroupEgressRequest$TagSpecifications": "<p>The tags applied to the security group rule.</p>",
         "AuthorizeSecurityGroupIngressRequest$TagSpecifications": "<p>[VPC Only] The tags applied to the security group rule.</p>",
         "CopySnapshotRequest$TagSpecifications": "<p>The tags to apply to the new snapshot.</p>",
+        "CreateCapacityReservationFleetRequest$TagSpecifications": "<p>The tags to assign to the Capacity Reservation Fleet. The tags are automatically assigned to the Capacity Reservations in the Fleet.</p>",
         "CreateCapacityReservationRequest$TagSpecifications": "<p>The tags to apply to the Capacity Reservation during launch.</p>",
         "CreateCarrierGatewayRequest$TagSpecifications": "<p>The tags to associate with the carrier gateway.</p>",
         "CreateClientVpnEndpointRequest$TagSpecifications": "<p>The tags to apply to the Client VPN endpoint during creation.</p>",
