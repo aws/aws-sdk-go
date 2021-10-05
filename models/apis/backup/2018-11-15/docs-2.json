@@ -5,7 +5,7 @@
     "CreateBackupPlan": "<p>Creates a backup plan using a backup plan name and backup rules. A backup plan is a document that contains information that Backup uses to schedule tasks that create recovery points for resources.</p> <p>If you call <code>CreateBackupPlan</code> with a plan that already exists, you receive an <code>AlreadyExistsException</code> exception.</p>",
     "CreateBackupSelection": "<p>Creates a JSON document that specifies a set of resources to assign to a backup plan. Resources can be included by specifying patterns for a <code>ListOfTags</code> and selected <code>Resources</code>. </p> <p>For example, consider the following patterns:</p> <ul> <li> <p> <code>Resources: \"arn:aws:ec2:region:account-id:volume/volume-id\"</code> </p> </li> <li> <p> <code>ConditionKey:\"department\"</code> </p> <p> <code>ConditionValue:\"finance\"</code> </p> <p> <code>ConditionType:\"StringEquals\"</code> </p> </li> <li> <p> <code>ConditionKey:\"importance\"</code> </p> <p> <code>ConditionValue:\"critical\"</code> </p> <p> <code>ConditionType:\"StringEquals\"</code> </p> </li> </ul> <p>Using these patterns would back up all Amazon Elastic Block Store (Amazon EBS) volumes that are tagged as <code>\"department=finance\"</code>, <code>\"importance=critical\"</code>, in addition to an EBS volume with the specified volume ID.</p> <p>Resources and conditions are additive in that all resources that match the pattern are selected. This shouldn't be confused with a logical AND, where all conditions must match. The matching patterns are logically put together using the OR operator. In other words, all patterns that match are selected for backup.</p>",
     "CreateBackupVault": "<p>Creates a logical container where backups are stored. A <code>CreateBackupVault</code> request includes a name, optionally one or more resource tags, an encryption key, and a request ID.</p> <note> <p>Do not include sensitive data, such as passport numbers, in the name of a backup vault.</p> </note>",
-    "CreateFramework": "<p>Creates a framework with one or more controls. A framework is a collection of controls that you can use to evaluate your backup practices. By using pre-built customizable controls to define your policies, you can evaluate whether your backup practices comply with your policies. To get insights into the compliance status of your frameworks, you can set up automatic daily reports.</p>",
+    "CreateFramework": "<p>Creates a framework with one or more controls. A framework is a collection of controls that you can use to evaluate your backup practices. By using pre-built customizable controls to define your policies, you can evaluate whether your backup practices comply with your policies and which resources are not yet in compliance.</p>",
     "CreateReportPlan": "<p>Creates a report plan. A report plan is a document that contains information about the contents of the report and where Backup will deliver it.</p> <p>If you call <code>CreateReportPlan</code> with a plan that already exists, you receive an <code>AlreadyExistsException</code> exception.</p>",
     "DeleteBackupPlan": "<p>Deletes a backup plan. A backup plan can only be deleted after all associated selections of resources have been deleted. Deleting a backup plan deletes the current version of a backup plan. Previous versions, if any, will still exist.</p>",
     "DeleteBackupSelection": "<p>Deletes the resource selection associated with a backup plan that is specified by the <code>SelectionId</code>.</p>",
@@ -236,7 +236,7 @@
       }
     },
     "BackupPlanInput": {
-      "base": "<p>Contains an optional backup plan display name and an array of <code>BackupRule</code> objects, each of which specifies a backup rule. Each rule in a backup plan is a separate scheduled task and can back up a different selection of Amazon Web Services resources. </p>",
+      "base": "<p>Contains an optional backup plan display name and an array of <code>BackupRule</code> objects, each of which specifies a backup rule. Each rule in a backup plan is a separate scheduled task. </p>",
       "refs": {
         "CreateBackupPlanInput$BackupPlan": "<p>Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one or more sets of <code>Rules</code>.</p>",
         "UpdateBackupPlanInput$BackupPlan": "<p>Specifies the body of a backup plan. Includes a <code>BackupPlanName</code> and one or more sets of <code>Rules</code>.</p>"
@@ -414,7 +414,7 @@
     "ComplianceResourceIdList": {
       "base": null,
       "refs": {
-        "ControlScope$ComplianceResourceIds": "<p>Describes whether the control scope includes a specific resource identified by its unique Amazon Resource Name (ARN).</p>"
+        "ControlScope$ComplianceResourceIds": "<p>The ID of the only Amazon Web Services resource that you want your control scope to contain.</p>"
       }
     },
     "Condition": {
@@ -1320,9 +1320,9 @@
     "ReportSetting": {
       "base": "<p>Contains detailed information about a report setting.</p>",
       "refs": {
-        "CreateReportPlanInput$ReportSetting": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are:</p> <p> <code>BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p>",
-        "ReportPlan$ReportSetting": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are:</p> <p> <code>BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p>",
-        "UpdateReportPlanInput$ReportSetting": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are:</p> <p> <code>BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p>"
+        "CreateReportPlanInput$ReportSetting": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are:</p> <p> <code>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p> <p>If the report template is <code>RESOURCE_COMPLIANCE_REPORT</code> or <code>CONTROL_COMPLIANCE_REPORT</code>, this API resource also describes the report coverage by Amazon Web Services Regions and frameworks.</p>",
+        "ReportPlan$ReportSetting": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are:</p> <p> <code>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p> <p>If the report template is <code>RESOURCE_COMPLIANCE_REPORT</code> or <code>CONTROL_COMPLIANCE_REPORT</code>, this API resource also describes the report coverage by Amazon Web Services Regions and frameworks.</p>",
+        "UpdateReportPlanInput$ReportSetting": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are:</p> <p> <code>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p> <p>If the report template is <code>RESOURCE_COMPLIANCE_REPORT</code> or <code>CONTROL_COMPLIANCE_REPORT</code>, this API resource also describes the report coverage by Amazon Web Services Regions and frameworks.</p>"
       }
     },
     "ResourceArns": {
@@ -1373,7 +1373,7 @@
     "ResourceTypes": {
       "base": null,
       "refs": {
-        "GetSupportedResourceTypesOutput$ResourceTypes": "<p>Contains a string with the supported Amazon Web Services resource types:</p> <ul> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Aurora</code> for Amazon Aurora</p> </li> <li> <p> <code>Storage Gateway</code> for Storage Gateway</p> </li> </ul>"
+        "GetSupportedResourceTypesOutput$ResourceTypes": "<p>Contains a string with the supported Amazon Web Services resource types:</p> <ul> <li> <p> <code>Aurora</code> for Amazon Aurora</p> </li> <li> <p> <code>DynamoDB</code> for Amazon DynamoDB</p> </li> <li> <p> <code>EBS</code> for Amazon Elastic Block Store</p> </li> <li> <p> <code>EC2</code> for Amazon Elastic Compute Cloud</p> </li> <li> <p> <code>EFS</code> for Amazon Elastic File System</p> </li> <li> <p> <code>FSX</code> for Amazon FSx</p> </li> <li> <p> <code>RDS</code> for Amazon Relational Database Service</p> </li> <li> <p> <code>Storage Gateway</code> for Storage Gateway</p> </li> </ul>"
       }
     },
     "RestoreJobId": {
@@ -1570,7 +1570,8 @@
     "integer": {
       "base": null,
       "refs": {
-        "Framework$NumberOfControls": "<p>The number of controls contained by the framework.</p>"
+        "Framework$NumberOfControls": "<p>The number of controls contained by the framework.</p>",
+        "ReportSetting$NumberOfFrameworks": "<p>The number of frameworks a report covers.</p>"
       }
     },
     "long": {
@@ -1606,8 +1607,8 @@
         "ComplianceResourceIdList$member": null,
         "ConflictException$Code": null,
         "ConflictException$Message": null,
-        "ConflictException$Type": null,
-        "ConflictException$Context": null,
+        "ConflictException$Type": "<p/>",
+        "ConflictException$Context": "<p/>",
         "CopyJob$CopyJobId": "<p>Uniquely identifies a copy job.</p>",
         "CopyJob$StatusMessage": "<p>A detailed message explaining the status of the job to copy a resource.</p>",
         "CreateBackupPlanInput$CreatorRequestId": "<p>Identifies the request and allows failed requests to be retried without the risk of running the operation twice. If the request includes a <code>CreatorRequestId</code> that matches an existing backup plan, that plan is returned. This parameter is optional.</p>",
@@ -1725,11 +1726,11 @@
         "ReportDeliveryChannel$S3BucketName": "<p>The unique name of the S3 bucket that receives your reports.</p>",
         "ReportDeliveryChannel$S3KeyPrefix": "<p>The prefix for where Backup Audit Manager delivers your reports to Amazon S3. The prefix is this part of the following path: s3://your-bucket-name/<code>prefix</code>/Backup/us-west-2/year/month/day/report-name. If not specified, there is no prefix.</p>",
         "ReportDestination$S3BucketName": "<p>The unique name of the Amazon S3 bucket that receives your reports.</p>",
-        "ReportJob$ReportTemplate": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are: </p> <p> <code>BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p>",
+        "ReportJob$ReportTemplate": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are: </p> <p> <code>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p>",
         "ReportJob$Status": "<p>The status of a report job. The statuses are:</p> <p> <code>CREATED | RUNNING | COMPLETED | FAILED</code> </p> <p> <code>COMPLETED</code> means that the report is available for your review at your designated destination. If the status is <code>FAILED</code>, review the <code>StatusMessage</code> for the reason.</p>",
         "ReportJob$StatusMessage": "<p>A message explaining the status of the report job.</p>",
         "ReportPlan$DeploymentStatus": "<p>The deployment status of a report plan. The statuses are:</p> <p> <code>CREATE_IN_PROGRESS | UPDATE_IN_PROGRESS | DELETE_IN_PROGRESS | COMPLETED</code> </p>",
-        "ReportSetting$ReportTemplate": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are:</p> <p> <code>BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p>",
+        "ReportSetting$ReportTemplate": "<p>Identifies the report template for the report. Reports are built using a report template. The report templates are:</p> <p> <code>RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT</code> </p>",
         "ResourceNotFoundException$Code": null,
         "ResourceNotFoundException$Message": null,
         "ResourceNotFoundException$Type": "<p/>",
@@ -1762,7 +1763,8 @@
     "stringList": {
       "base": null,
       "refs": {
-        "ReportDestination$S3Keys": "<p>The object key that uniquely identifies your reports in your S3 bucket.</p>"
+        "ReportDestination$S3Keys": "<p>The object key that uniquely identifies your reports in your S3 bucket.</p>",
+        "ReportSetting$FrameworkArns": "<p>The Amazon Resource Names (ARNs) of the frameworks a report covers.</p>"
       }
     },
     "stringMap": {
@@ -1770,7 +1772,7 @@
       "refs": {
         "ControlScope$Tags": "<p>Describes whether the control scope includes resources with one or more tags. Each tag is a key-value pair.</p>",
         "CreateFrameworkInput$FrameworkTags": "<p>Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.</p>",
-        "CreateReportPlanInput$ReportPlanTags": "<p>Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.</p>"
+        "CreateReportPlanInput$ReportPlanTags": "<p>Metadata that you can assign to help organize the report plans that you create. Each tag is a key-value pair.</p>"
       }
     },
     "timestamp": {
@@ -1792,6 +1794,7 @@
         "CreateBackupPlanOutput$CreationDate": "<p>The date and time that a backup plan is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupSelectionOutput$CreationDate": "<p>The date and time a backup selection is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "CreateBackupVaultOutput$CreationDate": "<p>The date and time a backup vault is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
+        "CreateReportPlanOutput$CreationTime": "<p>The date and time a backup vault is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationTime</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DeleteBackupPlanOutput$DeletionDate": "<p>The date and time a backup plan is deleted, in Unix format and Coordinated Universal Time (UTC). The value of <code>DeletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DescribeBackupJobOutput$CreationDate": "<p>The date and time that a backup job is created, in Unix format and Coordinated Universal Time (UTC). The value of <code>CreationDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",
         "DescribeBackupJobOutput$CompletionDate": "<p>The date and time that a job to create a backup job is completed, in Unix format and Coordinated Universal Time (UTC). The value of <code>CompletionDate</code> is accurate to milliseconds. For example, the value 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.</p>",

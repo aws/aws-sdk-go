@@ -1,3 +1,17 @@
+Release v1.40.56 (2021-10-05)
+===
+
+### Service Client Updates
+* `service/application-autoscaling`: Updates service API and documentation
+* `service/backup`: Updates service API and documentation
+* `service/ec2`: Updates service API, documentation, waiters, and paginators
+  * Released Capacity Reservation Fleet, a feature of Amazon EC2 Capacity Reservations, which provides a way to manage reserved capacity across instance types. For more information: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/cr-fleets.html
+* `service/glue`: Updates service API and documentation
+  * This release adds tag as an input of CreateConnection
+* `service/location`: Updates service API and documentation
+* `service/workmail`: Updates service API and documentation
+  * This release allows customers to change their inbound DMARC settings in Amazon WorkMail.
+
 Release v1.40.55 (2021-10-04)
 ===
 

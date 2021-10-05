@@ -26,9 +26,11 @@
 //
 //    * Amazon Managed Streaming for Apache Kafka broker storage
 //
+//    * Amazon Neptune clusters
+//
 //    * Amazon SageMaker endpoint variants
 //
-//    * Spot Fleet (Amazon EC2) requests
+//    * Spot Fleets (Amazon EC2)
 //
 //    * Custom resources provided by your own applications or services
 //

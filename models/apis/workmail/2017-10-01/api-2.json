@@ -371,6 +371,20 @@
       ],
       "idempotent":true
     },
+    "DescribeInboundDmarcSettings":{
+      "name":"DescribeInboundDmarcSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"DescribeInboundDmarcSettingsRequest"},
+      "output":{"shape":"DescribeInboundDmarcSettingsResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
     "DescribeMailboxExportJob":{
       "name":"DescribeMailboxExportJob",
       "http":{
@@ -757,6 +771,20 @@
         {"shape":"OrganizationStateException"}
       ]
     },
+    "PutInboundDmarcSettings":{
+      "name":"PutInboundDmarcSettings",
+      "http":{
+        "method":"POST",
+        "requestUri":"/"
+      },
+      "input":{"shape":"PutInboundDmarcSettingsRequest"},
+      "output":{"shape":"PutInboundDmarcSettingsResponse"},
+      "errors":[
+        {"shape":"OrganizationNotFoundException"},
+        {"shape":"OrganizationStateException"}
+      ],
+      "idempotent":true
+    },
     "PutMailboxPermissions":{
       "name":"PutMailboxPermissions",
       "http":{
@@ -1086,6 +1114,7 @@
       }
     },
     "Boolean":{"type":"boolean"},
+    "BooleanObject":{"type":"boolean"},
     "CancelMailboxExportJobRequest":{
       "type":"structure",
       "required":[
@@ -1454,6 +1483,19 @@
         "State":{"shape":"EntityState"},
         "EnabledDate":{"shape":"Timestamp"},
         "DisabledDate":{"shape":"Timestamp"}
+      }
+    },
+    "DescribeInboundDmarcSettingsRequest":{
+      "type":"structure",
+      "required":["OrganizationId"],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"}
+      }
+    },
+    "DescribeInboundDmarcSettingsResponse":{
+      "type":"structure",
+      "members":{
+        "Enforced":{"shape":"Boolean"}
       }
     },
     "DescribeMailboxExportJobRequest":{
@@ -2456,6 +2498,22 @@
       }
     },
     "PutAccessControlRuleResponse":{
+      "type":"structure",
+      "members":{
+      }
+    },
+    "PutInboundDmarcSettingsRequest":{
+      "type":"structure",
+      "required":[
+        "OrganizationId",
+        "Enforced"
+      ],
+      "members":{
+        "OrganizationId":{"shape":"OrganizationId"},
+        "Enforced":{"shape":"BooleanObject"}
+      }
+    },
+    "PutInboundDmarcSettingsResponse":{
       "type":"structure",
       "members":{
       }

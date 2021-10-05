@@ -22442,6 +22442,9 @@ type CreateConnectionInput struct {
 	//
 	// ConnectionInput is a required field
 	ConnectionInput *ConnectionInput `type:"structure" required:"true"`
+
+	// The tags you assign to the connection.
+	Tags map[string]*string `type:"map"`
 }
 
 // String returns the string representation.
@@ -22492,6 +22495,12 @@ func (s *CreateConnectionInput) SetCatalogId(v string) *CreateConnectionInput {
 // SetConnectionInput sets the ConnectionInput field's value.
 func (s *CreateConnectionInput) SetConnectionInput(v *ConnectionInput) *CreateConnectionInput {
 	s.ConnectionInput = v
+	return s
+}
+
+// SetTags sets the Tags field's value.
+func (s *CreateConnectionInput) SetTags(v map[string]*string) *CreateConnectionInput {
+	s.Tags = v
 	return s
 }
 
@@ -33264,6 +33273,10 @@ type GetPartitionsInput struct {
 	// DatabaseName is a required field
 	DatabaseName *string `min:"1" type:"string" required:"true"`
 
+	// When true, specifies not returning the partition column schema. Useful when
+	// you are interested only in other partition attributes such as partition values
+	// or location. This approach avoids the problem of a large response by not
+	// returning duplicate data.
 	ExcludeColumnSchema *bool `type:"boolean"`
 
 	// An expression that filters the partitions to be returned.

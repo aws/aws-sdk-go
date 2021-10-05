@@ -376,6 +376,12 @@
           "matcher": "pathAll",
           "state": "success",
           "argument": "Snapshots[].State"
+        },
+        {
+          "expected": "error",
+          "matcher": "pathAny",
+          "state": "failure",
+          "argument": "Snapshots[].State"
         }
       ]
     },

@@ -438,7 +438,8 @@
         "KafkaBrokerStorageUtilization",
         "ElastiCachePrimaryEngineCPUUtilization",
         "ElastiCacheReplicaEngineCPUUtilization",
-        "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage"
+        "ElastiCacheDatabaseMemoryUsageCountedForEvictPercentage",
+        "NeptuneReaderAverageCPUUtilization"
       ]
     },
     "MetricUnit":{"type":"string"},
@@ -586,7 +587,8 @@
         "cassandra:table:WriteCapacityUnits",
         "kafka:broker-storage:VolumeSize",
         "elasticache:replication-group:NodeGroups",
-        "elasticache:replication-group:Replicas"
+        "elasticache:replication-group:Replicas",
+        "neptune:cluster:ReadReplicaCount"
       ]
     },
     "ScalableTarget":{
@@ -742,7 +744,8 @@
         "lambda",
         "cassandra",
         "kafka",
-        "elasticache"
+        "elasticache",
+        "neptune"
       ]
     },
     "StepAdjustment":{

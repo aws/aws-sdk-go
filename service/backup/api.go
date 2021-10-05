@@ -369,9 +369,8 @@ func (c *Backup) CreateFrameworkRequest(input *CreateFrameworkInput) (req *reque
 // Creates a framework with one or more controls. A framework is a collection
 // of controls that you can use to evaluate your backup practices. By using
 // pre-built customizable controls to define your policies, you can evaluate
-// whether your backup practices comply with your policies. To get insights
-// into the compliance status of your frameworks, you can set up automatic daily
-// reports.
+// whether your backup practices comply with your policies and which resources
+// are not yet in compliance.
 //
 // Returns awserr.Error for service API and SDK errors. Use runtime type assertions
 // with awserr.Error's Code and Message methods to get detailed information about
@@ -6322,6 +6321,9 @@ func (c *Backup) UpdateFrameworkRequest(input *UpdateFrameworkInput) (req *reque
 // API operation UpdateFramework for usage and error information.
 //
 // Returned Error Types:
+//   * AlreadyExistsException
+//   The required resource already exists.
+//
 //   * ResourceNotFoundException
 //   A resource that is required for the action doesn't exist.
 //
@@ -7142,8 +7144,8 @@ func (s *ControlInputParameter) SetParameterValue(v string) *ControlInputParamet
 type ControlScope struct {
 	_ struct{} `type:"structure"`
 
-	// Describes whether the control scope includes a specific resource identified
-	// by its unique Amazon Resource Name (ARN).
+	// The ID of the only Amazon Web Services resource that you want your control
+	// scope to contain.
 	ComplianceResourceIds []*string `min:"1" type:"list"`
 
 	// Describes whether the control scope includes one or more types of resources,
@@ -8044,14 +8046,19 @@ type CreateReportPlanInput struct {
 	// ReportPlanName is a required field
 	ReportPlanName *string `min:"1" type:"string" required:"true"`
 
-	// Metadata that you can assign to help organize the frameworks that you create.
+	// Metadata that you can assign to help organize the report plans that you create.
 	// Each tag is a key-value pair.
 	ReportPlanTags map[string]*string `type:"map"`
 
 	// Identifies the report template for the report. Reports are built using a
 	// report template. The report templates are:
 	//
-	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	// RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT
+	// | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	//
+	// If the report template is RESOURCE_COMPLIANCE_REPORT or CONTROL_COMPLIANCE_REPORT,
+	// this API resource also describes the report coverage by Amazon Web Services
+	// Regions and frameworks.
 	//
 	// ReportSetting is a required field
 	ReportSetting *ReportSetting `type:"structure" required:"true"`
@@ -8146,6 +8153,12 @@ func (s *CreateReportPlanInput) SetReportSetting(v *ReportSetting) *CreateReport
 type CreateReportPlanOutput struct {
 	_ struct{} `type:"structure"`
 
+	// The date and time a backup vault is created, in Unix format and Coordinated
+	// Universal Time (UTC). The value of CreationTime is accurate to milliseconds.
+	// For example, the value 1516925490.087 represents Friday, January 26, 2018
+	// 12:11:30.087 AM.
+	CreationTime *time.Time `type:"timestamp"`
+
 	// An Amazon Resource Name (ARN) that uniquely identifies a resource. The format
 	// of the ARN depends on the resource type.
 	ReportPlanArn *string `type:"string"`
@@ -8170,6 +8183,12 @@ func (s CreateReportPlanOutput) String() string {
 // value will be replaced with "sensitive".
 func (s CreateReportPlanOutput) GoString() string {
 	return s.String()
+}
+
+// SetCreationTime sets the CreationTime field's value.
+func (s *CreateReportPlanOutput) SetCreationTime(v time.Time) *CreateReportPlanOutput {
+	s.CreationTime = &v
+	return s
 }
 
 // SetReportPlanArn sets the ReportPlanArn field's value.
@@ -11661,6 +11680,8 @@ type GetSupportedResourceTypesOutput struct {
 
 	// Contains a string with the supported Amazon Web Services resource types:
 	//
+	//    * Aurora for Amazon Aurora
+	//
 	//    * DynamoDB for Amazon DynamoDB
 	//
 	//    * EBS for Amazon Elastic Block Store
@@ -11669,9 +11690,9 @@ type GetSupportedResourceTypesOutput struct {
 	//
 	//    * EFS for Amazon Elastic File System
 	//
-	//    * RDS for Amazon Relational Database Service
+	//    * FSX for Amazon FSx
 	//
-	//    * Aurora for Amazon Aurora
+	//    * RDS for Amazon Relational Database Service
 	//
 	//    * Storage Gateway for Storage Gateway
 	ResourceTypes []*string `type:"list"`
@@ -14305,8 +14326,7 @@ func (s *Plan) SetRules(v []*Rule) *Plan {
 
 // Contains an optional backup plan display name and an array of BackupRule
 // objects, each of which specifies a backup rule. Each rule in a backup plan
-// is a separate scheduled task and can back up a different selection of Amazon
-// Web Services resources.
+// is a separate scheduled task.
 type PlanInput struct {
 	_ struct{} `type:"structure"`
 
@@ -15323,7 +15343,8 @@ type ReportJob struct {
 	// Identifies the report template for the report. Reports are built using a
 	// report template. The report templates are:
 	//
-	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	// RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT
+	// | COPY_JOB_REPORT | RESTORE_JOB_REPORT
 	ReportTemplate *string `type:"string"`
 
 	// The status of a report job. The statuses are:
@@ -15452,7 +15473,12 @@ type ReportPlan struct {
 	// Identifies the report template for the report. Reports are built using a
 	// report template. The report templates are:
 	//
-	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	// RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT
+	// | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	//
+	// If the report template is RESOURCE_COMPLIANCE_REPORT or CONTROL_COMPLIANCE_REPORT,
+	// this API resource also describes the report coverage by Amazon Web Services
+	// Regions and frameworks.
 	ReportSetting *ReportSetting `type:"structure"`
 }
 
@@ -15532,10 +15558,17 @@ func (s *ReportPlan) SetReportSetting(v *ReportSetting) *ReportPlan {
 type ReportSetting struct {
 	_ struct{} `type:"structure"`
 
+	// The Amazon Resource Names (ARNs) of the frameworks a report covers.
+	FrameworkArns []*string `type:"list"`
+
+	// The number of frameworks a report covers.
+	NumberOfFrameworks *int64 `type:"integer"`
+
 	// Identifies the report template for the report. Reports are built using a
 	// report template. The report templates are:
 	//
-	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	// RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT
+	// | COPY_JOB_REPORT | RESTORE_JOB_REPORT
 	//
 	// ReportTemplate is a required field
 	ReportTemplate *string `type:"string" required:"true"`
@@ -15570,6 +15603,18 @@ func (s *ReportSetting) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetFrameworkArns sets the FrameworkArns field's value.
+func (s *ReportSetting) SetFrameworkArns(v []*string) *ReportSetting {
+	s.FrameworkArns = v
+	return s
+}
+
+// SetNumberOfFrameworks sets the NumberOfFrameworks field's value.
+func (s *ReportSetting) SetNumberOfFrameworks(v int64) *ReportSetting {
+	s.NumberOfFrameworks = &v
+	return s
 }
 
 // SetReportTemplate sets the ReportTemplate field's value.
@@ -17829,7 +17874,12 @@ type UpdateReportPlanInput struct {
 	// Identifies the report template for the report. Reports are built using a
 	// report template. The report templates are:
 	//
-	// BACKUP_JOB_REPORT | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	// RESOURCE_COMPLIANCE_REPORT | CONTROL_COMPLIANCE_REPORT | BACKUP_JOB_REPORT
+	// | COPY_JOB_REPORT | RESTORE_JOB_REPORT
+	//
+	// If the report template is RESOURCE_COMPLIANCE_REPORT or CONTROL_COMPLIANCE_REPORT,
+	// this API resource also describes the report coverage by Amazon Web Services
+	// Regions and frameworks.
 	ReportSetting *ReportSetting `type:"structure"`
 }
 

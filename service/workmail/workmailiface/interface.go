@@ -144,6 +144,10 @@ type WorkMailAPI interface {
 	DescribeGroupWithContext(aws.Context, *workmail.DescribeGroupInput, ...request.Option) (*workmail.DescribeGroupOutput, error)
 	DescribeGroupRequest(*workmail.DescribeGroupInput) (*request.Request, *workmail.DescribeGroupOutput)
 
+	DescribeInboundDmarcSettings(*workmail.DescribeInboundDmarcSettingsInput) (*workmail.DescribeInboundDmarcSettingsOutput, error)
+	DescribeInboundDmarcSettingsWithContext(aws.Context, *workmail.DescribeInboundDmarcSettingsInput, ...request.Option) (*workmail.DescribeInboundDmarcSettingsOutput, error)
+	DescribeInboundDmarcSettingsRequest(*workmail.DescribeInboundDmarcSettingsInput) (*request.Request, *workmail.DescribeInboundDmarcSettingsOutput)
+
 	DescribeMailboxExportJob(*workmail.DescribeMailboxExportJobInput) (*workmail.DescribeMailboxExportJobOutput, error)
 	DescribeMailboxExportJobWithContext(aws.Context, *workmail.DescribeMailboxExportJobInput, ...request.Option) (*workmail.DescribeMailboxExportJobOutput, error)
 	DescribeMailboxExportJobRequest(*workmail.DescribeMailboxExportJobInput) (*request.Request, *workmail.DescribeMailboxExportJobOutput)
@@ -273,6 +277,10 @@ type WorkMailAPI interface {
 	PutAccessControlRule(*workmail.PutAccessControlRuleInput) (*workmail.PutAccessControlRuleOutput, error)
 	PutAccessControlRuleWithContext(aws.Context, *workmail.PutAccessControlRuleInput, ...request.Option) (*workmail.PutAccessControlRuleOutput, error)
 	PutAccessControlRuleRequest(*workmail.PutAccessControlRuleInput) (*request.Request, *workmail.PutAccessControlRuleOutput)
+
+	PutInboundDmarcSettings(*workmail.PutInboundDmarcSettingsInput) (*workmail.PutInboundDmarcSettingsOutput, error)
+	PutInboundDmarcSettingsWithContext(aws.Context, *workmail.PutInboundDmarcSettingsInput, ...request.Option) (*workmail.PutInboundDmarcSettingsOutput, error)
+	PutInboundDmarcSettingsRequest(*workmail.PutInboundDmarcSettingsInput) (*request.Request, *workmail.PutInboundDmarcSettingsOutput)
 
 	PutMailboxPermissions(*workmail.PutMailboxPermissionsInput) (*workmail.PutMailboxPermissionsOutput, error)
 	PutMailboxPermissionsWithContext(aws.Context, *workmail.PutMailboxPermissionsInput, ...request.Option) (*workmail.PutMailboxPermissionsOutput, error)

@@ -3722,7 +3722,8 @@
       "required":["ConnectionInput"],
       "members":{
         "CatalogId":{"shape":"CatalogIdString"},
-        "ConnectionInput":{"shape":"ConnectionInput"}
+        "ConnectionInput":{"shape":"ConnectionInput"},
+        "Tags":{"shape":"TagsMap"}
       }
     },
     "CreateConnectionResponse":{

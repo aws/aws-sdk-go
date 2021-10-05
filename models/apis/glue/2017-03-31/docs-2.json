@@ -567,7 +567,7 @@
     "BooleanNullable": {
       "base": null,
       "refs": {
-        "GetPartitionsRequest$ExcludeColumnSchema": null,
+        "GetPartitionsRequest$ExcludeColumnSchema": "<p>When true, specifies not returning the partition column schema. Useful when you are interested only in other partition attributes such as partition values or location. This approach avoids the problem of a large response by not returning duplicate data.</p>",
         "UpdateTableRequest$SkipArchive": "<p>By default, <code>UpdateTable</code> always creates an archived version of the table before updating it. However, if <code>skipArchive</code> is set to true, <code>UpdateTable</code> does not create the archived version.</p>"
       }
     },
@@ -5111,6 +5111,7 @@
       "base": null,
       "refs": {
         "CreateBlueprintRequest$Tags": "<p>The tags to be applied to this blueprint.</p>",
+        "CreateConnectionRequest$Tags": "<p>The tags you assign to the connection.</p>",
         "CreateCrawlerRequest$Tags": "<p>The tags to use with this crawler request. You may use tags to limit access to the crawler. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
         "CreateDevEndpointRequest$Tags": "<p>The tags to use with this DevEndpoint. You may use tags to limit access to the DevEndpoint. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
         "CreateJobRequest$Tags": "<p>The tags to use with this job. You may use tags to limit access to the job. For more information about tags in Glue, see <a href=\"https://docs.aws.amazon.com/glue/latest/dg/monitor-tags.html\">Amazon Web Services Tags in Glue</a> in the developer guide.</p>",
