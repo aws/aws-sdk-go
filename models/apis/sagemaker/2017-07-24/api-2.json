@@ -14092,7 +14092,8 @@
       "type":"string",
       "enum":[
         "Pipe",
-        "File"
+        "File",
+        "FastFile"
       ]
     },
     "TrainingInstanceCount":{

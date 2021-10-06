@@ -847,7 +847,8 @@
         "WindowsConfiguration":{"shape":"CreateFileSystemWindowsConfiguration"},
         "LustreConfiguration":{"shape":"CreateFileSystemLustreConfiguration"},
         "StorageType":{"shape":"StorageType"},
-        "KmsKeyId":{"shape":"KmsKeyId"}
+        "KmsKeyId":{"shape":"KmsKeyId"},
+        "FileSystemTypeVersion":{"shape":"FileSystemTypeVersion"}
       }
     },
     "CreateFileSystemFromBackupResponse":{
@@ -913,7 +914,8 @@
         "KmsKeyId":{"shape":"KmsKeyId"},
         "WindowsConfiguration":{"shape":"CreateFileSystemWindowsConfiguration"},
         "LustreConfiguration":{"shape":"CreateFileSystemLustreConfiguration"},
-        "OntapConfiguration":{"shape":"CreateFileSystemOntapConfiguration"}
+        "OntapConfiguration":{"shape":"CreateFileSystemOntapConfiguration"},
+        "FileSystemTypeVersion":{"shape":"FileSystemTypeVersion"}
       }
     },
     "CreateFileSystemResponse":{
@@ -1518,7 +1520,8 @@
         "WindowsConfiguration":{"shape":"WindowsFileSystemConfiguration"},
         "LustreConfiguration":{"shape":"LustreFileSystemConfiguration"},
         "AdministrativeActions":{"shape":"AdministrativeActions"},
-        "OntapConfiguration":{"shape":"OntapFileSystemConfiguration"}
+        "OntapConfiguration":{"shape":"OntapFileSystemConfiguration"},
+        "FileSystemTypeVersion":{"shape":"FileSystemTypeVersion"}
       }
     },
     "FileSystemAdministratorsGroupName":{
@@ -1595,6 +1598,12 @@
         "LUSTRE",
         "ONTAP"
       ]
+    },
+    "FileSystemTypeVersion":{
+      "type":"string",
+      "max":20,
+      "min":1,
+      "pattern":"^[0-9](\\.[0-9]*)*$"
     },
     "FileSystems":{
       "type":"list",

@@ -1,3 +1,14 @@
+Release v1.40.57 (2021-10-06)
+===
+
+### Service Client Updates
+* `service/amplifybackend`: Updates service API and documentation
+* `service/fsx`: Updates service API and documentation
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports integration with AWS SSO
+* `service/sagemaker`: Updates service API and documentation
+  * This release adds a new TrainingInputMode FastFile for SageMaker Training APIs.
+
 Release v1.40.56 (2021-10-05)
 ===
 

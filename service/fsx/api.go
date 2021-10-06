@@ -5049,6 +5049,15 @@ type CreateFileSystemFromBackupInput struct {
 	// the Command Line Interface (CLI) or an Amazon Web Services SDK.
 	ClientRequestToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
+	// Sets the version for the Amazon FSx for Lustre file system you're creating
+	// from a backup. Valid values are 2.10 and 2.12.
+	//
+	// You don't need to specify FileSystemTypeVersion because it will be applied
+	// using the backup's FileSystemTypeVersion setting. If you choose to specify
+	// FileSystemTypeVersion when creating from backup, the value must match the
+	// backup's FileSystemTypeVersion setting.
+	FileSystemTypeVersion *string `min:"1" type:"string"`
+
 	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
 	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
 	// NetApp ONTAP file systems, and Amazon FSx for Lustre PERSISTENT_1 file systems
@@ -5137,6 +5146,9 @@ func (s *CreateFileSystemFromBackupInput) Validate() error {
 	if s.ClientRequestToken != nil && len(*s.ClientRequestToken) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("ClientRequestToken", 1))
 	}
+	if s.FileSystemTypeVersion != nil && len(*s.FileSystemTypeVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemTypeVersion", 1))
+	}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
 	}
@@ -5182,6 +5194,12 @@ func (s *CreateFileSystemFromBackupInput) SetBackupId(v string) *CreateFileSyste
 // SetClientRequestToken sets the ClientRequestToken field's value.
 func (s *CreateFileSystemFromBackupInput) SetClientRequestToken(v string) *CreateFileSystemFromBackupInput {
 	s.ClientRequestToken = &v
+	return s
+}
+
+// SetFileSystemTypeVersion sets the FileSystemTypeVersion field's value.
+func (s *CreateFileSystemFromBackupInput) SetFileSystemTypeVersion(v string) *CreateFileSystemFromBackupInput {
+	s.FileSystemTypeVersion = &v
 	return s
 }
 
@@ -5273,6 +5291,16 @@ type CreateFileSystemInput struct {
 	//
 	// FileSystemType is a required field
 	FileSystemType *string `type:"string" required:"true" enum:"FileSystemType"`
+
+	// Sets the version of the Amazon FSx for Lustre file system you're creating.
+	// Valid values are 2.10 and 2.12.
+	//
+	//    * Set the value to 2.10 to create a Lustre 2.10 file system.
+	//
+	//    * Set the value to 2.12 to create a Lustre 2.12 file system.
+	//
+	// Default value is 2.10.
+	FileSystemTypeVersion *string `min:"1" type:"string"`
 
 	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
 	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
@@ -5391,6 +5419,9 @@ func (s *CreateFileSystemInput) Validate() error {
 	if s.FileSystemType == nil {
 		invalidParams.Add(request.NewErrParamRequired("FileSystemType"))
 	}
+	if s.FileSystemTypeVersion != nil && len(*s.FileSystemTypeVersion) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("FileSystemTypeVersion", 1))
+	}
 	if s.KmsKeyId != nil && len(*s.KmsKeyId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("KmsKeyId", 1))
 	}
@@ -5444,6 +5475,12 @@ func (s *CreateFileSystemInput) SetClientRequestToken(v string) *CreateFileSyste
 // SetFileSystemType sets the FileSystemType field's value.
 func (s *CreateFileSystemInput) SetFileSystemType(v string) *CreateFileSystemInput {
 	s.FileSystemType = &v
+	return s
+}
+
+// SetFileSystemTypeVersion sets the FileSystemTypeVersion field's value.
+func (s *CreateFileSystemInput) SetFileSystemTypeVersion(v string) *CreateFileSystemInput {
+	s.FileSystemTypeVersion = &v
 	return s
 }
 
@@ -6055,11 +6092,10 @@ type CreateFileSystemWindowsConfiguration struct {
 	// data transfer costs and minimize latency.
 	PreferredSubnetId *string `min:"15" type:"string"`
 
-	// The configuration that Amazon FSx uses to join a Amazon FSx for Windows File
-	// Server file system or an ONTAP storage virtual machine (SVM) to a self-managed
-	// (including on-premises) Microsoft Active Directory (AD) directory. For more
-	// information, see Using Amazon FSx with your self-managed Microsoft Active
-	// Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+	// The configuration that Amazon FSx uses to join a FSx for Windows File Server
+	// file system or an ONTAP storage virtual machine (SVM) to a self-managed (including
+	// on-premises) Microsoft Active Directory (AD) directory. For more information,
+	// see Using Amazon FSx with your self-managed Microsoft Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
 	// or Managing SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
 	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryConfiguration `type:"structure"`
 
@@ -6533,11 +6569,10 @@ type CreateSvmActiveDirectoryConfiguration struct {
 	// NetBiosName is a required field
 	NetBiosName *string `min:"1" type:"string" required:"true"`
 
-	// The configuration that Amazon FSx uses to join a Amazon FSx for Windows File
-	// Server file system or an ONTAP storage virtual machine (SVM) to a self-managed
-	// (including on-premises) Microsoft Active Directory (AD) directory. For more
-	// information, see Using Amazon FSx with your self-managed Microsoft Active
-	// Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+	// The configuration that Amazon FSx uses to join a FSx for Windows File Server
+	// file system or an ONTAP storage virtual machine (SVM) to a self-managed (including
+	// on-premises) Microsoft Active Directory (AD) directory. For more information,
+	// see Using Amazon FSx with your self-managed Microsoft Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
 	// or Managing SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
 	SelfManagedActiveDirectoryConfiguration *SelfManagedActiveDirectoryConfiguration `type:"structure"`
 }
@@ -9323,6 +9358,9 @@ type FileSystem struct {
 	// The type of Amazon FSx file system, which can be LUSTRE, WINDOWS, or ONTAP.
 	FileSystemType *string `type:"string" enum:"FileSystemType"`
 
+	// The version of your Amazon FSx for Lustre file system, either 2.10 or 2.12.
+	FileSystemTypeVersion *string `min:"1" type:"string"`
+
 	// The ID of the Key Management Service (KMS) key used to encrypt the file system's
 	// data for Amazon FSx for Windows File Server file systems, Amazon FSx for
 	// NetApp ONTAP file systems, and persistent Amazon FSx for Lustre file systems
@@ -9461,6 +9499,12 @@ func (s *FileSystem) SetFileSystemId(v string) *FileSystem {
 // SetFileSystemType sets the FileSystemType field's value.
 func (s *FileSystem) SetFileSystemType(v string) *FileSystem {
 	s.FileSystemType = &v
+	return s
+}
+
+// SetFileSystemTypeVersion sets the FileSystemTypeVersion field's value.
+func (s *FileSystem) SetFileSystemTypeVersion(v string) *FileSystem {
+	s.FileSystemTypeVersion = &v
 	return s
 }
 
@@ -11375,7 +11419,7 @@ func (s *ResourceNotFound) RequestID() string {
 type SelfManagedActiveDirectoryAttributes struct {
 	_ struct{} `type:"structure"`
 
-	// A list of up to two IP addresses of DNS servers or domain controllers in
+	// A list of up to three IP addresses of DNS servers or domain controllers in
 	// the self-managed AD directory.
 	DnsIps []*string `min:"1" type:"list"`
 
@@ -11444,16 +11488,15 @@ func (s *SelfManagedActiveDirectoryAttributes) SetUserName(v string) *SelfManage
 	return s
 }
 
-// The configuration that Amazon FSx uses to join a Amazon FSx for Windows File
-// Server file system or an ONTAP storage virtual machine (SVM) to a self-managed
-// (including on-premises) Microsoft Active Directory (AD) directory. For more
-// information, see Using Amazon FSx with your self-managed Microsoft Active
-// Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
+// The configuration that Amazon FSx uses to join a FSx for Windows File Server
+// file system or an ONTAP storage virtual machine (SVM) to a self-managed (including
+// on-premises) Microsoft Active Directory (AD) directory. For more information,
+// see Using Amazon FSx with your self-managed Microsoft Active Directory (https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html)
 // or Managing SVMs (https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html).
 type SelfManagedActiveDirectoryConfiguration struct {
 	_ struct{} `type:"structure"`
 
-	// A list of up to two IP addresses of DNS servers or domain controllers in
+	// A list of up to three IP addresses of DNS servers or domain controllers in
 	// the self-managed AD directory.
 	//
 	// DnsIps is a required field
@@ -11604,7 +11647,7 @@ func (s *SelfManagedActiveDirectoryConfiguration) SetUserName(v string) *SelfMan
 type SelfManagedActiveDirectoryConfigurationUpdates struct {
 	_ struct{} `type:"structure"`
 
-	// A list of up to two IP addresses of DNS servers or domain controllers in
+	// A list of up to three IP addresses of DNS servers or domain controllers in
 	// the self-managed AD directory.
 	DnsIps []*string `min:"1" type:"list"`
 

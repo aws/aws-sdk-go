@@ -445,11 +445,10 @@ func (c *Kendra) CreateDataSourceRequest(input *CreateDataSourceInput) (req *req
 
 // CreateDataSource API operation for AWSKendraFrontendService.
 //
-// Creates a data source that you use to with an Amazon Kendra index.
+// Creates a data source that you want to use with an Amazon Kendra index.
 //
 // You specify a name, data source connector type and description for your data
-// source. You also specify configuration information such as document metadata
-// (author, source URI, and so on) and user context information.
+// source. You also specify configuration information for the data source connector.
 //
 // CreateDataSource is a synchronous operation. The operation returns 200 if
 // the data source was successfully created. Otherwise, an exception is raised.
@@ -3046,12 +3045,15 @@ func (c *Kendra) PutPrincipalMappingRequest(input *PutPrincipalMappingInput) (re
 
 // PutPrincipalMapping API operation for AWSKendraFrontendService.
 //
-// Maps users to their groups. You can also map sub groups to groups. For example,
-// the group "Company Intellectual Property Teams" includes sub groups "Research"
-// and "Engineering". These sub groups include their own list of users or people
-// who work in these teams. Only users who work in research and engineering,
-// and therefore belong in the intellectual property group, can see top-secret
-// company documents in their search results.
+// Maps users to their groups so that you only need to provide the user ID when
+// you issue the query.
+//
+// You can also map sub groups to groups. For example, the group "Company Intellectual
+// Property Teams" includes sub groups "Research" and "Engineering". These sub
+// groups include their own list of users or people who work in these teams.
+// Only users who work in research and engineering, and therefore belong in
+// the intellectual property group, can see top-secret company documents in
+// their search results.
 //
 // You map users to their groups when you want to filter search results for
 // different users based on their group’s access to documents. For more information
@@ -4392,9 +4394,9 @@ func (s *AdditionalResultAttributeValue) SetTextWithHighlightsValue(v *TextWithH
 // If you use more than 2 layers, you receive a ValidationException exception
 // with the message "AttributeFilter cannot have a depth of more than 2."
 //
-// If you use more than 10 attribute filters, you receive a ValidationException
-// exception with the message "AttributeFilter cannot have a length of more
-// than 10".
+// If you use more than 10 attribute filters in a given list for AndAllFilters
+// or OrAllFilters, you receive a ValidationException with the message "AttributeFilter
+// cannot have a length of more than 10".
 type AttributeFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -4413,19 +4415,19 @@ type AttributeFilter struct {
 	EqualsTo *DocumentAttribute `type:"structure"`
 
 	// Performs a greater than operation on two document attributes. Use with a
-	// document attribute of type Integer or Long.
+	// document attribute of type Date or Long.
 	GreaterThan *DocumentAttribute `type:"structure"`
 
 	// Performs a greater or equals than operation on two document attributes. Use
-	// with a document attribute of type Integer or Long.
+	// with a document attribute of type Date or Long.
 	GreaterThanOrEquals *DocumentAttribute `type:"structure"`
 
 	// Performs a less than operation on two document attributes. Use with a document
-	// attribute of type Integer or Long.
+	// attribute of type Date or Long.
 	LessThan *DocumentAttribute `type:"structure"`
 
 	// Performs a less than or equals operation on two document attributes. Use
-	// with a document attribute of type Integer or Long.
+	// with a document attribute of type Date or Long.
 	LessThanOrEquals *DocumentAttribute `type:"structure"`
 
 	// Performs a logical NOT operation on all supplied filters.
@@ -7015,15 +7017,22 @@ type CreateIndexInput struct {
 	//
 	// ATTRIBUTE_FILTER
 	//
-	// All indexed content is searchable and displayable for all users. If there
-	// is an access control list, it is ignored. You can filter on user and group
-	// attributes.
+	// All indexed content is searchable and displayable for all users. If you want
+	// to filter search results on user context, you can use the attribute filters
+	// of _user_id and _group_ids or you can provide user and group information
+	// in UserContext.
 	//
 	// USER_TOKEN
 	//
-	// Enables SSO and token-based user access control. All documents with no access
-	// control and all documents accessible to the user will be searchable and displayable.
+	// Enables token-based user access control to filter search results on user
+	// context. All documents with no access control and all documents accessible
+	// to the user will be searchable and displayable.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
+
+	// Enables fetching access levels of groups and users from an AWS Single Sign-On
+	// identity source. To configure this, see UserGroupResolutionConfiguration
+	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
+	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration.
 	UserTokenConfigurations []*UserTokenConfiguration `type:"list"`
@@ -7078,6 +7087,11 @@ func (s *CreateIndexInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "Tags", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.UserGroupResolutionConfiguration != nil {
+		if err := s.UserGroupResolutionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("UserGroupResolutionConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.UserTokenConfigurations != nil {
@@ -7142,6 +7156,12 @@ func (s *CreateIndexInput) SetTags(v []*Tag) *CreateIndexInput {
 // SetUserContextPolicy sets the UserContextPolicy field's value.
 func (s *CreateIndexInput) SetUserContextPolicy(v string) *CreateIndexInput {
 	s.UserContextPolicy = &v
+	return s
+}
+
+// SetUserGroupResolutionConfiguration sets the UserGroupResolutionConfiguration field's value.
+func (s *CreateIndexInput) SetUserGroupResolutionConfiguration(v *UserGroupResolutionConfiguration) *CreateIndexInput {
+	s.UserGroupResolutionConfiguration = v
 	return s
 }
 
@@ -7379,7 +7399,7 @@ type CreateThesaurusInput struct {
 
 	// A token that you provide to identify the request to create a thesaurus. Multiple
 	// calls to the CreateThesaurus operation with the same client token will create
-	// only one index.
+	// only one thesaurus.
 	ClientToken *string `min:"1" type:"string" idempotencyToken:"true"`
 
 	// The description for the new thesaurus.
@@ -9449,6 +9469,10 @@ type DescribeIndexOutput struct {
 	// The user context policy for the Amazon Kendra index.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
 
+	// Shows whether you have enabled the configuration for fetching access levels
+	// of groups and users from an AWS Single Sign-On identity source.
+	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
+
 	// The user token configuration for the Amazon Kendra index.
 	UserTokenConfigurations []*UserTokenConfiguration `type:"list"`
 }
@@ -9552,6 +9576,12 @@ func (s *DescribeIndexOutput) SetUpdatedAt(v time.Time) *DescribeIndexOutput {
 // SetUserContextPolicy sets the UserContextPolicy field's value.
 func (s *DescribeIndexOutput) SetUserContextPolicy(v string) *DescribeIndexOutput {
 	s.UserContextPolicy = &v
+	return s
+}
+
+// SetUserGroupResolutionConfiguration sets the UserGroupResolutionConfiguration field's value.
+func (s *DescribeIndexOutput) SetUserGroupResolutionConfiguration(v *UserGroupResolutionConfiguration) *DescribeIndexOutput {
+	s.UserGroupResolutionConfiguration = v
 	return s
 }
 
@@ -9785,7 +9815,7 @@ func (s *DescribeQuerySuggestionsBlockListInput) SetIndexId(v string) *DescribeQ
 type DescribeQuerySuggestionsBlockListOutput struct {
 	_ struct{} `type:"structure"`
 
-	// Shows the date-time a block list for query suggestions was last created.
+	// Shows the date-time a block list for query suggestions was created.
 	CreatedAt *time.Time `type:"timestamp"`
 
 	// Shows the description for the block list.
@@ -11449,6 +11479,11 @@ type GroupMembers struct {
 	// for a group. Your sub groups can contain more than 1000 users, but the list
 	// of sub groups that belong to a group (and/or users) must be no more than
 	// 1000.
+	//
+	// You can download this example S3 file (https://docs.aws.amazon.com/kendra/latest/dg/samples/group_members.zip)
+	// that uses the correct format for listing group members. Note, dataSourceId
+	// is optional. The value of type for a group is always GROUP and for a user
+	// it is always USER.
 	S3PathforGroupMembers *S3Path `type:"structure"`
 }
 
@@ -12169,8 +12204,9 @@ type ListDataSourceSyncJobsInput struct {
 	// results.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// If the result of the previous request to GetDataSourceSyncJobHistory was
-	// truncated, include the NextToken to fetch the next set of jobs.
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of jobs.
 	NextToken *string `min:"1" type:"string"`
 
 	// When specified, the synchronization jobs returned in the list are limited
@@ -12270,11 +12306,8 @@ type ListDataSourceSyncJobsOutput struct {
 	// A history of synchronization jobs for the data source.
 	History []*DataSourceSyncJob `type:"list"`
 
-	// The GetDataSourceSyncJobHistory operation returns a page of vocabularies
-	// at a time. The maximum size of the page is set by the MaxResults parameter.
-	// If there are more jobs in the list than the page size, Amazon Kendra returns
-	// the NextPage token. Include the token in the next request to the GetDataSourceSyncJobHistory
-	// operation to return in the next page of jobs.
+	// If the response is truncated, Amazon Kendra returns this token that you can
+	// use in the subsequent request to retrieve the next set of jobs.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -12436,8 +12469,9 @@ type ListFaqsInput struct {
 	// results in the list, this response contains only the actual results.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// If the result of the previous request to ListFaqs was truncated, include
-	// the NextToken to fetch the next set of FAQs.
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of FAQs.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -12505,11 +12539,8 @@ type ListFaqsOutput struct {
 	// information about the FAQs associated with the specified index.
 	FaqSummaryItems []*FaqSummary `type:"list"`
 
-	// The ListFaqs operation returns a page of FAQs at a time. The maximum size
-	// of the page is set by the MaxResults parameter. If there are more jobs in
-	// the list than the page size, Amazon Kendra returns the NextPage token. Include
-	// the token in the next request to the ListFaqs operation to return the next
-	// page of FAQs.
+	// If the response is truncated, Amazon Kendra returns this token that you can
+	// use in the subsequent request to retrieve the next set of FAQs.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -12556,11 +12587,14 @@ type ListGroupsOlderThanOrderingIdInput struct {
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
 
-	// The maximum results shown for a list of groups that are mapped to users before
-	// a given ordering or timestamp identifier.
+	// The maximum number of returned groups that are mapped to users before a given
+	// ordering or timestamp identifier.
 	MaxResults *int64 `min:"1" type:"integer"`
 
-	// The next items in the list of groups that go beyond the maximum.
+	// If the previous response was incomplete (because there is more data to retrieve),
+	// Amazon Kendra returns a pagination token in the response. You can use this
+	// pagination token to retrieve the next set of groups that are mapped to users
+	// before a given ordering or timestamp identifier.
 	NextToken *string `min:"1" type:"string"`
 
 	// The timestamp identifier used for the latest PUT or DELETE action for mapping
@@ -12653,7 +12687,9 @@ type ListGroupsOlderThanOrderingIdOutput struct {
 	// given ordering or timestamp identifier.
 	GroupsSummaries []*GroupSummary `type:"list"`
 
-	// The next items in the list of groups that go beyond the maximum.
+	// If the response is truncated, Amazon Kendra returns this token that you can
+	// use in the subsequent request to retrieve the next set of groups that are
+	// mapped to users before a given ordering or timestamp identifier.
 	NextToken *string `min:"1" type:"string"`
 }
 
@@ -13076,7 +13112,7 @@ type ListThesauriOutput struct {
 	// use in the subsequent request to retrieve the next set of thesauri.
 	NextToken *string `min:"1" type:"string"`
 
-	// An array of summary information for one or more thesauruses.
+	// An array of summary information for a thesaurus or multiple thesauri.
 	ThesaurusSummaryItems []*ThesaurusSummary `type:"list"`
 }
 
@@ -13858,7 +13894,7 @@ type QueryInput struct {
 	// relevance that Amazon Kendra determines for the result.
 	SortingConfiguration *SortingConfiguration `type:"structure"`
 
-	// The user context token.
+	// The user context token or user and group information.
 	UserContext *UserContext `type:"structure"`
 
 	// Provides an identifier for a specific user. The VisitorId should be a unique
@@ -17560,7 +17596,7 @@ func (s *TextWithHighlights) SetText(v string) *TextWithHighlights {
 	return s
 }
 
-// An array of summary information for one or more thesauruses.
+// An array of summary information for a thesaurus or multiple thesauri.
 type ThesaurusSummary struct {
 	_ struct{} `type:"structure"`
 
@@ -17995,8 +18031,13 @@ type UpdateIndexInput struct {
 	// CloudWatch logs.
 	RoleArn *string `min:"1" type:"string"`
 
-	// The user user token context policy.
+	// The user context policy.
 	UserContextPolicy *string `type:"string" enum:"UserContextPolicy"`
+
+	// Enables fetching access levels of groups and users from an AWS Single Sign-On
+	// identity source. To configure this, see UserGroupResolutionConfiguration
+	// (https://docs.aws.amazon.com/kendra/latest/dg/API_UserGroupResolutionConfiguration.html).
+	UserGroupResolutionConfiguration *UserGroupResolutionConfiguration `type:"structure"`
 
 	// The user token configuration.
 	UserTokenConfigurations []*UserTokenConfiguration `type:"list"`
@@ -18048,6 +18089,11 @@ func (s *UpdateIndexInput) Validate() error {
 			if err := v.Validate(); err != nil {
 				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "DocumentMetadataConfigurationUpdates", i), err.(request.ErrInvalidParams))
 			}
+		}
+	}
+	if s.UserGroupResolutionConfiguration != nil {
+		if err := s.UserGroupResolutionConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("UserGroupResolutionConfiguration", err.(request.ErrInvalidParams))
 		}
 	}
 	if s.UserTokenConfigurations != nil {
@@ -18106,6 +18152,12 @@ func (s *UpdateIndexInput) SetRoleArn(v string) *UpdateIndexInput {
 // SetUserContextPolicy sets the UserContextPolicy field's value.
 func (s *UpdateIndexInput) SetUserContextPolicy(v string) *UpdateIndexInput {
 	s.UserContextPolicy = &v
+	return s
+}
+
+// SetUserGroupResolutionConfiguration sets the UserGroupResolutionConfiguration field's value.
+func (s *UpdateIndexInput) SetUserGroupResolutionConfiguration(v *UserGroupResolutionConfiguration) *UpdateIndexInput {
+	s.UserGroupResolutionConfiguration = v
 	return s
 }
 
@@ -18579,6 +18631,10 @@ func (s UpdateThesaurusOutput) GoString() string {
 
 // Provides the configuration information of the URLs to crawl.
 //
+// You can only crawl websites that use the secure communication protocol, Hypertext
+// Transfer Protocol Secure (HTTPS). If you receive an error when crawling a
+// website, it could be that the website is blocked from crawling.
+//
 // When selecting websites to index, you must adhere to the Amazon Acceptable
 // Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
 // that you must only use the Amazon Kendra web crawler to index your own webpages,
@@ -18654,7 +18710,7 @@ func (s *Urls) SetSiteMapsConfiguration(v *SiteMapsConfiguration) *Urls {
 	return s
 }
 
-// Provides information about the user context for a Amazon Kendra index.
+// Provides information about the user context for an Amazon Kendra index.
 //
 // This is used for filtering search results for different users based on their
 // access to documents.
@@ -18663,8 +18719,8 @@ func (s *Urls) SetSiteMapsConfiguration(v *SiteMapsConfiguration) *Urls {
 //
 //    * User token
 //
-//    * User ID, the groups the user belongs to, and the data sources the groups
-//    can access
+//    * User ID, the groups the user belongs to, and any data sources the groups
+//    can access.
 //
 // If you provide both, an exception is thrown.
 type UserContext struct {
@@ -18758,6 +18814,66 @@ func (s *UserContext) SetToken(v string) *UserContext {
 // SetUserId sets the UserId field's value.
 func (s *UserContext) SetUserId(v string) *UserContext {
 	s.UserId = &v
+	return s
+}
+
+// Provides the configuration information to fetch access levels of groups and
+// users from an AWS Single Sign-On identity source. This is useful for setting
+// up user context filtering, where Amazon Kendra filters search results for
+// different users based on their group's access to documents. You can also
+// map your users to their groups for user context filtering using the PutPrincipalMapping
+// operation (https://docs.aws.amazon.com/latest/dg/API_PutPrincipalMapping.html).
+//
+// To set up an AWS SSO identity source in the console to use with Amazon Kendra,
+// see Getting started with an AWS SSO identity source (https://docs.aws.amazon.com/kendra/latest/dg/getting-started-aws-sso.html).
+// You must also grant the required permissions to use AWS SSO with Amazon Kendra.
+// For more information, see IAM roles for AWS Single Sign-On (https://docs.aws.amazon.com/kendra/latest/dg/iam-roles.html#iam-roles-aws-sso).
+type UserGroupResolutionConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The identity store provider (mode) you want to use to fetch access levels
+	// of groups and users. AWS Single Sign-On is currently the only available mode.
+	// Your users and groups must exist in an AWS SSO identity source in order to
+	// use this mode.
+	//
+	// UserGroupResolutionMode is a required field
+	UserGroupResolutionMode *string `type:"string" required:"true" enum:"UserGroupResolutionMode"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserGroupResolutionConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s UserGroupResolutionConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *UserGroupResolutionConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "UserGroupResolutionConfiguration"}
+	if s.UserGroupResolutionMode == nil {
+		invalidParams.Add(request.NewErrParamRequired("UserGroupResolutionMode"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetUserGroupResolutionMode sets the UserGroupResolutionMode field's value.
+func (s *UserGroupResolutionConfiguration) SetUserGroupResolutionMode(v string) *UserGroupResolutionConfiguration {
+	s.UserGroupResolutionMode = &v
 	return s
 }
 
@@ -18965,6 +19081,10 @@ type WebCrawlerConfiguration struct {
 	//
 	// You can include website subdomains. You can list up to 100 seed URLs and
 	// up to three sitemap URLs.
+	//
+	// You can only crawl websites that use the secure communication protocol, Hypertext
+	// Transfer Protocol Secure (HTTPS). If you receive an error when crawling a
+	// website, it could be that the website is blocked from crawling.
 	//
 	// When selecting websites to index, you must adhere to the Amazon Acceptable
 	// Use Policy (https://aws.amazon.com/aup/) and all other Amazon terms. Remember
@@ -20241,6 +20361,22 @@ func UserContextPolicy_Values() []string {
 	return []string{
 		UserContextPolicyAttributeFilter,
 		UserContextPolicyUserToken,
+	}
+}
+
+const (
+	// UserGroupResolutionModeAwsSso is a UserGroupResolutionMode enum value
+	UserGroupResolutionModeAwsSso = "AWS_SSO"
+
+	// UserGroupResolutionModeNone is a UserGroupResolutionMode enum value
+	UserGroupResolutionModeNone = "NONE"
+)
+
+// UserGroupResolutionMode_Values returns all elements of the UserGroupResolutionMode enum
+func UserGroupResolutionMode_Values() []string {
+	return []string{
+		UserGroupResolutionModeAwsSso,
+		UserGroupResolutionModeNone,
 	}
 }
 

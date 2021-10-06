@@ -5603,6 +5603,8 @@ func (s *GetBackendJobOutput) SetUpdateTime(v string) *GetBackendJobOutput {
 type GetBackendOutput struct {
 	_ struct{} `type:"structure"`
 
+	AmplifyFeatureFlags *string `locationName:"amplifyFeatureFlags" type:"string"`
+
 	AmplifyMetaConfig *string `locationName:"amplifyMetaConfig" type:"string"`
 
 	AppId *string `locationName:"appId" type:"string"`
@@ -5632,6 +5634,12 @@ func (s GetBackendOutput) String() string {
 // value will be replaced with "sensitive".
 func (s GetBackendOutput) GoString() string {
 	return s.String()
+}
+
+// SetAmplifyFeatureFlags sets the AmplifyFeatureFlags field's value.
+func (s *GetBackendOutput) SetAmplifyFeatureFlags(v string) *GetBackendOutput {
+	s.AmplifyFeatureFlags = &v
+	return s
 }
 
 // SetAmplifyMetaConfig sets the AmplifyMetaConfig field's value.
