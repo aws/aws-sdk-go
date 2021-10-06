@@ -1279,7 +1279,8 @@
         },
         "Tags":{"shape":"TagList"},
         "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
-        "UserContextPolicy":{"shape":"UserContextPolicy"}
+        "UserContextPolicy":{"shape":"UserContextPolicy"},
+        "UserGroupResolutionConfiguration":{"shape":"UserGroupResolutionConfiguration"}
       }
     },
     "CreateIndexResponse":{
@@ -1716,7 +1717,8 @@
         "ErrorMessage":{"shape":"ErrorMessage"},
         "CapacityUnits":{"shape":"CapacityUnitsConfiguration"},
         "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
-        "UserContextPolicy":{"shape":"UserContextPolicy"}
+        "UserContextPolicy":{"shape":"UserContextPolicy"},
+        "UserGroupResolutionConfiguration":{"shape":"UserGroupResolutionConfiguration"}
       }
     },
     "DescribePrincipalMappingRequest":{
@@ -3657,7 +3659,8 @@
         "DocumentMetadataConfigurationUpdates":{"shape":"DocumentMetadataConfigurationList"},
         "CapacityUnits":{"shape":"CapacityUnitsConfiguration"},
         "UserTokenConfigurations":{"shape":"UserTokenConfigurationList"},
-        "UserContextPolicy":{"shape":"UserContextPolicy"}
+        "UserContextPolicy":{"shape":"UserContextPolicy"},
+        "UserGroupResolutionConfiguration":{"shape":"UserGroupResolutionConfiguration"}
       }
     },
     "UpdateQuerySuggestionsBlockListRequest":{
@@ -3735,6 +3738,20 @@
       "enum":[
         "ATTRIBUTE_FILTER",
         "USER_TOKEN"
+      ]
+    },
+    "UserGroupResolutionConfiguration":{
+      "type":"structure",
+      "required":["UserGroupResolutionMode"],
+      "members":{
+        "UserGroupResolutionMode":{"shape":"UserGroupResolutionMode"}
+      }
+    },
+    "UserGroupResolutionMode":{
+      "type":"string",
+      "enum":[
+        "AWS_SSO",
+        "NONE"
       ]
     },
     "UserId":{

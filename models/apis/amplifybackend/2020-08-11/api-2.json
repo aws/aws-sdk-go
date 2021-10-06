@@ -2097,6 +2097,10 @@
     "GetBackendRespObj" : {
       "type" : "structure",
       "members" : {
+        "AmplifyFeatureFlags" : {
+          "shape" : "__string",
+          "locationName" : "amplifyFeatureFlags"
+        },
         "AmplifyMetaConfig" : {
           "shape" : "__string",
           "locationName" : "amplifyMetaConfig"
@@ -2127,6 +2131,10 @@
     "GetBackendResponse" : {
       "type" : "structure",
       "members" : {
+        "AmplifyFeatureFlags" : {
+          "shape" : "__string",
+          "locationName" : "amplifyFeatureFlags"
+        },
         "AmplifyMetaConfig" : {
           "shape" : "__string",
           "locationName" : "amplifyMetaConfig"

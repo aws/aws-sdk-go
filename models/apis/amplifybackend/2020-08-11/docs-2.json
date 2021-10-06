@@ -621,6 +621,7 @@
         "GetBackendAuthRespObj$Error" : "<p>If the request fails, this error is returned.</p>",
         "GetBackendAuthRespObj$ResourceName" : "<p>The name of this resource.</p>",
         "GetBackendReqObj$BackendEnvironmentName" : "<p>The name of the backend environment.</p>",
+        "GetBackendRespObj$AmplifyFeatureFlags" : "<p>A stringified version of the cli.json file for your Amplify project.</p>",
         "GetBackendRespObj$AmplifyMetaConfig" : "<p>A stringified version of the current configs for your Amplify project.</p>",
         "GetBackendRespObj$AppId" : "<p>The app ID.</p>",
         "GetBackendRespObj$AppName" : "<p>The name of the app.</p>",

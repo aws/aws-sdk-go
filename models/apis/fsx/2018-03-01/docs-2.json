@@ -756,9 +756,9 @@
     "DnsIps": {
       "base": null,
       "refs": {
-        "SelfManagedActiveDirectoryAttributes$DnsIps": "<p>A list of up to two IP addresses of DNS servers or domain controllers in the self-managed AD directory.</p>",
-        "SelfManagedActiveDirectoryConfiguration$DnsIps": "<p>A list of up to two IP addresses of DNS servers or domain controllers in the self-managed AD directory. </p>",
-        "SelfManagedActiveDirectoryConfigurationUpdates$DnsIps": "<p>A list of up to two IP addresses of DNS servers or domain controllers in the self-managed AD directory.</p>"
+        "SelfManagedActiveDirectoryAttributes$DnsIps": "<p>A list of up to three IP addresses of DNS servers or domain controllers in the self-managed AD directory.</p>",
+        "SelfManagedActiveDirectoryConfiguration$DnsIps": "<p>A list of up to three IP addresses of DNS servers or domain controllers in the self-managed AD directory. </p>",
+        "SelfManagedActiveDirectoryConfigurationUpdates$DnsIps": "<p>A list of up to three IP addresses of DNS servers or domain controllers in the self-managed AD directory.</p>"
       }
     },
     "DriveCacheType": {
@@ -913,6 +913,14 @@
       "refs": {
         "CreateFileSystemRequest$FileSystemType": "<p>The type of Amazon FSx file system to create. Valid values are <code>WINDOWS</code>, <code>LUSTRE</code>, and <code>ONTAP</code>.</p>",
         "FileSystem$FileSystemType": "<p>The type of Amazon FSx file system, which can be <code>LUSTRE</code>, <code>WINDOWS</code>, or <code>ONTAP</code>.</p>"
+      }
+    },
+    "FileSystemTypeVersion": {
+      "base": null,
+      "refs": {
+        "CreateFileSystemFromBackupRequest$FileSystemTypeVersion": "<p>Sets the version for the Amazon FSx for Lustre file system you're creating from a backup. Valid values are <code>2.10</code> and <code>2.12</code>.</p> <p>You don't need to specify <code>FileSystemTypeVersion</code> because it will be applied using the backup's <code>FileSystemTypeVersion</code> setting. If you choose to specify <code>FileSystemTypeVersion</code> when creating from backup, the value must match the backup's <code>FileSystemTypeVersion</code> setting.</p>",
+        "CreateFileSystemRequest$FileSystemTypeVersion": "<p>Sets the version of the Amazon FSx for Lustre file system you're creating. Valid values are <code>2.10</code> and <code>2.12</code>.</p> <ul> <li> <p>Set the value to <code>2.10</code> to create a Lustre 2.10 file system.</p> </li> <li> <p>Set the value to <code>2.12</code> to create a Lustre 2.12 file system.</p> </li> </ul> <p>Default value is <code>2.10</code>.</p>",
+        "FileSystem$FileSystemTypeVersion": "<p>The version of your Amazon FSx for Lustre file system, either <code>2.10</code> or <code>2.12</code>.</p>"
       }
     },
     "FileSystems": {
@@ -1356,7 +1364,7 @@
       }
     },
     "SelfManagedActiveDirectoryConfiguration": {
-      "base": "<p>The configuration that Amazon FSx uses to join a Amazon FSx for Windows File Server file system or an ONTAP storage virtual machine (SVM) to a self-managed (including on-premises) Microsoft Active Directory (AD) directory. For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html\"> Using Amazon FSx with your self-managed Microsoft Active Directory</a> or <a href=\"https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html\">Managing SVMs</a>.</p>",
+      "base": "<p>The configuration that Amazon FSx uses to join a FSx for Windows File Server file system or an ONTAP storage virtual machine (SVM) to a self-managed (including on-premises) Microsoft Active Directory (AD) directory. For more information, see <a href=\"https://docs.aws.amazon.com/fsx/latest/WindowsGuide/self-managed-AD.html\"> Using Amazon FSx with your self-managed Microsoft Active Directory</a> or <a href=\"https://docs.aws.amazon.com/fsx/latest/ONTAPGuide/managing-svms.html\">Managing SVMs</a>.</p>",
       "refs": {
         "CreateFileSystemWindowsConfiguration$SelfManagedActiveDirectoryConfiguration": null,
         "CreateSvmActiveDirectoryConfiguration$SelfManagedActiveDirectoryConfiguration": null
