@@ -28,6 +28,8 @@ func PayloadMember(i interface{}) interface{} {
 	return nil
 }
 
+const nopayloadPayloadType = "nopayload"
+
 // PayloadType returns the type of a payload field member of i if there is one,
 // or "".
 func PayloadType(i interface{}) string {
@@ -37,8 +39,8 @@ func PayloadType(i interface{}) string {
 	}
 
 	if field, ok := v.Type().FieldByName("_"); ok {
-		if noPayload := field.Tag.Get("nopayload"); noPayload != "" {
-			return "nopayload"
+		if noPayload := field.Tag.Get(nopayloadPayloadType); noPayload != "" {
+			return nopayloadPayloadType
 		}
 
 		if payloadName := field.Tag.Get("payload"); payloadName != "" {
