@@ -1223,7 +1223,8 @@
         "ClientToken":{
           "shape":"ClientTokenName",
           "idempotencyToken":true
-        }
+        },
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "CreateDataSourceResponse":{
@@ -1252,7 +1253,8 @@
         "ClientToken":{
           "shape":"ClientTokenName",
           "idempotencyToken":true
-        }
+        },
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "CreateFaqResponse":{
@@ -1428,7 +1430,8 @@
         "Type":{"shape":"DataSourceType"},
         "CreatedAt":{"shape":"Timestamp"},
         "UpdatedAt":{"shape":"Timestamp"},
-        "Status":{"shape":"DataSourceStatus"}
+        "Status":{"shape":"DataSourceStatus"},
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "DataSourceSummaryList":{
@@ -1663,7 +1666,8 @@
         "Status":{"shape":"DataSourceStatus"},
         "Schedule":{"shape":"ScanSchedule"},
         "RoleArn":{"shape":"RoleArn"},
-        "ErrorMessage":{"shape":"ErrorMessage"}
+        "ErrorMessage":{"shape":"ErrorMessage"},
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "DescribeFaqRequest":{
@@ -1690,7 +1694,8 @@
         "Status":{"shape":"FaqStatus"},
         "RoleArn":{"shape":"RoleArn"},
         "ErrorMessage":{"shape":"ErrorMessage"},
-        "FileFormat":{"shape":"FaqFileFormat"}
+        "FileFormat":{"shape":"FaqFileFormat"},
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "DescribeIndexRequest":{
@@ -2109,7 +2114,8 @@
         "Status":{"shape":"FaqStatus"},
         "CreatedAt":{"shape":"Timestamp"},
         "UpdatedAt":{"shape":"Timestamp"},
-        "FileFormat":{"shape":"FaqFileFormat"}
+        "FileFormat":{"shape":"FaqFileFormat"},
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "FaqSummaryItems":{
@@ -2380,6 +2386,12 @@
       "max":2048,
       "min":1,
       "sensitive":true
+    },
+    "LanguageCode":{
+      "type":"string",
+      "max":10,
+      "min":2,
+      "pattern":"[a-zA-Z-]*"
     },
     "ListDataSourceSyncJobsRequest":{
       "type":"structure",
@@ -3159,7 +3171,8 @@
         "VERY_HIGH",
         "HIGH",
         "MEDIUM",
-        "LOW"
+        "LOW",
+        "NOT_AVAILABLE"
       ]
     },
     "Search":{
@@ -3645,7 +3658,8 @@
         "Configuration":{"shape":"DataSourceConfiguration"},
         "Description":{"shape":"Description"},
         "Schedule":{"shape":"ScanSchedule"},
-        "RoleArn":{"shape":"RoleArn"}
+        "RoleArn":{"shape":"RoleArn"},
+        "LanguageCode":{"shape":"LanguageCode"}
       }
     },
     "UpdateIndexRequest":{

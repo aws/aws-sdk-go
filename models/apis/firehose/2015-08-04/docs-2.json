@@ -24,6 +24,105 @@
         "KMSEncryptionConfig$AWSKMSKeyARN": "<p>The Amazon Resource Name (ARN) of the encryption key. Must belong to the same AWS Region as the destination Amazon S3 bucket. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>"
       }
     },
+    "AmazonopensearchserviceBufferingHints": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$BufferingHints": null,
+        "AmazonopensearchserviceDestinationDescription$BufferingHints": null,
+        "AmazonopensearchserviceDestinationUpdate$BufferingHints": null
+      }
+    },
+    "AmazonopensearchserviceBufferingIntervalInSeconds": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceBufferingHints$IntervalInSeconds": null
+      }
+    },
+    "AmazonopensearchserviceBufferingSizeInMBs": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceBufferingHints$SizeInMBs": null
+      }
+    },
+    "AmazonopensearchserviceClusterEndpoint": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$ClusterEndpoint": null,
+        "AmazonopensearchserviceDestinationDescription$ClusterEndpoint": null,
+        "AmazonopensearchserviceDestinationUpdate$ClusterEndpoint": null
+      }
+    },
+    "AmazonopensearchserviceDestinationConfiguration": {
+      "base": null,
+      "refs": {
+        "CreateDeliveryStreamInput$AmazonopensearchserviceDestinationConfiguration": null
+      }
+    },
+    "AmazonopensearchserviceDestinationDescription": {
+      "base": null,
+      "refs": {
+        "DestinationDescription$AmazonopensearchserviceDestinationDescription": null
+      }
+    },
+    "AmazonopensearchserviceDestinationUpdate": {
+      "base": null,
+      "refs": {
+        "UpdateDestinationInput$AmazonopensearchserviceDestinationUpdate": null
+      }
+    },
+    "AmazonopensearchserviceDomainARN": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$DomainARN": null,
+        "AmazonopensearchserviceDestinationDescription$DomainARN": null,
+        "AmazonopensearchserviceDestinationUpdate$DomainARN": null
+      }
+    },
+    "AmazonopensearchserviceIndexName": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$IndexName": null,
+        "AmazonopensearchserviceDestinationDescription$IndexName": null,
+        "AmazonopensearchserviceDestinationUpdate$IndexName": null
+      }
+    },
+    "AmazonopensearchserviceIndexRotationPeriod": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$IndexRotationPeriod": null,
+        "AmazonopensearchserviceDestinationDescription$IndexRotationPeriod": null,
+        "AmazonopensearchserviceDestinationUpdate$IndexRotationPeriod": null
+      }
+    },
+    "AmazonopensearchserviceRetryDurationInSeconds": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceRetryOptions$DurationInSeconds": null
+      }
+    },
+    "AmazonopensearchserviceRetryOptions": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$RetryOptions": null,
+        "AmazonopensearchserviceDestinationDescription$RetryOptions": null,
+        "AmazonopensearchserviceDestinationUpdate$RetryOptions": null
+      }
+    },
+    "AmazonopensearchserviceS3BackupMode": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$S3BackupMode": null,
+        "AmazonopensearchserviceDestinationDescription$S3BackupMode": null
+      }
+    },
+    "AmazonopensearchserviceTypeName": {
+      "base": null,
+      "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$TypeName": null,
+        "AmazonopensearchserviceDestinationDescription$TypeName": null,
+        "AmazonopensearchserviceDestinationUpdate$TypeName": null
+      }
+    },
     "BlockSizeBytes": {
       "base": null,
       "refs": {
@@ -75,6 +174,9 @@
     "CloudWatchLoggingOptions": {
       "base": "<p>Describes the Amazon CloudWatch logging options for your delivery stream.</p>",
       "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$CloudWatchLoggingOptions": null,
+        "AmazonopensearchserviceDestinationDescription$CloudWatchLoggingOptions": null,
+        "AmazonopensearchserviceDestinationUpdate$CloudWatchLoggingOptions": null,
         "ElasticsearchDestinationConfiguration$CloudWatchLoggingOptions": "<p>The Amazon CloudWatch logging options for your delivery stream.</p>",
         "ElasticsearchDestinationDescription$CloudWatchLoggingOptions": "<p>The Amazon CloudWatch logging options.</p>",
         "ElasticsearchDestinationUpdate$CloudWatchLoggingOptions": "<p>The CloudWatch logging options for your delivery stream.</p>",
@@ -905,6 +1007,9 @@
     "ProcessingConfiguration": {
       "base": "<p>Describes a data processing configuration.</p>",
       "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$ProcessingConfiguration": null,
+        "AmazonopensearchserviceDestinationDescription$ProcessingConfiguration": null,
+        "AmazonopensearchserviceDestinationUpdate$ProcessingConfiguration": null,
         "ElasticsearchDestinationConfiguration$ProcessingConfiguration": "<p>The data processing configuration.</p>",
         "ElasticsearchDestinationDescription$ProcessingConfiguration": "<p>The data processing configuration.</p>",
         "ElasticsearchDestinationUpdate$ProcessingConfiguration": "<p>The data processing configuration.</p>",
@@ -1089,6 +1194,9 @@
     "RoleARN": {
       "base": null,
       "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$RoleARN": null,
+        "AmazonopensearchserviceDestinationDescription$RoleARN": null,
+        "AmazonopensearchserviceDestinationUpdate$RoleARN": null,
         "ElasticsearchDestinationConfiguration$RoleARN": "<p>The Amazon Resource Name (ARN) of the IAM role to be assumed by Kinesis Data Firehose for calling the Amazon ES Configuration API and for indexing documents. For more information, see <a href=\"https://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3\">Grant Kinesis Data Firehose Access to an Amazon S3 Destination</a> and <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>",
         "ElasticsearchDestinationDescription$RoleARN": "<p>The Amazon Resource Name (ARN) of the AWS credentials. For more information, see <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>",
         "ElasticsearchDestinationUpdate$RoleARN": "<p>The Amazon Resource Name (ARN) of the IAM role to be assumed by Kinesis Data Firehose for calling the Amazon ES Configuration API and for indexing documents. For more information, see <a href=\"https://docs.aws.amazon.com/firehose/latest/dev/controlling-access.html#using-iam-s3\">Grant Kinesis Data Firehose Access to an Amazon S3 Destination</a> and <a href=\"https://docs.aws.amazon.com/general/latest/gr/aws-arns-and-namespaces.html\">Amazon Resource Names (ARNs) and AWS Service Namespaces</a>.</p>",
@@ -1121,6 +1229,7 @@
     "S3DestinationConfiguration": {
       "base": "<p>Describes the configuration of a destination in Amazon S3.</p>",
       "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$S3Configuration": null,
         "CreateDeliveryStreamInput$S3DestinationConfiguration": "<p>[Deprecated] The destination in Amazon S3. You can specify only one destination.</p>",
         "ElasticsearchDestinationConfiguration$S3Configuration": "<p>The configuration for the backup Amazon S3 location.</p>",
         "ExtendedS3DestinationConfiguration$S3BackupConfiguration": "<p>The configuration for backup in Amazon S3.</p>",
@@ -1133,6 +1242,7 @@
     "S3DestinationDescription": {
       "base": "<p>Describes a destination in Amazon S3.</p>",
       "refs": {
+        "AmazonopensearchserviceDestinationDescription$S3DestinationDescription": null,
         "DestinationDescription$S3DestinationDescription": "<p>[Deprecated] The destination in Amazon S3.</p>",
         "ElasticsearchDestinationDescription$S3DestinationDescription": "<p>The Amazon S3 destination.</p>",
         "ExtendedS3DestinationDescription$S3BackupDescription": "<p>The configuration for backup in Amazon S3.</p>",
@@ -1145,6 +1255,7 @@
     "S3DestinationUpdate": {
       "base": "<p>Describes an update for a destination in Amazon S3.</p>",
       "refs": {
+        "AmazonopensearchserviceDestinationUpdate$S3Update": null,
         "ElasticsearchDestinationUpdate$S3Update": "<p>The Amazon S3 destination.</p>",
         "ExtendedS3DestinationUpdate$S3BackupUpdate": "<p>The Amazon S3 destination for backup.</p>",
         "HttpEndpointDestinationUpdate$S3Update": null,
@@ -1339,12 +1450,14 @@
     "VpcConfiguration": {
       "base": "<p>The details of the VPC of the Amazon ES destination.</p>",
       "refs": {
+        "AmazonopensearchserviceDestinationConfiguration$VpcConfiguration": null,
         "ElasticsearchDestinationConfiguration$VpcConfiguration": "<p>The details of the VPC of the Amazon ES destination.</p>"
       }
     },
     "VpcConfigurationDescription": {
       "base": "<p>The details of the VPC of the Amazon ES destination.</p>",
       "refs": {
+        "AmazonopensearchserviceDestinationDescription$VpcConfigurationDescription": null,
         "ElasticsearchDestinationDescription$VpcConfigurationDescription": "<p>The details of the VPC of the Amazon ES destination.</p>"
       }
     }

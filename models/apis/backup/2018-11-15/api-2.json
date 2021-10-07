@@ -156,6 +156,22 @@
       ],
       "idempotent":true
     },
+    "DeleteBackupVaultLockConfiguration":{
+      "name":"DeleteBackupVaultLockConfiguration",
+      "http":{
+        "method":"DELETE",
+        "requestUri":"/backup-vaults/{backupVaultName}/vault-lock"
+      },
+      "input":{"shape":"DeleteBackupVaultLockConfigurationInput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
     "DeleteBackupVaultNotifications":{
       "name":"DeleteBackupVaultNotifications",
       "http":{
@@ -777,6 +793,22 @@
       ],
       "idempotent":true
     },
+    "PutBackupVaultLockConfiguration":{
+      "name":"PutBackupVaultLockConfiguration",
+      "http":{
+        "method":"PUT",
+        "requestUri":"/backup-vaults/{backupVaultName}/vault-lock"
+      },
+      "input":{"shape":"PutBackupVaultLockConfigurationInput"},
+      "errors":[
+        {"shape":"ResourceNotFoundException"},
+        {"shape":"InvalidParameterValueException"},
+        {"shape":"MissingParameterValueException"},
+        {"shape":"InvalidRequestException"},
+        {"shape":"ServiceUnavailableException"}
+      ],
+      "idempotent":true
+    },
     "PutBackupVaultNotifications":{
       "name":"PutBackupVaultNotifications",
       "http":{
@@ -1261,7 +1293,11 @@
         "CreationDate":{"shape":"timestamp"},
         "EncryptionKeyArn":{"shape":"ARN"},
         "CreatorRequestId":{"shape":"string"},
-        "NumberOfRecoveryPoints":{"shape":"long"}
+        "NumberOfRecoveryPoints":{"shape":"long"},
+        "Locked":{"shape":"Boolean"},
+        "MinRetentionDays":{"shape":"Long"},
+        "MaxRetentionDays":{"shape":"Long"},
+        "LockDate":{"shape":"timestamp"}
       }
     },
     "BackupVaultName":{
@@ -1554,6 +1590,17 @@
         }
       }
     },
+    "DeleteBackupVaultLockConfigurationInput":{
+      "type":"structure",
+      "required":["BackupVaultName"],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        }
+      }
+    },
     "DeleteBackupVaultNotificationsInput":{
       "type":"structure",
       "required":["BackupVaultName"],
@@ -1672,7 +1719,11 @@
         "EncryptionKeyArn":{"shape":"ARN"},
         "CreationDate":{"shape":"timestamp"},
         "CreatorRequestId":{"shape":"string"},
-        "NumberOfRecoveryPoints":{"shape":"long"}
+        "NumberOfRecoveryPoints":{"shape":"long"},
+        "Locked":{"shape":"Boolean"},
+        "MinRetentionDays":{"shape":"Long"},
+        "MaxRetentionDays":{"shape":"Long"},
+        "LockDate":{"shape":"timestamp"}
       }
     },
     "DescribeCopyJobInput":{
@@ -2719,6 +2770,20 @@
           "locationName":"backupVaultName"
         },
         "Policy":{"shape":"IAMPolicy"}
+      }
+    },
+    "PutBackupVaultLockConfigurationInput":{
+      "type":"structure",
+      "required":["BackupVaultName"],
+      "members":{
+        "BackupVaultName":{
+          "shape":"BackupVaultName",
+          "location":"uri",
+          "locationName":"backupVaultName"
+        },
+        "MinRetentionDays":{"shape":"Long"},
+        "MaxRetentionDays":{"shape":"Long"},
+        "ChangeableForDays":{"shape":"Long"}
       }
     },
     "PutBackupVaultNotificationsInput":{

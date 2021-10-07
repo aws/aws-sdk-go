@@ -153,14 +153,6 @@
       "base": null,
       "refs": {}
     },
-    "LockServiceLinkedRoleInput": {
-      "base": null,
-      "refs": {}
-    },
-    "LockServiceLinkedRoleOutput": {
-      "base": null,
-      "refs": {}
-    },
     "NotFoundException": {
       "base": null,
       "refs": {}
@@ -260,10 +252,6 @@
       "base": null,
       "refs": {}
     },
-    "UnlockServiceLinkedRoleInput": {
-      "base": null,
-      "refs": {}
-    },
     "UpdateDiscovererInput": {
       "base": null,
       "refs": {}
@@ -279,24 +267,10 @@
     "__boolean": {
       "base": null,
       "refs": {
-        "LockServiceLinkedRoleOutput$CanBeDeleted": null,
         "CreateDiscovererInput$CrossAccount": "<p>Support discovery of schemas in events sent to the bus from another account. (default: true)</p>",
         "UpdateDiscovererInput$CrossAccount": "<p>Support discovery of schemas in events sent to the bus from another account. (default: true)</p>",
         "DiscovererOutput$CrossAccount": "<p>The Status if the discoverer will discover schemas from events sent from another account.</p>",
         "DiscovererSummary$CrossAccount": "<p>The Status if the discoverer will discover schemas from events sent from another account.</p>"
-      }
-    },
-    "__integerMin1Max29000": {
-      "base": null,
-      "refs": {
-        "LockServiceLinkedRoleInput$Timeout": null
-      }
-    },
-    "__listOfDiscovererSummary": {
-      "base": null,
-      "refs": {
-        "ListDiscoverersOutput$Discoverers": "<p>An array of DiscovererSummary information.</p>",
-        "LockServiceLinkedRoleOutput$RelatedResources": null
       }
     },
     "__listOfGetDiscoveredSchemaVersionItemInput": {
@@ -422,14 +396,6 @@
       "refs": {
         "CreateSchemaInput$Content": "<p>The source of the schema definition.</p>",
         "UpdateSchemaInput$Content": "<p>The source of the schema definition.</p>"
-      }
-    },
-    "__stringMin1Max1600": {
-      "base": null,
-      "refs": {
-        "LockServiceLinkedRoleInput$RoleArn": null,
-        "LockServiceLinkedRoleOutput$ReasonOfFailure": null,
-        "UnlockServiceLinkedRoleInput$RoleArn": null
       }
     },
     "__stringMin20Max1600": {

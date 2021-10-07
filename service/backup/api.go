@@ -888,6 +888,106 @@ func (c *Backup) DeleteBackupVaultAccessPolicyWithContext(ctx aws.Context, input
 	return out, req.Send()
 }
 
+const opDeleteBackupVaultLockConfiguration = "DeleteBackupVaultLockConfiguration"
+
+// DeleteBackupVaultLockConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the DeleteBackupVaultLockConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeleteBackupVaultLockConfiguration for more information on using the DeleteBackupVaultLockConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeleteBackupVaultLockConfigurationRequest method.
+//    req, resp := client.DeleteBackupVaultLockConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteBackupVaultLockConfiguration
+func (c *Backup) DeleteBackupVaultLockConfigurationRequest(input *DeleteBackupVaultLockConfigurationInput) (req *request.Request, output *DeleteBackupVaultLockConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opDeleteBackupVaultLockConfiguration,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/backup-vaults/{backupVaultName}/vault-lock",
+	}
+
+	if input == nil {
+		input = &DeleteBackupVaultLockConfigurationInput{}
+	}
+
+	output = &DeleteBackupVaultLockConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeleteBackupVaultLockConfiguration API operation for AWS Backup.
+//
+// Deletes Backup Vault Lock from a backup vault specified by a backup vault
+// name.
+//
+// If the Vault Lock configuration is immutable, then you cannot delete Vault
+// Lock using API operations, and you will receive an InvalidRequestException
+// if you attempt to do so. For more information, see Vault Lock (https://docs.aws.amazon.com/aws-backup/latest/devguide/vault-lock.html)
+// in the Backup Developer Guide.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation DeleteBackupVaultLockConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a parameter is of the wrong type.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/DeleteBackupVaultLockConfiguration
+func (c *Backup) DeleteBackupVaultLockConfiguration(input *DeleteBackupVaultLockConfigurationInput) (*DeleteBackupVaultLockConfigurationOutput, error) {
+	req, out := c.DeleteBackupVaultLockConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// DeleteBackupVaultLockConfigurationWithContext is the same as DeleteBackupVaultLockConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeleteBackupVaultLockConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) DeleteBackupVaultLockConfigurationWithContext(ctx aws.Context, input *DeleteBackupVaultLockConfigurationInput, opts ...request.Option) (*DeleteBackupVaultLockConfigurationOutput, error) {
+	req, out := c.DeleteBackupVaultLockConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeleteBackupVaultNotifications = "DeleteBackupVaultNotifications"
 
 // DeleteBackupVaultNotificationsRequest generates a "aws/request.Request" representing the
@@ -5432,6 +5532,105 @@ func (c *Backup) PutBackupVaultAccessPolicyWithContext(ctx aws.Context, input *P
 	return out, req.Send()
 }
 
+const opPutBackupVaultLockConfiguration = "PutBackupVaultLockConfiguration"
+
+// PutBackupVaultLockConfigurationRequest generates a "aws/request.Request" representing the
+// client's request for the PutBackupVaultLockConfiguration operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutBackupVaultLockConfiguration for more information on using the PutBackupVaultLockConfiguration
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutBackupVaultLockConfigurationRequest method.
+//    req, resp := client.PutBackupVaultLockConfigurationRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/PutBackupVaultLockConfiguration
+func (c *Backup) PutBackupVaultLockConfigurationRequest(input *PutBackupVaultLockConfigurationInput) (req *request.Request, output *PutBackupVaultLockConfigurationOutput) {
+	op := &request.Operation{
+		Name:       opPutBackupVaultLockConfiguration,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/backup-vaults/{backupVaultName}/vault-lock",
+	}
+
+	if input == nil {
+		input = &PutBackupVaultLockConfigurationInput{}
+	}
+
+	output = &PutBackupVaultLockConfigurationOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// PutBackupVaultLockConfiguration API operation for AWS Backup.
+//
+// Applies Backup Vault Lock to a backup vault, preventing attempts to delete
+// any recovery point stored in or created in a backup vault. Vault Lock also
+// prevents attempts to update the lifecycle policy that controls the retention
+// period of any recovery point currently stored in a backup vault. If specified,
+// Vault Lock enforces a minimum and maximum retention period for future backup
+// and copy jobs that target a backup vault.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Backup's
+// API operation PutBackupVaultLockConfiguration for usage and error information.
+//
+// Returned Error Types:
+//   * ResourceNotFoundException
+//   A resource that is required for the action doesn't exist.
+//
+//   * InvalidParameterValueException
+//   Indicates that something is wrong with a parameter's value. For example,
+//   the value is out of range.
+//
+//   * MissingParameterValueException
+//   Indicates that a required parameter is missing.
+//
+//   * InvalidRequestException
+//   Indicates that something is wrong with the input to the request. For example,
+//   a parameter is of the wrong type.
+//
+//   * ServiceUnavailableException
+//   The request failed due to a temporary failure of the server.
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/backup-2018-11-15/PutBackupVaultLockConfiguration
+func (c *Backup) PutBackupVaultLockConfiguration(input *PutBackupVaultLockConfigurationInput) (*PutBackupVaultLockConfigurationOutput, error) {
+	req, out := c.PutBackupVaultLockConfigurationRequest(input)
+	return out, req.Send()
+}
+
+// PutBackupVaultLockConfigurationWithContext is the same as PutBackupVaultLockConfiguration with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutBackupVaultLockConfiguration for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *Backup) PutBackupVaultLockConfigurationWithContext(ctx aws.Context, input *PutBackupVaultLockConfigurationInput, opts ...request.Option) (*PutBackupVaultLockConfigurationOutput, error) {
+	req, out := c.PutBackupVaultLockConfigurationRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opPutBackupVaultNotifications = "PutBackupVaultNotifications"
 
 // PutBackupVaultNotificationsRequest generates a "aws/request.Request" representing the
@@ -8530,6 +8729,77 @@ func (s *DeleteBackupVaultInput) SetBackupVaultName(v string) *DeleteBackupVault
 	return s
 }
 
+type DeleteBackupVaultLockConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the backup vault from which to delete Backup Vault Lock.
+	//
+	// BackupVaultName is a required field
+	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBackupVaultLockConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBackupVaultLockConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *DeleteBackupVaultLockConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "DeleteBackupVaultLockConfigurationInput"}
+	if s.BackupVaultName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupVaultName"))
+	}
+	if s.BackupVaultName != nil && len(*s.BackupVaultName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackupVaultName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *DeleteBackupVaultLockConfigurationInput) SetBackupVaultName(v string) *DeleteBackupVaultLockConfigurationInput {
+	s.BackupVaultName = &v
+	return s
+}
+
+type DeleteBackupVaultLockConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBackupVaultLockConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeleteBackupVaultLockConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type DeleteBackupVaultNotificationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -9292,6 +9562,48 @@ type DescribeBackupVaultOutput struct {
 	// example, arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
 	EncryptionKeyArn *string `type:"string"`
 
+	// The date and time when Backup Vault Lock configuration cannot be changed
+	// or deleted.
+	//
+	// If you applied Vault Lock to your vault without specifying a lock date, you
+	// can change any of your Vault Lock settings, or delete Vault Lock from the
+	// vault entirely, at any time.
+	//
+	// This value is in Unix format, Coordinated Universal Time (UTC), and accurate
+	// to milliseconds. For example, the value 1516925490.087 represents Friday,
+	// January 26, 2018 12:11:30.087 AM.
+	LockDate *time.Time `type:"timestamp"`
+
+	// A Boolean that indicates whether Backup Vault Lock is currently protecting
+	// the backup vault. True means that Vault Lock causes delete or update operations
+	// on the recovery points stored in the vault to fail.
+	Locked *bool `type:"boolean"`
+
+	// The Backup Vault Lock setting that specifies the maximum retention period
+	// that the vault retains its recovery points. If this parameter is not specified,
+	// Vault Lock does not enforce a maximum retention period on the recovery points
+	// in the vault (allowing indefinite storage).
+	//
+	// If specified, any backup or copy job to the vault must have a lifecycle policy
+	// with a retention period equal to or shorter than the maximum retention period.
+	// If the job's retention period is longer than that maximum retention period,
+	// then the vault fails the backup or copy job, and you should either modify
+	// your lifecycle settings or use a different vault. Recovery points already
+	// stored in the vault prior to Vault Lock are not affected.
+	MaxRetentionDays *int64 `type:"long"`
+
+	// The Backup Vault Lock setting that specifies the minimum retention period
+	// that the vault retains its recovery points. If this parameter is not specified,
+	// Vault Lock does not enforce a minimum retention period.
+	//
+	// If specified, any backup or copy job to the vault must have a lifecycle policy
+	// with a retention period equal to or longer than the minimum retention period.
+	// If the job's retention period is shorter than that minimum retention period,
+	// then the vault fails the backup or copy job, and you should either modify
+	// your lifecycle settings or use a different vault. Recovery points already
+	// stored in the vault prior to Vault Lock are not affected.
+	MinRetentionDays *int64 `type:"long"`
+
 	// The number of recovery points that are stored in a backup vault.
 	NumberOfRecoveryPoints *int64 `type:"long"`
 }
@@ -9341,6 +9653,30 @@ func (s *DescribeBackupVaultOutput) SetCreatorRequestId(v string) *DescribeBacku
 // SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
 func (s *DescribeBackupVaultOutput) SetEncryptionKeyArn(v string) *DescribeBackupVaultOutput {
 	s.EncryptionKeyArn = &v
+	return s
+}
+
+// SetLockDate sets the LockDate field's value.
+func (s *DescribeBackupVaultOutput) SetLockDate(v time.Time) *DescribeBackupVaultOutput {
+	s.LockDate = &v
+	return s
+}
+
+// SetLocked sets the Locked field's value.
+func (s *DescribeBackupVaultOutput) SetLocked(v bool) *DescribeBackupVaultOutput {
+	s.Locked = &v
+	return s
+}
+
+// SetMaxRetentionDays sets the MaxRetentionDays field's value.
+func (s *DescribeBackupVaultOutput) SetMaxRetentionDays(v int64) *DescribeBackupVaultOutput {
+	s.MaxRetentionDays = &v
+	return s
+}
+
+// SetMinRetentionDays sets the MinRetentionDays field's value.
+func (s *DescribeBackupVaultOutput) SetMinRetentionDays(v int64) *DescribeBackupVaultOutput {
+	s.MinRetentionDays = &v
 	return s
 }
 
@@ -14705,6 +15041,148 @@ func (s PutBackupVaultAccessPolicyOutput) GoString() string {
 	return s.String()
 }
 
+type PutBackupVaultLockConfigurationInput struct {
+	_ struct{} `type:"structure"`
+
+	// The Backup Vault Lock configuration that specifies the name of the backup
+	// vault it protects.
+	//
+	// BackupVaultName is a required field
+	BackupVaultName *string `location:"uri" locationName:"backupVaultName" type:"string" required:"true"`
+
+	// The Backup Vault Lock configuration that specifies the number of days before
+	// the lock date. For example, setting ChangeableForDays to 30 on Jan. 1, 2022
+	// at 8pm UTC will set the lock date to Jan. 31, 2022 at 8pm UTC.
+	//
+	// Backup enforces a 72-hour cooling-off period before Vault Lock takes effect
+	// and becomes immutable. Therefore, you must set ChangeableForDays to 3 or
+	// greater.
+	//
+	// Before the lock date, you can delete Vault Lock from the vault using DeleteBackupVaultLockConfiguration
+	// or change the Vault Lock configuration using PutBackupVaultLockConfiguration.
+	// On and after the lock date, the Vault Lock becomes immutable and cannot be
+	// changed or deleted.
+	//
+	// If this parameter is not specified, you can delete Vault Lock from the vault
+	// using DeleteBackupVaultLockConfiguration or change the Vault Lock configuration
+	// using PutBackupVaultLockConfiguration at any time.
+	ChangeableForDays *int64 `type:"long"`
+
+	// The Backup Vault Lock configuration that specifies the maximum retention
+	// period that the vault retains its recovery points. This setting can be useful
+	// if, for example, your organization's policies require you to destroy certain
+	// data after retaining it for four years (1460 days).
+	//
+	// If this parameter is not included, Vault Lock does not enforce a maximum
+	// retention period on the recovery points in the vault. If this parameter is
+	// included without a value, Vault Lock will not enforce a maximum retention
+	// period.
+	//
+	// If this parameter is specified, any backup or copy job to the vault must
+	// have a lifecycle policy with a retention period equal to or shorter than
+	// the maximum retention period. If the job's retention period is longer than
+	// that maximum retention period, then the vault fails the backup or copy job,
+	// and you should either modify your lifecycle settings or use a different vault.
+	// Recovery points already saved in the vault prior to Vault Lock are not affected.
+	MaxRetentionDays *int64 `type:"long"`
+
+	// The Backup Vault Lock configuration that specifies the minimum retention
+	// period that the vault retains its recovery points. This setting can be useful
+	// if, for example, your organization's policies require you to retain certain
+	// data for at least seven years (2555 days).
+	//
+	// If this parameter is not specified, Vault Lock will not enforce a minimum
+	// retention period.
+	//
+	// If this parameter is specified, any backup or copy job to the vault must
+	// have a lifecycle policy with a retention period equal to or longer than the
+	// minimum retention period. If the job's retention period is shorter than that
+	// minimum retention period, then the vault fails that backup or copy job, and
+	// you should either modify your lifecycle settings or use a different vault.
+	// Recovery points already saved in the vault prior to Vault Lock are not affected.
+	MinRetentionDays *int64 `type:"long"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBackupVaultLockConfigurationInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBackupVaultLockConfigurationInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutBackupVaultLockConfigurationInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutBackupVaultLockConfigurationInput"}
+	if s.BackupVaultName == nil {
+		invalidParams.Add(request.NewErrParamRequired("BackupVaultName"))
+	}
+	if s.BackupVaultName != nil && len(*s.BackupVaultName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("BackupVaultName", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBackupVaultName sets the BackupVaultName field's value.
+func (s *PutBackupVaultLockConfigurationInput) SetBackupVaultName(v string) *PutBackupVaultLockConfigurationInput {
+	s.BackupVaultName = &v
+	return s
+}
+
+// SetChangeableForDays sets the ChangeableForDays field's value.
+func (s *PutBackupVaultLockConfigurationInput) SetChangeableForDays(v int64) *PutBackupVaultLockConfigurationInput {
+	s.ChangeableForDays = &v
+	return s
+}
+
+// SetMaxRetentionDays sets the MaxRetentionDays field's value.
+func (s *PutBackupVaultLockConfigurationInput) SetMaxRetentionDays(v int64) *PutBackupVaultLockConfigurationInput {
+	s.MaxRetentionDays = &v
+	return s
+}
+
+// SetMinRetentionDays sets the MinRetentionDays field's value.
+func (s *PutBackupVaultLockConfigurationInput) SetMinRetentionDays(v int64) *PutBackupVaultLockConfigurationInput {
+	s.MinRetentionDays = &v
+	return s
+}
+
+type PutBackupVaultLockConfigurationOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBackupVaultLockConfigurationOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutBackupVaultLockConfigurationOutput) GoString() string {
+	return s.String()
+}
+
 type PutBackupVaultNotificationsInput struct {
 	_ struct{} `type:"structure"`
 
@@ -18038,6 +18516,48 @@ type VaultListMember struct {
 	// example, arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab.
 	EncryptionKeyArn *string `type:"string"`
 
+	// The date and time when Backup Vault Lock configuration becomes immutable,
+	// meaning it cannot be changed or deleted.
+	//
+	// If you applied Vault Lock to your vault without specifying a lock date, you
+	// can change your Vault Lock settings, or delete Vault Lock from the vault
+	// entirely, at any time.
+	//
+	// This value is in Unix format, Coordinated Universal Time (UTC), and accurate
+	// to milliseconds. For example, the value 1516925490.087 represents Friday,
+	// January 26, 2018 12:11:30.087 AM.
+	LockDate *time.Time `type:"timestamp"`
+
+	// A Boolean value that indicates whether Backup Vault Lock applies to the selected
+	// backup vault. If true, Vault Lock prevents delete and update operations on
+	// the recovery points in the selected vault.
+	Locked *bool `type:"boolean"`
+
+	// The Backup Vault Lock setting that specifies the maximum retention period
+	// that the vault retains its recovery points. If this parameter is not specified,
+	// Vault Lock does not enforce a maximum retention period on the recovery points
+	// in the vault (allowing indefinite storage).
+	//
+	// If specified, any backup or copy job to the vault must have a lifecycle policy
+	// with a retention period equal to or shorter than the maximum retention period.
+	// If the job's retention period is longer than that maximum retention period,
+	// then the vault fails the backup or copy job, and you should either modify
+	// your lifecycle settings or use a different vault. Recovery points already
+	// stored in the vault prior to Vault Lock are not affected.
+	MaxRetentionDays *int64 `type:"long"`
+
+	// The Backup Vault Lock setting that specifies the minimum retention period
+	// that the vault retains its recovery points. If this parameter is not specified,
+	// Vault Lock does not enforce a minimum retention period.
+	//
+	// If specified, any backup or copy job to the vault must have a lifecycle policy
+	// with a retention period equal to or longer than the minimum retention period.
+	// If the job's retention period is shorter than that minimum retention period,
+	// then the vault fails the backup or copy job, and you should either modify
+	// your lifecycle settings or use a different vault. Recovery points already
+	// stored in the vault prior to Vault Lock are not affected.
+	MinRetentionDays *int64 `type:"long"`
+
 	// The number of recovery points that are stored in a backup vault.
 	NumberOfRecoveryPoints *int64 `type:"long"`
 }
@@ -18087,6 +18607,30 @@ func (s *VaultListMember) SetCreatorRequestId(v string) *VaultListMember {
 // SetEncryptionKeyArn sets the EncryptionKeyArn field's value.
 func (s *VaultListMember) SetEncryptionKeyArn(v string) *VaultListMember {
 	s.EncryptionKeyArn = &v
+	return s
+}
+
+// SetLockDate sets the LockDate field's value.
+func (s *VaultListMember) SetLockDate(v time.Time) *VaultListMember {
+	s.LockDate = &v
+	return s
+}
+
+// SetLocked sets the Locked field's value.
+func (s *VaultListMember) SetLocked(v bool) *VaultListMember {
+	s.Locked = &v
+	return s
+}
+
+// SetMaxRetentionDays sets the MaxRetentionDays field's value.
+func (s *VaultListMember) SetMaxRetentionDays(v int64) *VaultListMember {
+	s.MaxRetentionDays = &v
+	return s
+}
+
+// SetMinRetentionDays sets the MinRetentionDays field's value.
+func (s *VaultListMember) SetMinRetentionDays(v int64) *VaultListMember {
+	s.MinRetentionDays = &v
 	return s
 }
 

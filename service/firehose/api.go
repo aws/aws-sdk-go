@@ -1360,6 +1360,555 @@ func (c *Firehose) UpdateDestinationWithContext(ctx aws.Context, input *UpdateDe
 	return out, req.Send()
 }
 
+type AmazonopensearchserviceBufferingHints struct {
+	_ struct{} `type:"structure"`
+
+	IntervalInSeconds *int64 `min:"60" type:"integer"`
+
+	SizeInMBs *int64 `min:"1" type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceBufferingHints) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceBufferingHints) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonopensearchserviceBufferingHints) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonopensearchserviceBufferingHints"}
+	if s.IntervalInSeconds != nil && *s.IntervalInSeconds < 60 {
+		invalidParams.Add(request.NewErrParamMinValue("IntervalInSeconds", 60))
+	}
+	if s.SizeInMBs != nil && *s.SizeInMBs < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("SizeInMBs", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetIntervalInSeconds sets the IntervalInSeconds field's value.
+func (s *AmazonopensearchserviceBufferingHints) SetIntervalInSeconds(v int64) *AmazonopensearchserviceBufferingHints {
+	s.IntervalInSeconds = &v
+	return s
+}
+
+// SetSizeInMBs sets the SizeInMBs field's value.
+func (s *AmazonopensearchserviceBufferingHints) SetSizeInMBs(v int64) *AmazonopensearchserviceBufferingHints {
+	s.SizeInMBs = &v
+	return s
+}
+
+type AmazonopensearchserviceDestinationConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	BufferingHints *AmazonopensearchserviceBufferingHints `type:"structure"`
+
+	// Describes the Amazon CloudWatch logging options for your delivery stream.
+	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
+
+	ClusterEndpoint *string `min:"1" type:"string"`
+
+	DomainARN *string `min:"1" type:"string"`
+
+	// IndexName is a required field
+	IndexName *string `min:"1" type:"string" required:"true"`
+
+	IndexRotationPeriod *string `type:"string" enum:"AmazonopensearchserviceIndexRotationPeriod"`
+
+	// Describes a data processing configuration.
+	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
+
+	RetryOptions *AmazonopensearchserviceRetryOptions `type:"structure"`
+
+	// RoleARN is a required field
+	RoleARN *string `min:"1" type:"string" required:"true"`
+
+	S3BackupMode *string `type:"string" enum:"AmazonopensearchserviceS3BackupMode"`
+
+	// Describes the configuration of a destination in Amazon S3.
+	//
+	// S3Configuration is a required field
+	S3Configuration *S3DestinationConfiguration `type:"structure" required:"true"`
+
+	TypeName *string `type:"string"`
+
+	// The details of the VPC of the Amazon ES destination.
+	VpcConfiguration *VpcConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceDestinationConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceDestinationConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonopensearchserviceDestinationConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonopensearchserviceDestinationConfiguration"}
+	if s.ClusterEndpoint != nil && len(*s.ClusterEndpoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterEndpoint", 1))
+	}
+	if s.DomainARN != nil && len(*s.DomainARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainARN", 1))
+	}
+	if s.IndexName == nil {
+		invalidParams.Add(request.NewErrParamRequired("IndexName"))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.RoleARN == nil {
+		invalidParams.Add(request.NewErrParamRequired("RoleARN"))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.S3Configuration == nil {
+		invalidParams.Add(request.NewErrParamRequired("S3Configuration"))
+	}
+	if s.BufferingHints != nil {
+		if err := s.BufferingHints.Validate(); err != nil {
+			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProcessingConfiguration != nil {
+		if err := s.ProcessingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Configuration != nil {
+		if err := s.S3Configuration.Validate(); err != nil {
+			invalidParams.AddNested("S3Configuration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.VpcConfiguration != nil {
+		if err := s.VpcConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("VpcConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBufferingHints sets the BufferingHints field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetBufferingHints(v *AmazonopensearchserviceBufferingHints) *AmazonopensearchserviceDestinationConfiguration {
+	s.BufferingHints = v
+	return s
+}
+
+// SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetCloudWatchLoggingOptions(v *CloudWatchLoggingOptions) *AmazonopensearchserviceDestinationConfiguration {
+	s.CloudWatchLoggingOptions = v
+	return s
+}
+
+// SetClusterEndpoint sets the ClusterEndpoint field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetClusterEndpoint(v string) *AmazonopensearchserviceDestinationConfiguration {
+	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDomainARN sets the DomainARN field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetDomainARN(v string) *AmazonopensearchserviceDestinationConfiguration {
+	s.DomainARN = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetIndexName(v string) *AmazonopensearchserviceDestinationConfiguration {
+	s.IndexName = &v
+	return s
+}
+
+// SetIndexRotationPeriod sets the IndexRotationPeriod field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetIndexRotationPeriod(v string) *AmazonopensearchserviceDestinationConfiguration {
+	s.IndexRotationPeriod = &v
+	return s
+}
+
+// SetProcessingConfiguration sets the ProcessingConfiguration field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetProcessingConfiguration(v *ProcessingConfiguration) *AmazonopensearchserviceDestinationConfiguration {
+	s.ProcessingConfiguration = v
+	return s
+}
+
+// SetRetryOptions sets the RetryOptions field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetRetryOptions(v *AmazonopensearchserviceRetryOptions) *AmazonopensearchserviceDestinationConfiguration {
+	s.RetryOptions = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetRoleARN(v string) *AmazonopensearchserviceDestinationConfiguration {
+	s.RoleARN = &v
+	return s
+}
+
+// SetS3BackupMode sets the S3BackupMode field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetS3BackupMode(v string) *AmazonopensearchserviceDestinationConfiguration {
+	s.S3BackupMode = &v
+	return s
+}
+
+// SetS3Configuration sets the S3Configuration field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetS3Configuration(v *S3DestinationConfiguration) *AmazonopensearchserviceDestinationConfiguration {
+	s.S3Configuration = v
+	return s
+}
+
+// SetTypeName sets the TypeName field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetTypeName(v string) *AmazonopensearchserviceDestinationConfiguration {
+	s.TypeName = &v
+	return s
+}
+
+// SetVpcConfiguration sets the VpcConfiguration field's value.
+func (s *AmazonopensearchserviceDestinationConfiguration) SetVpcConfiguration(v *VpcConfiguration) *AmazonopensearchserviceDestinationConfiguration {
+	s.VpcConfiguration = v
+	return s
+}
+
+type AmazonopensearchserviceDestinationDescription struct {
+	_ struct{} `type:"structure"`
+
+	BufferingHints *AmazonopensearchserviceBufferingHints `type:"structure"`
+
+	// Describes the Amazon CloudWatch logging options for your delivery stream.
+	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
+
+	ClusterEndpoint *string `min:"1" type:"string"`
+
+	DomainARN *string `min:"1" type:"string"`
+
+	IndexName *string `min:"1" type:"string"`
+
+	IndexRotationPeriod *string `type:"string" enum:"AmazonopensearchserviceIndexRotationPeriod"`
+
+	// Describes a data processing configuration.
+	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
+
+	RetryOptions *AmazonopensearchserviceRetryOptions `type:"structure"`
+
+	RoleARN *string `min:"1" type:"string"`
+
+	S3BackupMode *string `type:"string" enum:"AmazonopensearchserviceS3BackupMode"`
+
+	// Describes a destination in Amazon S3.
+	S3DestinationDescription *S3DestinationDescription `type:"structure"`
+
+	TypeName *string `type:"string"`
+
+	// The details of the VPC of the Amazon ES destination.
+	VpcConfigurationDescription *VpcConfigurationDescription `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceDestinationDescription) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceDestinationDescription) GoString() string {
+	return s.String()
+}
+
+// SetBufferingHints sets the BufferingHints field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetBufferingHints(v *AmazonopensearchserviceBufferingHints) *AmazonopensearchserviceDestinationDescription {
+	s.BufferingHints = v
+	return s
+}
+
+// SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetCloudWatchLoggingOptions(v *CloudWatchLoggingOptions) *AmazonopensearchserviceDestinationDescription {
+	s.CloudWatchLoggingOptions = v
+	return s
+}
+
+// SetClusterEndpoint sets the ClusterEndpoint field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetClusterEndpoint(v string) *AmazonopensearchserviceDestinationDescription {
+	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDomainARN sets the DomainARN field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetDomainARN(v string) *AmazonopensearchserviceDestinationDescription {
+	s.DomainARN = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetIndexName(v string) *AmazonopensearchserviceDestinationDescription {
+	s.IndexName = &v
+	return s
+}
+
+// SetIndexRotationPeriod sets the IndexRotationPeriod field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetIndexRotationPeriod(v string) *AmazonopensearchserviceDestinationDescription {
+	s.IndexRotationPeriod = &v
+	return s
+}
+
+// SetProcessingConfiguration sets the ProcessingConfiguration field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetProcessingConfiguration(v *ProcessingConfiguration) *AmazonopensearchserviceDestinationDescription {
+	s.ProcessingConfiguration = v
+	return s
+}
+
+// SetRetryOptions sets the RetryOptions field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetRetryOptions(v *AmazonopensearchserviceRetryOptions) *AmazonopensearchserviceDestinationDescription {
+	s.RetryOptions = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetRoleARN(v string) *AmazonopensearchserviceDestinationDescription {
+	s.RoleARN = &v
+	return s
+}
+
+// SetS3BackupMode sets the S3BackupMode field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetS3BackupMode(v string) *AmazonopensearchserviceDestinationDescription {
+	s.S3BackupMode = &v
+	return s
+}
+
+// SetS3DestinationDescription sets the S3DestinationDescription field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetS3DestinationDescription(v *S3DestinationDescription) *AmazonopensearchserviceDestinationDescription {
+	s.S3DestinationDescription = v
+	return s
+}
+
+// SetTypeName sets the TypeName field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetTypeName(v string) *AmazonopensearchserviceDestinationDescription {
+	s.TypeName = &v
+	return s
+}
+
+// SetVpcConfigurationDescription sets the VpcConfigurationDescription field's value.
+func (s *AmazonopensearchserviceDestinationDescription) SetVpcConfigurationDescription(v *VpcConfigurationDescription) *AmazonopensearchserviceDestinationDescription {
+	s.VpcConfigurationDescription = v
+	return s
+}
+
+type AmazonopensearchserviceDestinationUpdate struct {
+	_ struct{} `type:"structure"`
+
+	BufferingHints *AmazonopensearchserviceBufferingHints `type:"structure"`
+
+	// Describes the Amazon CloudWatch logging options for your delivery stream.
+	CloudWatchLoggingOptions *CloudWatchLoggingOptions `type:"structure"`
+
+	ClusterEndpoint *string `min:"1" type:"string"`
+
+	DomainARN *string `min:"1" type:"string"`
+
+	IndexName *string `min:"1" type:"string"`
+
+	IndexRotationPeriod *string `type:"string" enum:"AmazonopensearchserviceIndexRotationPeriod"`
+
+	// Describes a data processing configuration.
+	ProcessingConfiguration *ProcessingConfiguration `type:"structure"`
+
+	RetryOptions *AmazonopensearchserviceRetryOptions `type:"structure"`
+
+	RoleARN *string `min:"1" type:"string"`
+
+	// Describes an update for a destination in Amazon S3.
+	S3Update *S3DestinationUpdate `type:"structure"`
+
+	TypeName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceDestinationUpdate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceDestinationUpdate) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AmazonopensearchserviceDestinationUpdate) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AmazonopensearchserviceDestinationUpdate"}
+	if s.ClusterEndpoint != nil && len(*s.ClusterEndpoint) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ClusterEndpoint", 1))
+	}
+	if s.DomainARN != nil && len(*s.DomainARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("DomainARN", 1))
+	}
+	if s.IndexName != nil && len(*s.IndexName) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("IndexName", 1))
+	}
+	if s.RoleARN != nil && len(*s.RoleARN) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("RoleARN", 1))
+	}
+	if s.BufferingHints != nil {
+		if err := s.BufferingHints.Validate(); err != nil {
+			invalidParams.AddNested("BufferingHints", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.ProcessingConfiguration != nil {
+		if err := s.ProcessingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ProcessingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.S3Update != nil {
+		if err := s.S3Update.Validate(); err != nil {
+			invalidParams.AddNested("S3Update", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetBufferingHints sets the BufferingHints field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetBufferingHints(v *AmazonopensearchserviceBufferingHints) *AmazonopensearchserviceDestinationUpdate {
+	s.BufferingHints = v
+	return s
+}
+
+// SetCloudWatchLoggingOptions sets the CloudWatchLoggingOptions field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetCloudWatchLoggingOptions(v *CloudWatchLoggingOptions) *AmazonopensearchserviceDestinationUpdate {
+	s.CloudWatchLoggingOptions = v
+	return s
+}
+
+// SetClusterEndpoint sets the ClusterEndpoint field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetClusterEndpoint(v string) *AmazonopensearchserviceDestinationUpdate {
+	s.ClusterEndpoint = &v
+	return s
+}
+
+// SetDomainARN sets the DomainARN field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetDomainARN(v string) *AmazonopensearchserviceDestinationUpdate {
+	s.DomainARN = &v
+	return s
+}
+
+// SetIndexName sets the IndexName field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetIndexName(v string) *AmazonopensearchserviceDestinationUpdate {
+	s.IndexName = &v
+	return s
+}
+
+// SetIndexRotationPeriod sets the IndexRotationPeriod field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetIndexRotationPeriod(v string) *AmazonopensearchserviceDestinationUpdate {
+	s.IndexRotationPeriod = &v
+	return s
+}
+
+// SetProcessingConfiguration sets the ProcessingConfiguration field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetProcessingConfiguration(v *ProcessingConfiguration) *AmazonopensearchserviceDestinationUpdate {
+	s.ProcessingConfiguration = v
+	return s
+}
+
+// SetRetryOptions sets the RetryOptions field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetRetryOptions(v *AmazonopensearchserviceRetryOptions) *AmazonopensearchserviceDestinationUpdate {
+	s.RetryOptions = v
+	return s
+}
+
+// SetRoleARN sets the RoleARN field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetRoleARN(v string) *AmazonopensearchserviceDestinationUpdate {
+	s.RoleARN = &v
+	return s
+}
+
+// SetS3Update sets the S3Update field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetS3Update(v *S3DestinationUpdate) *AmazonopensearchserviceDestinationUpdate {
+	s.S3Update = v
+	return s
+}
+
+// SetTypeName sets the TypeName field's value.
+func (s *AmazonopensearchserviceDestinationUpdate) SetTypeName(v string) *AmazonopensearchserviceDestinationUpdate {
+	s.TypeName = &v
+	return s
+}
+
+type AmazonopensearchserviceRetryOptions struct {
+	_ struct{} `type:"structure"`
+
+	DurationInSeconds *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceRetryOptions) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AmazonopensearchserviceRetryOptions) GoString() string {
+	return s.String()
+}
+
+// SetDurationInSeconds sets the DurationInSeconds field's value.
+func (s *AmazonopensearchserviceRetryOptions) SetDurationInSeconds(v int64) *AmazonopensearchserviceRetryOptions {
+	s.DurationInSeconds = &v
+	return s
+}
+
 // Describes hints for the buffering to perform before delivering data to the
 // destination. These options are treated as hints, and therefore Kinesis Data
 // Firehose might choose to use different values when it is optimal. The SizeInMBs
@@ -1640,6 +2189,8 @@ func (s *CopyCommand) SetDataTableName(v string) *CopyCommand {
 type CreateDeliveryStreamInput struct {
 	_ struct{} `type:"structure"`
 
+	AmazonopensearchserviceDestinationConfiguration *AmazonopensearchserviceDestinationConfiguration `type:"structure"`
+
 	// Used to specify the type and Amazon Resource Name (ARN) of the KMS key needed
 	// for Server-Side Encryption (SSE).
 	DeliveryStreamEncryptionConfigurationInput *DeliveryStreamEncryptionConfigurationInput `type:"structure"`
@@ -1727,6 +2278,11 @@ func (s *CreateDeliveryStreamInput) Validate() error {
 	if s.Tags != nil && len(s.Tags) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Tags", 1))
 	}
+	if s.AmazonopensearchserviceDestinationConfiguration != nil {
+		if err := s.AmazonopensearchserviceDestinationConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("AmazonopensearchserviceDestinationConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.DeliveryStreamEncryptionConfigurationInput != nil {
 		if err := s.DeliveryStreamEncryptionConfigurationInput.Validate(); err != nil {
 			invalidParams.AddNested("DeliveryStreamEncryptionConfigurationInput", err.(request.ErrInvalidParams))
@@ -1782,6 +2338,12 @@ func (s *CreateDeliveryStreamInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAmazonopensearchserviceDestinationConfiguration sets the AmazonopensearchserviceDestinationConfiguration field's value.
+func (s *CreateDeliveryStreamInput) SetAmazonopensearchserviceDestinationConfiguration(v *AmazonopensearchserviceDestinationConfiguration) *CreateDeliveryStreamInput {
+	s.AmazonopensearchserviceDestinationConfiguration = v
+	return s
 }
 
 // SetDeliveryStreamEncryptionConfigurationInput sets the DeliveryStreamEncryptionConfigurationInput field's value.
@@ -2539,6 +3101,8 @@ func (s *Deserializer) SetOpenXJsonSerDe(v *OpenXJsonSerDe) *Deserializer {
 type DestinationDescription struct {
 	_ struct{} `type:"structure"`
 
+	AmazonopensearchserviceDestinationDescription *AmazonopensearchserviceDestinationDescription `type:"structure"`
+
 	// The ID of the destination.
 	//
 	// DestinationId is a required field
@@ -2579,6 +3143,12 @@ func (s DestinationDescription) String() string {
 // value will be replaced with "sensitive".
 func (s DestinationDescription) GoString() string {
 	return s.String()
+}
+
+// SetAmazonopensearchserviceDestinationDescription sets the AmazonopensearchserviceDestinationDescription field's value.
+func (s *DestinationDescription) SetAmazonopensearchserviceDestinationDescription(v *AmazonopensearchserviceDestinationDescription) *DestinationDescription {
+	s.AmazonopensearchserviceDestinationDescription = v
+	return s
 }
 
 // SetDestinationId sets the DestinationId field's value.
@@ -8668,6 +9238,8 @@ func (s UntagDeliveryStreamOutput) GoString() string {
 type UpdateDestinationInput struct {
 	_ struct{} `type:"structure"`
 
+	AmazonopensearchserviceDestinationUpdate *AmazonopensearchserviceDestinationUpdate `type:"structure"`
+
 	// Obtain this value from the VersionId result of DeliveryStreamDescription.
 	// This value is required, and helps the service perform conditional operations.
 	// For example, if there is an interleaving update and this value is null, then
@@ -8748,6 +9320,11 @@ func (s *UpdateDestinationInput) Validate() error {
 	if s.DestinationId != nil && len(*s.DestinationId) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("DestinationId", 1))
 	}
+	if s.AmazonopensearchserviceDestinationUpdate != nil {
+		if err := s.AmazonopensearchserviceDestinationUpdate.Validate(); err != nil {
+			invalidParams.AddNested("AmazonopensearchserviceDestinationUpdate", err.(request.ErrInvalidParams))
+		}
+	}
 	if s.ElasticsearchDestinationUpdate != nil {
 		if err := s.ElasticsearchDestinationUpdate.Validate(); err != nil {
 			invalidParams.AddNested("ElasticsearchDestinationUpdate", err.(request.ErrInvalidParams))
@@ -8783,6 +9360,12 @@ func (s *UpdateDestinationInput) Validate() error {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetAmazonopensearchserviceDestinationUpdate sets the AmazonopensearchserviceDestinationUpdate field's value.
+func (s *UpdateDestinationInput) SetAmazonopensearchserviceDestinationUpdate(v *AmazonopensearchserviceDestinationUpdate) *UpdateDestinationInput {
+	s.AmazonopensearchserviceDestinationUpdate = v
+	return s
 }
 
 // SetCurrentDeliveryStreamVersionId sets the CurrentDeliveryStreamVersionId field's value.
@@ -9106,6 +9689,50 @@ func (s *VpcConfigurationDescription) SetSubnetIds(v []*string) *VpcConfiguratio
 func (s *VpcConfigurationDescription) SetVpcId(v string) *VpcConfigurationDescription {
 	s.VpcId = &v
 	return s
+}
+
+const (
+	// AmazonopensearchserviceIndexRotationPeriodNoRotation is a AmazonopensearchserviceIndexRotationPeriod enum value
+	AmazonopensearchserviceIndexRotationPeriodNoRotation = "NoRotation"
+
+	// AmazonopensearchserviceIndexRotationPeriodOneHour is a AmazonopensearchserviceIndexRotationPeriod enum value
+	AmazonopensearchserviceIndexRotationPeriodOneHour = "OneHour"
+
+	// AmazonopensearchserviceIndexRotationPeriodOneDay is a AmazonopensearchserviceIndexRotationPeriod enum value
+	AmazonopensearchserviceIndexRotationPeriodOneDay = "OneDay"
+
+	// AmazonopensearchserviceIndexRotationPeriodOneWeek is a AmazonopensearchserviceIndexRotationPeriod enum value
+	AmazonopensearchserviceIndexRotationPeriodOneWeek = "OneWeek"
+
+	// AmazonopensearchserviceIndexRotationPeriodOneMonth is a AmazonopensearchserviceIndexRotationPeriod enum value
+	AmazonopensearchserviceIndexRotationPeriodOneMonth = "OneMonth"
+)
+
+// AmazonopensearchserviceIndexRotationPeriod_Values returns all elements of the AmazonopensearchserviceIndexRotationPeriod enum
+func AmazonopensearchserviceIndexRotationPeriod_Values() []string {
+	return []string{
+		AmazonopensearchserviceIndexRotationPeriodNoRotation,
+		AmazonopensearchserviceIndexRotationPeriodOneHour,
+		AmazonopensearchserviceIndexRotationPeriodOneDay,
+		AmazonopensearchserviceIndexRotationPeriodOneWeek,
+		AmazonopensearchserviceIndexRotationPeriodOneMonth,
+	}
+}
+
+const (
+	// AmazonopensearchserviceS3BackupModeFailedDocumentsOnly is a AmazonopensearchserviceS3BackupMode enum value
+	AmazonopensearchserviceS3BackupModeFailedDocumentsOnly = "FailedDocumentsOnly"
+
+	// AmazonopensearchserviceS3BackupModeAllDocuments is a AmazonopensearchserviceS3BackupMode enum value
+	AmazonopensearchserviceS3BackupModeAllDocuments = "AllDocuments"
+)
+
+// AmazonopensearchserviceS3BackupMode_Values returns all elements of the AmazonopensearchserviceS3BackupMode enum
+func AmazonopensearchserviceS3BackupMode_Values() []string {
+	return []string{
+		AmazonopensearchserviceS3BackupModeFailedDocumentsOnly,
+		AmazonopensearchserviceS3BackupModeAllDocuments,
+	}
 }
 
 const (

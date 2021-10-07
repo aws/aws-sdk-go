@@ -6590,6 +6590,12 @@ type CreateDataSourceInput struct {
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
 
+	// The code for a language. This allows you to support a language for all documents
+	// when creating the data source. English is supported by default. For more
+	// information on supported languages, including their codes, see Adding documents
+	// in languages other than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
+	LanguageCode *string `min:"2" type:"string"`
+
 	// A unique name for the data source. A data source name can't be changed without
 	// deleting and recreating the data source.
 	//
@@ -6654,6 +6660,9 @@ func (s *CreateDataSourceInput) Validate() error {
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
 	}
+	if s.LanguageCode != nil && len(*s.LanguageCode) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageCode", 2))
+	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
 	}
@@ -6709,6 +6718,12 @@ func (s *CreateDataSourceInput) SetDescription(v string) *CreateDataSourceInput 
 // SetIndexId sets the IndexId field's value.
 func (s *CreateDataSourceInput) SetIndexId(v string) *CreateDataSourceInput {
 	s.IndexId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateDataSourceInput) SetLanguageCode(v string) *CreateDataSourceInput {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -6801,6 +6816,12 @@ type CreateFaqInput struct {
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
 
+	// The code for a language. This allows you to support a language for the FAQ
+	// document. English is supported by default. For more information on supported
+	// languages, including their codes, see Adding documents in languages other
+	// than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
+	LanguageCode *string `min:"2" type:"string"`
+
 	// The name that should be associated with the FAQ.
 	//
 	// Name is a required field
@@ -6852,6 +6873,9 @@ func (s *CreateFaqInput) Validate() error {
 	}
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
+	}
+	if s.LanguageCode != nil && len(*s.LanguageCode) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageCode", 2))
 	}
 	if s.Name == nil {
 		invalidParams.Add(request.NewErrParamRequired("Name"))
@@ -6911,6 +6935,12 @@ func (s *CreateFaqInput) SetFileFormat(v string) *CreateFaqInput {
 // SetIndexId sets the IndexId field's value.
 func (s *CreateFaqInput) SetIndexId(v string) *CreateFaqInput {
 	s.IndexId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *CreateFaqInput) SetLanguageCode(v string) *CreateFaqInput {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -7829,6 +7859,12 @@ type DataSourceSummary struct {
 	// The unique identifier for the data source.
 	Id *string `min:"1" type:"string"`
 
+	// The code for a language. This shows a supported language for all documents
+	// in the data source. English is supported by default. For more information
+	// on supported languages, including their codes, see Adding documents in languages
+	// other than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
+	LanguageCode *string `min:"2" type:"string"`
+
 	// The name of the data source.
 	Name *string `min:"1" type:"string"`
 
@@ -7870,6 +7906,12 @@ func (s *DataSourceSummary) SetCreatedAt(v time.Time) *DataSourceSummary {
 // SetId sets the Id field's value.
 func (s *DataSourceSummary) SetId(v string) *DataSourceSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DataSourceSummary) SetLanguageCode(v string) *DataSourceSummary {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -9064,6 +9106,12 @@ type DescribeDataSourceOutput struct {
 	// The identifier of the index that contains the data source.
 	IndexId *string `min:"36" type:"string"`
 
+	// The code for a language. This shows a supported language for all documents
+	// in the data source. English is supported by default. For more information
+	// on supported languages, including their codes, see Adding documents in languages
+	// other than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
+	LanguageCode *string `min:"2" type:"string"`
+
 	// The name that you gave the data source when it was created.
 	Name *string `min:"1" type:"string"`
 
@@ -9137,6 +9185,12 @@ func (s *DescribeDataSourceOutput) SetId(v string) *DescribeDataSourceOutput {
 // SetIndexId sets the IndexId field's value.
 func (s *DescribeDataSourceOutput) SetIndexId(v string) *DescribeDataSourceOutput {
 	s.IndexId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DescribeDataSourceOutput) SetLanguageCode(v string) *DescribeDataSourceOutput {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -9264,6 +9318,12 @@ type DescribeFaqOutput struct {
 	// The identifier of the index that contains the FAQ.
 	IndexId *string `min:"36" type:"string"`
 
+	// The code for a language. This shows a supported language for the FAQ document.
+	// English is supported by default. For more information on supported languages,
+	// including their codes, see Adding documents in languages other than English
+	// (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
+	LanguageCode *string `min:"2" type:"string"`
+
 	// The name that you gave the FAQ when it was created.
 	Name *string `min:"1" type:"string"`
 
@@ -9332,6 +9392,12 @@ func (s *DescribeFaqOutput) SetId(v string) *DescribeFaqOutput {
 // SetIndexId sets the IndexId field's value.
 func (s *DescribeFaqOutput) SetIndexId(v string) *DescribeFaqOutput {
 	s.IndexId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *DescribeFaqOutput) SetLanguageCode(v string) *DescribeFaqOutput {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -11135,6 +11201,12 @@ type FaqSummary struct {
 	// The unique identifier of the FAQ.
 	Id *string `min:"1" type:"string"`
 
+	// The code for a language. This shows a supported language for the FAQ document
+	// as part of the summary information for FAQs. English is supported by default.
+	// For more information on supported languages, including their codes, see Adding
+	// documents in languages other than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
+	LanguageCode *string `min:"2" type:"string"`
+
 	// The name that you assigned the FAQ when you created or updated the FAQ.
 	Name *string `min:"1" type:"string"`
 
@@ -11179,6 +11251,12 @@ func (s *FaqSummary) SetFileFormat(v string) *FaqSummary {
 // SetId sets the Id field's value.
 func (s *FaqSummary) SetId(v string) *FaqSummary {
 	s.Id = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *FaqSummary) SetLanguageCode(v string) *FaqSummary {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -17874,6 +17952,12 @@ type UpdateDataSourceInput struct {
 	// IndexId is a required field
 	IndexId *string `min:"36" type:"string" required:"true"`
 
+	// The code for a language. This allows you to support a language for all documents
+	// when updating the data source. English is supported by default. For more
+	// information on supported languages, including their codes, see Adding documents
+	// in languages other than English (https://docs.aws.amazon.com/kendra/latest/dg/in-adding-languages.html).
+	LanguageCode *string `min:"2" type:"string"`
+
 	// The name of the data source to update. The name of the data source can't
 	// be updated. To rename a data source you must delete the data source and re-create
 	// it.
@@ -17920,6 +18004,9 @@ func (s *UpdateDataSourceInput) Validate() error {
 	if s.IndexId != nil && len(*s.IndexId) < 36 {
 		invalidParams.Add(request.NewErrParamMinLen("IndexId", 36))
 	}
+	if s.LanguageCode != nil && len(*s.LanguageCode) < 2 {
+		invalidParams.Add(request.NewErrParamMinLen("LanguageCode", 2))
+	}
 	if s.Name != nil && len(*s.Name) < 1 {
 		invalidParams.Add(request.NewErrParamMinLen("Name", 1))
 	}
@@ -17959,6 +18046,12 @@ func (s *UpdateDataSourceInput) SetId(v string) *UpdateDataSourceInput {
 // SetIndexId sets the IndexId field's value.
 func (s *UpdateDataSourceInput) SetIndexId(v string) *UpdateDataSourceInput {
 	s.IndexId = &v
+	return s
+}
+
+// SetLanguageCode sets the LanguageCode field's value.
+func (s *UpdateDataSourceInput) SetLanguageCode(v string) *UpdateDataSourceInput {
+	s.LanguageCode = &v
 	return s
 }
 
@@ -20236,6 +20329,9 @@ const (
 
 	// ScoreConfidenceLow is a ScoreConfidence enum value
 	ScoreConfidenceLow = "LOW"
+
+	// ScoreConfidenceNotAvailable is a ScoreConfidence enum value
+	ScoreConfidenceNotAvailable = "NOT_AVAILABLE"
 )
 
 // ScoreConfidence_Values returns all elements of the ScoreConfidence enum
@@ -20245,6 +20341,7 @@ func ScoreConfidence_Values() []string {
 		ScoreConfidenceHigh,
 		ScoreConfidenceMedium,
 		ScoreConfidenceLow,
+		ScoreConfidenceNotAvailable,
 	}
 }
 
