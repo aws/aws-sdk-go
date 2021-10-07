@@ -1337,7 +1337,7 @@ func (s *AssertionAttributes) SetRole(v string) *AssertionAttributes {
 }
 
 type AssociateLicenseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of license to associate with the workspace.
 	//
@@ -1904,7 +1904,7 @@ func (s *CreateWorkspaceOutput) SetWorkspace(v *WorkspaceDescription) *CreateWor
 }
 
 type DeleteWorkspaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the workspace to delete.
 	//
@@ -1986,7 +1986,7 @@ func (s *DeleteWorkspaceOutput) SetWorkspace(v *WorkspaceDescription) *DeleteWor
 }
 
 type DescribeWorkspaceAuthenticationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the workspace to return authentication information about.
 	//
@@ -2069,7 +2069,7 @@ func (s *DescribeWorkspaceAuthenticationOutput) SetAuthentication(v *Authenticat
 }
 
 type DescribeWorkspaceInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The ID of the workspace to display information about.
 	//
@@ -2151,7 +2151,7 @@ func (s *DescribeWorkspaceOutput) SetWorkspace(v *WorkspaceDescription) *Describ
 }
 
 type DisassociateLicenseInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The type of license to remove from the workspace.
 	//
@@ -2375,7 +2375,7 @@ func (s *InternalServerException) RequestID() string {
 }
 
 type ListPermissionsInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// (Optional) Limits the results to only the group that matches this ID.
 	GroupId *string `location:"querystring" locationName:"groupId" min:"1" type:"string"`
@@ -2524,7 +2524,7 @@ func (s *ListPermissionsOutput) SetPermissions(v []*PermissionEntry) *ListPermis
 }
 
 type ListWorkspacesInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The maximum number of workspaces to include in the results.
 	MaxResults *int64 `location:"querystring" locationName:"maxResults" min:"1" type:"integer"`

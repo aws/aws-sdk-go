@@ -8730,7 +8730,7 @@ func (s *DeleteBackupVaultInput) SetBackupVaultName(v string) *DeleteBackupVault
 }
 
 type DeleteBackupVaultLockConfigurationInput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 
 	// The name of the backup vault from which to delete Backup Vault Lock.
 	//
@@ -8779,7 +8779,7 @@ func (s *DeleteBackupVaultLockConfigurationInput) SetBackupVaultName(v string) *
 }
 
 type DeleteBackupVaultLockConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
@@ -15162,7 +15162,7 @@ func (s *PutBackupVaultLockConfigurationInput) SetMinRetentionDays(v int64) *Put
 }
 
 type PutBackupVaultLockConfigurationOutput struct {
-	_ struct{} `type:"structure"`
+	_ struct{} `type:"structure" nopayload:"true"`
 }
 
 // String returns the string representation.
