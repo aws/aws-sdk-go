@@ -96,6 +96,10 @@ type BackupAPI interface {
 	DeleteBackupVaultAccessPolicyWithContext(aws.Context, *backup.DeleteBackupVaultAccessPolicyInput, ...request.Option) (*backup.DeleteBackupVaultAccessPolicyOutput, error)
 	DeleteBackupVaultAccessPolicyRequest(*backup.DeleteBackupVaultAccessPolicyInput) (*request.Request, *backup.DeleteBackupVaultAccessPolicyOutput)
 
+	DeleteBackupVaultLockConfiguration(*backup.DeleteBackupVaultLockConfigurationInput) (*backup.DeleteBackupVaultLockConfigurationOutput, error)
+	DeleteBackupVaultLockConfigurationWithContext(aws.Context, *backup.DeleteBackupVaultLockConfigurationInput, ...request.Option) (*backup.DeleteBackupVaultLockConfigurationOutput, error)
+	DeleteBackupVaultLockConfigurationRequest(*backup.DeleteBackupVaultLockConfigurationInput) (*request.Request, *backup.DeleteBackupVaultLockConfigurationOutput)
+
 	DeleteBackupVaultNotifications(*backup.DeleteBackupVaultNotificationsInput) (*backup.DeleteBackupVaultNotificationsOutput, error)
 	DeleteBackupVaultNotificationsWithContext(aws.Context, *backup.DeleteBackupVaultNotificationsInput, ...request.Option) (*backup.DeleteBackupVaultNotificationsOutput, error)
 	DeleteBackupVaultNotificationsRequest(*backup.DeleteBackupVaultNotificationsInput) (*request.Request, *backup.DeleteBackupVaultNotificationsOutput)
@@ -304,6 +308,10 @@ type BackupAPI interface {
 	PutBackupVaultAccessPolicy(*backup.PutBackupVaultAccessPolicyInput) (*backup.PutBackupVaultAccessPolicyOutput, error)
 	PutBackupVaultAccessPolicyWithContext(aws.Context, *backup.PutBackupVaultAccessPolicyInput, ...request.Option) (*backup.PutBackupVaultAccessPolicyOutput, error)
 	PutBackupVaultAccessPolicyRequest(*backup.PutBackupVaultAccessPolicyInput) (*request.Request, *backup.PutBackupVaultAccessPolicyOutput)
+
+	PutBackupVaultLockConfiguration(*backup.PutBackupVaultLockConfigurationInput) (*backup.PutBackupVaultLockConfigurationOutput, error)
+	PutBackupVaultLockConfigurationWithContext(aws.Context, *backup.PutBackupVaultLockConfigurationInput, ...request.Option) (*backup.PutBackupVaultLockConfigurationOutput, error)
+	PutBackupVaultLockConfigurationRequest(*backup.PutBackupVaultLockConfigurationInput) (*request.Request, *backup.PutBackupVaultLockConfigurationOutput)
 
 	PutBackupVaultNotifications(*backup.PutBackupVaultNotificationsInput) (*backup.PutBackupVaultNotificationsOutput, error)
 	PutBackupVaultNotificationsWithContext(aws.Context, *backup.PutBackupVaultNotificationsInput, ...request.Option) (*backup.PutBackupVaultNotificationsOutput, error)

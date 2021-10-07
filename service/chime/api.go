@@ -19416,6 +19416,10 @@ func (c *Chime) UpdatePhoneNumberRequest(input *UpdatePhoneNumberInput) (req *re
 //   * ThrottledClientException
 //   The client exceeded its request rate limit.
 //
+//   * ConflictException
+//   The request could not be processed because of conflict in the current state
+//   of the resource.
+//
 //   * ServiceUnavailableException
 //   The service is currently unavailable.
 //
@@ -21317,6 +21321,96 @@ func (s *AppInstanceUserSummary) SetName(v string) *AppInstanceUserSummary {
 	return s
 }
 
+// The configuration for the artifacts.
+type ArtifactsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the audio artifacts.
+	//
+	// Audio is a required field
+	Audio *AudioArtifactsConfiguration `type:"structure" required:"true"`
+
+	// The configuration for the content artifacts.
+	//
+	// Content is a required field
+	Content *ContentArtifactsConfiguration `type:"structure" required:"true"`
+
+	// The configuration for the video artifacts.
+	//
+	// Video is a required field
+	Video *VideoArtifactsConfiguration `type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArtifactsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ArtifactsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ArtifactsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ArtifactsConfiguration"}
+	if s.Audio == nil {
+		invalidParams.Add(request.NewErrParamRequired("Audio"))
+	}
+	if s.Content == nil {
+		invalidParams.Add(request.NewErrParamRequired("Content"))
+	}
+	if s.Video == nil {
+		invalidParams.Add(request.NewErrParamRequired("Video"))
+	}
+	if s.Audio != nil {
+		if err := s.Audio.Validate(); err != nil {
+			invalidParams.AddNested("Audio", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Content != nil {
+		if err := s.Content.Validate(); err != nil {
+			invalidParams.AddNested("Content", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.Video != nil {
+		if err := s.Video.Validate(); err != nil {
+			invalidParams.AddNested("Video", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAudio sets the Audio field's value.
+func (s *ArtifactsConfiguration) SetAudio(v *AudioArtifactsConfiguration) *ArtifactsConfiguration {
+	s.Audio = v
+	return s
+}
+
+// SetContent sets the Content field's value.
+func (s *ArtifactsConfiguration) SetContent(v *ContentArtifactsConfiguration) *ArtifactsConfiguration {
+	s.Content = v
+	return s
+}
+
+// SetVideo sets the Video field's value.
+func (s *ArtifactsConfiguration) SetVideo(v *VideoArtifactsConfiguration) *ArtifactsConfiguration {
+	s.Video = v
+	return s
+}
+
 type AssociatePhoneNumberWithUserInput struct {
 	_ struct{} `type:"structure"`
 
@@ -21786,6 +21880,53 @@ func (s *Attendee) SetExternalUserId(v string) *Attendee {
 // SetJoinToken sets the JoinToken field's value.
 func (s *Attendee) SetJoinToken(v string) *Attendee {
 	s.JoinToken = &v
+	return s
+}
+
+// The audio artifact configuration object.
+type AudioArtifactsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The MUX type of the audio artifact configuration object.
+	//
+	// MuxType is a required field
+	MuxType *string `type:"string" required:"true" enum:"AudioMuxType"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioArtifactsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AudioArtifactsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *AudioArtifactsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "AudioArtifactsConfiguration"}
+	if s.MuxType == nil {
+		invalidParams.Add(request.NewErrParamRequired("MuxType"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMuxType sets the MuxType field's value.
+func (s *AudioArtifactsConfiguration) SetMuxType(v string) *AudioArtifactsConfiguration {
+	s.MuxType = &v
 	return s
 }
 
@@ -23791,6 +23932,68 @@ func (s *ChannelSummary) SetPrivacy(v string) *ChannelSummary {
 	return s
 }
 
+// The configuration object of the Amazon Chime SDK meeting for a specified
+// media capture pipeline. SourceType must be ChimeSdkMeeting.
+type ChimeSdkMeetingConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The configuration for the artifacts in an Amazon Chime SDK meeting.
+	ArtifactsConfiguration *ArtifactsConfiguration `type:"structure"`
+
+	// The source configuration for a specified media capture pipline.
+	SourceConfiguration *SourceConfiguration `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChimeSdkMeetingConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ChimeSdkMeetingConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ChimeSdkMeetingConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ChimeSdkMeetingConfiguration"}
+	if s.ArtifactsConfiguration != nil {
+		if err := s.ArtifactsConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ArtifactsConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SourceConfiguration != nil {
+		if err := s.SourceConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("SourceConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetArtifactsConfiguration sets the ArtifactsConfiguration field's value.
+func (s *ChimeSdkMeetingConfiguration) SetArtifactsConfiguration(v *ArtifactsConfiguration) *ChimeSdkMeetingConfiguration {
+	s.ArtifactsConfiguration = v
+	return s
+}
+
+// SetSourceConfiguration sets the SourceConfiguration field's value.
+func (s *ChimeSdkMeetingConfiguration) SetSourceConfiguration(v *SourceConfiguration) *ChimeSdkMeetingConfiguration {
+	s.SourceConfiguration = v
+	return s
+}
+
 // The request could not be processed because of conflict in the current state
 // of the resource.
 type ConflictException struct {
@@ -23856,6 +24059,62 @@ func (s *ConflictException) StatusCode() int {
 // RequestID returns the service's response RequestID for request.
 func (s *ConflictException) RequestID() string {
 	return s.RespMetadata.RequestID
+}
+
+// The content artifact object.
+type ContentArtifactsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The MUX type of the artifact configuration.
+	MuxType *string `type:"string" enum:"ContentMuxType"`
+
+	// Indicates whether the content artifact is enabled or disabled.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"ArtifactsState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentArtifactsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s ContentArtifactsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *ContentArtifactsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "ContentArtifactsConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMuxType sets the MuxType field's value.
+func (s *ContentArtifactsConfiguration) SetMuxType(v string) *ContentArtifactsConfiguration {
+	s.MuxType = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *ContentArtifactsConfiguration) SetState(v string) *ContentArtifactsConfiguration {
+	s.State = &v
+	return s
 }
 
 // The retention settings that determine how long to retain conversation messages
@@ -25325,6 +25584,10 @@ func (s *CreateChannelOutput) SetChannelArn(v string) *CreateChannelOutput {
 type CreateMediaCapturePipelineInput struct {
 	_ struct{} `type:"structure"`
 
+	// The configuration for a specified media capture pipeline. SourceType must
+	// be ChimeSdkMeeting.
+	ChimeSdkMeetingConfiguration *ChimeSdkMeetingConfiguration `type:"structure"`
+
 	// The token assigned to the client making the pipeline request.
 	//
 	// ClientRequestToken is a sensitive parameter and its value will be
@@ -25405,11 +25668,22 @@ func (s *CreateMediaCapturePipelineInput) Validate() error {
 	if s.SourceType == nil {
 		invalidParams.Add(request.NewErrParamRequired("SourceType"))
 	}
+	if s.ChimeSdkMeetingConfiguration != nil {
+		if err := s.ChimeSdkMeetingConfiguration.Validate(); err != nil {
+			invalidParams.AddNested("ChimeSdkMeetingConfiguration", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
 	}
 	return nil
+}
+
+// SetChimeSdkMeetingConfiguration sets the ChimeSdkMeetingConfiguration field's value.
+func (s *CreateMediaCapturePipelineInput) SetChimeSdkMeetingConfiguration(v *ChimeSdkMeetingConfiguration) *CreateMediaCapturePipelineInput {
+	s.ChimeSdkMeetingConfiguration = v
+	return s
 }
 
 // SetClientRequestToken sets the ClientRequestToken field's value.
@@ -37645,10 +37919,14 @@ func (s LogoutUserOutput) GoString() string {
 	return s.String()
 }
 
-// A media capture pipeline object. A string consisting of an ID, source type,
-// a source ARN, a sink type, and a sink ARN.
+// A media capture pipeline object consisting of an ID, source type, source
+// ARN, a sink type, a sink ARN, and a configuration object.
 type MediaCapturePipeline struct {
 	_ struct{} `type:"structure"`
+
+	// The configuration for a specified media capture pipeline. SourceType must
+	// be ChimeSdkMeeting.
+	ChimeSdkMeetingConfiguration *ChimeSdkMeetingConfiguration `type:"structure"`
 
 	// The time at which the capture pipeline was created, in ISO 8601 format.
 	CreatedTimestamp *time.Time `type:"timestamp" timestampFormat:"iso8601"`
@@ -37700,6 +37978,12 @@ func (s MediaCapturePipeline) String() string {
 // value will be replaced with "sensitive".
 func (s MediaCapturePipeline) GoString() string {
 	return s.String()
+}
+
+// SetChimeSdkMeetingConfiguration sets the ChimeSdkMeetingConfiguration field's value.
+func (s *MediaCapturePipeline) SetChimeSdkMeetingConfiguration(v *ChimeSdkMeetingConfiguration) *MediaCapturePipeline {
+	s.ChimeSdkMeetingConfiguration = v
+	return s
 }
 
 // SetCreatedTimestamp sets the CreatedTimestamp field's value.
@@ -37761,7 +38045,7 @@ type MediaPlacement struct {
 	// The audio host URL.
 	AudioHostUrl *string `type:"string"`
 
-	// The URL of the S3 bucket used to store the captured media.
+	// The event ingestion URL.
 	EventIngestionUrl *string `type:"string"`
 
 	// The screen data URL.
@@ -41476,6 +41760,64 @@ func (s *SearchAvailablePhoneNumbersOutput) SetNextToken(v string) *SearchAvaila
 	return s
 }
 
+// The video streams to capture for a specified media capture pipeline. The
+// total number of video streams can't exceed 25.
+type SelectedVideoStreams struct {
+	_ struct{} `type:"structure"`
+
+	// The attendee IDs of the streams selected for a media capture pipeline.
+	AttendeeIds []*string `min:"1" type:"list"`
+
+	// The external user IDs of the streams selected for a media capture pipeline.
+	ExternalUserIds []*string `min:"1" type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SelectedVideoStreams) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SelectedVideoStreams) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SelectedVideoStreams) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SelectedVideoStreams"}
+	if s.AttendeeIds != nil && len(s.AttendeeIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("AttendeeIds", 1))
+	}
+	if s.ExternalUserIds != nil && len(s.ExternalUserIds) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("ExternalUserIds", 1))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAttendeeIds sets the AttendeeIds field's value.
+func (s *SelectedVideoStreams) SetAttendeeIds(v []*string) *SelectedVideoStreams {
+	s.AttendeeIds = v
+	return s
+}
+
+// SetExternalUserIds sets the ExternalUserIds field's value.
+func (s *SelectedVideoStreams) SetExternalUserIds(v []*string) *SelectedVideoStreams {
+	s.ExternalUserIds = v
+	return s
+}
+
 type SendChannelMessageInput struct {
 	_ struct{} `type:"structure"`
 
@@ -42166,6 +42508,54 @@ func (s *SipRuleTargetApplication) SetPriority(v int64) *SipRuleTargetApplicatio
 // SetSipMediaApplicationId sets the SipMediaApplicationId field's value.
 func (s *SipRuleTargetApplication) SetSipMediaApplicationId(v string) *SipRuleTargetApplication {
 	s.SipMediaApplicationId = &v
+	return s
+}
+
+// Source configuration for a specified media capture pipeline.
+type SourceConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The selected video streams to capture for a specified media capture pipeline.
+	// The number of video streams can't exceed 25.
+	SelectedVideoStreams *SelectedVideoStreams `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s SourceConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *SourceConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "SourceConfiguration"}
+	if s.SelectedVideoStreams != nil {
+		if err := s.SelectedVideoStreams.Validate(); err != nil {
+			invalidParams.AddNested("SelectedVideoStreams", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetSelectedVideoStreams sets the SelectedVideoStreams field's value.
+func (s *SourceConfiguration) SetSelectedVideoStreams(v *SelectedVideoStreams) *SourceConfiguration {
+	s.SelectedVideoStreams = v
 	return s
 }
 
@@ -44499,14 +44889,10 @@ type UpdateGlobalSettingsInput struct {
 	_ struct{} `type:"structure"`
 
 	// The Amazon Chime Business Calling settings.
-	//
-	// BusinessCalling is a required field
-	BusinessCalling *BusinessCallingSettings `type:"structure" required:"true"`
+	BusinessCalling *BusinessCallingSettings `type:"structure"`
 
 	// The Amazon Chime Voice Connector settings.
-	//
-	// VoiceConnector is a required field
-	VoiceConnector *VoiceConnectorSettings `type:"structure" required:"true"`
+	VoiceConnector *VoiceConnectorSettings `type:"structure"`
 }
 
 // String returns the string representation.
@@ -44525,22 +44911,6 @@ func (s UpdateGlobalSettingsInput) String() string {
 // value will be replaced with "sensitive".
 func (s UpdateGlobalSettingsInput) GoString() string {
 	return s.String()
-}
-
-// Validate inspects the fields of the type to determine if they are valid.
-func (s *UpdateGlobalSettingsInput) Validate() error {
-	invalidParams := request.ErrInvalidParams{Context: "UpdateGlobalSettingsInput"}
-	if s.BusinessCalling == nil {
-		invalidParams.Add(request.NewErrParamRequired("BusinessCalling"))
-	}
-	if s.VoiceConnector == nil {
-		invalidParams.Add(request.NewErrParamRequired("VoiceConnector"))
-	}
-
-	if invalidParams.Len() > 0 {
-		return invalidParams
-	}
-	return nil
 }
 
 // SetBusinessCalling sets the BusinessCalling field's value.
@@ -46319,6 +46689,62 @@ func (s *UserSettings) SetTelephony(v *TelephonySettings) *UserSettings {
 	return s
 }
 
+// The video artifact configuration object.
+type VideoArtifactsConfiguration struct {
+	_ struct{} `type:"structure"`
+
+	// The MUX type of the video artifact configuration object.
+	MuxType *string `type:"string" enum:"VideoMuxType"`
+
+	// Indicates whether the video artifact is enabled or disabled.
+	//
+	// State is a required field
+	State *string `type:"string" required:"true" enum:"ArtifactsState"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoArtifactsConfiguration) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s VideoArtifactsConfiguration) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *VideoArtifactsConfiguration) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "VideoArtifactsConfiguration"}
+	if s.State == nil {
+		invalidParams.Add(request.NewErrParamRequired("State"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetMuxType sets the MuxType field's value.
+func (s *VideoArtifactsConfiguration) SetMuxType(v string) *VideoArtifactsConfiguration {
+	s.MuxType = &v
+	return s
+}
+
+// SetState sets the State field's value.
+func (s *VideoArtifactsConfiguration) SetState(v string) *VideoArtifactsConfiguration {
+	s.State = &v
+	return s
+}
+
 // The Amazon Chime Voice Connector configuration, including outbound host name
 // and encryption settings.
 type VoiceConnector struct {
@@ -46636,6 +47062,38 @@ func AppInstanceDataType_Values() []string {
 }
 
 const (
+	// ArtifactsStateEnabled is a ArtifactsState enum value
+	ArtifactsStateEnabled = "Enabled"
+
+	// ArtifactsStateDisabled is a ArtifactsState enum value
+	ArtifactsStateDisabled = "Disabled"
+)
+
+// ArtifactsState_Values returns all elements of the ArtifactsState enum
+func ArtifactsState_Values() []string {
+	return []string{
+		ArtifactsStateEnabled,
+		ArtifactsStateDisabled,
+	}
+}
+
+const (
+	// AudioMuxTypeAudioOnly is a AudioMuxType enum value
+	AudioMuxTypeAudioOnly = "AudioOnly"
+
+	// AudioMuxTypeAudioWithActiveSpeakerVideo is a AudioMuxType enum value
+	AudioMuxTypeAudioWithActiveSpeakerVideo = "AudioWithActiveSpeakerVideo"
+)
+
+// AudioMuxType_Values returns all elements of the AudioMuxType enum
+func AudioMuxType_Values() []string {
+	return []string{
+		AudioMuxTypeAudioOnly,
+		AudioMuxTypeAudioWithActiveSpeakerVideo,
+	}
+}
+
+const (
 	// BotTypeChatBot is a BotType enum value
 	BotTypeChatBot = "ChatBot"
 )
@@ -46764,6 +47222,18 @@ func ChannelPrivacy_Values() []string {
 	return []string{
 		ChannelPrivacyPublic,
 		ChannelPrivacyPrivate,
+	}
+}
+
+const (
+	// ContentMuxTypeContentOnly is a ContentMuxType enum value
+	ContentMuxTypeContentOnly = "ContentOnly"
+)
+
+// ContentMuxType_Values returns all elements of the ContentMuxType enum
+func ContentMuxType_Values() []string {
+	return []string{
+		ContentMuxTypeContentOnly,
 	}
 }
 
@@ -47516,6 +47986,18 @@ func UserType_Values() []string {
 	return []string{
 		UserTypePrivateUser,
 		UserTypeSharedDevice,
+	}
+}
+
+const (
+	// VideoMuxTypeVideoOnly is a VideoMuxType enum value
+	VideoMuxTypeVideoOnly = "VideoOnly"
+)
+
+// VideoMuxType_Values returns all elements of the VideoMuxType enum
+func VideoMuxType_Values() []string {
+	return []string{
+		VideoMuxTypeVideoOnly,
 	}
 }
 

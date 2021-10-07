@@ -367,6 +367,19 @@
         "UntagResourceRequest$ResourceARN": "<p>The resource ARN.</p>"
       }
     },
+    "ArtifactsConfiguration": {
+      "base": "<p>The configuration for the artifacts.</p>",
+      "refs": {
+        "ChimeSdkMeetingConfiguration$ArtifactsConfiguration": "<p>The configuration for the artifacts in an Amazon Chime SDK meeting.</p>"
+      }
+    },
+    "ArtifactsState": {
+      "base": null,
+      "refs": {
+        "ContentArtifactsConfiguration$State": "<p>Indicates whether the content artifact is enabled or disabled.</p>",
+        "VideoArtifactsConfiguration$State": "<p>Indicates whether the video artifact is enabled or disabled.</p>"
+      }
+    },
     "AssociatePhoneNumberWithUserRequest": {
       "base": null,
       "refs": {
@@ -415,6 +428,12 @@
         "GetAttendeeResponse$Attendee": "<p>The Amazon Chime SDK attendee information.</p>"
       }
     },
+    "AttendeeIdList": {
+      "base": null,
+      "refs": {
+        "SelectedVideoStreams$AttendeeIds": "<p>The attendee IDs of the streams selected for a media capture pipeline. </p>"
+      }
+    },
     "AttendeeList": {
       "base": null,
       "refs": {
@@ -435,6 +454,18 @@
         "CreateAttendeeRequest$Tags": "<p>The tag key-value pairs.</p>",
         "CreateAttendeeRequestItem$Tags": "<p>The tag key-value pairs.</p>",
         "TagAttendeeRequest$Tags": "<p>The tag key-value pairs.</p>"
+      }
+    },
+    "AudioArtifactsConfiguration": {
+      "base": "<p>The audio artifact configuration object.</p>",
+      "refs": {
+        "ArtifactsConfiguration$Audio": "<p>The configuration for the audio artifacts.</p>"
+      }
+    },
+    "AudioMuxType": {
+      "base": null,
+      "refs": {
+        "AudioArtifactsConfiguration$MuxType": "<p>The MUX type of the audio artifact configuration object.</p>"
       }
     },
     "BadRequestException": {
@@ -937,6 +968,13 @@
         "UpdateChannelResponse$ChannelArn": "<p>The ARN of the channel.</p>"
       }
     },
+    "ChimeSdkMeetingConfiguration": {
+      "base": "<p>The configuration object of the Amazon Chime SDK meeting for a specified media capture pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>",
+      "refs": {
+        "CreateMediaCapturePipelineRequest$ChimeSdkMeetingConfiguration": "<p>The configuration for a specified media capture pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>",
+        "MediaCapturePipeline$ChimeSdkMeetingConfiguration": "<p>The configuration for a specified media capture pipeline. <code>SourceType</code> must be <code>ChimeSdkMeeting</code>.</p>"
+      }
+    },
     "ClientRequestToken": {
       "base": null,
       "refs": {
@@ -961,6 +999,18 @@
         "ChannelMessage$Content": "<p>The message content.</p>",
         "ChannelMessageSummary$Content": "<p>The content of the message.</p>",
         "UpdateChannelMessageRequest$Content": "<p>The content of the message being updated.</p>"
+      }
+    },
+    "ContentArtifactsConfiguration": {
+      "base": "<p>The content artifact object.</p>",
+      "refs": {
+        "ArtifactsConfiguration$Content": "<p>The configuration for the content artifacts.</p>"
+      }
+    },
+    "ContentMuxType": {
+      "base": null,
+      "refs": {
+        "ContentArtifactsConfiguration$MuxType": "<p>The MUX type of the artifact configuration.</p>"
       }
     },
     "ConversationRetentionSettings": {
@@ -1662,6 +1712,12 @@
         "Meeting$ExternalMeetingId": "<p>The external meeting ID.</p>"
       }
     },
+    "ExternalUserIdList": {
+      "base": null,
+      "refs": {
+        "SelectedVideoStreams$ExternalUserIds": "<p>The external user IDs of the streams selected for a media capture pipeline.</p>"
+      }
+    },
     "ExternalUserIdType": {
       "base": null,
       "refs": {
@@ -1670,7 +1726,8 @@
         "CreateAttendeeRequest$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application.</p>",
         "CreateAttendeeRequestItem$ExternalUserId": "<p>The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application.</p>",
         "CreateMeetingRequest$MeetingHostId": "<p>Reserved.</p>",
-        "CreateMeetingWithAttendeesRequest$MeetingHostId": "<p>Reserved.</p>"
+        "CreateMeetingWithAttendeesRequest$MeetingHostId": "<p>Reserved.</p>",
+        "ExternalUserIdList$member": null
       }
     },
     "ForbiddenException": {
@@ -2012,6 +2069,7 @@
       "base": null,
       "refs": {
         "Attendee$AttendeeId": "<p>The Amazon Chime SDK attendee ID.</p>",
+        "AttendeeIdList$member": null,
         "BatchCreateAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "CreateAttendeeRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
         "CreateMeetingDialOutRequest$MeetingId": "<p>The Amazon Chime SDK meeting ID.</p>",
@@ -2498,7 +2556,7 @@
       }
     },
     "MediaCapturePipeline": {
-      "base": "<p>A media capture pipeline object. A string consisting of an ID, source type, a source ARN, a sink type, and a sink ARN.</p>",
+      "base": "<p>A media capture pipeline object consisting of an ID, source type, source ARN, a sink type, a sink ARN, and a configuration object.</p>",
       "refs": {
         "CreateMediaCapturePipelineResponse$MediaCapturePipeline": "<p>A media capture pipeline object, the ID, source type, source ARN, sink type, and sink ARN of a media capture pipeline object.</p>",
         "GetMediaCapturePipelineResponse$MediaCapturePipeline": "<p>The media capture pipeline object.</p>",
@@ -3462,6 +3520,12 @@
       "refs": {
       }
     },
+    "SelectedVideoStreams": {
+      "base": "<p>The video streams to capture for a specified media capture pipeline. The total number of video streams can't exceed 25.</p>",
+      "refs": {
+        "SourceConfiguration$SelectedVideoStreams": "<p>The selected video streams to capture for a specified media capture pipeline. The number of video streams can't exceed 25.</p>"
+      }
+    },
     "SendChannelMessageRequest": {
       "base": null,
       "refs": {
@@ -3642,6 +3706,12 @@
       "base": null,
       "refs": {
         "ListChannelMessagesRequest$SortOrder": "<p>The order in which you want messages sorted. Default is Descending, based on time created.</p>"
+      }
+    },
+    "SourceConfiguration": {
+      "base": "<p>Source configuration for a specified media capture pipeline.</p>",
+      "refs": {
+        "ChimeSdkMeetingConfiguration$SourceConfiguration": "<p>The source configuration for a specified media capture pipline.</p>"
       }
     },
     "StartMeetingTranscriptionRequest": {
@@ -4208,7 +4278,7 @@
         "MediaPlacement$ScreenViewingUrl": "<p>The screen viewing URL.</p>",
         "MediaPlacement$SignalingUrl": "<p>The signaling URL.</p>",
         "MediaPlacement$TurnControlUrl": "<p>The turn control URL.</p>",
-        "MediaPlacement$EventIngestionUrl": "<p>The URL of the S3 bucket used to store the captured media.</p>"
+        "MediaPlacement$EventIngestionUrl": "<p>The event ingestion URL.</p>"
       }
     },
     "UrlType": {
@@ -4291,6 +4361,18 @@
         "UpdateUserRequest$UserType": "<p>The user type.</p>",
         "UpdateUserRequestItem$UserType": "<p>The user type.</p>",
         "User$UserType": "<p>The user type.</p>"
+      }
+    },
+    "VideoArtifactsConfiguration": {
+      "base": "<p>The video artifact configuration object.</p>",
+      "refs": {
+        "ArtifactsConfiguration$Video": "<p>The configuration for the video artifacts.</p>"
+      }
+    },
+    "VideoMuxType": {
+      "base": null,
+      "refs": {
+        "VideoArtifactsConfiguration$MuxType": "<p>The MUX type of the video artifact configuration object.</p>"
       }
     },
     "VoiceConnector": {

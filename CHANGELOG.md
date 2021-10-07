@@ -1,3 +1,17 @@
+Release v1.40.58 (2021-10-07)
+===
+
+### Service Client Updates
+* `service/backup`: Updates service API and documentation
+* `service/chime`: Updates service API and documentation
+  * This release enables customers to configure Chime MediaCapturePipeline via API.
+* `service/firehose`: Updates service API and documentation
+  * Allow support for Amazon Opensearch Service(successor to Amazon Elasticsearch Service) as a Kinesis Data Firehose delivery destination.
+* `service/grafana`: Updates service API, documentation, paginators, and examples
+* `service/kendra`: Updates service API and documentation
+  * Amazon Kendra now supports indexing and querying documents in different languages.
+* `service/schemas`: Updates service API and documentation
+
 Release v1.40.57 (2021-10-06)
 ===
 

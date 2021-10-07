@@ -3408,6 +3408,7 @@
         {"shape":"ForbiddenException"},
         {"shape":"BadRequestException"},
         {"shape":"ThrottledClientException"},
+        {"shape":"ConflictException"},
         {"shape":"ServiceUnavailableException"},
         {"shape":"ServiceFailureException"}
       ]
@@ -3807,6 +3808,26 @@
       "pattern":"^arn[\\/\\:\\-\\_\\.a-zA-Z0-9]+$",
       "sensitive":true
     },
+    "ArtifactsConfiguration":{
+      "type":"structure",
+      "required":[
+        "Audio",
+        "Video",
+        "Content"
+      ],
+      "members":{
+        "Audio":{"shape":"AudioArtifactsConfiguration"},
+        "Video":{"shape":"VideoArtifactsConfiguration"},
+        "Content":{"shape":"ContentArtifactsConfiguration"}
+      }
+    },
+    "ArtifactsState":{
+      "type":"string",
+      "enum":[
+        "Enabled",
+        "Disabled"
+      ]
+    },
     "AssociatePhoneNumberWithUserRequest":{
       "type":"structure",
       "required":[
@@ -3905,6 +3926,11 @@
         "JoinToken":{"shape":"JoinTokenString"}
       }
     },
+    "AttendeeIdList":{
+      "type":"list",
+      "member":{"shape":"GuidString"},
+      "min":1
+    },
     "AttendeeList":{
       "type":"list",
       "member":{"shape":"Attendee"}
@@ -3920,6 +3946,20 @@
       "member":{"shape":"Tag"},
       "max":10,
       "min":1
+    },
+    "AudioArtifactsConfiguration":{
+      "type":"structure",
+      "required":["MuxType"],
+      "members":{
+        "MuxType":{"shape":"AudioMuxType"}
+      }
+    },
+    "AudioMuxType":{
+      "type":"string",
+      "enum":[
+        "AudioOnly",
+        "AudioWithActiveSpeakerVideo"
+      ]
     },
     "BadRequestException":{
       "type":"structure",
@@ -4373,6 +4413,13 @@
       "min":5,
       "pattern":"arn:[a-z0-9-\\.]{1,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[a-z0-9-\\.]{0,63}:[^/].{0,1023}"
     },
+    "ChimeSdkMeetingConfiguration":{
+      "type":"structure",
+      "members":{
+        "SourceConfiguration":{"shape":"SourceConfiguration"},
+        "ArtifactsConfiguration":{"shape":"ArtifactsConfiguration"}
+      }
+    },
     "ClientRequestToken":{
       "type":"string",
       "max":64,
@@ -4395,6 +4442,18 @@
       "min":0,
       "pattern":"[\\s\\S]*",
       "sensitive":true
+    },
+    "ContentArtifactsConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"ArtifactsState"},
+        "MuxType":{"shape":"ContentMuxType"}
+      }
+    },
+    "ContentMuxType":{
+      "type":"string",
+      "enum":["ContentOnly"]
     },
     "ConversationRetentionSettings":{
       "type":"structure",
@@ -4693,7 +4752,8 @@
         "ClientRequestToken":{
           "shape":"ClientRequestToken",
           "idempotencyToken":true
-        }
+        },
+        "ChimeSdkMeetingConfiguration":{"shape":"ChimeSdkMeetingConfiguration"}
       }
     },
     "CreateMediaCapturePipelineResponse":{
@@ -5856,6 +5916,11 @@
       "max":64,
       "min":2,
       "sensitive":true
+    },
+    "ExternalUserIdList":{
+      "type":"list",
+      "member":{"shape":"ExternalUserIdType"},
+      "min":1
     },
     "ExternalUserIdType":{
       "type":"string",
@@ -7469,7 +7534,8 @@
         "SinkType":{"shape":"MediaPipelineSinkType"},
         "SinkArn":{"shape":"Arn"},
         "CreatedTimestamp":{"shape":"Iso8601Timestamp"},
-        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"}
+        "UpdatedTimestamp":{"shape":"Iso8601Timestamp"},
+        "ChimeSdkMeetingConfiguration":{"shape":"ChimeSdkMeetingConfiguration"}
       }
     },
     "MediaCapturePipelineList":{
@@ -8498,6 +8564,13 @@
         "NextToken":{"shape":"String"}
       }
     },
+    "SelectedVideoStreams":{
+      "type":"structure",
+      "members":{
+        "AttendeeIds":{"shape":"AttendeeIdList"},
+        "ExternalUserIds":{"shape":"ExternalUserIdList"}
+      }
+    },
     "SendChannelMessageRequest":{
       "type":"structure",
       "required":[
@@ -8677,6 +8750,12 @@
         "ASCENDING",
         "DESCENDING"
       ]
+    },
+    "SourceConfiguration":{
+      "type":"structure",
+      "members":{
+        "SelectedVideoStreams":{"shape":"SelectedVideoStreams"}
+      }
     },
     "StartMeetingTranscriptionRequest":{
       "type":"structure",
@@ -9216,10 +9295,6 @@
     },
     "UpdateGlobalSettingsRequest":{
       "type":"structure",
-      "required":[
-        "BusinessCalling",
-        "VoiceConnector"
-      ],
       "members":{
         "BusinessCalling":{"shape":"BusinessCallingSettings"},
         "VoiceConnector":{"shape":"VoiceConnectorSettings"}
@@ -9609,6 +9684,18 @@
         "PrivateUser",
         "SharedDevice"
       ]
+    },
+    "VideoArtifactsConfiguration":{
+      "type":"structure",
+      "required":["State"],
+      "members":{
+        "State":{"shape":"ArtifactsState"},
+        "MuxType":{"shape":"VideoMuxType"}
+      }
+    },
+    "VideoMuxType":{
+      "type":"string",
+      "enum":["VideoOnly"]
     },
     "VoiceConnector":{
       "type":"structure",
