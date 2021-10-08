@@ -8527,8 +8527,8 @@
       "members":{
         "DestinationCidrBlock":{"shape":"String"},
         "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
-        "DryRun":{"shape":"Boolean"},
-        "LocalGatewayVirtualInterfaceGroupId":{"shape":"LocalGatewayVirtualInterfaceGroupId"}
+        "LocalGatewayVirtualInterfaceGroupId":{"shape":"LocalGatewayVirtualInterfaceGroupId"},
+        "DryRun":{"shape":"Boolean"}
       }
     },
     "CreateLocalGatewayRouteResult":{
@@ -9208,8 +9208,8 @@
     "CreateSubnetRequest":{
       "type":"structure",
       "required":[
-        "VpcId",
-        "CidrBlock"
+        "CidrBlock",
+        "VpcId"
       ],
       "members":{
         "TagSpecifications":{
@@ -9218,14 +9218,14 @@
         },
         "AvailabilityZone":{"shape":"String"},
         "AvailabilityZoneId":{"shape":"String"},
+        "CidrBlock":{"shape":"String"},
         "Ipv6CidrBlock":{"shape":"String"},
         "OutpostArn":{"shape":"String"},
         "VpcId":{"shape":"VpcId"},
         "DryRun":{
           "shape":"Boolean",
           "locationName":"dryRun"
-        },
-        "CidrBlock":{"shape":"String"}
+        }
       }
     },
     "CreateSubnetResult":{
@@ -30052,19 +30052,16 @@
     },
     "SearchLocalGatewayRoutesRequest":{
       "type":"structure",
-      "required":[
-        "LocalGatewayRouteTableId",
-        "Filters"
-      ],
+      "required":["LocalGatewayRouteTableId"],
       "members":{
         "LocalGatewayRouteTableId":{"shape":"LocalGatewayRoutetableId"},
-        "MaxResults":{"shape":"MaxResults"},
-        "NextToken":{"shape":"String"},
-        "DryRun":{"shape":"Boolean"},
         "Filters":{
           "shape":"FilterList",
           "locationName":"Filter"
-        }
+        },
+        "MaxResults":{"shape":"MaxResults"},
+        "NextToken":{"shape":"String"},
+        "DryRun":{"shape":"Boolean"}
       }
     },
     "SearchLocalGatewayRoutesResult":{

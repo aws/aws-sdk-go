@@ -8435,8 +8435,8 @@ func (s *CloudWatchLogGroupLogDestination) SetLogPrefix(v string) *CloudWatchLog
 type CodeHookSpecification struct {
 	_ struct{} `type:"structure"`
 
-	// Specifies a Lambda function that verifies requests to a bot or fulfilles
-	// the user's request to a bot.
+	// Specifies a Lambda function that verifies requests to a bot or fulfills the
+	// user's request to a bot.
 	//
 	// LambdaCodeHook is a required field
 	LambdaCodeHook *LambdaCodeHook `locationName:"lambdaCodeHook" type:"structure" required:"true"`
@@ -9086,7 +9086,7 @@ type CreateBotLocaleInput struct {
 	// For example, suppose a bot is configured with the confidence threshold of
 	// 0.80 and the AMAZON.FallbackIntent. Amazon Lex returns three alternative
 	// intents with the following confidence scores: IntentA (0.70), IntentB (0.60),
-	// IntentC (0.50). The response from the PostText operation would be:
+	// IntentC (0.50). The response from the RecognizeText operation would be:
 	//
 	//    * AMAZON.FallbackIntent
 	//
@@ -13728,7 +13728,7 @@ type DescribeImportOutput struct {
 	CreationDateTime *time.Time `locationName:"creationDateTime" type:"timestamp"`
 
 	// If the importStatus field is Failed, this provides one or more reasons for
-	// the failture.
+	// the failure.
 	FailureReasons []*string `locationName:"failureReasons" type:"list"`
 
 	// The unique identifier of the described import.
@@ -14758,7 +14758,7 @@ func (s *DialogCodeHookSettings) SetEnabled(v bool) *DialogCodeHookSettings {
 	return s
 }
 
-// Filtes the response form the operation
+// Filters the response form the operation
 type ExportFilter struct {
 	_ struct{} `type:"structure"`
 
@@ -14775,7 +14775,7 @@ type ExportFilter struct {
 	// Operator is a required field
 	Operator *string `locationName:"operator" type:"string" required:"true" enum:"ExportFilterOperator"`
 
-	// The values to use to fileter the response.
+	// The values to use to filter the response.
 	//
 	// Values is a required field
 	Values []*string `locationName:"values" min:"1" type:"list" required:"true"`
@@ -15050,6 +15050,16 @@ type FulfillmentCodeHookSettings struct {
 	//
 	// Enabled is a required field
 	Enabled *bool `locationName:"enabled" type:"boolean" required:"true"`
+
+	// Provides settings for update messages sent to the user for long-running Lambda
+	// fulfillment functions. Fulfillment updates can be used only with streaming
+	// conversations.
+	FulfillmentUpdatesSpecification *FulfillmentUpdatesSpecification `locationName:"fulfillmentUpdatesSpecification" type:"structure"`
+
+	// Provides settings for messages sent to the user for after the Lambda fulfillment
+	// function completes. Post-fulfillment messages can be sent for both streaming
+	// and non-streaming conversations.
+	PostFulfillmentStatusSpecification *PostFulfillmentStatusSpecification `locationName:"postFulfillmentStatusSpecification" type:"structure"`
 }
 
 // String returns the string representation.
@@ -15076,6 +15086,16 @@ func (s *FulfillmentCodeHookSettings) Validate() error {
 	if s.Enabled == nil {
 		invalidParams.Add(request.NewErrParamRequired("Enabled"))
 	}
+	if s.FulfillmentUpdatesSpecification != nil {
+		if err := s.FulfillmentUpdatesSpecification.Validate(); err != nil {
+			invalidParams.AddNested("FulfillmentUpdatesSpecification", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.PostFulfillmentStatusSpecification != nil {
+		if err := s.PostFulfillmentStatusSpecification.Validate(); err != nil {
+			invalidParams.AddNested("PostFulfillmentStatusSpecification", err.(request.ErrInvalidParams))
+		}
+	}
 
 	if invalidParams.Len() > 0 {
 		return invalidParams
@@ -15086,6 +15106,294 @@ func (s *FulfillmentCodeHookSettings) Validate() error {
 // SetEnabled sets the Enabled field's value.
 func (s *FulfillmentCodeHookSettings) SetEnabled(v bool) *FulfillmentCodeHookSettings {
 	s.Enabled = &v
+	return s
+}
+
+// SetFulfillmentUpdatesSpecification sets the FulfillmentUpdatesSpecification field's value.
+func (s *FulfillmentCodeHookSettings) SetFulfillmentUpdatesSpecification(v *FulfillmentUpdatesSpecification) *FulfillmentCodeHookSettings {
+	s.FulfillmentUpdatesSpecification = v
+	return s
+}
+
+// SetPostFulfillmentStatusSpecification sets the PostFulfillmentStatusSpecification field's value.
+func (s *FulfillmentCodeHookSettings) SetPostFulfillmentStatusSpecification(v *PostFulfillmentStatusSpecification) *FulfillmentCodeHookSettings {
+	s.PostFulfillmentStatusSpecification = v
+	return s
+}
+
+// Provides settings for a message that is sent to the user when a fulfillment
+// Lambda function starts running.
+type FulfillmentStartResponseSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether the user can interrupt the start message while it is playing.
+	AllowInterrupt *bool `locationName:"allowInterrupt" type:"boolean"`
+
+	// The delay between when the Lambda fulfillment function starts running and
+	// the start message is played. If the Lambda function returns before the delay
+	// is over, the start message isn't played.
+	//
+	// DelayInSeconds is a required field
+	DelayInSeconds *int64 `locationName:"delayInSeconds" min:"1" type:"integer" required:"true"`
+
+	// One to 5 message groups that contain start messages. Amazon Lex chooses one
+	// of the messages to play to the user.
+	//
+	// MessageGroups is a required field
+	MessageGroups []*MessageGroup `locationName:"messageGroups" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FulfillmentStartResponseSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FulfillmentStartResponseSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FulfillmentStartResponseSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FulfillmentStartResponseSpecification"}
+	if s.DelayInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("DelayInSeconds"))
+	}
+	if s.DelayInSeconds != nil && *s.DelayInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("DelayInSeconds", 1))
+	}
+	if s.MessageGroups == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageGroups"))
+	}
+	if s.MessageGroups != nil && len(s.MessageGroups) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageGroups", 1))
+	}
+	if s.MessageGroups != nil {
+		for i, v := range s.MessageGroups {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MessageGroups", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowInterrupt sets the AllowInterrupt field's value.
+func (s *FulfillmentStartResponseSpecification) SetAllowInterrupt(v bool) *FulfillmentStartResponseSpecification {
+	s.AllowInterrupt = &v
+	return s
+}
+
+// SetDelayInSeconds sets the DelayInSeconds field's value.
+func (s *FulfillmentStartResponseSpecification) SetDelayInSeconds(v int64) *FulfillmentStartResponseSpecification {
+	s.DelayInSeconds = &v
+	return s
+}
+
+// SetMessageGroups sets the MessageGroups field's value.
+func (s *FulfillmentStartResponseSpecification) SetMessageGroups(v []*MessageGroup) *FulfillmentStartResponseSpecification {
+	s.MessageGroups = v
+	return s
+}
+
+// Provides settings for a message that is sent periodically to the user while
+// a fulfillment Lambda function is running.
+type FulfillmentUpdateResponseSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether the user can interrupt an update message while it is playing.
+	AllowInterrupt *bool `locationName:"allowInterrupt" type:"boolean"`
+
+	// The frequency that a message is sent to the user. When the period ends, Amazon
+	// Lex chooses a message from the message groups and plays it to the user. If
+	// the fulfillment Lambda returns before the first period ends, an update message
+	// is not played to the user.
+	//
+	// FrequencyInSeconds is a required field
+	FrequencyInSeconds *int64 `locationName:"frequencyInSeconds" min:"1" type:"integer" required:"true"`
+
+	// One to 5 message groups that contain update messages. Amazon Lex chooses
+	// one of the messages to play to the user.
+	//
+	// MessageGroups is a required field
+	MessageGroups []*MessageGroup `locationName:"messageGroups" min:"1" type:"list" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FulfillmentUpdateResponseSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FulfillmentUpdateResponseSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FulfillmentUpdateResponseSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FulfillmentUpdateResponseSpecification"}
+	if s.FrequencyInSeconds == nil {
+		invalidParams.Add(request.NewErrParamRequired("FrequencyInSeconds"))
+	}
+	if s.FrequencyInSeconds != nil && *s.FrequencyInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("FrequencyInSeconds", 1))
+	}
+	if s.MessageGroups == nil {
+		invalidParams.Add(request.NewErrParamRequired("MessageGroups"))
+	}
+	if s.MessageGroups != nil && len(s.MessageGroups) < 1 {
+		invalidParams.Add(request.NewErrParamMinLen("MessageGroups", 1))
+	}
+	if s.MessageGroups != nil {
+		for i, v := range s.MessageGroups {
+			if v == nil {
+				continue
+			}
+			if err := v.Validate(); err != nil {
+				invalidParams.AddNested(fmt.Sprintf("%s[%v]", "MessageGroups", i), err.(request.ErrInvalidParams))
+			}
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetAllowInterrupt sets the AllowInterrupt field's value.
+func (s *FulfillmentUpdateResponseSpecification) SetAllowInterrupt(v bool) *FulfillmentUpdateResponseSpecification {
+	s.AllowInterrupt = &v
+	return s
+}
+
+// SetFrequencyInSeconds sets the FrequencyInSeconds field's value.
+func (s *FulfillmentUpdateResponseSpecification) SetFrequencyInSeconds(v int64) *FulfillmentUpdateResponseSpecification {
+	s.FrequencyInSeconds = &v
+	return s
+}
+
+// SetMessageGroups sets the MessageGroups field's value.
+func (s *FulfillmentUpdateResponseSpecification) SetMessageGroups(v []*MessageGroup) *FulfillmentUpdateResponseSpecification {
+	s.MessageGroups = v
+	return s
+}
+
+// Provides information for updating the user on the progress of fulfilling
+// an intent.
+type FulfillmentUpdatesSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Determines whether fulfillment updates are sent to the user. When this field
+	// is true, updates are sent.
+	//
+	// If the active field is set to true, the startResponse, updateResponse, and
+	// timeoutInSeconds fields are required.
+	//
+	// Active is a required field
+	Active *bool `locationName:"active" type:"boolean" required:"true"`
+
+	// Provides configuration information for the message sent to users when the
+	// fulfillment Lambda functions starts running.
+	StartResponse *FulfillmentStartResponseSpecification `locationName:"startResponse" type:"structure"`
+
+	// The length of time that the fulfillment Lambda function should run before
+	// it times out.
+	TimeoutInSeconds *int64 `locationName:"timeoutInSeconds" min:"1" type:"integer"`
+
+	// Provides configuration information for messages sent periodically to the
+	// user while the fulfillment Lambda function is running.
+	UpdateResponse *FulfillmentUpdateResponseSpecification `locationName:"updateResponse" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FulfillmentUpdatesSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s FulfillmentUpdatesSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *FulfillmentUpdatesSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "FulfillmentUpdatesSpecification"}
+	if s.Active == nil {
+		invalidParams.Add(request.NewErrParamRequired("Active"))
+	}
+	if s.TimeoutInSeconds != nil && *s.TimeoutInSeconds < 1 {
+		invalidParams.Add(request.NewErrParamMinValue("TimeoutInSeconds", 1))
+	}
+	if s.StartResponse != nil {
+		if err := s.StartResponse.Validate(); err != nil {
+			invalidParams.AddNested("StartResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.UpdateResponse != nil {
+		if err := s.UpdateResponse.Validate(); err != nil {
+			invalidParams.AddNested("UpdateResponse", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetActive sets the Active field's value.
+func (s *FulfillmentUpdatesSpecification) SetActive(v bool) *FulfillmentUpdatesSpecification {
+	s.Active = &v
+	return s
+}
+
+// SetStartResponse sets the StartResponse field's value.
+func (s *FulfillmentUpdatesSpecification) SetStartResponse(v *FulfillmentStartResponseSpecification) *FulfillmentUpdatesSpecification {
+	s.StartResponse = v
+	return s
+}
+
+// SetTimeoutInSeconds sets the TimeoutInSeconds field's value.
+func (s *FulfillmentUpdatesSpecification) SetTimeoutInSeconds(v int64) *FulfillmentUpdatesSpecification {
+	s.TimeoutInSeconds = &v
+	return s
+}
+
+// SetUpdateResponse sets the UpdateResponse field's value.
+func (s *FulfillmentUpdatesSpecification) SetUpdateResponse(v *FulfillmentUpdateResponseSpecification) *FulfillmentUpdatesSpecification {
+	s.UpdateResponse = v
 	return s
 }
 
@@ -15273,7 +15581,7 @@ func (s *ImportFilter) SetValues(v []*string) *ImportFilter {
 }
 
 // Provides information about the bot or bot locale that you want to import.
-// You can sepcifiy the botImportSpecification or the botLocaleImportSpecification,
+// You can specify the botImportSpecification or the botLocaleImportSpecification,
 // but not both.
 type ImportResourceSpecification struct {
 	_ struct{} `type:"structure"`
@@ -15541,8 +15849,8 @@ type IntentClosingSetting struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether an intent's closing response is used. When this field is
-	// false, the closing response isn't sent to the user and no closing input from
-	// the user is used. If the active field isn't specified, the default is true.
+	// false, the closing response isn't sent to the user. If the active field isn't
+	// specified, the default is true.
 	Active *bool `locationName:"active" type:"boolean"`
 
 	// The response that Amazon Lex sends to the user when the intent is complete.
@@ -15605,9 +15913,8 @@ type IntentConfirmationSetting struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether the intent's confirmation is sent to the user. When this
-	// field is false, confirmation and declination responses aren't sent and processing
-	// continues as if the responses aren't present. If the active field isn't specified,
-	// the default is true.
+	// field is false, confirmation and declination responses aren't sent. If the
+	// active field isn't specified, the default is true.
 	Active *bool `locationName:"active" type:"boolean"`
 
 	// When the user answers "no" to the question defined in promptSpecification,
@@ -16065,8 +16372,8 @@ func (s *KendraConfiguration) SetQueryFilterStringEnabled(v bool) *KendraConfigu
 	return s
 }
 
-// Specifies a Lambda function that verifies requests to a bot or fulfilles
-// the user's request to a bot.
+// Specifies a Lambda function that verifies requests to a bot or fulfills the
+// user's request to a bot.
 type LambdaCodeHook struct {
 	_ struct{} `type:"structure"`
 
@@ -17362,7 +17669,7 @@ type ListExportsInput struct {
 	// are returned.
 	MaxResults *int64 `locationName:"maxResults" min:"1" type:"integer"`
 
-	// If the response from the ListExports operation contans more results that
+	// If the response from the ListExports operation contains more results that
 	// specified in the maxResults parameter, a token is returned in the response.
 	// Use that token in the nextToken parameter to return the next page of results.
 	NextToken *string `locationName:"nextToken" type:"string"`
@@ -18872,6 +19179,86 @@ func (s *PlainTextMessage) SetValue(v string) *PlainTextMessage {
 	return s
 }
 
+// Provides a setting that determines whether the post-fulfillment response
+// is sent to the user. For more information, see https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete
+// (https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete)
+type PostFulfillmentStatusSpecification struct {
+	_ struct{} `type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	FailureResponse *ResponseSpecification `locationName:"failureResponse" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	SuccessResponse *ResponseSpecification `locationName:"successResponse" type:"structure"`
+
+	// Specifies a list of message groups that Amazon Lex uses to respond the user
+	// input.
+	TimeoutResponse *ResponseSpecification `locationName:"timeoutResponse" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostFulfillmentStatusSpecification) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PostFulfillmentStatusSpecification) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PostFulfillmentStatusSpecification) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PostFulfillmentStatusSpecification"}
+	if s.FailureResponse != nil {
+		if err := s.FailureResponse.Validate(); err != nil {
+			invalidParams.AddNested("FailureResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.SuccessResponse != nil {
+		if err := s.SuccessResponse.Validate(); err != nil {
+			invalidParams.AddNested("SuccessResponse", err.(request.ErrInvalidParams))
+		}
+	}
+	if s.TimeoutResponse != nil {
+		if err := s.TimeoutResponse.Validate(); err != nil {
+			invalidParams.AddNested("TimeoutResponse", err.(request.ErrInvalidParams))
+		}
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetFailureResponse sets the FailureResponse field's value.
+func (s *PostFulfillmentStatusSpecification) SetFailureResponse(v *ResponseSpecification) *PostFulfillmentStatusSpecification {
+	s.FailureResponse = v
+	return s
+}
+
+// SetSuccessResponse sets the SuccessResponse field's value.
+func (s *PostFulfillmentStatusSpecification) SetSuccessResponse(v *ResponseSpecification) *PostFulfillmentStatusSpecification {
+	s.SuccessResponse = v
+	return s
+}
+
+// SetTimeoutResponse sets the TimeoutResponse field's value.
+func (s *PostFulfillmentStatusSpecification) SetTimeoutResponse(v *ResponseSpecification) *PostFulfillmentStatusSpecification {
+	s.TimeoutResponse = v
+	return s
+}
+
 // Your request couldn't be completed because one or more request fields aren't
 // valid. Check the fields in your request and try again.
 type PreconditionFailedException struct {
@@ -19005,7 +19392,7 @@ type PromptSpecification struct {
 	// Indicates whether the user can interrupt a speech prompt from the bot.
 	AllowInterrupt *bool `locationName:"allowInterrupt" type:"boolean"`
 
-	// The maximum number of times the bot tries to elicit a resonse from the user
+	// The maximum number of times the bot tries to elicit a response from the user
 	// using this prompt.
 	//
 	// MaxRetries is a required field
@@ -20270,7 +20657,7 @@ type SlotTypeValue struct {
 	// The value of the slot type entry.
 	SampleValue *SampleValue `locationName:"sampleValue" type:"structure"`
 
-	// Additional values releated to the slot type entry.
+	// Additional values related to the slot type entry.
 	Synonyms []*SampleValue `locationName:"synonyms" min:"1" type:"list"`
 }
 
@@ -20338,7 +20725,7 @@ type SlotValueElicitationSetting struct {
 
 	// A list of default values for a slot. Default values are used when Amazon
 	// Lex hasn't determined a value for a slot. You can specify default values
-	// from context variables, sesion attributes, and defined values.
+	// from context variables, session attributes, and defined values.
 	DefaultValueSpecification *SlotDefaultValueSpecification `locationName:"defaultValueSpecification" type:"structure"`
 
 	// The prompt that Amazon Lex uses to elicit the slot value from the user.
@@ -23579,8 +23966,7 @@ type WaitAndContinueSpecification struct {
 	_ struct{} `type:"structure"`
 
 	// Specifies whether the bot will wait for a user to respond. When this field
-	// is false, wait and continue responses for a slot aren't used and the bot
-	// expects an appropriate response within the configured timeout. If the active
+	// is false, wait and continue responses for a slot aren't used. If the active
 	// field isn't specified, the default is true.
 	Active *bool `locationName:"active" type:"boolean"`
 

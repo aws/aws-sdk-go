@@ -9,12 +9,14 @@
     "CreatePreset": "Create a new preset. For information about job templates see the User Guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "CreateQueue": "Create a new transcoding queue. For information about queues, see Working With Queues in the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/working-with-queues.html",
     "DeleteJobTemplate": "Permanently delete a job template you have created.",
+    "DeletePolicy": "Permanently delete a policy that you created.",
     "DeletePreset": "Permanently delete a preset you have created.",
     "DeleteQueue": "Permanently delete a queue you have created.",
     "DescribeEndpoints": "Send an request with an empty body to the regional API endpoint to get your account API endpoint.",
     "DisassociateCertificate": "Removes an association between the Amazon Resource Name (ARN) of an AWS Certificate Manager (ACM) certificate and an AWS Elemental MediaConvert resource.",
     "GetJob": "Retrieve the JSON for a specific completed transcoding job.",
     "GetJobTemplate": "Retrieve the JSON for a specific job template.",
+    "GetPolicy": "Retrieve the JSON for your policy.",
     "GetPreset": "Retrieve the JSON for a specific preset.",
     "GetQueue": "Retrieve the JSON for a specific queue.",
     "ListJobTemplates": "Retrieve a JSON array of up to twenty of your job templates. This will return the templates themselves, not just a list of them. To retrieve the next twenty templates, use the nextToken string returned with the array",
@@ -22,6 +24,7 @@
     "ListPresets": "Retrieve a JSON array of up to twenty of your presets. This will return the presets themselves, not just a list of them. To retrieve the next twenty presets, use the nextToken string returned with the array.",
     "ListQueues": "Retrieve a JSON array of up to twenty of your queues. This will return the queues themselves, not just a list of them. To retrieve the next twenty queues, use the nextToken string returned with the array.",
     "ListTagsForResource": "Retrieve the tags for a MediaConvert resource.",
+    "PutPolicy": "Create or change your policy. For more information about policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
     "TagResource": "Add tags to a MediaConvert queue, preset, or job template. For information about tagging, see the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/tagging-resources.html",
     "UntagResource": "Remove tags from a MediaConvert queue, preset, or job template. For information about tagging, see the User Guide at https://docs.aws.amazon.com/mediaconvert/latest/ug/tagging-resources.html",
     "UpdateJobTemplate": "Modify one of your existing job templates.",
@@ -953,6 +956,16 @@
       "refs": {
       }
     },
+    "DeletePolicyRequest": {
+      "base": "Send a request to permanently delete a policy that you created.",
+      "refs": {
+      }
+    },
+    "DeletePolicyResponse": {
+      "base": "Successful DELETE policy requests will return an OK message.",
+      "refs": {
+      }
+    },
     "DeletePresetRequest": {
       "base": "Delete a preset by sending a request with the preset name",
       "refs": {
@@ -1417,6 +1430,16 @@
     },
     "GetJobTemplateResponse": {
       "base": "Successful get job template requests will return an OK message and the job template JSON.",
+      "refs": {
+      }
+    },
+    "GetPolicyRequest": {
+      "base": "Send a request to retrieve the JSON for your policy.",
+      "refs": {
+      }
+    },
+    "GetPolicyResponse": {
+      "base": "Successful GET policy requests will return the JSON for your policy.",
       "refs": {
       }
     },
@@ -2032,6 +2055,14 @@
       "refs": {
         "Input$FilterEnable": "Specify how the transcoding service applies the denoise and deblock filters. You must also enable the filters separately, with Denoise (InputDenoiseFilter) and Deblock (InputDeblockFilter). * Auto - The transcoding service determines whether to apply filtering, depending on input type and quality. * Disable - The input is not filtered. This is true even if you use the API to enable them in (InputDeblockFilter) and (InputDeblockFilter). * Force - The input is filtered regardless of input type.",
         "InputTemplate$FilterEnable": "Specify how the transcoding service applies the denoise and deblock filters. You must also enable the filters separately, with Denoise (InputDenoiseFilter) and Deblock (InputDeblockFilter). * Auto - The transcoding service determines whether to apply filtering, depending on input type and quality. * Disable - The input is not filtered. This is true even if you use the API to enable them in (InputDeblockFilter) and (InputDeblockFilter). * Force - The input is filtered regardless of input type."
+      }
+    },
+    "InputPolicy": {
+      "base": "An input policy allows or disallows a job you submit to run based on the conditions that you specify.",
+      "refs": {
+        "Policy$HttpInputs": "Allow or disallow jobs that specify HTTP inputs.",
+        "Policy$HttpsInputs": "Allow or disallow jobs that specify HTTPS inputs.",
+        "Policy$S3Inputs": "Allow or disallow jobs that specify Amazon S3 inputs."
       }
     },
     "InputPsiControl": {
@@ -2828,6 +2859,14 @@
         "VideoPreprocessor$PartnerWatermarking": "If you work with a third party video watermarking partner, use the group of settings that correspond with your watermarking partner to include watermarks in your output."
       }
     },
+    "Policy": {
+      "base": "A policy configures behavior that you allow or disallow for your account. For information about MediaConvert policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
+      "refs": {
+        "GetPolicyResponse$Policy": "A policy configures behavior that you allow or disallow for your account. For information about MediaConvert policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
+        "PutPolicyRequest$Policy": "A policy configures behavior that you allow or disallow for your account. For information about MediaConvert policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html",
+        "PutPolicyResponse$Policy": "A policy configures behavior that you allow or disallow for your account. For information about MediaConvert policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html"
+      }
+    },
     "Preset": {
       "base": "A preset is a collection of preconfigured media conversion settings that you want MediaConvert to apply to the output during the conversion process.",
       "refs": {
@@ -2916,6 +2955,16 @@
       "base": "When you do frame rate conversion from 23.976 frames per second (fps) to 29.97 fps, and your output scan type is interlaced, you can optionally enable hard telecine (HARD) to create a smoother picture. When you keep the default value, None (NONE), MediaConvert does a standard frame rate conversion to 29.97 without doing anything with the field polarity to create a smoother picture.",
       "refs": {
         "ProresSettings$Telecine": "When you do frame rate conversion from 23.976 frames per second (fps) to 29.97 fps, and your output scan type is interlaced, you can optionally enable hard telecine (HARD) to create a smoother picture. When you keep the default value, None (NONE), MediaConvert does a standard frame rate conversion to 29.97 without doing anything with the field polarity to create a smoother picture."
+      }
+    },
+    "PutPolicyRequest": {
+      "base": "Create or change a policy by sending a request that includes your policy in JSON.",
+      "refs": {
+      }
+    },
+    "PutPolicyResponse": {
+      "base": "Successful PUT policy requests will return your policy.",
+      "refs": {
       }
     },
     "Queue": {

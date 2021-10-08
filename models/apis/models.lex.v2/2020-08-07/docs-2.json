@@ -476,12 +476,15 @@
       "base": null,
       "refs": {
         "AggregatedUtterancesSummary$containsDataFromDeletedResources": "<p>Aggregated utterance data may contain utterances from versions of your bot that have since been deleted. When the aggregated contains this kind of data, this field is set to true.</p>",
-        "IntentClosingSetting$active": "<p>Specifies whether an intent's closing response is used. When this field is false, the closing response isn't sent to the user and no closing input from the user is used. If the <code>active</code> field isn't specified, the default is true.</p>",
-        "IntentConfirmationSetting$active": "<p>Specifies whether the intent's confirmation is sent to the user. When this field is false, confirmation and declination responses aren't sent and processing continues as if the responses aren't present. If the <code>active</code> field isn't specified, the default is true.</p>",
+        "FulfillmentStartResponseSpecification$allowInterrupt": "<p>Determines whether the user can interrupt the start message while it is playing.</p>",
+        "FulfillmentUpdateResponseSpecification$allowInterrupt": "<p>Determines whether the user can interrupt an update message while it is playing.</p>",
+        "FulfillmentUpdatesSpecification$active": "<p>Determines whether fulfillment updates are sent to the user. When this field is true, updates are sent.</p> <p>If the <code>active</code> field is set to true, the <code>startResponse</code>, <code>updateResponse</code>, and <code>timeoutInSeconds</code> fields are required.</p>",
+        "IntentClosingSetting$active": "<p>Specifies whether an intent's closing response is used. When this field is false, the closing response isn't sent to the user. If the <code>active</code> field isn't specified, the default is true.</p>",
+        "IntentConfirmationSetting$active": "<p>Specifies whether the intent's confirmation is sent to the user. When this field is false, confirmation and declination responses aren't sent. If the <code>active</code> field isn't specified, the default is true.</p>",
         "PromptSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech prompt from the bot.</p>",
         "ResponseSpecification$allowInterrupt": "<p>Indicates whether the user can interrupt a speech response from Amazon Lex.</p>",
         "StillWaitingResponseSpecification$allowInterrupt": "<p>Indicates that the user can interrupt the response by speaking while the message is being played.</p>",
-        "WaitAndContinueSpecification$active": "<p>Specifies whether the bot will wait for a user to respond. When this field is false, wait and continue responses for a slot aren't used and the bot expects an appropriate response within the configured timeout. If the <code>active</code> field isn't specified, the default is true.</p>"
+        "WaitAndContinueSpecification$active": "<p>Specifies whether the bot will wait for a user to respond. When this field is false, wait and continue responses for a slot aren't used. If the <code>active</code> field isn't specified, the default is true.</p>"
       }
     },
     "BuildBotLocaleRequest": {
@@ -648,7 +651,7 @@
       "base": null,
       "refs": {
         "BotLocaleImportSpecification$nluIntentConfidenceThreshold": "<p>Determines the threshold where Amazon Lex will insert the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents. <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> are only inserted if they are configured for the bot. </p> <p>For example, suppose a bot is configured with the confidence threshold of 0.80 and the <code>AMAZON.FallbackIntent</code>. Amazon Lex returns three alternative intents with the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50). The response from the <code>PostText</code> operation would be:</p> <ul> <li> <p> <code>AMAZON.FallbackIntent</code> </p> </li> <li> <p> <code>IntentA</code> </p> </li> <li> <p> <code>IntentB</code> </p> </li> <li> <p> <code>IntentC</code> </p> </li> </ul>",
-        "CreateBotLocaleRequest$nluIntentConfidenceThreshold": "<p>Determines the threshold where Amazon Lex will insert the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents. <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> are only inserted if they are configured for the bot.</p> <p>For example, suppose a bot is configured with the confidence threshold of 0.80 and the <code>AMAZON.FallbackIntent</code>. Amazon Lex returns three alternative intents with the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50). The response from the PostText operation would be:</p> <ul> <li> <p>AMAZON.FallbackIntent</p> </li> <li> <p>IntentA</p> </li> <li> <p>IntentB</p> </li> <li> <p>IntentC</p> </li> </ul>",
+        "CreateBotLocaleRequest$nluIntentConfidenceThreshold": "<p>Determines the threshold where Amazon Lex will insert the <code>AMAZON.FallbackIntent</code>, <code>AMAZON.KendraSearchIntent</code>, or both when returning alternative intents. <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> are only inserted if they are configured for the bot.</p> <p>For example, suppose a bot is configured with the confidence threshold of 0.80 and the <code>AMAZON.FallbackIntent</code>. Amazon Lex returns three alternative intents with the following confidence scores: IntentA (0.70), IntentB (0.60), IntentC (0.50). The response from the <code>RecognizeText</code> operation would be:</p> <ul> <li> <p>AMAZON.FallbackIntent</p> </li> <li> <p>IntentA</p> </li> <li> <p>IntentB</p> </li> <li> <p>IntentC</p> </li> </ul>",
         "CreateBotLocaleResponse$nluIntentConfidenceThreshold": "<p>The specified confidence threshold for inserting the <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> intents.</p>",
         "DescribeBotLocaleResponse$nluIntentConfidenceThreshold": "<p>The confidence threshold where Amazon Lex inserts the <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> intents in the list of possible intents for an utterance.</p>",
         "UpdateBotLocaleRequest$nluIntentConfidenceThreshold": "<p>The new confidence threshold where Amazon Lex inserts the <code>AMAZON.FallbackIntent</code> and <code>AMAZON.KendraSearchIntent</code> intents in the list of possible intents for an utterance.</p>",
@@ -1129,7 +1132,7 @@
       }
     },
     "ExportFilter": {
-      "base": "<p>Filtes the response form the operation</p>",
+      "base": "<p>Filters the response form the operation</p>",
       "refs": {
         "ExportFilters$member": null
       }
@@ -1208,7 +1211,7 @@
         "DescribeBotLocaleResponse$failureReasons": "<p>if <code>botLocaleStatus</code> is <code>Failed</code>, Amazon Lex explains why it failed to build the bot.</p>",
         "DescribeBotVersionResponse$failureReasons": "<p>If the <code>botStatus</code> is <code>Failed</code>, this contains a list of reasons that the version couldn't be built.</p>",
         "DescribeExportResponse$failureReasons": "<p>If the <code>exportStatus</code> is failed, contains one or more reasons why the export could not be completed.</p>",
-        "DescribeImportResponse$failureReasons": "<p>If the <code>importStatus</code> field is <code>Failed</code>, this provides one or more reasons for the failture.</p>",
+        "DescribeImportResponse$failureReasons": "<p>If the <code>importStatus</code> field is <code>Failed</code>, this provides one or more reasons for the failure.</p>",
         "UpdateBotLocaleResponse$failureReasons": "<p>If the <code>botLocaleStatus</code> is <code>Failed</code>, the <code>failureReasons</code> field lists the errors that occurred while building the bot.</p>"
       }
     },
@@ -1224,7 +1227,7 @@
         "AggregatedUtterancesFilter$values": "<p>The value to use for filtering the list of bots.</p>",
         "BotFilter$values": "<p>The value to use for filtering the list of bots.</p>",
         "BotLocaleFilter$values": "<p>The value to use for filtering the list of bots.</p>",
-        "ExportFilter$values": "<p>The values to use to fileter the response.</p>",
+        "ExportFilter$values": "<p>The values to use to filter the response.</p>",
         "ImportFilter$values": "<p>The values to use to filter the response.</p>",
         "IntentFilter$values": "<p>The value to use for the filter.</p>",
         "SlotFilter$values": "<p>The value to use to filter the response.</p>",
@@ -1239,6 +1242,42 @@
         "DescribeIntentResponse$fulfillmentCodeHook": "<p>The Lambda function called when the intent is complete and ready for fulfillment.</p>",
         "UpdateIntentRequest$fulfillmentCodeHook": "<p>The new Lambda function to call when all of the intents required slots are provided and the intent is ready for fulfillment.</p>",
         "UpdateIntentResponse$fulfillmentCodeHook": "<p>The updated Lambda function called when the intent is ready for fulfillment.</p>"
+      }
+    },
+    "FulfillmentStartResponseDelay": {
+      "base": null,
+      "refs": {
+        "FulfillmentStartResponseSpecification$delayInSeconds": "<p>The delay between when the Lambda fulfillment function starts running and the start message is played. If the Lambda function returns before the delay is over, the start message isn't played.</p>"
+      }
+    },
+    "FulfillmentStartResponseSpecification": {
+      "base": "<p>Provides settings for a message that is sent to the user when a fulfillment Lambda function starts running.</p>",
+      "refs": {
+        "FulfillmentUpdatesSpecification$startResponse": "<p>Provides configuration information for the message sent to users when the fulfillment Lambda functions starts running.</p>"
+      }
+    },
+    "FulfillmentTimeout": {
+      "base": null,
+      "refs": {
+        "FulfillmentUpdatesSpecification$timeoutInSeconds": "<p>The length of time that the fulfillment Lambda function should run before it times out.</p>"
+      }
+    },
+    "FulfillmentUpdateResponseFrequency": {
+      "base": null,
+      "refs": {
+        "FulfillmentUpdateResponseSpecification$frequencyInSeconds": "<p>The frequency that a message is sent to the user. When the period ends, Amazon Lex chooses a message from the message groups and plays it to the user. If the fulfillment Lambda returns before the first period ends, an update message is not played to the user.</p>"
+      }
+    },
+    "FulfillmentUpdateResponseSpecification": {
+      "base": "<p>Provides settings for a message that is sent periodically to the user while a fulfillment Lambda function is running.</p>",
+      "refs": {
+        "FulfillmentUpdatesSpecification$updateResponse": "<p>Provides configuration information for messages sent periodically to the user while the fulfillment Lambda function is running.</p>"
+      }
+    },
+    "FulfillmentUpdatesSpecification": {
+      "base": "<p>Provides information for updating the user on the progress of fulfilling an intent.</p>",
+      "refs": {
+        "FulfillmentCodeHookSettings$fulfillmentUpdatesSpecification": "<p>Provides settings for update messages sent to the user for long-running Lambda fulfillment functions. Fulfillment updates can be used only with streaming conversations.</p>"
       }
     },
     "HitCount": {
@@ -1423,7 +1462,7 @@
       }
     },
     "ImportResourceSpecification": {
-      "base": "<p>Provides information about the bot or bot locale that you want to import. You can sepcifiy the <code>botImportSpecification</code> or the <code>botLocaleImportSpecification</code>, but not both.</p>",
+      "base": "<p>Provides information about the bot or bot locale that you want to import. You can specify the <code>botImportSpecification</code> or the <code>botLocaleImportSpecification</code>, but not both.</p>",
       "refs": {
         "DescribeImportResponse$resourceSpecification": "<p>The specifications of the imported bot or bot locale.</p>",
         "StartImportRequest$resourceSpecification": "<p>Parameters for creating the bot or bot locale.</p>",
@@ -1601,7 +1640,7 @@
       }
     },
     "LambdaCodeHook": {
-      "base": "<p>Specifies a Lambda function that verifies requests to a bot or fulfilles the user's request to a bot.</p>",
+      "base": "<p>Specifies a Lambda function that verifies requests to a bot or fulfills the user's request to a bot.</p>",
       "refs": {
         "CodeHookSpecification$lambdaCodeHook": null
       }
@@ -1846,6 +1885,8 @@
     "MessageGroupsList": {
       "base": null,
       "refs": {
+        "FulfillmentStartResponseSpecification$messageGroups": "<p>One to 5 message groups that contain start messages. Amazon Lex chooses one of the messages to play to the user.</p>",
+        "FulfillmentUpdateResponseSpecification$messageGroups": "<p>One to 5 message groups that contain update messages. Amazon Lex chooses one of the messages to play to the user.</p>",
         "PromptSpecification$messageGroups": "<p>A collection of messages that Amazon Lex can send to the user. Amazon Lex chooses the actual message to send at runtime.</p>",
         "ResponseSpecification$messageGroups": "<p>A collection of responses that Amazon Lex can send to the user. Amazon Lex chooses the actual response to send at runtime.</p>",
         "StillWaitingResponseSpecification$messageGroups": "<p>One or more message groups, each containing one or more messages, that define the prompts that Amazon Lex sends to the user.</p>"
@@ -1934,7 +1975,7 @@
         "ListBuiltInIntentsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListBuiltInIntents</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListBotAliases</code> operation request to get the next page of results.</p>",
         "ListBuiltInSlotTypesRequest$nextToken": "<p>If the response from the <code>ListBuiltInSlotTypes</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListBuiltInSlotTypesResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListBuiltInSlotTypes</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>LIstBuiltInSlotTypes</code> operation request to get the next page of results.</p>",
-        "ListExportsRequest$nextToken": "<p>If the response from the <code>ListExports</code> operation contans more results that specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
+        "ListExportsRequest$nextToken": "<p>If the response from the <code>ListExports</code> operation contains more results that specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListExportsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListExports</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListExports</code> operation request to get the next page of results.</p>",
         "ListImportsRequest$nextToken": "<p>If the response from the <code>ListImports</code> operation contains more results than specified in the <code>maxResults</code> parameter, a token is returned in the response. Use that token in the <code>nextToken</code> parameter to return the next page of results.</p>",
         "ListImportsResponse$nextToken": "<p>A token that indicates whether there are more results to return in a response to the <code>ListImports</code> operation. If the <code>nextToken</code> field is present, you send the contents as the <code>nextToken</code> parameter of a <code>ListImports</code> operation request to get the next page of results.</p>",
@@ -2024,6 +2065,12 @@
         "UpdateResourcePolicyRequest$policy": "<p>A resource policy to add to the resource. The policy is a JSON structure that contains one or more statements that define the policy. The policy must follow the IAM syntax. For more information about the contents of a JSON policy document, see <a href=\"https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html\"> IAM JSON policy reference </a>. </p> <p>If the policy isn't valid, Amazon Lex returns a validation exception.</p>"
       }
     },
+    "PostFulfillmentStatusSpecification": {
+      "base": "<p>Provides a setting that determines whether the post-fulfillment response is sent to the user. For more information, see <a href=\"https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete\">https://docs.aws.amazon.com/lexv2/latest/dg/streaming-progress.html#progress-complete</a> </p>",
+      "refs": {
+        "FulfillmentCodeHookSettings$postFulfillmentStatusSpecification": "<p>Provides settings for messages sent to the user for after the Lambda fulfillment function completes. Post-fulfillment messages can be sent for both streaming and non-streaming conversations.</p>"
+      }
+    },
     "PreconditionFailedException": {
       "base": "<p>Your request couldn't be completed because one or more request fields aren't valid. Check the fields in your request and try again.</p>",
       "refs": {
@@ -2063,7 +2110,7 @@
     "PromptMaxRetries": {
       "base": null,
       "refs": {
-        "PromptSpecification$maxRetries": "<p>The maximum number of times the bot tries to elicit a resonse from the user using this prompt.</p>"
+        "PromptSpecification$maxRetries": "<p>The maximum number of times the bot tries to elicit a response from the user using this prompt.</p>"
       }
     },
     "PromptSpecification": {
@@ -2109,6 +2156,9 @@
       "refs": {
         "IntentClosingSetting$closingResponse": "<p>The response that Amazon Lex sends to the user when the intent is complete.</p>",
         "IntentConfirmationSetting$declinationResponse": "<p>When the user answers \"no\" to the question defined in <code>promptSpecification</code>, Amazon Lex responds with this response to acknowledge that the intent was canceled. </p>",
+        "PostFulfillmentStatusSpecification$successResponse": null,
+        "PostFulfillmentStatusSpecification$failureResponse": null,
+        "PostFulfillmentStatusSpecification$timeoutResponse": null,
         "WaitAndContinueSpecification$waitingResponse": "<p>The response that Amazon Lex sends to indicate that the bot is waiting for the conversation to continue.</p>",
         "WaitAndContinueSpecification$continueResponse": "<p>The response that Amazon Lex sends to indicate that the bot is ready to continue the conversation.</p>"
       }
@@ -2264,7 +2314,7 @@
     "SlotDefaultValueSpecification": {
       "base": "<p>Defines a list of values that Amazon Lex should use as the default value for a slot.</p>",
       "refs": {
-        "SlotValueElicitationSetting$defaultValueSpecification": "<p>A list of default values for a slot. Default values are used when Amazon Lex hasn't determined a value for a slot. You can specify default values from context variables, sesion attributes, and defined values.</p>"
+        "SlotValueElicitationSetting$defaultValueSpecification": "<p>A list of default values for a slot. Default values are used when Amazon Lex hasn't determined a value for a slot. You can specify default values from context variables, session attributes, and defined values.</p>"
       }
     },
     "SlotDefaultValueString": {
@@ -2490,7 +2540,7 @@
     "SynonymList": {
       "base": null,
       "refs": {
-        "SlotTypeValue$synonyms": "<p>Additional values releated to the slot type entry.</p>"
+        "SlotTypeValue$synonyms": "<p>Additional values related to the slot type entry.</p>"
       }
     },
     "TagKey": {

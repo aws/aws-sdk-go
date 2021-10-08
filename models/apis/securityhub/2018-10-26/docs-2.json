@@ -10,7 +10,7 @@
     "BatchUpdateFindings": "<p>Used by Security Hub customers to update information about their investigation into a finding. Requested by administrator accounts or member accounts. Administrator accounts can update findings for their account and their member accounts. Member accounts can update findings for their account.</p> <p>Updates from <code>BatchUpdateFindings</code> do not affect the value of <code>UpdatedAt</code> for a finding.</p> <p>Administrator and member accounts can use <code>BatchUpdateFindings</code> to update the following finding fields and objects.</p> <ul> <li> <p> <code>Confidence</code> </p> </li> <li> <p> <code>Criticality</code> </p> </li> <li> <p> <code>Note</code> </p> </li> <li> <p> <code>RelatedFindings</code> </p> </li> <li> <p> <code>Severity</code> </p> </li> <li> <p> <code>Types</code> </p> </li> <li> <p> <code>UserDefinedFields</code> </p> </li> <li> <p> <code>VerificationState</code> </p> </li> <li> <p> <code>Workflow</code> </p> </li> </ul> <p>You can configure IAM policies to restrict access to fields and field values. For example, you might not want member accounts to be able to suppress findings or change the finding severity. See <a href=\"https://docs.aws.amazon.com/securityhub/latest/userguide/finding-update-batchupdatefindings.html#batchupdatefindings-configure-access\">Configuring access to BatchUpdateFindings</a> in the <i>Security Hub User Guide</i>.</p>",
     "CreateActionTarget": "<p>Creates a custom action target in Security Hub.</p> <p>You can use custom actions on findings and insights in Security Hub to trigger target actions in Amazon CloudWatch Events.</p>",
     "CreateInsight": "<p>Creates a custom insight in Security Hub. An insight is a consolidation of findings that relate to a security issue that requires attention or remediation.</p> <p>To group the related findings in the insight, use the <code>GroupByAttribute</code>.</p>",
-    "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the administrator account. If you are integrated with Organizations, then the administrator account is designated by the organization management account.</p> <p> <code>CreateMembers</code> is always used to add accounts that are not organization members.</p> <p>For accounts that are managed using Organizations, <code>CreateMembers</code> is only used in the following cases:</p> <ul> <li> <p>Security Hub is not configured to automatically add new organization accounts.</p> </li> <li> <p>The account was disassociated or deleted in Security Hub.</p> </li> </ul> <p>This action can only be used by an account that has Security Hub enabled. To enable Security Hub, you can use the <code>EnableSecurityHub</code> operation.</p> <p>For accounts that are not organization members, you create the account association and then send an invitation to the member account. To send the invitation, you use the <code>InviteMembers</code> operation. If the account owner accepts the invitation, the account becomes a member account in Security Hub.</p> <p>Accounts that are managed using Organizations do not receive an invitation. They automatically become a member account in Security Hub, and Security Hub is automatically enabled for those accounts. Note that Security Hub cannot be enabled automatically for the organization management account. The organization management account must enable Security Hub before the administrator account enables it as a member account.</p> <p>A permissions policy is added that permits the administrator account to view the findings generated in the member account. When Security Hub is enabled in a member account, the member account findings are also visible to the administrator account. </p> <p>To remove the association between the administrator and member accounts, use the <code>DisassociateFromMasterAccount</code> or <code>DisassociateMembers</code> operation.</p>",
+    "CreateMembers": "<p>Creates a member association in Security Hub between the specified accounts and the account used to make the request, which is the administrator account. If you are integrated with Organizations, then the administrator account is designated by the organization management account.</p> <p> <code>CreateMembers</code> is always used to add accounts that are not organization members.</p> <p>For accounts that are managed using Organizations, <code>CreateMembers</code> is only used in the following cases:</p> <ul> <li> <p>Security Hub is not configured to automatically add new organization accounts.</p> </li> <li> <p>The account was disassociated or deleted in Security Hub.</p> </li> </ul> <p>This action can only be used by an account that has Security Hub enabled. To enable Security Hub, you can use the <code>EnableSecurityHub</code> operation.</p> <p>For accounts that are not organization members, you create the account association and then send an invitation to the member account. To send the invitation, you use the <code>InviteMembers</code> operation. If the account owner accepts the invitation, the account becomes a member account in Security Hub.</p> <p>Accounts that are managed using Organizations do not receive an invitation. They automatically become a member account in Security Hub.</p> <ul> <li> <p>If the organization account does not have Security Hub enabled, then Security Hub and the default standards are automatically enabled. Note that Security Hub cannot be enabled automatically for the organization management account. The organization management account must enable Security Hub before the administrator account enables it as a member account.</p> </li> <li> <p>For organization accounts that already have Security Hub enabled, Security Hub does not make any other changes to those accounts. It does not change their enabled standards or controls.</p> </li> </ul> <p>A permissions policy is added that permits the administrator account to view the findings generated in the member account.</p> <p>To remove the association between the administrator and member accounts, use the <code>DisassociateFromMasterAccount</code> or <code>DisassociateMembers</code> operation.</p>",
     "DeclineInvitations": "<p>Declines invitations to become a member account.</p> <p>This operation is only used by accounts that are not part of an organization. Organization accounts do not receive invitations.</p>",
     "DeleteActionTarget": "<p>Deletes a custom action target from Security Hub.</p> <p>Deleting a custom action target does not affect any findings or insights that were already sent to Amazon CloudWatch Events using the custom action.</p>",
     "DeleteInsight": "<p>Deletes the insight specified by the <code>InsightArn</code>.</p>",
@@ -479,10 +479,28 @@
         "AwsCloudFrontDistributionDetails$Origins": "<p>A complex type that contains information about origins for this distribution.</p>"
       }
     },
+    "AwsCloudFrontDistributionViewerCertificate": {
+      "base": "<p>Provides information about the TLS/SSL configuration that the distribution uses to communicate with viewers.</p>",
+      "refs": {
+        "AwsCloudFrontDistributionDetails$ViewerCertificate": "<p>Provides information about the TLS/SSL configuration that the distribution uses to communicate with viewers.</p>"
+      }
+    },
     "AwsCloudTrailTrailDetails": {
       "base": "<p>Provides details about a CloudTrail trail.</p>",
       "refs": {
         "ResourceDetails$AwsCloudTrailTrail": "<p>Provides details about a CloudTrail trail.</p>"
+      }
+    },
+    "AwsCodeBuildProjectArtifactsDetails": {
+      "base": "<p>Information about the build artifacts for the CodeBuild project.</p>",
+      "refs": {
+        "AwsCodeBuildProjectArtifactsList$member": null
+      }
+    },
+    "AwsCodeBuildProjectArtifactsList": {
+      "base": null,
+      "refs": {
+        "AwsCodeBuildProjectDetails$Artifacts": "<p>Information about the build artifacts for the CodeBuild project.</p>"
       }
     },
     "AwsCodeBuildProjectDetails": {
@@ -497,10 +515,40 @@
         "AwsCodeBuildProjectDetails$Environment": "<p>Information about the build environment for this build project.</p>"
       }
     },
+    "AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails": {
+      "base": "<p>Information about an environment variable that is available to builds for the build project.</p>",
+      "refs": {
+        "AwsCodeBuildProjectEnvironmentEnvironmentVariablesList$member": null
+      }
+    },
+    "AwsCodeBuildProjectEnvironmentEnvironmentVariablesList": {
+      "base": null,
+      "refs": {
+        "AwsCodeBuildProjectEnvironment$EnvironmentVariables": "<p>A set of environment variables to make available to builds for the build project.</p>"
+      }
+    },
     "AwsCodeBuildProjectEnvironmentRegistryCredential": {
       "base": "<p>The credentials for access to a private registry.</p>",
       "refs": {
         "AwsCodeBuildProjectEnvironment$RegistryCredential": "<p>The credentials for access to a private registry.</p>"
+      }
+    },
+    "AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails": {
+      "base": "<p>Information about CloudWatch Logs for the build project.</p>",
+      "refs": {
+        "AwsCodeBuildProjectLogsConfigDetails$CloudWatchLogs": "<p>Information about CloudWatch Logs for the build project.</p>"
+      }
+    },
+    "AwsCodeBuildProjectLogsConfigDetails": {
+      "base": "<p>Information about logs for the build project.</p>",
+      "refs": {
+        "AwsCodeBuildProjectDetails$LogsConfig": "<p>Information about logs for the build project.</p>"
+      }
+    },
+    "AwsCodeBuildProjectLogsConfigS3LogsDetails": {
+      "base": "<p>Information about logs built to an S3 bucket for a build project.</p>",
+      "refs": {
+        "AwsCodeBuildProjectLogsConfigDetails$S3Logs": "<p>Information about logs built to an S3 bucket for a build project.</p>"
       }
     },
     "AwsCodeBuildProjectSource": {
@@ -845,6 +893,24 @@
         "ResourceDetails$AwsEc2Vpc": "<p>Details for an EC2 VPC.</p>"
       }
     },
+    "AwsEc2VpcEndpointServiceDetails": {
+      "base": "<p>Contains details about the service configuration for a VPC endpoint service.</p>",
+      "refs": {
+        "ResourceDetails$AwsEc2VpcEndpointService": "<p>Details about the service configuration for a VPC endpoint service.</p>"
+      }
+    },
+    "AwsEc2VpcEndpointServiceServiceTypeDetails": {
+      "base": "<p>The service type information for a VPC endpoint service.</p>",
+      "refs": {
+        "AwsEc2VpcEndpointServiceServiceTypeList$member": null
+      }
+    },
+    "AwsEc2VpcEndpointServiceServiceTypeList": {
+      "base": null,
+      "refs": {
+        "AwsEc2VpcEndpointServiceDetails$ServiceType": "<p>The types for the service.</p>"
+      }
+    },
     "AwsEc2VpnConnectionDetails": {
       "base": "<p>Details about an Amazon EC2 VPN connection.</p>",
       "refs": {
@@ -896,7 +962,25 @@
     "AwsEcrContainerImageDetails": {
       "base": "<p>Information about an Amazon ECR image.</p>",
       "refs": {
-        "ResourceDetails$AwsEcrContainerImage": "<p>information about an Amazon ECR image.</p>"
+        "ResourceDetails$AwsEcrContainerImage": "<p>Information about an Amazon ECR image.</p>"
+      }
+    },
+    "AwsEcrRepositoryDetails": {
+      "base": "<p>Provides information about an Amazon Elastic Container Registry repository.</p>",
+      "refs": {
+        "ResourceDetails$AwsEcrRepository": "<p>Information about an Amazon Elastic Container Registry repository.</p>"
+      }
+    },
+    "AwsEcrRepositoryImageScanningConfigurationDetails": {
+      "base": "<p>The image scanning configuration for a repository.</p>",
+      "refs": {
+        "AwsEcrRepositoryDetails$ImageScanningConfiguration": "<p>The image scanning configuration for a repository.</p>"
+      }
+    },
+    "AwsEcrRepositoryLifecyclePolicyDetails": {
+      "base": "<p>Information about the lifecycle policy for the repository.</p>",
+      "refs": {
+        "AwsEcrRepositoryDetails$LifecyclePolicy": "<p>Information about the lifecycle policy for the repository.</p>"
       }
     },
     "AwsEcsClusterClusterSettingsDetails": {
@@ -1343,6 +1427,36 @@
         "AwsEcsTaskDefinitionDetails$Volumes": "<p>The data volume definitions for the task.</p>"
       }
     },
+    "AwsEksClusterDetails": {
+      "base": "<p>Provides details about an Amazon EKS cluster.</p>",
+      "refs": {
+        "ResourceDetails$AwsEksCluster": "<p>Details about an Amazon EKS cluster.</p>"
+      }
+    },
+    "AwsEksClusterLoggingClusterLoggingDetails": {
+      "base": "<p>Details for a cluster logging configuration.</p>",
+      "refs": {
+        "AwsEksClusterLoggingClusterLoggingList$member": null
+      }
+    },
+    "AwsEksClusterLoggingClusterLoggingList": {
+      "base": null,
+      "refs": {
+        "AwsEksClusterLoggingDetails$ClusterLogging": "<p>Cluster logging configurations.</p>"
+      }
+    },
+    "AwsEksClusterLoggingDetails": {
+      "base": "<p>The logging configuration for an Amazon EKS cluster.</p>",
+      "refs": {
+        "AwsEksClusterDetails$Logging": "<p>The logging configuration for the cluster.</p>"
+      }
+    },
+    "AwsEksClusterResourcesVpcConfigDetails": {
+      "base": "<p>Information about the VPC configuration used by the cluster control plane.</p>",
+      "refs": {
+        "AwsEksClusterDetails$ResourcesVpcConfig": "<p>The VPC configuration used by the cluster control plane.</p>"
+      }
+    },
     "AwsElasticBeanstalkEnvironmentDetails": {
       "base": "<p>Contains details about an Elastic Beanstalk environment.</p>",
       "refs": {
@@ -1380,7 +1494,7 @@
       }
     },
     "AwsElasticsearchDomainDetails": {
-      "base": "<p>Information about an Amazon Elasticsearch Service domain.</p>",
+      "base": "<p>Information about an Elasticsearch domain.</p>",
       "refs": {
         "ResourceDetails$AwsElasticsearchDomain": "<p>Details for an Elasticsearch domain.</p>"
       }
@@ -1392,9 +1506,9 @@
       }
     },
     "AwsElasticsearchDomainElasticsearchClusterConfigDetails": {
-      "base": "<p>details about the configuration of an Elasticsearch cluster.</p>",
+      "base": "<p>details about the configuration of an OpenSearch cluster.</p>",
       "refs": {
-        "AwsElasticsearchDomainDetails$ElasticsearchClusterConfig": "<p>Information about an Elasticsearch cluster configuration.</p>"
+        "AwsElasticsearchDomainDetails$ElasticsearchClusterConfig": "<p>Information about an OpenSearch cluster configuration.</p>"
       }
     },
     "AwsElasticsearchDomainElasticsearchClusterConfigZoneAwarenessConfigDetails": {
@@ -1418,8 +1532,8 @@
     "AwsElasticsearchDomainLogPublishingOptionsLogConfig": {
       "base": "<p>The log configuration.</p>",
       "refs": {
-        "AwsElasticsearchDomainLogPublishingOptions$IndexSlowLogs": "<p>Configures the Elasticsearch index logs publishing.</p>",
-        "AwsElasticsearchDomainLogPublishingOptions$SearchSlowLogs": "<p>Configures the Elasticsearch search slow log publishing.</p>",
+        "AwsElasticsearchDomainLogPublishingOptions$IndexSlowLogs": "<p>Configures the OpenSearch index logs publishing.</p>",
+        "AwsElasticsearchDomainLogPublishingOptions$SearchSlowLogs": "<p>Configures the OpenSearch search slow log publishing.</p>",
         "AwsElasticsearchDomainLogPublishingOptions$AuditLogs": null
       }
     },
@@ -1436,9 +1550,9 @@
       }
     },
     "AwsElasticsearchDomainVPCOptions": {
-      "base": "<p>Information that Elasticsearch derives based on <code>VPCOptions</code> for the domain.</p>",
+      "base": "<p>Information that OpenSearch derives based on <code>VPCOptions</code> for the domain.</p>",
       "refs": {
-        "AwsElasticsearchDomainDetails$VPCOptions": "<p>Information that Elasticsearch derives based on <code>VPCOptions</code> for the domain.</p>"
+        "AwsElasticsearchDomainDetails$VPCOptions": "<p>Information that OpenSearch derives based on <code>VPCOptions</code> for the domain.</p>"
       }
     },
     "AwsElbAppCookieStickinessPolicies": {
@@ -1559,6 +1673,18 @@
       "base": "<p>Contains information about the security group for the load balancer.</p>",
       "refs": {
         "AwsElbLoadBalancerDetails$SourceSecurityGroup": "<p>Information about the security group for the load balancer. This is the security group that is used for inbound rules.</p>"
+      }
+    },
+    "AwsElbv2LoadBalancerAttribute": {
+      "base": "<p>A load balancer attribute.</p>",
+      "refs": {
+        "AwsElbv2LoadBalancerAttributes$member": null
+      }
+    },
+    "AwsElbv2LoadBalancerAttributes": {
+      "base": null,
+      "refs": {
+        "AwsElbv2LoadBalancerDetails$LoadBalancerAttributes": "<p>Attributes of the load balancer.</p>"
       }
     },
     "AwsElbv2LoadBalancerDetails": {
@@ -1791,6 +1917,68 @@
       "base": null,
       "refs": {
         "AwsLambdaLayerVersionDetails$Version": "<p>The version number.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainClusterConfigDetails": {
+      "base": "<p>Details about the configuration of an OpenSearch cluster.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainDetails$ClusterConfig": "<p>Details about the configuration of an OpenSearch cluster.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails": {
+      "base": "<p>Configuration options for zone awareness.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainClusterConfigDetails$ZoneAwarenessConfig": "<p>Configuration options for zone awareness. Provided if <code>ZoneAwarenessEnabled</code> is <code>true</code>.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainDetails": {
+      "base": "<p>Information about an Amazon OpenSearch Service domain.</p>",
+      "refs": {
+        "ResourceDetails$AwsOpenSearchServiceDomain": "<p>Details about an Amazon OpenSearch Service domain.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainDomainEndpointOptionsDetails": {
+      "base": "<p>Information about additional options for the domain endpoint.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainDetails$DomainEndpointOptions": "<p>Additional options for the domain endpoint.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails": {
+      "base": "<p>Details about the configuration for encryption at rest for the OpenSearch domain.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainDetails$EncryptionAtRestOptions": "<p>Details about the configuration for encryption at rest.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainLogPublishingOption": {
+      "base": "<p>Configuration details for a log publishing option.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainLogPublishingOptionsDetails$IndexSlowLogs": "<p>Configures the OpenSearch index logs publishing.</p>",
+        "AwsOpenSearchServiceDomainLogPublishingOptionsDetails$SearchSlowLogs": "<p>Configures the OpenSearch search slow log publishing.</p>",
+        "AwsOpenSearchServiceDomainLogPublishingOptionsDetails$AuditLogs": "<p>Configures the OpenSearch audit logs publishing.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainLogPublishingOptionsDetails": {
+      "base": "<p>Configures the CloudWatch Logs to publish for the OpenSearch domain.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainDetails$LogPublishingOptions": "<p>Configures the CloudWatch Logs to publish for the OpenSearch domain.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails": {
+      "base": "<p>Provides details about the configuration for node-to-node encryption.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainDetails$NodeToNodeEncryptionOptions": "<p>Details about the configuration for node-to-node encryption.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails": {
+      "base": "<p>Provides information about the state of the domain relative to the latest service software.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainDetails$ServiceSoftwareOptions": "<p>Information about the status of a domain relative to the latest service software.</p>"
+      }
+    },
+    "AwsOpenSearchServiceDomainVpcOptionsDetails": {
+      "base": "<p>Contains information that OpenSearch Service derives based on the <code>VPCOptions</code> for the domain.</p>",
+      "refs": {
+        "AwsOpenSearchServiceDomainDetails$VpcOptions": "<p>Information that OpenSearch Service derives based on <code>VPCOptions</code> for the domain.</p>"
       }
     },
     "AwsRdsDbClusterAssociatedRole": {
@@ -2436,6 +2624,42 @@
         "ResourceDetails$AwsSsmPatchCompliance": "<p>Provides information about the state of a patch on an instance based on the patch baseline that was used to patch the instance.</p>"
       }
     },
+    "AwsWafRateBasedRuleDetails": {
+      "base": "<p>Details about a rate-based rule for global resources. A rate-based rule provides settings to indicate when to allow, block, or count a request. Rate-based rules include the number of requests that arrive over a specified period of time.</p>",
+      "refs": {
+        "ResourceDetails$AwsWafRateBasedRule": "<p>Details about a rate-based rule for global resources.</p>"
+      }
+    },
+    "AwsWafRateBasedRuleMatchPredicate": {
+      "base": "<p>A match predicate. A predicate might look for characteristics such as specific IP addresses, geographic locations, or sizes.</p>",
+      "refs": {
+        "AwsWafRateBasedRuleMatchPredicateList$member": null
+      }
+    },
+    "AwsWafRateBasedRuleMatchPredicateList": {
+      "base": null,
+      "refs": {
+        "AwsWafRateBasedRuleDetails$MatchPredicates": "<p>The predicates to include in the rate-based rule.</p>"
+      }
+    },
+    "AwsWafRegionalRateBasedRuleDetails": {
+      "base": "<p>contains details about a rate-based rule for Regional resources. A rate-based rule provides settings to indicate when to allow, block, or count a request. Rate-based rules include the number of requests that arrive over a specified period of time.</p>",
+      "refs": {
+        "ResourceDetails$AwsWafRegionalRateBasedRule": "<p>Details about a rate-based rule for Regional resources.</p>"
+      }
+    },
+    "AwsWafRegionalRateBasedRuleMatchPredicate": {
+      "base": "<p>Details for a match predicate. A predicate might look for characteristics such as specific IP addresses, geographic locations, or sizes.</p>",
+      "refs": {
+        "AwsWafRegionalRateBasedRuleMatchPredicateList$member": null
+      }
+    },
+    "AwsWafRegionalRateBasedRuleMatchPredicateList": {
+      "base": null,
+      "refs": {
+        "AwsWafRegionalRateBasedRuleDetails$MatchPredicates": "<p>The predicates to include in the rate-based rule.</p>"
+      }
+    },
     "AwsWafWebAclDetails": {
       "base": "<p>Details about an WAF WebACL.</p>",
       "refs": {
@@ -2452,6 +2676,12 @@
       "base": null,
       "refs": {
         "AwsWafWebAclDetails$Rules": "<p>An array that contains the action for each rule in a WebACL, the priority of the rule, and the ID of the rule.</p>"
+      }
+    },
+    "AwsXrayEncryptionConfigDetails": {
+      "base": "<p>Information about the encryption configuration for X-Ray.</p>",
+      "refs": {
+        "ResourceDetails$AwsXrayEncryptionConfig": "<p>Information about the encryption configuration for X-Ray.</p>"
       }
     },
     "BatchDisableStandardsRequest": {
@@ -2535,11 +2765,16 @@
         "AwsAutoScalingLaunchConfigurationInstanceMonitoringDetails$Enabled": "<p>If set to <code>true</code>, then instances in the group launch with detailed monitoring.</p> <p>If set to <code>false</code>, then instances in the group launch with basic monitoring.</p>",
         "AwsCloudFrontDistributionLogging$Enabled": "<p>With this field, you can enable or disable the selected distribution.</p>",
         "AwsCloudFrontDistributionLogging$IncludeCookies": "<p>Specifies whether you want CloudFront to include cookies in access logs.</p>",
+        "AwsCloudFrontDistributionViewerCertificate$CloudFrontDefaultCertificate": "<p>Whether the distribution uses the CloudFront domain name. If set to <code>false</code>, then you provide either <code>AcmCertificateArn</code> or <code>IamCertificateId</code>.</p>",
         "AwsCloudTrailTrailDetails$HasCustomEventSelectors": "<p>Indicates whether the trail has custom event selectors.</p>",
         "AwsCloudTrailTrailDetails$IncludeGlobalServiceEvents": "<p>Indicates whether the trail publishes events from global services such as IAM to the log files.</p>",
         "AwsCloudTrailTrailDetails$IsMultiRegionTrail": "<p>Indicates whether the trail applies only to the current Region or to all Regions.</p>",
         "AwsCloudTrailTrailDetails$IsOrganizationTrail": "<p>Whether the trail is created for all accounts in an organization in Organizations, or only for the current Amazon Web Services account.</p>",
         "AwsCloudTrailTrailDetails$LogFileValidationEnabled": "<p>Indicates whether CloudTrail log file validation is enabled.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$EncryptionDisabled": "<p>Indicates whether to disable encryption on the artifact. Only valid when <code>Type</code> is <code>S3</code>.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$OverrideArtifactName": "<p>Whether the name specified in the buildspec file overrides the artifact name.</p>",
+        "AwsCodeBuildProjectEnvironment$PrivilegedMode": "<p>Whether to allow the Docker daemon to run inside a Docker container. Set to <code>true</code> if the build project is used to build Docker images.</p>",
+        "AwsCodeBuildProjectLogsConfigS3LogsDetails$EncryptionDisabled": "<p>Whether to disable encryption of the S3 build log output.</p>",
         "AwsCodeBuildProjectSource$InsecureSsl": "<p>Whether to ignore SSL warnings while connecting to the project source code.</p>",
         "AwsCorsConfiguration$AllowCredentials": "<p>Indicates whether the CORS request includes credentials.</p>",
         "AwsDynamoDbTableGlobalSecondaryIndex$Backfilling": "<p>Whether the index is currently backfilling.</p>",
@@ -2554,7 +2789,10 @@
         "AwsEc2SubnetDetails$MapPublicIpOnLaunch": "<p>Whether instances in this subnet receive a public IP address.</p>",
         "AwsEc2VolumeAttachment$DeleteOnTermination": "<p>Whether the EBS volume is deleted when the EC2 instance is terminated.</p>",
         "AwsEc2VolumeDetails$Encrypted": "<p>Whether the volume is encrypted.</p>",
+        "AwsEc2VpcEndpointServiceDetails$AcceptanceRequired": "<p>Whether requests from other Amazon Web Services accounts to create an endpoint to the service must first be accepted.</p>",
+        "AwsEc2VpcEndpointServiceDetails$ManagesVpcEndpoints": "<p>Whether the service manages its VPC endpoints.</p>",
         "AwsEc2VpnConnectionOptionsDetails$StaticRoutesOnly": "<p>Whether the VPN connection uses static routes only.</p>",
+        "AwsEcrRepositoryImageScanningConfigurationDetails$ScanOnPush": "<p>Whether to scan images after they are pushed to a repository.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$CloudWatchEncryptionEnabled": "<p>Whether to enable encryption on the CloudWatch logs.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationLogConfigurationDetails$S3EncryptionEnabled": "<p>Whether to encrypt the logs that are sent to the S3 bucket.</p>",
         "AwsEcsServiceDeploymentConfigurationDeploymentCircuitBreakerDetails$Enable": "<p>Whether to enable the deployment circuit breaker logic for the service.</p>",
@@ -2571,9 +2809,10 @@
         "AwsEcsTaskDefinitionContainerDefinitionsMountPointsDetails$ReadOnly": "<p>Whether the container has read-only access to the volume.</p>",
         "AwsEcsTaskDefinitionContainerDefinitionsVolumesFromDetails$ReadOnly": "<p>Whether the container has read-only access to the volume.</p>",
         "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails$Autoprovision": "<p>Whether to create the Docker volume automatically if it does not already exist.</p>",
+        "AwsEksClusterLoggingClusterLoggingDetails$Enabled": "<p>Whether the logging types that are listed in <code>Types</code> are enabled.</p>",
         "AwsElasticsearchDomainDomainEndpointOptions$EnforceHTTPS": "<p>Whether to require that all traffic to the domain arrive over HTTPS.</p>",
         "AwsElasticsearchDomainElasticsearchClusterConfigDetails$DedicatedMasterEnabled": "<p>Whether to use a dedicated master node for the Elasticsearch domain. A dedicated master node performs cluster management tasks, but doesn't hold data or respond to data upload requests.</p>",
-        "AwsElasticsearchDomainElasticsearchClusterConfigDetails$ZoneAwarenessEnabled": "<p>Whether to enable zone awareness for the Elasticsearch domain. When zone awareness is enabled, Elasticsearch allocates the cluster's nodes and replica index shards across Availability Zones in the same Region. This prevents data loss and minimizes downtime if a node or data center fails.</p>",
+        "AwsElasticsearchDomainElasticsearchClusterConfigDetails$ZoneAwarenessEnabled": "<p>Whether to enable zone awareness for the Elasticsearch domain. When zone awareness is enabled, OpenSearch allocates the cluster's nodes and replica index shards across Availability Zones in the same Region. This prevents data loss and minimizes downtime if a node or data center fails.</p>",
         "AwsElasticsearchDomainEncryptionAtRestOptions$Enabled": "<p>Whether encryption at rest is enabled.</p>",
         "AwsElasticsearchDomainLogPublishingOptionsLogConfig$Enabled": "<p>Whether the log publishing is enabled.</p>",
         "AwsElasticsearchDomainNodeToNodeEncryptionOptions$Enabled": "<p>Whether node-to-node encryption is enabled.</p>",
@@ -2586,6 +2825,17 @@
         "AwsIamPolicyDetails$IsAttachable": "<p>Whether the policy can be attached to a user, group, or role.</p>",
         "AwsIamPolicyVersion$IsDefaultVersion": "<p>Whether the version is the default version.</p>",
         "AwsKmsKeyDetails$KeyRotationStatus": "<p>Whether the key has key rotation enabled.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$WarmEnabled": "<p>Whether UltraWarm is enabled.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$DedicatedMasterEnabled": "<p>Whether to use a dedicated master node for the OpenSearch domain. A dedicated master node performs cluster management tasks, but does not hold data or respond to data upload requests.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$ZoneAwarenessEnabled": "<p>Whether to enable zone awareness for the OpenSearch domain. When zone awareness is enabled, OpenSearch Service allocates the cluster's nodes and replica index shards across Availability Zones (AZs) in the same Region. This prevents data loss and minimizes downtime if a node or data center fails.</p>",
+        "AwsOpenSearchServiceDomainDomainEndpointOptionsDetails$CustomEndpointEnabled": "<p>Whether to enable a custom endpoint for the domain.</p>",
+        "AwsOpenSearchServiceDomainDomainEndpointOptionsDetails$EnforceHTTPS": "<p>Whether to require that all traffic to the domain arrive over HTTPS.</p>",
+        "AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails$Enabled": "<p>Whether encryption at rest is enabled.</p>",
+        "AwsOpenSearchServiceDomainLogPublishingOption$Enabled": "<p>Whether the log publishing is enabled.</p>",
+        "AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails$Enabled": "<p>Whether node-to-node encryption is enabled.</p>",
+        "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$Cancellable": "<p>Whether a request to update the domain can be canceled.</p>",
+        "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$UpdateAvailable": "<p>Whether a service software update is available for the domain.</p>",
+        "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$OptionalDeployment": "<p>Whether the service software update is optional.</p>",
         "AwsRdsDbClusterDetails$MultiAz": "<p>Whether the DB cluster has instances in multiple Availability Zones.</p>",
         "AwsRdsDbClusterDetails$StorageEncrypted": "<p>Whether the DB cluster is encrypted.</p>",
         "AwsRdsDbClusterDetails$DeletionProtection": "<p>Whether the DB cluster has deletion protection enabled.</p>",
@@ -2624,6 +2874,8 @@
         "AwsSecretsManagerSecretDetails$RotationOccurredWithinFrequency": "<p>Whether the rotation occurred within the specified rotation frequency.</p>",
         "AwsSecretsManagerSecretDetails$RotationEnabled": "<p>Whether rotation is enabled.</p>",
         "AwsSecretsManagerSecretDetails$Deleted": "<p>Whether the secret is deleted.</p>",
+        "AwsWafRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings. </p>",
+        "AwsWafRegionalRateBasedRuleMatchPredicate$Negated": "<p>If set to <code>true</code>, then the rule actions are performed on requests that match the predicate settings.</p> <p>If set to <code>false</code>, then the rule actions are performed on all requests except those that match the predicate settings.</p>",
         "ClassificationResult$AdditionalOccurrences": "<p>Indicates whether there are additional occurrences of sensitive data that are not included in the finding. This occurs when the number of occurrences exceeds the maximum that can be included.</p>",
         "DescribeHubResponse$AutoEnableControls": "<p>Whether to automatically enable new controls when they are added to standards that are enabled.</p> <p>If set to <code>true</code>, then new controls for enabled standards are enabled automatically. If set to <code>false</code>, then new controls are not enabled.</p>",
         "DescribeOrganizationConfigurationResponse$AutoEnable": "<p>Whether to automatically enable Security Hub for new accounts in the organization.</p> <p>If set to <code>true</code>, then Security Hub is enabled for new accounts. If set to false, then new accounts are not added automatically.</p>",
@@ -3062,6 +3314,7 @@
         "AwsEcsTaskDefinitionVolumesDockerVolumeConfigurationDetails$Labels": "<p>Custom metadata to add to the Docker volume.</p>",
         "AwsElasticsearchDomainDetails$Endpoints": "<p>The key-value pair that exists if the Elasticsearch domain uses VPC endpoints.</p>",
         "AwsLambdaFunctionEnvironment$Variables": "<p>Environment variable key-value pairs.</p>",
+        "AwsOpenSearchServiceDomainDetails$DomainEndpoints": "<p>The domain endpoints. Used if the OpenSearch domain resides in a VPC.</p> <p>This is a map of key-value pairs. The key is always <code>vpc</code>. The value is the endpoint.</p>",
         "AwsSecurityFinding$ProductFields": "<p>A data type where security-findings providers can include additional solution-specific details that aren't part of the defined <code>AwsSecurityFinding</code> format.</p> <p>Can contain up to 50 key-value pairs. For each key-value pair, the key can contain up to 128 characters, and the value can contain up to 2048 characters.</p>",
         "AwsSecurityFinding$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding. </p>",
         "BatchUpdateFindingsRequest$UserDefinedFields": "<p>A list of name/value string pairs associated with the finding. These are custom, user-defined fields added to a finding.</p>",
@@ -3298,6 +3551,10 @@
         "AwsLambdaFunctionDetails$MemorySize": "<p>The memory that is allocated to the function.</p>",
         "AwsLambdaFunctionDetails$Timeout": "<p>The amount of time that Lambda allows a function to run before stopping it.</p>",
         "AwsLambdaFunctionLayer$CodeSize": "<p>The size of the layer archive in bytes.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$InstanceCount": "<p>The number of data nodes to use in the OpenSearch domain.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$WarmCount": "<p>The number of UltraWarm instances.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$DedicatedMasterCount": "<p>The number of instances to use for the master node. If this attribute is specified, then <code>DedicatedMasterEnabled</code> must be <code>true</code>.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails$AvailabilityZoneCount": "<p>The number of Availability Zones that the domain uses. Valid values are 2 and 3. The default is 2.</p>",
         "AwsRdsDbClusterDetails$AllocatedStorage": "<p>For all database engines except Aurora, specifies the allocated storage size in gibibytes (GiB).</p>",
         "AwsRdsDbClusterDetails$BackupRetentionPeriod": "<p>The number of days for which automated backups are retained.</p>",
         "AwsRdsDbClusterDetails$Port": "<p>The port number on which the DB instances in the DB cluster accept connections.</p>",
@@ -3553,6 +3810,8 @@
         "AwsRedshiftClusterRestoreStatus$EstimatedTimeToCompletionInSeconds": "<p>The estimate of the time remaining before the restore is complete. Returns 0 for a completed restore.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "AwsRedshiftClusterRestoreStatus$ProgressInMegaBytes": "<p>The number of megabytes that were transferred from snapshot storage.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
         "AwsRedshiftClusterRestoreStatus$SnapshotSizeInMegaBytes": "<p>The size of the set of snapshot data that was used to restore the cluster.</p> <p>This field is only updated when you restore to DC2 and DS2 node types.</p>",
+        "AwsWafRateBasedRuleDetails$RateLimit": "<p>The maximum number of requests that have an identical value for the field specified in <code>RateKey</code> that are allowed within a five-minute period. If the number of requests exceeds <code>RateLimit</code> and the other predicates specified in the rule are met, WAF triggers the action for the rule.</p>",
+        "AwsWafRegionalRateBasedRuleDetails$RateLimit": "<p>The maximum number of requests that have an identical value for the field specified in <code>RateKey</code> that are allowed within a five-minute period. If the number of requests exceeds <code>RateLimit</code> and the other predicates specified in the rule are met, WAF triggers the action for the rule.</p>",
         "Cell$Column": "<p>The column number of the column that contains the data. For a Microsoft Excel workbook, the column number corresponds to the alphabetical column identifiers. For example, a value of 1 for Column corresponds to the A column in the workbook.</p>",
         "Cell$Row": "<p>The row number of the row that contains the data.</p>",
         "ClassificationResult$SizeClassified": "<p>The total size in bytes of the affected data.</p>",
@@ -3841,6 +4100,12 @@
         "AwsCloudFrontDistributionOriginItem$Id": "<p>A unique identifier for the origin or origin group.</p>",
         "AwsCloudFrontDistributionOriginItem$OriginPath": "<p>An optional element that causes CloudFront to request your content from a directory in your Amazon S3 bucket or your custom origin.</p>",
         "AwsCloudFrontDistributionOriginS3OriginConfig$OriginAccessIdentity": "<p>The CloudFront origin access identity to associate with the origin.</p>",
+        "AwsCloudFrontDistributionViewerCertificate$AcmCertificateArn": "<p>The ARN of the ACM certificate. Used if the certificate is stored in ACM. If you provide an ACM certificate ARN, you must also provide <code>MinimumCertificateVersion</code> and <code>SslSupportMethod</code>.</p>",
+        "AwsCloudFrontDistributionViewerCertificate$Certificate": "<p>The identifier of the certificate. Note that in CloudFront, this attribute is deprecated.</p>",
+        "AwsCloudFrontDistributionViewerCertificate$CertificateSource": "<p>The source of the certificate identified by <code>Certificate</code>. Note that in CloudFront, this attribute is deprecated.</p>",
+        "AwsCloudFrontDistributionViewerCertificate$IamCertificateId": "<p>The identifier of the IAM certificate. Used if the certificate is stored in IAM. If you provide <code>IamCertificateId</code>, then you also must provide <code>MinimumProtocolVersion</code> and <code>SslSupportMethod</code>.</p>",
+        "AwsCloudFrontDistributionViewerCertificate$MinimumProtocolVersion": "<p>The security policy that CloudFront uses for HTTPS connections with viewers. If <code>SslSupportMethod</code> is <code>sni-only</code>, then <code>MinimumProtocolVersion</code> must be <code>TLSv1</code> or higher.</p>",
+        "AwsCloudFrontDistributionViewerCertificate$SslSupportMethod": "<p>The viewers that the distribution accepts HTTPS connections from.</p>",
         "AwsCloudTrailTrailDetails$CloudWatchLogsLogGroupArn": "<p>The ARN of the log group that CloudTrail logs are delivered to.</p>",
         "AwsCloudTrailTrailDetails$CloudWatchLogsRoleArn": "<p>The ARN of the role that the CloudWatch Events endpoint assumes when it writes to the log group.</p>",
         "AwsCloudTrailTrailDetails$HomeRegion": "<p>The Region where the trail was created.</p>",
@@ -3851,14 +4116,29 @@
         "AwsCloudTrailTrailDetails$SnsTopicArn": "<p>The ARN of the SNS topic that is used for notifications of log file delivery.</p>",
         "AwsCloudTrailTrailDetails$SnsTopicName": "<p>The name of the SNS topic that is used for notifications of log file delivery.</p>",
         "AwsCloudTrailTrailDetails$TrailArn": "<p>The ARN of the trail.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$ArtifactIdentifier": "<p>An identifier for the artifact definition.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$Location": "<p>Only used when <code>Type</code> is <code>S3</code>. The name of the S3 bucket where the artifact is located.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$Name": "<p>Only used when Type is S3. The name of the artifact. Used with <code>NamepaceType</code> and <code>Path</code> to determine the pattern for storing the artifact.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$NamespaceType": "<p>Only used when <code>Type</code> is <code>S3</code>. The value to use for the namespace. Used with <code>Name</code> and <code>Path</code> to determine the pattern for storing the artifact.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$Packaging": "<p>Only used when <code>Type</code> is <code>S3</code>. The type of output artifact to create.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$Path": "<p>Only used when <code>Type</code> is <code>S3</code>. The path to the artifact. Used with <code>Name</code> and <code>NamespaceType</code> to determine the pattern for storing the artifact.</p>",
+        "AwsCodeBuildProjectArtifactsDetails$Type": "<p>The type of build artifact.</p>",
         "AwsCodeBuildProjectDetails$EncryptionKey": "<p>The KMS key used to encrypt the build output artifacts.</p> <p>You can specify either the ARN of the KMS key or, if available, the KMS key alias (using the format alias/alias-name). </p>",
         "AwsCodeBuildProjectDetails$Name": "<p>The name of the build project.</p>",
         "AwsCodeBuildProjectDetails$ServiceRole": "<p>The ARN of the IAM role that enables CodeBuild to interact with dependent Amazon Web Services services on behalf of the Amazon Web Services account.</p>",
         "AwsCodeBuildProjectEnvironment$Certificate": "<p>The certificate to use with this build project.</p>",
         "AwsCodeBuildProjectEnvironment$ImagePullCredentialsType": "<p>The type of credentials CodeBuild uses to pull images in your build.</p> <p>Valid values:</p> <ul> <li> <p> <code>CODEBUILD</code> specifies that CodeBuild uses its own credentials. This requires that you modify your ECR repository policy to trust the CodeBuild service principal.</p> </li> <li> <p> <code>SERVICE_ROLE</code> specifies that CodeBuild uses your build project's service role.</p> </li> </ul> <p>When you use a cross-account or private registry image, you must use <code>SERVICE_ROLE</code> credentials. When you use an CodeBuild curated image, you must use <code>CODEBUILD</code> credentials.</p>",
         "AwsCodeBuildProjectEnvironment$Type": "<p>The type of build environment to use for related builds.</p> <p>The environment type <code>ARM_CONTAINER</code> is available only in Regions US East (N. Virginia), US East (Ohio), US West (Oregon), Europe (Ireland), Asia Pacific (Mumbai), Asia Pacific (Tokyo), Asia Pacific (Sydney), and Europe (Frankfurt).</p> <p>The environment type <code>LINUX_CONTAINER</code> with compute type build.general1.2xlarge is available only in Regions US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing), and China (Ningxia).</p> <p>The environment type <code>LINUX_GPU_CONTAINER</code> is available only in Regions US East (N. Virginia), US East (N. Virginia), US West (Oregon), Canada (Central), Europe (Ireland), Europe (London), Europe (Frankfurt), Asia Pacific (Tokyo), Asia Pacific (Seoul), Asia Pacific (Singapore), Asia Pacific (Sydney), China (Beijing), and China (Ningxia).</p> <p>Valid values: <code>WINDOWS_CONTAINER</code> | <code>LINUX_CONTAINER</code> | <code>LINUX_GPU_CONTAINER</code> | <code>ARM_CONTAINER</code> </p>",
+        "AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails$Name": "<p>The name of the environment variable.</p>",
+        "AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails$Type": "<p>The type of environment variable.</p>",
+        "AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails$Value": "<p>The value of the environment variable.</p>",
         "AwsCodeBuildProjectEnvironmentRegistryCredential$Credential": "<p>The ARN or name of credentials created using Secrets Manager.</p> <note> <p>The credential can use the name of the credentials only if they exist in your current Amazon Web Services Region. </p> </note>",
         "AwsCodeBuildProjectEnvironmentRegistryCredential$CredentialProvider": "<p>The service that created the credentials to access a private Docker registry.</p> <p>The valid value,<code> SECRETS_MANAGER</code>, is for Secrets Manager.</p>",
+        "AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails$GroupName": "<p>The group name of the logs in CloudWatch Logs.</p>",
+        "AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails$Status": "<p>The current status of the logs in CloudWatch Logs for a build project.</p>",
+        "AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails$StreamName": "<p>The prefix of the stream name of the CloudWatch Logs.</p>",
+        "AwsCodeBuildProjectLogsConfigS3LogsDetails$Location": "<p>The ARN of the S3 bucket and the path prefix for S3 logs.</p>",
+        "AwsCodeBuildProjectLogsConfigS3LogsDetails$Status": "<p>The current status of the S3 build logs.</p>",
         "AwsCodeBuildProjectSource$Type": "<p>The type of repository that contains the source code to be built. Valid values are:</p> <ul> <li> <p> <code>BITBUCKET</code> - The source code is in a Bitbucket repository.</p> </li> <li> <p> <code>CODECOMMIT</code> - The source code is in an CodeCommit repository.</p> </li> <li> <p> <code>CODEPIPELINE</code> - The source code settings are specified in the source action of a pipeline in CodePipeline.</p> </li> <li> <p> <code>GITHUB</code> - The source code is in a GitHub repository.</p> </li> <li> <p> <code>GITHUB_ENTERPRISE</code> - The source code is in a GitHub Enterprise repository.</p> </li> <li> <p> <code>NO_SOURCE</code> - The project does not have input source code.</p> </li> <li> <p> <code>S3</code> - The source code is in an S3 input bucket. </p> </li> </ul>",
         "AwsCodeBuildProjectSource$Location": "<p>Information about the location of the source code to be built.</p> <p>Valid values include:</p> <ul> <li> <p>For source code settings that are specified in the source action of a pipeline in CodePipeline, location should not be specified. If it is specified, CodePipeline ignores it. This is because CodePipeline uses the settings in a pipeline's source action instead of this value.</p> </li> <li> <p>For source code in an CodeCommit repository, the HTTPS clone URL to the repository that contains the source code and the build spec file (for example, <code>https://git-codecommit.region-ID.amazonaws.com/v1/repos/repo-name</code> ).</p> </li> <li> <p>For source code in an S3 input bucket, one of the following.</p> <ul> <li> <p>The path to the ZIP file that contains the source code (for example, <code>bucket-name/path/to/object-name.zip</code>).</p> </li> <li> <p> The path to the folder that contains the source code (for example, <code>bucket-name/path/to/source-code/folder/</code>).</p> </li> </ul> </li> <li> <p>For source code in a GitHub repository, the HTTPS clone URL to the repository that contains the source and the build spec file.</p> </li> <li> <p>For source code in a Bitbucket repository, the HTTPS clone URL to the repository that contains the source and the build spec file. </p> </li> </ul>",
         "AwsCodeBuildProjectVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
@@ -3968,6 +4248,11 @@
         "AwsEc2VolumeDetails$KmsKeyId": "<p>The ARN of the KMS key that was used to protect the volume encryption key for the volume.</p>",
         "AwsEc2VpcDetails$DhcpOptionsId": "<p>The identifier of the set of Dynamic Host Configuration Protocol (DHCP) options that are associated with the VPC. If the default options are associated with the VPC, then this is default.</p>",
         "AwsEc2VpcDetails$State": "<p>The current state of the VPC.</p>",
+        "AwsEc2VpcEndpointServiceDetails$PrivateDnsName": "<p>The private DNS name for the service.</p>",
+        "AwsEc2VpcEndpointServiceDetails$ServiceId": "<p>The identifier of the service.</p>",
+        "AwsEc2VpcEndpointServiceDetails$ServiceName": "<p>The name of the service.</p>",
+        "AwsEc2VpcEndpointServiceDetails$ServiceState": "<p>The current state of the service.</p>",
+        "AwsEc2VpcEndpointServiceServiceTypeDetails$ServiceType": "<p>The type of service.</p>",
         "AwsEc2VpnConnectionDetails$VpnConnectionId": "<p>The identifier of the VPN connection.</p>",
         "AwsEc2VpnConnectionDetails$State": "<p>The current state of the VPN connection.</p>",
         "AwsEc2VpnConnectionDetails$CustomerGatewayId": "<p>The identifier of the customer gateway that is at your end of the VPN connection.</p>",
@@ -3991,6 +4276,12 @@
         "AwsEcrContainerImageDetails$Architecture": "<p>The architecture of the image.</p>",
         "AwsEcrContainerImageDetails$ImageDigest": "<p>The sha256 digest of the image manifest.</p>",
         "AwsEcrContainerImageDetails$ImagePublishedAt": "<p>The date and time when the image was pushed to the repository.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsEcrRepositoryDetails$Arn": "<p>The ARN of the repository.</p>",
+        "AwsEcrRepositoryDetails$ImageTagMutability": "<p>The tag mutability setting for the repository.</p>",
+        "AwsEcrRepositoryDetails$RepositoryName": "<p>The name of the repository.</p>",
+        "AwsEcrRepositoryDetails$RepositoryPolicyText": "<p>The text of the repository policy.</p>",
+        "AwsEcrRepositoryLifecyclePolicyDetails$LifecyclePolicyText": "<p>The text of the lifecycle policy.</p>",
+        "AwsEcrRepositoryLifecyclePolicyDetails$RegistryId": "<p>The Amazon Web Services account identifier that is associated with the registry that contains the repository.</p>",
         "AwsEcsClusterClusterSettingsDetails$Name": "<p>The name of the setting.</p>",
         "AwsEcsClusterClusterSettingsDetails$Value": "<p>The value of the setting.</p>",
         "AwsEcsClusterConfigurationExecuteCommandConfigurationDetails$KmsKeyId": "<p>The identifier of the KMS key that is used to encrypt the data between the local client and the container.</p>",
@@ -4078,6 +4369,13 @@
         "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$RootDirectory": "<p>The directory within the Amazon EFS file system to mount as the root directory inside the host.</p>",
         "AwsEcsTaskDefinitionVolumesEfsVolumeConfigurationDetails$TransitEncryption": "<p>Whether to enable encryption for Amazon EFS data in transit between the Amazon ECS host and the Amazon EFS server. </p>",
         "AwsEcsTaskDefinitionVolumesHostDetails$SourcePath": "<p>The path on the host container instance that is presented to the container.</p>",
+        "AwsEksClusterDetails$Arn": "<p>The ARN of the cluster.</p>",
+        "AwsEksClusterDetails$CertificateAuthorityData": "<p>The certificate authority data for the cluster.</p>",
+        "AwsEksClusterDetails$ClusterStatus": "<p>The status of the cluster.</p>",
+        "AwsEksClusterDetails$Endpoint": "<p>The endpoint for the Amazon EKS API server.</p>",
+        "AwsEksClusterDetails$Name": "<p>The name of the cluster.</p>",
+        "AwsEksClusterDetails$RoleArn": "<p>The ARN of the IAM role that provides permissions for the Amazon EKS control plane to make calls to Amazon Web Services API operations on your behalf.</p>",
+        "AwsEksClusterDetails$Version": "<p>The Amazon EKS server version for the cluster.</p>",
         "AwsElasticBeanstalkEnvironmentDetails$ApplicationName": "<p>The name of the application that is associated with the environment.</p>",
         "AwsElasticBeanstalkEnvironmentDetails$Cname": "<p>The URL to the CNAME for this environment.</p>",
         "AwsElasticBeanstalkEnvironmentDetails$DateCreated": "<p>The creation date for this environment.</p>",
@@ -4104,13 +4402,13 @@
         "AwsElasticsearchDomainDetails$DomainId": "<p>Unique identifier for an Elasticsearch domain.</p>",
         "AwsElasticsearchDomainDetails$DomainName": "<p>Name of an Elasticsearch domain.</p> <p>Domain names are unique across all domains owned by the same account within an Amazon Web Services Region.</p> <p>Domain names must start with a lowercase letter and must be between 3 and 28 characters.</p> <p>Valid characters are a-z (lowercase only), 0-9, and – (hyphen). </p>",
         "AwsElasticsearchDomainDetails$Endpoint": "<p>Domain-specific endpoint used to submit index, search, and data upload requests to an Elasticsearch domain.</p> <p>The endpoint is a service URL. </p>",
-        "AwsElasticsearchDomainDetails$ElasticsearchVersion": "<p>Elasticsearch version.</p>",
-        "AwsElasticsearchDomainDomainEndpointOptions$TLSSecurityPolicy": "<p>The TLS security policy to apply to the HTTPS endpoint of the Elasticsearch domain.</p> <p>Valid values:</p> <ul> <li> <p> <code>Policy-Min-TLS-1-0-2019-07</code>, which supports TLSv1.0 and higher</p> </li> <li> <p> <code>Policy-Min-TLS-1-2-2019-07</code>, which only supports TLSv1.2</p> </li> </ul>",
+        "AwsElasticsearchDomainDetails$ElasticsearchVersion": "<p>OpenSearch version.</p>",
+        "AwsElasticsearchDomainDomainEndpointOptions$TLSSecurityPolicy": "<p>The TLS security policy to apply to the HTTPS endpoint of the OpenSearch domain.</p> <p>Valid values:</p> <ul> <li> <p> <code>Policy-Min-TLS-1-0-2019-07</code>, which supports TLSv1.0 and higher</p> </li> <li> <p> <code>Policy-Min-TLS-1-2-2019-07</code>, which only supports TLSv1.2</p> </li> </ul>",
         "AwsElasticsearchDomainElasticsearchClusterConfigDetails$DedicatedMasterType": "<p>The hardware configuration of the computer that hosts the dedicated master node. For example, <code>m3.medium.elasticsearch</code>. If this attribute is specified, then <code>DedicatedMasterEnabled</code> must be <code>true</code>.</p>",
         "AwsElasticsearchDomainElasticsearchClusterConfigDetails$InstanceType": "<p>The instance type for your data nodes. For example, <code>m3.medium.elasticsearch</code>.</p>",
         "AwsElasticsearchDomainEncryptionAtRestOptions$KmsKeyId": "<p>The KMS key ID. Takes the form 1a2a3a4-1a2a-3a4a-5a6a-1a2a3a4a5a6a.</p>",
         "AwsElasticsearchDomainLogPublishingOptionsLogConfig$CloudWatchLogsLogGroupArn": "<p>The ARN of the CloudWatch Logs group to publish the logs to.</p>",
-        "AwsElasticsearchDomainServiceSoftwareOptions$AutomatedUpdateDate": "<p>The epoch time when the deployment window closes for required updates. After this time, Amazon Elasticsearch Service schedules the software upgrade automatically.</p>",
+        "AwsElasticsearchDomainServiceSoftwareOptions$AutomatedUpdateDate": "<p>The epoch time when the deployment window closes for required updates. After this time, Amazon OpenSearch Service schedules the software upgrade automatically.</p>",
         "AwsElasticsearchDomainServiceSoftwareOptions$CurrentVersion": "<p>The version of the service software that is currently installed on the domain.</p>",
         "AwsElasticsearchDomainServiceSoftwareOptions$Description": "<p>A more detailed description of the service software status.</p>",
         "AwsElasticsearchDomainServiceSoftwareOptions$NewVersion": "<p>The most recent version of the service software.</p>",
@@ -4135,6 +4433,8 @@
         "AwsElbLoadBalancerListener$SslCertificateId": "<p>The ARN of the server certificate.</p>",
         "AwsElbLoadBalancerSourceSecurityGroup$GroupName": "<p>The name of the security group.</p>",
         "AwsElbLoadBalancerSourceSecurityGroup$OwnerAlias": "<p>The owner of the security group.</p>",
+        "AwsElbv2LoadBalancerAttribute$Key": "<p>The name of the load balancer attribute.</p>",
+        "AwsElbv2LoadBalancerAttribute$Value": "<p>The value of the load balancer attribute.</p>",
         "AwsElbv2LoadBalancerDetails$CanonicalHostedZoneId": "<p>The ID of the Amazon Route 53 hosted zone associated with the load balancer.</p>",
         "AwsElbv2LoadBalancerDetails$CreatedTime": "<p>Indicates when the load balancer was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsElbv2LoadBalancerDetails$DNSName": "<p>The public DNS name of the load balancer.</p>",
@@ -4220,6 +4520,25 @@
         "AwsLambdaFunctionTracingConfig$Mode": "<p>The tracing mode.</p>",
         "AwsLambdaFunctionVpcConfig$VpcId": "<p>The ID of the VPC.</p>",
         "AwsLambdaLayerVersionDetails$CreatedDate": "<p>Indicates when the version was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$InstanceType": "<p>The instance type for your data nodes. </p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$WarmType": "<p>The type of UltraWarm instance.</p>",
+        "AwsOpenSearchServiceDomainClusterConfigDetails$DedicatedMasterType": "<p>The hardware configuration of the computer that hosts the dedicated master node.</p> <p>If this attribute is specified, then <code>DedicatedMasterEnabled</code> must be <code>true</code>. </p>",
+        "AwsOpenSearchServiceDomainDetails$Arn": "<p>The ARN of the OpenSearch Service domain.</p>",
+        "AwsOpenSearchServiceDomainDetails$AccessPolicies": "<p>IAM policy document that specifies the access policies for the OpenSearch Service domain.</p>",
+        "AwsOpenSearchServiceDomainDetails$DomainName": "<p>The name of the endpoint.</p>",
+        "AwsOpenSearchServiceDomainDetails$Id": "<p>The identifier of the domain.</p>",
+        "AwsOpenSearchServiceDomainDetails$DomainEndpoint": "<p>The domain endpoint.</p>",
+        "AwsOpenSearchServiceDomainDetails$EngineVersion": "<p>The version of the domain engine.</p>",
+        "AwsOpenSearchServiceDomainDomainEndpointOptionsDetails$CustomEndpointCertificateArn": "<p>The ARN for the security certificate. The certificate is managed in ACM.</p>",
+        "AwsOpenSearchServiceDomainDomainEndpointOptionsDetails$CustomEndpoint": "<p>The fully qualified URL for the custom endpoint.</p>",
+        "AwsOpenSearchServiceDomainDomainEndpointOptionsDetails$TLSSecurityPolicy": "<p>The TLS security policy to apply to the HTTPS endpoint of the OpenSearch domain.</p>",
+        "AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails$KmsKeyId": "<p>The KMS key ID.</p>",
+        "AwsOpenSearchServiceDomainLogPublishingOption$CloudWatchLogsLogGroupArn": "<p>The ARN of the CloudWatch Logs group to publish the logs to.</p>",
+        "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$AutomatedUpdateDate": "<p>The epoch time when the deployment window closes for required updates. After this time, OpenSearch Service schedules the software upgrade automatically.</p>",
+        "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$CurrentVersion": "<p>The version of the service software that is currently installed on the domain.</p>",
+        "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$Description": "<p>A more detailed description of the service software status.</p>",
+        "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$NewVersion": "<p>The most recent version of the service software.</p>",
+        "AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails$UpdateStatus": "<p>The status of the service software update.</p>",
         "AwsRdsDbClusterAssociatedRole$RoleArn": "<p>The ARN of the IAM role.</p>",
         "AwsRdsDbClusterAssociatedRole$Status": "<p>The status of the association between the IAM role and the DB cluster.</p>",
         "AwsRdsDbClusterDetails$DatabaseName": "<p>The name of the database.</p>",
@@ -4418,6 +4737,7 @@
         "AwsS3BucketBucketLifecycleConfigurationRulesTransitionsDetails$StorageClass": "<p>The storage class to transition the object to.</p>",
         "AwsS3BucketDetails$OwnerId": "<p>The canonical user ID of the owner of the S3 bucket.</p>",
         "AwsS3BucketDetails$OwnerName": "<p>The display name of the owner of the S3 bucket.</p>",
+        "AwsS3BucketDetails$OwnerAccountId": "<p>The Amazon Web Services account identifier of the account that owns the S3 bucket.</p>",
         "AwsS3BucketDetails$CreatedAt": "<p>Indicates when the S3 bucket was created.</p> <p>Uses the <code>date-time</code> format specified in <a href=\"https://tools.ietf.org/html/rfc3339#section-5.6\">RFC 3339 section 5.6, Internet Date/Time Format</a>. The value cannot contain spaces. For example, <code>2020-03-22T13:22:13.933Z</code>.</p>",
         "AwsS3BucketDetails$AccessControlList": "<p>The access control list for the S3 bucket.</p>",
         "AwsS3BucketLoggingConfiguration$DestinationBucketName": "<p>The name of the S3 bucket where log files for the S3 bucket are stored.</p>",
@@ -4480,11 +4800,26 @@
         "AwsSsmComplianceSummary$PatchBaselineId": "<p>The identifier of the patch baseline. The patch baseline lists the patches that are approved for installation.</p>",
         "AwsSsmComplianceSummary$OverallSeverity": "<p>The highest severity for the patches.</p>",
         "AwsSsmComplianceSummary$PatchGroup": "<p>The identifier of the patch group for which compliance was determined. A patch group uses tags to group EC2 instances that should have the same patch compliance.</p>",
+        "AwsWafRateBasedRuleDetails$MetricName": "<p>The name of the metrics for the rate-based rule.</p>",
+        "AwsWafRateBasedRuleDetails$Name": "<p>The name of the rate-based rule.</p>",
+        "AwsWafRateBasedRuleDetails$RateKey": "<p>The field that WAF uses to determine whether requests are likely arriving from single source and are subject to rate monitoring.</p>",
+        "AwsWafRateBasedRuleDetails$RuleId": "<p>The unique identifier for the rate-based rule.</p>",
+        "AwsWafRateBasedRuleMatchPredicate$DataId": "<p>The unique identifier for the predicate.</p>",
+        "AwsWafRateBasedRuleMatchPredicate$Type": "<p>The type of predicate.</p>",
+        "AwsWafRegionalRateBasedRuleDetails$MetricName": "<p>The name of the metrics for the rate-based rule.</p>",
+        "AwsWafRegionalRateBasedRuleDetails$Name": "<p>The name of the rate-based rule.</p>",
+        "AwsWafRegionalRateBasedRuleDetails$RateKey": "<p>The field that WAF uses to determine whether requests are likely arriving from single source and are subject to rate monitoring.</p>",
+        "AwsWafRegionalRateBasedRuleDetails$RuleId": "<p>The unique identifier for the rate-based rule.</p>",
+        "AwsWafRegionalRateBasedRuleMatchPredicate$DataId": "<p>The unique identifier for the predicate.</p>",
+        "AwsWafRegionalRateBasedRuleMatchPredicate$Type": "<p>The type of predicate.</p>",
         "AwsWafWebAclDetails$Name": "<p>A friendly name or description of the WebACL. You can't change the name of a WebACL after you create it.</p>",
         "AwsWafWebAclDetails$DefaultAction": "<p>The action to perform if none of the rules contained in the WebACL match.</p>",
         "AwsWafWebAclDetails$WebAclId": "<p>A unique identifier for a WebACL.</p>",
         "AwsWafWebAclRule$RuleId": "<p>The identifier for a rule.</p>",
         "AwsWafWebAclRule$Type": "<p>The rule type.</p> <p>Valid values: <code>REGULAR</code> | <code>RATE_BASED</code> | <code>GROUP</code> </p> <p>The default is <code>REGULAR</code>.</p>",
+        "AwsXrayEncryptionConfigDetails$KeyId": "<p>The identifier of the KMS key that is used for encryption. Provided if <code>Type</code> is <code>KMS</code>.</p>",
+        "AwsXrayEncryptionConfigDetails$Status": "<p>The current status of the encryption configuration. When <code>Status</code> is <code>UPDATING</code>, X-Ray might use both the old and new encryption.</p>",
+        "AwsXrayEncryptionConfigDetails$Type": "<p>The type of encryption. <code>KMS</code> indicates that the encryption uses KMS keys. <code>NONE</code> indicates to use the default encryption.</p>",
         "BatchUpdateFindingsUnprocessedFinding$ErrorCode": "<p>The code associated with the error.</p>",
         "BatchUpdateFindingsUnprocessedFinding$ErrorMessage": "<p>The message associated with the error.</p>",
         "CategoryList$member": null,
@@ -4696,6 +5031,10 @@
         "AwsCorsConfiguration$ExposeHeaders": "<p>The exposed headers for CORS requests.</p>",
         "AwsCorsConfiguration$AllowMethods": "<p>The allowed methods for CORS requests.</p>",
         "AwsCorsConfiguration$AllowHeaders": "<p>The allowed headers for CORS requests.</p>",
+        "AwsEc2VpcEndpointServiceDetails$AvailabilityZones": "<p>The Availability Zones where the service is available.</p>",
+        "AwsEc2VpcEndpointServiceDetails$BaseEndpointDnsNames": "<p>The DNS names for the service.</p>",
+        "AwsEc2VpcEndpointServiceDetails$GatewayLoadBalancerArns": "<p>The ARNs of the Gateway Load Balancers for the service.</p>",
+        "AwsEc2VpcEndpointServiceDetails$NetworkLoadBalancerArns": "<p>The ARNs of the Network Load Balancers for the service.</p>",
         "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$IkeVersions": "<p>The Internet Key Exchange (IKE) versions that are permitted for the VPN tunnel.</p>",
         "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase1EncryptionAlgorithms": "<p>The permitted encryption algorithms for the VPN tunnel for phase 1 IKE negotiations.</p>",
         "AwsEc2VpnConnectionOptionsTunnelOptionsDetails$Phase1IntegrityAlgorithms": "<p>The permitted integrity algorithms for the VPN tunnel for phase 1 IKE negotiations.</p>",
@@ -4717,12 +5056,17 @@
         "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersDevicesDetails$Permissions": "<p>The explicit permissions to provide to the container for the device. By default, the container has permissions for read, write, and <code>mknod</code> for the device.</p>",
         "AwsEcsTaskDefinitionContainerDefinitionsLinuxParametersTmpfsDetails$MountOptions": "<p>The list of tmpfs volume mount options.</p>",
         "AwsEcsTaskDefinitionDetails$RequiresCompatibilities": "<p>The task launch types that the task definition was validated against.</p>",
+        "AwsEksClusterLoggingClusterLoggingDetails$Types": "<p>A list of logging types.</p>",
+        "AwsEksClusterResourcesVpcConfigDetails$SecurityGroupIds": "<p>The security groups that are associated with the cross-account elastic network interfaces that are used to allow communication between your nodes and the Amazon EKS control plane.</p>",
+        "AwsEksClusterResourcesVpcConfigDetails$SubnetIds": "<p>The subnets that are associated with the cluster.</p>",
         "AwsElasticsearchDomainVPCOptions$AvailabilityZones": "<p>The list of Availability Zones associated with the VPC subnets.</p>",
         "AwsElasticsearchDomainVPCOptions$SecurityGroupIds": "<p>The list of security group IDs associated with the VPC endpoints for the domain.</p>",
         "AwsElasticsearchDomainVPCOptions$SubnetIds": "<p>A list of subnet IDs associated with the VPC endpoints for the domain.</p>",
         "AwsLambdaFunctionVpcConfig$SecurityGroupIds": "<p>A list of VPC security groups IDs.</p>",
         "AwsLambdaFunctionVpcConfig$SubnetIds": "<p>A list of VPC subnet IDs.</p>",
         "AwsLambdaLayerVersionDetails$CompatibleRuntimes": "<p>The layer's compatible runtimes. Maximum number of five items.</p> <p>Valid values: <code>nodejs10.x</code> | <code>nodejs12.x</code> | <code>java8</code> | <code>java11</code> | <code>python2.7</code> | <code>python3.6</code> | <code>python3.7</code> | <code>python3.8</code> | <code>dotnetcore1.0</code> | <code>dotnetcore2.1</code> | <code>go1.x</code> | <code>ruby2.5</code> | <code>provided</code> </p>",
+        "AwsOpenSearchServiceDomainVpcOptionsDetails$SecurityGroupIds": "<p>The list of security group IDs that are associated with the VPC endpoints for the domain.</p>",
+        "AwsOpenSearchServiceDomainVpcOptionsDetails$SubnetIds": "<p>A list of subnet IDs that are associated with the VPC endpoints for the domain.</p>",
         "AwsRdsEventSubscriptionDetails$EventCategoriesList": "<p>The list of event categories for the event notification subscription.</p>",
         "AwsRdsEventSubscriptionDetails$SourceIdsList": "<p>A list of source identifiers for the event notification subscription.</p>"
       }
