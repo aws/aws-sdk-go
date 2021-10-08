@@ -88,6 +88,10 @@ type MediaConvertAPI interface {
 	DeleteJobTemplateWithContext(aws.Context, *mediaconvert.DeleteJobTemplateInput, ...request.Option) (*mediaconvert.DeleteJobTemplateOutput, error)
 	DeleteJobTemplateRequest(*mediaconvert.DeleteJobTemplateInput) (*request.Request, *mediaconvert.DeleteJobTemplateOutput)
 
+	DeletePolicy(*mediaconvert.DeletePolicyInput) (*mediaconvert.DeletePolicyOutput, error)
+	DeletePolicyWithContext(aws.Context, *mediaconvert.DeletePolicyInput, ...request.Option) (*mediaconvert.DeletePolicyOutput, error)
+	DeletePolicyRequest(*mediaconvert.DeletePolicyInput) (*request.Request, *mediaconvert.DeletePolicyOutput)
+
 	DeletePreset(*mediaconvert.DeletePresetInput) (*mediaconvert.DeletePresetOutput, error)
 	DeletePresetWithContext(aws.Context, *mediaconvert.DeletePresetInput, ...request.Option) (*mediaconvert.DeletePresetOutput, error)
 	DeletePresetRequest(*mediaconvert.DeletePresetInput) (*request.Request, *mediaconvert.DeletePresetOutput)
@@ -114,6 +118,10 @@ type MediaConvertAPI interface {
 	GetJobTemplate(*mediaconvert.GetJobTemplateInput) (*mediaconvert.GetJobTemplateOutput, error)
 	GetJobTemplateWithContext(aws.Context, *mediaconvert.GetJobTemplateInput, ...request.Option) (*mediaconvert.GetJobTemplateOutput, error)
 	GetJobTemplateRequest(*mediaconvert.GetJobTemplateInput) (*request.Request, *mediaconvert.GetJobTemplateOutput)
+
+	GetPolicy(*mediaconvert.GetPolicyInput) (*mediaconvert.GetPolicyOutput, error)
+	GetPolicyWithContext(aws.Context, *mediaconvert.GetPolicyInput, ...request.Option) (*mediaconvert.GetPolicyOutput, error)
+	GetPolicyRequest(*mediaconvert.GetPolicyInput) (*request.Request, *mediaconvert.GetPolicyOutput)
 
 	GetPreset(*mediaconvert.GetPresetInput) (*mediaconvert.GetPresetOutput, error)
 	GetPresetWithContext(aws.Context, *mediaconvert.GetPresetInput, ...request.Option) (*mediaconvert.GetPresetOutput, error)
@@ -154,6 +162,10 @@ type MediaConvertAPI interface {
 	ListTagsForResource(*mediaconvert.ListTagsForResourceInput) (*mediaconvert.ListTagsForResourceOutput, error)
 	ListTagsForResourceWithContext(aws.Context, *mediaconvert.ListTagsForResourceInput, ...request.Option) (*mediaconvert.ListTagsForResourceOutput, error)
 	ListTagsForResourceRequest(*mediaconvert.ListTagsForResourceInput) (*request.Request, *mediaconvert.ListTagsForResourceOutput)
+
+	PutPolicy(*mediaconvert.PutPolicyInput) (*mediaconvert.PutPolicyOutput, error)
+	PutPolicyWithContext(aws.Context, *mediaconvert.PutPolicyInput, ...request.Option) (*mediaconvert.PutPolicyOutput, error)
+	PutPolicyRequest(*mediaconvert.PutPolicyInput) (*request.Request, *mediaconvert.PutPolicyOutput)
 
 	TagResource(*mediaconvert.TagResourceInput) (*mediaconvert.TagResourceOutput, error)
 	TagResourceWithContext(aws.Context, *mediaconvert.TagResourceInput, ...request.Option) (*mediaconvert.TagResourceOutput, error)

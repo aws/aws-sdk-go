@@ -2878,7 +2878,58 @@
       "type":"structure",
       "required":["enabled"],
       "members":{
-        "enabled":{"shape":"Boolean"}
+        "enabled":{"shape":"Boolean"},
+        "postFulfillmentStatusSpecification":{"shape":"PostFulfillmentStatusSpecification"},
+        "fulfillmentUpdatesSpecification":{"shape":"FulfillmentUpdatesSpecification"}
+      }
+    },
+    "FulfillmentStartResponseDelay":{
+      "type":"integer",
+      "max":900,
+      "min":1
+    },
+    "FulfillmentStartResponseSpecification":{
+      "type":"structure",
+      "required":[
+        "delayInSeconds",
+        "messageGroups"
+      ],
+      "members":{
+        "delayInSeconds":{"shape":"FulfillmentStartResponseDelay"},
+        "messageGroups":{"shape":"MessageGroupsList"},
+        "allowInterrupt":{"shape":"BoxedBoolean"}
+      }
+    },
+    "FulfillmentTimeout":{
+      "type":"integer",
+      "max":900,
+      "min":1
+    },
+    "FulfillmentUpdateResponseFrequency":{
+      "type":"integer",
+      "max":900,
+      "min":1
+    },
+    "FulfillmentUpdateResponseSpecification":{
+      "type":"structure",
+      "required":[
+        "frequencyInSeconds",
+        "messageGroups"
+      ],
+      "members":{
+        "frequencyInSeconds":{"shape":"FulfillmentUpdateResponseFrequency"},
+        "messageGroups":{"shape":"MessageGroupsList"},
+        "allowInterrupt":{"shape":"BoxedBoolean"}
+      }
+    },
+    "FulfillmentUpdatesSpecification":{
+      "type":"structure",
+      "required":["active"],
+      "members":{
+        "active":{"shape":"BoxedBoolean"},
+        "startResponse":{"shape":"FulfillmentStartResponseSpecification"},
+        "updateResponse":{"shape":"FulfillmentUpdateResponseSpecification"},
+        "timeoutInSeconds":{"shape":"FulfillmentTimeout"}
       }
     },
     "HitCount":{"type":"integer"},
@@ -3616,6 +3667,14 @@
     "Policy":{
       "type":"string",
       "min":2
+    },
+    "PostFulfillmentStatusSpecification":{
+      "type":"structure",
+      "members":{
+        "successResponse":{"shape":"ResponseSpecification"},
+        "failureResponse":{"shape":"ResponseSpecification"},
+        "timeoutResponse":{"shape":"ResponseSpecification"}
+      }
     },
     "PreconditionFailedException":{
       "type":"structure",

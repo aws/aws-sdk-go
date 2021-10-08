@@ -1538,9 +1538,13 @@ func (c *SecretsManager) PutSecretValueRequest(input *PutSecretValueInput) (req 
 // can contain a new SecretString value or a new SecretBinary value. You can
 // also specify the staging labels that are initially attached to the new version.
 //
-// The Secrets Manager console uses only the SecretString field. To add binary
-// data to a secret with the SecretBinary field you must use the Amazon Web
-// Services CLI or one of the Amazon Web Services SDKs.
+// We recommend you avoid calling PutSecretValue at a sustained rate of more
+// than once every 10 minutes. When you update the secret value, Secrets Manager
+// creates a new version of the secret. Secrets Manager removes outdated versions
+// when there are more than 100, but it does not remove versions created less
+// than 24 hours ago. If you call PutSecretValue more than once every 10 minutes,
+// you create more versions than Secrets Manager removes, and you will reach
+// the quota for secret versions.
 //
 //    * If this operation creates the first version for the secret then Secrets
 //    Manager automatically attaches the staging label AWSCURRENT to the new
@@ -2532,11 +2536,19 @@ func (c *SecretsManager) UpdateSecretRequest(input *UpdateSecretInput) (req *req
 
 // UpdateSecret API operation for AWS Secrets Manager.
 //
-// Modifies many of the details of the specified secret. If you include a ClientRequestToken
-// and either SecretString or SecretBinary then it also creates a new version
-// attached to the secret.
+// Modifies many of the details of the specified secret.
 //
-// To modify the rotation configuration of a secret, use RotateSecret instead.
+// To change the secret value, you can also use PutSecretValue.
+//
+// To change the rotation configuration of a secret, use RotateSecret instead.
+//
+// We recommend you avoid calling UpdateSecret at a sustained rate of more than
+// once every 10 minutes. When you call UpdateSecret to update the secret value,
+// Secrets Manager creates a new version of the secret. Secrets Manager removes
+// outdated versions when there are more than 100, but it does not remove versions
+// created less than 24 hours ago. If you update the secret value more than
+// once every 10 minutes, you create more versions than Secrets Manager removes,
+// and you will reach the quota for secret versions.
 //
 // The Secrets Manager console uses only the SecretString parameter and therefore
 // limits you to encrypting and storing only a text string. To encrypt and store
@@ -2933,22 +2945,8 @@ type CancelRotateSecretInput struct {
 	// Specifies the secret to cancel a rotation request. You can specify either
 	// the Amazon Resource Name (ARN) or the friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -3157,16 +3155,9 @@ type CreateSecretInput struct {
 	// key/value pairs that the Lambda rotation function knows how to parse.
 	//
 	// For storing multiple values, we recommend that you use a JSON text string
-	// argument and specify key/value pairs. For information on how to format a
-	// JSON parameter for the various command line tool environments, see Using
-	// JSON for Parameters (https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json)
-	// in the CLI User Guide. For example:
-	//
-	// {"username":"bob","password":"abc123xyz456"}
-	//
-	// If your command-line tool or SDK requires quotation marks around the parameter,
-	// you should use single quotes to avoid confusion with the double quotes required
-	// in the JSON text.
+	// argument and specify key/value pairs. For more information, see Specifying
+	// parameter values for the Amazon Web Services CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters.html)
+	// in the Amazon Web Services CLI User Guide.
 	//
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by CreateSecretInput's
@@ -3471,22 +3462,8 @@ type DeleteResourcePolicyInput struct {
 	// policy for. You can specify either the Amazon Resource Name (ARN) or the
 	// friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -3606,22 +3583,8 @@ type DeleteSecretInput struct {
 	// Specifies the secret to delete. You can specify either the Amazon Resource
 	// Name (ARN) or the friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -3737,22 +3700,8 @@ type DescribeSecretInput struct {
 	// specify either the Amazon Resource Name (ARN) or the friendly name of the
 	// secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -3862,7 +3811,8 @@ type DescribeSecretOutput struct {
 	// RotateSecret.
 	RotationLambdaARN *string `type:"string"`
 
-	// A structure with the rotation configuration for this secret.
+	// A structure with the rotation configuration for this secret. This field is
+	// only populated if rotation is configured.
 	RotationRules *RotationRulesType `type:"structure"`
 
 	// The list of user-defined tags that are associated with the secret. To add
@@ -4291,22 +4241,8 @@ type GetResourcePolicyInput struct {
 	// policy for. You can specify either the Amazon Resource Name (ARN) or the
 	// friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -4415,22 +4351,8 @@ type GetSecretValueInput struct {
 	// can specify either the Amazon Resource Name (ARN) or the friendly name of
 	// the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -4991,22 +4913,8 @@ type ListSecretVersionIdsInput struct {
 	// can specify either the Amazon Resource Name (ARN) or the friendly name of
 	// the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -5501,22 +5409,8 @@ type PutResourcePolicyInput struct {
 	// Specifies the secret that you want to attach the resource-based policy. You
 	// can specify either the ARN or the friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -5674,22 +5568,8 @@ type PutSecretValueInput struct {
 	// either the Amazon Resource Name (ARN) or the friendly name of the secret.
 	// The secret must already exist.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -5704,18 +5584,9 @@ type PutSecretValueInput struct {
 	// key/value pairs that the default Lambda rotation function knows how to parse.
 	//
 	// For storing multiple values, we recommend that you use a JSON text string
-	// argument and specify key/value pairs. For information on how to format a
-	// JSON parameter for the various command line tool environments, see Using
-	// JSON for Parameters (https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json)
-	// in the CLI User Guide.
-	//
-	// For example:
-	//
-	// [{"username":"bob"},{"password":"abc123xyz456"}]
-	//
-	// If your command-line tool or SDK requires quotation marks around the parameter,
-	// you should use single quotes to avoid confusion with the double quotes required
-	// in the JSON text.
+	// argument and specify key/value pairs. For more information, see Specifying
+	// parameter values for the Amazon Web Services CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters.html)
+	// in the Amazon Web Services CLI User Guide.
 	//
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by PutSecretValueInput's
@@ -6360,22 +6231,8 @@ type RestoreSecretInput struct {
 	// deletion. You can specify either the Amazon Resource Name (ARN) or the friendly
 	// name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -6494,22 +6351,8 @@ type RotateSecretInput struct {
 	// Specifies the secret that you want to rotate. You can specify either the
 	// Amazon Resource Name (ARN) or the friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -7087,22 +6930,8 @@ type TagResourceInput struct {
 	// The identifier for the secret that you want to attach tags to. You can specify
 	// either the Amazon Resource Name (ARN) or the friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -7110,11 +6939,12 @@ type TagResourceInput struct {
 	// The tags to attach to the secret. Each element in the list consists of a
 	// Key and a Value.
 	//
-	// This parameter to the API requires a JSON text string argument. For information
-	// on how to format a JSON parameter for the various command line tool environments,
-	// see Using JSON for Parameters (https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json)
-	// in the CLI User Guide. For the CLI, you can also use the syntax: --Tags Key="Key1",Value="Value1"
-	// Key="Key2",Value="Value2"[,…]
+	// This parameter to the API requires a JSON text string argument.
+	//
+	// For storing multiple values, we recommend that you use a JSON text string
+	// argument and specify key/value pairs. For more information, see Specifying
+	// parameter values for the Amazon Web Services CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters.html)
+	// in the Amazon Web Services CLI User Guide.
 	//
 	// Tags is a required field
 	Tags []*Tag `type:"list" required:"true"`
@@ -7208,22 +7038,8 @@ type UntagResourceInput struct {
 	// specify either the Amazon Resource Name (ARN) or the friendly name of the
 	// secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -7231,10 +7047,12 @@ type UntagResourceInput struct {
 	// A list of tag key names to remove from the secret. You don't specify the
 	// value. Both the key and its associated value are removed.
 	//
-	// This parameter to the API requires a JSON text string argument. For information
-	// on how to format a JSON parameter for the various command line tool environments,
-	// see Using JSON for Parameters (https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json)
-	// in the CLI User Guide.
+	// This parameter to the API requires a JSON text string argument.
+	//
+	// For storing multiple values, we recommend that you use a JSON text string
+	// argument and specify key/value pairs. For more information, see Specifying
+	// parameter values for the Amazon Web Services CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters.html)
+	// in the Amazon Web Services CLI User Guide.
 	//
 	// TagKeys is a required field
 	TagKeys []*string `type:"list" required:"true"`
@@ -7351,8 +7169,11 @@ type UpdateSecretInput struct {
 	Description *string `type:"string"`
 
 	// (Optional) Specifies an updated ARN or alias of the Amazon Web Services KMS
-	// customer master key (CMK) to be used to encrypt the protected text in new
-	// versions of this secret.
+	// customer master key (CMK) that Secrets Manager uses to encrypt the protected
+	// text in new versions of this secret as well as any existing versions of this
+	// secret that have the staging labels AWSCURRENT, AWSPENDING, or AWSPREVIOUS.
+	// For more information about staging labels, see Staging Labels (https://docs.aws.amazon.com/secretsmanager/latest/userguide/terms-concepts.html#term_staging-label)
+	// in the Amazon Web Services Secrets Manager User Guide.
 	//
 	// You can only use the account's default CMK to encrypt and decrypt if you
 	// call this operation using credentials from the same account that owns the
@@ -7382,22 +7203,8 @@ type UpdateSecretInput struct {
 	// a new version. You can specify either the Amazon Resource Name (ARN) or the
 	// friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -7412,21 +7219,9 @@ type UpdateSecretInput struct {
 	// key/value pairs that the default Lambda rotation function knows how to parse.
 	//
 	// For storing multiple values, we recommend that you use a JSON text string
-	// argument and specify key/value pairs. For information on how to format a
-	// JSON parameter for the various command line tool environments, see Using
-	// JSON for Parameters (https://docs.aws.amazon.com/cli/latest/userguide/cli-using-param.html#cli-using-param-json)
-	// in the CLI User Guide. For example:
-	//
-	// [{"username":"bob"},{"password":"abc123xyz456"}]
-	//
-	// If your command-line tool or SDK requires quotation marks around the parameter,
-	// you should use single quotes to avoid confusion with the double quotes required
-	// in the JSON text. You can also 'escape' the double quote character in the
-	// embedded JSON text by prefacing each with a backslash. For example, the following
-	// string is surrounded by double-quotes. All of the embedded double quotes
-	// are escaped:
-	//
-	// "[{\"username\":\"bob\"},{\"password\":\"abc123xyz456\"}]"
+	// argument and specify key/value pairs. For more information, see Specifying
+	// parameter values for the Amazon Web Services CLI (https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-parameters.html)
+	// in the Amazon Web Services CLI User Guide.
 	//
 	// SecretString is a sensitive parameter and its value will be
 	// replaced with "sensitive" in string returned by UpdateSecretInput's
@@ -7586,22 +7381,8 @@ type UpdateSecretVersionStageInput struct {
 	// want to modify. You can specify either the Amazon Resource Name (ARN) or
 	// the friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	//
 	// SecretId is a required field
 	SecretId *string `min:"1" type:"string" required:"true"`
@@ -7739,22 +7520,8 @@ type ValidateResourcePolicyInput struct {
 	// want to validate. You can specify either the Amazon Resource Name (ARN) or
 	// the friendly name of the secret.
 	//
-	// If you specify an ARN, we generally recommend that you specify a complete
-	// ARN. You can specify a partial ARN too—for example, if you don’t include
-	// the final hyphen and six random characters that Secrets Manager adds at the
-	// end of the ARN when you created the secret. A partial ARN match can work
-	// as long as it uniquely matches only one secret. However, if your secret has
-	// a name that ends in a hyphen followed by six characters (before Secrets Manager
-	// adds the hyphen and six characters to the ARN) and you try to use that as
-	// a partial ARN, then those characters cause Secrets Manager to assume that
-	// you’re specifying a complete ARN. This confusion can cause unexpected results.
-	// To avoid this situation, we recommend that you don’t create secret names
-	// ending with a hyphen followed by six characters.
-	//
-	// If you specify an incomplete ARN without the random suffix, and instead provide
-	// the 'friendly name', you must not include the random suffix. If you do include
-	// the random suffix added by Secrets Manager, you receive either a ResourceNotFoundException
-	// or an AccessDeniedException error, depending on your permissions.
+	// For an ARN, we recommend that you specify a complete ARN rather than a partial
+	// ARN.
 	SecretId *string `min:"1" type:"string"`
 }
 

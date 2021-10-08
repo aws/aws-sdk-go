@@ -1,3 +1,17 @@
+Release v1.40.59 (2021-10-08)
+===
+
+### Service Client Updates
+* `service/ec2`: Updates service API and documentation
+  * This release removes a requirement for filters on SearchLocalGatewayRoutes operations.
+* `service/mediaconvert`: Updates service API and documentation
+  * AWS Elemental MediaConvert has added the ability to set account policies which control access restrictions for HTTP, HTTPS, and S3 content sources.
+* `service/models.lex.v2`: Updates service API and documentation
+* `service/runtime.lex.v2`: Updates service API and documentation
+* `service/secretsmanager`: Updates service documentation
+  * Documentation updates for Secrets Manager
+* `service/securityhub`: Updates service API and documentation
+
 Release v1.40.58 (2021-10-07)
 ===
 

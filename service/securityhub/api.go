@@ -950,16 +950,20 @@ func (c *SecurityHub) CreateMembersRequest(input *CreateMembersInput) (req *requ
 // the account becomes a member account in Security Hub.
 //
 // Accounts that are managed using Organizations do not receive an invitation.
-// They automatically become a member account in Security Hub, and Security
-// Hub is automatically enabled for those accounts. Note that Security Hub cannot
-// be enabled automatically for the organization management account. The organization
-// management account must enable Security Hub before the administrator account
-// enables it as a member account.
+// They automatically become a member account in Security Hub.
+//
+//    * If the organization account does not have Security Hub enabled, then
+//    Security Hub and the default standards are automatically enabled. Note
+//    that Security Hub cannot be enabled automatically for the organization
+//    management account. The organization management account must enable Security
+//    Hub before the administrator account enables it as a member account.
+//
+//    * For organization accounts that already have Security Hub enabled, Security
+//    Hub does not make any other changes to those accounts. It does not change
+//    their enabled standards or controls.
 //
 // A permissions policy is added that permits the administrator account to view
-// the findings generated in the member account. When Security Hub is enabled
-// in a member account, the member account findings are also visible to the
-// administrator account.
+// the findings generated in the member account.
 //
 // To remove the association between the administrator and member accounts,
 // use the DisassociateFromMasterAccount or DisassociateMembers operation.
@@ -8826,6 +8830,10 @@ type AwsCloudFrontDistributionDetails struct {
 	// Indicates the current status of the distribution.
 	Status *string `type:"string"`
 
+	// Provides information about the TLS/SSL configuration that the distribution
+	// uses to communicate with viewers.
+	ViewerCertificate *AwsCloudFrontDistributionViewerCertificate `type:"structure"`
+
 	// A unique identifier that specifies the WAF web ACL, if any, to associate
 	// with this distribution.
 	WebAclId *string `type:"string"`
@@ -8906,6 +8914,12 @@ func (s *AwsCloudFrontDistributionDetails) SetOrigins(v *AwsCloudFrontDistributi
 // SetStatus sets the Status field's value.
 func (s *AwsCloudFrontDistributionDetails) SetStatus(v string) *AwsCloudFrontDistributionDetails {
 	s.Status = &v
+	return s
+}
+
+// SetViewerCertificate sets the ViewerCertificate field's value.
+func (s *AwsCloudFrontDistributionDetails) SetViewerCertificate(v *AwsCloudFrontDistributionViewerCertificate) *AwsCloudFrontDistributionDetails {
+	s.ViewerCertificate = v
 	return s
 }
 
@@ -9242,6 +9256,102 @@ func (s *AwsCloudFrontDistributionOrigins) SetItems(v []*AwsCloudFrontDistributi
 	return s
 }
 
+// Provides information about the TLS/SSL configuration that the distribution
+// uses to communicate with viewers.
+type AwsCloudFrontDistributionViewerCertificate struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the ACM certificate. Used if the certificate is stored in ACM.
+	// If you provide an ACM certificate ARN, you must also provide MinimumCertificateVersion
+	// and SslSupportMethod.
+	AcmCertificateArn *string `type:"string"`
+
+	// The identifier of the certificate. Note that in CloudFront, this attribute
+	// is deprecated.
+	Certificate *string `type:"string"`
+
+	// The source of the certificate identified by Certificate. Note that in CloudFront,
+	// this attribute is deprecated.
+	CertificateSource *string `type:"string"`
+
+	// Whether the distribution uses the CloudFront domain name. If set to false,
+	// then you provide either AcmCertificateArn or IamCertificateId.
+	CloudFrontDefaultCertificate *bool `type:"boolean"`
+
+	// The identifier of the IAM certificate. Used if the certificate is stored
+	// in IAM. If you provide IamCertificateId, then you also must provide MinimumProtocolVersion
+	// and SslSupportMethod.
+	IamCertificateId *string `type:"string"`
+
+	// The security policy that CloudFront uses for HTTPS connections with viewers.
+	// If SslSupportMethod is sni-only, then MinimumProtocolVersion must be TLSv1
+	// or higher.
+	MinimumProtocolVersion *string `type:"string"`
+
+	// The viewers that the distribution accepts HTTPS connections from.
+	SslSupportMethod *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFrontDistributionViewerCertificate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCloudFrontDistributionViewerCertificate) GoString() string {
+	return s.String()
+}
+
+// SetAcmCertificateArn sets the AcmCertificateArn field's value.
+func (s *AwsCloudFrontDistributionViewerCertificate) SetAcmCertificateArn(v string) *AwsCloudFrontDistributionViewerCertificate {
+	s.AcmCertificateArn = &v
+	return s
+}
+
+// SetCertificate sets the Certificate field's value.
+func (s *AwsCloudFrontDistributionViewerCertificate) SetCertificate(v string) *AwsCloudFrontDistributionViewerCertificate {
+	s.Certificate = &v
+	return s
+}
+
+// SetCertificateSource sets the CertificateSource field's value.
+func (s *AwsCloudFrontDistributionViewerCertificate) SetCertificateSource(v string) *AwsCloudFrontDistributionViewerCertificate {
+	s.CertificateSource = &v
+	return s
+}
+
+// SetCloudFrontDefaultCertificate sets the CloudFrontDefaultCertificate field's value.
+func (s *AwsCloudFrontDistributionViewerCertificate) SetCloudFrontDefaultCertificate(v bool) *AwsCloudFrontDistributionViewerCertificate {
+	s.CloudFrontDefaultCertificate = &v
+	return s
+}
+
+// SetIamCertificateId sets the IamCertificateId field's value.
+func (s *AwsCloudFrontDistributionViewerCertificate) SetIamCertificateId(v string) *AwsCloudFrontDistributionViewerCertificate {
+	s.IamCertificateId = &v
+	return s
+}
+
+// SetMinimumProtocolVersion sets the MinimumProtocolVersion field's value.
+func (s *AwsCloudFrontDistributionViewerCertificate) SetMinimumProtocolVersion(v string) *AwsCloudFrontDistributionViewerCertificate {
+	s.MinimumProtocolVersion = &v
+	return s
+}
+
+// SetSslSupportMethod sets the SslSupportMethod field's value.
+func (s *AwsCloudFrontDistributionViewerCertificate) SetSslSupportMethod(v string) *AwsCloudFrontDistributionViewerCertificate {
+	s.SslSupportMethod = &v
+	return s
+}
+
 // Provides details about a CloudTrail trail.
 type AwsCloudTrailTrailDetails struct {
 	_ struct{} `type:"structure"`
@@ -9405,9 +9515,121 @@ func (s *AwsCloudTrailTrailDetails) SetTrailArn(v string) *AwsCloudTrailTrailDet
 	return s
 }
 
+// Information about the build artifacts for the CodeBuild project.
+type AwsCodeBuildProjectArtifactsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// An identifier for the artifact definition.
+	ArtifactIdentifier *string `type:"string"`
+
+	// Indicates whether to disable encryption on the artifact. Only valid when
+	// Type is S3.
+	EncryptionDisabled *bool `type:"boolean"`
+
+	// Only used when Type is S3. The name of the S3 bucket where the artifact is
+	// located.
+	Location *string `type:"string"`
+
+	// Only used when Type is S3. The name of the artifact. Used with NamepaceType
+	// and Path to determine the pattern for storing the artifact.
+	Name *string `type:"string"`
+
+	// Only used when Type is S3. The value to use for the namespace. Used with
+	// Name and Path to determine the pattern for storing the artifact.
+	NamespaceType *string `type:"string"`
+
+	// Whether the name specified in the buildspec file overrides the artifact name.
+	OverrideArtifactName *bool `type:"boolean"`
+
+	// Only used when Type is S3. The type of output artifact to create.
+	Packaging *string `type:"string"`
+
+	// Only used when Type is S3. The path to the artifact. Used with Name and NamespaceType
+	// to determine the pattern for storing the artifact.
+	Path *string `type:"string"`
+
+	// The type of build artifact.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectArtifactsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectArtifactsDetails) GoString() string {
+	return s.String()
+}
+
+// SetArtifactIdentifier sets the ArtifactIdentifier field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetArtifactIdentifier(v string) *AwsCodeBuildProjectArtifactsDetails {
+	s.ArtifactIdentifier = &v
+	return s
+}
+
+// SetEncryptionDisabled sets the EncryptionDisabled field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetEncryptionDisabled(v bool) *AwsCodeBuildProjectArtifactsDetails {
+	s.EncryptionDisabled = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetLocation(v string) *AwsCodeBuildProjectArtifactsDetails {
+	s.Location = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetName(v string) *AwsCodeBuildProjectArtifactsDetails {
+	s.Name = &v
+	return s
+}
+
+// SetNamespaceType sets the NamespaceType field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetNamespaceType(v string) *AwsCodeBuildProjectArtifactsDetails {
+	s.NamespaceType = &v
+	return s
+}
+
+// SetOverrideArtifactName sets the OverrideArtifactName field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetOverrideArtifactName(v bool) *AwsCodeBuildProjectArtifactsDetails {
+	s.OverrideArtifactName = &v
+	return s
+}
+
+// SetPackaging sets the Packaging field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetPackaging(v string) *AwsCodeBuildProjectArtifactsDetails {
+	s.Packaging = &v
+	return s
+}
+
+// SetPath sets the Path field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetPath(v string) *AwsCodeBuildProjectArtifactsDetails {
+	s.Path = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsCodeBuildProjectArtifactsDetails) SetType(v string) *AwsCodeBuildProjectArtifactsDetails {
+	s.Type = &v
+	return s
+}
+
 // Information about an CodeBuild project.
 type AwsCodeBuildProjectDetails struct {
 	_ struct{} `type:"structure"`
+
+	// Information about the build artifacts for the CodeBuild project.
+	Artifacts []*AwsCodeBuildProjectArtifactsDetails `type:"list"`
 
 	// The KMS key used to encrypt the build output artifacts.
 	//
@@ -9417,6 +9639,9 @@ type AwsCodeBuildProjectDetails struct {
 
 	// Information about the build environment for this build project.
 	Environment *AwsCodeBuildProjectEnvironment `type:"structure"`
+
+	// Information about logs for the build project.
+	LogsConfig *AwsCodeBuildProjectLogsConfigDetails `type:"structure"`
 
 	// The name of the build project.
 	Name *string `type:"string"`
@@ -9450,6 +9675,12 @@ func (s AwsCodeBuildProjectDetails) GoString() string {
 	return s.String()
 }
 
+// SetArtifacts sets the Artifacts field's value.
+func (s *AwsCodeBuildProjectDetails) SetArtifacts(v []*AwsCodeBuildProjectArtifactsDetails) *AwsCodeBuildProjectDetails {
+	s.Artifacts = v
+	return s
+}
+
 // SetEncryptionKey sets the EncryptionKey field's value.
 func (s *AwsCodeBuildProjectDetails) SetEncryptionKey(v string) *AwsCodeBuildProjectDetails {
 	s.EncryptionKey = &v
@@ -9459,6 +9690,12 @@ func (s *AwsCodeBuildProjectDetails) SetEncryptionKey(v string) *AwsCodeBuildPro
 // SetEnvironment sets the Environment field's value.
 func (s *AwsCodeBuildProjectDetails) SetEnvironment(v *AwsCodeBuildProjectEnvironment) *AwsCodeBuildProjectDetails {
 	s.Environment = v
+	return s
+}
+
+// SetLogsConfig sets the LogsConfig field's value.
+func (s *AwsCodeBuildProjectDetails) SetLogsConfig(v *AwsCodeBuildProjectLogsConfigDetails) *AwsCodeBuildProjectDetails {
+	s.LogsConfig = v
 	return s
 }
 
@@ -9493,6 +9730,10 @@ type AwsCodeBuildProjectEnvironment struct {
 	// The certificate to use with this build project.
 	Certificate *string `type:"string"`
 
+	// A set of environment variables to make available to builds for the build
+	// project.
+	EnvironmentVariables []*AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails `type:"list"`
+
 	// The type of credentials CodeBuild uses to pull images in your build.
 	//
 	// Valid values:
@@ -9508,6 +9749,10 @@ type AwsCodeBuildProjectEnvironment struct {
 	// credentials. When you use an CodeBuild curated image, you must use CODEBUILD
 	// credentials.
 	ImagePullCredentialsType *string `type:"string"`
+
+	// Whether to allow the Docker daemon to run inside a Docker container. Set
+	// to true if the build project is used to build Docker images.
+	PrivilegedMode *bool `type:"boolean"`
 
 	// The credentials for access to a private registry.
 	RegistryCredential *AwsCodeBuildProjectEnvironmentRegistryCredential `type:"structure"`
@@ -9559,9 +9804,21 @@ func (s *AwsCodeBuildProjectEnvironment) SetCertificate(v string) *AwsCodeBuildP
 	return s
 }
 
+// SetEnvironmentVariables sets the EnvironmentVariables field's value.
+func (s *AwsCodeBuildProjectEnvironment) SetEnvironmentVariables(v []*AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails) *AwsCodeBuildProjectEnvironment {
+	s.EnvironmentVariables = v
+	return s
+}
+
 // SetImagePullCredentialsType sets the ImagePullCredentialsType field's value.
 func (s *AwsCodeBuildProjectEnvironment) SetImagePullCredentialsType(v string) *AwsCodeBuildProjectEnvironment {
 	s.ImagePullCredentialsType = &v
+	return s
+}
+
+// SetPrivilegedMode sets the PrivilegedMode field's value.
+func (s *AwsCodeBuildProjectEnvironment) SetPrivilegedMode(v bool) *AwsCodeBuildProjectEnvironment {
+	s.PrivilegedMode = &v
 	return s
 }
 
@@ -9574,6 +9831,57 @@ func (s *AwsCodeBuildProjectEnvironment) SetRegistryCredential(v *AwsCodeBuildPr
 // SetType sets the Type field's value.
 func (s *AwsCodeBuildProjectEnvironment) SetType(v string) *AwsCodeBuildProjectEnvironment {
 	s.Type = &v
+	return s
+}
+
+// Information about an environment variable that is available to builds for
+// the build project.
+type AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the environment variable.
+	Name *string `type:"string"`
+
+	// The type of environment variable.
+	Type *string `type:"string"`
+
+	// The value of the environment variable.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails) GoString() string {
+	return s.String()
+}
+
+// SetName sets the Name field's value.
+func (s *AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails) SetName(v string) *AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails {
+	s.Name = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails) SetType(v string) *AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails {
+	s.Type = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails) SetValue(v string) *AwsCodeBuildProjectEnvironmentEnvironmentVariablesDetails {
+	s.Value = &v
 	return s
 }
 
@@ -9620,6 +9928,147 @@ func (s *AwsCodeBuildProjectEnvironmentRegistryCredential) SetCredential(v strin
 // SetCredentialProvider sets the CredentialProvider field's value.
 func (s *AwsCodeBuildProjectEnvironmentRegistryCredential) SetCredentialProvider(v string) *AwsCodeBuildProjectEnvironmentRegistryCredential {
 	s.CredentialProvider = &v
+	return s
+}
+
+// Information about CloudWatch Logs for the build project.
+type AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The group name of the logs in CloudWatch Logs.
+	GroupName *string `type:"string"`
+
+	// The current status of the logs in CloudWatch Logs for a build project.
+	Status *string `type:"string"`
+
+	// The prefix of the stream name of the CloudWatch Logs.
+	StreamName *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails) GoString() string {
+	return s.String()
+}
+
+// SetGroupName sets the GroupName field's value.
+func (s *AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails) SetGroupName(v string) *AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails {
+	s.GroupName = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails) SetStatus(v string) *AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails {
+	s.Status = &v
+	return s
+}
+
+// SetStreamName sets the StreamName field's value.
+func (s *AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails) SetStreamName(v string) *AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails {
+	s.StreamName = &v
+	return s
+}
+
+// Information about logs for the build project.
+type AwsCodeBuildProjectLogsConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Information about CloudWatch Logs for the build project.
+	CloudWatchLogs *AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails `type:"structure"`
+
+	// Information about logs built to an S3 bucket for a build project.
+	S3Logs *AwsCodeBuildProjectLogsConfigS3LogsDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectLogsConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectLogsConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogs sets the CloudWatchLogs field's value.
+func (s *AwsCodeBuildProjectLogsConfigDetails) SetCloudWatchLogs(v *AwsCodeBuildProjectLogsConfigCloudWatchLogsDetails) *AwsCodeBuildProjectLogsConfigDetails {
+	s.CloudWatchLogs = v
+	return s
+}
+
+// SetS3Logs sets the S3Logs field's value.
+func (s *AwsCodeBuildProjectLogsConfigDetails) SetS3Logs(v *AwsCodeBuildProjectLogsConfigS3LogsDetails) *AwsCodeBuildProjectLogsConfigDetails {
+	s.S3Logs = v
+	return s
+}
+
+// Information about logs built to an S3 bucket for a build project.
+type AwsCodeBuildProjectLogsConfigS3LogsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to disable encryption of the S3 build log output.
+	EncryptionDisabled *bool `type:"boolean"`
+
+	// The ARN of the S3 bucket and the path prefix for S3 logs.
+	Location *string `type:"string"`
+
+	// The current status of the S3 build logs.
+	Status *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectLogsConfigS3LogsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsCodeBuildProjectLogsConfigS3LogsDetails) GoString() string {
+	return s.String()
+}
+
+// SetEncryptionDisabled sets the EncryptionDisabled field's value.
+func (s *AwsCodeBuildProjectLogsConfigS3LogsDetails) SetEncryptionDisabled(v bool) *AwsCodeBuildProjectLogsConfigS3LogsDetails {
+	s.EncryptionDisabled = &v
+	return s
+}
+
+// SetLocation sets the Location field's value.
+func (s *AwsCodeBuildProjectLogsConfigS3LogsDetails) SetLocation(v string) *AwsCodeBuildProjectLogsConfigS3LogsDetails {
+	s.Location = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsCodeBuildProjectLogsConfigS3LogsDetails) SetStatus(v string) *AwsCodeBuildProjectLogsConfigS3LogsDetails {
+	s.Status = &v
 	return s
 }
 
@@ -12303,6 +12752,161 @@ func (s *AwsEc2VpcDetails) SetState(v string) *AwsEc2VpcDetails {
 	return s
 }
 
+// Contains details about the service configuration for a VPC endpoint service.
+type AwsEc2VpcEndpointServiceDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether requests from other Amazon Web Services accounts to create an endpoint
+	// to the service must first be accepted.
+	AcceptanceRequired *bool `type:"boolean"`
+
+	// The Availability Zones where the service is available.
+	AvailabilityZones []*string `type:"list"`
+
+	// The DNS names for the service.
+	BaseEndpointDnsNames []*string `type:"list"`
+
+	// The ARNs of the Gateway Load Balancers for the service.
+	GatewayLoadBalancerArns []*string `type:"list"`
+
+	// Whether the service manages its VPC endpoints.
+	ManagesVpcEndpoints *bool `type:"boolean"`
+
+	// The ARNs of the Network Load Balancers for the service.
+	NetworkLoadBalancerArns []*string `type:"list"`
+
+	// The private DNS name for the service.
+	PrivateDnsName *string `type:"string"`
+
+	// The identifier of the service.
+	ServiceId *string `type:"string"`
+
+	// The name of the service.
+	ServiceName *string `type:"string"`
+
+	// The current state of the service.
+	ServiceState *string `type:"string"`
+
+	// The types for the service.
+	ServiceType []*AwsEc2VpcEndpointServiceServiceTypeDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcEndpointServiceDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcEndpointServiceDetails) GoString() string {
+	return s.String()
+}
+
+// SetAcceptanceRequired sets the AcceptanceRequired field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetAcceptanceRequired(v bool) *AwsEc2VpcEndpointServiceDetails {
+	s.AcceptanceRequired = &v
+	return s
+}
+
+// SetAvailabilityZones sets the AvailabilityZones field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetAvailabilityZones(v []*string) *AwsEc2VpcEndpointServiceDetails {
+	s.AvailabilityZones = v
+	return s
+}
+
+// SetBaseEndpointDnsNames sets the BaseEndpointDnsNames field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetBaseEndpointDnsNames(v []*string) *AwsEc2VpcEndpointServiceDetails {
+	s.BaseEndpointDnsNames = v
+	return s
+}
+
+// SetGatewayLoadBalancerArns sets the GatewayLoadBalancerArns field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetGatewayLoadBalancerArns(v []*string) *AwsEc2VpcEndpointServiceDetails {
+	s.GatewayLoadBalancerArns = v
+	return s
+}
+
+// SetManagesVpcEndpoints sets the ManagesVpcEndpoints field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetManagesVpcEndpoints(v bool) *AwsEc2VpcEndpointServiceDetails {
+	s.ManagesVpcEndpoints = &v
+	return s
+}
+
+// SetNetworkLoadBalancerArns sets the NetworkLoadBalancerArns field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetNetworkLoadBalancerArns(v []*string) *AwsEc2VpcEndpointServiceDetails {
+	s.NetworkLoadBalancerArns = v
+	return s
+}
+
+// SetPrivateDnsName sets the PrivateDnsName field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetPrivateDnsName(v string) *AwsEc2VpcEndpointServiceDetails {
+	s.PrivateDnsName = &v
+	return s
+}
+
+// SetServiceId sets the ServiceId field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetServiceId(v string) *AwsEc2VpcEndpointServiceDetails {
+	s.ServiceId = &v
+	return s
+}
+
+// SetServiceName sets the ServiceName field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetServiceName(v string) *AwsEc2VpcEndpointServiceDetails {
+	s.ServiceName = &v
+	return s
+}
+
+// SetServiceState sets the ServiceState field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetServiceState(v string) *AwsEc2VpcEndpointServiceDetails {
+	s.ServiceState = &v
+	return s
+}
+
+// SetServiceType sets the ServiceType field's value.
+func (s *AwsEc2VpcEndpointServiceDetails) SetServiceType(v []*AwsEc2VpcEndpointServiceServiceTypeDetails) *AwsEc2VpcEndpointServiceDetails {
+	s.ServiceType = v
+	return s
+}
+
+// The service type information for a VPC endpoint service.
+type AwsEc2VpcEndpointServiceServiceTypeDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The type of service.
+	ServiceType *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcEndpointServiceServiceTypeDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEc2VpcEndpointServiceServiceTypeDetails) GoString() string {
+	return s.String()
+}
+
+// SetServiceType sets the ServiceType field's value.
+func (s *AwsEc2VpcEndpointServiceServiceTypeDetails) SetServiceType(v string) *AwsEc2VpcEndpointServiceServiceTypeDetails {
+	s.ServiceType = &v
+	return s
+}
+
 // Details about an Amazon EC2 VPN connection.
 type AwsEc2VpnConnectionDetails struct {
 	_ struct{} `type:"structure"`
@@ -12845,6 +13449,157 @@ func (s *AwsEcrContainerImageDetails) SetRegistryId(v string) *AwsEcrContainerIm
 // SetRepositoryName sets the RepositoryName field's value.
 func (s *AwsEcrContainerImageDetails) SetRepositoryName(v string) *AwsEcrContainerImageDetails {
 	s.RepositoryName = &v
+	return s
+}
+
+// Provides information about an Amazon Elastic Container Registry repository.
+type AwsEcrRepositoryDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the repository.
+	Arn *string `type:"string"`
+
+	// The image scanning configuration for a repository.
+	ImageScanningConfiguration *AwsEcrRepositoryImageScanningConfigurationDetails `type:"structure"`
+
+	// The tag mutability setting for the repository.
+	ImageTagMutability *string `type:"string"`
+
+	// Information about the lifecycle policy for the repository.
+	LifecyclePolicy *AwsEcrRepositoryLifecyclePolicyDetails `type:"structure"`
+
+	// The name of the repository.
+	RepositoryName *string `type:"string"`
+
+	// The text of the repository policy.
+	RepositoryPolicyText *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcrRepositoryDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcrRepositoryDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsEcrRepositoryDetails) SetArn(v string) *AwsEcrRepositoryDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetImageScanningConfiguration sets the ImageScanningConfiguration field's value.
+func (s *AwsEcrRepositoryDetails) SetImageScanningConfiguration(v *AwsEcrRepositoryImageScanningConfigurationDetails) *AwsEcrRepositoryDetails {
+	s.ImageScanningConfiguration = v
+	return s
+}
+
+// SetImageTagMutability sets the ImageTagMutability field's value.
+func (s *AwsEcrRepositoryDetails) SetImageTagMutability(v string) *AwsEcrRepositoryDetails {
+	s.ImageTagMutability = &v
+	return s
+}
+
+// SetLifecyclePolicy sets the LifecyclePolicy field's value.
+func (s *AwsEcrRepositoryDetails) SetLifecyclePolicy(v *AwsEcrRepositoryLifecyclePolicyDetails) *AwsEcrRepositoryDetails {
+	s.LifecyclePolicy = v
+	return s
+}
+
+// SetRepositoryName sets the RepositoryName field's value.
+func (s *AwsEcrRepositoryDetails) SetRepositoryName(v string) *AwsEcrRepositoryDetails {
+	s.RepositoryName = &v
+	return s
+}
+
+// SetRepositoryPolicyText sets the RepositoryPolicyText field's value.
+func (s *AwsEcrRepositoryDetails) SetRepositoryPolicyText(v string) *AwsEcrRepositoryDetails {
+	s.RepositoryPolicyText = &v
+	return s
+}
+
+// The image scanning configuration for a repository.
+type AwsEcrRepositoryImageScanningConfigurationDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether to scan images after they are pushed to a repository.
+	ScanOnPush *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcrRepositoryImageScanningConfigurationDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcrRepositoryImageScanningConfigurationDetails) GoString() string {
+	return s.String()
+}
+
+// SetScanOnPush sets the ScanOnPush field's value.
+func (s *AwsEcrRepositoryImageScanningConfigurationDetails) SetScanOnPush(v bool) *AwsEcrRepositoryImageScanningConfigurationDetails {
+	s.ScanOnPush = &v
+	return s
+}
+
+// Information about the lifecycle policy for the repository.
+type AwsEcrRepositoryLifecyclePolicyDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The text of the lifecycle policy.
+	LifecyclePolicyText *string `type:"string"`
+
+	// The Amazon Web Services account identifier that is associated with the registry
+	// that contains the repository.
+	RegistryId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcrRepositoryLifecyclePolicyDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEcrRepositoryLifecyclePolicyDetails) GoString() string {
+	return s.String()
+}
+
+// SetLifecyclePolicyText sets the LifecyclePolicyText field's value.
+func (s *AwsEcrRepositoryLifecyclePolicyDetails) SetLifecyclePolicyText(v string) *AwsEcrRepositoryLifecyclePolicyDetails {
+	s.LifecyclePolicyText = &v
+	return s
+}
+
+// SetRegistryId sets the RegistryId field's value.
+func (s *AwsEcrRepositoryLifecyclePolicyDetails) SetRegistryId(v string) *AwsEcrRepositoryLifecyclePolicyDetails {
+	s.RegistryId = &v
 	return s
 }
 
@@ -15950,6 +16705,227 @@ func (s *AwsEcsTaskDefinitionVolumesHostDetails) SetSourcePath(v string) *AwsEcs
 	return s
 }
 
+// Provides details about an Amazon EKS cluster.
+type AwsEksClusterDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the cluster.
+	Arn *string `type:"string"`
+
+	// The certificate authority data for the cluster.
+	CertificateAuthorityData *string `type:"string"`
+
+	// The status of the cluster.
+	ClusterStatus *string `type:"string"`
+
+	// The endpoint for the Amazon EKS API server.
+	Endpoint *string `type:"string"`
+
+	// The logging configuration for the cluster.
+	Logging *AwsEksClusterLoggingDetails `type:"structure"`
+
+	// The name of the cluster.
+	Name *string `type:"string"`
+
+	// The VPC configuration used by the cluster control plane.
+	ResourcesVpcConfig *AwsEksClusterResourcesVpcConfigDetails `type:"structure"`
+
+	// The ARN of the IAM role that provides permissions for the Amazon EKS control
+	// plane to make calls to Amazon Web Services API operations on your behalf.
+	RoleArn *string `type:"string"`
+
+	// The Amazon EKS server version for the cluster.
+	Version *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEksClusterDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEksClusterDetails) GoString() string {
+	return s.String()
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsEksClusterDetails) SetArn(v string) *AwsEksClusterDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetCertificateAuthorityData sets the CertificateAuthorityData field's value.
+func (s *AwsEksClusterDetails) SetCertificateAuthorityData(v string) *AwsEksClusterDetails {
+	s.CertificateAuthorityData = &v
+	return s
+}
+
+// SetClusterStatus sets the ClusterStatus field's value.
+func (s *AwsEksClusterDetails) SetClusterStatus(v string) *AwsEksClusterDetails {
+	s.ClusterStatus = &v
+	return s
+}
+
+// SetEndpoint sets the Endpoint field's value.
+func (s *AwsEksClusterDetails) SetEndpoint(v string) *AwsEksClusterDetails {
+	s.Endpoint = &v
+	return s
+}
+
+// SetLogging sets the Logging field's value.
+func (s *AwsEksClusterDetails) SetLogging(v *AwsEksClusterLoggingDetails) *AwsEksClusterDetails {
+	s.Logging = v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsEksClusterDetails) SetName(v string) *AwsEksClusterDetails {
+	s.Name = &v
+	return s
+}
+
+// SetResourcesVpcConfig sets the ResourcesVpcConfig field's value.
+func (s *AwsEksClusterDetails) SetResourcesVpcConfig(v *AwsEksClusterResourcesVpcConfigDetails) *AwsEksClusterDetails {
+	s.ResourcesVpcConfig = v
+	return s
+}
+
+// SetRoleArn sets the RoleArn field's value.
+func (s *AwsEksClusterDetails) SetRoleArn(v string) *AwsEksClusterDetails {
+	s.RoleArn = &v
+	return s
+}
+
+// SetVersion sets the Version field's value.
+func (s *AwsEksClusterDetails) SetVersion(v string) *AwsEksClusterDetails {
+	s.Version = &v
+	return s
+}
+
+// Details for a cluster logging configuration.
+type AwsEksClusterLoggingClusterLoggingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether the logging types that are listed in Types are enabled.
+	Enabled *bool `type:"boolean"`
+
+	// A list of logging types.
+	Types []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEksClusterLoggingClusterLoggingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEksClusterLoggingClusterLoggingDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsEksClusterLoggingClusterLoggingDetails) SetEnabled(v bool) *AwsEksClusterLoggingClusterLoggingDetails {
+	s.Enabled = &v
+	return s
+}
+
+// SetTypes sets the Types field's value.
+func (s *AwsEksClusterLoggingClusterLoggingDetails) SetTypes(v []*string) *AwsEksClusterLoggingClusterLoggingDetails {
+	s.Types = v
+	return s
+}
+
+// The logging configuration for an Amazon EKS cluster.
+type AwsEksClusterLoggingDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Cluster logging configurations.
+	ClusterLogging []*AwsEksClusterLoggingClusterLoggingDetails `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEksClusterLoggingDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEksClusterLoggingDetails) GoString() string {
+	return s.String()
+}
+
+// SetClusterLogging sets the ClusterLogging field's value.
+func (s *AwsEksClusterLoggingDetails) SetClusterLogging(v []*AwsEksClusterLoggingClusterLoggingDetails) *AwsEksClusterLoggingDetails {
+	s.ClusterLogging = v
+	return s
+}
+
+// Information about the VPC configuration used by the cluster control plane.
+type AwsEksClusterResourcesVpcConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The security groups that are associated with the cross-account elastic network
+	// interfaces that are used to allow communication between your nodes and the
+	// Amazon EKS control plane.
+	SecurityGroupIds []*string `type:"list"`
+
+	// The subnets that are associated with the cluster.
+	SubnetIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEksClusterResourcesVpcConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsEksClusterResourcesVpcConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *AwsEksClusterResourcesVpcConfigDetails) SetSecurityGroupIds(v []*string) *AwsEksClusterResourcesVpcConfigDetails {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *AwsEksClusterResourcesVpcConfigDetails) SetSubnetIds(v []*string) *AwsEksClusterResourcesVpcConfigDetails {
+	s.SubnetIds = v
+	return s
+}
+
 // Contains details about an Elastic Beanstalk environment.
 type AwsElasticBeanstalkEnvironmentDetails struct {
 	_ struct{} `type:"structure"`
@@ -16269,7 +17245,7 @@ func (s *AwsElasticBeanstalkEnvironmentTier) SetVersion(v string) *AwsElasticBea
 	return s
 }
 
-// Information about an Amazon Elasticsearch Service domain.
+// Information about an Elasticsearch domain.
 type AwsElasticsearchDomainDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -16294,10 +17270,10 @@ type AwsElasticsearchDomainDetails struct {
 	// Valid characters are a-z (lowercase only), 0-9, and – (hyphen).
 	DomainName *string `type:"string"`
 
-	// Information about an Elasticsearch cluster configuration.
+	// Information about an OpenSearch cluster configuration.
 	ElasticsearchClusterConfig *AwsElasticsearchDomainElasticsearchClusterConfigDetails `type:"structure"`
 
-	// Elasticsearch version.
+	// OpenSearch version.
 	ElasticsearchVersion *string `type:"string"`
 
 	// Details about the configuration for encryption at rest.
@@ -16321,7 +17297,7 @@ type AwsElasticsearchDomainDetails struct {
 	// Information about the status of a domain relative to the latest service software.
 	ServiceSoftwareOptions *AwsElasticsearchDomainServiceSoftwareOptions `type:"structure"`
 
-	// Information that Elasticsearch derives based on VPCOptions for the domain.
+	// Information that OpenSearch derives based on VPCOptions for the domain.
 	VPCOptions *AwsElasticsearchDomainVPCOptions `type:"structure"`
 }
 
@@ -16429,7 +17405,7 @@ type AwsElasticsearchDomainDomainEndpointOptions struct {
 	// Whether to require that all traffic to the domain arrive over HTTPS.
 	EnforceHTTPS *bool `type:"boolean"`
 
-	// The TLS security policy to apply to the HTTPS endpoint of the Elasticsearch
+	// The TLS security policy to apply to the HTTPS endpoint of the OpenSearch
 	// domain.
 	//
 	// Valid values:
@@ -16470,7 +17446,7 @@ func (s *AwsElasticsearchDomainDomainEndpointOptions) SetTLSSecurityPolicy(v str
 	return s
 }
 
-// details about the configuration of an Elasticsearch cluster.
+// details about the configuration of an OpenSearch cluster.
 type AwsElasticsearchDomainElasticsearchClusterConfigDetails struct {
 	_ struct{} `type:"structure"`
 
@@ -16499,7 +17475,7 @@ type AwsElasticsearchDomainElasticsearchClusterConfigDetails struct {
 	ZoneAwarenessConfig *AwsElasticsearchDomainElasticsearchClusterConfigZoneAwarenessConfigDetails `type:"structure"`
 
 	// Whether to enable zone awareness for the Elasticsearch domain. When zone
-	// awareness is enabled, Elasticsearch allocates the cluster's nodes and replica
+	// awareness is enabled, OpenSearch allocates the cluster's nodes and replica
 	// index shards across Availability Zones in the same Region. This prevents
 	// data loss and minimizes downtime if a node or data center fails.
 	ZoneAwarenessEnabled *bool `type:"boolean"`
@@ -16646,10 +17622,10 @@ type AwsElasticsearchDomainLogPublishingOptions struct {
 	// The log configuration.
 	AuditLogs *AwsElasticsearchDomainLogPublishingOptionsLogConfig `type:"structure"`
 
-	// Configures the Elasticsearch index logs publishing.
+	// Configures the OpenSearch index logs publishing.
 	IndexSlowLogs *AwsElasticsearchDomainLogPublishingOptionsLogConfig `type:"structure"`
 
-	// Configures the Elasticsearch search slow log publishing.
+	// Configures the OpenSearch search slow log publishing.
 	SearchSlowLogs *AwsElasticsearchDomainLogPublishingOptionsLogConfig `type:"structure"`
 }
 
@@ -16768,7 +17744,7 @@ type AwsElasticsearchDomainServiceSoftwareOptions struct {
 	_ struct{} `type:"structure"`
 
 	// The epoch time when the deployment window closes for required updates. After
-	// this time, Amazon Elasticsearch Service schedules the software upgrade automatically.
+	// this time, Amazon OpenSearch Service schedules the software upgrade automatically.
 	AutomatedUpdateDate *string `type:"string"`
 
 	// Whether a request to update the domain can be canceled.
@@ -16850,7 +17826,7 @@ func (s *AwsElasticsearchDomainServiceSoftwareOptions) SetUpdateStatus(v string)
 	return s
 }
 
-// Information that Elasticsearch derives based on VPCOptions for the domain.
+// Information that OpenSearch derives based on VPCOptions for the domain.
 type AwsElasticsearchDomainVPCOptions struct {
 	_ struct{} `type:"structure"`
 
@@ -17795,6 +18771,47 @@ func (s *AwsElbLoadBalancerSourceSecurityGroup) SetOwnerAlias(v string) *AwsElbL
 	return s
 }
 
+// A load balancer attribute.
+type AwsElbv2LoadBalancerAttribute struct {
+	_ struct{} `type:"structure"`
+
+	// The name of the load balancer attribute.
+	Key *string `type:"string"`
+
+	// The value of the load balancer attribute.
+	Value *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsElbv2LoadBalancerAttribute) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsElbv2LoadBalancerAttribute) GoString() string {
+	return s.String()
+}
+
+// SetKey sets the Key field's value.
+func (s *AwsElbv2LoadBalancerAttribute) SetKey(v string) *AwsElbv2LoadBalancerAttribute {
+	s.Key = &v
+	return s
+}
+
+// SetValue sets the Value field's value.
+func (s *AwsElbv2LoadBalancerAttribute) SetValue(v string) *AwsElbv2LoadBalancerAttribute {
+	s.Value = &v
+	return s
+}
+
 // Information about a load balancer.
 type AwsElbv2LoadBalancerDetails struct {
 	_ struct{} `type:"structure"`
@@ -17819,6 +18836,9 @@ type AwsElbv2LoadBalancerDetails struct {
 	// possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and
 	// IPv6 addresses).
 	IpAddressType *string `type:"string"`
+
+	// Attributes of the load balancer.
+	LoadBalancerAttributes []*AwsElbv2LoadBalancerAttribute `type:"list"`
 
 	// The nodes of an Internet-facing load balancer have public IP addresses.
 	Scheme *string `type:"string"`
@@ -17881,6 +18901,12 @@ func (s *AwsElbv2LoadBalancerDetails) SetDNSName(v string) *AwsElbv2LoadBalancer
 // SetIpAddressType sets the IpAddressType field's value.
 func (s *AwsElbv2LoadBalancerDetails) SetIpAddressType(v string) *AwsElbv2LoadBalancerDetails {
 	s.IpAddressType = &v
+	return s
+}
+
+// SetLoadBalancerAttributes sets the LoadBalancerAttributes field's value.
+func (s *AwsElbv2LoadBalancerDetails) SetLoadBalancerAttributes(v []*AwsElbv2LoadBalancerAttribute) *AwsElbv2LoadBalancerDetails {
+	s.LoadBalancerAttributes = v
 	return s
 }
 
@@ -19717,6 +20743,689 @@ func (s *AwsLambdaLayerVersionDetails) SetCreatedDate(v string) *AwsLambdaLayerV
 // SetVersion sets the Version field's value.
 func (s *AwsLambdaLayerVersionDetails) SetVersion(v int64) *AwsLambdaLayerVersionDetails {
 	s.Version = &v
+	return s
+}
+
+// Details about the configuration of an OpenSearch cluster.
+type AwsOpenSearchServiceDomainClusterConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of instances to use for the master node. If this attribute is
+	// specified, then DedicatedMasterEnabled must be true.
+	DedicatedMasterCount *int64 `type:"integer"`
+
+	// Whether to use a dedicated master node for the OpenSearch domain. A dedicated
+	// master node performs cluster management tasks, but does not hold data or
+	// respond to data upload requests.
+	DedicatedMasterEnabled *bool `type:"boolean"`
+
+	// The hardware configuration of the computer that hosts the dedicated master
+	// node.
+	//
+	// If this attribute is specified, then DedicatedMasterEnabled must be true.
+	DedicatedMasterType *string `type:"string"`
+
+	// The number of data nodes to use in the OpenSearch domain.
+	InstanceCount *int64 `type:"integer"`
+
+	// The instance type for your data nodes.
+	InstanceType *string `type:"string"`
+
+	// The number of UltraWarm instances.
+	WarmCount *int64 `type:"integer"`
+
+	// Whether UltraWarm is enabled.
+	WarmEnabled *bool `type:"boolean"`
+
+	// The type of UltraWarm instance.
+	WarmType *string `type:"string"`
+
+	// Configuration options for zone awareness. Provided if ZoneAwarenessEnabled
+	// is true.
+	ZoneAwarenessConfig *AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails `type:"structure"`
+
+	// Whether to enable zone awareness for the OpenSearch domain. When zone awareness
+	// is enabled, OpenSearch Service allocates the cluster's nodes and replica
+	// index shards across Availability Zones (AZs) in the same Region. This prevents
+	// data loss and minimizes downtime if a node or data center fails.
+	ZoneAwarenessEnabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainClusterConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainClusterConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetDedicatedMasterCount sets the DedicatedMasterCount field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetDedicatedMasterCount(v int64) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.DedicatedMasterCount = &v
+	return s
+}
+
+// SetDedicatedMasterEnabled sets the DedicatedMasterEnabled field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetDedicatedMasterEnabled(v bool) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.DedicatedMasterEnabled = &v
+	return s
+}
+
+// SetDedicatedMasterType sets the DedicatedMasterType field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetDedicatedMasterType(v string) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.DedicatedMasterType = &v
+	return s
+}
+
+// SetInstanceCount sets the InstanceCount field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetInstanceCount(v int64) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.InstanceCount = &v
+	return s
+}
+
+// SetInstanceType sets the InstanceType field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetInstanceType(v string) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.InstanceType = &v
+	return s
+}
+
+// SetWarmCount sets the WarmCount field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetWarmCount(v int64) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.WarmCount = &v
+	return s
+}
+
+// SetWarmEnabled sets the WarmEnabled field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetWarmEnabled(v bool) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.WarmEnabled = &v
+	return s
+}
+
+// SetWarmType sets the WarmType field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetWarmType(v string) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.WarmType = &v
+	return s
+}
+
+// SetZoneAwarenessConfig sets the ZoneAwarenessConfig field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetZoneAwarenessConfig(v *AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.ZoneAwarenessConfig = v
+	return s
+}
+
+// SetZoneAwarenessEnabled sets the ZoneAwarenessEnabled field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigDetails) SetZoneAwarenessEnabled(v bool) *AwsOpenSearchServiceDomainClusterConfigDetails {
+	s.ZoneAwarenessEnabled = &v
+	return s
+}
+
+// Configuration options for zone awareness.
+type AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The number of Availability Zones that the domain uses. Valid values are 2
+	// and 3. The default is 2.
+	AvailabilityZoneCount *int64 `type:"integer"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetAvailabilityZoneCount sets the AvailabilityZoneCount field's value.
+func (s *AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails) SetAvailabilityZoneCount(v int64) *AwsOpenSearchServiceDomainClusterConfigZoneAwarenessConfigDetails {
+	s.AvailabilityZoneCount = &v
+	return s
+}
+
+// Information about an Amazon OpenSearch Service domain.
+type AwsOpenSearchServiceDomainDetails struct {
+	_ struct{} `type:"structure"`
+
+	// IAM policy document that specifies the access policies for the OpenSearch
+	// Service domain.
+	AccessPolicies *string `type:"string"`
+
+	// The ARN of the OpenSearch Service domain.
+	Arn *string `type:"string"`
+
+	// Details about the configuration of an OpenSearch cluster.
+	ClusterConfig *AwsOpenSearchServiceDomainClusterConfigDetails `type:"structure"`
+
+	// The domain endpoint.
+	DomainEndpoint *string `type:"string"`
+
+	// Additional options for the domain endpoint.
+	DomainEndpointOptions *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails `type:"structure"`
+
+	// The domain endpoints. Used if the OpenSearch domain resides in a VPC.
+	//
+	// This is a map of key-value pairs. The key is always vpc. The value is the
+	// endpoint.
+	DomainEndpoints map[string]*string `type:"map"`
+
+	// The name of the endpoint.
+	DomainName *string `type:"string"`
+
+	// Details about the configuration for encryption at rest.
+	EncryptionAtRestOptions *AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails `type:"structure"`
+
+	// The version of the domain engine.
+	EngineVersion *string `type:"string"`
+
+	// The identifier of the domain.
+	Id *string `type:"string"`
+
+	// Configures the CloudWatch Logs to publish for the OpenSearch domain.
+	LogPublishingOptions *AwsOpenSearchServiceDomainLogPublishingOptionsDetails `type:"structure"`
+
+	// Details about the configuration for node-to-node encryption.
+	NodeToNodeEncryptionOptions *AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails `type:"structure"`
+
+	// Information about the status of a domain relative to the latest service software.
+	ServiceSoftwareOptions *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails `type:"structure"`
+
+	// Information that OpenSearch Service derives based on VPCOptions for the domain.
+	VpcOptions *AwsOpenSearchServiceDomainVpcOptionsDetails `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainDetails) GoString() string {
+	return s.String()
+}
+
+// SetAccessPolicies sets the AccessPolicies field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetAccessPolicies(v string) *AwsOpenSearchServiceDomainDetails {
+	s.AccessPolicies = &v
+	return s
+}
+
+// SetArn sets the Arn field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetArn(v string) *AwsOpenSearchServiceDomainDetails {
+	s.Arn = &v
+	return s
+}
+
+// SetClusterConfig sets the ClusterConfig field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetClusterConfig(v *AwsOpenSearchServiceDomainClusterConfigDetails) *AwsOpenSearchServiceDomainDetails {
+	s.ClusterConfig = v
+	return s
+}
+
+// SetDomainEndpoint sets the DomainEndpoint field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetDomainEndpoint(v string) *AwsOpenSearchServiceDomainDetails {
+	s.DomainEndpoint = &v
+	return s
+}
+
+// SetDomainEndpointOptions sets the DomainEndpointOptions field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetDomainEndpointOptions(v *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails) *AwsOpenSearchServiceDomainDetails {
+	s.DomainEndpointOptions = v
+	return s
+}
+
+// SetDomainEndpoints sets the DomainEndpoints field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetDomainEndpoints(v map[string]*string) *AwsOpenSearchServiceDomainDetails {
+	s.DomainEndpoints = v
+	return s
+}
+
+// SetDomainName sets the DomainName field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetDomainName(v string) *AwsOpenSearchServiceDomainDetails {
+	s.DomainName = &v
+	return s
+}
+
+// SetEncryptionAtRestOptions sets the EncryptionAtRestOptions field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetEncryptionAtRestOptions(v *AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails) *AwsOpenSearchServiceDomainDetails {
+	s.EncryptionAtRestOptions = v
+	return s
+}
+
+// SetEngineVersion sets the EngineVersion field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetEngineVersion(v string) *AwsOpenSearchServiceDomainDetails {
+	s.EngineVersion = &v
+	return s
+}
+
+// SetId sets the Id field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetId(v string) *AwsOpenSearchServiceDomainDetails {
+	s.Id = &v
+	return s
+}
+
+// SetLogPublishingOptions sets the LogPublishingOptions field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetLogPublishingOptions(v *AwsOpenSearchServiceDomainLogPublishingOptionsDetails) *AwsOpenSearchServiceDomainDetails {
+	s.LogPublishingOptions = v
+	return s
+}
+
+// SetNodeToNodeEncryptionOptions sets the NodeToNodeEncryptionOptions field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetNodeToNodeEncryptionOptions(v *AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails) *AwsOpenSearchServiceDomainDetails {
+	s.NodeToNodeEncryptionOptions = v
+	return s
+}
+
+// SetServiceSoftwareOptions sets the ServiceSoftwareOptions field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetServiceSoftwareOptions(v *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) *AwsOpenSearchServiceDomainDetails {
+	s.ServiceSoftwareOptions = v
+	return s
+}
+
+// SetVpcOptions sets the VpcOptions field's value.
+func (s *AwsOpenSearchServiceDomainDetails) SetVpcOptions(v *AwsOpenSearchServiceDomainVpcOptionsDetails) *AwsOpenSearchServiceDomainDetails {
+	s.VpcOptions = v
+	return s
+}
+
+// Information about additional options for the domain endpoint.
+type AwsOpenSearchServiceDomainDomainEndpointOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The fully qualified URL for the custom endpoint.
+	CustomEndpoint *string `type:"string"`
+
+	// The ARN for the security certificate. The certificate is managed in ACM.
+	CustomEndpointCertificateArn *string `type:"string"`
+
+	// Whether to enable a custom endpoint for the domain.
+	CustomEndpointEnabled *bool `type:"boolean"`
+
+	// Whether to require that all traffic to the domain arrive over HTTPS.
+	EnforceHTTPS *bool `type:"boolean"`
+
+	// The TLS security policy to apply to the HTTPS endpoint of the OpenSearch
+	// domain.
+	TLSSecurityPolicy *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainDomainEndpointOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainDomainEndpointOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetCustomEndpoint sets the CustomEndpoint field's value.
+func (s *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails) SetCustomEndpoint(v string) *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails {
+	s.CustomEndpoint = &v
+	return s
+}
+
+// SetCustomEndpointCertificateArn sets the CustomEndpointCertificateArn field's value.
+func (s *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails) SetCustomEndpointCertificateArn(v string) *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails {
+	s.CustomEndpointCertificateArn = &v
+	return s
+}
+
+// SetCustomEndpointEnabled sets the CustomEndpointEnabled field's value.
+func (s *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails) SetCustomEndpointEnabled(v bool) *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails {
+	s.CustomEndpointEnabled = &v
+	return s
+}
+
+// SetEnforceHTTPS sets the EnforceHTTPS field's value.
+func (s *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails) SetEnforceHTTPS(v bool) *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails {
+	s.EnforceHTTPS = &v
+	return s
+}
+
+// SetTLSSecurityPolicy sets the TLSSecurityPolicy field's value.
+func (s *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails) SetTLSSecurityPolicy(v string) *AwsOpenSearchServiceDomainDomainEndpointOptionsDetails {
+	s.TLSSecurityPolicy = &v
+	return s
+}
+
+// Details about the configuration for encryption at rest for the OpenSearch
+// domain.
+type AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether encryption at rest is enabled.
+	Enabled *bool `type:"boolean"`
+
+	// The KMS key ID.
+	KmsKeyId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails) SetEnabled(v bool) *AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails {
+	s.Enabled = &v
+	return s
+}
+
+// SetKmsKeyId sets the KmsKeyId field's value.
+func (s *AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails) SetKmsKeyId(v string) *AwsOpenSearchServiceDomainEncryptionAtRestOptionsDetails {
+	s.KmsKeyId = &v
+	return s
+}
+
+// Configuration details for a log publishing option.
+type AwsOpenSearchServiceDomainLogPublishingOption struct {
+	_ struct{} `type:"structure"`
+
+	// The ARN of the CloudWatch Logs group to publish the logs to.
+	CloudWatchLogsLogGroupArn *string `type:"string"`
+
+	// Whether the log publishing is enabled.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainLogPublishingOption) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainLogPublishingOption) GoString() string {
+	return s.String()
+}
+
+// SetCloudWatchLogsLogGroupArn sets the CloudWatchLogsLogGroupArn field's value.
+func (s *AwsOpenSearchServiceDomainLogPublishingOption) SetCloudWatchLogsLogGroupArn(v string) *AwsOpenSearchServiceDomainLogPublishingOption {
+	s.CloudWatchLogsLogGroupArn = &v
+	return s
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsOpenSearchServiceDomainLogPublishingOption) SetEnabled(v bool) *AwsOpenSearchServiceDomainLogPublishingOption {
+	s.Enabled = &v
+	return s
+}
+
+// Configures the CloudWatch Logs to publish for the OpenSearch domain.
+type AwsOpenSearchServiceDomainLogPublishingOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Configures the OpenSearch audit logs publishing.
+	AuditLogs *AwsOpenSearchServiceDomainLogPublishingOption `type:"structure"`
+
+	// Configures the OpenSearch index logs publishing.
+	IndexSlowLogs *AwsOpenSearchServiceDomainLogPublishingOption `type:"structure"`
+
+	// Configures the OpenSearch search slow log publishing.
+	SearchSlowLogs *AwsOpenSearchServiceDomainLogPublishingOption `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainLogPublishingOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainLogPublishingOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetAuditLogs sets the AuditLogs field's value.
+func (s *AwsOpenSearchServiceDomainLogPublishingOptionsDetails) SetAuditLogs(v *AwsOpenSearchServiceDomainLogPublishingOption) *AwsOpenSearchServiceDomainLogPublishingOptionsDetails {
+	s.AuditLogs = v
+	return s
+}
+
+// SetIndexSlowLogs sets the IndexSlowLogs field's value.
+func (s *AwsOpenSearchServiceDomainLogPublishingOptionsDetails) SetIndexSlowLogs(v *AwsOpenSearchServiceDomainLogPublishingOption) *AwsOpenSearchServiceDomainLogPublishingOptionsDetails {
+	s.IndexSlowLogs = v
+	return s
+}
+
+// SetSearchSlowLogs sets the SearchSlowLogs field's value.
+func (s *AwsOpenSearchServiceDomainLogPublishingOptionsDetails) SetSearchSlowLogs(v *AwsOpenSearchServiceDomainLogPublishingOption) *AwsOpenSearchServiceDomainLogPublishingOptionsDetails {
+	s.SearchSlowLogs = v
+	return s
+}
+
+// Provides details about the configuration for node-to-node encryption.
+type AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// Whether node-to-node encryption is enabled.
+	Enabled *bool `type:"boolean"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetEnabled sets the Enabled field's value.
+func (s *AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails) SetEnabled(v bool) *AwsOpenSearchServiceDomainNodeToNodeEncryptionOptionsDetails {
+	s.Enabled = &v
+	return s
+}
+
+// Provides information about the state of the domain relative to the latest
+// service software.
+type AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The epoch time when the deployment window closes for required updates. After
+	// this time, OpenSearch Service schedules the software upgrade automatically.
+	AutomatedUpdateDate *string `type:"string"`
+
+	// Whether a request to update the domain can be canceled.
+	Cancellable *bool `type:"boolean"`
+
+	// The version of the service software that is currently installed on the domain.
+	CurrentVersion *string `type:"string"`
+
+	// A more detailed description of the service software status.
+	Description *string `type:"string"`
+
+	// The most recent version of the service software.
+	NewVersion *string `type:"string"`
+
+	// Whether the service software update is optional.
+	OptionalDeployment *bool `type:"boolean"`
+
+	// Whether a service software update is available for the domain.
+	UpdateAvailable *bool `type:"boolean"`
+
+	// The status of the service software update.
+	UpdateStatus *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetAutomatedUpdateDate sets the AutomatedUpdateDate field's value.
+func (s *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) SetAutomatedUpdateDate(v string) *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails {
+	s.AutomatedUpdateDate = &v
+	return s
+}
+
+// SetCancellable sets the Cancellable field's value.
+func (s *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) SetCancellable(v bool) *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails {
+	s.Cancellable = &v
+	return s
+}
+
+// SetCurrentVersion sets the CurrentVersion field's value.
+func (s *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) SetCurrentVersion(v string) *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails {
+	s.CurrentVersion = &v
+	return s
+}
+
+// SetDescription sets the Description field's value.
+func (s *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) SetDescription(v string) *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails {
+	s.Description = &v
+	return s
+}
+
+// SetNewVersion sets the NewVersion field's value.
+func (s *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) SetNewVersion(v string) *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails {
+	s.NewVersion = &v
+	return s
+}
+
+// SetOptionalDeployment sets the OptionalDeployment field's value.
+func (s *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) SetOptionalDeployment(v bool) *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails {
+	s.OptionalDeployment = &v
+	return s
+}
+
+// SetUpdateAvailable sets the UpdateAvailable field's value.
+func (s *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) SetUpdateAvailable(v bool) *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails {
+	s.UpdateAvailable = &v
+	return s
+}
+
+// SetUpdateStatus sets the UpdateStatus field's value.
+func (s *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails) SetUpdateStatus(v string) *AwsOpenSearchServiceDomainServiceSoftwareOptionsDetails {
+	s.UpdateStatus = &v
+	return s
+}
+
+// Contains information that OpenSearch Service derives based on the VPCOptions
+// for the domain.
+type AwsOpenSearchServiceDomainVpcOptionsDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The list of security group IDs that are associated with the VPC endpoints
+	// for the domain.
+	SecurityGroupIds []*string `type:"list"`
+
+	// A list of subnet IDs that are associated with the VPC endpoints for the domain.
+	SubnetIds []*string `type:"list"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainVpcOptionsDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsOpenSearchServiceDomainVpcOptionsDetails) GoString() string {
+	return s.String()
+}
+
+// SetSecurityGroupIds sets the SecurityGroupIds field's value.
+func (s *AwsOpenSearchServiceDomainVpcOptionsDetails) SetSecurityGroupIds(v []*string) *AwsOpenSearchServiceDomainVpcOptionsDetails {
+	s.SecurityGroupIds = v
+	return s
+}
+
+// SetSubnetIds sets the SubnetIds field's value.
+func (s *AwsOpenSearchServiceDomainVpcOptionsDetails) SetSubnetIds(v []*string) *AwsOpenSearchServiceDomainVpcOptionsDetails {
+	s.SubnetIds = v
 	return s
 }
 
@@ -24086,6 +25795,10 @@ type AwsS3BucketDetails struct {
 	// contain spaces. For example, 2020-03-22T13:22:13.933Z.
 	CreatedAt *string `type:"string"`
 
+	// The Amazon Web Services account identifier of the account that owns the S3
+	// bucket.
+	OwnerAccountId *string `type:"string"`
+
 	// The canonical user ID of the owner of the S3 bucket.
 	OwnerId *string `type:"string"`
 
@@ -24151,6 +25864,12 @@ func (s *AwsS3BucketDetails) SetBucketWebsiteConfiguration(v *AwsS3BucketWebsite
 // SetCreatedAt sets the CreatedAt field's value.
 func (s *AwsS3BucketDetails) SetCreatedAt(v string) *AwsS3BucketDetails {
 	s.CreatedAt = &v
+	return s
+}
+
+// SetOwnerAccountId sets the OwnerAccountId field's value.
+func (s *AwsS3BucketDetails) SetOwnerAccountId(v string) *AwsS3BucketDetails {
+	s.OwnerAccountId = &v
 	return s
 }
 
@@ -27021,6 +28740,284 @@ func (s *AwsSsmPatchComplianceDetails) SetPatch(v *AwsSsmPatch) *AwsSsmPatchComp
 	return s
 }
 
+// Details about a rate-based rule for global resources. A rate-based rule provides
+// settings to indicate when to allow, block, or count a request. Rate-based
+// rules include the number of requests that arrive over a specified period
+// of time.
+type AwsWafRateBasedRuleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The predicates to include in the rate-based rule.
+	MatchPredicates []*AwsWafRateBasedRuleMatchPredicate `type:"list"`
+
+	// The name of the metrics for the rate-based rule.
+	MetricName *string `type:"string"`
+
+	// The name of the rate-based rule.
+	Name *string `type:"string"`
+
+	// The field that WAF uses to determine whether requests are likely arriving
+	// from single source and are subject to rate monitoring.
+	RateKey *string `type:"string"`
+
+	// The maximum number of requests that have an identical value for the field
+	// specified in RateKey that are allowed within a five-minute period. If the
+	// number of requests exceeds RateLimit and the other predicates specified in
+	// the rule are met, WAF triggers the action for the rule.
+	RateLimit *int64 `type:"long"`
+
+	// The unique identifier for the rate-based rule.
+	RuleId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRateBasedRuleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRateBasedRuleDetails) GoString() string {
+	return s.String()
+}
+
+// SetMatchPredicates sets the MatchPredicates field's value.
+func (s *AwsWafRateBasedRuleDetails) SetMatchPredicates(v []*AwsWafRateBasedRuleMatchPredicate) *AwsWafRateBasedRuleDetails {
+	s.MatchPredicates = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsWafRateBasedRuleDetails) SetMetricName(v string) *AwsWafRateBasedRuleDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafRateBasedRuleDetails) SetName(v string) *AwsWafRateBasedRuleDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRateKey sets the RateKey field's value.
+func (s *AwsWafRateBasedRuleDetails) SetRateKey(v string) *AwsWafRateBasedRuleDetails {
+	s.RateKey = &v
+	return s
+}
+
+// SetRateLimit sets the RateLimit field's value.
+func (s *AwsWafRateBasedRuleDetails) SetRateLimit(v int64) *AwsWafRateBasedRuleDetails {
+	s.RateLimit = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *AwsWafRateBasedRuleDetails) SetRuleId(v string) *AwsWafRateBasedRuleDetails {
+	s.RuleId = &v
+	return s
+}
+
+// A match predicate. A predicate might look for characteristics such as specific
+// IP addresses, geographic locations, or sizes.
+type AwsWafRateBasedRuleMatchPredicate struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the predicate.
+	DataId *string `type:"string"`
+
+	// If set to true, then the rule actions are performed on requests that match
+	// the predicate settings.
+	//
+	// If set to false, then the rule actions are performed on all requests except
+	// those that match the predicate settings.
+	Negated *bool `type:"boolean"`
+
+	// The type of predicate.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRateBasedRuleMatchPredicate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRateBasedRuleMatchPredicate) GoString() string {
+	return s.String()
+}
+
+// SetDataId sets the DataId field's value.
+func (s *AwsWafRateBasedRuleMatchPredicate) SetDataId(v string) *AwsWafRateBasedRuleMatchPredicate {
+	s.DataId = &v
+	return s
+}
+
+// SetNegated sets the Negated field's value.
+func (s *AwsWafRateBasedRuleMatchPredicate) SetNegated(v bool) *AwsWafRateBasedRuleMatchPredicate {
+	s.Negated = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRateBasedRuleMatchPredicate) SetType(v string) *AwsWafRateBasedRuleMatchPredicate {
+	s.Type = &v
+	return s
+}
+
+// contains details about a rate-based rule for Regional resources. A rate-based
+// rule provides settings to indicate when to allow, block, or count a request.
+// Rate-based rules include the number of requests that arrive over a specified
+// period of time.
+type AwsWafRegionalRateBasedRuleDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The predicates to include in the rate-based rule.
+	MatchPredicates []*AwsWafRegionalRateBasedRuleMatchPredicate `type:"list"`
+
+	// The name of the metrics for the rate-based rule.
+	MetricName *string `type:"string"`
+
+	// The name of the rate-based rule.
+	Name *string `type:"string"`
+
+	// The field that WAF uses to determine whether requests are likely arriving
+	// from single source and are subject to rate monitoring.
+	RateKey *string `type:"string"`
+
+	// The maximum number of requests that have an identical value for the field
+	// specified in RateKey that are allowed within a five-minute period. If the
+	// number of requests exceeds RateLimit and the other predicates specified in
+	// the rule are met, WAF triggers the action for the rule.
+	RateLimit *int64 `type:"long"`
+
+	// The unique identifier for the rate-based rule.
+	RuleId *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRateBasedRuleDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRateBasedRuleDetails) GoString() string {
+	return s.String()
+}
+
+// SetMatchPredicates sets the MatchPredicates field's value.
+func (s *AwsWafRegionalRateBasedRuleDetails) SetMatchPredicates(v []*AwsWafRegionalRateBasedRuleMatchPredicate) *AwsWafRegionalRateBasedRuleDetails {
+	s.MatchPredicates = v
+	return s
+}
+
+// SetMetricName sets the MetricName field's value.
+func (s *AwsWafRegionalRateBasedRuleDetails) SetMetricName(v string) *AwsWafRegionalRateBasedRuleDetails {
+	s.MetricName = &v
+	return s
+}
+
+// SetName sets the Name field's value.
+func (s *AwsWafRegionalRateBasedRuleDetails) SetName(v string) *AwsWafRegionalRateBasedRuleDetails {
+	s.Name = &v
+	return s
+}
+
+// SetRateKey sets the RateKey field's value.
+func (s *AwsWafRegionalRateBasedRuleDetails) SetRateKey(v string) *AwsWafRegionalRateBasedRuleDetails {
+	s.RateKey = &v
+	return s
+}
+
+// SetRateLimit sets the RateLimit field's value.
+func (s *AwsWafRegionalRateBasedRuleDetails) SetRateLimit(v int64) *AwsWafRegionalRateBasedRuleDetails {
+	s.RateLimit = &v
+	return s
+}
+
+// SetRuleId sets the RuleId field's value.
+func (s *AwsWafRegionalRateBasedRuleDetails) SetRuleId(v string) *AwsWafRegionalRateBasedRuleDetails {
+	s.RuleId = &v
+	return s
+}
+
+// Details for a match predicate. A predicate might look for characteristics
+// such as specific IP addresses, geographic locations, or sizes.
+type AwsWafRegionalRateBasedRuleMatchPredicate struct {
+	_ struct{} `type:"structure"`
+
+	// The unique identifier for the predicate.
+	DataId *string `type:"string"`
+
+	// If set to true, then the rule actions are performed on requests that match
+	// the predicate settings.
+	//
+	// If set to false, then the rule actions are performed on all requests except
+	// those that match the predicate settings.
+	Negated *bool `type:"boolean"`
+
+	// The type of predicate.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRateBasedRuleMatchPredicate) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsWafRegionalRateBasedRuleMatchPredicate) GoString() string {
+	return s.String()
+}
+
+// SetDataId sets the DataId field's value.
+func (s *AwsWafRegionalRateBasedRuleMatchPredicate) SetDataId(v string) *AwsWafRegionalRateBasedRuleMatchPredicate {
+	s.DataId = &v
+	return s
+}
+
+// SetNegated sets the Negated field's value.
+func (s *AwsWafRegionalRateBasedRuleMatchPredicate) SetNegated(v bool) *AwsWafRegionalRateBasedRuleMatchPredicate {
+	s.Negated = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsWafRegionalRateBasedRuleMatchPredicate) SetType(v string) *AwsWafRegionalRateBasedRuleMatchPredicate {
+	s.Type = &v
+	return s
+}
+
 // Details about an WAF WebACL.
 type AwsWafWebAclDetails struct {
 	_ struct{} `type:"structure"`
@@ -27176,6 +29173,59 @@ func (s *AwsWafWebAclRule) SetRuleId(v string) *AwsWafWebAclRule {
 
 // SetType sets the Type field's value.
 func (s *AwsWafWebAclRule) SetType(v string) *AwsWafWebAclRule {
+	s.Type = &v
+	return s
+}
+
+// Information about the encryption configuration for X-Ray.
+type AwsXrayEncryptionConfigDetails struct {
+	_ struct{} `type:"structure"`
+
+	// The identifier of the KMS key that is used for encryption. Provided if Type
+	// is KMS.
+	KeyId *string `type:"string"`
+
+	// The current status of the encryption configuration. When Status is UPDATING,
+	// X-Ray might use both the old and new encryption.
+	Status *string `type:"string"`
+
+	// The type of encryption. KMS indicates that the encryption uses KMS keys.
+	// NONE indicates to use the default encryption.
+	Type *string `type:"string"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsXrayEncryptionConfigDetails) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s AwsXrayEncryptionConfigDetails) GoString() string {
+	return s.String()
+}
+
+// SetKeyId sets the KeyId field's value.
+func (s *AwsXrayEncryptionConfigDetails) SetKeyId(v string) *AwsXrayEncryptionConfigDetails {
+	s.KeyId = &v
+	return s
+}
+
+// SetStatus sets the Status field's value.
+func (s *AwsXrayEncryptionConfigDetails) SetStatus(v string) *AwsXrayEncryptionConfigDetails {
+	s.Status = &v
+	return s
+}
+
+// SetType sets the Type field's value.
+func (s *AwsXrayEncryptionConfigDetails) SetType(v string) *AwsXrayEncryptionConfigDetails {
 	s.Type = &v
 	return s
 }
@@ -34651,11 +36701,17 @@ type ResourceDetails struct {
 	// Details for an EC2 VPC.
 	AwsEc2Vpc *AwsEc2VpcDetails `type:"structure"`
 
+	// Details about the service configuration for a VPC endpoint service.
+	AwsEc2VpcEndpointService *AwsEc2VpcEndpointServiceDetails `type:"structure"`
+
 	// Details about an EC2 VPN connection.
 	AwsEc2VpnConnection *AwsEc2VpnConnectionDetails `type:"structure"`
 
-	// information about an Amazon ECR image.
+	// Information about an Amazon ECR image.
 	AwsEcrContainerImage *AwsEcrContainerImageDetails `type:"structure"`
+
+	// Information about an Amazon Elastic Container Registry repository.
+	AwsEcrRepository *AwsEcrRepositoryDetails `type:"structure"`
 
 	// Details about an ECS cluster.
 	AwsEcsCluster *AwsEcsClusterDetails `type:"structure"`
@@ -34666,6 +36722,9 @@ type ResourceDetails struct {
 	// Details about a task definition. A task definition describes the container
 	// and volume definitions of an Amazon Elastic Container Service task.
 	AwsEcsTaskDefinition *AwsEcsTaskDefinitionDetails `type:"structure"`
+
+	// Details about an Amazon EKS cluster.
+	AwsEksCluster *AwsEksClusterDetails `type:"structure"`
 
 	// Details about an Elastic Beanstalk environment.
 	AwsElasticBeanstalkEnvironment *AwsElasticBeanstalkEnvironmentDetails `type:"structure"`
@@ -34702,6 +36761,9 @@ type ResourceDetails struct {
 
 	// Details for a Lambda layer version.
 	AwsLambdaLayerVersion *AwsLambdaLayerVersionDetails `type:"structure"`
+
+	// Details about an Amazon OpenSearch Service domain.
+	AwsOpenSearchServiceDomain *AwsOpenSearchServiceDomainDetails `type:"structure"`
 
 	// Details about an Amazon RDS database cluster.
 	AwsRdsDbCluster *AwsRdsDbClusterDetails `type:"structure"`
@@ -34743,8 +36805,17 @@ type ResourceDetails struct {
 	// patch baseline that was used to patch the instance.
 	AwsSsmPatchCompliance *AwsSsmPatchComplianceDetails `type:"structure"`
 
+	// Details about a rate-based rule for global resources.
+	AwsWafRateBasedRule *AwsWafRateBasedRuleDetails `type:"structure"`
+
+	// Details about a rate-based rule for Regional resources.
+	AwsWafRegionalRateBasedRule *AwsWafRegionalRateBasedRuleDetails `type:"structure"`
+
 	// Details for an WAF WebACL.
 	AwsWafWebAcl *AwsWafWebAclDetails `type:"structure"`
+
+	// Information about the encryption configuration for X-Ray.
+	AwsXrayEncryptionConfig *AwsXrayEncryptionConfigDetails `type:"structure"`
 
 	// Details about a container resource related to a finding.
 	Container *ContainerDetails `type:"structure"`
@@ -34909,6 +36980,12 @@ func (s *ResourceDetails) SetAwsEc2Vpc(v *AwsEc2VpcDetails) *ResourceDetails {
 	return s
 }
 
+// SetAwsEc2VpcEndpointService sets the AwsEc2VpcEndpointService field's value.
+func (s *ResourceDetails) SetAwsEc2VpcEndpointService(v *AwsEc2VpcEndpointServiceDetails) *ResourceDetails {
+	s.AwsEc2VpcEndpointService = v
+	return s
+}
+
 // SetAwsEc2VpnConnection sets the AwsEc2VpnConnection field's value.
 func (s *ResourceDetails) SetAwsEc2VpnConnection(v *AwsEc2VpnConnectionDetails) *ResourceDetails {
 	s.AwsEc2VpnConnection = v
@@ -34918,6 +36995,12 @@ func (s *ResourceDetails) SetAwsEc2VpnConnection(v *AwsEc2VpnConnectionDetails) 
 // SetAwsEcrContainerImage sets the AwsEcrContainerImage field's value.
 func (s *ResourceDetails) SetAwsEcrContainerImage(v *AwsEcrContainerImageDetails) *ResourceDetails {
 	s.AwsEcrContainerImage = v
+	return s
+}
+
+// SetAwsEcrRepository sets the AwsEcrRepository field's value.
+func (s *ResourceDetails) SetAwsEcrRepository(v *AwsEcrRepositoryDetails) *ResourceDetails {
+	s.AwsEcrRepository = v
 	return s
 }
 
@@ -34936,6 +37019,12 @@ func (s *ResourceDetails) SetAwsEcsService(v *AwsEcsServiceDetails) *ResourceDet
 // SetAwsEcsTaskDefinition sets the AwsEcsTaskDefinition field's value.
 func (s *ResourceDetails) SetAwsEcsTaskDefinition(v *AwsEcsTaskDefinitionDetails) *ResourceDetails {
 	s.AwsEcsTaskDefinition = v
+	return s
+}
+
+// SetAwsEksCluster sets the AwsEksCluster field's value.
+func (s *ResourceDetails) SetAwsEksCluster(v *AwsEksClusterDetails) *ResourceDetails {
+	s.AwsEksCluster = v
 	return s
 }
 
@@ -35008,6 +37097,12 @@ func (s *ResourceDetails) SetAwsLambdaFunction(v *AwsLambdaFunctionDetails) *Res
 // SetAwsLambdaLayerVersion sets the AwsLambdaLayerVersion field's value.
 func (s *ResourceDetails) SetAwsLambdaLayerVersion(v *AwsLambdaLayerVersionDetails) *ResourceDetails {
 	s.AwsLambdaLayerVersion = v
+	return s
+}
+
+// SetAwsOpenSearchServiceDomain sets the AwsOpenSearchServiceDomain field's value.
+func (s *ResourceDetails) SetAwsOpenSearchServiceDomain(v *AwsOpenSearchServiceDomainDetails) *ResourceDetails {
+	s.AwsOpenSearchServiceDomain = v
 	return s
 }
 
@@ -35089,9 +37184,27 @@ func (s *ResourceDetails) SetAwsSsmPatchCompliance(v *AwsSsmPatchComplianceDetai
 	return s
 }
 
+// SetAwsWafRateBasedRule sets the AwsWafRateBasedRule field's value.
+func (s *ResourceDetails) SetAwsWafRateBasedRule(v *AwsWafRateBasedRuleDetails) *ResourceDetails {
+	s.AwsWafRateBasedRule = v
+	return s
+}
+
+// SetAwsWafRegionalRateBasedRule sets the AwsWafRegionalRateBasedRule field's value.
+func (s *ResourceDetails) SetAwsWafRegionalRateBasedRule(v *AwsWafRegionalRateBasedRuleDetails) *ResourceDetails {
+	s.AwsWafRegionalRateBasedRule = v
+	return s
+}
+
 // SetAwsWafWebAcl sets the AwsWafWebAcl field's value.
 func (s *ResourceDetails) SetAwsWafWebAcl(v *AwsWafWebAclDetails) *ResourceDetails {
 	s.AwsWafWebAcl = v
+	return s
+}
+
+// SetAwsXrayEncryptionConfig sets the AwsXrayEncryptionConfig field's value.
+func (s *ResourceDetails) SetAwsXrayEncryptionConfig(v *AwsXrayEncryptionConfigDetails) *ResourceDetails {
+	s.AwsXrayEncryptionConfig = v
 	return s
 }
 

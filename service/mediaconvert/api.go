@@ -638,6 +638,95 @@ func (c *MediaConvert) DeleteJobTemplateWithContext(ctx aws.Context, input *Dele
 	return out, req.Send()
 }
 
+const opDeletePolicy = "DeletePolicy"
+
+// DeletePolicyRequest generates a "aws/request.Request" representing the
+// client's request for the DeletePolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See DeletePolicy for more information on using the DeletePolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the DeletePolicyRequest method.
+//    req, resp := client.DeletePolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/DeletePolicy
+func (c *MediaConvert) DeletePolicyRequest(input *DeletePolicyInput) (req *request.Request, output *DeletePolicyOutput) {
+	op := &request.Operation{
+		Name:       opDeletePolicy,
+		HTTPMethod: "DELETE",
+		HTTPPath:   "/2017-08-29/policy",
+	}
+
+	if input == nil {
+		input = &DeletePolicyInput{}
+	}
+
+	output = &DeletePolicyOutput{}
+	req = c.newRequest(op, input, output)
+	req.Handlers.Unmarshal.Swap(restjson.UnmarshalHandler.Name, protocol.UnmarshalDiscardBodyHandler)
+	return
+}
+
+// DeletePolicy API operation for AWS Elemental MediaConvert.
+//
+// Permanently delete a policy that you created.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaConvert's
+// API operation DeletePolicy for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * NotFoundException
+//
+//   * TooManyRequestsException
+//
+//   * ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/DeletePolicy
+func (c *MediaConvert) DeletePolicy(input *DeletePolicyInput) (*DeletePolicyOutput, error) {
+	req, out := c.DeletePolicyRequest(input)
+	return out, req.Send()
+}
+
+// DeletePolicyWithContext is the same as DeletePolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See DeletePolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConvert) DeletePolicyWithContext(ctx aws.Context, input *DeletePolicyInput, opts ...request.Option) (*DeletePolicyOutput, error) {
+	req, out := c.DeletePolicyRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
 const opDeletePreset = "DeletePreset"
 
 // DeletePresetRequest generates a "aws/request.Request" representing the
@@ -1224,6 +1313,94 @@ func (c *MediaConvert) GetJobTemplate(input *GetJobTemplateInput) (*GetJobTempla
 // for more information on using Contexts.
 func (c *MediaConvert) GetJobTemplateWithContext(ctx aws.Context, input *GetJobTemplateInput, opts ...request.Option) (*GetJobTemplateOutput, error) {
 	req, out := c.GetJobTemplateRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opGetPolicy = "GetPolicy"
+
+// GetPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the GetPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See GetPolicy for more information on using the GetPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the GetPolicyRequest method.
+//    req, resp := client.GetPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/GetPolicy
+func (c *MediaConvert) GetPolicyRequest(input *GetPolicyInput) (req *request.Request, output *GetPolicyOutput) {
+	op := &request.Operation{
+		Name:       opGetPolicy,
+		HTTPMethod: "GET",
+		HTTPPath:   "/2017-08-29/policy",
+	}
+
+	if input == nil {
+		input = &GetPolicyInput{}
+	}
+
+	output = &GetPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// GetPolicy API operation for AWS Elemental MediaConvert.
+//
+// Retrieve the JSON for your policy.
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaConvert's
+// API operation GetPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * NotFoundException
+//
+//   * TooManyRequestsException
+//
+//   * ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/GetPolicy
+func (c *MediaConvert) GetPolicy(input *GetPolicyInput) (*GetPolicyOutput, error) {
+	req, out := c.GetPolicyRequest(input)
+	return out, req.Send()
+}
+
+// GetPolicyWithContext is the same as GetPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See GetPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConvert) GetPolicyWithContext(ctx aws.Context, input *GetPolicyInput, opts ...request.Option) (*GetPolicyOutput, error) {
+	req, out := c.GetPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -2081,6 +2258,95 @@ func (c *MediaConvert) ListTagsForResource(input *ListTagsForResourceInput) (*Li
 // for more information on using Contexts.
 func (c *MediaConvert) ListTagsForResourceWithContext(ctx aws.Context, input *ListTagsForResourceInput, opts ...request.Option) (*ListTagsForResourceOutput, error) {
 	req, out := c.ListTagsForResourceRequest(input)
+	req.SetContext(ctx)
+	req.ApplyOptions(opts...)
+	return out, req.Send()
+}
+
+const opPutPolicy = "PutPolicy"
+
+// PutPolicyRequest generates a "aws/request.Request" representing the
+// client's request for the PutPolicy operation. The "output" return
+// value will be populated with the request's response once the request completes
+// successfully.
+//
+// Use "Send" method on the returned Request to send the API call to the service.
+// the "output" return value is not valid until after Send returns without error.
+//
+// See PutPolicy for more information on using the PutPolicy
+// API call, and error handling.
+//
+// This method is useful when you want to inject custom logic or configuration
+// into the SDK's request lifecycle. Such as custom headers, or retry logic.
+//
+//
+//    // Example sending a request using the PutPolicyRequest method.
+//    req, resp := client.PutPolicyRequest(params)
+//
+//    err := req.Send()
+//    if err == nil { // resp is now filled
+//        fmt.Println(resp)
+//    }
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/PutPolicy
+func (c *MediaConvert) PutPolicyRequest(input *PutPolicyInput) (req *request.Request, output *PutPolicyOutput) {
+	op := &request.Operation{
+		Name:       opPutPolicy,
+		HTTPMethod: "PUT",
+		HTTPPath:   "/2017-08-29/policy",
+	}
+
+	if input == nil {
+		input = &PutPolicyInput{}
+	}
+
+	output = &PutPolicyOutput{}
+	req = c.newRequest(op, input, output)
+	return
+}
+
+// PutPolicy API operation for AWS Elemental MediaConvert.
+//
+// Create or change your policy. For more information about policies, see the
+// user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
+//
+// Returns awserr.Error for service API and SDK errors. Use runtime type assertions
+// with awserr.Error's Code and Message methods to get detailed information about
+// the error.
+//
+// See the AWS API reference guide for AWS Elemental MediaConvert's
+// API operation PutPolicy for usage and error information.
+//
+// Returned Error Types:
+//   * BadRequestException
+//
+//   * InternalServerErrorException
+//
+//   * ForbiddenException
+//
+//   * NotFoundException
+//
+//   * TooManyRequestsException
+//
+//   * ConflictException
+//
+// See also, https://docs.aws.amazon.com/goto/WebAPI/mediaconvert-2017-08-29/PutPolicy
+func (c *MediaConvert) PutPolicy(input *PutPolicyInput) (*PutPolicyOutput, error) {
+	req, out := c.PutPolicyRequest(input)
+	return out, req.Send()
+}
+
+// PutPolicyWithContext is the same as PutPolicy with the addition of
+// the ability to pass a context and additional request options.
+//
+// See PutPolicy for details on how to use this API operation.
+//
+// The context must be non-nil and will be used for request cancellation. If
+// the context is nil a panic will occur. In the future the SDK may create
+// sub-contexts for http.Requests. See https://golang.org/pkg/context/
+// for more information on using Contexts.
+func (c *MediaConvert) PutPolicyWithContext(ctx aws.Context, input *PutPolicyInput, opts ...request.Option) (*PutPolicyOutput, error) {
+	req, out := c.PutPolicyRequest(input)
 	req.SetContext(ctx)
 	req.ApplyOptions(opts...)
 	return out, req.Send()
@@ -8246,6 +8512,52 @@ func (s DeleteJobTemplateOutput) GoString() string {
 	return s.String()
 }
 
+// Send a request to permanently delete a policy that you created.
+type DeletePolicyInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePolicyInput) GoString() string {
+	return s.String()
+}
+
+// Successful DELETE policy requests will return an OK message.
+type DeletePolicyOutput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s DeletePolicyOutput) GoString() string {
+	return s.String()
+}
+
 // Delete a preset by sending a request with the preset name
 type DeletePresetInput struct {
 	_ struct{} `type:"structure"`
@@ -10787,6 +11099,62 @@ func (s GetJobTemplateOutput) GoString() string {
 // SetJobTemplate sets the JobTemplate field's value.
 func (s *GetJobTemplateOutput) SetJobTemplate(v *JobTemplate) *GetJobTemplateOutput {
 	s.JobTemplate = v
+	return s
+}
+
+// Send a request to retrieve the JSON for your policy.
+type GetPolicyInput struct {
+	_ struct{} `type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Successful GET policy requests will return the JSON for your policy.
+type GetPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A policy configures behavior that you allow or disallow for your account.
+	// For information about MediaConvert policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
+	Policy *Policy `locationName:"policy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s GetPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *GetPolicyOutput) SetPolicy(v *Policy) *GetPolicyOutput {
+	s.Policy = v
 	return s
 }
 
@@ -20109,6 +20477,57 @@ func (s *PartnerWatermarking) SetNexguardFileMarkerSettings(v *NexGuardFileMarke
 	return s
 }
 
+// A policy configures behavior that you allow or disallow for your account.
+// For information about MediaConvert policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
+type Policy struct {
+	_ struct{} `type:"structure"`
+
+	// Allow or disallow jobs that specify HTTP inputs.
+	HttpInputs *string `locationName:"httpInputs" type:"string" enum:"InputPolicy"`
+
+	// Allow or disallow jobs that specify HTTPS inputs.
+	HttpsInputs *string `locationName:"httpsInputs" type:"string" enum:"InputPolicy"`
+
+	// Allow or disallow jobs that specify Amazon S3 inputs.
+	S3Inputs *string `locationName:"s3Inputs" type:"string" enum:"InputPolicy"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Policy) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s Policy) GoString() string {
+	return s.String()
+}
+
+// SetHttpInputs sets the HttpInputs field's value.
+func (s *Policy) SetHttpInputs(v string) *Policy {
+	s.HttpInputs = &v
+	return s
+}
+
+// SetHttpsInputs sets the HttpsInputs field's value.
+func (s *Policy) SetHttpsInputs(v string) *Policy {
+	s.HttpsInputs = &v
+	return s
+}
+
+// SetS3Inputs sets the S3Inputs field's value.
+func (s *Policy) SetS3Inputs(v string) *Policy {
+	s.S3Inputs = &v
+	return s
+}
+
 // A preset is a collection of preconfigured media conversion settings that
 // you want MediaConvert to apply to the output during the conversion process.
 type Preset struct {
@@ -20568,6 +20987,88 @@ func (s *ProresSettings) SetSlowPal(v string) *ProresSettings {
 // SetTelecine sets the Telecine field's value.
 func (s *ProresSettings) SetTelecine(v string) *ProresSettings {
 	s.Telecine = &v
+	return s
+}
+
+// Create or change a policy by sending a request that includes your policy
+// in JSON.
+type PutPolicyInput struct {
+	_ struct{} `type:"structure"`
+
+	// A policy configures behavior that you allow or disallow for your account.
+	// For information about MediaConvert policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
+	//
+	// Policy is a required field
+	Policy *Policy `locationName:"policy" type:"structure" required:"true"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPolicyInput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPolicyInput) GoString() string {
+	return s.String()
+}
+
+// Validate inspects the fields of the type to determine if they are valid.
+func (s *PutPolicyInput) Validate() error {
+	invalidParams := request.ErrInvalidParams{Context: "PutPolicyInput"}
+	if s.Policy == nil {
+		invalidParams.Add(request.NewErrParamRequired("Policy"))
+	}
+
+	if invalidParams.Len() > 0 {
+		return invalidParams
+	}
+	return nil
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutPolicyInput) SetPolicy(v *Policy) *PutPolicyInput {
+	s.Policy = v
+	return s
+}
+
+// Successful PUT policy requests will return your policy.
+type PutPolicyOutput struct {
+	_ struct{} `type:"structure"`
+
+	// A policy configures behavior that you allow or disallow for your account.
+	// For information about MediaConvert policies, see the user guide at http://docs.aws.amazon.com/mediaconvert/latest/ug/what-is.html
+	Policy *Policy `locationName:"policy" type:"structure"`
+}
+
+// String returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPolicyOutput) String() string {
+	return awsutil.Prettify(s)
+}
+
+// GoString returns the string representation.
+//
+// API parameter values that are decorated as "sensitive" in the API will not
+// be included in the string output. The member name will be present, but the
+// value will be replaced with "sensitive".
+func (s PutPolicyOutput) GoString() string {
+	return s.String()
+}
+
+// SetPolicy sets the Policy field's value.
+func (s *PutPolicyOutput) SetPolicy(v *Policy) *PutPolicyOutput {
+	s.Policy = v
 	return s
 }
 
@@ -30799,6 +31300,24 @@ func InputFilterEnable_Values() []string {
 		InputFilterEnableAuto,
 		InputFilterEnableDisable,
 		InputFilterEnableForce,
+	}
+}
+
+// An input policy allows or disallows a job you submit to run based on the
+// conditions that you specify.
+const (
+	// InputPolicyAllowed is a InputPolicy enum value
+	InputPolicyAllowed = "ALLOWED"
+
+	// InputPolicyDisallowed is a InputPolicy enum value
+	InputPolicyDisallowed = "DISALLOWED"
+)
+
+// InputPolicy_Values returns all elements of the InputPolicy enum
+func InputPolicy_Values() []string {
+	return []string{
+		InputPolicyAllowed,
+		InputPolicyDisallowed,
 	}
 }
 
